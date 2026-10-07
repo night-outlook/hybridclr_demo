@@ -1,0 +1,263 @@
+{
+  "kind": "ReadOnlyResolvedDeviceSupplement",
+  "startUtc": "2026-10-07T12:16:28.485931+00:00",
+  "endUtc": "2026-10-07T12:16:28.777207+00:00",
+  "devicesFromDf": [
+    "/dev/disk3s1"
+  ],
+  "deviceInfos": [
+    {
+      "device": "/dev/disk3s1",
+      "receipt": {
+        "command": [
+          "/usr/sbin/diskutil",
+          "info",
+          "-plist",
+          "/dev/disk3s1"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "startUtc": "2026-10-07T12:16:28.489753+00:00",
+        "endUtc": "2026-10-07T12:16:28.627961+00:00",
+        "exitCode": 0,
+        "state": "Captured",
+        "stdoutSha256": "5f53598ebbc6f97ca61bdeb300439b61ed0c49b35d51a204ed45ba3a04720c73",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "info": {
+        "AESHardware": true,
+        "APFSContainerFree": 71451525120,
+        "APFSContainerReference": "disk3",
+        "APFSContainerSize": 494384795648,
+        "APFSPhysicalStores": [
+          {
+            "APFSPhysicalStore": "disk0s2"
+          }
+        ],
+        "APFSSnapshot": false,
+        "APFSVolumeGroupID": "4041BC34-CC69-4012-A9B1-5677E0F61CDC",
+        "Bootable": true,
+        "BooterDeviceIdentifier": "disk3s2",
+        "BusProtocol": "Apple Fabric",
+        "CanBeMadeBootable": false,
+        "CanBeMadeBootableRequiresDestroy": false,
+        "CapacityInUse": 396685582336,
+        "Content": "41504653-0000-11AA-AA11-00306543ECAC",
+        "DeviceBlockSize": 4096,
+        "DeviceIdentifier": "disk3s1",
+        "DeviceNode": "/dev/disk3s1",
+        "DeviceTreePath": "IODeviceTree:/arm-io@10F00000/ans@81600000/iop-ans-nub/AppleANS3CGv2Controller",
+        "DiskUUID": "4041BC34-CC69-4012-A9B1-5677E0F61CDC",
+        "Ejectable": false,
+        "EjectableMediaAutomaticUnderSoftwareControl": false,
+        "EjectableOnly": false,
+        "Encryption": true,
+        "EncryptionThisVolumeProper": true,
+        "FileVault": true,
+        "FilesystemName": "APFS",
+        "FilesystemType": "apfs",
+        "FilesystemUserVisibleName": "APFS",
+        "FreeSpace": 0,
+        "GlobalPermissionsEnabled": true,
+        "IOKitSize": 494384795648,
+        "IORegistryEntryName": "Macintosh HD - Data",
+        "Internal": true,
+        "Locked": false,
+        "MediaName": "",
+        "MediaType": "Generic",
+        "MountPoint": "/System/Volumes/Data",
+        "OSInternalMedia": false,
+        "ParentWholeDisk": "disk3",
+        "PartitionMapPartition": false,
+        "RAIDMaster": false,
+        "RAIDSlice": false,
+        "RecoveryDeviceIdentifier": "disk3s3",
+        "Removable": false,
+        "RemovableMedia": false,
+        "RemovableMediaOrExternalDevice": false,
+        "SMARTDeviceSpecificKeysMayVaryNotGuaranteed": {
+          "AVAILABLE_SPARE": 100,
+          "AVAILABLE_SPARE_THRESHOLD": 99,
+          "CONTROLLER_BUSY_TIME_0": 0,
+          "CONTROLLER_BUSY_TIME_1": 0,
+          "DATA_UNITS_READ_0": 38868309,
+          "DATA_UNITS_READ_1": 0,
+          "DATA_UNITS_WRITTEN_0": 12931808,
+          "DATA_UNITS_WRITTEN_1": 0,
+          "HOST_READ_COMMANDS_0": 578879855,
+          "HOST_READ_COMMANDS_1": 0,
+          "HOST_WRITE_COMMANDS_0": 209851837,
+          "HOST_WRITE_COMMANDS_1": 0,
+          "MEDIA_ERRORS_0": 0,
+          "MEDIA_ERRORS_1": 0,
+          "NUM_ERROR_INFO_LOG_ENTRIES_0": 0,
+          "NUM_ERROR_INFO_LOG_ENTRIES_1": 0,
+          "PERCENTAGE_USED": 0,
+          "POWER_CYCLES_0": 172,
+          "POWER_CYCLES_1": 0,
+          "POWER_ON_HOURS_0": 206,
+          "POWER_ON_HOURS_1": 0,
+          "TEMPERATURE": 302,
+          "UNSAFE_SHUTDOWNS_0": 33,
+          "UNSAFE_SHUTDOWNS_1": 0
+        },
+        "SMARTStatus": "Verified",
+        "Sealed": "No",
+        "Size": 494384795648,
+        "SolidState": true,
+        "SupportsGlobalPermissionsDisable": true,
+        "SystemImage": false,
+        "TotalSize": 494384795648,
+        "VolumeAllocationBlockSize": 4096,
+        "VolumeName": "Macintosh HD - Data",
+        "VolumeSize": 0,
+        "VolumeUUID": "4041BC34-CC69-4012-A9B1-5677E0F61CDC",
+        "WholeDisk": false,
+        "Writable": true,
+        "WritableMedia": true,
+        "WritableVolume": true
+      }
+    }
+  ],
+  "matchingApfsContainers": [
+    {
+      "container": {
+        "APFSContainerUUID": "492BF008-C4BF-4F9A-8D04-50AF6324530B",
+        "CapacityCeiling": 494384795648,
+        "CapacityFree": 71451512832,
+        "ContainerReference": "disk3",
+        "DesignatedPhysicalStore": "disk0s2",
+        "PhysicalStores": [
+          {
+            "DeviceIdentifier": "disk0s2",
+            "DiskUUID": "BDC4CA3C-B5FB-45C4-B735-4559061684EC",
+            "Size": 494384795648
+          }
+        ],
+        "Volumes": [
+          {
+            "APFSVolumeUUID": "4041BC34-CC69-4012-A9B1-5677E0F61CDC",
+            "CapacityInUse": 396685594624,
+            "CapacityQuota": 0,
+            "CapacityReserve": 0,
+            "CryptoMigrationOn": false,
+            "DeviceIdentifier": "disk3s1",
+            "Encryption": true,
+            "FileVault": true,
+            "Locked": false,
+            "Name": "Macintosh HD - Data",
+            "Roles": [
+              "Data"
+            ]
+          },
+          {
+            "APFSVolumeUUID": "4FDD5643-23A6-4104-AA08-7E898DD8B7BF",
+            "CapacityInUse": 9009053696,
+            "CapacityQuota": 0,
+            "CapacityReserve": 0,
+            "CryptoMigrationOn": false,
+            "DeviceIdentifier": "disk3s2",
+            "Encryption": false,
+            "FileVault": false,
+            "Locked": false,
+            "Name": "Preboot",
+            "Roles": [
+              "Preboot"
+            ]
+          },
+          {
+            "APFSVolumeUUID": "A504A830-E500-41FA-9F5A-03C92696905E",
+            "CapacityInUse": 1284915200,
+            "CapacityQuota": 0,
+            "CapacityReserve": 0,
+            "CryptoMigrationOn": false,
+            "DeviceIdentifier": "disk3s3",
+            "Encryption": false,
+            "FileVault": false,
+            "Locked": false,
+            "Name": "Recovery",
+            "Roles": [
+              "Recovery"
+            ]
+          },
+          {
+            "APFSVolumeUUID": "ED540B68-8F16-4D23-98E4-766F2B44D0CD",
+            "CapacityInUse": 6934528,
+            "CapacityQuota": 0,
+            "CapacityReserve": 0,
+            "CryptoMigrationOn": false,
+            "DeviceIdentifier": "disk3s4",
+            "Encryption": false,
+            "FileVault": false,
+            "Locked": false,
+            "Name": "Update",
+            "Roles": [
+              "Update"
+            ]
+          },
+          {
+            "APFSVolumeUUID": "52CB49E2-DE58-4E92-BEC8-18AF40197A00",
+            "CapacityInUse": 888832,
+            "CapacityQuota": 0,
+            "CapacityReserve": 0,
+            "CryptoMigrationOn": false,
+            "DeviceIdentifier": "disk3s5",
+            "Encryption": true,
+            "FileVault": false,
+            "Locked": false,
+            "Name": "Data",
+            "Roles": []
+          },
+          {
+            "APFSVolumeUUID": "AC03FCA4-5CE7-4925-A7C6-5B2704C18B8C",
+            "CapacityInUse": 3221434368,
+            "CapacityQuota": 0,
+            "CapacityReserve": 0,
+            "CryptoMigrationOn": false,
+            "DeviceIdentifier": "disk3s6",
+            "Encryption": false,
+            "FileVault": false,
+            "Locked": false,
+            "Name": "VM",
+            "Roles": [
+              "VM"
+            ]
+          },
+          {
+            "APFSVolumeUUID": "89DF6CC6-0B03-4065-9855-D01C80B030A6",
+            "CapacityInUse": 12564090880,
+            "CapacityQuota": 0,
+            "CapacityReserve": 0,
+            "CryptoMigrationOn": false,
+            "DeviceIdentifier": "disk3s7",
+            "Encryption": true,
+            "FileVault": true,
+            "Locked": false,
+            "Name": "Macintosh HD",
+            "Roles": [
+              "System"
+            ]
+          }
+        ]
+      },
+      "matchingDeviceIdentifiers": [
+        "disk3s1"
+      ]
+    }
+  ],
+  "quotaReceipt": {
+    "command": [
+      "/usr/bin/quota",
+      "-v"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T12:16:28.772743+00:00",
+    "endUtc": "2026-10-07T12:16:28.776944+00:00",
+    "exitCode": 0,
+    "state": "Captured",
+    "stdoutSha256": "777fc4ea2f9813a43e321230533744c1da03c6f906fdcbeea26ff8b57197eb35",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "originalDirectoryDiagnosticsUnchanged": true,
+  "capacityRemediationPerformed": false,
+  "interpretation": "Supplemental current observations; no reconstruction of Q allocation failure or reservation. Original ordinary-directory diskutil errors remain Unavailable."
+}

@@ -1,0 +1,504 @@
+{
+  "kind": "R03AdmissionHostEvidence",
+  "schemaVersion": 1,
+  "result": "Passed",
+  "failures": 0,
+  "cases": [
+    {
+      "id": "L01-private-reference-append",
+      "result": "Passed"
+    },
+    {
+      "id": "L02-private-string-append",
+      "result": "Passed"
+    },
+    {
+      "id": "L03-private-primitive-append-needs-native",
+      "result": "Passed"
+    },
+    {
+      "id": "L04-public-primitive-append",
+      "result": "Passed"
+    },
+    {
+      "id": "L05-value-type-growth",
+      "result": "Passed"
+    },
+    {
+      "id": "L06-generic-definition-growth",
+      "result": "Passed"
+    },
+    {
+      "id": "L07-instance-field-removal",
+      "result": "Passed"
+    },
+    {
+      "id": "L08-instance-field-type-change",
+      "result": "Passed"
+    },
+    {
+      "id": "L09-instance-field-order-change",
+      "result": "Passed"
+    },
+    {
+      "id": "L10-static-field-is-not-instance-layout",
+      "result": "Passed"
+    },
+    {
+      "id": "L11-existing-field-visibility-is-not-storage",
+      "result": "Passed"
+    },
+    {
+      "id": "L12-interface-addition",
+      "result": "Passed"
+    },
+    {
+      "id": "L13-explicit-offset-change",
+      "result": "Passed"
+    },
+    {
+      "id": "L14-packing-needs-native",
+      "result": "Passed"
+    },
+    {
+      "id": "L15-class-size-needs-native",
+      "result": "Passed"
+    },
+    {
+      "id": "L16-layout-kind-change",
+      "result": "Passed"
+    },
+    {
+      "id": "L17-type-constraint-change",
+      "result": "Passed"
+    },
+    {
+      "id": "L18-method-only-change-needs-allocation-proof",
+      "result": "Passed"
+    },
+    {
+      "id": "L19-new-type-no-baseline-proof",
+      "result": "Passed"
+    },
+    {
+      "id": "L20-analysis-does-not-load-assembly-or-cctor",
+      "result": "Passed"
+    },
+    {
+      "id": "M01-token-and-virtual-order-not-identity",
+      "result": "Passed"
+    },
+    {
+      "id": "M02-no-inline-not-identity-or-contract",
+      "result": "Passed"
+    },
+    {
+      "id": "M03-visibility-separate-compatibility",
+      "result": "Passed"
+    },
+    {
+      "id": "M04-dispatch-separate-compatibility",
+      "result": "Passed"
+    },
+    {
+      "id": "M05-static-calling-shape",
+      "result": "Passed"
+    },
+    {
+      "id": "M06-byref-signature",
+      "result": "Passed"
+    },
+    {
+      "id": "M07-required-modifier-identity",
+      "result": "Passed"
+    },
+    {
+      "id": "M08-method-constraint-separate-compatibility",
+      "result": "Passed"
+    },
+    {
+      "id": "M09-parameter-name-not-contract",
+      "result": "Passed"
+    },
+    {
+      "id": "M10-parameter-attribute-separate-compatibility",
+      "result": "Passed"
+    },
+    {
+      "id": "M11-generic-composite-local-numbering",
+      "result": "Passed"
+    },
+    {
+      "id": "M12-return-type-is-signature",
+      "result": "Passed"
+    },
+    {
+      "id": "M13-missing-method-rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "M14-declaring-type-constraints",
+      "result": "Passed"
+    },
+    {
+      "id": "M15-optimization-hints-independent",
+      "result": "Passed"
+    }
+  ],
+  "files": [
+    {
+      "path": "inputs/L01-private-reference-append/baseline.dll",
+      "size": 2048,
+      "sha256": "ac17b0dcf48732656f945ec7988cd99f9350f3319abc551a10dc60a658b7e950"
+    },
+    {
+      "path": "inputs/L01-private-reference-append/target.dll",
+      "size": 2048,
+      "sha256": "2b31934bf33646b8e42c06c35afed5c5e8a2a7cf7bd15164aeca1e55635f9800"
+    },
+    {
+      "path": "inputs/L02-private-string-append/baseline.dll",
+      "size": 2048,
+      "sha256": "e70c1808e2ec8edd9d9e746be9bf64bbe2b623d1cf6bf83f528a9b185dfa369e"
+    },
+    {
+      "path": "inputs/L02-private-string-append/target.dll",
+      "size": 2048,
+      "sha256": "f9063da7e81eb3ad41a0eb0aaad44fc3f776e2b94e9f60f5f9dc345173d4e323"
+    },
+    {
+      "path": "inputs/L03-private-primitive-append-needs-native/baseline.dll",
+      "size": 2048,
+      "sha256": "bc190002af6e10485a74d707ac843c810af7ca5a30029a6688cef66c8f5cd01a"
+    },
+    {
+      "path": "inputs/L03-private-primitive-append-needs-native/target.dll",
+      "size": 2048,
+      "sha256": "3ff244b386dafa668b14b3aa943411079f1a6aa99b5edab8dc99bf9db55b9c68"
+    },
+    {
+      "path": "inputs/L04-public-primitive-append/baseline.dll",
+      "size": 2048,
+      "sha256": "39cef107c1383f9f7609c038f472549f1a01a7232b6874f75fb098d44ffd388a"
+    },
+    {
+      "path": "inputs/L04-public-primitive-append/target.dll",
+      "size": 2048,
+      "sha256": "d0157d9798b60fb9cbd5933c1dcbe09032f0100afb5825514ab6b152444e34bb"
+    },
+    {
+      "path": "inputs/L05-value-type-growth/baseline.dll",
+      "size": 2048,
+      "sha256": "669db7f8bb6b656f28b29eae507f536fd70ebc5576dc84b46f2355dc36294abc"
+    },
+    {
+      "path": "inputs/L05-value-type-growth/target.dll",
+      "size": 2048,
+      "sha256": "a80c8e8529a5f332521b7d1363ebc4e0dadc1d2b11e65baa113e459dd079e199"
+    },
+    {
+      "path": "inputs/L06-generic-definition-growth/baseline.dll",
+      "size": 2048,
+      "sha256": "b305abdb44d92ac9697a7bcd742c30c0e0ffdd389e212d176afd10d4e53d5f50"
+    },
+    {
+      "path": "inputs/L06-generic-definition-growth/target.dll",
+      "size": 2048,
+      "sha256": "0c3e39b551c11024d89d955c3f7dbde6fcd1458ece4604f7faf3575c611c698d"
+    },
+    {
+      "path": "inputs/L07-instance-field-removal/baseline.dll",
+      "size": 2048,
+      "sha256": "d5713524862eb0af4df9b85be3de02914a5649f72df1c168f6c95e9719c619a0"
+    },
+    {
+      "path": "inputs/L07-instance-field-removal/target.dll",
+      "size": 2048,
+      "sha256": "8b4d870ddce88731926daa2818172198f53413059d5023c278551162a9f4cfa0"
+    },
+    {
+      "path": "inputs/L08-instance-field-type-change/baseline.dll",
+      "size": 2048,
+      "sha256": "caff6e8d53d5d9f7bf0ffa0a7291441320faf443b297ebedc42b4a1a0de60af8"
+    },
+    {
+      "path": "inputs/L08-instance-field-type-change/target.dll",
+      "size": 2048,
+      "sha256": "33761bfe67698dd079697d841891315e436e55f0c8fb57911c8f8b7332418faf"
+    },
+    {
+      "path": "inputs/L09-instance-field-order-change/baseline.dll",
+      "size": 2048,
+      "sha256": "4a8057aa49790f117b79ae94a6d8b9fb9d5ff64f042bed5e9a6ddde6923c874a"
+    },
+    {
+      "path": "inputs/L09-instance-field-order-change/target.dll",
+      "size": 2048,
+      "sha256": "1dcb1ad2fbd5daae10a865184650b524270a18bf74eed6eefc4ffcdf253cd4a0"
+    },
+    {
+      "path": "inputs/L10-static-field-is-not-instance-layout/baseline.dll",
+      "size": 2048,
+      "sha256": "e10e2553ff762d38d1e33542112dce27c01fa5492262de7950aacd19df413727"
+    },
+    {
+      "path": "inputs/L10-static-field-is-not-instance-layout/target.dll",
+      "size": 2048,
+      "sha256": "78b0efde53be78ee8e7d06ff1835e7ba7b485649bdbb2b339b4c2f3d4ad4bf1d"
+    },
+    {
+      "path": "inputs/L11-existing-field-visibility-is-not-storage/baseline.dll",
+      "size": 2048,
+      "sha256": "83f36f114c2f184c4cd2cab0ba501efd4a75dce3e63d2263e4a2f574b5da80ce"
+    },
+    {
+      "path": "inputs/L11-existing-field-visibility-is-not-storage/target.dll",
+      "size": 2048,
+      "sha256": "8363b17e6d32d6b43ab32f51ff23936e069fc0db12281b2db7d32b3109b840fd"
+    },
+    {
+      "path": "inputs/L12-interface-addition/baseline.dll",
+      "size": 2048,
+      "sha256": "eace3a56634bf0a58849f6b09e801d3e6f9eaa1f613e0992a2fa429609c349ca"
+    },
+    {
+      "path": "inputs/L12-interface-addition/target.dll",
+      "size": 2048,
+      "sha256": "37b012fefc8b1eb7ccd48b20c4f6b5dd63078c25e51bce7f36a8ad9594e10e31"
+    },
+    {
+      "path": "inputs/L13-explicit-offset-change/baseline.dll",
+      "size": 2048,
+      "sha256": "4d84ea638f353cc79ca9e70d22633ec37db4ad6dd6b04478bb8edea41d5f161d"
+    },
+    {
+      "path": "inputs/L13-explicit-offset-change/target.dll",
+      "size": 2048,
+      "sha256": "8eadbf562064474a6405be29a6ac5ffd1384970c1ed1f76e0677f20b0109dab3"
+    },
+    {
+      "path": "inputs/L14-packing-needs-native/baseline.dll",
+      "size": 2048,
+      "sha256": "75ebbafd460f8a0714cbad670e413af2d1f5074b8f82963874a9d70bbb4807d6"
+    },
+    {
+      "path": "inputs/L14-packing-needs-native/target.dll",
+      "size": 2048,
+      "sha256": "6f44e5166b854fc82a89bfa2b903a23e1895e05add14fcdb2c6d3a3582dd0772"
+    },
+    {
+      "path": "inputs/L15-class-size-needs-native/baseline.dll",
+      "size": 2048,
+      "sha256": "e4e27b57ce08cfc72936d32162379dd581ce24f68ab5fe78423aa1ab5fe42c6a"
+    },
+    {
+      "path": "inputs/L15-class-size-needs-native/target.dll",
+      "size": 2048,
+      "sha256": "0b10dee318e5d2a17fb6cf12dd8b76ab6134385ce88f8b28b20460b31749abc3"
+    },
+    {
+      "path": "inputs/L16-layout-kind-change/baseline.dll",
+      "size": 2048,
+      "sha256": "094219b24393033483427a5f63801d1735bd9a41174aff826d5f942bba32c3b4"
+    },
+    {
+      "path": "inputs/L16-layout-kind-change/target.dll",
+      "size": 2048,
+      "sha256": "101048041a47ee4aba113d67be39d226b8ec165a46e4348d0ac6cf023382c359"
+    },
+    {
+      "path": "inputs/L17-type-constraint-change/baseline.dll",
+      "size": 2048,
+      "sha256": "a0e0244cf5deca6accf84fe32eb303fa587fb67fce9b13ed7f51593f4df28800"
+    },
+    {
+      "path": "inputs/L17-type-constraint-change/target.dll",
+      "size": 2048,
+      "sha256": "322dbb7af7c279ceb17ada7fe5fb5a74cdea19652f4962b26a5bc8cf2937d10b"
+    },
+    {
+      "path": "inputs/L18-method-only-change-needs-allocation-proof/baseline.dll",
+      "size": 2048,
+      "sha256": "1bf1dc4da6a6acc3c7b3435dd1767ba2e5fe5b38342f9f132b70d4166fc0864d"
+    },
+    {
+      "path": "inputs/L18-method-only-change-needs-allocation-proof/target.dll",
+      "size": 2048,
+      "sha256": "e0115ec2ded34e80b943ece595614197fe975973c8d4b4fb6f23ec75524be3a0"
+    },
+    {
+      "path": "inputs/L19-new-type-no-baseline-proof/baseline.dll",
+      "size": 2048,
+      "sha256": "55795879cdc516830671b228ec918f1ccc3b7d085b93ce0fdeb5a15a27914bf2"
+    },
+    {
+      "path": "inputs/L19-new-type-no-baseline-proof/target.dll",
+      "size": 2048,
+      "sha256": "ee49293fe70be164b7cfa862f709b4aaf59d99e2ec6b6029ba275cd446f3091e"
+    },
+    {
+      "path": "inputs/L20-analysis-does-not-load-assembly-or-cctor/baseline.dll",
+      "size": 2048,
+      "sha256": "583c616e24b0d81940d236f448658111558dd9325a60397bf1712e7a1070863a"
+    },
+    {
+      "path": "inputs/L20-analysis-does-not-load-assembly-or-cctor/target.dll",
+      "size": 2048,
+      "sha256": "82fd903b0579905891b60a0b382eb2694829090f7e99b2b6e673a76710e508d3"
+    },
+    {
+      "path": "inputs/M01-token-and-virtual-order-not-identity/baseline.dll",
+      "size": 2048,
+      "sha256": "c4ce3aff22e653f9188527244cbae07a86d300e6048c75f90386d323247400c8"
+    },
+    {
+      "path": "inputs/M01-token-and-virtual-order-not-identity/target.dll",
+      "size": 2048,
+      "sha256": "9974e4c3790a29030e127a1750a2331db027d971a5fd69ed88c2c3c462cddf32"
+    },
+    {
+      "path": "inputs/M02-no-inline-not-identity-or-contract/baseline.dll",
+      "size": 2048,
+      "sha256": "a57fba934a8b2c2301178fe49b6d8794aa0a78d567b76fd9ca00855258b56f18"
+    },
+    {
+      "path": "inputs/M02-no-inline-not-identity-or-contract/target.dll",
+      "size": 2048,
+      "sha256": "5d491f86d63c025ff566c6706f32d117f5221a7ead42831140c2fa4b7d497725"
+    },
+    {
+      "path": "inputs/M03-visibility-separate-compatibility/baseline.dll",
+      "size": 2048,
+      "sha256": "731dea66dbf9bdc30da5ab3ffdf355689ce44e52a4ec22316cb7596ad6c88495"
+    },
+    {
+      "path": "inputs/M03-visibility-separate-compatibility/target.dll",
+      "size": 2048,
+      "sha256": "5989e11c747ea41b57269665c06a97c7bcd1f21705d08067b058d9392e7dbd00"
+    },
+    {
+      "path": "inputs/M04-dispatch-separate-compatibility/baseline.dll",
+      "size": 2048,
+      "sha256": "efa640e3782375c6fcb564a6882fa59916d47a9c799fcf7278fb692aaa210c91"
+    },
+    {
+      "path": "inputs/M04-dispatch-separate-compatibility/target.dll",
+      "size": 2048,
+      "sha256": "7d41056ba065c3e8eb5b7397424583988019db25b9be94eba05707f59d882650"
+    },
+    {
+      "path": "inputs/M05-static-calling-shape/baseline.dll",
+      "size": 2048,
+      "sha256": "68dc244ade869f70b0c8f4bfab4792e5a6ec8e39360a444a26139b69cf87723c"
+    },
+    {
+      "path": "inputs/M05-static-calling-shape/target.dll",
+      "size": 2048,
+      "sha256": "9742b25c848021a5448719369d422cb9e6005156e6e261f8d19b33ae9e4ccb70"
+    },
+    {
+      "path": "inputs/M06-byref-signature/baseline.dll",
+      "size": 2048,
+      "sha256": "c61123ac32aadc3f48f4cf0f09aede1c2c4b241d7f5a43d986f44091105f1e6c"
+    },
+    {
+      "path": "inputs/M06-byref-signature/target.dll",
+      "size": 2048,
+      "sha256": "e52a6eed139619ca68842144337b8d17cd51425f0918812d551afabe47542fe0"
+    },
+    {
+      "path": "inputs/M07-required-modifier-identity/baseline.dll",
+      "size": 2048,
+      "sha256": "29d063b76919c5682a4c89b50eb98ee0ef225bcca5228de6491ff6d0bb777e99"
+    },
+    {
+      "path": "inputs/M07-required-modifier-identity/target.dll",
+      "size": 2048,
+      "sha256": "9fb033ddf9ae5c6327ede58c6f139ed9bd89ae544ef87b26a82a87746afda5c1"
+    },
+    {
+      "path": "inputs/M08-method-constraint-separate-compatibility/baseline.dll",
+      "size": 2048,
+      "sha256": "ec30acfb68bef49b6213b03bf89adb3ec8361bf226dcd35440014c155249c7eb"
+    },
+    {
+      "path": "inputs/M08-method-constraint-separate-compatibility/target.dll",
+      "size": 2048,
+      "sha256": "edd164764747680921d02caeb2ecf9eae2f251742f6158345069eeeaaf9f7570"
+    },
+    {
+      "path": "inputs/M09-parameter-name-not-contract/baseline.dll",
+      "size": 2048,
+      "sha256": "46592af59e80c2f0fb269a870be83cabd68783dd24373f7883ea7d7176450e19"
+    },
+    {
+      "path": "inputs/M09-parameter-name-not-contract/target.dll",
+      "size": 2048,
+      "sha256": "97a210c1c93ebfb04a6657e188dc18b87f5deb92460918be9c42d8cefb2801e8"
+    },
+    {
+      "path": "inputs/M10-parameter-attribute-separate-compatibility/baseline.dll",
+      "size": 2048,
+      "sha256": "ee3e7ee7827df2c8dcbe3c7e9b5661af50f63cdea611668dbf29c4c18a70e431"
+    },
+    {
+      "path": "inputs/M10-parameter-attribute-separate-compatibility/target.dll",
+      "size": 2048,
+      "sha256": "0acef60d292214a87f0970be4657a2b34b30bcb179171ee8c4a804dd977a910c"
+    },
+    {
+      "path": "inputs/M11-generic-composite-local-numbering/baseline.dll",
+      "size": 2048,
+      "sha256": "e35c6bc5d42fcf8cf927f9774ca93454b28b24b7bb7959cc5c89b1bf94085ca8"
+    },
+    {
+      "path": "inputs/M11-generic-composite-local-numbering/target.dll",
+      "size": 2048,
+      "sha256": "370e870ec7856058b0e584bf7cebd5df0449caefc1c00cca51dcad984cd11d08"
+    },
+    {
+      "path": "inputs/M12-return-type-is-signature/baseline.dll",
+      "size": 2048,
+      "sha256": "251e831f8c155b0ad93ef9ed6697aea14ce29b68bb3e819939ce2bd09a58b6ed"
+    },
+    {
+      "path": "inputs/M12-return-type-is-signature/target.dll",
+      "size": 2048,
+      "sha256": "cf3d0ed202a8d2e2bc22f55f87d513a5cdf20d0f842dd77e99e46bf882aeee31"
+    },
+    {
+      "path": "inputs/M13-missing-method-rejected/baseline.dll",
+      "size": 2048,
+      "sha256": "146158ac3561f8efff083c99797011b4b124b82f180517aaaf4f77d310e194e2"
+    },
+    {
+      "path": "inputs/M13-missing-method-rejected/target.dll",
+      "size": 2048,
+      "sha256": "7bfdcb7e1ceaceae80ff69c3fff6300fd039343ada9a47a4cd8b803a0c288524"
+    },
+    {
+      "path": "inputs/M14-declaring-type-constraints/baseline.dll",
+      "size": 2048,
+      "sha256": "4c0b41193d9740b354259f2f731ada277b9236079abe0d4497728d2b7634d3ab"
+    },
+    {
+      "path": "inputs/M14-declaring-type-constraints/target.dll",
+      "size": 2048,
+      "sha256": "a0ad582e1529d3bf66ce703a28afe60fb936e53553a0dfc27891b9d41522a248"
+    },
+    {
+      "path": "inputs/M15-optimization-hints-independent/baseline.dll",
+      "size": 2048,
+      "sha256": "d47919b48b4ca272833a9bcc04258aa7ff5c3ba8eabf12fd30c9cf0862acb094"
+    },
+    {
+      "path": "inputs/M15-optimization-hints-independent/target.dll",
+      "size": 2048,
+      "sha256": "d0d2e73cdb6df6278b166d1ec5a9a097494eec34dd0cd7dcc0977eec71bf30cd"
+    }
+  ],
+  "unityEditorRun": false,
+  "nativeMethodInfoMapping": "NotRun",
+  "nativeLayoutProof": "NotRun",
+  "runtimeAcceptance": false
+}

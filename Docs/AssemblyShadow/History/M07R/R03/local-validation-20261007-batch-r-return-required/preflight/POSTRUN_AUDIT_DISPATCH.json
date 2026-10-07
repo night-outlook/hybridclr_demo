@@ -1,0 +1,207 @@
+{
+  "kind": "ReadOnlyPostrunAuditDispatch",
+  "startUtc": "2026-10-07T15:23:25.891553+00:00",
+  "endUtc": "2026-10-07T15:24:48.130011+00:00",
+  "scripts": [
+    {
+      "script": "authenticate-focused-batch.py",
+      "result": "Passed",
+      "exitCode": 0,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/authenticate-focused-batch.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-07T15:23:26.065869+00:00",
+      "endUtc": "2026-10-07T15:24:44.170365+00:00",
+      "stdoutSha256": "dbfee442d18101c90f5fe39626e47a31621a25c25c557a410dd2777ff724401c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "script": "audit-li-contracts.py",
+      "result": "Failed",
+      "exitCode": 1,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/audit-li-contracts.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-07T15:24:44.170882+00:00",
+      "endUtc": "2026-10-07T15:24:44.359322+00:00",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "8a0dab72e6fe4954b00c5d62678a1ae23d78c1786277c5dc223d9c83645a1c5a"
+    },
+    {
+      "script": "audit-ln-repairs.py",
+      "result": "Passed",
+      "exitCode": 0,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/audit-ln-repairs.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-07T15:24:44.359685+00:00",
+      "endUtc": "2026-10-07T15:24:44.754812+00:00",
+      "stdoutSha256": "d2b2c9f8c609990bac2b8900063bee8aabc06ee3c98a4704666a1ffb0007a446",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "script": "audit-producer-runtime.py",
+      "result": "Passed",
+      "exitCode": 0,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/audit-producer-runtime.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-07T15:24:44.755188+00:00",
+      "endUtc": "2026-10-07T15:24:44.802275+00:00",
+      "stdoutSha256": "66eb4c071f5f8356eecb9ce4d40b926750fbf42eaa73f06624171d7cd5c45ff7",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "script": "audit-rejection-observation.py",
+      "result": "Passed",
+      "exitCode": 0,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/audit-rejection-observation.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-07T15:24:44.802628+00:00",
+      "endUtc": "2026-10-07T15:24:44.996319+00:00",
+      "stdoutSha256": "c431308e26e85be68de248fd0c566e9096fd72e63a1c9e098e74dddecf966ea2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "script": "audit-resource-builds-restoration.py",
+      "result": "Failed",
+      "exitCode": 1,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/audit-resource-builds-restoration.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-07T15:24:44.996635+00:00",
+      "endUtc": "2026-10-07T15:24:45.081305+00:00",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e810d98caf3618e63f6e501c55b8fb3ba03b4c865674a6bf3262dd42d1cd1543"
+    },
+    {
+      "script": "audit-capabilities.py",
+      "result": "Failed",
+      "exitCode": 1,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/audit-capabilities.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-07T15:24:45.081649+00:00",
+      "endUtc": "2026-10-07T15:24:45.129495+00:00",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "7324676660154a623dc5bfdd2fdd22efcf838860bd248ce13e6f4be4c4595a31"
+    },
+    {
+      "script": "audit-fixed-image.py",
+      "result": "Passed",
+      "exitCode": 0,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/audit-fixed-image.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-07T15:24:45.129812+00:00",
+      "endUtc": "2026-10-07T15:24:45.222697+00:00",
+      "stdoutSha256": "1397fdfbfefeb8d96f6b4850b5a90db16de13a21e9be7881d0004e2a9bceaebf",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "script": "audit-compiler-policy.py",
+      "result": "Passed",
+      "exitCode": 0,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/audit-compiler-policy.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-07T15:24:45.223008+00:00",
+      "endUtc": "2026-10-07T15:24:45.344800+00:00",
+      "stdoutSha256": "2e647f1ff27fedde56a21e68460b6f5b5a8a08952f6b8307cfdc7349f5696ae5",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "script": "audit-layout-identity.py",
+      "result": "Passed",
+      "exitCode": 0,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/audit-layout-identity.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-07T15:24:45.345118+00:00",
+      "endUtc": "2026-10-07T15:24:45.444015+00:00",
+      "stdoutSha256": "ba2df367ef50d7f5530a7129386752fd2a1992f02657d3d1af92a9a4dd960838",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "script": "audit-completion.py",
+      "result": "Failed",
+      "exitCode": 1,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/audit-completion.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-07T15:24:45.444324+00:00",
+      "endUtc": "2026-10-07T15:24:45.621404+00:00",
+      "stdoutSha256": "a7242fc2e383a2ad9ccc84b5697571b90786ea0920e4438c9c710451980e70d1",
+      "stderrSha256": "374c71086b57c4c25c2eec75cfeb324b0f2ab4407e514aaff31e989a5b131b4a"
+    },
+    {
+      "script": "audit-lo-repairs.py",
+      "result": "Passed",
+      "exitCode": 0,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/audit-lo-repairs.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-07T15:24:45.621876+00:00",
+      "endUtc": "2026-10-07T15:24:45.712248+00:00",
+      "stdoutSha256": "ef802d80a1426671700310f7609529308936ed9ee62ff4b6b32f4c918548cbf9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "script": "audit-lp-repairs.py",
+      "result": "Passed",
+      "exitCode": 0,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/audit-lp-repairs.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-07T15:24:45.712610+00:00",
+      "endUtc": "2026-10-07T15:24:45.807805+00:00",
+      "stdoutSha256": "66e33ffea333597511185e47e73ac97fde7a44f317ebe64f000d49c67688e420",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "indexedAndTopLevelRawFilesUnchanged": true,
+  "changedRawFiles": [],
+  "originalBatchResult": "ReturnRequired",
+  "originalCellsReclassified": false,
+  "productReexecution": false
+}

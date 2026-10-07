@@ -1,0 +1,172 @@
+{
+  "kind": "ReadOnlyPartialBatchReconciliation",
+  "startUtc": "2026-10-07T15:26:34.565633+00:00",
+  "endUtc": "2026-10-07T15:26:35.100038+00:00",
+  "originalResult": "ReturnRequired",
+  "originalCounts": {
+    "Passed": 47,
+    "Failed": 1,
+    "Blocked": 42
+  },
+  "checks": [
+    {
+      "id": "LI-constructor-source-pin-preflights",
+      "state": "Passed",
+      "hostCases": 12,
+      "actualEarlyEditorCases": 18,
+      "actualSourcePinConsumerCases": 10,
+      "inputs": [
+        {
+          "path": "ProjectSettings/AssemblyShadowSourcePins.json",
+          "originalPreflightSha256": "78147765f8ef4b44dd7a46e8aa5f8e73dccb2458916f4e3d2abb3890598e1b6f",
+          "currentSha256": "78147765f8ef4b44dd7a46e8aa5f8e73dccb2458916f4e3d2abb3890598e1b6f",
+          "laterConfiguredOrStaged": false
+        },
+        {
+          "path": "ProjectSettings/AssemblyShadowSettings.asset",
+          "originalPreflightSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+          "currentSha256": "b11ad4558f0a9aebb4d1d341b90d5cda9e58f8d1d8678b1ffc27783feb7eb4bd",
+          "laterConfiguredOrStaged": true
+        },
+        {
+          "path": "ProjectSettings/ProjectSettings.asset",
+          "originalPreflightSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+          "currentSha256": "21995344678c113d128439fd983f5a6634e183e31850655ffe6e8e2db9cc3ae6",
+          "laterConfiguredOrStaged": true
+        },
+        {
+          "path": ".r03-completion-project",
+          "originalPreflightSha256": "334cfd14d28c5192006b2265bd2efce006c5bd514a51b19dc0df2a97b0196598",
+          "currentSha256": "334cfd14d28c5192006b2265bd2efce006c5bd514a51b19dc0df2a97b0196598",
+          "laterConfiguredOrStaged": false
+        }
+      ],
+      "xmlSha256": "1437156a2f9d14c930180808bab29db5eb8dcf9dd1ff721703ed7ba007a4f31d"
+    },
+    {
+      "id": "Resource-ON-OFF-native-source-binding",
+      "state": "Passed",
+      "builds": [
+        {
+          "role": "player-on",
+          "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-85f3cd8def664480ac1ba7c501cec8e0/m07-player-build.json",
+          "sha256": "fd004bfadbf815284a98aad22bde54276aabef52deb14bd4e84ba7927452fa5b",
+          "buildGuid": "e4d50f602ab5401e87b8bed04f9164a2",
+          "result": "Passed",
+          "originalCellSha256": "97cbcd2bf222f6c193b69fe6dd0c43fd839043f040f755bff80bf174beec4e1e"
+        },
+        {
+          "role": "player-off",
+          "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-6ab9ff61d0e045c4b5a9090558f23bd4/m07-player-build.json",
+          "sha256": "77ed2eb2cfa64936138373c3f4927d91ef52093a222bf3b8f1b4bde7cd1e87eb",
+          "buildGuid": "62878f92a0d64fdf9faf89f506473e88",
+          "result": "Passed",
+          "originalCellSha256": "b34cfd667319e1b20b5242a93b374565225db2f9447b4e54d6f7a61716f2dbc1"
+        }
+      ],
+      "installedNativeBinding": {
+        "kind": "R03ResourceInstalledSourceBinding",
+        "policy": "R03ResourceCompleteFixtureV1",
+        "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+        "receiptSha256": "213e201dc2f24629c4d34a9f4f2e35d59ca20743287a3c3cf844f45c851fa3d8",
+        "sourceFiles": 968,
+        "installedFiles": 970,
+        "generatedHashes": {
+          "hybridclr/generated/AssemblyManifest.cpp": "5412e86587584590bf08a7a182940d363b3776c1525ac2afca81bc9849cd5a7e",
+          "hybridclr/generated/MethodBridge.cpp": "e6d5444a489eca7d7087bd7a3d227a298fa720870365a24fd3ed4e25ed9a8663",
+          "hybridclr/generated/UnityVersion.h": "99832a07b756d2d73c89868d9b040dde7397b6ba1b5b189c744db440ccd0a2ff",
+          "hybridclr/generated/libil2cpp-version.txt": "21ff4a6aabf9e962c439c0508dd64f3a6c1a42337c79e872eb02f46b6f89160a"
+        },
+        "sourcePins": {
+          "architecture": "arm64",
+          "demo": {
+            "localPath": "../../../../assembly_shadow_h1r/hybridclr_demo",
+            "revision": "ba57a3391da9627e694ee33f8bfe3cb993e6c56a",
+            "url": "https://github.com/night-outlook/hybridclr_demo.git"
+          },
+          "hybridclr": {
+            "localPath": "../../../../assembly_shadow_h1r/hybridclr",
+            "revision": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "url": "https://github.com/night-outlook/hybridclr.git"
+          },
+          "hybridclrUnity": {
+            "localPath": "../../../../assembly_shadow_h1r/hybridclr_unity",
+            "revision": "948c0e3b4f8891481301770115e8ba4945eea6de",
+            "url": "https://github.com/night-outlook/hybridclr_unity.git"
+          },
+          "il2cppPlus": {
+            "localPath": "../../../../assembly_shadow_h1r/il2cpp_plus",
+            "revision": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+            "url": "https://github.com/night-outlook/il2cpp_plus.git"
+          },
+          "schemaVersion": 1,
+          "target": "StandaloneOSX",
+          "unityVersion": "2022.3.62f2"
+        },
+        "probeEnabled": false,
+        "expansionAuthorized": false
+      }
+    },
+    {
+      "id": "Capability-consumer-execution",
+      "state": "Passed",
+      "cases": 10,
+      "originalReportSha256": "fb640f48258aaad3a45bb0ca62cf71d43fb708285c83845b3b39cd93bb94f894",
+      "originalVerificationSha256": "77ba7eb0504380b86e38e871adfa5f246010d8acbfd4fe98a74892e9f8b2d5ba",
+      "postrunFullCurrentInputRevalidation": "Unavailable: exact restoration prerequisite failed; initial auditor Policy consumer changed input retained, not relabeled"
+    },
+    {
+      "id": "Resource-full-755-Editor",
+      "state": "NotRun",
+      "originalCellResult": "Blocked",
+      "reason": "resource-p05-restore Failed; no XML exists"
+    },
+    {
+      "id": "P05-exact-restore-finalization",
+      "state": "Unavailable",
+      "originalRestoreResult": "Failed",
+      "originalFinalizeResult": "Blocked",
+      "analysis": {
+        "cell": "resource-p05-restore",
+        "originalResult": "Failed",
+        "failureUtc": "2026-10-07T15:19:22.695541+00:00",
+        "error": "Git command failed: ls-remote origin",
+        "failureReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03LocalBatch-20261007R-lq-storage/failure-000689.json",
+        "failureReceiptSha256": "050b277951cd867e20c9e854cec2c635df8aa9cace800f8ba7fbd00278b045bd",
+        "originalSettingsPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/M02Validation-40bc9e08c1134d20bea94d40c12e46bb/p05-project-settings.original",
+        "originalSettingsSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+        "currentStagedSettingsPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/ProjectSettings/ProjectSettings.asset",
+        "currentStagedSettingsSha256": "21995344678c113d128439fd983f5a6634e183e31850655ffe6e8e2db9cc3ae6",
+        "stagedDefines": "ASSEMBLY_SHADOW_P05",
+        "originalDefines": "",
+        "missingRestorationEvidence": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/M02Validation-40bc9e08c1134d20bea94d40c12e46bb/p05-restored.json",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/M02Validation-40bc9e08c1134d20bea94d40c12e46bb/p05-settings-restored.json",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/M02Validation-40bc9e08c1134d20bea94d40c12e46bb/p05-unity-restored.bytes",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/restore.json",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/resource-logs/restore.log"
+        ],
+        "liveRootRetainedUnmodified": true,
+        "restoreCoverage": "Unavailable",
+        "originalGitStderrExitRepositoryAndArgv": "Unavailable: helper discarded details",
+        "cause": "Remote-authority subprocess returned nonzero before StructuralRestore launch; exact transport cause cannot be recovered",
+        "recommendation": "Preserve strict exact remote pins while recording bounded Git command path/argv/exit/stdout/stderr/timestamps. Separate safe local transaction recovery from fresh remote acceptance; preserve this staged project before any recovery. Require a fresh authorized batch/root, no retry here."
+      }
+    },
+    {
+      "id": "Resource-live-policy-restored-baseline-bridge-Player-integration",
+      "state": "NotRun",
+      "reason": "Original input-binding/integration and 36 resource/measurement/startup Player cells Blocked"
+    },
+    {
+      "id": "Original-failure-offline-reproduction",
+      "state": "Unavailable",
+      "reason": "No original Git stderr, exit code, complete argv or failed repository captured; online reexecution cannot establish original cause",
+      "noGitPhaseRetry": true
+    }
+  ],
+  "initialAuditorErrorsPreserved": true,
+  "productReexecution": false,
+  "sourceOrRetainedSettingsModified": false,
+  "acceptanceFlagsChanged": false
+}

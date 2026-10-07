@@ -1,0 +1,548 @@
+// R01 transaction boundary checks.  This executable includes the production
+// staging parser and AssemblyShadow state machine; the small physical lookup
+// and exception adapters below only supply the startup VM boundary.
+#include "vm/Assembly.h"
+
+// Image's inline constructor normally snapshots the global Assembly list.
+// Keep this native fixture independent of that process-global registry while
+// still compiling the real Image/InterpreterImage implementation.
+namespace il2cpp { namespace vm {
+struct R01ImageAdapter
+{
+    static void GetAllAssemblies(AssemblyVector& assemblies) { assemblies.clear(); }
+    static AssemblyVector* GetAllAssemblies()
+    {
+        static AssemblyVector empty;
+        return &empty;
+    }
+};
+}}
+#define Assembly R01ImageAdapter
+#include "hybridclr/metadata/Image.h"
+#undef Assembly
+
+#include "hybridclr/metadata/StagedAssembly.cpp"
+
+#include <cstdlib>
+#include <cstring>
+#include <fstream>
+#include <iostream>
+#include <iterator>
+#include <stdexcept>
+#include <string>
+#include <unordered_map>
+#include <vector>
+
+#include "utils/Memory.h"
+
+// AssemblyShadow.cpp is included after the production staging implementation,
+// but its VM-facing aliases are redirected to these explicit test adapters.
+// This keeps the identity parser real while making synthetic ownership, metadata and
+// initializer outcomes visible in the native receipt.
+namespace hybridclr { namespace metadata {
+enum class R01BackendMode { Production, MetadataFailure, InitializerFailure, PartialOwner };
+static R01BackendMode r01BackendMode = R01BackendMode::Production;
+struct R01FixtureInterpreterImage : InterpreterImage
+{
+    explicit R01FixtureInterpreterImage(uint32_t index) : InterpreterImage(index) {}
+    using InterpreterImage::SetIl2CppImage;
+};
+struct R01Adapter
+{
+    static il2cpp::vm::AssemblyShadowError ReadStagedAssemblyIdentity(const byte* dll, size_t length, std::string& name, std::string& detail)
+    { return Assembly::ReadStagedAssemblyIdentity(dll, length, name, detail); }
+    static il2cpp::vm::AssemblyShadowError CreateStagedSkeleton(const byte* dll, size_t dllLength, const byte* pdb, size_t pdbLength,
+        StagedAssembly*& staged, std::string& detail, uint32_t reservedImageIndex = 0)
+    {
+        (void)pdb;
+        (void)pdbLength;
+
+        staged = nullptr;
+        std::string name;
+        il2cpp::vm::AssemblyShadowError parsed = Assembly::ReadStagedAssemblyIdentity(dll, dllLength, name, detail);
+        if (parsed != il2cpp::vm::AssemblyShadowError::Success) return parsed;
+        // Synthetic ownership is deliberate: it lets the public transaction
+        // retain and report an owner without entering Unity's GC/metadata
+        // registries. No real runtime metadata is initialized here.
+        staged = new StagedAssembly();
+        staged->canonicalName = name;
+        staged->mvid = "r01-synthetic-mvid";
+        staged->dllBytes = dll;
+        staged->dllSize = dllLength;
+        staged->assembly = new Il2CppAssembly();
+        staged->image = new Il2CppImage();
+        staged->assembly->aname.name = staged->canonicalName.c_str();
+        staged->assembly->aname.culture = "";
+        staged->assembly->image = staged->image;
+        staged->assembly->token = 1;
+        staged->image->assembly = staged->assembly;
+        staged->image->name = staged->canonicalName.c_str();
+        staged->image->nameNoExt = staged->canonicalName.c_str();
+        // Exercise the production reservation/construction-scope lifetime:
+        // Stage's real visibility registration runs only after this scope ends.
+        using IndexRuntime = InterpreterMetadataIndexRuntime;
+        uint32_t imageId = reservedImageIndex;
+        if (!imageId)
+        {
+            std::vector<IndexRuntime::Reservation> reservations;
+            if (IndexRuntime::ReserveImages(1, reservations) != IndexRuntime::Error::None)
+                throw std::runtime_error("synthetic skeleton reservation failed");
+            imageId = reservations[0].imageId;
+        }
+        auto* fixtureImage = new R01FixtureInterpreterImage(imageId);
+        fixtureImage->SetIl2CppImage(staged->image);
+        staged->interpreterImage = fixtureImage;
+        IndexRuntime::ScopedConstruction construction(imageId, staged->interpreterImage, true);
+        int32_t imageToken = 0;
+        if (IndexRuntime::Encode(imageId, 0, imageToken) != IndexRuntime::Error::None)
+            throw std::runtime_error("synthetic skeleton token encoding failed");
+        staged->image->token = imageToken;
+        staged->skeletonBuilt = true;
+        if (r01BackendMode == R01BackendMode::PartialOwner)
+        {
+            detail = "R01 injected skeleton failure after synthetic owner creation.";
+            return il2cpp::vm::AssemblyShadowError::BadImage;
+        }
+        detail = "R01 synthetic skeleton owner created.";
+        return il2cpp::vm::AssemblyShadowError::Success;
+    }
+    static il2cpp::vm::AssemblyShadowError InitializeStagedRuntimeMetadata(StagedAssembly* staged, std::string& detail)
+    {
+        if (r01BackendMode == R01BackendMode::MetadataFailure)
+        {
+            detail = "R01 injected StagedAssembly backend rejected runtime metadata.";
+            return il2cpp::vm::AssemblyShadowError::ReferenceResolutionFailed;
+        }
+        if (!staged || !staged->skeletonBuilt) return il2cpp::vm::AssemblyShadowError::InvalidState;
+        if (InterpreterMetadataIndexRuntime::Finalize(staged->interpreterImage->GetIndex(), 1) !=
+            InterpreterMetadataIndexRuntime::Error::None)
+            throw std::runtime_error("synthetic metadata footprint sealing failed");
+        staged->runtimeMetadataInitialized = true;
+        detail.clear();
+        return il2cpp::vm::AssemblyShadowError::Success;
+    }
+    static void PublishStagedImage(StagedAssembly* staged)
+    {
+        // Explicit fixture publication: CommitTransaction still owns the
+        // production snapshot/callback ordering, while no Unity image table
+        // or GC registry is touched by this standalone test.
+        if (staged) staged->published = true;
+    }
+    static bool PublishStagedImagesBatch(const std::vector<uint32_t>& indices)
+    {
+        return InterpreterMetadataIndexRuntime::PublishBatch(indices.data(), indices.size()) ==
+            InterpreterMetadataIndexRuntime::Error::None;
+    }
+    static il2cpp::vm::AssemblyShadowError RunStagedModuleInitializer(StagedAssembly* staged, std::string& detail)
+    {
+        if (r01BackendMode == R01BackendMode::InitializerFailure)
+        {
+            detail = "R01 injected StagedAssembly initializer failure.";
+            return il2cpp::vm::AssemblyShadowError::ModuleInitializerFailed;
+        }
+        return Assembly::RunStagedModuleInitializer(staged, detail);
+    }
+};
+}}
+
+namespace il2cpp { namespace vm {
+struct R01Adapter
+{
+    static void GetAllPhysicalAssemblies(AssemblyVector& assemblies) { assemblies.clear(); }
+    static uint64_t CaptureShadowEnumeration(AssemblyVector& assemblies) { assemblies.clear(); return 0; }
+    static bool PublishShadowBatch(const AssemblyVector&, bool (*tryBegin)(void*), bool (*publish)(void*), void* context)
+    {
+        if (!tryBegin(context)) return false;
+        return publish(context);
+    }
+};
+}}
+
+#define Assembly R01Adapter
+#include "vm/AssemblyShadow.cpp"
+#undef Assembly
+
+namespace il2cpp { namespace utils {
+void* Memory::Malloc(size_t size) { return std::malloc(size ? size : 1); }
+void Memory::Free(void* pointer) { std::free(pointer); }
+void* Memory::Calloc(size_t count, size_t size) { return std::calloc(count, size); }
+void* Memory::Realloc(void* pointer, size_t size) { return std::realloc(pointer, size ? size : 1); }
+}}
+
+namespace {
+using il2cpp::vm::AssemblyShadowError;
+using il2cpp::vm::AssemblyShadowState;
+using il2cpp::vm::kAssemblyShadowRuntimeAbiVersion;
+using hybridclr::byte;
+
+size_t checks = 0;
+std::vector<const Il2CppAssembly*> physicalAssemblies;
+std::unordered_map<const Il2CppAssembly*, il2cpp::vm::AssemblyVector> references;
+std::string exceptionMessage;
+size_t managedExceptionConstructionCount = 0;
+
+void Check(bool condition, const char* detail)
+{
+    ++checks;
+    if (!condition) throw std::runtime_error(detail);
+}
+
+// Native object-layout fixtures only: no GC allocation, ClassInit or managed
+// formatting. The formatter and staging TLS/error helper are production code.
+struct ExceptionMessageFixture
+{
+    std::vector<uint64_t> storage;
+    explicit ExceptionMessageFixture(const std::u16string& value)
+        : storage((offsetof(Il2CppString, chars) + (value.size() + 1) * sizeof(Il2CppChar) + 7) / 8, 0)
+    {
+        Get()->length = static_cast<int32_t>(value.size());
+        std::memcpy(Get()->chars, value.data(), value.size() * sizeof(Il2CppChar));
+    }
+    Il2CppString* Get() { return reinterpret_cast<Il2CppString*>(storage.data()); }
+};
+
+void CheckNativeFailureDetails()
+{
+    using namespace hybridclr::metadata;
+    const size_t constructions = managedExceptionConstructionCount;
+    const std::vector<StagedAssembly*> images;
+    {
+        ScopedStagingResolver scope(images, nullptr, nullptr);
+        Check(AssemblyShadowBridge::IsStaging(), "Real staging TLS is inactive");
+        bool caught = false;
+        try { RaiseBadImageException("Image::ReadType invalid type"); }
+        catch (const StagedMetadataFailure& error)
+        {
+            caught = true;
+            Check(std::string(error.what()) == "Image::ReadType invalid type", "Native carrier lost parser detail");
+        }
+        Check(caught, "Bad-image reporting did not use the typed native carrier");
+        Check(managedExceptionConstructionCount == constructions, "Staging attempted managed exception construction");
+    }
+    Check(!AssemblyShadowBridge::IsStaging(), "Staging TLS leaked after failure");
+    bool ordinaryCaught = false;
+    try { RaiseBadImageException("ordinary bad image"); }
+    catch (const StagedMetadataFailure&) { Check(false, "Native carrier escaped the staging-only boundary"); }
+    catch (const std::runtime_error& error)
+    {
+        ordinaryCaught = true;
+        Check(std::string(error.what()) == "ordinary bad image", "Ordinary adapter lost its managed exception detail");
+    }
+    Check(ordinaryCaught && managedExceptionConstructionCount == constructions + 1,
+        "Ordinary bad-image reporting no longer calls its managed exception constructor");
+
+    ExceptionMessageFixture outerText(u"The type initializer threw an exception.");
+    ExceptionMessageFixture innerText(u"R01-INIT-THROW:AssemblyA.Implementation.Extensibility");
+    Il2CppException outer = {}, inner = {};
+    outer.message = outerText.Get(); inner.message = innerText.Get(); outer.inner_ex = &inner;
+    auto format = [](Il2CppException* value) { return ManagedExceptionDetail(Il2CppExceptionWrapper(value)); };
+    const std::string nested = format(&outer);
+    Check(nested.find("The type initializer") == 0, "Formatter lost outer exception context");
+    Check(nested.find("R01-INIT-THROW:") != std::string::npos, "Formatter lost stored inner failure cause");
+    Check(!format(nullptr).empty(), "Null exception lacks a native fallback");
+    outer.message = nullptr;
+    Check(format(&outer).find("R01-INIT-THROW:") != std::string::npos, "Null outer message hid inner cause");
+    ExceptionMessageFixture emptyText(u""); outer.message = emptyText.Get();
+    Check(format(&outer).find("R01-INIT-THROW:") != std::string::npos, "Empty outer message hid inner cause");
+    inner.inner_ex = &outer;
+    Check(format(&outer).find("[exception chain cycle]") != std::string::npos, "Exception cycle did not terminate explicitly");
+    inner.inner_ex = nullptr;
+    std::vector<Il2CppException> deep(17);
+    for (size_t i = 0; i < deep.size(); ++i)
+    {
+        deep[i].message = outerText.Get();
+        deep[i].inner_ex = i + 1 < deep.size() ? &deep[i + 1] : nullptr;
+    }
+    Check(format(&deep[0]).find("[exception chain depth limit reached]") != std::string::npos,
+        "Deep exception chain lacks bounded traversal marker");
+    std::u16string longText(1023, u'A'); longText.push_back(0xd83d); longText.push_back(0xde00);
+    ExceptionMessageFixture oversized(longText); outer.message = oversized.Get();
+    const std::string truncated = format(&outer);
+    Check(truncated.find("[message truncated]") != std::string::npos, "Large exception message was not bounded");
+    Check(truncated.find("R01-INIT-THROW:") != std::string::npos, "Bounded outer message hid inner cause");
+    Check(truncated.find("\xef\xbf\xbd") == std::string::npos, "Message limit split a UTF16 surrogate pair");
+    Check(managedExceptionConstructionCount == constructions + 1, "Native formatter constructed a managed exception");
+    std::cout << "r01_native_failure_details=pass typedStagingCarrier=1 managedConstructionDuringStaging=0 nativeExceptionChain=1\n";
+}
+
+struct Fixture
+{
+    Il2CppAssembly assembly = {};
+    Il2CppImage image = {};
+
+    explicit Fixture(const char* name)
+    {
+        assembly.aname.name = name;
+        assembly.aname.culture = "";
+        assembly.image = &image;
+        assembly.token = 1;
+        image.assembly = &assembly;
+        image.name = name;
+        image.nameNoExt = name;
+        physicalAssemblies.push_back(&assembly);
+    }
+};
+
+using Bytes = std::vector<byte>;
+
+Bytes ReadBytes(const char* path)
+{
+    std::ifstream stream(path, std::ios::binary);
+    Check(stream.good(), "DLL fixture cannot be opened");
+    Bytes bytes((std::istreambuf_iterator<char>(stream)), {});
+    Check(bytes.size() >= 64, "DLL fixture is empty or truncated");
+    return bytes;
+}
+
+bool Has(const std::string& json, const char* text)
+{
+    return json.find(text) != std::string::npos;
+}
+
+bool Has(const std::string& json, const std::string& text)
+{
+    return json.find(text) != std::string::npos;
+}
+
+void CheckRecovery(AssemblyShadowState state, const char* disposition,
+    int terminalError, bool published, bool retained)
+{
+    AssemblyShadowState actual = AssemblyShadowState::Disabled;
+    Check(il2cpp::vm::AssemblyShadow::GetState(actual) == AssemblyShadowError::Success,
+        "GetState failed");
+    Check(actual == state, "state-machine state differs");
+    std::string recovery;
+    Check(il2cpp::vm::AssemblyShadow::GetRecoveryInfoJson(recovery) == AssemblyShadowError::Success,
+        "recovery JSON failed");
+    Check(Has(recovery, std::string("\"disposition\":\"") + disposition + "\""),
+        "recovery disposition differs");
+    Check(Has(recovery, std::string("\"terminalFailureCode\":") + std::to_string(terminalError)),
+        "recovery terminal error differs");
+    Check(Has(recovery, std::string("\"published\":") + (published ? "true" : "false")),
+        "recovery publication state differs");
+    if (retained) Check(Has(recovery, "\"retainedBytes\":") && !Has(recovery, "\"retainedBytes\":0"),
+        "failed transaction did not retain its private owner");
+    else Check(Has(recovery, "\"retainedBytes\":0"), "unexpected retained owner");
+    std::cout << "r01_recovery_json=" << recovery << "\n";
+}
+
+void ConfigureAndBegin(const std::string& name)
+{
+    Check(il2cpp::vm::AssemblyShadow::ConfigureCandidates("r01-fixture", {name}, {"mscorlib"}) ==
+        AssemblyShadowError::Success, "ConfigureCandidates failed");
+    Check(il2cpp::vm::AssemblyShadow::BeginTransaction("r01-patch", "r01-fixture", {name},
+        kAssemblyShadowRuntimeAbiVersion) == AssemblyShadowError::Success, "BeginTransaction failed");
+}
+
+void CheckPreOwner(const std::string& name)
+{
+    ConfigureAndBegin(name);
+    const byte invalid[] = {0, 1, 2, 3};
+    Check(il2cpp::vm::AssemblyShadow::StageAssembly(invalid, sizeof(invalid), nullptr, 0) ==
+        AssemblyShadowError::BadImage, "invalid identity was accepted");
+    AssemblyShadowState state = AssemblyShadowState::Disabled;
+    Check(il2cpp::vm::AssemblyShadow::GetState(state) == AssemblyShadowError::Success &&
+        state == AssemblyShadowState::Staging, "pre-owner rejection changed state");
+    Check(il2cpp::vm::AssemblyShadow::AbortTransaction() == AssemblyShadowError::Success,
+        "pre-owner transaction did not abort");
+    CheckRecovery(AssemblyShadowState::Aborted, "BaselineEligibleAfterAbort", 0, false, false);
+    std::cout << "r01_preowner=pass injectedBackendOutcome=none publication=none\n";
+}
+
+void CheckStagedVisibilityBoundary()
+{
+    using IndexRuntime = hybridclr::metadata::InterpreterMetadataIndexRuntime;
+    auto* staged = il2cpp::vm::Current().closure.front().staged;
+    Check(staged && staged->interpreterImage, "production Stage did not register its owner");
+    const uint32_t id = staged->interpreterImage->GetIndex();
+    Check(IndexRuntime::GetConstructionImage(id) == nullptr, "construction scope leaked into transaction");
+    Il2CppTypeDefinition definition{};
+    definition.byvalTypeIndex = static_cast<int32_t>(staged->image->token);
+    Il2CppType type{};
+    type.type = IL2CPP_TYPE_CLASS;
+    type.data.typeHandle = reinterpret_cast<Il2CppMetadataTypeHandle>(&definition);
+    std::thread observer([&] {
+        IndexRuntime::Codec::DecodedData rejected{};
+        Check(IndexRuntime::Decode(static_cast<int32_t>(staged->image->token), rejected) == IndexRuntime::Error::OwnerRequired,
+            "registration granted foreign private decoding");
+        Check(IndexRuntime::GetPublishedImage(id) == nullptr, "registration exposed private image globally");
+        Check(!il2cpp::vm::AssemblyShadowVisibility::IsTypeVisible(&type, 0),
+            "registered private raw type escaped foreign observer");
+    });
+    observer.join();
+}
+
+void CheckValidateMetadataFailure(const Bytes& bytes, const std::string& name)
+{
+    hybridclr::metadata::r01BackendMode = hybridclr::metadata::R01BackendMode::MetadataFailure;
+    ConfigureAndBegin(name);
+    Check(il2cpp::vm::AssemblyShadow::StageAssembly(bytes.data(), bytes.size(), nullptr, 0) ==
+        AssemblyShadowError::Success, "synthetic skeleton was rejected");
+    CheckStagedVisibilityBoundary();
+    Check(il2cpp::vm::AssemblyShadow::ValidateTransaction() == AssemblyShadowError::ReferenceResolutionFailed,
+        "injected metadata failure was not returned through ValidateTransaction");
+    Check(il2cpp::vm::AssemblyShadow::AbortTransaction() == AssemblyShadowError::InvalidState,
+        "failed metadata transaction unexpectedly allowed Abort");
+    CheckRecovery(AssemblyShadowState::Failed, "RestartRequired", 13, false, true);
+    std::cout << "r01_validate_failure=pass injectedBackendOutcome=ReferenceResolutionFailed syntheticOwner=1 publication=none\n";
+}
+
+void CheckBaselineUse(const Bytes& bytes, const std::string& name, Fixture& baseline)
+{
+    ConfigureAndBegin(name);
+    Check(il2cpp::vm::AssemblyShadow::StageAssembly(bytes.data(), bytes.size(), nullptr, 0) ==
+        AssemblyShadowError::Success, "synthetic skeleton was rejected");
+    CheckStagedVisibilityBoundary();
+    il2cpp::vm::AssemblyShadow::RecordBaselineUse(&baseline.assembly,
+        il2cpp::vm::BaselineUseKind::AssemblyReflection, "R01.before-validate");
+    std::string diagnostics;
+    Check(il2cpp::vm::AssemblyShadow::GetDiagnosticsJson(diagnostics) == AssemblyShadowError::Success &&
+        Has(diagnostics, "R01.before-validate"), "baseline use was not retained");
+    Check(il2cpp::vm::AssemblyShadow::ValidateTransaction() == AssemblyShadowError::BaselineAlreadyUsed,
+        "baseline use was not rejected before injected metadata initialization");
+    Check(il2cpp::vm::AssemblyShadow::AbortTransaction() == AssemblyShadowError::Success,
+        "baseline-use transaction did not abort");
+    CheckRecovery(AssemblyShadowState::Aborted, "BaselineEligibleAfterAbort", 0, false, true);
+    std::cout << "r01_baseline_use=pass observation=retained-before-owner-validation syntheticOwner=1 publication=none\n";
+}
+
+void CheckPartialOwner(const Bytes& bytes, const std::string& name)
+{
+    hybridclr::metadata::r01BackendMode = hybridclr::metadata::R01BackendMode::PartialOwner;
+    ConfigureAndBegin(name);
+    Check(il2cpp::vm::AssemblyShadow::StageAssembly(bytes.data(), bytes.size(), nullptr, 0) ==
+        AssemblyShadowError::BadImage, "injected skeleton failure was accepted");
+    AssemblyShadowState state = AssemblyShadowState::Disabled;
+    Check(il2cpp::vm::AssemblyShadow::GetState(state) == AssemblyShadowError::Success &&
+        state == AssemblyShadowState::Failed, "partial-owner failure did not seal Failed state");
+    Check(il2cpp::vm::AssemblyShadow::AbortTransaction() == AssemblyShadowError::InvalidState,
+        "partial-owner failure unexpectedly allowed Abort");
+    CheckRecovery(AssemblyShadowState::Failed, "RestartRequired", 9, false, true);
+    std::cout << "r01_skeleton_outcome=partial-owner syntheticOwner=1 publication=none\n";
+}
+
+void CheckPostPublicationInitializerFailure(const Bytes& bytes, const std::string& name)
+{
+    hybridclr::metadata::r01BackendMode = hybridclr::metadata::R01BackendMode::InitializerFailure;
+    ConfigureAndBegin(name);
+    Check(il2cpp::vm::AssemblyShadow::StageAssembly(bytes.data(), bytes.size(), nullptr, 0) ==
+        AssemblyShadowError::Success, "synthetic skeleton was rejected");
+    CheckStagedVisibilityBoundary();
+    Check(il2cpp::vm::AssemblyShadow::ValidateTransaction() == AssemblyShadowError::Success,
+        "synthetic metadata validation was rejected");
+    Check(il2cpp::vm::AssemblyShadow::CommitTransaction() == AssemblyShadowError::ModuleInitializerFailed,
+        "injected initializer failure did not return error 19");
+    CheckRecovery(AssemblyShadowState::FailedAfterCommit, "RestartRequired", 19, true, true);
+    // The active snapshot makes rejected post-publication mutations return
+    // AlreadyCommitted (18), while recovery remains terminal error 19.
+    Check(il2cpp::vm::AssemblyShadow::AbortTransaction() == AssemblyShadowError::AlreadyCommitted,
+        "post-publication failure unexpectedly allowed Abort");
+    AssemblyShadowState state = AssemblyShadowState::Disabled;
+    Check(il2cpp::vm::AssemblyShadow::GetState(state) == AssemblyShadowError::Success &&
+        state == AssemblyShadowState::FailedAfterCommit, "post-publication terminal state changed");
+    Check(il2cpp::vm::AssemblyShadow::CommitTransaction() == AssemblyShadowError::AlreadyCommitted,
+        "post-publication Commit did not remain rejected");
+    CheckRecovery(AssemblyShadowState::FailedAfterCommit, "RestartRequired", 19, true, true);
+    std::cout << "r01_initializer_failure=pass injectedBackendOutcome=ModuleInitializerFailed syntheticPublication=1 publication=production-callbacks abort=AlreadyCommitted\n";
+}
+
+void CheckPoison(const std::string& name)
+{
+    ConfigureAndBegin(name);
+    Check(il2cpp::vm::AssemblyShadow::ReportUnexpectedFailure() == AssemblyShadowError::InternalError,
+        "unexpected failure was not reported");
+    Check(il2cpp::vm::AssemblyShadow::AbortTransaction() == AssemblyShadowError::InvalidState,
+        "poisoned transaction allowed Abort");
+    std::string diagnostics;
+    Check(il2cpp::vm::AssemblyShadow::GetDiagnosticsJson(diagnostics) == AssemblyShadowError::Success,
+        "poisoned diagnostics unavailable");
+    Check(Has(diagnostics, "Unexpected native failure sealed the transaction"),
+        "poison detail was not retained");
+    CheckRecovery(AssemblyShadowState::Failed, "RestartRequired", 20, false, false);
+    Check(il2cpp::vm::AssemblyShadow::ReportUnexpectedFailure() == AssemblyShadowError::InternalError,
+        "second poison call changed terminal error");
+    std::cout << "r01_poison=pass sticky=1 injectedBackendOutcome=none publication=none\n";
+}
+
+
+}
+
+namespace il2cpp { namespace vm {
+bool MetadataCache::PublishInterpreterAssembliesBatch(const std::vector<Il2CppAssembly*>& assemblies,
+    bool (*tryBegin)(void*), bool (*publishActive)(void*), void* context)
+{
+    // Controlled logical publication adapter. The production transaction
+    // supplies both callbacks; this boundary executes them in order without
+    // touching Unity's global assembly registry.
+    (void)assemblies;
+    if (!tryBegin(context)) return false;
+    return publishActive(context);
+}
+const Il2CppAssembly* MetadataCache::GetAotAssemblyByNamePhysical(const char* name)
+{
+    for (const Il2CppAssembly* assembly : physicalAssemblies)
+        if (!hybridclr::metadata::IsInterpreterImage(assembly->image) &&
+            assembly_shadow_detail::NameEquals(assembly_shadow_detail::ViewName(name),
+                assembly_shadow_detail::ViewName(assembly->aname.name))) return assembly;
+    return nullptr;
+}
+
+Il2CppMetadataTypeHandle MetadataCache::GetAssemblyTypeHandle(const Il2CppImage*, AssemblyTypeIndex)
+{
+    throw std::runtime_error("R01 physical fixture intentionally has no TypeDef rows");
+}
+
+const Il2CppAssembly* MetadataCache::GetReferencedAssemblyPhysical(const Il2CppAssembly* requester, int32_t index)
+{
+    auto found = references.find(requester);
+    if (found == references.end() || index < 0 || static_cast<size_t>(index) >= found->second.size()) return nullptr;
+    return found->second[static_cast<size_t>(index)];
+}
+
+Il2CppException* Exception::GetInvalidOperationException(const char* detail)
+{
+    exceptionMessage = detail ? detail : "invalid operation";
+    return reinterpret_cast<Il2CppException*>(1);
+}
+Il2CppException* Exception::GetBadImageFormatException(const char* detail)
+{ ++managedExceptionConstructionCount; return GetInvalidOperationException(detail); }
+void Exception::Raise(Il2CppException*, MethodInfo*) { throw std::runtime_error(exceptionMessage); }
+}}
+
+// The standalone process has no Unity class registry. Production visibility
+// collection still owns locking and filtering; only this VM enumeration is empty.
+extern "C" void il2cpp_class_for_each(void (*)(Il2CppClass*, void*), void*) {}
+
+int main(int argc, char** argv)
+{
+    try
+    {
+        Check(argc >= 3, "usage: r01_transaction <scenario> <dll>");
+        const std::string scenario = argv[1];
+        const Bytes bytes = ReadBytes(argv[2]);
+        std::string name, detail;
+        Check(hybridclr::metadata::Assembly::ReadStagedAssemblyIdentity(bytes.data(), bytes.size(), name, detail) ==
+            AssemblyShadowError::Success, "fixture identity is not parseable");
+        Fixture baseline(name.c_str());
+        Fixture stable("mscorlib");
+        if (scenario == "preowner") CheckPreOwner(name);
+        else if (scenario == "validate-failure")
+        {
+            hybridclr::metadata::r01BackendMode = hybridclr::metadata::R01BackendMode::MetadataFailure;
+            CheckValidateMetadataFailure(bytes, name);
+        }
+        else if (scenario == "baseline-use") CheckBaselineUse(bytes, name, baseline);
+        else if (scenario == "poison") CheckPoison(name);
+        else if (scenario == "skeleton") CheckPartialOwner(bytes, name);
+        else if (scenario == "initializer") CheckPostPublicationInitializerFailure(bytes, name);
+        else if (scenario == "native-failure-details") CheckNativeFailureDetails();
+        else throw std::runtime_error("unknown R01 transaction scenario");
+        std::cout << "r01_transaction_checks=" << checks << " scenario=" << scenario << " PASS\n";
+        return 0;
+    }
+    catch (const std::exception& error)
+    {
+        std::cerr << "FAIL: " << error.what() << "\n";
+        return 1;
+    }
+}

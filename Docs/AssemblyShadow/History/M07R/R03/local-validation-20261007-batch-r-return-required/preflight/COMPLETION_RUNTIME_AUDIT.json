@@ -1,0 +1,175 @@
+{
+  "kind": "ReadOnlyQCompletionSemanticAudit",
+  "startUtc": "2026-10-07T15:24:45.593216+00:00",
+  "endUtc": "2026-10-07T15:24:45.610776+00:00",
+  "originalBatchResult": "ReturnRequired",
+  "originalCellCounts": {
+    "Passed": 47,
+    "Failed": 1,
+    "Blocked": 42
+  },
+  "checks": [
+    {
+      "id": "static-qualification",
+      "state": "Passed",
+      "evidence": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/qualification/results.json",
+        "sha256": "8297434ad7c39f71f6af004f6dd6f935708b07100ad3fb953582d5617a8e419f",
+        "cases": 32,
+        "inventoryFiles": 136,
+        "runtimeProofExecuted": false,
+        "expansionAuthorized": false,
+        "classification": "Static real-DLL qualification input, not runtime/expansion authority"
+      }
+    },
+    {
+      "id": "focused-editor",
+      "state": "Passed",
+      "evidence": {
+        "scope": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/focused-editor/scope.json",
+        "scopeSha256": "5884f5db149f44815eac864639f6c883e9198fea2122624a451164c635ef1b2c",
+        "xml": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/focused-editor/results.xml",
+        "xmlSha256": "74f1739096dc38294a81e10c651a821347c232e95ee60fcae9b6efed3e5abfb6",
+        "verificationSha256": "8033c74c4f97d1acc0f35a919458f955f8c25259b01fcb953d8245db689d6cca",
+        "freshReadOnlyContract": {
+          "kind": "R03ScopedEditorVerification",
+          "schemaVersion": 1,
+          "result": "Passed",
+          "cases": 754,
+          "passed": 754,
+          "skipped": 0,
+          "r03RequiredIds": [
+            "L01-private-reference-append",
+            "L02-private-string-append",
+            "L03-private-primitive-append-needs-native",
+            "L04-public-primitive-append",
+            "L05-value-type-growth",
+            "L06-generic-definition-growth",
+            "L07-instance-field-removal",
+            "L08-instance-field-type-change",
+            "L09-instance-field-order-change",
+            "L10-static-field-is-not-instance-layout",
+            "L11-existing-field-visibility-is-not-storage",
+            "L12-interface-addition",
+            "L13-explicit-offset-change",
+            "L14-packing-needs-native",
+            "L15-class-size-needs-native",
+            "L16-layout-kind-change",
+            "L17-type-constraint-change",
+            "L18-method-only-change-needs-allocation-proof",
+            "L19-new-type-no-baseline-proof",
+            "L20-analysis-does-not-load-assembly-or-cctor",
+            "M01-token-and-virtual-order-not-identity",
+            "M02-no-inline-not-identity-or-contract",
+            "M03-visibility-separate-compatibility",
+            "M04-dispatch-separate-compatibility",
+            "M05-static-calling-shape",
+            "M06-byref-signature",
+            "M07-required-modifier-identity",
+            "M08-method-constraint-separate-compatibility",
+            "M09-parameter-name-not-contract",
+            "M10-parameter-attribute-separate-compatibility",
+            "M11-generic-composite-local-numbering",
+            "M12-return-type-is-signature",
+            "M13-missing-method-rejected",
+            "M14-declaring-type-constraints",
+            "M15-optimization-hints-independent"
+          ],
+          "testFilter": "!^HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ResourceAbiTests\\.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles$",
+          "excludedCoverage": [
+            {
+              "coverage": "NoCoverage",
+              "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles",
+              "missingAssets": [
+                "Assets/AssemblyShadowDemo/ResourcesSource/VersionedPrefab.prefab",
+                "Assets/AssemblyShadowDemo/Scenes/Business.unity",
+                "Assets/AssemblyShadowDemo/ResourcesSource/VersionedData.asset"
+              ],
+              "reason": "The frozen M01 demo assets are not present in this project."
+            }
+          ],
+          "fullLegacyRegressionAcceptance": false,
+          "R03Accepted": false,
+          "H2Passed": false
+        }
+      }
+    },
+    {
+      "id": "resource-editor",
+      "state": "NotRun",
+      "reason": "Original prerequisite not Passed",
+      "dependencies": [
+        "resource-editor"
+      ]
+    },
+    {
+      "id": "copied-resource-source-and-phase-bindings",
+      "state": "NotRun",
+      "reason": "Original prerequisite not Passed",
+      "dependencies": [
+        "resource-p05-restore"
+      ]
+    },
+    {
+      "id": "original-P05-restoration",
+      "state": "NotRun",
+      "reason": "Original prerequisite not Passed",
+      "dependencies": [
+        "resource-p05-restore"
+      ]
+    },
+    {
+      "id": "production-P01-P05-entry-qualification-agreement",
+      "state": "NotRun",
+      "reason": "Original prerequisite not Passed",
+      "dependencies": [
+        "production-entry-integration"
+      ]
+    },
+    {
+      "id": "resource-original-graph-and-six-resource-build-bindings",
+      "state": "NotRun",
+      "reason": "Original resource-input-binding not Passed"
+    }
+  ],
+  "resourceBuilds": [],
+  "resourceMeasurementEarlyPlayers": [],
+  "actualDirectPlayerCommands": 23,
+  "actualDirectPlayerPids": [
+    28833,
+    28842,
+    28844,
+    28846,
+    28848,
+    28850,
+    28852,
+    28854,
+    28856,
+    28858,
+    28860,
+    28862,
+    28864,
+    28866,
+    28868,
+    28870,
+    28872,
+    28874,
+    28876,
+    28878,
+    28880,
+    28882,
+    28884
+  ],
+  "focusedVerificationReceipts": 23,
+  "replayedResourceMeasurementEarlyPlayers": 0,
+  "readOnlyAuditStates": {
+    "Passed": 2,
+    "NotRun": 5
+  },
+  "allPlannedPlayerEvidenceCovered": false,
+  "limits": "Existing source-bound sealed data only; no Editor/Player launch, source change, restored terminal state, qualification approval, performance SLA or historical state promotion. Failed/Blocked prerequisites remain original states.",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "pureInterpreterExpansionEnabled": false
+}

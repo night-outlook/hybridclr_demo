@@ -1,0 +1,260 @@
+import importlib.util
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import tempfile
+import unittest
+from unittest import mock
+
+TOOLS = Path(__file__).resolve().parents[1]
+ROOT = TOOLS.parents[1]
+
+import sys
+if str(TOOLS) not in sys.path:
+    sys.path.insert(0, str(TOOLS))
+
+from h1_m07_workflow_authority import BASELINE_BOUND, VerificationError, authenticate_originals, verify
+
+
+def git(root, *args):
+    return subprocess.check_output(['git', '-C', str(root), *args], stderr=subprocess.STDOUT).decode().strip()
+
+
+def load_runtime_wrapper():
+    path = TOOLS / 'verify-installed-runtime.py'
+    spec = importlib.util.spec_from_file_location('h1_verify_installed_runtime_for_test', path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+class M07WorkflowAuthorityTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.base = Path(self.temp.name)
+        self.project = self.base / 'project'
+        self.recovery = self.base / 'recovery'
+        self.project.mkdir()
+        self.recovery.mkdir()
+        git(self.project, 'init')
+        git(self.project, 'config', 'user.email', 'h1@example.invalid')
+        git(self.project, 'config', 'user.name', 'H1 Test')
+
+        files = {
+            'Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity': 'scene: pinned\n',
+            'ProjectSettings/AssemblyShadowSettings.asset': 'buildId: pinned\n',
+            'ProjectSettings/EditorBuildSettings.asset': 'scenes: pinned\n',
+            'Assets/AssemblyShadowDemo/Editor/Immutable.cs': 'sealed class ImmutableInput {}\n',
+            'Assets/AssemblyShadowDemo/Tests/Editor/EditorTests.asmdef': '{"name":"EditorTests"}\n',
+            'ProjectSettings/AssemblyShadowSourcePins.json': '{"schemaVersion":1,"demo":{"revision":"0000000000000000000000000000000000000000"}}\n',
+        }
+        for relative, text in files.items():
+            path = self.project / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text)
+        git(self.project, 'add', '.')
+        git(self.project, 'commit', '-m', 'source anchor')
+        self.anchor = git(self.project, 'rev-parse', 'HEAD')
+        pins = {'schemaVersion': 1, 'demo': {'revision': self.anchor}}
+        (self.project / 'ProjectSettings/AssemblyShadowSourcePins.json').write_text(json.dumps(pins) + '\n')
+        git(self.project, 'add', 'ProjectSettings/AssemblyShadowSourcePins.json')
+        git(self.project, 'commit', '-m', 'metadata pin')
+
+        backups = {
+            'm07-bootstrap-scene.original': 'Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity',
+            'assembly-shadow-settings.original': 'ProjectSettings/AssemblyShadowSettings.asset',
+            'editor-build-settings.original': 'ProjectSettings/EditorBuildSettings.asset',
+        }
+        for name, relative in backups.items():
+            shutil.copyfile(self.project / relative, self.recovery / name)
+        self.baseline = 'M07-Baseline-authority-regression'
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def mutate_required(self):
+        (self.project / 'Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity').write_text(
+            'scene expectedBaselineBuildId: ' + self.baseline + '\n')
+        (self.project / 'ProjectSettings/AssemblyShadowSettings.asset').write_text(
+            'buildId: ' + self.baseline + '\n')
+
+    def test_exact_mutable_state_preserves_immutable_authority(self):
+        before = authenticate_originals(self.project, self.recovery)
+        self.assertFalse(before['requiredMutationObserved'])
+        self.mutate_required()
+        result = verify(self.project, self.recovery, self.baseline)
+        self.assertEqual('M07PostValidationAuthorityVerifiedNotBuildAccepted', result['status'])
+        rows = {row['path']: row for row in result['mutablePaths']}
+        self.assertEqual(set(BASELINE_BOUND), {path for path, row in rows.items() if row['baselineBound']})
+        for path in BASELINE_BOUND:
+            self.assertTrue(rows[path]['changed'])
+        self.assertFalse(result['candidateAcceptance'])
+        self.assertFalse(result['humanGatePassed'])
+        self.assertFalse(result['mayEnterR02'])
+
+    def test_immutable_build_input_tamper_fails(self):
+        self.mutate_required()
+        (self.project / 'Assets/AssemblyShadowDemo/Editor/Immutable.cs').write_text('tampered\n')
+        with self.assertRaises(VerificationError):
+            verify(self.project, self.recovery, self.baseline)
+
+    def test_saved_original_tamper_fails(self):
+        self.mutate_required()
+        (self.recovery / 'm07-bootstrap-scene.original').write_text('wrong original\n')
+        with self.assertRaises(VerificationError):
+            verify(self.project, self.recovery, self.baseline)
+
+    def test_partial_or_wrong_baseline_mutation_fails(self):
+        scene = self.project / 'Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity'
+        scene.write_text('scene expectedBaselineBuildId: ' + self.baseline + '\n')
+        with self.assertRaises(VerificationError):
+            verify(self.project, self.recovery, self.baseline)
+        self.mutate_required()
+        with self.assertRaises(VerificationError):
+            verify(self.project, self.recovery, 'M07-Baseline-other')
+
+    def test_untracked_code_input_still_fails(self):
+        self.mutate_required()
+        extra = self.project / 'Assets/AssemblyShadowDemo/Editor/Unexpected.cs'
+        extra.write_text('class Unexpected {}\n')
+        with self.assertRaises(VerificationError):
+            verify(self.project, self.recovery, self.baseline)
+
+
+class M07CoreDispatchContractTests(unittest.TestCase):
+    def test_core_uses_current_coordinator_verifier_for_external_projects(self):
+        source=(TOOLS/'Invoke-M07Build.Core.ps1').read_text()
+        self.assertIn("Join-Path $PSScriptRoot 'verify-installed-runtime.py'",source)
+        self.assertNotIn("Join-Path $Project 'Tools/AssemblyShadow/verify-installed-runtime.py'",source)
+        self.assertNotIn('--skip-demo-source',source)
+        self.assertIn('--expect-shadow on --json',source)
+        wrapper=(TOOLS/'verify-installed-runtime.py').read_text()
+        self.assertIn('H1_M07_WORKFLOW_AUTHORITY_ROOT',wrapper)
+        self.assertIn('verify_m07_workflow',wrapper)
+
+
+class M07ControlledPerformanceWorkflowContractTests(unittest.TestCase):
+    def test_controlled_performance_mode_builds_players_before_fixture_finalize(self):
+        outer=(TOOLS/'Invoke-M07Build.ps1').read_text()
+        core=(TOOLS/'Invoke-M07Build.Core.ps1').read_text()
+        self.assertIn('[switch]$ControlledPerformanceBuilds', outer)
+        self.assertIn('[switch]$ControlledPerformanceBuilds', core)
+        self.assertIn("'AssemblyShadowDemo.Editor.R00ControlledBuild.BuildPlayer'", core)
+        self.assertIn("'-shadowR00Feature', 'on'", core)
+        self.assertIn("'-shadowR00Feature', 'off'", core)
+        self.assertIn("'-shadowR00BuildEvidence'", core)
+        self.assertIn("controlledPerformanceBuilds = [bool]$ControlledPerformanceBuilds", core)
+        self.assertIn("nativeOnControlledEvidence = $onControlledEvidence", core)
+        self.assertIn("nativeOffControlledEvidence = $offControlledEvidence", core)
+        self.assertLess(core.index("'AssemblyShadowDemo.Editor.R00ControlledBuild.BuildPlayer'"),
+                        core.index("'AssemblyShadowDemo.Editor.M07StructuralResources.FinalizeFixtures'"))
+
+    def test_controlled_performance_and_forced_failure_modes_are_mutually_exclusive(self):
+        outer=(TOOLS/'Invoke-M07Build.ps1').read_text()
+        self.assertIn('$ControlledFailureAfterValidateCompilerInputs -and $ControlledPerformanceBuilds', outer)
+        self.assertIn('cannot run together', outer)
+
+
+    def test_generated_input_recovery_accepts_all_real_stage_labels(self):
+        core=(TOOLS/'Invoke-M07Build.Core.ps1').read_text()
+        self.assertIn(
+            "[ValidateSet('native-on', 'native-off', 'native-on-controlled', 'native-off-controlled')]",
+            core)
+        binder=(TOOLS/'tests/test_m07_generated_input_recovery_labels.ps1').read_text()
+        for label in ('native-on', 'native-off', 'native-on-controlled', 'native-off-controlled'):
+            self.assertIn("'" + label + "'", binder)
+        self.assertIn('M07_RECOVERY_BINDER_BODY_ENTERED', binder)
+        self.assertIn('ParameterArgumentValidationError', binder)
+        self.assertIn('does not belong to the set', binder)
+
+
+    def test_controlled_player_recovery_restores_link_and_project_settings(self):
+        core=(TOOLS/'Invoke-M07Build.Core.ps1').read_text()
+        self.assertIn("'Assets/HybridCLRGenerate/link.xml'", core)
+        self.assertIn("'ProjectSettings/ProjectSettings.asset'", core)
+        self.assertIn("'M07GeneratedPlayerInputRestoration'", core)
+        self.assertIn("'M07ControlledPlayerSettingsRestoration'", core)
+        self.assertIn("$Label + '-' + $input.key + '-restored.json'", core)
+        transaction=(TOOLS/'tests/test_m07_player_input_recovery.ps1').read_text()
+        self.assertIn("Invoke-RecoveryCase -FailStage $false", transaction)
+        self.assertIn("Invoke-RecoveryCase -FailStage $true", transaction)
+        self.assertIn("'ProjectSettings/ProjectSettings.asset'", transaction)
+        self.assertIn("'M07_RECOVERY_STAGE_FAILURE'", transaction)
+
+    def test_nested_native_provenance_does_not_inherit_outer_m07_authority(self):
+        source=(ROOT/'Assets/AssemblyShadowDemo/Editor/H1BuildInputProvenance.cs').read_text()
+        self.assertIn('M07WorkflowAuthorityRootEnvironment = "H1_M07_WORKFLOW_AUTHORITY_ROOT"', source)
+        self.assertIn('M07WorkflowBaselineEnvironment = "H1_M07_WORKFLOW_BASELINE_ID"', source)
+        self.assertIn('info.EnvironmentVariables.Remove(M07WorkflowAuthorityRootEnvironment)', source)
+        self.assertIn('info.EnvironmentVariables.Remove(M07WorkflowBaselineEnvironment)', source)
+        self.assertIn('NativeOnlyWithoutOuterM07WorkflowAuthority', source)
+        verifier=(TOOLS/'verify-installed-runtime.py').read_text()
+        self.assertIn('M07 workflow authority cannot be invoked with --skip-demo-source', verifier)
+
+
+    def test_unity_workflow_test_tracks_outer_and_core_contracts(self):
+        source=(ROOT/'Assets/AssemblyShadowDemo/Tests/Editor/M07BuildTests.cs').read_text()
+        self.assertIn('WorkflowCoreSource = "Tools/AssemblyShadow/Invoke-M07Build.Core.ps1"', source)
+        self.assertIn('string outer = File.ReadAllText(WorkflowSource)', source)
+        self.assertIn('string core = File.ReadAllText(WorkflowCoreSource)', source)
+        self.assertIn('"R00ControlledBuild.BuildPlayer"', source)
+
+
+class M07InstalledRuntimeDispatchTests(unittest.TestCase):
+    def test_pre_mutation_keeps_full_generic_verifier(self):
+        module = load_runtime_wrapper()
+        context = {
+            'mutablePaths': [
+                {'path': path, 'changed': False} for path in BASELINE_BOUND
+            ]
+        }
+        env = {
+            module.ENV_ROOT: '/tmp/m07-root',
+            module.ENV_BASELINE: 'M07-Baseline-dispatch',
+        }
+        with mock.patch.dict(os.environ, env, clear=False), \
+             mock.patch.object(module, 'authenticate_originals', return_value=context), \
+             mock.patch.object(module, 'main', return_value=0) as generic, \
+             mock.patch.object(module, 'verify_m07_workflow') as m07:
+            result = module._run_m07_context(['--project', '/tmp/project', '--expect-shadow', 'on', '--json'])
+        self.assertEqual(0, result)
+        generic.assert_called_once_with(['verify', '--project', '/tmp/project', '--expect-shadow', 'on', '--json'])
+        m07.assert_not_called()
+
+    def test_post_mutation_recheck_uses_runtime_plus_exact_m07_authority(self):
+        module = load_runtime_wrapper()
+        context = {
+            'mutablePaths': [
+                {'path': path, 'changed': True} for path in BASELINE_BOUND
+            ]
+        }
+        authority = {'status': 'M07PostValidationAuthorityVerifiedNotBuildAccepted'}
+        env = {
+            module.ENV_ROOT: '/tmp/m07-root',
+            module.ENV_BASELINE: 'M07-Baseline-dispatch',
+        }
+        with mock.patch.dict(os.environ, env, clear=False), \
+             mock.patch.object(module, 'authenticate_originals', return_value=context), \
+             mock.patch.object(module, 'main', return_value=0) as generic, \
+             mock.patch.object(module, 'verify_m07_workflow', return_value=authority) as m07:
+            result = module._run_m07_context(['--project', '/tmp/project', '--expect-shadow', 'on', '--json'])
+        self.assertEqual(0, result)
+        generic.assert_called_once_with([
+            'verify', '--project', '/tmp/project', '--expect-shadow', 'on', '--json', '--skip-demo-source'])
+        m07.assert_called_once_with(Path('/tmp/project'), Path('/tmp/m07-root'), 'M07-Baseline-dispatch')
+
+    def test_m07_context_rejects_caller_demo_skip(self):
+        module = load_runtime_wrapper()
+        env = {
+            module.ENV_ROOT: '/tmp/m07-root',
+            module.ENV_BASELINE: 'M07-Baseline-dispatch',
+        }
+        with mock.patch.dict(os.environ, env, clear=False):
+            with self.assertRaises(VerificationError):
+                module._run_m07_context(['--project', '/tmp/project', '--skip-demo-source'])
+
+
+if __name__ == '__main__':
+    unittest.main()

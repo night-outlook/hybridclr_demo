@@ -1,0 +1,35 @@
+{
+  "kind": "ReadOnlyRLPRepairAudit",
+  "startedUtc": "2026-10-07T15:24:45.797698+00:00",
+  "checks": [
+    {
+      "id": "LP-001-actual-ledger-order-and-dependency",
+      "state": "Passed",
+      "evidence": {
+        "bindingPosition": 49,
+        "integrationPosition": 50,
+        "dependencies": [
+          "resource-input-binding"
+        ],
+        "binding": {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/cells/resource-input-binding.json",
+          "sha256": "e9abe0079c52fae5a8118ded861d812829bfa9f93f5f42c13c4544a9dd225e4f"
+        },
+        "integration": {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/cells/production-entry-integration.json",
+          "sha256": "2bc635759d20ba64d445ec58c41bb047ee032b9d73544431d54d6f2593d17bc1"
+        },
+        "bindingOriginalState": "Blocked",
+        "integrationOriginalState": "Blocked"
+      }
+    }
+  ],
+  "productReexecution": false,
+  "rawEvidenceModified": false,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "expansionAuthorized": false,
+  "endedUtc": "2026-10-07T15:24:45.798801+00:00",
+  "originalBatchResult": "ReturnRequired"
+}

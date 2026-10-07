@@ -1,0 +1,11 @@
+{
+  "error": {
+    "errno": null,
+    "filename": null,
+    "message": "Git command failed: ls-remote origin",
+    "traceback": "Traceback (most recent call last):\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Storage/run_storage_checked.py\", line 37, in checked_action\n    return action()\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/run_completion.py\", line 110, in <lambda>\n    self.cell('resource-p05-restore', lambda: resources.restore(self), ('resource-prepare',))\n                                              ~~~~~~~~~~~~~~~~~^^^^^^\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/resource_pipeline.py\", line 133, in restore\n    project, _ = authenticate_copy(batch, config)\n                 ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/fixture_authority.py\", line 49, in authenticate_copy\n    require(git(root, 'ls-remote', 'origin', 'refs/heads/' + batch.pins['branch']).split()[0] == batch.pins[name], 'Owning remote authority changed')\n            ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py\", line 31, in git\n    require(result.returncode == 0, 'Git command failed: ' + ' '.join(args[:2]))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/batch_contract.py\", line 13, in require\n    raise ContractError(message)\nbatch_contract.ContractError: Git command failed: ls-remote origin\n",
+    "type": "ContractError"
+  },
+  "observedUtc": "2026-10-07T15:19:22.695541+00:00",
+  "phase": "resource-p05-restore"
+}

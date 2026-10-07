@@ -1,0 +1,31 @@
+from pathlib import Path
+import subprocess,os,json,hashlib,plistlib,datetime,re,shlex
+W=Path('/Users/ah/GitHub/hybridclr/assembly_shadow_h1r');D=W/'hybridclr_demo';BASE=Path('/Users/ah/GitHub/hybridclr/r03-local-validation');P=BASE/'Preflight-R03LocalBatch-20261007R-lq-storage-2';B=BASE/'R03LocalBatch-20261007R-lq-storage';CHECK=BASE/'StorageCheck-R03LocalBatch-20261007R-lq-storage-2';STORAGE=BASE/'Storage-R03LocalBatch-20261007R-lq-storage';PIN='ba57a3391da9627e694ee33f8bfe3cb993e6c56a';SDK='/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk';UNITY=Path('/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity');PY='/Library/Frameworks/Python.framework/Versions/3.14/bin/python3';env={**os.environ,'EXPECTED_DEMO_COMMIT':PIN,'DOTNET_ROOT':SDK,'DOTNET_ROOT_ARM64':SDK,'PATH':SDK+':'+os.environ['PATH'],'DOTNET_MULTILEVEL_LOOKUP':'0','TMPDIR':'/private/tmp','PYTHONDONTWRITEBYTECODE':'1','GIT_SSH_COMMAND':json.loads((P/'SOURCE_AUTHORITY.json').read_text())['sshCommand']}
+def utc():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def digest(p):
+ with Path(p).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+def save(p,a):
+ with p.open('x') as f:json.dump(a,f,indent=2);f.write('\n')
+def command(label,argv):
+ folder=P/'commands'/label;folder.mkdir();beg=utc()
+ with (folder/'stdout.log').open('xb') as out,(folder/'stderr.log').open('xb') as err:r=subprocess.run(argv,cwd=D,env=env,stdout=out,stderr=err)
+ save(folder/'receipt.json',{'argv':argv,'cwd':str(D),'startUtc':beg,'endUtc':utc(),'exitCode':r.returncode,'stdoutSha256':digest(folder/'stdout.log'),'stderrSha256':digest(folder/'stderr.log'),'environment':{k:env[k] for k in ['EXPECTED_DEMO_COMMIT','DOTNET_ROOT','DOTNET_ROOT_ARM64','DOTNET_MULTILEVEL_LOOKUP','TMPDIR','PYTHONDONTWRITEBYTECODE']}});return r.returncode,folder
+assert all(not p.exists() for p in (B,CHECK,STORAGE));assert subprocess.check_output(['git','-C',str(D),'rev-parse','HEAD']).decode().strip()==PIN and not subprocess.check_output(['git','-C',str(D),'status','--short']);assert (P/'commands/sdk-version/stdout.log').read_text().strip()=='8.0.318'
+plistpath=UNITY.parents[1]/'Info.plist';info=plistlib.loads(plistpath.read_bytes());assert info['CFBundleVersion']=='2022.3.62f2' and os.access(UNITY,os.X_OK)
+settings=[]
+for name in ['Tools/AssemblyShadow/R03/source-pins.json','Tools/AssemblyShadow/R03Completion/source-pins.json','Packages/manifest.json','Packages/packages-lock.json','ProjectSettings/ProjectVersion.txt']:
+ p=D/name;assert p.read_bytes()==subprocess.check_output(['git','-C',str(D),'show',PIN+':'+name]);dest=P/'source-settings'/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(p.read_bytes());settings.append({'path':str(p),'sha256':digest(p),'copy':str(dest)})
+for name in ['Docs/AssemblyShadow/README.md','Docs/AssemblyShadow/Plan/CURRENT_STATUS.md','Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md','Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md','Docs/AssemblyShadow/Handoff/RETURN_TO_WEB.md',*[f'Docs/AssemblyShadow/History/M07R/R03/LQ_Storage_2026-10-07/{n}' for n in ['DESIGN.md','PRIMARY_REVIEW.md','EVIDENCE.json']]]:
+ dest=P/'read-first'/name;dest.parent.mkdir(parents=True,exist_ok=True);raw=subprocess.check_output(['git','-C',str(D),'show',PIN+':'+name]);assert raw==(D/name).read_bytes();dest.write_bytes(raw)
+unity=[]
+for line in subprocess.check_output(['ps','-axo','pid=,ppid=,args='],text=True).splitlines():
+ if re.search(r'/Unity\.app/Contents/MacOS/Unity(?:\s|$)',line):
+  words=shlex.split(line);project=words[words.index('-projectPath')+1] if '-projectPath' in words else None;unity.append({'pid':words[0],'ppid':words[1],'projectPath':project,'batchmode':'-batchmode' in words})
+assert not any(r['projectPath'] and (Path(r['projectPath']).resolve()==D or str(B) in r['projectPath']) for r in unity)
+save(P/'ENVIRONMENT.json',{'recordedUtc':utc(),'unityPath':str(UNITY),'unityVersion':info['CFBundleVersion'],'unityInfoPlistSha256':digest(plistpath),'unityShortVersionField':info['CFBundleShortVersionString'],'platform':'StandaloneOSX arm64','sdkRoot':SDK,'sdkVersion':'8.0.318','pythonPath':PY,'gateMode':'Unavailable: ancillary helper InvalidMainAgentModel','gateObservationReceipt':str(P/'ADMIN_PREFLIGHT_GATE_OBSERVATION.json'),'effectiveMainModel':'Unavailable from authoritative host; not inferred from repository configuration','sourceSettings':settings,'environment':{k:env[k] for k in ['EXPECTED_DEMO_COMMIT','DOTNET_ROOT','DOTNET_ROOT_ARM64','DOTNET_MULTILEVEL_LOOKUP','TMPDIR','PYTHONDONTWRITEBYTECODE']},'existingUnityProcesses':unity,'exactProjectAlreadyOpen':False,'unityLaunchesBeforeAdmission':0})
+code,folder=command('storage-tests',[PY,'-B','-m','unittest','discover','-s',str(D/'Tools/AssemblyShadow/R03Storage'),'-p','test_*.py','-v']);log=(folder/'stderr.log').read_text();assert code==0 and 'Ran 48 tests' in log and '\nOK\n' in log and 'skipped=' not in log
+argv=[PY,'-B',str(D/'Tools/AssemblyShadow/R03Storage/run_storage_checked.py'),'--workspace',str(W),'--output',str(B),'--unity',str(UNITY),'--demo-commit',PIN,'--retained-q',str(BASE/'R03LocalBatch-20261006Q-lp-repair'),'--storage-evidence',str(CHECK)];code,folder=command('storage-diagnostic',argv)
+a=json.loads((CHECK/'admission.json').read_text());s=json.loads((CHECK/'session.json').read_text());dispatch=json.loads((CHECK/'dispatch.json').read_text());assert not dispatch['batchStarted'] and not B.exists() and not STORAGE.exists();save(P/'DIAGNOSTIC_RESULT.json',{'sourceDemoCommit':PIN,'state':a['state'],'sessionState':s['state'],'exitCode':code,'batchStarted':False,'sidecarHashes':{str(p.relative_to(CHECK)):digest(p) for p in CHECK.iterdir() if p.is_file()},'diagnosticInvocationsInThisResume':1,'priorDiagnosticPreserved':True,'newBatchInvocations':0})
+print(json.dumps({'storageAdmission':a['state'],'storageSession':s['state'],'exitCode':code,'batchStarted':False,'planningBytes':a['retainedQSize']['planningBytes'],'requiredBytes':a['requiredAvailableBytesEachLocation'],'probes':a.get('probes'),'evidence':str(CHECK)}),flush=True)
+save(P/'PRE_DIAGNOSTIC_COMMANDS.json',{str(p.parent.relative_to(P)):json.loads(p.read_text()) for p in sorted((P/'commands').glob('*/receipt.json'))})
+assert code==0 and a['state']=='Admitted' and s['state']=='Passed'

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/audit-completion.py", line 163, in <module>
+    expected={c['id'] for c in cells.values() if c['result']=='Failed' and c['id']!='production-entry-integration'};assert {v['cell'] for v in reproduced}==expected
+                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

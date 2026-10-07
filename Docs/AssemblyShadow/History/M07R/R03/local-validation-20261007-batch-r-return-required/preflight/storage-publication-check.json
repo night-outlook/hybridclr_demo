@@ -1,0 +1,62 @@
+{
+  "coreAndStorageSessionUnmodified": true,
+  "endUtc": "2026-10-07T15:26:47.018948+00:00",
+  "kind": "R03StoragePublicationCheck",
+  "observation": {
+    "monotonicNs": 1308410037868458,
+    "observedUtc": "2026-10-07T15:26:47.018920+00:00",
+    "volumes": [
+      {
+        "availableBytes": 64105226240,
+        "availableFileNodes": 626027600,
+        "device": 16777230,
+        "freeBytes": 64105226240,
+        "fsid": 16777230,
+        "observedPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "readOnly": false,
+        "requestedPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "role": "publicationCheckout",
+        "totalBytes": 494384795648
+      },
+      {
+        "availableBytes": 64105226240,
+        "availableFileNodes": 626027600,
+        "device": 16777230,
+        "freeBytes": 64105226240,
+        "fsid": 16777230,
+        "observedPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage",
+        "readOnly": false,
+        "requestedPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage",
+        "role": "retainedBatch",
+        "totalBytes": 494384795648
+      },
+      {
+        "availableBytes": 64105226240,
+        "availableFileNodes": 626027600,
+        "device": 16777230,
+        "freeBytes": 64105226240,
+        "fsid": 16777230,
+        "observedPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/.git",
+        "readOnly": false,
+        "requestedPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/.git",
+        "role": "gitCommon",
+        "totalBytes": 494384795648
+      }
+    ]
+  },
+  "requiredBytes": 34537975808,
+  "size": {
+    "allocatedBytesUniqueInode": 13063139328,
+    "directories": 9598,
+    "elapsedSeconds": 0.8209808748215437,
+    "files": 103158,
+    "includesRetainedLiveCaches": true,
+    "logicalBytesPerPath": 12800811749,
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage",
+    "physicalApfsSharingKnown": false,
+    "planningBytes": 13063139328,
+    "symlinksNotFollowed": 0
+  },
+  "startUtc": "2026-10-07T15:26:46.181125+00:00",
+  "state": "Passed"
+}

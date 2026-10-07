@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/audit-resource-builds-restoration.py", line 7, in <module>
+    state=load(run/'p05-define-state.json');prod=load(run/'p05-restored.json');wrapper=load(run/'p05-settings-restored.json');original=run/'p05-project-settings.original';settings=project/'ProjectSettings/ProjectSettings.asset';unitybytes=run/'p05-unity-restored.bytes';assert sha(original)==sha(settings)==state['originalSettingsSha256']==prod['originalSettingsSha256']==wrapper['originalSettingsSha256'];assert sha(unitybytes)==prod['restoredSettingsSha256']==wrapper['restoredSettingsSha256'];assert sha(run/'p05-define-state.json')==prod['stateSha256']==wrapper['stateSha256'] and prod['originalDefines']==state['originalDefines']
+                                                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/audit-resource-builds-restoration.py", line 6, in <lambda>
+    load=lambda p:json.loads(pathlib.Path(p).read_text());sha=lambda p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest();start=datetime.datetime.now(datetime.timezone.utc).isoformat();cfg=load(R/'resource-project.json');project=pathlib.Path(cfg['projectPath']);run=pathlib.Path(cfg['runPath']);result=load(R/'LOCAL_BATCH_RESULT.json');batch=types.SimpleNamespace(workspace=W,root=R,pins=result['repositories'],resource_config=cfg)
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 787, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/M02Validation-40bc9e08c1134d20bea94d40c12e46bb/p05-restored.json'

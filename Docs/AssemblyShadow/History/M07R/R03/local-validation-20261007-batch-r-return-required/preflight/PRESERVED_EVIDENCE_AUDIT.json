@@ -1,0 +1,49 @@
+{
+  "kind": "PrerequisiteHistoricalEvidenceCustodyRecheck",
+  "startUtc": "2026-10-07T12:16:28.777516+00:00",
+  "endUtc": "2026-10-07T12:16:51.195867+00:00",
+  "sourceCommit": "cbf80474ebdee125e1d162d9c32a1734ee541720",
+  "baselineMeaning": "Authenticates historical Q input only; no new runtime source authority inferred",
+  "currentLocalDemoHead": "95982f2cedc0c859d2b9fa7bbb5d4d0dc26bbebf",
+  "pendingRemoteDemoHead": "ba57a3391da9627e694ee33f8bfe3cb993e6c56a",
+  "qCheckpointPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261006-batch-q-return-required",
+  "qManifestPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261006-batch-q-return-required/MANIFEST.sha256",
+  "qManifestSha256": "7ca88fdaba8554868384d9e75f6b92c3aa4f7ebecece62a8142a680024ac55b7",
+  "qManifestMatchesSourceGitBlob": true,
+  "priorBindingMapPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261006-batch-q-return-required/preflight/prior-evidence-custody.json",
+  "priorBindingMapSha256": "a811c4102f7f522414ed5b478174eb9ee50d9e4c832c05d15d862a56688a15ae",
+  "counts": {
+    "qCheckpointManifest": 16183,
+    "priorCustody": 143563,
+    "qTopLevel": 5,
+    "qLiveIndex": 15046,
+    "originalRPrerequisiteCheckpoint": 106,
+    "originalRDiagnosticSidecar": 5
+  },
+  "uniquePathsVerified": 174907,
+  "errors": [],
+  "state": "Passed",
+  "historicalEvidenceReclassified": false,
+  "retainedQPlanningScanIsNotCustodyProof": true,
+  "qOriginalCounts": {
+    "Passed": 89,
+    "Failed": 1
+  },
+  "qOriginalCellCount": 90,
+  "topLevelQHashes": {
+    "LOCAL_BATCH_RESULT.json": "f3aaec73d5e7f6e3607808f194d903cdd0b7406a18b95016571641ca39b8245b",
+    "BATCH_EXECUTION.json": "f3bc6e5acc523f63c1f8faf9e90801dbd24c2fc2468f41d029ac42b0c12e0e72",
+    "evidence-index.json": "9ec2593c2b340e49d5077d8e43228401b76d2836155f88018a3b329dd92add38",
+    "evidence.tar.gz": "bdf03bc3722ae6bbd5aca5d0e6b2f3947b7c28a14c599e4f3a61cb3921e92c99",
+    "seal-receipt.json": "f2d22210b30803ad35caf9b0aba138e8610f3f2086d65a954a6b24c4f0dd6724"
+  },
+  "rRootExists": false,
+  "executingStorageRootExists": false,
+  "sidecarHashes": {
+    "admission.json": "2457b4602c346ad0b4bb94bbb3e1fb7b103eb6a460fe0939e407234b91fc074d",
+    "capacity.jsonl": "c5769003b18141d2b9042383f6f56290462a54b96c2994592dda459e80f4cce0",
+    "dispatch.json": "e1391682056476e56fe854dcfb76ab32c625c6bc6c9079b2cfb7a6c146b1aa5d",
+    "session.json": "693ab28120c74829478e6b5977da689b0318473b0d32e01afb1a5f5684eed9b5",
+    "source-authority.json": "f09f97282c92429ee8a93f5fdad6c61513bcea635c39464b4195323cb23538c1"
+  }
+}

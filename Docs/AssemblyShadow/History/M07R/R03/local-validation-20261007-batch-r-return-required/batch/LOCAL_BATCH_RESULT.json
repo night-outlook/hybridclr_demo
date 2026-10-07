@@ -1,0 +1,4009 @@
+{
+  "H2Passed": false,
+  "R03Accepted": false,
+  "cells": [
+    {
+      "dependencies": [],
+      "evidence": {
+        "repositories": [
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "ba57a3391da9627e694ee33f8bfe3cb993e6c56a",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_demo"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "948c0e3b4f8891481301770115e8ba4945eea6de",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_unity"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/il2cpp_plus"
+          }
+        ]
+      },
+      "id": "entry-authority",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "capabilityProfileContracts": {
+          "cases": 20,
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/capability-profile-host/results.json",
+          "sha256": "96da5d182a9259622b2b2c61bf8b468613ab2c91eb4e6e1d22350c8e68431608"
+        },
+        "capturedSidecarReplay": {
+          "basis": "ReusedAuditedLocalNJsonInputs",
+          "fixtures": [
+            {
+              "checks": {
+                "assemblies": 1,
+                "compilerImages": 214,
+                "expansionAuthorized": false,
+                "linkedImages": 56,
+                "mappedDeclarations": 18,
+                "nativeProofExecuted": false,
+                "runtimeMustRevalidate": true
+              },
+              "patchId": "P01"
+            },
+            {
+              "checks": {
+                "assemblies": 3,
+                "compilerImages": 214,
+                "expansionAuthorized": false,
+                "linkedImages": 56,
+                "mappedDeclarations": 18,
+                "nativeProofExecuted": false,
+                "runtimeMustRevalidate": true
+              },
+              "patchId": "P02"
+            },
+            {
+              "checks": {
+                "assemblies": 5,
+                "compilerImages": 214,
+                "expansionAuthorized": false,
+                "linkedImages": 56,
+                "mappedDeclarations": 19,
+                "nativeProofExecuted": false,
+                "runtimeMustRevalidate": true
+              },
+              "patchId": "P03"
+            },
+            {
+              "checks": {
+                "assemblies": 1,
+                "compilerImages": 214,
+                "expansionAuthorized": false,
+                "linkedImages": 56,
+                "mappedDeclarations": 18,
+                "nativeProofExecuted": false,
+                "runtimeMustRevalidate": true
+              },
+              "patchId": "P04"
+            },
+            {
+              "checks": {
+                "assemblies": 1,
+                "compilerImages": 214,
+                "expansionAuthorized": false,
+                "linkedImages": 56,
+                "mappedDeclarations": 18,
+                "nativeProofExecuted": false,
+                "runtimeMustRevalidate": true
+              },
+              "patchId": "P05"
+            }
+          ],
+          "historicalNVerification": "Failed",
+          "kind": "R03NReadOnlySidecarReplay",
+          "nativeProofExecuted": false,
+          "result": "Passed",
+          "runtimeAcceptance": false
+        },
+        "commandReceipt": {
+          "childEnvironmentPolicy": {
+            "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+            "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+            "GIT_TERMINAL_PROMPT": "0",
+            "MSBUILDDISABLENODEREUSE": "1",
+            "MSBUILDUSESERVER": "0",
+            "PYTHONDONTWRITEBYTECODE": "1",
+            "TMPDIR": "/private/tmp"
+          },
+          "cleanupErrors": [],
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion",
+            "-p",
+            "test_*.py",
+            "-v"
+          ],
+          "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+          "endedUtcEpoch": 1791384667.816074,
+          "exitCode": 0,
+          "interrupted": false,
+          "lifetimePolicy": "R03OwnedCommandV1",
+          "pgid": 22703,
+          "pid": 22703,
+          "postCleanupGroupExists": false,
+          "processGroupBeforeCleanup": null,
+          "remainingProcessGroup": false,
+          "schemaVersion": 2,
+          "startError": null,
+          "startedUtcEpoch": 1791384652.8225741,
+          "stderrSha256": "1e3419f22fc24643c735246b727bc095de5095cdadcc03fcb35c6fd7f074da73",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        "constructorContracts": {
+          "cases": 12,
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-constructor-host/results.json",
+          "sha256": "6b39426ac78985689145c8c665afd87d93b926ebbc1ed2fbaea963751c14a984",
+          "unityEditorRun": false
+        },
+        "earlyEditorFixtures": {
+          "H2Passed": false,
+          "R03Accepted": false,
+          "cases": 18,
+          "command": {
+            "clean": true,
+            "completion": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0026/unity-completion.json",
+            "completionSha256": "75ddbb8ea0be42d8858da8b354ee0c22d626fb7e5d8e0b25cffed0974c696db7",
+            "originalExitCode": 0,
+            "outerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0026/command.json",
+            "outerSha256": "4fa40254e67d3013033b0a42a30793c5f6cde3360cc242a7a39943167a0f2081",
+            "supportSources": {
+              "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/evidence.py": "fed0ffc33c92125290eb8a290242204c1377d477d8cd6269cdc8d2868a0ce199",
+              "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/process_identity.py": "a7fb997cc0653786c650fea30cbf0a6761a749afd6e6a89568b36255f88de89b",
+              "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py": "cb81586594abf3cf6216e098b4ceda5b90e3975d2026f34f46fabbefd192e377"
+            }
+          },
+          "fullEditorRosterReplaced": false,
+          "kind": "R03LIEarlyEditorFixtures",
+          "result": "Passed",
+          "scopeSha256": "e0e48763a7fbbd3ec7e48106a81352d53b1e576b35ff2f16056de857e839313c",
+          "unityEditorRun": true,
+          "xmlSha256": "1437156a2f9d14c930180808bab29db5eb8dcf9dd1ff721703ed7ba007a4f31d"
+        },
+        "editorSourceScope": {
+          "H2Passed": false,
+          "R03Accepted": false,
+          "catalogUse": "NamesOnly",
+          "counts": [
+            754,
+            755
+          ],
+          "editorExecution": "NotRun",
+          "kind": "R03ActualEditorSourceScope",
+          "packageRevision": "948c0e3b4f8891481301770115e8ba4945eea6de",
+          "referenceBlob": "74da7de9e99e79aae01365f2c3dea5e49f812ef5",
+          "requiredIds": [
+            "L01-private-reference-append",
+            "L02-private-string-append",
+            "L03-private-primitive-append-needs-native",
+            "L04-public-primitive-append",
+            "L05-value-type-growth",
+            "L06-generic-definition-growth",
+            "L07-instance-field-removal",
+            "L08-instance-field-type-change",
+            "L09-instance-field-order-change",
+            "L10-static-field-is-not-instance-layout",
+            "L11-existing-field-visibility-is-not-storage",
+            "L12-interface-addition",
+            "L13-explicit-offset-change",
+            "L14-packing-needs-native",
+            "L15-class-size-needs-native",
+            "L16-layout-kind-change",
+            "L17-type-constraint-change",
+            "L18-method-only-change-needs-allocation-proof",
+            "L19-new-type-no-baseline-proof",
+            "L20-analysis-does-not-load-assembly-or-cctor",
+            "M01-token-and-virtual-order-not-identity",
+            "M02-no-inline-not-identity-or-contract",
+            "M03-visibility-separate-compatibility",
+            "M04-dispatch-separate-compatibility",
+            "M05-static-calling-shape",
+            "M06-byref-signature",
+            "M07-required-modifier-identity",
+            "M08-method-constraint-separate-compatibility",
+            "M09-parameter-name-not-contract",
+            "M10-parameter-attribute-separate-compatibility",
+            "M11-generic-composite-local-numbering",
+            "M12-return-type-is-signature",
+            "M13-missing-method-rejected",
+            "M14-declaring-type-constraints",
+            "M15-optimization-hints-independent"
+          ],
+          "result": "Passed",
+          "reviewedPackageDelta": [
+            "Editor/AssemblyShadow/Build/NativeLayoutAdmissionSnapshot.cs",
+            "Editor/AssemblyShadow/Metadata/CompiledAssemblySet.cs",
+            "Editor/AssemblyShadow/Metadata/DnlibAssemblyLoader.cs",
+            "Editor/AssemblyShadow/Metadata/EvolutionSignature.cs",
+            "Editor/AssemblyShadow/Metadata/NativeLayoutAdmissionValidator.cs",
+            "Editor/AssemblyShadow/Metadata/NativeLayoutIdentityContext.cs",
+            "Editor/AssemblyShadow/Metadata/NativeLayoutIdentityContext.cs.meta",
+            "Editor/AssemblyShadow/Metadata/PureInterpreterEligibility.cs",
+            "Editor/AssemblyShadow/Metadata/PureInterpreterEligibility.cs.meta",
+            "Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs",
+            "Tests/Editor/AssemblyShadow/PolicyTests.cs",
+            "Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs",
+            "Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs.meta"
+          ]
+        },
+        "fixedImageGuards": {
+          "cases": 10,
+          "materialization": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "freshCscExecutionClaimed": false,
+            "kind": "R02OrdinaryInputAuthentication",
+            "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixed-image-host-project",
+            "receipt": {
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixed-image-host-project/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+              "sha256": "6d65b1729917ae1b5a1bbcb90b63abf3c9e7d83f2cf810a6ffa4ed4767ca11fb",
+              "sizeBytes": 2635
+            },
+            "result": "Passed",
+            "runtimeAcceptance": false,
+            "staged": {
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixed-image-host-project/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+              "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+              "sizeBytes": 4608
+            }
+          },
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixed-image-host/results.json",
+          "runtimeAcceptance": false,
+          "sha256": "ad630add483792f02ebb02eece43e19a25c2a3cb70e076442fb9a4cac41570ef",
+          "unityEditorRun": false
+        },
+        "layoutIdentity": {
+          "basis": "ReusedAuditedLocalMLayoutInputs",
+          "cases": 33,
+          "nativeProofExecuted": false,
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/layout-identity/results.json",
+          "runtimeAcceptance": false,
+          "sha256": "2e64ce5bdd5c93e2ca3e1a543e491c7f62cb419e95b901f0d51dea74e7686e6b"
+        },
+        "referenceBinding": {
+          "basis": "ReusedAuditedLocalNCompilerInputs",
+          "cases": 15,
+          "contextDifferences": [
+            {
+              "closedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1230:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;332:named:property:CodegenOptions:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:142:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+              "closedLength": 506150,
+              "firstDifferentCharacter": 114570,
+              "isolatedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1222:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;324:named:property:CodegenOptions:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:138:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:",
+              "isolatedLength": 506142,
+              "section": "types"
+            },
+            {
+              "closedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1230:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;332:named:property:CodegenOptions:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:142:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+              "closedLength": 522845,
+              "firstDifferentCharacter": 244795,
+              "isolatedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1222:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;324:named:property:CodegenOptions:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:138:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:",
+              "isolatedLength": 522837,
+              "section": "attributes"
+            }
+          ],
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/results.json",
+          "runtimeAcceptance": false,
+          "sha256": "550a83f578fb199bcd2745ba410289b380e132754b625464e17c810ae58719fb"
+        },
+        "scope": "Host helper and eighteen real Editor regressions; full rosters still required"
+      },
+      "id": "completion-tool-contracts",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "cases": 32,
+        "classification": "RealDllStaticAnalysis",
+        "expansionAuthorized": false,
+        "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/qualification/results.json",
+        "runtimeProofExecuted": false,
+        "sha256": "8297434ad7c39f71f6af004f6dd6f935708b07100ad3fb953582d5617a8e419f"
+      },
+      "id": "qualification",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "commandReceipt": {
+          "childEnvironmentPolicy": {
+            "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+            "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+            "GIT_TERMINAL_PROMPT": "0",
+            "MSBUILDDISABLENODEREUSE": "1",
+            "MSBUILDUSESERVER": "0",
+            "PYTHONDONTWRITEBYTECODE": "1",
+            "TMPDIR": "/private/tmp"
+          },
+          "cleanupErrors": [],
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03",
+            "-p",
+            "test_*.py",
+            "-v"
+          ],
+          "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+          "endedUtcEpoch": 1791385410.2328792,
+          "exitCode": 0,
+          "interrupted": false,
+          "lifetimePolicy": "R03OwnedCommandV1",
+          "pgid": 23448,
+          "pid": 23448,
+          "postCleanupGroupExists": false,
+          "processGroupBeforeCleanup": null,
+          "remainingProcessGroup": false,
+          "schemaVersion": 2,
+          "startError": null,
+          "startedUtcEpoch": 1791385409.3894022,
+          "stderrSha256": "243c0164598701e1e39a7c1690187cecb1bdcb06503778d1bc680873150c41ab",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        "scope": "Synthetic verifier/filesystem contracts, not Player evidence"
+      },
+      "id": "verifier-contracts",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "authority": "Exact published ancestors of the verified candidate remote heads",
+        "commits": {
+          "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+          "hybridclr_unity": "b936a495ade1691ebb6f3bab8fdff3ef34f6f192",
+          "il2cpp_plus": "a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c"
+        },
+        "paths": {
+          "hybridclr": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-worktrees/hybridclr",
+          "hybridclr_unity": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-worktrees/hybridclr_unity",
+          "il2cpp_plus": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-worktrees/il2cpp_plus"
+        },
+        "retained": true
+      },
+      "id": "reference-sources",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "reference-sources"
+      ],
+      "evidence": {
+        "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/baseline-graph/results.json",
+        "sha256": "6c77868c871eac4e281fea6eb501c5b21a90fe471379254058e3eb4780c98eb2"
+      },
+      "id": "host-baseline-graph",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/candidate-graph/results.json",
+        "sha256": "89eee73e846c3ffe7eace166da1ce89ab44f0dbe2ba9f2c88669c58f8048ad7e"
+      },
+      "id": "host-candidate-graph",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/admission/results.json",
+        "sha256": "336b2c8ccc812c2dde4e9b8b5e1fdc9956e528ec093d6cde8198cd01a44cd9b0"
+      },
+      "id": "host-admission",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "host-admission"
+      ],
+      "evidence": {
+        "compilerConsumers": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/consumer-unity-2022.3.62f2/results.json",
+          "sha256": "11b14aa0d032fe67935775a243a8a732c3c2c6bb00a978e018ba04282fbb62b1"
+        },
+        "completeBuildHelper": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/build-api/results.json",
+          "sha256": "77f3afe6c77e13ad6b255d412be4217b1a51e6ba9738c13a7fe1920e02c340fb"
+        },
+        "fixtureInventory": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/inventory.json",
+          "sha256": "a995c8860addcfcdd6d670551a9ecdcce128a48e05ab48262766a6a5ffb42446"
+        },
+        "metadataAudit": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/results.json",
+        "metadataAuditSha256": "7e1142b32f5b773e9c53069fdab606b9431bffe69afe9e0707b679a982946d66",
+        "unityLifecycle": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/unity-lifecycle/results.json",
+          "sha256": "b8059dd8309b4e17ebcdad2ba7663842a55cd9e4a51ffcf78c37091be4cc6e14"
+        }
+      },
+      "id": "player-fixtures",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "entry-authority",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/builds/candidate-release/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/candidate-release"
+      },
+      "id": "prepare-candidate-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-release"
+      ],
+      "evidence": {
+        "nativeBinding": {
+          "installReceiptSha256": "213e201dc2f24629c4d34a9f4f2e35d59ca20743287a3c3cf844f45c851fa3d8",
+          "installationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "kind": "R03InstalledNativeRootV1",
+          "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/candidate-release",
+          "repositories": {
+            "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "hybridclr_demo": "ba57a3391da9627e694ee33f8bfe3cb993e6c56a",
+            "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+            "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+          },
+          "runtimeAcceptance": false,
+          "schemaVersion": 1,
+          "sourcePinsSha256": "40870444d0da6589a640f25445f6e0120a1763c0b35acbf173eef7fd582d753e",
+          "verifiedNativeFiles": 971
+        },
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/builds/candidate-release/build-receipt.json",
+        "sha256": "fb38ecee6bc1311a08ab775434cb343b9f13699ce92109d14f1742c3fd0fe963"
+      },
+      "id": "build-candidate-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "reference-sources",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/builds/reference-release/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/reference-release"
+      },
+      "id": "prepare-reference-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-reference-release"
+      ],
+      "evidence": {
+        "nativeBinding": {
+          "installReceiptSha256": "c6dc2a6f6f1cdfc2871103be7dcd97f35b896b45de73f349836a85f3f1ea4d78",
+          "installationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/reference-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/reference-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "kind": "R03InstalledNativeRootV1",
+          "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/reference-release",
+          "repositories": {
+            "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+            "hybridclr_demo": "ba57a3391da9627e694ee33f8bfe3cb993e6c56a",
+            "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+            "il2cpp_plus": "a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c"
+          },
+          "runtimeAcceptance": false,
+          "schemaVersion": 1,
+          "sourcePinsSha256": "53912b34a59eaff2daf39cea0ce21590d9a8d1f9e64b6ee373462ca6a0fa3ce2",
+          "verifiedNativeFiles": 965
+        },
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/builds/reference-release/build-receipt.json",
+        "sha256": "eed2099df9dba814800d997d2c964cb0f1bdc9dc1b49fab63b438dc131850c48"
+      },
+      "id": "build-reference-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "entry-authority",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/builds/candidate-debug/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/candidate-debug"
+      },
+      "id": "prepare-candidate-debug",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-debug"
+      ],
+      "evidence": {
+        "nativeBinding": {
+          "installReceiptSha256": "213e201dc2f24629c4d34a9f4f2e35d59ca20743287a3c3cf844f45c851fa3d8",
+          "installationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "kind": "R03InstalledNativeRootV1",
+          "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/candidate-debug",
+          "repositories": {
+            "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "hybridclr_demo": "ba57a3391da9627e694ee33f8bfe3cb993e6c56a",
+            "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+            "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+          },
+          "runtimeAcceptance": false,
+          "schemaVersion": 1,
+          "sourcePinsSha256": "40870444d0da6589a640f25445f6e0120a1763c0b35acbf173eef7fd582d753e",
+          "verifiedNativeFiles": 971
+        },
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/builds/candidate-debug/build-receipt.json",
+        "sha256": "360f7c4b3679ff643186f3b8ad51d049013d06611bcb6cd26d8cf8335a07716b"
+      },
+      "id": "build-candidate-debug",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "entry-authority",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/builds/candidate-off/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/candidate-off"
+      },
+      "id": "prepare-candidate-off",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-off"
+      ],
+      "evidence": {
+        "nativeBinding": {
+          "installReceiptSha256": "213e201dc2f24629c4d34a9f4f2e35d59ca20743287a3c3cf844f45c851fa3d8",
+          "installationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "kind": "R03InstalledNativeRootV1",
+          "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/candidate-off",
+          "repositories": {
+            "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "hybridclr_demo": "ba57a3391da9627e694ee33f8bfe3cb993e6c56a",
+            "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+            "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+          },
+          "runtimeAcceptance": false,
+          "schemaVersion": 1,
+          "sourcePinsSha256": "40870444d0da6589a640f25445f6e0120a1763c0b35acbf173eef7fd582d753e",
+          "verifiedNativeFiles": 971
+        },
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/builds/candidate-off/build-receipt.json",
+        "sha256": "b2087890f4ad139091ba67249b1ef778ce114e606a21379b1be40149a9ace8f6"
+      },
+      "id": "build-candidate-off",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-release",
+        "host-admission"
+      ],
+      "evidence": {
+        "H2Passed": false,
+        "R03Accepted": false,
+        "cases": 754,
+        "excludedCoverage": [
+          {
+            "coverage": "NoCoverage",
+            "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles",
+            "missingAssets": [
+              "Assets/AssemblyShadowDemo/ResourcesSource/VersionedPrefab.prefab",
+              "Assets/AssemblyShadowDemo/Scenes/Business.unity",
+              "Assets/AssemblyShadowDemo/ResourcesSource/VersionedData.asset"
+            ],
+            "reason": "The frozen M01 demo assets are not present in this project."
+          }
+        ],
+        "fullLegacyRegressionAcceptance": false,
+        "kind": "R03ScopedEditorVerification",
+        "passed": 754,
+        "r03RequiredIds": [
+          "L01-private-reference-append",
+          "L02-private-string-append",
+          "L03-private-primitive-append-needs-native",
+          "L04-public-primitive-append",
+          "L05-value-type-growth",
+          "L06-generic-definition-growth",
+          "L07-instance-field-removal",
+          "L08-instance-field-type-change",
+          "L09-instance-field-order-change",
+          "L10-static-field-is-not-instance-layout",
+          "L11-existing-field-visibility-is-not-storage",
+          "L12-interface-addition",
+          "L13-explicit-offset-change",
+          "L14-packing-needs-native",
+          "L15-class-size-needs-native",
+          "L16-layout-kind-change",
+          "L17-type-constraint-change",
+          "L18-method-only-change-needs-allocation-proof",
+          "L19-new-type-no-baseline-proof",
+          "L20-analysis-does-not-load-assembly-or-cctor",
+          "M01-token-and-virtual-order-not-identity",
+          "M02-no-inline-not-identity-or-contract",
+          "M03-visibility-separate-compatibility",
+          "M04-dispatch-separate-compatibility",
+          "M05-static-calling-shape",
+          "M06-byref-signature",
+          "M07-required-modifier-identity",
+          "M08-method-constraint-separate-compatibility",
+          "M09-parameter-name-not-contract",
+          "M10-parameter-attribute-separate-compatibility",
+          "M11-generic-composite-local-numbering",
+          "M12-return-type-is-signature",
+          "M13-missing-method-rejected",
+          "M14-declaring-type-constraints",
+          "M15-optimization-hints-independent"
+        ],
+        "result": "Passed",
+        "schemaVersion": 1,
+        "scopeSha256": "5884f5db149f44815eac864639f6c883e9198fea2122624a451164c635ef1b2c",
+        "skipped": 0,
+        "testFilter": "!^HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ResourceAbiTests\\.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles$",
+        "xml": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/focused-editor/results.xml",
+        "xmlSha256": "74f1739096dc38294a81e10c651a821347c232e95ee60fcae9b6efed3e5abfb6"
+      },
+      "id": "editor-tests",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "fb38ecee6bc1311a08ab775434cb343b9f13699ce92109d14f1742c3fd0fe963",
+        "launchPid": 28833,
+        "nativeCalls": 0,
+        "outcome": "baseline",
+        "rawSha256": "83bda50a7341c504b70a07f444529c7eaf347f46f297e8856cd1513320b60cf1",
+        "requestSha256": "baaa052f480e9212252a0765200cdd5bd1e1763fb4203d53b941659f0819bd42",
+        "result": "Passed",
+        "runId": "0c41108d5c834c3390f4759ae3c8baef"
+      },
+      "id": "C01-baseline",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "fb38ecee6bc1311a08ab775434cb343b9f13699ce92109d14f1742c3fd0fe963",
+        "code": 16,
+        "launchPid": 28842,
+        "outcome": "admission-reject",
+        "rawSha256": "3f0f8dda2b220fccce4cf75b5da55095766de19605b26eb221ef42b623dffc79",
+        "rejectionObservation": {
+          "capacityControl": -2,
+          "captures": 4,
+          "failingRowIdentified": false,
+          "fullReadHashes": [
+            "0ece89603058bb1ebe9afc06fbbb995bbaa6be0bc095ef3f3d2e26b01b0c8bab",
+            "0ece89603058bb1ebe9afc06fbbb995bbaa6be0bc095ef3f3d2e26b01b0c8bab"
+          ],
+          "fullReads": 2,
+          "layoutIdentityPolicy": "R03OwnedLayoutIdentityV1",
+          "layoutRows": 2,
+          "policy": "R03RejectedProbeNonMutationV1",
+          "terminalFailureCode": 16,
+          "terminalUnchanged": true
+        },
+        "requestSha256": "9949f894047c7ca6a330c190c9f32aadc0f9974dbdc9f44e23f7bc32c451a116",
+        "result": "Passed",
+        "runId": "9a4ea918f9d643c686b8ab4fd7e79122",
+        "state": 8
+      },
+      "id": "C02-private-reference",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "fb38ecee6bc1311a08ab775434cb343b9f13699ce92109d14f1742c3fd0fe963",
+        "launchPid": 28844,
+        "outcome": "success",
+        "rawSha256": "a1d1df72a66ae03ab8179d2898488f9b49fa6f3f13bfff13ce81a510ee86dcf5",
+        "requestSha256": "a3d50c37f7d324d1c5fa5e1b07e5fe7518b57cb7ebea9bddd1588b9f159dcdb3",
+        "result": "Passed",
+        "runId": "da5b24e6df1b4d28be31b2affede3ba6",
+        "state": 6,
+        "value": 42,
+        "warmWindow": {
+          "broadColdEvents": [],
+          "broadCounterDelta": {
+            "admissionCacheHits": 10000,
+            "admissionCacheMisses": 0,
+            "admissionEntries": 0,
+            "admissionProofAttempts": 0,
+            "admissionProofRejections": 0,
+            "admissionRetainedBytes": 0,
+            "admissionUnready": 0,
+            "baselineStateChecks": 10000,
+            "fieldWorkspaceBuilds": 0,
+            "genericContextChecks": 0,
+            "interfaceWorkspaceBuilds": 0,
+            "layoutCheckCalls": 0
+          },
+          "exactLoopProofDelta": 0,
+          "ownerThread": 1,
+          "policy": "R03ExactAllocationWindowV1",
+          "producerFence": {
+            "acquired": true,
+            "admitted": 2,
+            "completed": 2,
+            "deferred": 1,
+            "deferredCompleted": 1,
+            "drained": true,
+            "elapsedMicros": 13303,
+            "expired": false,
+            "invalid": false,
+            "leaseMs": 5000,
+            "ownerOsThread": 8294833536,
+            "policy": "R03ArrayPoolFinalizerFenceV1",
+            "released": true,
+            "requested": true
+          },
+          "runtimeAcceptance": false,
+          "target": {
+            "assembly": "Methods",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x11e955b60",
+            "typeKey": "type(7:methods/3:R03/4:Node@0)"
+          }
+        }
+      },
+      "id": "C03-moved-slot",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "fb38ecee6bc1311a08ab775434cb343b9f13699ce92109d14f1742c3fd0fe963",
+        "launchPid": 28846,
+        "outcome": "success",
+        "rawSha256": "cf991cb69f7ab8fd8f666c47704b457ebcc2eacb5e023b197ae4977d769ee561",
+        "requestSha256": "7205facebbc182e957f62d4435a85f961686da98c0dac2c87101f9ec19494aa0",
+        "result": "Passed",
+        "runId": "cb865c1a4753496e961cfcb236fadec3",
+        "state": 9,
+        "value": 42,
+        "warmWindow": {
+          "broadColdEvents": [],
+          "broadCounterDelta": {
+            "admissionCacheHits": 10000,
+            "admissionCacheMisses": 0,
+            "admissionEntries": 0,
+            "admissionProofAttempts": 0,
+            "admissionProofRejections": 0,
+            "admissionRetainedBytes": 0,
+            "admissionUnready": 0,
+            "baselineStateChecks": 10000,
+            "fieldWorkspaceBuilds": 0,
+            "genericContextChecks": 0,
+            "interfaceWorkspaceBuilds": 0,
+            "layoutCheckCalls": 0
+          },
+          "exactLoopProofDelta": 0,
+          "ownerThread": 1,
+          "policy": "R03ExactAllocationWindowV1",
+          "producerFence": {
+            "acquired": true,
+            "admitted": 2,
+            "completed": 2,
+            "deferred": 1,
+            "deferredCompleted": 1,
+            "drained": true,
+            "elapsedMicros": 13717,
+            "expired": false,
+            "invalid": false,
+            "leaseMs": 5000,
+            "ownerOsThread": 8294833536,
+            "policy": "R03ArrayPoolFinalizerFenceV1",
+            "released": true,
+            "requested": true
+          },
+          "runtimeAcceptance": false,
+          "target": {
+            "assembly": "Methods",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x11ed55b60",
+            "typeKey": "type(7:methods/3:R03/4:Node@0)"
+          }
+        }
+      },
+      "id": "C04-old-AOT-guard",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "fb38ecee6bc1311a08ab775434cb343b9f13699ce92109d14f1742c3fd0fe963",
+        "launchPid": 28848,
+        "outcome": "success",
+        "rawSha256": "f4d3b46d7a02c6cf9449524f5ef476aa1517fa444165261883e4ce98f28a3ead",
+        "requestSha256": "fed7ee6b10ab8b95b0e939e3b6920a2facc3d64a38c4ccbad015b2f8fc7c7b3b",
+        "result": "Passed",
+        "runId": "b4e9604599b74a709729cf1d68e29931",
+        "state": 6,
+        "value": 41,
+        "warmWindow": {
+          "broadColdEvents": [],
+          "broadCounterDelta": {
+            "admissionCacheHits": 10000,
+            "admissionCacheMisses": 0,
+            "admissionEntries": 0,
+            "admissionProofAttempts": 0,
+            "admissionProofRejections": 0,
+            "admissionRetainedBytes": 0,
+            "admissionUnready": 0,
+            "baselineStateChecks": 10000,
+            "fieldWorkspaceBuilds": 0,
+            "genericContextChecks": 0,
+            "interfaceWorkspaceBuilds": 0,
+            "layoutCheckCalls": 0
+          },
+          "exactLoopProofDelta": 0,
+          "ownerThread": 1,
+          "policy": "R03ExactAllocationWindowV1",
+          "producerFence": {
+            "acquired": true,
+            "admitted": 2,
+            "completed": 2,
+            "deferred": 1,
+            "deferredCompleted": 1,
+            "drained": true,
+            "elapsedMicros": 14171,
+            "expired": false,
+            "invalid": false,
+            "leaseMs": 5000,
+            "ownerOsThread": 8294833536,
+            "policy": "R03ArrayPoolFinalizerFenceV1",
+            "released": true,
+            "requested": true
+          },
+          "runtimeAcceptance": false,
+          "target": {
+            "assembly": "B",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x11cdd6ee0",
+            "typeKey": "type(1:b/3:R03/4:Node@0)"
+          }
+        }
+      },
+      "id": "C05-direction-reversal",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "fb38ecee6bc1311a08ab775434cb343b9f13699ce92109d14f1742c3fd0fe963",
+        "code": 13,
+        "launchPid": 28850,
+        "outcome": "target-cycle",
+        "rawSha256": "8c73f2c506a08d41a2bfd07830057475bdce57ec4bd4e3b03526435384d45ba8",
+        "requestSha256": "44750ba678f8d2874e740f89d2a36f37026bd5e9f30c98dacc6e285db0966bbc",
+        "result": "Passed",
+        "runId": "3b2d17e42c004e3e8df3ad2d577c2403",
+        "state": 3
+      },
+      "id": "C06-actual-target-cycle",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "fb38ecee6bc1311a08ab775434cb343b9f13699ce92109d14f1742c3fd0fe963",
+        "launchPid": 28852,
+        "outcome": "success",
+        "prepublicationLayout": {
+          "baseline": {
+            "assembly": "R03Contract",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x11cb559b0",
+            "typeKey": "type(11:r03contract/3:R03/4:Node@0)"
+          },
+          "baselineCctor": 0,
+          "baselineCctorAtRead": 0,
+          "baselineIdentityStatus": "Captured",
+          "baselineInitialized": false,
+          "baselineInitializedAtRead": false,
+          "baselineReady": true,
+          "baselineVtable": false,
+          "baselineVtableAtRead": false,
+          "error": 0,
+          "fieldsChanged": true,
+          "identityPolicy": "R03OwnedLayoutIdentityV1",
+          "physicalProof": true,
+          "sourceAttrs": [
+            1
+          ],
+          "sourceFieldCount": 1,
+          "sourceNativeSize": -1,
+          "sourceOffsets": [
+            16
+          ],
+          "sourcePending": false,
+          "sourceSize": 24,
+          "sourceSizeInited": false,
+          "target": {
+            "assembly": "R03Contract",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x11cb55c80",
+            "typeKey": "type(11:r03contract/3:R03/4:Node@0)"
+          },
+          "targetAttrs": [
+            1,
+            1
+          ],
+          "targetCctor": 0,
+          "targetDefinitionReady": true,
+          "targetFieldCount": 2,
+          "targetIdentityStatus": "Captured",
+          "targetInitialized": false,
+          "targetNativeSize": -1,
+          "targetOffsets": [
+            16,
+            24
+          ],
+          "targetPending": false,
+          "targetReady": true,
+          "targetSize": 32,
+          "targetSizeInited": false,
+          "targetStorage": [
+            4,
+            8
+          ],
+          "targetVtable": false,
+          "truncated": false
+        },
+        "rawSha256": "f3d9769b13bc1e94203c2e2c28b7b91be3d394bd8c838b2cc803ab64dad3c4d4",
+        "requestSha256": "ba944f5f51b8b762805178c3364d3149f160862afa4eb3bb1009e21ff263e244",
+        "result": "Passed",
+        "runId": "e037ecf250c04ac9847a1d98241f95fc",
+        "state": 6,
+        "value": 41,
+        "warmWindow": {
+          "broadColdEvents": [],
+          "broadCounterDelta": {
+            "admissionCacheHits": 10000,
+            "admissionCacheMisses": 0,
+            "admissionEntries": 0,
+            "admissionProofAttempts": 0,
+            "admissionProofRejections": 0,
+            "admissionRetainedBytes": 0,
+            "admissionUnready": 0,
+            "baselineStateChecks": 10000,
+            "fieldWorkspaceBuilds": 0,
+            "genericContextChecks": 0,
+            "interfaceWorkspaceBuilds": 0,
+            "layoutCheckCalls": 0
+          },
+          "exactLoopProofDelta": 0,
+          "ownerThread": 1,
+          "policy": "R03ExactAllocationWindowV1",
+          "producerFence": {
+            "acquired": true,
+            "admitted": 2,
+            "completed": 2,
+            "deferred": 1,
+            "deferredCompleted": 1,
+            "drained": true,
+            "elapsedMicros": 13959,
+            "expired": false,
+            "invalid": false,
+            "leaseMs": 5000,
+            "ownerOsThread": 8294833536,
+            "policy": "R03ArrayPoolFinalizerFenceV1",
+            "released": true,
+            "requested": true
+          },
+          "runtimeAcceptance": false,
+          "target": {
+            "assembly": "R03Contract",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x11cb55c80",
+            "typeKey": "type(11:r03contract/3:R03/4:Node@0)"
+          }
+        }
+      },
+      "id": "C07-private-primitive-append",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "fb38ecee6bc1311a08ab775434cb343b9f13699ce92109d14f1742c3fd0fe963",
+        "code": 16,
+        "launchPid": 28854,
+        "outcome": "admission-reject",
+        "rawSha256": "76c82839570d016cdb49791fef97a4ced7764e949fba8d52caa55d737eebeea1",
+        "rejectionObservation": {
+          "capacityControl": -2,
+          "captures": 4,
+          "failingRowIdentified": false,
+          "fullReadHashes": [
+            "4d3ef831689e911d67653dd0698392f33aae3d6c738f7d76db89995b34b8fa28",
+            "4d3ef831689e911d67653dd0698392f33aae3d6c738f7d76db89995b34b8fa28"
+          ],
+          "fullReads": 2,
+          "layoutIdentityPolicy": "R03OwnedLayoutIdentityV1",
+          "layoutRows": 1,
+          "policy": "R03RejectedProbeNonMutationV1",
+          "terminalFailureCode": 16,
+          "terminalUnchanged": true
+        },
+        "requestSha256": "f5daa72c703f9ff13ce32805a4a3471db3f46443078481a8883e692ee65357ae",
+        "result": "Passed",
+        "runId": "f97e4bdcac494b55bac245de463af6d3",
+        "state": 8
+      },
+      "id": "C08-interface-change",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "fb38ecee6bc1311a08ab775434cb343b9f13699ce92109d14f1742c3fd0fe963",
+        "code": 16,
+        "launchPid": 28856,
+        "outcome": "admission-reject",
+        "rawSha256": "e9262cbd514be2b82e4f5f87dd695c342eee955d8adf79668aaf1903f8909249",
+        "rejectionObservation": {
+          "capacityControl": -2,
+          "captures": 4,
+          "failingRowIdentified": false,
+          "fullReadHashes": [
+            "4177825522a00ae095d85d25e2ffa78a602fce4bc51a0a512f66235b0e178dee",
+            "4177825522a00ae095d85d25e2ffa78a602fce4bc51a0a512f66235b0e178dee"
+          ],
+          "fullReads": 2,
+          "layoutIdentityPolicy": "R03OwnedLayoutIdentityV1",
+          "layoutRows": 1,
+          "policy": "R03RejectedProbeNonMutationV1",
+          "terminalFailureCode": 16,
+          "terminalUnchanged": true
+        },
+        "requestSha256": "49d570dfe31070617982ce684b99fe454a51af0d132bcc708230ab4ba5fcffab",
+        "result": "Passed",
+        "runId": "9796fd30cbf448d08150b1a076c290d7",
+        "state": 8
+      },
+      "id": "C09-reference-to-value-kind",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "fb38ecee6bc1311a08ab775434cb343b9f13699ce92109d14f1742c3fd0fe963",
+        "code": 16,
+        "launchPid": 28858,
+        "outcome": "admission-reject",
+        "rawSha256": "32c1edaca92c94344fe4b1108becfdf2f89324baaac2d3ca4e00dd2a27885983",
+        "rejectionObservation": {
+          "capacityControl": -2,
+          "captures": 4,
+          "failingRowIdentified": false,
+          "fullReadHashes": [
+            "3d7dafd5a672095a9a649612808100d0f79d49877533c329eab84cd5c8d12238",
+            "3d7dafd5a672095a9a649612808100d0f79d49877533c329eab84cd5c8d12238"
+          ],
+          "fullReads": 2,
+          "layoutIdentityPolicy": "R03OwnedLayoutIdentityV1",
+          "layoutRows": 2,
+          "policy": "R03RejectedProbeNonMutationV1",
+          "terminalFailureCode": 16,
+          "terminalUnchanged": true
+        },
+        "requestSha256": "1e11dcc84cd5429876340f0a45b2182f2a5c60512376dc152475fafffee2c953",
+        "result": "Passed",
+        "runId": "4aae2fd4415e41929d5b8a07ce6933ef",
+        "state": 8
+      },
+      "id": "C10-field-removal",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "eed2099df9dba814800d997d2c964cb0f1bdc9dc1b49fab63b438dc131850c48",
+        "launchPid": 28860,
+        "nativeCalls": 0,
+        "outcome": "baseline",
+        "rawSha256": "8e266cb9905f8deb3f9ea3f157c2a545fd94360bce188e9e8110040f80162942",
+        "requestSha256": "6b38c4f4a0b84fdd6306228a0982740fe06d1085eee9e4c577983e8ae77bc089",
+        "result": "Passed",
+        "runId": "be3ba152a3e841e8b8b15640596a819e"
+      },
+      "id": "R01-baseline",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "eed2099df9dba814800d997d2c964cb0f1bdc9dc1b49fab63b438dc131850c48",
+        "code": 16,
+        "launchPid": 28862,
+        "outcome": "legacy-late-layout",
+        "rawSha256": "73e6273c2720af672e4e01279ef43cacd15a3be2bf6bd5ab4773e3b64f5525a9",
+        "requestSha256": "69765f1ed18e236ac1fcf2ddf4bbfc230dd32a698985dcf4fa6a2de1e0e0b385",
+        "result": "Passed",
+        "runId": "07cbe0f6c4b7412a917b362da5126e64",
+        "state": 9
+      },
+      "id": "R02-original-late-layout",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "eed2099df9dba814800d997d2c964cb0f1bdc9dc1b49fab63b438dc131850c48",
+        "launchPid": 28864,
+        "outcome": "legacy-slot",
+        "rawSha256": "68d97e5c6a5e13e6cd299c3aa0ad1c8ee5e809bdfd9b172199adc4eddc2dd912",
+        "requestSha256": "374f706d419c78d8a1d54dcc158f3dac46a95c4049fdcb7fec01c661c8e610df",
+        "result": "Passed",
+        "runId": "2b913c9b6b1443aaa075911d5b37435a",
+        "state": 6,
+        "value": 42
+      },
+      "id": "R03-original-slot-lookup",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "eed2099df9dba814800d997d2c964cb0f1bdc9dc1b49fab63b438dc131850c48",
+        "launchPid": 28866,
+        "outcome": "success",
+        "rawSha256": "ea898e3db71fb28518dc11482239ffbe37b2133840502600d53f2ec95e152953",
+        "requestSha256": "9250357ad70d98d77dace79764fb14575af7d189caee71ac51b8805c411dbe3a",
+        "result": "Passed",
+        "runId": "c597d05fda924761b3aa649c930ee43c",
+        "state": 6,
+        "value": 41
+      },
+      "id": "R04-direction-reversal",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "eed2099df9dba814800d997d2c964cb0f1bdc9dc1b49fab63b438dc131850c48",
+        "code": 13,
+        "launchPid": 28868,
+        "outcome": "target-cycle",
+        "rawSha256": "e0505e719c16d621bd38fadab9663a031fb5837d044847c54cf920c47981543f",
+        "requestSha256": "b0561dc33d12713eebc60ef5bc4e2955c9402e061a781fe64c4b6714b65c5f3e",
+        "result": "Passed",
+        "runId": "974fd56a41ed426a80bd1a9f8d3352bb",
+        "state": 3
+      },
+      "id": "R05-actual-target-cycle",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "360f7c4b3679ff643186f3b8ad51d049013d06611bcb6cd26d8cf8335a07716b",
+        "code": 16,
+        "launchPid": 28870,
+        "outcome": "admission-reject",
+        "rawSha256": "9c1eb48941dbfcc0455fdb8e961a09088c9c9d74043668b87cc007fecd07f587",
+        "rejectionObservation": {
+          "capacityControl": -2,
+          "captures": 4,
+          "failingRowIdentified": false,
+          "fullReadHashes": [
+            "186d638bc0d6453ad2c4dfb88b2b27c0cb95204799095a306e4a1d7cda29e2a0",
+            "186d638bc0d6453ad2c4dfb88b2b27c0cb95204799095a306e4a1d7cda29e2a0"
+          ],
+          "fullReads": 2,
+          "layoutIdentityPolicy": "R03OwnedLayoutIdentityV1",
+          "layoutRows": 2,
+          "policy": "R03RejectedProbeNonMutationV1",
+          "terminalFailureCode": 16,
+          "terminalUnchanged": true
+        },
+        "requestSha256": "0a2f74bcdcf82799a6e58d9cca4aa55efa0ed9f543626a1889f3bc5aa26697c9",
+        "result": "Passed",
+        "runId": "203253be5aea436a8e053ff74da5c138",
+        "state": 8
+      },
+      "id": "D01-private-reference",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "360f7c4b3679ff643186f3b8ad51d049013d06611bcb6cd26d8cf8335a07716b",
+        "launchPid": 28872,
+        "outcome": "success",
+        "rawSha256": "3a63324d12613a12b6286e4f4f7dd451d63fe6e7ef5db844f985586fa01a6463",
+        "requestSha256": "c5e98c796dba6d796ed50191cddc844a04a526580c506dba91e28d49cb6a1995",
+        "result": "Passed",
+        "runId": "8599ea4e58ed418eb7a707c654d063bc",
+        "state": 6,
+        "value": 42,
+        "warmWindow": {
+          "broadColdEvents": [],
+          "broadCounterDelta": {
+            "admissionCacheHits": 10000,
+            "admissionCacheMisses": 0,
+            "admissionEntries": 0,
+            "admissionProofAttempts": 0,
+            "admissionProofRejections": 0,
+            "admissionRetainedBytes": 0,
+            "admissionUnready": 0,
+            "baselineStateChecks": 10000,
+            "fieldWorkspaceBuilds": 0,
+            "genericContextChecks": 0,
+            "interfaceWorkspaceBuilds": 0,
+            "layoutCheckCalls": 0
+          },
+          "exactLoopProofDelta": 0,
+          "ownerThread": 1,
+          "policy": "R03ExactAllocationWindowV1",
+          "producerFence": {
+            "acquired": true,
+            "admitted": 1,
+            "completed": 1,
+            "deferred": 0,
+            "deferredCompleted": 0,
+            "drained": true,
+            "elapsedMicros": 266883,
+            "expired": false,
+            "invalid": false,
+            "leaseMs": 5000,
+            "ownerOsThread": 8294833536,
+            "policy": "R03ArrayPoolFinalizerFenceV1",
+            "released": true,
+            "requested": true
+          },
+          "runtimeAcceptance": false,
+          "target": {
+            "assembly": "Methods",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x11f5854b0",
+            "typeKey": "type(7:methods/3:R03/4:Node@0)"
+          }
+        }
+      },
+      "id": "D02-moved-slot",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "360f7c4b3679ff643186f3b8ad51d049013d06611bcb6cd26d8cf8335a07716b",
+        "launchPid": 28874,
+        "outcome": "success",
+        "rawSha256": "9ba599092210d9f20b180ed206c4f323418d9f6f38c5ae5f04eb24d3d95e0ee1",
+        "requestSha256": "351067a0fa2c7e8c24a06105554c4661670055528fe4eb71feef04841333cfa8",
+        "result": "Passed",
+        "runId": "f63d523da9b448b3ab6c0b9dbb5e4975",
+        "state": 9,
+        "value": 42,
+        "warmWindow": {
+          "broadColdEvents": [],
+          "broadCounterDelta": {
+            "admissionCacheHits": 10000,
+            "admissionCacheMisses": 0,
+            "admissionEntries": 0,
+            "admissionProofAttempts": 0,
+            "admissionProofRejections": 0,
+            "admissionRetainedBytes": 0,
+            "admissionUnready": 0,
+            "baselineStateChecks": 10000,
+            "fieldWorkspaceBuilds": 0,
+            "genericContextChecks": 0,
+            "interfaceWorkspaceBuilds": 0,
+            "layoutCheckCalls": 0
+          },
+          "exactLoopProofDelta": 0,
+          "ownerThread": 1,
+          "policy": "R03ExactAllocationWindowV1",
+          "producerFence": {
+            "acquired": true,
+            "admitted": 1,
+            "completed": 1,
+            "deferred": 0,
+            "deferredCompleted": 0,
+            "drained": true,
+            "elapsedMicros": 253314,
+            "expired": false,
+            "invalid": false,
+            "leaseMs": 5000,
+            "ownerOsThread": 8294833536,
+            "policy": "R03ArrayPoolFinalizerFenceV1",
+            "released": true,
+            "requested": true
+          },
+          "runtimeAcceptance": false,
+          "target": {
+            "assembly": "Methods",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x11fb855d0",
+            "typeKey": "type(7:methods/3:R03/4:Node@0)"
+          }
+        }
+      },
+      "id": "D03-old-AOT-guard",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-off"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "b2087890f4ad139091ba67249b1ef778ce114e606a21379b1be40149a9ace8f6",
+        "launchPid": 28876,
+        "nativeCalls": 0,
+        "outcome": "baseline",
+        "rawSha256": "58e63168cb33d67b63f6a6aa06aa153b06c378ce1027a7443ca32feb5353ea6e",
+        "requestSha256": "15937d7f22cc5f2d6afe5bb4cf062f40ff669951cd0c383e213fd4b990650391",
+        "result": "Passed",
+        "runId": "064af85a37554930bc5827c0e27840e7"
+      },
+      "id": "O01-feature-OFF-baseline",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "cases": [
+          {
+            "evidence": {
+              "buildReceiptSha256": "fb38ecee6bc1311a08ab775434cb343b9f13699ce92109d14f1742c3fd0fe963",
+              "launchPid": 28878,
+              "outcome": "success",
+              "rawSha256": "f1e2bdd83b04b714c15e975b5c0e3606133fa8596b0bbc24326d9128be0a5cf5",
+              "requestSha256": "91d91b3021b7d8b1ba77296cb9596f5c5cbdfb4464d15e50f552efc18c3e2234",
+              "result": "Passed",
+              "runId": "8c65734c392749fb8a59b5193ceeed85",
+              "state": 6,
+              "value": 42,
+              "warmWindow": {
+                "allColdEvents": [
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 0,
+                    "metric": "admissionCacheMisses",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x120f1d4a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x120e716e0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6099300352,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x120f27ea8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 1,
+                    "metric": "admissionProofAttempts",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x120f1d4a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x120e716e0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6099300352,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x120f27ea8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 2,
+                    "metric": "admissionEntries",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x120f1d4a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x120e716e0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6099300352,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x120f27ea8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 80,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 3,
+                    "metric": "admissionRetainedBytes",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x120f1d4a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x120e716e0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6099300352,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x120f27ea8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  }
+                ],
+                "exactLoopDelta": {
+                  "admissionCacheHits": 10000,
+                  "admissionCacheMisses": 1,
+                  "admissionEntries": 1,
+                  "admissionProofAttempts": 1,
+                  "admissionProofRejections": 0,
+                  "admissionRetainedBytes": 80,
+                  "admissionUnready": 0,
+                  "baselineStateChecks": 10000,
+                  "fieldWorkspaceBuilds": 0,
+                  "genericContextChecks": 5,
+                  "interfaceWorkspaceBuilds": 0,
+                  "layoutCheckCalls": 0
+                },
+                "identifiedLoopAdmissions": 1,
+                "observation": "ExpectedContaminationObserved",
+                "policy": "R03NaturalProducerControlV1",
+                "runtimeAcceptance": false,
+                "unisolatedWarmCertificate": "Failed"
+              }
+            },
+            "id": "PC-C03-moved-slot",
+            "result": "Passed"
+          },
+          {
+            "evidence": {
+              "buildReceiptSha256": "fb38ecee6bc1311a08ab775434cb343b9f13699ce92109d14f1742c3fd0fe963",
+              "launchPid": 28880,
+              "outcome": "success",
+              "rawSha256": "4b762aa80679143452e58ae8688f4edcc813bd5228ccf8a164ab409d52911ff4",
+              "requestSha256": "cf49e69e8dfee62c2a7c2b8137a0e728bf6c980db200bef4db099de9cc54d2cd",
+              "result": "Passed",
+              "runId": "64f36ce92e434e6394c1f462072966b4",
+              "state": 9,
+              "value": 42,
+              "warmWindow": {
+                "allColdEvents": [
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 0,
+                    "metric": "admissionCacheMisses",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x1209dd4a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x1209316e0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6106574848,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x1209e7ea8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 1,
+                    "metric": "admissionProofAttempts",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x1209dd4a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x1209316e0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6106574848,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x1209e7ea8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 2,
+                    "metric": "admissionEntries",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x1209dd4a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x1209316e0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6106574848,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x1209e7ea8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 80,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 3,
+                    "metric": "admissionRetainedBytes",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x1209dd4a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x1209316e0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6106574848,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x1209e7ea8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  }
+                ],
+                "exactLoopDelta": {
+                  "admissionCacheHits": 10000,
+                  "admissionCacheMisses": 1,
+                  "admissionEntries": 1,
+                  "admissionProofAttempts": 1,
+                  "admissionProofRejections": 0,
+                  "admissionRetainedBytes": 80,
+                  "admissionUnready": 0,
+                  "baselineStateChecks": 10000,
+                  "fieldWorkspaceBuilds": 0,
+                  "genericContextChecks": 5,
+                  "interfaceWorkspaceBuilds": 0,
+                  "layoutCheckCalls": 0
+                },
+                "identifiedLoopAdmissions": 1,
+                "observation": "ExpectedContaminationObserved",
+                "policy": "R03NaturalProducerControlV1",
+                "runtimeAcceptance": false,
+                "unisolatedWarmCertificate": "Failed"
+              }
+            },
+            "id": "PC-C04-old-AOT-guard",
+            "result": "Passed"
+          },
+          {
+            "evidence": {
+              "buildReceiptSha256": "fb38ecee6bc1311a08ab775434cb343b9f13699ce92109d14f1742c3fd0fe963",
+              "launchPid": 28882,
+              "outcome": "success",
+              "rawSha256": "c131ad3c4c1a532735add13977ece705d8ee2d23a01564e0e6d44cc312716554",
+              "requestSha256": "db6d04de4f7a75c2b6a8c42fe366a114f75ea223fb06594b9bf579e0f71b43dc",
+              "result": "Passed",
+              "runId": "4b70c5757fad46c4b08a9a73562890a2",
+              "state": 6,
+              "value": 41,
+              "warmWindow": {
+                "allColdEvents": [
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 0,
+                    "metric": "admissionCacheMisses",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11cf1d558",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11ce71790",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6165901312,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11cf27f58",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 1,
+                    "metric": "admissionProofAttempts",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11cf1d558",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11ce71790",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6165901312,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11cf27f58",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 2,
+                    "metric": "admissionEntries",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11cf1d558",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11ce71790",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6165901312,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11cf27f58",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 80,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 3,
+                    "metric": "admissionRetainedBytes",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11cf1d558",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11ce71790",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6165901312,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11cf27f58",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  }
+                ],
+                "exactLoopDelta": {
+                  "admissionCacheHits": 10000,
+                  "admissionCacheMisses": 1,
+                  "admissionEntries": 1,
+                  "admissionProofAttempts": 1,
+                  "admissionProofRejections": 0,
+                  "admissionRetainedBytes": 80,
+                  "admissionUnready": 0,
+                  "baselineStateChecks": 10000,
+                  "fieldWorkspaceBuilds": 0,
+                  "genericContextChecks": 5,
+                  "interfaceWorkspaceBuilds": 0,
+                  "layoutCheckCalls": 0
+                },
+                "identifiedLoopAdmissions": 1,
+                "observation": "ExpectedContaminationObserved",
+                "policy": "R03NaturalProducerControlV1",
+                "runtimeAcceptance": false,
+                "unisolatedWarmCertificate": "Failed"
+              }
+            },
+            "id": "PC-C05-direction-reversal",
+            "result": "Passed"
+          },
+          {
+            "evidence": {
+              "buildReceiptSha256": "fb38ecee6bc1311a08ab775434cb343b9f13699ce92109d14f1742c3fd0fe963",
+              "launchPid": 28884,
+              "outcome": "success",
+              "prepublicationLayout": {
+                "baseline": {
+                  "assembly": "R03Contract",
+                  "name": "Node",
+                  "namespace": "R03",
+                  "physical": "0x11ef559b0",
+                  "typeKey": "type(11:r03contract/3:R03/4:Node@0)"
+                },
+                "baselineCctor": 0,
+                "baselineCctorAtRead": 0,
+                "baselineIdentityStatus": "Captured",
+                "baselineInitialized": false,
+                "baselineInitializedAtRead": false,
+                "baselineReady": true,
+                "baselineVtable": false,
+                "baselineVtableAtRead": false,
+                "error": 0,
+                "fieldsChanged": true,
+                "identityPolicy": "R03OwnedLayoutIdentityV1",
+                "physicalProof": true,
+                "sourceAttrs": [
+                  1
+                ],
+                "sourceFieldCount": 1,
+                "sourceNativeSize": -1,
+                "sourceOffsets": [
+                  16
+                ],
+                "sourcePending": false,
+                "sourceSize": 24,
+                "sourceSizeInited": false,
+                "target": {
+                  "assembly": "R03Contract",
+                  "name": "Node",
+                  "namespace": "R03",
+                  "physical": "0x11ef55c80",
+                  "typeKey": "type(11:r03contract/3:R03/4:Node@0)"
+                },
+                "targetAttrs": [
+                  1,
+                  1
+                ],
+                "targetCctor": 0,
+                "targetDefinitionReady": true,
+                "targetFieldCount": 2,
+                "targetIdentityStatus": "Captured",
+                "targetInitialized": false,
+                "targetNativeSize": -1,
+                "targetOffsets": [
+                  16,
+                  24
+                ],
+                "targetPending": false,
+                "targetReady": true,
+                "targetSize": 32,
+                "targetSizeInited": false,
+                "targetStorage": [
+                  4,
+                  8
+                ],
+                "targetVtable": false,
+                "truncated": false
+              },
+              "rawSha256": "f71b88c147d931c7a9a04433a4ae7f365abd4406feaab88f2364f7a131c3a739",
+              "requestSha256": "a2c2e6e67241fd1a4dd56eec2bb875062f4d540078969b95d4c80595b6331ffb",
+              "result": "Passed",
+              "runId": "65de51e471114a68bde68864895fb7bb",
+              "state": 6,
+              "value": 41,
+              "warmWindow": {
+                "allColdEvents": [
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 0,
+                    "metric": "admissionCacheMisses",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11ef1d5c8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11ee71800",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6133051392,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11ef27fc8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 1,
+                    "metric": "admissionProofAttempts",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11ef1d5c8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11ee71800",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6133051392,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11ef27fc8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 2,
+                    "metric": "admissionEntries",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11ef1d5c8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11ee71800",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6133051392,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11ef27fc8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 80,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 3,
+                    "metric": "admissionRetainedBytes",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11ef1d5c8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11ee71800",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6133051392,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11ef27fc8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  }
+                ],
+                "exactLoopDelta": {
+                  "admissionCacheHits": 10000,
+                  "admissionCacheMisses": 1,
+                  "admissionEntries": 1,
+                  "admissionProofAttempts": 1,
+                  "admissionProofRejections": 0,
+                  "admissionRetainedBytes": 80,
+                  "admissionUnready": 0,
+                  "baselineStateChecks": 10000,
+                  "fieldWorkspaceBuilds": 0,
+                  "genericContextChecks": 5,
+                  "interfaceWorkspaceBuilds": 0,
+                  "layoutCheckCalls": 0
+                },
+                "identifiedLoopAdmissions": 1,
+                "observation": "ExpectedContaminationObserved",
+                "policy": "R03NaturalProducerControlV1",
+                "runtimeAcceptance": false,
+                "unisolatedWarmCertificate": "Failed"
+              }
+            },
+            "id": "PC-C07-private-primitive-append",
+            "result": "Passed"
+          }
+        ],
+        "identifiedLoopAdmissions": 4,
+        "kind": "R03NaturalProducerControls",
+        "result": "Passed",
+        "runtimeAcceptance": false
+      },
+      "id": "producer-controls",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority",
+        "completion-tool-contracts"
+      ],
+      "evidence": {
+        "allowedConfigurationChanges": [],
+        "filesVerified": 542,
+        "fixedImage": {
+          "classification": "FrozenHistoricalInputMaterialization",
+          "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+          "identity": {
+            "culture": "",
+            "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+            "name": "AssemblyShadowBaseline.HotUpdate",
+            "publicKeyToken": "",
+            "referenceIdentities": [
+              {
+                "culture": "",
+                "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "name": "netstandard",
+                "publicKeyToken": "cc7b13ffcd2ddd51",
+                "referenceIndex": 0,
+                "version": "2.1.0.0"
+              }
+            ],
+            "version": "0.0.0.0"
+          },
+          "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+          "materialization": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "freshCscExecutionClaimed": false,
+            "kind": "R02OrdinaryInputAuthentication",
+            "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete",
+            "receipt": {
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+              "sha256": "bb29914d5a4d0d9e31d3675627bd818e0a675e5f46edd60e070fe944bd5cd6be",
+              "sizeBytes": 2647
+            },
+            "result": "Passed",
+            "runtimeAcceptance": false,
+            "staged": {
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+              "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+              "sizeBytes": 4608
+            }
+          },
+          "profile": "R03FrozenFixedImageV1",
+          "runtimeAcceptance": false,
+          "siteIds": [
+            "h1-count-ordinary-witness-image",
+            "m00-normal-hot-update-image"
+          ],
+          "sizeBytes": 4608
+        },
+        "fixedImageOrigin": {
+          "classification": "ImmutableHistoricalInputNotNewCompilation",
+          "command": {
+            "childEnvironmentPolicy": {
+              "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+              "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+              "GIT_TERMINAL_PROMPT": "0",
+              "MSBUILDDISABLENODEREUSE": "1",
+              "MSBUILDUSESERVER": "0",
+              "PYTHONDONTWRITEBYTECODE": "1",
+              "TMPDIR": "/private/tmp"
+            },
+            "cleanupErrors": [],
+            "command": [
+              "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+              "-B",
+              "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/export_m00_fixture.py",
+              "--project",
+              "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+              "--output",
+              "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixed-image-origin",
+              "--verify-committed"
+            ],
+            "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "endedUtcEpoch": 1791385714.403573,
+            "exitCode": 0,
+            "interrupted": false,
+            "lifetimePolicy": "R03OwnedCommandV1",
+            "pgid": 28886,
+            "pid": 28886,
+            "postCleanupGroupExists": false,
+            "processGroupBeforeCleanup": null,
+            "remainingProcessGroup": false,
+            "schemaVersion": 2,
+            "startError": null,
+            "startedUtcEpoch": 1791385713.848424,
+            "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdoutSha256": "2e46dce1b0f8d4b5f73bcb4b9812ecb8a345ca34d10a61828390eeada5134aca",
+            "timeout": false
+          },
+          "historicalPlayerExecutionReused": false,
+          "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixed-image-origin/search.json",
+          "sha256": "84d3ee41ff6dd809633b9f81a421bdfb97761a2e52497927773ec747fe889874"
+        },
+        "frozenM01Files": 6,
+        "kind": "R03ResourceCompleteFixtureV1",
+        "newResourceBundlesRequired": true,
+        "runtimeAcceptance": false
+      },
+      "id": "resource-prepare",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "resource-prepare"
+      ],
+      "evidence": {
+        "afterSources": {
+          "allowedConfigurationChanges": [
+            {
+              "configuredSha256": "c1ba6f91763ecf28442e10f1528519837fb7f3f49256a67ddb14aa8d11106aa7",
+              "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+              "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+            },
+            {
+              "configuredSha256": "b11ad4558f0a9aebb4d1d341b90d5cda9e58f8d1d8678b1ffc27783feb7eb4bd",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "path": "ProjectSettings/AssemblyShadowSettings.asset"
+            }
+          ],
+          "filesVerified": 542,
+          "fixedImage": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+            "identity": {
+              "culture": "",
+              "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+              "name": "AssemblyShadowBaseline.HotUpdate",
+              "publicKeyToken": "",
+              "referenceIdentities": [
+                {
+                  "culture": "",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "name": "netstandard",
+                  "publicKeyToken": "cc7b13ffcd2ddd51",
+                  "referenceIndex": 0,
+                  "version": "2.1.0.0"
+                }
+              ],
+              "version": "0.0.0.0"
+            },
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "materialization": {
+              "classification": "FrozenHistoricalInputMaterialization",
+              "freshCscExecutionClaimed": false,
+              "kind": "R02OrdinaryInputAuthentication",
+              "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete",
+              "receipt": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+                "sha256": "bb29914d5a4d0d9e31d3675627bd818e0a675e5f46edd60e070fe944bd5cd6be",
+                "sizeBytes": 2647
+              },
+              "result": "Passed",
+              "runtimeAcceptance": false,
+              "staged": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+                "sizeBytes": 4608
+              }
+            },
+            "profile": "R03FrozenFixedImageV1",
+            "runtimeAcceptance": false,
+            "siteIds": [
+              "h1-count-ordinary-witness-image",
+              "m00-normal-hot-update-image"
+            ],
+            "sizeBytes": 4608
+          },
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "beforeSources": {
+          "allowedConfigurationChanges": [],
+          "filesVerified": 542,
+          "fixedImage": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+            "identity": {
+              "culture": "",
+              "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+              "name": "AssemblyShadowBaseline.HotUpdate",
+              "publicKeyToken": "",
+              "referenceIdentities": [
+                {
+                  "culture": "",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "name": "netstandard",
+                  "publicKeyToken": "cc7b13ffcd2ddd51",
+                  "referenceIndex": 0,
+                  "version": "2.1.0.0"
+                }
+              ],
+              "version": "0.0.0.0"
+            },
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "materialization": {
+              "classification": "FrozenHistoricalInputMaterialization",
+              "freshCscExecutionClaimed": false,
+              "kind": "R02OrdinaryInputAuthentication",
+              "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete",
+              "receipt": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+                "sha256": "bb29914d5a4d0d9e31d3675627bd818e0a675e5f46edd60e070fe944bd5cd6be",
+                "sizeBytes": 2647
+              },
+              "result": "Passed",
+              "runtimeAcceptance": false,
+              "staged": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+                "sizeBytes": 4608
+              }
+            },
+            "profile": "R03FrozenFixedImageV1",
+            "runtimeAcceptance": false,
+            "siteIds": [
+              "h1-count-ordinary-witness-image",
+              "m00-normal-hot-update-image"
+            ],
+            "sizeBytes": 4608
+          },
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "phaseReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/install.json",
+        "sha256": "3606a8544448c98321a0c9a8461559e6c48005ba17a0defbc4f20f30981439d5",
+        "unity": {
+          "clean": true,
+          "completion": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0114/unity-completion.json",
+          "completionSha256": "587fff7cac98195a5865ac4ea732e381cfb8eb592faab4bae17b68aad4e60506",
+          "originalExitCode": 0,
+          "outerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0114/command.json",
+          "outerSha256": "b300e61cd6a098bd1248e40bb477b2f599d68c8446d94360d79dacc84aef673a",
+          "supportSources": {
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/evidence.py": "fed0ffc33c92125290eb8a290242204c1377d477d8cd6269cdc8d2868a0ce199",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/process_identity.py": "a7fb997cc0653786c650fea30cbf0a6761a749afd6e6a89568b36255f88de89b",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py": "cb81586594abf3cf6216e098b4ceda5b90e3975d2026f34f46fabbefd192e377"
+          }
+        }
+      },
+      "id": "resource-install",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "resource-install"
+      ],
+      "evidence": {
+        "afterSources": {
+          "allowedConfigurationChanges": [
+            {
+              "configuredSha256": "c1ba6f91763ecf28442e10f1528519837fb7f3f49256a67ddb14aa8d11106aa7",
+              "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+              "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+            },
+            {
+              "configuredSha256": "b11ad4558f0a9aebb4d1d341b90d5cda9e58f8d1d8678b1ffc27783feb7eb4bd",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "path": "ProjectSettings/AssemblyShadowSettings.asset"
+            }
+          ],
+          "filesVerified": 542,
+          "fixedImage": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+            "identity": {
+              "culture": "",
+              "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+              "name": "AssemblyShadowBaseline.HotUpdate",
+              "publicKeyToken": "",
+              "referenceIdentities": [
+                {
+                  "culture": "",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "name": "netstandard",
+                  "publicKeyToken": "cc7b13ffcd2ddd51",
+                  "referenceIndex": 0,
+                  "version": "2.1.0.0"
+                }
+              ],
+              "version": "0.0.0.0"
+            },
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "materialization": {
+              "classification": "FrozenHistoricalInputMaterialization",
+              "freshCscExecutionClaimed": false,
+              "kind": "R02OrdinaryInputAuthentication",
+              "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete",
+              "receipt": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+                "sha256": "bb29914d5a4d0d9e31d3675627bd818e0a675e5f46edd60e070fe944bd5cd6be",
+                "sizeBytes": 2647
+              },
+              "result": "Passed",
+              "runtimeAcceptance": false,
+              "staged": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+                "sizeBytes": 4608
+              }
+            },
+            "profile": "R03FrozenFixedImageV1",
+            "runtimeAcceptance": false,
+            "siteIds": [
+              "h1-count-ordinary-witness-image",
+              "m00-normal-hot-update-image"
+            ],
+            "sizeBytes": 4608
+          },
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "beforeSources": {
+          "allowedConfigurationChanges": [
+            {
+              "configuredSha256": "c1ba6f91763ecf28442e10f1528519837fb7f3f49256a67ddb14aa8d11106aa7",
+              "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+              "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+            },
+            {
+              "configuredSha256": "b11ad4558f0a9aebb4d1d341b90d5cda9e58f8d1d8678b1ffc27783feb7eb4bd",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "path": "ProjectSettings/AssemblyShadowSettings.asset"
+            }
+          ],
+          "filesVerified": 542,
+          "fixedImage": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+            "identity": {
+              "culture": "",
+              "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+              "name": "AssemblyShadowBaseline.HotUpdate",
+              "publicKeyToken": "",
+              "referenceIdentities": [
+                {
+                  "culture": "",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "name": "netstandard",
+                  "publicKeyToken": "cc7b13ffcd2ddd51",
+                  "referenceIndex": 0,
+                  "version": "2.1.0.0"
+                }
+              ],
+              "version": "0.0.0.0"
+            },
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "materialization": {
+              "classification": "FrozenHistoricalInputMaterialization",
+              "freshCscExecutionClaimed": false,
+              "kind": "R02OrdinaryInputAuthentication",
+              "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete",
+              "receipt": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+                "sha256": "bb29914d5a4d0d9e31d3675627bd818e0a675e5f46edd60e070fe944bd5cd6be",
+                "sizeBytes": 2647
+              },
+              "result": "Passed",
+              "runtimeAcceptance": false,
+              "staged": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+                "sizeBytes": 4608
+              }
+            },
+            "profile": "R03FrozenFixedImageV1",
+            "runtimeAcceptance": false,
+            "siteIds": [
+              "h1-count-ordinary-witness-image",
+              "m00-normal-hot-update-image"
+            ],
+            "sizeBytes": 4608
+          },
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "phaseReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler.json",
+        "sha256": "136ed08484e92a8b56857b9cd5f2b042bf08bf11231264a5823a4910b9695b7c",
+        "unity": {
+          "clean": true,
+          "completion": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0117/unity-completion.json",
+          "completionSha256": "e8143e22bf268ddb571ac72278a93d5562da26c680c0e4f871cd45ddc89d4a39",
+          "originalExitCode": 0,
+          "outerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0117/command.json",
+          "outerSha256": "5be78a36d2ae8c99f03839a3dc0a7612ab8dfb9657f05dfa83743b116c5fa1c3",
+          "supportSources": {
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/evidence.py": "fed0ffc33c92125290eb8a290242204c1377d477d8cd6269cdc8d2868a0ce199",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/process_identity.py": "a7fb997cc0653786c650fea30cbf0a6761a749afd6e6a89568b36255f88de89b",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py": "cb81586594abf3cf6216e098b4ceda5b90e3975d2026f34f46fabbefd192e377"
+          }
+        }
+      },
+      "id": "resource-compiler",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "resource-compiler"
+      ],
+      "evidence": {
+        "afterSources": {
+          "allowedConfigurationChanges": [
+            {
+              "configuredSha256": "c1ba6f91763ecf28442e10f1528519837fb7f3f49256a67ddb14aa8d11106aa7",
+              "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+              "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+            },
+            {
+              "configuredSha256": "b11ad4558f0a9aebb4d1d341b90d5cda9e58f8d1d8678b1ffc27783feb7eb4bd",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "path": "ProjectSettings/AssemblyShadowSettings.asset"
+            }
+          ],
+          "filesVerified": 542,
+          "fixedImage": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+            "identity": {
+              "culture": "",
+              "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+              "name": "AssemblyShadowBaseline.HotUpdate",
+              "publicKeyToken": "",
+              "referenceIdentities": [
+                {
+                  "culture": "",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "name": "netstandard",
+                  "publicKeyToken": "cc7b13ffcd2ddd51",
+                  "referenceIndex": 0,
+                  "version": "2.1.0.0"
+                }
+              ],
+              "version": "0.0.0.0"
+            },
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "materialization": {
+              "classification": "FrozenHistoricalInputMaterialization",
+              "freshCscExecutionClaimed": false,
+              "kind": "R02OrdinaryInputAuthentication",
+              "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete",
+              "receipt": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+                "sha256": "bb29914d5a4d0d9e31d3675627bd818e0a675e5f46edd60e070fe944bd5cd6be",
+                "sizeBytes": 2647
+              },
+              "result": "Passed",
+              "runtimeAcceptance": false,
+              "staged": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+                "sizeBytes": 4608
+              }
+            },
+            "profile": "R03FrozenFixedImageV1",
+            "runtimeAcceptance": false,
+            "siteIds": [
+              "h1-count-ordinary-witness-image",
+              "m00-normal-hot-update-image"
+            ],
+            "sizeBytes": 4608
+          },
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "beforeSources": {
+          "allowedConfigurationChanges": [
+            {
+              "configuredSha256": "c1ba6f91763ecf28442e10f1528519837fb7f3f49256a67ddb14aa8d11106aa7",
+              "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+              "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+            },
+            {
+              "configuredSha256": "b11ad4558f0a9aebb4d1d341b90d5cda9e58f8d1d8678b1ffc27783feb7eb4bd",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "path": "ProjectSettings/AssemblyShadowSettings.asset"
+            }
+          ],
+          "filesVerified": 542,
+          "fixedImage": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+            "identity": {
+              "culture": "",
+              "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+              "name": "AssemblyShadowBaseline.HotUpdate",
+              "publicKeyToken": "",
+              "referenceIdentities": [
+                {
+                  "culture": "",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "name": "netstandard",
+                  "publicKeyToken": "cc7b13ffcd2ddd51",
+                  "referenceIndex": 0,
+                  "version": "2.1.0.0"
+                }
+              ],
+              "version": "0.0.0.0"
+            },
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "materialization": {
+              "classification": "FrozenHistoricalInputMaterialization",
+              "freshCscExecutionClaimed": false,
+              "kind": "R02OrdinaryInputAuthentication",
+              "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete",
+              "receipt": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+                "sha256": "bb29914d5a4d0d9e31d3675627bd818e0a675e5f46edd60e070fe944bd5cd6be",
+                "sizeBytes": 2647
+              },
+              "result": "Passed",
+              "runtimeAcceptance": false,
+              "staged": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+                "sizeBytes": 4608
+              }
+            },
+            "profile": "R03FrozenFixedImageV1",
+            "runtimeAcceptance": false,
+            "siteIds": [
+              "h1-count-ordinary-witness-image",
+              "m00-normal-hot-update-image"
+            ],
+            "sizeBytes": 4608
+          },
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "phaseReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/resources.json",
+        "sha256": "cb7cdd28bcb349c17828f1c1d95048c06509173f1d07ce9bb605672d5a6694a6",
+        "unity": {
+          "clean": true,
+          "completion": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0118/unity-completion.json",
+          "completionSha256": "1f204321abc27b95cf6f510a32e6ef49328d5349344401bd12bfc801f7a81334",
+          "originalExitCode": 0,
+          "outerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0118/command.json",
+          "outerSha256": "e88181b97b922333c8855cc2cb404efe2eb8e0225a9386534ff77b02be8908ad",
+          "supportSources": {
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/evidence.py": "fed0ffc33c92125290eb8a290242204c1377d477d8cd6269cdc8d2868a0ce199",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/process_identity.py": "a7fb997cc0653786c650fea30cbf0a6761a749afd6e6a89568b36255f88de89b",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py": "cb81586594abf3cf6216e098b4ceda5b90e3975d2026f34f46fabbefd192e377"
+          }
+        }
+      },
+      "id": "resource-bundles",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "resource-bundles"
+      ],
+      "evidence": {
+        "afterSources": {
+          "allowedConfigurationChanges": [
+            {
+              "configuredSha256": "c1ba6f91763ecf28442e10f1528519837fb7f3f49256a67ddb14aa8d11106aa7",
+              "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+              "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+            },
+            {
+              "configuredSha256": "498ac63d316d26890b7bf5c911d674d6bb1bc45428f5e3e78d25a6126e5d40d9",
+              "originalSha256": "071b4b661f53114305cd30b780769a464432b5cde52c801eac4389f639f10b31",
+              "path": "Assets/HybridCLRGenerate/link.xml"
+            },
+            {
+              "configuredSha256": "b11ad4558f0a9aebb4d1d341b90d5cda9e58f8d1d8678b1ffc27783feb7eb4bd",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "path": "ProjectSettings/AssemblyShadowSettings.asset"
+            }
+          ],
+          "filesVerified": 542,
+          "fixedImage": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+            "identity": {
+              "culture": "",
+              "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+              "name": "AssemblyShadowBaseline.HotUpdate",
+              "publicKeyToken": "",
+              "referenceIdentities": [
+                {
+                  "culture": "",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "name": "netstandard",
+                  "publicKeyToken": "cc7b13ffcd2ddd51",
+                  "referenceIndex": 0,
+                  "version": "2.1.0.0"
+                }
+              ],
+              "version": "0.0.0.0"
+            },
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "materialization": {
+              "classification": "FrozenHistoricalInputMaterialization",
+              "freshCscExecutionClaimed": false,
+              "kind": "R02OrdinaryInputAuthentication",
+              "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete",
+              "receipt": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+                "sha256": "bb29914d5a4d0d9e31d3675627bd818e0a675e5f46edd60e070fe944bd5cd6be",
+                "sizeBytes": 2647
+              },
+              "result": "Passed",
+              "runtimeAcceptance": false,
+              "staged": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+                "sizeBytes": 4608
+              }
+            },
+            "profile": "R03FrozenFixedImageV1",
+            "runtimeAcceptance": false,
+            "siteIds": [
+              "h1-count-ordinary-witness-image",
+              "m00-normal-hot-update-image"
+            ],
+            "sizeBytes": 4608
+          },
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "beforeSources": {
+          "allowedConfigurationChanges": [
+            {
+              "configuredSha256": "c1ba6f91763ecf28442e10f1528519837fb7f3f49256a67ddb14aa8d11106aa7",
+              "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+              "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+            },
+            {
+              "configuredSha256": "b11ad4558f0a9aebb4d1d341b90d5cda9e58f8d1d8678b1ffc27783feb7eb4bd",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "path": "ProjectSettings/AssemblyShadowSettings.asset"
+            }
+          ],
+          "filesVerified": 542,
+          "fixedImage": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+            "identity": {
+              "culture": "",
+              "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+              "name": "AssemblyShadowBaseline.HotUpdate",
+              "publicKeyToken": "",
+              "referenceIdentities": [
+                {
+                  "culture": "",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "name": "netstandard",
+                  "publicKeyToken": "cc7b13ffcd2ddd51",
+                  "referenceIndex": 0,
+                  "version": "2.1.0.0"
+                }
+              ],
+              "version": "0.0.0.0"
+            },
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "materialization": {
+              "classification": "FrozenHistoricalInputMaterialization",
+              "freshCscExecutionClaimed": false,
+              "kind": "R02OrdinaryInputAuthentication",
+              "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete",
+              "receipt": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+                "sha256": "bb29914d5a4d0d9e31d3675627bd818e0a675e5f46edd60e070fe944bd5cd6be",
+                "sizeBytes": 2647
+              },
+              "result": "Passed",
+              "runtimeAcceptance": false,
+              "staged": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+                "sizeBytes": 4608
+              }
+            },
+            "profile": "R03FrozenFixedImageV1",
+            "runtimeAcceptance": false,
+            "siteIds": [
+              "h1-count-ordinary-witness-image",
+              "m00-normal-hot-update-image"
+            ],
+            "sizeBytes": 4608
+          },
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "phaseReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/player-on.json",
+        "sha256": "f54f3d75afb3f932b997ae1e8eb9b7550fc6d1f79d4c950c1ae62c9c8feb09cc",
+        "unity": {
+          "clean": true,
+          "completion": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0119/unity-completion.json",
+          "completionSha256": "5a30c81419038fd192fab0b587300970477a62a5ee37518ac79f76577a97e475",
+          "originalExitCode": 0,
+          "outerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0119/command.json",
+          "outerSha256": "c8186ecf75e3cb5ba7d4a429adc4082faa60b9bbecd3096f6c185f5fad3f6f93",
+          "supportSources": {
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/evidence.py": "fed0ffc33c92125290eb8a290242204c1377d477d8cd6269cdc8d2868a0ce199",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/process_identity.py": "a7fb997cc0653786c650fea30cbf0a6761a749afd6e6a89568b36255f88de89b",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py": "cb81586594abf3cf6216e098b4ceda5b90e3975d2026f34f46fabbefd192e377"
+          }
+        }
+      },
+      "id": "resource-player-on",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "resource-bundles"
+      ],
+      "evidence": {
+        "afterSources": {
+          "allowedConfigurationChanges": [
+            {
+              "configuredSha256": "c1ba6f91763ecf28442e10f1528519837fb7f3f49256a67ddb14aa8d11106aa7",
+              "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+              "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+            },
+            {
+              "configuredSha256": "498ac63d316d26890b7bf5c911d674d6bb1bc45428f5e3e78d25a6126e5d40d9",
+              "originalSha256": "071b4b661f53114305cd30b780769a464432b5cde52c801eac4389f639f10b31",
+              "path": "Assets/HybridCLRGenerate/link.xml"
+            },
+            {
+              "configuredSha256": "b11ad4558f0a9aebb4d1d341b90d5cda9e58f8d1d8678b1ffc27783feb7eb4bd",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "path": "ProjectSettings/AssemblyShadowSettings.asset"
+            }
+          ],
+          "filesVerified": 542,
+          "fixedImage": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+            "identity": {
+              "culture": "",
+              "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+              "name": "AssemblyShadowBaseline.HotUpdate",
+              "publicKeyToken": "",
+              "referenceIdentities": [
+                {
+                  "culture": "",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "name": "netstandard",
+                  "publicKeyToken": "cc7b13ffcd2ddd51",
+                  "referenceIndex": 0,
+                  "version": "2.1.0.0"
+                }
+              ],
+              "version": "0.0.0.0"
+            },
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "materialization": {
+              "classification": "FrozenHistoricalInputMaterialization",
+              "freshCscExecutionClaimed": false,
+              "kind": "R02OrdinaryInputAuthentication",
+              "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete",
+              "receipt": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+                "sha256": "bb29914d5a4d0d9e31d3675627bd818e0a675e5f46edd60e070fe944bd5cd6be",
+                "sizeBytes": 2647
+              },
+              "result": "Passed",
+              "runtimeAcceptance": false,
+              "staged": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+                "sizeBytes": 4608
+              }
+            },
+            "profile": "R03FrozenFixedImageV1",
+            "runtimeAcceptance": false,
+            "siteIds": [
+              "h1-count-ordinary-witness-image",
+              "m00-normal-hot-update-image"
+            ],
+            "sizeBytes": 4608
+          },
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "beforeSources": {
+          "allowedConfigurationChanges": [
+            {
+              "configuredSha256": "c1ba6f91763ecf28442e10f1528519837fb7f3f49256a67ddb14aa8d11106aa7",
+              "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+              "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+            },
+            {
+              "configuredSha256": "498ac63d316d26890b7bf5c911d674d6bb1bc45428f5e3e78d25a6126e5d40d9",
+              "originalSha256": "071b4b661f53114305cd30b780769a464432b5cde52c801eac4389f639f10b31",
+              "path": "Assets/HybridCLRGenerate/link.xml"
+            },
+            {
+              "configuredSha256": "b11ad4558f0a9aebb4d1d341b90d5cda9e58f8d1d8678b1ffc27783feb7eb4bd",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "path": "ProjectSettings/AssemblyShadowSettings.asset"
+            }
+          ],
+          "filesVerified": 542,
+          "fixedImage": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+            "identity": {
+              "culture": "",
+              "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+              "name": "AssemblyShadowBaseline.HotUpdate",
+              "publicKeyToken": "",
+              "referenceIdentities": [
+                {
+                  "culture": "",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "name": "netstandard",
+                  "publicKeyToken": "cc7b13ffcd2ddd51",
+                  "referenceIndex": 0,
+                  "version": "2.1.0.0"
+                }
+              ],
+              "version": "0.0.0.0"
+            },
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "materialization": {
+              "classification": "FrozenHistoricalInputMaterialization",
+              "freshCscExecutionClaimed": false,
+              "kind": "R02OrdinaryInputAuthentication",
+              "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete",
+              "receipt": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+                "sha256": "bb29914d5a4d0d9e31d3675627bd818e0a675e5f46edd60e070fe944bd5cd6be",
+                "sizeBytes": 2647
+              },
+              "result": "Passed",
+              "runtimeAcceptance": false,
+              "staged": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+                "sizeBytes": 4608
+              }
+            },
+            "profile": "R03FrozenFixedImageV1",
+            "runtimeAcceptance": false,
+            "siteIds": [
+              "h1-count-ordinary-witness-image",
+              "m00-normal-hot-update-image"
+            ],
+            "sizeBytes": 4608
+          },
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "phaseReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/player-off.json",
+        "sha256": "3bba3cd4c430d9a6f099fd42d7d1eb62742e326213381f865efefa9bf72d26e9",
+        "unity": {
+          "clean": true,
+          "completion": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0120/unity-completion.json",
+          "completionSha256": "aae5b7b9fbd8d976a5383e868ceeec89a082d408a0d16f83b8bf91f3a6d0aa3f",
+          "originalExitCode": 0,
+          "outerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0120/command.json",
+          "outerSha256": "a7b663df6f49c8188acf0bacbaea31c2a368d7661e89308754cd7fd62ff507c8",
+          "supportSources": {
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/evidence.py": "fed0ffc33c92125290eb8a290242204c1377d477d8cd6269cdc8d2868a0ce199",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/process_identity.py": "a7fb997cc0653786c650fea30cbf0a6761a749afd6e6a89568b36255f88de89b",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py": "cb81586594abf3cf6216e098b4ceda5b90e3975d2026f34f46fabbefd192e377"
+          }
+        }
+      },
+      "id": "resource-player-off",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "resource-player-on",
+        "resource-player-off"
+      ],
+      "evidence": {
+        "afterSources": {
+          "allowedConfigurationChanges": [
+            {
+              "configuredSha256": "c1ba6f91763ecf28442e10f1528519837fb7f3f49256a67ddb14aa8d11106aa7",
+              "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+              "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+            },
+            {
+              "configuredSha256": "498ac63d316d26890b7bf5c911d674d6bb1bc45428f5e3e78d25a6126e5d40d9",
+              "originalSha256": "071b4b661f53114305cd30b780769a464432b5cde52c801eac4389f639f10b31",
+              "path": "Assets/HybridCLRGenerate/link.xml"
+            },
+            {
+              "configuredSha256": "b11ad4558f0a9aebb4d1d341b90d5cda9e58f8d1d8678b1ffc27783feb7eb4bd",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "path": "ProjectSettings/AssemblyShadowSettings.asset"
+            },
+            {
+              "configuredSha256": "21995344678c113d128439fd983f5a6634e183e31850655ffe6e8e2db9cc3ae6",
+              "originalSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+              "path": "ProjectSettings/ProjectSettings.asset"
+            }
+          ],
+          "filesVerified": 542,
+          "fixedImage": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+            "identity": {
+              "culture": "",
+              "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+              "name": "AssemblyShadowBaseline.HotUpdate",
+              "publicKeyToken": "",
+              "referenceIdentities": [
+                {
+                  "culture": "",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "name": "netstandard",
+                  "publicKeyToken": "cc7b13ffcd2ddd51",
+                  "referenceIndex": 0,
+                  "version": "2.1.0.0"
+                }
+              ],
+              "version": "0.0.0.0"
+            },
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "materialization": {
+              "classification": "FrozenHistoricalInputMaterialization",
+              "freshCscExecutionClaimed": false,
+              "kind": "R02OrdinaryInputAuthentication",
+              "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete",
+              "receipt": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+                "sha256": "bb29914d5a4d0d9e31d3675627bd818e0a675e5f46edd60e070fe944bd5cd6be",
+                "sizeBytes": 2647
+              },
+              "result": "Passed",
+              "runtimeAcceptance": false,
+              "staged": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+                "sizeBytes": 4608
+              }
+            },
+            "profile": "R03FrozenFixedImageV1",
+            "runtimeAcceptance": false,
+            "siteIds": [
+              "h1-count-ordinary-witness-image",
+              "m00-normal-hot-update-image"
+            ],
+            "sizeBytes": 4608
+          },
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "beforeSources": {
+          "allowedConfigurationChanges": [
+            {
+              "configuredSha256": "c1ba6f91763ecf28442e10f1528519837fb7f3f49256a67ddb14aa8d11106aa7",
+              "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+              "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+            },
+            {
+              "configuredSha256": "498ac63d316d26890b7bf5c911d674d6bb1bc45428f5e3e78d25a6126e5d40d9",
+              "originalSha256": "071b4b661f53114305cd30b780769a464432b5cde52c801eac4389f639f10b31",
+              "path": "Assets/HybridCLRGenerate/link.xml"
+            },
+            {
+              "configuredSha256": "b11ad4558f0a9aebb4d1d341b90d5cda9e58f8d1d8678b1ffc27783feb7eb4bd",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "path": "ProjectSettings/AssemblyShadowSettings.asset"
+            }
+          ],
+          "filesVerified": 542,
+          "fixedImage": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+            "identity": {
+              "culture": "",
+              "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+              "name": "AssemblyShadowBaseline.HotUpdate",
+              "publicKeyToken": "",
+              "referenceIdentities": [
+                {
+                  "culture": "",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "name": "netstandard",
+                  "publicKeyToken": "cc7b13ffcd2ddd51",
+                  "referenceIndex": 0,
+                  "version": "2.1.0.0"
+                }
+              ],
+              "version": "0.0.0.0"
+            },
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "materialization": {
+              "classification": "FrozenHistoricalInputMaterialization",
+              "freshCscExecutionClaimed": false,
+              "kind": "R02OrdinaryInputAuthentication",
+              "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete",
+              "receipt": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+                "sha256": "bb29914d5a4d0d9e31d3675627bd818e0a675e5f46edd60e070fe944bd5cd6be",
+                "sizeBytes": 2647
+              },
+              "result": "Passed",
+              "runtimeAcceptance": false,
+              "staged": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+                "sizeBytes": 4608
+              }
+            },
+            "profile": "R03FrozenFixedImageV1",
+            "runtimeAcceptance": false,
+            "siteIds": [
+              "h1-count-ordinary-witness-image",
+              "m00-normal-hot-update-image"
+            ],
+            "sizeBytes": 4608
+          },
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "phaseReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/prepare.json",
+        "sha256": "ca4c57ca748a24fba46533627bc549566a5b5428bf9ef1cbe889dc8e2319c027",
+        "unity": {
+          "clean": true,
+          "completion": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0121/unity-completion.json",
+          "completionSha256": "b8dc725c98ca45b0deb106689244aeb10b883f5e3d4f1b64cab6826debaa8e82",
+          "originalExitCode": 0,
+          "outerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0121/command.json",
+          "outerSha256": "de836d09972a710b9e9045a492ad863e0d68521bc715b43d02ba8b2aa591468c",
+          "supportSources": {
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/evidence.py": "fed0ffc33c92125290eb8a290242204c1377d477d8cd6269cdc8d2868a0ce199",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/process_identity.py": "a7fb997cc0653786c650fea30cbf0a6761a749afd6e6a89568b36255f88de89b",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py": "cb81586594abf3cf6216e098b4ceda5b90e3975d2026f34f46fabbefd192e377"
+          }
+        }
+      },
+      "id": "resource-p05-prepare",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "resource-p05-prepare"
+      ],
+      "evidence": {
+        "afterSources": {
+          "allowedConfigurationChanges": [
+            {
+              "configuredSha256": "c1ba6f91763ecf28442e10f1528519837fb7f3f49256a67ddb14aa8d11106aa7",
+              "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+              "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+            },
+            {
+              "configuredSha256": "498ac63d316d26890b7bf5c911d674d6bb1bc45428f5e3e78d25a6126e5d40d9",
+              "originalSha256": "071b4b661f53114305cd30b780769a464432b5cde52c801eac4389f639f10b31",
+              "path": "Assets/HybridCLRGenerate/link.xml"
+            },
+            {
+              "configuredSha256": "b11ad4558f0a9aebb4d1d341b90d5cda9e58f8d1d8678b1ffc27783feb7eb4bd",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "path": "ProjectSettings/AssemblyShadowSettings.asset"
+            },
+            {
+              "configuredSha256": "21995344678c113d128439fd983f5a6634e183e31850655ffe6e8e2db9cc3ae6",
+              "originalSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+              "path": "ProjectSettings/ProjectSettings.asset"
+            }
+          ],
+          "filesVerified": 542,
+          "fixedImage": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+            "identity": {
+              "culture": "",
+              "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+              "name": "AssemblyShadowBaseline.HotUpdate",
+              "publicKeyToken": "",
+              "referenceIdentities": [
+                {
+                  "culture": "",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "name": "netstandard",
+                  "publicKeyToken": "cc7b13ffcd2ddd51",
+                  "referenceIndex": 0,
+                  "version": "2.1.0.0"
+                }
+              ],
+              "version": "0.0.0.0"
+            },
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "materialization": {
+              "classification": "FrozenHistoricalInputMaterialization",
+              "freshCscExecutionClaimed": false,
+              "kind": "R02OrdinaryInputAuthentication",
+              "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete",
+              "receipt": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+                "sha256": "bb29914d5a4d0d9e31d3675627bd818e0a675e5f46edd60e070fe944bd5cd6be",
+                "sizeBytes": 2647
+              },
+              "result": "Passed",
+              "runtimeAcceptance": false,
+              "staged": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+                "sizeBytes": 4608
+              }
+            },
+            "profile": "R03FrozenFixedImageV1",
+            "runtimeAcceptance": false,
+            "siteIds": [
+              "h1-count-ordinary-witness-image",
+              "m00-normal-hot-update-image"
+            ],
+            "sizeBytes": 4608
+          },
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "beforeSources": {
+          "allowedConfigurationChanges": [
+            {
+              "configuredSha256": "c1ba6f91763ecf28442e10f1528519837fb7f3f49256a67ddb14aa8d11106aa7",
+              "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+              "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+            },
+            {
+              "configuredSha256": "498ac63d316d26890b7bf5c911d674d6bb1bc45428f5e3e78d25a6126e5d40d9",
+              "originalSha256": "071b4b661f53114305cd30b780769a464432b5cde52c801eac4389f639f10b31",
+              "path": "Assets/HybridCLRGenerate/link.xml"
+            },
+            {
+              "configuredSha256": "b11ad4558f0a9aebb4d1d341b90d5cda9e58f8d1d8678b1ffc27783feb7eb4bd",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "path": "ProjectSettings/AssemblyShadowSettings.asset"
+            },
+            {
+              "configuredSha256": "21995344678c113d128439fd983f5a6634e183e31850655ffe6e8e2db9cc3ae6",
+              "originalSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+              "path": "ProjectSettings/ProjectSettings.asset"
+            }
+          ],
+          "filesVerified": 542,
+          "fixedImage": {
+            "classification": "FrozenHistoricalInputMaterialization",
+            "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+            "identity": {
+              "culture": "",
+              "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+              "name": "AssemblyShadowBaseline.HotUpdate",
+              "publicKeyToken": "",
+              "referenceIdentities": [
+                {
+                  "culture": "",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "name": "netstandard",
+                  "publicKeyToken": "cc7b13ffcd2ddd51",
+                  "referenceIndex": 0,
+                  "version": "2.1.0.0"
+                }
+              ],
+              "version": "0.0.0.0"
+            },
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "materialization": {
+              "classification": "FrozenHistoricalInputMaterialization",
+              "freshCscExecutionClaimed": false,
+              "kind": "R02OrdinaryInputAuthentication",
+              "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete",
+              "receipt": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+                "sha256": "bb29914d5a4d0d9e31d3675627bd818e0a675e5f46edd60e070fe944bd5cd6be",
+                "sizeBytes": 2647
+              },
+              "result": "Passed",
+              "runtimeAcceptance": false,
+              "staged": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+                "sizeBytes": 4608
+              }
+            },
+            "profile": "R03FrozenFixedImageV1",
+            "runtimeAcceptance": false,
+            "siteIds": [
+              "h1-count-ordinary-witness-image",
+              "m00-normal-hot-update-image"
+            ],
+            "sizeBytes": 4608
+          },
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "phaseReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compile.json",
+        "sha256": "4aa7939cb7c1158183460deab5b5e5b9050090bab418396fb8efb65ec7d345ac",
+        "unity": {
+          "clean": true,
+          "completion": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0122/unity-completion.json",
+          "completionSha256": "348b522e33134d3b3a654a9e5b93b2ec918e71ed3e1a1e82b703ea71e99068a7",
+          "originalExitCode": 0,
+          "outerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0122/command.json",
+          "outerSha256": "9fcf1d3f8d9e47670528b55db65024e8fd4eea804fb4c57e341cc7787b5b42b5",
+          "supportSources": {
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/evidence.py": "fed0ffc33c92125290eb8a290242204c1377d477d8cd6269cdc8d2868a0ce199",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/process_identity.py": "a7fb997cc0653786c650fea30cbf0a6761a749afd6e6a89568b36255f88de89b",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py": "cb81586594abf3cf6216e098b4ceda5b90e3975d2026f34f46fabbefd192e377"
+          }
+        }
+      },
+      "id": "resource-p05-compile",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "resource-prepare"
+      ],
+      "error": "Git command failed: ls-remote origin",
+      "id": "resource-p05-restore",
+      "result": "Failed"
+    },
+    {
+      "dependencies": [
+        "resource-p05-compile",
+        "resource-p05-restore"
+      ],
+      "id": "resource-p05-finalize",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-install",
+        "resource-p05-restore",
+        "host-admission"
+      ],
+      "id": "resource-editor",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-p05-finalize"
+      ],
+      "id": "resource-input-binding",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "production-entry-integration",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-01-Prefab-P01",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-02-Nested-P02",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-03-FullClosure-P03",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-04-UnityApis-P01",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-05-Scriptable-P03",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-06-SceneSingle-P01",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-07-SceneAdditive-P03",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-08-SerializeReference-P03",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-09-Messages-P01",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-10-Cache-P03",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-11-DelayedCatalog-P03",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-12-P04-NonSerialized",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-13-P05-Rebuilt",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-14-FeatureOff",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-T07-01-Prefab-P01",
+        "resource-T07-02-Nested-P02",
+        "resource-T07-03-FullClosure-P03",
+        "resource-T07-04-UnityApis-P01",
+        "resource-T07-05-Scriptable-P03",
+        "resource-T07-06-SceneSingle-P01",
+        "resource-T07-07-SceneAdditive-P03",
+        "resource-T07-08-SerializeReference-P03",
+        "resource-T07-09-Messages-P01",
+        "resource-T07-10-Cache-P03",
+        "resource-T07-11-DelayedCatalog-P03",
+        "resource-T07-12-P04-NonSerialized",
+        "resource-T07-13-P05-Rebuilt",
+        "resource-T07-14-FeatureOff"
+      ],
+      "id": "resource-contracts",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-NoPatch-0",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-NoPatch-1",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-NoPatch-2",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P01-0",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P01-1",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P01-2",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P03-0",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P03-1",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P03-2",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-OFF-NoPatch-0",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-OFF-NoPatch-1",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-OFF-NoPatch-2",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "measure-R00-ON-NoPatch-0",
+        "measure-R00-ON-NoPatch-1",
+        "measure-R00-ON-NoPatch-2",
+        "measure-R00-ON-P01-0",
+        "measure-R00-ON-P01-1",
+        "measure-R00-ON-P01-2",
+        "measure-R00-ON-P03-0",
+        "measure-R00-ON-P03-1",
+        "measure-R00-ON-P03-2",
+        "measure-R00-OFF-NoPatch-0",
+        "measure-R00-OFF-NoPatch-1",
+        "measure-R00-OFF-NoPatch-2"
+      ],
+      "id": "measurement-summary",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Control-P03",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Control-P01",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-OrdinaryFirst",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-OrdinaryAfterReserve",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Oversize",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Mismatch",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Type",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Object",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Cctor",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-NativeScript",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [],
+      "evidence": {
+        "repositories": [
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "ba57a3391da9627e694ee33f8bfe3cb993e6c56a",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_demo"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "948c0e3b4f8891481301770115e8ba4945eea6de",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_unity"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/il2cpp_plus"
+          }
+        ]
+      },
+      "id": "final-authority",
+      "result": "Passed"
+    }
+  ],
+  "completionPlanSha256": "074006b6066d2d474e78224cb50aaadf367bcd5bdeaa05058106d212ba3057c4",
+  "executionLedgerSha256": "2dcb5ee79baddc7bdd05d4ae30e33bed4ee6d4e6bb2fe2adf5171d23b750770b",
+  "fullLegacyRegressionAcceptance": false,
+  "kind": "R03CompletionLocalBatch",
+  "matrixSha256": "0b42d543eb0fd7e496639d59f9ef3a1afc0e114eef97720d5fd1c5aa14f728e7",
+  "pureInterpreterExpansionEnabled": false,
+  "qualificationApproved": false,
+  "repositories": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "expansionAuthorized": false,
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_demo": "ba57a3391da9627e694ee33f8bfe3cb993e6c56a",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1
+  },
+  "result": "ReturnRequired",
+  "retainedReferenceWorktrees": {
+    "hybridclr": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-worktrees/hybridclr",
+    "hybridclr_unity": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-worktrees/hybridclr_unity",
+    "il2cpp_plus": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-worktrees/il2cpp_plus"
+  },
+  "schemaVersion": 1,
+  "seal": {
+    "archiveSha256": "e9d75cc2c8366d574516daf7380946a171788abadd2736cd9a41ca70b4ba021c",
+    "boundedEvidenceOnly": true,
+    "indexSha256": "b2b1cba255d1102d7461cf4f5a0cb6b58e815c44a37266099c1fb88224743c58",
+    "members": 10785,
+    "runtimeAcceptance": false
+  },
+  "sealStatus": "Passed"
+}

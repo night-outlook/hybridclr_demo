@@ -1,0 +1,28 @@
+{
+  "startUtc": "2026-10-07T15:26:34.565633+00:00",
+  "endUtc": "2026-10-07T15:26:34.567175+00:00",
+  "cell": "resource-p05-restore",
+  "originalResult": "Failed",
+  "failureUtc": "2026-10-07T15:19:22.695541+00:00",
+  "error": "Git command failed: ls-remote origin",
+  "failureReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03LocalBatch-20261007R-lq-storage/failure-000689.json",
+  "failureReceiptSha256": "050b277951cd867e20c9e854cec2c635df8aa9cace800f8ba7fbd00278b045bd",
+  "originalSettingsPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/M02Validation-40bc9e08c1134d20bea94d40c12e46bb/p05-project-settings.original",
+  "originalSettingsSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+  "currentStagedSettingsPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/ProjectSettings/ProjectSettings.asset",
+  "currentStagedSettingsSha256": "21995344678c113d128439fd983f5a6634e183e31850655ffe6e8e2db9cc3ae6",
+  "stagedDefines": "ASSEMBLY_SHADOW_P05",
+  "originalDefines": "",
+  "missingRestorationEvidence": [
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/M02Validation-40bc9e08c1134d20bea94d40c12e46bb/p05-restored.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/M02Validation-40bc9e08c1134d20bea94d40c12e46bb/p05-settings-restored.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/M02Validation-40bc9e08c1134d20bea94d40c12e46bb/p05-unity-restored.bytes",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/restore.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/resource-logs/restore.log"
+  ],
+  "liveRootRetainedUnmodified": true,
+  "restoreCoverage": "Unavailable",
+  "originalGitStderrExitRepositoryAndArgv": "Unavailable: helper discarded details",
+  "cause": "Remote-authority subprocess returned nonzero before StructuralRestore launch; exact transport cause cannot be recovered",
+  "recommendation": "Preserve strict exact remote pins while recording bounded Git command path/argv/exit/stdout/stderr/timestamps. Separate safe local transaction recovery from fresh remote acceptance; preserve this staged project before any recovery. Require a fresh authorized batch/root, no retry here."
+}

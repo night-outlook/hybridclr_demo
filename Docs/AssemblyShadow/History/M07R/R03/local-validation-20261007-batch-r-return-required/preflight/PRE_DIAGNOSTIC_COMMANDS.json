@@ -1,0 +1,855 @@
+{
+  "commands/architecture": {
+    "argv": [
+      "uname",
+      "-m"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:30.542999+00:00",
+    "endUtc": "2026-10-07T14:46:30.545708+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/clang-version": {
+    "argv": [
+      "xcrun",
+      "clang",
+      "--version"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:30.559837+00:00",
+    "endUtc": "2026-10-07T14:46:30.695958+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "76a924f59997fb65051981eb13105e0a8c151f16cd9c3e45e0f7c27ecefdb839",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/gate-mode": {
+    "argv": [
+      "pwsh",
+      "-NoProfile",
+      "-File",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/.agents/skills/agent-collaboration/scripts/Get-GateReviewMode.ps1",
+      "-RepositoryRoot",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:30.696344+00:00",
+    "endUtc": "2026-10-07T14:46:31.151056+00:00",
+    "exitCode": 1,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "57e29ee2b0864b7cdfdf42a716360dfbeae4521aa765e6d328b4053bc7b56968"
+  },
+  "commands/macos-version": {
+    "argv": [
+      "sw_vers"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:30.535577+00:00",
+    "endUtc": "2026-10-07T14:46:30.542710+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "9a27ea4f1e11f7b9a4f7573d8729db037a10ce2e457f97cb73f646a96a550b16",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/python-version": {
+    "argv": [
+      "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+      "--version"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:30.527491+00:00",
+    "endUtc": "2026-10-07T14:46:30.535298+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "917601090ffb73a030e3eaa8b7a01c41400cad4b61366b4218d7756a5733b66c",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/sdk-path": {
+    "argv": [
+      "xcrun",
+      "--show-sdk-path"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:30.549725+00:00",
+    "endUtc": "2026-10-07T14:46:30.554808+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "71d2d22cf2f2d1a4606d2b131f4f1cc22ab8f2f05df7e76fb6298e428ace92e6",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/sdk-platform-version": {
+    "argv": [
+      "xcrun",
+      "--show-sdk-version"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:30.555005+00:00",
+    "endUtc": "2026-10-07T14:46:30.559583+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "25205f2e2f02dc71036ee827e19c49b893b231a3d1af240e35a3ac55aa8cdcb6",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/sdk-version": {
+    "argv": [
+      "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+      "--version"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:30.362619+00:00",
+    "endUtc": "2026-10-07T14:46:30.527224+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "87d140235528e1e5177051f45163d287ac03dfbbd88f70b34d9dfbe33c7f4682",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr-branch": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "branch",
+      "--show-current"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:59.405848+00:00",
+    "endUtc": "2026-10-07T14:45:59.413084+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "13974ee87afc11cd3c793a6871bc72d540975bf9a65dd96e92658503ec117e98",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr-head": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:59.413331+00:00",
+    "endUtc": "2026-10-07T14:45:59.420513+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "bf7ef608d4e41ddb9b6da31f4df8ff36ed852116800d59247264ba0b841c5768",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr-remote": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "remote",
+      "-v"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:59.435227+00:00",
+    "endUtc": "2026-10-07T14:45:59.442465+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "fbac6e955a2b80eabb73e9e45e880da819240ea64d15091f9ac5d49a31ce6de2",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr-status": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "status",
+      "--short"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:59.420725+00:00",
+    "endUtc": "2026-10-07T14:45:59.434965+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr-submodules": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "submodule",
+      "status",
+      "--recursive"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:59.467960+00:00",
+    "endUtc": "2026-10-07T14:45:59.517747+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr-toplevel": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "rev-parse",
+      "--show-toplevel"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:59.396569+00:00",
+    "endUtc": "2026-10-07T14:45:59.405601+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "fb374f8afd818581a090670304d29a53aa1885b2925a997322a7ee436dae9d71",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr-worktrees": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "worktree",
+      "list",
+      "--porcelain"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:59.442677+00:00",
+    "endUtc": "2026-10-07T14:45:59.467729+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "b94bdbbbeb19d5db15fa27d4e5cb86f3e44269033b57ef335e8175e30b64b378",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr_demo-branch": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "branch",
+      "--show-current"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:43.213006+00:00",
+    "endUtc": "2026-10-07T14:45:43.223706+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "13974ee87afc11cd3c793a6871bc72d540975bf9a65dd96e92658503ec117e98",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr_demo-head": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:43.223998+00:00",
+    "endUtc": "2026-10-07T14:45:43.233934+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "562ba6307ea6d126e8fc80017cecab90cbaeb66c5487fc073c4709dfddc9525c",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr_demo-remote": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "remote",
+      "-v"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:44.216978+00:00",
+    "endUtc": "2026-10-07T14:45:44.225242+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "9681f2ad2c45113b3a3784d7c0443ca5c91c5cd95ff0d3badfc31bc2be65e32b",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr_demo-status": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "status",
+      "--short"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:43.234218+00:00",
+    "endUtc": "2026-10-07T14:45:44.216655+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr_demo-submodules": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "submodule",
+      "status",
+      "--recursive"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:44.240818+00:00",
+    "endUtc": "2026-10-07T14:45:44.313650+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr_demo-toplevel": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "rev-parse",
+      "--show-toplevel"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:43.199198+00:00",
+    "endUtc": "2026-10-07T14:45:43.212738+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "54f36ff914e340f9495979591fe4ca63c8891d4da873864dbe5837a500a64d24",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr_demo-worktrees": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "worktree",
+      "list",
+      "--porcelain"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:44.225473+00:00",
+    "endUtc": "2026-10-07T14:45:44.240568+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "19c8b4809d25e9774f41dc5818fcf46f431fe1046b2e257e3feb7c58deca1c3c",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr_unity-branch": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "branch",
+      "--show-current"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:08.458773+00:00",
+    "endUtc": "2026-10-07T14:46:08.465962+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "13974ee87afc11cd3c793a6871bc72d540975bf9a65dd96e92658503ec117e98",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr_unity-head": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:08.466267+00:00",
+    "endUtc": "2026-10-07T14:46:08.474015+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e5f15c7d815e728db637baa33e83210b021b2c17ae073d974364e43079e1020f",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr_unity-remote": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "remote",
+      "-v"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:08.494608+00:00",
+    "endUtc": "2026-10-07T14:46:08.502918+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e70a346451a0e9dd606ccb2be3f9afe3c3198a0ce5b11e76f52fcf2de726f309",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr_unity-status": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "status",
+      "--short"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:08.474319+00:00",
+    "endUtc": "2026-10-07T14:46:08.494316+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr_unity-submodules": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "submodule",
+      "status",
+      "--recursive"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:08.529707+00:00",
+    "endUtc": "2026-10-07T14:46:08.582722+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr_unity-toplevel": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "rev-parse",
+      "--show-toplevel"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:08.448741+00:00",
+    "endUtc": "2026-10-07T14:46:08.458519+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "b99746b608e9c5642a37af9fa5543adc0b630b01303a0d4ca3e916d2ae1a93ed",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-hybridclr_unity-worktrees": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "worktree",
+      "list",
+      "--porcelain"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:08.503155+00:00",
+    "endUtc": "2026-10-07T14:46:08.529427+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "1998a59e659686441cd234b4732cc25b8c4343825129a71546b5ec242c20ee0c",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-il2cpp_plus-branch": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "branch",
+      "--show-current"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:18.164947+00:00",
+    "endUtc": "2026-10-07T14:46:18.173777+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "13974ee87afc11cd3c793a6871bc72d540975bf9a65dd96e92658503ec117e98",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-il2cpp_plus-head": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:18.174059+00:00",
+    "endUtc": "2026-10-07T14:46:18.182824+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "5837756f96c85f460da26325df860a4909ff5c246e63ad27272206d1dfc1ff9e",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-il2cpp_plus-remote": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "remote",
+      "-v"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:18.209620+00:00",
+    "endUtc": "2026-10-07T14:46:18.218165+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "9e708441b78732ad50ffd81c00b17b32e02547666b34c409ccf5486834ce2a9e",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-il2cpp_plus-status": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "status",
+      "--short"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:18.183122+00:00",
+    "endUtc": "2026-10-07T14:46:18.209267+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-il2cpp_plus-submodules": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "submodule",
+      "status",
+      "--recursive"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:18.244469+00:00",
+    "endUtc": "2026-10-07T14:46:18.300629+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-il2cpp_plus-toplevel": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "rev-parse",
+      "--show-toplevel"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:18.154422+00:00",
+    "endUtc": "2026-10-07T14:46:18.164663+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "352c08e2b848ccf239a5d0e1fa0829580c48eb3cc91659b3637df589aa8ed8f2",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-before-il2cpp_plus-worktrees": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "worktree",
+      "list",
+      "--porcelain"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:18.218416+00:00",
+    "endUtc": "2026-10-07T14:46:18.244190+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "61ae0062bba9d78e2ef797f3d5d690276296a3e5e6fd2946b48754ead781e20f",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-fast-forward-hybridclr": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "merge",
+      "--ff-only",
+      "FETCH_HEAD"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:08.301734+00:00",
+    "endUtc": "2026-10-07T14:46:08.318252+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e5d6c99aec87ec07a2d1b5c1222d8b690d0a61c3548a55c795fff56db9450d0d",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-fast-forward-hybridclr_demo": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge",
+      "--ff-only",
+      "FETCH_HEAD"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:58.311373+00:00",
+    "endUtc": "2026-10-07T14:45:58.494379+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "c8d549155af47aaa7edff8a0212e82519a7335fcbfaa51c8bba8e2ba0aa86ab8",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-fast-forward-hybridclr_unity": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "merge",
+      "--ff-only",
+      "FETCH_HEAD"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:17.995482+00:00",
+    "endUtc": "2026-10-07T14:46:18.011193+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e5d6c99aec87ec07a2d1b5c1222d8b690d0a61c3548a55c795fff56db9450d0d",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-fast-forward-il2cpp_plus": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "merge",
+      "--ff-only",
+      "FETCH_HEAD"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:30.167873+00:00",
+    "endUtc": "2026-10-07T14:46:30.184767+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e5d6c99aec87ec07a2d1b5c1222d8b690d0a61c3548a55c795fff56db9450d0d",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-fetch-hybridclr": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:03.329801+00:00",
+    "endUtc": "2026-10-07T14:46:08.281507+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "3fc9ad43c7c6b9f5b59d0f647637b1689a82a067e73b48cde9a83e19656fbb3b"
+  },
+  "commands/source-fetch-hybridclr_demo": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:48.708589+00:00",
+    "endUtc": "2026-10-07T14:45:58.294271+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "49eef115dc88b6d2ec693a497c3242cd9f0cb2cd374f95a84a312d6db34613d5"
+  },
+  "commands/source-fetch-hybridclr_unity": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:14.025724+00:00",
+    "endUtc": "2026-10-07T14:46:17.976832+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "34b769d49c3a9920b7c28f01a95a729f8991765a6da823ea26f25f3ef08553c3"
+  },
+  "commands/source-fetch-il2cpp_plus": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:23.314002+00:00",
+    "endUtc": "2026-10-07T14:46:30.148310+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "d4136f825b5d3fffcdbf157cdec6f1b5f31ff6397509c95e87442fc1dba4482f"
+  },
+  "commands/source-remote-hybridclr": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "ls-remote",
+      "origin",
+      "refs/heads/codex/assembly-shadow-r01b-h1"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:59.525105+00:00",
+    "endUtc": "2026-10-07T14:46:03.328914+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "213a0c598023331b595b38e91d7306ab06ab6e9f8f16f179695590607e6d1b10",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-remote-hybridclr_demo": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "ls-remote",
+      "origin",
+      "refs/heads/codex/assembly-shadow-r01b-h1"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:45:44.323254+00:00",
+    "endUtc": "2026-10-07T14:45:48.707705+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "2fa4cd9319f4eb0c861d26f34c87e14154d53a2e30d6acc6f9218af3002e1ac7",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-remote-hybridclr_unity": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "ls-remote",
+      "origin",
+      "refs/heads/codex/assembly-shadow-r01b-h1"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:08.590092+00:00",
+    "endUtc": "2026-10-07T14:46:14.024375+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "1dddf363d2c82ef3d0e7ddd1fdedd065e86cdd52af85c7e0dfe5c6bd7769f7cf",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/source-remote-il2cpp_plus": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "ls-remote",
+      "origin",
+      "refs/heads/codex/assembly-shadow-r01b-h1"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:18.308319+00:00",
+    "endUtc": "2026-10-07T14:46:23.313274+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "1882addd53060304c59bf4c284b9dbeb3202e1427d4bc186dce8f795ab58bf11",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/storage-diagnostic": {
+    "argv": [
+      "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+      "-B",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Storage/run_storage_checked.py",
+      "--workspace",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+      "--output",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage",
+      "--unity",
+      "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+      "--demo-commit",
+      "ba57a3391da9627e694ee33f8bfe3cb993e6c56a",
+      "--retained-q",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair",
+      "--storage-evidence",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03LocalBatch-20261007R-lq-storage-2"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:48:29.665651+00:00",
+    "endUtc": "2026-10-07T14:48:57.811515+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "0bb223e734c2ad3ba5cba9b52403cb33a5fbb9cfcc6e36e531ce39081d140bc9",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "environment": {
+      "EXPECTED_DEMO_COMMIT": "ba57a3391da9627e694ee33f8bfe3cb993e6c56a",
+      "DOTNET_ROOT": "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk",
+      "DOTNET_ROOT_ARM64": "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk",
+      "DOTNET_MULTILEVEL_LOOKUP": "0",
+      "TMPDIR": "/private/tmp",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "commands/storage-tests": {
+    "argv": [
+      "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Storage",
+      "-p",
+      "test_*.py",
+      "-v"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:48:29.123084+00:00",
+    "endUtc": "2026-10-07T14:48:29.665131+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "b5bb6383665dae568b4187c5e3f971ab1a52f19eda9cb0238f4f47073afbc3c5",
+    "environment": {
+      "EXPECTED_DEMO_COMMIT": "ba57a3391da9627e694ee33f8bfe3cb993e6c56a",
+      "DOTNET_ROOT": "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk",
+      "DOTNET_ROOT_ARM64": "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk",
+      "DOTNET_MULTILEVEL_LOOKUP": "0",
+      "TMPDIR": "/private/tmp",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "commands/supplemental-apfs": {
+    "command": [
+      "/usr/sbin/diskutil",
+      "apfs",
+      "list",
+      "-plist"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T12:16:28.628463+00:00",
+    "endUtc": "2026-10-07T12:16:28.772098+00:00",
+    "exitCode": 0,
+    "state": "Captured",
+    "stdoutSha256": "595550d61a91bcc39ff661099fe31834e0edc7589a8d892a20e85dffe6a4bc93",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/supplemental-device-0": {
+    "command": [
+      "/usr/sbin/diskutil",
+      "info",
+      "-plist",
+      "/dev/disk3s1"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T12:16:28.489753+00:00",
+    "endUtc": "2026-10-07T12:16:28.627961+00:00",
+    "exitCode": 0,
+    "state": "Captured",
+    "stdoutSha256": "5f53598ebbc6f97ca61bdeb300439b61ed0c49b35d51a204ed45ba3a04720c73",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/supplemental-df": {
+    "command": [
+      "/bin/df",
+      "-k",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+      "/private/tmp",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T12:16:28.486196+00:00",
+    "endUtc": "2026-10-07T12:16:28.489471+00:00",
+    "exitCode": 0,
+    "state": "Captured",
+    "stdoutSha256": "f25ea2bbd55d59018422c5666caebbbdd80032414dc1af42c568451132327ad0",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/supplemental-quota": {
+    "command": [
+      "/usr/bin/quota",
+      "-v"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T12:16:28.772743+00:00",
+    "endUtc": "2026-10-07T12:16:28.776944+00:00",
+    "exitCode": 0,
+    "state": "Captured",
+    "stdoutSha256": "777fc4ea2f9813a43e321230533744c1da03c6f906fdcbeea26ff8b57197eb35",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands/xcode-select": {
+    "argv": [
+      "xcode-select",
+      "-p"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T14:46:30.545935+00:00",
+    "endUtc": "2026-10-07T14:46:30.549486+00:00",
+    "exitCode": 0,
+    "stdoutSha256": "a8044fec385da5d3d686b9c06000917f00d0f27ca72b7db5b47bfc277f748301",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

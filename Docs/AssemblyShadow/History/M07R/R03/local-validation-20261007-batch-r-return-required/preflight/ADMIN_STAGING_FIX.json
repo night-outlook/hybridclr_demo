@@ -1,0 +1,12 @@
+{
+  "recordedUtc": "2026-10-07T15:31:58.393488+00:00",
+  "operation": "Local publication staging only",
+  "originalError": "OSError: [Errno 7] Argument list too long: git",
+  "initialScriptSha256": "fd3bc568ca5276c112aa4a125e1fadca8389a7eefb00574fe0b5dfdfb9e9cd82",
+  "fixedScriptSha256": "238ef7612d0999258d4e19ad5124a22cacd493b82593128d6cc84b6f2152be5f",
+  "fix": "Use NUL-delimited owned pathspec stdin instead of oversized argument vector; assert any existing staged paths are owned. Preserve staged content and unrelated work.",
+  "productOrValidationRerun": false,
+  "scope": "P administrative script and its exact checkpoint copy only",
+  "verification": "Scoped diff/hash/manifest/staged-byte checks rerun; original batch immutable",
+  "resumeObservation": "Original pre-stage exact working-diff assertion rejected partially staged owned files. Resume now requires every staged and working-diff path belong to the same exact owned scope; final staged set/bytes must still equal all checkpoint files plus two reports."
+}

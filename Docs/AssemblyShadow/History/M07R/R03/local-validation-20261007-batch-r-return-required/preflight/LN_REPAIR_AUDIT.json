@@ -1,0 +1,381 @@
+{
+  "kind": "ReadOnlyQBoundaryRepairAudit",
+  "startUtc": "2026-10-07T15:24:44.404709+00:00",
+  "checks": [
+    {
+      "id": "LN-001-source-scope",
+      "state": "Passed",
+      "files": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/editor-source-scope/focused-scope.json",
+          "sha256": "5884f5db149f44815eac864639f6c883e9198fea2122624a451164c635ef1b2c",
+          "size": 104986,
+          "indexed": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/editor-source-scope/resource-scope.json",
+          "sha256": "14644b7bc7e5eeb51f3a36119399ecb37a1c20344f2f293cbca8e5459c911eb2",
+          "size": 104655,
+          "indexed": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/editor-source-scope/results.json",
+          "sha256": "ca0543166cbcbb6a1986958040662d289502d7bbef9903e33e69b4ac162ff7b7",
+          "size": 2639,
+          "indexed": true
+        }
+      ],
+      "reviewedPackageFiles": 13,
+      "expectedCatalogs": [
+        754,
+        755
+      ],
+      "sourceGuardRecheck": "Actual pinned Git delta and exact catalog bindings",
+      "fullTestRunnerExecution": "See LI_CONTRACT_AUDIT and COMPLETION_RUNTIME_AUDIT; source-scope verdict is not an XML test verdict"
+    },
+    {
+      "id": "LN-002-reference-controls",
+      "state": "Passed",
+      "cases": [
+        {
+          "id": "N-baseline-unchanged-closed-domain",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-baseline-unchanged-closed-domain/results.json",
+            "sha256": "4a233d43c0caadb09fd110e38078bcaa330078d48bcfc0aff835864fd1995efe",
+            "size": 515,
+            "indexed": true
+          },
+          "caseResult": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-baseline-unchanged-closed-domain/case-result.json",
+            "sha256": "421e3771b3f78e78b460aeaf60b442dc4e17d2463b0ef456fdd0149105805e19",
+            "size": 121,
+            "indexed": true
+          },
+          "elapsedMilliseconds": 107479
+        },
+        {
+          "id": "N-P01-unchanged-closed-domain",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-P01-unchanged-closed-domain/results.json",
+            "sha256": "1a4ec258eb4ff1492161fc0f61ad3dda8b1d1831b4b5c9687e173ccc4716b0b6",
+            "size": 505,
+            "indexed": true
+          },
+          "caseResult": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-P01-unchanged-closed-domain/case-result.json",
+            "sha256": "f8699219b47191d02740f0a2ee32b8bb5ec975056b1a931acfbfd9e594bc8783",
+            "size": 116,
+            "indexed": true
+          },
+          "elapsedMilliseconds": 108569
+        },
+        {
+          "id": "N-P02-unchanged-closed-domain",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-P02-unchanged-closed-domain/results.json",
+            "sha256": "943a2cdf1c0c7094408b0d97227e82c4cd48f0a1932f6b88bd12cf8d8a7969b5",
+            "size": 505,
+            "indexed": true
+          },
+          "caseResult": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-P02-unchanged-closed-domain/case-result.json",
+            "sha256": "206a9a564e7726d96e3875b4fb1d0d5ffd78e0eef6e65ff8aa0c9ceb123188df",
+            "size": 116,
+            "indexed": true
+          },
+          "elapsedMilliseconds": 107132
+        },
+        {
+          "id": "N-P03-unchanged-closed-domain",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-P03-unchanged-closed-domain/results.json",
+            "sha256": "14a14f7be04cbc77ba2b8ac3fdc642c03479e2cca57ee3ba163fdb6770623b4d",
+            "size": 505,
+            "indexed": true
+          },
+          "caseResult": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-P03-unchanged-closed-domain/case-result.json",
+            "sha256": "4d4c139883de8657cb09a5496c2865c6111ece1059b1199fe3687d764a6678dd",
+            "size": 116,
+            "indexed": true
+          },
+          "elapsedMilliseconds": 111114
+        },
+        {
+          "id": "N-P04-unchanged-closed-domain",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-P04-unchanged-closed-domain/results.json",
+            "sha256": "dacc3740b802eab00065919327ad9edea06f92b51b29c9c52565a71c6a32e2ca",
+            "size": 505,
+            "indexed": true
+          },
+          "caseResult": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-P04-unchanged-closed-domain/case-result.json",
+            "sha256": "83549b8e80baa42dfdacbf2610c517da572afdab9192e57df26c501d691e24bf",
+            "size": 116,
+            "indexed": true
+          },
+          "elapsedMilliseconds": 106365
+        },
+        {
+          "id": "N-P05-unchanged-closed-domain",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-P05-unchanged-closed-domain/results.json",
+            "sha256": "15825d08fed2a1775083e2c8acb9737a40a2598bd7baf4b0a67dfb7641f569b5",
+            "size": 505,
+            "indexed": true
+          },
+          "caseResult": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-P05-unchanged-closed-domain/case-result.json",
+            "sha256": "4aaee960f093fa342e2961daa1e56684d53ac263d2a149de63ca00b6a38ae5f0",
+            "size": 116,
+            "indexed": true
+          },
+          "elapsedMilliseconds": 115948
+        },
+        {
+          "id": "N-reference-context-diagnosis",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-reference-context-diagnosis/results.json",
+            "sha256": "d829a43c28286ebf8077e5c1c186258cdb6bd1a1b5bd3c467564e4a6b6c34c73",
+            "size": 503,
+            "indexed": true
+          },
+          "caseResult": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-reference-context-diagnosis/case-result.json",
+            "sha256": "3739ab114fdcb5105377715c9b6fa78e980e531feb7ccedfb86beb6531234d27",
+            "size": 114,
+            "indexed": true
+          },
+          "elapsedMilliseconds": 2791
+        },
+        {
+          "id": "N-reference-type-mutation",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-reference-type-mutation/results.json",
+            "sha256": "75a48ed9039663d9b855694d1bc32a977f66c98caffa4410652a319624949beb",
+            "size": 496,
+            "indexed": true
+          },
+          "caseResult": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-reference-type-mutation/case-result.json",
+            "sha256": "d93f33527cecb099a43946ff6a1613ce2f61dbefa441a65fd49d55e6755ecd3b",
+            "size": 111,
+            "indexed": true
+          },
+          "elapsedMilliseconds": 11049
+        },
+        {
+          "id": "N-reference-method-mutation",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-reference-method-mutation/results.json",
+            "sha256": "736c6dd2caf1017fefe774c74daf3406ffd4022c5b0c52c4b293a2066d6b8341",
+            "size": 500,
+            "indexed": true
+          },
+          "caseResult": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-reference-method-mutation/case-result.json",
+            "sha256": "4b1656ab01b7bacb1d19fcc1e5df4e5547d8c50059cf82a04f3924c53b551be7",
+            "size": 113,
+            "indexed": true
+          },
+          "elapsedMilliseconds": 10899
+        },
+        {
+          "id": "N-reference-attribute-mutation",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-reference-attribute-mutation/results.json",
+            "sha256": "631712f530bd1acb509b31b5e0619e5388f19e27e05cd44a8b48ad39d55f723c",
+            "size": 506,
+            "indexed": true
+          },
+          "caseResult": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-reference-attribute-mutation/case-result.json",
+            "sha256": "505754b56aefc131deec8b9b4c9266c62caf05f11d03977fada40ba21cf6366d",
+            "size": 116,
+            "indexed": true
+          },
+          "elapsedMilliseconds": 11013
+        },
+        {
+          "id": "N-primary-and-descriptor-mutation",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-primary-and-descriptor-mutation/results.json",
+            "sha256": "feefbf69963fc2340f1481748c7e87de0e24947131e6b63ed9accc1579f8715e",
+            "size": 511,
+            "indexed": true
+          },
+          "caseResult": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-primary-and-descriptor-mutation/case-result.json",
+            "sha256": "f6fb563b5d08d136350922bcdc0f105a3dd21c87325f5c006de2f1489c185703",
+            "size": 118,
+            "indexed": true
+          },
+          "elapsedMilliseconds": 2591
+        },
+        {
+          "id": "N-reference-assembly-identity-mutation",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-reference-assembly-identity-mutation/results.json",
+            "sha256": "722dd627fb7ea98ae38326b9c64d8734d38ce8df282f254666e2990498c5bd40",
+            "size": 522,
+            "indexed": true
+          },
+          "caseResult": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-reference-assembly-identity-mutation/case-result.json",
+            "sha256": "21eac06f70fda8477cf5468559d6bf896bee017bfc5085103661d7b8a07e9c2f",
+            "size": 124,
+            "indexed": true
+          },
+          "elapsedMilliseconds": 11944
+        },
+        {
+          "id": "N-disposed-domain",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-disposed-domain/results.json",
+            "sha256": "294af39266c74615b2f574265c31457bfed8c080ba970dd3ebfa5c5d6b6dcc6b",
+            "size": 479,
+            "indexed": true
+          },
+          "caseResult": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-disposed-domain/case-result.json",
+            "sha256": "be2d1191cabbf99012e86856c2314a94d82c84bad0d22b80e9fbb8bd406e80ea",
+            "size": 102,
+            "indexed": true
+          },
+          "elapsedMilliseconds": 2765
+        },
+        {
+          "id": "N-reference-disk-mutation",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-reference-disk-mutation/results.json",
+            "sha256": "22d608f64ec76816e40c9518bef220e6683ee2663ce43286c8b5fabbcb7b6992",
+            "size": 495,
+            "indexed": true
+          },
+          "caseResult": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-reference-disk-mutation/case-result.json",
+            "sha256": "e4208b93d2dbc6a42c072efb12bac5a61818963e49fddefabfcd096e7444ab14",
+            "size": 110,
+            "indexed": true
+          },
+          "elapsedMilliseconds": 2638
+        },
+        {
+          "id": "N-reference-disappeared",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-reference-disappeared/results.json",
+            "sha256": "24fb8cdfe5bf07e5fbc112d0e421cfcde458aa4e05d4208f3533675c8a3de7da",
+            "size": 491,
+            "indexed": true
+          },
+          "caseResult": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/cases/N-reference-disappeared/case-result.json",
+            "sha256": "3828b9d65fecfa086dca4aff046cba0387d2dfbe3e7bc2430ca611294afd97aa",
+            "size": 108,
+            "indexed": true
+          },
+          "elapsedMilliseconds": 2562
+        }
+      ],
+      "freshSupervisedCases": 15,
+      "verdict": {
+        "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/results.json",
+        "cases": 15,
+        "sha256": "550a83f578fb199bcd2745ba410289b380e132754b625464e17c810ae58719fb",
+        "contextDifferences": [
+          {
+            "section": "types",
+            "firstDifferentCharacter": 114570,
+            "isolatedLength": 506142,
+            "closedLength": 506150,
+            "isolatedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1222:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;324:named:property:CodegenOptions:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:138:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:",
+            "closedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1230:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;332:named:property:CodegenOptions:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:142:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51"
+          },
+          {
+            "section": "attributes",
+            "firstDifferentCharacter": 244795,
+            "isolatedLength": 522837,
+            "closedLength": 522845,
+            "isolatedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1222:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;324:named:property:CodegenOptions:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:138:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:",
+            "closedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1230:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;332:named:property:CodegenOptions:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:142:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51"
+          }
+        ],
+        "basis": "ReusedAuditedLocalNCompilerInputs",
+        "runtimeAcceptance": false
+      },
+      "diagnosis": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/reference-binding/reference-context-diagnosis.json",
+        "sha256": "037a04e6df96607271a2fd19b2d5e1bd4d14401bc323acfd4fddc40c0d1056d4",
+        "size": 7118,
+        "indexed": true
+      },
+      "semanticDifferences": [
+        {
+          "section": "types",
+          "firstDifferentCharacter": 114570,
+          "isolatedLength": 506142,
+          "closedLength": 506150,
+          "isolatedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1222:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;324:named:property:CodegenOptions:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:138:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:",
+          "closedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1230:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;332:named:property:CodegenOptions:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:142:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51"
+        },
+        {
+          "section": "attributes",
+          "firstDifferentCharacter": 244795,
+          "isolatedLength": 522837,
+          "closedLength": 522845,
+          "isolatedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1222:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;324:named:property:CodegenOptions:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:138:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:",
+          "closedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1230:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;332:named:property:CodegenOptions:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:142:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51"
+        }
+      ],
+      "historicalInputBasis": "ReusedAuditedLocalNCompilerInputs",
+      "historicalNQualification": "Failed unchanged",
+      "freshProductionQualificationCell": "Blocked"
+    },
+    {
+      "id": "LN-003-codec-source-context",
+      "state": "Unavailable",
+      "originalCell": "Blocked"
+    },
+    {
+      "id": "LN-004-current-sidecar-verdict",
+      "state": "Unavailable",
+      "receipt": null,
+      "independentFullRecheck": "LAYOUT_IDENTITY_AUDIT.json",
+      "runtimeAcceptance": false
+    },
+    {
+      "id": "LN-003-codec-context-error-check",
+      "state": "Passed",
+      "originalFailedCells": [],
+      "originalFullCaseStates": {
+        "resource-T07-01-Prefab-P01": "Blocked",
+        "resource-T07-02-Nested-P02": "Blocked",
+        "resource-T07-03-FullClosure-P03": "Blocked",
+        "resource-T07-04-UnityApis-P01": "Blocked",
+        "resource-T07-05-Scriptable-P03": "Blocked",
+        "resource-T07-06-SceneSingle-P01": "Blocked",
+        "resource-T07-07-SceneAdditive-P03": "Blocked",
+        "resource-T07-08-SerializeReference-P03": "Blocked",
+        "resource-T07-09-Messages-P01": "Blocked",
+        "resource-T07-10-Cache-P03": "Blocked",
+        "resource-T07-11-DelayedCatalog-P03": "Blocked",
+        "resource-T07-12-P04-NonSerialized": "Blocked",
+        "resource-T07-13-P05-Rebuilt": "Blocked",
+        "resource-T07-14-FeatureOff": "Blocked",
+        "early-Control-P03": "Blocked",
+        "early-Control-P01": "Blocked",
+        "early-OrdinaryFirst": "Blocked",
+        "early-OrdinaryAfterReserve": "Blocked"
+      },
+      "scope": "No codec-context error in the executed consumers; full resource/positive startup cases still Failed at the later known R02 schema boundary. This is a partial stage check, not end-to-end runtime acceptance."
+    }
+  ],
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "expansionAuthorized": false,
+  "newUnityCompilerPlayerExecution": false,
+  "endUtc": "2026-10-07T15:24:44.747074+00:00",
+  "scope": "Existing sealed bytes and source-authority reads only; actual full Editor/production/runtime coverage is recorded separately."
+}

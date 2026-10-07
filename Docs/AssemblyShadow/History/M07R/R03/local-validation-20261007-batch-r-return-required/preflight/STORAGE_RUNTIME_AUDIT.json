@@ -1,0 +1,94 @@
+{
+  "kind": "ReadOnlyRStorageRuntimeAudit",
+  "startUtc": "2026-10-07T15:27:24.153380+00:00",
+  "endUtc": "2026-10-07T15:27:24.168887+00:00",
+  "authentication": "Passed",
+  "originalStorageSession": "Passed",
+  "originalCoreResult": "ReturnRequired",
+  "admissions": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03LocalBatch-20261007R-lq-storage-2/admission.json",
+      "sha256": "0b3166d030afc35d5e7dfb7bd4e6cf3f0ce4772103b7903aa9960e135cffecf6",
+      "state": "Admitted",
+      "probesPassed": 10,
+      "requiredBytes": 68719476736,
+      "historicalCapacityPromotion": false
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03LocalBatch-20261007R-lq-storage/admission.json",
+      "sha256": "f29a4bacdeac06ea919108ae1a4c1da90a08402de948eb6cb07d06a438ea431c",
+      "state": "Admitted",
+      "probesPassed": 10,
+      "requiredBytes": 68719476736,
+      "historicalCapacityPromotion": false
+    }
+  ],
+  "samples": 720,
+  "events": {
+    "admission-before-probes": 1,
+    "admission-after-probes": 1,
+    "immediately-before-constructor": 1,
+    "before": 170,
+    "periodic": 372,
+    "cell-after": 48,
+    "command-after": 122,
+    "exception": 4,
+    "finish": 1
+  },
+  "minimumAvailableBytes": {
+    "batch": 64020553728,
+    "workspace": 64020553728,
+    "childTemp": 64020553728,
+    "pythonTemp": 64020553728,
+    "sidecar": 64020553728,
+    "restoredCapture": 64020553728,
+    "gitCommon-hybridclr_demo": 64020553728,
+    "gitCommon-hybridclr": 64020553728,
+    "gitCommon-hybridclr_unity": 64020553728,
+    "gitCommon-il2cpp_plus": 64020553728
+  },
+  "minimumGiB": 59.62378692626953,
+  "operatingFloorGiB": 20,
+  "capacityReserved": false,
+  "sampledMinimumIsNotActualHighWater": true,
+  "samePoolNotSummed": true,
+  "integrationAllocationProbe": "NotRun: dependent production integration Blocked",
+  "failures": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03LocalBatch-20261007R-lq-storage/failure-000330.json",
+      "sha256": "0de75a10ee51fb103df0d5bae2cb49c39e645d6c9cb0ebe38097119a18dc7580",
+      "phase": "player-fixtures/command-76",
+      "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0076/command.json",
+      "errno": null,
+      "interpretation": "Expected-negative fixture/compiler control captured by wrapper; cell player-fixtures remains Passed"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03LocalBatch-20261007R-lq-storage/failure-000337.json",
+      "sha256": "c407553bc4aaa60f7e89419bc6a2f7a008a05660b28dc6746a8f44319739f795",
+      "phase": "player-fixtures/command-78",
+      "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0078/command.json",
+      "errno": null,
+      "interpretation": "Expected-negative fixture/compiler control captured by wrapper; cell player-fixtures remains Passed"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03LocalBatch-20261007R-lq-storage/failure-000348.json",
+      "sha256": "9c15da825baa2ff9c24a21b3bb92d5e0cb29f74607e6aa9c71542265a065ae1a",
+      "phase": "player-fixtures/command-83",
+      "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0083/command.json",
+      "errno": null,
+      "interpretation": "Expected-negative fixture/compiler control captured by wrapper; cell player-fixtures remains Passed"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03LocalBatch-20261007R-lq-storage/failure-000689.json",
+      "sha256": "050b277951cd867e20c9e854cec2c635df8aa9cace800f8ba7fbd00278b045bd",
+      "phase": "resource-p05-restore",
+      "error": "Git command failed: ls-remote origin",
+      "errno": null,
+      "interpretation": "Remote-authority failure"
+    }
+  ],
+  "sessionSha256": "14e41914d45e5554e5167924ec766d65b57d4d80308925e70fc3d8cbdd93a832",
+  "dispatchSha256": "c0e4b9262eddba5ed940a02b759d75506dd47fb79c82cd7608620727f9589e32",
+  "telemetrySha256": "b624de970c20d13966fa5b1ece3d7149f986e7f4f2862b5c7c4445772959bd29",
+  "noRerunOrRawMutation": true
+}

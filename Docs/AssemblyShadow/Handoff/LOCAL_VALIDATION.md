@@ -1,6 +1,101 @@
 # Local Validation report
 
-## Current run — R03 batch R storage prerequisite, 2026-10-06 PDT / 2026-10-07 UTC
+## Current run — R03 completion batch R, 2026-10-07 PDT
+
+**ReturnRequired; original cells={'Passed': 47, 'Failed': 1, 'Blocked': 42}; sealStatus=Passed; executing storage session=Passed; wrapper exit=1. Exit: Local Validation → Primary Implementation.** One executing invocation, PID22623, `2026-10-07T14:50:10.645232+00:00` → `2026-10-07T15:21:38.770144+00:00` UTC. The original blocked prerequisite at source cbf80474 remains unchanged; it was NotRun, not a failed runtime attempt. This execution uses the newly authorized source `ba57a3391da9627e694ee33f8bfe3cb993e6c56a`. No batch/phase retry, old-app reuse, product fix, scope/expectation/pin substitution, threshold/timeout/warm-up/lease change or historical promotion occurred.
+
+### Authority, environment and source exception
+
+User explicitly authorized `ba57a3391da9627e694ee33f8bfe3cb993e6c56a` and the exact nine agent-configuration-file exception to WEB_TO_LOCAL's Docs-only post-anchor rule. All four clean owning checkouts matched independently verified canonical origins/remote heads; only demo safely fast-forwarded from95982f2 to the authorized commit. Product, storage/core runner, C#, fixture/package/native/IL2CPP sources and both source-pin manifests remain unchanged. [Authorization](../History/M07R/R03/local-validation-20261007-batch-r-return-required/preflight/USER_SOURCE_AUTHORIZATION.json), [source preflight](../History/M07R/R03/local-validation-20261007-batch-r-return-required/preflight/SOURCE_AUTHORITY.json), [synchronization](../History/M07R/R03/local-validation-20261007-batch-r-return-required/preflight/SYNCHRONIZATION.json), [environment](../History/M07R/R03/local-validation-20261007-batch-r-return-required/preflight/ENVIRONMENT.json) and commands/*/receipt.json record exact paths/heads/branches/status/remotes/worktrees/submodules/operations/clocks. No ordinary primary/control checkout was used for validation. Source snapshots match exact Git blobs; final Local transport HEAD is separate from runtime source.
+
+| Actual repository | Branch | Executed source commit |
+| --- | --- | --- |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | `ba57a3391da9627e694ee33f8bfe3cb993e6c56a` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `codex/assembly-shadow-r01b-h1` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
+
+Unity2022.3.62f2 /StandaloneOSX arm64 at `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`; SDK8.0.318 from SDK-only `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`, no Unity6000 launch. Python path `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3`. Actual macOS/architecture/Xcode/clang/platform SDK versions and command clocks/stream hashes are retained in preflight/commands. EXPECTED_DEMO_COMMIT exact; DOTNET_ROOT/ARM64 pinned, MULTILEVEL_LOOKUP=0, TMPDIR=/private/tmp, bytecode disabled. Both source manifests, package manifest/lock and ProjectVersion match source Git blobs. No exact-project Editor was open at entry.
+
+Ancillary gate helper returned InvalidMainAgentModel because exact effective main-model identity is unavailable from authoritative host metadata. Original exit1/stderr is preserved in [gate observation](../History/M07R/R03/local-validation-20261007-batch-r-return-required/preflight/ADMIN_PREFLIGHT_GATE_OBSERVATION.json); no model guess, retry with a guess, Off/PASS inference or gate-setting change occurred. It stopped only Local administrative preparation before storage tests/admission/Unity; continuation completed the remaining preflight under the explicit user-authorized runtime scope. Independent full-stage review remains pending, outside this batch.
+
+### Invocation and storage
+
+Prescribed executing wrapper, cwd `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`; exact environment/start/end/PID/exit/stream hashes are in [runner receipt](../History/M07R/R03/local-validation-20261007-batch-r-return-required/preflight/runner-exit.json):
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Storage/run_storage_checked.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit ba57a3391da9627e694ee33f8bfe3cb993e6c56a --retained-q /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair --storage-evidence /Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03LocalBatch-20261007R-lq-storage --execute
+```
+
+48 fresh storage host tests Passed with zero failures/errors/skips. New diagnostic `/Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03LocalBatch-20261007R-lq-storage-2` admission=Admitted/session=Passed; all10 allocation/fsync/readback/cleanup probes Passed. The executing wrapper independently obtained its own fresh admission and immediately rechecked full capacity before construction. No diagnostic pass alone was treated as launch authority. The original blocked diagnostic and immutable checkpoint remain byte-identical.
+
+Executing sidecar `/Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03LocalBatch-20261007R-lq-storage` and byte-identical checkpoint copy [executing-storage](../History/M07R/R03/local-validation-20261007-batch-r-return-required/executing-storage) retain source authority, sizing/admission, all capacity samples, launch-intent, any failures, original session/dispatch; integration-allocation-probe is NotRun because production integration was Blocked. Original admission budget is `max(64GiB,2*B+20GiB)`; operating floor20GiB unchanged. All validation locations use the same APFS Data-container pool; sibling free space is not summed. Sampled minimum is not instantaneous high-water; space was not reserved. Current preflight resolved-device/APFS/quota observations and original ordinary-directory diagnostic Unavailable states remain distinct. Operator storage changes were not performed by Local; custody checks verified preserved evidence before execution.
+
+Final storage state=Passed; samples=720; minima bytes={'batch': 64020553728, 'childTemp': 64020553728, 'gitCommon-hybridclr': 64020553728, 'gitCommon-hybridclr_demo': 64020553728, 'gitCommon-hybridclr_unity': 64020553728, 'gitCommon-il2cpp_plus': 64020553728, 'pythonTemp': 64020553728, 'restoredCapture': 64020553728, 'sidecar': 64020553728, 'workspace': 64020553728}; latched problem=None. [Publication-capacity receipt](../History/M07R/R03/local-validation-20261007-batch-r-return-required/preflight/storage-publication-check.json) separately verifies the unchanged prescribed batch-footprint-plus20GiB budget at checkout, retained root and actual Git common directory before copying. It does not rewrite the core or session verdict.
+
+### Original validation and independent evidence checks
+
+Original90-cell counts={'Passed': 47, 'Failed': 1, 'Blocked': 42}; see [complete matrix](../History/M07R/R03/local-validation-20261007-batch-r-return-required/VALIDATION_MATRIX.md) and original sealed ledger/result. The required scope remains six fresh native builds,18-method early Editor preflight, exact754/755 full Editor rosters with zero skips/inconclusive, and59 fresh Players. Actual statuses, exact build/nativeBinding/installation/source pins/GUIDs, XML/scope/verdict hashes, launch/request/raw/verification IDs, process lifetimes and native observations are retained in original cells and the independent audit reports below. Expected-negative compiler/Player exits are separate from failed product builds. Any Failed/Blocked/NotRun/Unavailable/NoCoverage/reused-audited evidence retains its original state.
+
+| Read-only postrun audit | Dispatch state |
+| --- | --- |
+| authenticate-focused-batch.py | Passed |
+| audit-li-contracts.py | Failed |
+| audit-ln-repairs.py | Passed |
+| audit-producer-runtime.py | Passed |
+| audit-rejection-observation.py | Passed |
+| audit-resource-builds-restoration.py | Failed |
+| audit-capabilities.py | Failed |
+| audit-fixed-image.py | Passed |
+| audit-compiler-policy.py | Passed |
+| audit-layout-identity.py | Passed |
+| audit-completion.py | Failed |
+| audit-lo-repairs.py | Passed |
+| audit-lp-repairs.py | Passed |
+
+Postrun/COMPLETION_RUNTIME/LO/LP/LI/LN/resource-restoration/layout/producer/rejection/capability/fixed-image/compiler-policy audits record concrete subproofs, counts and hashes independently of dispatch success. Binding-before-integration, live source/linked policy guards, all five current sidecars/P05 finalization and exact restoration, restored-baseline zero changed roots/zero closure, strict R02 bridge/221-object aggregate, codec contexts and measurement/startup original contracts are rechecked where original prerequisites Passed. Frozen M00/historical compiler-input reuse remains audited input reuse, not a new M00 compilation or old Player-result reuse. Natural producer controls retain Failed unisolated warm certificates even when their diagnostic contract Passed; isolation is diagnostic and does not approve a production performance SLA. Focused M01 NoCoverage and separate original-resource coverage remain distinct.
+
+All indexed raw files and top-level artifacts remained unchanged through postrun audits. Historical custody is independently rechecked against the expanded authenticated map, including Q/P/O/N and the original blocked R checkpoint/sidecar. Retained fresh live Libraries/HybridCLRData/native roots and build/reference identities are bound by RETAINED_LIVE_ROOTS.json and original receipts; they are not mixed with previous apps or caches. No source changes were made by Local.
+
+| Live original artifact | SHA-256 |
+| --- | --- |
+| `LOCAL_BATCH_RESULT.json` | `8fb3aa6244b16bf9484a469ec408c457b73c147dd6eda6eb6275ad8fadf373fc` |
+| `BATCH_EXECUTION.json` | `2dcb5ee79baddc7bdd05d4ae30e33bed4ee6d4e6bb2fe2adf5171d23b750770b` |
+| `evidence-index.json` | `b2b1cba255d1102d7461cf4f5a0cb6b58e815c44a37266099c1fb88224743c58` |
+| `evidence.tar.gz` | `e9d75cc2c8366d574516daf7380946a171788abadd2736cd9a41ca70b4ba021c` |
+| `seal-receipt.json` | `a391172e3521e6f2af1fc221fd8d8842c3be808068dfddfde068cbcbb2d3e767` |
+
+Live batch: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage`. Exact checkpoint [README](../History/M07R/R03/local-validation-20261007-batch-r-return-required/README.md), FILE_TRANSPORT.json and reconstruction helper preserve the sealed archive and oversized raw copies as ordered64MiB parts without rewriting/resealing. Source bindings, all original cells/commands/host/Editor/build/Player/resource/measurement/early-startup receipts and full storage/preflight are included. LOCAL_BATCH_RESULT.json remains the original factual result; no storage/gate state is substituted into its cells.
+
+### Actual completion and audit limits
+
+| Required validation | Actual R state |
+| --- | --- |
+| Storage tests/admission/runtime | 48 host tests Passed; two separate fresh admissions Admitted with10 probes each; executing session Passed,720 samples, minimum59.624 GiB; production integration allocation probe NotRun |
+| Core matrix | 90 original cells:47 Passed,1 Failed,42 Blocked; result ReturnRequired; seal Passed |
+| Native builds | All six fresh build cells Passed; four focused roles plus resource ON/OFF; separate exact native/source inventories authenticated |
+| Early constructor Editor preflight | 18 methods Passed;12 host constructor controls and10 actual source-pin consumer controls Passed |
+| Focused Editor | 754 cases Passed; zero Failed/skipped/inconclusive |
+| Resource Editor | 755 planned; NotRun because restoration Failed; original cell Blocked; no XML |
+| Players | 23 fresh focused processes Passed;36 planned resource/measurement/startup cases NotRun/Blocked; total required59 remains incomplete |
+| Warm/physical proofs | Six strict focused warm witnesses and positive C07 proof Passed; four producer controls diagnostic Passed while each unisolated warm certificate remains Failed |
+| Qualification | Fresh static qualification cell Passed, non-authorizing; qualificationApproved=false |
+| P05 restore/finalize and production integration | Restore Failed; downstream Blocked; live policy/restored-baseline zero-root/zero-closure/strict bridge/resource aggregate not established in R |
+| Evidence custody | 10,784 indexed files,10,785 archive members authenticated;174,915 prior-custody paths unchanged; no owned process-group survivors observed postrun |
+
+Initial postrun audit dispatch failures are preserved. LI's administrative adapter referenced an absent old-template settings file; the separate [partial reconciliation](../History/M07R/R03/local-validation-20261007-batch-r-return-required/preflight/PARTIAL_BATCH_RECONCILIATION.json) binds actual preflight settings directly to exact source Git blobs and verifies18/10 controls. Resource restoration audit lacks genuine restore receipts; its coverage is Unavailable. Capability audit's full-current-input check fails on retained staged settings after the original restore failure; the actual10-case preflight Passed and original execution verification remain distinct from postrun revalidation Unavailable. Completion auditor's Q-specific failure-reproduction assertion cannot reproduce an uncaptured Git transport error offline; its7 semantic observations remain2 Passed/5 NotRun and original dispatch Failed. No original verdict was rewritten and no product was reexecuted.
+
+The [storage runtime audit](../History/M07R/R03/local-validation-20261007-batch-r-return-required/preflight/STORAGE_RUNTIME_AUDIT.json) authenticates720 sequential samples, both10-probe admissions, source/dispatch/result/telemetry bindings and no latched capacity fault. Three failure-* diagnostics are expected-negative compiler/fixture controls (cell Passed); the fourth is the actual Git restore failure. Ordinary-path diskutil diagnostics retain Unavailable separately from resolved-device APFS observations.
+
+See current R03-LR-002 in [RETURN_TO_WEB.md](RETURN_TO_WEB.md) for actionable reproduction, hashes, cause limits and required Primary work.
+
+### Publication and exit
+
+Only Local-owned LOCAL_VALIDATION.md, RETURN_TO_WEB.md and this new immutable checkpoint are modified. Historical report bodies are preserved with only the prior Current heading changed to Historical. Manifest/JSON/hash/local-link/source/whitespace/staged-byte checks and remote/cleanliness verification accompany publication; final pushed four-repository commits are recorded externally at `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/PUBLICATION_RECEIPT.json` and in the final handoff. Publication HEAD is transport authority only, not executed source.
+
+Return the factual original failures/limits to Primary; do not expand Local implementation or retry. Read ORIGINAL_FAILURES.json and RETURN_TO_WEB.md. R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; PureInterpreter expansion disabled. Full-stage acceptance, independent review, human approval and production performance SLA remain pending; R02 CPU/H1 RSS risks and contaminated Failed warm certificates are not promoted. **Local Validation → Primary Implementation. Stop.**
+
+## Historical run — R03 batch R storage prerequisite, 2026-10-06 PDT / 2026-10-07 UTC
 
 **CapacityBlocked; batch NotRun; admission Blocked; original storage session Failed; diagnostic exit2. Exit: Local Validation → Primary Implementation.** One diagnostic invocation `2026-10-07T03:29:26.743618+00:00` → `2026-10-07T03:29:46.985570+00:00` (2026-10-06 20:29:26 →20:29:46 PDT). Zero executing-wrapper/core invocations, Unity launches, builds, Editor executions or Players. The handoff's20261007 folder identifier is preserved; it does not change actual event clocks. Batch and executing sidecar roots remain absent. No90-cell result, core ledger/archive/index/seal or runtime acceptance is manufactured.
 

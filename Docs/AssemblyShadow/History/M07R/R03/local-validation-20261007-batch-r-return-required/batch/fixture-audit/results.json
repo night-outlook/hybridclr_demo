@@ -1,0 +1,746 @@
+{
+  "kind": "R03FixtureMetadataAudit",
+  "schemaVersion": 1,
+  "result": "Passed",
+  "cases": [
+    {
+      "id": "player-00",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/A.dll",
+      "inputSha256": "e065ad005fa41b8c5547799fa020f52f732c83ca43f675d202fd174610ea52f0",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/player-00.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        },
+        {
+          "name": "B",
+          "flags": 0,
+          "keyBytes": 0
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/B.dll",
+          "sha256": "851d55b652e49f1d5413067e199de3801dc939e5bc4c83836b65646569790f0b"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/Layout.dll",
+          "sha256": "673695881e77234185312e8eb3d2ce05b68495b569d10f0bb944b9ec1d203c17"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/Methods.dll",
+          "sha256": "2fad6837b5da94f342c89d517139cda68ff4b299341e95e8622c9873cf21cf61"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/R03Contract.dll",
+          "sha256": "0f714bb78c3fb8524850520c7f4e116ad147e6fe4e2678657724e73be868d048"
+        }
+      ]
+    },
+    {
+      "id": "player-01",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/B.dll",
+      "inputSha256": "851d55b652e49f1d5413067e199de3801dc939e5bc4c83836b65646569790f0b",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/player-01.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/A.dll",
+          "sha256": "e065ad005fa41b8c5547799fa020f52f732c83ca43f675d202fd174610ea52f0"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/Layout.dll",
+          "sha256": "673695881e77234185312e8eb3d2ce05b68495b569d10f0bb944b9ec1d203c17"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/Methods.dll",
+          "sha256": "2fad6837b5da94f342c89d517139cda68ff4b299341e95e8622c9873cf21cf61"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/R03Contract.dll",
+          "sha256": "0f714bb78c3fb8524850520c7f4e116ad147e6fe4e2678657724e73be868d048"
+        }
+      ]
+    },
+    {
+      "id": "player-02",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/Layout.dll",
+      "inputSha256": "673695881e77234185312e8eb3d2ce05b68495b569d10f0bb944b9ec1d203c17",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/player-02.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/A.dll",
+          "sha256": "e065ad005fa41b8c5547799fa020f52f732c83ca43f675d202fd174610ea52f0"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/B.dll",
+          "sha256": "851d55b652e49f1d5413067e199de3801dc939e5bc4c83836b65646569790f0b"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/Methods.dll",
+          "sha256": "2fad6837b5da94f342c89d517139cda68ff4b299341e95e8622c9873cf21cf61"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/R03Contract.dll",
+          "sha256": "0f714bb78c3fb8524850520c7f4e116ad147e6fe4e2678657724e73be868d048"
+        }
+      ]
+    },
+    {
+      "id": "player-03",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/Methods.dll",
+      "inputSha256": "2fad6837b5da94f342c89d517139cda68ff4b299341e95e8622c9873cf21cf61",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/player-03.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/A.dll",
+          "sha256": "e065ad005fa41b8c5547799fa020f52f732c83ca43f675d202fd174610ea52f0"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/B.dll",
+          "sha256": "851d55b652e49f1d5413067e199de3801dc939e5bc4c83836b65646569790f0b"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/Layout.dll",
+          "sha256": "673695881e77234185312e8eb3d2ce05b68495b569d10f0bb944b9ec1d203c17"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/R03Contract.dll",
+          "sha256": "0f714bb78c3fb8524850520c7f4e116ad147e6fe4e2678657724e73be868d048"
+        }
+      ]
+    },
+    {
+      "id": "player-04",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/R03Contract.dll",
+      "inputSha256": "0f714bb78c3fb8524850520c7f4e116ad147e6fe4e2678657724e73be868d048",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/player-04.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/A.dll",
+          "sha256": "e065ad005fa41b8c5547799fa020f52f732c83ca43f675d202fd174610ea52f0"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/B.dll",
+          "sha256": "851d55b652e49f1d5413067e199de3801dc939e5bc4c83836b65646569790f0b"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/Layout.dll",
+          "sha256": "673695881e77234185312e8eb3d2ce05b68495b569d10f0bb944b9ec1d203c17"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/Methods.dll",
+          "sha256": "2fad6837b5da94f342c89d517139cda68ff4b299341e95e8622c9873cf21cf61"
+        }
+      ]
+    },
+    {
+      "id": "player-05",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/interface/R03Contract.dll",
+      "inputSha256": "e9f25d201115a1d397df44546c519bffd003ef885a62043ba5f167d613b1d451",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/player-05.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": []
+    },
+    {
+      "id": "player-06",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/primitive/R03Contract.dll",
+      "inputSha256": "377cb8943f0278b5e1a1f938df8d31bd5eff3f6e3cedbeb0aef0175076866d5a",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/player-06.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": []
+    },
+    {
+      "id": "player-07",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/private-reference/Layout.dll",
+      "inputSha256": "b508ca2e427d0f2343f3a7a08bf800b34ca523fa28339ec08cd33a083d451811",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/player-07.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": []
+    },
+    {
+      "id": "player-08",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/removal/R03Contract.dll",
+      "inputSha256": "9d2dc3eb763dd4eb7a3f2971dd19f4b0f71f928415476a9c587a9f9625899493",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/player-08.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": []
+    },
+    {
+      "id": "player-09",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/reversal/A.dll",
+      "inputSha256": "8dbe999805ea068f84ff9479d2d6056a2e56063adbc6b4ca2e4dc28d8b364be4",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/player-09.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/reversal/B.dll",
+          "sha256": "1bf016a1ead004a14ac3a2a70e442b15f14693cbfd1ac4fd73623d4d52238ff1"
+        }
+      ]
+    },
+    {
+      "id": "player-10",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/reversal/B.dll",
+      "inputSha256": "1bf016a1ead004a14ac3a2a70e442b15f14693cbfd1ac4fd73623d4d52238ff1",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/player-10.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        },
+        {
+          "name": "A",
+          "flags": 0,
+          "keyBytes": 0
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/reversal/A.dll",
+          "sha256": "8dbe999805ea068f84ff9479d2d6056a2e56063adbc6b4ca2e4dc28d8b364be4"
+        }
+      ]
+    },
+    {
+      "id": "player-11",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/true-cycle/A.dll",
+      "inputSha256": "e065ad005fa41b8c5547799fa020f52f732c83ca43f675d202fd174610ea52f0",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/player-11.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        },
+        {
+          "name": "B",
+          "flags": 0,
+          "keyBytes": 0
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/true-cycle/B.dll",
+          "sha256": "1bf016a1ead004a14ac3a2a70e442b15f14693cbfd1ac4fd73623d4d52238ff1"
+        }
+      ]
+    },
+    {
+      "id": "player-12",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/true-cycle/B.dll",
+      "inputSha256": "1bf016a1ead004a14ac3a2a70e442b15f14693cbfd1ac4fd73623d4d52238ff1",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/player-12.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        },
+        {
+          "name": "A",
+          "flags": 0,
+          "keyBytes": 0
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/true-cycle/A.dll",
+          "sha256": "e065ad005fa41b8c5547799fa020f52f732c83ca43f675d202fd174610ea52f0"
+        }
+      ]
+    },
+    {
+      "id": "player-13",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/value/R03Contract.dll",
+      "inputSha256": "3feab7943eaac443daf1076b3193b1d4228ba687b2c1831a0c3db82e7307c494",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/player-13.cs",
+      "sourceSha256": "9e52b0e0cb391b213af1912c74cf5213479fa6a1fd9f4822936161523c0b06ac",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": []
+    },
+    {
+      "id": "player-14",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/virtual-slot/Methods.dll",
+      "inputSha256": "64196a75af79e8d5a9a5d4b72bcf55dd57a6eac5315b39bdd2c4a59b50284786",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/player-14.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": []
+    },
+    {
+      "id": "shared-15",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/baseline/A.dll",
+      "inputSha256": "4255249cba50f2eefe5c590c18644a873aa6adf903b7049515f49fdf704c03b0",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-15.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        },
+        {
+          "name": "B",
+          "flags": 0,
+          "keyBytes": 0
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/baseline/B.dll",
+          "sha256": "28ffad1c23d17bd754eb21d39897abb45544911f6cfa43bb5c3c3c1a91d55a3f"
+        }
+      ]
+    },
+    {
+      "id": "shared-16",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/baseline/B.dll",
+      "inputSha256": "28ffad1c23d17bd754eb21d39897abb45544911f6cfa43bb5c3c3c1a91d55a3f",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-16.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/baseline/A.dll",
+          "sha256": "4255249cba50f2eefe5c590c18644a873aa6adf903b7049515f49fdf704c03b0"
+        }
+      ]
+    },
+    {
+      "id": "shared-17",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/rollback/A.dll",
+      "inputSha256": "4255249cba50f2eefe5c590c18644a873aa6adf903b7049515f49fdf704c03b0",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-17.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        },
+        {
+          "name": "B",
+          "flags": 0,
+          "keyBytes": 0
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/rollback/B.dll",
+          "sha256": "28ffad1c23d17bd754eb21d39897abb45544911f6cfa43bb5c3c3c1a91d55a3f"
+        }
+      ]
+    },
+    {
+      "id": "shared-18",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/rollback/B.dll",
+      "inputSha256": "28ffad1c23d17bd754eb21d39897abb45544911f6cfa43bb5c3c3c1a91d55a3f",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-18.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/rollback/A.dll",
+          "sha256": "4255249cba50f2eefe5c590c18644a873aa6adf903b7049515f49fdf704c03b0"
+        }
+      ]
+    },
+    {
+      "id": "shared-19",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/v1/A.dll",
+      "inputSha256": "687f3b367145ea826a1923e7ce24745cc3f09ea14b1dcaf6044c409e0d059511",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-19.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        },
+        {
+          "name": "B",
+          "flags": 0,
+          "keyBytes": 0
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/v1/B.dll",
+          "sha256": "28ffad1c23d17bd754eb21d39897abb45544911f6cfa43bb5c3c3c1a91d55a3f"
+        }
+      ]
+    },
+    {
+      "id": "shared-20",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/v1/B.dll",
+      "inputSha256": "28ffad1c23d17bd754eb21d39897abb45544911f6cfa43bb5c3c3c1a91d55a3f",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-20.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/v1/A.dll",
+          "sha256": "687f3b367145ea826a1923e7ce24745cc3f09ea14b1dcaf6044c409e0d059511"
+        }
+      ]
+    },
+    {
+      "id": "shared-21",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/v2/A.dll",
+      "inputSha256": "687f3b367145ea826a1923e7ce24745cc3f09ea14b1dcaf6044c409e0d059511",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-21.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        },
+        {
+          "name": "B",
+          "flags": 0,
+          "keyBytes": 0
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/v2/B.dll",
+          "sha256": "4d29bbc7607f6f0e4703f0e4ff380e2ecee820e6005ef68ba2cd7feb1508b4c2"
+        }
+      ]
+    },
+    {
+      "id": "shared-22",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/v2/B.dll",
+      "inputSha256": "4d29bbc7607f6f0e4703f0e4ff380e2ecee820e6005ef68ba2cd7feb1508b4c2",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-22.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/cumulative/v2/A.dll",
+          "sha256": "687f3b367145ea826a1923e7ce24745cc3f09ea14b1dcaf6044c409e0d059511"
+        }
+      ]
+    },
+    {
+      "id": "shared-23",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/private-reference/baseline/Layout.dll",
+      "inputSha256": "6dc1aa9913ce7fb167c41ffaaf44dfaba86552ac527a18779586f3c2ea39bd93",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-23.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": []
+    },
+    {
+      "id": "shared-24",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/private-reference/target/Layout.dll",
+      "inputSha256": "8e00a5535f94f3653de4b728d3e961373f5607961967ef70f23ddd3f0d33ded7",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-24.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": []
+    },
+    {
+      "id": "shared-25",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/reversal/baseline/A.dll",
+      "inputSha256": "4255249cba50f2eefe5c590c18644a873aa6adf903b7049515f49fdf704c03b0",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-25.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        },
+        {
+          "name": "B",
+          "flags": 0,
+          "keyBytes": 0
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/reversal/baseline/B.dll",
+          "sha256": "28ffad1c23d17bd754eb21d39897abb45544911f6cfa43bb5c3c3c1a91d55a3f"
+        }
+      ]
+    },
+    {
+      "id": "shared-26",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/reversal/baseline/B.dll",
+      "inputSha256": "28ffad1c23d17bd754eb21d39897abb45544911f6cfa43bb5c3c3c1a91d55a3f",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-26.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/reversal/baseline/A.dll",
+          "sha256": "4255249cba50f2eefe5c590c18644a873aa6adf903b7049515f49fdf704c03b0"
+        }
+      ]
+    },
+    {
+      "id": "shared-27",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/reversal/target/A.dll",
+      "inputSha256": "b6963f8ac2506cc293f0f116e5af6ba7e649df7da53ae6ae7c6be3f9303b3f4e",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-27.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/reversal/target/B.dll",
+          "sha256": "8cff0c0a2224b607da77b9b311e307c67a115030c5583661df6465e02cbb11e7"
+        }
+      ]
+    },
+    {
+      "id": "shared-28",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/reversal/target/B.dll",
+      "inputSha256": "8cff0c0a2224b607da77b9b311e307c67a115030c5583661df6465e02cbb11e7",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-28.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        },
+        {
+          "name": "A",
+          "flags": 0,
+          "keyBytes": 0
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/reversal/target/A.dll",
+          "sha256": "b6963f8ac2506cc293f0f116e5af6ba7e649df7da53ae6ae7c6be3f9303b3f4e"
+        }
+      ]
+    },
+    {
+      "id": "shared-29",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/true-cycle/target/A.dll",
+      "inputSha256": "4255249cba50f2eefe5c590c18644a873aa6adf903b7049515f49fdf704c03b0",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-29.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        },
+        {
+          "name": "B",
+          "flags": 0,
+          "keyBytes": 0
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/true-cycle/target/B.dll",
+          "sha256": "8cff0c0a2224b607da77b9b311e307c67a115030c5583661df6465e02cbb11e7"
+        }
+      ]
+    },
+    {
+      "id": "shared-30",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/true-cycle/target/B.dll",
+      "inputSha256": "8cff0c0a2224b607da77b9b311e307c67a115030c5583661df6465e02cbb11e7",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-30.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        },
+        {
+          "name": "A",
+          "flags": 0,
+          "keyBytes": 0
+        }
+      ],
+      "peers": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/true-cycle/target/A.dll",
+          "sha256": "4255249cba50f2eefe5c590c18644a873aa6adf903b7049515f49fdf704c03b0"
+        }
+      ]
+    },
+    {
+      "id": "shared-31",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/virtual-slot/baseline/Methods.dll",
+      "inputSha256": "d9614c8d237c11241990c4c8afedcea2043c9d82c80aeb7b7f67402838384ea9",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-31.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": []
+    },
+    {
+      "id": "shared-32",
+      "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared/virtual-slot/target/Methods.dll",
+      "inputSha256": "f4813415be80416a2b0f5ac27b0c79b07f2b18a534b286f065089a52aa09e02f",
+      "source": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/shared-32.cs",
+      "sourceSha256": "901492e9af287eb3959d3ba92a29b65b2794ae9489ac7e6f3abbef28e4412799",
+      "references": [
+        {
+          "name": "mscorlib",
+          "flags": 0,
+          "keyBytes": 8
+        }
+      ],
+      "peers": []
+    }
+  ],
+  "negative": {
+    "input": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/fixture-audit/invalid-key/A.dll",
+    "inputSha256": "79dcd269438be8514962a64f3373627e6bcd8b3f9b34f36e77f1422aed6ea62b",
+    "peer": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/host/player-fixtures/baseline/B.dll",
+    "expectedDiagnostic": "CS0009"
+  },
+  "compilerConsumption": "NotRun",
+  "nativeExecution": false,
+  "runtimeAcceptance": false
+}

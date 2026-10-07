@@ -1,0 +1,25 @@
+{
+  "kind": "ReadOnlyRLORepairAudit",
+  "startedUtc": "2026-10-07T15:24:45.703286+00:00",
+  "checks": [
+    {
+      "id": "LO-repair-evidence",
+      "subproofState": "NotRun",
+      "reason": "Original resource-input-binding not Passed"
+    }
+  ],
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "expansionAuthorized": false,
+  "productReexecution": false,
+  "endedUtc": "2026-10-07T15:24:45.703710+00:00",
+  "originalProductionCell": {
+    "dependencies": [
+      "resource-input-binding"
+    ],
+    "id": "production-entry-integration",
+    "reason": "Required prerequisite did not pass; no substitute or retry.",
+    "result": "Blocked"
+  }
+}

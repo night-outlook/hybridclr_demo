@@ -1,0 +1,181 @@
+{
+    "purpose": "Production DTO serialization diagnostic; not baseline or patch acceptance",
+    "profile": {
+        "profileVersion": 1,
+        "metadataIndexBits": 22,
+        "metadataKindBits": 2,
+        "extraShiftBits": [
+            6,
+            4,
+            2,
+            0
+        ],
+        "kindStrides": [
+            64,
+            16,
+            4,
+            1
+        ],
+        "indexMasks": [
+            268435455,
+            67108863,
+            16777215,
+            4194303
+        ],
+        "initialCursors": [
+            64,
+            0,
+            0,
+            0
+        ],
+        "kindLimits": [
+            256,
+            256,
+            256,
+            255
+        ],
+        "sizeMultiplier": 4,
+        "nativeSourceRevision": "99ed95d58c7d976e5fd05257a4fe735ce0ee3813",
+        "nativeHelperSha256": "755fcf9848a83ec387956758d3531b4f68fa6551b69b8d24a4f4704dd8cb760d",
+        "nativeBudgetCapabilityVersion": 1
+    },
+    "capacity": {
+        "schemaVersion": 1,
+        "profileVersion": 1,
+        "metadataIndexBits": 22,
+        "metadataKindBits": 2,
+        "nativeSourceRevision": "99ed95d58c7d976e5fd05257a4fe735ce0ee3813",
+        "nativeHelperSha256": "755fcf9848a83ec387956758d3531b4f68fa6551b69b8d24a4f4704dd8cb760d",
+        "nativeBudgetCapabilityVersion": 1,
+        "inputs": [
+            {
+                "name": "AssemblyA.Contracts",
+                "bytes": 25088,
+                "dllSize": 25088,
+                "sha256": "9a8c8bd6d677a77cfb0df42951efd9e702c41f75f41dfb69f64f9eda4984f8a3"
+            },
+            {
+                "name": "AssemblyA.Implementation.Extensibility",
+                "bytes": 25600,
+                "dllSize": 25600,
+                "sha256": "28ac8e458f9fc104139996606f8b113b6da156edbf4a73d4ec607d87ba113e0c"
+            },
+            {
+                "name": "AssemblyA.Implementation.Internal",
+                "bytes": 37888,
+                "dllSize": 37888,
+                "sha256": "3bd7e79c6610d549ae1dc0b981648d30ac67cf5f1466c0cd9dadcd9ce2b9ba7f"
+            },
+            {
+                "name": "AssemblyShadowDemo.ContractsConsumer",
+                "bytes": 24064,
+                "dllSize": 24064,
+                "sha256": "722d79f798c4c9cde386637b0d85521430a88c4ac9d47ab152dde938a90f0fbe"
+            },
+            {
+                "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "bytes": 25600,
+                "dllSize": 25600,
+                "sha256": "10acb88f7e4d3176b00d6aec8bdbbf595bf6eb6fefcf6d46159c15735b488b9d"
+            }
+        ],
+        "allocations": [
+            {
+                "name": "AssemblyA.Contracts",
+                "bytes": 25088,
+                "dllSize": 25088,
+                "sha256": "9a8c8bd6d677a77cfb0df42951efd9e702c41f75f41dfb69f64f9eda4984f8a3",
+                "imageIndex": 768,
+                "kind": 3,
+                "cursorBefore": 0,
+                "cursorAfter": 1,
+                "slot": 0
+            },
+            {
+                "name": "AssemblyA.Implementation.Extensibility",
+                "bytes": 25600,
+                "dllSize": 25600,
+                "sha256": "28ac8e458f9fc104139996606f8b113b6da156edbf4a73d4ec607d87ba113e0c",
+                "imageIndex": 769,
+                "kind": 3,
+                "cursorBefore": 1,
+                "cursorAfter": 2,
+                "slot": 1
+            },
+            {
+                "name": "AssemblyA.Implementation.Internal",
+                "bytes": 37888,
+                "dllSize": 37888,
+                "sha256": "3bd7e79c6610d549ae1dc0b981648d30ac67cf5f1466c0cd9dadcd9ce2b9ba7f",
+                "imageIndex": 770,
+                "kind": 3,
+                "cursorBefore": 2,
+                "cursorAfter": 3,
+                "slot": 2
+            },
+            {
+                "name": "AssemblyShadowDemo.ContractsConsumer",
+                "bytes": 24064,
+                "dllSize": 24064,
+                "sha256": "722d79f798c4c9cde386637b0d85521430a88c4ac9d47ab152dde938a90f0fbe",
+                "imageIndex": 771,
+                "kind": 3,
+                "cursorBefore": 3,
+                "cursorAfter": 4,
+                "slot": 3
+            },
+            {
+                "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "bytes": 25600,
+                "dllSize": 25600,
+                "sha256": "10acb88f7e4d3176b00d6aec8bdbbf595bf6eb6fefcf6d46159c15735b488b9d",
+                "imageIndex": 772,
+                "kind": 3,
+                "cursorBefore": 4,
+                "cursorAfter": 5,
+                "slot": 4
+            }
+        ],
+        "cursorsBefore": [
+            64,
+            0,
+            0,
+            0
+        ],
+        "cursorsAfter": [
+            64,
+            0,
+            0,
+            5
+        ],
+        "remainingSlotsBefore": [
+            3,
+            16,
+            64,
+            255
+        ],
+        "remainingSlotsAfter": [
+            3,
+            16,
+            64,
+            250
+        ],
+        "requiredImages": 5,
+        "acceptedImages": 5,
+        "availableImages": 338,
+        "availableImagesAtFailure": 0,
+        "fits": true,
+        "firstFailingIndex": -1,
+        "firstFailingAssembly": "",
+        "firstFailingBytes": 0,
+        "firstFailingSize": 0,
+        "failureReason": "None",
+        "firstFailingReason": "None",
+        "ordinaryAssemblyCount": 1,
+        "aotCandidateAssemblyCount": 5,
+        "actualRemainingRuntime": "NotKnown",
+        "runtimeCursorSource": "BaselineOrdinaryPlan",
+        "ordinaryConsumptionIsEstimate": true,
+        "runtimeReserveMetadataBudget": true
+    }
+}

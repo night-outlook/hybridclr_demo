@@ -1,0 +1,11 @@
+{
+  "error": {
+    "errno": null,
+    "filename": null,
+    "message": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0078/command.json",
+    "traceback": "Traceback (most recent call last):\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Storage/run_storage_checked.py\", line 51, in command\n    return super().command(args, timeout)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py\", line 70, in command\n    return run_owned_command(args, root, timeout)\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/command_lifetime.py\", line 163, in run_owned_command\n    raise RuntimeError('Command failed; preserved receipt: ' + str(root / 'command.json'))\nRuntimeError: Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage/commands/0078/command.json\n",
+    "type": "RuntimeError"
+  },
+  "observedUtc": "2026-10-07T15:03:57.157589+00:00",
+  "phase": "player-fixtures/command-78"
+}

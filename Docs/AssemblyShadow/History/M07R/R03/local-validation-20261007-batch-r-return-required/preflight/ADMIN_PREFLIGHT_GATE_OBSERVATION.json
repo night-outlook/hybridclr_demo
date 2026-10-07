@@ -1,0 +1,21 @@
+{
+  "recordedUtc": "2026-10-07T14:48:28.542265+00:00",
+  "scope": "Ancillary repository gate-mode observation, not storage/runtime acceptance",
+  "helperReceiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage-2/commands/gate-mode/receipt.json",
+  "helperReceiptSha256": "82dfaa9273de51c64949b55a5e8c186e0c6d37fec96d4df0a47f4f5ccaf85e33",
+  "originalExitCode": 1,
+  "originalError": "InvalidMainAgentModel: exact effective model parameter is unavailable from authoritative host metadata",
+  "gateMode": "Unavailable; no Off/PASS inferred",
+  "repositoryGateSettings": {
+    "require_sol_main_agent_for_gate_review": true,
+    "enable_gate_reviewer": false,
+    "review_committed_major_milestones": false
+  },
+  "modelGuessed": false,
+  "helperRetriedWithGuess": false,
+  "storageDiagnosticInvocationsBeforeStop": 0,
+  "batchInvocationsBeforeStop": 0,
+  "continuationAuthority": "User explicitly authorized exact source commit and continuation of one Local batch; Primary reconciliation and independent full-stage review remain pending by the higher-priority handoff scope",
+  "productOrGateConfigChanged": false,
+  "localAdminAction": "Continue only the remaining environment/storage preflight; no batch retry"
+}

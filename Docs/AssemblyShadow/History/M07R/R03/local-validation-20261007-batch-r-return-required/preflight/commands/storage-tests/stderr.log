@@ -1,0 +1,53 @@
+test_diagnostic_mode_never_launches_even_when_admitted (test_storage_dispatch.DispatchTests.test_diagnostic_mode_never_launches_even_when_admitted) ... ok
+test_exception_has_separate_failed_dispatch_no_retry (test_storage_dispatch.DispatchTests.test_exception_has_separate_failed_dispatch_no_retry) ... ok
+test_execute_constructs_exactly_once_after_admission (test_storage_dispatch.DispatchTests.test_execute_constructs_exactly_once_after_admission) ... ok
+test_existing_batch_or_diagnostics_refused (test_storage_dispatch.DispatchTests.test_existing_batch_or_diagnostics_refused) ... ok
+test_overlap_with_history_or_source_refused (test_storage_dispatch.DispatchTests.test_overlap_with_history_or_source_refused) ... ok
+test_preflight_block_creates_no_batch_and_never_constructs_runner (test_storage_dispatch.DispatchTests.test_preflight_block_creates_no_batch_and_never_constructs_runner) ... ok
+test_sidecar_cannot_enter_batch_seal (test_storage_dispatch.DispatchTests.test_sidecar_cannot_enter_batch_seal) ... ok
+test_wrong_platform_does_not_start_or_create_outputs (test_storage_dispatch.DispatchTests.test_wrong_platform_does_not_start_or_create_outputs) ... ok
+test_command_argv_timeout_and_original_result_are_unchanged (test_storage_dispatch.SchedulerTests.test_command_argv_timeout_and_original_result_are_unchanged) ... ok
+test_command_failure_is_reraised_with_failure_observation (test_storage_dispatch.SchedulerTests.test_command_failure_is_reraised_with_failure_observation) ... ok
+test_guard_failure_does_not_invoke_integration_or_erase_ledger (test_storage_dispatch.SchedulerTests.test_guard_failure_does_not_invoke_integration_or_erase_ledger) ... ok
+test_latched_shortage_blocks_new_work_not_p05_cleanup (test_storage_dispatch.SchedulerTests.test_latched_shortage_blocks_new_work_not_p05_cleanup) ... ok
+test_same_ninety_cells_all_original_actions_and_order (test_storage_dispatch.SchedulerTests.test_same_ninety_cells_all_original_actions_and_order) ... ok
+test_exact_new_capture_parent_probed_before_integration (test_storage_guard.IntegrationProbeTests.test_exact_new_capture_parent_probed_before_integration) ... ok
+test_integration_probe_failure_is_latched (test_storage_guard.IntegrationProbeTests.test_integration_probe_failure_is_latched) ... ok
+test_unadmitted_monitor_cannot_start (test_storage_guard.IntegrationProbeTests.test_unadmitted_monitor_cannot_start) ... ok
+test_canonical_unused_leaf (test_storage_guard.PathAndAllocationTests.test_canonical_unused_leaf) ... ok
+test_exclusive_receipt_write (test_storage_guard.PathAndAllocationTests.test_exclusive_receipt_write) ... ok
+test_existing_file_not_probe_directory (test_storage_guard.PathAndAllocationTests.test_existing_file_not_probe_directory) ... ok
+test_footprint_hardlink_and_symlink (test_storage_guard.PathAndAllocationTests.test_footprint_hardlink_and_symlink) ... ok
+test_negative_available_saturates_to_zero (test_storage_guard.PathAndAllocationTests.test_negative_available_saturates_to_zero) ... ok
+test_probe_cleanup_error_does_not_pass (test_storage_guard.PathAndAllocationTests.test_probe_cleanup_error_does_not_pass) ... ok
+test_probe_fsync_failure_does_not_pass (test_storage_guard.PathAndAllocationTests.test_probe_fsync_failure_does_not_pass) ... ok
+test_probe_mkdir_enospc_retained (test_storage_guard.PathAndAllocationTests.test_probe_mkdir_enospc_retained) ... ok
+test_probe_writes_reads_and_only_removes_owned_files (test_storage_guard.PathAndAllocationTests.test_probe_writes_reads_and_only_removes_owned_files) ... ok
+test_relative_and_parent_traversal_rejected (test_storage_guard.PathAndAllocationTests.test_relative_and_parent_traversal_rejected) ... ok
+test_scan_limits_do_not_authorize_partial_size (test_storage_guard.PathAndAllocationTests.test_scan_limits_do_not_authorize_partial_size) ... ok
+test_snapshot_uses_unprivileged_free_not_total_free (test_storage_guard.PathAndAllocationTests.test_snapshot_uses_unprivileged_free_not_total_free) ... ok
+test_sparse_file_uses_logical_upper_estimate (test_storage_guard.PathAndAllocationTests.test_sparse_file_uses_logical_upper_estimate) ... ok
+test_special_file_not_ignored (test_storage_guard.PathAndAllocationTests.test_special_file_not_ignored) ... ok
+test_symlink_parent_and_dangling_link_rejected (test_storage_guard.PathAndAllocationTests.test_symlink_parent_and_dangling_link_rejected) ... ok
+test_admit_and_finish_preserve_q_and_no_batch_creation (test_storage_guard.SessionTests.test_admit_and_finish_preserve_q_and_no_batch_creation) ... ok
+test_exception_preserves_errno_and_traceback (test_storage_guard.SessionTests.test_exception_preserves_errno_and_traceback) ... ok
+test_low_space_denies_before_allocation_probe (test_storage_guard.SessionTests.test_low_space_denies_before_allocation_probe) ... ok
+test_missing_telemetry_fails_closed_but_preserves_cleanup (test_storage_guard.SessionTests.test_missing_telemetry_fails_closed_but_preserves_cleanup) ... ok
+test_probe_failure_denies (test_storage_guard.SessionTests.test_probe_failure_denies) ... ok
+test_second_session_root_rejected (test_storage_guard.SessionTests.test_second_session_root_rejected) ... ok
+test_transient_floor_breach_remains_latched (test_storage_guard.SessionTests.test_transient_floor_breach_remains_latched) ... ok
+test_wrong_q_evidence_denied (test_storage_guard.SessionTests.test_wrong_q_evidence_denied) ... ok
+test_file_node_stat_is_diagnostic_not_static_inode_guarantee (test_storage_guard.StoragePolicyTests.test_file_node_stat_is_diagnostic_not_static_inode_guarantee) ... ok
+test_filesystem_switch_denied (test_storage_guard.StoragePolicyTests.test_filesystem_switch_denied) ... ok
+test_inclusive_threshold (test_storage_guard.StoragePolicyTests.test_inclusive_threshold) ... ok
+test_invalid_size_never_admitted (test_storage_guard.StoragePolicyTests.test_invalid_size_never_admitted) ... ok
+test_minimum_and_empirical_budget (test_storage_guard.StoragePolicyTests.test_minimum_and_empirical_budget) ... ok
+test_no_locations_denied (test_storage_guard.StoragePolicyTests.test_no_locations_denied) ... ok
+test_q_entry_and_post_failure_capacity_both_rejected (test_storage_guard.StoragePolicyTests.test_q_entry_and_post_failure_capacity_both_rejected) ... ok
+test_read_only_denied (test_storage_guard.StoragePolicyTests.test_read_only_denied) ... ok
+test_shared_volumes_never_summed (test_storage_guard.StoragePolicyTests.test_shared_volumes_never_summed) ... ok
+
+----------------------------------------------------------------------
+Ran 48 tests in 0.118s
+
+OK

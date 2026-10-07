@@ -1,0 +1,310 @@
+{
+  "kind": "R03LPImmutableConsumerInputs",
+  "schemaVersion": 1,
+  "publicationCommit": "d9ef449e8e8aef885539e4b981243a868f8d0ba6",
+  "executedDemoCommit": "d8884646659f7b6ae0f6ceda746fd271c96c8d61",
+  "checkpoint": "Docs/AssemblyShadow/History/M07R/R03/local-validation-20261006-batch-p-return-required",
+  "originalBatchRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair",
+  "historicalPResult": "ReturnRequired",
+  "runtimeAcceptance": false,
+  "originalFailureReport": "preflight/FAILED_CONTRACT_REPRODUCTION.json",
+  "cases": [
+    {
+      "raw": "batch/early/Control-P01/m07-T07-01-Prefab-P01.json",
+      "command": "batch/commands/0154/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/early/Control-P03/m07-T07-03-FullClosure-P03.json",
+      "command": "batch/commands/0153/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/early/OrdinaryAfterReserve/m07-T07-03-FullClosure-P03.json",
+      "command": "batch/commands/0156/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/early/OrdinaryFirst/m07-T07-03-FullClosure-P03.json",
+      "command": "batch/commands/0155/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/m07-results/m07-T07-01-Prefab-P01.json",
+      "command": "batch/commands/0127/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/m07-results/m07-T07-02-Nested-P02.json",
+      "command": "batch/commands/0128/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/m07-results/m07-T07-03-FullClosure-P03.json",
+      "command": "batch/commands/0129/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/m07-results/m07-T07-04-UnityApis-P01.json",
+      "command": "batch/commands/0130/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/m07-results/m07-T07-05-Scriptable-P03.json",
+      "command": "batch/commands/0131/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/m07-results/m07-T07-06-SceneSingle-P01.json",
+      "command": "batch/commands/0132/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/m07-results/m07-T07-07-SceneAdditive-P03.json",
+      "command": "batch/commands/0133/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/m07-results/m07-T07-08-SerializeReference-P03.json",
+      "command": "batch/commands/0134/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/m07-results/m07-T07-09-Messages-P01.json",
+      "command": "batch/commands/0135/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/m07-results/m07-T07-10-Cache-P03.json",
+      "command": "batch/commands/0136/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/m07-results/m07-T07-11-DelayedCatalog-P03.json",
+      "command": "batch/commands/0137/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/m07-results/m07-T07-12-P04-NonSerialized.json",
+      "command": "batch/commands/0138/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/m07-results/m07-T07-13-P05-Rebuilt.json",
+      "command": "batch/commands/0139/command.json",
+      "originalState": "Failed"
+    },
+    {
+      "raw": "batch/m07-results/m07-T07-14-FeatureOff.json",
+      "command": "batch/commands/0140/command.json",
+      "originalState": "Passed"
+    }
+  ],
+  "files": [
+    {
+      "path": "batch/commands/0127/command.json",
+      "size": 2450,
+      "sha256": "aa9b0817a434e60844fd1ed6a7ab91c93e8fe1d36ec546e73097ddf97f9a1ef7"
+    },
+    {
+      "path": "batch/commands/0128/command.json",
+      "size": 2449,
+      "sha256": "34f7c076a0c28ace0545ac8d0e8abefd363b78fcc04a41d0caa9786c12e80783"
+    },
+    {
+      "path": "batch/commands/0129/command.json",
+      "size": 2474,
+      "sha256": "adfb3d6389abdb61ed44a8f008e2eee621c868224ba6e0d33fdd0b3b05eb4ad9"
+    },
+    {
+      "path": "batch/commands/0130/command.json",
+      "size": 2464,
+      "sha256": "3c1b168fa904c1f94ca9608703b069879d7c0336d95d304acfea534276a97e33"
+    },
+    {
+      "path": "batch/commands/0131/command.json",
+      "size": 2469,
+      "sha256": "8ac32aeb62b30342c83fb9fdf566a93dc13fcda4c1e4f1bd2ebc9e11e45526db"
+    },
+    {
+      "path": "batch/commands/0132/command.json",
+      "size": 2475,
+      "sha256": "f1d7a83bb2e5cb49db24898ba25ddc7df70ec9eb1d0ec48dad4276438ae227de"
+    },
+    {
+      "path": "batch/commands/0133/command.json",
+      "size": 2484,
+      "sha256": "761b956616a72fb2ad59afd57cb8af34af1eb8ea6553a82e985b4bd8faa125da"
+    },
+    {
+      "path": "batch/commands/0134/command.json",
+      "size": 2510,
+      "sha256": "7d93445061b31dd108e509aad03100e6ef0e1f0c48ee6f9dc32cb7de36eb8d07"
+    },
+    {
+      "path": "batch/commands/0135/command.json",
+      "size": 2460,
+      "sha256": "f797c7cbc4b173295dc588746fe26cf5a53e985d6a8d9cae34493defb1c72339"
+    },
+    {
+      "path": "batch/commands/0136/command.json",
+      "size": 2444,
+      "sha256": "3aba4e76ca0bf97a58a4cf37351370d5a7b38548d4f6a6ad74b38872f260c7d8"
+    },
+    {
+      "path": "batch/commands/0137/command.json",
+      "size": 2489,
+      "sha256": "7b13966f3309f47b5c7c7b44bf7060c27026a6284049764c76b1298105cc6837"
+    },
+    {
+      "path": "batch/commands/0138/command.json",
+      "size": 2484,
+      "sha256": "0fe9255ee3dd35eb0126cc822051aeea3599a2bbbcfd882c9eae9f7585b56070"
+    },
+    {
+      "path": "batch/commands/0139/command.json",
+      "size": 2454,
+      "sha256": "7ab1aed9394ee0880b1f7093cce3bac46380df1a8465daadbdc720ce6c0037a3"
+    },
+    {
+      "path": "batch/commands/0140/command.json",
+      "size": 2028,
+      "sha256": "cd7d222a00e7f7a649c6e7f562433ec0af7ad5a9b174f67f6566e59d9b86313f"
+    },
+    {
+      "path": "batch/commands/0153/command.json",
+      "size": 2415,
+      "sha256": "bf9a8fb75663e6d1dc94f9c52b7ec92020e0d27ee6ae2c63ceda8c22b2e23b18"
+    },
+    {
+      "path": "batch/commands/0154/command.json",
+      "size": 2404,
+      "sha256": "09b84278809a4d525150a5b5c77bc2ae8ef09e67450879e22396d6ac406fb1f6"
+    },
+    {
+      "path": "batch/commands/0155/command.json",
+      "size": 2423,
+      "sha256": "b876b758c129a6ba36a610294c6a8a42eaa81b2d3e95197c34f5134f067d37de"
+    },
+    {
+      "path": "batch/commands/0156/command.json",
+      "size": 2449,
+      "sha256": "6ba4694b575ee05d4f63166057fdbb8174b1134750730cd2ed7f8b5b2bd2eb57"
+    },
+    {
+      "path": "batch/early/Control-P01/m07-T07-01-Prefab-P01.json",
+      "size": 5563677,
+      "sha256": "552f8a451ba03bf6e05bdad8546b0dbb896d90ff623a7547e9c1e5e353b184a4"
+    },
+    {
+      "path": "batch/early/Control-P03/m07-T07-03-FullClosure-P03.json",
+      "size": 5591023,
+      "sha256": "1cd925d3f71ae5d1545cd2ffdc7557c5c7ac350e2f15a1d3f8ae95d71da1535e"
+    },
+    {
+      "path": "batch/early/OrdinaryAfterReserve/m07-T07-03-FullClosure-P03.json",
+      "size": 5581369,
+      "sha256": "5335b1f55873ef78500e2eea9b5d06e5da0bb6dff36f849896abfe7070b35980"
+    },
+    {
+      "path": "batch/early/OrdinaryFirst/m07-T07-03-FullClosure-P03.json",
+      "size": 5581362,
+      "sha256": "d0cd3628737f5342f5ba32e19790f7863f586b19d05b8fe69deedc7c5bfab369"
+    },
+    {
+      "path": "batch/m07-results/m07-T07-01-Prefab-P01.json",
+      "size": 5563670,
+      "sha256": "4fa308b85dbd68283a1ce185dba7b7acf936fbd2699d7f90920cffa57ead09a8"
+    },
+    {
+      "path": "batch/m07-results/m07-T07-02-Nested-P02.json",
+      "size": 5577881,
+      "sha256": "498a759f1d8eb9843b717a20da37d0f9672435bf38573bcb2367f497f946ce3b"
+    },
+    {
+      "path": "batch/m07-results/m07-T07-03-FullClosure-P03.json",
+      "size": 5591016,
+      "sha256": "c7a38c02bb8d02e36b5369478a1435777f39468a309ab46705fed034dce7167d"
+    },
+    {
+      "path": "batch/m07-results/m07-T07-04-UnityApis-P01.json",
+      "size": 5563675,
+      "sha256": "7954461361b4c4d44b9416fc0a2d130da851488013e190deba3de68032642714"
+    },
+    {
+      "path": "batch/m07-results/m07-T07-05-Scriptable-P03.json",
+      "size": 5591014,
+      "sha256": "557fe10ae57961664452e91e6d34de1bec19cc05209ffb67c7da5d007dc4fdb0"
+    },
+    {
+      "path": "batch/m07-results/m07-T07-06-SceneSingle-P01.json",
+      "size": 5563681,
+      "sha256": "ce1aa61e46e1b79e4d61e2cf116d95a155a2fa603870cc45c318b9bd3bd4ee49"
+    },
+    {
+      "path": "batch/m07-results/m07-T07-07-SceneAdditive-P03.json",
+      "size": 5591020,
+      "sha256": "048a6161ea5c60b2be961ccbaa5949fc0b832864e63a2b42574b571f24a8e6d0"
+    },
+    {
+      "path": "batch/m07-results/m07-T07-08-SerializeReference-P03.json",
+      "size": 5591030,
+      "sha256": "5a212bd09ca287bc2029cc856e9eb9a6a48735e6eaf55a2c0490a3a9957c8863"
+    },
+    {
+      "path": "batch/m07-results/m07-T07-09-Messages-P01.json",
+      "size": 5563673,
+      "sha256": "403903333c83bc97fa8b44c2e6acd17acde0229b78c6e1db4f8056f413a82f0f"
+    },
+    {
+      "path": "batch/m07-results/m07-T07-10-Cache-P03.json",
+      "size": 5591004,
+      "sha256": "34953ba37de4251842766a089a4b7c7fbf4fe7253638ca13f3d25c1656099948"
+    },
+    {
+      "path": "batch/m07-results/m07-T07-11-DelayedCatalog-P03.json",
+      "size": 5591222,
+      "sha256": "01f32934d197ec84e4e86adf359cd0ac90ea1a319ac4871d484b2c5f2d15d990"
+    },
+    {
+      "path": "batch/m07-results/m07-T07-12-P04-NonSerialized.json",
+      "size": 5563691,
+      "sha256": "d20c9b5401dd1360b0a9d32e4bd69b91f07729aba8e7d0f07cc4556bad2fbfe0"
+    },
+    {
+      "path": "batch/m07-results/m07-T07-13-P05-Rebuilt.json",
+      "size": 5593051,
+      "sha256": "73859043ee218bd672643d709362be5902ce728c66503c156ff537edd98e677a"
+    },
+    {
+      "path": "batch/m07-results/m07-T07-14-FeatureOff.json",
+      "size": 31953,
+      "sha256": "4fc6a5a3ab935b03ef3f10069cb17ac5336a3a2183fa2f6b0982856bc374838f"
+    },
+    {
+      "path": "batch/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P05-Resources/resource-build-receipt.json",
+      "size": 737268,
+      "sha256": "a7120e5c491e51d357ea59c8e818434fbeea88e650995bc75b45acba84ab599a"
+    },
+    {
+      "path": "batch/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/m07-fixtures.json",
+      "size": 46604,
+      "sha256": "2ab45f5823e4544e4b4f93d6237273dbde40931e05a53c57c48b759cb0dafb09"
+    },
+    {
+      "path": "batch/projects/resource-complete/_temp/AssemblyShadow/R03Resources/resource-build-receipt.json",
+      "size": 736824,
+      "sha256": "fea8b2819ebccf7c2b07d13efbe9c4e23aba7b4ca2fc363705703dea0f007b80"
+    },
+    {
+      "path": "preflight/FAILED_CONTRACT_REPRODUCTION.json",
+      "size": 65010,
+      "sha256": "f1c52529b84123d4cac70d4070c5c8ed719ef89d4de28bed95b3c1de048c0e1b"
+    }
+  ],
+  "fixtureManifest": "batch/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/m07-fixtures.json",
+  "resourceReceipts": [
+    "batch/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P05-Resources/resource-build-receipt.json",
+    "batch/projects/resource-complete/_temp/AssemblyShadow/R03Resources/resource-build-receipt.json"
+  ]
+}
