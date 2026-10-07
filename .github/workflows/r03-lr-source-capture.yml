@@ -1,0 +1,48 @@
+name: LR immutable source capture
+on:
+  push:
+    branches: [codex/connector-smoke-lr-1fb504b2]
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 1fb504b2732c72dd1c403060396276af69d6251a
+          persist-credentials: false
+      - name: Export pinned sources and bounded R transaction inputs
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'lr-inputs'; root.mkdir()
+          revision='1fb504b2732c72dd1c403060396276af69d6251a'
+          assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==revision
+          prefix='Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-r-return-required/'
+          rows=[]; inventory=[]
+          for record in subprocess.check_output(['git','ls-tree','-r','-l',revision],text=True).splitlines():
+              meta,path=record.split('\t',1); mode,kind,blob,size=meta.split()
+              if kind!='blob': continue
+              if path.startswith(prefix): inventory.append({'path':path,'sha':blob,'size':int(size)})
+              p=Path(path)
+              source=(path.startswith('Tools/AssemblyShadow/') or path.startswith('ProjectSettings/') or
+                  (path.startswith('Assets/') and p.suffix in ('.cs','.asmdef','.json','.meta')) or
+                  path.startswith(('.agents/','.codex/')) or path in ('AGENTS.md','Docs/AssemblyShadow/README.md','Docs/AssemblyShadow/Plan/CURRENT_STATUS.md') or path.startswith('Docs/AssemblyShadow/Handoff/'))
+              evidence=path.startswith(prefix) and (any(s in path.lower() for s in ('p05','settings.asset','.r03-completion-project','failure-000689','source_authority','original_failures')) or '/batch/cells/' in path or path.endswith(('README.md','runner-exit.json','USER_SOURCE_AUTHORIZATION.json','completion-plan.json')))
+              if not (source or evidence) or int(size)>8*1024*1024: continue
+              data=subprocess.check_output(['git','cat-file','blob',blob])
+              assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==blob
+              dest=root/'hybridclr_demo'/path; dest.parent.mkdir(parents=True,exist_ok=True); dest.write_bytes(data)
+              rows.append({'path':'hybridclr_demo/'+path,'size':len(data),'sha256':hashlib.sha256(data).hexdigest(),'gitBlob':blob})
+          (root/'r-inventory.json').write_text(json.dumps(inventory,indent=2)+'\n')
+          (root/'provenance.json').write_text(json.dumps({'sourceCommit':revision,'workflowRun':os.environ['GITHUB_RUN_ID'],'files':rows,'unityRun':False,'playerRun':False,'historicalEvidenceModified':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: lr-inputs-1fb504b2
+          path: ${{ runner.temp }}/lr-inputs
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: error
