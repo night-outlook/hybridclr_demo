@@ -101,6 +101,9 @@ DLL-only 改为明确的联合准入条件：资源兼容、native 类型准入�
 
 ### 6.2 逐步扩展，而不是全局放宽
 
+**R03 范围修订（owner D1=A，2026-10-08）：**PureInterpreter 表中的“独立 Gate 后扩大结构变化”现属于**未来的 X02**，并非 R03/H2 的已实现能力。当前 R03 仅支持按既有 NativeLayoutAdmissionV1 和实际物理/资源/运行时证据安全获准的路径；静态资格筛查无法准许 private-reference 增删和其它 V1 外结构变化，未知路径必须 NeedsProof 或拒绝。X02 需要独立 owner 启动、资格审查与真实 Player 证据。详见 [D1 决策](../History/M07R/R03/S_Reconciliation/OWNER_DISPOSITION_2026-10-08.md) 和 [X02](stages/X02-pure-interpreter-structural-expansion.md)。
+
+
 | 准入域 | 所需证明 | 初始策略 |
 |---|---|---|
 | PureInterpreter | 全部执行/对象来自补丁；无旧对象；无固定 AOT/native 对旧具体类型布局的消费 | V1 先保守；独立 Gate 后扩大私有字段等结构变化 |
@@ -200,6 +203,9 @@ AddManaged 通过不授权 AddUnityTypes。Unity 冷启动前下载 manifest、p
 保持资源脚本原逻辑程序集名是目标之一，不把重命名所有类型/程序集、强制所有资源固定到一个稳定程序集当成默认解决方案。
 
 ## 14. 性能与验证 Gate
+
+**R03 证据解释（owner D2=A，2026-10-08）：**S 在 development profile 下取得的时间/内存数据仅作诊断观察，**不**构成生产性能 SLA、噪声抵消或对 R02 CPU/H1 RSS 未闭合风险的接受；四份受污染的 unisolated warm 证书仍 Failed。后续生产预算、设备/负载和风险审批属于独立性能/发布 Gate，不能反向给 S 设置事后阈值。R03 的正确性与受影响回归要求依旧有效。
+
 
 初始对照必须包含：原未改运行时、同 fork native OFF、ON/no patch、常规 Interpreter、Shadow P01/P03；保持目标、Development/Release、stripping、PDB 和资源输入可比。
 
