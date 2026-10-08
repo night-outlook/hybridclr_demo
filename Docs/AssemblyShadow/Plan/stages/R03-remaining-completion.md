@@ -8,7 +8,7 @@ Start with [CURRENT_STATUS.md](../CURRENT_STATUS.md), [J_H_FOCUSED_RECONCILIATIO
 
 H is a reconciled, exact-source focused PASS: 37 cells, four fresh builds, 754 selected Editor cases and 23 Player contracts. Its source tuple, immutable hashes, audit and limits are in the J records. It proves conservative V1/method/graph witnesses and the repaired rejection observer; it does not complete all R03 requirements. Preserve the six isolated warm certificates, four Failed unisolated control certificates and M01 NoCoverage exactly.
 
-**Earliest unfinished numbered implementation step: original R03 step 3, PureInterpreter eligibility/qualification.** Broader coverage gaps also remain in steps 4–7. Existing host G03 cumulative installation-baseline, G04 deleted-history-edge and G05/G06 ordinary-role tests have passed; they must not be described as absent or unnecessarily reimplemented.
+**Historical state after focused H:** original R03 step 3 qualification/structural expansion was the earliest unfinished numbered implementation step. **As of owner D1=A (2026-10-08), unproved V1-external structural expansion is explicitly deferred to X02**, not counted as Passed. S supplies the prescribed step 4–7 empirical matrix, but the separate independent stage review of its source assertions and safety boundaries remains NotRun. Existing G03–G06 host proofs remain historical evidence and must not be mislabeled absent.
 
 The work packages below are Primary-owned. Proposed output names and tests are specifications, not assertions that files or evidence already exist. Local may only compile/run a later prepared source-bound batch and return minimal, closed-loop-verifiable fixes permitted by its role; substantive changes stay with Primary.
 
