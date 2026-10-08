@@ -1,0 +1,32 @@
+Updating 1fb504b2..e8fda852
+Fast-forward
+ .github/workflows/r03-lr-contracts.yml             |  80 +++++
+ Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        | 117 +++----
+ .../M07R/R03/LR_Recovery_2026-10-07/DESIGN.md      |  54 +++
+ .../M07R/R03/LR_Recovery_2026-10-07/EVIDENCE.json  | 379 +++++++++++++++++++++
+ .../R03/LR_Recovery_2026-10-07/PRIMARY_REVIEW.md   |  49 +++
+ Docs/AssemblyShadow/Plan/CURRENT_STATUS.md         |  34 +-
+ Docs/AssemblyShadow/README.md                      |  16 +-
+ Tools/AssemblyShadow/R03/git_diagnostics.py        | 122 +++++++
+ Tools/AssemblyShadow/R03/run_local.py              |  11 +-
+ .../R03Completion/fixture_authority.py             |  19 +-
+ .../AssemblyShadow/R03Completion/lr-retained.json  |  49 +++
+ .../R03Completion/resource_pipeline.py             |  76 ++++-
+ .../R03Completion/retained_transaction.py          |  86 +++++
+ Tools/AssemblyShadow/R03Completion/test_lr_git.py  | 169 +++++++++
+ .../R03Completion/test_lr_recovery.py              | 183 ++++++++++
+ .../R03Completion/test_lr_retained.py              |  53 +++
+ .../R03Completion/transport_preflight.py           |  54 +++
+ .../R03Storage/run_storage_checked.py              |  10 +-
+ 18 files changed, 1455 insertions(+), 106 deletions(-)
+ create mode 100644 .github/workflows/r03-lr-contracts.yml
+ create mode 100644 Docs/AssemblyShadow/History/M07R/R03/LR_Recovery_2026-10-07/DESIGN.md
+ create mode 100644 Docs/AssemblyShadow/History/M07R/R03/LR_Recovery_2026-10-07/EVIDENCE.json
+ create mode 100644 Docs/AssemblyShadow/History/M07R/R03/LR_Recovery_2026-10-07/PRIMARY_REVIEW.md
+ create mode 100644 Tools/AssemblyShadow/R03/git_diagnostics.py
+ create mode 100644 Tools/AssemblyShadow/R03Completion/lr-retained.json
+ create mode 100644 Tools/AssemblyShadow/R03Completion/retained_transaction.py
+ create mode 100644 Tools/AssemblyShadow/R03Completion/test_lr_git.py
+ create mode 100644 Tools/AssemblyShadow/R03Completion/test_lr_recovery.py
+ create mode 100644 Tools/AssemblyShadow/R03Completion/test_lr_retained.py
+ create mode 100644 Tools/AssemblyShadow/R03Completion/transport_preflight.py

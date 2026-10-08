@@ -1,0 +1,9 @@
+# Exact captured bytes; owned report prose remains whitespace checked.
+storage-diagnostic/** -whitespace -text
+transport/** -whitespace -text
+retained-r-audit/** -whitespace -text
+preflight/**/*.log -whitespace -text
+"preflight/commands/006-hybridclr_demo-worktree/stdout.log" -whitespace -text
+"preflight/commands/023-hybridclr-worktree/stdout.log" -whitespace -text
+"preflight/commands/040-hybridclr_unity-worktree/stdout.log" -whitespace -text
+"preflight/commands/057-il2cpp_plus-worktree/stdout.log" -whitespace -text

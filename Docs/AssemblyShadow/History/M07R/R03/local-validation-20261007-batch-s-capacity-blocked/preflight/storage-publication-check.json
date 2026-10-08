@@ -1,0 +1,52 @@
+{
+  "kind": "PrerequisiteBlockerPublicationCapacity",
+  "recordedUtc": "2026-10-08T02:20:06.426461+00:00",
+  "state": "Passed",
+  "requiredBytes": 21564609434,
+  "ownedPayloadBytes": 89772954,
+  "observation": {
+    "observedUtc": "2026-10-08T02:20:06.426434+00:00",
+    "monotonicNs": 1347609197005875,
+    "volumes": [
+      {
+        "role": "publicationCheckout",
+        "requestedPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "observedPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "device": 16777230,
+        "fsid": 16777230,
+        "availableBytes": 62457065472,
+        "freeBytes": 62457065472,
+        "totalBytes": 494384795648,
+        "availableFileNodes": 609932280,
+        "readOnly": false
+      },
+      {
+        "role": "preflight",
+        "requestedPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007S-lr-recovery",
+        "observedPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007S-lr-recovery",
+        "device": 16777230,
+        "fsid": 16777230,
+        "availableBytes": 62457065472,
+        "freeBytes": 62457065472,
+        "totalBytes": 494384795648,
+        "availableFileNodes": 609932280,
+        "readOnly": false
+      },
+      {
+        "role": "gitCommon",
+        "requestedPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/.git",
+        "observedPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/.git",
+        "device": 16777230,
+        "fsid": 16777230,
+        "availableBytes": 62457065472,
+        "freeBytes": 62457065472,
+        "totalBytes": 494384795648,
+        "availableFileNodes": 609932280,
+        "readOnly": false
+      }
+    ]
+  },
+  "noSBatchFootprintExists": true,
+  "corePublicationFootprintCheck": "NotRun: core never constructed",
+  "onlySmallFactualPrerequisiteCheckpoint": true
+}

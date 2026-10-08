@@ -1,0 +1,82 @@
+{
+  "kind": "SLocalPrerequisiteSequence",
+  "startUtc": "2026-10-08T02:13:55.561421+00:00",
+  "endUtc": "2026-10-08T02:13:55.745155+00:00",
+  "state": "PrerequisiteBlocked",
+  "error": {
+    "type": "AssertionError",
+    "message": ""
+  },
+  "operations": [
+    {
+      "label": "sdk-version",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "--version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:13:55.562873+00:00",
+      "endUtc": "2026-10-08T02:13:55.721222+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "87d140235528e1e5177051f45163d287ac03dfbbd88f70b34d9dfbe33c7f4682",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "python-version",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "--version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:13:55.721755+00:00",
+      "endUtc": "2026-10-08T02:13:55.730092+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "917601090ffb73a030e3eaa8b7a01c41400cad4b61366b4218d7756a5733b66c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "macos",
+      "argv": [
+        "sw_vers"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:13:55.730519+00:00",
+      "endUtc": "2026-10-08T02:13:55.738226+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "9a27ea4f1e11f7b9a4f7573d8729db037a10ce2e457f97cb73f646a96a550b16",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "architecture",
+      "argv": [
+        "uname",
+        "-m"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:13:55.738600+00:00",
+      "endUtc": "2026-10-08T02:13:55.741077+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "xcode",
+      "argv": [
+        "xcodebuild",
+        "-version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:13:55.741409+00:00",
+      "endUtc": "2026-10-08T02:13:55.744879+00:00",
+      "exitCode": 1,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "6f9bc3a54a75fa953f758e1aadfbc9f16c254cd631aaea9026c126a55b054641"
+    }
+  ],
+  "batchStarted": false,
+  "batchResult": "NotRun",
+  "batchRootExists": false,
+  "executingSidecarExists": false,
+  "sourceCommit": "e8fda852684f584295fe37830340ab3c9f3fcc4f",
+  "retainedRModified": false
+}

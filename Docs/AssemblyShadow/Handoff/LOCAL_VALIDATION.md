@@ -1,6 +1,67 @@
 # Local Validation report
 
-## Current run — R03 completion batch R, 2026-10-07 PDT
+## Current run — R03 batch S prerequisites, 2026-10-07 PDT / 2026-10-08 UTC
+
+**CapacityBlocked; batch NotRun. Admission Blocked; diagnostic session NotAdmitted; diagnostic exit2. Exit: Local Validation → Primary Implementation.** No S core was constructed, executing wrapper invoked, Unity/IL2CPP/native build/Editor/Player launched, or runtime result/ledger/seal produced. All90 cells, six builds,59 Players and18/754/755 Editor scopes are NotRun, without fabricated runtime cells. [Factual Local prerequisite result](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/LOCAL_STORAGE_RESULT.json), [checkpoint](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/README.md), [final prerequisite sequence](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/preflight/PREREQUISITE_SEQUENCE_FINAL.json).
+
+### Exact source and environment authority
+
+All four owning checkouts independently passed top/branch/HEAD/status/origin/worktree/submodule verification and exact fresh remote-tip checks, then safe fast-forward. Only demo changed: R publication1fb504b2 → authorized `e8fda852684f584295fe37830340ab3c9f3fcc4f`. Source anchor9f27feb647bbf2d2bc82483700fe4f78e5ea60be is an ancestor; final delta after it is Docs-only. [Source authority](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/preflight/SOURCE_AUTHORITY.json), bootstrap command receipts and [exact source snapshots](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/SOURCE_BINDINGS.json) bind paths/operations/clocks/streams. Credentials/protocol/SSH policy, native/package pins, runtime expectations, source manifests, deadlines, warm-up, leases and storage thresholds were not changed. No primary/control checkout was used for validation; shared Git common metadata paths remain explicit.
+
+| Owning repository | Branch | Prerequisite source commit |
+| --- | --- | --- |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | `e8fda852684f584295fe37830340ab3c9f3fcc4f` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `codex/assembly-shadow-r01b-h1` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
+
+Unity2022.3.62f2 executable `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity` was present with exact CFBundleVersion; it was not launched. Planned target StandaloneOSX arm64. SDK8.0.318 at SDK-only `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk` verified; Unity6000 was not launched. Python3.14.6, macOS26.5.2 build25F84, Apple clang21.0.0 and active CommandLineTools MacOSX SDK26.5 were observed. Full-Xcode version is Unavailable because xcodebuild requires a full Xcode installation; this is distinct from available active SDK/compiler and NotRun native compilation. [Environment and source-setting hashes](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/preflight/ENVIRONMENT.json), operations/* receipts retain exact paths, clocks, exit and stream SHA-256. No developer-directory or SDK substitution occurred.
+
+Administrative observation: the initial metadata logger incorrectly asserted the optional Xcode-version query must succeed and stopped before any mandated retained audit/transport/tests/admission. Original script/exit/log/initial sequence remain preserved. Continuation reused those version receipts, retained Xcode-version Unavailable, verified active SDK/clang, and then ran each required prerequisite once. [Administrative observation](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/preflight/ADMIN_PREPARATION_OBSERVATION.json). No product source fix or validation-phase retry. Prior ancillary effective-main-model identity observation remains unresolved; no model guess, gate PASS/Off or independent-review claim.
+
+### Completed prerequisites and factual missing scope
+
+| Validation | State and evidence |
+| --- | --- |
+| Retained R six-file audit | Passed; original restore cell Failed; settings remain staged; restorationPerformed=false; original Git cause Unavailable; five restore outputs remain absent. [Initial report](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/retained-r-audit/verification.json), [final independent re-read](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/preflight/RETAINED_R_AFTER.json) |
+| Four-owner transport | TransportReady; all4 rows Passed; point-in-time only. [Report and bounded Git observations](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/transport/verification.json) |
+| Local LR host selection | 45 tests Passed, zero failures/errors/skips; host controls do not establish Unity restoration. operations/lr-tests receipts/streams |
+| Local storage suite | 48 tests Passed, zero failures/errors/skips. operations/storage-tests receipts/streams |
+| Full historical custody | Passed before and after; 290,082 unique files; unchanged historical Q/P/O/N, original blocked R, published R and indexed live evidence. Current unindexed retained-R caches are separately captured before/after, not promoted to historical runtime acceptance. [Before](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/preflight/HISTORICAL_CUSTODY_BEFORE.json), [after](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/preflight/HISTORICAL_CUSTODY_AFTER.json), authenticated full map and authority |
+| Fresh diagnostic admission | Blocked; session NotAdmitted; exit2; batchStarted=false; probes NotRun before allocation |
+| Executing admission / core S / builds / Editors / Players | NotRun; core and executing-sidecar paths absent |
+| S P05 cleanup/fresh remote acceptance/finalization/integration/bridge/resource/measurement proofs | NotRun; no recovery or runtime receipt is claimed |
+| Core ledger/result/index/archive/seal | Unavailable because no core batch exists; prerequisite artifacts remain separate |
+
+### Capacity evidence and command
+
+Diagnostic start `2026-10-08T02:15:23.579755+00:00`, end `2026-10-08T02:15:44.488473+00:00` UTC (October7 PDT); exact command cwd `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` and source/environment/stream bindings are retained:
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Storage/run_storage_checked.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit e8fda852684f584295fe37830340ab3c9f3fcc4f --retained-q /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair --storage-evidence /Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03LocalBatch-20261007S-lr-recovery
+```
+
+Measured retained-Q planning size14,164,955,136 bytes (107,514 files;9,832 directories), unchanged source-bound input. Formula `max(64GiB,2*B+20GiB)` requires **68,719,476,736 bytes (64GiB)** at each relevant location. Initial observation at2026-10-08T02:15:43.925246Z /2026-10-07 19:15:43 PDT showed **62,512,148,480 bytes (58.219GiB)**. Deficit **6,207,328,256 bytes (5.781GiB)**. Exact original error: `batch: available 62512148480 < required 68719476736 bytes`. Two capacity samples are retained; final minimum62,512,091,136 bytes is a separate later sample. The20GiB operating floor remained satisfied and no operating fault was latched; admission still failed its higher budget. No reservation/high-water/future-readiness claim.
+
+All10 roles reported device/fsid16777230 on the same Data/APFS pool. Resolved `/dev/disk3s1` /containerdisk3 observations showed volume quota/reserve0 and user quota none; original ordinary-directory diskutil errors remain Unavailable. [Supplement](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/preflight/FILESYSTEM_SUPPLEMENT.json), [original sizing/traceback](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/storage-diagnostic/admission.json), capacity.jsonl, session.json and dispatch.json. APFS sibling capacity is not summed. No history/cache/data deletion, relocation, credential repair, capacity reclamation, mount substitution or threshold change was performed.
+
+| Original diagnostic artifact | SHA-256 |
+| --- | --- |
+| `session.json` | `8415eb042d178200c8b6c8a9dc7c39de058df915611fbb772811c828e303fada` |
+| `dispatch.json` | `10b291a36e3583940be1f208936b1f64d5faa0af0139fbc1fde1fe28623d2927` |
+| `capacity.jsonl` | `fd00218a4d2cdb6cd1ad663991cd1e7594352258d59138ee21593282809a9088` |
+| `source-authority.json` | `b3935a6fa048061b34b218940c5c24137d76867d756c307f7a0e02ec34e5766b` |
+| `admission.json` | `c107178bc81095977f03896ef8d8bfbe524efa3e07f8c005befa3172da445cef` |
+
+No live S footprint exists, so the core footprint-plus20GiB publication check is NotRun. A separately labeled prerequisite-publication budget measured the actual factual evidence payload plus20GiB at checkout/preflight/actual Git common directory and Passed before copying. [Receipt](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/preflight/storage-publication-check.json); it does not grant batch admission.
+
+### Publication and exit
+
+Only Local-owned LOCAL_VALIDATION.md, RETURN_TO_WEB.md and new immutable `local-validation-20261007-batch-s-capacity-blocked` are changed. Exact copy/source/JSON/hash/link/manifest/whitespace/staged-byte checks accompany publication. All historical report bodies are preserved; only the first Current heading becomes Historical. Latest pushed four-repository commits and final remote/cleanliness verification are recorded externally at `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007S-lr-recovery/PUBLICATION_RECEIPT.json` and in the final handoff; publication HEAD is separate from prerequisite source `e8fda852684f584295fe37830340ab3c9f3fcc4f`. No runtime result is manufactured for synchronization or blocked admission.
+
+Primary must reconcile the environmental prerequisite with the operator: establish measured headroom safely at every relevant shared-pool location while preserving history, then supply a separate authorized fresh source/root handoff. Do not retry this diagnostic, reuse its outputs, launch S, or infer runtime repair acceptance from host/transport tests. No new product-source defect is established. R remains ReturnRequired47/1/42, staged and immutable; all contaminated unisolated warm certificates remain Failed. R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; PureInterpreter expansion disabled. Independent full-stage review/human approval, R02 CPU/H1 RSS and production-performance decisions remain pending. **Local Validation → Primary Implementation. Stop.**
+
+## Historical run — R03 completion batch R, 2026-10-07 PDT
 
 **ReturnRequired; original cells={'Passed': 47, 'Failed': 1, 'Blocked': 42}; sealStatus=Passed; executing storage session=Passed; wrapper exit=1. Exit: Local Validation → Primary Implementation.** One executing invocation, PID22623, `2026-10-07T14:50:10.645232+00:00` → `2026-10-07T15:21:38.770144+00:00` UTC. The original blocked prerequisite at source cbf80474 remains unchanged; it was NotRun, not a failed runtime attempt. This execution uses the newly authorized source `ba57a3391da9627e694ee33f8bfe3cb993e6c56a`. No batch/phase retry, old-app reuse, product fix, scope/expectation/pin substitution, threshold/timeout/warm-up/lease change or historical promotion occurred.
 

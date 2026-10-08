@@ -1,0 +1,228 @@
+{
+  "kind": "SLocalPrerequisiteSequence",
+  "startUtc": "2026-10-08T02:15:04.721604+00:00",
+  "endUtc": "2026-10-08T02:15:44.488855+00:00",
+  "state": "CapacityBlocked",
+  "error": {
+    "type": "RuntimeError",
+    "message": "Fresh storage diagnostic did not admit S"
+  },
+  "operations": [
+    {
+      "label": "sdk-version",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "--version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:13:55.562873+00:00",
+      "endUtc": "2026-10-08T02:13:55.721222+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "87d140235528e1e5177051f45163d287ac03dfbbd88f70b34d9dfbe33c7f4682",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "python-version",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "--version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:13:55.721755+00:00",
+      "endUtc": "2026-10-08T02:13:55.730092+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "917601090ffb73a030e3eaa8b7a01c41400cad4b61366b4218d7756a5733b66c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "macos",
+      "argv": [
+        "sw_vers"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:13:55.730519+00:00",
+      "endUtc": "2026-10-08T02:13:55.738226+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "9a27ea4f1e11f7b9a4f7573d8729db037a10ce2e457f97cb73f646a96a550b16",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "architecture",
+      "argv": [
+        "uname",
+        "-m"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:13:55.738600+00:00",
+      "endUtc": "2026-10-08T02:13:55.741077+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "xcode",
+      "argv": [
+        "xcodebuild",
+        "-version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:13:55.741409+00:00",
+      "endUtc": "2026-10-08T02:13:55.744879+00:00",
+      "exitCode": 1,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "6f9bc3a54a75fa953f758e1aadfbc9f16c254cd631aaea9026c126a55b054641"
+    },
+    {
+      "label": "platform-sdk",
+      "argv": [
+        "xcrun",
+        "--show-sdk-path"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:15:04.722406+00:00",
+      "endUtc": "2026-10-08T02:15:04.729334+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "71d2d22cf2f2d1a4606d2b131f4f1cc22ab8f2f05df7e76fb6298e428ace92e6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "platform-sdk-version",
+      "argv": [
+        "xcrun",
+        "--show-sdk-version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:15:04.729745+00:00",
+      "endUtc": "2026-10-08T02:15:04.735639+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "25205f2e2f02dc71036ee827e19c49b893b231a3d1af240e35a3ac55aa8cdcb6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "clang",
+      "argv": [
+        "xcrun",
+        "clang",
+        "--version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:15:04.736015+00:00",
+      "endUtc": "2026-10-08T02:15:04.876318+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "76a924f59997fb65051981eb13105e0a8c151f16cd9c3e45e0f7c27ecefdb839",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "retained-r-readonly",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/retained_transaction.py",
+        "--retained-r",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/RetainedR-R03LocalBatch-20261007S-lr-recovery"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:15:04.948776+00:00",
+      "endUtc": "2026-10-08T02:15:05.070733+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "transport-preflight",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/transport_preflight.py",
+        "--workspace",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+        "--demo-commit",
+        "e8fda852684f584295fe37830340ab3c9f3fcc4f",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Transport-R03LocalBatch-20261007S-lr-recovery"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:15:05.071210+00:00",
+      "endUtc": "2026-10-08T02:15:22.876497+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "lr-tests",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion",
+        "-p",
+        "test_lr_*.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:15:22.877722+00:00",
+      "endUtc": "2026-10-08T02:15:23.322905+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "95a395b845abc480e6fd7b063abab4073f46a6f51de4c261b9b6718fae531809"
+    },
+    {
+      "label": "storage-tests",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Storage",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:15:23.323437+00:00",
+      "endUtc": "2026-10-08T02:15:23.579103+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "8e5008883332a604c1140661f5ef157ee05f6b72d5d63df9b51b9ebd81b1ce8b"
+    },
+    {
+      "label": "storage-diagnostic",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Storage/run_storage_checked.py",
+        "--workspace",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery",
+        "--unity",
+        "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+        "--demo-commit",
+        "e8fda852684f584295fe37830340ab3c9f3fcc4f",
+        "--retained-q",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair",
+        "--storage-evidence",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03LocalBatch-20261007S-lr-recovery"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-08T02:15:23.579755+00:00",
+      "endUtc": "2026-10-08T02:15:44.488473+00:00",
+      "exitCode": 2,
+      "stdoutSha256": "48cbdb3ebc4480ce86e0370db3e6385859c43bf56278e487f2d0e5bbeca024c4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "batchStarted": false,
+  "batchResult": "NotRun",
+  "batchRootExists": false,
+  "executingSidecarExists": false,
+  "sourceCommit": "e8fda852684f584295fe37830340ab3c9f3fcc4f",
+  "retainedRModified": false
+}

@@ -1,6 +1,18 @@
 # Local Validation → Primary Implementation
 
-## Current return — R03 completion batch R, 2026-10-07 PDT
+## Current return — R03 batch S prerequisites, 2026-10-07 PDT / 2026-10-08 UTC
+
+**CapacityBlocked; batch NotRun.** Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [immutable checkpoint](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/README.md), [Local prerequisite result](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/LOCAL_STORAGE_RESULT.json) and [original admission](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/storage-diagnostic/admission.json). No new non-trivial product-source issue is established; this is an unmet environmental prerequisite, not a fresh Unity/Player result or proof of the LR repair.
+
+Exact source `e8fda852684f584295fe37830340ab3c9f3fcc4f` and unchanged other3 pins are listed in LOCAL_VALIDATION.md. Retained R read-only audit Passed, all4 transport rows Passed,45 LR and48 storage tests Passed with zero skips/errors/failures. Full before/after custody Passed for290,082 files, including retained R's still-staged settings and absent restoration outputs. Original R's Git cause remains Unavailable. No R recovery or historical reclassification occurred.
+
+At2026-10-07 19:15:43 PDT /2026-10-08T02:15:43.925246Z, fresh storage admission Failed its prerequisite: available **62,512,148,480 bytes (58.219GiB)** versus required **68,719,476,736 bytes (64GiB)**; deficit **6,207,328,256 bytes (5.781GiB)**. Formula is unchanged `max(64GiB,2*14,164,955,136+20GiB)`. Original admission state Blocked, diagnostic session NotAdmitted, diagnostic exit2, batchStarted=false; allocation probes NotRun. Same shared APFS pool, volume quota/reserve0 and user quota none; no reservation or future capacity guarantee.
+
+**Required Primary/operator action:** Establish adequate measured headroom safely without deleting/moving preserved history or changing thresholds, credentials, protocol or source pins. Then publish a separately authorized handoff with unused prerequisite/execution roots and fresh transport/storage checks. Local did not reclaim capacity or launch an executing wrapper. The current diagnostic and all old evidence remain immutable.
+
+**Validation still required:** Actual new-source Unity/P05 exact restoration followed by fresh remote success, finalization,755 resource roster, all90 cells/six builds/59 Players and18/754/755 Editor scopes, graph-before-integration, zero roots/closure, live policy, strict bridge/resource aggregate/codec/measurement proofs and seal. All of this is NotRun for S; earlier R/Q/P evidence cannot substitute. R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; PureInterpreter expansion disabled. Independent full-stage review/human approval and prior performance risks remain pending. **Local Validation → Primary Implementation. Stop.**
+
+## Historical return — R03 completion batch R, 2026-10-07 PDT
 
 **ReturnRequired; original90-cell counts={'Passed': 47, 'Failed': 1, 'Blocked': 42}; storage session=Passed; wrapper exit=1. Local Validation → Primary Implementation.** Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [immutable R checkpoint](../History/M07R/R03/local-validation-20261007-batch-r-return-required/README.md), [matrix](../History/M07R/R03/local-validation-20261007-batch-r-return-required/VALIDATION_MATRIX.md), original sealed result/ledger and [original failures](../History/M07R/R03/local-validation-20261007-batch-r-return-required/ORIGINAL_FAILURES.json). Source `ba57a3391da9627e694ee33f8bfe3cb993e6c56a` was explicitly authorized, including its nine agent-configuration-file exception. Prior Q/P/O/N and original blocked R evidence remain unchanged.
 

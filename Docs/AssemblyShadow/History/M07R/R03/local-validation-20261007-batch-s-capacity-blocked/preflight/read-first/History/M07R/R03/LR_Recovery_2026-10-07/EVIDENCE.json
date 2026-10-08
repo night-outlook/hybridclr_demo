@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03LRPrimaryEvidenceIndex",
+  "observedAtUtc": "2026-10-07T16:50:39.456085+00:00",
+  "sourceCommit": "9f27feb647bbf2d2bc82483700fe4f78e5ea60be",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "unchangedPins": {
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+  },
+  "historicalInput": {
+    "publicationCommit": "1fb504b2732c72dd1c403060396276af69d6251a",
+    "executedDemoCommit": "ba57a3391da9627e694ee33f8bfe3cb993e6c56a",
+    "result": "ReturnRequired",
+    "cells": {
+      "Passed": 47,
+      "Failed": 1,
+      "Blocked": 42
+    },
+    "completedBuilds": 6,
+    "completedEditorScopes": [
+      18,
+      754
+    ],
+    "completedPlayers": 23,
+    "notRunEditorScopes": [
+      755
+    ],
+    "notRunPlayers": 36,
+    "storage": "Passed",
+    "seal": "Passed",
+    "originalTransportCause": "Unavailable",
+    "retainedSettingsRemainStaged": true,
+    "historicalEvidenceModified": false
+  },
+  "ci": [
+    {
+      "platform": "Linux",
+      "artifactId": 11497184110,
+      "zipBytes": 31318,
+      "zipSha256": "0c5631d908f8154de9e8c183ec95d9549f11a6d9bea3ff689879f04804e91a2c",
+      "runId": 37653557539,
+      "sourceCommit": "9f27feb647bbf2d2bc82483700fe4f78e5ea60be",
+      "indexedOutputFilesVerified": 4,
+      "availableSourceHashesVerified": 427,
+      "sourceHashesUnavailable": [],
+      "suites": [
+        {
+          "suite": "completion",
+          "expected": 405,
+          "observed": 405,
+          "exitCode": 0,
+          "passed": true,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0
+        },
+        {
+          "suite": "storage",
+          "expected": 48,
+          "observed": 48,
+          "exitCode": 0,
+          "passed": true,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0
+        },
+        {
+          "suite": "schema",
+          "expected": 9,
+          "observed": 9,
+          "exitCode": 0,
+          "passed": true,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0
+        }
+      ],
+      "outputs": [
+        {
+          "path": "completion.log",
+          "bytes": 52122,
+          "sha256": "23cfe7348e0d1ad5bff31e5d617f264f2606565aca074acc1c2c87b890d2b22d"
+        },
+        {
+          "path": "results.json",
+          "bytes": 1277,
+          "sha256": "f73f36c7f3501e8cd518691ffc56754774d5bfabf9d8c6f4ec324c024e6df50b"
+        },
+        {
+          "path": "schema.log",
+          "bytes": 1469,
+          "sha256": "fcd82da5b0c86e52fc2c33c2f4c77d4f5ad8dac159d145521c23e9b77f142bc0"
+        },
+        {
+          "path": "storage.log",
+          "bytes": 6521,
+          "sha256": "7d769c01c31c432419b85ae5bd88965712a81c975715309427200bab23b0d5a7"
+        }
+      ],
+      "provenanceSha256": "e78f69db36fa3775377cd32f9fa765da6f3f3620c6b702c00d9ec7f395e3ae6c",
+      "unityRun": false,
+      "playerRun": false,
+      "runtimeAcceptance": false,
+      "state": "Passed",
+      "jobId": 112902820005
+    },
+    {
+      "platform": "macOS",
+      "artifactId": 11497822996,
+      "zipBytes": 31345,
+      "zipSha256": "5826dd0cc8e3e22407bc5bd9792e8abecc877889fa7d5f136da19120879b359a",
+      "runId": 37653557539,
+      "sourceCommit": "9f27feb647bbf2d2bc82483700fe4f78e5ea60be",
+      "indexedOutputFilesVerified": 4,
+      "availableSourceHashesVerified": 427,
+      "sourceHashesUnavailable": [],
+      "suites": [
+        {
+          "suite": "completion",
+          "expected": 405,
+          "observed": 405,
+          "exitCode": 0,
+          "passed": true,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0
+        },
+        {
+          "suite": "storage",
+          "expected": 48,
+          "observed": 48,
+          "exitCode": 0,
+          "passed": true,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0
+        },
+        {
+          "suite": "schema",
+          "expected": 9,
+          "observed": 9,
+          "exitCode": 0,
+          "passed": true,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0
+        }
+      ],
+      "outputs": [
+        {
+          "path": "completion.log",
+          "bytes": 52122,
+          "sha256": "3d214e941664c913818083f3740dc7f744c33d17a94d72d67ee3d2e66db9bdbb"
+        },
+        {
+          "path": "results.json",
+          "bytes": 1417,
+          "sha256": "bafbbfb8d8a24f95b0ac681b81c1f6a97a366bd80cd817bab8ed6f3518853669"
+        },
+        {
+          "path": "schema.log",
+          "bytes": 1469,
+          "sha256": "fe54d61ad30952215740848342fd36cb07535be9a5951bb6a6e88e0812a10c69"
+        },
+        {
+          "path": "storage.log",
+          "bytes": 6521,
+          "sha256": "0f21e81da293ecb9ea21f0ee1834964d00857fc23fda73fecaced051a9917cea"
+        }
+      ],
+      "provenanceSha256": "49bd0b1fdf0b232a080017cb508520fd513a2adea263f5ace3c662036796836b",
+      "unityRun": false,
+      "playerRun": false,
+      "runtimeAcceptance": false,
+      "state": "Passed",
+      "jobId": 112902819567
+    }
+  ],
+  "localTests": {
+    "lr-final": {
+      "methods": 45,
+      "result": "Passed",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "bytes": 6025,
+      "sha256": "cee193fd5ac01ec75c811d4ce29b5282ad8c27c70e51ce61b393e38412c852fc"
+    },
+    "storage-final": {
+      "methods": 48,
+      "result": "Passed",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "bytes": 6521,
+      "sha256": "3878a1f07e45076131350f40b339141483fe9fa2c34fe6d2d2946e2273260764"
+    },
+    "orchestration-final": {
+      "methods": 5,
+      "result": "Passed",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "bytes": 963,
+      "sha256": "8586b34a571edddf804edcb7cfcf851f439ce0e3f8a6db900fcee0b1bf9b4a23"
+    },
+    "schema-final": {
+      "methods": 9,
+      "result": "Passed",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "bytes": 1469,
+      "sha256": "fe54d61ad30952215740848342fd36cb07535be9a5951bb6a6e88e0812a10c69"
+    },
+    "r03-core-full": {
+      "methods": 183,
+      "result": "Passed",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "bytes": 24044,
+      "sha256": "9a2a10d8fa194c585da650c40b55d39d88627af44b028a8ed5cf4713b5d71840"
+    }
+  },
+  "localSyntax": {
+    "pythonFiles": 10,
+    "bashBlocks": 3,
+    "MacCommandsExecuted": false
+  },
+  "boundedRetainedRCheck": {
+    "files": 6,
+    "manifestSha256": "76a2bd54b2aa11fdec62eb63e6b30c1ca50b874ac5002dd340c630e350933b8a",
+    "receiptSha256": "9b690439581c07bc5caed6bea467bd705862f2c5cdb5d5cc022ae4a851876193",
+    "liveMacInspected": false,
+    "restorationPerformed": false
+  },
+  "capture": {
+    "artifactId": 11496041439,
+    "runId": 37648395523,
+    "workflowCommit": "80911f82648bbf418995b670a73a7da493accf09",
+    "capturedSourceCommit": "1fb504b2732c72dd1c403060396276af69d6251a",
+    "zipBytes": 33325842,
+    "zipSha256": "0a9af29782e2122788d16e13dc755382604c5d9a8f5873c329a286ae944f5a0c",
+    "indexedFilesAuthenticated": 3957,
+    "completeCustodyReaudit": false
+  },
+  "intermediateLimitations": [
+    {
+      "scope": "Bounded export complete-suite attempt",
+      "passedMethods": 394,
+      "erroredMethods": 3,
+      "setupErrors": 1,
+      "notRunMethods": 8,
+      "executedMethods": 397,
+      "totalErrors": 4,
+      "fullSuitePassed": false,
+      "missingInputs": [
+        "package ShadowSourcePins.cs",
+        ".github/workflows/r03-build-api.yml",
+        ".github/workflows/r03-completion.yml",
+        "retained N sidecar corpus"
+      ],
+      "note": "Complete-checkout CI separately passed all405; this export attempt remains failed-setup/incomplete."
+    },
+    {
+      "scope": "Earlier export invocation",
+      "state": "Incomplete",
+      "note": "Host tool deadline interrupted initial broad run; no full-suite result claimed."
+    },
+    {
+      "scope": "Initial strict-schema invocation",
+      "state": "ImportError",
+      "note": "Correct original module path then passed9; earlier command remains failed setup."
+    }
+  ],
+  "connectorSmoke": {
+    "repository": "night-outlook/hybridclr_demo",
+    "branch": "codex/connector-smoke-lr-1fb504b2",
+    "base": "1fb504b2732c72dd1c403060396276af69d6251a",
+    "createdAndReadBackCommit": "ada350bc2da723aab71a5b9858a786f1a99c370c",
+    "transport": "Connector Git-data tree/commit/expected-HEAD update",
+    "result": "Passed",
+    "cleanup": "Unavailable: no branch-delete action; branch retained",
+    "otherRepositories": "Fresh read/HEAD checks; retained initial four-repository smoke; no product writes"
+  },
+  "files": [
+    {
+      "path": "Tools/AssemblyShadow/R03/git_diagnostics.py",
+      "gitBlob": "cf6ffc13df4349bac603f53555a98e2e281a6ef2",
+      "sha256": "a8de456eb712aadafa9f7c732cd9f19a0742a04bd8a4a4f0106cfab77c595c6b",
+      "bytes": 6107
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03/run_local.py",
+      "gitBlob": "9aef8093f98fb7f9b5dd395ba4e5c2ed0220276e",
+      "sha256": "ebbbf9139de5f6bff0075ef966ee6ed3f3070059eae3733052fbc5406bb360a6",
+      "bytes": 22506
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03Completion/fixture_authority.py",
+      "gitBlob": "b53a502da4bb42d405049d015d34ee510c16f977",
+      "sha256": "cb63a34fec9f45f9eea2a4847a91c4f91e5b0a3c64c715bc0e26c890fa551943",
+      "bytes": 12219
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03Completion/resource_pipeline.py",
+      "gitBlob": "0fbd31ad0e29f27c1c6f1122bbbb87d33bc807d3",
+      "sha256": "fbc241d7d6505cbb9aa0c42ee73a9db619923ba99f720d72e4baf2209efd913e",
+      "bytes": 16962
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03Storage/run_storage_checked.py",
+      "gitBlob": "9c37f52529f61cae6140d4219548916f9080ea73",
+      "sha256": "d7b2ee3655bf289789c6607dfddcf8ba65c99a378f8fd5d5d3c926d05acb845a",
+      "bytes": 9329
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03Completion/retained_transaction.py",
+      "gitBlob": "4dac6fb7832bde5da0a7c2d0fdc2455c87a7aae4",
+      "sha256": "f9d560f1f43fa748371ad66f2daf8c5aad915f3c42436494e4a74e67d7b65065",
+      "bytes": 4893
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03Completion/transport_preflight.py",
+      "gitBlob": "571ea7527be3b918c4321706364f53b3a4962b7f",
+      "sha256": "b68ff2555cc8176b9698e2372c0a83bfbbdfa01385bf258fb018d684458b6d62",
+      "bytes": 2705
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03Completion/lr-retained.json",
+      "gitBlob": "0ecb2f3a4212b1e133eca21e750ed10cf4290585",
+      "sha256": "76a2bd54b2aa11fdec62eb63e6b30c1ca50b874ac5002dd340c630e350933b8a",
+      "bytes": 2476
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03Completion/test_lr_git.py",
+      "gitBlob": "3ac52c9249cd6d528f1bb4874ee2504376261f6d",
+      "sha256": "ec73331276f1fb1a569dbd57e6bbc7ccec65744b810ac250f4813e57fe501dcd",
+      "bytes": 10072
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03Completion/test_lr_recovery.py",
+      "gitBlob": "5266b9f545f21ba27a877f32afb97dad481313d6",
+      "sha256": "e161c4d4e3ca82c89804c54776a10392f58477e9ce767239a8844466bc8f3f94",
+      "bytes": 11158
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03Completion/test_lr_retained.py",
+      "gitBlob": "c1e08a1d6fc67efc3f4fe689adc8ae0a08b0a8c4",
+      "sha256": "3ceedb79fdb462afb54bb40da87d7eb381b8408ce36a6537ac9d026e34738ef0",
+      "bytes": 2743
+    },
+    {
+      "path": ".github/workflows/r03-lr-contracts.yml",
+      "gitBlob": "3d53ce0b989d1278accdcb8e5c94e1fdb8a48185",
+      "sha256": "183326d719addd9a126b786eac642478d2c619ffe27e44fcec47b1707453cf2d",
+      "bytes": 4354
+    }
+  ],
+  "supplementalWorkflows": "Other auto-triggered broad workflows are outside the complete LR suite claims here; no full-run pass or fresh runtime acceptance is inferred.",
+  "artifactRetention": "Configured14days, through2026-10-21; raw CI outputs remain in exact ID/digest artifacts; source/tests and this evidence index are committed.",
+  "localTransportReadiness": "NotRunOnUserMac",
+  "localCapacityReadiness": "NotRunOnUserMac",
+  "historicalRecoveryPerformed": false,
+  "nextBatch": "R03LocalBatch-20261007S-lr-recovery",
+  "invocationAuthorization": "ConditionalOnRetainedAuditTransportAndFreshStorageAdmission",
+  "unityRun": false,
+  "playerRun": false,
+  "runtimeAcceptance": false,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "ReadyForHumanReviewGate": false,
+  "pureInterpreterExpansionEnabled": false,
+  "independentFullStageReview": "Pending"
+}

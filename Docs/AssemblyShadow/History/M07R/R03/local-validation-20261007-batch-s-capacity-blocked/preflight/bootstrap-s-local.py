@@ -1,0 +1,26 @@
+"""Exact handoff synchronization and preflight only; no validation batch launch."""
+from pathlib import Path
+import subprocess,json,os,datetime,hashlib
+W=Path('/Users/ah/GitHub/hybridclr/assembly_shadow_h1r');BASE=W.parent/'r03-local-validation';P=BASE/'Preflight-R03LocalBatch-20261007S-lr-recovery';PIN='e8fda852684f584295fe37830340ab3c9f3fcc4f';BR='codex/assembly-shadow-r01b-h1';pins={'hybridclr_demo':PIN,'hybridclr':'4b2774b066cfc6afd77a8c8aded6bda7ea574f55','hybridclr_unity':'948c0e3b4f8891481301770115e8ba4945eea6de','il2cpp_plus':'1cf87f8209790f9fb2ebec97487dc1990ccd56c5'}
+for n in ['R03LocalBatch','Preflight','RetainedR','Transport','StorageCheck','Storage']:
+ f=BASE/(n+'-20261007S-lr-recovery' if n=='R03LocalBatch' else n+'-R03LocalBatch-20261007S-lr-recovery');assert not f.exists() and not f.is_symlink(),str(f)
+P.mkdir();start=datetime.datetime.now(datetime.timezone.utc).isoformat();prior=BASE/'Preflight-R03LocalBatch-20261007R-lq-storage-2';ssh=json.loads((prior/'SOURCE_AUTHORITY.json').read_text())['sshCommand'];env={**os.environ,'GIT_SSH_COMMAND':ssh,'GIT_TERMINAL_PROMPT':'0','EXPECTED_DEMO_COMMIT':PIN,'PYTHONDONTWRITEBYTECODE':'1'}
+def utc():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def sha(p):
+ with Path(p).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+seq=0
+def git(repo,*args,allowed=(0,)):
+ global seq
+ seq+=1;folder=P/'commands'/(str(seq).zfill(3)+'-'+repo.name+'-'+args[0]);folder.mkdir(parents=True);beg=utc();argv=['git','-C',str(repo),*args];r=subprocess.run(argv,capture_output=True,env=env,timeout=90);(folder/'stdout.log').write_bytes(r.stdout);(folder/'stderr.log').write_bytes(r.stderr);row={'argv':argv,'cwd':str(repo),'startUtc':beg,'endUtc':utc(),'exitCode':r.returncode,'stdoutSha256':sha(folder/'stdout.log'),'stderrSha256':sha(folder/'stderr.log')};(folder/'receipt.json').write_text(json.dumps(row,indent=2)+'\n');assert r.returncode in allowed,(argv,r.returncode,r.stderr.decode(errors='replace'));return r.stdout.decode().strip()
+rows=[]
+for name,pin in pins.items():
+ repo=W/name;row={'path':str(repo),'expectedCommit':pin}
+ for k,args in [('toplevel',('rev-parse','--show-toplevel')),('branch',('branch','--show-current')),('head',('rev-parse','HEAD')),('status',('status','--short')),('remotes',('remote','-v')),('worktrees',('worktree','list','--porcelain')),('submodules',('submodule','status')),('sshConfiguration',('config','--show-origin','--get','core.sshCommand'))]:row[k]=git(repo,*args)
+ assert row['toplevel']==str(repo) and row['branch']==BR and not row['status'];assert git(repo,'remote','get-url','origin')=='git@github.com:night-outlook/'+name+'.git';assert not git(repo,'status','--porcelain=v1','--untracked-files=all');row['remoteBefore']=git(repo,'ls-remote','origin','refs/heads/'+BR);assert row['remoteBefore'].split()[0]==pin;git(repo,'fetch','origin',BR);assert git(repo,'rev-parse','FETCH_HEAD')==pin;git(repo,'merge-base','--is-ancestor',row['head'],pin);row['fastForward']=git(repo,'merge','--ff-only','FETCH_HEAD');row['finalHead']=git(repo,'rev-parse','HEAD');row['finalStatus']=git(repo,'status','--short');assert row['finalHead']==pin and not row['finalStatus'];rows.append(row)
+D=W/'hybridclr_demo';anchor='9f27feb647bbf2d2bc82483700fe4f78e5ea60be';git(D,'merge-base','--is-ancestor',anchor,PIN);git(D,'diff','--exit-code',anchor,PIN,'--','.',':!Docs/AssemblyShadow');delta=git(D,'diff','--name-only','1fb504b2732c72dd1c403060396276af69d6251a',PIN)
+record={'kind':'SExactSourceSynchronization','startUtc':start,'endUtc':utc(),'branch':BR,'repositories':pins,'owningChecks':rows,'sshCommand':ssh,'transportPolicy':'Same credentials/protocol/SSH override as previous R; no configuration changes','sourceAnchor':anchor,'postAnchorDocsOnly':True,'deltaFromRPublication':delta.splitlines(),'unityOrPlayerLaunches':0,'batchConstructed':False};(P/'SOURCE_AUTHORITY.json').write_text(json.dumps(record,indent=2)+'\n');(P/'SSH_TRANSPORT.json').write_text(json.dumps({'command':ssh},indent=2)+'\n')
+read=['README.md','Plan/CURRENT_STATUS.md','Handoff/WEB_TO_LOCAL.md','Handoff/LOCAL_VALIDATION.md','Handoff/RETURN_TO_WEB.md','History/M07R/R03/LR_Recovery_2026-10-07/DESIGN.md','History/M07R/R03/LR_Recovery_2026-10-07/PRIMARY_REVIEW.md','History/M07R/R03/LR_Recovery_2026-10-07/EVIDENCE.json']
+for rel in read:
+ src=D/'Docs/AssemblyShadow'/rel;dst=P/'read-first'/rel;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes(src.read_bytes());assert git(D,'hash-object',str(src))==git(D,'rev-parse',PIN+':Docs/AssemblyShadow/'+rel)
+(P/'USER_HANDOFF.json').write_text(json.dumps({'expectedDemoCommit':PIN,'objective':'Audit retained R read-only; transport/tests/fresh storage prerequisites; then one S only if all pass','retainedRMustRemainStagedUntouched':True,'noPhaseRetryCredentialProtocolChangeOrSourceFix':True,'requestedAtClientDate':'2026-10-07','prerequisiteOutputs':{n:str(BASE/(n+'-R03LocalBatch-20261007S-lr-recovery')) for n in ['RetainedR','Transport','StorageCheck','Storage']},'batchPath':str(BASE/'R03LocalBatch-20261007S-lr-recovery')},indent=2)+'\n')
+(P/'bootstrap-s-local.py').write_bytes(Path(__file__).read_bytes());print('Four exact clean sources synchronized; final demo delta Docs-only',PIN,flush=True)
