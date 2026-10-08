@@ -70,6 +70,9 @@ M11 → STOP → 人工发起 M12 Final Release Review（+1）
 | M11 | [全面性能、输入加固与上游升级演练](stages/M11-performance-fuzz-rebase.md) | M10；基础容量/性能已在 M07R 完成 | ASR-003, ASR-013 |
 | M12 | [发布候选与独立端到端验收](stages/M12-release-acceptance.md) | M11；产品要求的 X01 Gate 已合入；必须由人工显式启动最终 Review | ASR-012 |
 | X01 | [新增/删除程序集能力；与 Replace 分离](stages/X01-assembly-lifecycle-capabilities.md) | R01、R03、M08B；独立 feature 分支，进入目标平台 M10 验收 | ASR-001, ASR-010 |
+| X02（独立递延） | [PureInterpreter 结构扩展资格与证据](stages/X02-pure-interpreter-structural-expansion.md) | D1=A 将原 R03 step3 的未证明 V1 外结构扩展显式递延；须未来 owner 单独启动、独立资格/Player 证据/Gate；当前未授权 | 非 X01，非本次 R03/H2 支持声明 |
+
+**2026-10-08 业主决策 D1=A / D2=A：**当前 R03 的可支持布局范围限定于保守 NativeLayoutAdmissionV1；未证明的 private-reference 增删等结构扩展另列 X02。S 性能数据仅为开发观察，R02 CPU/H1 RSS 延期风险及 Failed warm 控制保留。H2 仍须用户另行发起，通过 H2 也不会自动启动 X02。见 [正式决策](../History/M07R/R03/S_Reconciliation/OWNER_DISPOSITION_2026-10-08.md)。
 
 ## 与原计划的关系
 
