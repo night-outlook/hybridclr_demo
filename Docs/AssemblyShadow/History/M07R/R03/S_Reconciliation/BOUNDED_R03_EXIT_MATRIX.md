@@ -1,6 +1,6 @@
 # Bounded R03 exit matrix after D1=A / D2=A
 
-**Status: Primary claim-to-evidence preparation; independent review NotRun; R03 not accepted.** Read the [owner disposition](OWNER_DISPOSITION_2026-10-08.md), [original stage](../../../Plan/stages/R03-evolution-semantics.md), [RC decomposition](../../../Plan/stages/R03-remaining-completion.md), [Primary review](FULL_STAGE_PRIMARY_REVIEW.md), and [S evidence index](EVIDENCE.json).
+**Status: Primary claim-to-evidence preparation; independent review NotRun; R03 not accepted.** Read the [owner disposition](OWNER_DISPOSITION_2026-10-08.md), [original stage](../../../../Plan/stages/R03-evolution-semantics.md), [RC decomposition](../../../../Plan/stages/R03-remaining-completion.md), [Primary review](FULL_STAGE_PRIMARY_REVIEW.md), and [S evidence index](EVIDENCE.json).
 
 Source identity: S executed demo `29bb3d4a39bf8a2f23be404f77535aaba3485bfc`; evidence published at `fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b`; native `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`; package `948c0e3b4f8891481301770115e8ba4945eea6de`; IL2CPP+ `1cf87f8209790f9fb2ebec97487dc1990ccd56c5`. This document adds no new Player execution.
 
