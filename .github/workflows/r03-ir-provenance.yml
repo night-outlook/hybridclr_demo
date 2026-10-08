@@ -4,7 +4,7 @@ on:
     branches: [codex/assembly-shadow-r01b-h1]
     paths:
       - '.github/workflows/r03-ir-provenance.yml'
-      - 'Tools/AssemblyShadow/R03IR/audit_s_provenance.py'
+      - 'Tools/AssemblyShadow/R03IR/**'
 permissions:
   contents: read
 jobs:
@@ -18,6 +18,25 @@ jobs:
           persist-credentials: false
           sparse-checkout: |
             Tools/AssemblyShadow/R03IR
+      - name: Run synthetic provenance regressions
+        shell: bash
+        run: |
+          set -o pipefail
+          python3 -B - <<'PY' 2>&1 | tee "$RUNNER_TEMP/s-audit-host-tests.log"
+          import json, os, sys, unittest
+          from pathlib import Path
+          suite = unittest.defaultTestLoader.discover('tools/Tools/AssemblyShadow/R03IR', pattern='test_*.py')
+          result = unittest.TextTestRunner(verbosity=2).run(suite)
+          passed = result.wasSuccessful() and result.testsRun > 0 and not result.skipped
+          record = {'kind': 'R03IRHostTests', 'result': 'Passed' if passed else 'Failed',
+                    'testsRun': result.testsRun, 'failures': len(result.failures), 'errors': len(result.errors),
+                    'skipped': len(result.skipped), 'unexpectedSuccesses': len(result.unexpectedSuccesses),
+                    'workflowCommit': os.environ['GITHUB_SHA'], 'runId': os.environ['GITHUB_RUN_ID'],
+                    'unityRun': False, 'runtimeAcceptance': False, 'independentReviewer': False}
+          (Path(os.environ['RUNNER_TEMP'])/'s-audit-host-tests.json').write_text(json.dumps(record, indent=2)+'\n')
+          print(json.dumps(record, sort_keys=True))
+          sys.exit(0 if passed else 1)
+          PY
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           ref: fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b
@@ -39,12 +58,28 @@ jobs:
           out=Path(os.environ['RUNNER_TEMP'])/'s-original-audit'; out.mkdir(exist_ok=True)
           def sha(p):
             with p.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+          for suffix in ('json','log'):
+            source=Path(os.environ['RUNNER_TEMP'])/('s-audit-host-tests.'+suffix)
+            if source.is_file(): (out/('host-tests.'+suffix)).write_bytes(source.read_bytes())
           script=Path('tools/Tools/AssemblyShadow/R03IR/audit_s_provenance.py')
+          tests=Path('tools/Tools/AssemblyShadow/R03IR/test_audit_s_provenance.py')
+          sources={}
+          for name,expected in (('tools',os.environ['GITHUB_SHA']),('original','fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b')):
+            if not (Path(name)/'.git').exists():
+              sources[name]={'result':'NotChecked','reason':'Checkout unavailable'}
+              continue
+            actual=subprocess.check_output(['git','-C',name,'rev-parse','HEAD']).decode().strip()
+            clean=subprocess.check_output(['git','-C',name,'status','--porcelain'])==b''
+            sources[name]={'head':actual,'expected':expected,'clean':clean,'result':'Passed' if actual==expected and clean else 'Failed'}
           files=[{'path':str(p.relative_to(out)),'size':p.stat().st_size,'sha256':sha(p)} for p in sorted(out.glob('*')) if p.is_file()]
-          record={'kind':'R03IRProvenanceArtifact','workflowCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'scriptSha256':sha(script),'originalPublication':'fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b','files':files,'unityRun':False,'runtimeAcceptance':False,'independentReviewer':False}
+          record={'kind':'R03IRProvenanceArtifact','schemaVersion':2,'workflowCommit':os.environ['GITHUB_SHA'],
+            'runId':os.environ['GITHUB_RUN_ID'],'scriptSha256':sha(script) if script.is_file() else None,
+            'testsSha256':sha(tests) if tests.is_file() else None,'sourceCheckouts':sources,
+            'originalPublication':'fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b','files':files,
+            'unityRun':False,'runtimeAcceptance':False,'independentReviewer':False}
           (out/'workflow-provenance.json').write_text(json.dumps(record,indent=2)+'\n')
-          for name in ('tools','original'):
-            assert subprocess.check_output(['git','-C',name,'status','--porcelain'])==b''
+          print(json.dumps(record,sort_keys=True))
+          if any(v['result']=='Failed' for v in sources.values()): raise SystemExit('Source checkout verification failed')
           PY
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
@@ -52,6 +87,7 @@ jobs:
           name: r03-original-s-audit-${{ github.sha }}
           path: |
             ${{ runner.temp }}/s-original-audit/*.json
+            ${{ runner.temp }}/s-original-audit/*.log
             ${{ runner.temp }}/s-original-audit/MANIFEST.sha256
             ${{ runner.temp }}/s-original-audit/original-S-evidence.tar.gz
           compression-level: 1
