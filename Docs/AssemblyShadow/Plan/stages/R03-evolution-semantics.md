@@ -4,7 +4,7 @@
 
 前置：R01、R02。关联 findings：ASR-004, ASR-005, ASR-006。
 
-当前证据与剩余工作：`../../History/M07R/R03/J_H_FOCUSED_RECONCILIATION.md`、`../../History/M07R/R03/J_H_EVIDENCE_AUDIT.json`、`R03-remaining-completion.md`。最早未完成的编号实施步骤为第 3 步资格判定/扩展 Gate；第 4–7 步还有完整运行时、资源和集成回归义务。主设计以 `../DESIGN.md` 为准；下列规范性实施步骤、退出条件和独立审查要求保持不变。首轮实现及 A–I 历史记录仍保留，不覆盖旧证据。
+当前证据与剩余工作：S 已完成规定的 Local 验证，实际 source/evidence 和限制见 [`S_Reconciliation`](../../History/M07R/R03/S_Reconciliation/PRIMARY_RECONCILIATION.md)；先前 H/J 证据及 A–I 历史只读。原第 3 步未证明的结构扩展正向目标经 D1=A 明确递延到 X02，不以此宣称第 3 步原始扩展能力 Passed。第 4–7 步已具备 S 规定范围证据，但仍须独立审查实际运行时、资源、图和集成各项支持/拒绝边界。主设计以 `../DESIGN.md` 和经业主批准的限定修订为准；所有未递延的退出条件、负向要求及独立审查保持有效。
 
 
 ## 修改面
