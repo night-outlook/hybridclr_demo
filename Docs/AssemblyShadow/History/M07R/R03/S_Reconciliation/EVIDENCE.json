@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03SPrimaryReconciliationEvidence",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "reviewInputPins": {
+    "hybridclr_demo": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+  },
+  "runtimeDemoCommit": "29bb3d4a39bf8a2f23be404f77535aaba3485bfc",
+  "documentationTransport": "Exact final Docs-only descendant supplied in Primary publication prompt; not a new runtime source",
+  "sourceComparison": {
+    "base": "e8fda852684f584295fe37830340ab3c9f3fcc4f",
+    "executedHead": "29bb3d4a39bf8a2f23be404f77535aaba3485bfc",
+    "changes": "Local prerequisite-return documentation only",
+    "executableChanges": false
+  },
+  "localBatch": {
+    "id": "R03LocalBatch-20261007S-lr-recovery",
+    "checkpoint": "Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready",
+    "result": "EvidenceReadyForPrimaryReview",
+    "invocations": 1,
+    "pid": 31817,
+    "startUtc": "2026-10-07T23:47:17.157154+00:00",
+    "endUtc": "2026-10-08T01:27:28.572794+00:00",
+    "cells": {"Passed": 90, "Failed": 0, "Blocked": 0},
+    "freshBuilds": 6,
+    "freshPlayers": {"total": 59, "focused": 23, "resources": 14, "measurements": 12, "startup": 10},
+    "editor": {"preflight": 18, "focused": 754, "resources": 755, "skips": 0, "inconclusive": 0},
+    "wrapperExit": 0,
+    "seal": "Passed",
+    "storage": "Passed",
+    "localHistoricalCustody": "Passed",
+    "localHistoricalPathsReported": 228702,
+    "primaryInspectedLiveMacPaths": false
+  },
+  "originalArtifacts": {
+    "LOCAL_BATCH_RESULT.json": "2e09a5bfc0b4ad72b4fac9376fb2e73070a518082763356a3503842fe9cf8c46",
+    "BATCH_EXECUTION.json": "7b5fa01ebf6d068841c9d2fab03caedbc7f1c14e3c58f67763d3f8a15dcfb068",
+    "evidence-index.json": "f1d13ab3c4c3c49d8608454f0421580e9e4783e52a7b89a3a9e22f2c695bfafb",
+    "evidence.tar.gz": "f4c2a120e3fdbb1fbc5a984e920ba0dbf34a3e1502c3ecea955769d70179054a7",
+    "seal-receipt.json": "3f9e53e2c19e91fb8be934e797e1dff452936fe90b663812be707fad8e26f2a1"
+  },
+  "archiveVerification": {
+    "indexFiles": 18159,
+    "verifiedArchiveMembers": 18160,
+    "archiveBytes": 283728477,
+    "transportParts": 5,
+    "all90CellsPassed": true,
+    "state": "Passed",
+    "scope": "Captured indexed S archive; not every live Local cache or entire four-repository checkout"
+  },
+  "p05": {
+    "cleanupResult": "ExactOriginalBytesRestored",
+    "remoteAuthority": "Passed",
+    "stage": "Complete",
+    "stagedSettingsSha256": "7bc264085a0fa1c1a9c9fd067bb9a3ddecdbceaabdb10cf97859274ea7042bd",
+    "stateSha256": "895a0fe6a5d298b3829096eb68fddbfdc4678245550f325285a6f9fb256d9716e",
+    "originalAndExactRestoredSettingsSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+    "unityReserializedSettingsSha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d",
+    "restoredBaselineChangedRoots": [],
+    "restoredBaselineClosure": [],
+    "settingsRecoveryAndCompilerIntegrationAreSeparateProofs": true
+  },
+  "storageObservations": {
+    "samples": 1462,
+    "minimumAvailableBytes": 56829976576,
+    "latchedProblem": null,
+    "capacityReserved": false,
+    "instantaneousHighWaterProved": false
+  },
+  "runtimeSchemaEvidence": {
+    "onResourceCases": 13,
+    "positiveStartupCases": 4,
+    "typeInfoObjectsPerOnOrPositiveCase": 17,
+    "aggregateOnTypeInfoObjects": 221,
+    "offBridgedObjects": 0,
+    "negativeStartupCases": 6,
+    "rawEvidenceRewritten": false
+  },
+  "measurementScope": {
+    "processes": 12,
+    "statisticRows": 64,
+    "profile": "OriginalDevelopmentIL2CPPBuildNoR03ProbeOrLease",
+    "releasePerformanceAcceptance": false,
+    "noiseOrOverheadThresholdClaimed": false,
+    "deferredCpuOrRssRiskAcceptedHere": false
+  },
+  "pinnedCapture": {
+    "workflowRun": 37735479304,
+    "workflowCommit": "a20e85073fe75af12f31433cc3fa4972e66c1e6c",
+    "artifactId": 11531491593,
+    "artifactBytes": 405960931,
+    "artifactSha256": "a323402ec537537c0c1ce71519ffd210167260db42f1ee977597c94a195af35f",
+    "capturedGitBlobs": 16300,
+    "omittedOversizedSourceFiles": 2,
+    "sourcePinsAreReviewInputPinsNotSmokeCommit": true
+  },
+  "captureReauthentication": {
+    "workflowRun": 37740248886,
+    "jobId": 113189051409,
+    "workflowCommit": "0165f64d6efb3eee25c957bf6efa3ccfb348c677",
+    "state": "Passed",
+    "provenanceFilesVerified": 16303,
+    "gitBlobsVerified": 16300,
+    "inputArchiveDigestRecomputed": true,
+    "resultArtifactId": 11533508030,
+    "resultArtifactBytes": 1361,
+    "resultArtifactGithubDigest": "d5c1a8b7c40b0c6cd67fdbd1c0e9fe46c474f4dcb8ad0bcbb060b4a3254141a1",
+    "resultArtifactDigestBasis": "Connector metadata; main captured input digest independently recomputed in workflow",
+    "resultArtifactExpiresAt": "2026-10-22T01:56:22Z",
+    "independentAgentReview": false,
+    "unityRun": false,
+    "playerRun": false,
+    "runtimeAcceptance": false
+  },
+  "agentConfigurationDirectRead": {
+    "path": ".agents/config/config.json",
+    "blob": "0ba58f28196d708455811139f3131bb43c79c999",
+    "require_sol_main_agent_for_gate_review": true,
+    "enable_gate_reviewer": false,
+    "review_committed_major_milestones": false,
+    "effectiveMainOrReviewerIdentityInferred": false,
+    "configurationChanged": false,
+    "explicitR03IndependentReviewWaived": false
+  },
+  "connectorSmoke": {
+    "repository": "night-outlook/hybridclr_demo",
+    "branch": "codex/connector-smoke-s-review-resume-fc55d8b8",
+    "base": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+    "createdAndReadBackCommit": "0165f64d6efb3eee25c957bf6efa3ccfb348c677",
+    "state": "Passed",
+    "cleanup": "Branch deletion unavailable; retained disposable, never product authority",
+    "otherRepositories": "Exact ref reads and retained initial write-smoke evidence; no product writes this continuation"
+  },
+  "primaryOutcome": {
+    "sReconciliation": "PrescribedBatchPassed",
+    "stageWideAssessment": "PrimaryAssessmentNotIndependent",
+    "independentReview": "NotRun",
+    "independentReviewDelivery": "BlockedOnSeparateReviewerAccess",
+    "ownerDecisions": {"D1": "Pending", "D2": "Pending"},
+    "newRuntimeBatchAuthorized": false,
+    "newUnitTestSuiteExecutedByThisContinuation": false,
+    "historicalEvidenceModified": false,
+    "retainedR": "UnchangedAndStaged",
+    "failedContaminatedCertificates": 4,
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "pureInterpreterExpansionEnabled": false
+  }
+}

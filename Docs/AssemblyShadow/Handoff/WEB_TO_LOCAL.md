@@ -1,147 +1,56 @@
-# Primary Implementation → Local Validation: LR recovery, fresh batch S
+# Primary Implementation → Local environment: REVIEW ONLY after S
 
-## Assignment and preserved state
+## Current assignment
 
-First audit retained R read-only, verify transport readiness and fresh storage admission. Only then execute exactly one new complete batch S. No non-trivial code/design changes, phase retries or old-root recovery are assigned to Local.
+**No new Local runtime batch is authorized.** The earlier S executing assignment has been consumed. S passed all 90 cells and is reconciled by Primary as passing its prescribed Local contracts. Its original status remains EvidenceReadyForPrimaryReview. The next work is a separate independent full-stage R03 review and explicit owner decisions, not a rerun, a repair to retained R or advancement to M08A.
 
-R remains ReturnRequired: 90 cells = 47 Passed / 1 Failed / 42 Blocked; six builds, 18/754 Editor cases and 23 focused Players completed. The 755 resource roster and remaining 36 Players are NotRun. Storage/seal Passed. Its failed restore and staged settings are immutable forensic evidence; do not run Unity against, restore, finalize, move or delete that retained project. Preserve Q/P/O/N, the earlier capacity-blocked R record and all historical certificates/results unchanged.
+Current owner remains **Primary Implementation** for review integration, scope documents and substantive fixes. An independent reviewer must work read-only and return findings, not implement them. This handoff does not claim an independent reviewer has already run.
 
-## Read and source authority
+## Read first
 
-Read `README.md`, `Plan/CURRENT_STATUS.md`, Local-owned `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md`, then `History/M07R/R03/LR_Recovery_2026-10-07/{DESIGN.md, PRIMARY_REVIEW.md, EVIDENCE.json}` and this assignment. Paths in this paragraph are relative to `Docs/AssemblyShadow/`.
+All following paths are under `Docs/AssemblyShadow/`:
 
-All branches are `codex/assembly-shadow-r01b-h1`.
+1. `README.md` and `Plan/CURRENT_STATUS.md`.
+2. Unchanged Local-owned `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md`.
+3. `History/M07R/R03/S_Reconciliation/PRIMARY_RECONCILIATION.md` and `FULL_STAGE_PRIMARY_REVIEW.md`.
+4. `History/M07R/R03/S_Reconciliation/EVIDENCE.json`, `OWNER_DECISIONS.md` and `INDEPENDENT_REVIEW_REQUEST.md`.
+5. Original R03 design/stage/remaining-completion requirements and HUMAN_REVIEW_GATES; the new assessment does not replace them.
 
-| Repository | Exact Local checkout | Required authority |
+## Exact sources
+
+All branches: `codex/assembly-shadow-r01b-h1`.
+
+| Repository | Owning Local checkout | Required review authority |
 |---|---|---|
-| night-outlook/hybridclr_demo | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo | Source/CI anchor `9f27feb647bbf2d2bc82483700fe4f78e5ea60be`; execute the final Docs-only descendant whose exact 40-character SHA is supplied in Primary's final prompt |
-| night-outlook/hybridclr | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
-| night-outlook/hybridclr_unity | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity | `948c0e3b4f8891481301770115e8ba4945eea6de` |
-| night-outlook/il2cpp_plus | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
+| night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | S publication `fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b`; actual execution `29bb3d4a39bf8a2f23be404f77535aaba3485bfc`; exact final Docs-only assessment transport supplied in Primary's final prompt |
+| night-outlook/hybridclr | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| night-outlook/hybridclr_unity | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| night-outlook/il2cpp_plus | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
 
-The prior user-authorized agent configuration is retained in the new base; this assignment does not alter agent profiles, gate settings or require an invented effective model identity. Any unresolved ancillary gate observation remains explicit and distinct from runtime validation; do not label it Passed/Off or claim independent review. Both source-pin manifests, all C#/native/package code, fixtures, runtime expectations, timeouts, warm-up, leases and storage thresholds are unchanged. No smoke branch, including `codex/connector-smoke-lr-1fb504b2`, is product authority.
+Use the exact final prompt SHA, not an inferred latest tip. Confirm fc55 is its ancestor and that all subsequent changes are confined to Docs/AssemblyShadow. No source/pin/fixture/agent configuration changes are included in this assignment. Use read-only Connector access or safe isolated read-only review views; preserve unrelated/dirty working trees. Do not reset, stash, clean or switch an occupied project to make review convenient.
 
-## Required repair checks
+## Independent review route
 
-The new restore path performs all exact local source/project checks, authenticates captured state/backup, uses the unchanged Unity restore and exact-byte restoration, and only then checks fresh remote authority. The remote check is not bypassed for acceptance. If it fails after successful cleanup, `resource-p05-restore` remains Failed and dependents remain Blocked. Retain both facts, not an invented pass or staged-state inference.
+Follow INDEPENDENT_REVIEW_REQUEST.md in an actually separate isolated read-only reviewer session. The pinned `.agents/config/config.json` disables automatic reviewer invocation; do not change it or invent a helper result/model identity. An explicitly requested independent stage review remains required despite that setting. Choose a permitted available review route according to the live host schema and the existing agent-collaboration contract. Main-agent self-review or byte-check scripts must not be relabeled as independent.
 
-Require `transaction-recovery/verification.json` with `cleanupResult=ExactOriginalBytesRestored`, `remoteAuthority=Passed`, stage Complete, exact before/original/after hashes and unchanged production restore receipts for a fully passing S. Retain `settings-before.bytes` and `local-authority.json`. Wrong local source, unsafe paths, changed backup/settings or malformed production receipts must still fail closed. No missing-state branch can substitute for required P05 coverage.
+If no separate independent reviewer can be invoked, report `ReviewBlocked` and `independentReview=NotRun`, with the actual unavailable capability. Do not fabricate a PASS, ninety new Blocked runtime cells or an Off result. No Unity/build/Player execution is a fallback for an unavailable reviewer.
 
-`git-observations/` records successful remote observations and Git failures with repo/argv/clocks, actual exit or timeout/spawn distinction, requested pins, hashes and bounded redacted excerpts. Do not enable raw Git credential tracing, republish secrets, or claim an unavailable original R transport cause was recovered. Local runtime results, cleanup state and fresh source authority are separate.
+The reviewer must inspect actual pinned design, plan, cross-repository implementation, test semantics and raw evidence; the Primary matrix is a starting point, not authority for its own approval. In particular address RC1 qualification/expansion scope, RC3 supported versus rejected generic/old-handle claims, RC4 installed-baseline versus target graph, RC5 observational versus production performance claims, cleanup versus fresh remote acceptance, and archive/source provenance. D1/D2 proposals remain unapproved until the owner explicitly responds.
 
-## Environment and unused locations
+Return an independent report with exact reviewed pins, transport, actual reviewer context, method/exclusions, requirement matrix, findings and PASS/FAIL/BLOCKED verdict. Keep the reviewer read-only. Return its output to Primary for publication and any authorized remediation; do not implement non-trivial changes or overwrite prior review/evidence.
 
-Keep Unity 2022.3.62f2, StandaloneOSX arm64, Python and SDK-only paths below; never launch Unity 6000. All new locations are under `/Users/ah/GitHub/hybridclr/r03-local-validation/`:
+## Evidence and preservation boundary
 
-- `R03LocalBatch-20261007S-lr-recovery` — new core batch.
-- `Preflight-R03LocalBatch-20261007S-lr-recovery` — command/publication evidence.
-- `RetainedR-R03LocalBatch-20261007S-lr-recovery` — read-only retained-R audit.
-- `Transport-R03LocalBatch-20261007S-lr-recovery` — four-owner readiness.
-- `StorageCheck-R03LocalBatch-20261007S-lr-recovery` and `Storage-R03LocalBatch-20261007S-lr-recovery` — separate diagnostic/executing storage evidence.
+S live root: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery`.
+S publication receipt: `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007S-lr-recovery-2/PUBLICATION_RECEIPT.json`.
+Committed evidence: `History/M07R/R03/local-validation-20261007-batch-s-evidence-ready`.
 
-No reuse of an existing output, reset/stash, unrelated merge, source/pin/protocol substitution, credential repair or capacity reclamation is authorized. A failed prerequisite returns PrerequisiteBlocked/TransportBlocked/CapacityBlocked with batch NotRun, rather than fabricating ninety runtime cells. A new attempt after operator remediation needs separate authorization and unused paths.
+Preserve all S/R/Q/P/O/N and prerequisite-only evidence and their original result states. R remains staged and must not be opened in Unity, restored, finalized, moved or deleted. Its historical Git cause remains Unavailable. Four contaminated unisolated warm certificates remain Failed. Local's clean-tree, storage and historical custody observations remain recorded evidence, not an indefinite environmental guarantee.
 
-## Prepare, authenticate and diagnose
+Do not call run_completion.py, run_storage_checked.py --execute, StructuralRestore or a historical batch command under this assignment. Do not alter source pins, schemas, credentials, protocols, storage thresholds, timeouts, warm-up, leases or gate settings. A finding requiring fresh execution returns to Primary for an impact-specific new handoff.
 
-Set EXPECTED_DEMO_COMMIT to the exact final pushed SHA in Primary's prompt, not an inferred latest HEAD or the source anchor. Retain exact command/exit/clocks/streams in the new preflight directory. Never log origin credentials; require the canonical origin before network commands.
+## Stop and approval boundary
 
-```bash
-set -euo pipefail
-: "${EXPECTED_DEMO_COMMIT:?Set the exact final SHA from Primary handoff}"
-WORKSPACE=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r
-BRANCH=codex/assembly-shadow-r01b-h1
-export DEMO="$WORKSPACE/hybridclr_demo"
-BASE=/Users/ah/GitHub/hybridclr/r03-local-validation
-export BATCH="$BASE/R03LocalBatch-20261007S-lr-recovery"
-export PREFLIGHT="$BASE/Preflight-R03LocalBatch-20261007S-lr-recovery"
-AUDIT="$BASE/RetainedR-R03LocalBatch-20261007S-lr-recovery"
-TRANSPORT="$BASE/Transport-R03LocalBatch-20261007S-lr-recovery"
-CHECK="$BASE/StorageCheck-R03LocalBatch-20261007S-lr-recovery"
-STORAGE="$BASE/Storage-R03LocalBatch-20261007S-lr-recovery"
-R="$BASE/R03LocalBatch-20261007R-lq-storage"
-Q="$BASE/R03LocalBatch-20261006Q-lp-repair"
-UNITY=/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
-PYTHON=/Library/Frameworks/Python.framework/Versions/3.14/bin/python3
-export DOTNET_ROOT=/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk
-export PATH="$DOTNET_ROOT:$PATH" DOTNET_MULTILEVEL_LOOKUP=0 PYTHONDONTWRITEBYTECODE=1 TMPDIR=/private/tmp
-for DEST in "$BATCH" "$PREFLIGHT" "$AUDIT" "$TRANSPORT" "$CHECK" "$STORAGE"; do
-  test ! -e "$DEST" && test ! -L "$DEST"
-done
-mkdir "$PREFLIGHT"
-for REPO in hybridclr_demo hybridclr hybridclr_unity il2cpp_plus; do
-  ROOT="$WORKSPACE/$REPO"
-  test "$(git -C "$ROOT" rev-parse --show-toplevel)" = "$ROOT"
-  test -z "$(git -C "$ROOT" status --porcelain=v1 --untracked-files=all)"
-  test "$(git -C "$ROOT" branch --show-current)" = "$BRANCH"
-  URL="$(git -C "$ROOT" remote get-url origin)"
-  case "$URL" in
-    "https://github.com/night-outlook/$REPO.git"|"https://github.com/night-outlook/$REPO"|"git@github.com:night-outlook/$REPO.git") ;;
-    *) echo "Noncanonical origin: $REPO" >&2; exit 2 ;;
-  esac
-  case "$REPO" in
-    hybridclr_demo) EXPECTED="$EXPECTED_DEMO_COMMIT" ;;
-    hybridclr) EXPECTED=4b2774b066cfc6afd77a8c8aded6bda7ea574f55 ;;
-    hybridclr_unity) EXPECTED=948c0e3b4f8891481301770115e8ba4945eea6de ;;
-    il2cpp_plus) EXPECTED=1cf87f8209790f9fb2ebec97487dc1990ccd56c5 ;;
-  esac
-  git -C "$ROOT" fetch origin "$BRANCH"
-  test "$(git -C "$ROOT" rev-parse FETCH_HEAD)" = "$EXPECTED"
-  git -C "$ROOT" merge --ff-only FETCH_HEAD
-  test "$(git -C "$ROOT" rev-parse HEAD)" = "$EXPECTED"
-done
-git -C "$DEMO" merge-base --is-ancestor 9f27feb647bbf2d2bc82483700fe4f78e5ea60be "$EXPECTED_DEMO_COMMIT"
-git -C "$DEMO" diff --exit-code 9f27feb647bbf2d2bc82483700fe4f78e5ea60be "$EXPECTED_DEMO_COMMIT" -- . ':!Docs/AssemblyShadow'
-test "$(dotnet --version)" = 8.0.318
-test -x "$UNITY" && test -x "$PYTHON"
-"$PYTHON" -B "$DEMO/Tools/AssemblyShadow/R03Completion/retained_transaction.py" --retained-r "$R" --output "$AUDIT"
-"$PYTHON" -B "$DEMO/Tools/AssemblyShadow/R03Completion/transport_preflight.py" --workspace "$WORKSPACE" --demo-commit "$EXPECTED_DEMO_COMMIT" --output "$TRANSPORT"
-"$PYTHON" -B -m unittest discover -s "$DEMO/Tools/AssemblyShadow/R03Completion" -p 'test_lr_*.py' -v > "$PREFLIGHT/lr-tests.log" 2>&1
-"$PYTHON" -B -m unittest discover -s "$DEMO/Tools/AssemblyShadow/R03Storage" -p 'test_*.py' -v > "$PREFLIGHT/storage-tests.log" 2>&1
-"$PYTHON" -B "$DEMO/Tools/AssemblyShadow/R03Storage/run_storage_checked.py" \
-  --workspace "$WORKSPACE" --output "$BATCH" --unity "$UNITY" \
-  --demo-commit "$EXPECTED_DEMO_COMMIT" --retained-q "$Q" --storage-evidence "$CHECK"
-```
+This cycle creates no new Local validation result. Return the independent review or the truthful review blocker to Primary and stop. All substantive design/code/test fixes stay Primary-owned. Scope decisions are recorded explicitly before revising the exit contract; no proposal silently changes the original R03 requirements.
 
-Require retained audit Passed/read-only/still staged, all four transport rows Passed, 45 LR and 48 storage tests Passed with zero skips/errors/failures, and diagnostic admission Admitted/session Passed. Retain Local's full historical custody map separately; six-file audit is not the full map. Capacity remains `max(64 GiB, 2*B+20 GiB)` per relevant location, operating floor20 GiB; no shared APFS capacity summing. Known unresolved filesystem/transport constraints must be addressed through operator authorization, not ignored because a probe passed. These are point-in-time observations, not a reservation or durable remote lease.
-
-## Single executing invocation
-
-Only after all prerequisites pass, invoke once. The storage wrapper independently rechecks exact source authority and fresh capacity/probes immediately before construction. Do not call the unguarded Completion entry directly.
-
-```bash
-"$PYTHON" -B "$DEMO/Tools/AssemblyShadow/R03Storage/run_storage_checked.py" \
-  --workspace "$WORKSPACE" --output "$BATCH" --unity "$UNITY" \
-  --demo-commit "$EXPECTED_DEMO_COMMIT" --retained-q "$Q" --storage-evidence "$STORAGE" --execute
-```
-
-Any failed started S is retained without phase/batch retry, even if cleanup succeeded. A failed local recovery check does not authorize copying a backup by hand. Original R remains unused. No non-trivial Local source edit is permitted.
-
-## Complete evidence, publication and return
-
-Retain all 90 cells, six fresh builds, all 59 Player checks, 18-method preflight and 754/755 exact zero-skip/inconclusive rosters. Required P05 coverage includes preparation/compile, local authenticated restore, unchanged production receipts, exact original byte restoration, fresh remote success and finalization. Require graph-before-integration, all five P01-P05 reports, live source/linked-policy guards, restored-baseline zero-root/zero-closure proof, strict R02 bridge counts/raw custody, resource aggregate, codec owner context and complete physical image/method/PDB measurement evidence. Prior focused or historical subproofs never replace missing S results.
-
-Preserve the core ledger/result/index/archive/seal, new transaction-recovery and git-observations, full separate storage sidecar and preflight outputs. If evidence storage fails, record what is actually available, not a fabricated receipt. Keep cleanup and remote verdicts separate. Retain redacted diagnostics, not raw credentials; record the original transport failure as Unavailable where it remains so. The new tools add metadata/I/O overhead; no zero-cost or production-performance SLA is claimed.
-
-Before copying/packing publication, require the unchanged footprint-plus20 GiB budget at checkout, live batch and actual Git common directory. This read-only check does not alter sealed verdicts:
-
-```bash
-PYTHONPATH="$DEMO/Tools/AssemblyShadow/R03Storage" "$PYTHON" -B - <<'PY'
-import os, subprocess
-from pathlib import Path
-import storage_guard as s
-batch=Path(os.environ['BATCH']);demo=Path(os.environ['DEMO'])
-common=Path(subprocess.check_output(['git','-C',str(demo),'rev-parse','--git-common-dir'],text=True).strip())
-common=(demo/common).resolve() if not common.is_absolute() else common.resolve()
-size=s.footprint(batch);required=max(s.FLOOR,size['planningBytes']+s.MARGIN)
-observation=s.sample({'publicationCheckout':demo,'retainedBatch':batch,'gitCommon':common})
-record={'kind':'R03StoragePublicationCheck','requiredBytes':required,'size':size,'observation':observation,'state':'Blocked'}
-try:
-    s.capacity_ok(observation,required);record['state']='Passed'
-finally:
-    s.write_new(Path(os.environ['PREFLIGHT'])/'storage-publication-check.json',record)
-PY
-```
-
-Insufficient publication capacity means preserve live evidence and report the blocker; no historical deletion is authorized. Reauthenticate retained R's six files/read-only state and the full historical custody map after S without rerunning or overwriting the initial audit output. All original90 cells and seal, storage admission/session, wrapper exit and final four-source/custody checks must Pass for EvidenceReadyForPrimaryReview. Otherwise ReturnRequired; before construction use the truthful batch-NotRun prerequisite result. Never promote original R or contaminated Failed unisolated warm certificates.
-
-Update only Local-owned LOCAL_VALIDATION.md, RETURN_TO_WEB.md and a new immutable `local-validation-20261007-batch-s-*` checkpoint. Include exact commands, partial/failure diagnostics, original source versus publication commits and all sidecar bindings. Commit/push, verify four remote heads/cleanliness, return to Primary and stop. No later milestone, acceptance, quota change or independent-review claim is authorized. R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; PureInterpreter expansion disabled. Independent full-stage review and human approval, deferred R02 CPU/H1 RSS risks and production performance decisions remain pending.
+`R03Accepted=false`; `H2Passed=false`; `qualificationApproved=false`; `ReadyForHumanReviewGate=false`; `fullLegacyRegressionAcceptance=false`; PureInterpreter expansion disabled. A reviewer PASS alone does not grant H2. The human-defined H2 remains separately initiated after R03 scope/findings closure. No later milestone or production-performance approval is authorized.
