@@ -1,0 +1,59 @@
+name: R03 independent-review original S provenance
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-ir-provenance.yml'
+      - 'Tools/AssemblyShadow/R03IR/audit_s_provenance.py'
+permissions:
+  contents: read
+jobs:
+  original-s:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: tools
+          persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b
+          path: original
+          persist-credentials: false
+          sparse-checkout: |
+            Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready
+      - name: Reconstruct and authenticate immutable originals
+        shell: bash
+        run: |
+          python3 -B tools/Tools/AssemblyShadow/R03IR/audit_s_provenance.py --repo "$GITHUB_WORKSPACE/original" --output "$RUNNER_TEMP/s-original-audit" --include-archive
+      - name: Bind audit outputs and actual script revision
+        if: always()
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'s-original-audit'; out.mkdir(exist_ok=True)
+          def sha(p):
+            with p.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+          script=Path('tools/Tools/AssemblyShadow/R03IR/audit_s_provenance.py')
+          files=[{'path':str(p.relative_to(out)),'size':p.stat().st_size,'sha256':sha(p)} for p in sorted(out.glob('*')) if p.is_file()]
+          record={'kind':'R03IRProvenanceArtifact','workflowCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'scriptSha256':sha(script),'originalPublication':'fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b','files':files,'unityRun':False,'runtimeAcceptance':False,'independentReviewer':False}
+          (out/'workflow-provenance.json').write_text(json.dumps(record,indent=2)+'\n')
+          for name in ('tools','original'):
+            assert subprocess.check_output(['git','-C',name,'status','--porcelain'])==b''
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-original-s-audit-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/s-original-audit/*.json
+            ${{ runner.temp }}/s-original-audit/MANIFEST.sha256
+            ${{ runner.temp }}/s-original-audit/original-S-evidence.tar.gz
+          compression-level: 1
+          retention-days: 30
+          if-no-files-found: error
