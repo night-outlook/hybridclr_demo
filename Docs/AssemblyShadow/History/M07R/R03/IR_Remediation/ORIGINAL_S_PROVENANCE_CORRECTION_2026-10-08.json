@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03PrimaryCorrectiveProvenanceObservation",
+  "recordDateBasis": "2026-10-08 UTC",
+  "recordBasis": "Primary readback of actual GitHub Actions job logs and artifact metadata; this document is not a byte-for-byte copy of audit.json",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "scope": "Original committed checkpoint bytes, transport reconstruction, archive membership, typed ledger/cell equality and selected archived receipts",
+  "findingDisposition": {
+    "IR-R03-01": "PartiallyRemediatedNotIndependentlyClosed",
+    "IR-R03-02": "OpenNativeImplementationUnchanged",
+    "independentFullStageReview": "FAIL",
+    "independentRereview": "NotRun"
+  },
+  "immutableInputs": {
+    "originalPublicationCommit": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+    "checkpoint": "Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready",
+    "runtimeExecutionTuple": {
+      "hybridclr_demo": "29bb3d4a39bf8a2f23be404f77535aaba3485bfc",
+      "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+    }
+  },
+  "originalArtifacts": {
+    "BATCH_EXECUTION.json": {"bytes": 118529310, "sha256": "241144d39b1cfa47be3dcd4f67a3e40f7608ab58d605117c81fcccea8c68a427", "transportParts": 2},
+    "LOCAL_BATCH_RESULT.json": {"bytes": 118529710, "sha256": "2e09d46c800d7721eb14a6d7a31ba1d89327d1126ff7f7be35dd889bdbdf3096", "transportParts": 2},
+    "evidence-index.json": {"bytes": 4266164, "sha256": "0685d23a40b581cc7d22abc543c7d9067e808a0f25fa0b3f2aea32966b22bd70"},
+    "evidence.tar.gz": {"bytes": 587907380, "sha256": "23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6", "transportParts": 9},
+    "seal-receipt.json": {"bytes": 256, "sha256": "d382557e62c3e897070305daeedb452a2ab0d3f409af42e58be8fd8f03109dcf"}
+  },
+  "observedAudit": {
+    "workflowCommit": "38575b165d798defe545f2501f1fc307ccac44a3",
+    "workflowPath": ".github/workflows/r03-ir-provenance.yml",
+    "scriptPath": "Tools/AssemblyShadow/R03IR/audit_s_provenance.py",
+    "scriptSha256": "ecc5aad001b248ecc649bcfac60b8a5fe53050dcf9a9cd7aa54bad6ea53b48a8",
+    "testsPath": "Tools/AssemblyShadow/R03IR/test_audit_s_provenance.py",
+    "testsSha256": "d44ee638441d14c7bbb78ba276ab377f87d847a8e3757e4cf467f84b2e044526",
+    "workflowRunId": 37845000985,
+    "jobId": 113543552737,
+    "runUrl": "https://github.com/night-outlook/hybridclr_demo/actions/runs/37845000985",
+    "workflowConclusion": "success",
+    "auditResult": "Passed",
+    "hostTests": {"testsRun": 30, "failures": 0, "errors": 0, "skipped": 0, "unexpectedSuccesses": 0},
+    "checkpointGitBlobs": 16978,
+    "checkpointManifestRows": 16977,
+    "indexedFiles": 15712,
+    "archiveMembers": 15713,
+    "ledgerCellJoins": 90,
+    "originalResult": "EvidenceReadyForPrimaryReview",
+    "checksCompleted": [
+      "ExactGitBlobsAndCheckpointManifest",
+      "OrderedTransportAndPinnedOriginals",
+      "ExactArchiveMemberBytesAndMembership",
+      "TypedFinalizerAndNinetyLedgerCellJoins",
+      "ArchivedP05IntegrationAndC04ReceiptJoins",
+      "ExportsCompleteAndOriginalCheckoutStillClean"
+    ],
+    "originalCheckoutCleanAfterAudit": true,
+    "toolsCheckoutCleanAfterAudit": true,
+    "historicalInputsModified": false,
+    "fullSourceBuildProcessSemanticAudit": false,
+    "liveFilesystemCustodyReexecuted": false,
+    "independentReviewer": false,
+    "unityRun": false,
+    "runtimeAcceptance": false
+  },
+  "auditOutputArtifact": {
+    "id": 11579112494,
+    "name": "r03-original-s-audit-38575b165d798defe545f2501f1fc307ccac44a3",
+    "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/37845000985/artifacts/11579112494",
+    "zipBytes": 584964754,
+    "zipSha256": "59fd67ab70958178bd979912572781ecc76c1045fad4ba607ff6ce95f818e6e6",
+    "outerDigestBasis": "Actions upload log and Connector artifact metadata agree; not downloaded or recomputed in the chat container",
+    "expiresAt": "2026-11-07T21:12:48Z",
+    "uploadedFiles": 14,
+    "selectedInnerFiles": {
+      "audit.json": {"bytes": 3759, "sha256": "26bd8398652ee255b9e73a5114eb0cf4fdba32f6137c414cc36ddddcd97bfcfb"},
+      "checkpoint-git-crosswalk.json": {"bytes": 5250435, "sha256": "b6ff335495bfc3e3d6a2101cee0dd309df49e5684ca91a0900753c0a2a903ab6"},
+      "original-archive-members.json": {"bytes": 3920358, "sha256": "66306e30dab73fb3ff145d0e97999383d6e9d0df2a5916a45db2a113ef32c3ec"},
+      "ninety-cell-crosswalk.json": {"bytes": 65220, "sha256": "c78246e395dfc54f2514ec19e8ef27e50aa948effe837817b644a9f559e7615a"},
+      "host-tests.json": {"bytes": 320, "sha256": "506bc22b9f06f69d62f4a4166370f04584852772206b1a41deb5aceacfbf114a"},
+      "host-tests.log": {"bytes": 4591, "sha256": "c14180384d4f41312085233d9b9b980606142f5ef8ba2234f3fb8e0022f8a169"},
+      "c04-field-observations.json": {"bytes": 702, "sha256": "a1d0bc997796bd4a3b08249a8a03667de8ca3e4bf98d8187535a73ef5974620a"},
+      "original-S-evidence.tar.gz": {"bytes": 587907380, "sha256": "23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6"}
+    },
+    "innerDigestBasis": "Actual workflow-provenance JSON printed in the read job log; output bytes were hashed by the workflow",
+    "reproducibilityAfterArtifactExpiry": "Run the pinned audit against the immutable original checkpoint into a new external output directory; never reseal historical S"
+  },
+  "archivedReceiptObservations": {
+    "p05RecoveryVerificationSha256": "e16d8ff0fa745e2b6249bbe69d2b7c0f5034f2990d9246171c012fd9d8fa5ce8",
+    "p05CleanupResult": "ExactOriginalBytesRestored",
+    "p05RemoteAuthority": "Passed",
+    "p05Stage": "Complete",
+    "p05OriginalAndAfterSettingsDigestEqual": true,
+    "integrationSha256": "ace3d35b5030eebab2a520f605ba8c2f301f2e1e7cd16b3119fb93b876f29c73",
+    "returnChangedRoots": [],
+    "returnClosure": [],
+    "c04RawSha256": "412fe982b302aff32b727f40a55d88ef5313aff14002442357d06402b95a60b5",
+    "c04VerificationSha256": "e8219e4d7a9ea272158ba098de4d0985da44ae92940b9c11e82f4c6ff81367a3",
+    "c04NewMethodInvocationAttemptedTopLevel": "NotRecordedInBothFiles",
+    "c04NewMethodInvocationSucceededTopLevel": "NotRecordedInBothFiles",
+    "postPoisonValidInvocationProven": false
+  },
+  "withdrawnHistoricalClaims": {
+    "source": "Docs/AssemblyShadow/History/M07R/R03/S_Reconciliation/EVIDENCE.json",
+    "sourceGitBlob": "45cdc9192461330a09779f55e4391facfc994f61",
+    "sourcePreservedUnchanged": true,
+    "status": "NotAuthorityForOriginalS",
+    "claimedOriginalArtifacts": {
+      "LOCAL_BATCH_RESULT.json": "2e09a5bfc0b4ad72b4fac9376fb2e73070a518082763356a3503842fe9cf8c46",
+      "BATCH_EXECUTION.json": "7b5fa01ebf6d068841c9d2fab03caedbc7f1c14e3c58f67763d3f8a15dcfb068",
+      "evidence-index.json": "f1d13ab3c4c3c49d8608454f0421580e9e4783e52a7b89a3a9e22f2c695bfafb",
+      "evidence.tar.gz": "f4c2a120e3fdbb1fbc5a984e920ba0dbf34a3e1502c3ecea955769d70179054a7",
+      "seal-receipt.json": "3f9e53e2c19e91fb8be934e797e1dff452936fe90b663812be707fad8e26f2a1"
+    },
+    "claimedArchiveBytes": 283728477,
+    "claimedTransportParts": 5,
+    "claimedIndexedFiles": 18159,
+    "claimedArchiveMembers": 18160,
+    "familyOrigin": "Unresolved",
+    "authenticatedTransformationToOriginalS": false,
+    "additionalUnjoinedClaimsWithdrawn": [
+      "localBatch.pid, startUtc, endUtc and localHistoricalPathsReported",
+      "storageObservations.samples and minimumAvailableBytes",
+      "Individual P05 state/staged/Unity-reserialized hashes not explicitly rebound by this correction",
+      "captureReauthentication result artifact identity and claimed complete original-S binding",
+      "Capture source completeness and recovery of all oversized omissions"
+    ],
+    "historicalCapture": {
+      "runId": 37735479304,
+      "artifactId": 11531491593,
+      "reportedZipSha256": "a323402ec537537c0c1ce71519ffd210167260db42f1ee977597c94a195af35f",
+      "treatment": "Separate historical transport record; its outer ZIP digest is not proof of the original-S archive identity",
+      "originalToCaptureJoinClosed": false
+    }
+  },
+  "remainingWork": [
+    "Complete role-specific source/build/process semantic joins without treating missing top-level fields as verified joins",
+    "Identify the provenance of the withdrawn family if recoverable; preserve it as unresolved rather than inventing a transformation",
+    "Recover and inspect material source files omitted by the earlier capture",
+    "Implement and locally validate IR-R03-02 with actual post-poison attempted valid calls",
+    "Separate independent re-review; no automated audit or Primary self-review grants closure"
+  ],
+  "approvalBoundary": {
+    "owner": "Primary Implementation",
+    "D1": "A",
+    "D2": "A",
+    "newLocalRuntimeBatchAuthorized": false,
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "pureInterpreterExpansionEnabled": false,
+    "historicalRuntimeVerdictsChanged": false,
+    "retainedR": "UnchangedAndStaged",
+    "failedContaminatedWarmCertificates": 4
+  }
+}
