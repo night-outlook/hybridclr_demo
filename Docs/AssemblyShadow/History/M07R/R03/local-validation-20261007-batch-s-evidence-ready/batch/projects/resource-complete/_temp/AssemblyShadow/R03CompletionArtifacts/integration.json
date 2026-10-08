@@ -1,0 +1,141 @@
+{
+    "schemaVersion": 1,
+    "kind": "R03ProductionEntryIntegration",
+    "baselineManifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-29bb3d4a39bf/baseline-manifest.json",
+    "baselineManifestSha256": "2672507fe621700d55052beebd88f786cbdc9ff12a6a054b7fd5c672cdd43b46",
+    "patches": [
+        {
+            "patchId": "P01",
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d6e8121330904159b72c19235e893e64/P01-compile/Snapshot",
+            "snapshotHash": "d583db283a353fc78a360a942f70f2e7c7b67fe5d9cd0b657d33ec4b61fd8a9a",
+            "patchManifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d6e8121330904159b72c19235e893e64/P01-patch/patch-manifest.json",
+            "patchManifestSha256": "2b0363003414d40992acf64fc5589939256778e38b581df9647bdd581159defc",
+            "generationRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P01/generation",
+            "generationHash": "2f1e096751e29d857bd08f7518567aec42c50e23161621683f3920c2b7cecec4",
+            "eligibilityPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P01/eligibility.json",
+            "eligibilitySha256": "06f336ff16ea77fef69255411ceaad88943269a9759fae2595a77cfbfaf04871",
+            "installedBaselineRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "closure": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "loadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "expansionAuthorized": false
+        },
+        {
+            "patchId": "P02",
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d6e8121330904159b72c19235e893e64/P02-compile/Snapshot",
+            "snapshotHash": "7deb270c7220d60fe970b583e80d1b7e16510170fbf32c07139c4ede63588d28",
+            "patchManifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d6e8121330904159b72c19235e893e64/P02-patch/patch-manifest.json",
+            "patchManifestSha256": "2093f74bd08c74fa772737a4a0d592e3a2b8b080d9bd1c3108b35bf7e28a34a4",
+            "generationRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P02/generation",
+            "generationHash": "faac1d5ee98ef606b5befbf482128377151dc7cb1f57a062c83bf48271b05e7d",
+            "eligibilityPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P02/eligibility.json",
+            "eligibilitySha256": "0a15173b4776d76d446f6fa4f57e73f8706df5346b851a7b6f420bbbaac67cb6",
+            "installedBaselineRoots": [
+                "AssemblyA.Implementation.Extensibility"
+            ],
+            "closure": [
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "loadOrder": [
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "expansionAuthorized": false
+        },
+        {
+            "patchId": "P03",
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d6e8121330904159b72c19235e893e64/P03-compile/Snapshot",
+            "snapshotHash": "666f09b9d32f386be42d842e325da242aded14129d29ad54899986fc04ad05eb",
+            "patchManifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d6e8121330904159b72c19235e893e64/P03-patch/patch-manifest.json",
+            "patchManifestSha256": "18afec89641372bd18b0ede421253087added4b31cb30d2d0e8a92d9c675d121",
+            "generationRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P03/generation",
+            "generationHash": "3ae775e052b89478501e7562fd43e64eb26fef2dee9dcbe32b833e4daca10d8e",
+            "eligibilityPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P03/eligibility.json",
+            "eligibilitySha256": "d094cfa67d21f68b310730486731d88b07b1f5a619d6af2a071299b9a5741c2f",
+            "installedBaselineRoots": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "closure": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "loadOrder": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "expansionAuthorized": false
+        },
+        {
+            "patchId": "P04",
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d6e8121330904159b72c19235e893e64/P04-compile/Snapshot",
+            "snapshotHash": "7d20db21e0e100261f46a37366d3a6617096e4962fcf6f968fcc5ef1bf046853",
+            "patchManifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d6e8121330904159b72c19235e893e64/P04-patch/patch-manifest.json",
+            "patchManifestSha256": "790bdc1d824da9514a13cdee6c6d06a552dc7d0e5c2e4e84cbc179776c277717",
+            "generationRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P04/generation",
+            "generationHash": "46329d5b7bfb90af4f09370d79b1c90251d5446ec1d00a939ee8a9f13c6e6b08",
+            "eligibilityPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P04/eligibility.json",
+            "eligibilitySha256": "101ef3ea4c813f23dc0a39d85132406dcbe88101c3c51d92459409d9c46480fc",
+            "installedBaselineRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "closure": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "loadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "expansionAuthorized": false
+        },
+        {
+            "patchId": "P05",
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d6e8121330904159b72c19235e893e64/P05-compile/Snapshot",
+            "snapshotHash": "959a0c6c37c304c411d7e927df3db2ac1033d4dda15136cfe2abc8588c60bb47",
+            "patchManifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d6e8121330904159b72c19235e893e64/P05-patch/patch-manifest.json",
+            "patchManifestSha256": "2a4ffc0c6b373cca0d3d369a8bf4852e3c2a5db390011dbc891d8476d9e56cdb",
+            "generationRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P05/generation",
+            "generationHash": "32c85fdc2db128b17882322c42fa5b066fa422cb7d05113d0b9722e599754148",
+            "eligibilityPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P05/eligibility.json",
+            "eligibilitySha256": "2eece0f87ac0688bbf5d3135c3fd1c12a6217ccc14ee527c97b01b3620ab4277",
+            "installedBaselineRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "closure": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "loadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "expansionAuthorized": false
+        }
+    ],
+    "returnToBaselineSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/Snapshot",
+    "returnToBaselineSnapshotHash": "3705a06a3053d535ed9af9112807f32cd5a2749bf9524d5568c770f4d9b296e4",
+    "returnGenerationRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-generation",
+    "returnGenerationHash": "0ce2bb21e0891db24e2136ff66ec269233e9a14bb24f6cc51317275a42d2857e",
+    "policyDomainsPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-domains.json",
+    "policyDomainsSha256": "552dc6c6e5d2e42b0d0c99c4b18268cac2274a6587c646bdc825ceb0422976b8",
+    "returnChangedRoots": [],
+    "returnClosure": [],
+    "runtimeProofExecuted": false,
+    "expansionAuthorized": false,
+    "R03Accepted": false,
+    "H2Passed": false
+}

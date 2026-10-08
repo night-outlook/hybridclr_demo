@@ -1,0 +1,2387 @@
+{
+  "commands": [
+    {
+      "expectedExit": 0,
+      "id": "HybridCLR.Runtime",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/commands/0079/command.json",
+        "sha256": "d81de26260774151b5529cacc2217cb159bf5cb50acb99ea23494a8a8e8f5abf",
+        "size": 1288
+      },
+      "response": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/build-api/HybridCLR.Runtime/compiler.rsp",
+        "sha256": "0d7af3c08d6f7b02e5f2daf2b717e16d518b17fd6f57aad8cb18f308f5c4a558",
+        "size": 34822
+      }
+    },
+    {
+      "expectedExit": 0,
+      "id": "Unity.HybridCLR.AssemblyShadow.CodeGen",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/commands/0080/command.json",
+        "sha256": "72a8c42c912d06264d32932e023a78cf30bf19fbeb9705586d569e4056e88502",
+        "size": 1308
+      },
+      "response": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/build-api/Unity.HybridCLR.AssemblyShadow.CodeGen/compiler.rsp",
+        "sha256": "b20e4cb021a3dbbca9c48876cce5b9d2ff4da845dda5ab6d345071f940df3523",
+        "size": 34975
+      }
+    },
+    {
+      "expectedExit": 0,
+      "id": "HybridCLR.Editor",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/commands/0081/command.json",
+        "sha256": "02171eabef566e7ca250e1d8c999945ac7f886cf4ffdde72b3c4c8bd9cff64ee",
+        "size": 1287
+      },
+      "response": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/build-api/HybridCLR.Editor/compiler.rsp",
+        "sha256": "68c8f96cf5f8788756eb0964f0840b51ea750f9326221b783caadaed74b2109d",
+        "size": 53082
+      }
+    },
+    {
+      "expectedExit": 0,
+      "id": "R03Build",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/commands/0082/command.json",
+        "sha256": "00e40bc0afaf7f51c3cac73c501f26975657aa2f84cad81eea5d71ab8481e474",
+        "size": 1280
+      },
+      "response": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/build-api/R03Build/compiler.rsp",
+        "sha256": "aaa6b71741347b347844fc9f433e6c528e15fe06991854f4836aefd1dd1d2db0",
+        "size": 33730
+      }
+    },
+    {
+      "expectedExit": 1,
+      "id": "OriginalUnsignedCounts",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/commands/0083/command.json",
+        "sha256": "5e5b73b14e8fadfe753201166f658f20596a7681d180b0d919f13bdb1735ee22",
+        "size": 1294
+      },
+      "response": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/build-api/OriginalUnsignedCounts/compiler.rsp",
+        "sha256": "32c56767fcf9c152151cdabf5be2346945e3faba8d337e4edeaef52a51f06639",
+        "size": 33853
+      }
+    }
+  ],
+  "completeHelper": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/build-api/R03Build/R03Build.dll",
+    "sha256": "7f25741a85361b9f8d084e4eac96b530ed45e8d88108ae0315faaa3aad5f2aa2",
+    "size": 13824
+  },
+  "defines": [
+    "CSHARP_7_3_OR_NEWER",
+    "CSHARP_7_OR_LATER",
+    "DEBUG",
+    "ENABLE_ACCELERATOR_CLIENT_DEBUGGING",
+    "ENABLE_AR",
+    "ENABLE_AUDIO",
+    "ENABLE_BURST_AOT",
+    "ENABLE_CACHING",
+    "ENABLE_CLOTH",
+    "ENABLE_CLOUD_LICENSE",
+    "ENABLE_CLOUD_SERVICES",
+    "ENABLE_CLOUD_SERVICES_ADS",
+    "ENABLE_CLOUD_SERVICES_ANALYTICS",
+    "ENABLE_CLOUD_SERVICES_BUILD",
+    "ENABLE_CLOUD_SERVICES_CRASH_REPORTING",
+    "ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING",
+    "ENABLE_CLOUD_SERVICES_PURCHASING",
+    "ENABLE_CLOUD_SERVICES_USE_WEBREQUEST",
+    "ENABLE_CLUSTERINPUT",
+    "ENABLE_CLUSTER_SYNC",
+    "ENABLE_CRUNCH_TEXTURE_COMPRESSION",
+    "ENABLE_CUSTOM_RENDER_TEXTURE",
+    "ENABLE_DIRECTOR",
+    "ENABLE_DIRECTOR_AUDIO",
+    "ENABLE_DIRECTOR_TEXTURE",
+    "ENABLE_EDITOR_GAME_SERVICES",
+    "ENABLE_EDITOR_HUB_LICENSE",
+    "ENABLE_GAMECENTER",
+    "ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API",
+    "ENABLE_LEGACY_INPUT_MANAGER",
+    "ENABLE_LOCALIZATION",
+    "ENABLE_LZMA",
+    "ENABLE_MANAGED_ANIMATION_JOBS",
+    "ENABLE_MANAGED_AUDIO_JOBS",
+    "ENABLE_MANAGED_JOBS",
+    "ENABLE_MANAGED_TRANSFORM_JOBS",
+    "ENABLE_MANAGED_UNITYTLS",
+    "ENABLE_MICROPHONE",
+    "ENABLE_MONO",
+    "ENABLE_MOVIES",
+    "ENABLE_MULTIPLE_DISPLAYS",
+    "ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT",
+    "ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION",
+    "ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE",
+    "ENABLE_NETWORK",
+    "ENABLE_PHYSICS",
+    "ENABLE_PROFILER",
+    "ENABLE_RUNTIME_GI",
+    "ENABLE_SCRIPTING_GC_WBARRIERS",
+    "ENABLE_SPATIALTRACKING",
+    "ENABLE_SPRITES",
+    "ENABLE_TERRAIN",
+    "ENABLE_TEXTURE_STREAMING",
+    "ENABLE_TILEMAP",
+    "ENABLE_TIMELINE",
+    "ENABLE_UNITYEVENTS",
+    "ENABLE_UNITYWEBREQUEST",
+    "ENABLE_UNITY_COLLECTIONS_CHECKS",
+    "ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT",
+    "ENABLE_VIDEO",
+    "ENABLE_VIRTUALTEXTURING",
+    "ENABLE_VR",
+    "ENABLE_WEBCAM",
+    "ENABLE_WEBSOCKET_CLIENT",
+    "ENABLE_WWW",
+    "INCLUDE_DYNAMIC_GI",
+    "NET_4_6",
+    "NET_UNITY_4_8",
+    "PLATFORM_ARCH_64",
+    "PLATFORM_STANDALONE",
+    "PLATFORM_STANDALONE_OSX",
+    "PLATFORM_SUPPORTS_MONO",
+    "PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP",
+    "RENDER_SOFTWARE_CURSOR",
+    "TEXTCORE_1_0_OR_NEWER",
+    "TEXTCORE_FONT_ENGINE_1_5_OR_NEWER",
+    "TRACE",
+    "UNITY_2017_1_OR_NEWER",
+    "UNITY_2017_2_OR_NEWER",
+    "UNITY_2017_3_OR_NEWER",
+    "UNITY_2017_4_OR_NEWER",
+    "UNITY_2018_1_OR_NEWER",
+    "UNITY_2018_2_OR_NEWER",
+    "UNITY_2018_3_OR_NEWER",
+    "UNITY_2018_4_OR_NEWER",
+    "UNITY_2019_1_OR_NEWER",
+    "UNITY_2019_2_OR_NEWER",
+    "UNITY_2019_3_OR_NEWER",
+    "UNITY_2019_4_OR_NEWER",
+    "UNITY_2020_1_OR_NEWER",
+    "UNITY_2020_2_OR_NEWER",
+    "UNITY_2020_3_OR_NEWER",
+    "UNITY_2021_1_OR_NEWER",
+    "UNITY_2021_2_OR_NEWER",
+    "UNITY_2021_3_OR_NEWER",
+    "UNITY_2022",
+    "UNITY_2022_1_OR_NEWER",
+    "UNITY_2022_2_OR_NEWER",
+    "UNITY_2022_3",
+    "UNITY_2022_3_62",
+    "UNITY_2022_3_OR_NEWER",
+    "UNITY_5_3_OR_NEWER",
+    "UNITY_5_4_OR_NEWER",
+    "UNITY_5_5_OR_NEWER",
+    "UNITY_5_6_OR_NEWER",
+    "UNITY_64",
+    "UNITY_ASSERTIONS",
+    "UNITY_EDITOR",
+    "UNITY_EDITOR_64",
+    "UNITY_EDITOR_ONLY_COMPILATION",
+    "UNITY_EDITOR_OSX",
+    "UNITY_INCLUDE_TESTS",
+    "UNITY_STANDALONE",
+    "UNITY_STANDALONE_OSX",
+    "UNITY_TEAM_LICENSE"
+  ],
+  "helperSourceSha256": "84f97d772616c4d7d8203c4680bd1ee7d2826155b624a9b6eb40d45750bc4524",
+  "inputs": [
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/csc.dll",
+      "sha256": "da60224e49f5a12fffa0245eb9da814d69429dbe5a4f2ce03812956a1c60decb",
+      "size": 137216
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/Unity.CompilationPipeline.Common.dll",
+      "sha256": "76a56dbd40d392ff47e66ae051e35c0d87b2e615bea8df261333294cdf04a0d0",
+      "size": 9216
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEditor.Graphs.dll",
+      "sha256": "879e06f5b00ffd94249a54fc80919b147a1419489e67dfe267e9daed4249ebdc",
+      "size": 253952
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.CoreModule.dll",
+      "sha256": "e22a829a8022d30c6b2b11fe764d12a2383cf882b63a954641e3cd41ea56af6e",
+      "size": 9835008
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll",
+      "sha256": "b8a2a9c59c829dbb50a98fee7b4d117be311e387e3991363bcb80fb3dcf67759",
+      "size": 105984
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.DiagnosticsModule.dll",
+      "sha256": "a51f9eed069db42672e5cedaa91fe84ae6218e896fb53d37c35a022f18b819d9",
+      "size": 26112
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.EditorToolbarModule.dll",
+      "sha256": "672e91ea0fc2fa06d70fa906afbed007e8fc8750c79dbe079ac523a13f7411fd",
+      "size": 57344
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.GraphViewModule.dll",
+      "sha256": "cbb284546b94e7df441ca719872b737f2a15e14c085c790f0f47996e5474e49f",
+      "size": 252928
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.PresetsUIModule.dll",
+      "sha256": "cf6ef577fc309f8c760f83519f2f693bede3e37069f1e5adc9588a44e532eaa4",
+      "size": 36352
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.QuickSearchModule.dll",
+      "sha256": "58ea21e039ddb2a47fa3cb64454c93fbd1bf3da49dee86c872fad7a4366a55b7",
+      "size": 1572352
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.SceneTemplateModule.dll",
+      "sha256": "6081b44318534b985e199c6f2ba15b860732ab2c446704d934d9d5ec5fef7c60",
+      "size": 148480
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.SceneViewModule.dll",
+      "sha256": "ddf7d2acfd2c8272159d5ba2ae4c9e5a9d302d13ee272e24f8fd086ed70994ff",
+      "size": 49152
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.TextCoreFontEngineModule.dll",
+      "sha256": "381c1de43b7c19d8a243ed34f95fdac6a137515964c0054c40af0121bed5b66c",
+      "size": 15872
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.TextCoreTextEngineModule.dll",
+      "sha256": "2ad41b97c935bd4ce0604306abd38943d59e65a8f84b546b2ac44d3a320a602c",
+      "size": 197120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.UIBuilderModule.dll",
+      "sha256": "32266886373b6fc50071abc7915913fd1352a533e92aa9e00533bc2d417bf47b",
+      "size": 670208
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.UIElementsModule.dll",
+      "sha256": "e584c10d71446b2bfc21f023cdb508f09c81713ced6c0b8d9b782e5ddb0cf496",
+      "size": 374272
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.UIElementsSamplesModule.dll",
+      "sha256": "4881d690aeeae1fd42a8180571b10b5037ece29f1eb59ae40634967d17775bb5",
+      "size": 56832
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll",
+      "sha256": "ca302b476abd80bcb8e77b9b76fa148732ed518b384063754d5144fd364c5e91",
+      "size": 233984
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEditor.dll",
+      "sha256": "ca2cdf87cf98eac1d6dda2adaffa085df35402f7dc8d40e1b4f4ce130f7a2755",
+      "size": 218624
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll",
+      "sha256": "1ee33498b6a49bac9998ffe4bd4e5c7dff23501c604205ac333495ecc1570df5",
+      "size": 54272
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ARModule.dll",
+      "sha256": "ac4958f58e341528db8ed6084d5b79aa1e1b9e7f6d2d009daadbcccfb59f229a",
+      "size": 12800
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AccessibilityModule.dll",
+      "sha256": "08ddfb67b6204706bfcb2c87acc9c70955ebb0942b7b9035f53d1cfc085a5361",
+      "size": 15360
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AndroidJNIModule.dll",
+      "sha256": "c8c4fc9f1fc0d981b7e60cc88fb424aa8f99e4123ae5bba9395274db96f9623d",
+      "size": 86528
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AnimationModule.dll",
+      "sha256": "82891377a2cbf4472f27cde13703384cdb540bb05db381e5f9b834b44213fb47",
+      "size": 161792
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AssetBundleModule.dll",
+      "sha256": "f26f59a453e612a24316061400596ee0dcc50431107a5811dd60776feff315b2",
+      "size": 25088
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AudioModule.dll",
+      "sha256": "0ca3da7d9219e559ca7a58418781086939c1c169312d584d182cd9a1b8cf9a15",
+      "size": 66560
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ClothModule.dll",
+      "sha256": "c881d5e7b0f7fa3fcaa6889bf15ce8827c814d7d7b04d178594baa708b1ca5d5",
+      "size": 17920
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ClusterInputModule.dll",
+      "sha256": "aa533295c7377e0583a3a8ff8ac2068ea02fdb09cdcd3bd5f1e727a9ce21fef7",
+      "size": 13312
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll",
+      "sha256": "0e9df9a832d779ead6a8f901870437b1e5c2eedb8c48aeab2980b33bc6c38f99",
+      "size": 13824
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ContentLoadModule.dll",
+      "sha256": "4b27361b302884a29ec24924430960e6e1d08f5eb6ebe0a106a7b4e6253500f5",
+      "size": 18944
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.CoreModule.dll",
+      "sha256": "863f6b4e23874caefc0e97ee8131e87fa5ee8fbdcd74ab51382eef6ac5471af3",
+      "size": 1536000
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.CrashReportingModule.dll",
+      "sha256": "949266d4c78f48787863329edcda508b298b7cb9e6eb0d32822070bcf7f2ac94",
+      "size": 12800
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.DSPGraphModule.dll",
+      "sha256": "36da9bb16af33e6a78af627099b1376cfbd9637c7a99782d70ea7148da3b50b6",
+      "size": 20992
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.DirectorModule.dll",
+      "sha256": "409174bec6e3b73094f4441eda5f4803ffffc74e34997cc6be7c48766c15abfc",
+      "size": 16384
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.GIModule.dll",
+      "sha256": "651f9568d626147e0fd444caf64bb947a72091397f5dfb9011ebf2c042866ec5",
+      "size": 11776
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.GameCenterModule.dll",
+      "sha256": "d4357e452fad910d903d0219d8eaee18d783c87cf64643d46281e4cb577094e4",
+      "size": 40960
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.GridModule.dll",
+      "sha256": "c08312a865c0ff1efb525cf8e6cda7985f95c82ddc17458de9dbf5031219b125",
+      "size": 16896
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.HotReloadModule.dll",
+      "sha256": "671c615153ebf69062f19674c0480a5bece2667ee71f3c7e23a33d72bc070092",
+      "size": 11776
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.IMGUIModule.dll",
+      "sha256": "f474e9513685e87c7984e90d26ff4862b529aa75f5b80ac97842f0e44835decb",
+      "size": 186880
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ImageConversionModule.dll",
+      "sha256": "a79cb5f7190673920e488b8af8dd4ee2377a78073941d8f6017b7ead864f790f",
+      "size": 16384
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.InputLegacyModule.dll",
+      "sha256": "013e0d1daa1369196324636af157079a0889622f1f42501c233cedeb255d893e",
+      "size": 31744
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.InputModule.dll",
+      "sha256": "8b837110f2c0a5754588b44203d5de5f57fd82bd2292744a06961d036f777d87",
+      "size": 15360
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll",
+      "sha256": "dd4e9cbcea2fa9343bb62bd2f9fe4c89282b8cd68a9486a355bce7da09bca7fc",
+      "size": 13824
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.LocalizationModule.dll",
+      "sha256": "7ad85ebae23cc38433c5516042b7f7f7242377d454f7534dd3c12be94174d68f",
+      "size": 12800
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.NVIDIAModule.dll",
+      "sha256": "3264734487609bf1e887575a828155357a560cbfbef77c2a119f232472f2d8da",
+      "size": 26112
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll",
+      "sha256": "43fa0d5e14bc1c2daac064f7dbabf441455c7005b909915843a892afa111e431",
+      "size": 157184
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll",
+      "sha256": "844e90569cc85b5f0d08fcb0aec3b036ffed802c8d17b25638080adea442d467",
+      "size": 12288
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.Physics2DModule.dll",
+      "sha256": "2f1278e6c4a443801b5de504492565537c06c5f275bfb565548226c295aac14b",
+      "size": 133632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.PhysicsModule.dll",
+      "sha256": "a4e30df9f5dec1b31c0952590e5c4dc136a4a209d8be2447baf1ec5b93a1dac1",
+      "size": 130560
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ProfilerModule.dll",
+      "sha256": "3c63b0d37f1a96d957f3d97defca0b7041e31aff6135a282a94c08586fbd367f",
+      "size": 11776
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.PropertiesModule.dll",
+      "sha256": "1263db1a408612828e76b7c6f232b4287f7513fa2a2ff6d09941493c56020b95",
+      "size": 146944
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll",
+      "sha256": "854f31789caf60b590edbe8fe4fd4cf91256ef8060e84b007992a2be2fd3e52e",
+      "size": 11776
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll",
+      "sha256": "62e44a4bebce3fd26f2941cf0d4a6386b712617ef8686477586e98d340a36159",
+      "size": 12800
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll",
+      "sha256": "d298968f2318e2155f8286465d7ca2badcbf8e8a79c8df76fba1a75d71ba2812",
+      "size": 24576
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll",
+      "sha256": "7395f0d24f8178ea3e23b9af81a30910405a42e2e8c0ea0b2bbf087e414facd6",
+      "size": 13824
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll",
+      "sha256": "09c687f57f25ec35e768b4c41cde8a93726226d6a45284a4625055da6ec442b5",
+      "size": 18432
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.StreamingModule.dll",
+      "sha256": "bf90bd987ceab98b2732a404951eab963f205f1a063bc4bef96b449bcef16937",
+      "size": 12800
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SubstanceModule.dll",
+      "sha256": "1fc7c4b019d8ab0adf99c71997a09f56aad86411cbc58bab42bc67e6a7a91b28",
+      "size": 16384
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SubsystemsModule.dll",
+      "sha256": "4c0c750151b9885ed7e2ee53990895656a7d744fcdf5cff1523b029f63953626",
+      "size": 26624
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TLSModule.dll",
+      "sha256": "cc99d2646eee2512feafd532afb248c5dc78aedff8a292f8d150ed8a95c2130a",
+      "size": 18432
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TerrainModule.dll",
+      "sha256": "f9a6794989559bebe9c3079464681b2be312d5c81e890f4948daccb210d35c03",
+      "size": 93696
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TerrainPhysicsModule.dll",
+      "sha256": "5b07ebd689ecde0207a616c8a07cb4606470042c97782446468aafde8427b2f4",
+      "size": 12800
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TextCoreFontEngineModule.dll",
+      "sha256": "325323fe455f7b90bb579c0a3003dd74bffba818d76797b89e160bc180d4982e",
+      "size": 64512
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TextCoreTextEngineModule.dll",
+      "sha256": "2ccc24141816905fc0c134dd122b2dce0e2a906278cf67facd03776c432cad64",
+      "size": 243200
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TextRenderingModule.dll",
+      "sha256": "516da50ff3dbfeeda397bdbe7b904d89f00bccfb333a08d02d697c6e9706971c",
+      "size": 31744
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TilemapModule.dll",
+      "sha256": "aea20dc7d7ea18dad55554711fb6ddd9cb08c145cedc58049f71f95112a0d84a",
+      "size": 41472
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UIElementsModule.dll",
+      "sha256": "e4fea8686d5b4df1be106fb22d71eaa6428011b6d041a7618a1116698cb080f9",
+      "size": 1549824
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UIModule.dll",
+      "sha256": "ea2364355c2ba950a63cd78944dbd8fcbe7fc20427b489df82589de0f12aa9ca",
+      "size": 28672
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UmbraModule.dll",
+      "sha256": "6d4daae54ce17ef87e2ac56813157d034a69d61953149ae5a9d48ee6f11871ca",
+      "size": 11776
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityAnalyticsCommonModule.dll",
+      "sha256": "2abf585d6be4be26292cd8f0d1de51ffc94f7e12adea519e4c36e529f97b9922",
+      "size": 12800
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityAnalyticsModule.dll",
+      "sha256": "6bc6d3101e5836504401b5520390ff42ddb3217a68a39bfe0908f6a52fda6770",
+      "size": 36352
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityConnectModule.dll",
+      "sha256": "1b4a4884dd2424919846323d552895c5704d0c85dca18228dd20134585dcda6b",
+      "size": 13824
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityCurlModule.dll",
+      "sha256": "ea26ce72d3c6dac65db7d5606179a009fa2908fcb2ce8eaa3db2c574d34b127e",
+      "size": 13312
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityTestProtocolModule.dll",
+      "sha256": "51dc532374b35e8a0b8b29c28bfb593de5b29b9b85db4dd24e8bc14ccea498e6",
+      "size": 11776
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestAssetBundleModule.dll",
+      "sha256": "69f13d516c70989adfc66fc19de9ed016707294da569c66ff79545d383556f2d",
+      "size": 14848
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestAudioModule.dll",
+      "sha256": "5daa1c5d825750ffffa73fe6f62b37be0d691f33015a7b894b3305cce8ce956c",
+      "size": 14336
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestModule.dll",
+      "sha256": "25d0f0815408b24c7e55b4b5a1acc6402beae750f40827e8145346ed43b16bc0",
+      "size": 50176
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestTextureModule.dll",
+      "sha256": "9a444841f359afc658c52711b8eb77954aa664f67402066ebc2337b60ec672bf",
+      "size": 13312
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestWWWModule.dll",
+      "sha256": "813ed38fa692917b958f0f10c0cdd379fa36dc3734efae8ead03893318b4be32",
+      "size": 23552
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VFXModule.dll",
+      "sha256": "e8ecd40c37c16cf1d005a9c9165dd813ea8f02b8722c17974f68a77ed442ad86",
+      "size": 50688
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VRModule.dll",
+      "sha256": "44959049df3c03b8abc239d4a02d39d83349e125c0b35508b2b8d62c197e5436",
+      "size": 18432
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VehiclesModule.dll",
+      "sha256": "a886c639e7fb7cc43559920f156910727f968612aa899046665070a4ceec42f2",
+      "size": 15872
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VideoModule.dll",
+      "sha256": "5b808daa3e08d802f4e6df1ec5db29a0c83ed657bdf37ac1f143ef4dc4836d82",
+      "size": 33280
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VirtualTexturingModule.dll",
+      "sha256": "8e5fdff3fd0cfdd35b4b101c32397c74752d8832975524cdbe84a10434a6928a",
+      "size": 27648
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.WindModule.dll",
+      "sha256": "e273e3aacf8f3269a22809e41f3c33515cf6bb89aca39ecafc16f641ffff9b52",
+      "size": 12800
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.XRModule.dll",
+      "sha256": "3217e34339df2dec35825e15e92db1ac07fe70b6b0eedf38a844e8839becccad",
+      "size": 62464
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll",
+      "sha256": "1a9c77b9dfeb17adb9eca58544a0ab4694a212436bff0aae974d338e678b01ec",
+      "size": 120832
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/dotnet",
+      "sha256": "f67be57bba338b304ad4f6904a160c7f415627d9c15a9ccc0f2390b9d97b08be",
+      "size": 146240
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll",
+      "sha256": "073f8067a1a49616339317946f57656f26bce054b7ab544f1c4b719d1e3fb5df",
+      "size": 23040
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.iOS.Extensions.Xcode.dll",
+      "sha256": "f9c53051a15d9d66d8e169dbb943b8e36f5ac8cb32fa026bc7ad329f6e7039a7",
+      "size": 151040
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/Microsoft.Win32.Primitives.dll",
+      "sha256": "0e70ef3ae765d4e429d6a210358afee42e71848431328020808a76921002122d",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.AppContext.dll",
+      "sha256": "95a1524a337a0e967ac4e23fce8d4b02e0681479a86fe15327823844355cd4db",
+      "size": 4608
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Buffers.dll",
+      "sha256": "ac128c3c138ee6f6a397615d23eb248c85614e69defa7afc8d33d49087100233",
+      "size": 4608
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.Concurrent.dll",
+      "sha256": "bea496d6dcb322f28d0b2341fff91838fcea9940654bcfa6b218ba42eefedcc0",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.NonGeneric.dll",
+      "sha256": "874f96623a7971b402cba236aab49e550d52786641701d43ae172c952fb9ef26",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.Specialized.dll",
+      "sha256": "900a35b9a013806db1043fa504d0ea8ca7f61db142bb8826557835ebd0a55af6",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.dll",
+      "sha256": "f84e0a371e52a533d933d2c835efeb6a96b08d7da0008d6ab2242d980f1d7e46",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.Annotations.dll",
+      "sha256": "f3315940bb42a3fe8d07b9b34c94b4597c75b494302df722122c4a2911ccfffb",
+      "size": 6144
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.EventBasedAsync.dll",
+      "sha256": "25d642c437951b1f5d50676ccdec7284d1a1efbd25561a40d79c856f7ce2a795",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.Primitives.dll",
+      "sha256": "acaf33f2e91f83d744276ef2b8245cb48a78d88a798eef5499048dc15bbfcaee",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.TypeConverter.dll",
+      "sha256": "84ff0c6eb1830d3951f18dbf551ddbb8a81bd92eafa6064ab120fb005ba4982f",
+      "size": 6656
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.dll",
+      "sha256": "3e95f1a35c1788f2b34af0e27946c7e4a4e3c0172bcce4b843c8677b788e7a11",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Console.dll",
+      "sha256": "20613cd1602b4a2ab79386d1b42cec0a83eee3d00f8e955abfa2a0cefb3d88c1",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Data.Common.dll",
+      "sha256": "226fc9d84a1f2aa883e6db932062e1467dd687bead20c299fa1243c66c0f2c0a",
+      "size": 9728
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Contracts.dll",
+      "sha256": "9666ae0d143a6d3529fad8984677f6c7105728f6c64f453676f168e8fb964086",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Debug.dll",
+      "sha256": "34f9376f3aeec0da52bd9f56a3cb96ab29272c0f2ab36646144e4e4a60826b7c",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.FileVersionInfo.dll",
+      "sha256": "f6f514800cf3543ce3d71cdc5d24119d0374acde950eef780179e0187739b579",
+      "size": 4608
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Process.dll",
+      "sha256": "bfc1d49e5ce9eb820027644eb228a550e0dedb4172097749b97f6d2a52a86393",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.StackTrace.dll",
+      "sha256": "8905f767326006eaee279049cc2538aa0e76a59b5109466d513e42b670bc7463",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.TextWriterTraceListener.dll",
+      "sha256": "211be7b185a6a6656e2d8ef774b29aac3ed4d337210b3fa7f41a1c19c7119bee",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Tools.dll",
+      "sha256": "e96b8bfa656b24195b5ddbed5ec43aa251d0fb22b262bdc1c26a6a21de9add5c",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.TraceSource.dll",
+      "sha256": "f2afb80a833ff38b4acfdd18a7253741b0b9a51a72ff61254bbf72bb03b6a0e0",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Drawing.Primitives.dll",
+      "sha256": "00a4ce24c70b4f29b67c74774ab81b21bed253d8fd835b8dc9bc92c3c21c45ad",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Dynamic.Runtime.dll",
+      "sha256": "15e4752e92054ab4ae65ac433c72cfb7937f4d2cbce48c58437b1b1d89723b71",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Globalization.Calendars.dll",
+      "sha256": "04f7980f8b3d7e2f516418ee6c1bde006a358dcf99b2cceb1fd3d16d8789c1c7",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Globalization.Extensions.dll",
+      "sha256": "64929dbc8b5d1fefa1fb24c996259caf23a34ca9814eead6679db1b8a0df82f9",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Globalization.dll",
+      "sha256": "4e9eb12e49fa58904a3b2402aa3811297d65a28d6499239609a2735d3724c337",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.Compression.ZipFile.dll",
+      "sha256": "509d3d9e5b5b7e7a32b35b4865443c013916141eeeaed4979cf696be644a7ff9",
+      "size": 4608
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.DriveInfo.dll",
+      "sha256": "50945cee237616367e649c762d989857b34464c52fab8d7b77258a4f23bad9bc",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.Primitives.dll",
+      "sha256": "fe91a21541f8143b717379b5ab4716a3d4cc170adc8ab5998f7cfff35ff38b5a",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.Watcher.dll",
+      "sha256": "ff5b79eefdc4defd88b7906658f4bedd0083944887d1b154424730e94d949e55",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.dll",
+      "sha256": "2ce8a9fa98f853d95439a24a3fb7117c619d44cc1ac383a8944ef33055abaf1d",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.IsolatedStorage.dll",
+      "sha256": "b9cf9bc8a7a5b9bef1b81294d8fc15da919dbf6e880131194390e3d32a73e7fe",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.MemoryMappedFiles.dll",
+      "sha256": "362d9afeb570763025fa78698ba461cead8faaec20514a220075ab3f0e5a0ac6",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.Pipes.dll",
+      "sha256": "313db96a0282de9376c471f5af64075f22b101544affee0bb781eee6dfe9b897",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.UnmanagedMemoryStream.dll",
+      "sha256": "0dbd15db47d662035c6a52363fe0ce0cf22ff4226de9cc9bed75ff275ae86200",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.dll",
+      "sha256": "c5288c373f4e41ae45c5b2a8f4ac6b5d68d22e28cd956024070bd94b0ed41dc5",
+      "size": 4608
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.Expressions.dll",
+      "sha256": "e8b623417716403a478465fb4906f4f181639aaa895ad298fc092d7e2c731a22",
+      "size": 6144
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.Parallel.dll",
+      "sha256": "426ec85eda5596db68a6c14b603f98a1d43cbab92b0783f233c05fbee9952811",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.Queryable.dll",
+      "sha256": "024d17e6ae98d4ea56f07869643a0d464af47ff7d837db1e569e6464e6edab5f",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.dll",
+      "sha256": "97d3bcde64d1c1884330554e75edbf0791ef1c3e5aa831db3ba6d9cd3f377d09",
+      "size": 4608
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Memory.dll",
+      "sha256": "a6ca0c07281e587e03efa0042f9a48c13e5cc53a9c0ab005ff4573fcc6657b2e",
+      "size": 4608
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Http.Rtc.dll",
+      "sha256": "dd5a88a7e5e1ee9df07e6e4e5b053f9f52aa4e4993da5c74c0ad4bea2f2f7c1f",
+      "size": 4608
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.NameResolution.dll",
+      "sha256": "9f0cbf7943ea42cb8ac2fffa3a9b9b3986712549b97626472932c5bf99de6eb0",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.NetworkInformation.dll",
+      "sha256": "8ba75c2f9c337407968838d936472272cbd98248a8bb16b4e8cf9b6bfec804b2",
+      "size": 6144
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Ping.dll",
+      "sha256": "f6e7756ebd90c708b8ef8afaf459822bfdd15a15f80be46b8de1085bca4e8f9a",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Primitives.dll",
+      "sha256": "bdb1580746ea3e41752249a342af0eb140821b7850eb3a01329cda1d76863077",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Requests.dll",
+      "sha256": "08e011eee889ecff6200b316ee4a3c6693ba8a97d61eea30b1e7fd438adc88c6",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Security.dll",
+      "sha256": "93f108d9dd3334551531c93f5a98a45dae2a635a08705e66aaefa06343eecb84",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Sockets.dll",
+      "sha256": "3900768a66073ce12c67934748584292ba0cc3c10e613c9e2c4c280d81813e0e",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.WebHeaderCollection.dll",
+      "sha256": "b418b7bac3fb1ba125de733e82b956d9c98f3e2789ac4a449c200c4654f78c97",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.WebSockets.Client.dll",
+      "sha256": "3dfc5c488d14fc44502cb18f277c4f26163019fd0dd8a283bf78782a3d45f905",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.WebSockets.dll",
+      "sha256": "4f1510be5a1760fae21a97710427012b168fb96f32ba77037690eeb358420572",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ObjectModel.dll",
+      "sha256": "f8867e17cb0746323073275b7fd2d0f37d4c17f97c4d00c3479503575084e816",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.DispatchProxy.dll",
+      "sha256": "27a02ef402846ee204b78ff7dd0cfede2d72ad1428bfc11af85db1e9fb6da8a1",
+      "size": 4608
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Emit.ILGeneration.dll",
+      "sha256": "b21849b0956088a46f6b6f8e2ea22b59fc8d5bc8fac2466f693aca152217d873",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Emit.Lightweight.dll",
+      "sha256": "fbf930badb304f8970267bdeb7db30d86445026ccc042a1e2f4f171125655e3e",
+      "size": 4608
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Emit.dll",
+      "sha256": "abd6dfeefafa60599e8a5f0c628459b11c0431099847263ae67568b12ddc2855",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Extensions.dll",
+      "sha256": "aec29396ed672ea9fe1b8f3091e1445f87447f22369b531d32fde36f3c43542a",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Primitives.dll",
+      "sha256": "387c47b07a331e8ceee469dc4b4bbb3651823daa6c6556912850a9138e754a63",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.dll",
+      "sha256": "9e6442bee0ccf14efffc95defec5651b58fb33104a7fcf6fccf3913e9bb09738",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Resources.Reader.dll",
+      "sha256": "e7f55c37975fb7e22dc0b386d6237f014d22064c37860a5a2f09ee1bbc4f7b9e",
+      "size": 4608
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Resources.ResourceManager.dll",
+      "sha256": "03d6db9ad69c0493629b74d3bb7d5d182497df4ff6d605e2c61a00f4a3c2ec09",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Resources.Writer.dll",
+      "sha256": "ed99eb2db493c9a131422f5f608416e9d58724cdb5b4f388bfac25813c518bed",
+      "size": 4608
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.CompilerServices.VisualC.dll",
+      "sha256": "82b3c1eb78e36919fcb1f65c233f829105d2ea26daf65ce4254987c66f25e706",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Extensions.dll",
+      "sha256": "e672d1d1b128f185eba5ea6f63cfcdaf20cda48638d96ff4846f109e245346ae",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Handles.dll",
+      "sha256": "efdb80d2dea56fdd5821fe13083196933a21c1ecc55bf3572c5624c5306476b6",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.RuntimeInformation.dll",
+      "sha256": "94f0f8bb5f484476510cf80d65b9e6daa5732abc69ce7f3a86dd6755248e5f46",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.WindowsRuntime.dll",
+      "sha256": "15f7bf54aa0b317379f579ce1dd00a6dcac9bbc41d1921de4e04bb1107795980",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.dll",
+      "sha256": "2ea619fee24916dbbba7533f1109c5536e10d280abbc8f13f6b11b8c49eb56f7",
+      "size": 8192
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Numerics.dll",
+      "sha256": "5a7dd020dca51c58a37e34e015e3e8e9558b3d535233aae1544456677c91b8bc",
+      "size": 4608
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Formatters.dll",
+      "sha256": "994463f988dc9b75af0386cf259df3f803566e24f7f7a10f5c5b915fc5b0a6b6",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Json.dll",
+      "sha256": "b09733d3caae9f67636d2abb93e023f7f3b61e31c0ba75b748ae8ff3c2d97455",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Primitives.dll",
+      "sha256": "ca601331d732336546757d43a27138c164a2a93c521dc52c6c0466ce544d8ce3",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Xml.dll",
+      "sha256": "331b6a5bc12133ea6ffe332cab77a4b3446d1e8df9431b23c62137ae70a0f721",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.dll",
+      "sha256": "67755c37816bd9b0811067fb5721fff3ae9ed598cc5f7d4ab685bf2929ce70ff",
+      "size": 12800
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Claims.dll",
+      "sha256": "6dc2b88fee35bc921b00953cf6c569cd0ac8027de655fd64d73fddd269e53ef9",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Algorithms.dll",
+      "sha256": "e9c085a6ddf8ac98bbe51976ee3918af713b8affcd81ce3281213468ee70471a",
+      "size": 6656
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Csp.dll",
+      "sha256": "1292e245052b56e9fcf6f5ba3da08c4c51dc6e3eb571f98705f76136a7e46ccc",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Encoding.dll",
+      "sha256": "f0358a2c9e4abb94c6c5d16a0193e30ef38e004898778db2db1406936aebde1b",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Primitives.dll",
+      "sha256": "17a62a776bebbb2e95947689afa67b4ef730944825f5bb6e7db10dfa558a2211",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.X509Certificates.dll",
+      "sha256": "cf6bbb72d38bd9d435b620a57f02e5e5a3fce51b690921add601c4a2bd39e405",
+      "size": 6144
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Principal.dll",
+      "sha256": "57fd8163f3e303da3b3b4bd013554433c3fa9db3b905915903aad2287fea488e",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.SecureString.dll",
+      "sha256": "66738faa411eeeffa6920933f5af6bb1ef1dd43d7f7566ad383aef83df9b279d",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Duplex.dll",
+      "sha256": "6a32745908ea7875d5045c822501008f1bb0836d877a4b722f7919250f32c776",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Http.dll",
+      "sha256": "648703953fcd7ea397d5978447ae2c943b403a1cc6b12dadf8e117c60fd9c051",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.NetTcp.dll",
+      "sha256": "0f2bb21c09415b0c38847c52695f8b5e49fead656458d65f02c859bb43782ad1",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Primitives.dll",
+      "sha256": "2bc09f454fa1b9f42c8baaba42af7bf414060d95ec6580b6d70220addc69e9fb",
+      "size": 9728
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Security.dll",
+      "sha256": "18ce85a3cce8df673e02fd98533f6861a1a34a97a21dbc61af2badbcb90c3cc1",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Text.Encoding.Extensions.dll",
+      "sha256": "845e469167f70a5d3b0d17b42a4ad5f121568af9d0ea8d73e640757262d064b8",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Text.Encoding.dll",
+      "sha256": "fe8607ab56d9f456bd69f6f12ed88b27537282bc97faf5d7eaf696403248e992",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Text.RegularExpressions.dll",
+      "sha256": "bf446ab48b09037f07d5e0828620b340de9f282d7dd8fa67df3f25d83e1b8f19",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Overlapped.dll",
+      "sha256": "c562ee030d66bd68d76b5175957865ee0e4ee3867edd6edf6e3b7e1a736ec182",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Tasks.Extensions.dll",
+      "sha256": "6455c1307c4de0e5875856b0c18b9ec449d9e541904759f5a310744303f1fd18",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Tasks.Parallel.dll",
+      "sha256": "c7fdfade96f5cfce459c6771a83f47305a26bd536b51ca54815bc4c8a26ffc54",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Tasks.dll",
+      "sha256": "f2b2198ee4acfb4ef7d6d07cfe037acc5681e8a1c894931a7a170c38d3afe944",
+      "size": 6144
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Thread.dll",
+      "sha256": "3fe5a363d4c12c57e88af4d866aae65eca0f750943b2d824307aeb490caa223a",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.ThreadPool.dll",
+      "sha256": "9829de8ff80ed99415c5a18e35174c21b3bd118de3415d65dbc6bb57b5a93491",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Timer.dll",
+      "sha256": "21b08c040fa6373bfe802d910be567c3e2dd55540bda6082d00469abf2738487",
+      "size": 4608
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.dll",
+      "sha256": "7a28b6cffea2f721701d7c27b2b39dcaa484d281971b53413cfd72acc9874243",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ValueTuple.dll",
+      "sha256": "702fe8344cb343f11f1cce895f4ecb5995207f8046ea06b13e55ea0b62cbc157",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.ReaderWriter.dll",
+      "sha256": "00bfeea19962bbec8a51dfe55e1bd8ad4cf02ef0c565fee880b3ceb84744bc8e",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XDocument.dll",
+      "sha256": "eab5886d4285c69e03c9f5a5984eea68bd7a24b8e930c095ed559dced8e088de",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XPath.XDocument.dll",
+      "sha256": "231077479671377a327ae0c72da8c766f63c2dc412d14ebfaa0263f06a41d7a9",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XPath.dll",
+      "sha256": "59d920e0b80f5f9cefd52b0b88969f225483d8fce1a4e7723a369700c7fba93e",
+      "size": 5120
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XmlDocument.dll",
+      "sha256": "62049ed17429e37772f8cbc83bd5b65a500c7a979207f40aeb45d7f75d5b1917",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XmlSerializer.dll",
+      "sha256": "a14f0e5e83dc393be95fab05eba94f83aac2a5aba8e16e4e3311cd2ea4779c53",
+      "size": 5632
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/netstandard.dll",
+      "sha256": "3b20c3bb5da550371635c8ff930c2a3404d4f51fc9a7d8e530c99f99cadf1699",
+      "size": 87040
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Microsoft.CSharp.dll",
+      "sha256": "78b521c40b3031fdbb0fa3df65ab6347ad56f564edb13251965b47013a934f24",
+      "size": 7680
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.ComponentModel.Composition.dll",
+      "sha256": "673b2b71a9d0c83629676647c908c67048dc1e9b51d9b43c7561e72882abc693",
+      "size": 28160
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Core.dll",
+      "sha256": "a87b470d5878d9fa7bb3201c86d8e5fd62fdccc7ce6e4241a77b07a7510005f7",
+      "size": 157184
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Data.DataSetExtensions.dll",
+      "sha256": "1d9c2e9d867f5521cf80bbd37b3dcb0291ae9bb98dbc49365ff35c866c1697b4",
+      "size": 9216
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Data.dll",
+      "sha256": "045eb935b721514205f762ed39ea033f68ef647ccf7ecb9c65e513261841f5d6",
+      "size": 194560
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Drawing.dll",
+      "sha256": "4b54159d6acafa0a00f90eefdc3273f573539d8150c5f718a4992298ecb2aaab",
+      "size": 131584
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.IO.Compression.FileSystem.dll",
+      "sha256": "ace98e3269c9d21d7a5a86d1bd5f975921a228101c37b1f202d943b1c5c2a68e",
+      "size": 6656
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.IO.Compression.dll",
+      "sha256": "b8f7557c6b517f82a47643a344198cd7dd2b6310e3b1ea55da09298888519833",
+      "size": 8704
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Net.Http.dll",
+      "sha256": "ecb4f41d4573dec929660dfb04c46a0c31be415ce4befd2369bc34b3de2cd8f8",
+      "size": 29184
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Numerics.Vectors.dll",
+      "sha256": "395e47e04869f6a5ba90bb005918a3ff755c1bcefe58994bfe4f035563e98d32",
+      "size": 11776
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Numerics.dll",
+      "sha256": "3acd08429a7ce3028ad0be4134ff5c603a14a202c39a08499b188b9018d34d3a",
+      "size": 22528
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Runtime.Serialization.dll",
+      "sha256": "9f28b56d5a2675066cc22f62eb9af8244e8e9ccc17ba97a49b5c9d59bac824a9",
+      "size": 37888
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Transactions.dll",
+      "sha256": "0b2e0053fe55acde33f356c967db6b179e500d0b1e6a4232474a1a0babc88069",
+      "size": 16384
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Xml.Linq.dll",
+      "sha256": "30c6a9ac36ee1b08e23028b135f6152de336b069dea7bbb0f5e6340cbaac6c6a",
+      "size": 22016
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Xml.dll",
+      "sha256": "e014fb786edfaba4e0cc714f162944dc55883f0bdbc33b90dd0ec5dfef175705",
+      "size": 126976
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.dll",
+      "sha256": "cfb1aaefd49dcabcd4abcce2d15592d6acca29e6fac1a418ec41aab9b71a1c6d",
+      "size": 488448
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/mscorlib.dll",
+      "sha256": "800371597a06660e3f20251785d44cdab5edc681b9aa4b09120ad4a7ab2f9478",
+      "size": 925696
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261001-batch-c-return-required/batch/builds/candidate-release/Editor.log",
+      "sha256": "5c336100b7023eed4ad90018cb2a1ee7bcfec69beb538f7fd570dc6421afaf5d",
+      "size": 91146
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261001-batch-c-return-required/batch/projects/candidate-release/Assets/Editor/R03Build.cs",
+      "sha256": "9576761207b619e4e82a69b08095019562ac666b2dd262c6216a0d9f5a21c66e",
+      "size": 11513
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs",
+      "sha256": "84f97d772616c4d7d8203c4680bd1ee7d2826155b624a9b6eb40d45750bc4524",
+      "size": 11658
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/7zip/Common/CRC.cs",
+      "sha256": "2056de3e11e584e9ecc18c5b914aa367669f264cf0f9035883694f257f77bc76",
+      "size": 1112
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/7zip/Common/CommandLineParser.cs",
+      "sha256": "b47a40808a96481dbd650fb07305eacbc8ec2d85c800c855c877bf25f9d33942",
+      "size": 6642
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/7zip/Common/InBuffer.cs",
+      "sha256": "0636342e631969127f9f60b699d02819237c7c5d5819bfeb8d62fd1eed34f359",
+      "size": 1318
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/7zip/Common/OutBuffer.cs",
+      "sha256": "dee25adf93c2285bcf5295c1297140efbb756ce5f5beab509bbf410456fd3dec",
+      "size": 897
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/7zip/Compress/LZ/IMatchFinder.cs",
+      "sha256": "17ea27ef2835b3634d77d8bc65979f9cc88069bc34abeb173ca2f620bffa87fc",
+      "size": 552
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/7zip/Compress/LZ/LzBinTree.cs",
+      "sha256": "17f26a894e966d613ea9d0f8cdcd871ec03c05682275e23e078d3d3e686b9368",
+      "size": 9270
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/7zip/Compress/LZ/LzInWindow.cs",
+      "sha256": "0a31b68307b79ab455ae1653542031714308540e415a867321d10164b1505da3",
+      "size": 3779
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/7zip/Compress/LZ/LzOutWindow.cs",
+      "sha256": "6efbc82940c735b6590062c6dd4d18373ee68dc9083ae2f2f0bc71b096bceb2d",
+      "size": 2104
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/7zip/Compress/LZMA/LzmaBase.cs",
+      "sha256": "06f6cf5e52b52a4b8ba6b21d5c9249c7fa08b5691111a3ddb02c5f8fda0fe6e8",
+      "size": 2696
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/7zip/Compress/LZMA/LzmaDecoder.cs",
+      "sha256": "86bc9eec692d256dbf028f4e8fb247449eca79413ffa3982f5f8eac1b76919d2",
+      "size": 11677
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/7zip/Compress/LZMA/LzmaEncoder.cs",
+      "sha256": "cf204387dac820e7e6fb9380d9860a1f93311df796bd52afc95405eca1e064de",
+      "size": 43744
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/7zip/Compress/RangeCoder/RangeCoder.cs",
+      "sha256": "5869f971bbd0fb3565cdcfd9b4053736941fe5f23fc108c32a615730f4f36f3c",
+      "size": 3956
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/7zip/Compress/RangeCoder/RangeCoderBit.cs",
+      "sha256": "d4b18bf5df991ef17378cb830c3334eeff6ab7e59ced9f45cf547de926c1dba7",
+      "size": 3155
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/7zip/Compress/RangeCoder/RangeCoderBitTree.cs",
+      "sha256": "3344b5c9be3de7c30eeb0999bf92059d8797e9d02c5189d2c1b77eb34bb39a61",
+      "size": 3368
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/7zip/ICoder.cs",
+      "sha256": "c3b769c59fee20164cb64ddc3798828cca38a5476e8dcaf0c679c88735bab769",
+      "size": 3605
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/ArchiveFlags.cs",
+      "sha256": "79f2694bb7f4e9d3f67d4b0c66f7ba534dde3c06e328a6a2bdad4d621f476b36",
+      "size": 298
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/BinaryReaderExtensions.cs",
+      "sha256": "9958d81c56dee67824033f2c3f0b0441f8ffc9bce98a255b26e2934007d3af18",
+      "size": 1515
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/BinaryWriterExtensions.cs",
+      "sha256": "4a3da55ee5476ba18a0a53ca2df2fb5266f552e30be5863b8199b5b8b5dfbf3e",
+      "size": 896
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/BundleFileInfo.cs",
+      "sha256": "7d0fec05618d82a489a05cd07ec27e71ee0940449ea38d111729bbe1de9a19c7",
+      "size": 498
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/BundleFileReader.cs",
+      "sha256": "009a715a24dbcd3c9cdc1173dcca7dedb1eba7d3ce061f6b2de42c2d7a7b90b5",
+      "size": 8854
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/BundleFileWriter.cs",
+      "sha256": "8fabf605152d5fba64d3bfc0b0eed3fb75e3b2e1fa7339179dcd39c3eeb6cb6f",
+      "size": 4494
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/CompressionType.cs",
+      "sha256": "7ab9c9605fc507675e7e12f7001f01c91bc44d85aa80d1897b90705931bbfa99",
+      "size": 139
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/EndianBinaryReader.cs",
+      "sha256": "a67ac6d671136f5d4c0f4f5e75816e7d637657a3f9e1682e16cac11aae4db6a5",
+      "size": 2750
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/EndianBinaryWriter.cs",
+      "sha256": "fc51305ac886d538d690b5a2dbad094c9ba42ffa7e5a39176256718dc07a1c05",
+      "size": 2672
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/EndianType.cs",
+      "sha256": "1a787b6018df3e4cf1222545a36843814178e6972168ecb2fbcaa2e742232356",
+      "size": 221
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/GlobalgamedatasPatcher.cs",
+      "sha256": "ffc796d90dbb993bf4a260c96714d9489c32f1258d81b327703284daee0ee521",
+      "size": 2055
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/Header.cs",
+      "sha256": "7d118eb54741a6737702b4a830822cae4d5781ecb97ef0f0e031b4e0b85d4b26",
+      "size": 351
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/Node.cs",
+      "sha256": "63a4e0b26757b8f4fa9f1a991c460ba6eb3ca25182eaba45f2d73bb2795260bd",
+      "size": 168
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/ScriptingAssembliesJsonPatcher.cs",
+      "sha256": "86e575dd3dc5c3b17432d748b96ee2ae265287c3198dbee8fc26f927bc46bfe7",
+      "size": 1386
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/SevenZipHelper.cs",
+      "sha256": "bacc6ccbf9efe043aee4ac3095695767200f653710312c65fab3b10215bd6279",
+      "size": 1757
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/StorageBlock.cs",
+      "sha256": "a044d809fdb6d96c6162f45f99c7fb1216db170eef7fdd44d597242c8b241619",
+      "size": 181
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/StorageBlockFlags.cs",
+      "sha256": "a9aa654db8eb3135853cf24c5fff15fb76ed74a91580b8ed5df51261f4a8ca76",
+      "size": 158
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/StreamExtensions.cs",
+      "sha256": "813feb2790eab41fc715053c3856646852e5697fab17f1533993bda7cdac5377",
+      "size": 911
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/StreamFile.cs",
+      "sha256": "523899f735d794f4630672924009a1464cbb503a3933a075afa333b0fe0d8fb5",
+      "size": 173
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/UnityBinFile.cs",
+      "sha256": "3f8d74045da8582520d90c1da78a94f5e1e4e3735c3afe3b00e52a4b61ad2375",
+      "size": 3952
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/UnityBinFileDefines.cs",
+      "sha256": "7b90e85466f2bbb18ecb5e0030d1238090df67f39ff5424759201c174209f5d9",
+      "size": 10960
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityFS/UnityBinUtils.cs",
+      "sha256": "ce9038fd71f3270c350edded4ef71bb269577accd16e9d719b4844fe8ef80ef5",
+      "size": 2226
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityHook/CodePatcher.cs",
+      "sha256": "711d4ea484511b2c7e357a16c699401cf6a2c9c8960513ade46e49c1c549e05e",
+      "size": 11211
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityHook/HookPool.cs",
+      "sha256": "876fe9c1ec24b5a53a743c5a23fa202abc44e094df7d5f1faa1aac3e06b08e51",
+      "size": 1795
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityHook/HookUtils.cs",
+      "sha256": "9527ab66275ebe74f54d6838f8142ff803c0cadaa17d8f2cc4a1a154fadb11b1",
+      "size": 13807
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityHook/HookUtils_OSX.cs",
+      "sha256": "6c391ea735c4db081d230e9585fbb90c403fba32c0e0c5a7b2b0292e16371c2c",
+      "size": 3637
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityHook/HybridCLRHooks/CopyStrippedAOTAssembliesHook.cs",
+      "sha256": "0342fa8bca3962010915c09b7905d772be059763ff05ee9ea0c58b0e9e96abe4",
+      "size": 2740
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityHook/HybridCLRHooks/GetIl2CppFolderHook.cs",
+      "sha256": "4d78fe2854243c2835e1f23d0bc0d36cafde822abdb827dd12e84b127510ad42",
+      "size": 1874
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityHook/HybridCLRHooks/PatchScriptingAssembliesJsonHook.cs",
+      "sha256": "850c5c9771286b774445a957191e900860cb1d061a65d95e4a857b4922fb73f4",
+      "size": 2393
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityHook/LDasm.cs",
+      "sha256": "255a48f5c7e6d6aae3415fa3bcede3e8bac6876fe189970bdb71898812fc41a0",
+      "size": 29738
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/3rds/UnityHook/MethodHook.cs",
+      "sha256": "ea5e6155c2a2005f395cecb6c4fe1313c9cf6c4b7efcf415a5c468d479192d8a",
+      "size": 17577
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/ABI/MethodDesc.cs",
+      "sha256": "1b2521f0ed0705dc7a578b87e4c156cfc21ed2fad5517eb4502c2a832821f1a6",
+      "size": 1993
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/ABI/ParamInfo.cs",
+      "sha256": "8d27be39d451b4b110c2bdc6decb8655848f186a8b49a6b29de191ffdc7a5bb8",
+      "size": 562
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/ABI/ParamOrReturnType.cs",
+      "sha256": "58517079ba164937622f6d4d9464dccf210b28f1c35d2340fa4110ae8a3ddff6",
+      "size": 393
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/ABI/PlatformABI.cs",
+      "sha256": "cea93c248d50a729e07b1be2d9d4058fa6090028e7eaf458b61542bb8de29603",
+      "size": 152
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/ABI/TypeCreator.cs",
+      "sha256": "1c2ff8c48a365d71168e729430d166b78fdafc315bde5879d5283f5486440e6f",
+      "size": 3986
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/ABI/TypeInfo.cs",
+      "sha256": "dbaaac404745d8aff1af89bc0e64ade7fea6cf8c3b040d2fc9c8a15c0d92a8ee",
+      "size": 4800
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/ABI/ValueTypeSizeAligmentCalculator.cs",
+      "sha256": "7731c591a1d620db513dcfeb51d95e4d25c9ab12fb4cf8cba94e4d2baa4659ba",
+      "size": 5165
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AOT/AOTAssemblyMetadataStripper.cs",
+      "sha256": "1252888781896189539c369365f034ae9e4ecc8ac876e62ef1abb5b5d96087b8",
+      "size": 2124
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AOT/Analyzer.cs",
+      "sha256": "d2ab22e09c8b85c2819612529e60554829ea565f1f490a2fb420d1518c376015",
+      "size": 8642
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AOT/ConstraintContext.cs",
+      "sha256": "78209427de77e47b5978ad86adb60d343d95e3fbed0c9a25dfaa2c07f201b871",
+      "size": 1966
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AOT/GenericReferenceWriter.cs",
+      "sha256": "5de2dd0d3f9522c537a308a3fee5b7961c0711cd065b49f3a5b8b46ee8c807c8",
+      "size": 5804
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/AssemblyShadowBuildCommands.cs",
+      "sha256": "22bd4597a27068e1d3a6430a838243c1e731508973340438f14400dc49048351",
+      "size": 6333
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/AssemblySnapshot.cs",
+      "sha256": "fee7817d122c8746308ce14ce48d253aae390ecc2b6a2c71c83b684dd2012c0f",
+      "size": 18079
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/MetadataCapacityPlanner.cs",
+      "sha256": "63c06581572901aeeecb5a9a644b7ec5c870e74d2b951f7e0cbffdc65f95fa85",
+      "size": 24236
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/MetadataCapacityPlannerProfile2.cs",
+      "sha256": "10ea8199138c2f109ad19517e45de6c4c1bf7966da6e039976575e481a476c3f",
+      "size": 16538
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/NativeLayoutAdmissionSnapshot.cs",
+      "sha256": "d8d2d1139589afef14bafc6210111ef311258cbe97b87c577e48c0697036189a",
+      "size": 10983
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowArtifactWriter.cs",
+      "sha256": "3153a26055cca69595bd3fcaca8ae087a593f38d0d37bd44943f80bce7f618ee",
+      "size": 2443
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowBaselineManifestBuilder.cs",
+      "sha256": "d56a872d0cb948385373ae1b146c47cf7c4801b6e1c96e9f3585841e2f1eccec",
+      "size": 11371
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowBuildSession.cs",
+      "sha256": "de4ef3e2e59e530662f9b6f281824597d452655977b6b5ffbc0acf384418d05a",
+      "size": 961
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowCompilerModeEvidence.cs",
+      "sha256": "f04552ff9bc9b612b2bf6bdff94584a96aaf40f600b4a60ef879ebc3665f2b93",
+      "size": 6016
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowFilteredInputPolicy.cs",
+      "sha256": "d78d5d6fbd7b6f2ebc48cb10a75e13170c3212e6a08fbc593135651d22bce822",
+      "size": 16540
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowLinkedPlayerEvidence.cs",
+      "sha256": "0f75d368d4ff36cf917a310b37503b76be95ebb5e98726a4a291b2e51e0c606e",
+      "size": 16319
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowManifests.cs",
+      "sha256": "7b90179d946870b8f930be5ab11b44d7013ce1bda77f316f14c3557864d98b64",
+      "size": 5548
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowPatchManifestBuilder.cs",
+      "sha256": "e55ba6aac8f4b4148ecee8d5eaabf76be2451c92fb377d26ed1c14e9b5a8deea",
+      "size": 15568
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowPlayerInputCapture.cs",
+      "sha256": "754e64003f46269a6bd596fced9fcd31be372ffa2383d9552c9bff4e2f85861f",
+      "size": 26889
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowRawTypeAdmissionEvidence.cs",
+      "sha256": "c29698ccacf854777cd91f1604b129c7150ec5f97b637da42c7962f83090d9e3",
+      "size": 16905
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowReflectionBindingEvidence.cs",
+      "sha256": "26d458ea68c7d03688831cb52dc068852441593d309867b84088b5a3f19e5fe1",
+      "size": 19804
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowReflectionBindingLinkedEvidence.cs",
+      "sha256": "924a6ece37f78ff1ff253d4108e538186c0679628ecddb963b9f7d4809c0b234",
+      "size": 14910
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowResourceBaseline.cs",
+      "sha256": "d62d21b5254c69e7095122cfb1c5ee11138dbc34c2aab5001fe954936e4c64a0",
+      "size": 53879
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowSourcePins.cs",
+      "sha256": "8fc2d9d848d8372a6fe0eebc9f1d9db52aa6db292e06bd3773d178ec97a9878d",
+      "size": 3402
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowWarmupJson.cs",
+      "sha256": "706a660a6d59815eb8b49fdd49a7b216ce7c5f13eb57f24bfb5ee331745d6880",
+      "size": 14127
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowWarmupManifest.cs",
+      "sha256": "56d26797f5d3f58c7a2279bf57e1b481dc6349b46846ae73d9cdb930090e5706",
+      "size": 1663
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowWarmupManifestReader.cs",
+      "sha256": "aa299f6999c6ca98954a106af703faf46b4e3ca3dd31b74cae972ca03eda507a",
+      "size": 8365
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowWarmupValidator.cs",
+      "sha256": "606bc4385aaeaf2bdf14be9bb5f05e91f0cd1c49f49d07e72b7994d33f351dbb",
+      "size": 16195
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/TargetFrameworkReferenceVerifier.cs",
+      "sha256": "91ad5e02e1d75f5eb2b6b7a2bc13ac7b24c2f6afe6b3164b356861d52b9b077a",
+      "size": 9842
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/VerifiedLinkedRuntimeReferences.cs",
+      "sha256": "7bb20cc2d9eb93d3880efbdd403f957c2682ef1161d71e1ded6e2eefc2899d26",
+      "size": 16375
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Generation/RuntimeAssemblyInputProvider.cs",
+      "sha256": "74b3241b906b1e9fcf9685176e9eae5a4a1726672d17a3600342676f04500f2e",
+      "size": 1689
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Generation/ShadowGenerationAotInputs.cs",
+      "sha256": "bfeb6909b3f6c5dd8b5b3bf5557779a25e400b4e99ac00ff7159dad29f8b134e",
+      "size": 11657
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Generation/ShadowGenerationOutput.cs",
+      "sha256": "03bc0ea2acd242bc22c7eedba72afced783ae9abbcab88476d8571c41bba4bda",
+      "size": 14590
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Generation/ShadowGenerationPlan.cs",
+      "sha256": "eea52c7aaae641e1ff26dd897f2af9576d643603de6f264d33c3711e3b004a74",
+      "size": 21321
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Hashing/AssemblySemanticHasher.cs",
+      "sha256": "8324d5afa0a4cff5f6a47ad11732646e774521443cf5f663bd94e0fc7fcd2109",
+      "size": 33129
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Hashing/CanonicalSignatureWriter.cs",
+      "sha256": "f560c7742670bb2761b55acb5f778622eec48dee778712b4df82908baee8c6ac",
+      "size": 617
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Hashing/SemanticHashReport.cs",
+      "sha256": "2deabcd8ad94ce4310079a82586b09c33deca4eae3360bd44172182229097fdb",
+      "size": 541
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Hashing/SemanticHashSchema.cs",
+      "sha256": "23c9e0fd67716085690f01d5550deb52866b6f24ae9a5a8c1516b31b4653dac2",
+      "size": 208
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Metadata/AssemblyDescriptor.cs",
+      "sha256": "182358a925a922bcd0c22d3ec4b5c7a30245d2c5fa7b96ac70d92c9cc7ddf8f0",
+      "size": 799
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Metadata/AssemblyIdentityUtil.cs",
+      "sha256": "85993826bb07042f1b5e649ce14bcc0bebb99fe7e7b55b5fae194019aadfb35e",
+      "size": 2586
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Metadata/AssemblyReferenceGraph.cs",
+      "sha256": "e19632f051306246bbb2aa713b88a957382c040635f2a72421236a5f48c211fd",
+      "size": 17270
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Metadata/CompiledAssemblySet.cs",
+      "sha256": "012faf09a900dadd99e85989a59e5b4147c5caab8e3e6e88d7ade479556cbe9b",
+      "size": 5714
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Metadata/DnlibAssemblyLoader.cs",
+      "sha256": "6b88c14c9a1eb07ed50eada54f39b2b4e12695ea82b30af83fa0f74d68b20851",
+      "size": 21945
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Metadata/EvolutionSignature.cs",
+      "sha256": "32582ebdee7f848eae1be4e81e64c39be945d9cb04144816458103b1103aa7a3",
+      "size": 8297
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Metadata/LogicalMethodIdentity.cs",
+      "sha256": "d2d743761cae8a0f57adf148e061aa39a4e3de9dc3d1bd92b2c12f117fd3d005",
+      "size": 4098
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Metadata/NativeLayoutAdmissionValidator.cs",
+      "sha256": "94ef76f1d879a2311b5c17beb91d2460af95e7be10e3e37a57b2ec8f75ed4637",
+      "size": 11310
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Metadata/NativeLayoutIdentityContext.cs",
+      "sha256": "14fca496a7657355f663d6c999635e175d560a764ca934662dfe25b41c2d5c3c",
+      "size": 17270
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Metadata/PureInterpreterEligibility.cs",
+      "sha256": "34507a610dd907204778d49762dcbe869014612564faeb761179a81aa014a6cd",
+      "size": 20690
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Metadata/VerifiedTargetFrameworkReferences.cs",
+      "sha256": "0d56d776bd541dba076eb9fb9c7953dadf085b9657af7ad3f6f0a99d2f37835a",
+      "size": 2172
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Model/ShadowConfiguration.cs",
+      "sha256": "351014f1abf79313df5bbe20606db93c2c195f916fdfb3349389b99484a2a09d",
+      "size": 5863
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Serialization/AssetScriptReferenceIndexer.cs",
+      "sha256": "442b5574c686ab38a4683d68cb28a860da5165b8c63dcefeca60a06c41d7b24c",
+      "size": 21571
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Serialization/BundleImpactAnalyzer.cs",
+      "sha256": "b775a6523c6212eb889076bd473b4669f04a400f0b7c30c7a3b952df1f62bd3e",
+      "size": 2011
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Serialization/ResourceAbiDescriptor.cs",
+      "sha256": "34173ad746a5349a8698113da9c9af51370db294f1b15aec07d68e9e0d9a4e00",
+      "size": 1819
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Serialization/ResourceAbiDiff.cs",
+      "sha256": "b185f52793a52aca6634c32e486559a7bc27ea42d9c57541fd8e97dbb3bca71c",
+      "size": 10538
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Serialization/ResourceAbiHasher.cs",
+      "sha256": "f5fcfbf7f04e482272884175d7360772bcf976c25ab333f03b3641b565cde6ab",
+      "size": 3295
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Serialization/UnitySerializedTypeAnalyzer.cs",
+      "sha256": "d03afe6f9e63638bc88a870ea2fb26aee91ac98951d11a7676ccdb67c9e19452",
+      "size": 28073
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Settings/AssemblyShadowSettings.cs",
+      "sha256": "08cc0e506c5fd3f8b3c2d9e29388e83e7174a5b647479310f18a5004b4d038b2",
+      "size": 6336
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Settings/AssemblyShadowSettingsProvider.cs",
+      "sha256": "5822790bebc9e877430c53ff7f2dd030c9291a34d2d84c840b5ab9533858d78a",
+      "size": 3945
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Settings/AssemblyShadowSettingsUtil.cs",
+      "sha256": "03becf0d0a7d9bf314d2f80105eedf4bfe304bd0738c7195a9f6ed6b9056d7b4",
+      "size": 20548
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Validation/AssemblyNamePolicy.cs",
+      "sha256": "514039e8b1f9bf7e1484aebfb70e6112d73b9d399866ae697fbd13b0b6e45112",
+      "size": 1916
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Validation/BootstrapIsolationRule.cs",
+      "sha256": "65cc0c421945740a6a0514b59882371d34645f85474f0e4fb8b5a3b8be03a2b7",
+      "size": 2754
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Validation/ExtensibilityWhitelistRule.cs",
+      "sha256": "02d5c6056a0cca879418ec33b6c9f7ceac596d0a15c7a2ce15cba477dd0838f4",
+      "size": 2201
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Validation/InternalDependencyRule.cs",
+      "sha256": "16136386cf6b055e196e3b6d138082b55e51855384b5091846cd2194643ef313",
+      "size": 1301
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Validation/RawTypeAdmissionPropagation.cs",
+      "sha256": "6dc9c09bb18da0e186dbf0e9f246097c2192d58d0fd66c81aae73a928df7b146",
+      "size": 54352
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Validation/ReflectionDependencyScanner.cs",
+      "sha256": "963606ee7ca9ab0817df917dc26f2a2fa30740c6298a3e0f6dad75ba7add84d9",
+      "size": 42331
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Validation/ReflectionTypeLiteralResolver.cs",
+      "sha256": "3c89d7961fb36278d31bbb76fd745d09b3c56159ef8ccb928f416f32b99d5162",
+      "size": 13636
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Validation/SerializeReferenceDependencyVerifier.cs",
+      "sha256": "528e274fcc22bf6ccb9f9440ac64c3be4d883315a7e996a06351fa11469afee8",
+      "size": 11244
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Validation/ShadowAssemblyPolicyValidator.cs",
+      "sha256": "7a857c6134a2d2d61159bbdda5c252348f53e18e6db198f008e77de371856c0a",
+      "size": 88526
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Validation/ShadowExecutionEditorInventory.cs",
+      "sha256": "dd7fd008feab7c31d70b72508133d4a943e48845c8a9b16d3794f8e2b3862a21",
+      "size": 21842
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Validation/ShadowExecutionPolicy.cs",
+      "sha256": "f3db93c2db7eb021491ee85e582284a22b1b44a7142346a6c28cefe84dc99c31",
+      "size": 31204
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/CapturedCompilerReferences.cs",
+      "sha256": "481c8899a266fbad90f56c89c4a3027824275c2c6642f6970c667d4b2462a7f6",
+      "size": 3233
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/CapturedReflectionRetargetingProfile.cs",
+      "sha256": "e946a1fb2bfbd608a5e7c88149c9f137a1128fb0ca4383095203fff7634586cd",
+      "size": 8844
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/HybridCLR.AssemblyShadow.CodeGen.asmdef",
+      "sha256": "0e5e31e917a0687d02b4ca25fd7ae272f741090491961fbb8dddb1b6f4f9475e",
+      "size": 365
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/RawTypeAdmissionConfiguration.cs",
+      "sha256": "e3d55c0fb928d23aac245db266b59aa7eb1a516ff59beefee8f65826c10397cf",
+      "size": 12386
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/RawTypeAdmissionJson.cs",
+      "sha256": "cf00a0140c2b79b5c7988bca043a0e331b9fc4b1956192d92dbff9be402a0c38",
+      "size": 8231
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/RawTypeAdmissionVerifier.cs",
+      "sha256": "44c5be0937fba03afd59b3e7e8ad309a688cfcc1354e65b6513b2448bf13481b",
+      "size": 24275
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/ReflectionAcquisitionGuards.cs",
+      "sha256": "53fb37ac628d17a4bc9be864e5d42d24821af0acead2b39e45a611ea08cce39e",
+      "size": 12529
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/ReflectionBindingConfiguration.cs",
+      "sha256": "476b279dd31ab309413a4583de2b0a34b36ddec9e98d6e18e6b2b49fa2293ab5",
+      "size": 19394
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/ReflectionBindingFailureCapture.cs",
+      "sha256": "ae791bfc007704aeaf2140c513c21f2dfbce365dca0192eef91d0fae3a5fc300",
+      "size": 8444
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/ReflectionBindingFailureReplay.cs",
+      "sha256": "4ad573eb80df0af5b0705e7e6a7b2164d02e0f21b6497406b3d3101a3a7536a6",
+      "size": 4934
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/ReflectionBindingFingerprint.cs",
+      "sha256": "35025e3bdf49bc7ef7fe47005fb7431cd7fa834e6244b1e1aebd264135aeb1f3",
+      "size": 15414
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/ReflectionBindingLinkedVerifier.cs",
+      "sha256": "facf9c4dac8dd7f07e416bfbe90cc869fbf2c449835d400309655d9eab4e5dd1",
+      "size": 5437
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/ReflectionBindingTransformer.cs",
+      "sha256": "eb8bf18b93afb3db2fbecfa088e7b8fe9c646e03bec5a5ab9fdfcbb0c55f152c",
+      "size": 21189
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/ReflectionBindingsILPostProcessor.cs",
+      "sha256": "9730713b0030657b8e873c0edee9110c78be9b304b65b79b0383eab98bb94ede",
+      "size": 5006
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/ReflectionPdbConstants.cs",
+      "sha256": "76775f496b9d048e8116ff19cfc6152dd81b362cc453ae4c5558cf526230265e",
+      "size": 7565
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/BuildProcessors/AddLil2cppSourceCodeToXcodeproj2019.cs",
+      "sha256": "2dbb1452e49283077347ee7999d4ec067bf7a1cb4143b59c57bb2956af3bf551",
+      "size": 11405
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/BuildProcessors/AddLil2cppSourceCodeToXcodeproj2020Or2021.cs",
+      "sha256": "0f37dfaea79ca943013977cbd045f8b09d30106666d452e0fc6638f343f84d96",
+      "size": 10612
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/BuildProcessors/AddLil2cppSourceCodeToXcodeproj2022OrNewer.cs",
+      "sha256": "f4e45a09308ffda6ca071184e51f56fcd120a5b4e5f092d18dce0327b92e96b9",
+      "size": 3581
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/BuildProcessors/AddLil2cppSourceCodeToXcodeproj2023OrNewer.cs",
+      "sha256": "1d1fb6c0b2403b91931fee8604413c70eb3f2f0a364a78f511974627f405a0b1",
+      "size": 1080
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/BuildProcessors/BuildProcessorUtil.cs",
+      "sha256": "9d34918edecfcf359d5944333e713e3fb8007d530052e1548cef48cb4cd2bded",
+      "size": 709
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/BuildProcessors/CheckSettings.cs",
+      "sha256": "8ee35ca507f002bedf8825ba726ea8cacd33d78aaf37a22ece6fbfccb054bf00",
+      "size": 4945
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/BuildProcessors/CopyStrippedAOTAssemblies.cs",
+      "sha256": "d1faa5b527bf5483f07d42b9386b0d5a62ee889d3239546d89a95cd89f887ee4",
+      "size": 5416
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/BuildProcessors/FilterHotFixAssemblies.cs",
+      "sha256": "b14ac6a3f63bb4988a82709a9d60e05ab9afc2afc060061fa760bc89b790f36f",
+      "size": 2614
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/BuildProcessors/MsvcStdextWorkaround.cs",
+      "sha256": "9ea10f6b6001a5c06f1c858a5a0aa48bdc6b3c428c47339fe59ae5570f699f9e",
+      "size": 865
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/BuildProcessors/PatchScriptingAssemblyList.cs",
+      "sha256": "9a79a34c94b34a84c3457fd7aca2ba5f013aa6fa2592a15747ef7fc6fff05e3d",
+      "size": 6481
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/BuildProcessors/ScriptingAssembliesJsonPatcher.cs",
+      "sha256": "12abc2d9be9085fa463ad581456eb25df3d273f6aca8606f984e7e7155905398",
+      "size": 1411
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Commands/AOTReferenceGeneratorCommand.cs",
+      "sha256": "06732aa29c21dd9ed51e61326c8d5312dd39bcb8e8248c37073e703d89b20d45",
+      "size": 8525
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Commands/CompileDllCommand.cs",
+      "sha256": "338d8c53b1553c8d3374788ec098e94ef4f4964dcde929b60e937013598a5baf",
+      "size": 3586
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Commands/Il2CppDefGeneratorCommand.cs",
+      "sha256": "88e101b6ff40d6caf6d9f8a90f550b8134a39f7caa4da8fac6b5ed9ad6fad29a",
+      "size": 3104
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Commands/LinkGeneratorCommand.cs",
+      "sha256": "b1b9f6326c9aadaa6fb438dae77efda0c8a0a37b4ba73b251419aae417864e2e",
+      "size": 2347
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Commands/MethodBridgeGeneratorCommand.cs",
+      "sha256": "30b506f5b22e89156253f9aa18faa65b1efb2ec9c790dfdd319c6229272f45b9",
+      "size": 8380
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Commands/PrebuildCommand.cs",
+      "sha256": "c6f8554aae2f3c0eaf0ecc66d44a114fe493617de338acef1f3e1df25f7368c2",
+      "size": 1495
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Commands/StripAOTDllCommand.cs",
+      "sha256": "7658322d64410a788cec655385717fc349d477dfbbc514805e3fbab28e68b68c",
+      "size": 7204
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/HashUtil.cs",
+      "sha256": "e35e09fd3359fee215ed8bb24614e03a820fd310eb2fc4a3e0cd5b28e403de25",
+      "size": 679
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/HotUpdate/MissingMetadataChecker.cs",
+      "sha256": "461df89530b3d1d895422db737117651fd4ecae9bcfb6cede0e458c67f5be3c0",
+      "size": 3840
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/HybridCLR.Editor.asmdef",
+      "sha256": "4ccf1d9bc487f3358320797601d1ddf1f49fc0e1e5390b7bb5b4c4d0aab56238",
+      "size": 454
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Il2CppDef/Il2CppDefGenerator.cs",
+      "sha256": "2a4a65b1b0b74650bca73de56c3ea06011889440e53efaf0d3bf1f66cc336061",
+      "size": 15021
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Installer/BashUtil.cs",
+      "sha256": "e608fe7212d9621d3d9c3984bf4c8f3301ab128d2e9409c924fd11e4f8f11357",
+      "size": 5424
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Installer/InstallerController.cs",
+      "sha256": "f05a062ef9135caa108e2ba436cdb9248f4cf994b89db947d0bd078a7a9cc30a",
+      "size": 12863
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Installer/InstallerWindow.cs",
+      "sha256": "fa9b7af8e4336da0c35cb65db12e97f9fafd41e626dd9e4e96afdba0c6c4f2cc",
+      "size": 4402
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Installer/PinnedSourceInstaller.cs",
+      "sha256": "40c5236f15bf24570d63b2b1b817c1dac7263ef042a5dcfc6010ef2a134ce3b9",
+      "size": 25649
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Link/Analyzer.cs",
+      "sha256": "e713a80e30be414eb99420285a1e310d07532d876b32700b7ab326ff44cae517",
+      "size": 1550
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Link/LinkXmlWriter.cs",
+      "sha256": "8e756f15ce870ca8f588bec0e1f48e3d7da4032ac2e7bc69f0cbda8586ca573f",
+      "size": 1942
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Meta/AssemblyCache.cs",
+      "sha256": "3b7862a4b8aa54e88ca69dcb2338292404f47b9868e40e118ad9ed5b79676512",
+      "size": 395
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Meta/AssemblyCacheBase.cs",
+      "sha256": "b37b01f194326332d3141bf93dbb27d1aa114834185026209ec04aa3f9a916a4",
+      "size": 3302
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Meta/AssemblyReferenceDeepCollector.cs",
+      "sha256": "9183f81f37140b06729476afe4aaad047592bfc75b04328dfc174b65178dca12",
+      "size": 1388
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Meta/AssemblyResolverBase.cs",
+      "sha256": "45f2f6b5500afb13525c134d8e15b6aa3e575a2a83164926fb71a997a1764cd3",
+      "size": 1248
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Meta/AssemblySorter.cs",
+      "sha256": "d3fdcf94c7aec6ac264bd7c97b6be40f07cc411819a301b0dad4f4c37358f33a",
+      "size": 3530
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Meta/CombinedAssemblyResolver.cs",
+      "sha256": "6a886ad5487b7274d27da871d10a459b63b07de4ec8793bb56e6d84e7ce81f1c",
+      "size": 908
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Meta/FixedSetAssemblyResolver.cs",
+      "sha256": "0bf03f1f8ebf8bd5ebf2227c4382125bc200a84df126b2f8d2939774088dd42b",
+      "size": 1407
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Meta/GenericArgumentContext.cs",
+      "sha256": "019c45ee22b17ab99a0fc893b84bf9f2be7ccb1ca802b42794b40248af7ca3db",
+      "size": 3793
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Meta/GenericClass.cs",
+      "sha256": "6f669f06b1164651d3cc674a19ebc07a3442d82bec225efebf0d70b90eb03397",
+      "size": 2134
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Meta/GenericMethod.cs",
+      "sha256": "07192af07dab6d232c047623d9689d8a35675cea3dafdcdef05229ce7396ed41",
+      "size": 3880
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Meta/IAssemblyResolver.cs",
+      "sha256": "4b68f63ece78e30537b1ef16e1527c3946947f2ce60c323e75c6512bebd323e0",
+      "size": 283
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Meta/MetaUtil.cs",
+      "sha256": "0eccfd28d8b519418fc3e4ab40bfc390900242e1df6c217cb16214b3250389a0",
+      "size": 6903
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Meta/MethodReferenceAnalyzer.cs",
+      "sha256": "18a17bdfe3e50111a1158612f66b8d29603a19bdb1f047fca7cedae80e2fe3b0",
+      "size": 2254
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Meta/PathAssemblyResolver.cs",
+      "sha256": "8a7f5ac369e3ec966a536a85dfa031c71080de6ddc12dc851d147d804e5451a1",
+      "size": 1227
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/MethodBridge/Analyzer.cs",
+      "sha256": "b387c4c4493a1663bd996d3cf0719ffc8f27570da6fc94dbd61bbf1c0656bf4f",
+      "size": 8800
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/MethodBridge/CallNativeMethodSignatureInfo.cs",
+      "sha256": "845681dddd10db32cbfa551bf983077469d9db1cfa2c69b99893f4df620819aa",
+      "size": 237
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/MethodBridge/CalliAnalyzer.cs",
+      "sha256": "1eec815df3c73202bd9cc84a9c2ef7d75ede21a1d6bec14d564b20c7f11b9c7c",
+      "size": 2132
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/MethodBridge/GenerationInventory.cs",
+      "sha256": "a77a41de26e63e144cf58726805dd6fcf7acf50bee3e665933ed5305f8e81f46",
+      "size": 2172
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/MethodBridge/Generator.cs",
+      "sha256": "2d6ab4380f319e62bacce28d201f835b7d11e05b219611caa40fbd83bf9bb380",
+      "size": 55958
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/MethodBridge/MonoPInvokeCallbackAnalyzer.cs",
+      "sha256": "78f7caa1072f339f919b464c88f381542480a8b1fc247b72b177fe5ad73b3133",
+      "size": 3002
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/MethodBridge/PInvokeAnalyzer.cs",
+      "sha256": "9c6bc044a312824f18f87fa6df90b87044909b78d91e5001b7280969b80e8f08",
+      "size": 2636
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Settings/HybridCLRSettingProvider.cs",
+      "sha256": "c2d517b6c92faf676e29f78cad46d42e7c495519d4b7cbcd3b2bd991cfb40e0e",
+      "size": 5078
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Settings/HybridCLRSettings.cs",
+      "sha256": "55e71c4aef575745cdbf0260213e9d502a41300440bd646307fe497b237e0c2e",
+      "size": 3481
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Settings/MenuProvider.cs",
+      "sha256": "3f5bd51772a5ce08fcbac3a708a4b3f77e788ed48afc656e4bab9ed786facace",
+      "size": 1610
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/SettingsUtil.cs",
+      "sha256": "e0bde42910bfe17af0665c526231ece5696556ac8a118a2b13a701178f5bd5ea",
+      "size": 5330
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Template/FileRegionReplace.cs",
+      "sha256": "e766fb7d585ff524793314e60650c5de84b432d103d54b3853668b41e6d1e61c",
+      "size": 2486
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Plugins/LZ4.dll",
+      "sha256": "c64e38f5dcf35d63f58924080283e90a336962dfb3d0fbdff0cf0ce04393d0e0",
+      "size": 38912
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Plugins/dnlib.dll",
+      "sha256": "bb83dedc11d6ec41a4ae8f289cc1a35231be7e53e09fd7359c5c10dfbb9bfe5c",
+      "size": 1175040
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowCapabilityReader.cs",
+      "sha256": "e1898cdbe2423972779f32a9cfa1eb21e7946658c2f999d2473dd896cbc26cea",
+      "size": 14899
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowDiagnostics.cs",
+      "sha256": "cc37f2f4fa5b48137141725cfbadd3fe800aaf4489de14705b30f09e8678393f",
+      "size": 9210
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowErrorCode.cs",
+      "sha256": "8b82b1467f61e0933cb25dd4ad3ae995d9553ee9f1c66bdb49dfc45579b310ac",
+      "size": 1006
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowException.cs",
+      "sha256": "00af34991c6f072a14e17de31bbd204c2e36b7f29eb72306cf8f6e557ef1f530",
+      "size": 890
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowExecutionDiagnostics.cs",
+      "sha256": "dea6e1cd3886ee89cb30c1d30ed08b5eacbcb3a4caa18fcc14fd9a24315888a2",
+      "size": 16287
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowMetadataCapacity.cs",
+      "sha256": "a167f761b94dfc2a08b80246cdda87190bbd045e375fb88f76c18f1092dee3b3",
+      "size": 25668
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowRecoveryInfo.cs",
+      "sha256": "2f265d447fde9e65d5e2896fc4ab6f1a5b2231c8c6940dc4567fac33ba91d132",
+      "size": 7925
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowRuntime.cs",
+      "sha256": "b4346e73636bdb7b8b054d5168579c08891109f76f9e0221d7f3dd61e55b284d",
+      "size": 11481
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowState.cs",
+      "sha256": "1880789f70eab10636a96fb6389a6086f8b409e6d421ae92b40ad69235694c08",
+      "size": 568
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowTypeResolutionInfo.cs",
+      "sha256": "5a68b5a4e70991901f5836128d5899d6e9502e138b993907bfea9bf138217f78",
+      "size": 21726
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/HomologousImageMode.cs",
+      "sha256": "e5d509fd65e9060a0b3d9c7a79e658e9edbd43fa69cf151cc3eeb900f1712f4f",
+      "size": 97
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/HybridCLR.Runtime.asmdef",
+      "sha256": "1495a49ac145ef0719621b72922fc2ebde927caf6eab8a68e91b883db1169fe9",
+      "size": 349
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/LoadImageErrorCode.cs",
+      "sha256": "271ce9e6f1d529739f15cfa6d3884a02cedec71f1dfeaf1f78a2e04e22c7b1dd",
+      "size": 651
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/ReversePInvokeWrapperGenerationAttribute.cs",
+      "sha256": "7add859f1dae092bb5948514e7802de32b0653eb846a6a527c6c7e07e6d7154e",
+      "size": 500
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/RuntimeApi.cs",
+      "sha256": "71dba96eae32651c2f72fa20736d5cee228bd19c686a75dc5ec4559eac239cc9",
+      "size": 8546
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/RuntimeOptionId.cs",
+      "sha256": "55b75f2d4e7058d5f78e7479c02fe2ac085432842fe3393c5e2bc3df6a0046f6",
+      "size": 655
+    }
+  ],
+  "kind": "R03CompleteBuildHelperCompile",
+  "nativeExecution": false,
+  "oldSourceBlob": "7b54381bc96b4be133ebed5f7b7173fcc0a57849",
+  "packageAssemblies": [
+    {
+      "asmdef": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/HybridCLR.Runtime.asmdef",
+        "sha256": "1495a49ac145ef0719621b72922fc2ebde927caf6eab8a68e91b883db1169fe9",
+        "size": 349
+      },
+      "name": "HybridCLR.Runtime",
+      "output": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/build-api/HybridCLR.Runtime/HybridCLR.Runtime.dll",
+        "sha256": "2e9bd43912bb9f88939d3f1dd5b5784599eb2267ed9829c34c365c513cdf9270",
+        "size": 60928
+      },
+      "sourceCount": 15
+    },
+    {
+      "asmdef": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow.CodeGen/HybridCLR.AssemblyShadow.CodeGen.asmdef",
+        "sha256": "0e5e31e917a0687d02b4ca25fd7ae272f741090491961fbb8dddb1b6f4f9475e",
+        "size": 365
+      },
+      "name": "Unity.HybridCLR.AssemblyShadow.CodeGen",
+      "output": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/build-api/Unity.HybridCLR.AssemblyShadow.CodeGen/Unity.HybridCLR.AssemblyShadow.CodeGen.dll",
+        "sha256": "badb84c9ec94ae570ac2c87eb51f639d1e73d7f41a6c2e65878ff86348f3a6b7",
+        "size": 120832
+      },
+      "sourceCount": 14
+    },
+    {
+      "asmdef": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/HybridCLR.Editor.asmdef",
+        "sha256": "4ccf1d9bc487f3358320797601d1ddf1f49fc0e1e5390b7bb5b4c4d0aab56238",
+        "size": 454
+      },
+      "name": "HybridCLR.Editor",
+      "output": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/build-api/HybridCLR.Editor/HybridCLR.Editor.dll",
+        "sha256": "df4110d7a85e5e623bc5d38e4fe04fbb19601ccfe31af0e0eebb8154cdddaf94",
+        "size": 818176
+      },
+      "sourceCount": 175
+    }
+  ],
+  "referenceCoreSha256": "e22a829a8022d30c6b2b11fe764d12a2383cf882b63a954641e3cd41ea56af6e",
+  "result": "Passed",
+  "runtimeAcceptance": false,
+  "schemaVersion": 1,
+  "unityEditorRun": false,
+  "unityVersion": "2022.3.62f2"
+}

@@ -1,0 +1,870 @@
+{
+  "dependencies": [
+    "build-candidate-release"
+  ],
+  "evidence": {
+    "cases": [
+      {
+        "evidence": {
+          "buildReceiptSha256": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f",
+          "launchPid": 64325,
+          "outcome": "success",
+          "rawSha256": "50cd7a2f60d06e253ef3162b64b24c9cdfbb88ef36f6c4de0c5e0a6e82bf2f05",
+          "requestSha256": "78e134d437fb22342e267e500a29c346b7d663990ddb975242db32b12cf66786",
+          "result": "Passed",
+          "runId": "36d411c6169c4eff8d475555d7392b37",
+          "state": 6,
+          "value": 42,
+          "warmWindow": {
+            "allColdEvents": [
+              {
+                "amount": 1,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 0,
+                "metric": "admissionCacheMisses",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x11d99d4a8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x11d8f16e0",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6162296832,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x11d9a7ea8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              },
+              {
+                "amount": 1,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 1,
+                "metric": "admissionProofAttempts",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x11d99d4a8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x11d8f16e0",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6162296832,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x11d9a7ea8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              },
+              {
+                "amount": 1,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 2,
+                "metric": "admissionEntries",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x11d99d4a8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x11d8f16e0",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6162296832,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x11d9a7ea8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              },
+              {
+                "amount": 80,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 3,
+                "metric": "admissionRetainedBytes",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x11d99d4a8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x11d8f16e0",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6162296832,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x11d9a7ea8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              }
+            ],
+            "exactLoopDelta": {
+              "admissionCacheHits": 10000,
+              "admissionCacheMisses": 1,
+              "admissionEntries": 1,
+              "admissionProofAttempts": 1,
+              "admissionProofRejections": 0,
+              "admissionRetainedBytes": 80,
+              "admissionUnready": 0,
+              "baselineStateChecks": 10000,
+              "fieldWorkspaceBuilds": 0,
+              "genericContextChecks": 5,
+              "interfaceWorkspaceBuilds": 0,
+              "layoutCheckCalls": 0
+            },
+            "identifiedLoopAdmissions": 1,
+            "observation": "ExpectedContaminationObserved",
+            "policy": "R03NaturalProducerControlV1",
+            "runtimeAcceptance": false,
+            "unisolatedWarmCertificate": "Failed"
+          }
+        },
+        "id": "PC-C03-moved-slot",
+        "result": "Passed"
+      },
+      {
+        "evidence": {
+          "buildReceiptSha256": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f",
+          "launchPid": 64327,
+          "outcome": "success",
+          "rawSha256": "28a477b7304d246b663a4a51eecf3c302c978bf8ba8e03b6bd563accc83d53e0",
+          "requestSha256": "ba385d13174189ee88457b59a6bafc22cb53e27a5ddc77f47c870b51edec3ea2",
+          "result": "Passed",
+          "runId": "1a337261a7334de48bd836e3e0cac787",
+          "state": 9,
+          "value": 42,
+          "warmWindow": {
+            "allColdEvents": [
+              {
+                "amount": 1,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 0,
+                "metric": "admissionCacheMisses",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x11eb5d4a8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x11eab16e0",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6135754752,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x11eb67ea8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              },
+              {
+                "amount": 1,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 1,
+                "metric": "admissionProofAttempts",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x11eb5d4a8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x11eab16e0",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6135754752,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x11eb67ea8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              },
+              {
+                "amount": 1,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 2,
+                "metric": "admissionEntries",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x11eb5d4a8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x11eab16e0",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6135754752,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x11eb67ea8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              },
+              {
+                "amount": 80,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 3,
+                "metric": "admissionRetainedBytes",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x11eb5d4a8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x11eab16e0",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6135754752,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x11eb67ea8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              }
+            ],
+            "exactLoopDelta": {
+              "admissionCacheHits": 10000,
+              "admissionCacheMisses": 1,
+              "admissionEntries": 1,
+              "admissionProofAttempts": 1,
+              "admissionProofRejections": 0,
+              "admissionRetainedBytes": 80,
+              "admissionUnready": 0,
+              "baselineStateChecks": 10000,
+              "fieldWorkspaceBuilds": 0,
+              "genericContextChecks": 5,
+              "interfaceWorkspaceBuilds": 0,
+              "layoutCheckCalls": 0
+            },
+            "identifiedLoopAdmissions": 1,
+            "observation": "ExpectedContaminationObserved",
+            "policy": "R03NaturalProducerControlV1",
+            "runtimeAcceptance": false,
+            "unisolatedWarmCertificate": "Failed"
+          }
+        },
+        "id": "PC-C04-old-AOT-guard",
+        "result": "Passed"
+      },
+      {
+        "evidence": {
+          "buildReceiptSha256": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f",
+          "launchPid": 64329,
+          "outcome": "success",
+          "rawSha256": "ebbd21d3a4aec39a98f88bf94ceef1314cf337436f053b93d3bf6620f948031f",
+          "requestSha256": "1f202de83d2172f77b28a5b0f70b7818b1b577b24032479d3b2f1dd0b548b5aa",
+          "result": "Passed",
+          "runId": "56cb2084aa6245eeb2a48046b8cbbf3c",
+          "state": 6,
+          "value": 41,
+          "warmWindow": {
+            "allColdEvents": [
+              {
+                "amount": 1,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 0,
+                "metric": "admissionCacheMisses",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x120d1d5c8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x120c71800",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6101020672,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x120d27fc8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              },
+              {
+                "amount": 1,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 1,
+                "metric": "admissionProofAttempts",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x120d1d5c8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x120c71800",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6101020672,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x120d27fc8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              },
+              {
+                "amount": 1,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 2,
+                "metric": "admissionEntries",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x120d1d5c8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x120c71800",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6101020672,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x120d27fc8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              },
+              {
+                "amount": 80,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 3,
+                "metric": "admissionRetainedBytes",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x120d1d5c8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x120c71800",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6101020672,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x120d27fc8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              }
+            ],
+            "exactLoopDelta": {
+              "admissionCacheHits": 10000,
+              "admissionCacheMisses": 1,
+              "admissionEntries": 1,
+              "admissionProofAttempts": 1,
+              "admissionProofRejections": 0,
+              "admissionRetainedBytes": 80,
+              "admissionUnready": 0,
+              "baselineStateChecks": 10000,
+              "fieldWorkspaceBuilds": 0,
+              "genericContextChecks": 5,
+              "interfaceWorkspaceBuilds": 0,
+              "layoutCheckCalls": 0
+            },
+            "identifiedLoopAdmissions": 1,
+            "observation": "ExpectedContaminationObserved",
+            "policy": "R03NaturalProducerControlV1",
+            "runtimeAcceptance": false,
+            "unisolatedWarmCertificate": "Failed"
+          }
+        },
+        "id": "PC-C05-direction-reversal",
+        "result": "Passed"
+      },
+      {
+        "evidence": {
+          "buildReceiptSha256": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f",
+          "launchPid": 64331,
+          "outcome": "success",
+          "prepublicationLayout": {
+            "baseline": {
+              "assembly": "R03Contract",
+              "name": "Node",
+              "namespace": "R03",
+              "physical": "0x11d5959b0",
+              "typeKey": "type(11:r03contract/3:R03/4:Node@0)"
+            },
+            "baselineCctor": 0,
+            "baselineCctorAtRead": 0,
+            "baselineIdentityStatus": "Captured",
+            "baselineInitialized": false,
+            "baselineInitializedAtRead": false,
+            "baselineReady": true,
+            "baselineVtable": false,
+            "baselineVtableAtRead": false,
+            "error": 0,
+            "fieldsChanged": true,
+            "identityPolicy": "R03OwnedLayoutIdentityV1",
+            "physicalProof": true,
+            "sourceAttrs": [
+              1
+            ],
+            "sourceFieldCount": 1,
+            "sourceNativeSize": -1,
+            "sourceOffsets": [
+              16
+            ],
+            "sourcePending": false,
+            "sourceSize": 24,
+            "sourceSizeInited": false,
+            "target": {
+              "assembly": "R03Contract",
+              "name": "Node",
+              "namespace": "R03",
+              "physical": "0x11d595c80",
+              "typeKey": "type(11:r03contract/3:R03/4:Node@0)"
+            },
+            "targetAttrs": [
+              1,
+              1
+            ],
+            "targetCctor": 0,
+            "targetDefinitionReady": true,
+            "targetFieldCount": 2,
+            "targetIdentityStatus": "Captured",
+            "targetInitialized": false,
+            "targetNativeSize": -1,
+            "targetOffsets": [
+              16,
+              24
+            ],
+            "targetPending": false,
+            "targetReady": true,
+            "targetSize": 32,
+            "targetSizeInited": false,
+            "targetStorage": [
+              4,
+              8
+            ],
+            "targetVtable": false,
+            "truncated": false
+          },
+          "rawSha256": "5e3887826765b6fb8d3ad2e6f9cb842b6ddc3b09ec5f8fb609fb29e54e38862d",
+          "requestSha256": "c5c25718f128b4df207524e1a9a50a716eae3249752f69f822a5af316db57948",
+          "result": "Passed",
+          "runId": "80ebe194fcf34580a25d22ba957da8aa",
+          "state": 6,
+          "value": 41,
+          "warmWindow": {
+            "allColdEvents": [
+              {
+                "amount": 1,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 0,
+                "metric": "admissionCacheMisses",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x11d55d5c8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x11d4b1800",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6174158848,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x11d567fc8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              },
+              {
+                "amount": 1,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 1,
+                "metric": "admissionProofAttempts",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x11d55d5c8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x11d4b1800",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6174158848,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x11d567fc8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              },
+              {
+                "amount": 1,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 2,
+                "metric": "admissionEntries",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x11d55d5c8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x11d4b1800",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6174158848,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x11d567fc8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              },
+              {
+                "amount": 80,
+                "context": "0x0",
+                "domain": 1,
+                "generation": 1,
+                "index": 3,
+                "metric": "admissionRetainedBytes",
+                "phase": 2,
+                "producer": {
+                  "callback": {
+                    "declaringType": {
+                      "assembly": "mscorlib",
+                      "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                      "namespace": "System.Buffers",
+                      "physical": "0x11d55d5c8",
+                      "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                    },
+                    "name": "Gen2GcCallbackFunc",
+                    "token": 100672638
+                  },
+                  "finalizerType": {
+                    "assembly": "mscorlib",
+                    "name": "Gen2GcCallback",
+                    "namespace": "System",
+                    "physical": "0x11d4b1800",
+                    "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                  },
+                  "osThread": 6174158848,
+                  "recognizedArrayPool": true
+                },
+                "site": "Object::NewAllocSpecific",
+                "thread": 2,
+                "type": {
+                  "assembly": "mscorlib",
+                  "name": "Enumerator",
+                  "namespace": "",
+                  "physical": "0x11d567fc8",
+                  "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                }
+              }
+            ],
+            "exactLoopDelta": {
+              "admissionCacheHits": 10000,
+              "admissionCacheMisses": 1,
+              "admissionEntries": 1,
+              "admissionProofAttempts": 1,
+              "admissionProofRejections": 0,
+              "admissionRetainedBytes": 80,
+              "admissionUnready": 0,
+              "baselineStateChecks": 10000,
+              "fieldWorkspaceBuilds": 0,
+              "genericContextChecks": 5,
+              "interfaceWorkspaceBuilds": 0,
+              "layoutCheckCalls": 0
+            },
+            "identifiedLoopAdmissions": 1,
+            "observation": "ExpectedContaminationObserved",
+            "policy": "R03NaturalProducerControlV1",
+            "runtimeAcceptance": false,
+            "unisolatedWarmCertificate": "Failed"
+          }
+        },
+        "id": "PC-C07-private-primitive-append",
+        "result": "Passed"
+      }
+    ],
+    "identifiedLoopAdmissions": 4,
+    "kind": "R03NaturalProducerControls",
+    "result": "Passed",
+    "runtimeAcceptance": false
+  },
+  "id": "producer-controls",
+  "result": "Passed"
+}

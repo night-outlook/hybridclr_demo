@@ -1,0 +1,125 @@
+{
+  "dependencies": [
+    "build-candidate-release"
+  ],
+  "evidence": {
+    "buildReceiptSha256": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f",
+    "launchPid": 64298,
+    "outcome": "success",
+    "prepublicationLayout": {
+      "baseline": {
+        "assembly": "R03Contract",
+        "name": "Node",
+        "namespace": "R03",
+        "physical": "0x11cf559b0",
+        "typeKey": "type(11:r03contract/3:R03/4:Node@0)"
+      },
+      "baselineCctor": 0,
+      "baselineCctorAtRead": 0,
+      "baselineIdentityStatus": "Captured",
+      "baselineInitialized": false,
+      "baselineInitializedAtRead": false,
+      "baselineReady": true,
+      "baselineVtable": false,
+      "baselineVtableAtRead": false,
+      "error": 0,
+      "fieldsChanged": true,
+      "identityPolicy": "R03OwnedLayoutIdentityV1",
+      "physicalProof": true,
+      "sourceAttrs": [
+        1
+      ],
+      "sourceFieldCount": 1,
+      "sourceNativeSize": -1,
+      "sourceOffsets": [
+        16
+      ],
+      "sourcePending": false,
+      "sourceSize": 24,
+      "sourceSizeInited": false,
+      "target": {
+        "assembly": "R03Contract",
+        "name": "Node",
+        "namespace": "R03",
+        "physical": "0x11cf55c80",
+        "typeKey": "type(11:r03contract/3:R03/4:Node@0)"
+      },
+      "targetAttrs": [
+        1,
+        1
+      ],
+      "targetCctor": 0,
+      "targetDefinitionReady": true,
+      "targetFieldCount": 2,
+      "targetIdentityStatus": "Captured",
+      "targetInitialized": false,
+      "targetNativeSize": -1,
+      "targetOffsets": [
+        16,
+        24
+      ],
+      "targetPending": false,
+      "targetReady": true,
+      "targetSize": 32,
+      "targetSizeInited": false,
+      "targetStorage": [
+        4,
+        8
+      ],
+      "targetVtable": false,
+      "truncated": false
+    },
+    "rawSha256": "e7d38ab568cc5f0d24a46440604dc381d1ab645076375eaacddeb9e282edba21",
+    "requestSha256": "90be8c7f6b7cece51609b417b0d3c2ba16d6d91df1aa114a0c305b29dc6ebe0e",
+    "result": "Passed",
+    "runId": "f143a087921c44ff886e84292b58c10c",
+    "state": 6,
+    "value": 41,
+    "warmWindow": {
+      "broadColdEvents": [],
+      "broadCounterDelta": {
+        "admissionCacheHits": 10000,
+        "admissionCacheMisses": 0,
+        "admissionEntries": 0,
+        "admissionProofAttempts": 0,
+        "admissionProofRejections": 0,
+        "admissionRetainedBytes": 0,
+        "admissionUnready": 0,
+        "baselineStateChecks": 10000,
+        "fieldWorkspaceBuilds": 0,
+        "genericContextChecks": 0,
+        "interfaceWorkspaceBuilds": 0,
+        "layoutCheckCalls": 0
+      },
+      "exactLoopProofDelta": 0,
+      "ownerThread": 1,
+      "policy": "R03ExactAllocationWindowV1",
+      "producerFence": {
+        "acquired": true,
+        "admitted": 2,
+        "completed": 2,
+        "deferred": 1,
+        "deferredCompleted": 1,
+        "drained": true,
+        "elapsedMicros": 13700,
+        "expired": false,
+        "invalid": false,
+        "leaseMs": 5000,
+        "ownerOsThread": 8294833536,
+        "policy": "R03ArrayPoolFinalizerFenceV1",
+        "released": true,
+        "requested": true
+      },
+      "runtimeAcceptance": false,
+      "target": {
+        "assembly": "R03Contract",
+        "name": "Node",
+        "namespace": "R03",
+        "physical": "0x11cf55c80",
+        "typeKey": "type(11:r03contract/3:R03/4:Node@0)"
+      }
+    }
+  },
+  "id": "C07-private-primitive-append",
+  "result": "Passed"
+}

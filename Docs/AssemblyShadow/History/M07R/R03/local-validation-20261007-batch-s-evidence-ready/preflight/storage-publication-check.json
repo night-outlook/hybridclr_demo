@@ -1,0 +1,60 @@
+{
+  "kind": "R03StoragePublicationCheck",
+  "observation": {
+    "monotonicNs": 1359028499995166,
+    "observedUtc": "2026-10-08T05:30:25.658003+00:00",
+    "volumes": [
+      {
+        "availableBytes": 70993014784,
+        "availableFileNodes": 693291160,
+        "device": 16777230,
+        "freeBytes": 70993014784,
+        "fsid": 16777230,
+        "observedPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "readOnly": false,
+        "requestedPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "role": "publicationCheckout",
+        "totalBytes": 494384795648
+      },
+      {
+        "availableBytes": 70993014784,
+        "availableFileNodes": 693291160,
+        "device": 16777230,
+        "freeBytes": 70993014784,
+        "fsid": 16777230,
+        "observedPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery",
+        "readOnly": false,
+        "requestedPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery",
+        "role": "retainedBatch",
+        "totalBytes": 494384795648
+      },
+      {
+        "availableBytes": 70993014784,
+        "availableFileNodes": 693291160,
+        "device": 16777230,
+        "freeBytes": 70993014784,
+        "fsid": 16777230,
+        "observedPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/.git",
+        "readOnly": false,
+        "requestedPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/.git",
+        "role": "gitCommon",
+        "totalBytes": 494384795648
+      }
+    ]
+  },
+  "recordedUtc": "2026-10-08T05:30:25.658033+00:00",
+  "requiredBytes": 35681472512,
+  "size": {
+    "allocatedBytesUniqueInode": 14206636032,
+    "directories": 9842,
+    "elapsedSeconds": 3.9661152500193566,
+    "files": 108177,
+    "includesRetainedLiveCaches": true,
+    "logicalBytesPerPath": 13925584741,
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery",
+    "physicalApfsSharingKnown": false,
+    "planningBytes": 14206636032,
+    "symlinksNotFollowed": 0
+  },
+  "state": "Passed"
+}

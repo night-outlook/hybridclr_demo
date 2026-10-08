@@ -1,0 +1,2834 @@
+{
+    "assemblies": [
+        {
+            "name": "Assembly-CSharp",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "AssemblyA.Contracts",
+            "classification": 0,
+            "isShadowCapable": true,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": true
+        },
+        {
+            "name": "AssemblyA.Implementation.Extensibility",
+            "classification": 0,
+            "isShadowCapable": true,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": true
+        },
+        {
+            "name": "AssemblyA.Implementation.Internal",
+            "classification": 0,
+            "isShadowCapable": true,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": true
+        },
+        {
+            "name": "AssemblyShadowBaseline.Aot",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "AssemblyShadowBaseline.HotUpdate",
+            "classification": 4,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "AssemblyShadowDemo.Bootstrap",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": true,
+            "isPrecompiled": false,
+            "capabilityDeclared": true
+        },
+        {
+            "name": "AssemblyShadowDemo.ContractsConsumer",
+            "classification": 0,
+            "isShadowCapable": true,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": true
+        },
+        {
+            "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+            "classification": 0,
+            "isShadowCapable": true,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": true
+        },
+        {
+            "name": "AssemblyShadowDemo.M06RuntimeTests",
+            "classification": 2,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "HybridCLR.Runtime",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Microsoft.Win32.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Newtonsoft.Json",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": true,
+            "capabilityDeclared": true
+        },
+        {
+            "name": "System",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.AppContext",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Buffers",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Collections",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Collections.Concurrent",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Collections.NonGeneric",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Collections.Specialized",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ComponentModel",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ComponentModel.Composition",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ComponentModel.EventBasedAsync",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ComponentModel.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ComponentModel.TypeConverter",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Console",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Core",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Data",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Data.Common",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.Contracts",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.Debug",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.FileVersionInfo",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.Process",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.StackTrace",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.TextWriterTraceListener",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.Tools",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.TraceSource",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.Tracing",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Drawing",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Drawing.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Dynamic.Runtime",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Globalization",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Globalization.Calendars",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Globalization.Extensions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.Compression",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.Compression.FileSystem",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.Compression.ZipFile",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.FileSystem",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.FileSystem.DriveInfo",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.FileSystem.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.FileSystem.Watcher",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.IsolatedStorage",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.MemoryMappedFiles",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.Pipes",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.UnmanagedMemoryStream",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Linq",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Linq.Expressions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Linq.Parallel",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Linq.Queryable",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Memory",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.Http",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.NameResolution",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.NetworkInformation",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.Ping",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.Requests",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.Security",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.Sockets",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.WebHeaderCollection",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.WebSockets",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.WebSockets.Client",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Numerics",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Numerics.Vectors",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ObjectModel",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Reflection",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Reflection.DispatchProxy",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Reflection.Emit",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Reflection.Emit.ILGeneration",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Reflection.Emit.Lightweight",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Reflection.Extensions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Reflection.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Resources.Reader",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Resources.ResourceManager",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Resources.Writer",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.CompilerServices.VisualC",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Extensions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Handles",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.InteropServices",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.InteropServices.RuntimeInformation",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.InteropServices.WindowsRuntime",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Numerics",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Serialization",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Serialization.Formatters",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Serialization.Json",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Serialization.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Serialization.Xml",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.Claims",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.Cryptography.Algorithms",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.Cryptography.Csp",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.Cryptography.Encoding",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.Cryptography.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.Cryptography.X509Certificates",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.Principal",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.SecureString",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ServiceModel.Web",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Text.Encoding",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Text.Encoding.Extensions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Text.RegularExpressions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading.Overlapped",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading.Tasks",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading.Tasks.Extensions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading.Tasks.Parallel",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading.Thread",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading.ThreadPool",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading.Timer",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Transactions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ValueTuple",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Web",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Windows",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.Linq",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.ReaderWriter",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.Serialization",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.XDocument",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.XPath",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.XPath.XDocument",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.XmlDocument",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.XmlSerializer",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.Burst",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.Burst.Unsafe",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": true,
+            "capabilityDeclared": true
+        },
+        {
+            "name": "Unity.Mathematics",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipeline.Universal.ShaderLibrary",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipelines.Core.Runtime",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipelines.Core.ShaderLibrary",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipelines.Universal.2D.Internal",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipelines.Universal.Config.Runtime",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipelines.Universal.Runtime",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipelines.Universal.Shaders",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.AIModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ARModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.AccessibilityModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.AndroidJNIModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.AnimationModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.AssetBundleModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.AudioModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ClothModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ClusterInputModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ClusterRendererModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ContentLoadModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.CoreModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.CrashReportingModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.DSPGraphModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.DirectorModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.GIModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.GameCenterModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.GridModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.HotReloadModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.IMGUIModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ImageConversionModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.InputLegacyModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.InputModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.JSONSerializeModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.LocalizationModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ParticleSystemModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.PerformanceReportingModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.Physics2DModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.PhysicsModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ProfilerModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.PropertiesModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ScreenCaptureModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.SharedInternalsModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.SpriteMaskModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.SpriteShapeModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.StreamingModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.SubstanceModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.SubsystemsModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TLSModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TerrainModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TerrainPhysicsModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TestRunner",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TextCoreFontEngineModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TextCoreTextEngineModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TextRenderingModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TilemapModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UI",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UIElementsModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UIModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UmbraModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityAnalyticsCommonModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityAnalyticsModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityConnectModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityCurlModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityTestProtocolModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityWebRequestAssetBundleModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityWebRequestAudioModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityWebRequestModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityWebRequestTextureModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityWebRequestWWWModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.VFXModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.VRModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.VehiclesModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.VideoModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.VirtualTexturingModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.WindModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.XRModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "mscorlib",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "netstandard",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "nunit.framework",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": true,
+            "capabilityDeclared": true
+        }
+    ],
+    "dependencies": {
+        "schemaVersion": 2,
+        "runtimeDependencies": [
+            {
+                "consumer": "AssemblyShadowBaseline.Aot",
+                "provider": "AssemblyShadowBaseline.HotUpdate",
+                "kind": "ReflectionString",
+                "evidence": "The M00 regression invokes AssemblyShadowBaseline.HotUpdate.Entry after its exact configured byte-image guard verifies SHA-256 before Assembly.Load. This edge declares the entry dependency; it does not authorize an unguarded byte load.",
+                "callSite": "AssemblyShadowBaseline.BaselineBootstrap::Start"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowBaseline.HotUpdate",
+                "kind": "ReflectionString",
+                "evidence": "The M02 guard probe resolves the literal ordinary-hot-update entry only after the verified fixed-image guard loads the declared image, and checks physical assembly identity before invoking Run.",
+                "callSite": "AssemblyShadowDemo.M02ReflectionBindingProbe::ProbeFixedImage"
+            }
+        ],
+        "resourceDependencies": [],
+        "serializeReferenceDependencies": [
+            {
+                "consumer": "AssemblyA.Implementation.Internal",
+                "callSite": "AssemblyA.Implementation.Internal.M07ManagedGraphAsset::node",
+                "concreteTypes": [
+                    "AssemblyA.Implementation.Internal.M07NodeA, AssemblyA.Implementation.Internal",
+                    "AssemblyA.Implementation.Internal.M07NodeB, AssemblyA.Implementation.Internal"
+                ],
+                "evidence": "M07's frozen resource compiler snapshot proves this exact complete assignable serializable concrete-type domain for the managed graph root. Any added, removed, renamed, abstracted, or moved candidate invalidates compiled policy validation."
+            },
+            {
+                "consumer": "AssemblyA.Implementation.Internal",
+                "callSite": "AssemblyA.Implementation.Internal.M07NodeA::next",
+                "concreteTypes": [
+                    "AssemblyA.Implementation.Internal.M07NodeA, AssemblyA.Implementation.Internal",
+                    "AssemblyA.Implementation.Internal.M07NodeB, AssemblyA.Implementation.Internal"
+                ],
+                "evidence": "M07's frozen resource compiler snapshot proves the recursive node field has the same exact complete assignable serializable concrete-type domain. The P15 rename must therefore fail before publication."
+            }
+        ],
+        "bootstrapEntrypoints": [
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.M03TransactionProbe::InvokeBusiness",
+                "reason": "Exact InternalEntry invocation after physical-image identity checks: committed shadow or verified fresh-process baseline fallback.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.M03TransactionProbe::RunTransaction",
+                "reason": "Isolated T03-10 negative test acquires baseline Internal and requires BaselineAlreadyUsed; no business invocation.",
+                "callSite": "",
+                "target": "AssemblyA.Implementation.Internal"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowBaseline.HotUpdate",
+                "typeName": "AssemblyShadowBaseline.HotUpdate.Entry",
+                "method": "AssemblyShadowDemo.M02ReflectionBindingProbe::ProbeFixedImage",
+                "reason": "Exact ordinary-hot-update entry used only after the fixed-image guard verifies and loads the configured bytes; this approval does not authorize any managed acquisition or shadow activation.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.ShadowBootstrap::Run",
+                "reason": "M01 negative timing probe, before activation; no compile-time business reference.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.ShadowBootstrap::ProbeReflection",
+                "reason": "Post-activation opaque object/string reflection entry.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                "method": "AssemblyShadowDemo.ShadowBootstrap::ProbeComponent",
+                "reason": "Post-activation resource identity probe; stable Unity Component boundary.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                "method": "AssemblyShadowDemo.ShadowBootstrap::ProbeComponent",
+                "reason": "Exact Unity GetComponent(string) PoC probe; no other short type name is approved.",
+                "callSite": "",
+                "target": "VersionedPrefabComponent"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Contracts",
+                "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSimple",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyA.Contracts"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Contracts",
+                "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSuffixVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyA.Contracts.dll"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Contracts",
+                "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadCaseVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "assemblya.contracts"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Contracts",
+                "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadByAssemblyName",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyA.Contracts"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Contracts",
+                "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadPathVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyA/AssemblyA.Contracts.dll"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Contracts",
+                "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadBackslashPathVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyA\\AssemblyA.Contracts.dll"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Contracts",
+                "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::GetWitnessType",
+                "reason": "M04 resolves this existing baseline-known type after commit and invokes its patch-only opaque executing-assembly witness. The baseline type inventory remains finite and verified.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Extensibility",
+                "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSimple",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyA.Implementation.Extensibility"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Extensibility",
+                "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSuffixVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyA.Implementation.Extensibility.dll"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Extensibility",
+                "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadCaseVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "assemblya.implementation.extensibility"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Extensibility",
+                "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadByAssemblyName",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyA.Implementation.Extensibility"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Extensibility",
+                "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadPathVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyA/AssemblyA.Implementation.Extensibility.dll"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Extensibility",
+                "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadBackslashPathVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyA\\AssemblyA.Implementation.Extensibility.dll"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Extensibility",
+                "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::GetWitnessType",
+                "reason": "M04 resolves this existing baseline-known type after commit and invokes its patch-only opaque executing-assembly witness. The baseline type inventory remains finite and verified.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSimple",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyA.Implementation.Internal"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSuffixVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyA.Implementation.Internal.dll"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadCaseVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "assemblya.implementation.internal"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadByAssemblyName",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyA.Implementation.Internal"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadPathVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyA/AssemblyA.Implementation.Internal.dll"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadBackslashPathVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyA\\AssemblyA.Implementation.Internal.dll"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::GetWitnessType",
+                "reason": "M04 resolves this existing baseline-known type after commit and invokes its patch-only opaque executing-assembly witness. The baseline type inventory remains finite and verified.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ContractsConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSimple",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyShadowDemo.ContractsConsumer"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ContractsConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSuffixVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyShadowDemo.ContractsConsumer.dll"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ContractsConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadCaseVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "assemblyshadowdemo.contractsconsumer"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ContractsConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadByAssemblyName",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyShadowDemo.ContractsConsumer"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ContractsConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadPathVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "Consumers/AssemblyShadowDemo.ContractsConsumer.dll"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ContractsConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadBackslashPathVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "Consumers\\AssemblyShadowDemo.ContractsConsumer.dll"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ContractsConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::GetWitnessType",
+                "reason": "M04 resolves this existing baseline-known type after commit and invokes its patch-only opaque executing-assembly witness. The baseline type inventory remains finite and verified.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSimple",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyShadowDemo.ExtensibilityConsumer"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSuffixVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyShadowDemo.ExtensibilityConsumer.dll"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadCaseVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "assemblyshadowdemo.extensibilityconsumer"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadByAssemblyName",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "AssemblyShadowDemo.ExtensibilityConsumer"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadPathVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "Consumers/AssemblyShadowDemo.ExtensibilityConsumer.dll"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadBackslashPathVariant",
+                "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+                "callSite": "",
+                "target": "Consumers\\AssemblyShadowDemo.ExtensibilityConsumer.dll"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::GetWitnessType",
+                "reason": "M04 resolves this existing baseline-known type after commit and invokes its patch-only opaque executing-assembly witness. The baseline type inventory remains finite and verified.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadInternalLiteral",
+                "reason": "M04 controlled constant-name benchmark after commit or in a separate native-OFF process; no pre-commit baseline handle in positive cases.",
+                "callSite": "",
+                "target": "AssemblyA.Implementation.Internal"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Contracts",
+                "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadContractsLiteral",
+                "reason": "M04 isolated staged-visibility negative case deliberately acquires baseline Contracts and must reject commit with BaselineAlreadyUsed.",
+                "callSite": "",
+                "target": "AssemblyA.Contracts"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.M04ReferenceProbe::CaptureAssemblyIdentity",
+                "reason": "M04 invokes the exact InternalEntry marker only after a successful transaction and checks actual patch identity.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowBaseline.HotUpdate",
+                "typeName": "AssemblyShadowBaseline.HotUpdate.Entry",
+                "method": "AssemblyShadowDemo.M04OrdinaryAssemblyProbe::Run",
+                "reason": "M04 ordinary loading regression resolves only the fixed M00 image name and literal entry. Actual byte loading remains behind the existing verified fixed-image guard; this declaration adds no image-acquisition authorization.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowBaseline.HotUpdate",
+                "typeName": "AssemblyShadowBaseline.HotUpdate.Entry",
+                "method": "AssemblyShadowDemo.M04OrdinaryAssemblyProbe::ProbeKnownNameCallback",
+                "reason": "M04 observes callback noninvocation for this already-loaded ordinary name only. It does not claim or authorize a genuine missing-name or callback-return load.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Contracts",
+                "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+                "method": "AssemblyShadowDemo.M05TypeProbe::WitnessOwner",
+                "reason": "M05 resolves this exact baseline-known owner after commit to obtain opaque patch witnesses; no patch-only type name is admitted in Bootstrap.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Extensibility",
+                "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+                "method": "AssemblyShadowDemo.M05TypeProbe::WitnessOwner",
+                "reason": "M05 resolves this exact baseline-known owner after commit to obtain opaque patch witnesses; no patch-only type name is admitted in Bootstrap.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.M05TypeProbe::WitnessOwner",
+                "reason": "M05 resolves this exact baseline-known owner after commit to obtain opaque patch witnesses; no patch-only type name is admitted in Bootstrap.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ContractsConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+                "method": "AssemblyShadowDemo.M05TypeProbe::WitnessOwner",
+                "reason": "M05 resolves this exact baseline-known owner after commit to obtain opaque patch witnesses; no patch-only type name is admitted in Bootstrap.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+                "method": "AssemblyShadowDemo.M05TypeProbe::WitnessOwner",
+                "reason": "M05 resolves this exact baseline-known owner after commit to obtain opaque patch witnesses; no patch-only type name is admitted in Bootstrap.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Contracts",
+                "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+                "method": "AssemblyShadowDemo.M05TypeProbe::LoadAssembly",
+                "reason": "M05 literal Assembly identity comparison; raw type enumeration has its own separate byte-verified admission.",
+                "callSite": "",
+                "target": "AssemblyA.Contracts"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Extensibility",
+                "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+                "method": "AssemblyShadowDemo.M05TypeProbe::LoadAssembly",
+                "reason": "M05 literal Assembly identity comparison; raw type enumeration has its own separate byte-verified admission.",
+                "callSite": "",
+                "target": "AssemblyA.Implementation.Extensibility"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.M05TypeProbe::LoadAssembly",
+                "reason": "M05 literal Assembly identity comparison; raw type enumeration has its own separate byte-verified admission.",
+                "callSite": "",
+                "target": "AssemblyA.Implementation.Internal"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ContractsConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+                "method": "AssemblyShadowDemo.M05TypeProbe::LoadAssembly",
+                "reason": "M05 literal Assembly identity comparison; raw type enumeration has its own separate byte-verified admission.",
+                "callSite": "",
+                "target": "AssemblyShadowDemo.ContractsConsumer"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+                "method": "AssemblyShadowDemo.M05TypeProbe::LoadAssembly",
+                "reason": "M05 literal Assembly identity comparison; raw type enumeration has its own separate byte-verified admission.",
+                "callSite": "",
+                "target": "AssemblyShadowDemo.ExtensibilityConsumer"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                "method": "AssemblyShadowDemo.M05TypeProbe::RunEarlyType",
+                "reason": "Isolated M05 negative process deliberately exposes this baseline Type after validation; commit must reject BaselineAlreadyUsed with actual first-use evidence.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                "method": "AssemblyShadowDemo.M05TypeProbe::RunLayoutMismatch",
+                "reason": "Isolated M05 defense-in-depth process queries this active Type after commit and requires actual allocation rejection for the verified bad-layout bytes.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.M05TypeProbe::RunBenchmark",
+                "reason": "Exact constant-name M05 type lookup benchmark after commit or in a separate native-OFF process; no other name or managed acquisition is authorized.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                "method": "AssemblyShadowDemo.M05ResourceProbe::ExpectedComponentType",
+                "reason": "M05 compares the actual frozen-resource component Type with this literal baseline-known name only after commit.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.VersionedScriptableObject",
+                "method": "AssemblyShadowDemo.M05ResourceProbe::ExpectedDataType",
+                "reason": "M05 compares the actual frozen-resource data Type with this literal baseline-known name only after commit.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Contracts",
+                "typeName": "AssemblyA.Contracts.DemoValue",
+                "method": "AssemblyShadowDemo.M05ResourceProbe::ExpectedValueType",
+                "reason": "M05 compares the frozen serialized value's actual Type with this exact name, requiring AOT Contracts for P01 and shadow Contracts for P03.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Contracts",
+                "typeName": "AssemblyA.Contracts.M06ExecutionWitness",
+                "method": "AssemblyShadowDemo.M06ExecutionProbe::WitnessType",
+                "reason": "M06 resolves this exact baseline-known execution witness only after commit, or in the separate baseline-recovery process; no arbitrary type selector or preload is admitted.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Extensibility",
+                "typeName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness",
+                "method": "AssemblyShadowDemo.M06ExecutionProbe::WitnessType",
+                "reason": "M06 resolves this exact baseline-known execution witness only after commit, or in the separate baseline-recovery process; no arbitrary type selector or preload is admitted.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+                "method": "AssemblyShadowDemo.M06ExecutionProbe::WitnessType",
+                "reason": "M06 resolves this exact baseline-known execution witness only after commit, or in the separate baseline-recovery process; no arbitrary type selector or preload is admitted.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ContractsConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness",
+                "method": "AssemblyShadowDemo.M06ExecutionProbe::WitnessType",
+                "reason": "M06 resolves this exact baseline-known execution witness only after commit, or in the separate baseline-recovery process; no arbitrary type selector or preload is admitted.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness",
+                "method": "AssemblyShadowDemo.M06ExecutionProbe::WitnessType",
+                "reason": "M06 resolves this exact baseline-known execution witness only after commit, or in the separate baseline-recovery process; no arbitrary type selector or preload is admitted.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Contracts",
+                "typeName": "AssemblyA.Contracts.M06ExecutionWitness",
+                "method": "AssemblyShadowDemo.M06ExecutionProbe::LoadWitnessAssembly",
+                "reason": "M06 observes this literal assembly's active or unchanged-AOT identity after commit; enumeration and dynamic assembly names are not authorized.",
+                "callSite": "",
+                "target": "AssemblyA.Contracts"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Extensibility",
+                "typeName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness",
+                "method": "AssemblyShadowDemo.M06ExecutionProbe::LoadWitnessAssembly",
+                "reason": "M06 observes this literal assembly's active or unchanged-AOT identity after commit; enumeration and dynamic assembly names are not authorized.",
+                "callSite": "",
+                "target": "AssemblyA.Implementation.Extensibility"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+                "method": "AssemblyShadowDemo.M06ExecutionProbe::LoadWitnessAssembly",
+                "reason": "M06 observes this literal assembly's active or unchanged-AOT identity after commit; enumeration and dynamic assembly names are not authorized.",
+                "callSite": "",
+                "target": "AssemblyA.Implementation.Internal"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ContractsConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness",
+                "method": "AssemblyShadowDemo.M06ExecutionProbe::LoadWitnessAssembly",
+                "reason": "M06 observes this literal assembly's active or unchanged-AOT identity after commit; enumeration and dynamic assembly names are not authorized.",
+                "callSite": "",
+                "target": "AssemblyShadowDemo.ContractsConsumer"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness",
+                "method": "AssemblyShadowDemo.M06ExecutionProbe::LoadWitnessAssembly",
+                "reason": "M06 observes this literal assembly's active or unchanged-AOT identity after commit; enumeration and dynamic assembly names are not authorized.",
+                "callSite": "",
+                "target": "AssemblyShadowDemo.ExtensibilityConsumer"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                "method": "AssemblyShadowDemo.M07ResourceProbe::RunCore",
+                "reason": "M07 creates one persistent baseline-known component by exact literal Type after the transaction and verifies its active identity across scene switches.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M07UnityPathProbe",
+                "method": "AssemblyShadowDemo.M07ResourceProbe::RunShadowUnityApis",
+                "reason": "M07 invokes the exact literal Unity API witness only after transaction completion; the witness itself proves generic and Type-based Unity object paths.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M07ManagedGraphAsset",
+                "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+                "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the loaded managed-reference owner.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M07NodeA",
+                "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+                "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the loaded managed-reference concrete node.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M07RenameProbeComponent",
+                "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+                "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the resource rename guard component.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M07SceneOnlyComponent",
+                "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+                "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the deserialized scene component.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M07UnityPathProbe",
+                "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+                "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the Unity API witness.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+                "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the versioned prefab component.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.VersionedScriptableObject",
+                "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+                "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the versioned ScriptableObject.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+                "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+                "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the nested cross-assembly consumer component.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.R00PerformanceWitness",
+                "method": "AssemblyShadowDemo.M07R00PerformanceProbe::CaptureSelectedType",
+                "reason": "R00 acquires this exact performance witness only after the byte-bound M07 input precheck and selected transaction or explicit no-patch configuration, then verifies its active physical world.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.R00PerformanceWitness",
+                "method": "AssemblyShadowDemo.M07R00PerformanceProbe::RunWitnessBenchmarks",
+                "reason": "R00 executes bounded allocation, reflection and generic observations through this exact witness after active type identity validation; no other business type or image loading is authorized.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+                "method": "AssemblyShadowDemo.M07R00PerformanceProbe::RunExistingExecutionRegressions",
+                "reason": "R00 reruns the retained M06 new, dispatch and generics witness after its benchmark, with active physical type diagnostics and exact observation checks; this is not an unrestricted bootstrap reflection waiver.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.M07R01Probe::ObserveType",
+                "reason": "R01 test-only negative pre-Configure fixture resolves the exact baseline-known InternalEntry through literal Assembly.Load/GetType to expose the ConfigureOnly gap; this grants no startup safety and is not a Commit path.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness/M06InternalNode",
+                "method": "AssemblyShadowDemo.M07R01Probe::ObserveObject",
+                "reason": "R01 test-only negative pre-Configure fixture resolves the exact nested M06InternalNode after literal Assembly.Load; this declaration records the finite type identity only, grants no startup safety and is not a Commit path.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness/M06InternalNode",
+                "method": "AssemblyShadowDemo.M07R01Probe::ObserveObject",
+                "reason": "R01 test-only negative pre-Configure fixture approves only the exact nested M06InternalNode literal target; this grants no startup safety and is not a Commit path.",
+                "callSite": "",
+                "target": "AssemblyA.Implementation.Internal.M06ExecutionWitness+M06InternalNode"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+                "method": "AssemblyShadowDemo.M07R01Probe::ObserveCctor",
+                "reason": "R01 test-only negative pre-Configure fixture resolves the exact M06ExecutionWitness and its cctor evidence through literal Assembly.Load/GetType; this grants no startup safety and is not a Commit path.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+                "method": "AssemblyShadowDemo.R01EarlyStartup::Witness",
+                "reason": "R01 approved bounded early-startup negative experiment resolves only this exact baseline type before Configure; retained first-use evidence must reject Validate, Abort must succeed, and the callback returns nonzero. This entry does not exempt baseline use or permit Commit.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness/M06InternalNode",
+                "method": "AssemblyShadowDemo.R01EarlyStartup::Witness",
+                "reason": "R01 approved bounded early-startup negative experiment resolves only this exact baseline type before Configure; retained first-use evidence must reject Validate, Abort must succeed, and the callback returns nonzero. This entry does not exempt baseline use or permit Commit.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness/M06InternalNode",
+                "method": "AssemblyShadowDemo.R01EarlyStartup::Witness",
+                "reason": "R01 approved bounded early-startup negative experiment resolves only this exact baseline type before Configure; retained first-use evidence must reject Validate, Abort must succeed, and the callback returns nonzero. This entry does not exempt baseline use or permit Commit.",
+                "callSite": "",
+                "target": "AssemblyA.Implementation.Internal.M06ExecutionWitness+M06InternalNode"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+                "method": "AssemblyShadowDemo.R01EarlyStartup::Witness",
+                "reason": "R01 approved bounded early-startup negative experiment resolves only this exact baseline type before Configure; retained first-use evidence must reject Validate, Abort must succeed, and the callback returns nonzero. This entry does not exempt baseline use or permit Commit.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowBaseline.HotUpdate",
+                "typeName": "AssemblyShadowBaseline.HotUpdate.Entry",
+                "method": "AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness",
+                "reason": "Derived from FixedAssemblyBytes site h1-count-ordinary-witness-image; exact H1 ordinary witness only. This does not authorize other methods, providers, images, or byte loads.",
+                "callSite": "",
+                "target": "image:d60cad840ff603dcfd5d0816196469ecce9576306e5bef2901427a13759d8de4"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyShadowBaseline.HotUpdate",
+                "typeName": "AssemblyShadowBaseline.HotUpdate.Entry",
+                "method": "AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness",
+                "reason": "Derived from FixedAssemblyBytes site h1-count-ordinary-witness-image; exact H1 ordinary witness only. This does not authorize other methods, providers, images, or byte loads.",
+                "callSite": "",
+                "target": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27"
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.R02AllocationWitness",
+                "method": "AssemblyShadowDemo.R02PlayerProbe::Run",
+                "reason": "R02 opt-in sidecar resolves this exact literal witness only after the complete successful R00 activation and observation. No other business type, image loading, pre-Configure access, or arbitrary reflection is authorized.",
+                "callSite": "",
+                "target": ""
+            },
+            {
+                "consumer": "AssemblyShadowDemo.Bootstrap",
+                "provider": "AssemblyA.Implementation.Internal",
+                "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+                "method": "AssemblyShadowDemo.R03CompletionExecution::OnQuit",
+                "reason": "Exact supplemental M06 witness acquisition after the original R00 result has been written and verified Passed. Supplemental evidence remains separate; this declaration authorizes no other call site, provider, type, or earlier acquisition.",
+                "callSite": "",
+                "target": "AssemblyA.Implementation.Internal.M06ExecutionWitness, AssemblyA.Implementation.Internal"
+            }
+        ]
+    },
+    "extensibilityWhitelist": {
+        "schemaVersion": 1,
+        "entries": [
+            {
+                "provider": "AssemblyA.Implementation.Extensibility",
+                "consumer": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "owner": "AssemblyShadowDemo",
+                "reason": "Deliberate external base-class consumer for reverse closure validation.",
+                "reviewer": "M02 independent milestone reviewer",
+                "expires": "2027-01-01"
+            }
+        ]
+    },
+    "rejectUnknownReflectionDependencies": true,
+    "enforceResourceAbi": true,
+    "reflectionBindingConfigurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+    "reflectionBindingConfigurationHash": "006d40f90c9efb4656f2a2e5a150c204aa2c9348b6f9d2b5a55eb6a9eea7ee51",
+    "reflectionBindings": [
+        {
+            "id": "h1-count-ordinary-witness-image",
+            "consumer": "AssemblyShadowDemo.Bootstrap",
+            "typeName": "AssemblyShadowDemo.H1CountEarlyStartup",
+            "methodSignature": "AssemblyShadowDemo.H1CountEarlyStartup/WitnessReceipt AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness()",
+            "originalMethodHash": "fde200bf65fac1e9287bf38eebd22cef98ea72b0f348c1a93350d2ffc945cb5e",
+            "operationIndex": 25,
+            "allowedTypes": [],
+            "providers": [
+                "assemblyshadowbaseline.hotupdate"
+            ],
+            "reason": "The H1 early-startup witness may load only the exact M00 ordinary image before count operations. Clone and SHA-256-check bytes before Assembly.Load; preserve the pinned provider identity and M00-HOTUPDATE-OK semantics. This site does not authorize candidate images or general byte loads.",
+            "kind": "FixedAssemblyBytes",
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "providerAssemblyIdentity": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "imagePath": "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"
+        },
+        {
+            "id": "m00-normal-hot-update-image",
+            "consumer": "AssemblyShadowBaseline.Aot",
+            "typeName": "AssemblyShadowBaseline.BaselineBootstrap",
+            "methodSignature": "System.Void AssemblyShadowBaseline.BaselineBootstrap::Start()",
+            "originalMethodHash": "5f6005b4130594f1c951bd8aba50f784b27976027977e8108ff6662170b87c22",
+            "operationIndex": 28,
+            "allowedTypes": [],
+            "providers": [
+                "assemblyshadowbaseline.hotupdate"
+            ],
+            "reason": "The M00 ordinary hot-update loader may load only this exact image. Clone and SHA-256-check bytes before Assembly.Load. Capture immutable image bytes and prove current NormalHotUpdate semantics; this is not a Shadow candidate or a general byte-load waiver.",
+            "kind": "FixedAssemblyBytes",
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "providerAssemblyIdentity": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "imagePath": "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"
+        },
+        {
+            "id": "urp-debug-ui-prefab-types",
+            "consumer": "Unity.RenderPipelines.Core.Runtime",
+            "typeName": "UnityEngine.Rendering.UI.DebugUIHandlerCanvas",
+            "methodSignature": "System.Void UnityEngine.Rendering.UI.DebugUIHandlerCanvas::Rebuild()",
+            "originalMethodHash": "be097bb7538ab7754fee35637f7b3f1f83452213f7869063a1a927701655ec13",
+            "operationIndex": 17,
+            "allowedTypes": [
+                "UnityEngine.Rendering.DebugUI+BitField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+BoolField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Button, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+ColorField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Container, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+EnumField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+FloatField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Foldout, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+HBox, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+HistoryBoolField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+HistoryEnumField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+IntField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+MessageBox, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+ObjectField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+ObjectListField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+ObjectPopupField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+ProgressBarValue, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Table+Row, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Table, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+UIntField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+VBox, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Value, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+ValueTuple, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Vector2Field, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Vector3Field, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Vector4Field, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+            ],
+            "providers": [
+                "unity.renderpipelines.core.runtime"
+            ],
+            "reason": "Player-only finite contract for the 26 exact widget AQNs serialized in com.unity.render-pipelines.core 14.0.12 DebugUICanvas.prefab. Undeclared or mutated targets are rejected before type resolution. Editor compilation is unchanged.",
+            "kind": "TypeGetType",
+            "imageSha256": "",
+            "providerAssemblyIdentity": "",
+            "imagePath": ""
+        },
+        {
+            "id": "urp-serializable-enum-player",
+            "consumer": "Unity.RenderPipelines.Core.Runtime",
+            "typeName": "UnityEngine.Rendering.SerializableEnum",
+            "methodSignature": "System.Enum UnityEngine.Rendering.SerializableEnum::get_value()",
+            "originalMethodHash": "4e44328803498342f7a5ab60f066275a4d085f5ea25cbdf350a619f88f3449ff",
+            "operationIndex": 6,
+            "allowedTypes": [],
+            "providers": [],
+            "reason": "Explicit deny-all Player contract: resolving SerializableEnum.value from a nonempty serialized type name is unsupported in this baseline. The guard rejects before resolution; this is not an unreachability claim. Editor DebugStateFlags behavior is unchanged.",
+            "kind": "TypeGetType",
+            "imageSha256": "",
+            "providerAssemblyIdentity": "",
+            "imagePath": ""
+        },
+        {
+            "id": "urp-volume-assembly-domain",
+            "consumer": "Unity.RenderPipelines.Core.Runtime",
+            "typeName": "UnityEngine.Rendering.CoreUtils",
+            "methodSignature": "System.Collections.Generic.IEnumerable`1<System.Type> UnityEngine.Rendering.CoreUtils::GetAllAssemblyTypes()",
+            "originalMethodHash": "67cc363bbe7d6b87a08f5d10fa9113f7a92cf3e31a5163fe7073ba9ec7656a16",
+            "operationIndex": 9,
+            "allowedTypes": [
+                "UnityEngine.Rendering.Universal.Bloom, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ChannelMixer, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ChromaticAberration, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ColorAdjustments, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ColorCurves, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ColorLookup, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.DepthOfField, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.FilmGrain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.LensDistortion, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.LiftGammaGain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.MotionBlur, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.PaniniProjection, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ShadowsMidtonesHighlights, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.SplitToning, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.Tonemapping, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.Vignette, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.WhiteBalance, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+            ],
+            "providers": [
+                "unity.renderpipelines.universal.runtime"
+            ],
+            "reason": "Pinned Player discovery contract: construct only the physical assemblies containing these approved noncandidate volume types. Do not enumerate AppDomain assemblies before filtering. Editor discovery is unchanged.",
+            "kind": "FiniteAssemblyList",
+            "imageSha256": "",
+            "providerAssemblyIdentity": "",
+            "imagePath": ""
+        },
+        {
+            "id": "urp-volume-type-domain",
+            "consumer": "Unity.RenderPipelines.Core.Runtime",
+            "typeName": "UnityEngine.Rendering.CoreUtils/<>c",
+            "methodSignature": "System.Collections.Generic.IEnumerable`1<System.Type> UnityEngine.Rendering.CoreUtils/<>c::<GetAllAssemblyTypes>b__87_0(System.Reflection.Assembly)",
+            "originalMethodHash": "d5ac6c4b0327643de25a14fc498ffd65c1bca8e7c52644a938f7e93eb95a9d8a",
+            "operationIndex": 6,
+            "allowedTypes": [
+                "UnityEngine.Rendering.Universal.Bloom, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ChannelMixer, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ChromaticAberration, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ColorAdjustments, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ColorCurves, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ColorLookup, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.DepthOfField, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.FilmGrain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.LensDistortion, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.LiftGammaGain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.MotionBlur, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.PaniniProjection, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ShadowsMidtonesHighlights, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.SplitToning, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.Tonemapping, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.Vignette, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.WhiteBalance, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+            ],
+            "providers": [
+                "unity.renderpipelines.universal.runtime"
+            ],
+            "reason": "Pinned Player discovery contract: accept only the approved physical assembly receiver and return the exact 17 noncandidate volume types without calling Assembly.GetTypes. Unknown receivers fail before enumeration.",
+            "kind": "FiniteAssemblyTypes",
+            "imageSha256": "",
+            "providerAssemblyIdentity": "",
+            "imagePath": ""
+        }
+    ],
+    "allowedInternalEditorAssemblies": [
+        "AssemblyShadowDemo.Editor",
+        "AssemblyShadowDemo.EditorTests"
+    ]
+}

@@ -1,0 +1,160 @@
+{
+    "schemaVersion": 1,
+    "milestone": "M07",
+    "result": "Passed",
+    "comparisonPolicy": "compiler-linked-policy-resource-abi-unity-assets:1",
+    "fixtureManifestPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d6e8121330904159b72c19235e893e64/m07-fixtures.json",
+    "fixtureManifestSha256": "64367a61406d17abab77dbac320a5911b8871352d68e38baa7b926bcafc9d86b",
+    "baselineManifestPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-29bb3d4a39bf/baseline-manifest.json",
+    "baselineManifestSha256": "2672507fe621700d55052beebd88f786cbdc9ff12a6a054b7fd5c672cdd43b46",
+    "playerBuildReceiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-055c15afab6f4d29bd1cc8b31d96366d/m07-player-build.json",
+    "playerBuildReceiptSha256": "7bbc08001689d96e5454ccaeed5228eb6d7666ff9b745f8219aebe725942fbf7",
+    "baselineInputSnapshotHash": "0ed986c6fe9389352cb707513b8b69ecc5490989f985ea0d0e8160eda8f8d540",
+    "baselineBuildId": "M07-Baseline-R03Completion-29bb3d4a39bf",
+    "playerBuildGuid": "8701b0d709cf47b99c9ec8a440c6d78e",
+    "nativeLibrarySha256": "e9d926f18d8cc8632070b78e61ecebd1e2f67e47568977ad62f587f0326c3839",
+    "linkedPlayerReceiptHash": "4dc6d3af93fcb70d769c98a9176b93f20a29a2aa3a20da0394dbeedb8906e423",
+    "runtimeAbiHash": "b0b61f2ac7db37f98e674efcde83ac9678151e700f25aeb859c66677ee0f0b12",
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "stableAotProvenanceHash": "0ba2e3d4158946b6ce2782e8dbbb5744994eb0986eced40a2e132622e347f800",
+    "resourceBuildReceiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-29bb3d4a39bf/ResourceInputs/resource-build-receipt.json",
+    "resourceBuildReceiptSha256": "7c89f97e1440cb93fffa43deb06cfa96af264b8cbcc7fc99fd171c68f018d2dd",
+    "resourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+    "replayScratchPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M07Replay-edaf5983f46145b9bbcb6ebd15c9e630",
+    "validatorSourcePins": {
+        "schemaVersion": 1,
+        "unityVersion": "2022.3.62f2",
+        "target": "StandaloneOSX",
+        "architecture": "arm64",
+        "hybridclr": {
+            "url": "https://github.com/night-outlook/hybridclr.git",
+            "revision": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "localPath": "../../../../assembly_shadow_h1r/hybridclr"
+        },
+        "hybridclrUnity": {
+            "url": "https://github.com/night-outlook/hybridclr_unity.git",
+            "revision": "948c0e3b4f8891481301770115e8ba4945eea6de",
+            "localPath": "../../../../assembly_shadow_h1r/hybridclr_unity"
+        },
+        "il2cppPlus": {
+            "url": "https://github.com/night-outlook/il2cpp_plus.git",
+            "revision": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+            "localPath": "../../../../assembly_shadow_h1r/il2cpp_plus"
+        },
+        "demo": {
+            "url": "https://github.com/night-outlook/hybridclr_demo.git",
+            "revision": "29bb3d4a39bf8a2f23be404f77535aaba3485bfc",
+            "localPath": "../../../../assembly_shadow_h1r/hybridclr_demo"
+        }
+    },
+    "fixtures": [
+        {
+            "patchId": "P01",
+            "patchManifestSha256": "2b0363003414d40992acf64fc5589939256778e38b581df9647bdd581159defc",
+            "compileSnapshotHash": "d583db283a353fc78a360a942f70f2e7c7b67fe5d9cd0b657d33ec4b61fd8a9a",
+            "resourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+            "dllOnly": true,
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "resourceBundlesRequired": []
+        },
+        {
+            "patchId": "P02",
+            "patchManifestSha256": "2093f74bd08c74fa772737a4a0d592e3a2b8b080d9bd1c3108b35bf7e28a34a4",
+            "compileSnapshotHash": "7deb270c7220d60fe970b583e80d1b7e16510170fbf32c07139c4ede63588d28",
+            "resourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+            "dllOnly": true,
+            "changedRoots": [
+                "AssemblyA.Implementation.Extensibility"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "resourceBundlesRequired": []
+        },
+        {
+            "patchId": "P03",
+            "patchManifestSha256": "18afec89641372bd18b0ede421253087added4b31cb30d2d0e8a92d9c675d121",
+            "compileSnapshotHash": "666f09b9d32f386be42d842e325da242aded14129d29ad54899986fc04ad05eb",
+            "resourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+            "dllOnly": true,
+            "changedRoots": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "resourceBundlesRequired": []
+        },
+        {
+            "patchId": "P04",
+            "patchManifestSha256": "790bdc1d824da9514a13cdee6c6d06a552dc7d0e5c2e4e84cbc179776c277717",
+            "compileSnapshotHash": "7d20db21e0e100261f46a37366d3a6617096e4962fcf6f968fcc5ef1bf046853",
+            "resourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+            "dllOnly": true,
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "resourceBundlesRequired": []
+        },
+        {
+            "patchId": "P05",
+            "patchManifestSha256": "2a4ffc0c6b373cca0d3d369a8bf4852e3c2a5db390011dbc891d8476d9e56cdb",
+            "compileSnapshotHash": "959a0c6c37c304c411d7e927df3db2ac1033d4dda15136cfe2abc8588c60bb47",
+            "resourceAbiHash": "sha256:f99cbb1f42858874f1a1ff96cc10c7b4d273861ca7608cb83a5d667f23a96360",
+            "dllOnly": false,
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "resourceBundlesRequired": [
+                "additive-scene.bundle",
+                "business-scene.bundle",
+                "mixed-assets.bundle",
+                "nested-prefab.bundle",
+                "versioned-prefab.bundle"
+            ]
+        }
+    ],
+    "rejectedFixtures": [
+        {
+            "patchId": "P05-DllOnly",
+            "compileSnapshotHash": "778ae3180a5fefe4bd2c072fc725e65796c30e565803eea3860f30569c1c8119",
+            "errorCode": "ResourceRebuildRequired",
+            "errorMessage": "ResourceRebuildRequired: DLL-only rejected. Affected bundles: additive-scene.bundle, business-scene.bundle, mixed-assets.bundle, nested-prefab.bundle, versioned-prefab.bundle. serialized field layout changed: assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent"
+        },
+        {
+            "patchId": "P14-ClassRename",
+            "compileSnapshotHash": "abd49c728599860a0f4e9a93dc50dd0248fcc33b1ba0a4f8d8135a283c6e25d0",
+            "errorCode": "ResourceRebuildRequired",
+            "errorMessage": "ResourceRebuildRequired: DLL-only rejected. Affected bundles: additive-scene.bundle, business-scene.bundle, mixed-assets.bundle, nested-prefab.bundle, scriptable-object.bundle, serialize-reference.bundle, versioned-prefab.bundle. resource type added: assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07RenameProbeComponentRenamed; resource type removed or renamed: assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07RenameProbeComponent"
+        },
+        {
+            "patchId": "P15-SerializeReferenceRename",
+            "compileSnapshotHash": "5e9857e763e7755fa742dbb76a535b1343df35ae9c23725727ec82194c060ca0",
+            "errorCode": "ResourceRebuildRequired",
+            "errorMessage": "ResourceRebuildRequired: DLL-only rejected. Affected bundles: additive-scene.bundle, business-scene.bundle, mixed-assets.bundle, nested-prefab.bundle, scriptable-object.bundle, serialize-reference.bundle, versioned-prefab.bundle. SerializeReference concrete type set changed: assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07ManagedGraphAsset; resource type added: assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeARenamed; resource type removed or renamed: assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeA; serialized dependency graph changed: assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07ManagedGraphAsset"
+        }
+    ]
+}

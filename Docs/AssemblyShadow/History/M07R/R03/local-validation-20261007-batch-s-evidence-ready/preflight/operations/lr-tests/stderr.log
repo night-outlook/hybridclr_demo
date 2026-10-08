@@ -1,0 +1,50 @@
+test_argv_credential_removed (test_lr_git.GitObservationTests.test_argv_credential_removed) ... ok
+test_bounded_excerpt_and_full_length_hash (test_lr_git.GitObservationTests.test_bounded_excerpt_and_full_length_hash) ... ok
+test_empty_ref_response_remains_empty (test_lr_git.GitObservationTests.test_empty_ref_response_remains_empty) ... ok
+test_nonzero_retains_repo_argv_exit_streams_and_source (test_lr_git.GitObservationTests.test_nonzero_retains_repo_argv_exit_streams_and_source) ... ok
+test_preconstructor_failure_embeds_receipt_without_scope (test_lr_git.GitObservationTests.test_preconstructor_failure_embeds_receipt_without_scope) ... ok
+test_real_git_failing_remote_without_network (test_lr_git.GitObservationTests.test_real_git_failing_remote_without_network) ... ok
+test_receipt_failure_denies_success (test_lr_git.GitObservationTests.test_receipt_failure_denies_success) ... ok
+test_redaction_precedes_truncation (test_lr_git.GitObservationTests.test_redaction_precedes_truncation) ... ok
+test_scope_restored_after_exception (test_lr_git.GitObservationTests.test_scope_restored_after_exception) ... ok
+test_signal_exit_kept_negative (test_lr_git.GitObservationTests.test_signal_exit_kept_negative) ... ok
+test_spawn_failure_is_not_remote_rejection (test_lr_git.GitObservationTests.test_spawn_failure_is_not_remote_rejection) ... ok
+test_success_local_does_not_dump_arbitrary_git_blobs (test_lr_git.GitObservationTests.test_success_local_does_not_dump_arbitrary_git_blobs) ... ok
+test_success_remote_is_observation_not_acceptance (test_lr_git.GitObservationTests.test_success_remote_is_observation_not_acceptance) ... ok
+test_timeout_is_not_fabricated_numeric_exit (test_lr_git.GitObservationTests.test_timeout_is_not_fabricated_numeric_exit) ... ok
+test_utf8_decode_failure_retains_byte_evidence (test_lr_git.GitObservationTests.test_utf8_decode_failure_retains_byte_evidence) ... ok
+test_all_four_observed_once_and_failure_retained (test_lr_git.TransportPreflightTests.test_all_four_observed_once_and_failure_retained) ... ok
+test_host_batch_without_runtime_pins_retains_original_cell_behavior (test_lr_git.TransportPreflightTests.test_host_batch_without_runtime_pins_retains_original_cell_behavior) ... ok
+test_no_sink_still_binds_expected_pins_in_error (test_lr_git.TransportPreflightTests.test_no_sink_still_binds_expected_pins_in_error) ... ok
+test_pass_is_point_in_time_only (test_lr_git.TransportPreflightTests.test_pass_is_point_in_time_only) ... ok
+test_changed_marker_rejected (test_lr_recovery.CleanupAuthorityTests.test_changed_marker_rejected) ... ok
+test_cleanup_checks_four_local_owners_without_remote (test_lr_recovery.CleanupAuthorityTests.test_cleanup_checks_four_local_owners_without_remote) ... ok
+test_dirty_owner_rejected_without_remote (test_lr_recovery.CleanupAuthorityTests.test_dirty_owner_rejected_without_remote) ... ok
+test_empty_remote_reply_rejected_clearly (test_lr_recovery.CleanupAuthorityTests.test_empty_remote_reply_rejected_clearly) ... ok
+test_noncanonical_origin_rejected (test_lr_recovery.CleanupAuthorityTests.test_noncanonical_origin_rejected) ... ok
+test_normal_verifier_still_requires_network (test_lr_recovery.CleanupAuthorityTests.test_normal_verifier_still_requires_network) ... ok
+test_unbound_executable_still_rejected (test_lr_recovery.CleanupAuthorityTests.test_unbound_executable_still_rejected) ... ok
+test_wrong_local_head_rejected (test_lr_recovery.CleanupAuthorityTests.test_wrong_local_head_rejected) ... ok
+test_wrong_remote_ref_name_even_matching_sha_rejected (test_lr_recovery.CleanupAuthorityTests.test_wrong_remote_ref_name_even_matching_sha_rejected) ... ok
+test_backup_mutation_denies_restore (test_lr_recovery.RecoveryOrderingTests.test_backup_mutation_denies_restore) ... ok
+test_changed_remote_tip_does_not_undo_cleanup_or_allow_acceptance (test_lr_recovery.RecoveryOrderingTests.test_changed_remote_tip_does_not_undo_cleanup_or_allow_acceptance) ... ok
+test_duplicate_invocation_cannot_restore_twice (test_lr_recovery.RecoveryOrderingTests.test_duplicate_invocation_cannot_restore_twice) ... ok
+test_local_identity_failure_never_launches_or_overwrites (test_lr_recovery.RecoveryOrderingTests.test_local_identity_failure_never_launches_or_overwrites) ... ok
+test_no_state_means_no_write_but_still_remote_acceptance (test_lr_recovery.RecoveryOrderingTests.test_no_state_means_no_write_but_still_remote_acceptance) ... ok
+test_remote_failure_happens_after_exact_cleanup_but_blocks_finalize (test_lr_recovery.RecoveryOrderingTests.test_remote_failure_happens_after_exact_cleanup_but_blocks_finalize) ... ok
+test_restore_process_failure_is_not_claimed_as_cleanup (test_lr_recovery.RecoveryOrderingTests.test_restore_process_failure_is_not_claimed_as_cleanup) ... ok
+test_success_requires_local_cleanup_and_fresh_remote (test_lr_recovery.RecoveryOrderingTests.test_success_requires_local_cleanup_and_fresh_remote) ... ok
+test_symlink_backup_rejected (test_lr_recovery.RecoveryOrderingTests.test_symlink_backup_rejected) ... ok
+test_wrong_transaction_owner_denies_restore (test_lr_recovery.RecoveryOrderingTests.test_wrong_transaction_owner_denies_restore) ... ok
+test_backup_change_rejected (test_lr_retained.RetainedRTests.test_backup_change_rejected) ... ok
+test_live_alias_is_not_admitted (test_lr_retained.RetainedRTests.test_live_alias_is_not_admitted) ... ok
+test_missing_state_rejected (test_lr_retained.RetainedRTests.test_missing_state_rejected) ... ok
+test_original_recorded_transaction_and_custody (test_lr_retained.RetainedRTests.test_original_recorded_transaction_and_custody) ... ok
+test_path_escape_rejected (test_lr_retained.RetainedRTests.test_path_escape_rejected) ... ok
+test_staged_change_rejected_even_original_bytes (test_lr_retained.RetainedRTests.test_staged_change_rejected_even_original_bytes) ... ok
+test_unexpected_restore_receipt_rejected (test_lr_retained.RetainedRTests.test_unexpected_restore_receipt_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 45 tests in 0.103s
+
+OK

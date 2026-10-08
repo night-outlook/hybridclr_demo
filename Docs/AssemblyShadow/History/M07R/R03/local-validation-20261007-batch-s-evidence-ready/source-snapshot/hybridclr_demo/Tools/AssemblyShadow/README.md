@@ -1,0 +1,748 @@
+# Assembly Shadow milestone tools
+
+Requirements: Python 3.9+, Git, PowerShell 7, and the pinned Unity Editor with
+IL2CPP support. Run from the demo root. Do not run a second Editor for an open
+project. The original demo may stay open while the separate shadow worktree is
+built through the shared Unity debugging scripts.
+
+## M00 reproduction
+
+1. Check out the milestone pairing in all four repositories. Keep their sibling
+   paths, or update the manifest's relative localPath values deliberately.
+2. Inspect exact versions with print-source-pins.sh or print-source-pins.ps1.
+3. Run the Unity static method AssemblyShadowBaseline.Editor.BaselineBuild.Configure.
+4. Run AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability. This
+   verifies two installations and saves identical source receipts.
+5. Run python3 Tools/AssemblyShadow/verify-installed-runtime.py.
+6. Run AssemblyShadowBaseline.Editor.BaselineValidation.Run and
+   python3 -m unittest discover -s Tools/AssemblyShadow/tests -v.
+7. Run AssemblyShadowBaseline.Editor.BaselineBuild.Build through
+   .agents/skills/unity-debug/scripts/Invoke-UnityMethod.ps1 with a suitable timeout.
+8. Launch the resulting IL2CPP Player with -batchmode -nographics,
+   -shadowResultPath <absolute-result.json> and -logFile <absolute-player.log>.
+   Both process exit zero and result=Passed are required.
+
+The build defaults to native Shadow OFF. BaselineBuild.SetNativeFeature(bool)
+sets the native compiler definition, not a C# define. M01's build uses this
+shared switch for ON. The verifier defaults to the M00 OFF expectation;
+--expect-shadow on selects the M01 build configuration expectation. Neither
+header inspection nor an Editor check is a substitute for Player evidence.
+
+The demo pin identifies a build-source commit. Later metadata-only commits may
+update the pin file and Docs/AssemblyShadow. The default verifier checks the
+complete pinned demo source, including ignored stray C# and asmdef files.
+--skip-demo-source is for intermediate development inspection only and cannot
+establish milestone acceptance.
+
+## M01 reproduction
+
+Use the exact M01 pairing and the isolated project, then run these static methods
+through `.agents/skills/unity-debug/scripts/Invoke-UnityMethod.ps1`:
+
+1. `AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability`
+2. `AssemblyShadowDemo.Editor.BuildBaselineBundles.Build`
+3. `AssemblyShadowDemo.Editor.CompilePatchDlls.Build`
+4. `AssemblyShadowDemo.Editor.BuildBaselinePlayer.Build`
+5. `AssemblyShadowDemo.Editor.M01EditorValidation.Validate`
+
+Use a 2400-second timeout for Player builds. The first bundle build freezes
+`BaselineArtifacts/<target>/M01-Baseline-v1`. Subsequent invocations verify/reuse
+that directory; they must not rebuild or replace its bundles. P01 is compiled
+separately into `PatchArtifacts/P01`. Runtime staging contains only the baseline
+manifest, bundles, catalog, and P01 bytes, not source or AOT DLL snapshots.
+
+Run `Builds/AssemblyShadow/M01/Prototype.app/Contents/MacOS/AssemblyShadowBaseline`
+on macOS ARM64 with `-batchmode -nographics`. Use `-shadowMode` to select, in
+order, `Baseline`, `PreUseType`, `PreUseReflection`, `PreUsePrefab`, `PreUseScene`,
+and finally `P01`. Give every run a distinct absolute `-shadowResultPath` and
+`-logFile` path. The writer also updates
+`PersistentDataPath/AssemblyShadowTests/m01-result.json`; P01 last leaves the
+positive gate result there. Do not run these processes concurrently against
+the same persistent result path.
+
+Baseline and P01 must exit zero and pass every assertion. Timing-negative runs
+may exit one when retained baseline resources fail the intentionally shadow-only
+assertions; they must still finish and record genuine AOT pre-use, activation,
+and post-activation observations. A failed harness or missing output is not a
+successful negative test.
+
+Verify the recorded runs against real artifacts:
+
+```sh
+python3 Tools/AssemblyShadow/verify-m01-results.py \
+  --baseline-root BaselineArtifacts/StandaloneOSX/M01-Baseline-v1 \
+  --baseline-result <baseline-result.json> --patch-result <p01-result.json> \
+  --patch-dll PatchArtifacts/P01/AssemblyA.Implementation.Internal.dll \
+  --player-assemblies _temp/AssemblyShadow/m01-player-assemblies.json \
+  --negative-result <preuse-type.json> --negative-result <preuse-reflection.json> \
+  --negative-result <preuse-prefab.json> --negative-result <preuse-scene.json> \
+  --output <verification.json>
+python3 Tools/AssemblyShadow/verify-installed-runtime.py --expect-shadow on
+```
+
+The build receipt captures the actual post-strip AOT DLLs and native library
+hash. Linker MVID changes are recorded, while dnlib checks preserved semantics.
+The pinned IL2CPP does not support Assembly.ManifestModule; runtime MVIDs are
+not fabricated. Physical native object/assembly pointers and resource-allocation
+stacks, not managed assembly names alone, establish shadow provenance.
+
+Gate approval additionally requires the native-path investigation, a real
+macro-OFF ordinary Player regression, and independent review. The prototype is
+not the M03-M07 production transaction, usage guard, or cache system.
+
+## M02 reproduction (accepted)
+
+M02 is accepted at the paired `assembly-shadow-m02-tooling` tags. Use the source
+pairing and evidence in `Docs/AssemblyShadow/M02/M02-report.md`; later M03 sources
+are not a byte-identical reproduction of the M02 Player.
+
+1. Run `AssemblyShadowDemo.Editor.M02Build.Configure` through the shared Unity
+   method helper.
+2. Run `Invoke-ShadowEditorTests.ps1 -TestFilter 'HybridCLR.Editor.AssemblyShadow.Tests;AssemblyShadowDemo.EditorTests'`.
+3. Verify the pinned installation with `BaselineBuild.InstallRepeatability` and
+   `verify-installed-runtime.py --expect-shadow on`.
+4. Run `AssemblyShadowDemo.Editor.M02Build.BuildPlayerBaseline`. It stages the
+   finite reflection configuration and reuses the immutable M01 bundles; it never
+   replaces them. The resulting Player input snapshot includes actual linked DLLs
+   and a separately verified type-forwarding/guard proof.
+5. Run that Player with `-shadowMode M02ReflectionBindings`, a unique absolute
+   `-shadowBindingResult` path, and `-batchmode -nographics -logFile <absolute.log>`.
+6. Run `Tools/AssemblyShadow/Invoke-M02EditorValidation.ps1` for the real
+   P01/P02/P03/P05 compiler, closure, ABI and repeatability cases. The wrapper
+   uses separate guarded Editor processes to compile P05 with its serialized
+   field present in the Editor domain, restores the exact original scripting
+   defines in `finally`, and then validates all cases in a fresh baseline
+   domain. A guarded, hash-bound restore also preserves the original settings
+   file bytes; unrelated settings changes are never overwritten. Do not call
+   `M02EditorValidation.Validate` directly without the
+   wrapper's run-bound P05 snapshot.
+7. Run `verify-m02-results.py` with the Editor, NUnit and `--reflection-result`
+   evidence. The accepted independent review and paired tags are recorded in the
+   M02 report and review record.
+
+The `SerializableEnum` Player contract is intentionally deny-all for nonempty
+serialized type names. Editor usage remains unchanged. The canvas contract admits
+only its 26 pinned widget names; changing this fixed AOT contract requires a new
+Player baseline. These bounded guards do not establish the later native gates.
+
+## M03 reproduction (accepted)
+
+M03 is accepted at the paired `assembly-shadow-m03-transaction` tags. The exact
+v4 source pairing, raw evidence and independent reviews are recorded under
+`Docs/AssemblyShadow/M03`; later sources are not a byte-identical reproduction.
+
+Use the M03 source pairing in the isolated shadow checkout. Do not replace M01
+bundles or treat Editor tests as transaction acceptance. Through the shared Unity
+method helper, run `M03Build.Configure`, the pinned `BaselineBuild.InstallRepeatability`,
+and `verify-installed-runtime.py --expect-shadow on`. The M03 methods are in
+`AssemblyShadowDemo.Editor`; the installer is in `AssemblyShadowBaseline.Editor`.
+
+1. Run `M03Build.BuildPlayerBaseline` with a 2400-second timeout. It uses the
+   dedicated M03 bootstrap scene and captures a new linked Player/input snapshot,
+   while checking the three frozen M01 business DLLs remain semantically equal.
+   The default baseline ID is `M03-Baseline-v1`; existing output/baseline roots are
+   refused. `-shadowBaselineId` and `-shadowBuildOutput` select explicit new roots.
+2. Run `M03Build.BuildFixtures`. This builds actual P01, P03 and throwing-initializer
+   patches with the target compiler, then independently replays their compiler,
+   linked-reference, reflection-policy, graph and resource-ABI proof. It writes
+   `m03-fixtures.json` and `m03-editor-replay.json` under one fresh
+   `_temp/AssemblyShadow/M03Fixtures-*` root. The replay receipt is not a signature.
+   Stable-AOT provenance v2 independently binds installed target compiler
+   libraries as well as framework references; neither names nor receipt
+   `sourcePath` values authorize a provider. Earlier v1 fixtures are diagnostic
+   evidence and are intentionally rejected by the v2 acceptance verifier.
+3. Launch one native-ON Player process per mode: T03-01 through T03-15 except
+   T03-09, plus T03-08-Fallback immediately after T03-08. Pass `-batchmode -nographics`,
+   `-shadowMode <mode>`, `-shadowFixtureManifest <absolute-m03-fixtures.json>`,
+   `-shadowResultPath <unique-result-dir>/m03-<mode>.json` and a distinct `-logFile`.
+   Give the failure/fallback pair the same unique `-shadowFallbackMarker` path.
+   Every process must exit zero and report Passed, including expected-rejection
+   modes; missing output or a harness exception is not a successful negative test.
+4. Run `M03Build.BuildFeatureDisabledPlayer` for a separate native-OFF Player,
+   then run T03-09 from that binary. All nine APIs must return FeatureDisabled,
+   including invalid-input calls, and initialize query outputs safely. The build
+   helper restores the ON setting afterward. Also retain an ordinary HybridCLR
+   OFF regression and strict restored-ON installation verification.
+5. Verify the complete mode set with `verify-m03-results.py --fixture-manifest
+   <m03-fixtures.json> --result-dir <unique-result-dir> --on-build
+   <on-input-snapshot>/m03-player-build.json --off-build
+   <off-input-snapshot>/m03-player-build.json --output <new-verification.json>`.
+   The build GUID in each result must match the corresponding captured binary.
+
+`M03EditorValidation.Validate` can replay existing fixtures without recompiling;
+pass `-shadowFixtureManifest` and a new `-shadowValidationReceipt` path. Existing
+receipts are refused. The native ASan runners in `native-tests/README.md` provide
+focused parser/facade-policy/visibility evidence only, not a substitute for real transactions.
+Full logical Assembly/Type/Unity resolution remains M04-M07 scope.
+
+## M04 reproduction (acceptance pending)
+
+M04 adds active Assembly/name/reference resolution, logical enumeration and
+declared-reference identity. Complete type/reflection/cache behavior remains
+M05 scope. Use a fresh M04 baseline ID and the exact committed four-repository
+pairing; never rebuild frozen M01 bundles or overwrite earlier Player evidence.
+
+1. Through the shared Unity method helper, run
+   `AssemblyShadowDemo.Editor.M04Build.Configure`,
+   `AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability`, and
+   `AssemblyShadowDemo.Editor.M04Build.ValidateCompilerInputs`.
+   Verify the installed pairing with `verify-installed-runtime.py --expect-shadow on`.
+2. Run `Invoke-ShadowEditorTests.ps1` with the same package/demo filter above.
+   Compiler preflight alone does not prove linked Player policy or runtime behavior.
+3. Run `M04Build.BuildPlayerBaseline` and `M04Build.BuildFixtures` in
+   `AssemblyShadowDemo.Editor`. Each writes a new immutable snapshot. Fixtures
+   contain exactly P01/P03 and a separate `m04-editor-replay.json` proof.
+4. Run `M04Build.BuildFeatureDisabledPlayer` for a separate native-OFF binary;
+   the helper restores the ON compiler setting afterward.
+5. Launch a fresh ON Player for each of T04-01 through T04-07 and
+   T04-09-BenchmarkOn. Launch fresh OFF processes for T04-08 and
+   T04-10-BenchmarkOff. Pass `-shadowM04Mode <mode>`,
+   `-shadowFixtureManifest <absolute-m04-fixtures.json>`,
+   `-shadowPlayerBuild <matching-input-snapshot>/m04-player-build.json`,
+   `-shadowM04Result <unique-dir>/m04-<mode>.json`, `-batchmode -nographics`
+   and a unique absolute `-logFile`. All processes, including expected-rejection
+   cases, must exit zero and emit Passed with real observations.
+6. Run `verify-m04-results.py --fixture-manifest <m04-fixtures.json>
+   --result-dir <unique-dir> --on-build <on-snapshot>/m04-player-build.json
+   --off-build <off-snapshot>/m04-player-build.json
+   --m01-baseline-root BaselineArtifacts/StandaloneOSX/M01-Baseline-v1
+   --output <new-verification.json>`.
+7. Retain the ON/OFF million-lookup measurements, ordinary loading/placeholder/
+   supplementary metadata evidence, focused native checks, restored installation
+   verification and full independent milestone review before tagging M04.
+
+The linked Player receipt captures actual DLL and AssemblyRef identities, the
+generated placeholder manifest, and the unique actual Player
+`global-metadata.dat` path/hash/version with its native Assembly/Image inventory.
+The pinned format is 31. C# and Python independently replay native identities;
+generated assembly names are derived from native-minus-linked inventories, not
+whitelisted. The runtime checks metadata belongs to its own Player data path.
+Initial v1 receipts lack this domain and are diagnostic history, not accepted
+M04 evidence. The pinned runtime cannot read module MVIDs: availability is
+explicitly false in Player observations; GUID proof comes from captured DLL
+bytes and native staged-image diagnostics, never the native metadata inventory.
+`M04EditorValidation.Validate` replays existing fixtures without recompiling;
+pass `-shadowFixtureManifest` and a fresh `-shadowValidationReceipt` path.
+
+Genuine managed missing-name callback dispatch is not claimed: the pinned wrapper
+throws without invoking `AssemblyResolve`. Native miss checks plus actual wrapper
+IL document that behavior; the Player separately checks known-name noninvocation.
+
+## M05 type, reflection and cache evidence
+
+M05 acceptance is pending. Follow `Docs/AssemblyShadow/M05/M05-type-contract.md`
+and its separate raw-query admission contract. Passing Editor tests or compiler
+preflight is not Player acceptance. Do not start M06 until both independent M05
+gates pass and the complete pairing is tagged.
+
+1. Commit and pin the intended runtime, native, package and demo source pairing.
+   Use a new `M05-Baseline-*` identity and output paths. Through the shared Unity
+   method helper, run `AssemblyShadowDemo.Editor.M05RawTypeAdmissionBuild.Generate`
+   to derive or verify the 25 declarations from a fresh Player compilation.
+   A changed declaration requires source review; the helper never overwrites it.
+2. Run `AssemblyShadowDemo.Editor.M05Build.Configure`, the pinned
+   `AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability`, and
+   `AssemblyShadowDemo.Editor.M05Build.ValidateCompilerInputs`. Verify the
+   installed source pairing with `verify-installed-runtime.py --expect-shadow on`.
+3. Run `Invoke-ShadowEditorTests.ps1` with the package/demo filter above and
+   `python3 -m unittest discover -s Tools/AssemblyShadow/tests -q`. Set
+   `M05_REAL_COMPILER_ROOT` to the preserved `Assemblies` directory logged by
+   Generate, and `M05_RAW_CONFIGURATION` to the absolute raw-admission config
+   path, so the real-DLL boundary smoke runs rather than being skipped. Generate
+   hash-checks copies of exactly the DLLs returned by the compiler (and their
+   PDBs). Unity's next compiler run may remove its sibling `CompilerOutput`
+   directory; do not use that producer-owned directory for later replay. The
+   general preflight snapshot also includes precompiled inputs, so it is not
+   the same direct-compiler smoke inventory. Keep
+   the full historical suite enabled and require zero skips. The new type-info
+   API intentionally extends the original nine operations; all ten retain the
+   non-simulating Editor contract.
+4. Run `M05Build.BuildPlayerBaseline`, then `M05Build.BuildFixtures`, in
+   `AssemblyShadowDemo.Editor`. These capture fresh compiler/linked/type/native
+   evidence, preserve the exact M01 resources, and produce P01/P03 plus a
+   separately rejected LayoutMismatch fixture. `m05-editor-replay.json` must
+   come from the real independent patch/resource-policy rebuild, not a label.
+5. Run `M05Build.BuildFeatureDisabledPlayer` for a distinct OFF binary. It
+   restores the native ON setting in `finally`; verify the restored setting.
+6. Launch 19 fresh processes: P01 and P03 variants of T05-01, T05-02, T05-03,
+   T05-05, T05-08 and T05-10; `T05-04-EarlyType`, `T05-06-P01`, `T05-07-P03`,
+   `T05-09-LayoutMismatch`, `T05-11-FeatureOff`, `T05-12-BenchmarkOn` and
+   `T05-13-BenchmarkOff`. Only T05-11 and T05-13 use the OFF binary.
+   Pass `-shadowM05Mode <exact-mode>`,
+   `-shadowM05Fixtures <absolute-m05-fixtures.json>`,
+   `-shadowM05PlayerReceipt <matching-input-snapshot>/m05-player-build.json`,
+   `-shadowM05Result <new-result-path>`, `-batchmode -nographics`, and a unique
+   absolute `-logFile`. Expected-rejection cases must also emit Passed and exit
+   zero after observing their actual native failure state.
+7. Run `verify-m05-results.py --fixture-manifest <m05-fixtures.json>
+   --result-dir <unique-dir> --on-build <on-snapshot>/m05-player-build.json
+   --off-build <off-snapshot>/m05-player-build.json
+   --m01-baseline-root BaselineArtifacts/StandaloneOSX/M01-Baseline-v1
+   --output <new-verification.json>`. Do not use `--allow-incomplete` for
+   acceptance. Retain native checks, exact input/resource audits, raw outputs
+   and timings, then obtain both independent milestone verdicts.
+
+The benchmark has 1,000 warmups and 100,000 timed literal type lookups; it is
+not an allocation-free or production-performance claim. Resource cases await
+the actual prefab/scene load, unload and reload. Runtime module MVID remains
+unavailable; type/assembly evidence must not manufacture runtime GUIDs from
+the expected DLL inventory. `M05EditorValidation.Validate` can replay an
+existing fixture manifest through `-shadowFixtureManifest` and a fresh
+`-shadowValidationReceipt` output.
+
+## M06 execution semantics
+
+M06 acceptance is defined by `Docs/AssemblyShadow/M06/M06-execution-contract.md`.
+It is a Development plus Release proof, not a relabelled M05 transaction run.
+Use separate fresh `M06-Baseline-*` and `M06-Baseline-Release-*` identities.
+The required order in each compilation mode is:
+
+1. `M06Build.PrepareGenerationInputs`, followed by the recorded plan-aware
+   HybridCLR generators and `M06GenerationBuild.FinalizeGeneration`.
+2. `M06Build.ValidateCompilerInputs` and `M06Build.ValidateFixtureWarmups`.
+3. `M06Build.BuildPlayerBaseline` (or `BuildReleasePlayerBaseline`) with the
+   exact immutable `-shadowM06Generation` receipt.
+4. Development additionally runs `M06Build.BuildFeatureDisabledPlayer`.
+5. `M06Build.BuildFixtures` and `M06EditorValidation.Validate` in each mode.
+6. Launch the complete 28-mode inventory in distinct processes and run
+   `verify-m06-results.py` without an incomplete override.
+
+Every Player receipt binds the actual compiler configuration, linked managed
+inputs, native metadata, type proof, execution proof and generation evidence.
+The Release case must be a real non-Development/no-PDB Player. Keep the original
+generation and artifact roots immutable; interrupted native builds may only be
+resumed through the explicit hash-bound resume entrypoints.
+
+## M07 Unity resources and APIs
+
+M07 freezes seven resource bundles and proves prefab, ScriptableObject,
+SerializeReference, scene, MonoScript, Unity message, generic/Type API and cache
+paths against P01-P05. Passing compilation or resource ABI comparison alone is
+not acceptance. The Player bootstrap scene remains free of business references,
+and transaction Commit must finish before any business bundle or scene load.
+
+Run the guarded build workflow from a closed isolated project:
+
+```powershell
+pwsh Tools/AssemblyShadow/Invoke-M07Build.ps1 `
+  -ProjectPath <absolute-isolated-demo> `
+  -BaselineId M07-Baseline-v1 `
+  -BuildTarget StandaloneOSX
+```
+
+The workflow uses fresh Unity processes for compiler preflight, baseline
+resources, native-ON Player, native-OFF Player, P05 prepare/compile/restore and
+final replay. It holds one workflow lock and restores the exact original
+`ProjectSettings.asset` bytes after P05. The output
+`m07-build-workflow.json` identifies the two Player receipts, fixture manifest
+and independent Editor replay receipt. Never call the structural compile alone:
+the wrapper's recovery state and byte restore are part of the proof.
+
+Launch all 14 cases in fresh processes using the exact paths from that receipt:
+
+```sh
+python3 Tools/AssemblyShadow/run-m07-players.py \
+  --project-root <absolute-isolated-demo> \
+  --fixture-manifest <m07-fixtures.json> \
+  --on-build <native-on-m07-player-build.json> \
+  --off-build <native-off-m07-player-build.json> \
+  --replay-receipt <m07-editor-replay.json> \
+  --output-root <new-absolute-_temp/AssemblyShadow/M07Players-directory>
+
+python3 Tools/AssemblyShadow/verify-m07-results.py \
+  --fixture-manifest <m07-fixtures.json> \
+  --result-dir <M07Players-directory/Results> \
+  --on-build <native-on-m07-player-build.json> \
+  --off-build <native-off-m07-player-build.json> \
+  --replay-receipt <m07-editor-replay.json> \
+  --output <new-verification.json>
+```
+
+Only T07-14 uses the native-OFF Player. P05 is an atomic DLL plus rebuilt
+resource-catalog case; P05-DllOnly, class rename and SerializeReference concrete
+type rename must be rejected before publication. The Player receipt binds the
+original resource build root, while the baseline manifest binds its immutable
+copy. Both C# replay and Python acceptance compare the receipt hash and ordered
+bundle name/SHA inventory; absolute path equality is deliberately not required.
+`--allow-incomplete` is diagnostic only and can never establish Gate 3B.
+
+## Recoverable native-cache rebuild
+
+clean-il2cpp-cache.sh is a dry-run unless --apply is passed; PowerShell uses
+-Apply. Only Library/Bee and Library/Il2cppBuildCache are eligible. The shared
+exact-project Unity process/lock guard must succeed before every move.
+
+Caches are moved, not deleted, into a unique
+_temp/AssemblyShadow/CacheBackups/<id> directory. manifest.json records the
+source and backup paths. Restore only with the project closed and only when the
+original target path is absent; never overlay a newly generated cache.
+
+## Evidence and limits
+
+The source verifier checks committed Git blobs, installed SHA-256 hashes and
+the entire native file inventory. It permits exactly four generated files to
+change. Pin JSON, receipt JSON, Unity version, package path/version, target and
+native compiler mode must agree. Symlinks and path traversal fail closed.
+
+M00 Player, build, install and Editor results go under _temp/AssemblyShadow.
+Accepted results and review records are archived under Docs/AssemblyShadow.
+Builds, caches, patch DLLs and dSYM files are reproducible local artifacts, not
+checked-in source. Windows/Android results must never be inferred from macOS.
+
+
+## H1 paired performance — retained-graph bridge and sealed pilot admission
+
+The retained profile-2 V04 graph was built at demo source revision
+`69130bbb3a6df516916dddb5ad263799a7c6e5e3`. Later H1 work changed only
+reviewed performance-admission tooling/tests/CI, so the graph can be reused only
+through an explicit authenticated bridge. Normal R00 verification remains
+current-pairing-only.
+
+### 1. Create the retained-graph bridge
+
+After current source/runtime authority and the retained frozen build map have
+been authenticated, create one new bridge receipt:
+
+```sh
+python3 Tools/AssemblyShadow/create-h1-graph-reuse-bridge.py \
+  --project <absolute-candidate-project> \
+  --build-map <retained-frozen-build-map.json> \
+  --output <new-graph-reuse-bridge.json>
+```
+
+The bridge is intentionally limited to candidate side B and the retained
+`69130bbb...` graph. It verifies the current installed runtime and current demo
+source authority, requires unchanged Unity/target/architecture plus identical
+HybridCLR/HybridCLR-Unity/IL2CPP pins, and requires the complete non-metadata Git
+delta to equal the reviewed CI/AssemblyShadow-tooling allowlist. It records the
+old graph pairing, current source-pin binding, exact Git blob delta, build-map
+binding, verifier hashes, and installed-runtime verification.
+
+It does **not** edit `AssemblyShadowSourcePins.json`, graph receipts, Players,
+or `r00_player_inputs.require_current_pairing`.
+
+### 1A. Preflight retained ON early reconstruction
+
+Before the full 8-side seal, run the read-only bridge-aware early preflight:
+
+```sh
+python3 Tools/AssemblyShadow/verify-h1-retained-early-reuse.py \
+  --protocol <bound-performance-protocol.json> \
+  --schedule <bound-performance-schedule.json> \
+  --build-map <retained-frozen-build-map.json> \
+  --pilot-index <completed-pilot-sample-index.json> \
+  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
+  --output <new-retained-early-preflight.json>
+```
+
+The preflight fully reauthenticates the bridge, then strict-verifies candidate
+side B for exactly `R00-ON-NoPatch`, `R00-ON-P01`, and `R00-ON-P03`.
+This crosses the nested `R01EarlyStartup` capsule reconstruction with both
+`Baseline` and `Control` early modes before the expensive full seal. It is
+diagnostic evidence only and does not replace the 8-side pilot seal.
+
+Any failure is a hard stop before sealing. Do not fall back to outer-only graph
+verification or scope-audit-only reuse.
+
+### 1B. Preflight retained pilot runner provenance
+
+Before the expensive 8-side seal, authenticate the retained pilot index itself:
+
+```sh
+python3 Tools/AssemblyShadow/verify-h1-retained-pilot-admission.py \
+  --protocol <bound-performance-protocol.json> \
+  --schedule <bound-performance-schedule.json> \
+  --build-map <retained-frozen-build-map.json> \
+  --pilot-index <completed-pilot-sample-index.json> \
+  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
+  --output <new-retained-pilot-admission.json>
+```
+
+This preflight fully authenticates the bridge, derives the only accepted
+historical `run-r00-players.py` provenance directly from Git anchor
+`69130bbb...`, loads the retained pilot history, and selects all four latest
+passed pilot pairs. It performs **no** deep R00 launch reconstruction.
+
+The recorded pilot runner path/hash must equal the bridge-derived retained
+runner exactly. A missing bridge, another path/hash, or bridge switching fails
+before the 1.6 GB seal reconstruction. This exception is pilot provenance only;
+new formal attempts still require the current runner.
+
+The preflight writes `H1RetainedPilotAdmissionPreflight`. It is a diagnostic
+gate and does not replace the strict 8-side seal.
+
+### 2. Strictly seal the completed pilots once
+
+Create exactly one pilot verification receipt:
+
+```sh
+python3 Tools/AssemblyShadow/seal-h1-pilot-verification.py \
+  --protocol <bound-performance-protocol.json> \
+  --schedule <bound-performance-schedule.json> \
+  --build-map <retained-frozen-build-map.json> \
+  --pilot-index <completed-pilot-sample-index.json> \
+  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
+  --output <new-pilot-verification.json>
+```
+
+The sealer fully reauthenticates the bridge, then performs the existing strict
+`r00_results.verify_suite` reconstruction for the latest passed A/B launch of
+every pilot mode (8 side graphs total). Candidate side B is checked against the
+bridge-authenticated historical graph pairing; protected side A continues to use
+the normal current-pairing path.
+
+The retained pilot index also preserves the exact `run-r00-players.py` binding
+that produced those historical pilot diagnostics. A current bridge now binds
+that historical runner provenance directly from Git anchor `69130bbb...`.
+During seal admission, pilot rows may use that historical runner only after the
+bridge has been fully authenticated. Missing bridge authority, any other runner
+path/hash, or bridge switching fails before deep reconstruction. This exception
+applies only to retained **pilot provenance**; every new formal attempt must use
+the current runner binding.
+
+For retained candidate ON launches using `R01EarlyStartup`, that exact same
+authenticated authority is propagated through nested
+`r01_early_results._prepare` and early-capsule reconstruction. Reuse authority
+at that nested boundary is deliberately limited to the performance
+`Baseline` / `Control` modes; failure, ordinary, and guard early modes reject
+it instead of entering an unreviewed historical-pairing path.
+
+The seal binds protocol/schedule/build map, the complete retained pilot-attempt
+history, launch receipts, graph-reuse bridge, verifier implementations, and a
+stable filesystem identity guard for the complete immutable input/evidence
+inventory.
+
+For a fresh graph whose source pins already equal its project pins,
+`--graph-reuse-bridge` may be omitted; the normal strict path is unchanged.
+
+### 3. Run the remaining formal pairs with the same bridge and seal
+
+Use the batch runner for the normal path. It sequentially executes every
+unattempted preregistered formal pair and chains each immutable sample index into
+the next pair:
+
+```sh
+python3 Tools/AssemblyShadow/run-h1-formal-batch.py \
+  --protocol <bound-performance-protocol.json> \
+  --schedule <bound-performance-schedule.json> \
+  --build-map <retained-frozen-build-map.json> \
+  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
+  --pilot-verification-receipt <new-pilot-verification.json> \
+  --prior-index <latest-sample-index.json> \
+  --output-root <new-formal-batch-root> \
+  --timeout 900
+```
+
+A successful batch writes `formal-batch.json` with
+`status=PassedAllFormalPairs` and binds the final cumulative sample index.
+
+Each paired invocation derives its internal per-project output namespace from
+the **full canonical requested output path** (including a short SHA-256 suffix),
+not only the leaf directory name. Preserved historical batches may therefore
+reuse the same pair IDs/attempt numbers without colliding in
+`_temp/AssemblyShadow`. The externally requested evidence root remains
+new-only and unchanged in the sample/batch receipts.
+
+The batch **never retries a failed pair automatically**. On the first failed
+whole-pair attempt it retains that sample index, writes
+`status=StoppedOnFailedWholePair`, and stops. Diagnose the failure and, only
+when the preregistered retry policy permits it, retry that same pair explicitly:
+
+```sh
+python3 Tools/AssemblyShadow/run-h1-paired-performance.py \
+  --protocol <bound-performance-protocol.json> \
+  --schedule <bound-performance-schedule.json> \
+  --build-map <retained-frozen-build-map.json> \
+  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
+  --pilot-verification-receipt <new-pilot-verification.json> \
+  --prior-index <failed-pair-sample-index.json> \
+  --output-root <new-retry-output-root> \
+  --phase formal \
+  --pair-id <same-failed-pair-id> \
+  --attempt <next-attempt-number> \
+  --timeout 900
+```
+
+Then start a **new** batch output root with the successful retry index as
+`--prior-index`. The batch refuses to skip an unresolved failed formal pair.
+
+Both the single-pair driver and batch path re-hash compact control receipts/tools,
+re-derive the current pilot immutable path/hash inventory, verify the sealed
+canonical-path + inode/mode/size/mtime/ctime guard, and verify the graph-reuse
+bridge's compact current bindings. `st_dev` is deliberately excluded from
+acceptance because it identifies the mount/filesystem instance and may change
+across a remount while the same file bytes and stable identity remain unchanged.
+Any accepted guard field change still fails closed and requires a new seal.
+They do not repeat the eight deep pilot graph scans.
+
+For retained candidate side B, the paired driver also creates one
+`H1FormalSideLaunchAuthority` per formal attempt. That receipt binds the exact
+pair ID/attempt/mode/order, candidate project, fixture, ON/OFF receipts, replay,
+protocol, schedule, frozen map, graph-reuse bridge, pilot seal, and current
+runner/verifier hashes. The parent then invokes `run-r00-players.py` with the
+internal `--h1-formal-launch-authority` receipt.
+
+The R00 runner does not accept a raw historical revision or generic source-pin
+override. When this receipt is present it revalidates the exact formal authority,
+reconstructs the pairing authority from the same bridge, uses retained input
+verification for candidate side B, and passes that same authority into
+Baseline/Control early preparation for ON modes. Without the receipt,
+`run-r00-players.py` remains current-pairing-only.
+
+The runner echoes the authority binding into its R00 launch receipt. The parent
+requires that exact echo before a side can count as Passed. Final analysis
+revalidates every launched formal side-B authority against its pair/attempt and
+requires protected side A to have no retained authority. Failed side-B attempts
+that stop before an R00 launch receipt still retain and validate their parent
+authority receipt.
+
+Each formal attempt records both `pilotVerification` and
+`graphReuseBridge`. A cumulative chain cannot switch either authority.
+No automatic reseal, fallback deep scan, side-only retry, or latency-based
+sample deletion is allowed.
+
+Whole-pair retry, preregistered order, retained attempts, timeouts, and
+measurement semantics are unchanged.
+
+### 4. Run final strict analysis
+
+After all formal pairs are complete:
+
+```sh
+python3 Tools/AssemblyShadow/analyze-h1-paired-performance.py \
+  --sample-index <final-sample-index.json> \
+  --pilot-verification-receipt <new-pilot-verification.json> \
+  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
+  --output <new-performance-analysis.json>
+```
+
+The analyzer first fully reauthenticates the bridge and requires every formal
+attempt to bind the same bridge and pilot seal. It then performs the original
+strict per-launch/evidence reconstruction; only candidate side B receives the
+authenticated historical pairing authority. The pilot cache does not replace
+final evidence verification.
+
+A bridge mismatch, current source-pin change, changed allowed-tool verifier,
+unexpected Git delta, graph artifact mutation, or seal identity change is a hard
+failure and requires explicit diagnosis. Do not rewrite receipts, move source
+pins, or weaken the normal R00 pairing gate.
+
+
+### 5. Reanalyze the completed 27df series after an analysis/test-only successor
+
+The formal series completed at source
+`27df1a3d60811dc121f296ab561ae313a382b363` is immutable evidence. If a later
+source changes only the closed historical-analysis tool set, do **not** recreate
+its bridge/seal/formal authorities or rerun Players merely to accommodate an
+analyzer contract fix.
+
+Use the fixed-source compatibility tool:
+
+```sh
+python3 Tools/AssemblyShadow/h1_historical_reanalysis.py \
+  --analysis-project <current-validation-checkout> \
+  --sample-index <27df-final-sample-index.json> \
+  --pilot-verification-receipt <27df-pilot-verification.json> \
+  --graph-reuse-bridge <27df-graph-reuse-bridge.json> \
+  --formal-batch <27df-formal-batch.json> \
+  --output <new-compatibility-preflight.json> \
+  --preflight-only
+```
+
+The historical live receipts keep their original absolute evidence project root. Current analysis authority is deliberately separate: `--analysis-project` must identify the canonical current validation checkout, whose committed source pins, complete non-metadata tree, repository identity, and running reanalysis-tool bytes are verified before the historical evidence graph is interpreted. The historical checkout's present-day source pin is never used as current analysis authority.
+
+The preflight authenticates:
+
+- the exact retained bridge, guard-v2 seal, final sample index, and 40/40 formal-batch SHA-256s recorded by the Local checkpoint;
+- historical source `27df1a3d...` and checkout `f5e34235...`;
+- the old bridge transition and verifier hashes from Git;
+- the old guard-v2 pilot seal and exact historical seal verifier inventory;
+- all forty formal attempt authority bindings;
+- historical pilot/current-formal runner provenance;
+- the exact current analysis-only Git delta.
+
+It does not authorize Player execution and does not rewrite any historical
+receipt.
+
+Only after that passes, run the corrected analyzer over the same immutable
+series:
+
+```sh
+python3 Tools/AssemblyShadow/h1_historical_reanalysis.py \
+  --analysis-project <current-validation-checkout> \
+  --sample-index <27df-final-sample-index.json> \
+  --pilot-verification-receipt <27df-pilot-verification.json> \
+  --graph-reuse-bridge <27df-graph-reuse-bridge.json> \
+  --formal-batch <27df-formal-batch.json> \
+  --output <new-historical-performance-analysis.json>
+```
+
+The corrected build-binding contract follows the real R00 producer: build GUID,
+baseline build ID, and runtime ABI hash are required at the raw result top level.
+The nested `playerBuildReceipt` must bind the frozen receipt path/SHA/build
+GUID; baseline/runtime fields are optional there, but if present must agree.
+Wrong or missing top-level identity still fails closed.
+
+The historical compatibility path uses `H1HistoricalPerformanceReanalysis-v2`
+and is fixed to the completed 27df series plus an exact seven-path
+analysis/test-only successor set. Relative to v1, the only added paths are the
+bounded Primary regression runner and the paired-performance synthetic fixture;
+no execution/runtime/measurement source is added. The retained-graph transition
+uses `H1V04RetainedGraphToolOnlySuccessor-v2` with the corresponding exact
+25-path tool/test/CI allowlist.
+
+For strict reanalysis, candidate-side historical R00 verification uses an
+analysis-local historical-input adapter: it reconstructs the immutable M07/R00
+input graph from the original historical paths and source-pin DTOs without
+requiring the mutable historical evidence checkout to represent today's source
+authority. Normal `r00_player_inputs.py` and `r00_results.py` behavior remains
+unchanged outside this historical reanalysis callback. Any execution runner,
+measurement, protocol, schedule, graph producer, Player, native, or
+execution-verifier source change makes the historical path ineligible and
+requires normal current-source evidence instead.
+
+
+### 6. Bind V05 analysis-only successor evidence
+
+After a fresh Local cycle has authenticated current source/tests, completely
+reauthenticated the immutable source-27df evidence, and produced a Passed /
+ComparabilityPassed V04 closure checkpoint, bind V05 without creating or
+relabeling Player execution:
+
+```sh
+python3 Tools/AssemblyShadow/h1_historical_reanalysis.py \
+  --analysis-project <current-validation-checkout> \
+  --v05-package \
+  --current-checkpoint <authenticated-current-v04-closure-checkpoint> \
+  --historical-checkpoint <authenticated-source-27df-execution-checkpoint> \
+  --output <new-v05-successor-evidence.json>
+```
+
+Policy ID: `H1AnalysisOnlySuccessorEvidence-v1`.
+
+The V05 binder verifies both checkpoint manifests, current V00/V01 source/test
+authority, V02 complete live reauthentication, V04 compatibility/strict
+analysis, the exact four source-27df evidence hashes, and the scoped no-Player
+receipt. It binds the full performance analysis JSON; it does not summarize
+away unfavorable timing, RSS, managed-memory, or variance measurements.
+
+Required classifications are intentionally distinct:
+
+- current source regression: `FreshCurrentSourceValidation`;
+- source-27df Player/runtime execution:
+  `ReusedAuthenticatedFromSource27df`;
+- performance: `ReanalyzedImmutableHistoricalExecution`;
+- fresh current-source Player execution: false.
+
+A successful V05 binder returns
+`SuccessorEvidenceBoundForIndependentM08`. It does **not** claim runtime
+acceptance, M08 PASS, human approval, or permission to enter R02.
+
+The V05 output also binds the canonical H1 design/evidence/performance/gate
+documents and the repository's read-only `code-gate-reviewer` configuration.
+A genuine independent H1 M08 review uses those bound inputs and must return
+PASS/FAIL/BLOCKED. `ComparabilityPassed` is only a measurement-validity
+result. The performance protocol has no approved SLA; measured regressions and
+additional memory remain explicit review inputs. M08 PASS makes the state only
+`ReadyForHumanReviewGate`; the human H1 decision remains separate.
+

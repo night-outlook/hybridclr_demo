@@ -1,6 +1,73 @@
 # Local Validation report
 
-## Current run — R03 batch S prerequisites, 2026-10-07 PDT / 2026-10-08 UTC
+## Current run — fresh R03 batch S after storage remediation, 2026-10-07 PDT / 2026-10-08 UTC
+
+**Core result: EvidenceReadyForPrimaryReview; 90 Passed. Seal Passed; executing storage/session Passed; wrapper exit 0; independent read-only byte authentication Passed. Exit: Local Validation → Primary Implementation.** This is exactly one fresh S execution. Original S capacity-blocked prerequisite evidence remains immutable; its batch-NotRun fact was not rewritten. User continuation explicitly resolved the exact execution SHA to pushed Local documentation descendant `29bb3d4a39bf8a2f23be404f77535aaba3485bfc` of Primary source `e8fda852684f584295fe37830340ab3c9f3fcc4f`; their 389-file delta contains only Local reports/blocker checkpoint. Executable source remains identical to anchor 9f27feb647bbf2d2bc82483700fe4f78e5ea60be. [Authorization and unused-path binding](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/preflight/EXECUTION_AUTHORIZATION.json).
+
+### Source and environment
+
+| Actual owning repository | Branch | Exact execution commit |
+| --- | --- | --- |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | `29bb3d4a39bf8a2f23be404f77535aaba3485bfc` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `codex/assembly-shadow-r01b-h1` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
+
+Unity 2022.3.62f2 at `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`; StandaloneOSX arm64. SDK 8.0.318 at SDK-only `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`; Unity 6000 was never launched. Python `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3` 3.14.6; macOS 26.5.2 build 25F84; active CommandLineTools MacOSX SDK 26.5 and Apple clang 21.0.0. Full-Xcode version remains Unavailable, separate from the actual native build results. No source/package/native/build pin, credential/protocol, scope, expectation, timeout, warm-up, fence, GC or acceptance flag was changed. No bounded product fix was made. Shared Git common metadata locations are recorded; no ordinary primary/control project or prior app was used for validation. [Source authority](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/preflight/SOURCE_AUTHORITY.json), [environment](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/preflight/READ_ONLY_READINESS.json), [exact snapshots](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/SOURCE_BINDINGS.json).
+
+### Prerequisites, build and runtime
+
+| Required validation | Factual state |
+| --- | --- |
+| Retained R read-only six-file audit | Passed before and after; original restore Failed; settings still staged; restorationPerformed=false; original Git cause Unavailable |
+| Four-owner transport / LR / storage prerequisites | TransportReady, all 4 Passed; 45 LR and 48 storage tests Passed, zero skips/errors/failures |
+| Full historical custody | Passed before/after for 291,006 unique files, including 290,082 original published-map paths plus prior S checkpoint/preflight; no missing-file rebaselining or historical reclassification |
+| Fresh diagnostic / executing admission | Admitted, all allocation probes Passed; respective sessions Passed. Fresh outputs use `-2` sidecars; original blocked sidecar untouched |
+| Ninety-cell core ledger | 90 Passed; exact 90 unique cells retained |
+| Four focused native builds | candidate-release: Passed, reference-release: Passed, candidate-debug: Passed, candidate-off: Passed |
+| Two original-resource native builds | ON Passed; OFF Passed |
+| Early 18-method Editor / 754 focused / 755 original-resource scopes | Early Passed; focused Passed; original-resource Passed; actual XML/scope/verdict records retained |
+| Fresh Player verification records | 59 records: {'Passed': 59}; full requirement 23 focused + 14 resource + 12 observations + 10 early = 59 |
+| P05 prepare / compile / restore / finalize | prepare: Passed, compile: Passed, restore: Passed, finalize: Passed |
+| Cleanup and fresh remote acceptance | cleanupResult=ExactOriginalBytesRestored; remoteAuthority=Passed; stage=Complete |
+| Resource binding / production integration / aggregate / measurement summary / final authority | resource-input-binding: Passed, production-entry-integration: Passed, resource-contracts: Passed, measurement-summary: Passed, final-authority: Passed |
+| Core index/archive/seal and exact copied transport | Passed; original sealed bytes/hashes retained without resealing |
+
+[Read-only postrun authentication](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/preflight/POSTRUN_AUTHENTICATION.json) records each command/stream hash, actual exits/process groups, both Editor XML verdicts, Player bindings, recovery and all five top-level hashes. Command expected-negative compiler controls stay distinct from successful product builds. [Integrated detailed observations](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/preflight/INTEGRATED_DETAILS.json) records build GUIDs/native bindings, six strict warm witnesses, C07 physical readiness, rejection preservation, producer attribution, Editor counts, integration roots/closure and restoration hashes. Contaminated producer controls retain Failed unisolated warm certificates alongside Passed diagnostic results; the producer lease is diagnostic-only. Prior M01 NoCoverage/results/certificates are unchanged; current 755-roster M01 execution is separate. Frozen M00/compiler input reuse is ReusedAudited input, not fresh M00 compilation or historical runtime acceptance. Original 90 sealed rows are never rewritten for supplemental observations.
+
+Fresh integrated conclusions: both full Editor rosters have zero failures, skips and inconclusive cases. All six strict warm witnesses Passed; C07 has positive physical proof with both baseline and target layout readiness, without forced baseline business initialization. All four producer controls identify a loop admission but retain Failed unisolated certificates. Production integration returned to baseline with `returnChangedRoots=[]` and `returnClosure=[]`. The live source/linked policy receipt Passed source-inventory validation, rejection of linked policy for source use, unchanged source policy and fresh Unity inventory. The resource aggregate strict bridge verified 221 type-info objects with `rawEvidenceModified=false`; all five fresh schema-2 layout sidecars remain bound to current inputs.
+
+Provenance limits: the four focused build producers do not emit a build GUID, so their GUID state remains Unavailable; exact Player inventories, native bindings and receipt hashes are retained. Original-resource ON/OFF producer GUIDs are available in their build receipts. Measurement summary Passed evidence checks while releasePerformanceAcceptance=false, noiseOrOverheadThresholdClaimed=false, R02DeferredCpuRiskAcceptedHere=false and H1RssRiskAcceptedHere=false. A green focused matrix does not remove these acceptance limits. [Fresh final four-owner source authority](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/preflight/FINAL_EXECUTION_SOURCE_AUTHORITY.json).
+
+### Command, time, custody and evidence
+
+Execution cwd `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`; start `2026-10-08T03:18:29.216362+00:00`, end `2026-10-08T05:29:42.930299+00:00` UTC (October 7 PDT). Exact command/streams/clocks are in [outer receipt](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/preflight/operations/storage-executing/receipt.json):
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Storage/run_storage_checked.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit 29bb3d4a39bf8a2f23be404f77535aaba3485bfc --retained-q /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair --storage-evidence /Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03LocalBatch-20261007S-lr-recovery-2 --execute
+```
+
+Live batch `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery`; retained isolated project/SDK/cache/reference roots remain where their receipts bind them. [Retained roots](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/preflight/RETAINED_LIVE_ROOTS.json). Fresh preflight `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007S-lr-recovery-2`; diagnostic `/Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03LocalBatch-20261007S-lr-recovery-2`; executing storage `/Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03LocalBatch-20261007S-lr-recovery-2`; retained-R audit and transport use corresponding `-2` roots. Allocation probes are point-in-time, not capacity reservation. Sampling/tracebacks and [publication footprint plus 20 GiB check](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/preflight/storage-publication-check.json) preserve observed capacity/constraints. No capacity reclamation, arbitrary deletion or relocation was performed by Local.
+
+Retained R `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage` remains untouched and staged; its 90-cell 47 Passed / 1 Failed / 42 Blocked result is not reclassified. Q/P/O/N/all earlier and original blocked R/S evidence retain exact hashes. [Before custody](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/preflight/HISTORICAL_CUSTODY_BEFORE.json), [after custody](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/preflight/HISTORICAL_CUSTODY_AFTER.json), original expected map and six-file before/after audit remain separate. Unindexed old R caches are current custody snapshots, not historical acceptance evidence.
+
+| Immutable core artifact | SHA-256 |
+| --- | --- |
+| `LOCAL_BATCH_RESULT.json` | `2e09d46c800d7721eb14a6d7a31ba1d89327d1126ff7f7be35dd889bdbdf3096` |
+| `BATCH_EXECUTION.json` | `241144d39b1cfa47be3dcd4f67a3e40f7608ab58d605117c81fcccea8c68a427` |
+| `evidence-index.json` | `0685d23a40b581cc7d22abc543c7d9067e808a0f25fa0b3f2aea32966b22bd70` |
+| `evidence.tar.gz` | `23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6` |
+| `seal-receipt.json` | `d382557e62c3e897070305daeedb452a2ab0d3f409af42e58be8fd8f03109dcf` |
+
+Failures: None. Blocked cells: 0. No phase/batch retry or product-source change. All still-meaningful assigned cells were executed or truthfully blocked by the unchanged scheduler.
+
+### Publication and exit boundary
+
+Only these two Local reports and new `local-validation-20261007-batch-s-evidence-ready` are owned changes. Exact copy/source/JSON/hash/link/manifest/whitespace/staged-byte checks accompany publication. Archive ordered parts reconstruct the original sealed byte stream; [transport manifest](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/FILE_TRANSPORT.json) and helper preserve live originals. Latest pushed four-repository HEADs and clean/remote verification are recorded externally at `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007S-lr-recovery-2/PUBLICATION_RECEIPT.json` and in the final handoff, separate from the execution source `29bb3d4a39bf8a2f23be404f77535aaba3485bfc`.
+
+R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; fullLegacyRegressionAcceptance=false; PureInterpreter expansion disabled. Independent full-stage review, Primary reconciliation and owner/human approval remain pending. Observations do not approve a production performance SLA, deferred R02 CPU/H1 RSS risks or unfenced warm acceptance. Prior ancillary effective-main-model observation remains unresolved and distinct; no gate PASS/Off or independent-review claim. Local returns to Primary and stops.
+
+## Historical run — R03 batch S prerequisites, 2026-10-07 PDT / 2026-10-08 UTC
 
 **CapacityBlocked; batch NotRun. Admission Blocked; diagnostic session NotAdmitted; diagnostic exit2. Exit: Local Validation → Primary Implementation.** No S core was constructed, executing wrapper invoked, Unity/IL2CPP/native build/Editor/Player launched, or runtime result/ledger/seal produced. All90 cells, six builds,59 Players and18/754/755 Editor scopes are NotRun, without fabricated runtime cells. [Factual Local prerequisite result](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/LOCAL_STORAGE_RESULT.json), [checkpoint](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/README.md), [final prerequisite sequence](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/preflight/PREREQUISITE_SEQUENCE_FINAL.json).
 

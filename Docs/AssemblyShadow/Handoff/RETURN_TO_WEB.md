@@ -1,6 +1,14 @@
 # Local Validation → Primary Implementation
 
-## Current return — R03 batch S prerequisites, 2026-10-07 PDT / 2026-10-08 UTC
+## Current return — fresh R03 batch S, 2026-10-07 PDT
+
+Core `EvidenceReadyForPrimaryReview`; 90 Passed; seal Passed; storage Passed; wrapper exit 0. Execution demo `29bb3d4a39bf8a2f23be404f77535aaba3485bfc`; native/package/IL2CPP pins unchanged. [Full factual Local report](LOCAL_VALIDATION.md), [immutable checkpoint](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/README.md), [postrun authentication](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/preflight/POSTRUN_AUTHENTICATION.json).
+
+No new non-trivial product-source defect was observed in this assigned batch. No Primary Implementation defect entry is manufactured. P05 cleanup `ExactOriginalBytesRestored` and fresh remote authority `Passed` are separate preserved facts. Original R remains staged, Failed at restoration, with original transport cause Unavailable. Historical Q/P/O/N, blocked prerequisites and contaminated Failed unisolated certificates are unchanged.
+
+Required Primary action: reconcile this source-bound complete/partial matrix and preserved raw evidence, then perform the independent full-stage review and explicit owner decisions. Do not infer R03/H2 acceptance, qualification approval, PureInterpreter expansion, performance SLA or a new milestone from a Local batch result. R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; PureInterpreter expansion disabled. Local stops; no retry or implementation expansion is authorized.
+
+## Historical return — R03 batch S prerequisites, 2026-10-07 PDT / 2026-10-08 UTC
 
 **CapacityBlocked; batch NotRun.** Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [immutable checkpoint](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/README.md), [Local prerequisite result](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/LOCAL_STORAGE_RESULT.json) and [original admission](../History/M07R/R03/local-validation-20261007-batch-s-capacity-blocked/storage-diagnostic/admission.json). No new non-trivial product-source issue is established; this is an unmet environmental prerequisite, not a fresh Unity/Player result or proof of the LR repair.
 

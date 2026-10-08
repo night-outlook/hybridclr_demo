@@ -1,0 +1,618 @@
+{
+    "schemaVersion": 1,
+    "processId": 74736,
+    "milestone": "M07R-R00",
+    "mode": "R00-OFF-NoPatch",
+    "result": "Passed",
+    "error": "",
+    "earlyStartupStrategy": "R01EarlyStartup",
+    "unityVersion": "2022.3.62f2",
+    "platform": "OSXPlayer",
+    "buildGuid": "276694dad40d4215b13279386add3bfb",
+    "playerDataPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf-NativeOff.app/Contents",
+    "baselineBuildId": "M07-Baseline-R03Completion-29bb3d4a39bf",
+    "runtimeAbiHash": "b0b61f2ac7db37f98e674efcde83ac9678151e700f25aeb859c66677ee0f0b12",
+    "il2cpp": true,
+    "featureEnabled": false,
+    "transactionCommitted": false,
+    "configureCode": "FeatureDisabled",
+    "beginCode": "FeatureDisabled",
+    "stageProbeCode": "FeatureDisabled",
+    "validateCode": "FeatureDisabled",
+    "commitCode": "FeatureDisabled",
+    "abortCode": "FeatureDisabled",
+    "stateCode": "FeatureDisabled",
+    "state": "Disabled",
+    "patchId": "",
+    "stageOrder": [],
+    "fixtureManifest": {
+        "name": "fixture-manifest",
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d6e8121330904159b72c19235e893e64/m07-fixtures.json",
+        "sha256": "64367a61406d17abab77dbac320a5911b8871352d68e38baa7b926bcafc9d86b",
+        "available": true
+    },
+    "baselineManifest": {
+        "name": "baseline-manifest",
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-29bb3d4a39bf/baseline-manifest.json",
+        "sha256": "2672507fe621700d55052beebd88f786cbdc9ff12a6a054b7fd5c672cdd43b46",
+        "available": true
+    },
+    "resourceReceipt": {
+        "name": "selected-resource-receipt",
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-29bb3d4a39bf/ResourceInputs/resource-build-receipt.json",
+        "sha256": "7c89f97e1440cb93fffa43deb06cfa96af264b8cbcc7fc99fd171c68f018d2dd",
+        "available": true
+    },
+    "patchManifest": {
+        "name": "patch-manifest",
+        "path": "",
+        "sha256": "",
+        "available": false
+    },
+    "playerBuildReceipt": {
+        "available": true,
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-7a945703973040d4a9ad3ce2b458c0d1/m07-player-build.json",
+        "sha256": "bc31fbe9edd9b8bd125f4f3ddb9310a6270cb9cb5bd468ee9ceec738094b74c2",
+        "variant": "NativeOff",
+        "buildGuid": "276694dad40d4215b13279386add3bfb",
+        "playerOutput": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf-NativeOff.app",
+        "inputSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-7a945703973040d4a9ad3ce2b458c0d1",
+        "inputSnapshotHash": "8486b73bbc93f4587d556e7d5750ec72b0f83b554f1bf2906ca01bac597be363",
+        "nativeLibraryPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf-NativeOff.app/Contents/Frameworks/GameAssembly.dylib",
+        "nativeLibrarySha256": "7212782000fe67cc5917da333a362af9b3d6c73b94fb6cb97332ed079b229fe8",
+        "nativeMetadataPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf-NativeOff.app/Contents/Resources/Data/il2cpp_data/Metadata/global-metadata.dat",
+        "nativeMetadataSha256": "449bce7399ff73278b01c9cff887d8fd70e1a59d353f5f040108afdff49bc3e0",
+        "nativeArguments": "--compiler-flags=\"-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=0\"",
+        "nativeMetadataVersion": 31,
+        "resourceBuildReceiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/resource-complete/_temp/AssemblyShadow/R03Resources/resource-build-receipt.json",
+        "resourceBuildReceiptSha256": "7c89f97e1440cb93fffa43deb06cfa96af264b8cbcc7fc99fd171c68f018d2dd",
+        "resourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751"
+    },
+    "readiness": {
+        "phase": "configured-and-witness-resolved",
+        "unavailableReason": "NotSupportedException:This platform does not support file handle duplication.",
+        "processStartAvailable": false,
+        "businessReady": true,
+        "processStartUtcTicks": 0,
+        "probeInvocationUtcTicks": 639270334668879960,
+        "businessReadyUtcTicks": 639270334747596750,
+        "startupToBusinessReadyMilliseconds": -1,
+        "invocationTimestamp": 13582697922737
+    },
+    "diagnosticsBefore": {
+        "phase": "before-benchmark",
+        "code": "FeatureDisabled",
+        "rawJson": "{\"schemaVersion\":1,\"enabled\":false,\"runtimeAbiVersion\":2,\"metadataBudgetCapabilityVersion\":0,\"recoveryCapabilityVersion\":0,\"startupCandidateSchemaVersion\":0,\"startupObservationMode\":\"Unavailable\",\"startupCandidateNames\":[],\"state\":\"Disabled\",\"stateCode\":0,\"lastError\":1,\"detail\":\"\",\"baselineBuildId\":\"\",\"patchId\":\"\",\"generation\":0,\"expected\":0,\"staged\":0,\"retainedBytes\":0,\"closureLoadOrder\":[],\"stableAotNames\":[],\"commitOrder\":[],\"assemblies\":[],\"events\":[],\"baselineUses\":[],\"enumerationGeneration\":0,\"ordinaryAssemblies\":[],\"classEnumerationGeneration\":0,\"ordinaryClasses\":[]}",
+        "unavailableReason": "",
+        "diagnosticsOnly": true,
+        "parsed": true,
+        "counters": {
+            "proofBuildCount": "unavailable",
+            "typeRowsScanned": "unavailable",
+            "nativeAllocationCount": "unavailable",
+            "generation": 0,
+            "expected": 0,
+            "staged": 0,
+            "retainedBytes": 0,
+            "enumerationGeneration": 0,
+            "classEnumerationGeneration": 0,
+            "eventCount": 0,
+            "baselineUseCount": 0,
+            "assemblyCount": 0
+        }
+    },
+    "diagnosticsAfter": {
+        "phase": "after-benchmark",
+        "code": "FeatureDisabled",
+        "rawJson": "{\"schemaVersion\":1,\"enabled\":false,\"runtimeAbiVersion\":2,\"metadataBudgetCapabilityVersion\":0,\"recoveryCapabilityVersion\":0,\"startupCandidateSchemaVersion\":0,\"startupObservationMode\":\"Unavailable\",\"startupCandidateNames\":[],\"state\":\"Disabled\",\"stateCode\":0,\"lastError\":1,\"detail\":\"\",\"baselineBuildId\":\"\",\"patchId\":\"\",\"generation\":0,\"expected\":0,\"staged\":0,\"retainedBytes\":0,\"closureLoadOrder\":[],\"stableAotNames\":[],\"commitOrder\":[],\"assemblies\":[],\"events\":[],\"baselineUses\":[],\"enumerationGeneration\":0,\"ordinaryAssemblies\":[],\"classEnumerationGeneration\":0,\"ordinaryClasses\":[]}",
+        "unavailableReason": "",
+        "diagnosticsOnly": true,
+        "parsed": true,
+        "counters": {
+            "proofBuildCount": "unavailable",
+            "typeRowsScanned": "unavailable",
+            "nativeAllocationCount": "unavailable",
+            "generation": 0,
+            "expected": 0,
+            "staged": 0,
+            "retainedBytes": 0,
+            "enumerationGeneration": 0,
+            "classEnumerationGeneration": 0,
+            "eventCount": 0,
+            "baselineUseCount": 0,
+            "assemblyCount": 0
+        }
+    },
+    "diagnosticsFailure": {
+        "phase": "",
+        "code": "",
+        "rawJson": "",
+        "unavailableReason": "",
+        "diagnosticsOnly": false,
+        "parsed": false,
+        "counters": {
+            "proofBuildCount": "",
+            "typeRowsScanned": "",
+            "nativeAllocationCount": "",
+            "generation": 0,
+            "expected": 0,
+            "staged": 0,
+            "retainedBytes": 0,
+            "enumerationGeneration": 0,
+            "classEnumerationGeneration": 0,
+            "eventCount": 0,
+            "baselineUseCount": 0,
+            "assemblyCount": 0
+        }
+    },
+    "selectedType": {
+        "fullName": "AssemblyA.Implementation.Internal.R00PerformanceWitness",
+        "assemblyName": "AssemblyA.Implementation.Internal",
+        "assemblyQualifiedName": "AssemblyA.Implementation.Internal.R00PerformanceWitness, AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "runtimeTypeHandle": "4672038624",
+        "diagnosticsCode": "FeatureDisabled",
+        "rawJson": "",
+        "logicalAssembly": "AssemblyA.Implementation.Internal",
+        "executionMode": "AotBaseline",
+        "physicalImageKind": "Aot",
+        "sameType": true,
+        "isActive": true,
+        "pointerDetailsAvailable": false,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0
+    },
+    "witness": {
+        "typeName": "AssemblyA.Implementation.Internal.R00PerformanceWitness",
+        "assemblyName": "AssemblyA.Implementation.Internal",
+        "firstPayloadType": "AssemblyA.Implementation.Internal.R00PerformancePayload",
+        "secondPayloadType": "AssemblyA.Implementation.Internal.R00PerformancePayload",
+        "firstPayloadDistinct": true,
+        "constructorCountBefore": 10111,
+        "constructorCountAfter": 10113,
+        "constructorDelta": 2,
+        "firstPayloadChecksum": 3301,
+        "secondPayloadChecksum": 3318
+    },
+    "operations": [
+        {
+            "operation": "allocation",
+            "phase": "first",
+            "requestedIterations": 1,
+            "methodCalls": 1,
+            "actualNewCount": 1,
+            "actualInvocationCount": 0,
+            "checksum": 3301,
+            "expectedChecksum": 3301,
+            "elapsedTicks": 56,
+            "stopwatchFrequency": 10000000,
+            "constructorCountBefore": 0,
+            "constructorCountAfter": 1,
+            "passed": true
+        },
+        {
+            "operation": "allocation",
+            "phase": "warmup",
+            "requestedIterations": 100,
+            "methodCalls": 1,
+            "actualNewCount": 100,
+            "actualInvocationCount": 0,
+            "checksum": 2114250,
+            "expectedChecksum": 2114250,
+            "elapsedTicks": 78,
+            "stopwatchFrequency": 10000000,
+            "constructorCountBefore": 1,
+            "constructorCountAfter": 101,
+            "passed": true
+        },
+        {
+            "operation": "allocation",
+            "phase": "repeat10",
+            "requestedIterations": 10,
+            "methodCalls": 1,
+            "actualNewCount": 10,
+            "actualInvocationCount": 0,
+            "checksum": 373775,
+            "expectedChecksum": 373775,
+            "elapsedTicks": 31,
+            "stopwatchFrequency": 10000000,
+            "constructorCountBefore": 101,
+            "constructorCountAfter": 111,
+            "passed": true
+        },
+        {
+            "operation": "allocation",
+            "phase": "repeat10000",
+            "requestedIterations": 10000,
+            "methodCalls": 1,
+            "actualNewCount": 10000,
+            "actualInvocationCount": 0,
+            "checksum": 1392925000,
+            "expectedChecksum": 1392925000,
+            "elapsedTicks": 7667,
+            "stopwatchFrequency": 10000000,
+            "constructorCountBefore": 111,
+            "constructorCountAfter": 10111,
+            "passed": true
+        },
+        {
+            "operation": "reflectionInvoke",
+            "phase": "first",
+            "requestedIterations": 1,
+            "methodCalls": 1,
+            "actualNewCount": 0,
+            "actualInvocationCount": 1,
+            "checksum": 3527,
+            "expectedChecksum": 3527,
+            "elapsedTicks": 43,
+            "stopwatchFrequency": 10000000,
+            "constructorCountBefore": 0,
+            "constructorCountAfter": 0,
+            "passed": true
+        },
+        {
+            "operation": "reflectionInvoke",
+            "phase": "warmup",
+            "requestedIterations": 100,
+            "methodCalls": 100,
+            "actualNewCount": 0,
+            "actualInvocationCount": 100,
+            "checksum": 3606150,
+            "expectedChecksum": 3606150,
+            "elapsedTicks": 1561,
+            "stopwatchFrequency": 10000000,
+            "constructorCountBefore": 0,
+            "constructorCountAfter": 0,
+            "passed": true
+        },
+        {
+            "operation": "reflectionInvoke",
+            "phase": "repeat10",
+            "requestedIterations": 10,
+            "methodCalls": 10,
+            "actualNewCount": 0,
+            "actualInvocationCount": 10,
+            "checksum": 656665,
+            "expectedChecksum": 656665,
+            "elapsedTicks": 153,
+            "stopwatchFrequency": 10000000,
+            "constructorCountBefore": 0,
+            "constructorCountAfter": 0,
+            "passed": true
+        },
+        {
+            "operation": "reflectionInvoke",
+            "phase": "repeat10000",
+            "requestedIterations": 10000,
+            "methodCalls": 10000,
+            "actualNewCount": 0,
+            "actualInvocationCount": 10000,
+            "checksum": -1779852296,
+            "expectedChecksum": -1779852296,
+            "elapsedTicks": 166541,
+            "stopwatchFrequency": 10000000,
+            "constructorCountBefore": 0,
+            "constructorCountAfter": 0,
+            "passed": true
+        },
+        {
+            "operation": "closedGeneric",
+            "phase": "first",
+            "requestedIterations": 1,
+            "methodCalls": 1,
+            "actualNewCount": 0,
+            "actualInvocationCount": 1,
+            "checksum": 17,
+            "expectedChecksum": 17,
+            "elapsedTicks": 78,
+            "stopwatchFrequency": 10000000,
+            "constructorCountBefore": 0,
+            "constructorCountAfter": 0,
+            "passed": true
+        },
+        {
+            "operation": "closedGeneric",
+            "phase": "warmup",
+            "requestedIterations": 100,
+            "methodCalls": 100,
+            "actualNewCount": 0,
+            "actualInvocationCount": 100,
+            "checksum": 106650,
+            "expectedChecksum": 106650,
+            "elapsedTicks": 2508,
+            "stopwatchFrequency": 10000000,
+            "constructorCountBefore": 0,
+            "constructorCountAfter": 0,
+            "passed": true
+        },
+        {
+            "operation": "closedGeneric",
+            "phase": "repeat10",
+            "requestedIterations": 10,
+            "methodCalls": 10,
+            "actualNewCount": 0,
+            "actualInvocationCount": 10,
+            "checksum": 20215,
+            "expectedChecksum": 20215,
+            "elapsedTicks": 230,
+            "stopwatchFrequency": 10000000,
+            "constructorCountBefore": 0,
+            "constructorCountAfter": 0,
+            "passed": true
+        },
+        {
+            "operation": "closedGeneric",
+            "phase": "repeat10000",
+            "requestedIterations": 10000,
+            "methodCalls": 10000,
+            "actualNewCount": 0,
+            "actualInvocationCount": 10000,
+            "checksum": 80165000,
+            "expectedChecksum": 80165000,
+            "elapsedTicks": 224499,
+            "stopwatchFrequency": 10000000,
+            "constructorCountBefore": 0,
+            "constructorCountAfter": 0,
+            "passed": true
+        }
+    ],
+    "assertions": [
+        {
+            "name": "diagnostics-before-benchmark",
+            "actual": "FeatureDisabled",
+            "expected": "FeatureDisabled",
+            "passed": true
+        },
+        {
+            "name": "selected-type-identity",
+            "actual": "True",
+            "expected": "True",
+            "passed": true
+        },
+        {
+            "name": "witness-marker",
+            "actual": "R00-BASELINE",
+            "expected": "R00-BASELINE",
+            "passed": true
+        },
+        {
+            "name": "allocation-first",
+            "actual": "1:3301",
+            "expected": "1:3301",
+            "passed": true
+        },
+        {
+            "name": "allocation-warmup",
+            "actual": "100:2114250",
+            "expected": "100:2114250",
+            "passed": true
+        },
+        {
+            "name": "allocation-repeat10",
+            "actual": "10:373775",
+            "expected": "10:373775",
+            "passed": true
+        },
+        {
+            "name": "allocation-repeat10000",
+            "actual": "10000:1392925000",
+            "expected": "10000:1392925000",
+            "passed": true
+        },
+        {
+            "name": "reflectionInvoke-first",
+            "actual": "1:3527",
+            "expected": "1:3527",
+            "passed": true
+        },
+        {
+            "name": "reflectionInvoke-warmup",
+            "actual": "100:3606150",
+            "expected": "100:3606150",
+            "passed": true
+        },
+        {
+            "name": "reflectionInvoke-repeat10",
+            "actual": "10:656665",
+            "expected": "10:656665",
+            "passed": true
+        },
+        {
+            "name": "reflectionInvoke-repeat10000",
+            "actual": "10000:-1779852296",
+            "expected": "10000:-1779852296",
+            "passed": true
+        },
+        {
+            "name": "closedGeneric-first",
+            "actual": "1:17",
+            "expected": "1:17",
+            "passed": true
+        },
+        {
+            "name": "closedGeneric-warmup",
+            "actual": "100:106650",
+            "expected": "100:106650",
+            "passed": true
+        },
+        {
+            "name": "closedGeneric-repeat10",
+            "actual": "10:20215",
+            "expected": "10:20215",
+            "passed": true
+        },
+        {
+            "name": "closedGeneric-repeat10000",
+            "actual": "10000:80165000",
+            "expected": "10000:80165000",
+            "passed": true
+        },
+        {
+            "name": "fresh-managed-payload-and-constructor-count",
+            "actual": "2",
+            "expected": "2 distinct payloads",
+            "passed": true
+        },
+        {
+            "name": "diagnostics-after-benchmark",
+            "actual": "FeatureDisabled",
+            "expected": "FeatureDisabled",
+            "passed": true
+        }
+    ],
+    "executionRegressions": [
+        {
+            "phase": "new",
+            "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+            "diagnosticsCode": "FeatureDisabled",
+            "typeDiagnosticsJson": "",
+            "repetition": 0,
+            "observations": [
+                "phase=new",
+                "marker=M06-BASELINE",
+                "ctor=1030",
+                "field=M06-BASELINE:field",
+                "base=M06-BASELINE:base:M06-BASE-VIRTUAL",
+                "interface=M06-BASELINE:interface",
+                "property=M06-BASELINE:property",
+                "event=M06-BASELINE:event:1",
+                "ctor.first=1030",
+                "ctor.second=1030",
+                "ctor.count=2",
+                "helper.count=2",
+                "base.field=M06-BASE-FIELD",
+                "base.property=M06-BASE-PROPERTY",
+                "base.event=M06-BASE-EVENT"
+            ]
+        },
+        {
+            "phase": "new",
+            "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+            "diagnosticsCode": "FeatureDisabled",
+            "typeDiagnosticsJson": "",
+            "repetition": 1,
+            "observations": [
+                "phase=new",
+                "marker=M06-BASELINE",
+                "ctor=1030",
+                "field=M06-BASELINE:field",
+                "base=M06-BASELINE:base:M06-BASE-VIRTUAL",
+                "interface=M06-BASELINE:interface",
+                "property=M06-BASELINE:property",
+                "event=M06-BASELINE:event:1",
+                "ctor.first=1030",
+                "ctor.second=1030",
+                "ctor.count=2",
+                "helper.count=2",
+                "base.field=M06-BASE-FIELD",
+                "base.property=M06-BASE-PROPERTY",
+                "base.event=M06-BASE-EVENT"
+            ]
+        },
+        {
+            "phase": "dispatch",
+            "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+            "diagnosticsCode": "FeatureDisabled",
+            "typeDiagnosticsJson": "",
+            "repetition": 0,
+            "observations": [
+                "phase=dispatch",
+                "virtual=M06-BASELINE:sealed",
+                "base=M06-BASELINE:base:M06-BASE-VIRTUAL",
+                "abstract=M06-BASELINE:abstract",
+                "interface=M06-BASELINE:interface",
+                "assignable=True",
+                "contract=M01"
+            ]
+        },
+        {
+            "phase": "dispatch",
+            "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+            "diagnosticsCode": "FeatureDisabled",
+            "typeDiagnosticsJson": "",
+            "repetition": 1,
+            "observations": [
+                "phase=dispatch",
+                "virtual=M06-BASELINE:sealed",
+                "base=M06-BASELINE:base:M06-BASE-VIRTUAL",
+                "abstract=M06-BASELINE:abstract",
+                "interface=M06-BASELINE:interface",
+                "assignable=True",
+                "contract=M01"
+            ]
+        },
+        {
+            "phase": "generics",
+            "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+            "diagnosticsCode": "FeatureDisabled",
+            "typeDiagnosticsJson": "",
+            "repetition": 0,
+            "observations": [
+                "phase=generics",
+                "generic.type=AssemblyA.Implementation.Internal.M06ExecutionWitness+Pair`1[[AssemblyA.Contracts.DemoValue, AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+                "generic.value=4",
+                "method=M06-BASELINE",
+                "nullable=4",
+                "boxed=4",
+                "struct=1004",
+                "ref=1006",
+                "out=1007",
+                "generic.method=6",
+                "array=2"
+            ]
+        },
+        {
+            "phase": "generics",
+            "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+            "diagnosticsCode": "FeatureDisabled",
+            "typeDiagnosticsJson": "",
+            "repetition": 1,
+            "observations": [
+                "phase=generics",
+                "generic.type=AssemblyA.Implementation.Internal.M06ExecutionWitness+Pair`1[[AssemblyA.Contracts.DemoValue, AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+                "generic.value=4",
+                "method=M06-BASELINE",
+                "nullable=4",
+                "boxed=4",
+                "struct=1004",
+                "ref=1006",
+                "out=1007",
+                "generic.method=6",
+                "array=2"
+            ]
+        }
+    ],
+    "memorySnapshots": [
+        {
+            "phase": "before-benchmark",
+            "measurement": "DarwinMachTaskBasicInfoResidentAndLifetimePeakBytes",
+            "measurementSemantics": "currentRssBytes=mach_task_self/task_info(MACH_TASK_BASIC_INFO).resident_size; managedBytes=GC.GetTotalMemory(false); lifetimePeakRssBytes=resident_size_max; noForcedGC",
+            "sampledUtcTicks": 639270334747592150,
+            "currentRssBytes": 320962560,
+            "managedBytes": 112373760,
+            "lifetimePeakRssBytes": 320995328
+        },
+        {
+            "phase": "after-benchmark",
+            "measurement": "DarwinMachTaskBasicInfoResidentAndLifetimePeakBytes",
+            "measurementSemantics": "currentRssBytes=mach_task_self/task_info(MACH_TASK_BASIC_INFO).resident_size; managedBytes=GC.GetTotalMemory(false); lifetimePeakRssBytes=resident_size_max; noForcedGC",
+            "sampledUtcTicks": 639270334748058090,
+            "currentRssBytes": 323616768,
+            "managedBytes": 111345664,
+            "lifetimePeakRssBytes": 323616768
+        }
+    ],
+    "earlyHandoff": {
+        "available": false,
+        "mode": "",
+        "patchId": "",
+        "capsulePath": "",
+        "capsuleSha256": "",
+        "resultPath": "",
+        "resultSha256": "",
+        "processId": 0,
+        "callbackReturnCode": 0
+    }
+}

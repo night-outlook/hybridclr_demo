@@ -1,0 +1,201 @@
+{
+  "kind": "R03LayoutIdentityContracts",
+  "result": "Passed",
+  "basis": "ReusedAuditedLocalMLayoutInputs",
+  "schemaVersion": 1,
+  "failures": 0,
+  "unityEditorRun": false,
+  "playerRun": false,
+  "runtimeAcceptance": false,
+  "nativeProofExecuted": false,
+  "expansionAuthorized": false,
+  "cases": [
+    {
+      "id": "S01-raw-scopes-remain-distinct",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S02-complete-forwarder-positive",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S03-two-hop-forwarder",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S04-parent",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S04-interface",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S04-field",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S04-generic",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S04-constraint",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S04-modifier",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S04-offset",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S05-unrelated-same-named-types",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S06-missing-declared-provider",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S07-missing-forward-destination",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S08-cycle",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S09-duplicate-image",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S10-duplicate-definition",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S11-duplicate",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S11-definition-and-forward",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S11-not-forwarder",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S12-input-membership",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S13-disposed-owner",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S14-source-clone",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S15-resolution-receipts-isolated",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S16-empty-inventory",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S17-no-ambient-resolution",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "S18-full-assembly-version",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "M01-original-scope-reproduction",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "M02-authenticated-layout-positive",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "M03-inventory-order-independent",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "M04-wrong-facade-hash",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "M05-wrong-compiler-hash",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "M06-definition-is-not-runtime-facade",
+      "result": "Passed",
+      "error": null
+    },
+    {
+      "id": "M07-changed-real-parent",
+      "result": "Passed",
+      "error": null
+    }
+  ],
+  "files": [
+    {
+      "path": "after.dll",
+      "sha256": "13d07a914f92e50c6f73413c5e3eadf538f58c87e8b3b8eb3477a8bd2d322837",
+      "size": 2048
+    },
+    {
+      "path": "before.dll",
+      "sha256": "a377036ba4beb4637441723d201f22c7fd10e5b0623860ec8bfa6105e78313aa",
+      "size": 2048
+    },
+    {
+      "path": "facade.dll",
+      "sha256": "1a44c8b61defe12cf8b68abfb7fb596e0faf532d9c19a93e51b353a6257633d4",
+      "size": 2048
+    },
+    {
+      "path": "provider.dll",
+      "sha256": "f521e4aefe4e6b11fdf88914fd518cd5acf345816fb0cd6cfd4a269d40c1e1be",
+      "size": 2048
+    }
+  ]
+}
