@@ -1,4 +1,4 @@
-# Current Status — S evidence reconciled; independent stage review pending
+# Current Status — owner D1=A/D2=A recorded; independent R03 review pending
 
 ## Authoritative Local result
 
@@ -23,13 +23,13 @@ The direct comparison from prior LR handoff `e8fda852684f584295fe37830340ab3c9f3
 
 The original requirements remain in `stages/R03-evolution-semantics.md`, `stages/R03-remaining-completion.md`, DESIGN, ROADMAP and HUMAN_REVIEW_GATES. The new [Primary assessment](../History/M07R/R03/S_Reconciliation/FULL_STAGE_PRIMARY_REVIEW.md) is a claim-to-evidence matrix, not a replacement plan or an independent approval.
 
-RC2–RC4 and the bounded RC5 protocol have passing empirical S witnesses. RC1's static eligibility/negative controls are not permission for structural expansion. The original qualification/expansion scope requires explicit owner disposition; unproved generic/old-handle or production-performance claims cannot be inferred from aggregate counts. RC6's separate independent full-stage review is **NotRun**, not Passed. Owner proposals in `OWNER_DECISIONS.md` remain unapproved.
+RC2–RC4 and bounded RC5 have passing S witnesses. **The owner explicitly selected D1=A / D2=A on 2026-10-08** ([recorded disposition](../History/M07R/R03/S_Reconciliation/OWNER_DISPOSITION_2026-10-08.md)). R03 is bounded to conservative NativeLayoutAdmissionV1; unproved PureInterpreter private-reference structural expansion is deferred to [X02](stages/X02-pure-interpreter-structural-expansion.md), **not Passed**. S performance remains diagnostic; four Failed warm certificates and R02 CPU/H1 RSS deferrals remain. Unproved generic/old-handle cases outside that deferral still require exact evidence or safe rejection. See the [bounded exit matrix](../History/M07R/R03/S_Reconciliation/BOUNDED_R03_EXIT_MATRIX.md). Independent full-stage review is **NotRun**, not Passed. The historical `OWNER_DECISIONS.md` proposal is superseded by the recorded decision.
 
 Machine verification reauthenticated a pinned source/evidence capture (16,300 Git blobs, with two oversized source files explicitly omitted) and its separately audited complete S evidence archive. It does not establish an independent reviewer, a fresh Unity/Player run or full live-filesystem custody. Exact hashes and evidence boundaries are in `S_Reconciliation/EVIDENCE.json`.
 
 ## Next owner and stop boundary
 
-**Primary Implementation owns reconciliation, review integration and any resulting substantive fixes. No active Local runtime assignment remains.** The next task is a separate read-only independent review using `S_Reconciliation/INDEPENDENT_REVIEW_REQUEST.md`. A host unable to invoke an independent reviewer returns Blocked/NotRun; do not substitute a self-review, configure a guessed identity, silently enable a gate or launch another S/R batch.
+**Primary Implementation owns reconciliation, review integration and any resulting substantive fixes. No active Local runtime assignment remains.** The next task is a separate read-only independent review using `S_Reconciliation/INDEPENDENT_REVIEW_REQUEST.md` **and its D1=A/D2=A `INDEPENDENT_REVIEW_SCOPE_ADDENDUM.md`**, against the amended Design/ADR/R03 stage. A host unable to invoke an independent reviewer returns Blocked/NotRun; do not substitute a self-review, configure a guessed identity, silently enable a gate or launch another S/R batch.
 
 The pinned `.agents/config/config.json` has `enable_gate_reviewer=false`, `review_committed_major_milestones=false`, and `require_sol_main_agent_for_gate_review=true`. These automatic-routing settings do not cancel the user-requested independent R03 review. No effective reviewer identity or helper outcome is inferred from config alone.
 
