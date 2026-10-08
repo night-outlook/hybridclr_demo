@@ -1,6 +1,6 @@
 # R03 — remaining completion after focused batch H
 
-Status: **Primary Implementation plan; not implemented or validated by this document.** This is a decomposition of the remaining work in [R03-evolution-semantics.md](R03-evolution-semantics.md), not a replacement of its exit conditions and not permission to enter M08A.
+Status: **Historical RC1–RC6 decomposition, updated by owner D1=A / D2=A on 2026-10-08.** S completed the prescribed 90-cell Local matrix; independent full-stage review is still NotRun. The bounded normative amendment below controls R03 scope; this document is not permission to enter M08A.
 
 ## 1. Entry state and governing sources
 
@@ -128,3 +128,12 @@ Batch I is the next empirical integration cycle: six fresh native builds, focuse
 
 PureInterpreter expansion remains disabled and no qualification approval has been granted. A passing batch I still returns to Primary for the full R03 exit matrix and independent stage review. Missing generic/interface/old-handle/stack or other obligations must remain explicit rather than inferred from the prepared supplement. H2 remains user-initiated after R03 completion; M08A remains closed.
 
+
+## 11. Owner-approved bounded exit scope (D1=A / D2=A, 2026-10-08)
+
+The owner explicitly selected both A choices. Read [owner disposition](../../History/M07R/R03/S_Reconciliation/OWNER_DISPOSITION_2026-10-08.md) and [updated R03 stage](R03-evolution-semantics.md). Earlier RC descriptions remain traceable historical scope, but their **unproved** positive structural-expansion and production-SLA goals are no longer R03 supported claims.
+
+- **RC1/step 3:** Require NativeLayoutAdmissionV1 physical/runtime/resource admission, static eligibility screening and safe failure/rejection. The original V1-external private-reference add/remove objective is deferred, **not Passed**, under separately gated [X02](X02-pure-interpreter-structural-expansion.md). No eligibility marker authorizes expansion; qualification and expansion flags stay false.
+- **RC5:** Keep source-bound correctness, startup/capacity/guard/negative/impact-regression evidence. S time/memory data remain *observational development-profile diagnostics*, not production comparison, budget/SLA or approval of deferred CPU/RSS risk. Preserve four Failed unisolated warm certificates. Later M11/M12 production-performance decisions require their own evidence and approval.
+- **RC2–RC4 and RC6:** Resource ABI, real generic/virtual/interface/old-handle supported-or-rejected behavior, cumulative installed-baseline closure, target load ordering, runtime/role semantics, and independent review **remain required**. An unproved requirement outside the explicit deferrals remains open.
+- **Stop:** Local S remains EvidenceReadyForPrimaryReview (90/90), not stage approval. Independent design → plan → implementation → evidence review is NotRun; then findings/claim closure, followed only by a separately human-initiated H2. No new Local batch, X02 implementation or M08A is authorized. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`.
