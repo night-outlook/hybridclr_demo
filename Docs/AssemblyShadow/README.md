@@ -1,17 +1,33 @@
 # HybridCLR Assembly Shadow
 
-Plan contains normative design/stages/gates; Handoff contains current assignments; History preserves immutable Local evidence and separate Primary assessments.
+Plan contains normative design/stages/gates; Handoff contains current assignments; History preserves Local evidence and separate Primary/reviewer assessments.
 
-**Batch S is reconciled as passing its complete prescribed Local validation: 90/90 cells, six builds, 59 fresh Players, and 18/754/755 Editor cases with zero skips/inconclusive. Its original result remains EvidenceReadyForPrimaryReview. No new runtime batch is authorized.** **Owner D1=A / D2=A is recorded (2026-10-08):** bounded conservative NativeLayoutAdmissionV1 R03, V1-external PureInterpreter expansion deferred to independent X02, and S performance measurements observational only. Independent full-stage R03 review remains **NotRun**; S and these decisions are not automatic R03 or H2 approval.
+## Current state
 
-Local evidence authority is `fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b`; the actual S execution used `29bb3d4a39bf8a2f23be404f77535aaba3485bfc`. All branches remain `codex/assembly-shadow-r01b-h1`. Other pins are HybridCLR `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, package `948c0e3b4f8891481301770115e8ba4945eea6de`, and IL2CPP+ `1cf87f8209790f9fb2ebec97487dc1990ccd56c5`. The documentation transport containing this assessment is not a newly executed Player source.
+**The independent full-stage R03 review returned FAIL. Primary remediation is in progress; no new Local runtime batch is authorized.** IR-R03-01 has a successful original-S byte audit and a published withdrawal of mismatched Primary provenance claims, but is not independently closed. IR-R03-02 remains open: the native terminal-execution correction and its new runtime regression are not implemented in this checkpoint.
 
-Read [CURRENT_STATUS](Plan/CURRENT_STATUS.md), the unchanged Local-owned [LOCAL_VALIDATION](Handoff/LOCAL_VALIDATION.md) and [RETURN_TO_WEB](Handoff/RETURN_TO_WEB.md), then [S reconciliation](History/M07R/R03/S_Reconciliation/PRIMARY_RECONCILIATION.md), [stage-wide Primary assessment](History/M07R/R03/S_Reconciliation/FULL_STAGE_PRIMARY_REVIEW.md), [evidence index](History/M07R/R03/S_Reconciliation/EVIDENCE.json), [original owner options](History/M07R/R03/S_Reconciliation/OWNER_DECISIONS.md), [recorded D1/D2 decision](History/M07R/R03/S_Reconciliation/OWNER_DISPOSITION_2026-10-08.md), [bounded exit matrix](History/M07R/R03/S_Reconciliation/BOUNDED_R03_EXIT_MATRIX.md), [independent review request](History/M07R/R03/S_Reconciliation/INDEPENDENT_REVIEW_REQUEST.md) and [review addendum](History/M07R/R03/S_Reconciliation/INDEPENDENT_REVIEW_SCOPE_ADDENDUM.md). [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) is now review-only and supersedes the already-consumed S execution assignment.
+Read in order:
 
-S proves exact P05 restoration followed by fresh remote authority, graph-before-integration, live policy-domain guards, restored-baseline zero changed roots/closure, strict schema bridge/resource aggregate, and the prescribed storage/seal/custody contracts. The captured archive's 18,159 indexed files and 18,160 members were byte-checked. These checks are not an independent agent review, a new runtime execution, or an exhaustive audit of all Local live caches.
+1. [Current status](Plan/CURRENT_STATUS.md) and [current handoff boundary](Handoff/WEB_TO_LOCAL.md).
+2. Unchanged Local-owned [Local validation](Handoff/LOCAL_VALIDATION.md) and [return to Primary](Handoff/RETURN_TO_WEB.md).
+3. [Independent FAIL review](History/M07R/R03/S_Reconciliation/INDEPENDENT_FULL_STAGE_REVIEW_2026-10-08.md) **and** its [C04 evidence erratum](History/M07R/R03/S_Reconciliation/INDEPENDENT_FULL_STAGE_REVIEW_EVIDENCE_ERRATUM_2026-10-08.md).
+4. [Primary remediation checkpoint](History/M07R/R03/IR_Remediation/PRIMARY_REMEDIATION_2026-10-08.md) and [corrective provenance index](History/M07R/R03/IR_Remediation/ORIGINAL_S_PROVENANCE_CORRECTION_2026-10-08.json).
+5. Original Design/R03 requirements and HUMAN_REVIEW_GATES, plus the [recorded D1=A/D2=A disposition](History/M07R/R03/S_Reconciliation/OWNER_DISPOSITION_2026-10-08.md), [bounded exit matrix](History/M07R/R03/S_Reconciliation/BOUNDED_R03_EXIT_MATRIX.md) and [deferred X02 plan](Plan/stages/X02-pure-interpreter-structural-expansion.md).
 
-The Primary assessment maps RC1–RC6 to source/evidence. Subsequent explicit D1=A/D2=A decisions narrow only the **R03 supported scope** and **current performance claims**, preserving other requirements and all original historical results. V1-external expansion is now explicitly tracked in [X02](Plan/stages/X02-pure-interpreter-structural-expansion.md), without any authority to start it. The separate independent review remains required. The required separate independent reviewer was not invoked in the available host; its verdict is NotRun, with delivery blocked on reviewer access. The repository's automatic gate-review settings are not changed and do not waive the explicit stage-review requirement.
+## S evidence and correction
 
-Preserve S/R/Q/P/O/N, prior prerequisite-only records and all historical verdicts. R remains staged and untouched. Four contaminated unisolated warm certificates remain Failed. Deferred R02 CPU/H1 RSS risks and historical ancillary identity observations remain visible.
+S's original Local result remains **EvidenceReadyForPrimaryReview**. Local reported 90 Passed cells, six builds, 59 fresh Players and 18/754/755 Editor scopes with zero skips/inconclusive. That historical outcome is not R03/H2 acceptance and is not a new execution by Primary.
 
-`R03Accepted=false`; `H2Passed=false`; `qualificationApproved=false`; `ReadyForHumanReviewGate=false`; `fullLegacyRegressionAcceptance=false`; PureInterpreter expansion disabled. Current owner: Primary Implementation. Independent review is next; a separate human-initiated H2 and later milestones remain gated.
+The immutable S evidence publication is `fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b`; actual S runtime demo source is `29bb3d4a39bf8a2f23be404f77535aaba3485bfc`. Other runtime pins remain HybridCLR `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, package `948c0e3b4f8891481301770115e8ba4945eea6de`, and IL2CPP+ `1cf87f8209790f9fb2ebec97487dc1990ccd56c5`. All feature branches remain `codex/assembly-shadow-r01b-h1`.
+
+The original archive is **587,907,380 bytes, nine parts, 15,712 indexed files / 15,713 members**, SHA-256 `23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6`. The earlier Primary five-part/18,160-member attribution is **withdrawn**, not reconciled by an invented transformation. The earlier `S_Reconciliation/EVIDENCE.json` and associated assessments remain historical records, not current authority for the disputed original-archive or unjoined quantitative claims. Use the corrective index above.
+
+Auditor/tests/workflow at `38575b165d798defe545f2501f1fc307ccac44a3` completed [run 37845000985](https://github.com/night-outlook/hybridclr_demo/actions/runs/37845000985): 30 host tests Passed and bounded original-byte/ledger/cell authentication Passed. This is neither a Unity/Player run nor independent reviewer approval. Complete role-specific source/build/process semantic joins and material capture-omission review remain incomplete.
+
+## Approval and preservation boundary
+
+D1=A retains conservative NativeLayoutAdmissionV1 for R03 and defers V1-external PureInterpreter expansion to X02, without authorizing it. D2=A leaves S performance observational only. The owner decisions do not waive independent findings or grant H2. Automatic reviewer settings remain unchanged.
+
+Preserve all S/R/Q/P/O/N and prerequisite-only evidence. Retained R stays staged and untouched; four contaminated unisolated warm certificates remain Failed. Deferred R02 CPU/H1 RSS risks are not accepted here.
+
+`R03Accepted=false`; `H2Passed=false`; `qualificationApproved=false`; `ReadyForHumanReviewGate=false`; `fullLegacyRegressionAcceptance=false`; PureInterpreter expansion disabled. **Current owner: Primary Implementation.** Native remediation and remaining evidence coverage precede any exact-source Local Validation handoff; independent re-review and the separately initiated Human Review Gate remain required.
