@@ -1,6 +1,6 @@
 # ADR-0002 — PureInterpreter qualification is evidence, not runtime authority
 
-Status: Accepted for R03 completion preparation, 2026-10-03. This ADR does not approve structural expansion.
+Status: Accepted for R03 preparation (2026-10-03); amended by owner D1=A on 2026-10-08. Static classification remains non-authorizing, and structural expansion is deferred to X02.
 
 ## Context
 
@@ -50,3 +50,7 @@ A qualification report does not satisfy items 2–7 by itself. R03 batch I valid
 - Failure or partial staging cannot leave usable qualification authority.
 - Later approval, if any, must be a new source-bound decision/evidence record; historical H/I evidence is not retroactively broadened.
 - If R03 concludes without expansion, the conservative support scope remains valid and the unapproved expansion work stays explicitly out of scope rather than silently becoming supported.
+
+## Owner-approved R03 scope boundary — 2026-10-08
+
+D1=A limits R03/H2 supported-layout claims to the existing NativeLayoutAdmissionV1 envelope. The qualification steps above specify **future X02 entry conditions**, not evidence that private-reference add/remove was achieved in R03. See [deferred X02](../../Plan/stages/X02-pure-interpreter-structural-expansion.md) and [recorded owner disposition](../../History/M07R/R03/S_Reconciliation/OWNER_DISPOSITION_2026-10-08.md). Every static report remains analysis-only, with all authorization flags false; the native/resource/ownership checks and rejection behavior are unchanged. Independent full-stage review must judge this bounded claim; no H2 or later milestone is approved.
