@@ -68,6 +68,15 @@ def git(root, *args):
     return subprocess.check_output(['git', '-C', str(root), *args])
 
 
+def verify_final_pair(ledger, result, seal, ledger_sha256):
+    # The original finalizer copies the entire summary, including any existing
+    # false flags, then adds/overwrites exactly these five fields. Removing those
+    # keys from the result incorrectly removed pre-existing ledger fields.
+    expected = dict(ledger, seal=seal, sealStatus='Passed',
+                    executionLedgerSha256=ledger_sha256, R03Accepted=False, H2Passed=False)
+    require(result == expected, 'Ledger/final result semantic equality')
+
+
 def audit(repo, output, include_archive=False):
     repo, output = Path(repo).resolve(), Path(output).resolve()
     require(not output.exists() and not output.is_relative_to(repo), 'Unused external output required')
@@ -156,9 +165,7 @@ def audit(repo, output, include_archive=False):
         require(set(members) == set(expected), 'Incomplete archive membership')
         write(output / 'original-archive-members.json', members)
         ledger, result = load(original('BATCH_EXECUTION.json')), load(original('LOCAL_BATCH_RESULT.json'))
-        stripped = {k: v for k, v in result.items() if k not in ('seal', 'sealStatus', 'executionLedgerSha256', 'R03Accepted', 'H2Passed')}
-        require(stripped == ledger and result['seal'] == seal and result['sealStatus'] == 'Passed' and
-                result['executionLedgerSha256'] == artifacts['BATCH_EXECUTION.json']['sha256'], 'Ledger/final result semantic equality')
+        verify_final_pair(ledger, result, seal, artifacts['BATCH_EXECUTION.json']['sha256'])
         require(result['result'] == 'EvidenceReadyForPrimaryReview' and
                 all(result['repositories'][k] == v for k, v in EXPECTED.items()), 'Executed source tuple')
         cells = result['cells']; seen = set(); rows = []
