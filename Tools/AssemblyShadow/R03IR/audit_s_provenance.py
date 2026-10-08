@@ -35,8 +35,20 @@ def pairs(items):
     return value
 
 
+def reject_constant(value):
+    raise ValueError('Non-finite JSON number: ' + value)
+
+
 def load(path):
-    return json.loads(Path(path).read_text(), object_pairs_hook=pairs)
+    return json.loads(Path(path).read_text(encoding='utf-8'),
+                      object_pairs_hook=pairs, parse_constant=reject_constant)
+
+
+def json_equal(left, right):
+    # Python considers False == 0 and True == 1. Evidence contracts must not.
+    def canonical(value):
+        return json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False)
+    return canonical(left) == canonical(right)
 
 
 def digest(path):
@@ -45,22 +57,39 @@ def digest(path):
 
 
 def relpath(value):
+    require(isinstance(value, str), 'Evidence path must be a string')
     p = PurePosixPath(value)
-    require(bool(value) and not p.is_absolute() and '..' not in p.parts and
-            str(p) == value and '\\' not in value, 'Unsafe/noncanonical path: ' + value)
+    require(bool(value) and bool(p.parts) and not p.is_absolute() and '..' not in p.parts and
+            str(p) == value and '\\' not in value and '\x00' not in value and ':' not in p.parts[0],
+            'Unsafe/noncanonical path: ' + value)
     return p
 
 
 def file_under(root, value):
+    root = Path(root)
     path = root / relpath(value)
     require(path.is_file() and not path.is_symlink() and path.resolve().is_relative_to(root.resolve()),
             'Missing/nonregular file: ' + value)
     return path
 
 
+def bound_json(root, members, name):
+    """Read a checkpoint JSON only after joining it to authenticated archive bytes."""
+    require(name in members, 'JSON missing from authenticated archive: ' + name)
+    path = file_under(root, name)
+    require(path.stat().st_size == members[name]['size'] and digest(path) == members[name]['sha256'],
+            'Checkpoint/archive JSON mismatch: ' + name)
+    return load(path)
+
+
+def field_observation(record, name):
+    # Absent, recorded null, and recorded false are different evidence states.
+    return {'state': 'Recorded', 'value': record[name]} if name in record else {'state': 'NotRecorded'}
+
+
 def write(path, value):
-    with Path(path).open('x') as f:
-        json.dump(value, f, indent=2, sort_keys=True)
+    with Path(path).open('x', encoding='utf-8') as f:
+        json.dump(value, f, indent=2, sort_keys=True, allow_nan=False)
         f.write('\n')
 
 
@@ -69,12 +98,25 @@ def git(root, *args):
 
 
 def verify_final_pair(ledger, result, seal, ledger_sha256):
-    # The original finalizer copies the entire summary, including any existing
-    # false flags, then adds/overwrites exactly these five fields. Removing those
-    # keys from the result incorrectly removed pre-existing ledger fields.
+    # S's original summary already contained both flags. Do not normalize an
+    # accepted or malformed original ledger into an apparently unaccepted result.
+    require(isinstance(ledger, dict) and isinstance(result, dict), 'Object ledger and result required')
+    for record in (ledger, result):
+        for flag in ('R03Accepted', 'H2Passed'):
+            require(flag in record and record[flag] is False, 'Explicit false acceptance flag: ' + flag)
+    require(not {'seal', 'sealStatus', 'executionLedgerSha256'} & ledger.keys(),
+            'Seal fields must not pre-exist in execution ledger')
+    # Preserve the producer contract: copy the summary and add these five fields.
     expected = dict(ledger, seal=seal, sealStatus='Passed',
                     executionLedgerSha256=ledger_sha256, R03Accepted=False, H2Passed=False)
-    require(result == expected, 'Ledger/final result semantic equality')
+    require(json_equal(result, expected), 'Ledger/final result semantic equality')
+
+
+def record_failure(report, error):
+    # A failure after core checks (copy, export, final clean-tree check) must
+    # never leave a consumer-visible Passed audit, even though the CLI exits 1.
+    report['result'] = 'Failed'
+    report['error'] = str(error)
 
 
 def audit(repo, output, include_archive=False):
@@ -86,10 +128,11 @@ def audit(repo, output, include_archive=False):
     output.mkdir(parents=True)
     scratch = output / 'reconstructed'
     scratch.mkdir()
-    report = {'kind': 'IRR03OriginalSProvenanceAudit', 'result': 'Failed',
+    report = {'kind': 'IRR03OriginalSProvenanceAudit', 'schemaVersion': 2, 'result': 'Failed',
         'inputCommit': PUBLICATION, 'executionCommit': EXECUTED,
         'auditScriptSha256': digest(__file__), 'runtimeAcceptance': False,
-        'independentReviewer': False, 'unityRun': False, 'historicalInputsModified': False}
+        'independentReviewer': False, 'unityRun': False, 'historicalInputsModified': None,
+        'checksCompleted': [], 'fullSourceBuildProcessSemanticAudit': False}
     try:
         tree = git(repo, 'ls-tree', '-r', '-z', PUBLICATION, '--', CHECKPOINT)
         tracked = {}
@@ -100,6 +143,7 @@ def audit(repo, output, include_archive=False):
             mode, kind, oid = attrs.decode().split()
             name = path.decode()[len(CHECKPOINT) + 1:]
             require(kind == 'blob' and mode in ('100644', '100755'), 'Nonregular tracked checkpoint entry')
+            require(name not in tracked, 'Duplicate tracked checkpoint entry')
             f = file_under(checkpoint, name)
             h = hashlib.sha1(('blob ' + str(f.stat().st_size) + '\0').encode())
             with f.open('rb') as stream:
@@ -110,12 +154,13 @@ def audit(repo, output, include_archive=False):
         write(output / 'checkpoint-git-crosswalk.json', tracked)
         manifest = file_under(checkpoint, 'MANIFEST.sha256')
         manifest_names = set()
-        for line in manifest.read_text().splitlines():
+        for line in manifest.read_text(encoding='utf-8').splitlines():
             sha, name = line.split('  ', 1)
             require(name not in manifest_names and name in tracked, 'Duplicate/untracked manifest file')
             require(tracked[name]['sha256'] == sha, 'Checkpoint manifest mismatch: ' + name)
             manifest_names.add(name)
         require(set(tracked) == manifest_names | {'MANIFEST.sha256'}, 'Exact tracked checkpoint manifest membership')
+        report['checksCompleted'].append('ExactGitBlobsAndCheckpointManifest')
         transports = load(checkpoint / 'FILE_TRANSPORT.json')
         transport_rows, reconstructed = [], {}
         for row in transports['files']:
@@ -141,6 +186,8 @@ def audit(repo, output, include_archive=False):
             return reconstructed.get('batch/' + name, checkpoint / 'batch' / name)
         artifacts = {n: {'sha256': digest(original(n)), 'size': original(n).stat().st_size} for n in ORIGINAL}
         require(all(artifacts[n]['sha256'] == d for n, d in ORIGINAL.items()), 'Pinned original five-artifact identity')
+        report.update(originalArtifacts=artifacts, transports=transport_rows)
+        report['checksCompleted'].append('OrderedTransportAndPinnedOriginals')
         seal, index = load(original('seal-receipt.json')), load(original('evidence-index.json'))
         items = {}
         for item in index['files']:
@@ -163,7 +210,9 @@ def audit(repo, output, include_archive=False):
                 require(entry.size == expected[name]['size'] and h.hexdigest() == expected[name]['sha256'], 'Archive mismatch: ' + name)
                 members[name] = {'sha256': h.hexdigest(), 'size': entry.size}
         require(set(members) == set(expected), 'Incomplete archive membership')
+        require(members['BATCH_EXECUTION.json'] == artifacts['BATCH_EXECUTION.json'], 'Archived execution ledger identity')
         write(output / 'original-archive-members.json', members)
+        report['checksCompleted'].append('ExactArchiveMemberBytesAndMembership')
         ledger, result = load(original('BATCH_EXECUTION.json')), load(original('LOCAL_BATCH_RESULT.json'))
         verify_final_pair(ledger, result, seal, artifacts['BATCH_EXECUTION.json']['sha256'])
         require(result['result'] == 'EvidenceReadyForPrimaryReview' and
@@ -173,31 +222,40 @@ def audit(repo, output, include_archive=False):
         for cell in cells:
             ident = cell['id']; name = 'cells/' + ident + '.json'
             require(ident not in seen and cell['result'] == 'Passed' and all(d in seen for d in cell['dependencies']), 'Cell/dependency status')
-            require(name in members, 'Cell missing from original archive')
-            file = file_under(checkpoint, 'batch/' + name)
-            require(digest(file) == members[name]['sha256'] and load(file) == cell, 'Ledger/cell equality: ' + ident)
+            observed = bound_json(checkpoint / 'batch', members, name)
+            require(json_equal(observed, cell), 'Ledger/cell equality: ' + ident)
             seen.add(ident)
             evidence = cell.get('evidence', {})
             rows.append({'id': ident, 'cellSha256': members[name]['sha256'], 'dependencies': cell['dependencies'],
-                'result': cell['result'], 'launchPid': evidence.get('launchPid'),
-                'buildReceiptSha256': evidence.get('buildReceiptSha256'),
-                'requestSha256': evidence.get('requestSha256'), 'rawSha256': evidence.get('rawSha256')})
-        write(output / 'ninety-cell-crosswalk.json', {'executionTuple': EXPECTED, 'cells': rows})
-        recovery = load(checkpoint / 'batch/transaction-recovery/verification.json')
+                'result': cell['result'], 'assurance': 'AuthenticatedLedgerCellEquality',
+                'topLevelEvidenceFields': {key: field_observation(evidence, key) for key in
+                    ('launchPid', 'buildReceiptSha256', 'requestSha256', 'rawSha256')}})
+        write(output / 'ninety-cell-crosswalk.json', {'executionTuple': EXPECTED, 'cells': rows,
+            'fullSourceBuildProcessSemanticAudit': False,
+            'scope': 'All cell bytes and ledger equality; absent top-level fields are not verified role-specific joins.'})
+        report['checksCompleted'].append('TypedFinalizerAndNinetyLedgerCellJoins')
+        recovery = bound_json(checkpoint / 'batch', members, 'transaction-recovery/verification.json')
         require(recovery['cleanupResult'] == 'ExactOriginalBytesRestored' and recovery['remoteAuthority'] == 'Passed' and
                 recovery['stage'] == 'Complete' and recovery['originalSettingsSha256'] == recovery['afterSettingsSha256'], 'P05 original recovery')
-        integration_cell = load(checkpoint / 'batch/cells/production-entry-integration.json')['evidence']
+        integration_cell = bound_json(checkpoint / 'batch', members, 'cells/production-entry-integration.json')['evidence']
         live = '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/'
         require(integration_cell['path'].startswith(live), 'Exact live integration namespace')
         integration_rel = integration_cell['path'][len(live):]
         require(members[integration_rel]['sha256'] == integration_cell['sha256'], 'Integration receipt binding')
-        integration = load(checkpoint / 'batch' / integration_rel)
+        integration = bound_json(checkpoint / 'batch', members, integration_rel)
         require(integration['returnChangedRoots'] == [] and integration['returnClosure'] == [], 'Separate restored-baseline comparison')
-        report.update(result='Passed', originalArtifacts=artifacts, transports=transport_rows,
-            checkpointFiles=len(tracked), manifestFiles=len(manifest_names), archiveMembers=len(members), indexedFiles=len(items),
-            originalResult=result['result'], cells=90, executedRepositories=EXPECTED,
-            p05RecoverySha256=digest(checkpoint / 'batch/transaction-recovery/verification.json'),
-            integrationSha256=integration_cell['sha256'], firstFailureCitationFlags='Absent, not observed false',
+        c04_names = ('players/C04-old-AOT-guard/verification.json', 'players/C04-old-AOT-guard/raw.json')
+        c04 = {name: bound_json(checkpoint / 'batch', members, name) for name in c04_names}
+        c04_flags = {name: {'sha256': members[name]['sha256'], 'scope': 'TopLevelJSONFields',
+            'fields': {key: field_observation(value, key) for key in
+                ('newMethodInvocationAttempted', 'newMethodInvocationSucceeded')}} for name, value in c04.items()}
+        write(output / 'c04-field-observations.json', c04_flags)
+        report['checksCompleted'].append('ArchivedP05IntegrationAndC04ReceiptJoins')
+        report.update(checkpointFiles=len(tracked), manifestFiles=len(manifest_names),
+            archiveMembers=len(members), indexedFiles=len(items), originalResult=result['result'],
+            cells=90, executedRepositories=EXPECTED,
+            p05RecoverySha256=members['transaction-recovery/verification.json']['sha256'],
+            integrationSha256=integration_cell['sha256'], c04FieldObservations=c04_flags,
             liveFilesystemCustodyReexecuted=False)
         for name in ('FILE_TRANSPORT.json', 'SOURCE_BINDINGS.json', 'MANIFEST.sha256'):
             (output / name).write_bytes((checkpoint / name).read_bytes())
@@ -205,9 +263,17 @@ def audit(repo, output, include_archive=False):
             (output / name).write_bytes(original(name).read_bytes())
         if include_archive:
             (output / 'original-S-evidence.tar.gz').hardlink_to(original('evidence.tar.gz'))
-        require(not git(repo, 'status', '--porcelain'), 'Original checkout changed during audit')
+        report['historicalInputsModified'] = bool(git(repo, 'status', '--porcelain'))
+        require(report['historicalInputsModified'] is False, 'Original checkout changed during audit')
+        report['checksCompleted'].append('ExportsCompleteAndOriginalCheckoutStillClean')
+        report['result'] = 'Passed'
     except BaseException as error:
-        report['error'] = str(error)
+        record_failure(report, error)
+        try:
+            report['historicalInputsModified'] = bool(git(repo, 'status', '--porcelain'))
+        except Exception as status_error:
+            report['historicalInputsModified'] = None
+            report['finalInputStatusError'] = str(status_error)
         raise
     finally:
         write(output / 'audit.json', report)
@@ -220,4 +286,4 @@ if __name__ == '__main__':
     p.add_argument('--output', required=True, type=Path)
     p.add_argument('--include-archive', action='store_true')
     a = p.parse_args()
-    print(json.dumps(audit(a.repo, a.output, a.include_archive), sort_keys=True))
+    print(json.dumps(audit(a.repo, a.output, a.include_archive), sort_keys=True, allow_nan=False))
