@@ -2,7 +2,7 @@
 
 **Independent review remains NotRun.** This addendum accompanies—not replaces—the original [independent review request](INDEPENDENT_REVIEW_REQUEST.md) and its exact-source, read-only and evidence-custody requirements.
 
-On 2026-10-08 the owner selected **D1=A; D2=A**. Read the [recorded decision](OWNER_DISPOSITION_2026-10-08.md), [bounded exit matrix](BOUNDED_R03_EXIT_MATRIX.md), amended [stage](../../../Plan/stages/R03-evolution-semantics.md), [remaining plan](../../../Plan/stages/R03-remaining-completion.md), [design](../../../Plan/DESIGN.md), [ADR-0002](../../../Architecture/ADR/ADR-0002-pure-interpreter-qualification-boundary.md), and [deferred X02](../../../Plan/stages/X02-pure-interpreter-structural-expansion.md). The older `OWNER_DECISIONS.md` records proposals only and is superseded regarding D1/D2 selection.
+On 2026-10-08 the owner selected **D1=A; D2=A**. Read the [recorded decision](OWNER_DISPOSITION_2026-10-08.md), [bounded exit matrix](BOUNDED_R03_EXIT_MATRIX.md), amended [stage](../../../../Plan/stages/R03-evolution-semantics.md), [remaining plan](../../../../Plan/stages/R03-remaining-completion.md), [design](../../../../Plan/DESIGN.md), [ADR-0002](../../../../Architecture/ADR/ADR-0002-pure-interpreter-qualification-boundary.md), and [deferred X02](../../../../Plan/stages/X02-pure-interpreter-structural-expansion.md). The older `OWNER_DECISIONS.md` records proposals only and is superseded regarding D1/D2 selection.
 
 Additional mandatory reviewer challenges:
 
