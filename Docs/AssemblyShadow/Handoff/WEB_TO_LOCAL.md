@@ -2,7 +2,7 @@
 
 ## Current assignment
 
-**No new Local runtime batch is authorized.** The earlier S executing assignment has been consumed. S passed all 90 cells and is reconciled by Primary as passing its prescribed Local contracts. Its original status remains EvidenceReadyForPrimaryReview. The next work is a separate independent full-stage R03 review and explicit owner decisions, not a rerun, a repair to retained R or advancement to M08A.
+**No new Local runtime batch is authorized.** The earlier S executing assignment has been consumed. S passed all 90 cells and is reconciled by Primary as passing its prescribed Local contracts. Its original status remains EvidenceReadyForPrimaryReview. The next work is a separate independent full-stage R03 review **under owner-approved D1=A / D2=A scope**, not a rerun, retained-R repair or advancement to M08A. The owner's choices are recorded; they are not reviewer or H2 approval.
 
 Current owner remains **Primary Implementation** for review integration, scope documents and substantive fixes. An independent reviewer must work read-only and return findings, not implement them. This handoff does not claim an independent reviewer has already run.
 
@@ -13,7 +13,7 @@ All following paths are under `Docs/AssemblyShadow/`:
 1. `README.md` and `Plan/CURRENT_STATUS.md`.
 2. Unchanged Local-owned `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md`.
 3. `History/M07R/R03/S_Reconciliation/PRIMARY_RECONCILIATION.md` and `FULL_STAGE_PRIMARY_REVIEW.md`.
-4. `History/M07R/R03/S_Reconciliation/EVIDENCE.json`, `OWNER_DECISIONS.md` and `INDEPENDENT_REVIEW_REQUEST.md`.
+4. `History/M07R/R03/S_Reconciliation/EVIDENCE.json`, original `OWNER_DECISIONS.md`, recorded `OWNER_DISPOSITION_2026-10-08.md`, `BOUNDED_R03_EXIT_MATRIX.md`, `INDEPENDENT_REVIEW_REQUEST.md` **and** `INDEPENDENT_REVIEW_SCOPE_ADDENDUM.md`.
 5. Original R03 design/stage/remaining-completion requirements and HUMAN_REVIEW_GATES; the new assessment does not replace them.
 
 ## Exact sources
@@ -35,7 +35,7 @@ Follow INDEPENDENT_REVIEW_REQUEST.md in an actually separate isolated read-only 
 
 If no separate independent reviewer can be invoked, report `ReviewBlocked` and `independentReview=NotRun`, with the actual unavailable capability. Do not fabricate a PASS, ninety new Blocked runtime cells or an Off result. No Unity/build/Player execution is a fallback for an unavailable reviewer.
 
-The reviewer must inspect actual pinned design, plan, cross-repository implementation, test semantics and raw evidence; the Primary matrix is a starting point, not authority for its own approval. In particular address RC1 qualification/expansion scope, RC3 supported versus rejected generic/old-handle claims, RC4 installed-baseline versus target graph, RC5 observational versus production performance claims, cleanup versus fresh remote acceptance, and archive/source provenance. D1/D2 proposals remain unapproved until the owner explicitly responds.
+The reviewer must inspect actual pinned design, plan, cross-repository implementation, test semantics and raw evidence; the Primary matrix is a starting point, not authority for its own approval. In particular address RC1 qualification/expansion scope, RC3 supported versus rejected generic/old-handle claims, RC4 installed-baseline versus target graph, RC5 observational versus production performance claims, cleanup versus fresh remote acceptance, and archive/source provenance. The owner **has responded D1=A / D2=A**. Review the amended R03 Design/stage, ADR-0002 and deferred X02 plan against exact code/evidence; keep unrelated RC2–RC4 obligations intact. Do not misclassify the owner scope decision as a stage-review PASS or H2 authorization.
 
 Return an independent report with exact reviewed pins, transport, actual reviewer context, method/exclusions, requirement matrix, findings and PASS/FAIL/BLOCKED verdict. Keep the reviewer read-only. Return its output to Primary for publication and any authorized remediation; do not implement non-trivial changes or overwrite prior review/evidence.
 
@@ -51,6 +51,6 @@ Do not call run_completion.py, run_storage_checked.py --execute, StructuralResto
 
 ## Stop and approval boundary
 
-This cycle creates no new Local validation result. Return the independent review or the truthful review blocker to Primary and stop. All substantive design/code/test fixes stay Primary-owned. Scope decisions are recorded explicitly before revising the exit contract; no proposal silently changes the original R03 requirements.
+This cycle creates no new Local validation result. Return the independent review or the truthful review blocker to Primary and stop. All substantive design/code/test fixes stay Primary-owned. Owner D1=A/D2=A decisions are now separately recorded and the bounded R03 exit contract amended. An actually separate reviewer must verify that the new contract preserves all non-deferred safety and evidence obligations.
 
 `R03Accepted=false`; `H2Passed=false`; `qualificationApproved=false`; `ReadyForHumanReviewGate=false`; `fullLegacyRegressionAcceptance=false`; PureInterpreter expansion disabled. A reviewer PASS alone does not grant H2. The human-defined H2 remains separately initiated after R03 scope/findings closure. No later milestone or production-performance approval is authorized.
