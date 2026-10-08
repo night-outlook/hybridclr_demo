@@ -1,0 +1,85 @@
+name: S pinned review artifact authentication
+on:
+  push:
+    branches: [codex/connector-smoke-s-review-resume-fc55d8b8]
+    paths: ['.github/workflows/s-review-readable.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  authenticate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Authenticate captured source and expose bounded review facts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: python
+        run: |
+          import hashlib,json,os,urllib.request,urllib.error,zipfile
+          from pathlib import Path,PurePosixPath
+          out=Path(os.environ['RUNNER_TEMP'])/'s-readable';out.mkdir()
+          artifact=out/'input.zip'
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,req,fp,code,msg,headers,newurl): return None
+          req=urllib.request.Request('https://api.github.com/repos/night-outlook/hybridclr_demo/actions/artifacts/11531491593/zip',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+          try:
+              response=urllib.request.build_opener(NoRedirect).open(req,timeout=120)
+          except urllib.error.HTTPError as e:
+              if e.code not in (301,302,303,307,308): raise
+              location=e.headers['Location'];assert location.startswith('https://')
+              response=urllib.request.urlopen(location,timeout=120)
+          h=hashlib.sha256()
+          with response,artifact.open('xb') as f:
+              for b in iter(lambda:response.read(1024*1024),b''):h.update(b);f.write(b)
+          expected='a323402ec537537c0c1ce71519ffd210167260db42f1ee977597c94a195af35f'
+          assert artifact.stat().st_size==405960931 and h.hexdigest()==expected
+          def pairs(items):
+              d={}
+              for k,v in items:
+                  assert k not in d,k
+                  d[k]=v
+              return d
+          with zipfile.ZipFile(artifact) as z:
+              names=[i.filename for i in z.infolist() if not i.is_dir()]
+              assert len(names)==len(set(names))
+              for n in names:
+                  p=PurePosixPath(n);assert not p.is_absolute() and '..' not in p.parts
+                  assert ((z.getinfo(n).external_attr>>16)&0o170000)!=0o120000
+              def load(n):return json.loads(z.read(n),object_pairs_hook=pairs)
+              provenance=load('provenance.json');index=load('capture-index.json')
+              pins={'hybridclr_demo':'fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b','hybridclr':'4b2774b066cfc6afd77a8c8aded6bda7ea574f55','hybridclr_unity':'948c0e3b4f8891481301770115e8ba4945eea6de','il2cpp_plus':'1cf87f8209790f9fb2ebec97487dc1990ccd56c5'}
+              assert provenance['reviewPins']==index['pins']==pins
+              assert provenance['workflowRun']=='37735479304' and provenance['workflowCommit']=='a20e85073fe75af12f31433cc3fa4972e66c1e6c'
+              assert {r['path'] for r in provenance['files']}==set(names)-{'provenance.json'}
+              for row in provenance['files']:
+                  data=z.read(row['path']);assert len(data)==row['bytes'] and hashlib.sha256(data).hexdigest()==row['sha256'],row['path']
+              for row in index['files']:
+                  data=z.read(row['path']);assert len(data)==row['bytes'] and hashlib.sha256(data).hexdigest()==row['sha256']
+                  assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==row['gitBlob']
+              audit=load('independent-byte-audit.json');core=load('core-summary.json')
+              assert audit['all90CellsPassed'] and len(core['cells'])==90 and all(r['result']=='Passed' for r in core['cells'])
+              summary={'kind':'SPinnedCaptureReauthentication','artifactId':11531491593,'artifactSha256':expected,'captureRun':37735479304,'pins':pins,'provenanceFilesVerified':len(provenance['files']),'gitBlobsVerified':len(index['files']),'omittedFiles':len(index['omissions']),'originalArchiveAudit':audit,'result':'Passed','unityRun':False,'playerRun':False,'independentAgentReview':False,'runtimeAcceptance':False}
+              print('REVIEW_AUTHENTICATION\n'+json.dumps(summary,indent=2))
+              (out/'authentication.json').write_text(json.dumps(summary,indent=2)+'\n')
+              print('SOURCE_MAP\n'+json.dumps([n for n in names if n.startswith('sources/') and (('/AssemblyShadow' in n or 'NativeLayout' in n or 'LogicalMethod' in n or 'Eligibility' in n) and n.endswith(('.cpp','.h','.cs')))],indent=2))
+              prefix='sources/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/'
+              print('S_EVIDENCE_MAP\n'+json.dumps([n[len(prefix):] for n in names if n.startswith(prefix) and (n[len(prefix):].count('/')<2 or 'transaction-recovery/' in n or n.endswith(('measurements.json','integration.json','compiler-policy-domains.json','resource-contracts.json')))],indent=2))
+              def compact(v,depth=0):
+                  if isinstance(v,dict):return {k:compact(x,depth+1) for k,x in v.items() if k not in ('stdout','stderr','rawJson','commandStreams','commands')}
+                  if isinstance(v,list):return v if len(v)<8 and all(not isinstance(x,(dict,list)) for x in v) else {'count':len(v),'first':compact(v[0],depth+1) if v else None}
+                  return v if not isinstance(v,str) or len(v)<500 else v[:500]+' [excerpt]'
+              for rel in ('preflight/INTEGRATED_DETAILS.json','preflight/POSTRUN_AUTHENTICATION.json','batch/measurements.json','batch/transaction-recovery/verification.json','executing-storage/session.json'):
+                  name=prefix+rel
+                  if name in names:print('EVIDENCE '+rel+'\n'+json.dumps(compact(load(name)),indent=2))
+              for rel in ('.agents/config/config.json','.codex/config.toml'):
+                  name='sources/hybridclr_demo/'+rel
+                  if name in names:print('GATE_CONFIGURATION '+rel+'\n'+z.read(name).decode())
+          artifact.unlink()
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: s-readable-authentication
+          path: ${{ runner.temp }}/s-readable/*.json
+          if-no-files-found: error
+          retention-days: 14
