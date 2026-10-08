@@ -100,7 +100,12 @@ def audit(ws,out):
         if 'launchPid' not in v:continue
         pid=v['launchPid'];require(isinstance(pid,int) and pid>0 and pid not in pids,'Distinct process');pids.add(pid)
         rel=p.relative_to(root/'batch').as_posix();require(rel in indexed and v['result']=='Passed','Indexed process result')
-        raw=v.get('rawPath',str(p.parent/'raw.json'));rawp=rp(raw[len(LIVE):]) if raw.startswith(LIVE) else pathlib.Path(raw)
+        raw=v.get('rawPath')
+        if raw is None:
+            category=pathlib.PurePosixPath(rel).parts[0];require(category in ('players','early'),'Explicit raw-file schema '+rel)
+            rawp=p.parent/('early.json' if category=='early' else 'raw.json')
+        else:
+            require(raw.startswith(LIVE),'Explicit original live raw path '+rel);rawp=rp(raw[len(LIVE):])
         require(rawp.is_file() and sha(rawp)==v['rawSha256'],'Raw process binding '+rel)
         if 'requestSha256' in v:require(sha(p.parent/'request.json')==v['requestSha256'],'Request binding '+rel)
         if 'commandReceipt' in v:
