@@ -2,6 +2,8 @@
 
 ## Assignment and status
 
+This request is now supplemented by [the owner-decision review addendum](INDEPENDENT_REVIEW_SCOPE_ADDENDUM.md); user D1=A/D2=A is recorded, not reviewer approval.
+
 Perform an independent, read-only design → plan → implementation → evidence review of R03. The user requested this review; this file prepares its exact scope but is **not its result**. Current independent verdict: **NotRun**; execution is blocked in the present Primary host because it exposes no separate reviewer invocation. The Primary assessment and machine byte checks are not substitutes.
 
 No source fix, runtime rerun, old-root restoration, acceptance mutation or later milestone is assigned to the reviewer. Return findings to Primary Implementation. A qualified fresh isolated review session may use the repository's available `code-reviewer`/review routing under the live host contract; do not invent a model, effort, task identity or independent spawn. Do not silently enable/change automatic gate configuration. Configured workflow gates and the explicit required R03 stage review are distinct.
@@ -31,7 +33,7 @@ EVIDENCE.json supplies the core/index/ledger/archive/seal hashes, five archive t
 
 ## Decisions and expected output
 
-D1/D2 in OWNER_DECISIONS.md are pending proposals. Evaluate the original normative scope unless an explicit owner disposition is available. Distinguish a code defect, missing evidence, expected supported rejection, deferred risk and an unapproved scope change. Static PureInterpreter qualification is not allocation/publication authority; observational measurements are not a production SLA.
+The owner **explicitly selected D1=A / D2=A on 2026-10-08**. Evaluate the amended, bounded R03 scope via [OWNER_DISPOSITION_2026-10-08.md](OWNER_DISPOSITION_2026-10-08.md), [BOUNDED_R03_EXIT_MATRIX.md](BOUNDED_R03_EXIT_MATRIX.md) and [INDEPENDENT_REVIEW_SCOPE_ADDENDUM.md](INDEPENDENT_REVIEW_SCOPE_ADDENDUM.md), while challenging every unchanged original RC2–RC4 obligation. Distinguish a code defect, missing evidence, expected supported rejection, deferred risk and an unapproved scope change. Static PureInterpreter qualification is not allocation/publication authority; observational measurements are not a production SLA.
 
 Return a report with actual independent reviewer/host context, exact quartet and documentation transport, review method and exclusions, a requirement-by-requirement matrix, and verdict `PASS`, `FAIL` or `BLOCKED`. Every finding needs severity/category, exact file/function/line or evidence path/hash, violated requirement, reasoning or reproducible counterexample, scope, and minimal required correction/validation. Do not manufacture findings merely because S is now green. Do not mark an unproved generic or production claim covered by test counts.
 
