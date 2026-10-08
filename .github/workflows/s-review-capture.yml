@@ -1,0 +1,144 @@
+name: S immutable review capture
+on:
+  push:
+    branches: [codex/connector-smoke-s-review-fc55d8b8]
+    paths: ['.github/workflows/s-review-capture.yml']
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_demo
+          ref: fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b
+          path: hybridclr_demo
+          persist-credentials: false
+          sparse-checkout: |
+            Tools
+            Assets
+            Packages
+            ProjectSettings
+            .agents
+            .codex
+            .github
+            Docs/AssemblyShadow/Plan
+            Docs/AssemblyShadow/Architecture
+            Docs/AssemblyShadow/Handoff
+            Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready
+            Docs/AssemblyShadow/README.md
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+          path: hybridclr
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: hybridclr_unity
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 1cf87f8209790f9fb2ebec97487dc1990ccd56c5
+          path: il2cpp_plus
+          persist-credentials: false
+      - name: Independently authenticate S transport and bounded sealed archive
+        shell: python
+        run: |
+          import collections, hashlib, json, os, shutil, subprocess, tarfile
+          from pathlib import Path, PurePosixPath
+          root=Path(os.environ['RUNNER_TEMP'])/'s-review';root.mkdir()
+          demo=Path('hybridclr_demo')
+          cp=demo/'Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready'
+          def digest(path):
+              h=hashlib.sha256()
+              with path.open('rb') as f:
+                  for b in iter(lambda:f.read(1024*1024),b''):h.update(b)
+              return h.hexdigest()
+          def safe(base, rel):
+              p=PurePosixPath(rel)
+              assert not p.is_absolute() and '..' not in p.parts,rel
+              x=base.joinpath(*p.parts)
+              assert x.is_file() and not x.is_symlink(),rel
+              return x
+          def load(path):return json.loads(path.read_text())
+          def emit(name,v):
+              p=root/name;p.parent.mkdir(parents=True,exist_ok=True)
+              p.write_text(json.dumps(v,indent=2)+'\n')
+          manifest=[]
+          for line in (cp/'MANIFEST.sha256').read_text().splitlines():
+              if not line.strip():continue
+              h,rel=line.split(None,1);rel=rel.lstrip('*')
+              p=safe(cp,rel);assert digest(p)==h,rel
+              manifest.append({'path':rel,'sha256':h,'bytes':p.stat().st_size})
+          assert len({r['path'] for r in manifest})==len(manifest)
+          reconstructed=root/'reconstructed';reconstructed.mkdir()
+          transported=[]
+          for row in load(cp/'FILE_TRANSPORT.json')['files']:
+              target=reconstructed/row['originalPath'];target.parent.mkdir(parents=True,exist_ok=True)
+              with target.open('xb') as out:
+                  for part in row['parts']:
+                      p=safe(cp,part['path'])
+                      assert p.stat().st_size==part['size'] and digest(p)==part['sha256']
+                      with p.open('rb') as f:shutil.copyfileobj(f,out,1024*1024)
+              assert target.stat().st_size==row['originalSize'] and digest(target)==row['originalSha256']
+              transported.append({'path':row['originalPath'],'bytes':row['originalSize'],'sha256':row['originalSha256'],'parts':len(row['parts'])})
+          idx=load(cp/'batch/evidence-index.json');seal=load(cp/'batch/seal-receipt.json')
+          assert digest(cp/'batch/evidence-index.json')==seal['indexSha256']
+          expected={r['path']:r for r in idx['files']};assert len(expected)==len(idx['files'])
+          expected['evidence-index.json']={'size':(cp/'batch/evidence-index.json').stat().st_size,'sha256':seal['indexSha256']}
+          archive=reconstructed/'batch/evidence.tar.gz';assert digest(archive)==seal['archiveSha256']
+          seen=set()
+          with tarfile.open(archive,'r|gz') as tar:
+              for member in tar:
+                  assert member.name not in seen and member.name in expected and member.isfile(),member.name
+                  seen.add(member.name);r=expected[member.name]
+                  assert member.size==r['size']
+                  h=hashlib.sha256();f=tar.extractfile(member)
+                  for b in iter(lambda:f.read(1024*1024),b''):h.update(b)
+                  assert h.hexdigest()==r['sha256'],member.name
+          assert seen==set(expected) and len(seen)==seal['members']
+          result=load(reconstructed/'batch/LOCAL_BATCH_RESULT.json');ledger=load(reconstructed/'batch/BATCH_EXECUTION.json')
+          assert result['executionLedgerSha256']==digest(reconstructed/'batch/BATCH_EXECUTION.json')
+          assert result['sealStatus']=='Passed' and result['seal']==seal
+          assert result['cells']==ledger['cells'] and len(result['cells'])==90
+          assert len({r['id'] for r in result['cells']})==90 and all(r['result']=='Passed' for r in result['cells'])
+          assert result['result']=='EvidenceReadyForPrimaryReview'
+          assert all(result[k] is False for k in ('R03Accepted','H2Passed','qualificationApproved','pureInterpreterExpansionEnabled'))
+          emit('core-summary.json',{'result':result['result'],'repositories':result['repositories'],'cells':[{'id':r['id'],'result':r['result'],'dependencies':r['dependencies']} for r in result['cells']], 'seal':seal,'sealStatus':result['sealStatus'],'runtimeAcceptance':False})
+          emit('independent-byte-audit.json',{'kind':'SReadOnlyTransportAndSealAudit','publicationCommit':'fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b','executionCommit':'29bb3d4a39bf8a2f23be404f77535aaba3485bfc','checkpointManifestFiles':len(manifest),'manifestSha256':digest(cp/'MANIFEST.sha256'),'transportFiles':transported,'archiveMembersAuthenticated':len(seen),'indexedFilesAuthenticated':len(idx['files']),'all90CellsPassed':True,'historicalInputsModified':False,'liveExcludedRootsReauthenticated':False,'runtimeAcceptance':False,'independentAgentReview':False})
+          pins={'hybridclr_demo':'fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b','hybridclr':'4b2774b066cfc6afd77a8c8aded6bda7ea574f55','hybridclr_unity':'948c0e3b4f8891481301770115e8ba4945eea6de','il2cpp_plus':'1cf87f8209790f9fb2ebec97487dc1990ccd56c5'}
+          entries=[];omitted=[]
+          for repo,sha in pins.items():
+              assert subprocess.check_output(['git','-C',repo,'rev-parse','HEAD'],text=True).strip()==sha
+              raw=subprocess.check_output(['git','-C',repo,'ls-tree','-r','-z',sha])
+              for item in raw.split(b'\0'):
+                  if not item:continue
+                  meta,rel=item.split(b'\t',1);mode,kind,blob=meta.decode().split();rel=rel.decode();p=Path(repo)/rel
+                  if kind!='blob' or not p.is_file() or p.is_symlink():continue
+                  if repo=='hybridclr_demo' and not (rel.startswith(('Tools/','Assets/','Packages/','ProjectSettings/','.agents/','.codex/','.github/','Docs/AssemblyShadow/Plan/','Docs/AssemblyShadow/Architecture/','Docs/AssemblyShadow/Handoff/')) or rel=='Docs/AssemblyShadow/README.md' or rel.startswith(str(cp.relative_to(demo))+'/')):continue
+                  if p.stat().st_size>8*1024*1024 or '.parts/' in rel:
+                      omitted.append({'repository':repo,'path':rel,'bytes':p.stat().st_size,'gitBlob':blob,'reason':'bounded review export; transport archive audited separately'});continue
+                  data=p.read_bytes();assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==blob,str(p)
+                  dest=root/'sources'/repo/rel;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
+                  entries.append({'path':str(dest.relative_to(root)),'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'gitBlob':blob,'commit':sha})
+              assert not subprocess.check_output(['git','-C',repo,'status','--porcelain'],text=True).strip(),repo
+          emit('capture-index.json',{'pins':pins,'files':entries,'omissions':omitted,'runtimeAcceptance':False})
+          # Reconstructions are scratch copies only; originals in the checkout remain untouched.
+          shutil.rmtree(reconstructed)
+          files=[{'path':str(p.relative_to(root)),'bytes':p.stat().st_size,'sha256':digest(p)} for p in root.rglob('*') if p.is_file()]
+          emit('provenance.json',{'workflowRun':os.environ['GITHUB_RUN_ID'],'workflowCommit':os.environ['GITHUB_SHA'],'reviewPins':pins,'files':files,'unityRun':False,'playerRun':False,'independentAgentReview':False})
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: s-review-fc55d8b8
+          path: ${{ runner.temp }}/s-review
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: error
