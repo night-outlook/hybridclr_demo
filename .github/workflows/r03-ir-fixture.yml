@@ -118,5 +118,6 @@ jobs:
             ${{ runner.temp }}/r03-ir-fixture/original/inventory.json
             ${{ runner.temp }}/r03-ir-fixture/ir/ir-target.json
             ${{ runner.temp }}/r03-ir-fixture/verified.json
+            ${{ runner.temp }}/r03-ir-fixture/historical-differences.json
           retention-days: 14
           if-no-files-found: warn
