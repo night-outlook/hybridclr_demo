@@ -21,6 +21,11 @@ from batch_evidence import finalize, write
 from command_lifetime import build_arguments
 from ir_original_fixtures import stage_immutable_original_s, S_PUBLICATION, S_INVENTORY_BLOB
 
+# Exact deterministic IR-only target observed identically on macOS and Linux.
+# This is not any historical S byte or proof of Player runtime behavior.
+IR_TARGET_SHA256 = "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd"
+IR_TARGET_MVID = "597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff"
+
 
 def original_s_fixtures(batch):
     """Bind all 15 original S bytes to the immutable published commit, not
@@ -90,8 +95,11 @@ def ir_side_effect_fixture(batch):
             record.get('originalSFixtureUnchanged') is True and
             record.get('runtimeAcceptance') is False, 'Exact distinct IR fixture contract')
     dll = root / 'Methods.dll'
-    require(dll.is_file() and sha(dll) == record['sha256'] and
-            record['size'] == dll.stat().st_size, 'Real IR target DLL bytes')
+    require(dll.is_file() and sha(dll) == record['sha256'] == IR_TARGET_SHA256 and
+            record.get('mvid') == IR_TARGET_MVID and
+            record.get('sideEffectInstructionsVerified') is True and
+            record.get('layoutEditorAdmission') == 'Passed' and
+            record['size'] == dll.stat().st_size, 'Deterministic IR-only fixture byte and metadata contract')
     original = batch.fixture_root / 'virtual-slot/Methods.dll'
     require(sha(original) == batch.fixture_files['virtual-slot/Methods.dll']['sha256'] and
             sha(original) != sha(dll), 'Original native fixture remains unchanged and IR target differs')
