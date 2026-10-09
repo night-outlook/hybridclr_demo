@@ -1,0 +1,79 @@
+name: R03 IR fixture reproducibility diagnostics (non-acceptance)
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-ir-fixture-repro.yml'
+      - 'Tools/AssemblyShadow/R03/PlayerFixtures/Program.cs'
+      - 'Tools/AssemblyShadow/R03/Fixtures/EvolutionFixtureCorpus.cs'
+permissions:
+  contents: read
+jobs:
+  reproducibility:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: demo
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: package
+          persist-credentials: false
+      - name: Build fixture generator
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/ir-repro"
+          dotnet build demo/Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj \
+            -c Release -v minimal \
+            -p:PackageRoot="$GITHUB_WORKSPACE/package" \
+            -p:BaseIntermediateOutputPath="$RUNNER_TEMP/ir-repro/obj/" \
+            -p:OutputPath="$RUNNER_TEMP/ir-repro/bin/" \
+            > "$RUNNER_TEMP/ir-repro/compile.log" 2>&1
+      - name: Two independent generator invocations (never original S)
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet "$RUNNER_TEMP/ir-repro/bin/PlayerFixtures.dll" --output "$RUNNER_TEMP/ir-repro/first" > "$RUNNER_TEMP/ir-repro/first.stdout"
+          dotnet "$RUNNER_TEMP/ir-repro/bin/PlayerFixtures.dll" --output "$RUNNER_TEMP/ir-repro/second" > "$RUNNER_TEMP/ir-repro/second.stdout"
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'ir-repro'
+          first=json.loads((root/'first/inventory.json').read_text())
+          second=json.loads((root/'second/inventory.json').read_text())
+          a={x['path']:x for x in first['files']}
+          b={x['path']:x for x in second['files']}
+          assert len(a)==len(b)==15 and a.keys()==b.keys()
+          diff={name:{k:[a[name].get(k),b[name].get(k)] for k in set(a[name])|set(b[name]) if a[name].get(k)!=b[name].get(k)} for name in sorted(a)}
+          diff={k:v for k,v in diff.items() if v}
+          result={'kind':'R03IRHostFixtureReproObservation','schemaVersion':1,
+              'result':'Identical' if not diff else 'NotIdentical',
+              'checks':15,'differences':diff,
+              'originalSInputRead':False,'originalSIdentityAccepted':False,
+              'runtimeAcceptance':False,'unityRun':False,
+              'sourceCommit':os.environ['GITHUB_SHA']}
+          (root/'comparison.json').write_text(json.dumps(result,indent=2,sort_keys=True)+'\n')
+          print(json.dumps({'result':result['result'],'changed':list(diff)},sort_keys=True))
+          PY
+          git -C demo diff --exit-code
+          git -C package diff --exit-code
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-ir-fixture-repro-${{ matrix.os }}-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/ir-repro/compile.log
+            ${{ runner.temp }}/ir-repro/comparison.json
+            ${{ runner.temp }}/ir-repro/first/inventory.json
+            ${{ runner.temp }}/ir-repro/second/inventory.json
+          retention-days: 14
+          if-no-files-found: warn
