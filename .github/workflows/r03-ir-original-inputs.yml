@@ -1,0 +1,151 @@
+name: R03 IR authenticated original-S inputs and deterministic target
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-ir-original-inputs.yml'
+      - 'Tools/AssemblyShadow/R03IR/ir_original_fixtures.py'
+      - 'Tools/AssemblyShadow/R03IR/test_ir_original_fixtures.py'
+      - 'Tools/AssemblyShadow/R03IR/run_terminal_local.py'
+      - 'Tools/AssemblyShadow/R03/PlayerFixtures/Program.cs'
+permissions:
+  contents: read
+jobs:
+  original-s-and-target:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03/PlayerFixtures
+            Tools/AssemblyShadow/R03/Fixtures
+            Tools/AssemblyShadow/R03/HostTests
+            Tools/AssemblyShadow/R03/batch_contract.py
+            Tools/AssemblyShadow/R03IR
+            Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/host/player-fixtures
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_demo
+          ref: fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b
+          path: original_s
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/host/player-fixtures
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: hybridclr_unity
+          persist-credentials: false
+          sparse-checkout: |
+            Plugins/dnlib.dll
+            Editor/AssemblyShadow
+            Tests/Editor/AssemblyShadow
+      - name: Host-only original fixture source and synthetic mutation tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/r03-ir-authority"
+          python3 -B -m unittest discover -s hybridclr_demo/Tools/AssemblyShadow/R03IR \
+            -p 'test_ir_original_fixtures.py' -v \
+            2>&1 | tee "$RUNNER_TEMP/r03-ir-authority/host-tests.log"
+      - name: Authenticate original published S blobs and copied bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$GITHUB_WORKSPACE/hybridclr_demo/Tools/AssemblyShadow/R03:$GITHUB_WORKSPACE/hybridclr_demo/Tools/AssemblyShadow/R03IR"
+          python3 - <<'PY'
+          import hashlib, json, os, subprocess
+          from pathlib import Path
+          from ir_original_fixtures import stage_immutable_original_s, S_RELATIVE_ROOT, S_PUBLICATION, S_INVENTORY_BLOB
+          root=Path(os.environ['GITHUB_WORKSPACE'])
+          demo=root/'hybridclr_demo'
+          original=root/'original_s'
+          assert subprocess.check_output(['git','-C',str(original),'rev-parse','HEAD'],text=True).strip()==S_PUBLICATION
+          assert subprocess.check_output(['git','-C',str(original),'rev-parse','HEAD:'+S_RELATIVE_ROOT+'/inventory.json'],text=True).strip()==S_INVENTORY_BLOB
+          out=Path(os.environ['RUNNER_TEMP'])/'r03-ir-authority'
+          def sha(p):
+            with Path(p).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+          files,receipt=stage_immutable_original_s(demo,out/'original-S-bytes',sha)
+          for name,row in sorted(files.items()):
+            assert sha(original/S_RELATIVE_ROOT/name)==sha(out/'original-S-bytes'/name)==row['sha256'],name
+          assert len(files)==15
+          print('AUTHENTICATED_ORIGINAL_S=',json.dumps({'fileCount':15,'inventoryGitBlob':S_INVENTORY_BLOB,'sourcePublication':S_PUBLICATION,'newOriginalFixtureBytes':False,'unityRun':False,'runtimeAcceptance':False},sort_keys=True))
+          PY
+      - name: Compile only the separately identified IR target generator
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet build hybridclr_demo/Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj \
+            -c Release -v minimal \
+            -p:PackageRoot="$GITHUB_WORKSPACE/hybridclr_unity" \
+            -p:BaseIntermediateOutputPath="$RUNNER_TEMP/r03-ir-authority/obj/" \
+            -p:OutputPath="$RUNNER_TEMP/r03-ir-authority/bin/" \
+            > "$RUNNER_TEMP/r03-ir-authority/compile.log" 2>&1
+          dotnet "$RUNNER_TEMP/r03-ir-authority/bin/PlayerFixtures.dll" \
+            --ir-target "$RUNNER_TEMP/r03-ir-authority/ir-first" \
+            > "$RUNNER_TEMP/r03-ir-authority/ir-first.stdout"
+          dotnet "$RUNNER_TEMP/r03-ir-authority/bin/PlayerFixtures.dll" \
+            --ir-target "$RUNNER_TEMP/r03-ir-authority/ir-second" \
+            > "$RUNNER_TEMP/r03-ir-authority/ir-second.stdout"
+      - name: Verify exact-byte repeatability of newly generated IR DLL
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,os,struct
+          from pathlib import Path
+          r=Path(os.environ['RUNNER_TEMP'])/'r03-ir-authority'
+          a,b=(r/x/'Methods.dll' for x in ('ir-first','ir-second'))
+          def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+          d1,d2=(json.loads((r/x/'ir-target.json').read_text()) for x in ('ir-first','ir-second'))
+          d1bytes,d2bytes=a.read_bytes(),b.read_bytes()
+          def timestamp(data):
+            pe=struct.unpack_from('<I',data,0x3c)[0]
+            assert data[pe:pe+4]==b'PE\\x00\\x00'
+            return struct.unpack_from('<I',data,pe+8)[0]
+          # No equality against an independently regenerated historical-S DLL.
+          assert d1bytes==d2bytes, 'IR target generation must be byte-for-byte deterministic'
+          assert timestamp(d1bytes)==timestamp(d2bytes)==0, 'Fixed PE timestamp'
+          assert d1['sha256']==d2['sha256']==sha(a)==sha(b)
+          assert d1['mvid']==d2['mvid'] and d1['result']==d2['result']=='GeneratedNotRuntimeValidated'
+          assert d1['sideEffectInstructionsVerified'] is True and d2['sideEffectInstructionsVerified'] is True
+          assert d1['layoutEditorAdmission']==d2['layoutEditorAdmission']=='Passed'
+          assert d1['runtimeAcceptance'] is False and d2['runtimeAcceptance'] is False
+          result={'kind':'R03IRDeterministicDistinctTarget','result':'Passed',
+            'sourceCommit':os.environ['GITHUB_SHA'],'targetSha256':sha(a),
+            'targetBytes':len(d1bytes),'targetMvid':d1['mvid'],
+            'peTimestamp':timestamp(d1bytes),'identicalIndependentWrites':True,
+            'historicalSRegenerationClaim':False,'sourceSInputsCopiedAuthenticated':True,
+            'unityRun':False,'runtimeAcceptance':False}
+          (r/'verified-target.json').write_text(json.dumps(result,sort_keys=True,indent=2)+'\n')
+          print(json.dumps(result,sort_keys=True))
+          PY
+          git -C hybridclr_demo diff --check
+          test -z "$(git -C hybridclr_demo status --porcelain)"
+          test -z "$(git -C original_s status --porcelain)"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-ir-original-inputs-${{ matrix.os }}-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/r03-ir-authority/host-tests.log
+            ${{ runner.temp }}/r03-ir-authority/compile.log
+            ${{ runner.temp }}/r03-ir-authority/ir-original-s-fixture-authority.json
+            ${{ runner.temp }}/r03-ir-authority/verified-target.json
+            ${{ runner.temp }}/r03-ir-authority/ir-first/ir-target.json
+            ${{ runner.temp }}/r03-ir-authority/ir-second/ir-target.json
+          if-no-files-found: warn
+          retention-days: 14
