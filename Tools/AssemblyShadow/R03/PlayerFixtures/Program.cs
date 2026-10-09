@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Security.Cryptography;
+using System.Text;
+using dnlib.DotNet.Emit;
 using dnlib.DotNet;
 using AssemblyShadow.R03.Fixtures;
 using HybridCLR.Editor.AssemblyShadow;
@@ -13,6 +16,7 @@ internal static class Program
     private static string root;
     private static int Main(string[] args)
     {
+        if (args.Length == 2 && args[0] == "--ir-target") return WriteIrTarget(args[1]);
         if (args.Length != 2 || args[0] != "--output") return 2;
         root = Path.GetFullPath(args[1]);
         if (File.Exists(root) || Directory.Exists(root)) throw new IOException("Fixture output must be unused.");
@@ -70,6 +74,69 @@ internal static class Program
         File.WriteAllText(Path.Combine(root, "inventory.json"), json + "\n"); Console.WriteLine(json);
         return 0;
     }
+    // Extra IR-only fixture. Never changes the fifteen established --output
+    // DLLs, their MVIDs, or the immutable S evidence. The exact new target
+    // has the same instance field layout but a side-effecting Keep body.
+    private static int WriteIrTarget(string folder)
+    {
+        root = Path.GetFullPath(folder);
+        if (File.Exists(root) || Directory.Exists(root))
+            throw new IOException("IR target output must be unused.");
+        Directory.CreateDirectory(root);
+        byte[] target;
+        using (var module = ModuleDefMD.Load(EvolutionFixtureCorpus.Build("Methods", 42, insertVirtual: true)))
+        {
+            var node = module.GetTypes().Single(t => t.FullName == "R03.Node");
+            var field = node.Fields.Single(f => f.Name == "stable");
+            if (field.IsStatic || field.FieldSig.Type.ElementType != ElementType.I4)
+                throw new InvalidOperationException("Expected existing int instance field.");
+            var keep = node.Methods.Single(m => m.Name == "Keep");
+            if (!keep.HasBody || keep.MethodSig.Params.Count != 0 || !keep.MethodSig.HasThis)
+                throw new InvalidOperationException("Unexpected original virtual Keep method.");
+            var il = new CilBody();
+            // side effect: this.stable += 1; return 42;
+            il.Instructions.Add(Instruction.Create(OpCodes.Ldarg_0));
+            il.Instructions.Add(Instruction.Create(OpCodes.Dup));
+            il.Instructions.Add(Instruction.Create(OpCodes.Ldfld, field));
+            il.Instructions.Add(Instruction.Create(OpCodes.Ldc_I4_1));
+            il.Instructions.Add(Instruction.Create(OpCodes.Add));
+            il.Instructions.Add(Instruction.Create(OpCodes.Stfld, field));
+            il.Instructions.Add(Instruction.Create(OpCodes.Ldc_I4_S, (sbyte)42));
+            il.Instructions.Add(Instruction.Create(OpCodes.Ret));
+            keep.Body = il;
+            // The IR binary is distinct from the historical target; avoid
+            // inheriting its otherwise identical deterministic MVID.
+            using (var hash = SHA256.Create())
+                module.Mvid = new Guid(hash.ComputeHash(Encoding.UTF8.GetBytes("R03IR/Methods/side-effect-v1"))
+                    .Take(16).ToArray());
+            using (var stream = new MemoryStream())
+            {
+                module.Write(stream);
+                target = stream.ToArray();
+            }
+        }
+        Put("Methods.dll", target);
+        using (var parsed = ModuleDefMD.Load(target))
+        {
+            if (parsed.Assembly.Name.String != "Methods" || parsed.GetTypes().Count(t => t.FullName == "R03.Node") != 1)
+                throw new InvalidOperationException("IR target assembly identity mismatch.");
+            var report = new
+            {
+                schemaVersion = 1, kind = "R03IRSideEffectFixture",
+                result = "GeneratedNotRuntimeValidated", assembly = "Methods",
+                mvid = parsed.Mvid.ToString(), size = target.Length,
+                sha256 = ShadowHash.Bytes(target), instanceField = "R03.Node.stable",
+                method = "R03.Node.Keep", expectedReturn = 42,
+                expectedIncrementPerCall = 1, sourceMode = "SupplementaryIR",
+                originalSFixtureUnchanged = true, runtimeAcceptance = false
+            };
+            string json = JsonSerializer.Serialize(report, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(Path.Combine(root, "ir-target.json"), json + "\n");
+            Console.WriteLine(json);
+        }
+        return 0;
+    }
+
     private static byte[] StaticReference(string name, string provider)
     {
         byte[] original = EvolutionFixtureCorpus.Build(name, provider: provider);
