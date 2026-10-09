@@ -52,6 +52,10 @@ Review and compile the **already committed** native guard and test-only real-Pla
 
 Complete proportionate source/build/process joins and omitted-source review, preserve the withdrawal of unsupported provenance claims, and prepare an executable exact-pin Local Validation handoff only after the source/test repair and pre-handoff checks. A later Local result then requires Primary integration and separate independent re-review. Neither this CI pass nor a future reviewer PASS grants the separately initiated H2.
 
+## Current IR fixture authenticity blocker (2026-10-09 UTC)
+
+The latest inspected [side-effect fixture CI 37882275356](https://github.com/night-outlook/hybridclr_demo/actions/runs/37882275356) **Failed** before the new IR-target checks: all 15 fresh `--output` fixture SHA-256 values disagreed with the original S inventory; several MVIDs differed. This is a **failed reproducibility/identity check**, not evidence that the committed historical S objects were changed. Byte-versus-semantic parity and generator/compiler determinism are not resolved; do not relax the comparator or promote its output. The S checkpoint remains immutable and the original-S provenance audit's verified archive identity remains independently valid. See [IR-R03-02 native design](../History/M07R/R03/IR_Remediation/IR_R03_02_NATIVE_DESIGN_2026-10-08.md). A fresh focused Player run is still **not authorized**. An exact-commit pinned native/API compiler success does not authenticate a separately regenerated test fixture.
+
 ## Scope, gates and preservation
 
 Original requirements remain in DESIGN, ROADMAP, HUMAN_REVIEW_GATES, `stages/R03-evolution-semantics.md` and `stages/R03-remaining-completion.md`. Owner [D1=A/D2=A](../History/M07R/R03/S_Reconciliation/OWNER_DISPOSITION_2026-10-08.md) bounds R03 to NativeLayoutAdmissionV1 and keeps S performance observational. [X02](stages/X02-pure-interpreter-structural-expansion.md) is deferred, not Passed or authorized to start. Other non-deferred obligations remain intact.
