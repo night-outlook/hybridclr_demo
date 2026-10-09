@@ -11,6 +11,7 @@
 #include "os/Thread.h"
 #include <cstring>
 #include <sstream>
+#include <stdexcept>
 
 extern "C" IL2CPP_EXPORT int32_t R03_ObserveMethod(const char* assemblyName,
     const char* typeNamespace, const char* typeName, const char* methodName,
@@ -27,6 +28,7 @@ extern "C" IL2CPP_EXPORT int32_t R03_ObserveMethod(const char* assemblyName,
     std::string mapDetail;
     uint32_t beforeCctor = 0, afterCctor = 0;
     int32_t activeGuard = -1, baselineGuard = -1;
+    int32_t caughtOldGuard = -1;
     bool cacheIdentityStable = false;
     try
     {
@@ -75,6 +77,21 @@ extern "C" IL2CPP_EXPORT int32_t R03_ObserveMethod(const char* assemblyName,
         {
             activeGuard = AssemblyShadow::AssertMethodIsActive(activeMethod, "R03Probe:Active") ? 1 : 0;
             baselineGuard = AssemblyShadow::AssertMethodIsActive(baselineMethod, "R03Probe:Baseline") ? 1 : 0;
+            if (testOldExecutionGuard & 2)
+            {
+                // Only the supplementary IR fixture uses bit 2. Verify a real
+                // managed exception is caught after the Boolean hook sealed the
+                // first failure. Original R03 cases pass 0/1 unchanged.
+                try
+                {
+                    AssemblyShadow::RequireActiveMethod(baselineMethod, "R03IR:CaughtBaselineOwner");
+                    caughtOldGuard = 0;
+                }
+                catch (const Il2CppExceptionWrapper&)
+                {
+                    caughtOldGuard = 1;
+                }
+            }
         }
         AssemblyShadowState state;
         AssemblyShadow::GetState(state);
@@ -91,7 +108,9 @@ extern "C" IL2CPP_EXPORT int32_t R03_ObserveMethod(const char* assemblyName,
             << ",\"baselineCctorBefore\":" << beforeCctor << ",\"baselineCctorAfter\":" << afterCctor
             << ",\"activeGuard\":" << activeGuard << ",\"baselineGuard\":" << baselineGuard
             << ",\"stateCode\":" << static_cast<int32_t>(state)
-            << ",\"activeGeneration\":" << AssemblyShadow::ActiveGeneration() << "}";
+            << ",\"activeGeneration\":" << AssemblyShadow::ActiveGeneration();
+        if (testOldExecutionGuard & 2) text << ",\"caughtOldGuard\":" << caughtOldGuard;
+        text << "}";
         json = text.str();
     }
     catch (const Il2CppExceptionWrapper&)
@@ -302,4 +321,24 @@ extern "C" IL2CPP_EXPORT int32_t R03_ReadRuntimeProbe(char* output, int32_t capa
 #endif
     if (json.size() + 1 > static_cast<size_t>(capacity)) return -2;
     std::memcpy(output, json.c_str(), json.size() + 1); return static_cast<int32_t>(json.size());
+}
+
+// IR-only opt-in stimulus: invokes the production type-failure boundary, not
+// a fake state write. A separate fresh Player must validate its consequences.
+// No production build or original R03 Player imports this exported function.
+extern "C" IL2CPP_EXPORT int32_t R03_IR_ForceTypeFailure()
+{
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
+    try
+    {
+        il2cpp::vm::AssemblyShadow::FailTypeResolution(
+            il2cpp::vm::AssemblyShadowError::ReferenceResolutionFailed,
+            "R03IR synthetic type-resolution failure (test-only stimulus)");
+        return 0; // A failure may never return normally.
+    }
+    catch (const Il2CppExceptionWrapper&) { return 1; }
+    catch (...) { return -1; }
+#else
+    return -2;
+#endif
 }
