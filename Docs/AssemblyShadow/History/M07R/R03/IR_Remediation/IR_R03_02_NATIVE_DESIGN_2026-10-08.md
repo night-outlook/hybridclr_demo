@@ -25,6 +25,8 @@ Do not widen this method allowlist without direct compiled native/Player evidenc
 - `test_terminal_contract.py`: host-only negative mutations prevent false PASS from missing attempt markers, numeric/boolean substitution, missing process/bindings, stale recovery or extra AOT effects. `R03IR/test_audit_s_provenance.py` separately covers the original archive correction.
 - `r03-build-api.yml` is requested to compile the IR C# witness against the exact pinned package and official Unity 2022 SDK and attempt production native translation-unit compilation. This does not execute a new Player.
 
+**Evidence limitation for this new witness:** the active Methods fixture's `Keep` is an instance virtual returning 42, not a dedicated allocation-free static shadow canary with its own body-side-effect counter. The verifier detects an erroneously *successful* post-poison active call and a separately guarded AOT static canary side effect, but it does not independently read a mutated counter inside the active method. A strict reviewer may require a dedicated active static side-effect fixture before closing IR-R03-02. The intended four-process result is therefore **focused evidence only**, not full semantic or gate acceptance.
+
 **Explicit not-covered cases:** a genuinely captured-generic failure and real post-publication failing module initializer each need their own exact-source Player witness. The type-resolution stimulus invokes the real production `FailTypeResolution` with test-only error input; it is not misrepresented as an organically malformed metadata graph. Old S C04 does not record post-poison attempts and is not promoted into this new evidence.
 
 ## Acceptance sequencing
