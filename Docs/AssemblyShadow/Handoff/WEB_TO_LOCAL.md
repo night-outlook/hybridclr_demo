@@ -1,78 +1,70 @@
-# Primary Implementation → Local environment: STOP — remediation not ready
+# Primary Implementation → Local Validation: R03 IR-R03-02 focused, conditional
 
-## Current assignment boundary
+**New focused Local Validation is authorized only after every preflight below passes.** This does **not** authorize rerunning S/R/Q/P/O/N, changing old evidence, repairing retained R, declaring R03/H2 approval, enabling PureInterpreter structural expansion, or starting M08A/X02. The earlier independent full-stage R03 verdict remains **FAIL**.
 
-**No new Local runtime batch is authorized. Current owner remains Primary Implementation.** The earlier S execution assignment was consumed. The independent full-stage R03 review has now returned **FAIL**, with IR-R03-01 and IR-R03-02 still not independently closed. This supersedes the previous current-state text saying the independent review was NotRun; it does not alter the historical Local reports or the original reviewer report.
+## Read order
 
-Primary has published a bounded corrective provenance audit and **implemented native IR-R03-02 terminal entry checks, narrow fixed-diagnostic construction, and a separate four-Player regression harness**. Both native policy header CI platforms passed, and initial Linux/macOS host receipt tests passed. **Full Unity/IL2CPP compilation, fresh Player behavior and genuine captured-generic/initializer post-poison coverage remain outstanding.** This is still a STOP/status boundary; it does not authorize Local execution until a new explicit exact-source handoff and impact/risk checks.
+1. `Docs/AssemblyShadow/README.md`, `Plan/CURRENT_STATUS.md` and this handoff.
+2. [Focused validation procedure](../History/M07R/R03/IR_Remediation/IR_R03_02_FOCUSED_LOCAL_PROCEDURE_2026-10-09.md) and [exact immutable-fixture policy](../History/M07R/R03/IR_Remediation/IR_R03_02_FIXTURE_PROVENANCE_2026-10-09.md).
+3. [Native IR implementation design](../History/M07R/R03/IR_Remediation/IR_R03_02_NATIVE_DESIGN_2026-10-08.md), [original independent FAIL review](../History/M07R/R03/S_Reconciliation/INDEPENDENT_FULL_STAGE_REVIEW_2026-10-08.md) and its C04 citation erratum in the same directory.
+4. Historical Local-owned `Handoff/LOCAL_VALIDATION.md`, `Handoff/RETURN_TO_WEB.md`, and [original S correction](../History/M07R/R03/IR_Remediation/ORIGINAL_S_PROVENANCE_CORRECTION_2026-10-08.json).
+5. Original R03 Design/Plan, HUMAN_REVIEW_GATES and recorded D1=A/D2=A scope. Do not infer additional authorization from chat history.
 
-## Read first
+## Repository, branch and source authority
 
-All paths below are relative to `Docs/AssemblyShadow/`:
+All four branch names: **`codex/assembly-shadow-r01b-h1`**; workspace `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r`. **Use the exact latest four pushed SHAs in the final Primary handoff prompt**. Its `hybridclr_demo` HEAD must be a **Docs-only descendant** of source freeze `3eb309a1f82a9c7d4199a8499b95144a78cbdd24`, and the other three must equal this table:
 
-1. `README.md`, `Plan/CURRENT_STATUS.md` and this file.
-2. Unchanged Local-owned `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md`.
-3. `History/M07R/R03/S_Reconciliation/INDEPENDENT_FULL_STAGE_REVIEW_2026-10-08.md` **and** `INDEPENDENT_FULL_STAGE_REVIEW_EVIDENCE_ERRATUM_2026-10-08.md` in the same directory.
-4. `History/M07R/R03/IR_Remediation/PRIMARY_REMEDIATION_2026-10-08.md`, `ORIGINAL_S_PROVENANCE_CORRECTION_2026-10-08.json` and `IR_R03_02_NATIVE_DESIGN_2026-10-08.md` in the same directory.
-5. Original R03 Design/stages/remaining-completion requirements and HUMAN_REVIEW_GATES; recorded D1=A/D2=A disposition, bounded exit matrix and deferred X02 plan.
-
-The historical `S_Reconciliation/EVIDENCE.json` is preserved, but its incorrect original-archive family and associated unjoined claims are withdrawn by the corrective index. Do not treat the old five-part/18,160-member claim or stale independentReview=NotRun value as current authority.
-
-## Exact source identities — not a runtime assignment
-
-All feature branches: `codex/assembly-shadow-r01b-h1`.
-
-| Repository | Owning Local checkout | Identity and role |
+| Repository | Local owning path | Exact source |
 | --- | --- | --- |
-| night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | Original S runtime `29bb3d4a39bf8a2f23be404f77535aaba3485bfc`; original evidence publication `fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b`; new audit/tests/workflow source `38575b165d798defe545f2501f1fc307ccac44a3`; exact current documentation descendant is in final Primary readback |
-| night-outlook/hybridclr | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | Runtime unchanged: `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
-| night-outlook/hybridclr_unity | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | Runtime unchanged: `948c0e3b4f8891481301770115e8ba4945eea6de` |
-| night-outlook/il2cpp_plus | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | Historical S runtime `1cf87f8209790f9fb2ebec97487dc1990ccd56c5`; current IR native source candidate `9ce1c1bfec9a21b92ea300acda5f27a3815b2c37` (NOT verified by S) |
+| night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | Final handoff demo commit; executable source frozen at `3eb309a1f82a9c7d4199a8499b95144a78cbdd24` |
+| night-outlook/hybridclr | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| night-outlook/hybridclr_unity | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| night-outlook/il2cpp_plus | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `9ce1c1bfec9a21b92ea300acda5f27a3815b2c37` |
 
-The post-S history now includes provenance tools and **new test/native source changes**; the former blanket instruction that every descendant after fc55 is Docs-only is no longer true. Distinguish the S executable tuple, evidence publication, audit source and final documentation transport. Do not infer new runtime validation from the latest branch tip or smoke commits. Preserve unrelated/dirty working trees; do not reset, stash, clean or switch an occupied project for convenience.
+The repository source manifest `Tools/AssemblyShadow/R03/source-pins.json` must bind the exact three non-demo commits above. Verify each real checkout separately: branch, clean worktree, HEAD, canonical origin, fresh `git ls-remote` matching HEAD. Refuse dirty, unpushed, switched, stale or unmatched sources. Do **not** reset, stash, clean, move, delete or repair the checkout for convenience.
 
-## Completed Primary evidence work
+**Historical S is not the runtime input pin.** S executed `hybridclr_demo@29bb3d4a39bf8a2f23be404f77535aaba3485bfc` with `il2cpp_plus@1cf87f8209790f9fb2ebec97487dc1990ccd56c5`, and its evidence was published at demo `fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b`. These immutable records remain separate from the new feature candidate.
 
-[Run 37845000985](https://github.com/night-outlook/hybridclr_demo/actions/runs/37845000985), job `113543552737`, actually passed 30 synthetic host tests and the bounded read-only original-S audit. The nine committed archive parts reconstructed 587,907,380 bytes with SHA-256 `23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6`. All 15,713 archive members and 90 ledger/cell pairs matched. Selected archived P05/integration/C04 receipts were joined to those bytes; original and tools checkouts stayed clean.
+## Completed Primary implementation and verified preconditions
 
-This does not prove every source/build/process semantic join, resolve the earlier capture's omissions, reproduce the native defect or replace independent review. The audit explicitly keeps `fullSourceBuildProcessSemanticAudit=false`, `independentReviewer=false`, `unityRun=false` and `runtimeAcceptance=false`. Both disputed C04 attempt/success fields are NotRecorded, not observed false.
+- Implemented native terminal business-entry denial in `il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp` and `AssemblyShadowTerminalExecution.h`, retaining first-failure facts and narrow physical corelib exception-constructor allowance; host-policy [run 37872834945](https://github.com/night-outlook/il2cpp_plus/actions/runs/37872834945) **Passed Linux and macOS**. No API/ABI layout expansion was authorized.
+- Prepared `Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs`, opt-in native test stimuli in `R03/PlayerProject/AssemblyShadowR03Probe.cpp`, one-shot `run_terminal_local.py`, strict verifier tests, and conservative `run_terminal_storage_checked.py`.
+- **Original S inputs**: not regenerated. `ir_original_fixtures.py` authenticates/copies the original **15 committed S DLL Git blobs** from publication `fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b`, inventory Git blob `0688bd2dad054bd59fcdd1564a050a398cfa14e7`, into a fresh isolated IR build source. Any content/commit mismatch prevents Player execution.
+- **New IR-only Methods target** (distinct from S) SHA-256 `8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd`, MVID `597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff`, 2,048 bytes, zero PE timestamp. Exact deterministic inputs/source-copy [run 37894308627](https://github.com/night-outlook/hybridclr_demo/actions/runs/37894308627) **Passed on Linux/macOS** with eight host negative tests per platform. The earlier S *regeneration* comparison and same-source non-repeatability experiments remain **Failed/NotIdentical**, not retconned as passing or as evidence that S changed.
+- [Official Unity 2022.3 pinned API and native source compile run 37893353097](https://github.com/night-outlook/hybridclr_demo/actions/runs/37893353097) **Passed** with the same new native source and deterministic IR generator. [C# supplementary Player API run 37874183375](https://github.com/night-outlook/hybridclr_demo/actions/runs/37874183375) Passed with 0 errors, 13 warnings.
+- [IR host contract run 37894749414](https://github.com/night-outlook/hybridclr_demo/actions/runs/37894749414) **Passed 64 tests each** on Linux and macOS, including terminal receipt mutation, exact Git input and 64GiB/20GiB conservative storage gates. No Unity Player was launched in any of these host checks.
 
-The corrective record binds the exact script/test source, original input, inner output hashes, artifact `11579112494` and its separate outer ZIP digest. Preserve the earlier failed/successful audit revisions and historical captures. Do not reseal original S or edit its raw receipts to match a summary.
+**Limits:** Four new fresh Players are a focused source-bound test, **not complete IR-R03-02 or IR-R03-01 independent closure**. Genuine captured-generic and post-publication initializer-failure post-poison paths and broader legacy/production SLA are still unproved. A green host/SDK compile result cannot be called fresh Player execution.
 
-## Current IR-only committed source, CI and experimental boundary
+## Preflight, fresh directories, and execution
 
-- Native candidate: `il2cpp_plus@9ce1c1bfec9a21b92ea300acda5f27a3815b2c37`, with terminal policy header, modified `AssemblyShadow.cpp`, host native policy tests, and `.github/workflows/r03-ir-terminal.yml`. [Native CI 37872834945](https://github.com/night-outlook/il2cpp_plus/actions/runs/37872834945) passed **header-policy** tests on Linux and macOS; the full native compilation and Player are distinct.
-- Primary demo test sources: `Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp` (new opt-in native stimuli), `Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs`, `run_terminal_local.py`, `test_terminal_contract.py`; `Tools/AssemblyShadow/R03/source-pins.json` targets the native candidate only. The full original S and R03Completion input proofs remain separately pinned to their historical native revision.
-- One pinned host [run 37873542257](https://github.com/night-outlook/hybridclr_demo/actions/runs/37873542257) passed 41 strict Python regression tests on Linux/macOS (later integer-bound negative tests and API checks need their own source-bound proof).
-- New workflows `r03-ir-host.yml`, `r03-ir-player-api.yml`, and extended `r03-build-api.yml` check host contracts, compile-only C# IR API and the pinned native SDK profile. Do not infer their verdicts from an earlier commit or a queued run. The original S provenance auditor's narrow sparse-checkout job now discovers only `test_audit_s_provenance.py`, avoiding a false import failure from unrelated IR runner modules.
-- **Limit**: release/debug ON caught baseline-owner, release ON test-driven `FailTypeResolution`, and OFF ordinary control are the only four fresh-process cases defined. Genuine captured generic and post-publication module-initializer failure, full interface paths and all affected R03/M00–M07 regressions are **not** silently certified by this subset.
+Local uses Unity 2022.3.62f2 (`/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`), macOS arm64; net8-capable dotnet, Python 3.14. Do not launch Unity 6000. Perform all read-only source, Q/S custody, host-test and full capacity checks from the [focused procedure](../History/M07R/R03/IR_Remediation/IR_R03_02_FOCUSED_LOCAL_PROCEDURE_2026-10-09.md). Native `c++` policy tests and Python host suites must pass in the actual Local environment.
 
-## What must remain with Primary before a new handoff
+Use exactly these **currently expected unused** external paths; if any already exists or aliases/symlinks a historical source, **CapacityBlocked/NotRun** and return to Primary for a distinct authorized root:
 
-Primary has **implemented** the native terminal guard and a fresh four-process subset; the remaining Primary work is to reconcile full translation-unit/package/API compilation, source-test shortcomings and genuine captured-generic/initializer/interface paths that the current witness does not cover. The existing focused receipt verifier demands pre-poison positive active reflection/delegate and AOT canary, actual attempted post-poison calls, zero AOT body side effects, unchanged first recovery and fixed diagnostics; the macOS Player checks are **NotRun**. Do not describe host-only policy tests as full runtime success.
+- IR batch root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261009A-terminal`.
+- Diagnostic-only sidecar `/Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03IRLocal-20261009A-terminal`.
+- Separate executing sidecar `/Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03IRLocal-20261009A-terminal`.
+- **Read-only** retained Q root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair`.
 
-Primary must also complete proportionate role-specific evidence joins and material omitted-source inspection. Missing fields or workflow success must not be promoted to evidence of an operation never observed. The withdrawn digest-family origin remains unresolved unless directly established; no invented transformation is permitted.
+Use the new `Tools/AssemblyShadow/R03IR/run_terminal_storage_checked.py` **without** `--execute` first, setting `EXPECTED_DEMO_COMMIT` to the **exact** SHA in the final Primary prompt, and read its fresh `admission.json`, capacity samples and source authority. The wrapper enforces the existing `R03StorageAdmissionV1` Q failure-cell check, full Q size and `max(64GiB, 2*Q+20GiB)` headroom, fsync/readback probes and 20GiB sampled running floor. No thresholds, temp paths, quota policies, retry/cleanup or source pins are weakened. **Diagnostics-only runs must never launch Unity.**
 
-Only after all reasonable source/test changes, successful pinned native/API compile evidence and pre-handoff checks may Primary replace this stop boundary with exact pushed pins, implemented commands, fresh unused output roots, storage/source prerequisites and a proportionate Local Validation assignment. A future IR batch would use `Tools/AssemblyShadow/R03IR/run_terminal_local.py` with exact `--workspace`, `--output`, `--unity`, `--demo-commit` arguments to run three fresh builds and four fresh Players; **do not execute that command under the present STOP state**. It is not a rerun of S. Genuine generic/initializer coverage must be considered explicitly when deciding whether a single broader Local batch is practical. Local's role then remains compilation/build/test and bounded debugging, not designing the substantive native repair. No such assignment is issued in this checkpoint.
+Only with Passed fresh diagnostic, clean exact pins, source/blob/native tests and all prerequisites, run **one executing invocation** of the same wrapper with fresh *different* storage sidecar and `--execute`. It remeasures/probes from scratch and starts exactly **14** scheduler cells: 3 build roles (ON Release, ON Debug, OFF Release) and 4 fresh Player processes. It writes separate storage telemetry/session/dispatch receipts and the original focused sealed result. There is no attempted continuation, phase retry, or resume of a failed execution.
 
-## Evidence preservation and forbidden actions
+Preflight/failures must preserve the original error/output and return without launching/retrying other Players. If capacity is Blocked, do not treat the diagnostic no-launch result as a runtime Fail or a qualification verdict.
 
-Original S live root: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery`.
-Original S publication receipt: `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007S-lr-recovery-2/PUBLICATION_RECEIPT.json`.
-Original committed evidence: `History/M07R/R03/local-validation-20261007-batch-s-evidence-ready`.
+## Exact expected Player assertions and returned evidence
 
-Preserve S/R/Q/P/O/N, earlier prerequisites and every original verdict. Retained R remains staged: do not open it in Unity, restore/finalize it, move or delete it. Its historical Git cause remains Unavailable. Four contaminated unisolated warm certificates remain Failed. Do not overwrite Local-owned reports with Primary conclusions.
+The ON Players must show the **same valid active `Methods.R03.Node.Keep` reflection/delegate** returning 42 and incrementing its own real instance `stable` counter to 2 **before** failure, followed by a caught original baseline-owner or synthetic type-resolution terminal failure. Afterwards actually attempt those same reflection and delegate calls and a retained ordinary AOT canary. None may succeed or change the active counter or AOT canary. Read the active field **after** failure; a failed/unrecorded read is not a passing proof. First recovery reason, terminal state/generation and fixed diagnostics must remain stable. The OFF control must invoke its ordinary AOT canary twice with no Shadow transaction.
 
-Do not invoke `run_completion.py`, `run_storage_checked.py --execute`, StructuralRestore or any historical batch under this file. Do not change credentials, protocols, storage thresholds, timeouts, warm-up, leases, schemas, source pins, acceptance flags or agent/reviewer configuration to advance a gate. Read-only status/evidence inspection is not authorization to create a new runtime result.
+Preserve signed/pinned source inventory, exact original S 15-blob source receipt, distinct IR target MVID/SHA, 3 real native build receipts, 4 raw Player JSONs/logs, invocation PID/nonce/request/argv/build bindings, all 14 cell receipts, JSON ledger/index/archive/seal, capacity admission/samples/dispatch and original Q/S/R custody. Any missing source/authenticity, build, Player or receipt is a **Failed/Blocked/NotRun** fact, not inferred success.
 
-## Pending fixture reproducibility gate (2026-10-09 UTC)
+Return factual results in Local-owned `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md`, publish an additive immutable checkpoint under `Docs/AssemblyShadow/History/M07R/R03/`, read back remote SHAs and return to **Primary Implementation**. Minor local syntax/path fixes may be made only when bounded and fully evidenced; return nontrivial native/design or validation-contract findings to Primary without changing the old artifacts. Do not use Local work as independent R03 review.
 
-The original-S fixture byte-identity CI [37882275356](https://github.com/night-outlook/hybridclr_demo/actions/runs/37882275356) **Failed**: all 15 independently regenerated `--output` DLL digests differ from pinned S, with some MVID mismatches. Original committed S remains immutable; newly compiled artifacts cannot be relabeled as exact historical bytes. The Primary-only non-acceptance [reproducibility diagnostic workflow](../../.github/workflows/r03-ir-fixture-repro.yml) separately emits two same-source generations on Linux/macOS to determine whether this is also an intra-environment issue. **A diagnostic run, even if green, does not pass the failed S exact-byte comparison.** Do not run the four-Player IR batch until a source-bound fixture/provenance policy is independently defensible and the existing failing identity gate is resolved or explicitly re-scoped with original S unchanged. No unrestricted retry, no weakening of original negative tests.
+## Approval boundary
 
-## Review and approval boundary
+Original independent R03 full-stage review stays **FAIL**; separate independent re-review is not yet run. Owner D1=A/D2=A remains approved for scope only, and no full R03/H2 gate has been passed. Retained R remains staged; S retains 90/90 Passed but no R03 acceptance, Q/P/O/N remain unchanged, four contaminated unisolated warm certificates remain Failed, and deferred R02 CPU/H1 RSS risk is unaccepted.
 
-D1=A/D2=A is already recorded and is not being re-requested. R03 remains bounded to conservative NativeLayoutAdmissionV1; V1-external PureInterpreter expansion is deferred to X02. Performance observations do not approve a production SLA or deferred R02 CPU/H1 RSS risks.
+`R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `fullLegacyRegressionAcceptance=false`, PureInterpreter expansion disabled. H2 is separately human-initiated and unavailable until findings close. No X02/M08A/release or performance SLA approval.
 
-The existing independent FAIL review and its erratum remain authoritative historical review outputs. New Primary code and Local evidence will require separately triggered independent re-review. Main-agent self-review and byte-check scripts are not substitutes. Automatic gate-review settings remain unchanged; no model/helper identity or approval is inferred.
-
-`R03Accepted=false`; `H2Passed=false`; `qualificationApproved=false`; `ReadyForHumanReviewGate=false`; `fullLegacyRegressionAcceptance=false`; PureInterpreter expansion disabled. H2 remains separately human-initiated; no H2, X02 or M08A advancement is authorized. **Local remains stopped. Primary Implementation retains ownership.**
+**Work stops after the single focused Local result; next state is Primary Implementation.**
