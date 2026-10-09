@@ -1,6 +1,18 @@
 # Local Validation → Primary Implementation
 
-## Current return — IR-R03-02 focused prerequisites, 2026-10-09
+## Current return — IR-R03-02 B API-bound prerequisites, 2026-10-09
+
+**CapacityBlocked; focused batch NotRun.** [Local report](LOCAL_VALIDATION.md), [immutable B checkpoint](../History/M07R/R03/local-validation-20261009-ir-r03-02-b-api-bound/README.md), [factual result](../History/M07R/R03/local-validation-20261009-ir-r03-02-b-api-bound/preflight/LOCAL_PREFLIGHT_RESULT.json). Current-source API evidence Passed:22 compiler inputs matched CI37903041633/ba47,0 errors/13 warnings, using Unity API stubs. This closes B's supplementary compile-evidence prerequisite only; A's historical NoCoverage and capacity failure remain unchanged. Fresh64Python/69native checks,15 original S fixtures and416,515-file before/after custody Passed.
+
+No new non-trivial product-source defect is established and no defect entry is manufactured. The sole remaining B admission blocker is environmental capacity. Diagnostic2026-10-09T08:39:49.098014+00:00→08:40:09.889885+00:00 exited2: available67,720,581,120bytes versus required68,719,476,736bytes, deficit998,895,616bytes (0.930GiB). [Original admission](../History/M07R/R03/local-validation-20261009-ir-r03-02-b-api-bound/storage-diagnostic/admission.json), [exact argv/logs](../History/M07R/R03/local-validation-20261009-ir-r03-02-b-api-bound/preflight/commands/storage-diagnostic/receipt.json), capacity/session/dispatch preserve the failure. BatchStarted=false, allocation probes NotRun; no --execute invocation, Unity, build or Player. All14/3/4 runtime scope NotRun; no core result/seal.
+
+Required Primary/operator action: establish measured adequate headroom through separately authorized unrelated-data management without touching protected A/S/R/Q/P/O/N, changing thresholds/temp paths or retrying B. Then publish a distinct authorized diagnostic root and exact four-source tuple. Merely freeing the historical deficit is not a sustained-capacity guarantee; fresh full admission and probes remain mandatory. Original failed B diagnostic must stay immutable.
+
+Validation still required: one newly authorized fully admitted focused batch14cells/three native builds/four fresh Players, real same-method pre-poison controls and readable counter2 after rejected reflection/delegate calls, unchanged AOT canary/first failure/state/generation/diagnostics, OFF control, source/build/request/PID bindings and seal. Stub compilation is not official Unity/Player execution. Genuine captured-generic/initializer coverage, IR-R03-01, independent full-stage re-review and broader approval remain separate unresolved work.
+
+R remains staged; S90Passed/full-stage reviewFAIL remain distinct. A and all earlier evidence are preserved. All acceptance flags remain false; PureInterpreter expansion disabled. No Local implementation expansion or H2/X02/M08A. **Local Validation → Primary Implementation; stop after B.**
+
+## Historical return — IR-R03-02 focused prerequisites, 2026-10-09
 
 **CapacityBlocked; focused batch NotRun.** [Local report](LOCAL_VALIDATION.md), [immutable checkpoint](../History/M07R/R03/local-validation-20261009-ir-r03-02-preflight-blocked/README.md), [factual prerequisite result](../History/M07R/R03/local-validation-20261009-ir-r03-02-preflight-blocked/preflight/LOCAL_PREFLIGHT_RESULT.json). Host64Python/69native checks, exact source/remote authority,15 original S inputs and416,161-file before/after custody Passed. No new runtime result or native defect is established; no Unity/build/Player or executing-wrapper invocation occurred.
 

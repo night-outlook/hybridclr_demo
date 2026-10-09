@@ -1,0 +1,194 @@
+{
+  "state": "Passed",
+  "recordedUtc": "2026-10-09T08:36:46.267980+00:00",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "merge-base",
+        "--is-ancestor",
+        "ba47b41674b83a6f694ac4f8ac1bc8f83a9da24b",
+        "434ed7ff92951881fcdc7ebbb046c900e6a1d7d2"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-09T08:36:42.418845+00:00",
+      "endUtc": "2026-10-09T08:36:42.440686+00:00",
+      "exitCode": 0,
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/source-freeze/stdout.log",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/source-freeze/stderr.log",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "diff",
+        "--exit-code",
+        "ba47b41674b83a6f694ac4f8ac1bc8f83a9da24b",
+        "434ed7ff92951881fcdc7ebbb046c900e6a1d7d2",
+        "--",
+        ".",
+        ":!Docs/AssemblyShadow"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-09T08:36:42.441188+00:00",
+      "endUtc": "2026-10-09T08:36:42.461526+00:00",
+      "exitCode": 0,
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/source-docs-delta/stdout.log",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/source-docs-delta/stderr.log",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "--version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-09T08:36:42.463705+00:00",
+      "endUtc": "2026-10-09T08:36:42.654108+00:00",
+      "exitCode": 0,
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/dotnet-version/stdout.log",
+      "stdoutSha256": "87d140235528e1e5177051f45163d287ac03dfbbd88f70b34d9dfbe33c7f4682",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/dotnet-version/stderr.log",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "sw_vers"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-09T08:36:42.654610+00:00",
+      "endUtc": "2026-10-09T08:36:42.665791+00:00",
+      "exitCode": 0,
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/macos-version/stdout.log",
+      "stdoutSha256": "9a27ea4f1e11f7b9a4f7573d8729db037a10ce2e457f97cb73f646a96a550b16",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/macos-version/stderr.log",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "--version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-09T08:36:42.666161+00:00",
+      "endUtc": "2026-10-09T08:36:42.676090+00:00",
+      "exitCode": 0,
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/python-version/stdout.log",
+      "stdoutSha256": "917601090ffb73a030e3eaa8b7a01c41400cad4b61366b4218d7756a5733b66c",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/python-version/stderr.log",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/bin/c++",
+        "--version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-09T08:36:42.676415+00:00",
+      "endUtc": "2026-10-09T08:36:42.808289+00:00",
+      "exitCode": 0,
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/clang-version/stdout.log",
+      "stdoutSha256": "76a924f59997fb65051981eb13105e0a8c151f16cd9c3e45e0f7c27ecefdb839",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/clang-version/stderr.log",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "xcode-select",
+        "-p"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-09T08:36:42.808647+00:00",
+      "endUtc": "2026-10-09T08:36:42.813740+00:00",
+      "exitCode": 0,
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/developer-dir/stdout.log",
+      "stdoutSha256": "a8044fec385da5d3d686b9c06000917f00d0f27ca72b7db5b47bfc277f748301",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/developer-dir/stderr.log",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "xcrun",
+        "--show-sdk-path"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-09T08:36:42.814033+00:00",
+      "endUtc": "2026-10-09T08:36:42.819326+00:00",
+      "exitCode": 0,
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/sdk-path/stdout.log",
+      "stdoutSha256": "71d2d22cf2f2d1a4606d2b131f4f1cc22ab8f2f05df7e76fb6298e428ace92e6",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/sdk-path/stderr.log",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-09T08:36:42.842972+00:00",
+      "endUtc": "2026-10-09T08:36:44.606417+00:00",
+      "exitCode": 0,
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/ir-host-tests/stdout.log",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/ir-host-tests/stderr.log",
+      "stderrSha256": "389484f83346ee417d2fe30e895302f3a1549cbe155df630189175c5c9f71e32"
+    },
+    {
+      "argv": [
+        "/usr/bin/c++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-I/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/terminal_execution_tests.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/terminal-policy"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-09T08:36:44.606846+00:00",
+      "endUtc": "2026-10-09T08:36:45.179139+00:00",
+      "exitCode": 0,
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/native-policy-compile/stdout.log",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/native-policy-compile/stderr.log",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/terminal-policy"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-09T08:36:45.179613+00:00",
+      "endUtc": "2026-10-09T08:36:46.266210+00:00",
+      "exitCode": 0,
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/native-policy-run/stdout.log",
+      "stdoutSha256": "9823be5a86ec4ff505264e80f43bf794d8454a28fe21f328e49ad2b9957c0dcb",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009B-api-bound/commands/native-policy-run/stderr.log",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "nativePolicySource": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/terminal_execution_tests.cpp",
+  "sourceSha256": "6761ea917d410432976ebec6fe550f3ed6169bd72e3236808b3c9c124fff3c2f",
+  "headerSha256": "3ff7e1f149090c9869844de9059cc6829bdbf104d93bba5f13dcd09e4f4a08ce",
+  "executableSha256": "2ec6134360361f792dee7ea595281db97d29ee3e73f4fbd55df57a698744e1fd",
+  "unityLaunched": false,
+  "runtimeAcceptance": false
+}
