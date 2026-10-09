@@ -1,0 +1,300 @@
+{
+  "batchStarted": false,
+  "capacityReserved": false,
+  "diagnostics": [
+    {
+      "argv": [
+        "/bin/df",
+        "-k",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+        "/private/tmp",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03IRLocal-20261009C-capacity-retry",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/host/player-fixtures",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo/.git",
+        "/Users/ah/GitHub/hybridclr/hybridclr/.git",
+        "/Users/ah/GitHub/hybridclr/hybridclr_unity/.git",
+        "/Users/ah/GitHub/hybridclr/il2cpp_plus/.git"
+      ],
+      "endedUtc": "2026-10-09T10:40:35.333755+00:00",
+      "exitCode": 0,
+      "result": "Captured",
+      "startedUtc": "2026-10-09T10:40:35.329117+00:00",
+      "stderr": "",
+      "stdout": "Filesystem   1024-blocks      Used Available Capacity iused     ifree %iused  Mounted on\n/dev/disk3s1   482797652 376517048  81696812    83% 3802773 816968120    0%   /System/Volumes/Data\n/dev/disk3s1   482797652 376517048  81696812    83% 3802773 816968120    0%   /System/Volumes/Data\n/dev/disk3s1   482797652 376517048  81696812    83% 3802773 816968120    0%   /System/Volumes/Data\n/dev/disk3s1   482797652 376517048  81696812    83% 3802773 816968120    0%   /System/Volumes/Data\n/dev/disk3s1   482797652 376517048  81696812    83% 3802773 816968120    0%   /System/Volumes/Data\n/dev/disk3s1   482797652 376517048  81696812    83% 3802773 816968120    0%   /System/Volumes/Data\n/dev/disk3s1   482797652 376517048  81696812    83% 3802773 816968120    0%   /System/Volumes/Data\n/dev/disk3s1   482797652 376517048  81696812    83% 3802773 816968120    0%   /System/Volumes/Data\n/dev/disk3s1   482797652 376517048  81696812    83% 3802773 816968120    0%   /System/Volumes/Data\n"
+    },
+    {
+      "argv": [
+        "/usr/sbin/diskutil",
+        "apfs",
+        "list",
+        "-plist"
+      ],
+      "endedUtc": "2026-10-09T10:40:35.513379+00:00",
+      "exitCode": 0,
+      "result": "Captured",
+      "startedUtc": "2026-10-09T10:40:35.333783+00:00",
+      "stderr": "",
+      "stdout": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n\t<key>Containers</key>\n\t<array>\n\t\t<dict>\n\t\t\t<key>APFSContainerUUID</key>\n\t\t\t<string>C9A12CA8-1372-40A9-8C23-288D04557593</string>\n\t\t\t<key>CapacityCeiling</key>\n\t\t\t<integer>524288000</integer>\n\t\t\t<key>CapacityFree</key>\n\t\t\t<integer>503627776</integer>\n\t\t\t<key>ContainerReference</key>\n\t\t\t<string>disk1</string>\n\t\t\t<key>DesignatedPhysicalStore</key>\n\t\t\t<string>disk0s1</string>\n\t\t\t<key>PhysicalStores</key>\n\t\t\t<array>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk0s1</string>\n\t\t\t\t\t<key>DiskUUID</key>\n\t\t\t\t\t<string>C24B508E-DCF3-4827-A411-ED26CCF07BD8</string>\n\t\t\t\t\t<key>Size</key>\n\t\t\t\t\t<integer>524288000</integer>\n\t\t\t\t</dict>\n\t\t\t</array>\n\t\t\t<key>Volumes</key>\n\t\t\t<array>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>APFSVolumeUUID</key>\n\t\t\t\t\t<string>D71C4ADF-042F-4DED-A108-067BDBDF33FE</string>\n\t\t\t\t\t<key>CapacityInUse</key>\n\t\t\t\t\t<integer>6225920</integer>\n\t\t\t\t\t<key>CapacityQuota</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CapacityReserve</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CryptoMigrationOn</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk1s1</string>\n\t\t\t\t\t<key>Encryption</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>FileVault</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Locked</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Name</key>\n\t\t\t\t\t<string>iSCPreboot</string>\n\t\t\t\t\t<key>Roles</key>\n\t\t\t\t\t<array>\n\t\t\t\t\t\t<string>Preboot</string>\n\t\t\t\t\t</array>\n\t\t\t\t</dict>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>APFSVolumeUUID</key>\n\t\t\t\t\t<string>11C53480-66F9-4DDA-95D6-F5285AF43ACA</string>\n\t\t\t\t\t<key>CapacityInUse</key>\n\t\t\t\t\t<integer>6311936</integer>\n\t\t\t\t\t<key>CapacityQuota</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CapacityReserve</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CryptoMigrationOn</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk1s2</string>\n\t\t\t\t\t<key>Encryption</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>FileVault</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Locked</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Name</key>\n\t\t\t\t\t<string>xART</string>\n\t\t\t\t\t<key>Roles</key>\n\t\t\t\t\t<array>\n\t\t\t\t\t\t<string>xART</string>\n\t\t\t\t\t</array>\n\t\t\t\t</dict>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>APFSVolumeUUID</key>\n\t\t\t\t\t<string>3DDCE0ED-566C-4644-99BE-732FB082E0A6</string>\n\t\t\t\t\t<key>CapacityInUse</key>\n\t\t\t\t\t<integer>3145728</integer>\n\t\t\t\t\t<key>CapacityQuota</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CapacityReserve</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CryptoMigrationOn</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk1s3</string>\n\t\t\t\t\t<key>Encryption</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>FileVault</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Locked</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Name</key>\n\t\t\t\t\t<string>Hardware</string>\n\t\t\t\t\t<key>Roles</key>\n\t\t\t\t\t<array>\n\t\t\t\t\t\t<string>Hardware</string>\n\t\t\t\t\t</array>\n\t\t\t\t</dict>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>APFSVolumeUUID</key>\n\t\t\t\t\t<string>3082F839-D6DC-4C7F-AF4C-05791DFD7117</string>\n\t\t\t\t\t<key>CapacityInUse</key>\n\t\t\t\t\t<integer>20480</integer>\n\t\t\t\t\t<key>CapacityQuota</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CapacityReserve</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CryptoMigrationOn</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk1s4</string>\n\t\t\t\t\t<key>Encryption</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>FileVault</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Locked</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Name</key>\n\t\t\t\t\t<string>Recovery</string>\n\t\t\t\t\t<key>Roles</key>\n\t\t\t\t\t<array>\n\t\t\t\t\t\t<string>Recovery</string>\n\t\t\t\t\t</array>\n\t\t\t\t</dict>\n\t\t\t</array>\n\t\t</dict>\n\t\t<dict>\n\t\t\t<key>APFSContainerUUID</key>\n\t\t\t<string>2DF9D0F8-455A-4FAB-8A1D-476E0ECD0367</string>\n\t\t\t<key>CapacityCeiling</key>\n\t\t\t<integer>5368664064</integer>\n\t\t\t<key>CapacityFree</key>\n\t\t\t<integer>4112154624</integer>\n\t\t\t<key>ContainerReference</key>\n\t\t\t<string>disk2</string>\n\t\t\t<key>DesignatedPhysicalStore</key>\n\t\t\t<string>disk0s3</string>\n\t\t\t<key>PhysicalStores</key>\n\t\t\t<array>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk0s3</string>\n\t\t\t\t\t<key>DiskUUID</key>\n\t\t\t\t\t<string>7AE88FFF-DA51-4B36-92F3-984AE9424E8E</string>\n\t\t\t\t\t<key>Size</key>\n\t\t\t\t\t<integer>5368664064</integer>\n\t\t\t\t</dict>\n\t\t\t</array>\n\t\t\t<key>Volumes</key>\n\t\t\t<array>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>APFSVolumeUUID</key>\n\t\t\t\t\t<string>0380B43B-652A-4DDA-8F1A-04840794436C</string>\n\t\t\t\t\t<key>CapacityInUse</key>\n\t\t\t\t\t<integer>1235202048</integer>\n\t\t\t\t\t<key>CapacityQuota</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CapacityReserve</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CryptoMigrationOn</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk2s1</string>\n\t\t\t\t\t<key>Encryption</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>FileVault</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Locked</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Name</key>\n\t\t\t\t\t<string>Recovery</string>\n\t\t\t\t\t<key>Roles</key>\n\t\t\t\t\t<array>\n\t\t\t\t\t\t<string>Recovery</string>\n\t\t\t\t\t</array>\n\t\t\t\t</dict>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>APFSVolumeUUID</key>\n\t\t\t\t\t<string>3348F89D-C8BF-4986-BD57-7994CA019E33</string>\n\t\t\t\t\t<key>CapacityInUse</key>\n\t\t\t\t\t<integer>1560576</integer>\n\t\t\t\t\t<key>CapacityQuota</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CapacityReserve</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CryptoMigrationOn</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk2s2</string>\n\t\t\t\t\t<key>Encryption</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>FileVault</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Locked</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Name</key>\n\t\t\t\t\t<string>Update</string>\n\t\t\t\t\t<key>Roles</key>\n\t\t\t\t\t<array>\n\t\t\t\t\t\t<string>Update</string>\n\t\t\t\t\t</array>\n\t\t\t\t</dict>\n\t\t\t</array>\n\t\t</dict>\n\t\t<dict>\n\t\t\t<key>APFSContainerUUID</key>\n\t\t\t<string>492BF008-C4BF-4F9A-8D04-50AF6324530B</string>\n\t\t\t<key>CapacityCeiling</key>\n\t\t\t<integer>494384795648</integer>\n\t\t\t<key>CapacityFree</key>\n\t\t\t<integer>83657539584</integer>\n\t\t\t<key>ContainerReference</key>\n\t\t\t<string>disk3</string>\n\t\t\t<key>DesignatedPhysicalStore</key>\n\t\t\t<string>disk0s2</string>\n\t\t\t<key>PhysicalStores</key>\n\t\t\t<array>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk0s2</string>\n\t\t\t\t\t<key>DiskUUID</key>\n\t\t\t\t\t<string>BDC4CA3C-B5FB-45C4-B735-4559061684EC</string>\n\t\t\t\t\t<key>Size</key>\n\t\t\t\t\t<integer>494384795648</integer>\n\t\t\t\t</dict>\n\t\t\t</array>\n\t\t\t<key>Volumes</key>\n\t\t\t<array>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>APFSVolumeUUID</key>\n\t\t\t\t\t<string>4041BC34-CC69-4012-A9B1-5677E0F61CDC</string>\n\t\t\t\t\t<key>CapacityInUse</key>\n\t\t\t\t\t<integer>385553453056</integer>\n\t\t\t\t\t<key>CapacityQuota</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CapacityReserve</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CryptoMigrationOn</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk3s1</string>\n\t\t\t\t\t<key>Encryption</key>\n\t\t\t\t\t<true/>\n\t\t\t\t\t<key>FileVault</key>\n\t\t\t\t\t<true/>\n\t\t\t\t\t<key>Locked</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Name</key>\n\t\t\t\t\t<string>Macintosh HD - Data</string>\n\t\t\t\t\t<key>Roles</key>\n\t\t\t\t\t<array>\n\t\t\t\t\t\t<string>Data</string>\n\t\t\t\t\t</array>\n\t\t\t\t</dict>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>APFSVolumeUUID</key>\n\t\t\t\t\t<string>4FDD5643-23A6-4104-AA08-7E898DD8B7BF</string>\n\t\t\t\t\t<key>CapacityInUse</key>\n\t\t\t\t\t<integer>9009065984</integer>\n\t\t\t\t\t<key>CapacityQuota</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CapacityReserve</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CryptoMigrationOn</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk3s2</string>\n\t\t\t\t\t<key>Encryption</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>FileVault</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Locked</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Name</key>\n\t\t\t\t\t<string>Preboot</string>\n\t\t\t\t\t<key>Roles</key>\n\t\t\t\t\t<array>\n\t\t\t\t\t\t<string>Preboot</string>\n\t\t\t\t\t</array>\n\t\t\t\t</dict>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>APFSVolumeUUID</key>\n\t\t\t\t\t<string>A504A830-E500-41FA-9F5A-03C92696905E</string>\n\t\t\t\t\t<key>CapacityInUse</key>\n\t\t\t\t\t<integer>1284915200</integer>\n\t\t\t\t\t<key>CapacityQuota</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CapacityReserve</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CryptoMigrationOn</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk3s3</string>\n\t\t\t\t\t<key>Encryption</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>FileVault</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Locked</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Name</key>\n\t\t\t\t\t<string>Recovery</string>\n\t\t\t\t\t<key>Roles</key>\n\t\t\t\t\t<array>\n\t\t\t\t\t\t<string>Recovery</string>\n\t\t\t\t\t</array>\n\t\t\t\t</dict>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>APFSVolumeUUID</key>\n\t\t\t\t\t<string>ED540B68-8F16-4D23-98E4-766F2B44D0CD</string>\n\t\t\t\t\t<key>CapacityInUse</key>\n\t\t\t\t\t<integer>6963200</integer>\n\t\t\t\t\t<key>CapacityQuota</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CapacityReserve</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CryptoMigrationOn</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk3s4</string>\n\t\t\t\t\t<key>Encryption</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>FileVault</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Locked</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Name</key>\n\t\t\t\t\t<string>Update</string>\n\t\t\t\t\t<key>Roles</key>\n\t\t\t\t\t<array>\n\t\t\t\t\t\t<string>Update</string>\n\t\t\t\t\t</array>\n\t\t\t\t</dict>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>APFSVolumeUUID</key>\n\t\t\t\t\t<string>52CB49E2-DE58-4E92-BEC8-18AF40197A00</string>\n\t\t\t\t\t<key>CapacityInUse</key>\n\t\t\t\t\t<integer>888832</integer>\n\t\t\t\t\t<key>CapacityQuota</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CapacityReserve</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CryptoMigrationOn</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk3s5</string>\n\t\t\t\t\t<key>Encryption</key>\n\t\t\t\t\t<true/>\n\t\t\t\t\t<key>FileVault</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Locked</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Name</key>\n\t\t\t\t\t<string>Data</string>\n\t\t\t\t\t<key>Roles</key>\n\t\t\t\t\t<array/>\n\t\t\t\t</dict>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>APFSVolumeUUID</key>\n\t\t\t\t\t<string>AC03FCA4-5CE7-4925-A7C6-5B2704C18B8C</string>\n\t\t\t\t\t<key>CapacityInUse</key>\n\t\t\t\t\t<integer>2147508224</integer>\n\t\t\t\t\t<key>CapacityQuota</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CapacityReserve</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CryptoMigrationOn</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk3s6</string>\n\t\t\t\t\t<key>Encryption</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>FileVault</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Locked</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Name</key>\n\t\t\t\t\t<string>VM</string>\n\t\t\t\t\t<key>Roles</key>\n\t\t\t\t\t<array>\n\t\t\t\t\t\t<string>VM</string>\n\t\t\t\t\t</array>\n\t\t\t\t</dict>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>APFSVolumeUUID</key>\n\t\t\t\t\t<string>89DF6CC6-0B03-4065-9855-D01C80B030A6</string>\n\t\t\t\t\t<key>CapacityInUse</key>\n\t\t\t\t\t<integer>12564090880</integer>\n\t\t\t\t\t<key>CapacityQuota</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CapacityReserve</key>\n\t\t\t\t\t<integer>0</integer>\n\t\t\t\t\t<key>CryptoMigrationOn</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>DeviceIdentifier</key>\n\t\t\t\t\t<string>disk3s7</string>\n\t\t\t\t\t<key>Encryption</key>\n\t\t\t\t\t<true/>\n\t\t\t\t\t<key>FileVault</key>\n\t\t\t\t\t<true/>\n\t\t\t\t\t<key>Locked</key>\n\t\t\t\t\t<false/>\n\t\t\t\t\t<key>Name</key>\n\t\t\t\t\t<string>Macintosh HD</string>\n\t\t\t\t\t<key>Roles</key>\n\t\t\t\t\t<array>\n\t\t\t\t\t\t<string>System</string>\n\t\t\t\t\t</array>\n\t\t\t\t</dict>\n\t\t\t</array>\n\t\t</dict>\n\t</array>\n</dict>\n</plist>\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/quota",
+        "-v"
+      ],
+      "endedUtc": "2026-10-09T10:40:35.518076+00:00",
+      "exitCode": 0,
+      "result": "Captured",
+      "startedUtc": "2026-10-09T10:40:35.513422+00:00",
+      "stderr": "",
+      "stdout": "Disk quotas for user ah (uid 501): none\n"
+    },
+    {
+      "argv": [
+        "/usr/sbin/diskutil",
+        "info",
+        "-plist",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation"
+      ],
+      "endedUtc": "2026-10-09T10:40:35.532859+00:00",
+      "exitCode": 1,
+      "result": "Unavailable",
+      "startedUtc": "2026-10-09T10:40:35.518096+00:00",
+      "stderr": "",
+      "stdout": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n\t<key>Error</key>\n\t<true/>\n\t<key>ErrorMessage</key>\n\t<string>Could not find disk: /Users/ah/GitHub/hybridclr/r03-local-validation</string>\n\t<key>ExitCode</key>\n\t<integer>1</integer>\n</dict>\n</plist>\n"
+    },
+    {
+      "argv": [
+        "/usr/sbin/diskutil",
+        "info",
+        "-plist",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r"
+      ],
+      "endedUtc": "2026-10-09T10:40:35.547875+00:00",
+      "exitCode": 1,
+      "result": "Unavailable",
+      "startedUtc": "2026-10-09T10:40:35.532888+00:00",
+      "stderr": "",
+      "stdout": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n\t<key>Error</key>\n\t<true/>\n\t<key>ErrorMessage</key>\n\t<string>Could not find disk: /Users/ah/GitHub/hybridclr/assembly_shadow_h1r</string>\n\t<key>ExitCode</key>\n\t<integer>1</integer>\n</dict>\n</plist>\n"
+    },
+    {
+      "argv": [
+        "/usr/sbin/diskutil",
+        "info",
+        "-plist",
+        "/private/tmp"
+      ],
+      "endedUtc": "2026-10-09T10:40:35.563359+00:00",
+      "exitCode": 1,
+      "result": "Unavailable",
+      "startedUtc": "2026-10-09T10:40:35.547908+00:00",
+      "stderr": "",
+      "stdout": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n\t<key>Error</key>\n\t<true/>\n\t<key>ErrorMessage</key>\n\t<string>Could not find disk: /private/tmp</string>\n\t<key>ExitCode</key>\n\t<integer>1</integer>\n</dict>\n</plist>\n"
+    },
+    {
+      "argv": [
+        "/usr/sbin/diskutil",
+        "info",
+        "-plist",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03IRLocal-20261009C-capacity-retry"
+      ],
+      "endedUtc": "2026-10-09T10:40:35.578038+00:00",
+      "exitCode": 1,
+      "result": "Unavailable",
+      "startedUtc": "2026-10-09T10:40:35.563400+00:00",
+      "stderr": "",
+      "stdout": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n\t<key>Error</key>\n\t<true/>\n\t<key>ErrorMessage</key>\n\t<string>Could not find disk: /Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03IRLocal-20261009C-capacity-retry</string>\n\t<key>ExitCode</key>\n\t<integer>1</integer>\n</dict>\n</plist>\n"
+    },
+    {
+      "argv": [
+        "/usr/sbin/diskutil",
+        "info",
+        "-plist",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/host/player-fixtures"
+      ],
+      "endedUtc": "2026-10-09T10:40:35.592842+00:00",
+      "exitCode": 1,
+      "result": "Unavailable",
+      "startedUtc": "2026-10-09T10:40:35.578068+00:00",
+      "stderr": "",
+      "stdout": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n\t<key>Error</key>\n\t<true/>\n\t<key>ErrorMessage</key>\n\t<string>Could not find disk: /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/host/player-fixtures</string>\n\t<key>ExitCode</key>\n\t<integer>1</integer>\n</dict>\n</plist>\n"
+    },
+    {
+      "argv": [
+        "/usr/sbin/diskutil",
+        "info",
+        "-plist",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo/.git"
+      ],
+      "endedUtc": "2026-10-09T10:40:35.608017+00:00",
+      "exitCode": 1,
+      "result": "Unavailable",
+      "startedUtc": "2026-10-09T10:40:35.592886+00:00",
+      "stderr": "",
+      "stdout": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n\t<key>Error</key>\n\t<true/>\n\t<key>ErrorMessage</key>\n\t<string>Could not find disk: /Users/ah/GitHub/hybridclr/hybridclr_demo/.git</string>\n\t<key>ExitCode</key>\n\t<integer>1</integer>\n</dict>\n</plist>\n"
+    },
+    {
+      "argv": [
+        "/usr/sbin/diskutil",
+        "info",
+        "-plist",
+        "/Users/ah/GitHub/hybridclr/hybridclr/.git"
+      ],
+      "endedUtc": "2026-10-09T10:40:35.622253+00:00",
+      "exitCode": 1,
+      "result": "Unavailable",
+      "startedUtc": "2026-10-09T10:40:35.608045+00:00",
+      "stderr": "",
+      "stdout": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n\t<key>Error</key>\n\t<true/>\n\t<key>ErrorMessage</key>\n\t<string>Could not find disk: /Users/ah/GitHub/hybridclr/hybridclr/.git</string>\n\t<key>ExitCode</key>\n\t<integer>1</integer>\n</dict>\n</plist>\n"
+    },
+    {
+      "argv": [
+        "/usr/sbin/diskutil",
+        "info",
+        "-plist",
+        "/Users/ah/GitHub/hybridclr/hybridclr_unity/.git"
+      ],
+      "endedUtc": "2026-10-09T10:40:35.636961+00:00",
+      "exitCode": 1,
+      "result": "Unavailable",
+      "startedUtc": "2026-10-09T10:40:35.622281+00:00",
+      "stderr": "",
+      "stdout": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n\t<key>Error</key>\n\t<true/>\n\t<key>ErrorMessage</key>\n\t<string>Could not find disk: /Users/ah/GitHub/hybridclr/hybridclr_unity/.git</string>\n\t<key>ExitCode</key>\n\t<integer>1</integer>\n</dict>\n</plist>\n"
+    },
+    {
+      "argv": [
+        "/usr/sbin/diskutil",
+        "info",
+        "-plist",
+        "/Users/ah/GitHub/hybridclr/il2cpp_plus/.git"
+      ],
+      "endedUtc": "2026-10-09T10:40:35.651357+00:00",
+      "exitCode": 1,
+      "result": "Unavailable",
+      "startedUtc": "2026-10-09T10:40:35.636993+00:00",
+      "stderr": "",
+      "stdout": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n\t<key>Error</key>\n\t<true/>\n\t<key>ErrorMessage</key>\n\t<string>Could not find disk: /Users/ah/GitHub/hybridclr/il2cpp_plus/.git</string>\n\t<key>ExitCode</key>\n\t<integer>1</integer>\n</dict>\n</plist>\n"
+    }
+  ],
+  "kind": "R03StorageAdmissionV1",
+  "marginBytes": 21474836480,
+  "operatingFloorBytes": 21474836480,
+  "probes": [
+    {
+      "allocatedBytes": 1048576,
+      "bytes": 1048576,
+      "cleanupErrors": [],
+      "ownedDirectory": "/Users/ah/GitHub/hybridclr/r03-local-validation/.r03-storage-probe-u4peyu75",
+      "parent": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "reservation": false,
+      "result": "Passed"
+    },
+    {
+      "allocatedBytes": 1048576,
+      "bytes": 1048576,
+      "cleanupErrors": [],
+      "ownedDirectory": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/.r03-storage-probe-tfzb850d",
+      "parent": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+      "reservation": false,
+      "result": "Passed"
+    },
+    {
+      "allocatedBytes": 1048576,
+      "bytes": 1048576,
+      "cleanupErrors": [],
+      "ownedDirectory": "/private/tmp/.r03-storage-probe-gcolql8z",
+      "parent": "/private/tmp",
+      "reservation": false,
+      "result": "Passed"
+    },
+    {
+      "allocatedBytes": 1048576,
+      "bytes": 1048576,
+      "cleanupErrors": [],
+      "ownedDirectory": "/private/tmp/.r03-storage-probe-mp9iov5z",
+      "parent": "/private/tmp",
+      "reservation": false,
+      "result": "Passed"
+    },
+    {
+      "allocatedBytes": 1048576,
+      "bytes": 1048576,
+      "cleanupErrors": [],
+      "ownedDirectory": "/Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03IRLocal-20261009C-capacity-retry/.r03-storage-probe-n5nbxgq7",
+      "parent": "/Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03IRLocal-20261009C-capacity-retry",
+      "reservation": false,
+      "result": "Passed"
+    },
+    {
+      "allocatedBytes": 1048576,
+      "bytes": 1048576,
+      "cleanupErrors": [],
+      "ownedDirectory": "/Users/ah/GitHub/hybridclr/r03-local-validation/.r03-storage-probe-e3axqiye",
+      "parent": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "reservation": false,
+      "result": "Passed"
+    },
+    {
+      "allocatedBytes": 1048576,
+      "bytes": 1048576,
+      "cleanupErrors": [],
+      "ownedDirectory": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/host/player-fixtures/.r03-storage-probe-kh0pbxcy",
+      "parent": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/host/player-fixtures",
+      "reservation": false,
+      "result": "Passed"
+    },
+    {
+      "allocatedBytes": 1048576,
+      "bytes": 1048576,
+      "cleanupErrors": [],
+      "ownedDirectory": "/Users/ah/GitHub/hybridclr/hybridclr_demo/.git/.r03-storage-probe-8lllm3zd",
+      "parent": "/Users/ah/GitHub/hybridclr/hybridclr_demo/.git",
+      "reservation": false,
+      "result": "Passed"
+    },
+    {
+      "allocatedBytes": 1048576,
+      "bytes": 1048576,
+      "cleanupErrors": [],
+      "ownedDirectory": "/Users/ah/GitHub/hybridclr/hybridclr/.git/.r03-storage-probe-i8f1b889",
+      "parent": "/Users/ah/GitHub/hybridclr/hybridclr/.git",
+      "reservation": false,
+      "result": "Passed"
+    },
+    {
+      "allocatedBytes": 1048576,
+      "bytes": 1048576,
+      "cleanupErrors": [],
+      "ownedDirectory": "/Users/ah/GitHub/hybridclr/hybridclr_unity/.git/.r03-storage-probe-lqhg67rs",
+      "parent": "/Users/ah/GitHub/hybridclr/hybridclr_unity/.git",
+      "reservation": false,
+      "result": "Passed"
+    },
+    {
+      "allocatedBytes": 1048576,
+      "bytes": 1048576,
+      "cleanupErrors": [],
+      "ownedDirectory": "/Users/ah/GitHub/hybridclr/il2cpp_plus/.git/.r03-storage-probe-ofgy9ngq",
+      "parent": "/Users/ah/GitHub/hybridclr/il2cpp_plus/.git",
+      "reservation": false,
+      "result": "Passed"
+    }
+  ],
+  "qFailedCellSha256": "b529089f337d7f3db9ce13069bccb229df08eaabf336f1cff5440e47d45d2a4f",
+  "requiredAvailableBytesEachLocation": 68719476736,
+  "retainedQSize": {
+    "allocatedBytesUniqueInode": 14164955136,
+    "directories": 9832,
+    "elapsedSeconds": 2.422698416048661,
+    "files": 107514,
+    "includesRetainedLiveCaches": true,
+    "logicalBytesPerPath": 13893690259,
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair",
+    "physicalApfsSharingKnown": false,
+    "planningBytes": 14164955136,
+    "symlinksNotFollowed": 0
+  },
+  "runtimeAcceptance": false,
+  "startMinimumBytes": 68719476736,
+  "state": "Admitted"
+}

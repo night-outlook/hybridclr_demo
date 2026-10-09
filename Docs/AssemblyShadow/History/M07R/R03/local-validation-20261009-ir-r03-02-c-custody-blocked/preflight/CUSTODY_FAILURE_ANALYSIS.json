@@ -1,0 +1,159 @@
+{
+  "state": "CustodyBlocked",
+  "startUtc": "2026-10-09T10:40:17.076614+00:00",
+  "endUtc": "2026-10-09T10:40:23.495052+00:00",
+  "expectedFiles": 416844,
+  "missingFiles": 77477,
+  "changedFiles": 0,
+  "presentFilesVerified": 339367,
+  "missingByScope": {
+    "projects/reference-release/Library": 3598,
+    "projects/reference-release/HybridCLRData": 10402,
+    "projects/fixture-constructor-editor/Library": 2581,
+    "projects/resource-complete/Library": 18364,
+    "projects/candidate-release/Library": 3815,
+    "projects/candidate-release/HybridCLRData": 10414,
+    "projects/candidate-debug/Library": 3598,
+    "projects/candidate-debug/HybridCLRData": 10414,
+    "projects/compiler-probe-invalid-key/Library": 134,
+    "projects/compiler-probe-valid/Library": 145,
+    "projects/candidate-off/Library": 3598,
+    "projects/candidate-off/HybridCLRData": 10414
+  },
+  "missingWitnessSamples": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/SourceAssetDB-lock",
+      "expectedSha256": "edf459865e56bd3bc68b0db5dcf4630ea85928a07216e8a93f32df6dfe559fda",
+      "error": "[Errno 2] No such file or directory: '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/SourceAssetDB-lock'"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/EditorOnlyVirtualTextureState.json",
+      "expectedSha256": "6c4b38e49689f40e46b7fac3dfafeeb2ec1b0770896bc5cfad1ace58839f2a5f",
+      "error": "[Errno 2] No such file or directory: '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/EditorOnlyVirtualTextureState.json'"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/LastBuild.buildreport",
+      "expectedSha256": "8e815f9861a7673e9e68b2d0f2203d38d560b81430df640db115882f3f9e639f",
+      "error": "[Errno 2] No such file or directory: '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/LastBuild.buildreport'"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/Style.catalog",
+      "expectedSha256": "5e50c86ee22d5652bafb234531426ada4d12b3020f02b319d75f5b592e2777da",
+      "error": "[Errno 2] No such file or directory: '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/Style.catalog'"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/SceneVisibilityState.asset",
+      "expectedSha256": "fc06ef4809f638acd1e7f3260aadf847dc1e2ffee02bf2d68da0ad121be7590c",
+      "error": "[Errno 2] No such file or directory: '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/SceneVisibilityState.asset'"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/SourceAssetDB",
+      "expectedSha256": "fc29499eea12dc88bd1512fbb488989e9cafb358c2cfb11e01c089d1d33d18d3",
+      "error": "[Errno 2] No such file or directory: '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/SourceAssetDB'"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/LibraryFormatVersion.txt",
+      "expectedSha256": "b06ec595220e19942437f04a068aced5d54eab2e9746ff0d72fb6d28411041f7",
+      "error": "[Errno 2] No such file or directory: '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/LibraryFormatVersion.txt'"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/ShaderCache.db",
+      "expectedSha256": "1113f1c26d678b681569fd48897d6ba3d2c0217d417f33fa34ea22a62bba917b",
+      "error": "[Errno 2] No such file or directory: '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/ShaderCache.db'"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/BuildPlayer.prefs",
+      "expectedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "[Errno 2] No such file or directory: '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/BuildPlayer.prefs'"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/EditorOnlyScriptingSettings.json",
+      "expectedSha256": "fde76a45c8babc64f60b72c3c1f77baa19612953304832883b110c310d4c7752",
+      "error": "[Errno 2] No such file or directory: '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/EditorOnlyScriptingSettings.json'"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/ScriptMapper",
+      "expectedSha256": "f5f7d5a2b8ccdae3d3a7ecf60703ac7349e75f22cc31fb1561c106177f496d70",
+      "error": "[Errno 2] No such file or directory: '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/ScriptMapper'"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/BuildSettings.asset",
+      "expectedSha256": "cbf8281f143cf40694f12eb7e96cf36d2db3977ee61424ec34214064c5808250",
+      "error": "[Errno 2] No such file or directory: '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/BuildSettings.asset'"
+    }
+  ],
+  "custodyFailureSha256": "b44e3c3ae6abc0e79d222c459c5463a6fd0fa186996f1dd2b7ac85a8963df2fe",
+  "mapSha256": "133cba8a9b54b74a9909c6da6948838f8f604afea47bc61bdee88f45c22df0e8",
+  "missingFileClassification": "S unindexed retained Library/HybridCLRData custody snapshots; not indexed sealed core evidence",
+  "indexAndArchiveMissingIntersection": 0,
+  "sealedS": {
+    "topArtifactHashes": {
+      "LOCAL_BATCH_RESULT.json": "2e09d46c800d7721eb14a6d7a31ba1d89327d1126ff7f7be35dd889bdbdf3096",
+      "BATCH_EXECUTION.json": "241144d39b1cfa47be3dcd4f67a3e40f7608ab58d605117c81fcccea8c68a427",
+      "evidence-index.json": "0685d23a40b581cc7d22abc543c7d9067e808a0f25fa0b3f2aea32966b22bd70",
+      "evidence.tar.gz": "23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6",
+      "seal-receipt.json": "d382557e62c3e897070305daeedb452a2ab0d3f409af42e58be8fd8f03109dcf"
+    },
+    "indexedFiles": 15712,
+    "indexedErrors": [],
+    "archiveBytes": 587907380,
+    "archiveMembers": 15713,
+    "missingFilesPresentInSealedArchive": 0,
+    "state": "Passed read-only byte/index authentication only"
+  },
+  "retainedR": {
+    "kind": "R03RetainedP05ReadOnlyAudit",
+    "result": "Passed",
+    "filesVerified": 6,
+    "inputRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage",
+    "historicalSource": "ba57a3391da9627e694ee33f8bfe3cb993e6c56a",
+    "originalGitTransportCause": "Unavailable",
+    "settingsRemainStaged": true,
+    "originalRestoreCell": "Failed",
+    "historicalEvidenceModified": false,
+    "restorationPerformed": false,
+    "unityRun": false,
+    "playerRun": false,
+    "runtimeAcceptance": false,
+    "R03Accepted": false,
+    "H2Passed": false
+  },
+  "buildReceiptBindings": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/builds/candidate-debug/build-receipt.json",
+      "sha256": "bc2f244a91aaa6216cf4cb8ca80c4aef3ca12c98a41b019a6a4d125a4d895433",
+      "installedSdkRoot": null,
+      "installedSdkRootExists": null,
+      "historicalReceiptRewritten": false
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/builds/candidate-off/build-receipt.json",
+      "sha256": "a3c71d61655b223ee6f817469f2706470bb488b2ed90593c0ec5d088a9f6f030",
+      "installedSdkRoot": null,
+      "installedSdkRootExists": null,
+      "historicalReceiptRewritten": false
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/builds/candidate-release/build-receipt.json",
+      "sha256": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f",
+      "installedSdkRoot": null,
+      "installedSdkRootExists": null,
+      "historicalReceiptRewritten": false
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/builds/reference-release/build-receipt.json",
+      "sha256": "78d4efe48b74745769c540b189e62e6974d12303e04ae7e50cf4afb63c715ca7",
+      "installedSdkRoot": null,
+      "installedSdkRootExists": null,
+      "historicalReceiptRewritten": false
+    }
+  ],
+  "deletionActorAndExactTime": "Unavailable",
+  "rootCause": "Previously authenticated protected files are now absent; runtime source/expectation changes are not established",
+  "automaticRestorationPerformed": false,
+  "missingFilesRebaselined": false,
+  "historicalS90PassedReclassified": false,
+  "runtimeBatch": "NotRun",
+  "unityLaunches": 0,
+  "runtimeAcceptance": false
+}

@@ -1,6 +1,82 @@
 # Local Validation report
 
-## Current run — IR-R03-02 B API-bound prerequisites, 2026-10-09 PDT / UTC
+## Current run — IR-R03-02 C capacity retry prerequisites, 2026-10-09 PDT / UTC
+
+**CustodyBlocked; focused runtime batch NotRun. Storage diagnostic Admitted. Exit: Local Validation → Primary Implementation.** The human's direct request “disk space freed, retry local validation” authorized one fresh C attempt using new sibling roots and the latest pushed B documentation commit. It did not authorize removing protected data, rebasing custody or bypassing failed prerequisites. [Authorization and roots](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/bootstrap/CONTINUATION_AUTHORIZATION.json), [factual result](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight/LOCAL_PREFLIGHT_RESULT.json), [additive C checkpoint](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/README.md).
+
+No --execute invocation or Unity launch occurred. All 14 cells, three IL2CPP/native build roles and four fresh Players are NotRun; target generation, Editor/runtime side-effect checks and seal are NotRun or Unavailable. Capacity passed independently; custody prevented dispatch. This is a new prerequisite observation, not a successful runtime validation or a retry of A/B.
+
+| Actual owning repository | Branch | Exact C prerequisite source commit |
+| --- | --- | --- |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | `e6f918bf6c756251982eef47f255eaa71b11e1d4` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `codex/assembly-shadow-r01b-h1` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `9ce1c1bfec9a21b92ea300acda5f27a3815b2c37` |
+
+Every clean checkout independently passed top/branch/HEAD/status/canonical SSH origin/worktree/submodule and fresh remote-tip checks. Demo source `e6f918bf6c756251982eef47f255eaa71b11e1d4` is the verified pushed B Local evidence publication, a Docs-only descendant of Primary `434ed7ff92951881fcdc7ebbb046c900e6a1d7d2` and compiled anchor `ba47b41674b83a6f694ac4f8ac1bc8f83a9da24b`. Product/native/package/fixture/runner/storage inputs are unchanged. No switch/reset/stash/clean, credential or protocol change. [Sync authority](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/bootstrap/SYNC_AUTHORITY.json), [final source authority](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight/FINAL_PREFLIGHT_SOURCE_AUTHORITY.json), [Git blobs/source snapshots](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/SOURCE_BINDINGS.json). Validation source and final documentation publication are distinct; the final pushed heads are in the external publication receipt.
+
+### Prerequisite and dependent execution states
+
+| Validation | Actual state and coverage |
+| --- | --- |
+| Source, remote and compiler-input authentication | Passed, all four owners and 22 compiler inputs / 19 explicit CSharp inputs |
+| Prescribed fresh Python host tests | Passed, 64 tests, no skips/errors/failures |
+| Fresh standalone native policy compile/run | Passed, 69 checks; not product AssemblyShadow.cpp or Unity Player execution |
+| Original S immutable fixture DLLs | Passed, 15 authenticated original Git inputs, ReusedAudited; no regeneration |
+| Protected custody before and after | Blocked, 416,844 expected / 339,367 present verified / 77,477 Missing / 0 changed |
+| Diagnostic storage without --execute | Exit 0, Admitted, session Passed, 11 allocation/sync/readback probes Passed, batchStarted=false |
+| Executing storage / Unity / Editor / IL2CPP builds / Players | NotRun, zero --execute invocations and Unity launches |
+| IR target generation / active-method side-effect checks | NotRun |
+| Runtime result / ledger / index / archive / seal | Unavailable; no synthetic runtime cells or seal |
+
+[Host command receipts](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight/LOCAL_HOST_PREFLIGHT.json) include exact argv/cwd, start/end, exits, source/header/binary and stream hashes. Host suite/native checks ran `2026-10-09T10:35:30.772065+00:00` through `2026-10-09T10:35:34.415022+00:00`. [Environment](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight/SOURCE_ENVIRONMENT.json) records macOS 26.5.2 build 25F84, Python 3.14.6, Apple clang 21.0.0, CommandLineTools and MacOSX SDK. Exact Unity 2022.3.62f2 `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity` was verified present, never launched; planned StandaloneOSX arm64 NotRun. SDK 8.0.318 is used only from `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`; Unity 6000 never launched. Temp remains `/private/tmp`; shared APFS paths are not additional capacity.
+
+[Current-source API receipt](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight/CI_CURRENT_SOURCE.json) and [independent live-job/input verification](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight/CI_EQUIVALENCE_VERIFICATION.json) matched CI 37903041633/job 113729828150 at compiled anchor ba47: 0 errors/13 warnings; all 22 current tracked input hashes/Git blobs match. Current Player SHA256 `22c3e0be7cebc041706b1412c5fc317c806c49a0980be143d5517dc4cc59a7bd`, exact lossless full compiler log SHA256 `a2805d2bf18a7004f5cb1b2197b8fba3f9f1edb4fac6f4ec2fc0d27dc820ae72`. **CI used SDK 10.0.401, net8.0/CSharp9/UNITY_EDITOR and Unity API stubs.** It is not official Unity managed compilation or runtime acceptance. Actual decoded connector job-log copy has a normalized final newline; durable compiler log matches original bytes. CI binaries/ZIP/binlog were not downloaded by Local; Primary's artifact authentication and 11 synthetic receipt tests remain attributed. Previous native/API/fixture logs remain ReusedAudited with unchanged relevant source bytes; old API 37874183375 remains historical NoCoverage.
+
+[Original fixture authentication](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight/ir-original-s-fixture-authority.json) SHA256 `1371afaeafa220934eb6b3ddc05c9acbc09a3270dc08f93405ffa0fe58a410b6` binds all 15 original DLLs, S publication `fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b` and inventory Git blob `0688bd2dad054bd59fcdd1564a050a398cfa14e7`. Admission ran 2026-10-09T10:36:06.917033+00:00→10:36:07.517993+00:00. Expected distinct IR target SHA256 `8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd`, MVID `597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff`, 2048 bytes/zero PE timestamp remains expectation only; fresh generation NotRun. Historical Failed/NotIdentical regeneration is unchanged.
+
+### Custody blocker and preserved sealed evidence
+
+[Before custody](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight/HISTORICAL_CUSTODY_BEFORE.json) ran `2026-10-09T10:36:05.400602+00:00`→`2026-10-09T10:36:42.984168+00:00`, SHA256 `b44e3c3ae6abc0e79d222c459c5463a6fd0fa186996f1dd2b7ac85a8963df2fe`. [After custody](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight/HISTORICAL_CUSTODY_AFTER.json) ran `2026-10-09T10:42:46.085930+00:00`→`2026-10-09T10:43:22.502599+00:00`, SHA256 `86a5e926841b50e3edb337c4a0a22bd3a6a6dd1484ad40d2f926c0c72161603b`. Both complete raw reports retain the same 77,477 Missing rows; no differences among the 339,367 present files. The original B map is authenticated from immutable Git objects and additive copied/live bindings; C did not rebaseline missing files. [Map binding](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight/CUSTODY_MAP_BINDING.json) and [failure analysis](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight/CUSTODY_FAILURE_ANALYSIS.json) preserve expected hashes and full scope.
+
+All missing paths are under `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery`:
+
+| S-relative retained scope | Missing files |
+| --- | --- |
+| `projects/reference-release/Library` | 3598 |
+| `projects/reference-release/HybridCLRData` | 10402 |
+| `projects/fixture-constructor-editor/Library` | 2581 |
+| `projects/resource-complete/Library` | 18364 |
+| `projects/candidate-release/Library` | 3815 |
+| `projects/candidate-release/HybridCLRData` | 10414 |
+| `projects/candidate-debug/Library` | 3598 |
+| `projects/candidate-debug/HybridCLRData` | 10414 |
+| `projects/compiler-probe-invalid-key/Library` | 134 |
+| `projects/compiler-probe-valid/Library` | 145 |
+| `projects/candidate-off/Library` | 3598 |
+| `projects/candidate-off/HybridCLRData` | 10414 |
+
+Example exact missing path: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/Library/SourceAssetDB-lock`, expected SHA256 `edf459865e56bd3bc68b0db5dcf4630ea85928a07216e8a93f32df6dfe559fda`. Historical stripped native file `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007S-lr-recovery/projects/reference-release/HybridCLRData/StrippedAOTDllsTempProj/StandaloneOSX/Il2CppOutputProject/IL2CPP/libil2cpp/vm/AssemblyShadow.cpp` is Missing, expected SHA256 `facdfa76e7b90b88e94cb060b6072c0d73d66f8f9b740b3644f5224085fe93f2`.
+
+[NATIVE_LIVE_CUSTODY_LIMIT](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight/NATIVE_LIVE_CUSTODY_LIMIT.json) confirms candidate-debug/candidate-off/candidate-release/reference-release schema-2 receipts retain exact original hashes but all four receipt-bound `projects/<role>/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp` roots are now Missing. This supplements the initial analysis's null generic installedSdkRoot fields with each actual installedNativeRoot field; no historical receipt was rewritten. Current native owner is correct at 9ce1, while S executed against historical IL2CPP `1cf87f8209790f9fb2ebec97487dc1990ccd56c5`; installing current bytes cannot restore historical provenance.
+
+**S sealed evidence byte/index audit Passed separately:** all five top-level artifact hashes match, all 15,712 indexed files verify, archive 587,907,380 bytes / 15,713 members, SHA256 `23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6`. Every indexed path is present in the archive. Missing-path intersection with index/archive is zero; these unindexed retained caches cannot be recovered from that archive. Historical S 90 Passed is unchanged, not current custody or full-stage acceptance. R's six-file read-only audit Passed and remains staged with its original Failed restore; no repair. A/B/Q/P/O/N present protected evidence matches. Deletion actor and exact time are Unavailable; only the interval after B's Passed audit and before C's Blocked audit is established.
+
+Raw historicalRootsModified=false means the audit made no writes, **not** that custody is intact. The first custody terminal output was large; [administrative output bounding](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight/ADMINISTRATIVE_OUTPUT_BOUNDING.json) records external helper-only compact stdout for the after check, preserving all raw JSON rows and the original helper. No source/expectation/cleanup/timeout rule changed, no failed audit rerun, no automatic cache regeneration, recovery, relocation or missing-map reduction. No new product-source defect is established.
+
+### Fresh storage diagnostic and publication
+
+Diagnostic `2026-10-09T10:40:15.889176+00:00`→`2026-10-09T10:40:35.997132+00:00` exited 0; [exact wrapper command/streams](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight/commands/storage-diagnostic/receipt.json) used source e6, exact workspace/Unity, retained Q and unused C output roots **without --execute**. It ran independently to measure capacity despite custody failure. [Admission](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/storage-diagnostic/admission.json) SHA256 `29fb9b1923d63c47736f502680b8f3e3d580614341cc40b87695fc3e5b6b8d2a`: available 83,657,576,448 bytes (77.912 GiB), required 68,719,476,736 bytes (64 GiB), headroom 14,938,099,712 bytes (13.912 GiB). Unchanged formula max(64GiB,2*Q+20GiB), Q planning 14,164,955,136 bytes, operating floor 20 GiB. All 11 owned allocation/sync/readback probes Passed and owned probe cleanup Passed. No historical cleanup, threshold change or reservation; diagnostic success alone cannot dispatch through custody failure.
+
+[Capacity samples](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/storage-diagnostic/capacity.jsonl), [session](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/storage-diagnostic/session.json) SHA256 `d776da3cfb36140a2dd5f296602caa8273f982352fe0e7c3eea6b261de5a578f` and [dispatch](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/storage-diagnostic/dispatch.json) SHA256 `e993ddaa8df05a63a4dd40524a973c7d4742aa0b1565061ca74cfc114231a16f` retain Passed/Admitted versus batchStarted=false and coreResult=null. Directory diskutil-info queries remain Unavailable; df/APFS-list observations captured.
+
+Live C evidence: preflight `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009C-capacity-retry`, diagnostic `/Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03IRLocal-20261009C-capacity-retry`, bootstrap `/Users/ah/GitHub/hybridclr/r03-local-validation/IR-R03-02-bootstrap-20261009C-capacity-retry`. All C candidate roots were initially absent/nonaliasing. Requested batch `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261009C-capacity-retry` and executing-storage `/Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03IRLocal-20261009C-capacity-retry` remain absent. No ordinary primary/control checkout or historical app/Library/native state was used for execution.
+
+[Exact copy bindings](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/COPY_BINDINGS.json), [ordered large-map transport](../History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/FILE_TRANSPORT.json), source snapshots and MANIFEST.sha256 preserve the additive C checkpoint; both complete 46 MB failure reports are exact copies. Small publication capacity verification covers checkpoint bytes only, not runtime reservation. Only Local-owned reports/checkpoint changed; no bounded product fix. Manifest/JSON/hash/link/diff/staged-byte/scope checks and final pushed heads are recorded externally at `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009C-capacity-retry/PUBLICATION_VALIDATION.json` and `PUBLICATION_RECEIPT.json`. Historical report bodies are preserved apart from first Current heading relabeling.
+
+R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; fullLegacyRegressionAcceptance=false; PureInterpreter expansion disabled. Independent full-stage review remains FAIL, separate re-review NotRun; genuine captured-generic/initializer cases and IR-R03-01 remain Primary work. No H2/X02/M08A. Primary must resolve the custody issue below; Local stops after C.
+
+## Historical run — IR-R03-02 B API-bound prerequisites, 2026-10-09 PDT / UTC
 
 **CapacityBlocked; focused batch NotRun. Current-source supplementary CSharp API prerequisite Passed. Exit: Local Validation → Primary Implementation.** One B diagnostic ran without --execute and exited2; no executing invocation or Unity launch. All14 cells, three IL2CPP native build roles and four fresh Players are NotRun; core result/ledger/index/archive/seal Unavailable. [Factual result](../History/M07R/R03/local-validation-20261009-ir-r03-02-b-api-bound/preflight/LOCAL_PREFLIGHT_RESULT.json), [immutable B checkpoint](../History/M07R/R03/local-validation-20261009-ir-r03-02-b-api-bound/README.md). The prior A failure and historical NoCoverage remain unchanged.
 

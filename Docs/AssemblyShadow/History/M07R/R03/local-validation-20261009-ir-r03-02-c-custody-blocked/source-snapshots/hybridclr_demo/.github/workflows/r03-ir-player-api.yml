@@ -1,0 +1,149 @@
+name: R03 IR supplemental Player CSharp API check
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-ir-player-api.yml'
+      - 'Tools/AssemblyShadow/R03IR/PlayerProject/**'
+      - 'Tools/AssemblyShadow/R03/PlayerApiCompile/**'
+      - 'Tools/AssemblyShadow/R03/PlayerProject/R03Player.cs'
+      - 'Tools/AssemblyShadow/R03/source-pins.json'
+permissions:
+  contents: read
+jobs:
+  managed-api:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+      - name: Exact required package revision
+        id: package
+        shell: python
+        run: |
+          import json,os,re
+          from pathlib import Path
+          d=json.loads(Path('hybridclr_demo/Tools/AssemblyShadow/R03/source-pins.json').read_text())
+          assert re.fullmatch(r'[0-9a-f]{40}',d['hybridclr_unity'])
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('sha='+d['hybridclr_unity']+'\n')
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: ${{ steps.package.outputs.sha }}
+          path: hybridclr_unity
+          persist-credentials: false
+      - name: Bind exact compilation inputs before build
+        shell: python
+        run: |
+          import glob,hashlib,json,os,subprocess,xml.etree.ElementTree as ET
+          from pathlib import Path
+          roots={n:Path(n).resolve() for n in ('hybridclr_demo','hybridclr_unity')}
+          def git(root,*args):
+              return subprocess.check_output(['git','-C',str(root),*args])
+          heads={n:git(p,'rev-parse','HEAD').decode().strip() for n,p in roots.items()}
+          if heads['hybridclr_demo'] != os.environ['GITHUB_SHA']:
+              raise RuntimeError('Demo checkout differs from executing workflow SHA')
+          demo=roots['hybridclr_demo']; package=roots['hybridclr_unity']
+          pins=demo/'Tools/AssemblyShadow/R03/source-pins.json'
+          if heads['hybridclr_unity'] != json.loads(pins.read_text())['hybridclr_unity']:
+              raise RuntimeError('Package checkout differs from exact source pin')
+          project=demo/'Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj'
+          xml=ET.parse(project)
+          if xml.findtext('.//EnableDefaultCompileItems') != 'false':
+              raise RuntimeError('Input enumerator requires explicit Compile items')
+          inputs={project,pins,demo/'.github/workflows/r03-ir-player-api.yml'}
+          compiled=set()
+          for item in xml.findall('.//Compile'):
+              if set(item.attrib) != {'Include'}:
+                  raise RuntimeError('Unsupported conditional or transformed Compile item')
+              pattern=item.attrib['Include'].replace('$(PackageRoot)',str(package))
+              if '$(' in pattern:
+                  raise RuntimeError('Unresolved Compile property')
+              matches=glob.glob(str(project.parent/pattern))
+              if not matches:
+                  raise RuntimeError('Compile input matched no files: '+pattern)
+              for match in matches:
+                  p=Path(match)
+                  if p.is_symlink() or not p.is_file():
+                      raise RuntimeError('Compile input must be an ordinary file')
+                  compiled.add(p.resolve())
+          player=demo/'Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs'
+          if player not in compiled:
+              raise RuntimeError('Current IR Player is not a compilation input')
+          inputs.update(compiled)
+          rows=[]
+          for p in sorted(inputs):
+              owners=[n for n,r in roots.items() if p.is_relative_to(r)]
+              if len(owners) != 1:
+                  raise RuntimeError('Input outside exactly one owned checkout')
+              name=owners[0]; root=roots[name]; rel=p.relative_to(root).as_posix()
+              data=p.read_bytes(); original=git(root,'show','HEAD:'+rel)
+              if data != original:
+                  raise RuntimeError('Dirty compilation input: '+rel)
+              rows.append({'repository':'night-outlook/'+name,'path':rel,
+                           'gitBlob':git(root,'rev-parse','HEAD:'+rel).decode().strip(),
+                           'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data),
+                           'compileItem':p in compiled})
+          receipt={'schemaVersion':1,'kind':'R03IRManagedCompileInputsV1',
+                   'demoCommit':heads['hybridclr_demo'],'packageCommit':heads['hybridclr_unity'],
+                   'runId':os.environ['GITHUB_RUN_ID'],'runAttempt':os.environ['GITHUB_RUN_ATTEMPT'],
+                   'targetFramework':xml.findtext('.//TargetFramework'),
+                   'languageVersion':xml.findtext('.//LangVersion'),
+                   'defineConstants':xml.findtext('.//DefineConstants'),
+                   'unityEnvironment':'checked-in API stubs; not official Unity managed assemblies',
+                   'unityRun':False,'playerRun':False,'runtimeAcceptance':False,'inputs':rows}
+          out=Path(os.environ['RUNNER_TEMP'])/'r03-ir-managed'
+          out.mkdir(parents=True,exist_ok=True)
+          (out/'compile-inputs.json').write_text(json.dumps(receipt,indent=2)+'\n')
+          print('R03_IR_COMPILE_INPUTS_JSON='+json.dumps(receipt,sort_keys=True))
+      - name: Compile real package IR Player signatures
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet --info > "$RUNNER_TEMP/r03-ir-managed/dotnet-info.txt"
+          dotnet build hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj \
+            -c Release -v normal \
+            -p:PackageRoot="$GITHUB_WORKSPACE/hybridclr_unity" \
+            -p:BaseIntermediateOutputPath="$RUNNER_TEMP/r03-ir-managed/obj/" \
+            -p:OutputPath="$RUNNER_TEMP/r03-ir-managed/bin/" \
+            -bl:"$RUNNER_TEMP/r03-ir-managed/build.binlog" \
+            2>&1 | tee "$RUNNER_TEMP/r03-ir-managed/build.log"
+          git -C hybridclr_demo diff --check
+          git -C hybridclr_demo diff --exit-code
+          git -C hybridclr_unity diff --exit-code
+      - name: Authenticate unchanged inputs and successful compiler output
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'r03-ir-managed'
+          inputs=out/'compile-inputs.json'; receipt=json.loads(inputs.read_text())
+          for name,key in (('hybridclr_demo','demoCommit'),('hybridclr_unity','packageCommit')):
+              head=subprocess.check_output(['git','-C',name,'rev-parse','HEAD']).decode().strip()
+              if head != receipt[key]:
+                  raise RuntimeError('Checkout changed during compilation')
+          for row in receipt['inputs']:
+              p=Path(row['repository'].split('/')[1])/row['path']
+              if hashlib.sha256(p.read_bytes()).hexdigest() != row['sha256']:
+                  raise RuntimeError('Compilation input changed during build: '+str(p))
+          assembly=out/'bin/PlayerApiCompile.dll'
+          if not assembly.is_file() or assembly.stat().st_size == 0:
+              raise RuntimeError('Missing actual compiler output')
+          result={'schemaVersion':1,'kind':'R03IRManagedCompileResultV1','result':'Passed',
+                  'demoCommit':receipt['demoCommit'],'packageCommit':receipt['packageCommit'],
+                  'runId':receipt['runId'],'runAttempt':receipt['runAttempt'],
+                  'inputsSha256':hashlib.sha256(inputs.read_bytes()).hexdigest(),
+                  'buildLogSha256':hashlib.sha256((out/'build.log').read_bytes()).hexdigest(),
+                  'outputSha256':hashlib.sha256(assembly.read_bytes()).hexdigest(),
+                  'unchangedInputs':True,'unityRun':False,'playerRun':False,'runtimeAcceptance':False}
+          (out/'compile-result.json').write_text(json.dumps(result,indent=2)+'\n')
+          print('R03_IR_COMPILE_RESULT_JSON='+json.dumps(result,sort_keys=True))
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-ir-managed-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-ir-managed
+          retention-days: 14
+          if-no-files-found: error

@@ -1,0 +1,49 @@
+from pathlib import Path
+import json,hashlib,subprocess,datetime,shutil,os,concurrent.futures
+W=Path('/Users/ah/GitHub/hybridclr/assembly_shadow_h1r');D=W/'hybridclr_demo';BASE=Path('/Users/ah/GitHub/hybridclr/r03-local-validation');P=BASE/'Preflight-R03IRLocal-20261009C-capacity-retry';BOOT=BASE/'IR-R03-02-bootstrap-20261009C-capacity-retry';CHECK=BASE/'StorageCheck-R03IRLocal-20261009C-capacity-retry';B=BASE/'R03IRLocal-20261009C-capacity-retry';STORAGE=BASE/'Storage-R03IRLocal-20261009C-capacity-retry';C=D/'Docs/AssemblyShadow/History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked';branch='codex/assembly-shadow-r01b-h1'
+pins=json.loads((P/'SOURCE_ENVIRONMENT.json').read_text())['pins']
+def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def sha(p):
+ with Path(p).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+def save(p,v):
+ with p.open('x') as f:json.dump(v,f,indent=2);f.write('\n')
+def git(repo,*args):return subprocess.check_output(['git','-C',str(repo),*args],timeout=180).decode().strip()
+def authority(item):
+ name,pin=item;repo=W/name;start=now();commands=[]
+ for args in [('rev-parse','--show-toplevel'),('branch','--show-current'),('rev-parse','HEAD'),('status','--short'),('remote','-v'),('worktree','list','--porcelain'),('submodule','status','--recursive'),('ls-remote','origin','refs/heads/'+branch)]:
+  a=now();out=git(repo,*args);commands.append({'argv':['git','-C',str(repo),*args],'startUtc':a,'endUtc':now(),'exitCode':0,'stdout':out})
+ assert commands[0]['stdout']==str(repo) and commands[1]['stdout']==branch and commands[2]['stdout']==pin and not commands[3]['stdout'];assert commands[-1]['stdout'].split()[0]==pin;assert git(repo,'remote','get-url','origin')=='git@github.com:night-outlook/'+name+'.git'
+ return {'path':str(repo),'branch':branch,'commit':pin,'startUtc':start,'endUtc':now(),'state':'Passed','commands':commands}
+with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:rows=list(pool.map(authority,pins.items()))
+save(P/'FINAL_PREFLIGHT_SOURCE_AUTHORITY.json',{'repositories':rows,'state':'Passed'})
+assert not B.exists() and not STORAGE.exists() and not C.exists()
+for phase in ['BEFORE','AFTER']:
+ r=json.loads((P/f'HISTORICAL_CUSTODY_{phase}.json').read_text());assert r['state']=='Blocked' and r['files']==416844 and len(r['errors'])==77477
+ad=json.loads((CHECK/'admission.json').read_text());assert ad['state']=='Admitted' and not ad['batchStarted'];ci=json.loads((P/'CI_EQUIVALENCE_VERIFICATION.json').read_text());assert ci['state']=='Passed'
+flags={'R03Accepted':False,'H2Passed':False,'qualificationApproved':False,'ReadyForHumanReviewGate':False,'fullLegacyRegressionAcceptance':False,'pureInterpreterExpansionEnabled':False}
+result={'kind':'R03IRLocalPrerequisiteResult','recordedUtc':now(),'result':'CustodyBlocked','exitState':'Local Validation -> Primary Implementation','batch':'NotRun','plannedCells':14,'executedCells':0,'builds':{'planned':3,'executed':0,'state':'NotRun'},'players':{'planned':4,'executed':0,'state':'NotRun'},'unityExecution':'NotRun','editMode':'NotRun','il2cppNativeBuild':'NotRun','irTargetGeneration':'NotRun','activeMethodSideEffects':'NotRun','sourceAuthority':'Passed','originalSInputs':{'state':'Passed','fixtures':15,'classification':'ReusedAudited immutable Git inputs'},'hostPythonTests':{'state':'Passed','count':64},'nativePolicyChecks':{'state':'Passed','count':69,'runtimeAcceptance':False},'custody':{'before':'Blocked','after':'Blocked','uniqueFiles':416844,'missingFiles':77477,'presentFilesVerified':339367,'missingInventoryRebased':False},'currentPlayerApiCoverage':'Passed','sourceBoundCIPreflight':'Passed','diagnosticWrapperExit':0,'storageAdmission':'Admitted','storageSession':'Passed','executionWrapperInvocations':0,'coreResult':'Unavailable','ledger':'Unavailable','coreIndexArchiveSeal':'Unavailable','capacity':{'firstObservedAvailableBytes':83657576448,'requiredBytes':68719476736,'deficitBytes':0,'headroomAbovePolicyBytes':14938099712,'formula':'max(64GiB,2*Q+20GiB)','QPlanningBytes':14164955136,'operatingFloorBytes':21474836480,'capacityReserved':False},'sources':rows,'evidenceRoots':{'bootstrap':str(BOOT),'preflight':str(P),'diagnostic':str(CHECK),'absentBatch':str(B),'absentExecutingStorage':str(STORAGE)},'historicalReclassification':False,'boundedFixes':[],'independentFullStageReview':'FAIL',**flags}
+save(P/'LOCAL_PREFLIGHT_RESULT.json',result)
+footprint=sum(f.stat().st_size for root in [P,BOOT,CHECK] for f in root.rglob('*') if f.is_file());v=os.statvfs(D);available=v.f_bavail*v.f_frsize;required=2*footprint+20*1024**3;assert available>=required
+save(P/'PUBLICATION_CAPACITY.json',{'recordedUtc':now(),'state':'Passed','purpose':'Small prerequisite checkpoint publication only; never runtime storage admission','payloadBytesBeforeThisReceipt':footprint,'requiredBytes':required,'availableBytes':available,'formula':'2*prerequisitePayload+20GiB','capacityReserved':False,'runtimeExecutionBlockedByCustody':True})
+preservation=[]
+for name in ['LOCAL_VALIDATION.md','RETURN_TO_WEB.md']:
+ f=D/'Docs/AssemblyShadow/Handoff'/name;raw=f.read_bytes();obj=subprocess.check_output(['git','-C',str(D),'show',pins['hybridclr_demo']+':'+str(f.relative_to(D))]);assert raw==obj;save(P/(name+'.PRESERVATION.json'),{'path':str(f),'previousSha256':sha(f),'previousCommit':pins['hybridclr_demo'],'strategy':'Prepend current report; relabel only prior first Current heading Historical; preserve every other prior byte'})
+C.mkdir();bindings=[];transport=[]
+for label,root in [('preflight',P),('bootstrap',BOOT),('storage-diagnostic',CHECK)]:
+ for f in sorted(root.rglob('*')):
+  assert not f.is_symlink()
+  if not f.is_file():continue
+  rel=Path(label)/f.relative_to(root);h=sha(f);size=f.stat().st_size
+  if size>48*1024**2:
+   parts=[]
+   with f.open('rb') as stream:
+    i=0
+    while chunk:=stream.read(32*1024**2):
+     part=Path(str(rel)+f'.part{i:03d}');dest=C/part;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(chunk);parts.append({'path':str(part),'bytes':len(chunk),'sha256':sha(dest)});i+=1
+   total=hashlib.sha256()
+   for part in parts:total.update((C/part['path']).read_bytes())
+   assert total.hexdigest()==h
+   transport.append({'originalPath':str(f),'logicalCheckpointPath':str(rel),'bytes':size,'sha256':h,'parts':parts});bindings.append({'originalPath':str(f),'sha256':h,'bytes':size,'transport':'orderedParts','parts':parts})
+  else:
+   dest=C/rel;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(f,dest);assert sha(dest)==h;bindings.append({'originalPath':str(f),'checkpointPath':str(rel),'sha256':h,'bytes':size,'transport':'exactCopy'})
+save(C/'COPY_BINDINGS.json',bindings);save(C/'FILE_TRANSPORT.json',{'format':'Ordered byte chunks; concatenate in listed order without decoding; verify original SHA256','files':transport})
