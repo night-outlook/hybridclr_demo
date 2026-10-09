@@ -65,6 +65,10 @@ Preserve S/R/Q/P/O/N, earlier prerequisites and every original verdict. Retained
 
 Do not invoke `run_completion.py`, `run_storage_checked.py --execute`, StructuralRestore or any historical batch under this file. Do not change credentials, protocols, storage thresholds, timeouts, warm-up, leases, schemas, source pins, acceptance flags or agent/reviewer configuration to advance a gate. Read-only status/evidence inspection is not authorization to create a new runtime result.
 
+## Pending fixture reproducibility gate (2026-10-09 UTC)
+
+The original-S fixture byte-identity CI [37882275356](https://github.com/night-outlook/hybridclr_demo/actions/runs/37882275356) **Failed**: all 15 independently regenerated `--output` DLL digests differ from pinned S, with some MVID mismatches. Original committed S remains immutable; newly compiled artifacts cannot be relabeled as exact historical bytes. The Primary-only non-acceptance [reproducibility diagnostic workflow](../../.github/workflows/r03-ir-fixture-repro.yml) separately emits two same-source generations on Linux/macOS to determine whether this is also an intra-environment issue. **A diagnostic run, even if green, does not pass the failed S exact-byte comparison.** Do not run the four-Player IR batch until a source-bound fixture/provenance policy is independently defensible and the existing failing identity gate is resolved or explicitly re-scoped with original S unchanged. No unrestricted retry, no weakening of original negative tests.
+
 ## Review and approval boundary
 
 D1=A/D2=A is already recorded and is not being re-requested. R03 remains bounded to conservative NativeLayoutAdmissionV1; V1-external PureInterpreter expansion is deferred to X02. Performance observations do not approve a production SLA or deferred R02 CPU/H1 RSS risks.
