@@ -207,7 +207,13 @@ def main():
             "Provenance audit must succeed first at original S")
     members = load(audit / "original-archive-members.json")
     require(len(members) == 15713, "Exact archive member map")
-    ledger = bound_json(checkpoint / "batch", members, "BATCH_EXECUTION.json")
+    # Original BATCH_EXECUTION.json is deliberately split into transport
+    # parts in Git. Consume only the already authenticated reconstructed bytes.
+    ledger_path = audit / "reconstructed/batch/BATCH_EXECUTION.json"
+    require(ledger_path.is_file() and ledger_path.stat().st_size == members["BATCH_EXECUTION.json"]["size"] and
+            digest(ledger_path) == members["BATCH_EXECUTION.json"]["sha256"],
+            "Authenticated original S execution ledger reconstruction")
+    ledger = load(ledger_path)
     report = original_process_joins(checkpoint, members, ledger)
     out.mkdir(parents=True)
     write(out / "process-joins.json", report)
