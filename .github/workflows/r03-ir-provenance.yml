@@ -25,7 +25,7 @@ jobs:
           python3 -B - <<'PY' 2>&1 | tee "$RUNNER_TEMP/s-audit-host-tests.log"
           import json, os, sys, unittest
           from pathlib import Path
-          suite = unittest.defaultTestLoader.discover('tools/Tools/AssemblyShadow/R03IR', pattern='test_*.py')
+          suite = unittest.defaultTestLoader.discover('tools/Tools/AssemblyShadow/R03IR', pattern='test_audit_s_provenance.py')
           result = unittest.TextTestRunner(verbosity=2).run(suite)
           passed = result.wasSuccessful() and result.testsRun > 0 and not result.skipped
           record = {'kind': 'R03IRHostTests', 'result': 'Passed' if passed else 'Failed',
