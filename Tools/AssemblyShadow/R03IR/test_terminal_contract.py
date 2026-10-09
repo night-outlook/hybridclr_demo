@@ -51,6 +51,19 @@ class TerminalReceiptContractTests(unittest.TestCase):
         self.raw['processId'] = 42
         with self.assertRaises(ContractError): self.verify()
 
+    def test_boolean_cannot_masquerade_as_native_integer(self):
+        for name in ('initialState','poisonedState','finalState','preActiveReflection',
+                     'preActiveDelegate','preCanaryCount','finalCanaryCount','nativeStimulusReturn'):
+            with self.subTest(field=name):
+                self.setUp()
+                self.raw[name] = True if name in ('poisonedState','finalState') else False
+                with self.assertRaises(ContractError): self.verify()
+
+    def test_nested_recovery_boolean_cannot_masquerade_as_integer(self):
+        self.raw['firstRecovery'] = self.raw['finalRecovery'] = json.dumps(
+            {'published':True,'stateCode':True,'disposition':'RestartRequired','terminalFailureCode':21})
+        with self.assertRaises(ContractError): self.verify()
+
     def test_no_fabricated_acceptance(self):
         self.raw['acceptance'] = True
         with self.assertRaises(ContractError): self.verify()
