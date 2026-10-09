@@ -22,6 +22,7 @@ class TerminalReceiptContractTests(unittest.TestCase):
             'initialState': 6, 'poisonedState': 9, 'finalState': 9,
             'prePositive': True, 'preActiveReflection': 42, 'preActiveDelegate': 42,
             'preCanaryCount': 1, 'finalCanaryCount': 1,
+            'preShadowField': 2, 'finalShadowField': 2, 'shadowFieldReadable': True,
             'activeReflectionAttempted': True, 'activeReflectionSucceeded': False,
             'activeReflectionException': 'System.Reflection.TargetInvocationException',
             'activeDelegateAttempted': True, 'activeDelegateSucceeded': False,
@@ -83,6 +84,13 @@ class TerminalReceiptContractTests(unittest.TestCase):
                     self.raw[prefix+suffix] = False if suffix == 'Attempted' else (
                         True if suffix == 'Succeeded' else '')
                     with self.assertRaises(ContractError): self.verify()
+
+    def test_shadow_body_side_effect_cannot_change(self):
+        for field, value in [('preShadowField', 0), ('finalShadowField', 3), ('shadowFieldReadable', False)]:
+            with self.subTest(field=field):
+                self.setUp()
+                self.raw[field] = value
+                with self.assertRaises(ContractError): self.verify()
 
     def test_aot_side_effect_cannot_change(self):
         self.raw['finalCanaryCount'] = 2
