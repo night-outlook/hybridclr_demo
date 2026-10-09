@@ -46,6 +46,32 @@ def prepare_ir(batch, role):
             'sourceManifestSha256': sha(manifest), 'configuration': str(config_path)}
 
 
+def ir_side_effect_fixture(batch):
+    binary = batch.root / 'bin/player-fixtures/PlayerFixtures.dll'
+    require(binary.is_file(), 'Original 15-fixture generator must complete first')
+    root = batch.root / 'host/ir-side-effect'
+    require(not root.exists(), 'IR fixture destination must be unused')
+    batch.command(['dotnet', str(binary), '--ir-target', str(root)], 120)
+    record = loads((root / 'ir-target.json').read_text())
+    require(record.get('schemaVersion') == 1 and record.get('kind') == 'R03IRSideEffectFixture' and
+            record.get('result') == 'GeneratedNotRuntimeValidated' and
+            record.get('assembly') == 'Methods' and record.get('instanceField') == 'R03.Node.stable' and
+            record.get('method') == 'R03.Node.Keep' and record.get('expectedIncrementPerCall') == 1 and
+            record.get('originalSFixtureUnchanged') is True and
+            record.get('runtimeAcceptance') is False, 'Exact distinct IR fixture contract')
+    dll = root / 'Methods.dll'
+    require(dll.is_file() and sha(dll) == record['sha256'] and
+            record['size'] == dll.stat().st_size, 'Real IR target DLL bytes')
+    original = batch.fixture_root / 'virtual-slot/Methods.dll'
+    require(sha(original) == batch.fixture_files['virtual-slot/Methods.dll']['sha256'] and
+            sha(original) != sha(dll), 'Original native fixture remains unchanged and IR target differs')
+    batch.ir_target = {'path': dll, 'sha256': sha(dll),
+                       'receipt': root / 'ir-target.json', 'receiptSha256': sha(root / 'ir-target.json')}
+    return {'receipt': str(batch.ir_target['receipt']),
+            'receiptSha256': batch.ir_target['receiptSha256'], 'targetSha256': sha(dll),
+            'targetBytes': dll.stat().st_size, 'originalFixtureSha256': sha(original)}
+
+
 def exact_int(value, expected):
     return type(value) is int and value == expected
 
@@ -105,13 +131,14 @@ def player(batch, case):
     state = batch.builds[role]
     root = batch.root / 'players' / case['id']
     root.mkdir(parents=True)
-    dll = batch.fixture_files['virtual-slot/Methods.dll']
-    input_path = batch.fixture_root / 'virtual-slot/Methods.dll'
+    require(hasattr(batch, 'ir_target') and
+            sha(batch.ir_target['path']) == batch.ir_target['sha256'] and
+            sha(batch.ir_target['receipt']) == batch.ir_target['receiptSha256'],
+            'IR target and source receipt are hash-bound')
     if case['stimulus'] == 'off':
         dll_path, dll_hash = '', ''
     else:
-        require(sha(input_path) == dll['sha256'], 'Exact unchanged compiled target DLL')
-        dll_path, dll_hash = str(input_path), dll['sha256']
+        dll_path, dll_hash = str(batch.ir_target['path']), batch.ir_target['sha256']
     nonce = uuid.uuid4().hex
     request = {'schemaVersion': 1, 'runId': nonce, 'caseId': case['id'],
                'baselineId': 'R03IR-Isolated-' + role, 'dllPath': dll_path,
@@ -143,12 +170,13 @@ def execute(workspace, output, unity, demo_commit):
     batch = Batch(workspace, output, unity, demo_commit)
     batch.cell('entry-authority', batch.authority)
     batch.cell('real-dll-fixtures', batch.fixtures, ('entry-authority',))
+    batch.cell('ir-side-effect-fixture', lambda: ir_side_effect_fixture(batch), ('real-dll-fixtures',))
     roles = [r for r in batch.matrix['roles'] if r['id'] in
              ('candidate-release', 'candidate-debug', 'candidate-off')]
     require(len(roles) == 3, 'Three required native build roles')
     for role in roles:
         name = role['id']
-        batch.cell('prepare-' + name, lambda r=role: prepare_ir(batch, r), ('real-dll-fixtures',))
+        batch.cell('prepare-' + name, lambda r=role: prepare_ir(batch, r), ('ir-side-effect-fixture',))
         batch.cell('build-' + name, lambda r=role: batch.build(r), ('prepare-' + name,))
     cases = [
         {'id':'IR-R03-02-release-baseline', 'role':'candidate-release', 'stimulus':'baseline-owner'},
@@ -161,7 +189,7 @@ def execute(workspace, output, unity, demo_commit):
     summary = {'schemaVersion':1, 'kind':'R03IRFocusedTerminalLocalBatch',
         'result':'ReturnRequired' if batch.failed else 'FocusedEvidenceReadyForPrimaryReview',
         'repositories':batch.pins, 'cells':batch.cells, 'freshBuilds':3,
-        'freshPlayers':4, 'scope':'baseline-owner + synthetic type-failure + OFF controls; not complete IR-R03-02',
+        'freshPlayers':4, 'scope':'IR-only side-effecting active Methods fixture; baseline-owner + synthetic type-failure + OFF controls; not complete IR-R03-02',
         'initializerFailure': 'NotRun', 'capturedGenericFailure': 'NotRun',
         'fullLegacyRegressionAcceptance':False, 'R03Accepted':False, 'H2Passed':False,
         'qualificationApproved':False, 'pureInterpreterExpansionEnabled':False}
