@@ -204,10 +204,10 @@ def player(batch, case):
     return verdict
 
 
-def execute(workspace, output, unity, demo_commit):
+def execute(workspace, output, unity, demo_commit, *, batch_type=Batch):
     require(HERE == Path(workspace).resolve() / 'hybridclr_demo/Tools/AssemblyShadow/R03IR',
             'Execute from the owning exact demo checkout')
-    batch = Batch(workspace, output, unity, demo_commit)
+    batch = batch_type(workspace, output, unity, demo_commit)
     batch.cell('entry-authority', batch.authority)
     batch.cell('real-dll-fixtures', lambda: original_s_fixtures(batch), ('entry-authority',))
     batch.cell('ir-generator-build', lambda: build_ir_generator(batch), ('real-dll-fixtures',))
