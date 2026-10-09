@@ -1,0 +1,85 @@
+name: R03 original S generated-source omitted-byte authentication
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-ir-omitted-source.yml'
+permissions:
+  contents: read
+jobs:
+  original-s-generated:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b
+          path: original-s
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/evidence-index.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/projects/resource-complete/Builds/AssemblyShadow/M07/*/il2cppOutput/Il2CppGenericMethodPointerTable.c
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/projects/resource-complete/Builds/AssemblyShadow/M07/*/il2cppOutput/Il2CppInvokerTable.cpp
+      - name: Check exact four generated C/C++ source blobs and original index membership
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/r03-ir-original-source"
+          python3 - <<'PY'
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          checkout=Path('original-s').resolve()
+          expected='fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b'
+          assert subprocess.check_output(['git','-C',str(checkout),'rev-parse','HEAD'],text=True).strip()==expected
+          root=(checkout/'Docs/AssemblyShadow/History/M07R/R03/'
+              'local-validation-20261007-batch-s-evidence-ready/batch')
+          indexpath=root/'evidence-index.json'
+          with indexpath.open('rb') as stream: indexbytes=stream.read()
+          assert hashlib.sha256(indexbytes).hexdigest()=='0685d23a40b581cc7d22abc543c7d9067e808a0f25fa0b3f2aea32966b22bd70'
+          index=json.loads(indexbytes)
+          indexed={item['path']:item for item in index['files']}
+          assert len(indexed)==15712 and len(index['files'])==15712
+          base=root/'projects/resource-complete/Builds/AssemblyShadow/M07'
+          specs={
+            'Il2CppGenericMethodPointerTable.c':('bf86c8ee7dffe81a23c0b21ccbdc37e7374d414c',11350766),
+            'Il2CppInvokerTable.cpp':('c5a9c6bb34b7a48c000e7c2f16f1b5d4844a4f86',8465159)
+          }
+          rows=[]
+          for file,(blob,size) in specs.items():
+            matches=sorted(base.glob('*/il2cppOutput/'+file))
+            assert len(matches)==2, (file, [str(p) for p in matches])
+            for source in matches:
+              real=source.read_bytes()
+              relative=source.relative_to(root).as_posix()
+              checksum=hashlib.sha256(real).hexdigest()
+              gotblob=hashlib.sha1(('blob '+str(len(real))+'\0').encode()+real).hexdigest()
+              assert len(real)==size and gotblob==blob
+              assert relative in indexed and indexed[relative]['size']==size
+              assert indexed[relative]['sha256']==checksum
+              assert b'\0' not in real and real.strip()
+              raw=real.decode('utf-8')
+              rows.append({'path':relative,'gitBlob':gotblob,'bytes':size,
+                'sha256':checksum,'lineCount':raw.count('\n')+int(bool(raw and not raw.endswith('\n'))),
+                'sourceKind':'GeneratedIL2CPPCOrCPP','semanticInspection':'NotPerformed'})
+          assert len(rows)==4 and len({r['gitBlob'] for r in rows})==2
+          assert not subprocess.check_output(['git','-C',str(checkout),'status','--porcelain'])
+          report={'kind':'R03IROriginalSOmittedGeneratedSourceIdentity','schemaVersion':1,
+            'result':'Passed','originalPublication':expected,
+            'originalIndexSha256':hashlib.sha256(indexbytes).hexdigest(),
+            'originalIndexedFiles':len(indexed),'sourceRows':rows,
+            'uniqueSourceBlobs':2,'rawSourceIdentityVerified':True,
+            'semanticInspectionCompleted':False,'unityRun':False,
+            'independentReviewer':False,'runtimeAcceptance':False,
+            'R03Accepted':False,'H2Passed':False}
+          out=Path(os.environ['RUNNER_TEMP'])/'r03-ir-original-source/results.json'
+          out.write_text(json.dumps(report,indent=2,sort_keys=True)+'\n')
+          print(json.dumps(report,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-original-s-generated-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-ir-original-source
+          retention-days: 30
+          if-no-files-found: warn
