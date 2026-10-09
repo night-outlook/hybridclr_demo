@@ -35,6 +35,8 @@ namespace AssemblyShadow.R03.IR
             public string unityVersion, platform, error, nativeGuardJson;
             public int nativeStimulusReturn, preActiveReflection, preActiveDelegate;
             public int preCanaryCount, finalCanaryCount;
+            public int preShadowField, finalShadowField;
+            public bool shadowFieldReadable;
             public bool prePositive, activeReflectionAttempted, activeReflectionSucceeded;
             public bool activeDelegateAttempted, activeDelegateSucceeded;
             public bool aotReflectionAttempted, aotReflectionSucceeded;
@@ -129,13 +131,19 @@ namespace AssemblyShadow.R03.IR
                 object instance = Activator.CreateInstance(activeType);
                 MethodInfo activeMethod = activeType.GetMethod("Keep", BindingFlags.Instance | BindingFlags.Public);
                 Require(activeMethod != null, "Active Keep method");
+                FieldInfo stableField = activeType.GetField("stable", BindingFlags.Instance | BindingFlags.NonPublic);
+                Require(stableField != null && stableField.FieldType == typeof(int),
+                    "IR active private primitive field required");
+                Require((int)stableField.GetValue(instance) == 0, "Fresh IR counter must start at zero");
                 Func<int> activeDelegate = (Func<int>)Delegate.CreateDelegate(typeof(Func<int>), instance, activeMethod);
                 report.preActiveReflection = (int)activeMethod.Invoke(instance, null);
                 report.preActiveDelegate = activeDelegate();
                 canary.Invoke(null, null);
                 report.preCanaryCount = s_canary;
+                report.preShadowField = (int)stableField.GetValue(instance);
                 report.prePositive = report.preActiveReflection == 42 &&
-                    report.preActiveDelegate == 42 && report.preCanaryCount == 1;
+                    report.preActiveDelegate == 42 && report.preCanaryCount == 1 &&
+                    report.preShadowField == 2;
                 Require(report.prePositive, "Pre-poison positive controls must really execute");
 
                 if (request.stimulus == "baseline-owner")
@@ -175,6 +183,11 @@ namespace AssemblyShadow.R03.IR
                 try { canary.Invoke(null, null); report.aotReflectionSucceeded = true; }
                 catch (Exception failure) { report.aotReflectionException = failure.GetType().FullName; }
                 report.finalCanaryCount = s_canary;
+                // Read the already resolved primitive FieldInfo after poison.
+                // A failed read cannot pass: we do not infer no body execution
+                // merely from a caught exception or unchanged AOT canary.
+                report.finalShadowField = (int)stableField.GetValue(instance);
+                report.shadowFieldReadable = true;
 
                 string diagnostics, execution;
                 Require(AssemblyShadowRuntime.GetState(out state) == AssemblyShadowErrorCode.Success,
@@ -199,6 +212,9 @@ namespace AssemblyShadow.R03.IR
                 Require(report.aotReflectionAttempted && !report.aotReflectionSucceeded &&
                     !string.IsNullOrEmpty(report.aotReflectionException) &&
                     report.finalCanaryCount == report.preCanaryCount, "AOT reflective body side effect forbidden");
+                Require(report.shadowFieldReadable && report.preShadowField == 2 &&
+                    report.finalShadowField == report.preShadowField,
+                    "Actual active shadow Keep method body must not mutate its instance field after poison");
                 report.result = "Passed";
             }
             catch (Exception error)
