@@ -6,6 +6,8 @@ on:
       - '.github/workflows/r03-ir-provenance.yml'
       - 'Tools/AssemblyShadow/R03IR/audit_s_provenance.py'
       - 'Tools/AssemblyShadow/R03IR/test_audit_s_provenance.py'
+      - 'Tools/AssemblyShadow/R03IR/audit_s_process_joins.py'
+      - 'Tools/AssemblyShadow/R03IR/test_audit_s_process_joins.py'
 permissions:
   contents: read
 jobs:
@@ -26,7 +28,10 @@ jobs:
           python3 -B - <<'PY' 2>&1 | tee "$RUNNER_TEMP/s-audit-host-tests.log"
           import json, os, sys, unittest
           from pathlib import Path
-          suite = unittest.defaultTestLoader.discover('tools/Tools/AssemblyShadow/R03IR', pattern='test_audit_s_provenance.py')
+          suite = unittest.TestSuite()
+          loader=unittest.defaultTestLoader
+          for name in ('test_audit_s_provenance.py','test_audit_s_process_joins.py'):
+            suite.addTests(loader.discover('tools/Tools/AssemblyShadow/R03IR', pattern=name))
           result = unittest.TextTestRunner(verbosity=2).run(suite)
           passed = result.wasSuccessful() and result.testsRun > 0 and not result.skipped
           record = {'kind': 'R03IRHostTests', 'result': 'Passed' if passed else 'Failed',
@@ -49,6 +54,13 @@ jobs:
         shell: bash
         run: |
           python3 -B tools/Tools/AssemblyShadow/R03IR/audit_s_provenance.py --repo "$GITHUB_WORKSPACE/original" --output "$RUNNER_TEMP/s-original-audit" --include-archive
+      - name: Bind all original S Player process identities to authenticated receipts
+        shell: bash
+        run: |
+          python3 -B tools/Tools/AssemblyShadow/R03IR/audit_s_process_joins.py \
+            --original "$GITHUB_WORKSPACE/original" \
+            --audit "$RUNNER_TEMP/s-original-audit" \
+            --output "$RUNNER_TEMP/s-original-process"
       - name: Bind audit outputs and actual script revision
         if: always()
         shell: bash
@@ -62,6 +74,9 @@ jobs:
           for suffix in ('json','log'):
             source=Path(os.environ['RUNNER_TEMP'])/('s-audit-host-tests.'+suffix)
             if source.is_file(): (out/('host-tests.'+suffix)).write_bytes(source.read_bytes())
+          joined=Path(os.environ['RUNNER_TEMP'])/'s-original-process/process-joins.json'
+          if not joined.is_file(): raise SystemExit('Required original S process crosswalk missing')
+          (out/'process-joins.json').write_bytes(joined.read_bytes())
           script=Path('tools/Tools/AssemblyShadow/R03IR/audit_s_provenance.py')
           tests=Path('tools/Tools/AssemblyShadow/R03IR/test_audit_s_provenance.py')
           sources={}
