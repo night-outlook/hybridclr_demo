@@ -1,0 +1,109 @@
+name: R03 IR side-effect fixture and S compatibility
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-ir-fixture.yml'
+      - 'Tools/AssemblyShadow/R03/PlayerFixtures/Program.cs'
+      - 'Tools/AssemblyShadow/R03/Fixtures/EvolutionFixtureCorpus.cs'
+      - 'Tools/AssemblyShadow/R03IR/**'
+permissions:
+  contents: read
+jobs:
+  original-and-ir:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+      - name: Exact required HybridCLR Unity revision
+        id: package
+        shell: python
+        run: |
+          import json,os,re
+          from pathlib import Path
+          data=json.loads(Path('hybridclr_demo/Tools/AssemblyShadow/R03/source-pins.json').read_text())
+          assert re.fullmatch('[0-9a-f]{40}',data['hybridclr_unity'])
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('sha='+data['hybridclr_unity']+'\n')
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: ${{ steps.package.outputs.sha }}
+          path: hybridclr_unity
+          persist-credentials: false
+      - name: Build exact new IR fixture generator
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/r03-ir-fixture"
+          dotnet build hybridclr_demo/Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj \
+            -c Release -v minimal \
+            -p:PackageRoot="$GITHUB_WORKSPACE/hybridclr_unity" \
+            -p:BaseIntermediateOutputPath="$RUNNER_TEMP/r03-ir-fixture/obj/" \
+            -p:OutputPath="$RUNNER_TEMP/r03-ir-fixture/bin/" \
+            2>&1 | tee "$RUNNER_TEMP/r03-ir-fixture/build.log"
+      - name: Generate original 15 and new IR target in separate fresh roots
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet "$RUNNER_TEMP/r03-ir-fixture/bin/PlayerFixtures.dll" \
+            --output "$RUNNER_TEMP/r03-ir-fixture/original" > "$RUNNER_TEMP/r03-ir-fixture/original.stdout.json"
+          dotnet "$RUNNER_TEMP/r03-ir-fixture/bin/PlayerFixtures.dll" \
+            --ir-target "$RUNNER_TEMP/r03-ir-fixture/ir" > "$RUNNER_TEMP/r03-ir-fixture/ir.stdout.json"
+      - name: Bind exact historical S fixture inventory and byte hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,os,urllib.request
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'r03-ir-fixture'
+          original=json.loads((root/'original/inventory.json').read_text())
+          url=('https://raw.githubusercontent.com/night-outlook/hybridclr_demo/'
+               'fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b/'
+               'Docs/AssemblyShadow/History/M07R/R03/'
+               'local-validation-20261007-batch-s-evidence-ready/batch/host/player-fixtures/inventory.json')
+          with urllib.request.urlopen(url,timeout=60) as response: historical=response.read()
+          blob=hashlib.sha1(('blob '+str(len(historical))+'\0').encode()+historical).hexdigest()
+          assert blob=='0688bd2dad054bd59fcdd1564a050a398cfa14e7',blob
+          expected=json.loads(historical)
+          assert len(original['files'])==len(expected['files'])==15
+          assert original['files']==expected['files'], 'All original S fixture bytes, MVIDs, sizes and refs must match'
+          target=json.loads((root/'ir/ir-target.json').read_text())
+          data=(root/'ir/Methods.dll').read_bytes()
+          assert target['kind']=='R03IRSideEffectFixture'
+          assert target['layoutEditorAdmission']=='Passed'
+          assert target['sideEffectInstructionsVerified'] is True
+          assert target['originalSFixtureUnchanged'] is True
+          assert target['runtimeAcceptance'] is False
+          assert target['sha256']==hashlib.sha256(data).hexdigest()
+          assert target['size']==len(data)
+          original_target=next(f for f in original['files'] if f['path']=='virtual-slot/Methods.dll')
+          assert target['sha256'] != original_target['sha256']
+          report={'kind':'R03IRFixtureCompatibility','result':'Passed',
+            'source':os.environ['GITHUB_SHA'],'historicalSBlob':blob,'originalFixtures':15,
+            'irTargetSha256':target['sha256'],'originalTargetSha256':original_target['sha256'],
+            'editorLayoutAdmission':'Passed','runtimeAcceptance':False,'playerRun':False,
+            'preservesOriginalS':True}
+          (root/'verified.json').write_text(json.dumps(report,indent=2)+'\n')
+          print(json.dumps(report,sort_keys=True))
+          PY
+          git -C hybridclr_demo diff --exit-code
+          git -C hybridclr_unity diff --exit-code
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-ir-fixture-${{ matrix.os }}-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/r03-ir-fixture/build.log
+            ${{ runner.temp }}/r03-ir-fixture/original/inventory.json
+            ${{ runner.temp }}/r03-ir-fixture/ir/ir-target.json
+            ${{ runner.temp }}/r03-ir-fixture/verified.json
+          retention-days: 14
+          if-no-files-found: warn
