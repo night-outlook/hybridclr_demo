@@ -73,7 +73,21 @@ jobs:
           assert blob=='0688bd2dad054bd59fcdd1564a050a398cfa14e7',blob
           expected=json.loads(historical)
           assert len(original['files'])==len(expected['files'])==15
-          assert original['files']==expected['files'], 'All original S fixture bytes, MVIDs, sizes and refs must match'
+          actual_by={row['path']:row for row in original['files']}
+          expected_by={row['path']:row for row in expected['files']}
+          assert set(actual_by)==set(expected_by)
+          differences=[]
+          for path in sorted(actual_by):
+            observed, historical=actual_by[path],expected_by[path]
+            differing={key:{'current':observed.get(key),'originalS':historical.get(key)}
+                       for key in sorted(set(observed)|set(historical))
+                       if observed.get(key)!=historical.get(key)}
+            if differing: differences.append({'path':path,'differences':differing})
+          print('ORIGINAL_S_FIXTURE_DIFFERENCES='+json.dumps(differences,sort_keys=True))
+          (root/'historical-differences.json').write_text(json.dumps(
+            {'result':'Matched' if not differences else 'Mismatch',
+             'originalSBlob':blob,'differences':differences},indent=2)+'\\n')
+          assert not differences, 'All original S fixture bytes, MVIDs, sizes and refs must match'
           target=json.loads((root/'ir/ir-target.json').read_text())
           data=(root/'ir/Methods.dll').read_bytes()
           assert target['kind']=='R03IRSideEffectFixture'
