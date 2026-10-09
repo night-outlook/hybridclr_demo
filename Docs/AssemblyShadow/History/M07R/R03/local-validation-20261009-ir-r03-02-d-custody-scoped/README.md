@@ -1,0 +1,9 @@
+# IR-R03-02 D scoped-custody prerequisite checkpoint — 2026-10-09
+
+**ScopedCustodyPreflightBlocked; runtime batch NotRun.** Source/API and fresh 64 Python / 69 native / ten verifier tests Passed; original 15 S fixture DLLs authenticated; C checkpoint matches original Git and S five artifacts/15,712 indexed files/15,713 archive members verify. Both actual published verifier invocations exit 2 on its 53-character native-limit SHA literal. The original C file remains unchanged with a valid 64-character SHA. No full live-map scan completed. Historical 339,367 surviving / 77,477 Missing are frozen C facts, not a fresh D census.
+
+Read preflight/LOCAL_PREFLIGHT_RESULT.json, VERIFIER_BINDING_DIAGNOSIS.json and both scoped-custody receipts/command streams. All 14 planned cells / three builds / four Players NotRun; PLANNED_RUNTIME_STATES is a prerequisite scope declaration, not an execution ledger. Zero diagnostic/execute wrapper invocations and zero Unity launches. All three batch/storage roots remain absent; no fresh storage admission or runtime seal. No source change or retry.
+
+COPY_BINDINGS and MANIFEST.sha256 authenticate exact additive evidence; original C maps/failure receipts remain in the prior immutable Git checkpoint, with no duplicate/rebaseline required. SOURCE_BINDINGS snapshots the actual Primary verifier, disposition and runtime/compiler pins. Both Local reports preserve earlier factual returns. Final validation/publication receipts stay external in the D preflight root to avoid self-referential publication hashes.
+
+Strict original custody stays Blocked; ScopedHistoricalLossStable was not achieved; S live-native provenance remains incomplete. C/S/R/Q/P/O/N/A/B histories are not reclassified. All acceptance flags remain false, full-stage independent review FAIL/re-review NotRun, PureInterpreter expansion disabled. Primary must correct/authenticate its pinned input and publish a fresh unused attempt; Local stops after D.

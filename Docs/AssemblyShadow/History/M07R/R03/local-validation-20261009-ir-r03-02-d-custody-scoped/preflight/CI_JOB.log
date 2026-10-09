@@ -1,0 +1,721 @@
+﻿2026-10-09T08:07:39.5688403Z Current runner version: '2.337.0'
+2026-10-09T08:07:39.5710672Z ##[group]Runner Image Provisioner
+2026-10-09T08:07:39.5711732Z Hosted Compute Agent
+2026-10-09T08:07:39.5712337Z Version: 20261002.596
+2026-10-09T08:07:39.5713043Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-09T08:07:39.5713725Z Build Date: 2026-10-02T22:28:27Z
+2026-10-09T08:07:39.5714434Z Worker ID: {6968b596-8ae4-48c8-90e2-fd4d5e70fbfe}
+2026-10-09T08:07:39.5715109Z Region: westcentralus
+2026-10-09T08:07:39.5715951Z Cloud: Azure
+2026-10-09T08:07:39.5716507Z ##[endgroup]
+2026-10-09T08:07:39.5717933Z ##[group]Operating System
+2026-10-09T08:07:39.5718541Z Ubuntu
+2026-10-09T08:07:39.5719041Z 24.04.5
+2026-10-09T08:07:39.5719515Z LTS
+2026-10-09T08:07:39.5720064Z ##[endgroup]
+2026-10-09T08:07:39.5720609Z ##[group]Runner Image
+2026-10-09T08:07:39.5721416Z Image: ubuntu-24.04
+2026-10-09T08:07:39.5722085Z Version: 20261004.327.1
+2026-10-09T08:07:39.5723360Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-09T08:07:39.5724827Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-09T08:07:39.5725740Z ##[endgroup]
+2026-10-09T08:07:39.5726750Z ##[group]GITHUB_TOKEN Permissions
+2026-10-09T08:07:39.5728943Z Contents: read
+2026-10-09T08:07:39.5729490Z Metadata: read
+2026-10-09T08:07:39.5730027Z ##[endgroup]
+2026-10-09T08:07:39.5732389Z Secret source: Actions
+2026-10-09T08:07:39.5733246Z Cache mode: write
+2026-10-09T08:07:39.5733927Z Prepare workflow directory
+2026-10-09T08:07:39.6028737Z Prepare all required actions
+2026-10-09T08:07:39.6085682Z Getting action download info
+2026-10-09T08:07:39.9216909Z Download action repository 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' (SHA:11bd71901bbe5b1630ceea73d27597364c9af683)
+2026-10-09T08:07:40.4748207Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-09T08:07:40.8002907Z Complete job name: managed-api
+2026-10-09T08:07:40.8714104Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+2026-10-09T08:07:40.8715665Z with:
+2026-10-09T08:07:40.8716246Z   path: hybridclr_demo
+2026-10-09T08:07:40.8716861Z   persist-credentials: false
+2026-10-09T08:07:40.8717555Z   repository: night-outlook/hybridclr_demo
+2026-10-09T08:07:40.8721962Z   token: ***
+2026-10-09T08:07:40.8722561Z   ssh-strict: true
+2026-10-09T08:07:40.8723127Z   ssh-user: git
+2026-10-09T08:07:40.8723662Z   clean: true
+2026-10-09T08:07:40.8724240Z   sparse-checkout-cone-mode: true
+2026-10-09T08:07:40.8724888Z   fetch-depth: 1
+2026-10-09T08:07:40.8725450Z   fetch-tags: false
+2026-10-09T08:07:40.8726048Z   show-progress: true
+2026-10-09T08:07:40.8726623Z   lfs: false
+2026-10-09T08:07:40.8727167Z   submodules: false
+2026-10-09T08:07:40.8727784Z   set-safe-directory: true
+2026-10-09T08:07:40.8728596Z ##[endgroup]
+2026-10-09T08:07:40.9701041Z Syncing repository: night-outlook/hybridclr_demo
+2026-10-09T08:07:40.9704906Z ##[group]Getting Git version info
+2026-10-09T08:07:40.9706543Z Working directory is '/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo'
+2026-10-09T08:07:40.9708693Z [command]/usr/bin/git version
+2026-10-09T08:07:41.1018538Z git version 2.55.0
+2026-10-09T08:07:41.1037451Z ##[endgroup]
+2026-10-09T08:07:41.1051134Z Temporarily overriding HOME='/home/runner/work/_temp/d13bbd1c-3e51-4267-aa9f-46de0365f1b7' before making global git config changes
+2026-10-09T08:07:41.1053186Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T08:07:41.1056869Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo
+2026-10-09T08:07:41.1345690Z ##[group]Initializing the repository
+2026-10-09T08:07:41.1351475Z [command]/usr/bin/git init /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo
+2026-10-09T08:07:41.1839082Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-09T08:07:41.1841603Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-09T08:07:41.1842896Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-09T08:07:41.1844003Z hint: call:
+2026-10-09T08:07:41.1844715Z hint:
+2026-10-09T08:07:41.1845461Z hint: 	git config --global init.defaultBranch <name>
+2026-10-09T08:07:41.1846265Z hint:
+2026-10-09T08:07:41.1846971Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-09T08:07:41.1848183Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-09T08:07:41.1849522Z hint:
+2026-10-09T08:07:41.1850238Z hint: 	git branch -m <name>
+2026-10-09T08:07:41.1850870Z hint:
+2026-10-09T08:07:41.1851959Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-09T08:07:41.1853564Z Initialized empty Git repository in /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/.git/
+2026-10-09T08:07:41.1856470Z [command]/usr/bin/git remote add origin https://github.com/night-outlook/hybridclr_demo
+2026-10-09T08:07:41.2121768Z ##[endgroup]
+2026-10-09T08:07:41.2123175Z ##[group]Disabling automatic garbage collection
+2026-10-09T08:07:41.2125434Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-09T08:07:41.2162096Z ##[endgroup]
+2026-10-09T08:07:41.2162962Z ##[group]Setting up auth
+2026-10-09T08:07:41.2170112Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T08:07:41.2204073Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T08:07:41.4232444Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T08:07:41.4265623Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T08:07:41.4448859Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-09T08:07:41.4489269Z ##[endgroup]
+2026-10-09T08:07:41.4492139Z ##[group]Fetching the repository
+2026-10-09T08:07:41.4502915Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +ba47b41674b83a6f694ac4f8ac1bc8f83a9da24b:refs/remotes/origin/codex/assembly-shadow-r01b-h1
+2026-10-09T08:09:09.2060580Z From https://github.com/night-outlook/hybridclr_demo
+2026-10-09T08:09:09.2062156Z  * [new ref]           ba47b41674b83a6f694ac4f8ac1bc8f83a9da24b -> origin/codex/assembly-shadow-r01b-h1
+2026-10-09T08:09:09.2066070Z ##[endgroup]
+2026-10-09T08:09:09.2067204Z ##[group]Determining the checkout info
+2026-10-09T08:09:09.2068531Z ##[endgroup]
+2026-10-09T08:09:09.2075471Z [command]/usr/bin/git sparse-checkout disable
+2026-10-09T08:09:09.2288407Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-09T08:09:09.2324751Z ##[group]Checking out the ref
+2026-10-09T08:09:09.2326359Z [command]/usr/bin/git checkout --progress --force -B codex/assembly-shadow-r01b-h1 refs/remotes/origin/codex/assembly-shadow-r01b-h1
+2026-10-09T08:09:10.3896385Z Updating files:   0% (1240/129644)
+2026-10-09T08:09:11.0624937Z Updating files:   1% (1297/129644)
+2026-10-09T08:09:11.3816060Z Updating files:   2% (2593/129644)
+2026-10-09T08:09:11.6854481Z Updating files:   2% (3057/129644)
+2026-10-09T08:09:12.5905221Z Updating files:   3% (3890/129644)
+2026-10-09T08:09:13.4607171Z Updating files:   3% (4738/129644)
+2026-10-09T08:09:14.0278652Z Updating files:   3% (4989/129644)
+2026-10-09T08:09:14.5745716Z Updating files:   4% (5186/129644)
+2026-10-09T08:09:15.3974913Z Updating files:   4% (5241/129644)
+2026-10-09T08:09:16.3901046Z Updating files:   4% (5492/129644)
+2026-10-09T08:09:16.4092853Z Updating files:   4% (6004/129644)
+2026-10-09T08:09:17.3646685Z Updating files:   5% (6483/129644)
+2026-10-09T08:09:18.3701731Z Updating files:   5% (6545/129644)
+2026-10-09T08:09:19.5398487Z Updating files:   5% (6921/129644)
+2026-10-09T08:09:20.1896408Z Updating files:   5% (7287/129644)
+2026-10-09T08:09:20.3959225Z Updating files:   6% (7779/129644)
+2026-10-09T08:09:21.4707807Z Updating files:   6% (7856/129644)
+2026-10-09T08:09:22.5947211Z Updating files:   6% (8476/129644)
+2026-10-09T08:09:23.3664840Z Updating files:   6% (8728/129644)
+2026-10-09T08:09:23.3830232Z Updating files:   6% (8990/129644)
+2026-10-09T08:09:24.3631154Z Updating files:   7% (9076/129644)
+2026-10-09T08:09:25.1675420Z Updating files:   7% (9387/129644)
+2026-10-09T08:09:25.9180586Z Updating files:   8% (10372/129644)
+2026-10-09T08:09:26.3752904Z Updating files:   8% (10433/129644)
+2026-10-09T08:09:27.3629923Z Updating files:   8% (10562/129644)
+2026-10-09T08:09:28.5148842Z Updating files:   8% (10856/129644)
+2026-10-09T08:09:29.1614466Z Updating files:   8% (11186/129644)
+2026-10-09T08:09:29.3683988Z Updating files:   9% (11668/129644)
+2026-10-09T08:09:30.5521418Z Updating files:   9% (11768/129644)
+2026-10-09T08:09:31.3753482Z Updating files:   9% (12439/129644)
+2026-10-09T08:09:32.4630952Z Updating files:   9% (12690/129644)
+2026-10-09T08:09:32.4825365Z Updating files:   9% (12942/129644)
+2026-10-09T08:09:33.3683928Z Updating files:  10% (12965/129644)
+2026-10-09T08:09:34.3382627Z Updating files:  10% (13307/129644)
+2026-10-09T08:09:34.3887210Z Updating files:  11% (14261/129644)
+2026-10-09T08:09:35.5334175Z Updating files:  11% (14336/129644)
+2026-10-09T08:09:36.3638799Z Updating files:  11% (14448/129644)
+2026-10-09T08:09:37.3666254Z Updating files:  11% (14733/129644)
+2026-10-09T08:09:38.2534950Z Updating files:  11% (15180/129644)
+2026-10-09T08:09:38.4710182Z Updating files:  12% (15558/129644)
+2026-10-09T08:09:39.1433912Z Updating files:  12% (15845/129644)
+2026-10-09T08:09:39.8657083Z Updating files:  13% (16854/129644)
+2026-10-09T08:09:40.3813519Z Updating files:  13% (17273/129644)
+2026-10-09T08:09:41.3659079Z Updating files:  13% (17414/129644)
+2026-10-09T08:09:42.5100424Z Updating files:  13% (17754/129644)
+2026-10-09T08:09:43.1006132Z Updating files:  13% (18026/129644)
+2026-10-09T08:09:43.5522483Z Updating files:  14% (18151/129644)
+2026-10-09T08:09:44.0983455Z Updating files:  14% (18693/129644)
+2026-10-09T08:09:44.8390493Z Updating files:  15% (19447/129644)
+2026-10-09T08:09:45.3625509Z Updating files:  15% (20174/129644)
+2026-10-09T08:09:46.5268131Z Updating files:  15% (20189/129644)
+2026-10-09T08:09:48.5466960Z Updating files:  15% (20554/129644)
+2026-10-09T08:09:48.5467797Z Updating files:  15% (20677/129644)
+2026-10-09T08:09:49.3676262Z Updating files:  16% (20744/129644)
+2026-10-09T08:09:50.3918227Z Updating files:  16% (20928/129644)
+2026-10-09T08:09:50.4485348Z Updating files:  16% (21609/129644)
+2026-10-09T08:09:51.5564615Z Updating files:  17% (22040/129644)
+2026-10-09T08:09:51.7978662Z Updating files:  17% (23154/129644)
+2026-10-09T08:09:52.3678234Z Updating files:  18% (23336/129644)
+2026-10-09T08:09:53.3628208Z Updating files:  18% (23416/129644)
+2026-10-09T08:09:54.3675377Z Updating files:  18% (23895/129644)
+2026-10-09T08:09:58.0483409Z Updating files:  18% (24135/129644)
+2026-10-09T08:10:01.7876491Z Updating files:  18% (24599/129644)
+2026-10-09T08:10:03.9167111Z Updating files:  18% (24600/129644)
+2026-10-09T08:10:03.9181447Z Updating files:  18% (24601/129644)
+2026-10-09T08:10:04.1964329Z Updating files:  19% (24633/129644)
+2026-10-09T08:10:04.3966244Z Updating files:  20% (25929/129644)
+2026-10-09T08:10:05.7983248Z Updating files:  20% (26075/129644)
+2026-10-09T08:10:06.3718687Z Updating files:  20% (26534/129644)
+2026-10-09T08:10:07.3634133Z Updating files:  20% (26763/129644)
+2026-10-09T08:10:08.1654540Z Updating files:  20% (26927/129644)
+2026-10-09T08:10:08.4915472Z Updating files:  21% (27226/129644)
+2026-10-09T08:10:09.6618257Z Updating files:  21% (27287/129644)
+2026-10-09T08:10:10.6284158Z Updating files:  21% (28005/129644)
+2026-10-09T08:10:11.4119065Z Updating files:  21% (28008/129644)
+2026-10-09T08:10:11.4533313Z Updating files:  21% (28011/129644)
+2026-10-09T08:10:12.4795647Z Updating files:  22% (28522/129644)
+2026-10-09T08:10:13.3752744Z Updating files:  22% (29168/129644)
+2026-10-09T08:10:14.3759822Z Updating files:  22% (29351/129644)
+2026-10-09T08:10:15.7336195Z Updating files:  22% (29453/129644)
+2026-10-09T08:10:16.3629855Z Updating files:  22% (29591/129644)
+2026-10-09T08:10:16.3949318Z Updating files:  22% (29808/129644)
+2026-10-09T08:10:17.0509136Z Updating files:  23% (29819/129644)
+2026-10-09T08:10:17.1677838Z Updating files:  24% (31115/129644)
+2026-10-09T08:10:17.3996794Z Updating files:  25% (32411/129644)
+2026-10-09T08:10:17.7483369Z Updating files:  25% (32433/129644)
+2026-10-09T08:10:17.8876300Z Updating files:  26% (33708/129644)
+2026-10-09T08:10:17.9862190Z Updating files:  27% (35004/129644)
+2026-10-09T08:10:18.4786091Z Updating files:  28% (36301/129644)
+2026-10-09T08:10:21.0122599Z Updating files:  28% (37314/129644)
+2026-10-09T08:10:21.3659108Z Updating files:  28% (37451/129644)
+2026-10-09T08:10:21.5284311Z Updating files:  28% (37558/129644)
+2026-10-09T08:10:22.4009732Z Updating files:  29% (37597/129644)
+2026-10-09T08:10:23.3742550Z Updating files:  29% (37703/129644)
+2026-10-09T08:10:24.3739360Z Updating files:  29% (38082/129644)
+2026-10-09T08:10:24.5440197Z Updating files:  29% (38340/129644)
+2026-10-09T08:10:25.6339952Z Updating files:  30% (38894/129644)
+2026-10-09T08:10:28.6596910Z Updating files:  30% (38927/129644)
+2026-10-09T08:10:30.3440326Z Updating files:  30% (38928/129644)
+2026-10-09T08:10:30.6732634Z Updating files:  30% (38929/129644)
+2026-10-09T08:10:31.6337156Z Updating files:  30% (38930/129644)
+2026-10-09T08:10:33.0843118Z Updating files:  30% (38933/129644)
+2026-10-09T08:10:33.3862752Z Updating files:  30% (40094/129644)
+2026-10-09T08:10:33.4560217Z Updating files:  30% (40095/129644)
+2026-10-09T08:10:34.8580321Z Updating files:  31% (40190/129644)
+2026-10-09T08:10:35.3629362Z Updating files:  31% (40518/129644)
+2026-10-09T08:10:36.0904917Z Updating files:  31% (40695/129644)
+2026-10-09T08:10:36.3532300Z Updating files:  32% (41487/129644)
+2026-10-09T08:10:36.3626817Z Updating files:  33% (42783/129644)
+2026-10-09T08:10:36.4467368Z Updating files:  33% (42798/129644)
+2026-10-09T08:10:36.6430236Z Updating files:  34% (44079/129644)
+2026-10-09T08:10:36.9905717Z Updating files:  35% (45376/129644)
+2026-10-09T08:10:37.1615909Z Updating files:  36% (46672/129644)
+2026-10-09T08:10:37.3626398Z Updating files:  37% (47969/129644)
+2026-10-09T08:10:37.3904328Z Updating files:  37% (48776/129644)
+2026-10-09T08:10:38.3695555Z Updating files:  38% (49265/129644)
+2026-10-09T08:10:41.0109826Z Updating files:  38% (50319/129644)
+2026-10-09T08:10:41.3630719Z Updating files:  38% (50333/129644)
+2026-10-09T08:10:41.5841095Z Updating files:  38% (50440/129644)
+2026-10-09T08:10:42.3634845Z Updating files:  39% (50562/129644)
+2026-10-09T08:10:43.3643425Z Updating files:  39% (50710/129644)
+2026-10-09T08:10:44.3656251Z Updating files:  39% (51077/129644)
+2026-10-09T08:10:44.8669311Z Updating files:  39% (51320/129644)
+2026-10-09T08:10:45.8884776Z Updating files:  40% (51858/129644)
+2026-10-09T08:10:46.5314258Z Updating files:  40% (52037/129644)
+2026-10-09T08:10:49.3276211Z Updating files:  40% (52038/129644)
+2026-10-09T08:10:51.9201462Z Updating files:  40% (52039/129644)
+2026-10-09T08:10:52.5643479Z Updating files:  40% (52040/129644)
+2026-10-09T08:10:53.3774321Z Updating files:  40% (52042/129644)
+2026-10-09T08:10:53.5578032Z Updating files:  40% (52257/129644)
+2026-10-09T08:10:54.6015192Z Updating files:  41% (53155/129644)
+2026-10-09T08:10:55.3713144Z Updating files:  41% (53328/129644)
+2026-10-09T08:10:56.3679068Z Updating files:  41% (53732/129644)
+2026-10-09T08:10:57.1341613Z Updating files:  41% (53899/129644)
+2026-10-09T08:10:57.3637572Z Updating files:  42% (54451/129644)
+2026-10-09T08:10:57.4046431Z Updating files:  42% (55495/129644)
+2026-10-09T08:10:57.5442290Z Updating files:  43% (55747/129644)
+2026-10-09T08:10:57.9579501Z Updating files:  44% (57044/129644)
+2026-10-09T08:10:58.2874810Z Updating files:  45% (58340/129644)
+2026-10-09T08:10:58.3625060Z Updating files:  46% (59637/129644)
+2026-10-09T08:10:58.6379997Z Updating files:  46% (59967/129644)
+2026-10-09T08:10:58.8684828Z Updating files:  47% (60933/129644)
+2026-10-09T08:10:58.9300718Z Updating files:  48% (62230/129644)
+2026-10-09T08:10:59.3629195Z Updating files:  49% (63526/129644)
+2026-10-09T08:10:59.4157173Z Updating files:  49% (64512/129644)
+2026-10-09T08:11:00.7193039Z Updating files:  50% (64822/129644)
+2026-10-09T08:11:01.4648196Z Updating files:  50% (65956/129644)
+2026-10-09T08:11:03.1908522Z Updating files:  50% (66100/129644)
+2026-10-09T08:11:03.4965304Z Updating files:  50% (66114/129644)
+2026-10-09T08:11:03.4985372Z Updating files:  50% (66115/129644)
+2026-10-09T08:11:04.5920124Z Updating files:  51% (66119/129644)
+2026-10-09T08:11:05.4245297Z Updating files:  51% (66366/129644)
+2026-10-09T08:11:06.4241763Z Updating files:  51% (66617/129644)
+2026-10-09T08:11:07.4338316Z Updating files:  51% (66868/129644)
+2026-10-09T08:11:07.4586544Z Updating files:  51% (67168/129644)
+2026-10-09T08:11:10.3720092Z Updating files:  52% (67415/129644)
+2026-10-09T08:11:13.4794342Z Updating files:  52% (67818/129644)
+2026-10-09T08:11:14.4353188Z Updating files:  52% (67821/129644)
+2026-10-09T08:11:15.3292150Z Updating files:  52% (67824/129644)
+2026-10-09T08:11:16.4367491Z Updating files:  53% (68712/129644)
+2026-10-09T08:11:17.3642642Z Updating files:  53% (69110/129644)
+2026-10-09T08:11:18.5409014Z Updating files:  53% (69421/129644)
+2026-10-09T08:11:19.3652732Z Updating files:  53% (69535/129644)
+2026-10-09T08:11:19.3653620Z Updating files:  53% (70007/129644)
+2026-10-09T08:11:19.6543102Z Updating files:  54% (70008/129644)
+2026-10-09T08:11:19.8222106Z Updating files:  55% (71305/129644)
+2026-10-09T08:11:20.2045658Z Updating files:  56% (72601/129644)
+2026-10-09T08:11:20.3642202Z Updating files:  57% (73898/129644)
+2026-10-09T08:11:20.5067050Z Updating files:  57% (74604/129644)
+2026-10-09T08:11:20.8122890Z Updating files:  58% (75194/129644)
+2026-10-09T08:11:21.0623228Z Updating files:  59% (76490/129644)
+2026-10-09T08:11:21.2190831Z Updating files:  60% (77787/129644)
+2026-10-09T08:11:21.3051615Z Updating files:  61% (79083/129644)
+2026-10-09T08:11:21.3627972Z Updating files:  62% (80380/129644)
+2026-10-09T08:11:21.7055605Z Updating files:  62% (80671/129644)
+2026-10-09T08:11:22.4467880Z Updating files:  63% (81676/129644)
+2026-10-09T08:11:24.5198686Z Updating files:  63% (82560/129644)
+2026-10-09T08:11:25.6974532Z Updating files:  63% (82576/129644)
+2026-10-09T08:11:26.2124327Z Updating files:  63% (82827/129644)
+2026-10-09T08:11:26.5227514Z Updating files:  64% (82973/129644)
+2026-10-09T08:11:27.5373860Z Updating files:  64% (83078/129644)
+2026-10-09T08:11:28.5960557Z Updating files:  64% (83329/129644)
+2026-10-09T08:11:29.0228034Z Updating files:  64% (83610/129644)
+2026-10-09T08:11:32.2693175Z Updating files:  65% (84269/129644)
+2026-10-09T08:11:35.4800000Z Updating files:  65% (84280/129644)
+2026-10-09T08:11:36.5690381Z Updating files:  65% (84281/129644)
+2026-10-09T08:11:38.2248313Z Updating files:  65% (84284/129644)
+2026-10-09T08:11:38.5357413Z Updating files:  65% (84286/129644)
+2026-10-09T08:11:39.2157251Z Updating files:  65% (84287/129644)
+2026-10-09T08:11:40.8242423Z Updating files:  66% (85566/129644)
+2026-10-09T08:11:41.3632442Z Updating files:  66% (85572/129644)
+2026-10-09T08:11:42.6249539Z Updating files:  66% (85760/129644)
+2026-10-09T08:11:43.3714412Z Updating files:  66% (85996/129644)
+2026-10-09T08:11:43.8552836Z Updating files:  66% (86246/129644)
+2026-10-09T08:11:44.1121628Z Updating files:  67% (86862/129644)
+2026-10-09T08:11:44.2135620Z Updating files:  68% (88158/129644)
+2026-10-09T08:11:44.4790818Z Updating files:  69% (89455/129644)
+2026-10-09T08:11:44.6640341Z Updating files:  69% (90094/129644)
+2026-10-09T08:11:44.9695300Z Updating files:  70% (90751/129644)
+2026-10-09T08:11:45.2488398Z Updating files:  71% (92048/129644)
+2026-10-09T08:11:45.3636630Z Updating files:  72% (93344/129644)
+2026-10-09T08:11:45.4826145Z Updating files:  72% (93963/129644)
+2026-10-09T08:11:45.5467422Z Updating files:  73% (94641/129644)
+2026-10-09T08:11:45.7031055Z Updating files:  74% (95937/129644)
+2026-10-09T08:11:46.0746312Z Updating files:  75% (97233/129644)
+2026-10-09T08:11:46.5905337Z Updating files:  76% (98530/129644)
+2026-10-09T08:11:48.4714552Z Updating files:  76% (98576/129644)
+2026-10-09T08:11:49.4579704Z Updating files:  76% (98871/129644)
+2026-10-09T08:11:50.5091394Z Updating files:  76% (99122/129644)
+2026-10-09T08:11:51.4403973Z Updating files:  76% (99374/129644)
+2026-10-09T08:11:51.6882952Z Updating files:  76% (99625/129644)
+2026-10-09T08:11:55.2488126Z Updating files:  77% (99826/129644)
+2026-10-09T08:11:57.1479042Z Updating files:  77% (100393/129644)
+2026-10-09T08:11:57.4727200Z Updating files:  77% (100394/129644)
+2026-10-09T08:12:00.7316068Z Updating files:  77% (100395/129644)
+2026-10-09T08:12:01.4288095Z Updating files:  77% (100397/129644)
+2026-10-09T08:12:01.4646910Z Updating files:  77% (100612/129644)
+2026-10-09T08:12:02.6217851Z Updating files:  78% (101123/129644)
+2026-10-09T08:12:03.3636249Z Updating files:  78% (101563/129644)
+2026-10-09T08:12:04.4242941Z Updating files:  78% (101946/129644)
+2026-10-09T08:12:05.2408805Z Updating files:  78% (101987/129644)
+2026-10-09T08:12:05.3631419Z Updating files:  79% (102419/129644)
+2026-10-09T08:12:05.4431385Z Updating files:  79% (102856/129644)
+2026-10-09T08:12:05.5120924Z Updating files:  80% (103716/129644)
+2026-10-09T08:12:05.8334542Z Updating files:  81% (105012/129644)
+2026-10-09T08:12:05.9338439Z Updating files:  82% (106309/129644)
+2026-10-09T08:12:06.0544944Z Updating files:  83% (107605/129644)
+2026-10-09T08:12:06.5697683Z Updating files:  84% (108901/129644)
+2026-10-09T08:12:06.5873238Z Updating files:  84% (109939/129644)
+2026-10-09T08:12:08.0300617Z Updating files:  85% (110198/129644)
+2026-10-09T08:12:08.3625657Z Updating files:  85% (111257/129644)
+2026-10-09T08:12:08.6353798Z Updating files:  85% (111336/129644)
+2026-10-09T08:12:09.5267206Z Updating files:  86% (111494/129644)
+2026-10-09T08:12:10.3703079Z Updating files:  86% (111509/129644)
+2026-10-09T08:12:11.3705390Z Updating files:  86% (111885/129644)
+2026-10-09T08:12:12.3627133Z Updating files:  86% (112148/129644)
+2026-10-09T08:12:12.3702490Z Updating files:  86% (112398/129644)
+2026-10-09T08:12:15.5796489Z Updating files:  87% (112791/129644)
+2026-10-09T08:12:18.0214626Z Updating files:  87% (112961/129644)
+2026-10-09T08:12:21.9479756Z Updating files:  87% (112962/129644)
+2026-10-09T08:12:24.2417955Z Updating files:  87% (112964/129644)
+2026-10-09T08:12:24.5573925Z Updating files:  87% (112965/129644)
+2026-10-09T08:12:25.4179231Z Updating files:  87% (112966/129644)
+2026-10-09T08:12:25.5830460Z Updating files:  87% (112969/129644)
+2026-10-09T08:12:26.4626953Z Updating files:  88% (114087/129644)
+2026-10-09T08:12:27.6487518Z Updating files:  88% (114598/129644)
+2026-10-09T08:12:28.3659794Z Updating files:  88% (115021/129644)
+2026-10-09T08:12:28.4378531Z Updating files:  88% (115310/129644)
+2026-10-09T08:12:28.8084450Z Updating files:  89% (115384/129644)
+2026-10-09T08:12:28.9768576Z Updating files:  90% (116680/129644)
+2026-10-09T08:12:29.0427957Z Updating files:  91% (117977/129644)
+2026-10-09T08:12:29.3213256Z Updating files:  92% (119273/129644)
+2026-10-09T08:12:29.3624753Z Updating files:  93% (120569/129644)
+2026-10-09T08:12:29.5882317Z Updating files:  93% (120804/129644)
+2026-10-09T08:12:29.8383145Z Updating files:  94% (121866/129644)
+2026-10-09T08:12:30.0061411Z Updating files:  95% (123162/129644)
+2026-10-09T08:12:30.0693196Z Updating files:  96% (124459/129644)
+2026-10-09T08:12:30.3635121Z Updating files:  97% (125755/129644)
+2026-10-09T08:12:30.3924265Z Updating files:  97% (126938/129644)
+2026-10-09T08:12:31.0529956Z Updating files:  98% (127052/129644)
+2026-10-09T08:12:31.8155963Z Updating files:  99% (128348/129644)
+2026-10-09T08:12:32.2786937Z Updating files:  99% (128361/129644)
+2026-10-09T08:12:32.6784243Z Updating files: 100% (129644/129644)
+2026-10-09T08:12:32.6785239Z Updating files: 100% (129644/129644), done.
+2026-10-09T08:12:32.7198164Z Switched to a new branch 'codex/assembly-shadow-r01b-h1'
+2026-10-09T08:12:32.7285658Z branch 'codex/assembly-shadow-r01b-h1' set up to track 'origin/codex/assembly-shadow-r01b-h1'.
+2026-10-09T08:12:32.8199396Z ##[endgroup]
+2026-10-09T08:12:33.0900484Z [command]/usr/bin/git log -1 --format=%H
+2026-10-09T08:12:33.0924959Z ba47b41674b83a6f694ac4f8ac1bc8f83a9da24b
+2026-10-09T08:12:33.2097552Z ##[group]Removing auth
+2026-10-09T08:12:33.2188406Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T08:12:33.2222165Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T08:12:33.2670535Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T08:12:33.2691160Z http.https://github.com/.extraheader
+2026-10-09T08:12:33.2698391Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-09T08:12:33.4196608Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T08:12:33.4547537Z ##[endgroup]
+2026-10-09T08:12:34.4713655Z ##[group]Run import json,os,re
+2026-10-09T08:12:34.4714199Z [36;1mimport json,os,re[0m
+2026-10-09T08:12:34.4714603Z [36;1mfrom pathlib import Path[0m
+2026-10-09T08:12:34.4715169Z [36;1md=json.loads(Path('hybridclr_demo/Tools/AssemblyShadow/R03/source-pins.json').read_text())[0m
+2026-10-09T08:12:34.4715801Z [36;1massert re.fullmatch(r'[0-9a-f]{40}',d['hybridclr_unity'])[0m
+2026-10-09T08:12:34.4716398Z [36;1mwith open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('sha='+d['hybridclr_unity']+'\n')[0m
+2026-10-09T08:12:35.6705971Z shell: /usr/bin/python {0}
+2026-10-09T08:12:35.6706419Z ##[endgroup]
+2026-10-09T08:12:35.8618343Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+2026-10-09T08:12:35.8618777Z with:
+2026-10-09T08:12:35.8619101Z   repository: night-outlook/hybridclr_unity
+2026-10-09T08:12:35.8619521Z   ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+2026-10-09T08:12:35.8619880Z   path: hybridclr_unity
+2026-10-09T08:12:35.8620224Z   persist-credentials: false
+2026-10-09T08:12:35.8622897Z   token: ***
+2026-10-09T08:12:35.8623196Z   ssh-strict: true
+2026-10-09T08:12:35.8623931Z   ssh-user: git
+2026-10-09T08:12:35.8624220Z   clean: true
+2026-10-09T08:12:35.8624540Z   sparse-checkout-cone-mode: true
+2026-10-09T08:12:35.8624873Z   fetch-depth: 1
+2026-10-09T08:12:35.8625145Z   fetch-tags: false
+2026-10-09T08:12:35.8625497Z   show-progress: true
+2026-10-09T08:12:35.8625825Z   lfs: false
+2026-10-09T08:12:35.8626124Z   submodules: false
+2026-10-09T08:12:35.8626417Z   set-safe-directory: true
+2026-10-09T08:12:35.8626715Z ##[endgroup]
+2026-10-09T08:12:37.1400488Z Syncing repository: night-outlook/hybridclr_unity
+2026-10-09T08:12:37.1402491Z ##[group]Getting Git version info
+2026-10-09T08:12:37.1403546Z Working directory is '/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity'
+2026-10-09T08:12:37.1459506Z [command]/usr/bin/git version
+2026-10-09T08:12:37.1502231Z git version 2.55.0
+2026-10-09T08:12:37.1518866Z ##[endgroup]
+2026-10-09T08:12:37.1531659Z Temporarily overriding HOME='/home/runner/work/_temp/27eaf399-7230-46d3-a380-79dac7dc1956' before making global git config changes
+2026-10-09T08:12:37.1533010Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T08:12:37.1536247Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity
+2026-10-09T08:12:37.1572019Z ##[group]Initializing the repository
+2026-10-09T08:12:37.1576523Z [command]/usr/bin/git init /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity
+2026-10-09T08:12:37.1657802Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-09T08:12:37.1659497Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-09T08:12:37.1663614Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-09T08:12:37.1664604Z hint: call:
+2026-10-09T08:12:37.1665497Z hint:
+2026-10-09T08:12:37.1666166Z hint: 	git config --global init.defaultBranch <name>
+2026-10-09T08:12:37.1666918Z hint:
+2026-10-09T08:12:37.1667654Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-09T08:12:37.1668574Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-09T08:12:37.1669891Z hint:
+2026-10-09T08:12:37.1670661Z hint: 	git branch -m <name>
+2026-10-09T08:12:37.1671361Z hint:
+2026-10-09T08:12:37.1672095Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-09T08:12:37.1673266Z Initialized empty Git repository in /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/.git/
+2026-10-09T08:12:37.1675352Z [command]/usr/bin/git remote add origin https://github.com/night-outlook/hybridclr_unity
+2026-10-09T08:12:37.1698095Z ##[endgroup]
+2026-10-09T08:12:37.1698830Z ##[group]Disabling automatic garbage collection
+2026-10-09T08:12:37.1702463Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-09T08:12:37.1730259Z ##[endgroup]
+2026-10-09T08:12:37.1730970Z ##[group]Setting up auth
+2026-10-09T08:12:37.1736852Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T08:12:37.1763896Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T08:12:37.1960596Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T08:12:37.1989603Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T08:12:37.2212090Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-09T08:12:37.2252227Z ##[endgroup]
+2026-10-09T08:12:37.2253310Z ##[group]Fetching the repository
+2026-10-09T08:12:37.2262420Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 948c0e3b4f8891481301770115e8ba4945eea6de
+2026-10-09T08:12:38.1852608Z From https://github.com/night-outlook/hybridclr_unity
+2026-10-09T08:12:38.1853313Z  * branch            948c0e3b4f8891481301770115e8ba4945eea6de -> FETCH_HEAD
+2026-10-09T08:12:38.1859171Z ##[endgroup]
+2026-10-09T08:12:38.1859822Z ##[group]Determining the checkout info
+2026-10-09T08:12:38.1861091Z ##[endgroup]
+2026-10-09T08:12:38.1867499Z [command]/usr/bin/git sparse-checkout disable
+2026-10-09T08:12:38.1909506Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-09T08:12:38.1940253Z ##[group]Checking out the ref
+2026-10-09T08:12:38.1945327Z [command]/usr/bin/git checkout --progress --force 948c0e3b4f8891481301770115e8ba4945eea6de
+2026-10-09T08:12:38.2337712Z Note: switching to '948c0e3b4f8891481301770115e8ba4945eea6de'.
+2026-10-09T08:12:38.2338142Z 
+2026-10-09T08:12:38.2338608Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-09T08:12:38.2339406Z changes and commit them, and you can discard any commits you make in this
+2026-10-09T08:12:38.2340179Z state without impacting any branches by switching back to a branch.
+2026-10-09T08:12:38.2340666Z 
+2026-10-09T08:12:38.2340867Z If you want to create a new branch to retain commits you create, you may
+2026-10-09T08:12:38.2341613Z do so (now or later) by using -c with the switch command. Example:
+2026-10-09T08:12:38.2341925Z 
+2026-10-09T08:12:38.2342105Z   git switch -c <new-branch-name>
+2026-10-09T08:12:38.2342290Z 
+2026-10-09T08:12:38.2342499Z Or undo this operation with:
+2026-10-09T08:12:38.2342917Z 
+2026-10-09T08:12:38.2343077Z   git switch -
+2026-10-09T08:12:38.2343239Z 
+2026-10-09T08:12:38.2343529Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-09T08:12:38.2343874Z 
+2026-10-09T08:12:38.2344168Z HEAD is now at 948c0e3 fix(r03): revalidate metadata in an equivalent captured resolution domain
+2026-10-09T08:12:38.2345595Z ##[endgroup]
+2026-10-09T08:12:38.2382914Z [command]/usr/bin/git log -1 --format=%H
+2026-10-09T08:12:38.2407093Z 948c0e3b4f8891481301770115e8ba4945eea6de
+2026-10-09T08:12:38.2415139Z ##[group]Removing auth
+2026-10-09T08:12:38.2419371Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T08:12:38.2445690Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T08:12:38.2624390Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T08:12:38.2644731Z http.https://github.com/.extraheader
+2026-10-09T08:12:38.2650139Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-09T08:12:38.2681538Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T08:12:38.2853238Z ##[endgroup]
+2026-10-09T08:12:38.2958426Z ##[group]Run import glob,hashlib,json,os,subprocess,xml.etree.ElementTree as ET
+2026-10-09T08:12:38.2959213Z [36;1mimport glob,hashlib,json,os,subprocess,xml.etree.ElementTree as ET[0m
+2026-10-09T08:12:38.2959722Z [36;1mfrom pathlib import Path[0m
+2026-10-09T08:12:38.2960173Z [36;1mroots={n:Path(n).resolve() for n in ('hybridclr_demo','hybridclr_unity')}[0m
+2026-10-09T08:12:38.2960682Z [36;1mdef git(root,*args):[0m
+2026-10-09T08:12:38.2961093Z [36;1m    return subprocess.check_output(['git','-C',str(root),*args])[0m
+2026-10-09T08:12:38.2961961Z [36;1mheads={n:git(p,'rev-parse','HEAD').decode().strip() for n,p in roots.items()}[0m
+2026-10-09T08:12:38.2962529Z [36;1mif heads['hybridclr_demo'] != os.environ['GITHUB_SHA']:[0m
+2026-10-09T08:12:38.2963045Z [36;1m    raise RuntimeError('Demo checkout differs from executing workflow SHA')[0m
+2026-10-09T08:12:38.2963595Z [36;1mdemo=roots['hybridclr_demo']; package=roots['hybridclr_unity'][0m
+2026-10-09T08:12:38.2964208Z [36;1mpins=demo/'Tools/AssemblyShadow/R03/source-pins.json'[0m
+2026-10-09T08:12:38.2964735Z [36;1mif heads['hybridclr_unity'] != json.loads(pins.read_text())['hybridclr_unity']:[0m
+2026-10-09T08:12:38.2965363Z [36;1m    raise RuntimeError('Package checkout differs from exact source pin')[0m
+2026-10-09T08:12:38.2965957Z [36;1mproject=demo/'Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj'[0m
+2026-10-09T08:12:38.2966464Z [36;1mxml=ET.parse(project)[0m
+2026-10-09T08:12:38.2966885Z [36;1mif xml.findtext('.//EnableDefaultCompileItems') != 'false':[0m
+2026-10-09T08:12:38.2967447Z [36;1m    raise RuntimeError('Input enumerator requires explicit Compile items')[0m
+2026-10-09T08:12:38.2967999Z [36;1minputs={project,pins,demo/'.github/workflows/r03-ir-player-api.yml'}[0m
+2026-10-09T08:12:38.2968428Z [36;1mcompiled=set()[0m
+2026-10-09T08:12:38.2968824Z [36;1mfor item in xml.findall('.//Compile'):[0m
+2026-10-09T08:12:38.2969209Z [36;1m    if set(item.attrib) != {'Include'}:[0m
+2026-10-09T08:12:38.2969739Z [36;1m        raise RuntimeError('Unsupported conditional or transformed Compile item')[0m
+2026-10-09T08:12:38.2970308Z [36;1m    pattern=item.attrib['Include'].replace('$(PackageRoot)',str(package))[0m
+2026-10-09T08:12:38.2970740Z [36;1m    if '$(' in pattern:[0m
+2026-10-09T08:12:38.2971152Z [36;1m        raise RuntimeError('Unresolved Compile property')[0m
+2026-10-09T08:12:38.2972128Z [36;1m    matches=glob.glob(str(project.parent/pattern))[0m
+2026-10-09T08:12:38.2972733Z [36;1m    if not matches:[0m
+2026-10-09T08:12:38.2973156Z [36;1m        raise RuntimeError('Compile input matched no files: '+pattern)[0m
+2026-10-09T08:12:38.2973579Z [36;1m    for match in matches:[0m
+2026-10-09T08:12:38.2973942Z [36;1m        p=Path(match)[0m
+2026-10-09T08:12:38.2974295Z [36;1m        if p.is_symlink() or not p.is_file():[0m
+2026-10-09T08:12:38.2974778Z [36;1m            raise RuntimeError('Compile input must be an ordinary file')[0m
+2026-10-09T08:12:38.2975243Z [36;1m        compiled.add(p.resolve())[0m
+2026-10-09T08:12:38.2975723Z [36;1mplayer=demo/'Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs'[0m
+2026-10-09T08:12:38.2976273Z [36;1mif player not in compiled:[0m
+2026-10-09T08:12:38.2976709Z [36;1m    raise RuntimeError('Current IR Player is not a compilation input')[0m
+2026-10-09T08:12:38.2977172Z [36;1minputs.update(compiled)[0m
+2026-10-09T08:12:38.2977508Z [36;1mrows=[][0m
+2026-10-09T08:12:38.2977809Z [36;1mfor p in sorted(inputs):[0m
+2026-10-09T08:12:38.2978259Z [36;1m    owners=[n for n,r in roots.items() if p.is_relative_to(r)][0m
+2026-10-09T08:12:38.2978669Z [36;1m    if len(owners) != 1:[0m
+2026-10-09T08:12:38.2979378Z [36;1m        raise RuntimeError('Input outside exactly one owned checkout')[0m
+2026-10-09T08:12:38.2979924Z [36;1m    name=owners[0]; root=roots[name]; rel=p.relative_to(root).as_posix()[0m
+2026-10-09T08:12:38.2980420Z [36;1m    data=p.read_bytes(); original=git(root,'show','HEAD:'+rel)[0m
+2026-10-09T08:12:38.2980952Z [36;1m    if data != original:[0m
+2026-10-09T08:12:38.2981602Z [36;1m        raise RuntimeError('Dirty compilation input: '+rel)[0m
+2026-10-09T08:12:38.2982200Z [36;1m    rows.append({'repository':'night-outlook/'+name,'path':rel,[0m
+2026-10-09T08:12:38.2982721Z [36;1m                 'gitBlob':git(root,'rev-parse','HEAD:'+rel).decode().strip(),[0m
+2026-10-09T08:12:38.2983245Z [36;1m                 'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data),[0m
+2026-10-09T08:12:38.2983721Z [36;1m                 'compileItem':p in compiled})[0m
+2026-10-09T08:12:38.2984199Z [36;1mreceipt={'schemaVersion':1,'kind':'R03IRManagedCompileInputsV1',[0m
+2026-10-09T08:12:38.2984754Z [36;1m         'demoCommit':heads['hybridclr_demo'],'packageCommit':heads['hybridclr_unity'],[0m
+2026-10-09T08:12:38.2985429Z [36;1m         'runId':os.environ['GITHUB_RUN_ID'],'runAttempt':os.environ['GITHUB_RUN_ATTEMPT'],[0m
+2026-10-09T08:12:38.2985965Z [36;1m         'targetFramework':xml.findtext('.//TargetFramework'),[0m
+2026-10-09T08:12:38.2986436Z [36;1m         'languageVersion':xml.findtext('.//LangVersion'),[0m
+2026-10-09T08:12:38.2986913Z [36;1m         'defineConstants':xml.findtext('.//DefineConstants'),[0m
+2026-10-09T08:12:38.2987433Z [36;1m         'unityEnvironment':'checked-in API stubs; not official Unity managed assemblies',[0m
+2026-10-09T08:12:38.2988076Z [36;1m         'unityRun':False,'playerRun':False,'runtimeAcceptance':False,'inputs':rows}[0m
+2026-10-09T08:12:38.2988614Z [36;1mout=Path(os.environ['RUNNER_TEMP'])/'r03-ir-managed'[0m
+2026-10-09T08:12:38.2989082Z [36;1mout.mkdir(parents=True,exist_ok=True)[0m
+2026-10-09T08:12:38.2989578Z [36;1m(out/'compile-inputs.json').write_text(json.dumps(receipt,indent=2)+'\n')[0m
+2026-10-09T08:12:38.2990125Z [36;1mprint('R03_IR_COMPILE_INPUTS_JSON='+json.dumps(receipt,sort_keys=True))[0m
+2026-10-09T08:12:38.3020845Z shell: /usr/bin/python {0}
+2026-10-09T08:12:38.3021450Z ##[endgroup]
+2026-10-09T08:12:38.4064854Z R03_IR_COMPILE_INPUTS_JSON={"defineConstants": "UNITY_EDITOR", "demoCommit": "ba47b41674b83a6f694ac4f8ac1bc8f83a9da24b", "inputs": [{"bytes": 8471, "compileItem": false, "gitBlob": "84e41b46181b401c6d20ecc710f7ebe420032d1e", "path": ".github/workflows/r03-ir-player-api.yml", "repository": "night-outlook/hybridclr_demo", "sha256": "43a198d30a76104ed7252ffb14c6bc2a9519f1dbe41d979e506c192a4f988259"}, {"bytes": 829, "compileItem": false, "gitBlob": "863a506f8910aa8c3d627519d71670fd4b4dee82", "path": "Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj", "repository": "night-outlook/hybridclr_demo", "sha256": "7f035218fd6180cf92854cc63e434d5e22744abfe974e191bd5d0de23a16c6b8"}, {"bytes": 223, "compileItem": true, "gitBlob": "ac521490b7e5f6dd10d96d893554e54ba3b41391", "path": "Tools/AssemblyShadow/R03/PlayerApiCompile/UnityEditorNamespace.cs", "repository": "night-outlook/hybridclr_demo", "sha256": "b447a9df5c70f2d96b2ed8b1cc5db209eae30416295c1e76195880d28cbd689b"}, {"bytes": 1414, "compileItem": true, "gitBlob": "454b4d26904e17d8d790f13c1aedcf7cf1f991c9", "path": "Tools/AssemblyShadow/R03/PlayerApiCompile/UnityEnvironment.cs", "repository": "night-outlook/hybridclr_demo", "sha256": "3ee4f9f55349990adfc7a8f440678a8cf47d4720262cab84fc8975e849fecb88"}, {"bytes": 16598, "compileItem": true, "gitBlob": "7de584b682c9582a4bf58a776b7634f63d13bc28", "path": "Tools/AssemblyShadow/R03/PlayerProject/R03Player.cs", "repository": "night-outlook/hybridclr_demo", "sha256": "50084f29f61cfc8a0284b4d9f9dc04c6f5063354a2389f4a0491938c09164847"}, {"bytes": 309, "compileItem": false, "gitBlob": "053fba3e55f1a3c219fe125affcb20f790649c86", "path": "Tools/AssemblyShadow/R03/source-pins.json", "repository": "night-outlook/hybridclr_demo", "sha256": "45dde95a6a87b04aa62fccff7a2a0c595ff77a683e4ac9c045bb03bd60fc32ea"}, {"bytes": 15402, "compileItem": true, "gitBlob": "adc798c6c299594d496393c6729c4c6087111b31", "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs", "repository": "night-outlook/hybridclr_demo", "sha256": "22c3e0be7cebc041706b1412c5fc317c806c49a0980be143d5517dc4cc59a7bd"}, {"bytes": 14899, "compileItem": true, "gitBlob": "2e5d6460cd007a50cd73f188a333d7948bf0a899", "path": "Runtime/AssemblyShadow/AssemblyShadowCapabilityReader.cs", "repository": "night-outlook/hybridclr_unity", "sha256": "e1898cdbe2423972779f32a9cfa1eb21e7946658c2f999d2473dd896cbc26cea"}, {"bytes": 9210, "compileItem": true, "gitBlob": "e958e1bf4fcadce9cee90f96badd87cf2b4730ca", "path": "Runtime/AssemblyShadow/AssemblyShadowDiagnostics.cs", "repository": "night-outlook/hybridclr_unity", "sha256": "cc37f2f4fa5b48137141725cfbadd3fe800aaf4489de14705b30f09e8678393f"}, {"bytes": 1006, "compileItem": true, "gitBlob": "cb3d24f6bff54a8cc6efe3fdc0251991bce7c4bd", "path": "Runtime/AssemblyShadow/AssemblyShadowErrorCode.cs", "repository": "night-outlook/hybridclr_unity", "sha256": "8b82b1467f61e0933cb25dd4ad3ae995d9553ee9f1c66bdb49dfc45579b310ac"}, {"bytes": 890, "compileItem": true, "gitBlob": "6c01afc94bc2c6f2592d5f38a0468175c8c9405c", "path": "Runtime/AssemblyShadow/AssemblyShadowException.cs", "repository": "night-outlook/hybridclr_unity", "sha256": "00af34991c6f072a14e17de31bbd204c2e36b7f29eb72306cf8f6e557ef1f530"}, {"bytes": 16287, "compileItem": true, "gitBlob": "b9c7a24fe8b3a38733742c1f604efaabdc6b66d7", "path": "Runtime/AssemblyShadow/AssemblyShadowExecutionDiagnostics.cs", "repository": "night-outlook/hybridclr_unity", "sha256": "dea6e1cd3886ee89cb30c1d30ed08b5eacbcb3a4caa18fcc14fd9a24315888a2"}, {"bytes": 25668, "compileItem": true, "gitBlob": "eb2669ac6418eb625b4e23ca6424c2ef4ae2fb99", "path": "Runtime/AssemblyShadow/AssemblyShadowMetadataCapacity.cs", "repository": "night-outlook/hybridclr_unity", "sha256": "a167f761b94dfc2a08b80246cdda87190bbd045e375fb88f76c18f1092dee3b3"}, {"bytes": 7925, "compileItem": true, "gitBlob": "13d28d1217bff1851b139f2b646d2a7b54456e45", "path": "Runtime/AssemblyShadow/AssemblyShadowRecoveryInfo.cs", "repository": "night-outlook/hybridclr_unity", "sha256": "2f265d447fde9e65d5e2896fc4ab6f1a5b2231c8c6940dc4567fac33ba91d132"}, {"bytes": 11481, "compileItem": true, "gitBlob": "5c00c7da5af3b82ddca126c3d5668c750da43b4d", "path": "Runtime/AssemblyShadow/AssemblyShadowRuntime.cs", "repository": "night-outlook/hybridclr_unity", "sha256": "b4346e73636bdb7b8b054d5168579c08891109f76f9e0221d7f3dd61e55b284d"}, {"bytes": 568, "compileItem": true, "gitBlob": "2e38c5de48182aa0daa0d6db9cee957f0785a2b6", "path": "Runtime/AssemblyShadow/AssemblyShadowState.cs", "repository": "night-outlook/hybridclr_unity", "sha256": "1880789f70eab10636a96fb6389a6086f8b409e6d421ae92b40ad69235694c08"}, {"bytes": 21726, "compileItem": true, "gitBlob": "787da8a19e26ba5dce05f900c19ebbb4ac01129a", "path": "Runtime/AssemblyShadow/AssemblyShadowTypeResolutionInfo.cs", "repository": "night-outlook/hybridclr_unity", "sha256": "5a68b5a4e70991901f5836128d5899d6e9502e138b993907bfea9bf138217f78"}, {"bytes": 97, "compileItem": true, "gitBlob": "f2448566938c6f3b50fe859fe71491adf9d41277", "path": "Runtime/HomologousImageMode.cs", "repository": "night-outlook/hybridclr_unity", "sha256": "e5d509fd65e9060a0b3d9c7a79e658e9edbd43fa69cf151cc3eeb900f1712f4f"}, {"bytes": 651, "compileItem": true, "gitBlob": "d32781018d96cea82d21c3043517114ab5618b66", "path": "Runtime/LoadImageErrorCode.cs", "repository": "night-outlook/hybridclr_unity", "sha256": "271ce9e6f1d529739f15cfa6d3884a02cedec71f1dfeaf1f78a2e04e22c7b1dd"}, {"bytes": 500, "compileItem": true, "gitBlob": "33083139769c53afbe0e8ff4f213b292ba417fd9", "path": "Runtime/ReversePInvokeWrapperGenerationAttribute.cs", "repository": "night-outlook/hybridclr_unity", "sha256": "7add859f1dae092bb5948514e7802de32b0653eb846a6a527c6c7e07e6d7154e"}, {"bytes": 8546, "compileItem": true, "gitBlob": "805c85c993de3dcb980d7d35fa4ad849fac9672e", "path": "Runtime/RuntimeApi.cs", "repository": "night-outlook/hybridclr_unity", "sha256": "71dba96eae32651c2f72fa20736d5cee228bd19c686a75dc5ec4559eac239cc9"}, {"bytes": 655, "compileItem": true, "gitBlob": "c91f29c475f7b36729a2e75b32c931ae0846de02", "path": "Runtime/RuntimeOptionId.cs", "repository": "night-outlook/hybridclr_unity", "sha256": "55b75f2d4e7058d5f78e7479c02fe2ac085432842fe3393c5e2bc3df6a0046f6"}], "kind": "R03IRManagedCompileInputsV1", "languageVersion": "9.0", "packageCommit": "948c0e3b4f8891481301770115e8ba4945eea6de", "playerRun": false, "runAttempt": "1", "runId": "37903041633", "runtimeAcceptance": false, "schemaVersion": 1, "targetFramework": "net8.0", "unityEnvironment": "checked-in API stubs; not official Unity managed assemblies", "unityRun": false}
+2026-10-09T08:12:38.4146698Z ##[group]Run set -euo pipefail
+2026-10-09T08:12:38.4147093Z [36;1mset -euo pipefail[0m
+2026-10-09T08:12:38.4147534Z [36;1mdotnet --info > "$RUNNER_TEMP/r03-ir-managed/dotnet-info.txt"[0m
+2026-10-09T08:12:38.4148233Z [36;1mdotnet build hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj \[0m
+2026-10-09T08:12:38.4148803Z [36;1m  -c Release -v normal \[0m
+2026-10-09T08:12:38.4149208Z [36;1m  -p:PackageRoot="$GITHUB_WORKSPACE/hybridclr_unity" \[0m
+2026-10-09T08:12:38.4149707Z [36;1m  -p:BaseIntermediateOutputPath="$RUNNER_TEMP/r03-ir-managed/obj/" \[0m
+2026-10-09T08:12:38.4150226Z [36;1m  -p:OutputPath="$RUNNER_TEMP/r03-ir-managed/bin/" \[0m
+2026-10-09T08:12:38.4150689Z [36;1m  -bl:"$RUNNER_TEMP/r03-ir-managed/build.binlog" \[0m
+2026-10-09T08:12:38.4151121Z [36;1m  2>&1 | tee "$RUNNER_TEMP/r03-ir-managed/build.log"[0m
+2026-10-09T08:12:38.4151813Z [36;1mgit -C hybridclr_demo diff --check[0m
+2026-10-09T08:12:38.4152345Z [36;1mgit -C hybridclr_demo diff --exit-code[0m
+2026-10-09T08:12:38.4152831Z [36;1mgit -C hybridclr_unity diff --exit-code[0m
+2026-10-09T08:12:38.4862747Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T08:12:38.4863225Z ##[endgroup]
+2026-10-09T08:12:43.0843393Z Build started 10/09/2026 08:12:43.
+2026-10-09T08:12:45.7116954Z      1>Project "/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj" on node 1 (Restore target(s)).
+2026-10-09T08:12:45.7118584Z      1>_GetAllRestoreProjectPathItems:
+2026-10-09T08:12:45.7118978Z          Determining projects to restore...
+2026-10-09T08:12:46.2038509Z        Restore:
+2026-10-09T08:12:46.2039447Z          X.509 certificate chain validation will use the fallback certificate bundle at '/usr/share/dotnet/sdk/10.0.401/trustedroots/codesignctl.pem'.
+2026-10-09T08:12:46.3160017Z          X.509 certificate chain validation will use the fallback certificate bundle at '/usr/share/dotnet/sdk/10.0.401/trustedroots/timestampctl.pem'.
+2026-10-09T08:12:46.5430832Z          Restoring packages for /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj...
+2026-10-09T08:12:46.5909060Z          Generating MSBuild file /home/runner/work/_temp/r03-ir-managed/obj/PlayerApiCompile.csproj.nuget.g.props.
+2026-10-09T08:12:46.6111154Z          Generating MSBuild file /home/runner/work/_temp/r03-ir-managed/obj/PlayerApiCompile.csproj.nuget.g.targets.
+2026-10-09T08:12:46.6407621Z          Writing assets file to disk. Path: /home/runner/work/_temp/r03-ir-managed/obj/project.assets.json
+2026-10-09T08:12:46.7202353Z          Restored /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj (in 85 ms).
+2026-10-09T08:12:46.7227878Z          
+2026-10-09T08:12:46.7228398Z          NuGet Config files used:
+2026-10-09T08:12:46.7228997Z              /home/runner/.nuget/NuGet/NuGet.Config
+2026-10-09T08:12:46.7229633Z          
+2026-10-09T08:12:46.7230041Z          Feeds used:
+2026-10-09T08:12:46.7230487Z              https://api.nuget.org/v3/index.json
+2026-10-09T08:12:46.7260481Z      1>Done Building Project "/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj" (Restore target(s)).
+2026-10-09T08:12:46.9056518Z    1:7>Project "/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj" on node 1 (default targets).
+2026-10-09T08:12:46.9058156Z      1>PrepareForBuild:
+2026-10-09T08:12:46.9058956Z          Creating directory "/home/runner/work/_temp/r03-ir-managed/bin/".
+2026-10-09T08:12:46.9059978Z          Creating directory "/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/".
+2026-10-09T08:12:46.9061165Z          Creating directory "/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/refint/".
+2026-10-09T08:12:46.9062596Z          Creating directory "/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/ref".
+2026-10-09T08:12:47.6989526Z        _GenerateSourceLinkFile:
+2026-10-09T08:12:47.6990476Z          Updating Source Link file '/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/PlayerApiCompile.sourcelink.json'.
+2026-10-09T08:12:47.7456261Z        CoreCompile:
+2026-10-09T08:12:47.7456682Z          Setting DOTNET_ROOT to '/usr/share/dotnet'
+2026-10-09T08:12:47.7623671Z          /usr/share/dotnet/sdk/10.0.401/Roslyn/bincore/csc /noconfig /unsafe+ /checked- /nowarn:1701,1702,1701,1702,8002 /fullpaths /nostdlib+ /errorreport:prompt /warn:8 /define:UNITY_EDITOR;RELEASE;NET;NET8_0;NETCOREAPP;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER /highentropyva+ /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/Microsoft.CSharp.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/Microsoft.VisualBasic.Core.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/Microsoft.VisualBasic.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/Microsoft.Win32.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/Microsoft.Win32.Registry.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/mscorlib.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/netstandard.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.AppContext.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Buffers.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Collections.Concurrent.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Collections.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Collections.Immutable.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Collections.NonGeneric.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Collections.Specialized.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ComponentModel.Annotations.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ComponentModel.DataAnnotations.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ComponentModel.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ComponentModel.EventBasedAsync.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ComponentModel.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ComponentModel.TypeConverter.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Configuration.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Console.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Core.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Data.Common.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Data.DataSetExtensions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Data.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.Contracts.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.Debug.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.DiagnosticSource.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.FileVersionInfo.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.Process.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.StackTrace.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.TextWriterTraceListener.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.Tools.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.TraceSource.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.Tracing.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Drawing.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Drawing.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Dynamic.Runtime.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Formats.Asn1.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Formats.Tar.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Globalization.Calendars.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Globalization.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Globalization.Extensions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.Compression.Brotli.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.Compression.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.Compression.FileSystem.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.Compression.ZipFile.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.FileSystem.AccessControl.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.FileSystem.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.FileSystem.DriveInfo.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.FileSystem.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.FileSystem.Watcher.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.IsolatedStorage.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.MemoryMappedFiles.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.Pipes.AccessControl.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.Pipes.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.UnmanagedMemoryStream.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Linq.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Linq.Expressions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Linq.Parallel.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Linq.Queryable.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Memory.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Http.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Http.Json.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.HttpListener.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Mail.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.NameResolution.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.NetworkInformation.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Ping.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Quic.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Requests.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Security.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.ServicePoint.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Sockets.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.WebClient.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.WebHeaderCollection.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.WebProxy.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.WebSockets.Client.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.WebSockets.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Numerics.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Numerics.Vectors.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ObjectModel.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.DispatchProxy.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.Emit.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.Emit.ILGeneration.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.Emit.Lightweight.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.Extensions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.Metadata.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.TypeExtensions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Resources.Reader.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Resources.ResourceManager.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Resources.Writer.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.CompilerServices.Unsafe.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.CompilerServices.VisualC.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Extensions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Handles.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.InteropServices.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.InteropServices.JavaScript.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.InteropServices.RuntimeInformation.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Intrinsics.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Loader.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Numerics.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Serialization.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Serialization.Formatters.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Serialization.Json.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Serialization.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Serialization.Xml.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.AccessControl.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Claims.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.Algorithms.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.Cng.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.Csp.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.Encoding.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.OpenSsl.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.X509Certificates.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Principal.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Principal.Windows.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.SecureString.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ServiceModel.Web.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ServiceProcess.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Text.Encoding.CodePages.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Text.Encoding.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Text.Encoding.Extensions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Text.Encodings.Web.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Text.Json.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Text.RegularExpressions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Channels.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Overlapped.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Tasks.Dataflow.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Tasks.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Tasks.Extensions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Tasks.Parallel.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Thread.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.ThreadPool.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Timer.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Transactions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Transactions.Local.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ValueTuple.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Web.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Web.HttpUtility.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Windows.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.Linq.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.ReaderWriter.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.Serialization.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.XDocument.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.XmlDocument.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.XmlSerializer.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.XPath.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.XPath.XDocument.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/WindowsBase.dll /debug- /debug:portable /filealign:512 /optimize+ /out:/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/PlayerApiCompile.dll /refout:/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/refint/PlayerApiCompile.dll /target:library /warnaserror- /utf8output /deterministic+ /sourcelink:/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/PlayerApiCompile.sourcelink.json /langversion:9.0 /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/HomologousImageMode.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/LoadImageErrorCode.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/ReversePInvokeWrapperGenerationAttribute.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/RuntimeApi.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/RuntimeOptionId.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowCapabilityReader.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowDiagnostics.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowErrorCode.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowException.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowExecutionDiagnostics.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowMetadataCapacity.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowRecoveryInfo.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowRuntime.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowState.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowTypeResolutionInfo.cs /embed:"/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" /embed:/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/PlayerApiCompile.AssemblyInfo.cs /analyzerconfig:/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/PlayerApiCompile.GeneratedMSBuildEditorConfig.editorconfig /analyzerconfig:/usr/share/dotnet/sdk/10.0.401/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_8_default.globalconfig /analyzer:/usr/share/dotnet/sdk/10.0.401/Sdks/Microsoft.NET.Sdk/targets/../analyzers/Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll /analyzer:/usr/share/dotnet/sdk/10.0.401/Sdks/Microsoft.NET.Sdk/targets/../analyzers/Microsoft.CodeAnalysis.NetAnalyzers.dll /analyzer:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/analyzers/dotnet/cs/Microsoft.Interop.ComInterfaceGenerator.dll /analyzer:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/analyzers/dotnet/cs/Microsoft.Interop.JavaScript.JSImportGenerator.dll /analyzer:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/analyzers/dotnet/cs/Microsoft.Interop.LibraryImportGenerator.dll /analyzer:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/analyzers/dotnet/cs/Microsoft.Interop.SourceGeneration.dll /analyzer:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/analyzers/dotnet/cs/System.Text.Json.SourceGeneration.dll /analyzer:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/analyzers/dotnet/cs/System.Text.RegularExpressions.Generator.dll UnityEnvironment.cs UnityEditorNamespace.cs ../PlayerProject/R03Player.cs ../../R03IR/PlayerProject/R03TerminalPlayer.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/HomologousImageMode.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/LoadImageErrorCode.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/ReversePInvokeWrapperGenerationAttribute.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/RuntimeApi.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/RuntimeOptionId.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowCapabilityReader.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowDiagnostics.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowErrorCode.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowException.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowExecutionDiagnostics.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowMetadataCapacity.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowRecoveryInfo.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowRuntime.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowState.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowTypeResolutionInfo.cs "/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" /home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/PlayerApiCompile.AssemblyInfo.cs /warnaserror+:NU1605,SYSLIB0011
+2026-10-09T08:12:47.7694764Z          Compilation request PlayerApiCompile (net8.0), PathToTool=/usr/share/dotnet/sdk/10.0.401/Roslyn/bincore/csc
+2026-10-09T08:12:47.7763038Z          CommandLine = ' /noconfig'
+2026-10-09T08:12:47.7838303Z          BuildResponseFile = '/unsafe+ /checked- /nowarn:1701,1702,1701,1702,8002 /fullpaths /nostdlib+ /errorreport:prompt /warn:8 /define:UNITY_EDITOR;RELEASE;NET;NET8_0;NETCOREAPP;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER /highentropyva+ /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/Microsoft.CSharp.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/Microsoft.VisualBasic.Core.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/Microsoft.VisualBasic.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/Microsoft.Win32.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/Microsoft.Win32.Registry.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/mscorlib.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/netstandard.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.AppContext.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Buffers.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Collections.Concurrent.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Collections.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Collections.Immutable.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Collections.NonGeneric.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Collections.Specialized.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ComponentModel.Annotations.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ComponentModel.DataAnnotations.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ComponentModel.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ComponentModel.EventBasedAsync.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ComponentModel.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ComponentModel.TypeConverter.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Configuration.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Console.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Core.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Data.Common.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Data.DataSetExtensions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Data.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.Contracts.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.Debug.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.DiagnosticSource.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.FileVersionInfo.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.Process.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.StackTrace.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.TextWriterTraceListener.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.Tools.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.TraceSource.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Diagnostics.Tracing.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Drawing.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Drawing.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Dynamic.Runtime.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Formats.Asn1.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Formats.Tar.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Globalization.Calendars.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Globalization.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Globalization.Extensions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.Compression.Brotli.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.Compression.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.Compression.FileSystem.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.Compression.ZipFile.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.FileSystem.AccessControl.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.FileSystem.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.FileSystem.DriveInfo.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.FileSystem.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.FileSystem.Watcher.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.IsolatedStorage.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.MemoryMappedFiles.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.Pipes.AccessControl.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.Pipes.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.IO.UnmanagedMemoryStream.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Linq.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Linq.Expressions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Linq.Parallel.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Linq.Queryable.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Memory.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Http.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Http.Json.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.HttpListener.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Mail.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.NameResolution.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.NetworkInformation.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Ping.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Quic.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Requests.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Security.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.ServicePoint.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.Sockets.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.WebClient.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.WebHeaderCollection.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.WebProxy.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.WebSockets.Client.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Net.WebSockets.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Numerics.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Numerics.Vectors.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ObjectModel.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.DispatchProxy.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.Emit.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.Emit.ILGeneration.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.Emit.Lightweight.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.Extensions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.Metadata.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Reflection.TypeExtensions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Resources.Reader.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Resources.ResourceManager.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Resources.Writer.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.CompilerServices.Unsafe.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.CompilerServices.VisualC.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Extensions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Handles.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.InteropServices.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.InteropServices.JavaScript.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.InteropServices.RuntimeInformation.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Intrinsics.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Loader.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Numerics.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Serialization.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Serialization.Formatters.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Serialization.Json.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Serialization.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Runtime.Serialization.Xml.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.AccessControl.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Claims.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.Algorithms.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.Cng.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.Csp.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.Encoding.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.OpenSsl.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.Primitives.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Cryptography.X509Certificates.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Principal.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.Principal.Windows.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Security.SecureString.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ServiceModel.Web.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ServiceProcess.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Text.Encoding.CodePages.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Text.Encoding.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Text.Encoding.Extensions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Text.Encodings.Web.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Text.Json.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Text.RegularExpressions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Channels.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Overlapped.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Tasks.Dataflow.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Tasks.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Tasks.Extensions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Tasks.Parallel.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Thread.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.ThreadPool.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Threading.Timer.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Transactions.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Transactions.Local.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.ValueTuple.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Web.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Web.HttpUtility.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Windows.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.Linq.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.ReaderWriter.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.Serialization.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.XDocument.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.XmlDocument.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.XmlSerializer.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.XPath.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/System.Xml.XPath.XDocument.dll /reference:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/ref/net8.0/WindowsBase.dll /debug- /debug:portable /filealign:512 /optimize+ /out:/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/PlayerApiCompile.dll /refout:/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/refint/PlayerApiCompile.dll /target:library /warnaserror- /utf8output /deterministic+ /sourcelink:/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/PlayerApiCompile.sourcelink.json /langversion:9.0 /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/HomologousImageMode.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/LoadImageErrorCode.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/ReversePInvokeWrapperGenerationAttribute.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/RuntimeApi.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/RuntimeOptionId.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowCapabilityReader.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowDiagnostics.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowErrorCode.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowException.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowExecutionDiagnostics.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowMetadataCapacity.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowRecoveryInfo.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowRuntime.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowState.cs /embed:/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowTypeResolutionInfo.cs /embed:"/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" /embed:/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/PlayerApiCompile.AssemblyInfo.cs /analyzerconfig:/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/PlayerApiCompile.GeneratedMSBuildEditorConfig.editorconfig /analyzerconfig:/usr/share/dotnet/sdk/10.0.401/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_8_default.globalconfig /analyzer:/usr/share/dotnet/sdk/10.0.401/Sdks/Microsoft.NET.Sdk/targets/../analyzers/Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll /analyzer:/usr/share/dotnet/sdk/10.0.401/Sdks/Microsoft.NET.Sdk/targets/../analyzers/Microsoft.CodeAnalysis.NetAnalyzers.dll /analyzer:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/analyzers/dotnet/cs/Microsoft.Interop.ComInterfaceGenerator.dll /analyzer:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/analyzers/dotnet/cs/Microsoft.Interop.JavaScript.JSImportGenerator.dll /analyzer:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/analyzers/dotnet/cs/Microsoft.Interop.LibraryImportGenerator.dll /analyzer:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/analyzers/dotnet/cs/Microsoft.Interop.SourceGeneration.dll /analyzer:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/analyzers/dotnet/cs/System.Text.Json.SourceGeneration.dll /analyzer:/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.31/analyzers/dotnet/cs/System.Text.RegularExpressions.Generator.dll UnityEnvironment.cs UnityEditorNamespace.cs ../PlayerProject/R03Player.cs ../../R03IR/PlayerProject/R03TerminalPlayer.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/HomologousImageMode.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/LoadImageErrorCode.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/ReversePInvokeWrapperGenerationAttribute.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/RuntimeApi.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/RuntimeOptionId.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowCapabilityReader.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowDiagnostics.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowErrorCode.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowException.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowExecutionDiagnostics.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowMetadataCapacity.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowRecoveryInfo.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowRuntime.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowState.cs /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowTypeResolutionInfo.cs "/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" /home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/PlayerApiCompile.AssemblyInfo.cs /warnaserror+:NU1605,SYSLIB0011'
+2026-10-09T08:12:47.7913548Z          Attempting to create process '/usr/share/dotnet/sdk/10.0.401/Roslyn/bincore/VBCSCompiler' "-pipename:Csjs0dRZiiDRtWiB7_tWZgK6lV72gkodHbVB7A7CP54"
+2026-10-09T08:12:47.7914482Z          Setting DOTNET_ROOT to '/usr/share/dotnet'
+2026-10-09T08:12:47.8074900Z          Successfully created process with process id 2759
+2026-10-09T08:12:47.8078404Z          Attempt to open named pipe 'Csjs0dRZiiDRtWiB7_tWZgK6lV72gkodHbVB7A7CP54'
+2026-10-09T08:12:47.8080245Z          Attempt to connect named pipe 'Csjs0dRZiiDRtWiB7_tWZgK6lV72gkodHbVB7A7CP54'
+2026-10-09T08:12:49.0764709Z          Named pipe 'Csjs0dRZiiDRtWiB7_tWZgK6lV72gkodHbVB7A7CP54' connected
+2026-10-09T08:12:49.0790556Z          Begin writing request for PlayerApiCompile (net8.0)
+2026-10-09T08:12:49.0791975Z          End writing request for PlayerApiCompile (net8.0)
+2026-10-09T08:12:49.0792823Z          Begin reading response for PlayerApiCompile (net8.0)
+2026-10-09T08:12:54.2463533Z          End reading response for PlayerApiCompile (net8.0)
+2026-10-09T08:12:54.2520677Z      1>/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(22,27): warning CS0649: Field 'R03TerminalPlayer.Request.runId' is never assigned to, and will always have its default value null [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2527086Z      1>/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(26,52): warning CS0649: Field 'R03TerminalPlayer.NativeGuard.baselineGuard' is never assigned to, and will always have its default value 0 [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2529650Z      1>/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(22,74): warning CS0649: Field 'R03TerminalPlayer.Request.stimulus' is never assigned to, and will always have its default value null [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2532396Z      1>/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(26,67): warning CS0649: Field 'R03TerminalPlayer.NativeGuard.caughtOldGuard' is never assigned to, and will always have its default value 0 [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2534901Z      1>/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(21,24): warning CS0649: Field 'R03TerminalPlayer.Request.schemaVersion' is never assigned to, and will always have its default value 0 [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2537432Z      1>/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(22,54): warning CS0649: Field 'R03TerminalPlayer.Request.dllPath' is never assigned to, and will always have its default value null [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2539881Z      1>/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(22,42): warning CS0649: Field 'R03TerminalPlayer.Request.baselineId' is never assigned to, and will always have its default value null [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2542513Z      1>/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(26,39): warning CS0649: Field 'R03TerminalPlayer.NativeGuard.activeGuard' is never assigned to, and will always have its default value 0 [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2544983Z      1>/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(22,34): warning CS0649: Field 'R03TerminalPlayer.Request.caseId' is never assigned to, and will always have its default value null [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2547377Z      1>/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(26,24): warning CS0649: Field 'R03TerminalPlayer.NativeGuard.schemaVersion' is never assigned to, and will always have its default value 0 [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2549822Z      1>/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(26,83): warning CS0649: Field 'R03TerminalPlayer.NativeGuard.stateCode' is never assigned to, and will always have its default value 0 [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2553103Z      1>/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(27,25): warning CS0649: Field 'R03TerminalPlayer.NativeGuard.available' is never assigned to, and will always have its default value false [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2557039Z      1>/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(22,63): warning CS0649: Field 'R03TerminalPlayer.Request.dllSha256' is never assigned to, and will always have its default value null [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2559091Z          CompilerServer: server - server processed compilation - PlayerApiCompile (net8.0)
+2026-10-09T08:12:54.2758003Z        CopyFilesToOutputDirectory:
+2026-10-09T08:12:54.2759104Z          Copying file from "/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/PlayerApiCompile.dll" to "/home/runner/work/_temp/r03-ir-managed/bin/PlayerApiCompile.dll".
+2026-10-09T08:12:54.2770361Z          Copying reference assembly from "/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/refint/PlayerApiCompile.dll" to "/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/ref/PlayerApiCompile.dll".
+2026-10-09T08:12:54.2775362Z          PlayerApiCompile -> /home/runner/work/_temp/r03-ir-managed/bin/PlayerApiCompile.dll
+2026-10-09T08:12:54.2787328Z          Copying file from "/home/runner/work/_temp/r03-ir-managed/obj/Release/net8.0/PlayerApiCompile.pdb" to "/home/runner/work/_temp/r03-ir-managed/bin/PlayerApiCompile.pdb".
+2026-10-09T08:12:54.2862902Z      1>Done Building Project "/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj" (default targets).
+2026-10-09T08:12:54.2941727Z 
+2026-10-09T08:12:54.2949672Z Build succeeded.
+2026-10-09T08:12:54.2950085Z 
+2026-10-09T08:12:54.2950710Z        "/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj" (default target) (1:7) ->
+2026-10-09T08:12:54.2951932Z        (CoreCompile target) -> 
+2026-10-09T08:12:54.2953435Z          /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(22,27): warning CS0649: Field 'R03TerminalPlayer.Request.runId' is never assigned to, and will always have its default value null [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2956106Z          /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(26,52): warning CS0649: Field 'R03TerminalPlayer.NativeGuard.baselineGuard' is never assigned to, and will always have its default value 0 [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2958617Z          /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(22,74): warning CS0649: Field 'R03TerminalPlayer.Request.stimulus' is never assigned to, and will always have its default value null [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2961128Z          /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(26,67): warning CS0649: Field 'R03TerminalPlayer.NativeGuard.caughtOldGuard' is never assigned to, and will always have its default value 0 [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2963688Z          /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(21,24): warning CS0649: Field 'R03TerminalPlayer.Request.schemaVersion' is never assigned to, and will always have its default value 0 [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2966085Z          /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(22,54): warning CS0649: Field 'R03TerminalPlayer.Request.dllPath' is never assigned to, and will always have its default value null [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2968534Z          /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(22,42): warning CS0649: Field 'R03TerminalPlayer.Request.baselineId' is never assigned to, and will always have its default value null [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2971018Z          /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(26,39): warning CS0649: Field 'R03TerminalPlayer.NativeGuard.activeGuard' is never assigned to, and will always have its default value 0 [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2973500Z          /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(22,34): warning CS0649: Field 'R03TerminalPlayer.Request.caseId' is never assigned to, and will always have its default value null [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2976100Z          /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(26,24): warning CS0649: Field 'R03TerminalPlayer.NativeGuard.schemaVersion' is never assigned to, and will always have its default value 0 [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2978519Z          /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(26,83): warning CS0649: Field 'R03TerminalPlayer.NativeGuard.stateCode' is never assigned to, and will always have its default value 0 [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2980988Z          /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(27,25): warning CS0649: Field 'R03TerminalPlayer.NativeGuard.available' is never assigned to, and will always have its default value false [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2983455Z          /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs(22,63): warning CS0649: Field 'R03TerminalPlayer.Request.dllSha256' is never assigned to, and will always have its default value null [/home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj]
+2026-10-09T08:12:54.2984703Z 
+2026-10-09T08:12:54.2984834Z     13 Warning(s)
+2026-10-09T08:12:54.2985163Z     0 Error(s)
+2026-10-09T08:12:54.2985329Z 
+2026-10-09T08:12:54.2985560Z BinaryLogger wrote to: /home/runner/work/_temp/r03-ir-managed/build.binlog
+2026-10-09T08:12:54.2985876Z 
+2026-10-09T08:12:54.2986043Z Time Elapsed 00:00:11.21
+2026-10-09T08:12:55.1681567Z ##[group]Run import hashlib,json,os,subprocess
+2026-10-09T08:12:55.1682132Z [36;1mimport hashlib,json,os,subprocess[0m
+2026-10-09T08:12:55.1682526Z [36;1mfrom pathlib import Path[0m
+2026-10-09T08:12:55.1682914Z [36;1mout=Path(os.environ['RUNNER_TEMP'])/'r03-ir-managed'[0m
+2026-10-09T08:12:55.1683503Z [36;1minputs=out/'compile-inputs.json'; receipt=json.loads(inputs.read_text())[0m
+2026-10-09T08:12:55.1684113Z [36;1mfor name,key in (('hybridclr_demo','demoCommit'),('hybridclr_unity','packageCommit')):[0m
+2026-10-09T08:12:55.1684767Z [36;1m    head=subprocess.check_output(['git','-C',name,'rev-parse','HEAD']).decode().strip()[0m
+2026-10-09T08:12:55.1685283Z [36;1m    if head != receipt[key]:[0m
+2026-10-09T08:12:55.1685684Z [36;1m        raise RuntimeError('Checkout changed during compilation')[0m
+2026-10-09T08:12:55.1686148Z [36;1mfor row in receipt['inputs']:[0m
+2026-10-09T08:12:55.1686547Z [36;1m    p=Path(row['repository'].split('/')[1])/row['path'][0m
+2026-10-09T08:12:55.1687239Z [36;1m    if hashlib.sha256(p.read_bytes()).hexdigest() != row['sha256']:[0m
+2026-10-09T08:12:55.1687956Z [36;1m        raise RuntimeError('Compilation input changed during build: '+str(p))[0m
+2026-10-09T08:12:55.1688474Z [36;1massembly=out/'bin/PlayerApiCompile.dll'[0m
+2026-10-09T08:12:55.1688916Z [36;1mif not assembly.is_file() or assembly.stat().st_size == 0:[0m
+2026-10-09T08:12:55.1689377Z [36;1m    raise RuntimeError('Missing actual compiler output')[0m
+2026-10-09T08:12:55.1690025Z [36;1mresult={'schemaVersion':1,'kind':'R03IRManagedCompileResultV1','result':'Passed',[0m
+2026-10-09T08:12:55.1690649Z [36;1m        'demoCommit':receipt['demoCommit'],'packageCommit':receipt['packageCommit'],[0m
+2026-10-09T08:12:55.1691356Z [36;1m        'runId':receipt['runId'],'runAttempt':receipt['runAttempt'],[0m
+2026-10-09T08:12:55.1691877Z [36;1m        'inputsSha256':hashlib.sha256(inputs.read_bytes()).hexdigest(),[0m
+2026-10-09T08:12:55.1692463Z [36;1m        'buildLogSha256':hashlib.sha256((out/'build.log').read_bytes()).hexdigest(),[0m
+2026-10-09T08:12:55.1693104Z [36;1m        'outputSha256':hashlib.sha256(assembly.read_bytes()).hexdigest(),[0m
+2026-10-09T08:12:55.1693697Z [36;1m        'unchangedInputs':True,'unityRun':False,'playerRun':False,'runtimeAcceptance':False}[0m
+2026-10-09T08:12:55.1694311Z [36;1m(out/'compile-result.json').write_text(json.dumps(result,indent=2)+'\n')[0m
+2026-10-09T08:12:55.1694915Z [36;1mprint('R03_IR_COMPILE_RESULT_JSON='+json.dumps(result,sort_keys=True))[0m
+2026-10-09T08:12:55.1725915Z shell: /usr/bin/python {0}
+2026-10-09T08:12:55.1726312Z ##[endgroup]
+2026-10-09T08:12:55.2076485Z R03_IR_COMPILE_RESULT_JSON={"buildLogSha256": "a2805d2bf18a7004f5cb1b2197b8fba3f9f1edb4fac6f4ec2fc0d27dc820ae72", "demoCommit": "ba47b41674b83a6f694ac4f8ac1bc8f83a9da24b", "inputsSha256": "e905754b191949b61fc552c179df4cbefc05c6f2f25d364291c84aa1041ea243", "kind": "R03IRManagedCompileResultV1", "outputSha256": "d77aa02aa94897b759f45794891dd100b8a15efb089a2fd6a5435f3921c9b494", "packageCommit": "948c0e3b4f8891481301770115e8ba4945eea6de", "playerRun": false, "result": "Passed", "runAttempt": "1", "runId": "37903041633", "runtimeAcceptance": false, "schemaVersion": 1, "unchangedInputs": true, "unityRun": false}
+2026-10-09T08:12:55.2248320Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-09T08:12:55.2248798Z with:
+2026-10-09T08:12:55.2249165Z   name: r03-ir-managed-ba47b41674b83a6f694ac4f8ac1bc8f83a9da24b
+2026-10-09T08:12:55.2249636Z   path: /home/runner/work/_temp/r03-ir-managed
+2026-10-09T08:12:55.2250014Z   retention-days: 14
+2026-10-09T08:12:55.2250311Z   if-no-files-found: error
+2026-10-09T08:12:55.2250670Z   compression-level: 6
+2026-10-09T08:12:55.2250970Z   overwrite: false
+2026-10-09T08:12:55.2251427Z   include-hidden-files: false
+2026-10-09T08:12:55.2252021Z ##[endgroup]
+2026-10-09T08:12:55.4070621Z (node:2828) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-09T08:12:55.4072052Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-09T08:12:55.4181496Z With the provided path, there will be 24 files uploaded
+2026-10-09T08:12:55.4192159Z Artifact name is valid!
+2026-10-09T08:12:55.4193400Z Root directory input is valid!
+2026-10-09T08:12:55.7836385Z Beginning upload of artifact content to blob storage
+2026-10-09T08:12:55.8804611Z (node:2828) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-09T08:12:56.3743677Z Uploaded bytes 557663
+2026-10-09T08:12:56.4386247Z Finished uploading artifact content to blob storage!
+2026-10-09T08:12:56.4387449Z SHA256 digest of uploaded artifact zip is de434b6e31839908cefd6653cf986e9225767ec6f2c16b694e943c63b5c0df2f
+2026-10-09T08:12:56.4388585Z Finalizing artifact upload
+2026-10-09T08:12:56.7063145Z Artifact r03-ir-managed-ba47b41674b83a6f694ac4f8ac1bc8f83a9da24b.zip successfully finalized. Artifact ID 11603880990
+2026-10-09T08:12:56.7064617Z Artifact r03-ir-managed-ba47b41674b83a6f694ac4f8ac1bc8f83a9da24b has been successfully uploaded! Final size is 557663 bytes. Artifact ID is 11603880990
+2026-10-09T08:12:56.7069122Z Artifact download URL: https://github.com/night-outlook/hybridclr_demo/actions/runs/37903041633/artifacts/11603880990
+2026-10-09T08:12:56.7265871Z Post job cleanup.
+2026-10-09T08:12:56.8108889Z [command]/usr/bin/git version
+2026-10-09T08:12:56.8151888Z git version 2.55.0
+2026-10-09T08:12:56.8191800Z Temporarily overriding HOME='/home/runner/work/_temp/9323ffc5-4212-4338-9584-8ee05506c45f' before making global git config changes
+2026-10-09T08:12:56.8193152Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T08:12:56.8197378Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity
+2026-10-09T08:12:56.8233974Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T08:12:56.8265579Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T08:12:56.8470445Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T08:12:56.8498557Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T08:12:56.8884771Z Post job cleanup.
+2026-10-09T08:12:56.9825097Z [command]/usr/bin/git version
+2026-10-09T08:12:56.9862252Z git version 2.55.0
+2026-10-09T08:12:56.9896412Z Temporarily overriding HOME='/home/runner/work/_temp/efd0dc85-4159-4afd-b1bb-fef4a3f67f04' before making global git config changes
+2026-10-09T08:12:56.9897961Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T08:12:56.9899349Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo
+2026-10-09T08:12:56.9936171Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T08:12:56.9968155Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T08:12:57.0379239Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T08:12:57.0410674Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T08:12:57.0933440Z Cleaning up orphan processes
+2026-10-09T08:12:57.1446124Z Terminate orphan process: pid (2759) (VBCSCompiler)
+2026-10-09T08:12:57.1464355Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
