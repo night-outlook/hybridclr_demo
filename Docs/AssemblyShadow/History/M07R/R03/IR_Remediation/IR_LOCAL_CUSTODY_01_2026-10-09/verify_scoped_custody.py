@@ -271,7 +271,7 @@ def main(argv=None):
                    'phase': args.phase, 'originalStrictCustody': 'Blocked',
                    'error': str(error)[:1200], 'startedUtc': begin,
                    'completedUtc': datetime.now(timezone.utc).isoformat(),
-                   'runtimeAcceptance': False, 'freshUnityRun': False}
+                   'runtimeAcceptance': False, 'unityLaunchedByVerifier': False}
         with receipt.open('x', encoding='utf-8') as f:
             json.dump(blocked, f, indent=2, sort_keys=True)
             f.write('\n')
