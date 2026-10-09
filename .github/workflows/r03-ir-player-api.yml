@@ -32,14 +32,12 @@ jobs:
           ref: ${{ steps.package.outputs.sha }}
           path: hybridclr_unity
           persist-credentials: false
-      - uses: actions/setup-dotnet@a7f4cf601e0e07449f9932019f15d0a09c1bbed
-        with:
-          dotnet-version: '8.0.x'
       - name: Compile real package IR Player signatures
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/r03-ir-managed"
+          dotnet --info > "$RUNNER_TEMP/r03-ir-managed/dotnet-info.txt"
           dotnet build hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj \
             -c Release -v normal \
             -p:PackageRoot="$GITHUB_WORKSPACE/hybridclr_unity" \
