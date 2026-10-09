@@ -18,6 +18,36 @@ sys.path.insert(0, str(R03))
 from run_local import Batch, ROOT, REPOS
 from batch_contract import loads, require, sha
 from batch_evidence import finalize, write
+from command_lifetime import build_arguments
+from ir_original_fixtures import stage_immutable_original_s, S_PUBLICATION, S_INVENTORY_BLOB
+
+
+def original_s_fixtures(batch):
+    """Bind all 15 original S bytes to the immutable published commit, not
+    to a newly compiled DLL whose timestamp/MVID can be nondeterministic."""
+    root = batch.root / 'host/player-fixtures'
+    entries, authority = stage_immutable_original_s(
+        batch.workspace / 'hybridclr_demo', root, sha)
+    batch.fixture_root, batch.fixture_files = root, entries
+    batch.ir_original_s_fixture_authority = authority
+    return {'kind': 'R03IROriginalSFixturePreflight', 'result': 'Passed',
+            'count': len(entries), 'authorityReceipt': str(authority),
+            'authoritySha256': sha(authority), 'sourcePublication': S_PUBLICATION,
+            'inventoryGitBlob': S_INVENTORY_BLOB,
+            'originalBytesCopied': True, 'regenerationAttempted': False,
+            'runtimeAcceptance': False}
+
+
+def build_ir_generator(batch):
+    """Build the generator, but run ONLY the distinct --ir-target mode."""
+    binary_root = batch.root / 'bin/player-fixtures'
+    obj_root = batch.root / 'obj/player-fixtures'
+    batch.command(build_arguments(R03 / 'PlayerFixtures/PlayerFixtures.csproj',
+                 binary_root, obj_root, batch.workspace / 'hybridclr_unity'))
+    binary = binary_root / 'PlayerFixtures.dll'
+    require(binary.is_file(), 'Exact IR generator binary required')
+    return {'generatorBinary': str(binary), 'sha256': sha(binary),
+            'generatorCompiled': True, 'originalFifteenRegenerated': False}
 
 
 def prepare_ir(batch, role):
@@ -48,7 +78,7 @@ def prepare_ir(batch, role):
 
 def ir_side_effect_fixture(batch):
     binary = batch.root / 'bin/player-fixtures/PlayerFixtures.dll'
-    require(binary.is_file(), 'Original 15-fixture generator must complete first')
+    require(binary.is_file(), 'IR target-only generator must be compiled first')
     root = batch.root / 'host/ir-side-effect'
     require(not root.exists(), 'IR fixture destination must be unused')
     batch.command(['dotnet', str(binary), '--ir-target', str(root)], 120)
@@ -171,8 +201,9 @@ def execute(workspace, output, unity, demo_commit):
             'Execute from the owning exact demo checkout')
     batch = Batch(workspace, output, unity, demo_commit)
     batch.cell('entry-authority', batch.authority)
-    batch.cell('real-dll-fixtures', batch.fixtures, ('entry-authority',))
-    batch.cell('ir-side-effect-fixture', lambda: ir_side_effect_fixture(batch), ('real-dll-fixtures',))
+    batch.cell('real-dll-fixtures', lambda: original_s_fixtures(batch), ('entry-authority',))
+    batch.cell('ir-generator-build', lambda: build_ir_generator(batch), ('real-dll-fixtures',))
+    batch.cell('ir-side-effect-fixture', lambda: ir_side_effect_fixture(batch), ('ir-generator-build',))
     roles = [r for r in batch.matrix['roles'] if r['id'] in
              ('candidate-release', 'candidate-debug', 'candidate-off')]
     require(len(roles) == 3, 'Three required native build roles')
@@ -198,6 +229,9 @@ def execute(workspace, output, unity, demo_commit):
         'plannedFreshBuilds':3, 'verifiedFreshBuilds':build_passes,
         'plannedFreshPlayers':4, 'verifiedFreshPlayers':player_passes,
         'recordedFreshPlayerRawFiles':player_raw,
+        'originalSFixtureAuthority':'AuthenticatedOriginalCommit' if hasattr(batch, 'ir_original_s_fixture_authority') else 'NotRun',
+        'originalSFixtureAuthoritySha256':sha(batch.ir_original_s_fixture_authority) if hasattr(batch, 'ir_original_s_fixture_authority') else None,
+        'freshFixturesRegeneratedFromOldOutputMode':False,
         'scope':'IR-only side-effecting active Methods instance counter + AOT canary; baseline-owner + synthetic type-failure + OFF; generic/initializer not covered',
         'initializerFailure': 'NotRun', 'capturedGenericFailure': 'NotRun',
         'fullLegacyRegressionAcceptance':False, 'R03Accepted':False, 'H2Passed':False,
