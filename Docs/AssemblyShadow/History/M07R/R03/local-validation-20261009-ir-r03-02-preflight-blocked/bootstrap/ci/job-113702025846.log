@@ -1,0 +1,491 @@
+﻿2026-10-09T06:35:25.8314270Z Current runner version: '2.337.0'
+2026-10-09T06:35:25.8335930Z ##[group]Runner Image Provisioner
+2026-10-09T06:35:25.8336580Z Hosted Compute Agent
+2026-10-09T06:35:25.8336960Z Version: 20260828.587
+2026-10-09T06:35:25.8337790Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-10-09T06:35:25.8339460Z Build Date: 2026-08-28T16:44:25Z
+2026-10-09T06:35:25.8340080Z Worker ID: {7bd03697-6c1c-4612-b36c-d19dffc9c5e2}
+2026-10-09T06:35:25.8340530Z Azure Region: westus
+2026-10-09T06:35:25.8340970Z ##[endgroup]
+2026-10-09T06:35:25.8341880Z ##[group]Operating System
+2026-10-09T06:35:25.8342800Z macOS
+2026-10-09T06:35:25.8343650Z 14.8.9
+2026-10-09T06:35:25.8343990Z 23J631
+2026-10-09T06:35:25.8344320Z ##[endgroup]
+2026-10-09T06:35:25.8344680Z ##[group]Runner Image
+2026-10-09T06:35:25.8345120Z Image: macos-14-arm64
+2026-10-09T06:35:25.8345480Z Version: 20260831.0302.1
+2026-10-09T06:35:25.8346400Z Included Software: https://github.com/actions/runner-images/blob/macos-14-arm64/20260831.0302/images/macos/macos-14-arm64-Readme.md
+2026-10-09T06:35:25.8347490Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-14-arm64%2F20260831.0302
+2026-10-09T06:35:25.8348360Z ##[endgroup]
+2026-10-09T06:35:25.8349120Z ##[group]GITHUB_TOKEN Permissions
+2026-10-09T06:35:25.8350400Z Contents: read
+2026-10-09T06:35:25.8350770Z Metadata: read
+2026-10-09T06:35:25.8351130Z ##[endgroup]
+2026-10-09T06:35:25.8352790Z Secret source: Actions
+2026-10-09T06:35:25.8353360Z Cache mode: write
+2026-10-09T06:35:25.8353820Z Prepare workflow directory
+2026-10-09T06:35:25.8729250Z Prepare all required actions
+2026-10-09T06:35:25.8782850Z Getting action download info
+2026-10-09T06:35:26.3089000Z Download action repository 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' (SHA:11bd71901bbe5b1630ceea73d27597364c9af683)
+2026-10-09T06:35:26.6363120Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-09T06:35:26.8435470Z Complete job name: python-contracts (macos-14)
+2026-10-09T06:35:26.9066940Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+2026-10-09T06:35:26.9067740Z with:
+2026-10-09T06:35:26.9068140Z   persist-credentials: false
+2026-10-09T06:35:26.9068540Z   repository: night-outlook/hybridclr_demo
+2026-10-09T06:35:26.9071530Z   token: ***
+2026-10-09T06:35:26.9071870Z   ssh-strict: true
+2026-10-09T06:35:26.9072190Z   ssh-user: git
+2026-10-09T06:35:26.9072500Z   clean: true
+2026-10-09T06:35:26.9072920Z   sparse-checkout-cone-mode: true
+2026-10-09T06:35:26.9073320Z   fetch-depth: 1
+2026-10-09T06:35:26.9074250Z   fetch-tags: false
+2026-10-09T06:35:26.9074630Z   show-progress: true
+2026-10-09T06:35:26.9074970Z   lfs: false
+2026-10-09T06:35:26.9075290Z   submodules: false
+2026-10-09T06:35:26.9076580Z   set-safe-directory: true
+2026-10-09T06:35:26.9077800Z ##[endgroup]
+2026-10-09T06:35:27.0614210Z Syncing repository: night-outlook/hybridclr_demo
+2026-10-09T06:35:27.0615850Z ##[group]Getting Git version info
+2026-10-09T06:35:27.0616810Z Working directory is '/Users/runner/work/hybridclr_demo/hybridclr_demo'
+2026-10-09T06:35:27.0617710Z [command]/opt/homebrew/bin/git version
+2026-10-09T06:35:27.0897320Z git version 2.55.0
+2026-10-09T06:35:27.0914300Z ##[endgroup]
+2026-10-09T06:35:27.0925240Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/df956d70-3407-4874-8b28-1376acfd242a/.gitconfig'
+2026-10-09T06:35:27.0945300Z Temporarily overriding HOME='/Users/runner/work/_temp/df956d70-3407-4874-8b28-1376acfd242a' before making global git config changes
+2026-10-09T06:35:27.0952520Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T06:35:27.0956260Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/hybridclr_demo/hybridclr_demo
+2026-10-09T06:35:27.1077770Z Deleting the contents of '/Users/runner/work/hybridclr_demo/hybridclr_demo'
+2026-10-09T06:35:27.1082640Z ##[group]Initializing the repository
+2026-10-09T06:35:27.1086270Z [command]/opt/homebrew/bin/git init /Users/runner/work/hybridclr_demo/hybridclr_demo
+2026-10-09T06:35:27.1373690Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-09T06:35:27.1374590Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-09T06:35:27.1375410Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-09T06:35:27.1375990Z hint: call:
+2026-10-09T06:35:27.1376320Z hint:
+2026-10-09T06:35:27.1378320Z hint: 	git config --global init.defaultBranch <name>
+2026-10-09T06:35:27.1379720Z hint:
+2026-10-09T06:35:27.1380980Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-09T06:35:27.1382900Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-09T06:35:27.1384770Z hint:
+2026-10-09T06:35:27.1385180Z hint: 	git branch -m <name>
+2026-10-09T06:35:27.1385720Z hint:
+2026-10-09T06:35:27.1387960Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-09T06:35:27.1390390Z Initialized empty Git repository in /Users/runner/work/hybridclr_demo/hybridclr_demo/.git/
+2026-10-09T06:35:27.1394530Z [command]/opt/homebrew/bin/git remote add origin https://github.com/night-outlook/hybridclr_demo
+2026-10-09T06:35:27.1476110Z ##[endgroup]
+2026-10-09T06:35:27.1476920Z ##[group]Disabling automatic garbage collection
+2026-10-09T06:35:27.1480610Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-10-09T06:35:27.1553810Z ##[endgroup]
+2026-10-09T06:35:27.1555820Z ##[group]Setting up auth
+2026-10-09T06:35:27.1565010Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T06:35:27.1624730Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T06:35:27.2509310Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T06:35:27.2590060Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T06:35:27.3409810Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-09T06:35:27.3482200Z ##[endgroup]
+2026-10-09T06:35:27.3502230Z ##[group]Fetching the repository
+2026-10-09T06:35:27.3503770Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +26901302e2de1a07f8d9e0297d6ce22d014c9a5e:refs/remotes/origin/codex/assembly-shadow-r01b-h1
+2026-10-09T06:38:13.5650770Z From https://github.com/night-outlook/hybridclr_demo
+2026-10-09T06:38:13.5652130Z  * [new ref]           26901302e2de1a07f8d9e0297d6ce22d014c9a5e -> origin/codex/assembly-shadow-r01b-h1
+2026-10-09T06:38:13.5669500Z ##[endgroup]
+2026-10-09T06:38:13.5670390Z ##[group]Determining the checkout info
+2026-10-09T06:38:13.5679460Z ##[endgroup]
+2026-10-09T06:38:13.5694730Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2026-10-09T06:38:13.5772490Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-09T06:38:13.5842520Z ##[group]Checking out the ref
+2026-10-09T06:38:13.5845820Z [command]/opt/homebrew/bin/git checkout --progress --force -B codex/assembly-shadow-r01b-h1 refs/remotes/origin/codex/assembly-shadow-r01b-h1
+2026-10-09T06:38:14.9742140Z Updating files:   0% (1090/129448)
+2026-10-09T06:38:15.7414320Z Updating files:   1% (1295/129448)
+2026-10-09T06:38:16.7289150Z Updating files:   1% (2446/129448)
+2026-10-09T06:38:16.7347980Z Updating files:   2% (2589/129448)
+2026-10-09T06:38:17.3138370Z Updating files:   2% (2631/129448)
+2026-10-09T06:38:18.1605630Z Updating files:   3% (3884/129448)
+2026-10-09T06:38:18.7363680Z Updating files:   3% (4736/129448)
+2026-10-09T06:38:19.3376040Z Updating files:   3% (4970/129448)
+2026-10-09T06:38:19.7350050Z Updating files:   4% (5178/129448)
+2026-10-09T06:38:20.8945160Z Updating files:   4% (5297/129448)
+2026-10-09T06:38:21.4621650Z Updating files:   4% (6000/129448)
+2026-10-09T06:38:21.8410840Z Updating files:   5% (6473/129448)
+2026-10-09T06:38:22.7387670Z Updating files:   5% (6532/129448)
+2026-10-09T06:38:23.8455380Z Updating files:   5% (6894/129448)
+2026-10-09T06:38:24.1391500Z Updating files:   5% (7286/129448)
+2026-10-09T06:38:24.9090840Z Updating files:   6% (7767/129448)
+2026-10-09T06:38:25.7945580Z Updating files:   6% (7856/129448)
+2026-10-09T06:38:26.7726070Z Updating files:   6% (8475/129448)
+2026-10-09T06:38:27.0046270Z Updating files:   6% (8976/129448)
+2026-10-09T06:38:27.7346710Z Updating files:   7% (9062/129448)
+2026-10-09T06:38:28.8274120Z Updating files:   7% (9458/129448)
+2026-10-09T06:38:28.9464280Z Updating files:   7% (9799/129448)
+2026-10-09T06:38:29.7348530Z Updating files:   8% (10356/129448)
+2026-10-09T06:38:30.8084520Z Updating files:   8% (10444/129448)
+2026-10-09T06:38:31.7358950Z Updating files:   8% (10933/129448)
+2026-10-09T06:38:31.8425240Z Updating files:   8% (11344/129448)
+2026-10-09T06:38:32.8079840Z Updating files:   9% (11651/129448)
+2026-10-09T06:38:33.7349190Z Updating files:   9% (11769/129448)
+2026-10-09T06:38:34.8659960Z Updating files:   9% (12448/129448)
+2026-10-09T06:38:34.8872000Z Updating files:   9% (12940/129448)
+2026-10-09T06:38:35.8338830Z Updating files:  10% (12945/129448)
+2026-10-09T06:38:36.7349650Z Updating files:  10% (13772/129448)
+2026-10-09T06:38:36.7662280Z Updating files:  10% (14073/129448)
+2026-10-09T06:38:37.7380960Z Updating files:  11% (14240/129448)
+2026-10-09T06:38:38.7933460Z Updating files:  11% (14674/129448)
+2026-10-09T06:38:39.1956040Z Updating files:  11% (15198/129448)
+2026-10-09T06:38:39.8686340Z Updating files:  12% (15534/129448)
+2026-10-09T06:38:40.1597800Z Updating files:  12% (15845/129448)
+2026-10-09T06:38:40.8221810Z Updating files:  13% (16829/129448)
+2026-10-09T06:38:41.9220120Z Updating files:  13% (17272/129448)
+2026-10-09T06:38:42.5820730Z Updating files:  13% (17774/129448)
+2026-10-09T06:38:42.7352820Z Updating files:  14% (18123/129448)
+2026-10-09T06:38:43.7950070Z Updating files:  14% (18190/129448)
+2026-10-09T06:38:44.1624220Z Updating files:  14% (18693/129448)
+2026-10-09T06:38:44.9576880Z Updating files:  15% (19418/129448)
+2026-10-09T06:38:45.9380780Z Updating files:  15% (20172/129448)
+2026-10-09T06:38:46.6421820Z Updating files:  15% (20424/129448)
+2026-10-09T06:38:46.7508600Z Updating files:  16% (20712/129448)
+2026-10-09T06:38:47.7531250Z Updating files:  16% (20803/129448)
+2026-10-09T06:38:48.8676240Z Updating files:  16% (21604/129448)
+2026-10-09T06:38:49.0378010Z Updating files:  16% (21607/129448)
+2026-10-09T06:38:49.9589530Z Updating files:  17% (22007/129448)
+2026-10-09T06:38:50.2170760Z Updating files:  17% (23152/129448)
+2026-10-09T06:38:50.7353410Z Updating files:  18% (23301/129448)
+2026-10-09T06:38:51.7369800Z Updating files:  18% (23518/129448)
+2026-10-09T06:38:52.0596890Z Updating files:  18% (24015/129448)
+2026-10-09T06:38:52.9113140Z Updating files:  19% (24596/129448)
+2026-10-09T06:38:53.5798980Z Updating files:  19% (24598/129448)
+2026-10-09T06:38:53.7411340Z Updating files:  20% (25890/129448)
+2026-10-09T06:38:54.7353980Z Updating files:  20% (26347/129448)
+2026-10-09T06:38:55.7458110Z Updating files:  20% (26653/129448)
+2026-10-09T06:38:55.9368660Z Updating files:  20% (27038/129448)
+2026-10-09T06:38:56.7362170Z Updating files:  21% (27185/129448)
+2026-10-09T06:38:57.9315570Z Updating files:  21% (27890/129448)
+2026-10-09T06:38:59.0172520Z Updating files:  21% (28004/129448)
+2026-10-09T06:39:00.0235170Z Updating files:  21% (28006/129448)
+2026-10-09T06:39:00.3483000Z Updating files:  21% (28008/129448)
+2026-10-09T06:39:01.0503300Z Updating files:  22% (28479/129448)
+2026-10-09T06:39:01.7351050Z Updating files:  22% (29165/129448)
+2026-10-09T06:39:02.8717010Z Updating files:  22% (29368/129448)
+2026-10-09T06:39:03.2454600Z Updating files:  22% (29590/129448)
+2026-10-09T06:39:03.7362930Z Updating files:  23% (29774/129448)
+2026-10-09T06:39:04.0723860Z Updating files:  23% (30004/129448)
+2026-10-09T06:39:04.4117380Z Updating files:  24% (31068/129448)
+2026-10-09T06:39:04.7365690Z Updating files:  25% (32362/129448)
+2026-10-09T06:39:04.9730330Z Updating files:  25% (33123/129448)
+2026-10-09T06:39:05.3131350Z Updating files:  26% (33657/129448)
+2026-10-09T06:39:05.6101240Z Updating files:  27% (34951/129448)
+2026-10-09T06:39:05.7337600Z Updating files:  28% (36246/129448)
+2026-10-09T06:39:07.0879690Z Updating files:  28% (36569/129448)
+2026-10-09T06:39:07.3548810Z Updating files:  28% (37449/129448)
+2026-10-09T06:39:07.7486760Z Updating files:  29% (37540/129448)
+2026-10-09T06:39:08.7482550Z Updating files:  29% (37700/129448)
+2026-10-09T06:39:09.7382390Z Updating files:  29% (38086/129448)
+2026-10-09T06:39:09.7967430Z Updating files:  29% (38464/129448)
+2026-10-09T06:39:10.9212110Z Updating files:  30% (38835/129448)
+2026-10-09T06:39:11.9356030Z Updating files:  30% (38927/129448)
+2026-10-09T06:39:12.8568680Z Updating files:  30% (38929/129448)
+2026-10-09T06:39:14.8890870Z Updating files:  30% (38931/129448)
+2026-10-09T06:39:15.1518760Z Updating files:  30% (40092/129448)
+2026-10-09T06:39:15.7559650Z Updating files:  31% (40129/129448)
+2026-10-09T06:39:16.8494370Z Updating files:  31% (40349/129448)
+2026-10-09T06:39:17.7500380Z Updating files:  31% (40517/129448)
+2026-10-09T06:39:17.9569900Z Updating files:  31% (40934/129448)
+2026-10-09T06:39:18.4508750Z Updating files:  32% (41424/129448)
+2026-10-09T06:39:18.7436030Z Updating files:  33% (42718/129448)
+2026-10-09T06:39:18.7701290Z Updating files:  33% (43855/129448)
+2026-10-09T06:39:19.1040250Z Updating files:  34% (44013/129448)
+2026-10-09T06:39:19.5736830Z Updating files:  35% (45307/129448)
+2026-10-09T06:39:19.7359010Z Updating files:  36% (46602/129448)
+2026-10-09T06:39:20.0450850Z Updating files:  36% (46974/129448)
+2026-10-09T06:39:20.3021960Z Updating files:  37% (47896/129448)
+2026-10-09T06:39:20.8116960Z Updating files:  38% (49191/129448)
+2026-10-09T06:39:22.0707140Z Updating files:  38% (50050/129448)
+2026-10-09T06:39:22.5572630Z Updating files:  38% (50331/129448)
+2026-10-09T06:39:22.8343510Z Updating files:  39% (50485/129448)
+2026-10-09T06:39:23.7986620Z Updating files:  39% (50582/129448)
+2026-10-09T06:39:24.7375150Z Updating files:  39% (50834/129448)
+2026-10-09T06:39:25.1372640Z Updating files:  39% (51244/129448)
+2026-10-09T06:39:25.7636720Z Updating files:  40% (51780/129448)
+2026-10-09T06:39:27.0464350Z Updating files:  40% (52035/129448)
+2026-10-09T06:39:27.9367300Z Updating files:  40% (52038/129448)
+2026-10-09T06:39:28.8391640Z Updating files:  40% (52040/129448)
+2026-10-09T06:39:29.6727010Z Updating files:  40% (52042/129448)
+2026-10-09T06:39:30.5681650Z Updating files:  41% (53074/129448)
+2026-10-09T06:39:30.8374170Z Updating files:  41% (53325/129448)
+2026-10-09T06:39:31.7398340Z Updating files:  41% (53326/129448)
+2026-10-09T06:39:32.7344780Z Updating files:  41% (53691/129448)
+2026-10-09T06:39:33.3113570Z Updating files:  41% (53927/129448)
+2026-10-09T06:39:33.7355820Z Updating files:  42% (54369/129448)
+2026-10-09T06:39:33.9341770Z Updating files:  42% (55238/129448)
+2026-10-09T06:39:34.4944560Z Updating files:  43% (55663/129448)
+2026-10-09T06:39:34.7355030Z Updating files:  44% (56958/129448)
+2026-10-09T06:39:35.2048390Z Updating files:  44% (57702/129448)
+2026-10-09T06:39:35.7371810Z Updating files:  45% (58252/129448)
+2026-10-09T06:39:35.8569870Z Updating files:  45% (59283/129448)
+2026-10-09T06:39:36.7261800Z Updating files:  46% (59547/129448)
+2026-10-09T06:39:36.7356930Z Updating files:  47% (60841/129448)
+2026-10-09T06:39:37.2822230Z Updating files:  47% (60905/129448)
+2026-10-09T06:39:37.7387920Z Updating files:  48% (62136/129448)
+2026-10-09T06:39:37.7579450Z Updating files:  48% (63350/129448)
+2026-10-09T06:39:38.5305470Z Updating files:  49% (63430/129448)
+2026-10-09T06:39:38.7658690Z Updating files:  50% (64724/129448)
+2026-10-09T06:39:39.3903020Z Updating files:  50% (65066/129448)
+2026-10-09T06:39:40.0828470Z Updating files:  51% (66019/129448)
+2026-10-09T06:39:40.7478290Z Updating files:  51% (66112/129448)
+2026-10-09T06:39:41.7570270Z Updating files:  51% (66364/129448)
+2026-10-09T06:39:42.7354130Z Updating files:  51% (66865/129448)
+2026-10-09T06:39:42.7847890Z Updating files:  51% (67168/129448)
+2026-10-09T06:39:44.1715060Z Updating files:  52% (67313/129448)
+2026-10-09T06:39:45.0821680Z Updating files:  52% (67817/129448)
+2026-10-09T06:39:45.8541080Z Updating files:  52% (67819/129448)
+2026-10-09T06:39:46.8868980Z Updating files:  52% (67821/129448)
+2026-10-09T06:39:47.7162390Z Updating files:  52% (67824/129448)
+2026-10-09T06:39:47.7357230Z Updating files:  53% (68608/129448)
+2026-10-09T06:39:48.7796850Z Updating files:  53% (68720/129448)
+2026-10-09T06:39:49.7367970Z Updating files:  53% (69108/129448)
+2026-10-09T06:39:50.7362020Z Updating files:  53% (69388/129448)
+2026-10-09T06:39:51.2422990Z Updating files:  53% (69645/129448)
+2026-10-09T06:39:51.7358820Z Updating files:  54% (69902/129448)
+2026-10-09T06:39:51.8495550Z Updating files:  54% (70819/129448)
+2026-10-09T06:39:52.2684450Z Updating files:  55% (71197/129448)
+2026-10-09T06:39:52.8262460Z Updating files:  56% (72491/129448)
+2026-10-09T06:39:53.7385140Z Updating files:  56% (73630/129448)
+2026-10-09T06:39:54.0567730Z Updating files:  56% (73728/129448)
+2026-10-09T06:39:54.6984650Z Updating files:  57% (73786/129448)
+2026-10-09T06:39:54.7374550Z Updating files:  58% (75080/129448)
+2026-10-09T06:39:55.2711170Z Updating files:  58% (75152/129448)
+2026-10-09T06:39:55.7360860Z Updating files:  59% (76375/129448)
+2026-10-09T06:39:55.8539820Z Updating files:  59% (77416/129448)
+2026-10-09T06:39:56.4120160Z Updating files:  60% (77669/129448)
+2026-10-09T06:39:56.7384240Z Updating files:  61% (78964/129448)
+2026-10-09T06:39:56.8136000Z Updating files:  61% (80009/129448)
+2026-10-09T06:39:57.5240870Z Updating files:  62% (80258/129448)
+2026-10-09T06:39:57.7354380Z Updating files:  63% (81553/129448)
+2026-10-09T06:39:58.9030950Z Updating files:  63% (82257/129448)
+2026-10-09T06:39:59.8974860Z Updating files:  63% (82574/129448)
+2026-10-09T06:39:59.9010930Z Updating files:  63% (82826/129448)
+2026-10-09T06:40:00.7420380Z Updating files:  64% (82847/129448)
+2026-10-09T06:40:01.8166140Z Updating files:  64% (83217/129448)
+2026-10-09T06:40:02.1218790Z Updating files:  64% (83608/129448)
+2026-10-09T06:40:02.7978360Z Updating files:  65% (84142/129448)
+2026-10-09T06:40:03.7512720Z Updating files:  65% (84278/129448)
+2026-10-09T06:40:05.1068340Z Updating files:  65% (84280/129448)
+2026-10-09T06:40:06.0188410Z Updating files:  65% (84283/129448)
+2026-10-09T06:40:06.7416170Z Updating files:  65% (84285/129448)
+2026-10-09T06:40:07.3241710Z Updating files:  65% (84532/129448)
+2026-10-09T06:40:08.1398720Z Updating files:  66% (85436/129448)
+2026-10-09T06:40:08.7353610Z Updating files:  66% (85570/129448)
+2026-10-09T06:40:09.7457440Z Updating files:  66% (85824/129448)
+2026-10-09T06:40:10.4651900Z Updating files:  66% (86009/129448)
+2026-10-09T06:40:10.7421080Z Updating files:  67% (86731/129448)
+2026-10-09T06:40:10.9685830Z Updating files:  67% (87638/129448)
+2026-10-09T06:40:11.3375640Z Updating files:  68% (88025/129448)
+2026-10-09T06:40:11.7362040Z Updating files:  69% (89320/129448)
+2026-10-09T06:40:11.8796210Z Updating files:  69% (90275/129448)
+2026-10-09T06:40:12.3179030Z Updating files:  70% (90614/129448)
+2026-10-09T06:40:12.7401150Z Updating files:  71% (91909/129448)
+2026-10-09T06:40:12.8188360Z Updating files:  71% (92947/129448)
+2026-10-09T06:40:13.2368320Z Updating files:  72% (93203/129448)
+2026-10-09T06:40:13.7346300Z Updating files:  73% (94498/129448)
+2026-10-09T06:40:13.7645040Z Updating files:  73% (95624/129448)
+2026-10-09T06:40:14.1631710Z Updating files:  74% (95792/129448)
+2026-10-09T06:40:14.7568860Z Updating files:  75% (97086/129448)
+2026-10-09T06:40:14.9052380Z Updating files:  75% (97645/129448)
+2026-10-09T06:40:15.7469380Z Updating files:  76% (98381/129448)
+2026-10-09T06:40:16.9639580Z Updating files:  76% (98841/129448)
+2026-10-09T06:40:17.7359840Z Updating files:  76% (98870/129448)
+2026-10-09T06:40:18.8091220Z Updating files:  76% (99112/129448)
+2026-10-09T06:40:19.9623200Z Updating files:  76% (99371/129448)
+2026-10-09T06:40:19.9906270Z Updating files:  76% (99623/129448)
+2026-10-09T06:40:20.7359120Z Updating files:  77% (99675/129448)
+2026-10-09T06:40:22.0469400Z Updating files:  77% (99816/129448)
+2026-10-09T06:40:23.4080810Z Updating files:  77% (100392/129448)
+2026-10-09T06:40:23.9344380Z Updating files:  77% (100394/129448)
+2026-10-09T06:40:25.1984620Z Updating files:  77% (100395/129448)
+2026-10-09T06:40:25.6542810Z Updating files:  77% (100397/129448)
+2026-10-09T06:40:25.7359060Z Updating files:  78% (100970/129448)
+2026-10-09T06:40:27.3217380Z Updating files:  78% (101294/129448)
+2026-10-09T06:40:27.7373030Z Updating files:  78% (101560/129448)
+2026-10-09T06:40:28.7398170Z Updating files:  78% (101619/129448)
+2026-10-09T06:40:30.1062060Z Updating files:  78% (101817/129448)
+2026-10-09T06:40:30.7121980Z Updating files:  78% (101985/129448)
+2026-10-09T06:40:30.7388340Z Updating files:  79% (102264/129448)
+2026-10-09T06:40:31.5302250Z Updating files:  79% (102273/129448)
+2026-10-09T06:40:31.7358220Z Updating files:  80% (103559/129448)
+2026-10-09T06:40:31.8389430Z Updating files:  80% (104406/129448)
+2026-10-09T06:40:32.5000450Z Updating files:  81% (104853/129448)
+2026-10-09T06:40:32.7350830Z Updating files:  82% (106148/129448)
+2026-10-09T06:40:32.9936070Z Updating files:  82% (106852/129448)
+2026-10-09T06:40:33.3550880Z Updating files:  83% (107442/129448)
+2026-10-09T06:40:33.7373360Z Updating files:  84% (108737/129448)
+2026-10-09T06:40:34.0848010Z Updating files:  84% (109801/129448)
+2026-10-09T06:40:34.7807110Z Updating files:  85% (110031/129448)
+2026-10-09T06:40:35.7518100Z Updating files:  85% (111240/129448)
+2026-10-09T06:40:35.8144470Z Updating files:  85% (111265/129448)
+2026-10-09T06:40:36.7381630Z Updating files:  86% (111326/129448)
+2026-10-09T06:40:37.7376000Z Updating files:  86% (111744/129448)
+2026-10-09T06:40:38.4628420Z Updating files:  86% (112108/129448)
+2026-10-09T06:40:39.0415040Z Updating files:  87% (112620/129448)
+2026-10-09T06:40:40.1405280Z Updating files:  87% (112959/129448)
+2026-10-09T06:40:40.8745910Z Updating files:  87% (112962/129448)
+2026-10-09T06:40:42.0860370Z Updating files:  87% (112964/129448)
+2026-10-09T06:40:42.5731020Z Updating files:  87% (112967/129448)
+2026-10-09T06:40:43.1929110Z Updating files:  88% (113915/129448)
+2026-10-09T06:40:43.7379930Z Updating files:  88% (114595/129448)
+2026-10-09T06:40:44.7358540Z Updating files:  88% (114824/129448)
+2026-10-09T06:40:44.8793360Z Updating files:  88% (115164/129448)
+2026-10-09T06:40:45.7497590Z Updating files:  89% (115209/129448)
+2026-10-09T06:40:46.7360770Z Updating files:  89% (115332/129448)
+2026-10-09T06:40:46.7746190Z Updating files:  89% (116471/129448)
+2026-10-09T06:40:47.3501850Z Updating files:  90% (116504/129448)
+2026-10-09T06:40:47.7371810Z Updating files:  91% (117798/129448)
+2026-10-09T06:40:47.7498320Z Updating files:  91% (119049/129448)
+2026-10-09T06:40:48.3655250Z Updating files:  92% (119093/129448)
+2026-10-09T06:40:48.7361560Z Updating files:  93% (120387/129448)
+2026-10-09T06:40:49.0607940Z Updating files:  93% (120930/129448)
+2026-10-09T06:40:49.6491760Z Updating files:  94% (121682/129448)
+2026-10-09T06:40:49.7364000Z Updating files:  95% (122976/129448)
+2026-10-09T06:40:50.1086320Z Updating files:  95% (123203/129448)
+2026-10-09T06:40:50.3245540Z Updating files:  96% (124271/129448)
+2026-10-09T06:40:50.7354010Z Updating files:  97% (125565/129448)
+2026-10-09T06:40:50.8074670Z Updating files:  97% (126619/129448)
+2026-10-09T06:40:52.0637670Z Updating files:  98% (126860/129448)
+2026-10-09T06:40:52.7395370Z Updating files:  98% (127281/129448)
+2026-10-09T06:40:53.0880400Z Updating files:  98% (127664/129448)
+2026-10-09T06:40:53.3638690Z Updating files:  99% (128154/129448)
+2026-10-09T06:40:53.3640910Z Updating files: 100% (129448/129448)
+2026-10-09T06:40:53.3641420Z Updating files: 100% (129448/129448), done.
+2026-10-09T06:40:53.6803000Z Switched to a new branch 'codex/assembly-shadow-r01b-h1'
+2026-10-09T06:40:53.6820180Z branch 'codex/assembly-shadow-r01b-h1' set up to track 'origin/codex/assembly-shadow-r01b-h1'.
+2026-10-09T06:40:53.7042290Z ##[endgroup]
+2026-10-09T06:40:53.7388150Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-10-09T06:40:53.7600410Z 26901302e2de1a07f8d9e0297d6ce22d014c9a5e
+2026-10-09T06:40:53.7663730Z ##[group]Removing auth
+2026-10-09T06:40:53.7671780Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T06:40:53.7762360Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T06:40:53.9203700Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T06:40:53.9277920Z http.https://github.com/.extraheader
+2026-10-09T06:40:53.9288990Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-09T06:40:53.9359140Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T06:40:54.0360810Z ##[endgroup]
+2026-10-09T06:40:54.0815340Z ##[group]Run python3 - <<'PY'
+2026-10-09T06:40:54.0815740Z [36;1mpython3 - <<'PY'[0m
+2026-10-09T06:40:54.0816030Z [36;1mimport ast[0m
+2026-10-09T06:40:54.0816300Z [36;1mfrom pathlib import Path[0m
+2026-10-09T06:40:54.0817110Z [36;1mpaths=sorted(Path('Tools/AssemblyShadow/R03IR').glob('*.py'))[0m
+2026-10-09T06:40:54.0817630Z [36;1massert paths and any(p.name == 'run_terminal_local.py' for p in paths)[0m
+2026-10-09T06:40:54.0818070Z [36;1mfor p in paths: ast.parse(p.read_text(), filename=str(p))[0m
+2026-10-09T06:40:54.0818580Z [36;1mprint('R03 IR Python AST syntax: Passed',len(paths))[0m
+2026-10-09T06:40:54.0819010Z [36;1mPY[0m
+2026-10-09T06:40:54.2498980Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T06:40:54.2499320Z ##[endgroup]
+2026-10-09T06:40:54.5255090Z R03 IR Python AST syntax: Passed 8
+2026-10-09T06:40:54.5375570Z ##[group]Run set -o pipefail
+2026-10-09T06:40:54.5376170Z [36;1mset -o pipefail[0m
+2026-10-09T06:40:54.5376470Z [36;1mmkdir -p "$RUNNER_TEMP/r03-ir"[0m
+2026-10-09T06:40:54.5377050Z [36;1mpython3 -B -m unittest discover -s Tools/AssemblyShadow/R03IR -p 'test_*.py' -v \[0m
+2026-10-09T06:40:54.5377650Z [36;1m  2>&1 | tee "$RUNNER_TEMP/r03-ir/host-tests.log"[0m
+2026-10-09T06:40:54.5378000Z [36;1mgit diff --check[0m
+2026-10-09T06:40:54.5378380Z [36;1mgit diff --exit-code[0m
+2026-10-09T06:40:54.5440970Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T06:40:54.5441370Z ##[endgroup]
+2026-10-09T06:40:54.9918100Z test_archive_digest_binding_is_exact (test_audit_s_process_joins.ProcessJoinTests.test_archive_digest_binding_is_exact) ... ok
+2026-10-09T06:40:54.9919270Z test_cannot_substitute_different_process_group (test_audit_s_process_joins.ProcessJoinTests.test_cannot_substitute_different_process_group) ... ok
+2026-10-09T06:40:54.9920310Z test_only_true_positive_integer_process_ids (test_audit_s_process_joins.ProcessJoinTests.test_only_true_positive_integer_process_ids) ... ok
+2026-10-09T06:40:54.9921300Z test_original_owned_command_pid_and_exit (test_audit_s_process_joins.ProcessJoinTests.test_original_owned_command_pid_and_exit) ... ok
+2026-10-09T06:40:54.9922100Z test_original_path_requires_exact_S_root (test_audit_s_process_joins.ProcessJoinTests.test_original_path_requires_exact_S_root) ... ok
+2026-10-09T06:40:54.9942780Z test_bound_json_matches_authenticated_bytes (test_audit_s_provenance.EvidencePrimitiveTests.test_bound_json_matches_authenticated_bytes) ... ok
+2026-10-09T06:40:54.9950720Z test_bound_json_rejects_digest_or_size_change (test_audit_s_provenance.EvidencePrimitiveTests.test_bound_json_rejects_digest_or_size_change) ... ok
+2026-10-09T06:40:54.9956420Z test_bound_json_rejects_missing_membership (test_audit_s_provenance.EvidencePrimitiveTests.test_bound_json_rejects_missing_membership) ... ok
+2026-10-09T06:40:54.9957880Z test_canonical_relative_path_is_preserved (test_audit_s_provenance.EvidencePrimitiveTests.test_canonical_relative_path_is_preserved) ... ok
+2026-10-09T06:40:54.9964040Z test_digest_uses_file_bytes (test_audit_s_provenance.EvidencePrimitiveTests.test_digest_uses_file_bytes) ... ok
+2026-10-09T06:40:54.9972920Z test_duplicate_json_keys_are_rejected (test_audit_s_provenance.EvidencePrimitiveTests.test_duplicate_json_keys_are_rejected) ... ok
+2026-10-09T06:40:54.9974780Z test_early_failure_remains_failed (test_audit_s_provenance.EvidencePrimitiveTests.test_early_failure_remains_failed) ... ok
+2026-10-09T06:40:54.9976830Z test_json_boolean_and_number_are_different (test_audit_s_provenance.EvidencePrimitiveTests.test_json_boolean_and_number_are_different) ... ok
+2026-10-09T06:40:54.9978450Z test_json_key_order_is_not_significant (test_audit_s_provenance.EvidencePrimitiveTests.test_json_key_order_is_not_significant) ... ok
+2026-10-09T06:40:54.9979850Z test_late_failure_revokes_pass_without_erasing_completed_checks (test_audit_s_provenance.EvidencePrimitiveTests.test_late_failure_revokes_pass_without_erasing_completed_checks) ... ok
+2026-10-09T06:40:54.9983140Z test_missing_and_directory_paths_are_rejected (test_audit_s_provenance.EvidencePrimitiveTests.test_missing_and_directory_paths_are_rejected) ... ok
+2026-10-09T06:40:54.9985550Z test_noncanonical_paths_are_rejected (test_audit_s_provenance.EvidencePrimitiveTests.test_noncanonical_paths_are_rejected) ... ok
+2026-10-09T06:40:54.9999890Z test_nonfinite_json_numbers_are_rejected (test_audit_s_provenance.EvidencePrimitiveTests.test_nonfinite_json_numbers_are_rejected) ... ok
+2026-10-09T06:40:55.0001050Z test_recorded_null_false_and_absence_are_distinct (test_audit_s_provenance.EvidencePrimitiveTests.test_recorded_null_false_and_absence_are_distinct) ... ok
+2026-10-09T06:40:55.0004110Z test_symlink_file_is_rejected (test_audit_s_provenance.EvidencePrimitiveTests.test_symlink_file_is_rejected) ... ok
+2026-10-09T06:40:55.0011090Z test_symlink_parent_cannot_escape_root (test_audit_s_provenance.EvidencePrimitiveTests.test_symlink_parent_cannot_escape_root) ... ok
+2026-10-09T06:40:55.0016430Z test_utf8_json_is_preserved (test_audit_s_provenance.EvidencePrimitiveTests.test_utf8_json_is_preserved) ... ok
+2026-10-09T06:40:55.0074270Z test_write_cannot_overwrite_existing_evidence (test_audit_s_provenance.EvidencePrimitiveTests.test_write_cannot_overwrite_existing_evidence) ... ok
+2026-10-09T06:40:55.0079740Z test_changed_nested_cell_is_rejected (test_audit_s_provenance.FinalizerContractTests.test_changed_nested_cell_is_rejected) ... ok
+2026-10-09T06:40:55.0080720Z test_each_missing_acceptance_flag_is_rejected (test_audit_s_provenance.FinalizerContractTests.test_each_missing_acceptance_flag_is_rejected) ... ok
+2026-10-09T06:40:55.0081820Z test_extra_final_result_field_is_rejected (test_audit_s_provenance.FinalizerContractTests.test_extra_final_result_field_is_rejected) ... ok
+2026-10-09T06:40:55.0082710Z test_failed_seal_is_not_promoted (test_audit_s_provenance.FinalizerContractTests.test_failed_seal_is_not_promoted) ... ok
+2026-10-09T06:40:55.0084150Z test_inputs_are_not_normalized_or_mutated (test_audit_s_provenance.FinalizerContractTests.test_inputs_are_not_normalized_or_mutated) ... ok
+2026-10-09T06:40:55.0085070Z test_nested_false_does_not_match_numeric_zero (test_audit_s_provenance.FinalizerContractTests.test_nested_false_does_not_match_numeric_zero) ... ok
+2026-10-09T06:40:55.0085850Z test_nonobject_inputs_are_rejected (test_audit_s_provenance.FinalizerContractTests.test_nonobject_inputs_are_rejected) ... ok
+2026-10-09T06:40:55.0086640Z test_original_summary_flags_survive_comparison (test_audit_s_provenance.FinalizerContractTests.test_original_summary_flags_survive_comparison) ... ok
+2026-10-09T06:40:55.0087580Z test_seal_fields_must_not_already_exist_in_ledger (test_audit_s_provenance.FinalizerContractTests.test_seal_fields_must_not_already_exist_in_ledger) ... ok
+2026-10-09T06:40:55.0089320Z test_truthy_null_and_numeric_acceptance_flags_are_rejected (test_audit_s_provenance.FinalizerContractTests.test_truthy_null_and_numeric_acceptance_flags_are_rejected) ... ok
+2026-10-09T06:40:55.0090260Z test_wrong_archive_or_index_digest_is_rejected (test_audit_s_provenance.FinalizerContractTests.test_wrong_archive_or_index_digest_is_rejected) ... ok
+2026-10-09T06:40:55.0091050Z test_wrong_ledger_digest_is_rejected (test_audit_s_provenance.FinalizerContractTests.test_wrong_ledger_digest_is_rejected) ... ok
+2026-10-09T06:40:55.6266090Z test_copies_exact_original_blob_inputs_without_regenerating (test_ir_original_fixtures.SFixtureAdmissionTest.test_copies_exact_original_blob_inputs_without_regenerating) ... ok
+2026-10-09T06:40:55.7759210Z test_dirty_original_inventory_is_rejected (test_ir_original_fixtures.SFixtureAdmissionTest.test_dirty_original_inventory_is_rejected) ... ok
+2026-10-09T06:40:55.8733570Z test_existing_destination_is_rejected_before_copy (test_ir_original_fixtures.SFixtureAdmissionTest.test_existing_destination_is_rejected_before_copy) ... ok
+2026-10-09T06:40:55.9752620Z test_invalid_field_types_fail (test_ir_original_fixtures.SFixtureAdmissionTest.test_invalid_field_types_fail) ... ok
+2026-10-09T06:40:56.0669020Z test_invalid_inventory_path_and_duplicate_fail (test_ir_original_fixtures.SFixtureAdmissionTest.test_invalid_inventory_path_and_duplicate_fail) ... ok
+2026-10-09T06:40:56.3359790Z test_modified_tracked_fixture_is_rejected_fail_closed (test_ir_original_fixtures.SFixtureAdmissionTest.test_modified_tracked_fixture_is_rejected_fail_closed) ... ok
+2026-10-09T06:40:56.6196370Z test_replaced_tracked_history_blob_is_rejected (test_ir_original_fixtures.SFixtureAdmissionTest.test_replaced_tracked_history_blob_is_rejected) ... ok
+2026-10-09T06:40:56.8687790Z test_symlink_fixture_is_rejected (test_ir_original_fixtures.SFixtureAdmissionTest.test_symlink_fixture_is_rejected) ... ok
+2026-10-09T06:40:56.8688690Z test_aot_side_effect_cannot_change (test_terminal_contract.TerminalReceiptContractTests.test_aot_side_effect_cannot_change) ... ok
+2026-10-09T06:40:56.8691470Z test_boolean_cannot_masquerade_as_native_integer (test_terminal_contract.TerminalReceiptContractTests.test_boolean_cannot_masquerade_as_native_integer) ... ok
+2026-10-09T06:40:56.8692720Z test_feature_off_does_not_require_shadow_transaction (test_terminal_contract.TerminalReceiptContractTests.test_feature_off_does_not_require_shadow_transaction) ... ok
+2026-10-09T06:40:56.8693930Z test_fixed_diagnostics_and_recovery_must_stay_intact (test_terminal_contract.TerminalReceiptContractTests.test_fixed_diagnostics_and_recovery_must_stay_intact) ... ok
+2026-10-09T06:40:56.8694940Z test_nested_recovery_boolean_cannot_masquerade_as_integer (test_terminal_contract.TerminalReceiptContractTests.test_nested_recovery_boolean_cannot_masquerade_as_integer) ... ok
+2026-10-09T06:40:56.8695810Z test_no_fabricated_acceptance (test_terminal_contract.TerminalReceiptContractTests.test_no_fabricated_acceptance) ... ok
+2026-10-09T06:40:56.8696650Z test_no_reflection_delegate_or_aot_body_after_poison (test_terminal_contract.TerminalReceiptContractTests.test_no_reflection_delegate_or_aot_body_after_poison) ... ok
+2026-10-09T06:40:56.8697600Z test_old_baseline_guard_must_be_caught (test_terminal_contract.TerminalReceiptContractTests.test_old_baseline_guard_must_be_caught) ... ok
+2026-10-09T06:40:56.8698450Z test_original_tuple_binding (test_terminal_contract.TerminalReceiptContractTests.test_original_tuple_binding) ... ok
+2026-10-09T06:40:56.8699360Z test_positive_baseline_owner_receipt (test_terminal_contract.TerminalReceiptContractTests.test_positive_baseline_owner_receipt) ... ok
+2026-10-09T06:40:56.8700260Z test_pre_poison_must_actually_execute (test_terminal_contract.TerminalReceiptContractTests.test_pre_poison_must_actually_execute) ... ok
+2026-10-09T06:40:56.8701170Z test_real_type_resolution_stimulus_contract (test_terminal_contract.TerminalReceiptContractTests.test_real_type_resolution_stimulus_contract) ... ok
+2026-10-09T06:40:56.8703310Z test_shadow_body_side_effect_cannot_change (test_terminal_contract.TerminalReceiptContractTests.test_shadow_body_side_effect_cannot_change) ... ok
+2026-10-09T06:40:56.8704110Z test_unowned_process_rejected (test_terminal_contract.TerminalReceiptContractTests.test_unowned_process_rejected) ... ok
+2026-10-09T06:40:56.8704530Z 
+2026-10-09T06:40:56.8704680Z ----------------------------------------------------------------------
+2026-10-09T06:40:56.8705080Z Ran 57 tests in 1.878s
+2026-10-09T06:40:56.8705190Z 
+2026-10-09T06:40:56.8705260Z OK
+2026-10-09T06:40:59.4300660Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-09T06:40:59.4301020Z with:
+2026-10-09T06:40:59.4301340Z   name: r03-ir-host-macos-14-26901302e2de1a07f8d9e0297d6ce22d014c9a5e
+2026-10-09T06:40:59.4301680Z   path: /Users/runner/work/_temp/r03-ir
+2026-10-09T06:40:59.4301940Z   retention-days: 14
+2026-10-09T06:40:59.4302160Z   if-no-files-found: warn
+2026-10-09T06:40:59.4302330Z   compression-level: 6
+2026-10-09T06:40:59.4302490Z   overwrite: false
+2026-10-09T06:40:59.4302640Z   include-hidden-files: false
+2026-10-09T06:40:59.4302820Z ##[endgroup]
+2026-10-09T06:40:59.8667100Z (node:6753) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-09T06:40:59.8668710Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-09T06:40:59.8751990Z With the provided path, there will be 1 file uploaded
+2026-10-09T06:40:59.8756610Z Artifact name is valid!
+2026-10-09T06:40:59.8757410Z Root directory input is valid!
+2026-10-09T06:41:00.2910690Z Beginning upload of artifact content to blob storage
+2026-10-09T06:41:00.3200810Z (node:6753) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-09T06:41:00.6157500Z Uploaded bytes 1531
+2026-10-09T06:41:00.7003700Z Finished uploading artifact content to blob storage!
+2026-10-09T06:41:00.7005410Z SHA256 digest of uploaded artifact zip is 2bdf898f7c01918391eac8b964e68ab3d5f47d62034f4c20c86fccd8099dbd64
+2026-10-09T06:41:00.7007960Z Finalizing artifact upload
+2026-10-09T06:41:00.9756950Z Artifact r03-ir-host-macos-14-26901302e2de1a07f8d9e0297d6ce22d014c9a5e.zip successfully finalized. Artifact ID 11600285185
+2026-10-09T06:41:00.9759510Z Artifact r03-ir-host-macos-14-26901302e2de1a07f8d9e0297d6ce22d014c9a5e has been successfully uploaded! Final size is 1531 bytes. Artifact ID is 11600285185
+2026-10-09T06:41:00.9773310Z Artifact download URL: https://github.com/night-outlook/hybridclr_demo/actions/runs/37894308586/artifacts/11600285185
+2026-10-09T06:41:00.9974530Z Post job cleanup.
+2026-10-09T06:41:01.1008660Z [command]/opt/homebrew/bin/git version
+2026-10-09T06:41:01.1079460Z git version 2.55.0
+2026-10-09T06:41:01.1119670Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/90b2c85c-5d19-4a6d-82a6-77c5b7b024a0/.gitconfig'
+2026-10-09T06:41:01.1178970Z Temporarily overriding HOME='/Users/runner/work/_temp/90b2c85c-5d19-4a6d-82a6-77c5b7b024a0' before making global git config changes
+2026-10-09T06:41:01.1180130Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T06:41:01.1183810Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/hybridclr_demo/hybridclr_demo
+2026-10-09T06:41:01.1463980Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T06:41:01.1539080Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T06:41:01.3869220Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T06:41:01.3976320Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T06:41:01.5444900Z Cleaning up orphan processes
+2026-10-09T06:41:03.2672020Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

@@ -1,6 +1,33 @@
 # Local Validation → Primary Implementation
 
-## Current return — fresh R03 batch S, 2026-10-07 PDT
+## Current return — IR-R03-02 focused prerequisites, 2026-10-09
+
+**CapacityBlocked; focused batch NotRun.** [Local report](LOCAL_VALIDATION.md), [immutable checkpoint](../History/M07R/R03/local-validation-20261009-ir-r03-02-preflight-blocked/README.md), [factual prerequisite result](../History/M07R/R03/local-validation-20261009-ir-r03-02-preflight-blocked/preflight/LOCAL_PREFLIGHT_RESULT.json). Host64Python/69native checks, exact source/remote authority,15 original S inputs and416,161-file before/after custody Passed. No new runtime result or native defect is established; no Unity/build/Player or executing-wrapper invocation occurred.
+
+### IR-LOCAL-API-01 — required Player API CI is not bound to the current side-effect assertions
+
+**Symptom:** source-bound CI prerequisite Blocked; current Player CSharp API coverage NoCoverage. The required successful API run37874183375/job113638829514 compiled demo `0e8c9ae457e77c595e119e9f2c089f759d6d1b16`; current authorized source is `fca2fdb035512fc739693641a5fa2126e4254258`. It does not prove compilation of the current field-side-effect witness.
+
+**Exact reproduction (read-only, already performed):** in `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`, compare `git diff 0e8c9ae457e77c595e119e9f2c089f759d6d1b16 fca2fdb035512fc739693641a5fa2126e4254258 -- Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs`; authenticate both Git objects and inspect the saved actual API job log's compilation inputs, Build succeeded/0 errors and checkout SHA. No workflow rerun is required to reproduce this source mismatch. [Source delta](../History/M07R/R03/local-validation-20261009-ir-r03-02-preflight-blocked/preflight/PLAYER_API_SOURCE_DELTA.patch), [comparison and log hashes](../History/M07R/R03/local-validation-20261009-ir-r03-02-preflight-blocked/preflight/CI_SOURCE_EQUIVALENCE.json), [actual log](../History/M07R/R03/local-validation-20261009-ir-r03-02-preflight-blocked/bootstrap/ci/job-113638829514.log).
+
+| Player source | Git blob | SHA256 |
+| --- | --- | --- |
+| Old compiled body | `4a1d7882a61d1acea06588d8c0fc4fc546814041` | `c0d47d3dcb40b8e7a46daa5487a413164591b7893b094838033ddea227387412` |
+| Current required body | `adc798c6c299594d496393c6729c4c6087111b31` | `22c3e0be7cebc041706b1412c5fc317c806c49a0980be143d5517dc4cc59a7bd` |
+
+**Relevant differences:** new private primitive `stable` FieldInfo resolution/read, actual counter0→2 positive controls, readable post-poison field and unchanged2 assertion. **Most likely cause:** a green earlier supplementary workflow URL was carried into the source-bound prerequisite after Player bytes changed. **Affected scope:** compile-evidence admission for this exact focused Player and its active-method side-effect proof. Current source-freeze host CI and native API syntax tests do not compile this CSharp body.
+
+**Recommended Primary direction:** publish successful existing `r03-ir-player-api.yml` compilation at the current executable source (or a demonstrably byte-identical descendant) using exact package `948c0e3b4f8891481301770115e8ba4945eea6de`, with actual logs, checkout SHA and relevant file bindings; update the source-bound prerequisite reference. Preserve the field controls and native guards. No architecture or Local source alteration is needed to close this evidence gap.
+
+**Remaining uncertainty:** this mismatch does not establish a compile error or runtime defect. The discovered CI list was bounded and is not an exhaustive claim that no other matching run exists. **Validation after Primary action:** inspect current-source actual CSharp compile logs; repeat all fresh admission checks only under a new authorized unused diagnostic root; then exactly one focused14-cell/3-build/4-Player execution if all prerequisites pass. Verify actual readable field2 after poison, first-failure/recovery unchanged and seal. True captured-generic/initializer coverage and independent full-stage review remain separate unresolved work.
+
+### Environmental prerequisite — capacity below unchanged admission
+
+Diagnostic2026-10-09T07:16:33.595206+00:00→07:16:55.669398+00:00 returned2: available68,289,347,584bytes < required68,719,476,736bytes, deficit430,129,152bytes. [Exact original admission](../History/M07R/R03/local-validation-20261009-ir-r03-02-preflight-blocked/storage-diagnostic/admission.json) and command/streams/session are retained; batchStarted=false and allocation probes NotRun. No product-source fix is requested for capacity. Primary/operator must establish measured safe headroom and publish a distinct unused diagnostic root, without deleting or relocating preserved S/R/Q/P/O/N, weakening thresholds or retrying the existing sidecar. Existing failed admission remains immutable even if capacity changes later.
+
+R remains staged; S90Passed and full-stage review FAIL remain distinct. All acceptance flags remain false; PureInterpreter expansion disabled. Local stops and returns to Primary; no substantive Local changes or runtime closure claim.
+
+## Historical return — fresh R03 batch S, 2026-10-07 PDT
 
 Core `EvidenceReadyForPrimaryReview`; 90 Passed; seal Passed; storage Passed; wrapper exit 0. Execution demo `29bb3d4a39bf8a2f23be404f77535aaba3485bfc`; native/package/IL2CPP pins unchanged. [Full factual Local report](LOCAL_VALIDATION.md), [immutable checkpoint](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/README.md), [postrun authentication](../History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/preflight/POSTRUN_AUTHENTICATION.json).
 

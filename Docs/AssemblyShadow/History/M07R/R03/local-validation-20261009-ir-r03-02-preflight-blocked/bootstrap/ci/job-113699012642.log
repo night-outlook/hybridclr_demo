@@ -1,0 +1,709 @@
+﻿2026-10-09T06:24:28.2335670Z Current runner version: '2.337.0'
+2026-10-09T06:24:28.2349740Z ##[group]Runner Image Provisioner
+2026-10-09T06:24:28.2350230Z Hosted Compute Agent
+2026-10-09T06:24:28.2350620Z Version: 20260828.587
+2026-10-09T06:24:28.2351020Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-10-09T06:24:28.2351510Z Build Date: 2026-08-28T16:44:25Z
+2026-10-09T06:24:28.2351940Z Worker ID: {7b727a6f-9320-4518-9d4e-9771607ce545}
+2026-10-09T06:24:28.2352380Z Azure Region: westus
+2026-10-09T06:24:28.2352730Z ##[endgroup]
+2026-10-09T06:24:28.2353580Z ##[group]Operating System
+2026-10-09T06:24:28.2353950Z macOS
+2026-10-09T06:24:28.2354250Z 15.7.9
+2026-10-09T06:24:28.2354560Z 24G830
+2026-10-09T06:24:28.2354980Z ##[endgroup]
+2026-10-09T06:24:28.2355330Z ##[group]Runner Image
+2026-10-09T06:24:28.2355720Z Image: macos-15-arm64
+2026-10-09T06:24:28.2356100Z Version: 20260907.0337.1
+2026-10-09T06:24:28.2356900Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+2026-10-09T06:24:28.2357960Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+2026-10-09T06:24:28.2358600Z ##[endgroup]
+2026-10-09T06:24:28.2359310Z ##[group]GITHUB_TOKEN Permissions
+2026-10-09T06:24:28.2360330Z Contents: read
+2026-10-09T06:24:28.2360700Z Metadata: read
+2026-10-09T06:24:28.2361050Z ##[endgroup]
+2026-10-09T06:24:28.2362350Z Secret source: Actions
+2026-10-09T06:24:28.2362940Z Cache mode: write
+2026-10-09T06:24:28.2363370Z Prepare workflow directory
+2026-10-09T06:24:28.2597310Z Prepare all required actions
+2026-10-09T06:24:28.2629440Z Getting action download info
+2026-10-09T06:24:28.5182190Z Download action repository 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' (SHA:11bd71901bbe5b1630ceea73d27597364c9af683)
+2026-10-09T06:24:28.7423270Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-09T06:24:28.9234670Z Complete job name: pinned-unity-api
+2026-10-09T06:24:28.9625760Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+2026-10-09T06:24:28.9626370Z with:
+2026-10-09T06:24:28.9626650Z   path: hybridclr_demo
+2026-10-09T06:24:28.9626980Z   persist-credentials: false
+2026-10-09T06:24:28.9627350Z   sparse-checkout-cone-mode: false
+2026-10-09T06:24:28.9628930Z   sparse-checkout: /Tools/AssemblyShadow/R03/
+/Tools/AssemblyShadow/R03IR/
+/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261001-batch-c-return-required/batch/builds/candidate-release/Editor.log
+/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261001-batch-c-return-required/batch/projects/candidate-release/Assets/Editor/R03Build.cs
+
+2026-10-09T06:24:28.9630530Z   repository: night-outlook/hybridclr_demo
+2026-10-09T06:24:28.9633150Z   token: ***
+2026-10-09T06:24:28.9633430Z   ssh-strict: true
+2026-10-09T06:24:28.9633720Z   ssh-user: git
+2026-10-09T06:24:28.9634010Z   clean: true
+2026-10-09T06:24:28.9634290Z   fetch-depth: 1
+2026-10-09T06:24:28.9634610Z   fetch-tags: false
+2026-10-09T06:24:28.9634920Z   show-progress: true
+2026-10-09T06:24:28.9635210Z   lfs: false
+2026-10-09T06:24:28.9635490Z   submodules: false
+2026-10-09T06:24:28.9635790Z   set-safe-directory: true
+2026-10-09T06:24:28.9636200Z env:
+2026-10-09T06:24:28.9636490Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-09T06:24:28.9636820Z ##[endgroup]
+2026-10-09T06:24:29.2101930Z Syncing repository: night-outlook/hybridclr_demo
+2026-10-09T06:24:29.2103470Z ##[group]Getting Git version info
+2026-10-09T06:24:29.2104210Z Working directory is '/Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo'
+2026-10-09T06:24:29.2105260Z [command]/opt/homebrew/bin/git version
+2026-10-09T06:24:29.2656960Z git version 2.55.0
+2026-10-09T06:24:29.2668310Z ##[endgroup]
+2026-10-09T06:24:29.2673470Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/fb28c552-2df8-4bd3-8023-a60db12a1701/.gitconfig'
+2026-10-09T06:24:29.2679970Z Temporarily overriding HOME='/Users/runner/work/_temp/fb28c552-2df8-4bd3-8023-a60db12a1701' before making global git config changes
+2026-10-09T06:24:29.2681440Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T06:24:29.2683650Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo
+2026-10-09T06:24:29.2774370Z ##[group]Initializing the repository
+2026-10-09T06:24:29.2777650Z [command]/opt/homebrew/bin/git init /Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo
+2026-10-09T06:24:29.3305630Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-09T06:24:29.3306720Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-09T06:24:29.3307900Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-09T06:24:29.3308590Z hint: call:
+2026-10-09T06:24:29.3308970Z hint:
+2026-10-09T06:24:29.3309470Z hint: 	git config --global init.defaultBranch <name>
+2026-10-09T06:24:29.3310010Z hint:
+2026-10-09T06:24:29.3310520Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-09T06:24:29.3311270Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-09T06:24:29.3311930Z hint:
+2026-10-09T06:24:29.3312310Z hint: 	git branch -m <name>
+2026-10-09T06:24:29.3312770Z hint:
+2026-10-09T06:24:29.3313360Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-09T06:24:29.3314510Z Initialized empty Git repository in /Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo/.git/
+2026-10-09T06:24:29.3316750Z [command]/opt/homebrew/bin/git remote add origin https://github.com/night-outlook/hybridclr_demo
+2026-10-09T06:24:29.3373830Z ##[endgroup]
+2026-10-09T06:24:29.3374700Z ##[group]Disabling automatic garbage collection
+2026-10-09T06:24:29.3376150Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-10-09T06:24:29.3424450Z ##[endgroup]
+2026-10-09T06:24:29.3425260Z ##[group]Setting up auth
+2026-10-09T06:24:29.3435540Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T06:24:29.3490350Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T06:24:29.4253310Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T06:24:29.4304580Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T06:24:29.4908640Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-09T06:24:29.4997130Z ##[endgroup]
+2026-10-09T06:24:29.5016160Z ##[group]Fetching the repository
+2026-10-09T06:24:29.5017780Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +0db60efe8514cb362f1a7cfd6187e7180d2596af:refs/remotes/origin/codex/assembly-shadow-r01b-h1
+2026-10-09T06:24:30.4259560Z From https://github.com/night-outlook/hybridclr_demo
+2026-10-09T06:24:30.4261710Z  * [new ref]         0db60efe8514cb362f1a7cfd6187e7180d2596af -> origin/codex/assembly-shadow-r01b-h1
+2026-10-09T06:24:30.4264540Z ##[endgroup]
+2026-10-09T06:24:30.4265460Z ##[group]Determining the checkout info
+2026-10-09T06:24:30.4266500Z ##[endgroup]
+2026-10-09T06:24:30.4267550Z ##[group]Setting up sparse checkout
+2026-10-09T06:24:30.4268480Z [command]/opt/homebrew/bin/git config core.sparseCheckout true
+2026-10-09T06:24:30.4326160Z [command]/opt/homebrew/bin/git rev-parse --git-path info/sparse-checkout
+2026-10-09T06:24:30.4371060Z .git/info/sparse-checkout
+2026-10-09T06:24:30.4376620Z ##[endgroup]
+2026-10-09T06:24:30.4377600Z ##[group]Checking out the ref
+2026-10-09T06:24:30.4380690Z [command]/opt/homebrew/bin/git checkout --progress --force -B codex/assembly-shadow-r01b-h1 refs/remotes/origin/codex/assembly-shadow-r01b-h1
+2026-10-09T06:24:32.1054030Z Switched to a new branch 'codex/assembly-shadow-r01b-h1'
+2026-10-09T06:24:32.1061670Z branch 'codex/assembly-shadow-r01b-h1' set up to track 'origin/codex/assembly-shadow-r01b-h1'.
+2026-10-09T06:24:32.1073090Z ##[endgroup]
+2026-10-09T06:24:32.1158250Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-10-09T06:24:32.1211970Z 0db60efe8514cb362f1a7cfd6187e7180d2596af
+2026-10-09T06:24:32.1217720Z ##[group]Removing auth
+2026-10-09T06:24:32.1220600Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T06:24:32.1270420Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T06:24:32.2038730Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T06:24:32.2083890Z http.https://github.com/.extraheader
+2026-10-09T06:24:32.2089580Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-09T06:24:32.2144860Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T06:24:32.2863720Z ##[endgroup]
+2026-10-09T06:24:32.3000610Z ##[group]Run python3 - <<'PYCODE'
+2026-10-09T06:24:32.3000920Z [36;1mpython3 - <<'PYCODE'[0m
+2026-10-09T06:24:32.3001130Z [36;1mimport json, os, re[0m
+2026-10-09T06:24:32.3001320Z [36;1mfrom pathlib import Path[0m
+2026-10-09T06:24:32.3001720Z [36;1mpins=json.loads(Path('hybridclr_demo/Tools/AssemblyShadow/R03/source-pins.json').read_text())[0m
+2026-10-09T06:24:32.3002180Z [36;1mwith open(os.environ['GITHUB_OUTPUT'],'a') as output:[0m
+2026-10-09T06:24:32.3002530Z [36;1m    for repo in ('hybridclr','hybridclr_unity','il2cpp_plus'):[0m
+2026-10-09T06:24:32.3002850Z [36;1m        assert re.fullmatch('[0-9a-f]{40}',pins[repo])[0m
+2026-10-09T06:24:32.3003120Z [36;1m        output.write(repo+'='+pins[repo]+'\n')[0m
+2026-10-09T06:24:32.3003330Z [36;1mPYCODE[0m
+2026-10-09T06:24:32.3043060Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T06:24:32.3043300Z env:
+2026-10-09T06:24:32.3043440Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-09T06:24:32.3043640Z ##[endgroup]
+2026-10-09T06:24:32.4657410Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+2026-10-09T06:24:32.4657760Z with:
+2026-10-09T06:24:32.4657930Z   repository: night-outlook/hybridclr_unity
+2026-10-09T06:24:32.4658210Z   ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+2026-10-09T06:24:32.4658440Z   path: hybridclr_unity
+2026-10-09T06:24:32.4671070Z   persist-credentials: false
+2026-10-09T06:24:32.4673140Z   token: ***
+2026-10-09T06:24:32.4673270Z   ssh-strict: true
+2026-10-09T06:24:32.4673440Z   ssh-user: git
+2026-10-09T06:24:32.4673570Z   clean: true
+2026-10-09T06:24:32.4673720Z   sparse-checkout-cone-mode: true
+2026-10-09T06:24:32.4673910Z   fetch-depth: 1
+2026-10-09T06:24:32.4674070Z   fetch-tags: false
+2026-10-09T06:24:32.4674220Z   show-progress: true
+2026-10-09T06:24:32.4674380Z   lfs: false
+2026-10-09T06:24:32.4674520Z   submodules: false
+2026-10-09T06:24:32.4674690Z   set-safe-directory: true
+2026-10-09T06:24:32.4674870Z env:
+2026-10-09T06:24:32.4675020Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-09T06:24:32.4675280Z ##[endgroup]
+2026-10-09T06:24:32.5417380Z Syncing repository: night-outlook/hybridclr_unity
+2026-10-09T06:24:32.5419430Z ##[group]Getting Git version info
+2026-10-09T06:24:32.5419800Z Working directory is '/Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity'
+2026-10-09T06:24:32.5442400Z [command]/opt/homebrew/bin/git version
+2026-10-09T06:24:32.5493630Z git version 2.55.0
+2026-10-09T06:24:32.5502730Z ##[endgroup]
+2026-10-09T06:24:32.5507450Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/b89fda89-42a7-4bda-a1d2-6e44948cd2ee/.gitconfig'
+2026-10-09T06:24:32.5512450Z Temporarily overriding HOME='/Users/runner/work/_temp/b89fda89-42a7-4bda-a1d2-6e44948cd2ee' before making global git config changes
+2026-10-09T06:24:32.5513180Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T06:24:32.5515490Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity
+2026-10-09T06:24:32.5563280Z ##[group]Initializing the repository
+2026-10-09T06:24:32.5566580Z [command]/opt/homebrew/bin/git init /Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity
+2026-10-09T06:24:32.5651640Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-09T06:24:32.5652670Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-09T06:24:32.5653150Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-09T06:24:32.5653630Z hint: call:
+2026-10-09T06:24:32.5653820Z hint:
+2026-10-09T06:24:32.5654040Z hint: 	git config --global init.defaultBranch <name>
+2026-10-09T06:24:32.5654280Z hint:
+2026-10-09T06:24:32.5654530Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-09T06:24:32.5654990Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-09T06:24:32.5655310Z hint:
+2026-10-09T06:24:32.5655470Z hint: 	git branch -m <name>
+2026-10-09T06:24:32.5655670Z hint:
+2026-10-09T06:24:32.5655920Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-09T06:24:32.5656460Z Initialized empty Git repository in /Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/.git/
+2026-10-09T06:24:32.5659130Z [command]/opt/homebrew/bin/git remote add origin https://github.com/night-outlook/hybridclr_unity
+2026-10-09T06:24:32.5710890Z ##[endgroup]
+2026-10-09T06:24:32.5711280Z ##[group]Disabling automatic garbage collection
+2026-10-09T06:24:32.5713480Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-10-09T06:24:32.5759760Z ##[endgroup]
+2026-10-09T06:24:32.5760070Z ##[group]Setting up auth
+2026-10-09T06:24:32.5763990Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T06:24:32.5813680Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T06:24:32.6417940Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T06:24:32.6463420Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T06:24:32.7273570Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-09T06:24:32.7327090Z ##[endgroup]
+2026-10-09T06:24:32.7327560Z ##[group]Fetching the repository
+2026-10-09T06:24:32.7331870Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 948c0e3b4f8891481301770115e8ba4945eea6de
+2026-10-09T06:24:33.6321770Z From https://github.com/night-outlook/hybridclr_unity
+2026-10-09T06:24:33.6322500Z  * branch            948c0e3b4f8891481301770115e8ba4945eea6de -> FETCH_HEAD
+2026-10-09T06:24:33.6323870Z ##[endgroup]
+2026-10-09T06:24:33.6324260Z ##[group]Determining the checkout info
+2026-10-09T06:24:33.6325140Z ##[endgroup]
+2026-10-09T06:24:33.6328520Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2026-10-09T06:24:33.6389130Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-09T06:24:33.6433260Z ##[group]Checking out the ref
+2026-10-09T06:24:33.6436010Z [command]/opt/homebrew/bin/git checkout --progress --force 948c0e3b4f8891481301770115e8ba4945eea6de
+2026-10-09T06:24:33.7026000Z HEAD is now at 948c0e3 fix(r03): revalidate metadata in an equivalent captured resolution domain
+2026-10-09T06:24:33.7032930Z ##[endgroup]
+2026-10-09T06:24:33.7097220Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-10-09T06:24:33.7147060Z 948c0e3b4f8891481301770115e8ba4945eea6de
+2026-10-09T06:24:33.7152630Z ##[group]Removing auth
+2026-10-09T06:24:33.7155230Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T06:24:33.7206560Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T06:24:33.7804620Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T06:24:33.7845230Z http.https://github.com/.extraheader
+2026-10-09T06:24:33.7849420Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-09T06:24:33.7903500Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T06:24:33.8483820Z ##[endgroup]
+2026-10-09T06:24:33.8591720Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+2026-10-09T06:24:33.8592010Z with:
+2026-10-09T06:24:33.8592140Z   repository: night-outlook/hybridclr
+2026-10-09T06:24:33.8592350Z   ref: 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+2026-10-09T06:24:33.8592550Z   path: hybridclr
+2026-10-09T06:24:33.8592690Z   persist-credentials: false
+2026-10-09T06:24:33.8592860Z   sparse-checkout-cone-mode: false
+2026-10-09T06:24:33.8593050Z   sparse-checkout: /hybridclr/
+
+2026-10-09T06:24:33.8595000Z   token: ***
+2026-10-09T06:24:33.8595130Z   ssh-strict: true
+2026-10-09T06:24:33.8595270Z   ssh-user: git
+2026-10-09T06:24:33.8595390Z   clean: true
+2026-10-09T06:24:33.8595510Z   fetch-depth: 1
+2026-10-09T06:24:33.8595630Z   fetch-tags: false
+2026-10-09T06:24:33.8595870Z   show-progress: true
+2026-10-09T06:24:33.8596020Z   lfs: false
+2026-10-09T06:24:33.8596140Z   submodules: false
+2026-10-09T06:24:33.8596290Z   set-safe-directory: true
+2026-10-09T06:24:33.8596450Z env:
+2026-10-09T06:24:33.8596610Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-09T06:24:33.8596790Z ##[endgroup]
+2026-10-09T06:24:33.9328680Z Syncing repository: night-outlook/hybridclr
+2026-10-09T06:24:33.9331200Z ##[group]Getting Git version info
+2026-10-09T06:24:33.9331660Z Working directory is '/Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr'
+2026-10-09T06:24:33.9353480Z [command]/opt/homebrew/bin/git version
+2026-10-09T06:24:33.9403380Z git version 2.55.0
+2026-10-09T06:24:33.9412530Z ##[endgroup]
+2026-10-09T06:24:33.9417500Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/623dd08f-e487-4edd-bafb-1503be822def/.gitconfig'
+2026-10-09T06:24:33.9423370Z Temporarily overriding HOME='/Users/runner/work/_temp/623dd08f-e487-4edd-bafb-1503be822def' before making global git config changes
+2026-10-09T06:24:33.9424010Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T06:24:33.9425970Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr
+2026-10-09T06:24:33.9480650Z ##[group]Initializing the repository
+2026-10-09T06:24:33.9484000Z [command]/opt/homebrew/bin/git init /Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr
+2026-10-09T06:24:33.9565430Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-09T06:24:33.9567040Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-09T06:24:33.9567590Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-09T06:24:33.9567970Z hint: call:
+2026-10-09T06:24:33.9568550Z hint:
+2026-10-09T06:24:33.9568820Z hint: 	git config --global init.defaultBranch <name>
+2026-10-09T06:24:33.9569160Z hint:
+2026-10-09T06:24:33.9569440Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-09T06:24:33.9569940Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-09T06:24:33.9570310Z hint:
+2026-10-09T06:24:33.9570490Z hint: 	git branch -m <name>
+2026-10-09T06:24:33.9570730Z hint:
+2026-10-09T06:24:33.9571060Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-09T06:24:33.9571610Z Initialized empty Git repository in /Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr/.git/
+2026-10-09T06:24:33.9574750Z [command]/opt/homebrew/bin/git remote add origin https://github.com/night-outlook/hybridclr
+2026-10-09T06:24:33.9626470Z ##[endgroup]
+2026-10-09T06:24:33.9626900Z ##[group]Disabling automatic garbage collection
+2026-10-09T06:24:33.9628820Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-10-09T06:24:33.9674460Z ##[endgroup]
+2026-10-09T06:24:33.9674730Z ##[group]Setting up auth
+2026-10-09T06:24:33.9678640Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T06:24:33.9730610Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T06:24:34.0303190Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T06:24:34.0347000Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T06:24:34.1079200Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-09T06:24:34.1130560Z ##[endgroup]
+2026-10-09T06:24:34.1130940Z ##[group]Fetching the repository
+2026-10-09T06:24:34.1135210Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+2026-10-09T06:24:34.6398990Z From https://github.com/night-outlook/hybridclr
+2026-10-09T06:24:34.6444630Z  * branch            4b2774b066cfc6afd77a8c8aded6bda7ea574f55 -> FETCH_HEAD
+2026-10-09T06:24:34.6445860Z ##[endgroup]
+2026-10-09T06:24:34.6446240Z ##[group]Determining the checkout info
+2026-10-09T06:24:34.6446670Z ##[endgroup]
+2026-10-09T06:24:34.6447040Z ##[group]Setting up sparse checkout
+2026-10-09T06:24:34.6447420Z [command]/opt/homebrew/bin/git config core.sparseCheckout true
+2026-10-09T06:24:34.6477760Z [command]/opt/homebrew/bin/git rev-parse --git-path info/sparse-checkout
+2026-10-09T06:24:34.6521140Z .git/info/sparse-checkout
+2026-10-09T06:24:34.6531580Z ##[endgroup]
+2026-10-09T06:24:34.6561210Z ##[group]Checking out the ref
+2026-10-09T06:24:34.6561930Z [command]/opt/homebrew/bin/git checkout --progress --force 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+2026-10-09T06:24:35.5935000Z HEAD is now at 4b2774b fix(r03): expose finalized staged definition layouts without class initialization
+2026-10-09T06:24:35.5942180Z ##[endgroup]
+2026-10-09T06:24:35.6010320Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-10-09T06:24:35.6061150Z 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+2026-10-09T06:24:35.6066530Z ##[group]Removing auth
+2026-10-09T06:24:35.6069180Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T06:24:35.6114130Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T06:24:35.6672450Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T06:24:35.6712430Z http.https://github.com/.extraheader
+2026-10-09T06:24:35.6716910Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-09T06:24:35.6763310Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T06:24:35.7342220Z ##[endgroup]
+2026-10-09T06:24:35.7437100Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+2026-10-09T06:24:35.7437390Z with:
+2026-10-09T06:24:35.7437540Z   repository: night-outlook/il2cpp_plus
+2026-10-09T06:24:35.7437760Z   ref: 9ce1c1bfec9a21b92ea300acda5f27a3815b2c37
+2026-10-09T06:24:35.7437960Z   path: il2cpp_plus
+2026-10-09T06:24:35.7438120Z   persist-credentials: false
+2026-10-09T06:24:35.7438320Z   sparse-checkout-cone-mode: false
+2026-10-09T06:24:35.7438520Z   sparse-checkout: /libil2cpp/
+
+2026-10-09T06:24:35.7440480Z   token: ***
+2026-10-09T06:24:35.7440640Z   ssh-strict: true
+2026-10-09T06:24:35.7440770Z   ssh-user: git
+2026-10-09T06:24:35.7440900Z   clean: true
+2026-10-09T06:24:35.7441020Z   fetch-depth: 1
+2026-10-09T06:24:35.7441140Z   fetch-tags: false
+2026-10-09T06:24:35.7441280Z   show-progress: true
+2026-10-09T06:24:35.7441410Z   lfs: false
+2026-10-09T06:24:35.7441530Z   submodules: false
+2026-10-09T06:24:35.7441660Z   set-safe-directory: true
+2026-10-09T06:24:35.7441810Z env:
+2026-10-09T06:24:35.7441960Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-09T06:24:35.7442110Z ##[endgroup]
+2026-10-09T06:24:35.8183550Z Syncing repository: night-outlook/il2cpp_plus
+2026-10-09T06:24:35.8186020Z ##[group]Getting Git version info
+2026-10-09T06:24:35.8186480Z Working directory is '/Users/runner/work/hybridclr_demo/hybridclr_demo/il2cpp_plus'
+2026-10-09T06:24:35.8206900Z [command]/opt/homebrew/bin/git version
+2026-10-09T06:24:35.8261760Z git version 2.55.0
+2026-10-09T06:24:35.8272120Z ##[endgroup]
+2026-10-09T06:24:35.8277990Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/11f0dfca-314c-47f7-af96-93dad9f5bab0/.gitconfig'
+2026-10-09T06:24:35.8283520Z Temporarily overriding HOME='/Users/runner/work/_temp/11f0dfca-314c-47f7-af96-93dad9f5bab0' before making global git config changes
+2026-10-09T06:24:35.8284300Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T06:24:35.8287010Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/hybridclr_demo/hybridclr_demo/il2cpp_plus
+2026-10-09T06:24:35.8339430Z ##[group]Initializing the repository
+2026-10-09T06:24:35.8342430Z [command]/opt/homebrew/bin/git init /Users/runner/work/hybridclr_demo/hybridclr_demo/il2cpp_plus
+2026-10-09T06:24:35.8420310Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-09T06:24:35.8420930Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-09T06:24:35.8421920Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-09T06:24:35.8422280Z hint: call:
+2026-10-09T06:24:35.8422540Z hint:
+2026-10-09T06:24:35.8422920Z hint: 	git config --global init.defaultBranch <name>
+2026-10-09T06:24:35.8423190Z hint:
+2026-10-09T06:24:35.8423450Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-09T06:24:35.8424010Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-09T06:24:35.8424510Z hint:
+2026-10-09T06:24:35.8424770Z hint: 	git branch -m <name>
+2026-10-09T06:24:35.8425090Z hint:
+2026-10-09T06:24:35.8425400Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-09T06:24:35.8425990Z Initialized empty Git repository in /Users/runner/work/hybridclr_demo/hybridclr_demo/il2cpp_plus/.git/
+2026-10-09T06:24:35.8427870Z [command]/opt/homebrew/bin/git remote add origin https://github.com/night-outlook/il2cpp_plus
+2026-10-09T06:24:35.8476340Z ##[endgroup]
+2026-10-09T06:24:35.8476670Z ##[group]Disabling automatic garbage collection
+2026-10-09T06:24:35.8478750Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-10-09T06:24:35.8524720Z ##[endgroup]
+2026-10-09T06:24:35.8525070Z ##[group]Setting up auth
+2026-10-09T06:24:35.8529580Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T06:24:35.8581270Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T06:24:35.9168900Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T06:24:35.9212210Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T06:24:35.9976120Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-09T06:24:36.0027430Z ##[endgroup]
+2026-10-09T06:24:36.0027750Z ##[group]Fetching the repository
+2026-10-09T06:24:36.0032670Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin 9ce1c1bfec9a21b92ea300acda5f27a3815b2c37
+2026-10-09T06:24:36.6228080Z From https://github.com/night-outlook/il2cpp_plus
+2026-10-09T06:24:36.6228690Z  * branch            9ce1c1bfec9a21b92ea300acda5f27a3815b2c37 -> FETCH_HEAD
+2026-10-09T06:24:36.6230140Z ##[endgroup]
+2026-10-09T06:24:36.6233150Z ##[group]Determining the checkout info
+2026-10-09T06:24:36.6233730Z ##[endgroup]
+2026-10-09T06:24:36.6234220Z ##[group]Setting up sparse checkout
+2026-10-09T06:24:36.6234750Z [command]/opt/homebrew/bin/git config core.sparseCheckout true
+2026-10-09T06:24:36.6296400Z [command]/opt/homebrew/bin/git rev-parse --git-path info/sparse-checkout
+2026-10-09T06:24:36.6351630Z .git/info/sparse-checkout
+2026-10-09T06:24:36.6355830Z ##[endgroup]
+2026-10-09T06:24:36.6356300Z ##[group]Checking out the ref
+2026-10-09T06:24:36.6359590Z [command]/opt/homebrew/bin/git checkout --progress --force 9ce1c1bfec9a21b92ea300acda5f27a3815b2c37
+2026-10-09T06:24:39.0703210Z Updating files:   0% (1/871)
+2026-10-09T06:24:39.0710930Z Updating files:   1% (9/871)
+2026-10-09T06:24:39.0717220Z Updating files:   2% (18/871)
+2026-10-09T06:24:39.0726710Z Updating files:   3% (27/871)
+2026-10-09T06:24:39.0734240Z Updating files:   4% (35/871)
+2026-10-09T06:24:39.0741530Z Updating files:   5% (44/871)
+2026-10-09T06:24:39.0748830Z Updating files:   6% (53/871)
+2026-10-09T06:24:39.0754200Z Updating files:   7% (61/871)
+2026-10-09T06:24:39.0760220Z Updating files:   8% (70/871)
+2026-10-09T06:24:39.0768270Z Updating files:   9% (79/871)
+2026-10-09T06:24:39.0783210Z Updating files:  10% (88/871)
+2026-10-09T06:24:39.0790350Z Updating files:  11% (96/871)
+2026-10-09T06:24:39.0797150Z Updating files:  12% (105/871)
+2026-10-09T06:24:39.0801320Z Updating files:  13% (114/871)
+2026-10-09T06:24:39.0808590Z Updating files:  14% (122/871)
+2026-10-09T06:24:39.0815190Z Updating files:  15% (131/871)
+2026-10-09T06:24:39.0822380Z Updating files:  16% (140/871)
+2026-10-09T06:24:39.0829290Z Updating files:  17% (149/871)
+2026-10-09T06:24:39.0835900Z Updating files:  18% (157/871)
+2026-10-09T06:24:39.0842690Z Updating files:  19% (166/871)
+2026-10-09T06:24:39.0859910Z Updating files:  20% (175/871)
+2026-10-09T06:24:39.0863860Z Updating files:  21% (183/871)
+2026-10-09T06:24:39.0880050Z Updating files:  22% (192/871)
+2026-10-09T06:24:39.0880410Z Updating files:  23% (201/871)
+2026-10-09T06:24:39.0883140Z Updating files:  24% (210/871)
+2026-10-09T06:24:39.0888230Z Updating files:  25% (218/871)
+2026-10-09T06:24:39.0895460Z Updating files:  26% (227/871)
+2026-10-09T06:24:39.0905970Z Updating files:  27% (236/871)
+2026-10-09T06:24:39.0915920Z Updating files:  28% (244/871)
+2026-10-09T06:24:39.0927240Z Updating files:  29% (253/871)
+2026-10-09T06:24:39.0944790Z Updating files:  30% (262/871)
+2026-10-09T06:24:39.0945940Z Updating files:  31% (271/871)
+2026-10-09T06:24:39.0947750Z Updating files:  32% (279/871)
+2026-10-09T06:24:39.0953690Z Updating files:  33% (288/871)
+2026-10-09T06:24:39.0959940Z Updating files:  34% (297/871)
+2026-10-09T06:24:39.0967090Z Updating files:  35% (305/871)
+2026-10-09T06:24:39.0974310Z Updating files:  36% (314/871)
+2026-10-09T06:24:39.0987880Z Updating files:  37% (323/871)
+2026-10-09T06:24:39.0996540Z Updating files:  38% (331/871)
+2026-10-09T06:24:39.1003410Z Updating files:  39% (340/871)
+2026-10-09T06:24:39.1011300Z Updating files:  40% (349/871)
+2026-10-09T06:24:39.1019420Z Updating files:  41% (358/871)
+2026-10-09T06:24:39.1029740Z Updating files:  42% (366/871)
+2026-10-09T06:24:39.1037290Z Updating files:  43% (375/871)
+2026-10-09T06:24:39.1042750Z Updating files:  44% (384/871)
+2026-10-09T06:24:39.1050040Z Updating files:  45% (392/871)
+2026-10-09T06:24:39.1077660Z Updating files:  46% (401/871)
+2026-10-09T06:24:39.1083860Z Updating files:  47% (410/871)
+2026-10-09T06:24:39.1087950Z Updating files:  48% (419/871)
+2026-10-09T06:24:39.1094580Z Updating files:  49% (427/871)
+2026-10-09T06:24:39.1101740Z Updating files:  50% (436/871)
+2026-10-09T06:24:39.1107480Z Updating files:  51% (445/871)
+2026-10-09T06:24:39.1113550Z Updating files:  52% (453/871)
+2026-10-09T06:24:39.1120380Z Updating files:  53% (462/871)
+2026-10-09T06:24:39.1126220Z Updating files:  54% (471/871)
+2026-10-09T06:24:39.1133090Z Updating files:  55% (480/871)
+2026-10-09T06:24:39.1139780Z Updating files:  56% (488/871)
+2026-10-09T06:24:39.1146720Z Updating files:  57% (497/871)
+2026-10-09T06:24:39.1153510Z Updating files:  58% (506/871)
+2026-10-09T06:24:39.1160830Z Updating files:  59% (514/871)
+2026-10-09T06:24:39.1166140Z Updating files:  60% (523/871)
+2026-10-09T06:24:39.1172380Z Updating files:  61% (532/871)
+2026-10-09T06:24:39.1178720Z Updating files:  62% (541/871)
+2026-10-09T06:24:39.1184890Z Updating files:  63% (549/871)
+2026-10-09T06:24:39.1190760Z Updating files:  64% (558/871)
+2026-10-09T06:24:39.1196270Z Updating files:  65% (567/871)
+2026-10-09T06:24:39.1205630Z Updating files:  66% (575/871)
+2026-10-09T06:24:39.1208490Z Updating files:  67% (584/871)
+2026-10-09T06:24:39.1213940Z Updating files:  68% (593/871)
+2026-10-09T06:24:39.1220460Z Updating files:  69% (601/871)
+2026-10-09T06:24:39.1228330Z Updating files:  70% (610/871)
+2026-10-09T06:24:39.1245750Z Updating files:  71% (619/871)
+2026-10-09T06:24:39.1250260Z Updating files:  72% (628/871)
+2026-10-09T06:24:39.1255930Z Updating files:  73% (636/871)
+2026-10-09T06:24:39.1262680Z Updating files:  74% (645/871)
+2026-10-09T06:24:39.1267840Z Updating files:  75% (654/871)
+2026-10-09T06:24:39.1274050Z Updating files:  76% (662/871)
+2026-10-09T06:24:39.1279530Z Updating files:  77% (671/871)
+2026-10-09T06:24:39.1285270Z Updating files:  78% (680/871)
+2026-10-09T06:24:39.1290770Z Updating files:  79% (689/871)
+2026-10-09T06:24:39.1298630Z Updating files:  80% (697/871)
+2026-10-09T06:24:39.1306010Z Updating files:  81% (706/871)
+2026-10-09T06:24:39.1310600Z Updating files:  82% (715/871)
+2026-10-09T06:24:39.1317960Z Updating files:  83% (723/871)
+2026-10-09T06:24:39.1324950Z Updating files:  84% (732/871)
+2026-10-09T06:24:39.1330820Z Updating files:  85% (741/871)
+2026-10-09T06:24:39.1336310Z Updating files:  86% (750/871)
+2026-10-09T06:24:39.1343120Z Updating files:  87% (758/871)
+2026-10-09T06:24:39.1348670Z Updating files:  88% (767/871)
+2026-10-09T06:24:39.1354600Z Updating files:  89% (776/871)
+2026-10-09T06:24:39.1360010Z Updating files:  90% (784/871)
+2026-10-09T06:24:39.1366720Z Updating files:  91% (793/871)
+2026-10-09T06:24:39.1373570Z Updating files:  92% (802/871)
+2026-10-09T06:24:39.1379610Z Updating files:  93% (811/871)
+2026-10-09T06:24:39.1386680Z Updating files:  94% (819/871)
+2026-10-09T06:24:39.1393320Z Updating files:  95% (828/871)
+2026-10-09T06:24:39.1399700Z Updating files:  96% (837/871)
+2026-10-09T06:24:39.1416360Z Updating files:  97% (845/871)
+2026-10-09T06:24:39.1423390Z Updating files:  98% (854/871)
+2026-10-09T06:24:39.1429070Z Updating files:  99% (863/871)
+2026-10-09T06:24:39.1429680Z Updating files: 100% (871/871)
+2026-10-09T06:24:39.1430070Z Updating files: 100% (871/871), done.
+2026-10-09T06:24:39.1452230Z HEAD is now at 9ce1c1b ci(r03): run source-bound terminal policy host tests on Linux and macOS
+2026-10-09T06:24:39.1459700Z ##[endgroup]
+2026-10-09T06:24:39.1526150Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-10-09T06:24:39.1575430Z 9ce1c1bfec9a21b92ea300acda5f27a3815b2c37
+2026-10-09T06:24:39.1580500Z ##[group]Removing auth
+2026-10-09T06:24:39.1583320Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T06:24:39.1629070Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T06:24:39.2292560Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T06:24:39.2335410Z http.https://github.com/.extraheader
+2026-10-09T06:24:39.2340840Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-09T06:24:39.2387700Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T06:24:39.2977740Z ##[endgroup]
+2026-10-09T06:24:39.3038200Z ##[group]Run set -euo pipefail
+2026-10-09T06:24:39.3038450Z [36;1mset -euo pipefail[0m
+2026-10-09T06:24:39.3038660Z [36;1mmkdir -p "$RUNNER_TEMP/r03-build-api"[0m
+2026-10-09T06:24:39.3038980Z [36;1mdf -h "$RUNNER_TEMP" | tee "$RUNNER_TEMP/r03-build-api/disk-before.txt"[0m
+2026-10-09T06:24:39.3039520Z [36;1mURL=https://download.unity3d.com/download_unity/7670c08855a9/MacEditorInstallerArm64/Unity-2022.3.62f2.pkg[0m
+2026-10-09T06:24:39.3040090Z [36;1mcurl --fail --location --proto '=https' --max-time 900 "$URL" -o "$RUNNER_TEMP/unity.pkg"[0m
+2026-10-09T06:24:39.3040580Z [36;1mshasum -a 256 "$RUNNER_TEMP/unity.pkg" | tee "$RUNNER_TEMP/r03-build-api/installer.sha256"[0m
+2026-10-09T06:24:39.3041020Z [36;1m# Historical Completion compiler profile pins this official package[0m
+2026-10-09T06:24:39.3041400Z [36;1m# digest. A wrong download must fail before expensive extraction.[0m
+2026-10-09T06:24:39.3041960Z [36;1mecho '5d2575c1b10a2a9f1f89bf40631a6b9bec3628fe16ca5f2203720af7943a3f05  '"$RUNNER_TEMP/unity.pkg" | shasum -a 256 -c[0m
+2026-10-09T06:24:39.3042540Z [36;1mfile "$RUNNER_TEMP/unity.pkg" | tee "$RUNNER_TEMP/r03-build-api/installer-file.txt"[0m
+2026-10-09T06:24:39.3042980Z [36;1mdf -h "$RUNNER_TEMP" | tee "$RUNNER_TEMP/r03-build-api/disk-downloaded.txt"[0m
+2026-10-09T06:24:39.3043420Z [36;1mpkgutil --expand-full "$RUNNER_TEMP/unity.pkg" "$RUNNER_TEMP/unity-expanded"[0m
+2026-10-09T06:24:39.3043850Z [36;1mdf -h "$RUNNER_TEMP" | tee "$RUNNER_TEMP/r03-build-api/disk-expanded.txt"[0m
+2026-10-09T06:24:39.3044260Z [36;1mrm "$RUNNER_TEMP/unity.pkg" # Temporary CI installer only; preserve digest.[0m
+2026-10-09T06:24:39.3044850Z [36;1mfind "$RUNNER_TEMP/unity-expanded" -path '*/Unity.app/Contents/MacOS/Unity' -type f > "$RUNNER_TEMP/r03-build-api/unity-paths.txt"[0m
+2026-10-09T06:24:39.3045430Z [36;1mtest "$(wc -l < "$RUNNER_TEMP/r03-build-api/unity-paths.txt" | tr -d ' ')" = 1[0m
+2026-10-09T06:24:39.3073510Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T06:24:39.3073740Z env:
+2026-10-09T06:24:39.3073870Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-09T06:24:39.3074030Z ##[endgroup]
+2026-10-09T06:24:39.3365840Z Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on
+2026-10-09T06:24:39.3366390Z /dev/disk2s5   320Gi   258Gi    43Gi    86%    2.2M  452M    0%   /System/Volumes/Data
+2026-10-09T06:24:39.3717960Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-10-09T06:24:39.3718460Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-10-09T06:24:39.3719170Z 
+2026-10-09T06:24:39.5713550Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-10-09T06:24:40.5713720Z   0 4295M    0 51906    0     0   254k      0  4:48:33 --:--:--  4:48:33  253k
+2026-10-09T06:24:41.5983870Z   1 4295M    1 53.3M    0     0  44.5M      0  0:01:36  0:00:01  0:01:35 44.5M
+2026-10-09T06:24:42.5856940Z   2 4295M    2  123M    0     0  55.2M      0  0:01:17  0:00:02  0:01:15 55.2M
+2026-10-09T06:24:43.5989280Z   4 4295M    4  187M    0     0  58.2M      0  0:01:13  0:00:03  0:01:10 58.2M
+2026-10-09T06:24:44.5734870Z   5 4295M    5  244M    0     0  57.7M      0  0:01:14  0:00:04  0:01:10 57.7M
+2026-10-09T06:24:45.5801440Z   7 4295M    7  308M    0     0  59.2M      0  0:01:12  0:00:05  0:01:07 61.6M
+2026-10-09T06:24:46.5845410Z   8 4295M    8  375M    0     0  60.5M      0  0:01:10  0:00:06  0:01:04 64.3M
+2026-10-09T06:24:47.5841500Z  10 4295M   10  441M    0     0  61.2M      0  0:01:10  0:00:07  0:01:03 63.8M
+2026-10-09T06:24:48.5758040Z  11 4295M   11  505M    0     0  61.5M      0  0:01:09  0:00:08  0:01:01 63.6M
+2026-10-09T06:24:49.5905260Z  13 4295M   13  569M    0     0  61.8M      0  0:01:09  0:00:09  0:01:00 65.3M
+2026-10-09T06:24:50.5776060Z  14 4295M   14  636M    0     0  62.2M      0  0:01:08  0:00:10  0:00:58 65.3M
+2026-10-09T06:24:51.6069670Z  16 4295M   16  702M    0     0  62.7M      0  0:01:08  0:00:11  0:00:57 65.4M
+2026-10-09T06:24:52.6074610Z  17 4295M   17  748M    0     0  61.1M      0  0:01:10  0:00:12  0:00:58 61.1M
+2026-10-09T06:24:53.5796870Z  18 4295M   18  813M    0     0  61.4M      0  0:01:09  0:00:13  0:00:56 61.4M
+2026-10-09T06:24:54.5812120Z  20 4295M   20  873M    0     0  61.5M      0  0:01:09  0:00:14  0:00:55 60.9M
+2026-10-09T06:24:55.5791780Z  21 4295M   21  936M    0     0  61.6M      0  0:01:09  0:00:15  0:00:54 60.2M
+2026-10-09T06:24:56.6121810Z  23 4295M   23  995M    0     0  61.4M      0  0:01:09  0:00:16  0:00:53 58.6M
+2026-10-09T06:24:57.5798140Z  24 4295M   24 1055M    0     0  61.2M      0  0:01:10  0:00:17  0:00:53 61.3M
+2026-10-09T06:24:58.5810940Z  25 4295M   25 1110M    0     0  61.0M      0  0:01:10  0:00:18  0:00:52 59.7M
+2026-10-09T06:24:59.5814910Z  27 4295M   27 1167M    0     0  60.8M      0  0:01:10  0:00:19  0:00:51 58.6M
+2026-10-09T06:25:00.5813550Z  28 4295M   28 1215M    0     0  60.1M      0  0:01:11  0:00:20  0:00:51 55.7M
+2026-10-09T06:25:01.5947590Z  29 4295M   29 1272M    0     0  60.0M      0  0:01:11  0:00:21  0:00:50 55.3M
+2026-10-09T06:25:02.5834020Z  31 4295M   31 1333M    0     0  60.0M      0  0:01:11  0:00:22  0:00:49 55.9M
+2026-10-09T06:25:03.5919290Z  32 4295M   32 1391M    0     0  59.9M      0  0:01:11  0:00:23  0:00:48 56.2M
+2026-10-09T06:25:04.5980600Z  33 4295M   33 1449M    0     0  59.8M      0  0:01:11  0:00:24  0:00:47 56.3M
+2026-10-09T06:25:05.5841570Z  35 4295M   35 1507M    0     0  59.8M      0  0:01:11  0:00:25  0:00:46 58.3M
+2026-10-09T06:25:06.5892430Z  36 4295M   36 1550M    0     0  59.1M      0  0:01:12  0:00:26  0:00:46 55.6M
+2026-10-09T06:25:07.5853920Z  37 4295M   37 1614M    0     0  59.3M      0  0:01:12  0:00:27  0:00:45 56.3M
+2026-10-09T06:25:08.6068240Z  39 4295M   39 1685M    0     0  59.7M      0  0:01:11  0:00:28  0:00:43 58.7M
+2026-10-09T06:25:09.5856820Z  40 4295M   40 1751M    0     0  59.9M      0  0:01:11  0:00:29  0:00:42 60.2M
+2026-10-09T06:25:10.5861930Z  42 4295M   42 1815M    0     0  60.1M      0  0:01:11  0:00:30  0:00:41 61.6M
+2026-10-09T06:25:11.5875720Z  43 4295M   43 1883M    0     0  60.3M      0  0:01:11  0:00:31  0:00:40 66.7M
+2026-10-09T06:25:12.6189550Z  45 4295M   45 1949M    0     0  60.5M      0  0:01:10  0:00:32  0:00:38 67.0M
+2026-10-09T06:25:13.5880740Z  47 4295M   47 2019M    0     0  60.7M      0  0:01:10  0:00:33  0:00:37 66.4M
+2026-10-09T06:25:14.5986750Z  48 4295M   48 2086M    0     0  60.9M      0  0:01:10  0:00:34  0:00:36 67.1M
+2026-10-09T06:25:15.6196180Z  50 4295M   50 2153M    0     0  61.1M      0  0:01:10  0:00:35  0:00:35 67.5M
+2026-10-09T06:25:16.5952240Z  51 4295M   51 2223M    0     0  61.3M      0  0:01:09  0:00:36  0:00:33 67.5M
+2026-10-09T06:25:17.5928570Z  53 4295M   53 2288M    0     0  61.5M      0  0:01:09  0:00:37  0:00:32 67.6M
+2026-10-09T06:25:18.6012080Z  54 4295M   54 2352M    0     0  61.5M      0  0:01:09  0:00:38  0:00:31 66.9M
+2026-10-09T06:25:19.5906470Z  55 4295M   55 2396M    0     0  61.1M      0  0:01:10  0:00:39  0:00:31 61.8M
+2026-10-09T06:25:20.6169320Z  57 4295M   57 2457M    0     0  61.1M      0  0:01:10  0:00:40  0:00:30 60.8M
+2026-10-09T06:25:21.5932570Z  58 4295M   58 2519M    0     0  61.1M      0  0:01:10  0:00:41  0:00:29 59.2M
+2026-10-09T06:25:22.5927520Z  60 4295M   60 2579M    0     0  61.1M      0  0:01:10  0:00:42  0:00:28 58.3M
+2026-10-09T06:25:23.6016460Z  61 4295M   61 2639M    0     0  61.0M      0  0:01:10  0:00:43  0:00:27 57.2M
+2026-10-09T06:25:24.5945460Z  62 4295M   62 2699M    0     0  61.0M      0  0:01:10  0:00:44  0:00:26 60.7M
+2026-10-09T06:25:25.5951250Z  64 4295M   64 2760M    0     0  61.0M      0  0:01:10  0:00:45  0:00:25 60.7M
+2026-10-09T06:25:26.5941990Z  65 4295M   65 2817M    0     0  60.9M      0  0:01:10  0:00:46  0:00:24 59.8M
+2026-10-09T06:25:27.5951720Z  67 4295M   67 2879M    0     0  61.0M      0  0:01:10  0:00:47  0:00:23 59.9M
+2026-10-09T06:25:28.5978550Z  68 4295M   68 2938M    0     0  60.9M      0  0:01:10  0:00:48  0:00:22 59.9M
+2026-10-09T06:25:29.5957170Z  69 4295M   69 2988M    0     0  60.7M      0  0:01:10  0:00:49  0:00:21 57.8M
+2026-10-09T06:25:30.5968870Z  70 4295M   70 3039M    0     0  60.5M      0  0:01:10  0:00:50  0:00:20 55.8M
+2026-10-09T06:25:31.5966830Z  72 4295M   72 3097M    0     0  60.5M      0  0:01:11  0:00:51  0:00:20 56.0M
+2026-10-09T06:25:32.5973870Z  73 4295M   73 3161M    0     0  60.5M      0  0:01:10  0:00:52  0:00:18 56.4M
+2026-10-09T06:25:33.5979500Z  75 4295M   75 3224M    0     0  60.6M      0  0:01:10  0:00:53  0:00:17 57.1M
+2026-10-09T06:25:34.5991730Z  76 4295M   76 3286M    0     0  60.6M      0  0:01:10  0:00:54  0:00:16 59.7M
+2026-10-09T06:25:35.6024600Z  77 4295M   77 3345M    0     0  60.6M      0  0:01:10  0:00:55  0:00:15 61.2M
+2026-10-09T06:25:36.6001820Z  79 4295M   79 3401M    0     0  60.5M      0  0:01:10  0:00:56  0:00:14 60.6M
+2026-10-09T06:25:37.5998850Z  80 4295M   80 3460M    0     0  60.5M      0  0:01:11  0:00:57  0:00:14 59.8M
+2026-10-09T06:25:38.6013150Z  81 4295M   81 3508M    0     0  60.2M      0  0:01:11  0:00:58  0:00:13 56.8M
+2026-10-09T06:25:39.6014000Z  82 4295M   82 3563M    0     0  60.2M      0  0:01:11  0:00:59  0:00:12 55.4M
+2026-10-09T06:25:40.6046970Z  84 4295M   84 3624M    0     0  60.2M      0  0:01:11  0:01:00  0:00:11 55.7M
+2026-10-09T06:25:41.6072580Z  85 4295M   85 3685M    0     0  60.2M      0  0:01:11  0:01:01  0:00:10 56.7M
+2026-10-09T06:25:42.6049740Z  87 4295M   87 3745M    0     0  60.2M      0  0:01:11  0:01:02  0:00:09 56.9M
+2026-10-09T06:25:43.6029800Z  88 4295M   88 3788M    0     0  59.9M      0  0:01:11  0:01:03  0:00:08 55.8M
+2026-10-09T06:25:44.6040340Z  89 4295M   89 3847M    0     0  59.9M      0  0:01:11  0:01:04  0:00:07 56.6M
+2026-10-09T06:25:45.6102970Z  90 4295M   90 3908M    0     0  59.9M      0  0:01:11  0:01:05  0:00:06 56.8M
+2026-10-09T06:25:46.6048950Z  92 4295M   92 3971M    0     0  59.9M      0  0:01:11  0:01:06  0:00:05 57.2M
+2026-10-09T06:25:47.6048240Z  93 4295M   93 4032M    0     0  60.0M      0  0:01:11  0:01:07  0:00:04 57.3M
+2026-10-09T06:25:48.6056290Z  95 4295M   95 4095M    0     0  60.0M      0  0:01:11  0:01:08  0:00:03 61.3M
+2026-10-09T06:25:49.6061020Z  96 4295M   96 4154M    0     0  60.0M      0  0:01:11  0:01:09  0:00:02 61.4M
+2026-10-09T06:25:50.6074850Z  98 4295M   98 4218M    0     0  60.0M      0  0:01:11  0:01:10  0:00:01 61.9M
+2026-10-09T06:25:50.8776200Z  99 4295M   99 4279M    0     0  60.1M      0  0:01:11  0:01:11 --:--:-- 61.7M
+2026-10-09T06:25:50.8777530Z 100 4295M  100 4295M    0     0  60.1M      0  0:01:11  0:01:11 --:--:-- 61.6M
+2026-10-09T06:26:11.6678490Z 5d2575c1b10a2a9f1f89bf40631a6b9bec3628fe16ca5f2203720af7943a3f05  /Users/runner/work/_temp/unity.pkg
+2026-10-09T06:26:31.7081380Z /Users/runner/work/_temp/unity.pkg: OK
+2026-10-09T06:26:31.7555100Z /Users/runner/work/_temp/unity.pkg: xar archive compressed TOC: 4890, SHA-1 checksum
+2026-10-09T06:26:31.7800250Z Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on
+2026-10-09T06:26:31.7800870Z /dev/disk2s5   320Gi   262Gi    39Gi    88%    2.2M  408M    1%   /System/Volumes/Data
+2026-10-09T06:27:35.3223350Z Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on
+2026-10-09T06:27:35.3224200Z /dev/disk2s5   320Gi   270Gi    31Gi    90%    2.3M  328M    1%   /System/Volumes/Data
+2026-10-09T06:27:36.0551980Z ##[group]Run UNITY="$(cat "$RUNNER_TEMP/r03-build-api/unity-paths.txt")"
+2026-10-09T06:27:36.0552550Z [36;1mUNITY="$(cat "$RUNNER_TEMP/r03-build-api/unity-paths.txt")"[0m
+2026-10-09T06:27:36.0553010Z [36;1mpython3 -B hybridclr_demo/Tools/AssemblyShadow/R03/build_api.py \[0m
+2026-10-09T06:27:36.0559330Z [36;1m  --workspace "$GITHUB_WORKSPACE" --unity "$UNITY" \[0m
+2026-10-09T06:27:36.0565890Z [36;1m  --output "$RUNNER_TEMP/r03-build-api/execution"[0m
+2026-10-09T06:27:36.0807560Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T06:27:36.0811490Z env:
+2026-10-09T06:27:36.0814390Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-09T06:27:36.0814640Z ##[endgroup]
+2026-10-09T06:27:43.0313790Z {"result": "/Users/runner/work/_temp/r03-build-api/execution/build-api/results.json", "sha256": "b890403477b7fe5b94508c21e7f8a33e3c4c6b0e16dc03d979efefbb61b81e3d"}
+2026-10-09T06:27:43.0483430Z ##[group]Run UNITY="$(cat "$RUNNER_TEMP/r03-build-api/unity-paths.txt")"
+2026-10-09T06:27:43.0483940Z [36;1mUNITY="$(cat "$RUNNER_TEMP/r03-build-api/unity-paths.txt")"[0m
+2026-10-09T06:27:43.0484490Z [36;1mpython3 -B hybridclr_demo/Tools/AssemblyShadow/R03/native_validation.py \[0m
+2026-10-09T06:27:43.0484950Z [36;1m  --workspace "$GITHUB_WORKSPACE" --unity "$UNITY" \[0m
+2026-10-09T06:27:43.0485390Z [36;1m  --output "$RUNNER_TEMP/r03-build-api/native"[0m
+2026-10-09T06:27:43.0540410Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T06:27:43.0540680Z env:
+2026-10-09T06:27:43.0541000Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-09T06:27:43.0541260Z ##[endgroup]
+2026-10-09T06:28:24.2866130Z {"result": "Passed", "unitCases": 0, "translationUnits": 40, "runtimeAcceptance": false}
+2026-10-09T06:28:24.3086070Z ##[group]Run python3 - <<'PY'
+2026-10-09T06:28:24.3086630Z [36;1mpython3 - <<'PY'[0m
+2026-10-09T06:28:24.3086960Z [36;1mimport hashlib, json, os, subprocess[0m
+2026-10-09T06:28:24.3087990Z [36;1mfrom pathlib import Path[0m
+2026-10-09T06:28:24.3088520Z [36;1mroot = Path(os.environ['RUNNER_TEMP'])/'r03-build-api'[0m
+2026-10-09T06:28:24.3088930Z [36;1mroot.mkdir(parents=True, exist_ok=True)[0m
+2026-10-09T06:28:24.3089700Z [36;1mrepositories = {name: subprocess.check_output(['git','-C',name,'rev-parse','HEAD'],text=True).strip() for name in ('hybridclr_demo','hybridclr_unity','hybridclr','il2cpp_plus')}[0m
+2026-10-09T06:28:24.3090750Z [36;1mfiles = [{'path':str(p.relative_to(root)), 'size':p.stat().st_size, 'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.rglob('*')) if p.is_file()][0m
+2026-10-09T06:28:24.3092380Z [36;1mdata = {'kind':'R03PinnedBuildApiProvenance','workflowSha':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'repositories':repositories,'files':files,'unityEditorRun':False,'nativeExecution':False,'runtimeAcceptance':False}[0m
+2026-10-09T06:28:24.3093410Z [36;1m(root/'provenance.json').write_text(json.dumps(data,indent=2)+'\n')[0m
+2026-10-09T06:28:24.3093840Z [36;1mPY[0m
+2026-10-09T06:28:24.3094220Z [36;1mgit -C hybridclr_demo diff --exit-code[0m
+2026-10-09T06:28:24.3094550Z [36;1mgit -C hybridclr_unity diff --exit-code[0m
+2026-10-09T06:28:24.3095000Z [36;1mtest -z "$(git -C hybridclr_demo status --porcelain)"[0m
+2026-10-09T06:28:24.3095450Z [36;1mtest -z "$(git -C hybridclr_unity status --porcelain)"[0m
+2026-10-09T06:28:24.3330090Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T06:28:24.3331310Z env:
+2026-10-09T06:28:24.3331550Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-09T06:28:24.3332000Z ##[endgroup]
+2026-10-09T06:28:25.1983160Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-09T06:28:25.1983600Z with:
+2026-10-09T06:28:25.1983840Z   name: r03-build-api-0db60efe8514cb362f1a7cfd6187e7180d2596af
+2026-10-09T06:28:25.1984230Z   path: /Users/runner/work/_temp/r03-build-api
+2026-10-09T06:28:25.1984590Z   retention-days: 14
+2026-10-09T06:28:25.1984790Z   if-no-files-found: error
+2026-10-09T06:28:25.1985120Z   include-hidden-files: true
+2026-10-09T06:28:25.1985350Z   compression-level: 6
+2026-10-09T06:28:25.1985670Z   overwrite: false
+2026-10-09T06:28:25.1985870Z env:
+2026-10-09T06:28:25.1986150Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-09T06:28:25.1986400Z ##[endgroup]
+2026-10-09T06:28:25.5556080Z (node:5117) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-09T06:28:25.5558320Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-09T06:28:25.5863770Z With the provided path, there will be 159 files uploaded
+2026-10-09T06:28:25.5869820Z Artifact name is valid!
+2026-10-09T06:28:25.5870920Z Root directory input is valid!
+2026-10-09T06:28:25.9303240Z Beginning upload of artifact content to blob storage
+2026-10-09T06:28:25.9986890Z (node:5117) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-09T06:28:26.3512710Z Uploaded bytes 701355
+2026-10-09T06:28:26.3914470Z Finished uploading artifact content to blob storage!
+2026-10-09T06:28:26.4016930Z SHA256 digest of uploaded artifact zip is c1bc9ff1fbf59be4f8e729074bf91cf4ef292ebf0f7c36d0e53045ea64fab9c0
+2026-10-09T06:28:26.4119580Z Finalizing artifact upload
+2026-10-09T06:28:26.6518270Z Artifact r03-build-api-0db60efe8514cb362f1a7cfd6187e7180d2596af.zip successfully finalized. Artifact ID 11599631335
+2026-10-09T06:28:26.6521360Z Artifact r03-build-api-0db60efe8514cb362f1a7cfd6187e7180d2596af has been successfully uploaded! Final size is 701355 bytes. Artifact ID is 11599631335
+2026-10-09T06:28:26.6524910Z Artifact download URL: https://github.com/night-outlook/hybridclr_demo/actions/runs/37893353097/artifacts/11599631335
+2026-10-09T06:28:26.6697900Z Post job cleanup.
+2026-10-09T06:28:26.7790910Z [command]/opt/homebrew/bin/git version
+2026-10-09T06:28:26.7850270Z git version 2.55.0
+2026-10-09T06:28:26.7867130Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/6770f51d-82ab-4326-8ea7-e63e442ae3d0/.gitconfig'
+2026-10-09T06:28:26.7874580Z Temporarily overriding HOME='/Users/runner/work/_temp/6770f51d-82ab-4326-8ea7-e63e442ae3d0' before making global git config changes
+2026-10-09T06:28:26.7875330Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T06:28:26.7877250Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/hybridclr_demo/hybridclr_demo/il2cpp_plus
+2026-10-09T06:28:26.7934180Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T06:28:26.7988790Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T06:28:26.8859780Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T06:28:26.8951720Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T06:28:27.0145000Z Post job cleanup.
+2026-10-09T06:28:27.1270550Z [command]/opt/homebrew/bin/git version
+2026-10-09T06:28:27.1371650Z git version 2.55.0
+2026-10-09T06:28:27.1739780Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/c4065148-5a10-453b-a856-5c8a78385c5b/.gitconfig'
+2026-10-09T06:28:27.1741220Z Temporarily overriding HOME='/Users/runner/work/_temp/c4065148-5a10-453b-a856-5c8a78385c5b' before making global git config changes
+2026-10-09T06:28:27.1742400Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T06:28:27.1746390Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr
+2026-10-09T06:28:27.1785790Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T06:28:27.1787380Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T06:28:27.3028980Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T06:28:27.3233910Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T06:28:27.4501970Z Post job cleanup.
+2026-10-09T06:28:27.5703580Z [command]/opt/homebrew/bin/git version
+2026-10-09T06:28:27.5805990Z git version 2.55.0
+2026-10-09T06:28:27.6268130Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/1d2075c0-da5c-4dc4-a835-ff088f012a43/.gitconfig'
+2026-10-09T06:28:27.6277840Z Temporarily overriding HOME='/Users/runner/work/_temp/1d2075c0-da5c-4dc4-a835-ff088f012a43' before making global git config changes
+2026-10-09T06:28:27.6278500Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T06:28:27.6279170Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity
+2026-10-09T06:28:27.6280840Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T06:28:27.6282040Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T06:28:27.7238200Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T06:28:27.7548630Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T06:28:27.9039190Z Post job cleanup.
+2026-10-09T06:28:28.0557410Z [command]/opt/homebrew/bin/git version
+2026-10-09T06:28:28.0567390Z git version 2.55.0
+2026-10-09T06:28:28.0615600Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/5bf5cfd4-dbec-46d4-8d5c-18d0c83a291f/.gitconfig'
+2026-10-09T06:28:28.0616550Z Temporarily overriding HOME='/Users/runner/work/_temp/5bf5cfd4-dbec-46d4-8d5c-18d0c83a291f' before making global git config changes
+2026-10-09T06:28:28.0617310Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T06:28:28.0618050Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_demo
+2026-10-09T06:28:28.0619420Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T06:28:28.0681930Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T06:28:28.2017730Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T06:28:28.2324610Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T06:28:28.3944150Z Cleaning up orphan processes
+2026-10-09T06:28:32.0135520Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

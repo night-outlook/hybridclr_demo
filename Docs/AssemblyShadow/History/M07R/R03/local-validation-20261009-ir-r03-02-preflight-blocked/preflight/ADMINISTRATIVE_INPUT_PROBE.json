@@ -1,0 +1,14 @@
+{
+  "kind": "AdministrativeInputProbeObservation",
+  "recordedUtc": "2026-10-09T07:21:50.232592+00:00",
+  "originalCommandClock": "Unavailable: direct administrative tool probe did not persist clocks",
+  "errorType": "ModuleNotFoundError",
+  "error": "No module named batch_contract",
+  "rootCause": "External optional probe added R03IR but omitted sibling R03 from sys.path; the production runner already adds R03.",
+  "probeDestination": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261009A-terminal/original-s-fixtures",
+  "destinationExistsAfterException": false,
+  "productSourceChanged": false,
+  "batchConstructed": false,
+  "unityLaunched": false,
+  "remedy": "Correct only the external probe import path; source input admission had stopped at its initial import before staging any bytes."
+}

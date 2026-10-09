@@ -1,0 +1,11 @@
+# IR-R03-02 Local prerequisite checkpoint — 2026-10-09
+
+**CapacityBlocked; focused batch NotRun.** No Unity, IL2CPP Player build or Player was launched; zero execution-wrapper invocations. This is an immutable prerequisite checkpoint, not a sealed runtime batch. The original diagnostic wrapper exited 2. The separate administrative driver exited 0 after recording that exit; it is not admission success.
+
+Read `preflight/LOCAL_PREFLIGHT_RESULT.json`, `preflight/CI_SOURCE_EQUIVALENCE.json`, `storage-diagnostic/admission.json`, both custody receipts and `SOURCE_BINDINGS.json`. Local passed 64 Python tests, 69 native policy checks, exact four-owner source/remote checks, literal 15 original S fixture admission, and before/after custody for 416,161 files. Current CSharp Player API coverage is NoCoverage because the supplied successful job compiled an earlier body. The original actual logs and source delta remain preserved.
+
+Storage observed 68,289,347,584 bytes available, required 68,719,476,736; deficit 430,129,152 bytes. Unchanged max(64GiB,2*Q+20GiB) policy; no cleanup, relocation or threshold change. All 14 planned cells, three builds and four Players remain NotRun; no core result, ledger, index, archive or seal exists. The distinct deterministic IR target was not generated locally. Fifteen staged S inputs are ReusedAudited immutable bytes, not replayed runtime results.
+
+Live roots are retained exactly where COPY_BINDINGS records them. Large maps use FILE_TRANSPORT ordered byte chunks; concatenate parts outside this checkpoint and compare the listed original SHA256. MANIFEST.sha256 authenticates all checkpoint files except itself. Raw captures retain bytes and whitespace; decoded connector CI logs have a normalized trailing newline and are not remote ZIP byte-identity claims.
+
+S/R/Q/P/O/N remain unchanged; R remains staged. Independent full-stage review remains FAIL. True captured-generic and post-poison initializer cases remain NotRun. R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; fullLegacyRegressionAcceptance=false; PureInterpreter expansion disabled. No bounded product fix. Next owner: Primary Implementation. Fresh current-source CSharp API evidence and a separately authorized unused storage diagnostic root are required before any future focused execution.

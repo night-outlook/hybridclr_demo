@@ -1,0 +1,185 @@
+{
+  "H2Passed": false,
+  "R03Accepted": false,
+  "files": [
+    {
+      "assembly": "A",
+      "gitBlob": "96e2c571797ea69ff9791fb79292daa7c5b27443",
+      "mvid": "87d8b6bb-8c11-29e6-8ef2-dd9f2d044eeb",
+      "path": "baseline/A.dll",
+      "references": [
+        "B",
+        "mscorlib"
+      ],
+      "sha256": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6",
+      "size": 2048
+    },
+    {
+      "assembly": "B",
+      "gitBlob": "4c51c1e1d1cd14a23a661160a0cd986eb03a0488",
+      "mvid": "ef87710c-ebde-ecbc-c144-b138529e67d9",
+      "path": "baseline/B.dll",
+      "references": [
+        "mscorlib"
+      ],
+      "sha256": "7aa63a4c814eacecbb633b06d687b9a28f97fc73ddb577e73bb6444ac2669a2b",
+      "size": 2048
+    },
+    {
+      "assembly": "Layout",
+      "gitBlob": "4aeab5b4754209aec828212b8dd4c4b511aa2d8d",
+      "mvid": "bc86caee-ae2b-8389-74c1-3619daf288c1",
+      "path": "baseline/Layout.dll",
+      "references": [
+        "mscorlib"
+      ],
+      "sha256": "3adcc44417c6f9c9f0a2a2c255b020746ff24c598dfef67e64f120dea4be13f8",
+      "size": 2048
+    },
+    {
+      "assembly": "Methods",
+      "gitBlob": "de7201eb5ccbf95bf2c4654dd72f3554e3c44a30",
+      "mvid": "4773fc19-55e6-0b61-bd26-4e01952444ca",
+      "path": "baseline/Methods.dll",
+      "references": [
+        "mscorlib"
+      ],
+      "sha256": "56af53c3165cc28144095b4aa08d2dfbaa5403da2a40c1137114f1e0e9cf3ce8",
+      "size": 2048
+    },
+    {
+      "assembly": "R03Contract",
+      "gitBlob": "27d610a049332fe65982cdf5268fc565faeb401a",
+      "mvid": "bdf34429-3668-4324-9ee1-3a53dd479b6e",
+      "path": "baseline/R03Contract.dll",
+      "references": [
+        "mscorlib"
+      ],
+      "sha256": "7627f977735e56e029d1d823bea46d2362134bd9f01c3086cca9c1afd7c9096e",
+      "size": 2048
+    },
+    {
+      "assembly": "R03Contract",
+      "gitBlob": "630498ec7f259616de11fd826c7cd111cc644ee6",
+      "mvid": "4155879e-eebd-4957-8781-3b8ccd3bbf4c",
+      "path": "interface/R03Contract.dll",
+      "references": [
+        "mscorlib"
+      ],
+      "sha256": "736f525b05694a577dc2cc6b5d94d2ebe10954d53f51f71e87cc7c2d1297dd40",
+      "size": 2048
+    },
+    {
+      "assembly": "R03Contract",
+      "gitBlob": "f876847ef2a5a0d9f29aff620822c7227f0656c5",
+      "mvid": "912ee4e3-7f1c-492f-a07b-6cb0692ad807",
+      "path": "primitive/R03Contract.dll",
+      "references": [
+        "mscorlib"
+      ],
+      "sha256": "d189a952e9973a729b18e9791b808dc650f793817a19d89ab0e6523b3e444d36",
+      "size": 2048
+    },
+    {
+      "assembly": "Layout",
+      "gitBlob": "196e7b80ee2cea1c8ffaaf32eeabecb8464cfd72",
+      "mvid": "085a53c7-db35-76e2-ea07-b253547d2a9d",
+      "path": "private-reference/Layout.dll",
+      "references": [
+        "mscorlib"
+      ],
+      "sha256": "76624b0cce75a1f282f6e7b8bebbd81192c3a6c2b698d9aedba4ab95cde6ee25",
+      "size": 2048
+    },
+    {
+      "assembly": "R03Contract",
+      "gitBlob": "08d8eb85fd70bbf6d69bffdea161e64dc220aeef",
+      "mvid": "005ead2e-603d-40bc-9c5e-7db1a1040256",
+      "path": "removal/R03Contract.dll",
+      "references": [
+        "mscorlib"
+      ],
+      "sha256": "69e3334c6d74dff9013a362c1caa3a0bc9bb5930ac1b11265b9ea7c09ff02602",
+      "size": 2048
+    },
+    {
+      "assembly": "A",
+      "gitBlob": "cc83128a6106dc517c20e1f399b13994b590a998",
+      "mvid": "2d98f71c-a7ee-a098-52cb-345f0d83c61a",
+      "path": "reversal/A.dll",
+      "references": [
+        "mscorlib"
+      ],
+      "sha256": "c13b628d870be6d2ddab6f5dcd78a27f529f9e446488036cd2c1c889a9346f69",
+      "size": 2048
+    },
+    {
+      "assembly": "B",
+      "gitBlob": "e1718abb9585da6408b04e12da0017f0896fe7bc",
+      "mvid": "9f473e67-33fe-49a2-a6f5-f06f86943a17",
+      "path": "reversal/B.dll",
+      "references": [
+        "A",
+        "mscorlib"
+      ],
+      "sha256": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d",
+      "size": 2048
+    },
+    {
+      "assembly": "A",
+      "gitBlob": "96e2c571797ea69ff9791fb79292daa7c5b27443",
+      "mvid": "87d8b6bb-8c11-29e6-8ef2-dd9f2d044eeb",
+      "path": "true-cycle/A.dll",
+      "references": [
+        "B",
+        "mscorlib"
+      ],
+      "sha256": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6",
+      "size": 2048
+    },
+    {
+      "assembly": "B",
+      "gitBlob": "e1718abb9585da6408b04e12da0017f0896fe7bc",
+      "mvid": "9f473e67-33fe-49a2-a6f5-f06f86943a17",
+      "path": "true-cycle/B.dll",
+      "references": [
+        "A",
+        "mscorlib"
+      ],
+      "sha256": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d",
+      "size": 2048
+    },
+    {
+      "assembly": "R03Contract",
+      "gitBlob": "d9b4c721ea478909e586d8f5a4509bccef42b63f",
+      "mvid": "3d1c0c74-a36d-445f-890c-0a1c6a2cbf36",
+      "path": "value/R03Contract.dll",
+      "references": [
+        "mscorlib"
+      ],
+      "sha256": "fa1f7473db2655adcb2a012c0cb29d1181cbae21bc19020abf14d4c39772825e",
+      "size": 2048
+    },
+    {
+      "assembly": "Methods",
+      "gitBlob": "6e3d7e7100182daf564617310638846b472f6f0d",
+      "mvid": "2c609497-865f-93ff-1446-a9220d5740ae",
+      "path": "virtual-slot/Methods.dll",
+      "references": [
+        "mscorlib"
+      ],
+      "sha256": "c21598ce556646601cbbc55e80c0c4f42603d68ca8861d084b4b3fd748a4d144",
+      "size": 2048
+    }
+  ],
+  "fixtureBytesRegenerated": false,
+  "historicalInputsModified": false,
+  "kind": "R03IRImmutableSFixtureAuthority",
+  "originalCommit": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+  "originalFixtureCount": 15,
+  "originalInventoryGitBlob": "0688bd2dad054bd59fcdd1564a050a398cfa14e7",
+  "result": "AuthenticatedCopied",
+  "runtimeAcceptance": false,
+  "schemaVersion": 1,
+  "sourceDemoCommit": "fca2fdb035512fc739693641a5fa2126e4254258"
+}

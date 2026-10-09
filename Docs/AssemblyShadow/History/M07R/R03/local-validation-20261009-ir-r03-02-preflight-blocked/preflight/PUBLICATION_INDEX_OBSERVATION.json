@@ -1,0 +1,11 @@
+{
+  "recordedUtc": "2026-10-09T07:39:05.836424+00:00",
+  "administrativeState": "IncompleteInitialStaging",
+  "expectedCheckpointFiles": 190,
+  "initialStagedFilesIncludingTwoReports": 154,
+  "missingOwnedEvidenceFiles": 38,
+  "cause": "Repository-wide ignore rules exclude log and csproj files from ordinary git add",
+  "resolution": "Force-stage only explicit Local-owned checkpoint, including intentional raw captures; preserve unrelated state",
+  "runtimeExecution": false,
+  "batchRetry": false
+}
