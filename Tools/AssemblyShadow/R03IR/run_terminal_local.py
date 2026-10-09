@@ -46,6 +46,10 @@ def prepare_ir(batch, role):
             'sourceManifestSha256': sha(manifest), 'configuration': str(config_path)}
 
 
+def exact_int(value, expected):
+    return type(value) is int and value == expected
+
+
 def verify_ir(raw, request, launch, build_sha):
     require(type(raw) is dict and raw.get('schemaVersion') == 1 and
             raw.get('kind') == 'R03IRPostPoisonEntryV1' and raw.get('acceptance') is False,
@@ -57,36 +61,37 @@ def verify_ir(raw, request, launch, build_sha):
     require(raw.get('unityVersion') == '2022.3.62f2' and raw.get('platform') == 'OSXPlayer',
             'Actual Unity 2022.3 Player target')
     if request['stimulus'] == 'off':
-        require(raw.get('initialState') == raw.get('finalState') == 0 and
-                raw.get('prePositive') is True and raw.get('preCanaryCount') == 1 and
-                raw.get('finalCanaryCount') == 2, 'Feature OFF ordinary calls')
+        require(exact_int(raw.get('initialState'), 0) and exact_int(raw.get('finalState'), 0) and
+                raw.get('prePositive') is True and exact_int(raw.get('preCanaryCount'), 1) and
+                exact_int(raw.get('finalCanaryCount'), 2), 'Feature OFF ordinary calls')
         require(not raw.get('activeReflectionAttempted') and not raw.get('activeDelegateAttempted') and
                 not raw.get('aotReflectionAttempted'), 'No synthetic terminal OFF probe')
     else:
-        require(raw.get('initialState') == 6 and raw.get('poisonedState') == raw.get('finalState') == 9 and
-                raw.get('prePositive') is True and raw.get('preActiveReflection') == 42 and
-                raw.get('preActiveDelegate') == 42 and raw.get('preCanaryCount') == 1,
+        require(exact_int(raw.get('initialState'), 6) and exact_int(raw.get('poisonedState'), 9) and
+                exact_int(raw.get('finalState'), 9) and raw.get('prePositive') is True and
+                exact_int(raw.get('preActiveReflection'), 42) and exact_int(raw.get('preActiveDelegate'), 42) and
+                exact_int(raw.get('preCanaryCount'), 1),
                 'Current valid shadow method and AOT canary actually executed pre-poison')
         for prefix in ('activeReflection', 'activeDelegate', 'aotReflection'):
             require(raw.get(prefix + 'Attempted') is True and raw.get(prefix + 'Succeeded') is False and
                     isinstance(raw.get(prefix + 'Exception'), str) and raw[prefix + 'Exception'],
                     'Actual rejected post-poison attempted entry: ' + prefix)
-        require(raw.get('finalCanaryCount') == raw.get('preCanaryCount') and
+        require(exact_int(raw.get('finalCanaryCount'), 1) and exact_int(raw.get('preCanaryCount'), 1) and
                 raw.get('recoveryStable') is True and raw.get('fixedDiagnosticsReadable') is True and
                 raw.get('firstRecovery') == raw.get('finalRecovery'), 'No body side effects or first-failure mutation')
         recovery = loads(raw['firstRecovery'])
-        require(recovery.get('published') is True and recovery.get('stateCode') == 9 and
+        require(recovery.get('published') is True and exact_int(recovery.get('stateCode'), 9) and
                 recovery.get('disposition') == 'RestartRequired' and
-                recovery.get('terminalFailureCode') in (13, 21), 'Actual first terminal failure')
+                type(recovery.get('terminalFailureCode')) is int and recovery['terminalFailureCode'] in (13, 21), 'Actual first terminal failure')
         if request['stimulus'] == 'baseline-owner':
             require(recovery['terminalFailureCode'] == 21, 'Captured baseline-owner failure reason')
             native = loads(raw['nativeGuardJson'])
-            require(native.get('available') is True and native.get('activeGuard') == 1 and
-                    native.get('baselineGuard') == 0 and native.get('caughtOldGuard') == 1 and
-                    native.get('stateCode') == 9 and raw.get('nativeStimulusReturn') == 1,
+            require(native.get('available') is True and exact_int(native.get('activeGuard'), 1) and
+                    exact_int(native.get('baselineGuard'), 0) and exact_int(native.get('caughtOldGuard'), 1) and
+                    exact_int(native.get('stateCode'), 9) and exact_int(raw.get('nativeStimulusReturn'), 1),
                     'Actual caught old-baseline managed failure')
         else:
-            require(recovery['terminalFailureCode'] == 13 and raw.get('nativeStimulusReturn') == 1,
+            require(exact_int(recovery['terminalFailureCode'], 13) and exact_int(raw.get('nativeStimulusReturn'), 1),
                     'Production type-resolution failure boundary was exercised')
     return {'kind': 'R03IRVerifiedPostPoisonPlayer', 'result': 'Passed',
             'caseId': request['caseId'], 'stimulus': request['stimulus'],
