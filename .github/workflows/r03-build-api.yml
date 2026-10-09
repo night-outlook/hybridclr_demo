@@ -19,6 +19,12 @@ jobs:
         with:
           path: hybridclr_demo
           persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03/
+            /Tools/AssemblyShadow/R03IR/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261001-batch-c-return-required/batch/builds/candidate-release/Editor.log
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261001-batch-c-return-required/batch/projects/candidate-release/Assets/Editor/R03Build.cs
       - name: Resolve exact package and native source pins
         id: pins
         shell: bash
@@ -44,20 +50,35 @@ jobs:
           ref: ${{ steps.pins.outputs.hybridclr }}
           path: hybridclr
           persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /hybridclr/
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/il2cpp_plus
           ref: ${{ steps.pins.outputs.il2cpp_plus }}
           path: il2cpp_plus
           persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /libil2cpp/
       - name: Extract exact official Editor without installing or launching Unity
         shell: bash
         run: |
+          set -euo pipefail
           mkdir -p "$RUNNER_TEMP/r03-build-api"
+          df -h "$RUNNER_TEMP" | tee "$RUNNER_TEMP/r03-build-api/disk-before.txt"
           URL=https://download.unity3d.com/download_unity/7670c08855a9/MacEditorInstallerArm64/Unity-2022.3.62f2.pkg
           curl --fail --location --proto '=https' --max-time 900 "$URL" -o "$RUNNER_TEMP/unity.pkg"
-          shasum -a 256 "$RUNNER_TEMP/unity.pkg" > "$RUNNER_TEMP/r03-build-api/installer.sha256"
+          shasum -a 256 "$RUNNER_TEMP/unity.pkg" | tee "$RUNNER_TEMP/r03-build-api/installer.sha256"
+          # Historical Completion compiler profile pins this official package
+          # digest. A wrong download must fail before expensive extraction.
+          echo '5d2575c1b10a2a9f1f89bf40631a6b9bec3628fe16ca5f2203720af7943a3f05  '"$RUNNER_TEMP/unity.pkg" | shasum -a 256 -c
+          file "$RUNNER_TEMP/unity.pkg" | tee "$RUNNER_TEMP/r03-build-api/installer-file.txt"
+          df -h "$RUNNER_TEMP" | tee "$RUNNER_TEMP/r03-build-api/disk-downloaded.txt"
           pkgutil --expand-full "$RUNNER_TEMP/unity.pkg" "$RUNNER_TEMP/unity-expanded"
+          df -h "$RUNNER_TEMP" | tee "$RUNNER_TEMP/r03-build-api/disk-expanded.txt"
+          rm "$RUNNER_TEMP/unity.pkg" # Temporary CI installer only; preserve digest.
           find "$RUNNER_TEMP/unity-expanded" -path '*/Unity.app/Contents/MacOS/Unity' -type f > "$RUNNER_TEMP/r03-build-api/unity-paths.txt"
           test "$(wc -l < "$RUNNER_TEMP/r03-build-api/unity-paths.txt" | tr -d ' ')" = 1
       - name: Compile full package dependencies and helper against actual pinned APIs
