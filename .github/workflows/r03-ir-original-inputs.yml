@@ -134,6 +134,10 @@ jobs:
           print(json.dumps(result,sort_keys=True))
           PY
           git -C hybridclr_demo diff --check
+          echo "CURRENT_DEMO_GIT_STATUS:"
+          git -C hybridclr_demo status --short --untracked-files=all
+          echo "ORIGINAL_S_GIT_STATUS:"
+          git -C original_s status --short --untracked-files=all
           test -z "$(git -C hybridclr_demo status --porcelain)"
           test -z "$(git -C original_s status --porcelain)"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
