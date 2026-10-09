@@ -115,11 +115,24 @@ internal static class Program
                 target = stream.ToArray();
             }
         }
+        // NativeLayoutAdmissionV1 must accept the new test-only method body
+        // without relying on structural expansion or a fabricated fixture.
+        var layout = NativeLayoutAdmissionValidator.Analyze(EvolutionFixtureCorpus.Build("Methods"), target);
+        layout.RequireEditorAdmission();
         Put("Methods.dll", target);
         using (var parsed = ModuleDefMD.Load(target))
         {
             if (parsed.Assembly.Name.String != "Methods" || parsed.GetTypes().Count(t => t.FullName == "R03.Node") != 1)
                 throw new InvalidOperationException("IR target assembly identity mismatch.");
+            var verifiedNode = parsed.GetTypes().Single(t => t.FullName == "R03.Node");
+            var verifiedKeep = verifiedNode.Methods.Single(m => m.Name == "Keep");
+            var instructions = verifiedKeep.Body.Instructions;
+            if (!instructions.Any(i => i.OpCode == OpCodes.Ldfld) ||
+                !instructions.Any(i => i.OpCode == OpCodes.Stfld) ||
+                !instructions.Any(i => i.OpCode == OpCodes.Add) ||
+                verifiedNode.Fields.Count(f => f.Name == "stable" &&
+                    !f.IsStatic && f.FieldSig.Type.ElementType == ElementType.I4) != 1)
+                throw new InvalidOperationException("IR target lost its actual primitive field side effect.");
             var report = new
             {
                 schemaVersion = 1, kind = "R03IRSideEffectFixture",
@@ -127,7 +140,8 @@ internal static class Program
                 mvid = parsed.Mvid.ToString(), size = target.Length,
                 sha256 = ShadowHash.Bytes(target), instanceField = "R03.Node.stable",
                 method = "R03.Node.Keep", expectedReturn = 42,
-                expectedIncrementPerCall = 1, sourceMode = "SupplementaryIR",
+                expectedIncrementPerCall = 1, sideEffectInstructionsVerified = true,
+                layoutEditorAdmission = "Passed", sourceMode = "SupplementaryIR",
                 originalSFixtureUnchanged = true, runtimeAcceptance = false
             };
             string json = JsonSerializer.Serialize(report, new JsonSerializerOptions { WriteIndented = true });
