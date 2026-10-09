@@ -53,7 +53,7 @@ def verify_ir(raw, request, launch, build_sha):
     require(raw.get('result') == 'Passed' and not raw.get('error'), 'Player witness must explicitly pass')
     require(raw.get('runId') == request['runId'] and raw.get('caseId') == request['caseId'] and
             raw.get('stimulus') == request['stimulus'], 'Exact request identity')
-    require(raw.get('pid') is None or raw.get('processId') == launch['pid'], 'Owned fresh Player process')
+    require(type(raw.get('processId')) is int and raw['processId'] == launch['pid'], 'Owned fresh Player process')
     require(raw.get('unityVersion') == '2022.3.62f2' and raw.get('platform') == 'OSXPlayer',
             'Actual Unity 2022.3 Player target')
     if request['stimulus'] == 'off':
@@ -161,8 +161,8 @@ def execute(workspace, output, unity, demo_commit):
         'fullLegacyRegressionAcceptance':False, 'R03Accepted':False, 'H2Passed':False,
         'qualificationApproved':False, 'pureInterpreterExpansionEnabled':False}
     result = finalize(batch.root, summary)
-    return 0 if result['result'] == 'FocusedEvidenceReadyForPrimaryReview' and
-        result['sealStatus'] == 'Passed' else 1
+    return 0 if (result['result'] == 'FocusedEvidenceReadyForPrimaryReview' and
+                 result['sealStatus'] == 'Passed') else 1
 
 
 if __name__ == '__main__':
