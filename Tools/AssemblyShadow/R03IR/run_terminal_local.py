@@ -96,13 +96,15 @@ def verify_ir(raw, request, launch, build_sha):
         require(exact_int(raw.get('initialState'), 6) and exact_int(raw.get('poisonedState'), 9) and
                 exact_int(raw.get('finalState'), 9) and raw.get('prePositive') is True and
                 exact_int(raw.get('preActiveReflection'), 42) and exact_int(raw.get('preActiveDelegate'), 42) and
-                exact_int(raw.get('preCanaryCount'), 1),
-                'Current valid shadow method and AOT canary actually executed pre-poison')
+                exact_int(raw.get('preCanaryCount'), 1) and exact_int(raw.get('preShadowField'), 2),
+                'Current shadow Keep body must increment its private field twice before poison')
         for prefix in ('activeReflection', 'activeDelegate', 'aotReflection'):
             require(raw.get(prefix + 'Attempted') is True and raw.get(prefix + 'Succeeded') is False and
                     isinstance(raw.get(prefix + 'Exception'), str) and raw[prefix + 'Exception'],
                     'Actual rejected post-poison attempted entry: ' + prefix)
         require(exact_int(raw.get('finalCanaryCount'), 1) and exact_int(raw.get('preCanaryCount'), 1) and
+                raw.get('shadowFieldReadable') is True and
+                exact_int(raw.get('finalShadowField'), 2) and exact_int(raw.get('preShadowField'), 2) and
                 raw.get('recoveryStable') is True and raw.get('fixedDiagnosticsReadable') is True and
                 raw.get('firstRecovery') == raw.get('finalRecovery'), 'No body side effects or first-failure mutation')
         recovery = loads(raw['firstRecovery'])
@@ -189,7 +191,7 @@ def execute(workspace, output, unity, demo_commit):
     summary = {'schemaVersion':1, 'kind':'R03IRFocusedTerminalLocalBatch',
         'result':'ReturnRequired' if batch.failed else 'FocusedEvidenceReadyForPrimaryReview',
         'repositories':batch.pins, 'cells':batch.cells, 'freshBuilds':3,
-        'freshPlayers':4, 'scope':'IR-only side-effecting active Methods fixture; baseline-owner + synthetic type-failure + OFF controls; not complete IR-R03-02',
+        'freshPlayers':4, 'scope':'IR-only side-effecting active Methods instance counter + AOT canary; baseline-owner + synthetic type-failure + OFF; generic/initializer not covered',
         'initializerFailure': 'NotRun', 'capturedGenericFailure': 'NotRun',
         'fullLegacyRegressionAcceptance':False, 'R03Accepted':False, 'H2Passed':False,
         'qualificationApproved':False, 'pureInterpreterExpansionEnabled':False}
