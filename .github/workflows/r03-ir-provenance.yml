@@ -4,7 +4,8 @@ on:
     branches: [codex/assembly-shadow-r01b-h1]
     paths:
       - '.github/workflows/r03-ir-provenance.yml'
-      - 'Tools/AssemblyShadow/R03IR/**'
+      - 'Tools/AssemblyShadow/R03IR/audit_s_provenance.py'
+      - 'Tools/AssemblyShadow/R03IR/test_audit_s_provenance.py'
 permissions:
   contents: read
 jobs:
