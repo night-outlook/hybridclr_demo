@@ -186,6 +186,9 @@ def load_frozen_c(checkpoint):
                 'Invalid frozen path or SHA')
     for path, sha in frozen.items():
         require(original.get(path) == sha, 'C missing SHA not in original immutable map')
+    for receipt in receipts:
+        require(original.get(receipt['receiptPath']) == receipt['receiptSha256'],
+                'C historical native receipt is absent from original protected map')
     return original, frozen
 
 
