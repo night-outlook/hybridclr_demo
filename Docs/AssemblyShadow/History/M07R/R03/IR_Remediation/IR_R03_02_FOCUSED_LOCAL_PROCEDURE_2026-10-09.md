@@ -61,11 +61,12 @@ The new `run_terminal_storage_checked.py` uses the **unchanged** `R03StorageAdmi
 
 Diagnostic-only command, **no Unity launch**:
 ```bash
+EXPECTED_DEMO_COMMIT="${EXPECTED_DEMO_COMMIT:?Set exact 40-character demo SHA from Primary handoff}"
 "$PY" -B "$W/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_terminal_storage_checked.py" \
   --workspace "$W" \
   --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261009A-terminal \
   --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity \
-  --demo-commit <EXACT_FINAL_PUSHED_DEMO_SHA_FROM_HANDOFF> \
+  --demo-commit "$EXPECTED_DEMO_COMMIT" \
   --retained-q /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair \
   --storage-evidence /Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03IRLocal-20261009A-terminal
 ```
@@ -75,7 +76,7 @@ Diagnostic-only command, **no Unity launch**:
   --workspace "$W" \
   --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261009A-terminal \
   --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity \
-  --demo-commit <EXACT_FINAL_PUSHED_DEMO_SHA_FROM_HANDOFF> \
+  --demo-commit "$EXPECTED_DEMO_COMMIT" \
   --retained-q /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair \
   --storage-evidence /Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03IRLocal-20261009A-terminal \
   --execute
