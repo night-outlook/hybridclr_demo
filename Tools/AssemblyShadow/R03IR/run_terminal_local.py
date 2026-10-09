@@ -188,10 +188,17 @@ def execute(workspace, output, unity, demo_commit):
     ]
     for case in cases:
         batch.cell(case['id'], lambda c=case: player(batch, c), ('build-' + case['role'],))
+    states = {row['id']: row['result'] for row in batch.cells}
+    build_passes = sum(states.get('build-' + role['id']) == 'Passed' for role in roles)
+    player_passes = sum(states.get(case['id']) == 'Passed' for case in cases)
+    player_raw = sum((batch.root / 'players' / case['id'] / 'raw.json').is_file() for case in cases)
     summary = {'schemaVersion':1, 'kind':'R03IRFocusedTerminalLocalBatch',
         'result':'ReturnRequired' if batch.failed else 'FocusedEvidenceReadyForPrimaryReview',
-        'repositories':batch.pins, 'cells':batch.cells, 'freshBuilds':3,
-        'freshPlayers':4, 'scope':'IR-only side-effecting active Methods instance counter + AOT canary; baseline-owner + synthetic type-failure + OFF; generic/initializer not covered',
+        'repositories':batch.pins, 'cells':batch.cells,
+        'plannedFreshBuilds':3, 'verifiedFreshBuilds':build_passes,
+        'plannedFreshPlayers':4, 'verifiedFreshPlayers':player_passes,
+        'recordedFreshPlayerRawFiles':player_raw,
+        'scope':'IR-only side-effecting active Methods instance counter + AOT canary; baseline-owner + synthetic type-failure + OFF; generic/initializer not covered',
         'initializerFailure': 'NotRun', 'capturedGenericFailure': 'NotRun',
         'fullLegacyRegressionAcceptance':False, 'R03Accepted':False, 'H2Passed':False,
         'qualificationApproved':False, 'pureInterpreterExpansionEnabled':False}
