@@ -1,65 +1,57 @@
-# Current Status — independent R03 FAIL; Primary remediation in progress
+# Current Status — API prerequisite repaired; fresh Local storage unresolved
 
-## Current owner and earliest unfinished work
+## Current boundary and earliest unfinished work
 
-**Primary Implementation owns the next work. No Local runtime batch is authorized.** The independent full-stage R03 review is **FAIL**, not NotRun; its separate re-review has not run. The native terminal-entry candidate and bounded four-process Player witness are **implemented in source**, but a full pinned Unity/IL2CPP compile and actual Player execution remain unproved. Genuine captured-generic and initializer-failure post-poison witness coverage is still missing. IR-R03-01 also retains semantic/capture coverage and independent-closure work despite a successful original-byte audit.
+**Next bounded assignment: Local Validation B preflight/diagnostic under WEB_TO_LOCAL.** Runtime execution remains blocked until fresh source, custody, host, compilation-equivalence and unchanged storage admission checks pass. Primary has published current-body C# compilation evidence, not established local storage headroom. The original independent full-stage R03 verdict remains **FAIL**; separate independent re-review is **NotRun**.
 
-Read the [Primary remediation checkpoint](../History/M07R/R03/IR_Remediation/PRIMARY_REMEDIATION_2026-10-08.md), [corrective evidence index](../History/M07R/R03/IR_Remediation/ORIGINAL_S_PROVENANCE_CORRECTION_2026-10-08.json), [independent report](../History/M07R/R03/S_Reconciliation/INDEPENDENT_FULL_STAGE_REVIEW_2026-10-08.md) and its [C04 citation erratum](../History/M07R/R03/S_Reconciliation/INDEPENDENT_FULL_STAGE_REVIEW_EVIDENCE_ERRATUM_2026-10-08.md). The erratum corrects absent C04 fields mistakenly described as explicit false values; it does not close the source-derived terminal-execution finding.
+Read [the current Primary correction](../History/M07R/R03/IR_Remediation/IR_LOCAL_API_01_2026-10-09/README.md), [its source/artifact index](../History/M07R/R03/IR_Remediation/IR_LOCAL_API_01_2026-10-09/EVIDENCE.json), [WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md) and the unchanged Local-owned [LOCAL_VALIDATION](../Handoff/LOCAL_VALIDATION.md)/[RETURN_TO_WEB](../Handoff/RETURN_TO_WEB.md). The B procedure replaces consumed A launch instructions; it does not change A evidence.
 
 | Item | Current disposition |
 | --- | --- |
-| IR-R03-01 original archive identity | Original committed nine-part archive reconstructed and byte-authenticated; wrong Primary original-family attribution withdrawn |
-| IR-R03-01 complete closure | **Not independently closed**; complete role-specific source/build/process semantics, capture omissions and withdrawn-family origin remain incomplete/unresolved |
-| IR-R03-02 native runtime | **Primary source candidate published** at `9ce1c1bfec9a21b92ea300acda5f27a3815b2c37`; full translation-unit build and fresh Player verification pending |
-| IR-R03-02 fresh regression | **Supplementary test source authored, fresh Player NotRun**; 3 native builds/4 Players planned; genuine generic and initializer cases not covered |
-| Provenance host tests | **30 Passed**, zero failures/errors/skips/unexpected successes |
-| New Unity / IL2CPP / Player batch | **NotRun**; source-bound compile CI and final handoff prerequisites pending |
-| Independent re-review | **NotRun**, distinct from the published original FAIL review |
-| Human Review Gate / H2 readiness | **False** |
+| A Local preflight | Preserved **CapacityBlocked**; 0 Unity launches, 14 cells / 3 builds / 4 Players NotRun |
+| A host/evidence checks | 64 Python tests and 69 standalone native-policy checks Passed; 15 original S fixtures authenticated; 416,161 custody files unchanged |
+| A cited API run 37874183375 | Preserved historical **NoCoverage** for the current Player body |
+| Current-body API compilation | **Passed**, fresh run 37903041633 at ba47; 0 errors, 13 warnings; source/result/full-log records published |
+| Primary receipt tests | 11 synthetic tests Passed; not C# or runtime evidence |
+| Local storage | **Unresolved**; old available 68,289,347,584 versus required 68,719,476,736 bytes; Primary has not remeasured/reclaimed/reserved capacity |
+| B assignment | One fresh diagnostic; at most one 14-cell/3-build/4-Player batch only after all prerequisites and separate fresh execution admission pass |
+| IR-R03-02 complete closure | **Not closed**; fresh Player evidence and genuine captured-generic/initializer-failure coverage remain missing |
+| IR-R03-01 complete closure | **Not independently closed**; semantic/process/capture work and withdrawn-family origin remain unresolved |
+| Independent re-review / Human Review Gate | NotRun / not ready |
 
-## Immutable S authority versus new audit source
+## Source authority and compile scope
 
-All feature branches remain `codex/assembly-shadow-r01b-h1`. Local owning paths remain `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/<repo>`.
+All feature branches remain `codex/assembly-shadow-r01b-h1`; owning Local workspace `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r` with one nested checkout per repository. The final Primary prompt supplies exact latest pushed transport SHAs.
 
-| Authority | Exact source |
+| Source role | Exact commit |
 | --- | --- |
-| S runtime demo | `29bb3d4a39bf8a2f23be404f77535aaba3485bfc` |
-| Original S evidence publication | `fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b` |
+| Old A Local execution source | Demo `fca2fdb035512fc739693641a5fa2126e4254258` |
+| Immutable A return publication | Demo `d576ae49261a35565bca9fc0701e835d8d9a87fa` |
+| New exact compiler/source anchor | Demo `ba47b41674b83a6f694ac4f8ac1bc8f83a9da24b` |
 | HybridCLR runtime | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
-| Package runtime | `948c0e3b4f8891481301770115e8ba4945eea6de` |
-| Historical S IL2CPP+ runtime | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
-| Current terminal native candidate | `9ce1c1bfec9a21b92ea300acda5f27a3815b2c37` (not tested in original S) |
-| New audit/tests/workflow | Demo `38575b165d798defe545f2501f1fc307ccac44a3` |
-| Current documentation transport | Exact descendant supplied in final Primary publication readback; not a new S runtime source or an executing Local assignment |
+| Package | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| Current terminal native candidate | IL2CPP+ `9ce1c1bfec9a21b92ea300acda5f27a3815b2c37` |
 
-Local's original S outcome remains **EvidenceReadyForPrimaryReview**, with 90 Passed cells. Its report records six builds, 59 Players, 18/754/755 Editor scopes and the original P05/storage/custody results. [LOCAL_VALIDATION](../Handoff/LOCAL_VALIDATION.md) and [RETURN_TO_WEB](../Handoff/RETURN_TO_WEB.md) remain Local-owned and unchanged. This Primary correction does not retroactively approve or relabel Local evidence.
+The sole non-Docs delta in this cycle is `.github/workflows/r03-ir-player-api.yml`. Product code, current Player body, fixtures, source pins, native guard, storage policy and existing runner are unchanged. Final transport must be a Docs-only descendant of ba47. The procedure checks all 22 compiler inventory entries and exact result/log identities against the installed sources before any Player authorization.
 
-## Source-bound native host evidence (not Player evidence)
+[CI 37903041633](https://github.com/night-outlook/hybridclr_demo/actions/runs/37903041633), job `113729828150`, compiled the real pinned HybridCLR package and current Player blob `adc798c6c299594d496393c6729c4c6087111b31`. It used **.NET SDK 10.0.401 targeting net8.0, C#9 and checked-in Unity API stubs**. It is not official Unity managed compilation, a Unity project build, a native Player or independent review. Primary downloaded artifact `11603880990`, verified its ZIP and receipt-bound input/log/output hashes, and published durable raw receipts plus the losslessly encoded full compiler log. Binaries/binlog remain in the separately identified expiring CI artifact.
 
-The current terminal candidate adds `AssemblyShadowTerminalExecution.h`, native method guards and fixed corlib exception-constructor allowance in `AssemblyShadow.cpp`, and new supplementary demo Player source/verifier in `Tools/AssemblyShadow/R03IR`. Linux/macOS source-bound [native host run 37872834945](https://github.com/night-outlook/il2cpp_plus/actions/runs/37872834945) Passed standalone policy and integration-site checks. The historical source and S evidence pins remain frozen. The [IR host workflow 37873722486](https://github.com/night-outlook/hybridclr_demo/actions/runs/37873722486) passed **43 Python tests on both Linux and macOS** at exact SHA `6b097cccf6201a68303cbb31a4df65a3e7fa3bcc`. The [managed API workflow 37874183375](https://github.com/night-outlook/hybridclr_demo/actions/runs/37874183375) compiled the supplemental C# Player against the pinned real HybridCLR package with 0 errors (13 warnings) at exact SHA `0e8c9ae457e77c595e119e9f2c089f759d6d1b16`. These host checks are source-bound **but neither a Unity Player execution nor full official Unity 2022 SDK/native translation-unit verification**. Separate pinned build checks remain necessary. The original independent review is **FAIL**; rereview NotRun.
+Prior native policy run 37872834945, official Unity native source compile run 37893353097 and immutable-fixture run 37894308627 retain their distinct source/scope limitations. Their success never substitutes for a fresh actual B Player build and execution. A's 64/69 tests are prior-run evidence, not newly executed by this correction.
 
-## Corrected provenance and validation boundary
+## Storage and preservation
 
-The correct original archive is 587,907,380 bytes / nine parts, SHA-256 `23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6`, with 15,712 indexed files and 15,713 members. The prior five-part `f4c2a120...` family and unjoined quantitative claims in historical `S_Reconciliation/EVIDENCE.json` are explicitly withdrawn as original-S authority. The old files are preserved; their prior current-state assertions are superseded by the corrective index, not silently repaired in place.
+The historical deficit is 430,129,152 bytes, not a present measurement. Only Local can establish current admission. Preserve `max(64GiB, 2*Q+20GiB)`, original Q cell/full-size authentication, per-location allocation/sync/readback probes and 20GiB sampled operating floor. No cleanup, snapshot/quota changes, alternate temp path or capacity reservation is authorized. New B candidate paths are in WEB_TO_LOCAL and must first be proven unused/nonaliasing by Local. A rejection is retained as CapacityBlocked/NotRun; there is no same-root retry or automatic continuation.
 
-[Actions run 37845000985](https://github.com/night-outlook/hybridclr_demo/actions/runs/37845000985), job `113543552737`, passed all 30 host tests and the strengthened bounded audit. It checked 16,978 checkpoint Git blobs, exact manifest/transport/archive membership, typed finalizer equality, all 90 ledger/cell matches and selected archived P05/integration/C04 receipts. Both exact checkouts remained clean. The output explicitly states `fullSourceBuildProcessSemanticAudit=false`, `independentReviewer=false`, `unityRun=false`, and `runtimeAcceptance=false`.
+Preserve all A preflight/storage/publication records and the immutable `local-validation-20261009-ir-r03-02-preflight-blocked/` checkpoint. Reauthenticate the 416,161-file prior custody inventory without rebaselining missing/changed evidence. Preserve S/R/Q/P/O/N; retained R remains staged, four contaminated warm certificates remain Failed, deferred R02 CPU/H1 RSS risks remain unaccepted.
 
-Artifact `11579112494` contains separately identified output crosswalks and the exact original archive; full digests, sizes, expiration, source/script identities and verification limitations are in the corrective index. Its outer ZIP digest is not the original archive digest. Main-host execution/unpacking remains unavailable; the recorded computation ran in the actual source-pinned Actions job, whose log and artifact metadata were read.
+## Historical S authority and outstanding review
 
-## Primary work required before another Local assignment
+Original S runtime demo `29bb3d4a39bf8a2f23be404f77535aaba3485bfc`, evidence publication `fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b`, historical IL2CPP+ `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` remain distinct from the new native candidate. Local S remains EvidenceReadyForPrimaryReview: 90 Passed cells, six builds, 59 Players and 18/754/755 Editor scopes, not R03/H2 acceptance.
 
-Review and compile the **already committed** native guard and test-only real-Player witness; verify the scope of `FixedDiagnosticExceptionScope` and all exceptions in the full runtime translation unit. Run exact-source focused validation only after ready preflight. Extend any missing genuine captured-generic, module-initializer, interface or older AOT paths with Primary-owned fixtures/regressions rather than assuming the four-process subset is full IR-R03-02 closure. Local must not receive unfinished non-trivial source work.
+Use the [original-S corrective index](../History/M07R/R03/IR_Remediation/ORIGINAL_S_PROVENANCE_CORRECTION_2026-10-08.json). The authentic archive is **587,907,380 bytes, nine parts, 15,712 indexed files / 15,713 members**, SHA-256 `23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6`. The earlier five-part/18,160-member attribution and unjoined quantitative claims remain **withdrawn**, not silently repaired. Bounded original-byte audit run 37845000985 does not establish complete semantic/capture or independent closure.
 
-Complete proportionate source/build/process joins and omitted-source review, preserve the withdrawal of unsupported provenance claims, and prepare an executable exact-pin Local Validation handoff only after the source/test repair and pre-handoff checks. A later Local result then requires Primary integration and separate independent re-review. Neither this CI pass nor a future reviewer PASS grants the separately initiated H2.
+The 15 S fixture inputs are original Git blobs, never regenerated for B. Historical regeneration comparison failures remain Failed/NotIdentical; the separately deterministic IR target does not redefine S. Read [fixture provenance](../History/M07R/R03/IR_Remediation/IR_R03_02_FIXTURE_PROVENANCE_2026-10-09.md).
 
-## Current IR fixture authenticity blocker (2026-10-09 UTC)
+The [independent FAIL report](../History/M07R/R03/S_Reconciliation/INDEPENDENT_FULL_STAGE_REVIEW_2026-10-08.md) and [C04 erratum](../History/M07R/R03/S_Reconciliation/INDEPENDENT_FULL_STAGE_REVIEW_EVIDENCE_ERRATUM_2026-10-08.md) remain in force. Native/genuine generic/initializer witness gaps and IR-R03-01 semantic/capture work remain Primary responsibilities after the bounded Local result. D1=A retains NativeLayoutAdmissionV1 and defers [X02](stages/X02-pure-interpreter-structural-expansion.md); D2=A makes S performance observational. No automatic reviewer settings or model identity assumptions changed.
 
-The latest inspected [side-effect fixture CI 37882275356](https://github.com/night-outlook/hybridclr_demo/actions/runs/37882275356) **Failed** before the new IR-target checks: all 15 fresh `--output` fixture SHA-256 values disagreed with the original S inventory; several MVIDs differed. This is a **failed reproducibility/identity check**, not evidence that the committed historical S objects were changed. Byte-versus-semantic parity and generator/compiler determinism are not resolved; do not relax the comparator or promote its output. The S checkpoint remains immutable and the original-S provenance audit's verified archive identity remains independently valid. See [IR-R03-02 native design](../History/M07R/R03/IR_Remediation/IR_R03_02_NATIVE_DESIGN_2026-10-08.md). A fresh focused Player run is still **not authorized**. An exact-commit pinned native/API compiler success does not authenticate a separately regenerated test fixture.
-
-## Scope, gates and preservation
-
-Original requirements remain in DESIGN, ROADMAP, HUMAN_REVIEW_GATES, `stages/R03-evolution-semantics.md` and `stages/R03-remaining-completion.md`. Owner [D1=A/D2=A](../History/M07R/R03/S_Reconciliation/OWNER_DISPOSITION_2026-10-08.md) bounds R03 to NativeLayoutAdmissionV1 and keeps S performance observational. [X02](stages/X02-pure-interpreter-structural-expansion.md) is deferred, not Passed or authorized to start. Other non-deferred obligations remain intact.
-
-No agent/reviewer settings are changed or effective model identity inferred. Automated byte checks and Primary self-review are not an independent stage review. Preserve S/R/Q/P/O/N, previous prerequisites and all original verdicts. Retained R stays staged; four contaminated unisolated warm certificates remain Failed; R02 CPU/H1 RSS risks remain deferred and unaccepted.
-
-`R03Accepted=false`; `H2Passed=false`; `qualificationApproved=false`; `ReadyForHumanReviewGate=false`; `fullLegacyRegressionAcceptance=false`; PureInterpreter expansion disabled. No H2, X02, M08A or new Local runtime batch is issued here.
+`R03Accepted=false`; `H2Passed=false`; `qualificationApproved=false`; `ReadyForHumanReviewGate=false`; `fullLegacyRegressionAcceptance=false`; PureInterpreter expansion disabled. Stop after one B Local result and return to Primary. No H2, X02 or M08A work is started.
