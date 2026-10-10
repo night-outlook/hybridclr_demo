@@ -1,0 +1,148 @@
+name: IR runtime01 exact demo successor a7e3
+on:
+  push:
+    branches: [codex/ir-runtime01-demo-20261010-a7e3]
+    paths: ['.github/workflows/ir-runtime01-demo-a7e3.yml','Tools/AssemblyShadow/R03IR/Runtime01/**']
+permissions:
+  contents: read
+jobs:
+  host:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03
+            Tools/AssemblyShadow/R03IR
+            Tools/AssemblyShadow/R03Storage
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: hybridclr_unity
+          persist-credentials: false
+      - name: Apply exact-source successor recipe
+        shell: python
+        run: &transform |
+          import subprocess
+          from pathlib import Path
+          p=Path('hybridclr_demo/Tools/AssemblyShadow/R03IR/Runtime01/apply_exact_patch.py')
+          source=p.read_text()
+          # Two reviewed recipe corrections, before execution: strip a generated
+          # trailing space and use the normal assembly lookup in feature-OFF.
+          old="original_player = HERE / 'PlayerProject/R03Player.cs' "
+          assert source.count(old)==1
+          source=source.replace(old,old.rstrip())
+          old='#include "vm/Runtime.h"\n#include "vm/Object.h"'
+          assert source.count(old)==1
+          source=source.replace(old,'#include "vm/Runtime.h"\n#include "vm/Assembly.h"\n#include "vm/Object.h"')
+          old='        const auto* engine = MetadataCache::GetAotAssemblyByNamePhysical("UnityEngine.CoreModule");'
+          assert source.count(old)==1
+          source=source.replace(old,'#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW\n'+old+'\n#else\n        const auto* engine = Assembly::Load("UnityEngine.CoreModule");\n#endif')
+          p.write_text(source)
+          subprocess.run(['python3','-B',str(p)],check=True)
+      - name: Host contracts and compiled actual serializer
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/ir-runtime01-demo"
+          python3 -B -m unittest discover -s hybridclr_demo/Tools/AssemblyShadow/R03IR -p 'test_*.py' -v 2>&1 | tee "$RUNNER_TEMP/ir-runtime01-demo/host.log"
+          dotnet build hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj -c Release -v normal \
+            -p:PackageRoot="$GITHUB_WORKSPACE/hybridclr_unity" \
+            -p:BaseIntermediateOutputPath="$RUNNER_TEMP/ir-runtime01-demo/obj/" \
+            -p:OutputPath="$RUNNER_TEMP/ir-runtime01-demo/bin/" 2>&1 | tee "$RUNNER_TEMP/ir-runtime01-demo/managed.log"
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03IR/Runtime01/test_candidate.py \
+            --managed-assembly "$RUNNER_TEMP/ir-runtime01-demo/bin/PlayerApiCompile.dll" 2>&1 | tee "$RUNNER_TEMP/ir-runtime01-demo/persistence.log"
+      - name: Stage tested source blobs; no branch/commit mutations
+        shell: python
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          import hashlib,json,os,subprocess,urllib.request
+          from pathlib import Path
+          demo=Path('hybridclr_demo');out=Path(os.environ['RUNNER_TEMP'])/'ir-runtime01-demo'
+          names=['Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs','Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp','Tools/AssemblyShadow/R03/PlayerApiCompile/UnityEnvironment.cs','Tools/AssemblyShadow/R03IR/run_terminal_local.py','Tools/AssemblyShadow/R03IR/test_terminal_contract.py','Tools/AssemblyShadow/R03/native_validation.py','Tools/AssemblyShadow/R03/source-pins.json','Tools/AssemblyShadow/R03/build_api.py','Tools/AssemblyShadow/R03IR/Runtime01/test_candidate.py']
+          expected=sorted(set(names)-{'Tools/AssemblyShadow/R03IR/Runtime01/test_candidate.py'}|{'Tools/AssemblyShadow/R03IR/Runtime01/apply_exact_patch.py'})
+          changed=sorted(subprocess.check_output(['git','-C',str(demo),'diff','--name-only'],text=True).splitlines());assert changed==expected,(changed,expected)
+          subprocess.run(['git','-C',str(demo),'diff','--check'],check=True)
+          (out/'diff.patch').write_bytes(subprocess.check_output(['git','-C',str(demo),'diff','--',*names]))
+          rows=[]
+          for name in names:
+              data=(demo/name).read_bytes();blob=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+              req=urllib.request.Request('https://api.github.com/repos/night-outlook/hybridclr_demo/git/blobs',data=json.dumps({'content':data.decode(),'encoding':'utf-8'}).encode(),headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json'},method='POST')
+              with urllib.request.urlopen(req,timeout=60) as r:assert json.load(r)['sha']==blob
+              target=out/'sources'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
+              rows.append({'path':name,'gitBlob':blob,'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)})
+          receipt={'kind':'IRRuntime01DemoCandidate','result':'HostPassed','sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'package':'948c0e3b4f8891481301770115e8ba4945eea6de','native':'bdfce18f0925041695408bcbcff10d91b28de396','files':rows,'gitRefsModifiedByJob':False,'unityRun':False,'runtimeAcceptance':False}
+          (out/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps(receipt,sort_keys=True))
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: ir-runtime01-demo-host-${{ github.sha }}
+          path: ${{ runner.temp }}/ir-runtime01-demo
+          retention-days: 14
+          if-no-files-found: warn
+  official-api:
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03/
+            /Tools/AssemblyShadow/R03IR/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261001-batch-c-return-required/batch/builds/candidate-release/Editor.log
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261001-batch-c-return-required/batch/projects/candidate-release/Assets/Editor/R03Build.cs
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: hybridclr_unity
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+          path: hybridclr
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: bdfce18f0925041695408bcbcff10d91b28de396
+          path: il2cpp_plus
+          persist-credentials: false
+      - name: Apply exact-source successor recipe
+        shell: python
+        run: *transform
+      - name: Extract pinned official Unity APIs and compile; no Unity launch
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/ir-runtime01-official"
+          mkdir -p "$OUT"
+          curl --fail --location --proto '=https' --max-time 900 https://download.unity3d.com/download_unity/7670c08855a9/MacEditorInstallerArm64/Unity-2022.3.62f2.pkg -o "$RUNNER_TEMP/unity.pkg"
+          echo '5d2575c1b10a2a9f1f89bf40631a6b9bec3628fe16ca5f2203720af7943a3f05  '"$RUNNER_TEMP/unity.pkg" | shasum -a 256 -c
+          pkgutil --expand-full "$RUNNER_TEMP/unity.pkg" "$RUNNER_TEMP/unity-expanded"
+          rm "$RUNNER_TEMP/unity.pkg"
+          find "$RUNNER_TEMP/unity-expanded" -path '*/Unity.app/Contents/MacOS/Unity' -type f > "$OUT/unity-paths.txt"
+          test "$(wc -l < "$OUT/unity-paths.txt" | tr -d ' ')" = 1
+          UNITY="$(cat "$OUT/unity-paths.txt")"
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03/build_api.py --workspace "$GITHUB_WORKSPACE" --unity "$UNITY" --output "$OUT/managed" 2>&1 | tee "$OUT/managed.log"
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03/native_validation.py --workspace "$GITHUB_WORKSPACE" --unity "$UNITY" --output "$OUT/native" 2>&1 | tee "$OUT/native.log"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: ir-runtime01-official-${{ github.sha }}
+          path: ${{ runner.temp }}/ir-runtime01-official
+          retention-days: 14
+          if-no-files-found: warn
