@@ -2,7 +2,12 @@
 from pathlib import Path
 import tempfile
 import unittest
-from verify_scoped_custody import audit_exact, error_pairs, require, AdmissionError
+from verify_scoped_custody import (
+    AdmissionError, C_BLOBS, C_RECEIPT_GIT_BLOBS, EXPECTED_FILES,
+    EXPECTED_MISSING, audit_exact, authenticated_c_receipt,
+    authenticated_json, error_pairs, load_frozen_c, require,
+    verify_pinned_receipt_constants,
+)
 
 
 class ScopedCustodyUnitTests(unittest.TestCase):
@@ -78,6 +83,52 @@ class ScopedCustodyUnitTests(unittest.TestCase):
     def test_require_is_fail_closed(self):
         with self.assertRaises(AdmissionError):
             require(False, 'test')
+
+
+class RealImmutableCBindingTests(unittest.TestCase):
+    """Unlike synthetic controls, these tests read original C Git-published bytes.
+
+    C's published receipt objects and four map parts are checked in under R03.
+    These tests deliberately do NOT read or repair the unavailable S live roots.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.checkpoint = (
+            Path(__file__).resolve().parents[2] /
+            'local-validation-20261009-ir-r03-02-c-custody-blocked'
+        )
+        cls.pre = cls.checkpoint / 'preflight'
+
+    def test_all_c_sha_and_git_blob_pins_are_complete(self):
+        verify_pinned_receipt_constants()
+        self.assertEqual(len(C_BLOBS), 5)
+        self.assertEqual(set(C_BLOBS), set(C_RECEIPT_GIT_BLOBS))
+
+    def test_original_c_five_real_receipts_match_both_digests(self):
+        for name in sorted(C_BLOBS):
+            with self.subTest(original_c_file=name):
+                obj = authenticated_c_receipt(self.pre, name)
+                self.assertIsInstance(obj, dict)
+
+    def test_truncated_native_limit_sha_is_rejected(self):
+        name = 'NATIVE_LIVE_CUSTODY_LIMIT.json'
+        with self.assertRaisesRegex(AdmissionError, 'Invalid pinned SHA-256'):
+            authenticated_json(self.pre / name, C_BLOBS[name][:-11],
+                               C_RECEIPT_GIT_BLOBS[name])
+
+    def test_same_sha_but_wrong_original_git_blob_is_rejected(self):
+        name = 'NATIVE_LIVE_CUSTODY_LIMIT.json'
+        with self.assertRaisesRegex(AdmissionError, 'Immutable C Git blob mismatch'):
+            authenticated_json(self.pre / name, C_BLOBS[name], '0' * 40)
+
+    def test_full_original_c_roster_parses_without_live_s_access(self):
+        original, missing = load_frozen_c(self.checkpoint)
+        self.assertEqual(len(original), EXPECTED_FILES)
+        self.assertEqual(len(missing), EXPECTED_MISSING)
+        self.assertEqual(len(original) - len(missing), 339367)
+        self.assertEqual(original.get(next(iter(missing))), missing[next(iter(missing))])
+
 
 
 if __name__ == '__main__':
