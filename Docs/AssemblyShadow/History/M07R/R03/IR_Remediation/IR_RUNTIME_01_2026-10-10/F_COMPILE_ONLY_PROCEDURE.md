@@ -34,7 +34,7 @@ The new `native_validation.py` **requires `--sdk-scratch` whenever `--unity` is 
 ## Strict conditional sequence
 
 1. Verify final pinned sources/remote tips/workspace clean, no root aliases, exact Unity executable and read-only SDK headers. Read-only authenticate original C receipt sources and E failure, record disk availability and source SHA / actual compiler binary. Stop on mismatch.
-2. Fresh host regressions without Unity execution: native `test_reporting.py` normal/sanitized, real `test_object_access.py`, native `test_engine_observer.py` normal/sanitized, and standalone terminal policy 69 C++17 checks. Record actual command/exit/raw output and source hashes; unrelated R02 historical strict-hash workflow failure must not be silently converted to Passed.
+2. Fresh host regressions without Unity execution: **10 native SDK scratch-boundary tests** (`test_native_validation_scratch.py`), native `test_reporting.py` normal/sanitized, real `test_object_access.py`, native `test_engine_observer.py` normal/sanitized, and standalone terminal policy 69 C++17 checks. Record actual command/exit/raw output and source hashes; unrelated R02 historical strict-hash workflow failure must not be silently converted to Passed.
 3. Optional but recommended: run original C `verify_scoped_custody.py` before and after compile with new receipts, requiring exact original loss states. If a historical identity has changed, stop, preserve full current Missing/changed rows and return to Primary. This is *not* historical strict custody Passed.
 4. Run **one** `build_api.py --workspace --unity --output` on fresh ManagedAPI root. Require actual pinned Unity CoreModule/Editor assembly references, whole current `R03TerminalPlayer.cs` source binding and successful C# compilation. Preserve original negative unsigned-count compile behavior, all source/ref hashes, exact compiler invocations, 0 compiler errors and real result/output hashes. Do not infer a Player build.
 5. Run **one** `native_validation.py --workspace --unity --sdk-scratch --output` on fresh disjoint NativeSDK/Scratch roots. Require every ON/OFF/debug profile, `Runtime.cpp`, `Object.cpp`, `AssemblyShadow.cpp`, `AssemblyShadowEngineReportingProbe.cpp`, actual overlay `AssemblyShadowR03Probe.cpp` and all other listed units compiled against the **official pinned** SDK. Expect 11 translation units × 5 configurations = **55** successful syntax-only compilations if no compilation stage aborts. The script separately authenticates all relevant exact source hashes. Collect complete compiler stderr on failure, no bypass of private access or disabled guards.
@@ -57,6 +57,7 @@ C="$W/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261
 
 # Only after exact four-SHA checkout/root/source checks:
 mkdir "$P"
+"$PY" -B -m unittest discover -s "$W/hybridclr_demo/Tools/AssemblyShadow/R03" -p 'test_native_validation_scratch.py' -v
 "$PY" -B "$W/il2cpp_plus/tools/r03/runtime01/test_reporting.py"
 R03_SANITIZERS=1 "$PY" -B "$W/il2cpp_plus/tools/r03/runtime01/test_reporting.py"
 "$PY" -B "$W/il2cpp_plus/tools/r03/runtime01/test_object_access.py"
