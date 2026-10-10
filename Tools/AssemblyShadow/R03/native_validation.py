@@ -32,6 +32,7 @@ def main():
     parser.add_argument('--workspace',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--unity',type=Path)
+    parser.add_argument('--sdk-scratch',type=Path,help='Required fresh, nonaliasing external SDK-copy root for --unity')
     parser.add_argument('--sanitizers',action='store_true')
     args=parser.parse_args(); ws=args.workspace.resolve(); output=args.output.resolve()
     require(not output.exists(),'Unused native check root required');output.mkdir(parents=True)
@@ -94,9 +95,20 @@ def main():
             contents=args.unity.resolve().parent.parent
             sdk=contents/'il2cpp';require((sdk/'libil2cpp/il2cpp-config.h').is_file(),'Exact SDK extraction required')
             # Copy outside the evidence output, never publish vendor SDK files.
-            scratch=contents.parent.parent/'R03NativeCompileSDK';require(not scratch.exists(),'Unused SDK copy required')
+            # Never copy SDK bytes into the installed Unity Editor, source trees,
+            # evidence output or an already used historical root.
+            require(args.sdk_scratch is not None, 'Explicit external --sdk-scratch required with --unity')
+            raw=args.sdk_scratch
+            require(raw.is_absolute() and raw == raw.resolve(strict=False),
+                    'Canonical absolute nonsymlink SDK scratch path required')
+            scratch=raw.resolve(strict=False)
+            require(scratch.parent.is_dir() and not scratch.exists(),
+                    'Fresh absent SDK scratch with existing parent required')
+            for protected in (ws, output, contents.parent.parent):
+                require(scratch != protected and scratch not in protected.parents and
+                        protected not in scratch.parents,
+                        'SDK scratch must be outside source, evidence and Unity Editor roots')
             copy=scratch/'libil2cpp'
-            require(output not in copy.parents and copy not in output.parents,'SDK copy must be outside evidence output')
             shutil.copytree(sdk/'libil2cpp',copy)
             # Preserve SDK-relative ../../external includes from libil2cpp/utils.
             shutil.copytree(sdk/'external',scratch/'external')
