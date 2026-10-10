@@ -28,25 +28,7 @@ jobs:
           path: hybridclr_unity
           persist-credentials: false
       - name: Apply exact-source successor recipe
-        shell: python
-        run: &transform |
-          import subprocess
-          from pathlib import Path
-          p=Path('hybridclr_demo/Tools/AssemblyShadow/R03IR/Runtime01/apply_exact_patch.py')
-          source=p.read_text()
-          # Two reviewed recipe corrections, before execution: strip a generated
-          # trailing space and use the normal assembly lookup in feature-OFF.
-          old="original_player = HERE / 'PlayerProject/R03Player.cs' "
-          assert source.count(old)==1
-          source=source.replace(old,old.rstrip())
-          old='#include "vm/Runtime.h"\n#include "vm/Object.h"'
-          assert source.count(old)==1
-          source=source.replace(old,'#include "vm/Runtime.h"\n#include "vm/Assembly.h"\n#include "vm/Object.h"')
-          old='        const auto* engine = MetadataCache::GetAotAssemblyByNamePhysical("UnityEngine.CoreModule");'
-          assert source.count(old)==1
-          source=source.replace(old,'#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW\n'+old+'\n#else\n        const auto* engine = Assembly::Load("UnityEngine.CoreModule");\n#endif')
-          p.write_text(source)
-          subprocess.run(['python3','-B',str(p)],check=True)
+        run: python3 -B hybridclr_demo/Tools/AssemblyShadow/R03IR/Runtime01/ci_transform.py
       - name: Host contracts and compiled actual serializer
         shell: bash
         run: |
@@ -81,6 +63,16 @@ jobs:
               rows.append({'path':name,'gitBlob':blob,'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)})
           receipt={'kind':'IRRuntime01DemoCandidate','result':'HostPassed','sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'package':'948c0e3b4f8891481301770115e8ba4945eea6de','native':'bdfce18f0925041695408bcbcff10d91b28de396','files':rows,'gitRefsModifiedByJob':False,'unityRun':False,'runtimeAcceptance':False}
           (out/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps(receipt,sort_keys=True))
+      - name: Retain candidate source snapshot even on failed checks
+        if: always()
+        shell: python
+        run: |
+          import os,shutil
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'ir-runtime01-demo/debug-source'
+          for name in ('R03','R03IR','R03Storage'):
+              source=Path('hybridclr_demo/Tools/AssemblyShadow')/name
+              if source.exists():shutil.copytree(source,out/name,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
@@ -122,8 +114,7 @@ jobs:
           path: il2cpp_plus
           persist-credentials: false
       - name: Apply exact-source successor recipe
-        shell: python
-        run: *transform
+        run: python3 -B hybridclr_demo/Tools/AssemblyShadow/R03IR/Runtime01/ci_transform.py
       - name: Extract pinned official Unity APIs and compile; no Unity launch
         shell: bash
         run: |
