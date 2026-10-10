@@ -10,7 +10,7 @@ permissions:
 jobs:
   pinned-unity-api:
     runs-on: macos-15
-    timeout-minutes: 30
+    timeout-minutes: 50
     env:
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
@@ -68,7 +68,28 @@ jobs:
           mkdir -p "$RUNNER_TEMP/r03-build-api"
           df -h "$RUNNER_TEMP" | tee "$RUNNER_TEMP/r03-build-api/disk-before.txt"
           URL=https://download.unity3d.com/download_unity/7670c08855a9/MacEditorInstallerArm64/Unity-2022.3.62f2.pkg
-          curl --fail --location --proto '=https' --max-time 900 "$URL" -o "$RUNNER_TEMP/unity.pkg"
+          # Unity CDN can close long multi-GB downloads mid-transfer (curl 18).
+          # Resume bounded attempts; never accept bytes without the pinned digest.
+          for attempt in 1 2 3 4; do
+            current=0
+            if test -f "$RUNNER_TEMP/unity.pkg"; then
+              current="$(stat -f %z "$RUNNER_TEMP/unity.pkg")"
+            fi
+            echo "attempt=$attempt existingBytes=$current" | tee -a "$RUNNER_TEMP/r03-build-api/installer-transfer.log"
+            if curl --fail --location --proto '=https' --connect-timeout 45 --max-time 900 \
+              --continue-at - "$URL" -o "$RUNNER_TEMP/unity.pkg"; then
+              echo "attempt=$attempt result=Completed" | tee -a "$RUNNER_TEMP/r03-build-api/installer-transfer.log"
+              break
+            else
+              code=$?
+              echo "attempt=$attempt result=Interrupted curlExit=$code" | tee -a "$RUNNER_TEMP/r03-build-api/installer-transfer.log"
+              if test "$attempt" = 4; then exit "$code"; fi
+              # HTTP servers without byte-range support report curl 33. A new
+              # attempt must restart only this ephemeral unverified CI file.
+              if test "$code" = 33; then rm -f "$RUNNER_TEMP/unity.pkg"; fi
+              sleep 5
+            fi
+          done
           shasum -a 256 "$RUNNER_TEMP/unity.pkg" | tee "$RUNNER_TEMP/r03-build-api/installer.sha256"
           # Historical Completion compiler profile pins this official package
           # digest. A wrong download must fail before expensive extraction.
