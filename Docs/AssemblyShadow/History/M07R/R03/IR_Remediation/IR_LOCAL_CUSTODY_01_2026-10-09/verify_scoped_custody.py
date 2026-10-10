@@ -25,8 +25,18 @@ C_BLOBS = {
     'HISTORICAL_CUSTODY_BEFORE.json': 'b44e3c3ae6abc0e79d222c459c5463a6fd0fa186996f1dd2b7ac85a8963df2fe',
     'HISTORICAL_CUSTODY_AFTER.json': '86a5e926841b50e3edb337c4a0a22bd3a6a6dd1484ad40d2f926c0c72161603b',
     'CUSTODY_FAILURE_ANALYSIS.json': '5e4476b8487e06ec98d2152e94c7e4e671b4f7ece42b5c78544553be2d4e178c',
-    'NATIVE_LIVE_CUSTODY_LIMIT.json': '5cf6365c3e84e5390868984b52b40534de0fa53b92499d0359f9d',
+    'NATIVE_LIVE_CUSTODY_LIMIT.json': '5cf6365c3e84e5390868984b52a2f11cc8f52b40534de0fa53b92499d0359f9d',
     'CUSTODY_MAP_BINDING.json': '3f2a6621879747a821acfcdfa01eff2641b551e534fed9ae6e55a798b3e2aec5',
+}
+# Exact Git blob IDs for the five immutable receipts at C publication
+# 36b9828d62bb81d98e81d055871a9540fe116276. An additional independent
+# byte identity check complements each SHA-256 pin.
+C_RECEIPT_GIT_BLOBS = {
+    'HISTORICAL_CUSTODY_BEFORE.json': '4d0e1a66815c23137caf85a7c4daa68d066cd383',
+    'HISTORICAL_CUSTODY_AFTER.json': '0d3d956cb4895314bbbd4c750e12c286ac9614f5',
+    'CUSTODY_FAILURE_ANALYSIS.json': '3776b9d201fefd0fefdf52f54cebfaff04f1a2c5',
+    'NATIVE_LIVE_CUSTODY_LIMIT.json': 'cca29fae8e0bbe7431d44b1f3f0eff96727c5756',
+    'CUSTODY_MAP_BINDING.json': '749e1110c92e487c518139250f1aa9e492931886',
 }
 PARTS = (
     (33554432, '17b1b27364bc29fca2f1c60c554054778395be861791eeb6092abbf724272a0a'),
@@ -73,10 +83,43 @@ def digest_file(path):
     return h.hexdigest()
 
 
-def authenticated_json(path, expected_sha):
+def verify_pinned_receipt_constants():
+    """Reject malformed or incomplete literals before reading any C evidence."""
+    require(set(C_BLOBS) == set(C_RECEIPT_GIT_BLOBS) and len(C_BLOBS) == 5,
+            'Incomplete immutable C receipt pin set')
+    require(SHA_RE.fullmatch(MAP_SHA256) is not None,
+            'Malformed frozen C map SHA-256')
+    for name, sha in C_BLOBS.items():
+        require(SHA_RE.fullmatch(sha) is not None,
+                'Malformed C receipt SHA-256 pin: ' + name)
+        require(re.fullmatch(r'[0-9a-f]{40}\Z', C_RECEIPT_GIT_BLOBS[name]) is not None,
+                'Malformed C original Git blob pin: ' + name)
+    require(len(PARTS) == 4 and sum(size for size, _ in PARTS) == MAP_BYTES,
+            'Frozen C map part sizes disagree')
+    for size, sha in PARTS:
+        require(isinstance(size, int) and size > 0 and SHA_RE.fullmatch(sha) is not None,
+                'Malformed immutable C map-part pin')
+
+
+def authenticated_json(path, expected_sha, expected_git_blob=None):
+    """Authenticate original receipt bytes against both SHA-256 and Git blob ID."""
+    require(isinstance(expected_sha, str) and SHA_RE.fullmatch(expected_sha) is not None,
+            'Invalid pinned SHA-256 for ' + str(path))
     data = path.read_bytes()
     require(digest(data) == expected_sha, 'Immutable C file SHA mismatch: ' + str(path))
+    if expected_git_blob is not None:
+        require(re.fullmatch(r'[0-9a-f]{40}\Z', expected_git_blob) is not None,
+                'Invalid pinned Git blob ID for ' + str(path))
+        git_hash = hashlib.sha1()
+        git_hash.update(('blob %d\0' % len(data)).encode('ascii'))
+        git_hash.update(data)
+        require(git_hash.hexdigest() == expected_git_blob,
+                'Immutable C Git blob mismatch: ' + str(path))
     return json.loads(data)
+
+
+def authenticated_c_receipt(pre, name):
+    return authenticated_json(pre / name, C_BLOBS[name], C_RECEIPT_GIT_BLOBS[name])
 
 
 def error_pairs(report):
@@ -110,20 +153,16 @@ def classify_missing(pairs):
 
 
 def load_frozen_c(checkpoint):
+    verify_pinned_receipt_constants()
     cp = Path(checkpoint)
     require(cp.is_dir() and cp.name == C_ROOT.split('/')[-1],
             'Expected immutable C custody checkpoint directory')
     pre = cp / 'preflight'
-    before = authenticated_json(pre / 'HISTORICAL_CUSTODY_BEFORE.json',
-                                C_BLOBS['HISTORICAL_CUSTODY_BEFORE.json'])
-    after = authenticated_json(pre / 'HISTORICAL_CUSTODY_AFTER.json',
-                               C_BLOBS['HISTORICAL_CUSTODY_AFTER.json'])
-    analysis = authenticated_json(pre / 'CUSTODY_FAILURE_ANALYSIS.json',
-                                  C_BLOBS['CUSTODY_FAILURE_ANALYSIS.json'])
-    native = authenticated_json(pre / 'NATIVE_LIVE_CUSTODY_LIMIT.json',
-                                C_BLOBS['NATIVE_LIVE_CUSTODY_LIMIT.json'])
-    binding = authenticated_json(pre / 'CUSTODY_MAP_BINDING.json',
-                                 C_BLOBS['CUSTODY_MAP_BINDING.json'])
+    before = authenticated_c_receipt(pre, 'HISTORICAL_CUSTODY_BEFORE.json')
+    after = authenticated_c_receipt(pre, 'HISTORICAL_CUSTODY_AFTER.json')
+    analysis = authenticated_c_receipt(pre, 'CUSTODY_FAILURE_ANALYSIS.json')
+    native = authenticated_c_receipt(pre, 'NATIVE_LIVE_CUSTODY_LIMIT.json')
+    binding = authenticated_c_receipt(pre, 'CUSTODY_MAP_BINDING.json')
     for phase, report in (('before', before), ('after', after)):
         require(report['phase'] == phase and report['state'] == 'Blocked' and
                 report['files'] == EXPECTED_FILES and report['symlinks'] == 0 and
