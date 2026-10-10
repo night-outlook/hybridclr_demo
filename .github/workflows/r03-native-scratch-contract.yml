@@ -1,0 +1,60 @@
+name: R03 native SDK scratch boundary contracts
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-native-scratch-contract.yml'
+      - 'Tools/AssemblyShadow/R03/native_validation.py'
+      - 'Tools/AssemblyShadow/R03/test_native_validation_scratch.py'
+permissions:
+  contents: read
+jobs:
+  sdk-scratch:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Verify exact native script syntax and scratch isolation
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          OUT="$RUNNER_TEMP/r03-native-scratch"
+          mkdir -p "$OUT"
+          python3 - <<'PY'
+          import ast
+          from pathlib import Path
+          for name in ('native_validation.py','test_native_validation_scratch.py'):
+              p=Path('Tools/AssemblyShadow/R03')/name
+              ast.parse(p.read_text(),filename=str(p))
+          print('R03 native scratch Python AST Passed')
+          PY
+          python3 -B -m unittest discover \
+            -s Tools/AssemblyShadow/R03 -p 'test_native_validation_scratch.py' -v \
+            2>&1 | tee "$OUT/scratch-tests.log"
+          git diff --check
+          git diff --exit-code
+      - name: Bind exact source and execution logs
+        if: always()
+        shell: python
+        run: |
+          from pathlib import Path
+          import hashlib,os,subprocess,json
+          out=Path(os.environ['RUNNER_TEMP'])/'r03-native-scratch';out.mkdir(exist_ok=True)
+          paths=['Tools/AssemblyShadow/R03/native_validation.py','Tools/AssemblyShadow/R03/test_native_validation_scratch.py']
+          sources=[{'path':p,'gitBlob':subprocess.check_output(['git','rev-parse','HEAD:'+p],text=True).strip(),'sha256':hashlib.sha256(Path(p).read_bytes()).hexdigest()} for p in paths]
+          files=[{'path':p.name,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size} for p in out.iterdir() if p.is_file()]
+          (out/'provenance.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'kind':'R03NativeScratchSourceValidation','sources':sources,'files':files,'unityLaunched':False,'sdkCopied':False,'runtimeAcceptance':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-native-scratch-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-native-scratch
+          retention-days: 14
+          if-no-files-found: warn
