@@ -27,52 +27,55 @@ jobs:
           ref: 948c0e3b4f8891481301770115e8ba4945eea6de
           path: hybridclr_unity
           persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 5df6a01bfee2fe63b28fa45d8720571858c0f589
+          path: il2cpp_plus
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_demo
+          ref: ec904d3eedf69035d301040ecd81a4137576757f
+          path: preservation
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout: |
+            Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_RUNTIME_01_2026-10-10
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_demo
+          ref: 75500e3916300d1fd5f7774e0f9de33b9ed3e7da
+          path: original_e
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261010-ir-r03-02-e-native-receipt/RETAINED_LIVE_ROOTS.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261010-ir-r03-02-e-native-receipt/batch/evidence-index.json
       - name: Apply exact-source successor recipe
         run: python3 -B hybridclr_demo/Tools/AssemblyShadow/R03IR/Runtime01/ci_transform.py
-      - name: Host contracts and compiled actual serializer
+      - name: Host contracts, actual serializer, native reporting and retained E
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p "$RUNNER_TEMP/ir-runtime01-demo"
-          python3 -B -m unittest discover -s hybridclr_demo/Tools/AssemblyShadow/R03IR -p 'test_*.py' -v 2>&1 | tee "$RUNNER_TEMP/ir-runtime01-demo/host.log"
+          OUT="$RUNNER_TEMP/ir-runtime01-demo"
+          mkdir -p "$OUT"
+          python3 -B -m unittest discover -s hybridclr_demo/Tools/AssemblyShadow/R03IR -p 'test_*.py' -v 2>&1 | tee "$OUT/host.log"
+          python3 -B -m unittest discover -s hybridclr_demo/Tools/AssemblyShadow/R03 -p 'test_*.py' -v 2>&1 | tee "$OUT/r03-host.log"
           dotnet build hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj -c Release -v normal \
-            -p:PackageRoot="$GITHUB_WORKSPACE/hybridclr_unity" \
-            -p:BaseIntermediateOutputPath="$RUNNER_TEMP/ir-runtime01-demo/obj/" \
-            -p:OutputPath="$RUNNER_TEMP/ir-runtime01-demo/bin/" 2>&1 | tee "$RUNNER_TEMP/ir-runtime01-demo/managed.log"
-          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03IR/Runtime01/test_candidate.py \
-            --managed-assembly "$RUNNER_TEMP/ir-runtime01-demo/bin/PlayerApiCompile.dll" 2>&1 | tee "$RUNNER_TEMP/ir-runtime01-demo/persistence.log"
-      - name: Stage tested source blobs; no branch/commit mutations
-        shell: python
+            -p:PackageRoot="$GITHUB_WORKSPACE/hybridclr_unity" -p:BaseIntermediateOutputPath="$OUT/obj/" -p:OutputPath="$OUT/bin/" 2>&1 | tee "$OUT/managed.log"
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03IR/Runtime01/test_candidate.py --managed-assembly "$OUT/bin/PlayerApiCompile.dll" 2>&1 | tee "$OUT/persistence.log"
+          python3 -B il2cpp_plus/tools/r03/runtime01/test_reporting.py 2>&1 | tee "$OUT/native-reporting.log"
+          c++ -std=c++17 -Wall -Wextra -Werror -pedantic -pthread -Iil2cpp_plus/libil2cpp il2cpp_plus/tools/r03/terminal_execution_tests.cpp -o "$OUT/terminal-policy"
+          "$OUT/terminal-policy" | tee "$OUT/native-policy.log"
+          IR_E_SOURCE_ROOT="$GITHUB_WORKSPACE/original_e" python3 -B -m unittest discover \
+            -s preservation/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_RUNTIME_01_2026-10-10 \
+            -p 'test_retained_e.py' -v 2>&1 | tee "$OUT/retained-e-tests.log"
+      - name: Stage tested source blobs only
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          import hashlib,json,os,subprocess,urllib.request
-          from pathlib import Path
-          demo=Path('hybridclr_demo');out=Path(os.environ['RUNNER_TEMP'])/'ir-runtime01-demo'
-          names=['Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs','Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp','Tools/AssemblyShadow/R03/PlayerApiCompile/UnityEnvironment.cs','Tools/AssemblyShadow/R03IR/run_terminal_local.py','Tools/AssemblyShadow/R03IR/test_terminal_contract.py','Tools/AssemblyShadow/R03/native_validation.py','Tools/AssemblyShadow/R03/source-pins.json','Tools/AssemblyShadow/R03/build_api.py','Tools/AssemblyShadow/R03IR/Runtime01/test_candidate.py']
-          expected=sorted(set(names)-{'Tools/AssemblyShadow/R03IR/Runtime01/test_candidate.py'}|{'Tools/AssemblyShadow/R03IR/Runtime01/apply_exact_patch.py'})
-          changed=sorted(subprocess.check_output(['git','-C',str(demo),'diff','--name-only'],text=True).splitlines());assert changed==expected,(changed,expected)
-          subprocess.run(['git','-C',str(demo),'diff','--check'],check=True)
-          (out/'diff.patch').write_bytes(subprocess.check_output(['git','-C',str(demo),'diff','--',*names]))
-          rows=[]
-          for name in names:
-              data=(demo/name).read_bytes();blob=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
-              req=urllib.request.Request('https://api.github.com/repos/night-outlook/hybridclr_demo/git/blobs',data=json.dumps({'content':data.decode(),'encoding':'utf-8'}).encode(),headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json'},method='POST')
-              with urllib.request.urlopen(req,timeout=60) as r:assert json.load(r)['sha']==blob
-              target=out/'sources'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
-              rows.append({'path':name,'gitBlob':blob,'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)})
-          receipt={'kind':'IRRuntime01DemoCandidate','result':'HostPassed','sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'package':'948c0e3b4f8891481301770115e8ba4945eea6de','native':'bdfce18f0925041695408bcbcff10d91b28de396','files':rows,'gitRefsModifiedByJob':False,'unityRun':False,'runtimeAcceptance':False}
-          (out/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps(receipt,sort_keys=True))
-      - name: Retain candidate source snapshot even on failed checks
-        if: always()
-        shell: python
-        run: |
-          import os,shutil
-          from pathlib import Path
-          out=Path(os.environ['RUNNER_TEMP'])/'ir-runtime01-demo/debug-source'
-          for name in ('R03','R03IR','R03Storage'):
-              source=Path('hybridclr_demo/Tools/AssemblyShadow')/name
-              if source.exists():shutil.copytree(source,out/name,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
+        run: python3 -B hybridclr_demo/Tools/AssemblyShadow/R03IR/Runtime01/ci_stage.py
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
@@ -110,7 +113,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/il2cpp_plus
-          ref: bdfce18f0925041695408bcbcff10d91b28de396
+          ref: 5df6a01bfee2fe63b28fa45d8720571858c0f589
           path: il2cpp_plus
           persist-credentials: false
       - name: Apply exact-source successor recipe
