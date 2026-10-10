@@ -1,0 +1,47 @@
+name: R03 immutable C custody source receipt verification
+on:
+  push:
+    branches: [codex/r03-ir-custody-02-sourcecheck-20261009]
+permissions:
+  contents: read
+jobs:
+  real-c-receipt-regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout: |
+            Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_LOCAL_CUSTODY_01_2026-10-09
+            Docs/AssemblyShadow/History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight
+      - name: Compile source syntax and test authentic C Git evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          OUT="$RUNNER_TEMP/r03-custody02"
+          mkdir -p "$OUT"
+          git rev-parse HEAD | tee "$OUT/executing-commit.txt"
+          python3 - <<'PY'
+          import ast
+          from pathlib import Path
+          root=Path('Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_LOCAL_CUSTODY_01_2026-10-09')
+          for path in sorted(root.glob('*.py')):
+              ast.parse(path.read_text(),filename=str(path))
+          print('Docs-only verifier syntax Passed')
+          PY
+          python3 -B -m unittest discover \
+            -s Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_LOCAL_CUSTODY_01_2026-10-09 \
+            -p 'test_scoped_custody.py' -v 2>&1 | tee "$OUT/real-c-regression.log"
+          sha256sum Docs/AssemblyShadow/History/M07R/R03/local-validation-20261009-ir-r03-02-c-custody-blocked/preflight/NATIVE_LIVE_CUSTODY_LIMIT.json | tee "$OUT/native-limit-original-sha256.txt"
+          git diff --check
+          git diff --exit-code
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-custody02-sourcecheck-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-custody02
+          retention-days: 14
+          if-no-files-found: warn
