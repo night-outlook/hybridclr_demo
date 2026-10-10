@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "kind": "IR_LOCAL_CUSTODY_02_PRIMARY_REMEDIATION_EVIDENCE",
+  "owner": "Primary Implementation",
+  "finding": "IR-LOCAL-CUSTODY-02",
+  "originalDSource": "7313c768a2658ae77357e3fb1a83e9542585c99c",
+  "originalDReportPublication": "4d728038f562ddbf7e35564409e9d3b436c6772c",
+  "originalDOutcome": "ScopedCustodyPreflightBlocked",
+  "originalDUnityLaunches": 0,
+  "originalDUnmodified": true,
+  "cOriginalPublication": "36b9828d62bb81d98e81d055871a9540fe116276",
+  "cFile": "preflight/NATIVE_LIVE_CUSTODY_LIMIT.json",
+  "originalCGitBlob": "cca29fae8e0bbe7431d44b1f3f0eff96727c5756",
+  "originalCSha256": "5cf6365c3e84e5390868984b52a2f11cc8f52b40534de0fa53b92499d0359f9d",
+  "failedPin": "5cf6365c3e84e5390868984b52b40534de0fa53b92499d0359f9d",
+  "correctedCodeSourceCommit": "81502a93b472e52f189969fb74bdf358b352cb07",
+  "correctedFiles": [
+    "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_LOCAL_CUSTODY_01_2026-10-09/verify_scoped_custody.py",
+    "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_LOCAL_CUSTODY_01_2026-10-09/test_scoped_custody.py"
+  ],
+  "codeChanges": "Correct native-limit digest, validate all SHA/Git-blob/map-part pins, authenticate five actual C JSON receipts by SHA-256 and Git blob; add five real-C tests",
+  "ci": {
+    "runId": 38031146338,
+    "jobId": 114152170509,
+    "repo": "night-outlook/hybridclr_demo",
+    "branch": "codex/r03-ir-custody-02-sourcecheck-20261009",
+    "head": "675930d9125b7ca11f183d857210e2934ae72ff7",
+    "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/38031146338",
+    "status": "completed",
+    "conclusion": "success",
+    "syntax": "Passed",
+    "pythonTests": {
+      "passed": 15,
+      "failed": 0,
+      "errors": 0
+    },
+    "realCReceiptAndCompleteRosterAuthenticated": true,
+    "liveMacSCensus": false,
+    "originalCNativeSha256Computed": "5cf6365c3e84e5390868984b52a2f11cc8f52b40534de0fa53b92499d0359f9d",
+    "artifact": {
+      "id": 11661479189,
+      "sha256": "966724f5418f2be067807772e5894c9f997979e3a13c163c108a5d9567da3f93",
+      "expiresAtUtc": "2026-10-24T06:30:15Z"
+    }
+  },
+  "currentPlayerCompiledSource": "ba47b41674b83a6f694ac4f8ac1bc8f83a9da24b",
+  "runtimeSourcesChanged": false,
+  "retainedLoss": {
+    "strictCustody": "Blocked",
+    "presentVerifiedInC": 339367,
+    "missingInC": 77477,
+    "originalExpected": 416844,
+    "fullLiveE": "NotRun"
+  },
+  "localE": {
+    "hostTests": "NotRun",
+    "fullLiveCensus": "NotRun",
+    "storage": "NotRun",
+    "builds": 0,
+    "players": 0,
+    "unityLaunches": 0,
+    "authorization": "Conditional on new exact-pinned handoff"
+  },
+  "approval": {
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterExpansion": false
+  }
+}
