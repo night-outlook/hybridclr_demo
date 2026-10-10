@@ -1,0 +1,901 @@
+{
+  "state": "EvidenceCaptured",
+  "startUtc": "2026-10-10T07:21:00.372715+00:00",
+  "endUtc": "2026-10-10T07:21:00.623956+00:00",
+  "reports": [
+    {
+      "caseId": "IR-R03-02-release-baseline",
+      "pid": 10439,
+      "originalPath": "/Users/ah/Library/Logs/DiagnosticReports/R03Isolated-2026-10-10-001235.000.ips",
+      "copyPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261010E-native-receipt/diagnostics/R03Isolated-2026-10-10-001235.000.ips",
+      "sha256": "1b918aabe0c3ee8eaf4015157e7adc9869165b9409c228a0546f11f2e161dc65",
+      "bytes": 109761,
+      "captureTime": "2026-10-10 00:12:20.3277 -0700",
+      "procPathRedactedByMacOS": "/Users/USER/*/R03Isolated.app/Contents/MacOS/R03Isolated",
+      "exception": {
+        "codes": "0x0000000000000002, 0x000000016b1affd0",
+        "message": "Could not determine thread index for stack guard region",
+        "rawCodes": [
+          2,
+          6091898832
+        ],
+        "type": "EXC_BAD_ACCESS",
+        "signal": "SIGSEGV",
+        "subtype": "KERN_PROTECTION_FAILURE at 0x000000016b1affd0"
+      },
+      "faultingThread": 0,
+      "frames": [
+        {
+          "imageOffset": 325980,
+          "symbol": "DyldSharedCache::forEachRegion(void (void const*, unsigned long long, unsigned long long, unsigned int, unsigned int, unsigned long long, unsigned long long, bool&) block_pointer) const",
+          "symbolLocation": 8,
+          "imageIndex": 4
+        },
+        {
+          "imageOffset": 326776,
+          "symbol": "invocation function for block in DyldSharedCache::forEachRange(void (char const*, unsigned long long, unsigned long long, unsigned int, unsigned long long, unsigned int, unsigned int, bool&) block_pointer, void (DyldSharedCache const*, unsigned int) block_pointer) const",
+          "symbolLocation": 132,
+          "imageIndex": 4
+        },
+        {
+          "imageOffset": 326340,
+          "symbol": "DyldSharedCache::forEachCache(void (DyldSharedCache const*, bool&) block_pointer) const",
+          "symbolLocation": 64,
+          "imageIndex": 4
+        },
+        {
+          "imageOffset": 326620,
+          "symbol": "DyldSharedCache::forEachRange(void (char const*, unsigned long long, unsigned long long, unsigned int, unsigned long long, unsigned int, unsigned int, bool&) block_pointer, void (DyldSharedCache const*, unsigned int) block_pointer) const",
+          "symbolLocation": 124,
+          "imageIndex": 4
+        },
+        {
+          "imageOffset": 41140,
+          "symbol": "dyld4::APIs::findImageMappedAt(void const*, dyld3::MachOLoaded const**, bool*, char const**, void const**, unsigned long long*, unsigned char*, dyld4::Loader const**)",
+          "symbolLocation": 268,
+          "imageIndex": 4
+        },
+        {
+          "imageOffset": 57868,
+          "symbol": "dyld4::APIs::_dyld_find_unwind_sections(void*, dyld_unwind_sections*)",
+          "symbolLocation": 128,
+          "imageIndex": 4
+        },
+        {
+          "imageOffset": 14404,
+          "symbol": "libunwind::UnwindCursor<libunwind::LocalAddressSpace, libunwind::Registers_arm64>::setInfoBasedOnIPRegister(bool)",
+          "symbolLocation": 364,
+          "imageIndex": 5
+        },
+        {
+          "imageOffset": 27256,
+          "symbol": "libunwind::UnwindCursor<libunwind::LocalAddressSpace, libunwind::Registers_arm64>::step(bool)",
+          "symbolLocation": 2136,
+          "imageIndex": 5
+        },
+        {
+          "imageOffset": 9724,
+          "symbol": "_Unwind_RaiseException",
+          "symbolLocation": 452,
+          "imageIndex": 5
+        },
+        {
+          "imageOffset": 8340,
+          "symbol": "__cxa_throw",
+          "symbolLocation": 84,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 2330244,
+          "sourceFile": "Exception.cpp",
+          "symbol": "il2cpp::vm::Exception::Raise(Il2CppException*, MethodInfo*)",
+          "symbolLocation": 32,
+          "imageIndex": 2
+        },
+        {
+          "imageOffset": 1864956,
+          "sourceLine": 288,
+          "sourceFile": "AssemblyShadow.cpp",
+          "symbol": "il2cpp::vm::(anonymous namespace)::RaiseTerminalExecutionRejected()",
+          "imageIndex": 2,
+          "symbolLocation": 160
+        },
+        {
+          "imageOffset": 1864648,
+          "sourceLine": 1758,
+          "sourceFile": "AssemblyShadow.cpp",
+          "symbol": "il2cpp::vm::AssemblyShadow::RequireActiveMethod(MethodInfo const*, char const*)",
+          "imageIndex": 2,
+          "symbolLocation": 108
+        },
+        {
+          "imageOffset": 1925468,
+          "sourceLine": 610,
+          "sourceFile": "Runtime.cpp",
+          "symbol": "il2cpp::vm::Runtime::Invoke(MethodInfo const*, void*, void**, Il2CppException**)",
+          "imageIndex": 2,
+          "symbolLocation": 80
+        },
+        {
+          "imageOffset": 14100488,
+          "symbol": "scripting_method_invoke(ScriptingMethodPtr, ScriptingObjectPtr, ScriptingArguments&, ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 184,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138992,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 164,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138716,
+          "symbol": "bool ScriptingInvocation::Invoke<bool>(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 20,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14972128,
+          "symbol": "Scripting::UnityEngine::DebugProxy::CallOverridenDebugHandler(ScriptingObjectPtr, Scripting::UnityEngine::ObjectProxy, ScriptingExceptionPtr*)",
+          "symbolLocation": 112,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14139096,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 268,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138716,
+          "symbol": "bool ScriptingInvocation::Invoke<bool>(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 20,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14972128,
+          "symbol": "Scripting::UnityEngine::DebugProxy::CallOverridenDebugHandler(ScriptingObjectPtr, Scripting::UnityEngine::ObjectProxy, ScriptingExceptionPtr*)",
+          "symbolLocation": 112,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14139096,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 268,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138716,
+          "symbol": "bool ScriptingInvocation::Invoke<bool>(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 20,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14972128,
+          "symbol": "Scripting::UnityEngine::DebugProxy::CallOverridenDebugHandler(ScriptingObjectPtr, Scripting::UnityEngine::ObjectProxy, ScriptingExceptionPtr*)",
+          "symbolLocation": 112,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14139096,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 268,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138716,
+          "symbol": "bool ScriptingInvocation::Invoke<bool>(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 20,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14972128,
+          "symbol": "Scripting::UnityEngine::DebugProxy::CallOverridenDebugHandler(ScriptingObjectPtr, Scripting::UnityEngine::ObjectProxy, ScriptingExceptionPtr*)",
+          "symbolLocation": 112,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14139096,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 268,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138716,
+          "symbol": "bool ScriptingInvocation::Invoke<bool>(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 20,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14972128,
+          "symbol": "Scripting::UnityEngine::DebugProxy::CallOverridenDebugHandler(ScriptingObjectPtr, Scripting::UnityEngine::ObjectProxy, ScriptingExceptionPtr*)",
+          "symbolLocation": 112,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14139096,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 268,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138716,
+          "symbol": "bool ScriptingInvocation::Invoke<bool>(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 20,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14972128,
+          "symbol": "Scripting::UnityEngine::DebugProxy::CallOverridenDebugHandler(ScriptingObjectPtr, Scripting::UnityEngine::ObjectProxy, ScriptingExceptionPtr*)",
+          "symbolLocation": 112,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14139096,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 268,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9198868,
+          "symbol": "RuntimeInitializeOnLoadManager::Execute(RuntimeInitializeOnLoadCall const&)",
+          "symbolLocation": 144,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9198688,
+          "symbol": "RuntimeInitializeOnLoadManager::ExecuteInitializeOnLoad(RuntimeInitializeLoadType)",
+          "symbolLocation": 380,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9195644,
+          "symbol": "RuntimeInitializeOnSceneLoadedBeforeAwake(int, AwakeFromLoadQueue&, SceneLoadingMode, bool)",
+          "symbolLocation": 152,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9589360,
+          "symbol": "CallbackArray4<int const, AwakeFromLoadQueue&, SceneLoadingMode, bool>::Invoke(int, AwakeFromLoadQueue&, SceneLoadingMode, bool)",
+          "symbolLocation": 148,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9588764,
+          "symbol": "LoadSceneOperation::CompleteAwakeSequence()",
+          "symbolLocation": 280,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9587860,
+          "symbol": "LoadSceneOperation::CompleteLoadFirstScene()",
+          "symbolLocation": 36,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9587472,
+          "symbol": "LoadSceneOperation::IntegrateMainThread()",
+          "symbolLocation": 260,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9592132,
+          "symbol": "PreloadManager::UpdatePreloadingSingleStep(PreloadManager::UpdatePreloadingFlags, int)",
+          "symbolLocation": 312,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9594424,
+          "symbol": "PreloadManager::WaitForAllAsyncOperationsToComplete()",
+          "symbolLocation": 196,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9880400,
+          "symbol": "RuntimeSceneManager::LoadScene(core::basic_string<char, core::StringStorageDefault<char>> const&, core::basic_string<char, core::StringStorageDefault<char>> const&, core::basic_string<char, core::StringStorageDefault<char>> const&, UnityGUID const&, int, InternalLoadSceneParameters const&)",
+          "symbolLocation": 72,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9361556,
+          "symbol": "PlayerStartFirstScene(bool)",
+          "symbolLocation": 796,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9362052,
+          "symbol": "PlayerLoadFirstScene(bool)",
+          "symbolLocation": 180,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 26992044,
+          "symbol": "ContinueSetupUnityPlayer(bool)",
+          "symbolLocation": 1632,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 26993868,
+          "symbol": "PlayerMain(int, char const**)",
+          "symbolLocation": 904,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 130560,
+          "symbol": "start",
+          "symbolLocation": 6992,
+          "imageIndex": 4
+        }
+      ],
+      "originalLength": 50549,
+      "recursionInfoArray": [
+        {
+          "hottestElided": 25,
+          "coldestElided": 50523,
+          "depth": 16839,
+          "keyFrame": {
+            "imageOffset": 14139096,
+            "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+            "symbolLocation": 268,
+            "imageIndex": 1
+          }
+        }
+      ],
+      "imageBindings": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "sha256": "fcd1912a8bf4147d145cb03bc1c4613d139ae1658d1aa6a7f814b23e89060cd7",
+          "imageUuid": "16630b36-4c21-385e-94e1-848eebb8e956",
+          "loadAddress": 4366614528,
+          "uuidMatched": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib",
+          "sha256": "b909b95d27bbc91a84d70f5f7d911a45bf070cf00314f92399900c099159e8af",
+          "imageUuid": "ac1d3b27-fd45-3b61-8aed-93c2037898ec",
+          "loadAddress": 4767023104,
+          "uuidMatched": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib",
+          "sha256": "417339d1c2d2b7bff00e30ac0f7cf0f25ed8918e1511c2340ca756090bb92c5f",
+          "imageUuid": "d94ff91a-61a7-3ad6-8ed2-6b0288e2a49a",
+          "loadAddress": 4456022016,
+          "uuidMatched": true
+        }
+      ],
+      "binding": "Command PID/time + all three fresh binary Mach-O UUIDs; report paths are OS-redacted",
+      "symbolication": "Already symbolicated by macOS; no Player rerun"
+    },
+    {
+      "caseId": "IR-R03-02-release-type",
+      "pid": 10443,
+      "originalPath": "/Users/ah/Library/Logs/DiagnosticReports/R03Isolated-2026-10-10-001235.ips",
+      "copyPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261010E-native-receipt/diagnostics/R03Isolated-2026-10-10-001235.ips",
+      "sha256": "2115de701166456ef1493e2a7cd6638bfab49d8be8dde9b1cb6f7c96106429cb",
+      "bytes": 109792,
+      "captureTime": "2026-10-10 00:12:22.6501 -0700",
+      "procPathRedactedByMacOS": "/Users/USER/*/R03Isolated.app/Contents/MacOS/R03Isolated",
+      "exception": {
+        "codes": "0x0000000000000002, 0x000000016aa77fd0",
+        "message": "Could not determine thread index for stack guard region",
+        "rawCodes": [
+          2,
+          6084329424
+        ],
+        "type": "EXC_BAD_ACCESS",
+        "signal": "SIGSEGV",
+        "subtype": "KERN_PROTECTION_FAILURE at 0x000000016aa77fd0"
+      },
+      "faultingThread": 0,
+      "frames": [
+        {
+          "imageOffset": 325980,
+          "symbol": "DyldSharedCache::forEachRegion(void (void const*, unsigned long long, unsigned long long, unsigned int, unsigned int, unsigned long long, unsigned long long, bool&) block_pointer) const",
+          "symbolLocation": 8,
+          "imageIndex": 4
+        },
+        {
+          "imageOffset": 326776,
+          "symbol": "invocation function for block in DyldSharedCache::forEachRange(void (char const*, unsigned long long, unsigned long long, unsigned int, unsigned long long, unsigned int, unsigned int, bool&) block_pointer, void (DyldSharedCache const*, unsigned int) block_pointer) const",
+          "symbolLocation": 132,
+          "imageIndex": 4
+        },
+        {
+          "imageOffset": 326340,
+          "symbol": "DyldSharedCache::forEachCache(void (DyldSharedCache const*, bool&) block_pointer) const",
+          "symbolLocation": 64,
+          "imageIndex": 4
+        },
+        {
+          "imageOffset": 326620,
+          "symbol": "DyldSharedCache::forEachRange(void (char const*, unsigned long long, unsigned long long, unsigned int, unsigned long long, unsigned int, unsigned int, bool&) block_pointer, void (DyldSharedCache const*, unsigned int) block_pointer) const",
+          "symbolLocation": 124,
+          "imageIndex": 4
+        },
+        {
+          "imageOffset": 41140,
+          "symbol": "dyld4::APIs::findImageMappedAt(void const*, dyld3::MachOLoaded const**, bool*, char const**, void const**, unsigned long long*, unsigned char*, dyld4::Loader const**)",
+          "symbolLocation": 268,
+          "imageIndex": 4
+        },
+        {
+          "imageOffset": 57868,
+          "symbol": "dyld4::APIs::_dyld_find_unwind_sections(void*, dyld_unwind_sections*)",
+          "symbolLocation": 128,
+          "imageIndex": 4
+        },
+        {
+          "imageOffset": 14404,
+          "symbol": "libunwind::UnwindCursor<libunwind::LocalAddressSpace, libunwind::Registers_arm64>::setInfoBasedOnIPRegister(bool)",
+          "symbolLocation": 364,
+          "imageIndex": 5
+        },
+        {
+          "imageOffset": 27256,
+          "symbol": "libunwind::UnwindCursor<libunwind::LocalAddressSpace, libunwind::Registers_arm64>::step(bool)",
+          "symbolLocation": 2136,
+          "imageIndex": 5
+        },
+        {
+          "imageOffset": 9724,
+          "symbol": "_Unwind_RaiseException",
+          "symbolLocation": 452,
+          "imageIndex": 5
+        },
+        {
+          "imageOffset": 8340,
+          "symbol": "__cxa_throw",
+          "symbolLocation": 84,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 2330244,
+          "sourceFile": "Exception.cpp",
+          "symbol": "il2cpp::vm::Exception::Raise(Il2CppException*, MethodInfo*)",
+          "symbolLocation": 32,
+          "imageIndex": 2
+        },
+        {
+          "imageOffset": 1864956,
+          "sourceLine": 288,
+          "sourceFile": "AssemblyShadow.cpp",
+          "symbol": "il2cpp::vm::(anonymous namespace)::RaiseTerminalExecutionRejected()",
+          "imageIndex": 2,
+          "symbolLocation": 160
+        },
+        {
+          "imageOffset": 1864648,
+          "sourceLine": 1758,
+          "sourceFile": "AssemblyShadow.cpp",
+          "symbol": "il2cpp::vm::AssemblyShadow::RequireActiveMethod(MethodInfo const*, char const*)",
+          "imageIndex": 2,
+          "symbolLocation": 108
+        },
+        {
+          "imageOffset": 1925468,
+          "sourceLine": 610,
+          "sourceFile": "Runtime.cpp",
+          "symbol": "il2cpp::vm::Runtime::Invoke(MethodInfo const*, void*, void**, Il2CppException**)",
+          "imageIndex": 2,
+          "symbolLocation": 80
+        },
+        {
+          "imageOffset": 14100488,
+          "symbol": "scripting_method_invoke(ScriptingMethodPtr, ScriptingObjectPtr, ScriptingArguments&, ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 184,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138992,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 164,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138716,
+          "symbol": "bool ScriptingInvocation::Invoke<bool>(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 20,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14972128,
+          "symbol": "Scripting::UnityEngine::DebugProxy::CallOverridenDebugHandler(ScriptingObjectPtr, Scripting::UnityEngine::ObjectProxy, ScriptingExceptionPtr*)",
+          "symbolLocation": 112,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14139096,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 268,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138716,
+          "symbol": "bool ScriptingInvocation::Invoke<bool>(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 20,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14972128,
+          "symbol": "Scripting::UnityEngine::DebugProxy::CallOverridenDebugHandler(ScriptingObjectPtr, Scripting::UnityEngine::ObjectProxy, ScriptingExceptionPtr*)",
+          "symbolLocation": 112,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14139096,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 268,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138716,
+          "symbol": "bool ScriptingInvocation::Invoke<bool>(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 20,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14972128,
+          "symbol": "Scripting::UnityEngine::DebugProxy::CallOverridenDebugHandler(ScriptingObjectPtr, Scripting::UnityEngine::ObjectProxy, ScriptingExceptionPtr*)",
+          "symbolLocation": 112,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14139096,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 268,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138716,
+          "symbol": "bool ScriptingInvocation::Invoke<bool>(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 20,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14972128,
+          "symbol": "Scripting::UnityEngine::DebugProxy::CallOverridenDebugHandler(ScriptingObjectPtr, Scripting::UnityEngine::ObjectProxy, ScriptingExceptionPtr*)",
+          "symbolLocation": 112,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14139096,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 268,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138716,
+          "symbol": "bool ScriptingInvocation::Invoke<bool>(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 20,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14972128,
+          "symbol": "Scripting::UnityEngine::DebugProxy::CallOverridenDebugHandler(ScriptingObjectPtr, Scripting::UnityEngine::ObjectProxy, ScriptingExceptionPtr*)",
+          "symbolLocation": 112,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14139096,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 268,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138716,
+          "symbol": "bool ScriptingInvocation::Invoke<bool>(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 20,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14972128,
+          "symbol": "Scripting::UnityEngine::DebugProxy::CallOverridenDebugHandler(ScriptingObjectPtr, Scripting::UnityEngine::ObjectProxy, ScriptingExceptionPtr*)",
+          "symbolLocation": 112,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14139096,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 268,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9198868,
+          "symbol": "RuntimeInitializeOnLoadManager::Execute(RuntimeInitializeOnLoadCall const&)",
+          "symbolLocation": 144,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9198688,
+          "symbol": "RuntimeInitializeOnLoadManager::ExecuteInitializeOnLoad(RuntimeInitializeLoadType)",
+          "symbolLocation": 380,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9195644,
+          "symbol": "RuntimeInitializeOnSceneLoadedBeforeAwake(int, AwakeFromLoadQueue&, SceneLoadingMode, bool)",
+          "symbolLocation": 152,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9589360,
+          "symbol": "CallbackArray4<int const, AwakeFromLoadQueue&, SceneLoadingMode, bool>::Invoke(int, AwakeFromLoadQueue&, SceneLoadingMode, bool)",
+          "symbolLocation": 148,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9588764,
+          "symbol": "LoadSceneOperation::CompleteAwakeSequence()",
+          "symbolLocation": 280,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9587860,
+          "symbol": "LoadSceneOperation::CompleteLoadFirstScene()",
+          "symbolLocation": 36,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9587472,
+          "symbol": "LoadSceneOperation::IntegrateMainThread()",
+          "symbolLocation": 260,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9592132,
+          "symbol": "PreloadManager::UpdatePreloadingSingleStep(PreloadManager::UpdatePreloadingFlags, int)",
+          "symbolLocation": 312,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9594424,
+          "symbol": "PreloadManager::WaitForAllAsyncOperationsToComplete()",
+          "symbolLocation": 196,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9880400,
+          "symbol": "RuntimeSceneManager::LoadScene(core::basic_string<char, core::StringStorageDefault<char>> const&, core::basic_string<char, core::StringStorageDefault<char>> const&, core::basic_string<char, core::StringStorageDefault<char>> const&, UnityGUID const&, int, InternalLoadSceneParameters const&)",
+          "symbolLocation": 72,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9361556,
+          "symbol": "PlayerStartFirstScene(bool)",
+          "symbolLocation": 796,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9362052,
+          "symbol": "PlayerLoadFirstScene(bool)",
+          "symbolLocation": 180,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 26992044,
+          "symbol": "ContinueSetupUnityPlayer(bool)",
+          "symbolLocation": 1632,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 26993868,
+          "symbol": "PlayerMain(int, char const**)",
+          "symbolLocation": 904,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 130560,
+          "symbol": "start",
+          "symbolLocation": 6992,
+          "imageIndex": 4
+        }
+      ],
+      "originalLength": 50549,
+      "recursionInfoArray": [
+        {
+          "hottestElided": 25,
+          "coldestElided": 50523,
+          "depth": 16839,
+          "keyFrame": {
+            "imageOffset": 14139096,
+            "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+            "symbolLocation": 268,
+            "imageIndex": 1
+          }
+        }
+      ],
+      "imageBindings": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "sha256": "fcd1912a8bf4147d145cb03bc1c4613d139ae1658d1aa6a7f814b23e89060cd7",
+          "imageUuid": "16630b36-4c21-385e-94e1-848eebb8e956",
+          "loadAddress": 4374183936,
+          "uuidMatched": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib",
+          "sha256": "b909b95d27bbc91a84d70f5f7d911a45bf070cf00314f92399900c099159e8af",
+          "imageUuid": "ac1d3b27-fd45-3b61-8aed-93c2037898ec",
+          "loadAddress": 4775411712,
+          "uuidMatched": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib",
+          "sha256": "417339d1c2d2b7bff00e30ac0f7cf0f25ed8918e1511c2340ca756090bb92c5f",
+          "imageUuid": "d94ff91a-61a7-3ad6-8ed2-6b0288e2a49a",
+          "loadAddress": 4463411200,
+          "uuidMatched": true
+        }
+      ],
+      "binding": "Command PID/time + all three fresh binary Mach-O UUIDs; report paths are OS-redacted",
+      "symbolication": "Already symbolicated by macOS; no Player rerun"
+    }
+  ],
+  "reportUnavailableForPids": [
+    10441
+  ],
+  "operations": [
+    {
+      "argv": [
+        "/usr/bin/dwarfdump",
+        "--uuid",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated"
+      ],
+      "startUtc": "2026-10-10T07:21:00.374527+00:00",
+      "endUtc": "2026-10-10T07:21:00.417489+00:00",
+      "exitCode": 0,
+      "stdout": "UUID: 16630B36-4C21-385E-94E1-848EEBB8E956 (arm64) /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/dwarfdump",
+        "--uuid",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib"
+      ],
+      "startUtc": "2026-10-10T07:21:00.417696+00:00",
+      "endUtc": "2026-10-10T07:21:00.423993+00:00",
+      "exitCode": 0,
+      "stdout": "UUID: AC1D3B27-FD45-3B61-8AED-93C2037898EC (arm64) /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/dwarfdump",
+        "--uuid",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib"
+      ],
+      "startUtc": "2026-10-10T07:21:00.432322+00:00",
+      "endUtc": "2026-10-10T07:21:00.438325+00:00",
+      "exitCode": 0,
+      "stdout": "UUID: D94FF91A-61A7-3AD6-8ED2-6B0288E2A49A (arm64) /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/dwarfdump",
+        "--uuid",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated"
+      ],
+      "startUtc": "2026-10-10T07:21:00.471678+00:00",
+      "endUtc": "2026-10-10T07:21:00.478550+00:00",
+      "exitCode": 0,
+      "stdout": "UUID: 16630B36-4C21-385E-94E1-848EEBB8E956 (arm64) /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/dwarfdump",
+        "--uuid",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib"
+      ],
+      "startUtc": "2026-10-10T07:21:00.478733+00:00",
+      "endUtc": "2026-10-10T07:21:00.485298+00:00",
+      "exitCode": 0,
+      "stdout": "UUID: AC1D3B27-FD45-3B61-8AED-93C2037898EC (arm64) /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/dwarfdump",
+        "--uuid",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib"
+      ],
+      "startUtc": "2026-10-10T07:21:00.491970+00:00",
+      "endUtc": "2026-10-10T07:21:00.498461+00:00",
+      "exitCode": 0,
+      "stdout": "UUID: D94FF91A-61A7-3AD6-8ED2-6B0288E2A49A (arm64) /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+        "rev-parse",
+        "HEAD"
+      ],
+      "startUtc": "2026-10-10T07:21:00.528085+00:00",
+      "endUtc": "2026-10-10T07:21:00.556485+00:00",
+      "exitCode": 0,
+      "stdout": "9ce1c1bfec9a21b92ea300acda5f27a3815b2c37\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+        "rev-parse",
+        "HEAD"
+      ],
+      "startUtc": "2026-10-10T07:21:00.570414+00:00",
+      "endUtc": "2026-10-10T07:21:00.576908+00:00",
+      "exitCode": 0,
+      "stdout": "9ce1c1bfec9a21b92ea300acda5f27a3815b2c37\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+        "rev-parse",
+        "HEAD"
+      ],
+      "startUtc": "2026-10-10T07:21:00.585071+00:00",
+      "endUtc": "2026-10-10T07:21:00.591383+00:00",
+      "exitCode": 0,
+      "stdout": "9ce1c1bfec9a21b92ea300acda5f27a3815b2c37\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "rev-parse",
+        "HEAD"
+      ],
+      "startUtc": "2026-10-10T07:21:00.598968+00:00",
+      "endUtc": "2026-10-10T07:21:00.606922+00:00",
+      "exitCode": 0,
+      "stdout": "baa9473200e453d1ba1017610e776e6c18c8d7f1\n",
+      "stderr": ""
+    }
+  ],
+  "sources": [
+    {
+      "repository": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "commit": "9ce1c1bfec9a21b92ea300acda5f27a3815b2c37",
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "sha256": "a4a7239654462f9aaa1e45c084b046c49132cb73aada749be18f18b2f7474635",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261010E-native-receipt/diagnostics/source/il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp"
+    },
+    {
+      "repository": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "commit": "9ce1c1bfec9a21b92ea300acda5f27a3815b2c37",
+      "path": "libil2cpp/vm/Runtime.cpp",
+      "sha256": "b4513eef34da0ab2f3006f99ef829002995a3650f049725f33b14fa4a2417fe9",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261010E-native-receipt/diagnostics/source/il2cpp_plus/libil2cpp/vm/Runtime.cpp"
+    },
+    {
+      "repository": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "commit": "9ce1c1bfec9a21b92ea300acda5f27a3815b2c37",
+      "path": "libil2cpp/vm/AssemblyShadowTerminalExecution.h",
+      "sha256": "3ff7e1f149090c9869844de9059cc6829bdbf104d93bba5f13dcd09e4f4a08ce",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261010E-native-receipt/diagnostics/source/il2cpp_plus/libil2cpp/vm/AssemblyShadowTerminalExecution.h"
+    },
+    {
+      "repository": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "commit": "baa9473200e453d1ba1017610e776e6c18c8d7f1",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs",
+      "sha256": "22c3e0be7cebc041706b1412c5fc317c806c49a0980be143d5517dc4cc59a7bd",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-20261010E-native-receipt/diagnostics/source/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs"
+    }
+  ],
+  "sourceChanges": false,
+  "newPlayerLaunches": 0,
+  "inference": "Terminal rejection reaches Unity Runtime::Invoke and repeated Unity debug-handler invocation, causing stack-guard SIGSEGV. Exact original first failure and semantic progress remain Unavailable because ON raw records were never written. Reporting/exception infrastructure cannot complete under the current global terminal guard; Primary must investigate without permitting business execution."
+}
