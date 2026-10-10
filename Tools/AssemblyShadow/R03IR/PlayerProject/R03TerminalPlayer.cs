@@ -43,6 +43,7 @@ namespace AssemblyShadow.R03.IR
             public string activeReflectionException, activeDelegateException, aotReflectionException;
             public string firstRecovery, finalRecovery, finalDiagnostics, finalExecutionDiagnostics;
             public bool recoveryStable, fixedDiagnosticsReadable;
+            public int nativePhase, failurePhase, terminalReportingProbeMask;
             public bool acceptance = false;
         }
 
@@ -51,8 +52,18 @@ namespace AssemblyShadow.R03.IR
             int oldGuard, [Out] byte[] output, int capacity);
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern int R03_IR_ForceTypeFailure();
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void R03_IR_TracePhase(int phase);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_ProbeTerminalReporting();
+        private static void Phase(Report report, int phase)
+        {
+            report.nativePhase = phase;
+            R03_IR_TracePhase(phase); // Native stderr checkpoint, not Unity logging.
+        }
 
         private static int s_canary;
+        private static string s_failedRequirement;
         [Preserve]
         private static void TerminalAotCanary() { ++s_canary; }
         private static bool s_started;
@@ -73,6 +84,7 @@ namespace AssemblyShadow.R03.IR
             };
             try
             {
+                Phase(report, 10);
                 Require(outputPath != null && !File.Exists(outputPath), "Unused output path required");
                 byte[] requestBytes = File.ReadAllBytes(requestPath);
                 report.requestSha256 = Hash(requestBytes);
@@ -112,14 +124,20 @@ namespace AssemblyShadow.R03.IR
                 byte[] dll = File.ReadAllBytes(request.dllPath);
                 Require(Hash(dll) == request.dllSha256, "Target DLL hash changed");
                 var names = new[] { "A", "B", "Layout", "Methods", "R03Contract" };
+                Phase(report, 20);
                 Require(AssemblyShadowRuntime.ConfigureCandidates(request.baselineId, names, new[] { "mscorlib" }) ==
                     AssemblyShadowErrorCode.Success, "Configure");
+                Phase(report, 30);
                 Require(AssemblyShadowRuntime.BeginTransaction("R03IR-" + request.runId, request.baselineId,
                     new[] { "Methods" }, 2) == AssemblyShadowErrorCode.Success, "Begin");
+                Phase(report, 40);
                 Require(AssemblyShadowRuntime.ReserveMetadataBudget(new[] { dll.LongLength }, 2) ==
                     AssemblyShadowErrorCode.Success, "Reserve");
+                Phase(report, 50);
                 Require(AssemblyShadowRuntime.StageAssembly(dll, null) == AssemblyShadowErrorCode.Success, "Stage");
+                Phase(report, 60);
                 Require(AssemblyShadowRuntime.ValidateTransaction() == AssemblyShadowErrorCode.Success, "Validate");
+                Phase(report, 70);
                 Require(AssemblyShadowRuntime.CommitTransaction() == AssemblyShadowErrorCode.Success, "Commit");
                 Require(AssemblyShadowRuntime.GetState(out state) == AssemblyShadowErrorCode.Success &&
                     state == AssemblyShadowState.Committed, "Committed before poison");
@@ -127,25 +145,35 @@ namespace AssemblyShadow.R03.IR
 
                 // True positive control: the same already-resolved active method,
                 // its delegate, and the AOT reflection canary all execute first.
+                Phase(report, 80);
                 Type activeType = Type.GetType("R03.Node, Methods", true);
+                Phase(report, 90);
                 object instance = Activator.CreateInstance(activeType);
+                Phase(report, 100);
                 MethodInfo activeMethod = activeType.GetMethod("Keep", BindingFlags.Instance | BindingFlags.Public);
                 Require(activeMethod != null, "Active Keep method");
+                Phase(report, 110);
                 FieldInfo stableField = activeType.GetField("stable", BindingFlags.Instance | BindingFlags.NonPublic);
                 Require(stableField != null && stableField.FieldType == typeof(int),
                     "IR active private primitive field required");
+                Phase(report, 120);
                 Require((int)stableField.GetValue(instance) == 0, "Fresh IR counter must start at zero");
+                Phase(report, 130);
                 Func<int> activeDelegate = (Func<int>)Delegate.CreateDelegate(typeof(Func<int>), instance, activeMethod);
+                Phase(report, 140);
                 report.preActiveReflection = (int)activeMethod.Invoke(instance, null);
+                Phase(report, 150);
                 report.preActiveDelegate = activeDelegate();
                 canary.Invoke(null, null);
                 report.preCanaryCount = s_canary;
+                Phase(report, 160);
                 report.preShadowField = (int)stableField.GetValue(instance);
                 report.prePositive = report.preActiveReflection == 42 &&
                     report.preActiveDelegate == 42 && report.preCanaryCount == 1 &&
                     report.preShadowField == 2;
                 Require(report.prePositive, "Pre-poison positive controls must really execute");
 
+                Phase(report, 170);
                 if (request.stimulus == "baseline-owner")
                 {
                     byte[] buffer = new byte[16384];
@@ -167,18 +195,26 @@ namespace AssemblyShadow.R03.IR
                 }
                 Require(AssemblyShadowRuntime.GetState(out state) == AssemblyShadowErrorCode.Success &&
                     state == AssemblyShadowState.FailedAfterCommit, "Terminal state retained after caught exception");
+                Phase(report, 180);
                 report.poisonedState = (int)state;
                 string recovery;
                 Require(AssemblyShadowRuntime.GetRecoveryInfoJson(out recovery) == AssemblyShadowErrorCode.Success,
                     "Original terminal recovery diagnostics");
                 report.firstRecovery = recovery;
+                Phase(report, 185);
+                report.terminalReportingProbeMask = R03_IR_ProbeTerminalReporting();
+                Require(report.terminalReportingProbeMask == 15,
+                    "Native handled-true report only; logging-enabled and callback guards still deny execution");
 
+                Phase(report, 190);
                 report.activeReflectionAttempted = true;
                 try { activeMethod.Invoke(instance, null); report.activeReflectionSucceeded = true; }
                 catch (Exception failure) { report.activeReflectionException = failure.GetType().FullName; }
+                Phase(report, 200);
                 report.activeDelegateAttempted = true;
                 try { activeDelegate(); report.activeDelegateSucceeded = true; }
                 catch (Exception failure) { report.activeDelegateException = failure.GetType().FullName; }
+                Phase(report, 210);
                 report.aotReflectionAttempted = true;
                 try { canary.Invoke(null, null); report.aotReflectionSucceeded = true; }
                 catch (Exception failure) { report.aotReflectionException = failure.GetType().FullName; }
@@ -186,6 +222,7 @@ namespace AssemblyShadow.R03.IR
                 // Read the already resolved primitive FieldInfo after poison.
                 // A failed read cannot pass: we do not infer no body execution
                 // merely from a caught exception or unchanged AOT canary.
+                Phase(report, 220);
                 report.finalShadowField = (int)stableField.GetValue(instance);
                 report.shadowFieldReadable = true;
 
@@ -219,24 +256,41 @@ namespace AssemblyShadow.R03.IR
             }
             catch (Exception error)
             {
-                report.error = error.ToString();
+                // Exception.ToString may make virtual calls in poisoned state.
+                // Original native cause/last phase is retained in flushed stderr.
+                report.failurePhase = report.nativePhase;
+                report.error = "ManagedFailure; see native first-failure and phase checkpoints";
+                Phase(report, 900);
+                try { report.error = s_failedRequirement ?? error.GetType().FullName; }
+                catch { /* Keep literal rather than losing the original report. */ }
             }
             finally
             {
                 try
                 {
+                    Phase(report, 910);
                     using (var output = new FileStream(outputPath, FileMode.CreateNew, FileAccess.Write, FileShare.None))
                     using (var writer = new StreamWriter(output, new UTF8Encoding(false)))
                         writer.Write(JsonUtility.ToJson(report, true) + "\n");
                     Application.Quit(0); // Host verifier owns acceptance, not this process exit.
                 }
-                catch (Exception error) { UnityEngine.Debug.LogException(error); Application.Quit(2); }
+                catch (Exception)
+                {
+                    // Never route a reporting failure through a managed logger.
+                    R03_IR_TracePhase(990);
+                    Application.Quit(2);
+                }
             }
         }
 
         private static void Require(bool ok, string message)
         {
-            if (!ok) throw new InvalidOperationException("R03IR: " + message);
+            if (!ok)
+            {
+                // Preserve our own assertion text without virtual exception formatting.
+                s_failedRequirement = message;
+                throw new InvalidOperationException("R03IR: " + message);
+            }
         }
         private static string Argument(string key)
         {

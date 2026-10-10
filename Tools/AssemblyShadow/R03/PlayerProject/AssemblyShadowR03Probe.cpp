@@ -342,3 +342,63 @@ extern "C" IL2CPP_EXPORT int32_t R03_IR_ForceTypeFailure()
     return -2;
 #endif
 }
+
+// IR-LOCAL-RUNTIME-01: supplementary fixed native reporting witness.
+// This is a direct Runtime::Invoke integration check inside the real Player;
+// it must not be mislabeled as an unhandled Unity engine callback experiment.
+#include "vm/Class.h"
+#include "vm/Image.h"
+#include "vm/Object.h"
+#include "vm/Runtime.h"
+#include "vm/AssemblyShadowTerminalReporting.h"
+#include <cstdio>
+
+extern "C" IL2CPP_EXPORT void R03_IR_TracePhase(int32_t phase)
+{
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
+    il2cpp::vm::assembly_shadow_reporting::TracePhase(phase);
+#else
+    std::fprintf(stderr, "[AssemblyShadowPhase] phase=%d featureOff=1\n", static_cast<int>(phase));
+    std::fflush(stderr);
+#endif
+}
+
+extern "C" IL2CPP_EXPORT int32_t R03_IR_ProbeTerminalReporting()
+{
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
+    using namespace il2cpp::vm;
+    try
+    {
+        AssemblyShadowState state;
+        if (AssemblyShadow::GetState(state) != AssemblyShadowError::Success ||
+            state != AssemblyShadowState::FailedAfterCommit) return -1;
+        const Il2CppAssembly* core = MetadataCache::GetAotAssemblyByNamePhysical("UnityEngine.CoreModule");
+        if (!core || !core->image) return -2;
+        Il2CppClass* debug = Image::ClassFromName(core->image, "UnityEngine", "Debug");
+        if (!debug || debug->image != core->image) return -3;
+        const MethodInfo* handler = Class::GetMethodFromName(debug, "CallOverridenDebugHandler", 2);
+        const MethodInfo* enabled = Class::GetMethodFromName(debug, "IsLoggingEnabled", 0);
+        if (!handler || !enabled) return -4;
+        const uint64_t before = assembly_shadow_reporting::HandledCounter().load(std::memory_order_relaxed);
+        int32_t mask = 0;
+        void* args[2] = {nullptr, nullptr}; // No managed body may consume these.
+        Il2CppException* error = nullptr;
+        Il2CppObject* a = Runtime::Invoke(handler, nullptr, args, &error);
+        if (!error && a && a->klass == il2cpp_defaults.boolean_class &&
+            *static_cast<bool*>(Object::Unbox(a))) mask |= 1;
+        // IsLoggingEnabled is NOT exempted by this one-method native adapter.
+        error = nullptr;
+        Il2CppObject* b = Runtime::Invoke(enabled, nullptr, nullptr, &error);
+        if (!b && error) mask |= 2;
+        if (assembly_shadow_reporting::HandledCounter().load(std::memory_order_relaxed) == before + 1) mask |= 4;
+        // The ordinary guard still denies both physical methods; the callback
+        // was replaced with native data, never admitted as managed execution.
+        if (!AssemblyShadow::AssertMethodIsActive(handler, "IR:handler-still-denied") &&
+            !AssemblyShadow::AssertMethodIsActive(enabled, "IR:enabled-still-denied")) mask |= 8;
+        return mask; // Exactly 15 is required by the current raw verifier.
+    }
+    catch (...) { R03_IR_TracePhase(980); return -5; }
+#else
+    return 0;
+#endif
+}

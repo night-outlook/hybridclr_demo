@@ -44,7 +44,7 @@ def main():
     c=Commands(output); result={'kind':'R03NativeRuntimePrerequisites','result':'Failed','platform':platform.platform(),
                                'unitCases':[],'translationUnits':[], 'runtimeAcceptance':False,'unityEditorRun':False}
     files=[p for root in (native/'libil2cpp/vm',native/'libil2cpp/gc',native/'tools/r03',hybrid/'hybridclr/metadata') for p in root.glob('*')
-           if p.is_file() and (p.name.startswith('AssemblyShadow') or p.name in ('InterpreterImage.h','StagedAssembly.cpp','runtime_probe_tests.cpp','runtime_probe_other.cpp','producer_fence_tests.cpp','probe_identity_tests.cpp','GarbageCollector.cpp'))]
+           if p.is_file() and (p.name.startswith('AssemblyShadow') or p.name in ('InterpreterImage.h','StagedAssembly.cpp','runtime_probe_tests.cpp','runtime_probe_other.cpp','producer_fence_tests.cpp','probe_identity_tests.cpp','GarbageCollector.cpp','Runtime.cpp','Object.cpp'))]
     sources=[{'path':str(p.relative_to(ws)),'sha256':sha(p)} for p in sorted(files)]
     try:
         cc=shutil.which('clang++');require(cc,'clang++ is required')
@@ -108,7 +108,7 @@ def main():
             includes=[copy,scratch,scratch/'external',scratch/'external/baselib/Include',
                       scratch/'external/baselib/Platforms/OSX/Include',scratch/'external/bdwgc/include']
             overlay=demo/'Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp'
-            units=[copy/'vm/AssemblyShadow.cpp',copy/'vm/AssemblyShadowRuntimeProbe.cpp',copy/'gc/GarbageCollector.cpp',copy/'vm/AssemblyShadowTypeResolver.cpp',copy/'vm/AssemblyShadowTypeKey.cpp',
+            units=[copy/'vm/Runtime.cpp',copy/'vm/Object.cpp',copy/'vm/AssemblyShadow.cpp',copy/'vm/AssemblyShadowRuntimeProbe.cpp',copy/'gc/GarbageCollector.cpp',copy/'vm/AssemblyShadowTypeResolver.cpp',copy/'vm/AssemblyShadowTypeKey.cpp',
                    copy/'hybridclr/metadata/StagedAssembly.cpp',copy/'hybridclr/metadata/InterpreterImage.cpp',overlay]
             profiles=[('candidate',1,1,0,2),('debug',1,1,1,2),('probe-off',1,0,0,2),
                       ('diagnostics-off',1,0,0,0),('feature-off',0,1,0,0)]

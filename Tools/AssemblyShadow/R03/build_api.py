@@ -112,6 +112,7 @@ def validate_build_api(batch):
         log = demo / CHECKPOINT / 'batch/builds/candidate-release/Editor.log'
         old = demo / CHECKPOINT / 'batch/projects/candidate-release/Assets/Editor/R03Build.cs'
         current = HERE / 'PlayerProject/R03Build.cs'
+        player = HERE.parent / 'R03IR/PlayerProject/R03TerminalPlayer.cs'
         require(git_blob(old.read_bytes()) == OLD_BLOB, 'Preserved C helper source changed')
         defines, references = compile_profile(log.read_text(), contents)
         runtime, compiler, _ = unity_toolchain(batch.unity)
@@ -121,7 +122,7 @@ def validate_build_api(batch):
         plugins = sorted((package / 'Plugins').rglob('*.dll'))
         require(any(p.name == 'dnlib.dll' for p in plugins), 'Actual package dnlib dependency required')
         sources = [p for _, asmdef, _, files in plan for p in [asmdef, *files]]
-        tracked = sorted(set([runtime, compiler, core, log, old, current, *references, *plugins, *sources]))
+        tracked = sorted(set([runtime, compiler, core, log, old, current, player, *references, *plugins, *sources]))
         before = [binding(p) for p in tracked]
         result.update(inputs=before, defines=defines, oldSourceBlob=OLD_BLOB,
                       helperSourceSha256=sha(current), referenceCoreSha256=sha(core))
@@ -158,6 +159,12 @@ def validate_build_api(batch):
             result['packageAssemblies'].append({'name': name, 'asmdef': binding(asmdef), 'sourceCount': len(files), 'output': binding(target)})
         target = compile_one('R03Build', [current], list(built.values()))
         result['completeHelper'] = binding(target)
+        # Compile the exact changed supplementary Player against the official
+        # Unity managed reference set; the separate stub API job is not enough.
+        player_output = compile_one('R03TerminalPlayerApi', [player], list(built.values()))
+        result['terminalPlayerApi'] = {'source': binding(player), 'output': binding(player_output),
+            'profile': 'Official Unity 2022.3.62f2 managed assemblies; Editor reference defines',
+            'playerExecution': False}
         compile_one('OriginalUnsignedCounts', [old], list(built.values()), negative=True)
         require(before == [binding(p) for p in tracked], 'Compiler/reference/source input changed')
         result['result'] = 'Passed'

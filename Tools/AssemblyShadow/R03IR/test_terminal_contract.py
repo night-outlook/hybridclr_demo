@@ -31,12 +31,19 @@ class TerminalReceiptContractTests(unittest.TestCase):
             'aotReflectionException': 'System.Reflection.TargetInvocationException',
             'firstRecovery': self.recovery, 'finalRecovery': self.recovery,
             'recoveryStable': True, 'fixedDiagnosticsReadable': True,
-            'nativeStimulusReturn': 1,
+            'nativeStimulusReturn': 1, 'terminalReportingProbeMask': 15,
             'nativeGuardJson': json.dumps({'available':True, 'activeGuard':1,'baselineGuard':0,
                                            'caughtOldGuard':1,'stateCode':9})}
 
     def verify(self):
         return verify_ir(self.raw, self.request, self.launch, self.build_sha)
+
+    def test_terminal_reporting_must_be_actually_verified(self):
+        for value in (None, 0, 1, 3, 7, True, '15'):
+            with self.subTest(mask=value):
+                self.setUp()
+                self.raw['terminalReportingProbeMask'] = value
+                with self.assertRaises(ContractError): self.verify()
 
     def test_positive_baseline_owner_receipt(self):
         self.assertEqual(self.verify()['result'], 'Passed')
@@ -122,7 +129,7 @@ class TerminalReceiptContractTests(unittest.TestCase):
         self.request['caseId'] = self.raw['caseId'] = 'IR-R03-02-off'
         self.raw.update(initialState=0,finalState=0,prePositive=True,
             preCanaryCount=1,finalCanaryCount=2,activeReflectionAttempted=False,
-            activeDelegateAttempted=False,aotReflectionAttempted=False)
+            activeDelegateAttempted=False,aotReflectionAttempted=False,terminalReportingProbeMask=0)
         self.assertEqual(self.verify()['result'],'Passed')
         self.raw['finalCanaryCount']=1
         with self.assertRaises(ContractError): self.verify()

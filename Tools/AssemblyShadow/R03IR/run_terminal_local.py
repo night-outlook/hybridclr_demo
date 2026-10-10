@@ -128,6 +128,8 @@ def verify_ir(raw, request, launch, build_sha):
         require(exact_int(raw.get('initialState'), 0) and exact_int(raw.get('finalState'), 0) and
                 raw.get('prePositive') is True and exact_int(raw.get('preCanaryCount'), 1) and
                 exact_int(raw.get('finalCanaryCount'), 2), 'Feature OFF ordinary calls')
+        require(exact_int(raw.get('terminalReportingProbeMask'), 0),
+                'OFF must not report a terminal callback substitution')
         require(not raw.get('activeReflectionAttempted') and not raw.get('activeDelegateAttempted') and
                 not raw.get('aotReflectionAttempted'), 'No synthetic terminal OFF probe')
     else:
@@ -145,6 +147,8 @@ def verify_ir(raw, request, launch, build_sha):
                 exact_int(raw.get('finalShadowField'), 2) and exact_int(raw.get('preShadowField'), 2) and
                 raw.get('recoveryStable') is True and raw.get('fixedDiagnosticsReadable') is True and
                 raw.get('firstRecovery') == raw.get('finalRecovery'), 'No body side effects or first-failure mutation')
+        require(exact_int(raw.get('terminalReportingProbeMask'), 15),
+                'Native diagnostic responses and continued guard denial must be witnessed')
         recovery = loads(raw['firstRecovery'])
         require(recovery.get('published') is True and exact_int(recovery.get('stateCode'), 9) and
                 recovery.get('disposition') == 'RestartRequired' and
