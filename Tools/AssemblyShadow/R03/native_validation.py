@@ -27,6 +27,22 @@ class Commands:
         return folder, receipt
 
 
+
+def checked_sdk_scratch(raw, workspace, output, unity_contents):
+    """Validate an UNUSED external SDK copy root without modifying any path."""
+    require(raw is not None, 'Explicit external --sdk-scratch required with --unity')
+    require(raw.is_absolute() and raw == raw.resolve(strict=False),
+            'Canonical absolute nonsymlink SDK scratch path required')
+    scratch = raw.resolve(strict=False)
+    require(scratch.parent.is_dir() and not scratch.exists(),
+            'Fresh absent SDK scratch with existing parent required')
+    for protected in (workspace, output, unity_contents.parent.parent):
+        require(scratch != protected and scratch not in protected.parents and
+                protected not in scratch.parents,
+                'SDK scratch must be outside source, evidence and Unity Editor roots')
+    return scratch
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--workspace',type=Path,required=True)
@@ -97,17 +113,7 @@ def main():
             # Copy outside the evidence output, never publish vendor SDK files.
             # Never copy SDK bytes into the installed Unity Editor, source trees,
             # evidence output or an already used historical root.
-            require(args.sdk_scratch is not None, 'Explicit external --sdk-scratch required with --unity')
-            raw=args.sdk_scratch
-            require(raw.is_absolute() and raw == raw.resolve(strict=False),
-                    'Canonical absolute nonsymlink SDK scratch path required')
-            scratch=raw.resolve(strict=False)
-            require(scratch.parent.is_dir() and not scratch.exists(),
-                    'Fresh absent SDK scratch with existing parent required')
-            for protected in (ws, output, contents.parent.parent):
-                require(scratch != protected and scratch not in protected.parents and
-                        protected not in scratch.parents,
-                        'SDK scratch must be outside source, evidence and Unity Editor roots')
+            scratch=checked_sdk_scratch(args.sdk_scratch, ws, output, contents)
             copy=scratch/'libil2cpp'
             shutil.copytree(sdk/'libil2cpp',copy)
             # Preserve SDK-relative ../../external includes from libil2cpp/utils.
