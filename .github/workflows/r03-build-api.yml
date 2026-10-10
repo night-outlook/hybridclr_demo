@@ -114,7 +114,8 @@ jobs:
           UNITY="$(cat "$RUNNER_TEMP/r03-build-api/unity-paths.txt")"
           python3 -B hybridclr_demo/Tools/AssemblyShadow/R03/native_validation.py \
             --workspace "$GITHUB_WORKSPACE" --unity "$UNITY" \
-            --output "$RUNNER_TEMP/r03-build-api/native"
+            --output "$RUNNER_TEMP/r03-build-api/native" \
+            --sdk-scratch "$RUNNER_TEMP/r03-native-sdk-scratch"
       - name: Preserve source identity and evidence inventory
         if: always()
         shell: bash
