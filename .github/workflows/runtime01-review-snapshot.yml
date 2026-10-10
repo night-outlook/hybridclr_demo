@@ -1,0 +1,69 @@
+name: Runtime01 exact review snapshots
+on:
+  push:
+    branches: [codex/connector-smoke-20261010-runtime01-c37e]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          filter: blob:none
+          persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow
+            .github/workflows
+            Docs/AssemblyShadow/Plan
+            Docs/AssemblyShadow/Handoff
+            Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_RUNTIME_01_2026-10-10
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: d8390054ba6ff4d9ade730a685bd71c81c4d583d
+          path: il2cpp_plus
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+          path: hybridclr
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: hybridclr_unity
+          persist-credentials: false
+      - name: Archive authenticated review inputs only
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import pathlib, subprocess, hashlib, json, zipfile, os
+          out=pathlib.Path(os.environ['RUNNER_TEMP'])/'review';out.mkdir()
+          rows=[]
+          with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for repo in ('hybridclr_demo','il2cpp_plus','hybridclr','hybridclr_unity'):
+              root=pathlib.Path(repo)
+              head=subprocess.check_output(['git','-C',repo,'rev-parse','HEAD'],text=True).strip()
+              for p in sorted(root.rglob('*')):
+                if '.git' in p.parts or not p.is_file() or p.is_symlink(): continue
+                relative=p.relative_to(root).as_posix()
+                data=p.read_bytes()
+                blob=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+                expected=subprocess.check_output(['git','-C',repo,'rev-parse',head+':'+relative],text=True).strip()
+                assert blob==expected,(repo,relative)
+                rows.append({'repo':repo,'head':head,'path':relative,'blob':blob,'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)})
+                z.writestr(repo+'/'+relative,data)
+          (out/'SOURCE_BINDINGS.json').write_text(json.dumps(rows,indent=2)+'\n')
+          print('Authenticated files',len(rows),'source archive bytes',(out/'sources.zip').stat().st_size)
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime01-review-sources-${{ github.sha }}
+          path: ${{ runner.temp }}/review
+          retention-days: 14
+          if-no-files-found: error
