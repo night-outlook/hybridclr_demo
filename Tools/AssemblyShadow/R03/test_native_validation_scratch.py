@@ -1,4 +1,4 @@
-"""No-Unity, no-write tests of external SDK copy-root admission for native_validation."""
+"""No-Unity, no-write admission tests using disposable filesystem fixtures."""
 import tempfile
 import unittest
 from pathlib import Path
@@ -8,10 +8,16 @@ from batch_contract import ContractError
 
 
 class SdkScratchBoundaryTests(unittest.TestCase):
+    def new_fixture_directory(self):
+        return tempfile.TemporaryDirectory()
+
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory()
+        self.temp = self.new_fixture_directory()
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name)
+        # Resolve only the owned fixture root before deriving test inputs. On
+        # macOS the default temporary parent may be /var -> /private/var.
+        # Deliberately noncanonical inputs below must still reach the guard raw.
+        self.root = Path(self.temp.name).resolve(strict=True)
         self.workspace = self.root / 'assembly_shadow_h1r'
         self.workspace.mkdir()
         self.output = self.root / 'preflight' / 'native'
@@ -74,6 +80,31 @@ class SdkScratchBoundaryTests(unittest.TestCase):
         self.valid(self.scratch)
         self.assertTrue(all(p.read_text() == 'keep' for p in files))
         self.assertFalse(self.scratch.exists())
+
+
+class AliasedTempSdkScratchBoundaryTests(SdkScratchBoundaryTests):
+    """Run the SAME ten controls with a guaranteed symlink-backed temp parent.
+
+    No TMPDIR or global tempfile setting is changed. This models the macOS
+    parent alias on every supported host; failure to create it fails the test.
+    """
+    def new_fixture_directory(self):
+        owner = tempfile.TemporaryDirectory()
+        self.addCleanup(owner.cleanup)
+        parent = Path(owner.name).resolve(strict=True)
+        physical = parent / 'physical-temp'
+        physical.mkdir()
+        alias = parent / 'aliased-temp'
+        alias.symlink_to(physical, target_is_directory=True)
+        fixture = tempfile.TemporaryDirectory(dir=alias)
+        # Register cleanup before any assertion can fail. Base cleanup is
+        # idempotent and runs before the containing owner is removed.
+        self.addCleanup(fixture.cleanup)
+        raw = Path(fixture.name)
+        self.assertTrue(alias.is_symlink())
+        self.assertEqual(raw.parent, alias)
+        self.assertNotEqual(raw, raw.resolve(strict=True))
+        return fixture
 
 
 if __name__ == '__main__':
