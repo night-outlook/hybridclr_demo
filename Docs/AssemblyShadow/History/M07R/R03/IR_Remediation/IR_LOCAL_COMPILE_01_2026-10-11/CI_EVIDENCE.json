@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "finding": "IR-LOCAL-COMPILE-01",
+  "repository": "night-outlook/hybridclr_demo",
+  "basePublication": "a9483a6e2212701cfedcf93faeb0e71ce82b73ca",
+  "sourceCommit": "e36ab83b969f8ba8f9f4cc21fc8bb6c447d7fa2f",
+  "workflow": ".github/workflows/r03-native-scratch-contract.yml",
+  "runId": 38123748124,
+  "conclusion": "success",
+  "sources": {
+    "Tools/AssemblyShadow/R03/native_validation.py": {
+      "gitBlob": "15282b61dda3f61106913ce9e2973cc87d76c23d",
+      "sha256": "bbe544b49d89325f40305045248295caf59ec01e98440ae184d4efbd08729428",
+      "unchangedFromFComp": true
+    },
+    "Tools/AssemblyShadow/R03/test_native_validation_scratch.py": {
+      "gitBlob": "5e58c14b5147ee591dda34d802f78b98d36cbaf7",
+      "sha256": "dfbef375899856b3026584b81524228b53d458de7c0e85e7183f5a0249f05de2"
+    }
+  },
+  "jobs": [
+    {
+      "os": "macos-14",
+      "jobId": 114423667453,
+      "artifactId": 11696566789,
+      "archiveSha256": "c372642ef63451ac9f1529afe512131658b5262290b886deb1ff9630054525f2",
+      "archiveBytes": 1039,
+      "archiveAndContentsVerified": true,
+      "tests": {"passed": 20, "failed": 0, "errors": 0, "skipped": 0, "defaultTempCases": 10, "aliasedTempCases": 10},
+      "logSha256": "6a376a539d44e7be30d0cb4948b0348305e709089ea39a04b965692179dacffc",
+      "logBytes": 3033,
+      "artifactZipBase64": "UEsDBBQACAAIAA1BS10AAAAAAAAAAAAAAAAPAAAAcHJvdmVuYW5jZS5qc29ulZJNb9swDIbv+RWGz10riZRE9tb1OuzQDLsMQ6APqjHq2EGsdAiK/vfBTrcCXTdgFx0kvY/4iHxaNU07jcdDkttxt+tqe920Ai5EgsiOC8VAhQumZHRJFKNLiD77EkxpL+b0QzfkOXWn4HOo3aOs0yHUtF0v1K+h73Ko3Ticb5/fmtrr5tuqaZrmaVmbpt2Hup0xX8axn65upkl2sT+ttyGPP67uFFwNC3zz+Bt4uT8tzCV+39WP/RhngraGTHQ65wDFaa0ca0jCYthDSuSzd8lAfg1P22Csm7MxikWMyJkYjC2oQFmF1iAZtikUy5KUFiZEFUQTZpQSsyJvGA21C/L54j/dqkx184fgZjr/5N9ErVhKGqPV6EUsL8aYSZZniKTJlcCmG4t8TzSVKAW+JmayLoIyzhJG0NWgMRQsZLWXxSQlZ8Zqg2KAMclE2i3kRXTXN96Wvpev/1dUXkw+z6HTZj/fv1eQCeBcscEYUHwVUVikiI0UFSKCseMWKWAJwUBjZWcdGe84hlZJemfFUl2pAAbwp9Dh09fQpHIe0lXluS+gnOY9mfrgd992b3cNxqN1OblKSfQ1Dkl+nq+fVT1BLBwhlUPIKwAEAAD4DAABQSwMEFAAIAAgADUFLXQAAAAAAAAAAAAAAABEAAABzY3JhdGNoLXRlc3RzLmxvZ82UsU7DMBBA93yFRxiIWiZWWBmQaPeTsY/mqHOufJdC/h6FCqlGLa1QQp0xiu89JZenKAousnQtehCXrLoGSCDhGzpFD++kTewUNHauIV7BS68o5kqHk2yVtghbG8hbpcjfI+r7QFbQL7HdLPx6sbv7EDv2NvVLFJVa/8i+NnVdm7iuvgbgljyyQ2CU4UyKUfeHjGZ6CpRrvSaUBvBDMbENew9bD5FDD9a3pGP6nU3MRYlFbQjoAT1pTJO/x3OBuWZLIsMGbGxCnkbsOCJX4XhoWUfTODw+V0gYdpzJvtJRQi4isUv/8O/9jvmh1LeBeD3lphxH5Cp7CB9RgKOCayyvEIg3nY6X0ZOkXGyK4hee+SLbXnTQy6r4JdN9wV4XEOkSylxIjkdqcHUzylU9Wza3MzPQxRCbWT2b30lVPT1Wn1BLBwiHGr/vQQEAANkLAABQSwECLQMUAAgACAANQUtdZVDyCsABAAA+AwAADwAAAAAAAAAAACAApIEAAAAAcHJvdmVuYW5jZS5qc29uUEsBAi0DFAAIAAgADUFLXYcav+9BAQAA2QsAABEAAAAAAAAAAAAgAKSB/QEAAHNjcmF0Y2gtdGVzdHMubG9nUEsFBgAAAAACAAIAfAAAAH0DAAAAAA=="
+    },
+    {
+      "os": "ubuntu-24.04",
+      "jobId": 114423667232,
+      "artifactId": 11696157405,
+      "archiveSha256": "a20423638e9c7d160689b999dd3e176c8268ce3ea5c7e0a5b21c9539c07c8afb",
+      "archiveBytes": 1040,
+      "archiveAndContentsVerified": true,
+      "tests": {"passed": 20, "failed": 0, "errors": 0, "skipped": 0, "defaultTempCases": 10, "aliasedTempCases": 10},
+      "logSha256": "c6a3e24194f9464d61d3eb9656f4723c40f8641d65491d3c53b159c15324826f",
+      "logBytes": 3033,
+      "artifactZipBase64": "UEsDBBQACAAIAApBS10AAAAAAAAAAAAAAAAPAAAAcHJvdmVuYW5jZS5qc29ulZJNb9swDIbv+RWGz12rD1Kieut6HXZohl2GIZAoqjHq2EGsdAiK/vfBTrcCXTdgFx0kvY/4iHxaNU07jccDy+2423W1vW651arV4WWHsUnKiFLFY8nVGFaZHceRaebnAZRrstNlOUZMWYnBFyaMtehgSZTTdr1Qv/q+x1qNw/n2+a2pvW6+rZqm6Z+VpWn6POstjfkyjl3322babNe+tyjEvbz81arXHajAN7e/gRf72+BbxCv+tGOfxzSV1gMVodMlB7BOa+1YiVgSSuxXWLB58oaN5NPw1AVj3ZwxRoSNEThXCsuEjDyUwAVRtFCohWCIFkyBgollLMVAZmSFYUStRJY9CuztxX+6dVWVdsk6znR+yD3EgDaw4vPAOZixmiklcRaAlFwriEFklIKUFqfpxCLIluGUMsEyVCptCFAL68So0vrKBHPbkFVIGahEgjbwLqurpvme+Vq6+l9dfTG6MARj038//75eGVxpyUHGzlLvCTO0IkstAQNLnhibchTSUkwWxbrmqAGPnQrFueqxLNViUNNK+k3Bx6Grx2/yeKTdiDPbUt/YeiHtx3tgjC63cDvsm9epPFD+CzrQ/gw=",
+      "artifactEncodingNote": "Base64 field is an exact ZIP transport copy; validate archiveSha256 before reading any member."
+    }
+  ],
+  "unityLaunched": false,
+  "sdkCopied": false,
+  "runtimeAcceptance": false,
+  "coverage": "Host filesystem admission tests only. Real unchanged production validator; no compiler-script or Player execution."
+}
