@@ -1,50 +1,63 @@
-# Primary Implementation → Local Validation — F-COMP official compilation ONLY
+# Primary Implementation → Local Validation — G-COMP compilation ONLY
 
-**Authorization: ONE fresh F-COMP managed/native SDK compilation using installed Unity 2022.3.62f2 without launching Unity or any Player. No F runtime batch authorization.** The previous E result is irreversible **FAIL**; no E retry, no existing Player reuse, no original S cache/native restoration.
+**Authorize one fresh G-COMP prerequisite/managed/native SDK compilation attempt. No Unity process, Test Runner, IL2CPP Player build, Player or runtime scheduler.** This supersedes the consumed F-COMP assignment. F-COMP remains PrerequisiteBlocked; E remains FAIL. Do not retry either or reuse their roots.
 
-## Objective and source
+## Read first
 
-Resolve the remaining official SDK C# + C++ translation compilation evidence gap for Primary-owned `IR-LOCAL-RUNTIME-01`: terminal rejection previously caused Unity logging recursion/SIGSEGV; the repaired native code substitutes exactly one physical Unity reporting callback with bounded native diagnostic handling and preserves every other business/reflection/delegate/AOT denial. Compilation cannot establish runtime safety or R03 acceptance.
+1. `Docs/AssemblyShadow/README.md`, `Plan/CURRENT_STATUS.md`, this handoff.
+2. Local-owned [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md) and [RETURN_TO_WEB.md](RETURN_TO_WEB.md); [immutable F-COMP checkpoint](../History/M07R/R03/local-validation-20261010-ir-r03-02-f-compile-only/README.md).
+3. [IR-LOCAL-COMPILE-01 correction](../History/M07R/R03/IR_Remediation/IR_LOCAL_COMPILE_01_2026-10-11/README.md), [source-bound CI and raw logs](../History/M07R/R03/IR_Remediation/IR_LOCAL_COMPILE_01_2026-10-11/CI_EVIDENCE.json), **[G-COMP full ordered procedure](../History/M07R/R03/IR_Remediation/IR_LOCAL_COMPILE_01_2026-10-11/G_COMPILE_ONLY_PROCEDURE.md)**.
+4. Original C custody policy, E runtime return, R03 design/plans and HUMAN_REVIEW_GATES. The earlier F compile/runtime procedures are not execution authorization.
 
-Read first:
-1. `Docs/AssemblyShadow/README.md`, `Plan/CURRENT_STATUS.md`, this `Handoff/WEB_TO_LOCAL.md`.
-2. [F-COMP exact commands and evidence](../History/M07R/R03/IR_Remediation/IR_RUNTIME_01_2026-10-10/F_COMPILE_ONLY_PROCEDURE.md), [Primary source/evidence reconciliation](../History/M07R/R03/IR_Remediation/IR_RUNTIME_01_2026-10-10/PRIMARY_RECONCILIATION.md).
-3. Local-owned `Handoff/LOCAL_VALIDATION.md`, `Handoff/RETURN_TO_WEB.md`, [immutable E FAIL](../History/M07R/R03/local-validation-20261010-ir-r03-02-e-native-receipt/README.md), original C exact-loss custody policy and retained original S source authorities.
-4. Original R03 design/plans, independent full-stage FAIL/C04 erratum and HUMAN_REVIEW_GATES. No later stage.
+## Objective and source authority
 
-All repositories branch `codex/assembly-shadow-r01b-h1`. Independently verify the exact **final 40-SHA tuple in the final Primary handoff** against GitHub remote and clean local HEAD, each repo's real top, origin, branch, worktrees and submodule state. Actual source workspace is `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r`; do not use other worktrees or reset/stash/clean unrelated state. The demo's **final documentation-publication SHA is supplied in the final Primary prompt** and must be a source-equivalent descendant of the pinned compiler scripts below; it cannot be inferred from an older execution or CI SHA.
+Verify the repaired scratch test fixture and complete the outstanding official Unity 2022.3.62f2 managed/native SDK compilation against the current pinned sources. The repair is test-only: canonicalize the owned TemporaryDirectory root and run the same ten original controls under both default and guaranteed aliased parents. Production `checked_sdk_scratch`, compiler scripts, source-pins, C# Player, native sources, fixtures and custody/storage guards are unchanged.
 
-| Canonical repository | Actual owning local checkout | Exact binding |
+All repositories use branch `codex/assembly-shadow-r01b-h1` and canonical `night-outlook/<repo>` HTTPS/SSH remotes. Check each owning checkout independently: actual top, branch, clean worktree, HEAD, origin, worktrees/submodules, ancestry and fresh remote HEAD. Any mismatch blocks; no reset/stash/clean, forced update or silent adoption of a new source tuple.
+
+| Repository | Exact owning local path | Source binding |
 | --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | Final Primary pushed 40-SHA; contains current native pin and compile-only procedure |
-| `night-outlook/hybridclr` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
-| `night-outlook/hybridclr_unity` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
-| `night-outlook/il2cpp_plus` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `c386cdd1e8942561f1d1e1fada52d21ca524f174` |
+| night-outlook/hybridclr_demo | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo | Executable/test source `e36ab83b969f8ba8f9f4cc21fc8bb6c447d7fa2f`; final documentation-publication HEAD must equal the exact latest pushed SHA in the final Primary prompt and differ only under Docs/AssemblyShadow |
+| night-outlook/hybridclr | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| night-outlook/hybridclr_unity | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| night-outlook/il2cpp_plus | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus | `c386cdd1e8942561f1d1e1fada52d21ca524f174` |
 
-The `Tools/AssemblyShadow/R03/source-pins.json` file must bind exactly these three non-demo SHA values. Verify current `R03TerminalPlayer.cs` and native source Git blobs/manifest, including `Runtime.cpp`, `Object.cpp`, `Object.h`, `AssemblyShadow.cpp`, `AssemblyShadowEngineReportingProbe.cpp`, `AssemblyShadowTerminalReporting.h`, and the additional R03 C++ overlay. No source edits by Local except a truly bounded compile command/path correction returned with full evidence; all nontrivial source fixes return to Primary.
+The final prompt pins transport HEAD, while e36 is the tested source anchor; do not check out the older anchor in place of final docs. Demo source-pins.json must bind the exact three non-demo SHAs above. Test blob `5e58c14b5147ee591dda34d802f78b98d36cbaf7`, SHA-256 `dfbef375899856b3026584b81524228b53d458de7c0e85e7183f5a0249f05de2`; unchanged native_validation.py blob `15282b61dda3f61106913ce9e2973cc87d76c23d`, SHA-256 `bbe544b49d89325f40305045248295caf59ec01e98440ae184d4efbd08729428`.
 
-## Current evidence; what is NOT proven
+## Confirmed results, not acceptance
 
-[Native host CI 38093122306](https://github.com/night-outlook/il2cpp_plus/actions/runs/38093122306) **Passed on macOS and Linux**: normal/sanitized native reporting adapter, real private `Object.h` test, mocked engine-reporting observer, 69 terminal-policy checks. It is NOT official whole native translation compilation or Unity execution. Prior [official build CI 38052720849](https://github.com/night-outlook/hybridclr_demo/actions/runs/38052720849) **Failed native private access** (later fixed narrowly in `Object.h`); its successful official managed compile substep is distinct. Current exact [CI 38093176419](https://github.com/night-outlook/hybridclr_demo/actions/runs/38093176419) **Failed at Unity package download** (`curl 18`, 3,957,229,180 bytes remaining), so managed and native compile stages were **Skipped**, not failed product compilation. The CI downloader now supports bounded resumable retries under unchanged package SHA-256, but pending/failed CI is no substitute for this task.
+[Scratch CI 38123748124](https://github.com/night-outlook/hybridclr_demo/actions/runs/38123748124) at e36 passed **20/20 on macos-14 and 20/20 on ubuntu-24.04**, no failures/errors/skips. Both ZIPs and source/log digests were authenticated and full raw logs retained in the correction directory. All original ten controls are unchanged; the alias cohort explicitly verifies it received a noncanonical temp parent before the fixture resolves its owned root. No environment TMPDIR/global tempfile changes or platform skips.
 
-Original E ran 14 real cells (11 Passed/3 Failed), three builds Passed, OFF Passed, three ON SIGSEGV with missing ON semantic JSON. Original first failure **Unavailable**. Independent E before/after custody `ScopedHistoricalLossStable`: 416,844 original map files, 339,367 survivors byte verified, 77,477 Missing path/hash identities unchanged; historical strict full S custody remains **Blocked**, four original native SDK roots Missing. E and earlier A/B/C/D/S/R/Q/P/O/N stay immutable. The scoped exception never grants new full-custody PASS.
+F-COMP's original ten-test result remains **3 Passed / 5 failures / 2 errors**. Subsequent native host/policy, official managed compile and all 55 native configurations are **NotRun**. Before admission census NotRun; independent after census stable (339,367 survivors/77,477 missing/zero problems). Installed SDK preservation Passed (2,113 files). No SDK copy, Unity or Player launch occurred. Original reports at `a9483a6e2212701cfedcf93faeb0e71ce82b73ca` must remain unchanged.
 
-## New single-use external paths and hard source/custody gates
+The new CI closes a fixture defect, not native/managed compilation or runtime correctness. Prior native host CI is reused-attributed evidence, not a substitute for G's required fresh host checks. Earlier official compiler and download failures retain their recorded outcomes. G is not authorized to change expectations or source to force success.
 
-Use these exact four candidate roots under `/Users/ah/GitHub/hybridclr/r03-local-validation/` only after independently proving all absent/nonaliasing/nonsymlinked, disjoint from source, original S/R/Q/P/O/N and every old A/B/C/D/E root:
+## New single-use roots and installed SDK
 
-- `Preflight-R03IRCompile-20261010F-runtime01` — source and actual command/custody preflight
-- `ManagedAPI-R03IRCompile-20261010F-runtime01` — official managed assembly compile output
-- `NativeSDK-R03IRCompile-20261010F-runtime01` — official native translation-unit compile receipts
-- `Scratch-R03IRCompile-20261010F-runtime01` — native SDK copy, **outside** evidence and installed Unity Editor
+Under `/Users/ah/GitHub/hybridclr/r03-local-validation`, prove all four paths are absent, canonical, nonsymlinked and nonaliasing with source, installed SDK, peers and every protected/consumed history before creating only preflight:
 
-Absolute Unity binary path (reference-only, **never execute**): `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`, target SDK macOS arm64. Python 3.14. No Unity 6000 executable or Unity Editor process. Native script **requires** `--sdk-scratch` with `--unity`, rejects aliases or existing scratch, and copies SDK only into the external new root. This is an intentional modification to prevent modifying the installed Editor.
+- `Preflight-R03IRCompile-20261011G-canonical-temp`
+- `ManagedAPI-R03IRCompile-20261011G-canonical-temp`
+- `NativeSDK-R03IRCompile-20261011G-canonical-temp`
+- `Scratch-R03IRCompile-20261011G-canonical-temp`
 
-Before compilation verify exact source/remote pins; actual SDK version/digest provenance; current repository and fixture/source hashes; fresh source-appropriate host tests (**ten** `test_native_validation_scratch.py` safety cases, `test_reporting.py` normal/sanitized, `test_object_access.py`, `test_engine_observer.py` normal/sanitized, native policy 69). Read-only original C scoped-custody-before audit should retain expected exact missing identities, and after-custody audit should run after compile. Unexpected new/restored/changed paths block; original strict full custody stays Blocked. No protected data cleanup or rebaseline. An environment-specific SDK path failure is recorded factually, not silently fixed with a different Editor or temp directory.
+Do not reuse F-COMP's unused compiler destinations or any F runtime root. An occupied/aliased candidate blocks; no alternate name or TMPDIR workaround.
 
-## One managed compile and one native compile, with exact evidence
+Installed official Unity path, **reference only, never execute**: `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`. Python 3.14 and existing official compiler/Apple clang arm64 profile. Capture SDK/compiler version, full before inventory and read-only after preservation. No Unity 6000 substitution, installation changes or copying beside installed Unity. Vendor SDK copy goes only into the explicit external `--sdk-scratch`; keep it out of Git evidence.
 
-Run commands **only after** the ordered prerequisites and unused-root checks in [F-COMP procedure](../History/M07R/R03/IR_Remediation/IR_RUNTIME_01_2026-10-10/F_COMPILE_ONLY_PROCEDURE.md). The two actual compiler invocations are:
+## Required ordered validation
+
+Follow the full G procedure. Stop at any failed prerequisite, preserve partial state and classify later steps NotRun. Do not retry tests, compiler invocations or partial roots.
+
+1. Exact source/remote/SDK/unused-root checks and immutable C/E/F authentication.
+2. Fresh **20** scratch tests, zero failures/errors/skips, with unchanged inherited environment. Then native reporting normal/sanitized, real Object.h access, native observer normal/sanitized, and **69** standalone policy checks. Record every command and raw output separately.
+3. Complete original-C before-custody audit to a new receipt: require exit0, completeScan, ScopedHistoricalLossStable, originalExpectedFiles=416844, presentVerified=339367, historicalStillMissing=77477 and zero problems. Strict custody remains Blocked. No new loss, changed bytes, symlinks or unexpected restorations; never rebaseline.
+4. One official managed compiler-script invocation, preserving current Player/package/helper/reference hashes, actual results and the expected historical unsigned-count negative control. Unexpected failure blocks native compilation.
+5. One native compiler-script invocation with new NativeSDK and external Scratch. Verify **11 units × 5 profiles = 55** actual syntax-only compilations if the script completes; include engine observer and R03 native overlay. Preserve actual first error, completed and NotRun configurations. No disabled guards/access-check workaround.
+6. Independent full after-custody and installed SDK/compiler preservation audit, including after an earlier failure where feasible. A successful after audit cannot replace an unrun before admission.
+7. Publish Local-owned reports plus additive `Docs/AssemblyShadow/History/M07R/R03/local-validation-20261011-ir-r03-02-g-compile-only/`, commit/push/read back all four HEADs, and STOP/return to Primary.
+
+The compiler commands, executed separately and conditionally after gates 1–3, are:
 
 ~~~bash
 PY=/Library/Frameworks/Python.framework/Versions/3.14/bin/python3
@@ -52,16 +65,16 @@ W=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r
 BASE=/Users/ah/GitHub/hybridclr/r03-local-validation
 UNITY=/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
 "$PY" -B "$W/hybridclr_demo/Tools/AssemblyShadow/R03/build_api.py" \
- --workspace "$W" --unity "$UNITY" \
- --output "$BASE/ManagedAPI-R03IRCompile-20261010F-runtime01"
+ --workspace "$W" --unity "$UNITY" --output "$BASE/ManagedAPI-R03IRCompile-20261011G-canonical-temp"
 "$PY" -B "$W/hybridclr_demo/Tools/AssemblyShadow/R03/native_validation.py" \
- --workspace "$W" --unity "$UNITY" \
- --sdk-scratch "$BASE/Scratch-R03IRCompile-20261010F-runtime01" \
- --output "$BASE/NativeSDK-R03IRCompile-20261010F-runtime01"
+ --workspace "$W" --unity "$UNITY" --output "$BASE/NativeSDK-R03IRCompile-20261011G-canonical-temp" \
+ --sdk-scratch "$BASE/Scratch-R03IRCompile-20261011G-canonical-temp"
 ~~~
 
-Do **not** run if any prerequisite failed. Existing `build_api.py` must genuinely compile the current Player source and pinned HybridCLR package/helper against *official* Unity managed assemblies; preserve its expected historical unsigned-count negative control separately from unexpected compiler errors. Native `native_validation.py` must compile **11 units × 5 profiles = 55** real SDK syntax-only configurations, including the new engine-reporting probe and test-only overlay, without bypassing private C++ access or guards. Its output includes actual compiler command receipts and source/SDK digest inventory. Save exact argv, CWD, start/end, exit, stdout/stderr and SHA for every command; no synthetic results.
+Expected evidence: exact source/pin/SDK inventories, root checks, 20-test log, each native host result, actual managed/native compiler argv/cwd/clocks/exits/logs/output hashes, complete per-target states, custody-before/after and installed-SDK preservation, additive manifest and publication receipt. Upload only permitted metadata/logs/receipts, not vendor SDK/compiler binaries or unrelated user data.
 
-**Strict stopping point:** Publish factual compile-only `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` with additive `Docs/AssemblyShadow/History/M07R/R03/local-validation-20261010-ir-r03-02-f-compile-only/` checkpoint. Only permitted upload is source bindings, permitted compiler outputs/logs, inventories and receipts; never SDK vendor files, credentials, or unrelated user data. Commit/push/verify four repository heads; STOP and return to Primary. Failed native compile must include actual first error and subsequent output without workaround/retry; later failures may be unresolved. Do not launch Unity, native Players, native Player builds or the 14-cell F runtime batch. The [F runtime procedure](../History/M07R/R03/IR_Remediation/IR_RUNTIME_01_2026-10-10/F_FOCUSED_LOCAL_PROCEDURE.md) remains inactive until separate Primary approval.
+## Stop conditions and preserved history
 
-`R03Accepted=false`; `H2Passed=false`; `qualificationApproved=false`; `ReadyForHumanReviewGate=false`; `fullLegacyRegressionAcceptance=false`. Independent R03 full-stage review FAIL, rereview NotRun, PureInterpreter expansion disabled. No H2/X02/M08A.
+Compile success returns to Primary; it grants no runtime permission. Never edit the test/production guard, change TMPDIR, regenerate historical inputs, clean protected roots, or resume F/E. Record unrun stages honestly; no fabricated compiler errors, warning counts, ledger or runtime seal.
+
+Historical strict custody stays Blocked and four original S native roots Missing. E stays FAIL (three ON SIGSEGV, OFF Passed); original first error and ON semantic proofs Unavailable. Preserve S/R/Q/P/O/N/A/B/C/D/E/F. Independent R03 review FAIL/re-review NotRun; `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter expansion disabled. No H2/X02/M08A, runtime batch or Human Review Gate approval.
