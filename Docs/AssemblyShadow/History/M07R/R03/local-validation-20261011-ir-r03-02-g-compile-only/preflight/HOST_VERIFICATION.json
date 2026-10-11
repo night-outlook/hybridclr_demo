@@ -1,0 +1,164 @@
+{
+  "state": "Passed",
+  "scratchTests": {
+    "Passed": 20,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "defaultTempCases": 10,
+    "aliasedTempCases": 10
+  },
+  "nativeHostChecks": [
+    {
+      "label": "reporting",
+      "result": {
+        "configurations": [
+          {
+            "controlledNativeFatalCases": [
+              "throw",
+              "null",
+              "references",
+              "foreign",
+              "cctor",
+              "small",
+              "metadata-error",
+              "large",
+              "reentry"
+            ],
+            "exceptionMessageCases": 4,
+            "feature": "ON",
+            "managedBodiesAfterPoison": 0,
+            "negativeIdentities": 18,
+            "repeatReports": 20000,
+            "result": "Passed",
+            "unityRun": false
+          },
+          {
+            "feature": "OFF",
+            "result": "Passed",
+            "unityRun": false
+          }
+        ],
+        "dependencyModel": "VM mocks; actual Runtime::Invoke and reporting header, not a Unity execution",
+        "productionRuntimeSha256": "741d737be53bdb12ede377f911aaba140bf628ed6865df0b097f78a6eafa967e",
+        "result": "Passed",
+        "sanitizers": false,
+        "unityRun": false
+      },
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRCompile-20261011G-canonical-temp/commands/reporting/receipt.json"
+    },
+    {
+      "label": "reporting-sanitized",
+      "result": {
+        "configurations": [
+          {
+            "controlledNativeFatalCases": [
+              "throw",
+              "null",
+              "references",
+              "foreign",
+              "cctor",
+              "small",
+              "metadata-error",
+              "large",
+              "reentry"
+            ],
+            "exceptionMessageCases": 4,
+            "feature": "ON",
+            "managedBodiesAfterPoison": 0,
+            "negativeIdentities": 18,
+            "repeatReports": 20000,
+            "result": "Passed",
+            "unityRun": false
+          },
+          {
+            "feature": "OFF",
+            "result": "Passed",
+            "unityRun": false
+          }
+        ],
+        "dependencyModel": "VM mocks; actual Runtime::Invoke and reporting header, not a Unity execution",
+        "productionRuntimeSha256": "741d737be53bdb12ede377f911aaba140bf628ed6865df0b097f78a6eafa967e",
+        "result": "Passed",
+        "sanitizers": true,
+        "unityRun": false
+      },
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRCompile-20261011G-canonical-temp/commands/reporting-sanitized/receipt.json"
+    },
+    {
+      "label": "object-access",
+      "result": {
+        "cases": [
+          {
+            "case": "on-exact-friend",
+            "expectedCompilePass": true,
+            "result": "Passed"
+          },
+          {
+            "case": "on-unrelated-denied",
+            "expectedCompilePass": false,
+            "result": "Passed"
+          },
+          {
+            "case": "off-header",
+            "expectedCompilePass": true,
+            "result": "Passed"
+          },
+          {
+            "case": "off-unrelated-denied",
+            "expectedCompilePass": false,
+            "result": "Passed"
+          },
+          {
+            "case": "pre-fix-friend-removal-negative",
+            "result": "Passed"
+          }
+        ],
+        "dependencyModel": "Actual Object.h; dependent type stubs only",
+        "kind": "R03ObjectAccessRegression",
+        "objectHeaderSha256": "78001fcd9ecb76903e3351d16caddec3f21743e4353a8e94130d0163e0d8725b",
+        "result": "Passed",
+        "unityRun": false
+      },
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRCompile-20261011G-canonical-temp/commands/object-access/receipt.json"
+    },
+    {
+      "label": "engine-observer",
+      "result": {
+        "result": "Passed",
+        "cases": 4,
+        "actualNativeObserver": true,
+        "vmCompletionAndState": "Mocked",
+        "unityRun": false,
+        "sanitizers": false
+      },
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRCompile-20261011G-canonical-temp/commands/engine-observer/receipt.json"
+    },
+    {
+      "label": "engine-observer-sanitized",
+      "result": {
+        "result": "Passed",
+        "cases": 4,
+        "actualNativeObserver": true,
+        "vmCompletionAndState": "Mocked",
+        "unityRun": false,
+        "sanitizers": true
+      },
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRCompile-20261011G-canonical-temp/commands/engine-observer-sanitized/receipt.json"
+    },
+    {
+      "label": "policy-checks",
+      "result": {
+        "kind": "R03TerminalExecutionPolicyHeaderTest",
+        "result": "Passed",
+        "checks": 69,
+        "unityRun": false,
+        "runtimeAcceptance": false
+      },
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRCompile-20261011G-canonical-temp/commands/policy-checks/receipt.json"
+    }
+  ],
+  "loopIterationsAreTestCases": false,
+  "unityRun": false,
+  "runtimeAcceptance": false
+}

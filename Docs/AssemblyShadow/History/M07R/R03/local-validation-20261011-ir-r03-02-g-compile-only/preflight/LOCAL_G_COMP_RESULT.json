@@ -1,0 +1,113 @@
+{
+  "kind": "R03IRGCompileOnlyLocalResult",
+  "recordedUtc": "2026-10-11T16:00:37.478723+00:00",
+  "result": "Passed",
+  "exitState": "Local Validation -> Primary Implementation",
+  "pins": {
+    "hybridclr_demo": "d7f46bfd090313b41b38175ce1196f14484a3d1e",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "c386cdd1e8942561f1d1e1fada52d21ca524f174"
+  },
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "exactSourceAuthority": "Passed with direct user-authorized correction of malformed prompt HybridCLR pin",
+  "rootAdmission": "Passed unused/nonaliasing before activity",
+  "officialUnitySDK": "2022.3.62f2 macOS arm64",
+  "hostScratchTests": {
+    "Passed": 20,
+    "Failed": 0,
+    "Errors": 0,
+    "Skipped": 0
+  },
+  "nativeHostReportingAndObserver": "Passed normal and sanitized; VM mocked, no Unity execution",
+  "ObjectHeaderAccess": "Passed 5 controls",
+  "nativePolicyChecks": 69,
+  "managedCompile": "Passed",
+  "managedScriptInvocations": 1,
+  "managedProductTargetsPassed": 5,
+  "managedExpectedNegativeControlsPassed": 1,
+  "nativeCompile": "Passed",
+  "nativeScriptInvocations": 1,
+  "nativeConfigurations": {
+    "Passed": 55,
+    "Failed": 0,
+    "NotRun": 0
+  },
+  "nativeSyntaxOnly": true,
+  "nativeWarningOccurrences": 616,
+  "managedWarningOccurrences": 74,
+  "installedSDKPreservation": {
+    "state": "Passed",
+    "files": 2113,
+    "bytes": 109847001,
+    "compilerInputFilesUnchanged": 428
+  },
+  "custody": {
+    "before": "ScopedHistoricalLossStable",
+    "after": "ScopedHistoricalLossStable",
+    "originalExpectedFiles": 416844,
+    "presentVerified": 339367,
+    "historicalStillMissing": 77477,
+    "problems": 0,
+    "strictHistoricalCustody": "Blocked",
+    "historicalProvenanceRestored": false
+  },
+  "C_E_F_ImmutableAuthentication": "Passed",
+  "EHistoricalResult": "FAIL unchanged",
+  "FHistoricalResult": "PrerequisiteBlocked unchanged",
+  "compilerOutputsRetained": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRCompile-20261011G-canonical-temp/policy",
+      "bytes": 47704,
+      "sha256": "0778de3650551a0fbe2bdb4b3e1c97b9b80b667b58d83254baaaddd132498a47",
+      "disposition": "Retained local compiler/host output; contents not uploaded"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/build-api/HybridCLR.Runtime/HybridCLR.Runtime.dll",
+      "bytes": 60928,
+      "sha256": "3b300bfdd4ec81c5e0f6c8892786aba09861c7064754499ffd7003b9397245e5",
+      "disposition": "Retained local compiler/host output; contents not uploaded"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/build-api/HybridCLR.Editor/HybridCLR.Editor.dll",
+      "bytes": 818176,
+      "sha256": "0541662a7f16fdcb1be0e4693b6f4629ac771229a73c686863b8956fd088d21a",
+      "disposition": "Retained local compiler/host output; contents not uploaded"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/build-api/R03Build/R03Build.dll",
+      "bytes": 13824,
+      "sha256": "ff2e5e0bde62ca3901a66e9a58481fe92c79b6bc2b2d255e6727d336d71af6a1",
+      "disposition": "Retained local compiler/host output; contents not uploaded"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/build-api/Unity.HybridCLR.AssemblyShadow.CodeGen/Unity.HybridCLR.AssemblyShadow.CodeGen.dll",
+      "bytes": 120832,
+      "sha256": "5d3ba47e8a61ff26d15b4001a3fa1c10c515bbb99f9310d346bbdc7435a36d4f",
+      "disposition": "Retained local compiler/host output; contents not uploaded"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/build-api/R03TerminalPlayerApi/R03TerminalPlayerApi.dll",
+      "bytes": 13824,
+      "sha256": "da9e84665fdbd02976de67f37902f3e3802c80c0315087cfea8299f5843d0f2c",
+      "disposition": "Retained local compiler/host output; contents not uploaded"
+    }
+  ],
+  "vendorSdkCopyRetained": "/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03IRCompile-20261011G-canonical-temp",
+  "vendorSDKOrCompilerBinariesUploaded": false,
+  "sourceChanges": [],
+  "boundedFixes": [],
+  "retries": 0,
+  "unityLaunches": 0,
+  "playerLaunches": 0,
+  "runtimeBatch": "NotRun / not authorized",
+  "runtimeSeal": "Unavailable; compile-only has no runtime scheduler",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "ReadyForHumanReviewGate": false,
+  "fullLegacyRegressionAcceptance": false,
+  "pureInterpreterExpansionEnabled": false,
+  "independentFullStageReview": "FAIL",
+  "independentReReview": "NotRun"
+}

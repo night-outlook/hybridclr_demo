@@ -1,0 +1,172 @@
+{
+  "state": "Passed",
+  "scriptInvocations": 1,
+  "productCompileCommands": 5,
+  "negativeControlCommands": 1,
+  "targets": [
+    {
+      "target": "HybridCLR.Runtime",
+      "state": "Passed",
+      "exitCode": 0,
+      "errors": [],
+      "warningCodes": [],
+      "warningCount": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/commands/0001/command.json"
+    },
+    {
+      "target": "Unity.HybridCLR.AssemblyShadow.CodeGen",
+      "state": "Passed",
+      "exitCode": 0,
+      "errors": [],
+      "warningCodes": [],
+      "warningCount": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/commands/0002/command.json"
+    },
+    {
+      "target": "HybridCLR.Editor",
+      "state": "Passed",
+      "exitCode": 0,
+      "errors": [],
+      "warningCodes": [
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649"
+      ],
+      "warningCount": 61,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/commands/0003/command.json"
+    },
+    {
+      "target": "R03Build",
+      "state": "Passed",
+      "exitCode": 0,
+      "errors": [],
+      "warningCodes": [],
+      "warningCount": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/commands/0004/command.json"
+    },
+    {
+      "target": "R03TerminalPlayerApi",
+      "state": "Passed",
+      "exitCode": 0,
+      "errors": [],
+      "warningCodes": [
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649",
+        "CS0649"
+      ],
+      "warningCount": 13,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/commands/0005/command.json"
+    },
+    {
+      "target": "OriginalUnsignedCounts",
+      "state": "PassedExpectedNegative",
+      "exitCode": 1,
+      "errors": [
+        "CS0266",
+        "CS0266"
+      ],
+      "warningCodes": [],
+      "warningCount": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/commands/0006/command.json"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/build-api/HybridCLR.Runtime/HybridCLR.Runtime.dll",
+      "sha256": "3b300bfdd4ec81c5e0f6c8892786aba09861c7064754499ffd7003b9397245e5",
+      "size": 60928
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/build-api/Unity.HybridCLR.AssemblyShadow.CodeGen/Unity.HybridCLR.AssemblyShadow.CodeGen.dll",
+      "sha256": "5d3ba47e8a61ff26d15b4001a3fa1c10c515bbb99f9310d346bbdc7435a36d4f",
+      "size": 120832
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/build-api/HybridCLR.Editor/HybridCLR.Editor.dll",
+      "sha256": "0541662a7f16fdcb1be0e4693b6f4629ac771229a73c686863b8956fd088d21a",
+      "size": 818176
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/build-api/R03Build/R03Build.dll",
+      "sha256": "ff2e5e0bde62ca3901a66e9a58481fe92c79b6bc2b2d255e6727d336d71af6a1",
+      "size": 13824
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261011G-canonical-temp/build-api/R03TerminalPlayerApi/R03TerminalPlayerApi.dll",
+      "sha256": "da9e84665fdbd02976de67f37902f3e3802c80c0315087cfea8299f5843d0f2c",
+      "size": 13824
+    }
+  ],
+  "officialManagedReferences": true,
+  "editorProfileOnly": true,
+  "playerRun": false,
+  "runtimeAcceptance": false
+}

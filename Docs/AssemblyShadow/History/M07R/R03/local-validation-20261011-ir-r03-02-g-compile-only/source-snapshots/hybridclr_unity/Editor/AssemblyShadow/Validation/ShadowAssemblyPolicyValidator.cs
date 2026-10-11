@@ -1,0 +1,1265 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
+using dnlib.DotNet;
+using dnlib.DotNet.Emit;
+using HybridCLR.AssemblyShadow.CodeGen;
+using UnityEditor;
+using UnityEditor.Compilation;
+using PackageInfo = UnityEditor.PackageManager.PackageInfo;
+using UnityEngine;
+
+namespace HybridCLR.Editor.AssemblyShadow
+{
+    [Serializable]
+    public class AssemblyPolicyDefinition
+    {
+        public string name;
+        public string[] references = new string[0];
+        public AssemblyClassification classification = AssemblyClassification.Runtime;
+        public bool entersPlayer = true;
+        public bool isShadowCapable;
+        public bool isBootstrap;
+        public bool isPrecompiled;
+        public bool capabilityDeclared;
+        public bool unknownReflectionDependencies;
+        public string[] reflectionReferences = new string[0];
+        public string[] unknownReflectionCallSites = new string[0];
+        public ReflectionDependencyEvidence[] reflectionDependencies = new ReflectionDependencyEvidence[0];
+        public ManagedAcquisitionEvidence[] managedAcquisitions = new ManagedAcquisitionEvidence[0];
+        public string sourcePath;
+        // Only the compiled scanner can attach identity-bound raw admission
+        // evidence. Serialized booleans or method-level prose cannot create it.
+        internal readonly HashSet<ReflectionDependencyEvidence> rawTypeAdmissionDependencies = new HashSet<ReflectionDependencyEvidence>();
+    }
+
+    // Alias retained for callers that describe source asmdefs rather than
+    // compiled metadata. Both forms are accepted by ValidateDefinitions.
+    public sealed class ShadowAssemblyDefinition : AssemblyPolicyDefinition { }
+
+    [Serializable]
+    public sealed class ReflectionDependencyEvidence
+    {
+        public string callSite;
+        public string target;
+        public string provider;
+        public string typeName;
+        public string kind;
+    }
+
+    [Serializable]
+    public sealed class ManagedAcquisitionEvidence
+    {
+        public string kind, callSite, methodSignature, methodHash, operationSignature;
+        public int operationIndex;
+        public bool requiresContract, verified;
+        public string configurationHash, siteId, provider;
+    }
+
+    [Serializable]
+    public sealed class ShadowPolicyDiagnostic
+    {
+        public string code;
+        public string message;
+        public override string ToString() { return code + ": " + message; }
+    }
+
+    public sealed class ShadowPolicyValidationResult
+    {
+        private readonly List<ShadowPolicyDiagnostic> diagnostics = new List<ShadowPolicyDiagnostic>();
+        public bool IsValid { get { return diagnostics.Count == 0; } }
+        public bool Passed { get { return IsValid; } }
+        public IReadOnlyList<ShadowPolicyDiagnostic> Diagnostics { get { return diagnostics; } }
+        public IReadOnlyList<string> Errors { get { return diagnostics.Select(item => item.ToString()).ToArray(); } }
+        public void Error(string code, string message) { diagnostics.Add(new ShadowPolicyDiagnostic { code = code, message = message }); }
+        public void ThrowIfInvalid()
+        {
+            if (!IsValid)
+                throw new ShadowBuildException("PolicyValidation", string.Join(Environment.NewLine, Errors.ToArray()));
+        }
+        public override string ToString() { return string.Join(Environment.NewLine, Errors.ToArray()); }
+    }
+
+    public static class ShadowAssemblyPolicyValidator
+    {
+        public static ShadowPolicyValidationResult ValidateCompiled(CompiledAssemblySet set,
+            ShadowPolicyConfiguration policy, DateTime utcNow, ReflectionBindingConfiguration acquisitionConfiguration = null,
+            IReadOnlyDictionary<string, byte[]> fixedImageEvidence = null, VerifiedLinkedRuntimeReferences linkedRuntimeReferences = null,
+            RawTypeAdmissionConfiguration rawTypeAdmissionConfiguration = null, string compilerMode = null)
+        {
+            return ValidateCompiledInternal(set, policy, utcNow, acquisitionConfiguration, fixedImageEvidence,
+                linkedRuntimeReferences, rawTypeAdmissionConfiguration, compilerMode, false);
+        }
+
+        /// <summary>
+        /// Validates a compiler-only snapshot before Unity has produced the
+        /// authoritative Player filter/linker receipt. Reflection scanning is
+        /// complete for the connected shadow-policy graph; disconnected Unity
+        /// package inputs are deferred to the later strict linked-Player gate.
+        /// </summary>
+        public static ShadowPolicyValidationResult ValidateCompilerSnapshot(CompiledAssemblySet set,
+            ShadowPolicyConfiguration policy, DateTime utcNow, ReflectionBindingConfiguration acquisitionConfiguration = null,
+            IReadOnlyDictionary<string, byte[]> fixedImageEvidence = null,
+            RawTypeAdmissionConfiguration rawTypeAdmissionConfiguration = null, string compilerMode = null)
+        {
+            return ValidateCompiledInternal(set, policy, utcNow, acquisitionConfiguration, fixedImageEvidence,
+                null, rawTypeAdmissionConfiguration, compilerMode, true);
+        }
+
+        private static ShadowPolicyValidationResult ValidateCompiledInternal(CompiledAssemblySet set,
+            ShadowPolicyConfiguration policy, DateTime utcNow, ReflectionBindingConfiguration acquisitionConfiguration,
+            IReadOnlyDictionary<string, byte[]> fixedImageEvidence, VerifiedLinkedRuntimeReferences linkedRuntimeReferences,
+            RawTypeAdmissionConfiguration rawTypeAdmissionConfiguration, string compilerMode, bool compilerSnapshot)
+        {
+            if (set == null)
+            {
+                var missing = new ShadowPolicyValidationResult();
+                missing.Error("MissingCompiledSet", "CompiledAssemblySet is required for compiled policy validation.");
+                return missing;
+            }
+            var bindingErrors = new ShadowPolicyValidationResult();
+            var bindings = VerifyAcquisitions(set, policy, acquisitionConfiguration, fixedImageEvidence, compilerMode, bindingErrors);
+            var rawAdmissions = VerifyRawTypeAdmissions(set, rawTypeAdmissionConfiguration, compilerMode, bindingErrors);
+            VerifiedSerializeReferenceDependency[] serializeReferenceDependencies;
+            try { serializeReferenceDependencies = SerializeReferenceDependencyVerifier.Verify(set, policy == null ? null : policy.dependencies); }
+            catch (Exception error)
+            {
+                serializeReferenceDependencies = new VerifiedSerializeReferenceDependency[0];
+                bindingErrors.Error("InvalidSerializeReferenceContract", error.Message);
+            }
+            HashSet<string> reflectionScope = compilerSnapshot ? CompilerReflectionScope(set, policy, bindings, rawAdmissions) : null;
+            var definitions = new List<AssemblyPolicyDefinition>();
+            foreach (KeyValuePair<string, AssemblyDescriptor> pair in set.Assemblies)
+            {
+                AssemblyPolicyDefinition definition = FromDescriptor(pair.Value);
+                if (IsRuntime(definition) && (reflectionScope == null || reflectionScope.Contains(AssemblyIdentityUtil.CanonicalName(pair.Key))))
+                    ReflectionDependencyScanner.ScanVerified(set.Modules, pair.Key, definition, bindings, rawAdmissions, serializeReferenceDependencies);
+                definitions.Add(definition);
+            }
+            // Resolver modules are evidence for references, not missing Player
+            // descriptors. They must never turn an omitted runtime plugin into
+            // an innocuous framework dependency.
+            foreach (var pair in set.Modules.Where(pair => !set.Assemblies.ContainsKey(pair.Key)))
+            {
+                AssemblyCapability capability = FindCapability(policy, pair.Key);
+                definitions.Add(new AssemblyPolicyDefinition
+                {
+                    name = pair.Key,
+                    classification = capability == null ? AssemblyClassification.Reference : capability.classification,
+                    entersPlayer = false,
+                    isPrecompiled = capability != null && capability.isPrecompiled,
+                    capabilityDeclared = capability != null && capability.capabilityDeclared,
+                    isShadowCapable = capability != null && capability.isShadowCapable,
+                    isBootstrap = capability != null && capability.isBootstrap,
+                });
+            }
+            RawTypeAdmissionPropagation.Validate(set, policy, definitions, rawAdmissions, bindingErrors);
+            HashSet<string> removedReferences = null;
+            if (linkedRuntimeReferences != null)
+            {
+                try { removedReferences = linkedRuntimeReferences.ValidateFor(set, policy); }
+                catch (Exception error) { bindingErrors.Error("InvalidLinkedRuntimeReferenceProof", error.Message); }
+            }
+            var result = ValidateDefinitionsInternal(definitions, policy, utcNow, removedReferences);
+            foreach (var error in bindingErrors.Diagnostics) result.Error(error.code, error.message);
+            foreach (var error in ShadowExecutionPolicy.ValidateCompiled(set, policy).Diagnostics) result.Error(error.code, error.message);
+            return result;
+        }
+
+        private static HashSet<string> CompilerReflectionScope(CompiledAssemblySet set, ShadowPolicyConfiguration policy,
+            IEnumerable<VerifiedReflectionBinding> bindings, IEnumerable<VerifiedRawTypeAdmission> rawAdmissions)
+        {
+            var runtime = new HashSet<string>(set.Assemblies.Values.Where(descriptor =>
+                descriptor.classification == AssemblyClassification.Runtime || descriptor.classification == AssemblyClassification.NormalHotUpdate)
+                .Select(descriptor => AssemblyIdentityUtil.CanonicalName(descriptor.name)), StringComparer.Ordinal);
+            var scope = new HashSet<string>(StringComparer.Ordinal);
+            var dynamicEdges = new List<KeyValuePair<string, string>>();
+            foreach (AssemblyDescriptor descriptor in set.Assemblies.Values)
+                if (descriptor.isShadowCapable || descriptor.isBootstrap || descriptor.classification == AssemblyClassification.NormalHotUpdate)
+                    scope.Add(AssemblyIdentityUtil.CanonicalName(descriptor.name));
+            foreach (AssemblyCapability capability in (policy == null ? null : policy.assemblies) ?? new AssemblyCapability[0])
+                if (capability != null && (capability.isShadowCapable || capability.isBootstrap ||
+                    capability.classification == AssemblyClassification.NormalHotUpdate))
+                    scope.Add(AssemblyIdentityUtil.CanonicalName(capability.name));
+            foreach (VerifiedReflectionBinding binding in bindings ?? new VerifiedReflectionBinding[0])
+                foreach (string provider in binding.Providers)
+                    dynamicEdges.Add(new KeyValuePair<string, string>(AssemblyIdentityUtil.CanonicalName(binding.Assembly),
+                        AssemblyIdentityUtil.CanonicalName(provider)));
+            foreach (VerifiedRawTypeAdmission admission in rawAdmissions ?? new VerifiedRawTypeAdmission[0])
+                dynamicEdges.Add(new KeyValuePair<string, string>(
+                    AssemblyIdentityUtil.CanonicalName(new AssemblyNameInfo(admission.ConsumerAssemblyIdentity).Name.String),
+                    AssemblyIdentityUtil.CanonicalName(new AssemblyNameInfo(admission.ProviderAssemblyIdentity).Name.String)));
+            if (policy != null)
+            {
+                foreach (ShadowReflectionBindingDeclaration binding in policy.reflectionBindings ?? new ShadowReflectionBindingDeclaration[0])
+                    if (binding != null)
+                        foreach (string provider in binding.providers ?? new string[0])
+                            dynamicEdges.Add(new KeyValuePair<string, string>(AssemblyIdentityUtil.CanonicalName(binding.consumer),
+                                AssemblyIdentityUtil.CanonicalName(provider)));
+                if (policy.dependencies != null)
+                {
+                    foreach (DeclaredRuntimeDependency edge in policy.dependencies.runtimeDependencies ?? new DeclaredRuntimeDependency[0])
+                        if (edge != null) { scope.Add(AssemblyIdentityUtil.CanonicalName(edge.consumer)); scope.Add(AssemblyIdentityUtil.CanonicalName(edge.provider)); }
+                    foreach (DeclaredSerializeReferenceDependency declaration in policy.dependencies.serializeReferenceDependencies ?? new DeclaredSerializeReferenceDependency[0])
+                        if (declaration != null)
+                        {
+                            scope.Add(AssemblyIdentityUtil.CanonicalName(declaration.consumer));
+                            foreach (string concreteType in declaration.concreteTypes ?? new string[0])
+                                try { scope.Add(AssemblyIdentityUtil.CanonicalName(ReflectionBindingConfiguration.ProviderOf(concreteType))); }
+                                catch (Exception) { }
+                        }
+                    foreach (BootstrapEntrypointDeclaration edge in policy.dependencies.bootstrapEntrypoints ?? new BootstrapEntrypointDeclaration[0])
+                        if (edge != null) { scope.Add(AssemblyIdentityUtil.CanonicalName(edge.consumer)); scope.Add(AssemblyIdentityUtil.CanonicalName(edge.provider)); }
+                }
+            }
+            scope.IntersectWith(runtime);
+            // Without a shadow-policy anchor this API must not become a generic
+            // escape hatch; preserve the strict full-snapshot behavior.
+            if (scope.Count == 0) return runtime;
+            // First include every runtime consumer that can reach an anchor.
+            // A verified dynamic consumer joins only when its provider is on
+            // that candidate-facing graph. Then include the dependencies those
+            // consumers can call. Never reverse-walk again from a shared
+            // dependency into unrelated sibling packages.
+            bool changed, promoted;
+            do
+            {
+                do
+                {
+                    changed = false;
+                    foreach (AssemblyDescriptor descriptor in set.Assemblies.Values)
+                    {
+                        string consumer = AssemblyIdentityUtil.CanonicalName(descriptor.name);
+                        if (!runtime.Contains(consumer)) continue;
+                        foreach (string rawProvider in descriptor.references ?? new string[0])
+                        {
+                            string provider = AssemblyIdentityUtil.CanonicalName(rawProvider);
+                            if (runtime.Contains(provider) && scope.Contains(provider)) changed |= scope.Add(consumer);
+                        }
+                    }
+                } while (changed);
+                promoted = false;
+                foreach (var edge in dynamicEdges)
+                    if (runtime.Contains(edge.Key) && scope.Contains(edge.Value)) promoted |= scope.Add(edge.Key);
+            } while (promoted);
+            do
+            {
+                changed = false;
+                foreach (AssemblyDescriptor descriptor in set.Assemblies.Values)
+                {
+                    string consumer = AssemblyIdentityUtil.CanonicalName(descriptor.name);
+                    if (!runtime.Contains(consumer) || !scope.Contains(consumer)) continue;
+                    foreach (string rawProvider in descriptor.references ?? new string[0])
+                    {
+                        string provider = AssemblyIdentityUtil.CanonicalName(rawProvider);
+                        if (runtime.Contains(provider)) changed |= scope.Add(provider);
+                    }
+                }
+            } while (changed);
+            return scope;
+        }
+
+        private static VerifiedRawTypeAdmission[] VerifyRawTypeAdmissions(CompiledAssemblySet set,
+            RawTypeAdmissionConfiguration configuration, string compilerMode, ShadowPolicyValidationResult errors)
+        {
+            if (configuration == null) return new VerifiedRawTypeAdmission[0];
+            try
+            {
+                var proofs = RawTypeAdmissionVerifier.Verify(set.Modules, configuration, compilerMode);
+                foreach (var proof in proofs)
+                {
+                    AssemblyDescriptor consumer, provider;
+                    string consumerName = new AssemblyNameInfo(proof.ConsumerAssemblyIdentity).Name.String;
+                    string providerName = new AssemblyNameInfo(proof.ProviderAssemblyIdentity).Name.String;
+                    if (!set.Assemblies.TryGetValue(consumerName, out consumer) ||
+                        (consumer.classification != AssemblyClassification.Runtime && consumer.classification != AssemblyClassification.NormalHotUpdate))
+                        throw new ReflectionBindingException("InvalidRawAdmissionConsumerRole", proof.SiteId + ": an actual Player runtime consumer is required.");
+                    if (!set.Assemblies.TryGetValue(providerName, out provider) || provider.classification != AssemblyClassification.Runtime ||
+                        !provider.isShadowCapable || provider.isBootstrap)
+                        throw new ReflectionBindingException("InvalidRawAdmissionProviderRole", proof.SiteId + ": an actual non-Bootstrap Runtime candidate is required.");
+                }
+                return proofs;
+            }
+            catch (Exception error)
+            {
+                errors.Error("InvalidRawTypeAdmissionContract", error.Message);
+                return new VerifiedRawTypeAdmission[0];
+            }
+        }
+
+        private static VerifiedReflectionBinding[] VerifyAcquisitions(CompiledAssemblySet set, ShadowPolicyConfiguration policy,
+            ReflectionBindingConfiguration configuration, IReadOnlyDictionary<string, byte[]> images, string compilerMode,
+            ShadowPolicyValidationResult result)
+        {
+            var verified = new List<VerifiedReflectionBinding>();
+            if (configuration == null)
+            {
+                if (policy != null && (!string.IsNullOrEmpty(policy.reflectionBindingConfigurationHash) ||
+                    !string.IsNullOrEmpty(policy.reflectionBindingConfigurationSha256)))
+                    result.Error("MissingManagedAcquisitionConfiguration", "The pinned reflection/acquisition configuration must be supplied to compiled validation.");
+                return verified.ToArray();
+            }
+            try
+            {
+                configuration.Validate(); configuration.ValidateImageEvidence(images);
+                if (policy != null && !string.IsNullOrEmpty(policy.reflectionBindingConfigurationHash) &&
+                    policy.reflectionBindingConfigurationHash != configuration.ComputeHash())
+                    throw new ReflectionBindingException("AcquisitionConfigurationMismatch", "Policy and supplied configuration hashes differ.");
+                foreach (var group in configuration.sites.GroupBy(site => site.assembly, StringComparer.Ordinal))
+                {
+                    ModuleDefMD module;
+                    if (!set.Modules.TryGetValue(group.Key, out module))
+                        throw new ReflectionBindingException("AcquisitionConsumerMissing", group.Key);
+                    verified.AddRange(ReflectionBindingTransformer.Verify(module, configuration));
+                }
+                foreach (var binding in verified)
+                {
+                    if (binding.Kind == "FixedAssemblyBytes")
+                    {
+                        string provider = binding.Providers.Single(); AssemblyDescriptor descriptor;
+                        var declared = FindCapability(policy, provider);
+                        if (!set.Assemblies.TryGetValue(provider, out descriptor) || descriptor.classification != AssemblyClassification.NormalHotUpdate ||
+                            descriptor.isShadowCapable || descriptor.isBootstrap || (declared != null &&
+                                (declared.classification != AssemblyClassification.NormalHotUpdate || declared.isShadowCapable || declared.isBootstrap)))
+                            throw new ReflectionBindingException("InvalidFixedImageProvider", binding.SiteId + ": expected actual ordinary hot-update input " + provider);
+                        using (var image = ModuleDefMD.Load(images[binding.ImagePath], new ModuleCreationOptions { TryToLoadPdbFromDisk = false }))
+                        {
+                            if (set.GetModule(provider).Assembly.FullName != binding.ProviderAssemblyIdentity)
+                                throw new ReflectionBindingException("FixedImageSemanticMismatch", binding.SiteId);
+                            string imageSemanticHash = AssemblySemanticHasher.Compute(image).semanticHash;
+                            string providerSemanticHash = AssemblySemanticHasher.Compute(set.GetModule(provider)).semanticHash;
+                            if (configuration.schemaVersion >= 4)
+                            {
+                                var site = configuration.sites.Single(value => value.id == binding.SiteId);
+                                if (!site.providerSemanticVariants.Any(value => value.semanticHash == imageSemanticHash))
+                                    throw new ReflectionBindingException("FixedImageSemanticVariantMismatch",
+                                        binding.SiteId + ": actual image " + imageSemanticHash + "; declared " +
+                                        string.Join(",", site.providerSemanticVariants.OrderBy(value => value.compilerMode, StringComparer.Ordinal)
+                                            .Select(value => value.compilerMode + "=" + value.semanticHash)));
+                                string expected = configuration.ProviderSemanticHash(site, compilerMode);
+                                if (providerSemanticHash != expected)
+                                    throw new ReflectionBindingException("FixedProviderSemanticMismatch",
+                                        binding.SiteId + ": " + compilerMode + " provider actual " + providerSemanticHash +
+                                        "; expected " + expected);
+                            }
+                            else if (imageSemanticHash != providerSemanticHash)
+                                throw new ReflectionBindingException("FixedImageSemanticMismatch", binding.SiteId);
+                        }
+                    }
+                    else if (binding.Kind == "FiniteAssemblyList" || binding.Kind == "FiniteAssemblyTypes")
+                    {
+                        foreach (string aqn in binding.AllowedTypes)
+                        {
+                            string provider = ReflectionBindingConfiguration.ProviderOf(aqn); ModuleDefMD physical;
+                            AssemblyDescriptor descriptor; var capability = FindCapability(policy, provider);
+                            bool actual = set.Assemblies.TryGetValue(provider, out descriptor);
+                            var classification = actual ? descriptor.classification : capability == null ? AssemblyClassification.Reference : capability.classification;
+                            bool controlled = (actual && (descriptor.isBootstrap || descriptor.isShadowCapable)) ||
+                                (capability != null && (capability.isBootstrap || capability.isShadowCapable || capability.classification != classification));
+                            int comma = aqn.IndexOf(',');
+                            if (controlled || (classification != AssemblyClassification.Runtime && classification != AssemblyClassification.Reference) ||
+                                (!actual && classification != AssemblyClassification.Reference) || !set.Modules.TryGetValue(provider, out physical) ||
+                                physical.Assembly.FullName != aqn.Substring(comma + 2) ||
+                                !physical.GetTypes().Any(type => type.FullName == aqn.Substring(0, comma).Replace('+', '/') && !type.HasGenericParameters))
+                                throw new ReflectionBindingException("InvalidFiniteAcquisitionProvider", binding.SiteId + ": " + aqn);
+                        }
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                // No partially verified contract is usable after any evidence failure.
+                verified.Clear(); result.Error("InvalidManagedAcquisitionContract", error.Message);
+            }
+            return verified.ToArray();
+        }
+
+        public static ShadowPolicyValidationResult ValidateDefinitions(IEnumerable<AssemblyPolicyDefinition> definitions,
+            ShadowPolicyConfiguration policy, DateTime utcNow)
+        {
+            return ValidateDefinitionsInternal(definitions, policy, utcNow, null);
+        }
+
+        private static ShadowPolicyValidationResult ValidateDefinitionsInternal(IEnumerable<AssemblyPolicyDefinition> definitions,
+            ShadowPolicyConfiguration policy, DateTime utcNow, HashSet<string> verifiedRemovedReferences)
+        {
+            var result = new ShadowPolicyValidationResult();
+            policy = policy ?? new ShadowPolicyConfiguration();
+            var items = (definitions ?? Enumerable.Empty<AssemblyPolicyDefinition>()).Where(item => item != null).ToArray();
+            var byName = new Dictionary<string, AssemblyPolicyDefinition>(StringComparer.OrdinalIgnoreCase);
+            foreach (AssemblyPolicyDefinition item in items)
+            {
+                item.name = AssemblyNamePolicy.Canonical(item.name);
+                if (string.IsNullOrEmpty(item.name))
+                {
+                    result.Error("UnnamedAssembly", "Compiled assembly definition has no name.");
+                    continue;
+                }
+                if (!byName.TryAdd(item.name, item))
+                    result.Error("DuplicateAssembly", item.name);
+            }
+
+            ValidatePolicyNames(items, policy, byName, result);
+            foreach (AssemblyPolicyDefinition consumer in items)
+            {
+                if (consumer.classification == AssemblyClassification.BuildFiltered) continue;
+                foreach (string rawProvider in consumer.references ?? new string[0])
+                {
+                    string providerName = AssemblyNamePolicy.Canonical(rawProvider);
+                    AssemblyPolicyDefinition provider;
+                    if (!byName.TryGetValue(providerName, out provider))
+                    {
+                        if (consumer.entersPlayer && IsRuntime(consumer))
+                            result.Error("UnresolvedRuntimeReference", consumer.name + " references unresolved runtime assembly " + providerName + ".");
+                        continue;
+                    }
+                    if (verifiedRemovedReferences == null || !verifiedRemovedReferences.Contains(VerifiedLinkedRuntimeReferences.EdgeKey(consumer.name, providerName)))
+                    {
+                        if (consumer.entersPlayer && IsRuntime(consumer) && !provider.entersPlayer && provider.classification != AssemblyClassification.Reference)
+                            result.Error("InvalidRuntimeReference", consumer.name + " references a non-Player assembly " + providerName + ".");
+                        CheckFilteredReference(consumer, provider, result);
+                    }
+                    if (IsRuntime(provider))
+                    {
+                        InternalDependencyRule.Check(consumer, provider, policy, result);
+                        if (consumer.entersPlayer && IsRuntime(consumer))
+                            ExtensibilityWhitelistRule.Check(consumer, provider, policy, utcNow, result);
+                    }
+                    BootstrapIsolationRule.Check(consumer, provider, policy, result);
+                }
+                ValidateReflection(consumer, policy, byName, utcNow, result);
+            }
+            foreach (DeclaredRuntimeDependency edge in (policy.dependencies == null ? null : policy.dependencies.runtimeDependencies) ?? new DeclaredRuntimeDependency[0])
+            {
+                AssemblyPolicyDefinition consumer, provider;
+                if (edge == null || !byName.TryGetValue(AssemblyNamePolicy.Canonical(edge.consumer), out consumer) ||
+                    !byName.TryGetValue(AssemblyNamePolicy.Canonical(edge.provider), out provider)) continue;
+                if (consumer.classification == AssemblyClassification.BuildFiltered) continue;
+                InternalDependencyRule.Check(consumer, provider, policy, result);
+                CheckFilteredReference(consumer, provider, result);
+                if (consumer.entersPlayer && IsRuntime(consumer)) ExtensibilityWhitelistRule.Check(consumer, provider, policy, utcNow, result);
+                BootstrapIsolationRule.Check(consumer, provider, policy, result);
+            }
+            return result;
+        }
+
+        private static void CheckFilteredReference(AssemblyPolicyDefinition consumer, AssemblyPolicyDefinition provider, ShadowPolicyValidationResult result)
+        {
+            if (IsRuntime(consumer) && provider.classification == AssemblyClassification.BuildFiltered)
+                result.Error("RuntimeReferencesFilteredAssembly", consumer.name + " references an assembly removed from the captured Player build: " + provider.name + ".");
+        }
+
+        public static ShadowPolicyValidationResult ValidateBeforeCompile(ShadowPolicyConfiguration policy, BuildTarget target)
+        {
+            string project = Directory.GetParent(Application.dataPath).FullName;
+            return ValidateBeforeCompile(policy, target, project);
+        }
+
+        public static ShadowPolicyValidationResult ValidateBeforeCompile(ShadowPolicyConfiguration policy,
+            BuildTarget target, string projectRoot)
+        {
+            var parseErrors = new List<string>();
+            policy = policy ?? new ShadowPolicyConfiguration();
+            var definitions = ReadDefinitions(projectRoot, target, policy, parseErrors).ToList();
+            // Compiler inventory also includes predefined script assemblies and
+            // DLL references without asmdefs. Explicit candidates/bootstrap must
+            // still be found in source or an actual precompiled inventory entry.
+            var sourceNames = new HashSet<string>(definitions.Select(item => AssemblyNamePolicy.Canonical(item.name)), StringComparer.OrdinalIgnoreCase);
+            foreach (AssemblyCapability capability in policy.assemblies ?? new AssemblyCapability[0])
+                if (capability != null && !sourceNames.Contains(AssemblyNamePolicy.Canonical(capability.name)) &&
+                    ((!capability.isShadowCapable && !capability.isBootstrap) || capability.isPrecompiled))
+                    definitions.Add(new AssemblyPolicyDefinition
+                    {
+                        name = capability.name, classification = capability.classification,
+                        entersPlayer = capability.classification == AssemblyClassification.Runtime || capability.classification == AssemblyClassification.NormalHotUpdate,
+                        isShadowCapable = capability.isShadowCapable, isBootstrap = capability.isBootstrap,
+                        isPrecompiled = capability.isPrecompiled, capabilityDeclared = capability.capabilityDeclared,
+                    });
+            ShadowPolicyValidationResult result = ValidateDefinitions(definitions, policy, DateTime.UtcNow);
+            foreach (string error in parseErrors)
+                result.Error("InvalidAssemblyDefinition", error);
+            ValidateBootstrapResources(projectRoot, policy, result);
+            return result;
+        }
+
+        private static void ValidatePolicyNames(IEnumerable<AssemblyPolicyDefinition> items, ShadowPolicyConfiguration policy,
+            IDictionary<string, AssemblyPolicyDefinition> byName, ShadowPolicyValidationResult result)
+        {
+            var defined = new HashSet<string>(byName.Keys, StringComparer.OrdinalIgnoreCase);
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (AssemblyCapability capability in policy.assemblies ?? new AssemblyCapability[0])
+            {
+                if (capability == null || string.IsNullOrWhiteSpace(capability.name))
+                    result.Error("InvalidCapability", "Assembly capability has no name.");
+                else if (!seen.Add(AssemblyNamePolicy.Canonical(capability.name)))
+                    result.Error("DuplicateCapability", capability.name);
+                else if ((capability.isShadowCapable || capability.isBootstrap) && !defined.Contains(AssemblyNamePolicy.Canonical(capability.name)))
+                    result.Error("CapabilityNotInSnapshot", "Configured assembly is absent from compiled definitions: " + capability.name + ".");
+            }
+            foreach (AssemblyPolicyDefinition item in items)
+            {
+                if ((item.isShadowCapable || item.isBootstrap) && (item.classification != AssemblyClassification.Runtime || !item.entersPlayer))
+                    result.Error("InvalidCandidateClassification", item.name + " is not an included AOT runtime input.");
+                if (item.isShadowCapable && item.isBootstrap)
+                    result.Error("ConflictingCapability", item.name + " is both bootstrap and shadow-capable.");
+                if (item.isPrecompiled && IsRuntime(item) && !item.capabilityDeclared)
+                    result.Error("UndeclaredPrecompiledCapability", "External runtime DLL requires an explicit true/false shadow capability: " + item.name);
+                if (item.isPrecompiled && item.classification == AssemblyClassification.Runtime && !item.entersPlayer)
+                    result.Error("RuntimeAssemblyMissingFromSnapshot", "Runtime plugin is only a resolver reference, not an actual Player input: " + item.name);
+            }
+            ValidateDependencies(policy, byName, result);
+            ValidateWhitelist(policy, result);
+        }
+
+        private static void ValidateDependencies(ShadowPolicyConfiguration policy,
+            IDictionary<string, AssemblyPolicyDefinition> byName, ShadowPolicyValidationResult result)
+        {
+            var dependencies = policy.dependencies;
+            if (dependencies == null) return;
+            if (dependencies.schemaVersion != 1 && dependencies.schemaVersion != 2)
+                result.Error("DependencySchema", "Unsupported explicit dependency schema.");
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (DeclaredRuntimeDependency edge in dependencies.runtimeDependencies ?? new DeclaredRuntimeDependency[0])
+            {
+                if (edge == null || string.IsNullOrWhiteSpace(edge.consumer) || string.IsNullOrWhiteSpace(edge.provider) ||
+                    string.IsNullOrWhiteSpace(edge.kind) || string.IsNullOrWhiteSpace(edge.evidence))
+                {
+                    result.Error("InvalidDependency", "Explicit runtime dependencies require consumer, provider, kind and evidence.");
+                    continue;
+                }
+                string key = AssemblyNamePolicy.Canonical(edge.consumer) + "\n" + AssemblyNamePolicy.Canonical(edge.provider);
+                if (string.Equals(AssemblyNamePolicy.Canonical(edge.consumer), AssemblyNamePolicy.Canonical(edge.provider), StringComparison.OrdinalIgnoreCase))
+                    result.Error("SelfDependency", edge.consumer);
+                if (!seen.Add(key)) result.Error("DuplicateDependency", edge.consumer + " -> " + edge.provider);
+                if (!byName.ContainsKey(AssemblyNamePolicy.Canonical(edge.consumer)) || !byName.ContainsKey(AssemblyNamePolicy.Canonical(edge.provider)))
+                    result.Error("UnknownDependency", edge.consumer + " -> " + edge.provider);
+            }
+            var entryKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (BootstrapEntrypointDeclaration entry in dependencies.bootstrapEntrypoints ?? new BootstrapEntrypointDeclaration[0])
+            {
+                if (entry == null || string.IsNullOrWhiteSpace(entry.consumer) || string.IsNullOrWhiteSpace(entry.provider) ||
+                    string.IsNullOrWhiteSpace(entry.typeName) || string.IsNullOrWhiteSpace(BootstrapIsolationRule.CallSite(entry)) || string.IsNullOrWhiteSpace(entry.reason))
+                {
+                    result.Error("InvalidEntrypoint", "Bootstrap entrypoints require consumer, provider, typeName, method and reason.");
+                    continue;
+                }
+                string consumer = AssemblyNamePolicy.Canonical(entry.consumer);
+                string provider = AssemblyNamePolicy.Canonical(entry.provider);
+                string key = consumer + "\n" + provider + "\n" + entry.typeName + "\n" + BootstrapIsolationRule.CallSite(entry) + "\n" + entry.target;
+                if (!entryKeys.Add(key)) result.Error("DuplicateEntrypoint", entry.consumer + " -> " + entry.method);
+                AssemblyPolicyDefinition consumerDefinition;
+                AssemblyPolicyDefinition providerDefinition;
+                if (!byName.TryGetValue(consumer, out consumerDefinition) || !consumerDefinition.isBootstrap)
+                    result.Error("InvalidEntrypoint", "Entrypoint consumer is not a configured bootstrap assembly: " + entry.consumer);
+                if (!byName.TryGetValue(provider, out providerDefinition) ||
+                    !(providerDefinition.classification == AssemblyClassification.Runtime && providerDefinition.isShadowCapable && !providerDefinition.isBootstrap ||
+                      providerDefinition.classification == AssemblyClassification.NormalHotUpdate && !providerDefinition.isShadowCapable && !providerDefinition.isBootstrap))
+                    result.Error("InvalidEntrypoint", "Entrypoint provider is not a shadow-capable or ordinary hot-update assembly: " + entry.provider);
+                if (BootstrapIsolationRule.CallSite(entry).IndexOf("::", StringComparison.Ordinal) <= 0)
+                    result.Error("InvalidEntrypoint", "Entrypoint callsite must be Type::Method: " + BootstrapIsolationRule.CallSite(entry));
+            }
+            foreach (DeclaredResourceDependency edge in dependencies.resourceDependencies ?? new DeclaredResourceDependency[0])
+                if (edge == null || string.IsNullOrWhiteSpace(edge.bundle) || !byName.ContainsKey(AssemblyNamePolicy.Canonical(edge.assembly)))
+                    result.Error("InvalidResourceDependency", "Resource dependency requires a bundle and a known assembly.");
+            var managedReferenceKeys = new HashSet<string>(StringComparer.Ordinal);
+            var managedReferences = dependencies.serializeReferenceDependencies ?? new DeclaredSerializeReferenceDependency[0];
+            if (dependencies.schemaVersion < 2 && managedReferences.Length != 0)
+                result.Error("DependencySchema", "SerializeReference declarations require dependency schema 2.");
+            foreach (DeclaredSerializeReferenceDependency declaration in managedReferences)
+            {
+                if (declaration == null || string.IsNullOrWhiteSpace(declaration.consumer) ||
+                    string.IsNullOrWhiteSpace(declaration.callSite) || declaration.callSite.IndexOf("::", StringComparison.Ordinal) <= 0 ||
+                    string.IsNullOrWhiteSpace(declaration.evidence) || declaration.concreteTypes == null || declaration.concreteTypes.Length == 0)
+                {
+                    result.Error("InvalidSerializeReferenceDependency", "SerializeReference declarations require a consumer, Type::field callsite, concrete types and evidence.");
+                    continue;
+                }
+                string consumer = AssemblyNamePolicy.Canonical(declaration.consumer);
+                if (!managedReferenceKeys.Add(consumer + "\n" + declaration.callSite))
+                    result.Error("DuplicateSerializeReferenceDependency", declaration.consumer + " -> " + declaration.callSite);
+                AssemblyPolicyDefinition consumerDefinition;
+                if (!byName.TryGetValue(consumer, out consumerDefinition) || !IsRuntime(consumerDefinition))
+                    result.Error("InvalidSerializeReferenceDependency", "SerializeReference consumer is not a runtime assembly: " + declaration.consumer);
+                var concreteTypes = new HashSet<string>(StringComparer.Ordinal);
+                foreach (string concreteType in declaration.concreteTypes)
+                {
+                    string provider = string.Empty;
+                    try { provider = AssemblyNamePolicy.Canonical(ReflectionBindingConfiguration.ProviderOf(concreteType)); }
+                    catch (Exception error) { result.Error("InvalidSerializeReferenceDependency", declaration.callSite + ": " + error.Message); }
+                    if (!concreteTypes.Add(concreteType)) result.Error("DuplicateSerializeReferenceType", declaration.callSite + " -> " + concreteType);
+                    AssemblyPolicyDefinition providerDefinition;
+                    if (string.IsNullOrEmpty(provider) || !byName.TryGetValue(provider, out providerDefinition) || !IsRuntime(providerDefinition))
+                        result.Error("InvalidSerializeReferenceDependency", "SerializeReference concrete type provider is not a runtime assembly: " + concreteType);
+                }
+            }
+        }
+
+        private static void ValidateWhitelist(ShadowPolicyConfiguration policy, ShadowPolicyValidationResult result)
+        {
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (ExtensibilityWhitelistEntry entry in (policy.extensibilityWhitelist == null ? null : policy.extensibilityWhitelist.entries) ?? new ExtensibilityWhitelistEntry[0])
+            {
+                if (entry == null || string.IsNullOrWhiteSpace(entry.provider) || string.IsNullOrWhiteSpace(entry.consumer) ||
+                    string.IsNullOrWhiteSpace(entry.owner) || string.IsNullOrWhiteSpace(entry.reason) || string.IsNullOrWhiteSpace(entry.reviewer) ||
+                    string.IsNullOrWhiteSpace(entry.expires))
+                {
+                    result.Error("InvalidWhitelist", "Extensibility whitelist entries require provider, consumer, owner, reason, reviewer and expiry.");
+                    continue;
+                }
+                string key = AssemblyNamePolicy.Canonical(entry.provider) + "\n" + AssemblyNamePolicy.Canonical(entry.consumer);
+                if (!seen.Add(key)) result.Error("DuplicateWhitelist", entry.provider + " -> " + entry.consumer);
+            }
+        }
+
+        private static void ValidateReflection(AssemblyPolicyDefinition consumer, ShadowPolicyConfiguration policy,
+            IDictionary<string, AssemblyPolicyDefinition> byName, DateTime utcNow, ShadowPolicyValidationResult result)
+        {
+            if (!consumer.entersPlayer || !IsRuntime(consumer)) return;
+            foreach (var acquisition in consumer.managedAcquisitions ?? new ManagedAcquisitionEvidence[0])
+                if (acquisition.requiresContract && !acquisition.verified)
+                    result.Error("UnboundedManagedAcquisition", consumer.name + " " + acquisition.kind + " at " + acquisition.methodSignature +
+                        " operation " + acquisition.operationIndex + " [" + acquisition.methodHash + "] calls " + acquisition.operationSignature +
+                        "; method-level prose cannot authorize this operation.");
+            if (consumer.unknownReflectionDependencies && policy.rejectUnknownReflectionDependencies)
+                result.Error("UnknownReflectionDependency", consumer.name + " contains dynamic/unknown reflection dependencies.");
+            foreach (string callSite in consumer.unknownReflectionCallSites ?? new string[0])
+            {
+                bool declared = !consumer.isBootstrap && policy.dependencies != null &&
+                    (policy.dependencies.runtimeDependencies ?? new DeclaredRuntimeDependency[0]).Any(edge => edge != null &&
+                        string.Equals(AssemblyNamePolicy.Canonical(edge.consumer), consumer.name, StringComparison.OrdinalIgnoreCase) &&
+                        string.Equals(edge.callSite, callSite, StringComparison.Ordinal) && byName.ContainsKey(AssemblyNamePolicy.Canonical(edge.provider)) &&
+                        !string.IsNullOrWhiteSpace(edge.kind) && !string.IsNullOrWhiteSpace(edge.evidence));
+                if (!declared && (consumer.isBootstrap || policy.rejectUnknownReflectionDependencies))
+                    result.Error("UnknownReflectionDependency", consumer.name + " has an unbounded reflection/SerializeReference dependency at " + callSite + ".");
+            }
+            var evidence = new List<ReflectionDependencyEvidence>(consumer.reflectionDependencies ?? new ReflectionDependencyEvidence[0]);
+            foreach (string reference in consumer.reflectionReferences ?? new string[0])
+            {
+                int separator = (reference ?? string.Empty).IndexOf('|');
+                string argument = separator < 0 ? reference : reference.Substring(separator + 1);
+                string assembly = ReflectionDependencyScanner.AssemblyNameFromQualifiedType(argument);
+                if (string.IsNullOrEmpty(assembly) && byName.ContainsKey(AssemblyNamePolicy.Canonical(argument))) assembly = AssemblyNamePolicy.Canonical(argument);
+                evidence.Add(new ReflectionDependencyEvidence { callSite = separator < 0 ? "" : reference.Substring(0, separator), target = argument, provider = assembly });
+            }
+            foreach (ReflectionDependencyEvidence dependency in evidence)
+            {
+                string reference = dependency.callSite + "|" + dependency.target;
+                AssemblyPolicyDefinition providerDefinition = null;
+                bool known = !string.IsNullOrEmpty(dependency.provider) && byName.TryGetValue(dependency.provider, out providerDefinition);
+                if (!string.IsNullOrEmpty(dependency.provider) && byName.TryGetValue(dependency.provider, out providerDefinition))
+                    CheckFilteredReference(consumer, providerDefinition, result);
+                if (consumer.isBootstrap)
+                {
+                    bool stableReference = !string.IsNullOrEmpty(dependency.provider) && byName.TryGetValue(dependency.provider, out providerDefinition) &&
+                        providerDefinition.classification == AssemblyClassification.Reference;
+                    if (!stableReference && !consumer.rawTypeAdmissionDependencies.Contains(dependency) &&
+                        !BootstrapIsolationRule.IsApprovedReflection(consumer, reference, policy, utcNow, dependency.provider, dependency.typeName))
+                        result.Error("BootstrapReflection", "Bootstrap reflection reference is not an approved entrypoint: " + consumer.name + " -> " + reference);
+                    continue;
+                }
+                if (!known && policy.rejectUnknownReflectionDependencies)
+                    result.Error("UnknownReflectionDependency", consumer.name + " reflection reference is not a compiled or declared dependency: " + reference);
+                // Captured framework/reference routing is metadata evidence,
+                // not a business graph edge. Actual Runtime descriptors never
+                // take this exemption, even if named like a framework facade.
+                else if (known && !string.Equals(consumer.name, dependency.provider, StringComparison.OrdinalIgnoreCase) &&
+                    providerDefinition.classification != AssemblyClassification.Reference &&
+                    !HasDeclaredDependency(policy, consumer.name, dependency.provider) &&
+                    !(consumer.references ?? new string[0]).Any(item => string.Equals(AssemblyNamePolicy.Canonical(item), dependency.provider, StringComparison.OrdinalIgnoreCase)))
+                    result.Error("UndeclaredReflectionDependency", consumer.name + " reflection reference requires explicit dependency evidence: " + dependency.provider);
+            }
+        }
+
+        private static bool HasDeclaredDependency(ShadowPolicyConfiguration policy, string consumer, string provider)
+        {
+            if (policy.dependencies == null) return false;
+            if ((policy.dependencies.runtimeDependencies ?? new DeclaredRuntimeDependency[0]).Any(edge => edge != null &&
+                string.Equals(AssemblyNamePolicy.Canonical(edge.consumer), AssemblyNamePolicy.Canonical(consumer), StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(AssemblyNamePolicy.Canonical(edge.provider), AssemblyNamePolicy.Canonical(provider), StringComparison.OrdinalIgnoreCase))) return true;
+            foreach (DeclaredSerializeReferenceDependency declaration in policy.dependencies.serializeReferenceDependencies ?? new DeclaredSerializeReferenceDependency[0])
+            {
+                if (declaration == null || !string.Equals(AssemblyNamePolicy.Canonical(declaration.consumer), AssemblyNamePolicy.Canonical(consumer), StringComparison.OrdinalIgnoreCase)) continue;
+                foreach (string concreteType in declaration.concreteTypes ?? new string[0])
+                    try
+                    {
+                        if (string.Equals(AssemblyNamePolicy.Canonical(ReflectionBindingConfiguration.ProviderOf(concreteType)),
+                            AssemblyNamePolicy.Canonical(provider), StringComparison.OrdinalIgnoreCase)) return true;
+                    }
+                    catch (Exception) { }
+            }
+            return false;
+        }
+
+        private static AssemblyCapability FindCapability(ShadowPolicyConfiguration policy, string provider)
+        {
+            return (policy == null ? new AssemblyCapability[0] : policy.assemblies ?? new AssemblyCapability[0]).FirstOrDefault(item => item != null &&
+                string.Equals(AssemblyNamePolicy.Canonical(item.name), AssemblyNamePolicy.Canonical(provider), StringComparison.OrdinalIgnoreCase));
+        }
+
+        private static bool IsRuntime(AssemblyPolicyDefinition item)
+        {
+            return item.classification == AssemblyClassification.Runtime || item.classification == AssemblyClassification.NormalHotUpdate;
+        }
+
+        private static AssemblyPolicyDefinition FromDescriptor(AssemblyDescriptor descriptor)
+        {
+            var item = new AssemblyPolicyDefinition
+            {
+                name = descriptor == null ? string.Empty : descriptor.name,
+                references = descriptor == null ? new string[0] : descriptor.references ?? new string[0],
+                isShadowCapable = descriptor != null && descriptor.isShadowCapable,
+                isBootstrap = descriptor != null && descriptor.isBootstrap,
+                isPrecompiled = descriptor != null && descriptor.isPrecompiled,
+                capabilityDeclared = descriptor != null && descriptor.capabilityDeclared,
+                classification = descriptor == null ? AssemblyClassification.Runtime : descriptor.classification,
+                entersPlayer = descriptor == null || descriptor.classification == AssemblyClassification.Runtime || descriptor.classification == AssemblyClassification.NormalHotUpdate,
+            };
+            return item;
+        }
+
+        private static IEnumerable<AssemblyPolicyDefinition> ReadDefinitions(string projectRoot, BuildTarget target,
+            ShadowPolicyConfiguration policy, List<string> parseErrors)
+        {
+            bool currentProject = IsCurrentProject(projectRoot);
+            var files = currentProject
+                ? ImportedAssetPaths(".asmdef").ToDictionary(path => path, path => ResolveAssetPath(projectRoot, path), StringComparer.Ordinal)
+                : SourceRoots(projectRoot).SelectMany(root => Directory.GetFiles(root, "*.asmdef", SearchOption.AllDirectories))
+                    .Select(Path.GetFullPath).Distinct(StringComparer.Ordinal).ToDictionary(path => path, path => path, StringComparer.Ordinal);
+            var production = new Dictionary<string, UnityEditor.Compilation.Assembly>(StringComparer.OrdinalIgnoreCase);
+            var compiler = new Dictionary<string, UnityEditor.Compilation.Assembly>(StringComparer.OrdinalIgnoreCase);
+            if (currentProject)
+            {
+                UnityEditor.Compilation.Assembly[] player = CompilationPipeline.GetAssemblies(AssembliesType.PlayerWithoutTestAssemblies);
+                UnityEditor.Compilation.Assembly[] editor = CompilationPipeline.GetAssemblies(AssembliesType.Editor);
+                ShadowHash.Require(player != null && editor != null, "CompilerInventoryUnavailable", "Unity returned no production or Editor assembly inventory.");
+                foreach (var assembly in editor) compiler.Add(AssemblyNamePolicy.Canonical(assembly.name), assembly);
+                foreach (var assembly in player)
+                {
+                    string name = AssemblyNamePolicy.Canonical(assembly.name);
+                    production.Add(name, assembly); compiler[name] = assembly;
+                }
+            }
+            var guidNames = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var file in files)
+            {
+                string guid = currentProject ? AssetDatabase.AssetPathToGUID(file.Key) : ReadMetaGuid(file.Value + ".meta");
+                var asmdef = ReadAsmdef(file.Value);
+                if (asmdef == null || string.IsNullOrWhiteSpace(asmdef.name))
+                {
+                    parseErrors.Add("Malformed or unnamed imported asmdef: " + file.Value);
+                    continue;
+                }
+                if (!string.IsNullOrEmpty(guid))
+                {
+                    if (guidNames.ContainsKey(guid)) parseErrors.Add("Duplicate imported asmdef GUID " + guid + " in " + file.Value);
+                    else guidNames.Add(guid, asmdef.name);
+                }
+            }
+            var controlled = new HashSet<string>((policy.assemblies ?? new AssemblyCapability[0])
+                .Where(item => item != null && (item.isShadowCapable || item.isBootstrap)).Select(item => AssemblyNamePolicy.Canonical(item.name)), StringComparer.OrdinalIgnoreCase);
+            foreach (var file in files.OrderBy(item => item.Key, StringComparer.Ordinal))
+            {
+                var asmdef = ReadAsmdef(file.Value);
+                if (asmdef == null || string.IsNullOrWhiteSpace(asmdef.name)) continue;
+                string name = AssemblyNamePolicy.Canonical(asmdef.name);
+                UnityEditor.Compilation.Assembly compiled;
+                compiler.TryGetValue(name, out compiled);
+                string[] effectiveReferences = compiled == null ? new string[0] :
+                    (compiled.assemblyReferences ?? new UnityEditor.Compilation.Assembly[0]).Select(item => item.name)
+                    .Concat((compiled.compiledAssemblyReferences ?? new string[0]).Select(Path.GetFileNameWithoutExtension)).ToArray();
+                // Package asmdefs can retain references to absent optional
+                // packages. Unity's effective graph is authoritative for those
+                // edges. Project source and configured boundaries remain strict;
+                // every known candidate edge is retained even if unused by Unity.
+                bool strict = !currentProject || file.Key.StartsWith("Assets/", StringComparison.Ordinal) || controlled.Contains(name);
+                string[] references = SelectPreflightReferences((asmdef.references ?? new string[0]).Concat(asmdef.precompiledReferences ?? new string[0]),
+                    guidNames, effectiveReferences, controlled, strict, parseErrors, file.Key);
+                bool entersPlayer = PlatformMatches(asmdef, target, parseErrors, file.Value);
+                bool editorAssembly = (asmdef.includePlatforms ?? new string[0]).Length > 0 &&
+                    asmdef.includePlatforms.All(item => string.Equals(item, "Editor", StringComparison.OrdinalIgnoreCase));
+                AssemblyCapability capability = (policy.assemblies ?? new AssemblyCapability[0]).FirstOrDefault(item => item != null &&
+                    string.Equals(AssemblyNamePolicy.Canonical(item.name), AssemblyNamePolicy.Canonical(asmdef.name), StringComparison.OrdinalIgnoreCase));
+                bool testAssembly = (capability != null && capability.classification == AssemblyClassification.TestOnly) ||
+                    (asmdef.optionalUnityReferences ?? new string[0]).Any(item => string.Equals(item, "TestAssemblies", StringComparison.OrdinalIgnoreCase));
+                yield return new AssemblyPolicyDefinition
+                {
+                    name = asmdef.name,
+                    references = references,
+                    classification = testAssembly ? AssemblyClassification.TestOnly : (editorAssembly ? AssemblyClassification.EditorOnly :
+                        (capability == null ? AssemblyClassification.Runtime : capability.classification)),
+                    entersPlayer = (currentProject ? production.ContainsKey(name) : entersPlayer) && !editorAssembly && !testAssembly,
+                    isShadowCapable = capability != null && capability.isShadowCapable,
+                    isBootstrap = capability != null && capability.isBootstrap,
+                    capabilityDeclared = capability != null && capability.capabilityDeclared,
+                    sourcePath = file.Value,
+                };
+            }
+        }
+
+        internal static string[] SelectPreflightReferences(IEnumerable<string> declaredReferences, IDictionary<string, string> guidNames,
+            IEnumerable<string> compilerReferences, ISet<string> controlledNames, bool strict, List<string> errors, string sourcePath)
+        {
+            var effective = new HashSet<string>((compilerReferences ?? new string[0]).Select(AssemblyNamePolicy.Canonical), StringComparer.OrdinalIgnoreCase);
+            var selected = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (string raw in declaredReferences)
+            {
+                string provider = AssemblyNamePolicy.Canonical(raw);
+                if (string.IsNullOrWhiteSpace(provider)) { errors.Add("Empty asmdef reference in " + sourcePath); continue; }
+                if (provider.StartsWith("GUID:", StringComparison.OrdinalIgnoreCase))
+                {
+                    string guid = provider.Substring(5).Trim();
+                    if (!Regex.IsMatch(guid, @"\A[0-9a-fA-F]{32}\z"))
+                    { errors.Add("Malformed asmdef GUID reference " + raw + " in " + sourcePath); continue; }
+                    if (!guidNames.TryGetValue(guid, out provider))
+                    {
+                        if (strict) errors.Add("Unresolved asmdef GUID reference " + raw + " in " + sourcePath);
+                        continue;
+                    }
+                    provider = AssemblyNamePolicy.Canonical(provider);
+                }
+                if (strict || controlledNames.Contains(provider) || effective.Contains(provider)) selected.Add(provider);
+            }
+            // A compiler-observed edge to a configured boundary cannot disappear
+            // merely because an optional/raw GUID did not resolve in the source map.
+            foreach (string provider in effective.Where(controlledNames.Contains)) selected.Add(provider);
+            return selected.OrderBy(name => name, StringComparer.Ordinal).ToArray();
+        }
+
+        private static string[] ImportedAssetPaths(params string[] extensions)
+        {
+            string[] paths = AssetDatabase.GetAllAssetPaths();
+            ShadowHash.Require(paths != null, "ImportedAssetInventoryUnavailable", "Unity returned no imported asset inventory.");
+            return FilterImportedAssetPaths(paths, extensions);
+        }
+
+        internal static string[] FilterImportedAssetPaths(IEnumerable<string> importedPaths, params string[] extensions)
+        {
+            return importedPaths.Where(path => !string.IsNullOrWhiteSpace(path) &&
+                (path.StartsWith("Assets/", StringComparison.Ordinal) || path.StartsWith("Packages/", StringComparison.Ordinal)) &&
+                extensions.Any(extension => path.EndsWith(extension, StringComparison.OrdinalIgnoreCase)))
+                .Distinct(StringComparer.Ordinal).OrderBy(path => path, StringComparer.Ordinal).ToArray();
+        }
+
+        private static bool IsCurrentProject(string projectRoot)
+        {
+            return string.Equals(Path.GetFullPath(projectRoot).TrimEnd(Path.DirectorySeparatorChar),
+                Directory.GetParent(Application.dataPath).FullName, StringComparison.Ordinal);
+        }
+
+        private static IEnumerable<string> SourceRoots(string projectRoot)
+        {
+            // Only used by detached filesystem fixtures. For the live project,
+            // AssetDatabase owns imported package/local/registry asset identity.
+            var roots = new HashSet<string>(StringComparer.Ordinal)
+            { Path.Combine(projectRoot, "Assets"), Path.Combine(projectRoot, "Packages") };
+            return roots.Where(Directory.Exists).OrderBy(path => path, StringComparer.Ordinal);
+        }
+
+        internal static string ResolveAssetPath(string projectRoot, string assetPath)
+        {
+            string local = Path.IsPathRooted(assetPath) ? assetPath : Path.Combine(projectRoot, assetPath);
+            if (File.Exists(local) || Directory.Exists(local)) return local;
+            if (IsCurrentProject(projectRoot) && assetPath.StartsWith("Packages/", StringComparison.Ordinal))
+            {
+                PackageInfo package = PackageInfo.FindForAssetPath(assetPath);
+                if (package != null && !string.IsNullOrWhiteSpace(package.resolvedPath))
+                    return Path.Combine(package.resolvedPath, assetPath.Substring(("Packages/" + package.name + "/").Length));
+            }
+            return local;
+        }
+
+        private static void ValidateBootstrapResources(string projectRoot, ShadowPolicyConfiguration policy,
+            ShadowPolicyValidationResult result)
+        {
+            ValidateBootstrapResources(CollectBootstrapResourcePaths(projectRoot, result), projectRoot, policy, result);
+        }
+
+        private static string[] CollectBootstrapResourcePaths(string projectRoot, ShadowPolicyValidationResult result)
+        {
+            var resourcePaths = new HashSet<string>(StringComparer.Ordinal);
+            try
+            {
+                EditorBuildSettingsScene scene = (EditorBuildSettings.scenes ?? new EditorBuildSettingsScene[0])
+                    .FirstOrDefault(item => item != null && item.enabled);
+                var roots = new HashSet<string>(StringComparer.Ordinal);
+                if (scene != null && !string.IsNullOrWhiteSpace(scene.path)) roots.Add(scene.path);
+                foreach (UnityEngine.Object asset in PlayerSettings.GetPreloadedAssets() ?? new UnityEngine.Object[0])
+                {
+                    if (asset == null) { result.Error("BootstrapResourceMissing", "PlayerSettings contains a missing preloaded asset."); continue; }
+                    string path = AssetDatabase.GetAssetPath(asset);
+                    if (string.IsNullOrWhiteSpace(path)) throw new InvalidOperationException("A preloaded asset has no physical asset path.");
+                    roots.Add(path);
+                }
+
+                // Every imported Resources asset can be deserialized before the
+                // application-controlled Commit boundary. This inventory uses
+                // AssetDatabase identity rather than a filename convention.
+                foreach (string path in AssetDatabase.GetAllAssetPaths() ?? new string[0])
+                    if (IsResourcesAssetPath(path)) roots.Add(path);
+
+                // Unity and packages may bootstrap objects through ProjectSettings
+                // GUID references (Graphics/Quality/Player settings among others).
+                // Scan the complete finite settings directory so a new Unity field
+                // cannot silently escape this policy.
+                string settingsRoot = Path.Combine(projectRoot, "ProjectSettings");
+                if (Directory.Exists(settingsRoot))
+                    foreach (string settings in Directory.GetFiles(settingsRoot, "*.asset", SearchOption.TopDirectoryOnly))
+                    {
+                        foreach (Match match in Regex.Matches(File.ReadAllText(settings), @"\bguid:\s*([0-9a-fA-F]{32})\b"))
+                        {
+                            string imported = AssetDatabase.GUIDToAssetPath(match.Groups[1].Value);
+                            if (IsInspectablePlayerAssetPath(imported)) roots.Add(imported);
+                        }
+                    }
+
+                AddAddressablesInitializationRoot(roots, result);
+                foreach (string root in roots)
+                {
+                    if (!IsInspectablePlayerAssetPath(root)) continue;
+                    foreach (string dependency in new[] { root }.Concat(AssetDatabase.GetDependencies(root, true) ?? new string[0]))
+                    {
+                        if (!IsInspectablePlayerAssetPath(dependency)) continue;
+                        string physical = ResolveAssetPath(projectRoot, dependency);
+                        if (File.Exists(physical)) resourcePaths.Add(Path.GetFullPath(physical));
+                        else if (dependency == root) result.Error("BootstrapResourceMissing", root);
+                    }
+                }
+            }
+            catch (Exception exception) { result.Error("BootstrapResourceInventoryFailed", exception.Message); }
+            return resourcePaths.OrderBy(path => path, StringComparer.Ordinal).ToArray();
+        }
+
+        private static bool IsResourcesAssetPath(string path)
+        {
+            if (!IsInspectablePlayerAssetPath(path)) return false;
+            string normalized = "/" + path.Replace('\\', '/').Trim('/') + "/";
+            return normalized.IndexOf("/Resources/", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        private static bool IsInspectablePlayerAssetPath(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path) || !(path.StartsWith("Assets/", StringComparison.Ordinal) ||
+                path.StartsWith("Packages/", StringComparison.Ordinal)) || AssetDatabase.IsValidFolder(path)) return false;
+            string normalized = "/" + path.Replace('\\', '/').Trim('/') + "/";
+            // Unity excludes exact Editor folders from Player data. In
+            // particular, package Editor/Resources assets must not become
+            // false bootstrap roots merely because the Editor imports them.
+            return normalized.IndexOf("/Editor/", StringComparison.OrdinalIgnoreCase) < 0;
+        }
+
+        private static void AddAddressablesInitializationRoot(ISet<string> roots, ShadowPolicyValidationResult result)
+        {
+            const string typeName = "UnityEditor.AddressableAssets.Settings.AddressableAssetSettingsDefaultObject, Unity.Addressables.Editor";
+            Type settingsType = Type.GetType(typeName, false);
+            if (settingsType == null) return; // The optional package is not installed.
+            try
+            {
+                PropertyInfo property = settingsType.GetProperty("Settings", BindingFlags.Public | BindingFlags.Static);
+                if (property == null) { result.Error("AddressablesInitializationInventoryFailed", "Addressables Settings property is unavailable."); return; }
+                UnityEngine.Object settings = property.GetValue(null, null) as UnityEngine.Object;
+                if (settings == null) return; // Package installed, project not configured.
+                string path = AssetDatabase.GetAssetPath(settings);
+                if (string.IsNullOrWhiteSpace(path)) result.Error("AddressablesInitializationInventoryFailed", "Addressables settings has no imported asset path.");
+                else roots.Add(path);
+            }
+            catch (Exception exception) { result.Error("AddressablesInitializationInventoryFailed", exception.GetBaseException().Message); }
+        }
+
+        public static void ValidateBootstrapResources(IEnumerable<string> resourcePaths, string projectRoot,
+            ShadowPolicyConfiguration policy, ShadowPolicyValidationResult result)
+        {
+            var scriptAssemblies = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var physicalSources = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            bool currentProject = IsCurrentProject(projectRoot);
+            string[] sourceRoots = currentProject ? new string[0] : SourceRoots(projectRoot).ToArray();
+            string[] serializedAssets = (resourcePaths ?? Enumerable.Empty<string>()).Select(Path.GetFullPath)
+                .Distinct(StringComparer.Ordinal).Where(path => path.EndsWith(".unity", StringComparison.OrdinalIgnoreCase) ||
+                    path.EndsWith(".prefab", StringComparison.OrdinalIgnoreCase) || path.EndsWith(".asset", StringComparison.OrdinalIgnoreCase)).ToArray();
+            var importedAssetPaths = new Dictionary<string, string>(StringComparer.Ordinal);
+            if (currentProject)
+                foreach (string path in AssetDatabase.GetAllAssetPaths() ?? new string[0])
+                {
+                    if (!IsInspectablePlayerAssetPath(path)) continue;
+                    string physical = Path.GetFullPath(ResolveAssetPath(projectRoot, path));
+                    if (!serializedAssets.Contains(physical, StringComparer.Ordinal) || importedAssetPaths.ContainsKey(physical)) continue;
+                    importedAssetPaths.Add(physical, path);
+                }
+            var importedScripts = new Dictionary<string, List<MonoScript>>(StringComparer.OrdinalIgnoreCase);
+            if (currentProject)
+                foreach (MonoScript script in MonoImporter.GetAllRuntimeMonoScripts() ?? new MonoScript[0])
+                {
+                    if (script == null || !AssetDatabase.TryGetGUIDAndLocalFileIdentifier(script, out string scriptGuid, out long scriptId) ||
+                        string.IsNullOrWhiteSpace(scriptGuid)) continue;
+                    string key = ScriptIdentityKey(scriptGuid, scriptId);
+                    if (!importedScripts.TryGetValue(key, out List<MonoScript> matches))
+                    { matches = new List<MonoScript>(); importedScripts.Add(key, matches); }
+                    matches.Add(script);
+                }
+            foreach (string source in sourceRoots.SelectMany(root => Directory.GetFiles(root, "*.cs", SearchOption.AllDirectories)
+                .Concat(Directory.GetFiles(root, "*.dll", SearchOption.AllDirectories))).Distinct(StringComparer.Ordinal))
+            {
+                string guid = ReadMetaGuid(source + ".meta");
+                if (string.IsNullOrEmpty(guid)) continue;
+                if (physicalSources.ContainsKey(guid)) result.Error("AmbiguousScriptGuid", guid);
+                else physicalSources.Add(guid, source);
+            }
+            var capabilities = (policy.assemblies ?? new AssemblyCapability[0]).Where(item => item != null)
+                .GroupBy(item => AssemblyNamePolicy.Canonical(item.name), StringComparer.OrdinalIgnoreCase)
+                .ToDictionary(group => group.Key, group => group.First(), StringComparer.OrdinalIgnoreCase);
+            foreach (string asset in serializedAssets)
+            {
+                string text;
+                try { text = File.ReadAllText(asset); }
+                catch (Exception exception) { result.Error("BootstrapResourceUnreadable", asset + ": " + exception.Message); continue; }
+                if (!text.StartsWith("%YAML", StringComparison.Ordinal) && !text.StartsWith("--- !u!", StringComparison.Ordinal))
+                { result.Error("BootstrapResourceUninspectable", "Bootstrap serialized resource must use text serialization: " + asset); continue; }
+                Match[] scriptMatches = Regex.Matches(text, @"m_Script\s*:\s*\{([^}]*)\}").Cast<Match>()
+                    .Where(match => !Regex.IsMatch(match.Groups[1].Value, @"(?:^|,)\s*fileID\s*:\s*0\s*(?:,|$)")).ToArray();
+                ImportedAssetScriptInventory assetInventory = null;
+                if (currentProject && importedAssetPaths.TryGetValue(asset, out string importedAssetPath) &&
+                    SupportsImportedObjectInventory(importedAssetPath))
+                {
+                    assetInventory = CollectImportedAssetScriptAssemblies(importedAssetPath, asset, result);
+                    foreach (string actualAssembly in assetInventory.Assemblies)
+                    {
+                        AssemblyCapability actualCapability;
+                        if (capabilities.TryGetValue(AssemblyNamePolicy.Canonical(actualAssembly), out actualCapability) &&
+                            actualCapability.isShadowCapable)
+                            result.Error("BootstrapResourceBusinessScript", "Bootstrap resource " + asset +
+                                " deserializes shadow business assembly " + actualAssembly + ".");
+                    }
+                }
+                foreach (Match match in scriptMatches)
+                {
+                    string fields = match.Groups[1].Value;
+                    Match guidMatch = Regex.Match(fields, @"(?:^|,)\s*guid\s*:\s*([0-9a-fA-F]{32})\s*(?:,|$)");
+                    if (!guidMatch.Success) { result.Error("BootstrapScriptGuidInvalid", asset); continue; }
+                    string guid = guidMatch.Groups[1].Value;
+                    Match fileIdMatch = Regex.Match(fields, @"(?:^|,)\s*fileID\s*:\s*(-?[0-9]+)\s*(?:,|$)");
+                    if (!fileIdMatch.Success || !long.TryParse(fileIdMatch.Groups[1].Value, NumberStyles.Integer,
+                        CultureInfo.InvariantCulture, out long fileId))
+                    { result.Error("BootstrapScriptGuidInvalid", asset + " -> " + guid + " has no valid fileID."); continue; }
+                    string scriptKey = ScriptIdentityKey(guid, fileId);
+                    string assembly;
+                    if (!scriptAssemblies.TryGetValue(scriptKey, out assembly))
+                    {
+                        bool resolvedFromImportedScript = false;
+                        if (currentProject)
+                        {
+                            if (importedScripts.TryGetValue(scriptKey, out List<MonoScript> matches))
+                            {
+                                Type[] classes = matches.Select(script => script.GetClass()).Where(type => type != null).Distinct().ToArray();
+                                if (matches.Count != 1 || classes.Length != 1)
+                                { result.Error("BootstrapScriptGuidUnresolved", asset + " -> " + guid + ":" + fileId + " is ambiguous or has no runtime type."); continue; }
+                                assembly = classes[0].Assembly.GetName().Name;
+                                resolvedFromImportedScript = true;
+                            }
+                            if (!resolvedFromImportedScript && assetInventory != null &&
+                                assetInventory.AssembliesByIdentity.TryGetValue(scriptKey, out assembly)) resolvedFromImportedScript = true;
+                        }
+                        if (!resolvedFromImportedScript)
+                        {
+                            string source;
+                            if (currentProject)
+                            {
+                                // Resolve only the actual startup resource's GUID.
+                                // Package Samples~/source~ copies are not imported
+                                // assets and must never create global false collisions.
+                                string imported = AssetDatabase.GUIDToAssetPath(guid);
+                                string physical = string.IsNullOrEmpty(imported) ? null : ResolveAssetPath(projectRoot, imported);
+                                if (FilterImportedAssetPaths(new[] { imported }, ".cs", ".dll").Length != 1 ||
+                                    !string.Equals(AssetDatabase.AssetPathToGUID(imported), guid, StringComparison.OrdinalIgnoreCase) ||
+                                    string.IsNullOrEmpty(physical) || !File.Exists(physical) ||
+                                    !string.Equals(ReadMetaGuid(physical + ".meta"), guid, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    // Some Unity packages serialize a managed-DLL
+                                    // alias GUID/fileID, then remap it to ordinary
+                                    // source MonoScripts during import. Accept that
+                                    // representation only when the complete loaded
+                                    // asset proves at least every YAML script object
+                                    // and every resulting assembly was checked above.
+                                    if (assetInventory != null && assetInventory.Complete && scriptMatches.Length != 0 &&
+                                        assetInventory.ScriptObjectCount >= scriptMatches.Length) continue;
+                                    result.Error("BootstrapScriptGuidUnresolved", asset + " -> " + guid + ":" + fileId +
+                                        " is not an imported runtime MonoScript or physical script/DLL."); continue;
+                                }
+                                physicalSources[guid] = physical;
+                            }
+                            if (!physicalSources.TryGetValue(guid, out source) || !File.Exists(source))
+                            { result.Error("BootstrapScriptGuidUnresolved", asset + " -> " + guid); continue; }
+                            try
+                            {
+                                if (source.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    using (ModuleDefMD module = ModuleDefMD.Load(File.ReadAllBytes(source)))
+                                        assembly = module.Assembly == null ? null : module.Assembly.Name.String;
+                                }
+                                else if (currentProject)
+                                {
+                                    string assetPath = AssetDatabase.GUIDToAssetPath(guid);
+                                    assembly = string.IsNullOrEmpty(assetPath) ? null : AssemblyNamePolicy.Canonical(CompilationPipeline.GetAssemblyNameFromScriptPath(assetPath));
+                                }
+                                else assembly = FindNearestAssemblyDefinition(Path.GetDirectoryName(source), sourceRoots);
+                            }
+                            catch (Exception exception) { result.Error("BootstrapScriptIdentityFailed", source + ": " + exception.Message); continue; }
+                        }
+                        if (string.IsNullOrWhiteSpace(assembly)) { result.Error("BootstrapScriptIdentityUnknown", guid + ":" + fileId); continue; }
+                        scriptAssemblies[scriptKey] = assembly;
+                    }
+                    AssemblyCapability capability;
+                    if (capabilities.TryGetValue(AssemblyNamePolicy.Canonical(assembly), out capability) &&
+                        capability.isShadowCapable)
+                        result.Error("BootstrapResourceBusinessScript", "Bootstrap resource " + asset + " references shadow business assembly " + assembly + ".");
+                }
+                // Unity SerializeReference YAML includes an explicit assembly
+                // name. Business managed references are also bootstrap business
+                // resources even when their owning MonoBehaviour is stable.
+                foreach (Match match in Regex.Matches(text, @"\btype\s*:\s*\{[^}]*\basm\s*:\s*([^,}\r\n]+)"))
+                {
+                    string name = AssemblyNamePolicy.Canonical(match.Groups[1].Value.Trim().Trim('\'', '"'));
+                    AssemblyCapability capability;
+                    if (!capabilities.TryGetValue(name, out capability)) result.Error("UnknownSerializeReferenceAssembly", asset + " -> " + name);
+                    else if (capability.isShadowCapable) result.Error("BootstrapResourceBusinessScript", asset + " has a managed reference to " + name + ".");
+                }
+            }
+        }
+
+        private static string ScriptIdentityKey(string guid, long fileId)
+        {
+            return guid + ":" + fileId.ToString(CultureInfo.InvariantCulture);
+        }
+
+        private sealed class ImportedAssetScriptInventory
+        {
+            internal readonly Dictionary<string, string> AssembliesByIdentity = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            internal readonly HashSet<string> Assemblies = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            internal int ScriptObjectCount;
+            internal bool Complete = true;
+        }
+
+        private static bool SupportsImportedObjectInventory(string assetPath)
+        {
+            // AssetDatabase.LoadAllAssetsAtPath is not a supported way to read
+            // scene objects and emits "Do not use ReadObjectThreaded on scene
+            // objects" in Unity 2022. Scene MonoScript identities are already
+            // resolved from the complete text serialization above.
+            return !string.IsNullOrWhiteSpace(assetPath) &&
+                !assetPath.EndsWith(".unity", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static ImportedAssetScriptInventory CollectImportedAssetScriptAssemblies(string assetPath, string physicalPath,
+            ShadowPolicyValidationResult result)
+        {
+            var inventory = new ImportedAssetScriptInventory();
+            try
+            {
+                UnityEngine.Object[] objects = AssetDatabase.LoadAllAssetsAtPath(assetPath) ?? new UnityEngine.Object[0];
+                foreach (UnityEngine.Object item in objects)
+                {
+                    if (item is GameObject root)
+                        foreach (Component component in root.GetComponentsInChildren<Component>(true))
+                        {
+                            if (component == null)
+                            {
+                                inventory.Complete = false;
+                                result.Error("BootstrapScriptGuidUnresolved", physicalPath + " contains a missing component script.");
+                                continue;
+                            }
+                            if (component is MonoBehaviour behaviour)
+                                AddImportedScriptAssembly(MonoScript.FromMonoBehaviour(behaviour), component.GetType(), physicalPath, inventory, result);
+                        }
+                    if (item is ScriptableObject scriptable)
+                        AddImportedScriptAssembly(MonoScript.FromScriptableObject(scriptable), item.GetType(), physicalPath, inventory, result);
+                }
+            }
+            catch (Exception exception)
+            {
+                inventory.Complete = false;
+                result.Error("BootstrapScriptIdentityFailed", physicalPath + ": " + exception.Message);
+            }
+            return inventory;
+        }
+
+        private static void AddImportedScriptAssembly(MonoScript script, Type type, string physicalPath,
+            ImportedAssetScriptInventory inventory, ShadowPolicyValidationResult result)
+        {
+            if (type == null) { inventory.Complete = false; return; }
+            ++inventory.ScriptObjectCount;
+            string assembly = type.Assembly.GetName().Name;
+            inventory.Assemblies.Add(assembly);
+            if (script == null || !AssetDatabase.TryGetGUIDAndLocalFileIdentifier(script, out string guid, out long fileId) ||
+                string.IsNullOrWhiteSpace(guid)) { inventory.Complete = false; return; }
+            string key = ScriptIdentityKey(guid, fileId);
+            if (inventory.AssembliesByIdentity.TryGetValue(key, out string existing) && !string.Equals(existing, assembly, StringComparison.OrdinalIgnoreCase))
+            {
+                inventory.Complete = false;
+                result.Error("BootstrapScriptGuidUnresolved", physicalPath + " maps " + key + " to both " + existing + " and " + assembly + ".");
+            }
+            else inventory.AssembliesByIdentity[key] = assembly;
+        }
+
+        private static string FindNearestAssemblyDefinition(string directory, string[] roots)
+        {
+            DirectoryInfo current = string.IsNullOrEmpty(directory) ? null : new DirectoryInfo(directory);
+            while (current != null)
+            {
+                string[] definitions = Directory.GetFiles(current.FullName, "*.asmdef", SearchOption.TopDirectoryOnly);
+                if (definitions.Length > 1) throw new InvalidOperationException("Multiple asmdefs in " + current.FullName);
+                if (definitions.Length == 1)
+                {
+                    AsmdefData data = ReadAsmdef(definitions.OrderBy(path => path, StringComparer.Ordinal).First());
+                    return data == null ? null : data.name;
+                }
+                if (roots.Any(root => string.Equals(Path.GetFullPath(root), current.FullName, StringComparison.Ordinal))) break;
+                current = current.Parent;
+            }
+            return null;
+        }
+
+        private static bool PlatformMatches(AsmdefData data, BuildTarget target, List<string> errors, string path)
+        {
+            AssemblyDefinitionPlatform[] platforms = CompilationPipeline.GetAssemblyDefinitionPlatforms();
+            ShadowHash.Require(platforms != null, "PlatformInventoryUnavailable", "Unity asmdef platform inventory is unavailable.");
+            var known = new HashSet<string>(platforms.Select(platform => platform.Name), StringComparer.OrdinalIgnoreCase) { "Editor" };
+            foreach (string platform in (data.includePlatforms ?? new string[0]).Concat(data.excludePlatforms ?? new string[0]))
+                if (platform == null || !known.Contains(platform)) errors.Add("Unknown asmdef platform " + platform + " in " + path);
+            if ((data.includePlatforms ?? new string[0]).Length > 0 && (data.excludePlatforms ?? new string[0]).Length > 0)
+                errors.Add("Asmdef cannot combine includePlatforms and excludePlatforms: " + path);
+            var targetNames = new HashSet<string>(platforms.Where(platform => platform.BuildTarget == target).Select(platform => platform.Name), StringComparer.OrdinalIgnoreCase);
+            bool included = data.includePlatforms == null || data.includePlatforms.Length == 0 || data.includePlatforms.Any(item =>
+                targetNames.Contains(item));
+            bool excluded = (data.excludePlatforms ?? new string[0]).Any(item =>
+                targetNames.Contains(item));
+            return included && !excluded;
+        }
+
+        private static AsmdefData ReadAsmdef(string path)
+        {
+            try { return JsonUtility.FromJson<AsmdefData>(File.ReadAllText(path)); }
+            catch (Exception) { return null; }
+        }
+
+        private static string ReadMetaGuid(string path)
+        {
+            if (!File.Exists(path)) return null;
+            foreach (string line in File.ReadAllLines(path))
+                if (line.StartsWith("guid:", StringComparison.OrdinalIgnoreCase)) return line.Substring(5).Trim();
+            return null;
+        }
+
+        [Serializable]
+        private sealed class AsmdefData
+        {
+            public string name;
+            public string[] references;
+            public string[] precompiledReferences;
+            public string[] includePlatforms;
+            public string[] excludePlatforms;
+            public string[] optionalUnityReferences;
+        }
+    }
+}

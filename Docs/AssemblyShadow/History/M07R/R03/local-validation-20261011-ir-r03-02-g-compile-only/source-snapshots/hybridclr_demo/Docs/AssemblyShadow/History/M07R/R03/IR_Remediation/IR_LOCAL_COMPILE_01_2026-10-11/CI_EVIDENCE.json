@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "finding": "IR-LOCAL-COMPILE-01",
+  "repository": "night-outlook/hybridclr_demo",
+  "basePublication": "a9483a6e2212701cfedcf93faeb0e71ce82b73ca",
+  "sourceCommit": "e36ab83b969f8ba8f9f4cc21fc8bb6c447d7fa2f",
+  "workflow": ".github/workflows/r03-native-scratch-contract.yml",
+  "runId": 38123748124,
+  "conclusion": "success",
+  "sources": {
+    "Tools/AssemblyShadow/R03/native_validation.py": {
+      "gitBlob": "15282b61dda3f61106913ce9e2973cc87d76c23d",
+      "sha256": "bbe544b49d89325f40305045248295caf59ec01e98440ae184d4efbd08729428",
+      "unchangedFromFComp": true
+    },
+    "Tools/AssemblyShadow/R03/test_native_validation_scratch.py": {
+      "gitBlob": "5e58c14b5147ee591dda34d802f78b98d36cbaf7",
+      "sha256": "dfbef375899856b3026584b81524228b53d458de7c0e85e7183f5a0249f05de2"
+    }
+  },
+  "jobs": [
+    {
+      "os": "macos-14",
+      "jobId": 114423667453,
+      "artifactId": 11696566789,
+      "archiveSha256": "c372642ef63451ac9f1529afe512131658b5262290b886deb1ff9630054525f2",
+      "archiveBytes": 1039,
+      "archiveAndContentsVerified": true,
+      "tests": {"passed": 20, "failed": 0, "errors": 0, "skipped": 0, "defaultTempCases": 10, "aliasedTempCases": 10},
+      "logFile": "ci/macos-14-scratch-tests.log",
+      "logSha256": "6a376a539d44e7be30d0cb4948b0348305e709089ea39a04b965692179dacffc",
+      "logBytes": 3033
+    },
+    {
+      "os": "ubuntu-24.04",
+      "jobId": 114423667232,
+      "artifactId": 11696157405,
+      "archiveSha256": "a20423638e9c7d160689b999dd3e176c8268ce3ea5c7e0a5b21c9539c07c8afb",
+      "archiveBytes": 1040,
+      "archiveAndContentsVerified": true,
+      "tests": {"passed": 20, "failed": 0, "errors": 0, "skipped": 0, "defaultTempCases": 10, "aliasedTempCases": 10},
+      "logFile": "ci/ubuntu-24.04-scratch-tests.log",
+      "logSha256": "c6a3e24194f9464d61d3eb9656f4723c40f8641d65491d3c53b159c15324826f",
+      "logBytes": 3033
+    }
+  ],
+  "auditMethod": "Downloaded both original ZIPs through GitHub Connector; verified archive digest/size, both members, provenance source bindings and raw log digest/size; checked 20 named successes and final OK in each log. No skip or inferred result.",
+  "unityLaunched": false,
+  "sdkCopied": false,
+  "runtimeAcceptance": false,
+  "coverage": "Host filesystem admission tests only. Real unchanged production validator; no compiler-script or Player execution."
+}
