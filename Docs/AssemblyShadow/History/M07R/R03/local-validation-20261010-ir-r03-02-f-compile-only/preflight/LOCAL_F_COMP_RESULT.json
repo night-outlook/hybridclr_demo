@@ -1,0 +1,69 @@
+{
+  "kind": "R03IRFCompileOnlyLocalResult",
+  "recordedUtc": "2026-10-11T07:07:33.350110+00:00",
+  "result": "PrerequisiteBlocked",
+  "exitState": "Local Validation -> Primary Implementation",
+  "pins": {
+    "hybridclr_demo": "c5662700452ebc4769b376303e1b812cb42ccc72",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "c386cdd1e8942561f1d1e1fada52d21ca524f174"
+  },
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "exactSourceAuthority": "Passed",
+  "officialSdkIdentity": "Passed read-only version/core/tools/digests",
+  "rootAdmission": "Passed unused/nonaliasing before activity; only preflight created",
+  "hostSdkScratchTests": {
+    "result": "Failed",
+    "run": 10,
+    "Passed": 3,
+    "Failures": 5,
+    "Errors": 2
+  },
+  "nativeReportingHostRegressions": "NotRun after first failed prerequisite",
+  "nativePolicy69": "NotRun",
+  "managedCompile": "NotRun",
+  "managedCompilerInvocations": 0,
+  "nativeCompile": "NotRun",
+  "plannedNativeConfigurations": 55,
+  "actualNativeConfigurations": 0,
+  "sdkScratch": "NotCreated",
+  "installedSdkUnchanged": {
+    "state": "Passed",
+    "files": 2113,
+    "bytes": 109847001
+  },
+  "custody": {
+    "before": "NotRun",
+    "after": "ScopedHistoricalLossStable",
+    "afterExpected": 416844,
+    "afterSurvivors": 339367,
+    "afterHistoricalStillMissing": 77477,
+    "afterProblems": 0,
+    "originalStrictCustody": "Blocked",
+    "historicalProvenanceRestored": false
+  },
+  "CAndEImmutableGitAuthentication": "Passed",
+  "EHistoricalResult": "FAIL / ReturnRequired, unchanged",
+  "sdkVendorBytesUploaded": false,
+  "sdkOrCompilerBinariesUploaded": false,
+  "boundedFixes": [],
+  "retries": 0,
+  "unityLaunches": 0,
+  "playerLaunches": 0,
+  "F14CellRuntimeBatch": "NotRun / not authorized",
+  "runtimeSeal": "Unavailable; compile-only prerequisites, no runtime scheduler",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "ReadyForHumanReviewGate": false,
+  "fullLegacyRegressionAcceptance": false,
+  "pureInterpreterExpansionEnabled": false,
+  "independentFullStageReview": "FAIL",
+  "independentReReview": "NotRun",
+  "absentCompilerAndScratchRoots": [
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03IRCompile-20261010F-runtime01",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/NativeSDK-R03IRCompile-20261010F-runtime01",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03IRCompile-20261010F-runtime01"
+  ]
+}

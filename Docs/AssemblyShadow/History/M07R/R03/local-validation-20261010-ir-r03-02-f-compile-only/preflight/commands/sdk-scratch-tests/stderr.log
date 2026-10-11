@@ -1,0 +1,116 @@
+test_consumed_scratch_is_rejected_without_touching_bytes (test_native_validation_scratch.SdkScratchBoundaryTests.test_consumed_scratch_is_rejected_without_touching_bytes) ... FAIL
+test_evidence_nested_root_is_rejected (test_native_validation_scratch.SdkScratchBoundaryTests.test_evidence_nested_root_is_rejected) ... FAIL
+test_fresh_external_root_is_read_only_admitted (test_native_validation_scratch.SdkScratchBoundaryTests.test_fresh_external_root_is_read_only_admitted) ... ERROR
+test_installed_editor_nested_root_is_rejected (test_native_validation_scratch.SdkScratchBoundaryTests.test_installed_editor_nested_root_is_rejected) ... FAIL
+test_missing_parent_is_rejected (test_native_validation_scratch.SdkScratchBoundaryTests.test_missing_parent_is_rejected) ... FAIL
+test_no_scratch_is_rejected (test_native_validation_scratch.SdkScratchBoundaryTests.test_no_scratch_is_rejected) ... ok
+test_relative_root_is_rejected (test_native_validation_scratch.SdkScratchBoundaryTests.test_relative_root_is_rejected) ... ok
+test_source_nested_root_is_rejected (test_native_validation_scratch.SdkScratchBoundaryTests.test_source_nested_root_is_rejected) ... FAIL
+test_symlink_parent_is_rejected (test_native_validation_scratch.SdkScratchBoundaryTests.test_symlink_parent_is_rejected) ... ok
+test_validation_does_not_change_inputs (test_native_validation_scratch.SdkScratchBoundaryTests.test_validation_does_not_change_inputs) ... ERROR
+
+======================================================================
+ERROR: test_fresh_external_root_is_read_only_admitted (test_native_validation_scratch.SdkScratchBoundaryTests.test_fresh_external_root_is_read_only_admitted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/test_native_validation_scratch.py", line 27, in test_fresh_external_root_is_read_only_admitted
+    self.assertEqual(self.valid(self.scratch), self.scratch)
+                     ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/test_native_validation_scratch.py", line 24, in valid
+    return checked_sdk_scratch(path, self.workspace, self.output, self.contents)
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/native_validation.py", line 34, in checked_sdk_scratch
+    require(raw.is_absolute() and raw == raw.resolve(strict=False),
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            'Canonical absolute nonsymlink SDK scratch path required')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/batch_contract.py", line 13, in require
+    raise ContractError(message)
+batch_contract.ContractError: Canonical absolute nonsymlink SDK scratch path required
+
+======================================================================
+ERROR: test_validation_does_not_change_inputs (test_native_validation_scratch.SdkScratchBoundaryTests.test_validation_does_not_change_inputs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/test_native_validation_scratch.py", line 74, in test_validation_does_not_change_inputs
+    self.valid(self.scratch)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/test_native_validation_scratch.py", line 24, in valid
+    return checked_sdk_scratch(path, self.workspace, self.output, self.contents)
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/native_validation.py", line 34, in checked_sdk_scratch
+    require(raw.is_absolute() and raw == raw.resolve(strict=False),
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            'Canonical absolute nonsymlink SDK scratch path required')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/batch_contract.py", line 13, in require
+    raise ContractError(message)
+batch_contract.ContractError: Canonical absolute nonsymlink SDK scratch path required
+
+======================================================================
+FAIL: test_consumed_scratch_is_rejected_without_touching_bytes (test_native_validation_scratch.SdkScratchBoundaryTests.test_consumed_scratch_is_rejected_without_touching_bytes)
+----------------------------------------------------------------------
+batch_contract.ContractError: Canonical absolute nonsymlink SDK scratch path required
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/test_native_validation_scratch.py", line 42, in test_consumed_scratch_is_rejected_without_touching_bytes
+    with self.assertRaisesRegex(ContractError, 'Fresh absent'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Fresh absent" does not match "Canonical absolute nonsymlink SDK scratch path required"
+
+======================================================================
+FAIL: test_evidence_nested_root_is_rejected (test_native_validation_scratch.SdkScratchBoundaryTests.test_evidence_nested_root_is_rejected)
+----------------------------------------------------------------------
+batch_contract.ContractError: Canonical absolute nonsymlink SDK scratch path required
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/test_native_validation_scratch.py", line 51, in test_evidence_nested_root_is_rejected
+    with self.assertRaisesRegex(ContractError, 'outside source'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "outside source" does not match "Canonical absolute nonsymlink SDK scratch path required"
+
+======================================================================
+FAIL: test_installed_editor_nested_root_is_rejected (test_native_validation_scratch.SdkScratchBoundaryTests.test_installed_editor_nested_root_is_rejected)
+----------------------------------------------------------------------
+batch_contract.ContractError: Canonical absolute nonsymlink SDK scratch path required
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/test_native_validation_scratch.py", line 55, in test_installed_editor_nested_root_is_rejected
+    with self.assertRaisesRegex(ContractError, 'outside source'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "outside source" does not match "Canonical absolute nonsymlink SDK scratch path required"
+
+======================================================================
+FAIL: test_missing_parent_is_rejected (test_native_validation_scratch.SdkScratchBoundaryTests.test_missing_parent_is_rejected)
+----------------------------------------------------------------------
+batch_contract.ContractError: Canonical absolute nonsymlink SDK scratch path required
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/test_native_validation_scratch.py", line 65, in test_missing_parent_is_rejected
+    with self.assertRaisesRegex(ContractError, 'Fresh absent'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Fresh absent" does not match "Canonical absolute nonsymlink SDK scratch path required"
+
+======================================================================
+FAIL: test_source_nested_root_is_rejected (test_native_validation_scratch.SdkScratchBoundaryTests.test_source_nested_root_is_rejected)
+----------------------------------------------------------------------
+batch_contract.ContractError: Canonical absolute nonsymlink SDK scratch path required
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/test_native_validation_scratch.py", line 47, in test_source_nested_root_is_rejected
+    with self.assertRaisesRegex(ContractError, 'outside source'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "outside source" does not match "Canonical absolute nonsymlink SDK scratch path required"
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.011s
+
+FAILED (failures=5, errors=2)

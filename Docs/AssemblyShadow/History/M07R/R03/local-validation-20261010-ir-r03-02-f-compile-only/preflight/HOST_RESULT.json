@@ -1,0 +1,126 @@
+{
+  "state": "Failed",
+  "commands": [
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "--version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-11T07:01:22.473795+00:00",
+      "endUtc": "2026-10-11T07:01:22.485298+00:00",
+      "exitCode": 0,
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRCompile-20261010F-runtime01/commands/environment-version/stdout.log",
+      "stdoutSha256": "917601090ffb73a030e3eaa8b7a01c41400cad4b61366b4218d7756a5733b66c",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRCompile-20261010F-runtime01/commands/environment-version/stderr.log",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "environmentOverrides": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "sourcePins": {
+        "hybridclr_demo": "c5662700452ebc4769b376303e1b812cb42ccc72",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "c386cdd1e8942561f1d1e1fada52d21ca524f174"
+      },
+      "unityOrPlayerLaunch": false
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "--version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-11T07:01:22.485617+00:00",
+      "endUtc": "2026-10-11T07:01:22.529317+00:00",
+      "exitCode": 0,
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRCompile-20261010F-runtime01/commands/clang-version/stdout.log",
+      "stdoutSha256": "76a924f59997fb65051981eb13105e0a8c151f16cd9c3e45e0f7c27ecefdb839",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRCompile-20261010F-runtime01/commands/clang-version/stderr.log",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "environmentOverrides": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "sourcePins": {
+        "hybridclr_demo": "c5662700452ebc4769b376303e1b812cb42ccc72",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "c386cdd1e8942561f1d1e1fada52d21ca524f174"
+      },
+      "unityOrPlayerLaunch": false
+    },
+    {
+      "argv": [
+        "/usr/bin/sw_vers"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-11T07:01:22.529744+00:00",
+      "endUtc": "2026-10-11T07:01:22.542070+00:00",
+      "exitCode": 0,
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRCompile-20261010F-runtime01/commands/macOS-version/stdout.log",
+      "stdoutSha256": "9a27ea4f1e11f7b9a4f7573d8729db037a10ce2e457f97cb73f646a96a550b16",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRCompile-20261010F-runtime01/commands/macOS-version/stderr.log",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "environmentOverrides": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "sourcePins": {
+        "hybridclr_demo": "c5662700452ebc4769b376303e1b812cb42ccc72",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "c386cdd1e8942561f1d1e1fada52d21ca524f174"
+      },
+      "unityOrPlayerLaunch": false
+    },
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03",
+        "-p",
+        "test_native_validation_scratch.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-11T07:01:22.542438+00:00",
+      "endUtc": "2026-10-11T07:01:22.752327+00:00",
+      "exitCode": 1,
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRCompile-20261010F-runtime01/commands/sdk-scratch-tests/stdout.log",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRCompile-20261010F-runtime01/commands/sdk-scratch-tests/stderr.log",
+      "stderrSha256": "57565e1b9eff52d4378fe92ee26c0aebf98a879c984188a2a1e8d9d806c33fd6",
+      "environmentOverrides": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "sourcePins": {
+        "hybridclr_demo": "c5662700452ebc4769b376303e1b812cb42ccc72",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "c386cdd1e8942561f1d1e1fada52d21ca524f174"
+      },
+      "unityOrPlayerLaunch": false
+    }
+  ],
+  "nativeHostSources": [
+    {
+      "path": "tools/r03/runtime01/test_engine_observer.py",
+      "sha256": "a71d2eb80e15a45b474156a61939a1eb409158399be3f180b813970836594800"
+    },
+    {
+      "path": "tools/r03/runtime01/test_object_access.py",
+      "sha256": "cb51d5012a2cec7e745f25d90e21ce2aee6daeac91e70210b50dff6d51190601"
+    },
+    {
+      "path": "tools/r03/runtime01/test_reporting.py",
+      "sha256": "a68ce4c727d0dd81d3ae4ffe92f9a55ffa6df0d02745a2e664e7ed20ea324855"
+    }
+  ],
+  "policyExecutableSha256": null,
+  "unityExecution": false,
+  "vmForReportingAndObserver": "Mocked; not actual Unity engine",
+  "runtimeAcceptance": false
+}

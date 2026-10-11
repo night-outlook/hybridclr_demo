@@ -1,0 +1,29 @@
+{
+  "state": "RootCauseEstablishedWithoutRetry",
+  "recordedUtc": "2026-10-11T07:03:08.468081+00:00",
+  "systemTempDir": "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T",
+  "canonicalSystemTempDir": "/private/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T",
+  "nativeCanonicalPredicateForUnresolvedFixture": false,
+  "testLine16": "self.root = Path(self.temp.name)",
+  "nativeLine34": "raw.is_absolute() and raw == raw.resolve(strict=False)",
+  "testSourceSha256": "d7229803fe26a2a438dd711483411ff0b398ac7861f57b0c537450049a91ee4c",
+  "nativeScriptSha256": "bbe544b49d89325f40305045248295caf59ec01e98440ae184d4efbd08729428",
+  "testGitBlob": "0df1e513a87109ea11a47d59f549aee7bae13a57",
+  "nativeGitBlob": "15282b61dda3f61106913ce9e2973cc87d76c23d",
+  "counts": {
+    "run": 10,
+    "Passed": 3,
+    "Failed": 5,
+    "Errors": 2
+  },
+  "error": "Canonical absolute nonsymlink SDK scratch path required",
+  "scope": "Test fixture default macOS temp alias; actual F scratch path under /Users is canonical. No product compilation result established.",
+  "recommendedPrimaryFix": "Resolve only TemporaryDirectory fixture root before deriving owned test paths; retain explicit symlink/relative/source/evidence/Editor/consumed-root negative controls and production guard. Publish corrected source and a fresh attempt. Do not change TMPDIR to hide failure.",
+  "sourcesChanged": false,
+  "retryInvocations": 0,
+  "managedCompile": "NotRun",
+  "nativeCompile": "NotRun",
+  "sdkScratchCreated": false,
+  "unityLaunches": 0,
+  "playerLaunches": 0
+}
