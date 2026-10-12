@@ -20,6 +20,7 @@ jobs:
           sparse-checkout: |
             /Tools/AssemblyShadow/R03/
             /Tools/AssemblyShadow/R03IR/
+            /Tools/AssemblyShadow/R03Storage/
       - name: K contracts, native transport and exact source hashes
         shell: bash
         run: |
