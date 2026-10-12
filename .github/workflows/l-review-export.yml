@@ -1,0 +1,85 @@
+name: L Primary exact source and K evidence export
+on:
+  push:
+    branches: [codex/connector-smoke-l-review-20261012-52d9]
+    paths: [.github/workflows/l-review-export.yml]
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: d09c8c23291df10a39308df4fb0563b5b9d579f9
+          path: hybridclr_demo
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/
+            /.github/workflows/
+            /Docs/AssemblyShadow/README.md
+            /Docs/AssemblyShadow/Handoff/
+            /Docs/AssemblyShadow/Plan/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/K_RETURN_L_2e61/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-k-after-j-41bc/preflight/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-k-after-j-41bc/batch/players/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-k-after-j-41bc/batch/commands/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-k-after-j-41bc/batch/builds/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-k-after-j-41bc/batch/BATCH_EXECUTION.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-k-after-j-41bc/batch/LOCAL_BATCH_RESULT.json
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: c1a6876a3801a8343123977a0e230558904fd94d
+          path: il2cpp_plus
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: hybridclr_unity
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+          path: hybridclr
+          persist-credentials: false
+      - name: Export tracked permitted source and K raw metadata
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          roots=['hybridclr_demo','il2cpp_plus','hybridclr_unity','hybridclr']
+          out=Path(os.environ['RUNNER_TEMP'])/'l-review-export'
+          out.mkdir()
+          rows=[]; pins={};total=0
+          suffixes={'.cs','.csproj','.cpp','.h','.hpp','.py','.json','.md','.log','.sha256','.yml','.yaml','.txt','.asmdef','.props','.targets'}
+          for name in roots:
+              root=Path(name)
+              pins[name]=subprocess.check_output(['git','-C',name,'rev-parse','HEAD'],text=True).strip()
+              for line in subprocess.check_output(['git','-C',name,'ls-files','-s','-z']).split(b'\0'):
+                  if not line:continue
+                  meta,raw=line.split(b'\t',1);mode,blob,stage=meta.split()
+                  rel=raw.decode();p=root/rel
+                  if mode not in (b'100644',b'100755') or not p.is_file() or p.suffix not in suffixes:continue
+                  if name=='hybridclr_demo' and not rel.startswith(('Tools/AssemblyShadow/','.github/workflows/','Docs/AssemblyShadow/')):continue
+                  data=p.read_bytes()
+                  if len(data)>16*1024*1024:continue
+                  total+=len(data)
+                  assert total<300*1024*1024,'Bounded source export exceeded'
+                  assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==blob.decode()
+                  dest=out/name/rel;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
+                  rows.append({'path':str(dest.relative_to(out)),'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'gitBlob':blob.decode()})
+          (out/'EXPORT.json').write_text(json.dumps({'kind':'LReadOnlySourceAndKEvidence','pins':pins,'files':rows,'bytes':total,'unityLaunched':False,'runtimeAcceptance':False},indent=2)+'\n')
+          print(json.dumps({'pins':pins,'files':len(rows),'bytes':total}))
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: l-primary-source-export
+          path: ${{ runner.temp }}/l-review-export
+          retention-days: 7
+          if-no-files-found: error
+          include-hidden-files: true
