@@ -1,0 +1,123 @@
+{
+  "state": "DiagnosedReadOnly",
+  "recordedUtc": "2026-10-12T03:12:48.652192+00:00",
+  "runtimeResult": "FAIL",
+  "ONFailure": "Two current release processes SIGABRT (-6), FixedBooleanAllocationFailed after native terminal report",
+  "playerDiagnostics": [
+    {
+      "case": "IR-R03-02-release-baseline",
+      "pid": 32291,
+      "runId": "2ea84debb23345888ffacab742dd3936",
+      "exitCode": -6,
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/players/IR-R03-02-release-baseline/Player.log",
+      "logSha256": "256272b5b59c7e83ecbacf7ec8e6e360b1ef0cff6e184558d74dfb6f6fad55c9",
+      "nativeDiagnostics": [
+        "[AssemblyShadowPhase] phase=10 state=0 generation=0",
+        "[AssemblyShadowPhase] phase=20 state=0 generation=0",
+        "[AssemblyShadowPhase] phase=30 state=1 generation=0",
+        "[AssemblyShadowPhase] phase=40 state=2 generation=0",
+        "[AssemblyShadowPhase] phase=50 state=2 generation=0",
+        "[AssemblyShadowPhase] phase=60 state=3 generation=0",
+        "[AssemblyShadowPhase] phase=70 state=4 generation=0",
+        "[AssemblyShadowPhase] phase=80 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=90 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=100 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=110 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=120 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=130 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=140 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=150 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=160 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=170 state=6 generation=1",
+        "[AssemblyShadowFirstFailure] code=21 detail=ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline truncated=0",
+        "[AssemblyShadowPhase] phase=900 state=9 generation=1",
+        "[AssemblyShadowPhase] phase=910 state=9 generation=1",
+        "[AssemblyShadowPhase] phase=990 state=9 generation=1",
+        "[AssemblyShadowTerminalReport] sequence=1 state=9 message=\"ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline\" managedHandlerExecuted=false",
+        "[AssemblyShadowTerminalReport] fatal=FixedBooleanAllocationFailed"
+      ],
+      "rawSemanticState": "Unavailable",
+      "firstTerminalCause": "Captured from current process log; never retroactively attributed to E"
+    },
+    {
+      "case": "IR-R03-02-release-type",
+      "pid": 32303,
+      "runId": "1aaa4d85f2aa4b0e9d359026277a6727",
+      "exitCode": -6,
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/players/IR-R03-02-release-type/Player.log",
+      "logSha256": "4526dcdfd7fabbecf9377434dabcbc37bdba68c45f11cb8c86e1a5dbb6eb7c19",
+      "nativeDiagnostics": [
+        "[AssemblyShadowPhase] phase=10 state=0 generation=0",
+        "[AssemblyShadowPhase] phase=20 state=0 generation=0",
+        "[AssemblyShadowPhase] phase=30 state=1 generation=0",
+        "[AssemblyShadowPhase] phase=40 state=2 generation=0",
+        "[AssemblyShadowPhase] phase=50 state=2 generation=0",
+        "[AssemblyShadowPhase] phase=60 state=3 generation=0",
+        "[AssemblyShadowPhase] phase=70 state=4 generation=0",
+        "[AssemblyShadowPhase] phase=80 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=90 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=100 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=110 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=120 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=130 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=140 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=150 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=160 state=6 generation=1",
+        "[AssemblyShadowPhase] phase=170 state=6 generation=1",
+        "[AssemblyShadowFirstFailure] code=13 detail=R03IR synthetic type-resolution failure (test-only stimulus) truncated=0",
+        "[AssemblyShadowPhase] phase=900 state=9 generation=1",
+        "[AssemblyShadowPhase] phase=910 state=9 generation=1",
+        "[AssemblyShadowPhase] phase=990 state=9 generation=1",
+        "[AssemblyShadowTerminalReport] sequence=1 state=9 message=\"R03IR synthetic type-resolution failure (test-only stimulus)\" managedHandlerExecuted=false",
+        "[AssemblyShadowTerminalReport] fatal=FixedBooleanAllocationFailed"
+      ],
+      "rawSemanticState": "Unavailable",
+      "firstTerminalCause": "Captured from current process log; never retroactively attributed to E"
+    },
+    {
+      "case": "IR-R03-02-off",
+      "pid": 32307,
+      "runId": "b5e7de965d734213984e7083ea4ba5cd",
+      "exitCode": 0,
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/players/IR-R03-02-off/Player.log",
+      "logSha256": "0d0f9fe08181439b65a461382ff4cb126497327acbd0e685ef95cc959297036c",
+      "nativeDiagnostics": [
+        "[AssemblyShadowPhase] phase=10 featureOff=1",
+        "[AssemblyShadowPhase] phase=910 featureOff=1"
+      ],
+      "rawSemanticState": "Recorded",
+      "firstTerminalCause": "Captured from current process log; never retroactively attributed to E"
+    }
+  ],
+  "mostLikelyBoundary": "FixedHandledResult precondition checks or guarded NewPtrFree allocation; catch-all trace does not distinguish which exact check/exception fired",
+  "uncertainty": "Exact Boolean metadata flag/precondition/allocation sub-cause Unavailable without further separately authorized diagnostic source work",
+  "sourceCandidates": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+      "sha256": "e51bf17560a77a4fbede3f5251bcbebb3d68c2e9d2baa79e4ba32fe21b57e482",
+      "lines": "133-159"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/Object.cpp",
+      "sha256": "f8cdb18b4e4f139fa9d58e68204ad9b0fa0999f782d4870ad6a56e8f4ab5bb15",
+      "lines": "346-350"
+    }
+  ],
+  "debugBuildFailure": {
+    "result": "Failed",
+    "summaryErrors": 2,
+    "summaryWarnings": 1,
+    "toolchainText": "failed to allocate space to load shared cache file at %s",
+    "editorLocations": [
+      "Library/Bee/artifacts/MacStandalonePlayerBuildProgram/obiza/ubsqkyqrmlqi.o",
+      "Library/Bee/artifacts/MacStandalonePlayerBuildProgram/ManagedStripped"
+    ],
+    "nativeLinkLog": "Tundra build success; BuildFinished Success text does not override totalErrors2/Failed receipt",
+    "rootCause": "Unknown underlying shared-cache tool/OS failure; no ENOSPC evidence; storage sessions independently Passed",
+    "dependentDebugPlayer": "Blocked, no process launched"
+  },
+  "originalEReclassified": false,
+  "extraPlayerOrStimulus": false,
+  "sourceFixes": [],
+  "retries": 0
+}

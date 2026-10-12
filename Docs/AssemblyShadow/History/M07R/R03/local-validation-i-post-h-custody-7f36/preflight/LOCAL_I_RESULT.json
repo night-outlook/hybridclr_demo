@@ -1,0 +1,104 @@
+{
+  "kind": "R03IRIFinalLocalResult",
+  "recordedUtc": "2026-10-12T03:22:12.542071+00:00",
+  "result": "FAIL",
+  "coreResult": "ReturnRequired",
+  "exitState": "Local Validation -> Primary Implementation",
+  "executionSources": {
+    "hybridclr_demo": "036e329691f06dd9a9ed80bc3e2e0ca77a824884",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "c386cdd1e8942561f1d1e1fada52d21ca524f174"
+  },
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "hostTests": {
+    "scratch": 20,
+    "R03IR": 65,
+    "CCustody": 25,
+    "retainedE": 9,
+    "nativePolicy": 69,
+    "state": "Passed",
+    "nativeReportingAccessObserver": "Passed normal/sanitized prescribed tests"
+  },
+  "GCompilation": "ReusedAuditedCompilation; unchanged runtime sources",
+  "originalSFixtures": 15,
+  "cells": {
+    "total": 14,
+    "Passed": 10,
+    "Failed": 3,
+    "Blocked": 1
+  },
+  "builds": {
+    "attempted": 3,
+    "Passed": 2,
+    "Failed": 1,
+    "debugSummaryErrors": 2
+  },
+  "players": {
+    "planned": 4,
+    "launched": 3,
+    "Passed": 1,
+    "FailedSIGABRT": 2,
+    "Blocked": 1
+  },
+  "debugPlayerExecution": "NotRun due to Failed debug build; cell state Blocked, request/raw/verifier NotRun",
+  "ONSemanticEvidence": "Unavailable for launched release cases; phase/native first-failure logs do not replace raw proof",
+  "newFirstFailures": {
+    "releaseBaseline": {
+      "code": 21,
+      "detail": "ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline"
+    },
+    "releaseType": {
+      "code": 13,
+      "detail": "R03IR synthetic type-resolution failure (test-only stimulus)"
+    },
+    "fatal": "FixedBooleanAllocationFailed",
+    "exactFixedBooleanSubCause": "Unavailable"
+  },
+  "crashReports": {
+    "bound": 2,
+    "pids": [
+      32303,
+      32291
+    ]
+  },
+  "OFF": "Passed Disabled/canary1->2/mask0",
+  "storage": {
+    "diagnostic": "Admitted / Passed",
+    "execution": "Admitted / Passed",
+    "executeInvocations": 1,
+    "wrapperExitCode": 1,
+    "thresholdBytes": 68719476736,
+    "runningFloorBytes": 21474836480,
+    "minimumSampledAvailableBytes": 82768728064,
+    "capacityReserved": false
+  },
+  "custody": {
+    "before": "ScopedHistoricalLossStable",
+    "after": "ScopedHistoricalLossStable",
+    "expected": 416844,
+    "presentVerified": 339367,
+    "historicalStillMissing": 77477,
+    "problems": 0,
+    "originalStrictCustody": "Blocked",
+    "historicalProvenanceRestored": false
+  },
+  "preservation": "E/F/G/H and installed SDK before/after PassedPreservationOnly; current-only snapshots stay current-only",
+  "seal": "Passed bounded evidence",
+  "indexedFiles": 994,
+  "archiveMembers": 995,
+  "sourceFixes": [],
+  "retries": 0,
+  "historicalE": "FAIL unchanged",
+  "historicalF": "PrerequisiteBlocked unchanged",
+  "historicalG": "Passed compile-only unchanged",
+  "historicalH": "PrerequisiteBlocked unchanged",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "ReadyForHumanReviewGate": false,
+  "fullLegacyRegressionAcceptance": false,
+  "pureInterpreterExpansionEnabled": false,
+  "independentFullStageReview": "FAIL",
+  "independentReReview": "NotRun"
+}

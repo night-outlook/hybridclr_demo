@@ -1,0 +1,502 @@
+{
+  "state": "EvidenceCaptured",
+  "startUtc": "2026-10-12T03:14:56.162305+00:00",
+  "endUtc": "2026-10-12T03:14:56.335943+00:00",
+  "reports": [
+    {
+      "caseId": "IR-R03-02-release-type",
+      "pid": 32303,
+      "runId": "1aaa4d85f2aa4b0e9d359026277a6727",
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/commands/0007/command.json",
+      "captureTime": "2026-10-11 20:09:52.0296 -0700",
+      "originalPath": "/Users/ah/Library/Logs/DiagnosticReports/R03Isolated-2026-10-11-200955.000.ips",
+      "copyPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-I-post-H-custody-7f36/diagnostics/R03Isolated-2026-10-11-200955.000.ips",
+      "sha256": "9fea0f094ba58181899d40cc1b54e3e6248b441d90fa3318bb4b3e6ac0c4e06d",
+      "exception": {
+        "codes": "0x0000000000000000, 0x0000000000000000",
+        "rawCodes": [
+          0,
+          0
+        ],
+        "type": "EXC_CRASH",
+        "signal": "SIGABRT"
+      },
+      "imageBindings": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "sha256": "8e2a389aee23a51bde825e1bf88095103eade8ab270b951b5960f8e3ad5548b1",
+          "imageUuid": "16630b36-4c21-385e-94e1-848eebb8e956",
+          "uuidMatched": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib",
+          "sha256": "c199e3bb843477b737db2bfdf9d592e985d602cb03c602ccd8ddd45c47273969",
+          "imageUuid": "048acd9c-c945-34df-8ecd-13c53a80af83",
+          "uuidMatched": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib",
+          "sha256": "417339d1c2d2b7bff00e30ac0f7cf0f25ed8918e1511c2340ca756090bb92c5f",
+          "imageUuid": "d94ff91a-61a7-3ad6-8ed2-6b0288e2a49a",
+          "uuidMatched": true
+        }
+      ],
+      "frames": [
+        {
+          "imageOffset": 38376,
+          "symbol": "__pthread_kill",
+          "symbolLocation": 8,
+          "imageIndex": 4
+        },
+        {
+          "imageOffset": 26840,
+          "symbol": "pthread_kill",
+          "symbolLocation": 296,
+          "imageIndex": 5
+        },
+        {
+          "imageOffset": 493124,
+          "symbol": "abort",
+          "symbolLocation": 148,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 2335188,
+          "imageIndex": 2
+        },
+        {
+          "imageOffset": 847156,
+          "sourceLine": 158,
+          "sourceFile": "AssemblyShadowTerminalReporting.h",
+          "symbol": "il2cpp::vm::assembly_shadow_reporting::FixedHandledResult()",
+          "imageIndex": 2,
+          "symbolLocation": 344
+        },
+        {
+          "imageOffset": 800236,
+          "sourceLine": 196,
+          "sourceFile": "AssemblyShadowTerminalReporting.h",
+          "symbol": "il2cpp::vm::assembly_shadow_reporting::TryHandle(MethodInfo const*, void*, void**, Il2CppObject*&)",
+          "imageIndex": 2,
+          "symbolLocation": 236
+        },
+        {
+          "imageOffset": 799680,
+          "sourceLine": 608,
+          "sourceFile": "Runtime.cpp",
+          "symbol": "il2cpp::vm::Runtime::Invoke(MethodInfo const*, void*, void**, Il2CppException**)",
+          "imageIndex": 2,
+          "symbolLocation": 84
+        },
+        {
+          "imageOffset": 14100488,
+          "symbol": "scripting_method_invoke(ScriptingMethodPtr, ScriptingObjectPtr, ScriptingArguments&, ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 184,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138992,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 164,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138716,
+          "symbol": "bool ScriptingInvocation::Invoke<bool>(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 20,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14972128,
+          "symbol": "Scripting::UnityEngine::DebugProxy::CallOverridenDebugHandler(ScriptingObjectPtr, Scripting::UnityEngine::ObjectProxy, ScriptingExceptionPtr*)",
+          "symbolLocation": 112,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14139096,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 268,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14973100,
+          "symbol": "Scripting::UnityEngine::LightProbesProxy::Internal_CallLightProbesUpdatedFunction(ScriptingExceptionPtr*)",
+          "symbolLocation": 76,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 15125772,
+          "symbol": "EnlightenRuntimeManager::SyncRuntimeDataExplicit(int, core::basic_string<char, core::StringStorageDefault<char>> const&, EnlightenSceneMapping const&, LightProbes::LightProbeData const&)",
+          "symbolLocation": 508,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 15125104,
+          "symbol": "EnlightenRuntimeManager::SyncRuntimeData(int)",
+          "symbolLocation": 264,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 7126060,
+          "symbol": "SceneLoadedAfterAwake(int, AwakeFromLoadQueue&, SceneLoadingMode)",
+          "symbolLocation": 416,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9589016,
+          "symbol": "LoadSceneOperation::CompleteAwakeSequence()",
+          "symbolLocation": 532,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9587860,
+          "symbol": "LoadSceneOperation::CompleteLoadFirstScene()",
+          "symbolLocation": 36,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9587472,
+          "symbol": "LoadSceneOperation::IntegrateMainThread()",
+          "symbolLocation": 260,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9592132,
+          "symbol": "PreloadManager::UpdatePreloadingSingleStep(PreloadManager::UpdatePreloadingFlags, int)",
+          "symbolLocation": 312,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9594424,
+          "symbol": "PreloadManager::WaitForAllAsyncOperationsToComplete()",
+          "symbolLocation": 196,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9880400,
+          "symbol": "RuntimeSceneManager::LoadScene(core::basic_string<char, core::StringStorageDefault<char>> const&, core::basic_string<char, core::StringStorageDefault<char>> const&, core::basic_string<char, core::StringStorageDefault<char>> const&, UnityGUID const&, int, InternalLoadSceneParameters const&)",
+          "symbolLocation": 72,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9361556,
+          "symbol": "PlayerStartFirstScene(bool)",
+          "symbolLocation": 796,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9362052,
+          "symbol": "PlayerLoadFirstScene(bool)",
+          "symbolLocation": 180,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 26992044,
+          "symbol": "ContinueSetupUnityPlayer(bool)",
+          "symbolLocation": 1632,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 26993868,
+          "symbol": "PlayerMain(int, char const**)",
+          "symbolLocation": 904,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 130560,
+          "symbol": "start",
+          "symbolLocation": 6992,
+          "imageIndex": 7
+        }
+      ],
+      "identityBinding": "Fresh PID/time/request plus all three binary Mach-O UUIDs",
+      "coverage": "Observed engine debug-handler/LightProbes context, not an added/unhandled-engine qualification test"
+    },
+    {
+      "caseId": "IR-R03-02-release-baseline",
+      "pid": 32291,
+      "runId": "2ea84debb23345888ffacab742dd3936",
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/commands/0006/command.json",
+      "captureTime": "2026-10-11 20:09:51.5656 -0700",
+      "originalPath": "/Users/ah/Library/Logs/DiagnosticReports/R03Isolated-2026-10-11-200955.ips",
+      "copyPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03IRLocal-I-post-H-custody-7f36/diagnostics/R03Isolated-2026-10-11-200955.ips",
+      "sha256": "88160b7704a47d3b00a6a67a516af9a9c21bdcb1078ca5ec285da5a0ae964a66",
+      "exception": {
+        "codes": "0x0000000000000000, 0x0000000000000000",
+        "rawCodes": [
+          0,
+          0
+        ],
+        "type": "EXC_CRASH",
+        "signal": "SIGABRT"
+      },
+      "imageBindings": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "sha256": "8e2a389aee23a51bde825e1bf88095103eade8ab270b951b5960f8e3ad5548b1",
+          "imageUuid": "16630b36-4c21-385e-94e1-848eebb8e956",
+          "uuidMatched": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib",
+          "sha256": "c199e3bb843477b737db2bfdf9d592e985d602cb03c602ccd8ddd45c47273969",
+          "imageUuid": "048acd9c-c945-34df-8ecd-13c53a80af83",
+          "uuidMatched": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib",
+          "sha256": "417339d1c2d2b7bff00e30ac0f7cf0f25ed8918e1511c2340ca756090bb92c5f",
+          "imageUuid": "d94ff91a-61a7-3ad6-8ed2-6b0288e2a49a",
+          "uuidMatched": true
+        }
+      ],
+      "frames": [
+        {
+          "imageOffset": 38376,
+          "symbol": "__pthread_kill",
+          "symbolLocation": 8,
+          "imageIndex": 4
+        },
+        {
+          "imageOffset": 26840,
+          "symbol": "pthread_kill",
+          "symbolLocation": 296,
+          "imageIndex": 5
+        },
+        {
+          "imageOffset": 493124,
+          "symbol": "abort",
+          "symbolLocation": 148,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 2335188,
+          "imageIndex": 2
+        },
+        {
+          "imageOffset": 847156,
+          "sourceLine": 158,
+          "sourceFile": "AssemblyShadowTerminalReporting.h",
+          "symbol": "il2cpp::vm::assembly_shadow_reporting::FixedHandledResult()",
+          "imageIndex": 2,
+          "symbolLocation": 344
+        },
+        {
+          "imageOffset": 800236,
+          "sourceLine": 196,
+          "sourceFile": "AssemblyShadowTerminalReporting.h",
+          "symbol": "il2cpp::vm::assembly_shadow_reporting::TryHandle(MethodInfo const*, void*, void**, Il2CppObject*&)",
+          "imageIndex": 2,
+          "symbolLocation": 236
+        },
+        {
+          "imageOffset": 799680,
+          "sourceLine": 608,
+          "sourceFile": "Runtime.cpp",
+          "symbol": "il2cpp::vm::Runtime::Invoke(MethodInfo const*, void*, void**, Il2CppException**)",
+          "imageIndex": 2,
+          "symbolLocation": 84
+        },
+        {
+          "imageOffset": 14100488,
+          "symbol": "scripting_method_invoke(ScriptingMethodPtr, ScriptingObjectPtr, ScriptingArguments&, ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 184,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138992,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 164,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14138716,
+          "symbol": "bool ScriptingInvocation::Invoke<bool>(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 20,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14972128,
+          "symbol": "Scripting::UnityEngine::DebugProxy::CallOverridenDebugHandler(ScriptingObjectPtr, Scripting::UnityEngine::ObjectProxy, ScriptingExceptionPtr*)",
+          "symbolLocation": 112,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14139096,
+          "symbol": "ScriptingInvocation::Invoke(ScriptingExceptionPtr*, bool)",
+          "symbolLocation": 268,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 14973100,
+          "symbol": "Scripting::UnityEngine::LightProbesProxy::Internal_CallLightProbesUpdatedFunction(ScriptingExceptionPtr*)",
+          "symbolLocation": 76,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 15125772,
+          "symbol": "EnlightenRuntimeManager::SyncRuntimeDataExplicit(int, core::basic_string<char, core::StringStorageDefault<char>> const&, EnlightenSceneMapping const&, LightProbes::LightProbeData const&)",
+          "symbolLocation": 508,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 15125104,
+          "symbol": "EnlightenRuntimeManager::SyncRuntimeData(int)",
+          "symbolLocation": 264,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 7126060,
+          "symbol": "SceneLoadedAfterAwake(int, AwakeFromLoadQueue&, SceneLoadingMode)",
+          "symbolLocation": 416,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9589016,
+          "symbol": "LoadSceneOperation::CompleteAwakeSequence()",
+          "symbolLocation": 532,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9587860,
+          "symbol": "LoadSceneOperation::CompleteLoadFirstScene()",
+          "symbolLocation": 36,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9587472,
+          "symbol": "LoadSceneOperation::IntegrateMainThread()",
+          "symbolLocation": 260,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9592132,
+          "symbol": "PreloadManager::UpdatePreloadingSingleStep(PreloadManager::UpdatePreloadingFlags, int)",
+          "symbolLocation": 312,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9594424,
+          "symbol": "PreloadManager::WaitForAllAsyncOperationsToComplete()",
+          "symbolLocation": 196,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9880400,
+          "symbol": "RuntimeSceneManager::LoadScene(core::basic_string<char, core::StringStorageDefault<char>> const&, core::basic_string<char, core::StringStorageDefault<char>> const&, core::basic_string<char, core::StringStorageDefault<char>> const&, UnityGUID const&, int, InternalLoadSceneParameters const&)",
+          "symbolLocation": 72,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9361556,
+          "symbol": "PlayerStartFirstScene(bool)",
+          "symbolLocation": 796,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 9362052,
+          "symbol": "PlayerLoadFirstScene(bool)",
+          "symbolLocation": 180,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 26992044,
+          "symbol": "ContinueSetupUnityPlayer(bool)",
+          "symbolLocation": 1632,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 26993868,
+          "symbol": "PlayerMain(int, char const**)",
+          "symbolLocation": 904,
+          "imageIndex": 1
+        },
+        {
+          "imageOffset": 130560,
+          "symbol": "start",
+          "symbolLocation": 6992,
+          "imageIndex": 7
+        }
+      ],
+      "identityBinding": "Fresh PID/time/request plus all three binary Mach-O UUIDs",
+      "coverage": "Observed engine debug-handler/LightProbes context, not an added/unhandled-engine qualification test"
+    }
+  ],
+  "unavailableForPids": [],
+  "operations": [
+    {
+      "argv": [
+        "/usr/bin/dwarfdump",
+        "--uuid",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated"
+      ],
+      "startUtc": "2026-10-12T03:14:56.168403+00:00",
+      "endUtc": "2026-10-12T03:14:56.202949+00:00",
+      "exitCode": 0,
+      "stdout": "UUID: 16630B36-4C21-385E-94E1-848EEBB8E956 (arm64) /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/dwarfdump",
+        "--uuid",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib"
+      ],
+      "startUtc": "2026-10-12T03:14:56.203176+00:00",
+      "endUtc": "2026-10-12T03:14:56.211116+00:00",
+      "exitCode": 0,
+      "stdout": "UUID: 048ACD9C-C945-34DF-8ECD-13C53A80AF83 (arm64) /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/dwarfdump",
+        "--uuid",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib"
+      ],
+      "startUtc": "2026-10-12T03:14:56.219798+00:00",
+      "endUtc": "2026-10-12T03:14:56.227496+00:00",
+      "exitCode": 0,
+      "stdout": "UUID: D94FF91A-61A7-3AD6-8ED2-6B0288E2A49A (arm64) /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/dwarfdump",
+        "--uuid",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated"
+      ],
+      "startUtc": "2026-10-12T03:14:56.265253+00:00",
+      "endUtc": "2026-10-12T03:14:56.275692+00:00",
+      "exitCode": 0,
+      "stdout": "UUID: 16630B36-4C21-385E-94E1-848EEBB8E956 (arm64) /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/dwarfdump",
+        "--uuid",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib"
+      ],
+      "startUtc": "2026-10-12T03:14:56.275865+00:00",
+      "endUtc": "2026-10-12T03:14:56.283631+00:00",
+      "exitCode": 0,
+      "stdout": "UUID: 048ACD9C-C945-34DF-8ECD-13C53A80AF83 (arm64) /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/dwarfdump",
+        "--uuid",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib"
+      ],
+      "startUtc": "2026-10-12T03:14:56.290794+00:00",
+      "endUtc": "2026-10-12T03:14:56.301997+00:00",
+      "exitCode": 0,
+      "stdout": "UUID: D94FF91A-61A7-3AD6-8ED2-6B0288E2A49A (arm64) /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib\n",
+      "stderr": ""
+    }
+  ],
+  "newPlayerLaunches": 0,
+  "runtimeEvidence": "Both current release failures reach FixedHandledResult from TryHandle/Runtime::Invoke/engine debug-handler; bounded Boolean allocation fallback aborts. Exact precondition/allocation sub-cause remains Unavailable; no retrospective E attribution."
+}
