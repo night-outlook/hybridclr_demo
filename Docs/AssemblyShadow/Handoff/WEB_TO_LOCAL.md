@@ -15,7 +15,7 @@ All owners use branch `codex/assembly-shadow-r01b-h1`; actual owning checkout `/
 
 | Repository | Required binding |
 | --- | --- |
-| `night-outlook/hybridclr_demo` | Final full SHA in Primary message; must be **Docs/CI-only descendant** of actual K executable source `02e416ee61d2a4a6fea88bf65176f429f9482947` |
+| `night-outlook/hybridclr_demo` | Final full SHA in Primary message; must be **Docs/CI-only descendant** of actual K executable source `df88f6dcee93c5caab7ed4fbd040657ddbf10f6f` |
 | `night-outlook/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
 | `night-outlook/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
 | `night-outlook/il2cpp_plus` | `0fa7b4fef94062e54f186fda938dd8a3d2304b7e` |
@@ -28,7 +28,7 @@ J Local **PASS within its read-only collection/native syntax scope**: 55 Local o
 
 The published native Boolean reserve creates and pins a physical true Boolean during healthy runtime, retrieving it without terminal allocation or GC-handle actions. Real GC survival, Player linking/startup and ON behavior remain unproved despite J compilation.
 
-The **new** K executable source has [managed Player API CI 38228046199](https://github.com/night-outlook/hybridclr_demo/actions/runs/38228046199) and [build-helper API CI 38228046147](https://github.com/night-outlook/hybridclr_demo/actions/runs/38228046147) Passed. Independently [K host CI 38231386680](https://github.com/night-outlook/hybridclr_demo/actions/runs/38231386680) passed **76 tests and sanitizer-enabled native snapshot** on both macOS/Ubuntu; it is not real Unity or installed-SDK validation. Historical R03 Primary evolution workflow 38228046222 **Failed** separate prior lifetime coverage and has not been waived.
+The **new** K executable source has [managed Player API CI 38228046199](https://github.com/night-outlook/hybridclr_demo/actions/runs/38228046199) and [build-helper API CI 38228046147](https://github.com/night-outlook/hybridclr_demo/actions/runs/38228046147) Passed. Independently [K host CI 38231948391](https://github.com/night-outlook/hybridclr_demo/actions/runs/38231948391) passed **78 tests and sanitizer-enabled native snapshot** on both macOS/Ubuntu; it is not real Unity or installed-SDK validation. Historical R03 Primary evolution workflow 38228046222 **Failed** separate prior lifetime coverage and has not been waived.
 
 ## Mandatory K gates and source-independent preservation
 
