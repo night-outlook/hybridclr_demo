@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "kind": "PrimaryLCompletionAudit",
+  "result": "PassedWithinSourceHostAndCompilationScope",
+  "owner": "Primary Implementation",
+  "originalKPublication": "2b5cf60363dc7c895deaad26bdaf7af70cde612a",
+  "originalKResult": "FAIL",
+  "originalKScope": {"cells":18,"passed":11,"failed":7,"buildsPassed":3,"playersLaunched":5,"offPassed":true,"onSemanticFailedAtPhase":170,"engineRawBytes":0,"beeCaptures":"Unavailable"},
+  "nativePin": "c1a6876a3801a8343123977a0e230558904fd94d",
+  "currentPythonSourceAnchor": "04a3cd93663f9a4e877a5524d9c22ee5a3fe0131",
+  "newFilesOrChanges": ["Tools/AssemblyShadow/R03IR/bee_observation.py","Tools/AssemblyShadow/R03IR/test_k_contracts.py","Tools/AssemblyShadow/R03IR/test_factory_receipt_binding.py"],
+  "sourceExport": {
+    "runId":38261057104,"artifactId":11753060072,
+    "zipSha256":"cafc93df09f14176ad540f6c0e28e6922074003d61e715da8745dc0e42cdc120",
+    "verifiedFiles":2266,"verifiedBytes":248896761,
+    "pins":{"hybridclr_demo":"d09c8c23291df10a39308df4fb0563b5b9d579f9","hybridclr":"4b2774b066cfc6afd77a8c8aded6bda7ea574f55","hybridclr_unity":"948c0e3b4f8891481301770115e8ba4945eea6de","il2cpp_plus":"c1a6876a3801a8343123977a0e230558904fd94d"},
+    "verification":"Exact ZIP inventory, every declared size, SHA256 and Git blob, then selected raw K and actual source review",
+    "fullKArchiveAudit":false
+  },
+  "officialSdk": {
+    "runId":38243672034,"jobId":114792169426,"artifactId":11743309280,
+    "zipSha256":"dd2f497e9dc2c0687387f8aaf2b4e0e0163ce156f68dbcffb7664a644e885f00",
+    "demoSource":"4f7c2ee279a244b082bb8a9764ec523018320700",
+    "nativeSource":"c1a6876a3801a8343123977a0e230558904fd94d",
+    "verifiedManifestFiles":209,"verifiedNativeCommandReceiptsAndStreams":56,
+    "nativeSyntaxConfigurations":55,
+    "profiles":{"candidate":11,"debug":11,"probe-off":11,"diagnostics-off":11,"feature-off":11},
+    "ownedNativeInputHashesVerified":42,"ownedManagedInputHashesVerified":209,
+    "managedExitCodes":{"HybridCLR.Runtime":0,"Unity.HybridCLR.AssemblyShadow.CodeGen":0,"HybridCLR.Editor":0,"R03Build":0,"R03TerminalPlayerApi":0,"OriginalUnsignedCounts":1},
+    "expectedNegative":{"compilerErrors":["CS0266","CS0266"],"outputDllProduced":false},
+    "helperSha256":"94fce53aacec2818631c540baa38cebfa6ce5ace1b539a62d42977210f156c06",
+    "nativeBaselibWarningOccurrences":616,
+    "unityOrPlayerExecution":false,
+    "currentCompiledBytesUnchangedByPythonContractCorrection":true
+  },
+  "freshHostCI": {
+    "runId":38262556820,"source":"04a3cd93663f9a4e877a5524d9c22ee5a3fe0131",
+    "testsPerOS":91,"newReceiptCases":12,"factoryLeaseAssertionsWithinOneTest":17,
+    "failures":0,"errors":0,"skips":0,"additionalNativeSnapshotSanitizer":"Passed",
+    "ubuntu":{"jobId":114856503484,"artifactId":11753342178,"zipSha256":"beb47e998e202f7cb7bf5288e5ae82dda7cad823398046f5d1be6c01962682e8","hostLogSha256":"e81fb60d1827d1c4022c0be762ba2fa73e23628f4dc816d3541e5b1d72aa2484"},
+    "macos":{"jobId":114856502923,"artifactId":11752947459,"zipSha256":"5dc4cfb0e310a518873f7f4bd2c2e9731fa108b43e9f2b96f0aabab18bea0e9c","hostLogSha256":"54980f89eddfad95e8f6299d390a116a5244949dd85459a4ead2d01cb406628a"},
+    "artifactMemberAndPublishedSourceBindingsAuthenticated":true,
+    "liveUnityMonoFactoryIntegration":false
+  },
+  "containerNative": {
+    "platform":"Linux; not the Local Mac",
+    "outerInvocationsPassed":7,
+    "suites":["test_terminal_rejection.py strict and ASan/UBSan","test_reporting.py strict and ASan/UBSan","test_object_access.py","test_engine_observer.py strict and ASan/UBSan"],
+    "concurrentRejectionIterationsPerConfig":4000,"rejectionExpectedAbortModes":["ordinary-unhandled","missing","corrupt"],
+    "reportingIterationsPerConfig":20000,"reportingIdentityNegatives":18,"reportingExpectedAbortModes":18,
+    "separateNativePolicyChecks":69,
+    "actualFunctionsWithMockedVmGcMetadata":true,"realGcOrFinalizerRun":false,"unityRun":false
+  },
+  "preservation":{"localOwnedReportsChanged":false,"historicalCheckpointsChanged":false,"storagePolicyChanged":false,"ordinaryBusinessGuardsRelaxed":false,"strictHistoricalCustody":"Blocked"},
+  "limits":["No whole K archive/seal audit here","No current Local SDK or custody rescan","No corrected real Player runtime","Unexported vendor reference bytes remain inventory-bound","C++ exception allocation is not claimed to be absent","Factory proxy tested in .NET8 synthetic registry, not real Unity Mono","Shared exception is not per-throw stack provenance"],
+  "retention":"Original CI ZIPs are retention-limited. Both complete current host logs are retained losslessly under ci; official compiler identities and matrix audit are retained here, with fresh complete Local compiler streams required by L.",
+  "acceptance":{"R03Accepted":false,"H2Passed":false,"qualificationApproved":false,"ReadyForHumanReviewGate":false,"fullLegacyRegressionAcceptance":false,"pureInterpreterExpansionEnabled":false}
+}

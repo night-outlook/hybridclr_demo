@@ -1,0 +1,9 @@
+{
+  "format":"LosslessOriginalCIHostLogsV1",
+  "sourceCommit":"04a3cd93663f9a4e877a5524d9c22ee5a3fe0131",
+  "runId":38262556820,
+  "base":{"path":"ubuntu-host.log.gz","encoding":"gzip","compressedBytes":2351,"compressedSha256":"e9d02ca4f1a6c6282e4f2b27fedece3a31dfce23475044e2ca98e1043c1ead49","originalBytes":13067,"originalSha256":"e81fb60d1827d1c4022c0be762ba2fa73e23628f4dc816d3541e5b1d72aa2484","artifactId":11753342178},
+  "macos":{"encoding":"ExactSingleReplacementAgainstUncompressedBase","oldUtf8":"Ran 91 tests in 19.438s\n","newUtf8":"Ran 91 tests in 10.082s\n","expectedOccurrences":1,"originalBytes":13067,"originalSha256":"54980f89eddfad95e8f6299d390a116a5244949dd85459a4ead2d01cb406628a","artifactId":11752947459},
+  "provenance":"Both original artifact ZIPs were independently downloaded and verified before comparison. Their complete host.log bytes differ only in this exact elapsed-time line. Decompression plus the single recorded replacement reconstructs the original Mac log, not a normalized or fabricated log. Verify the full original hashes; never infer a result from the delta alone.",
+  "testsEach":91,"runtimeAcceptance":false
+}

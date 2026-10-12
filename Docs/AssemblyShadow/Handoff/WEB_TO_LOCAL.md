@@ -1,65 +1,71 @@
-# Primary Implementation → Local Validation — K source-bound consolidated runtime batch
+# Primary Implementation -> Local Validation — L after K failures
 
-**One fresh K attempt, strictly conditional.** This is NOT permission to rerun I/J or to launch Unity before all historical source/fixture/host/complete original-C custody/current-code compilation and storage prerequisites pass. K is not H1/H2 or a Human Review Gate. Execution may occur **once only** using the prescribed original storage-checked wrapper.
+**Authorize ONE fresh L consolidated validation, strictly conditional on all shared gates, both official compiler results and two separate storage admissions.** Do not resume/retry K or use its apps/output roots. L is an attempt identifier, not a Human Review Gate. No nontrivial source changes belong to Local.
 
 ## Read first
 
-1. `Docs/AssemblyShadow/README.md`, `Plan/CURRENT_STATUS.md`, this `Handoff/WEB_TO_LOCAL.md`.
-2. Local-owned factual `Handoff/LOCAL_VALIDATION.md`, `Handoff/RETURN_TO_WEB.md`, authentic [J PASS checkpoint](../History/M07R/R03/local-validation-j-reserve-6f02/README.md), original I FAIL, E FAIL and earlier historical outcomes.
-3. [Primary J/K reconciliation](../History/M07R/R03/IR_Remediation/J_K_RECONCILIATION_2026-10-12/PRIMARY_RECONCILIATION.md) and **[K exact procedure](../History/M07R/R03/IR_Remediation/J_K_RECONCILIATION_2026-10-12/K_BATCH_PROCEDURE.md)**.
-4. G/J official compile receipts, original S immutable fixtures/seal, original C frozen 416844-roster and scoped-loss disposition, retained R/Q and independent R03 FAIL/Human Review Gates.
+1. `Docs/AssemblyShadow/README.md`, `Plan/CURRENT_STATUS.md`, this handoff.
+2. Local-owned [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md) and [RETURN_TO_WEB.md](RETURN_TO_WEB.md), immutable [K FAIL checkpoint](../History/M07R/R03/local-validation-k-after-j-41bc/README.md).
+3. [Primary reconciliation](../History/M07R/R03/IR_Remediation/K_RETURN_L_2e61/PRIMARY_RECONCILIATION.md), [independent audit](../History/M07R/R03/IR_Remediation/K_RETURN_L_2e61/COMPLETION_AUDIT.json), **[full L command/evidence procedure](../History/M07R/R03/IR_Remediation/K_RETURN_L_2e61/L_BATCH_PROCEDURE.md)**.
+4. Original C custody policy, S fixture/seal authority, G/J historical compiler data, original R03 design/plan/Human Review Gates. Old K authorization is consumed.
 
-## Four canonical source pins and new K implementation
+## Exact four repositories and source authority
 
-All owners use branch `codex/assembly-shadow-r01b-h1`; actual owning checkout `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/<repo>`. The final Primary reply provides the exact current **40-character demo SHA**; verify it and all other remote refs with `git ls-remote`, clean owning HEAD/top/origin/worktrees/submodules and `source-pins.json`. Reject unreviewed fast-forwards, dirty checkouts, alternate roots and partial SHA values; never reset/stash/clean a checkout.
+All use branch `codex/assembly-shadow-r01b-h1`. Verify each owning top/path, clean HEAD/branch, canonical night-outlook remote, worktrees/submodules and fresh remote tip against the **final four full40-character SHA values in the final Primary prompt**. Reject mismatches/unreviewed tips/dirty state. Never force-reset, stash, clean or use an alternate owning checkout.
 
-| Repository | Required binding |
-| --- | --- |
-| `night-outlook/hybridclr_demo` | Final full SHA in Primary message; must be **Docs/CI-only descendant** of actual K executable source `df88f6dcee93c5caab7ed4fbd040657ddbf10f6f` |
-| `night-outlook/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
-| `night-outlook/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
-| `night-outlook/il2cpp_plus` | `0fa7b4fef94062e54f186fda938dd8a3d2304b7e` |
+| Repository | Actual owning Local path | Required commit |
+| --- | --- | --- |
+| night-outlook/hybridclr_demo | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo | Exact final Primary publication SHA; Docs-only descendant of04a3cd93663f9a4e877a5524d9c22ee5a3fe0131 |
+| night-outlook/hybridclr | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr | 4b2774b066cfc6afd77a8c8aded6bda7ea574f55 |
+| night-outlook/hybridclr_unity | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity | 948c0e3b4f8891481301770115e8ba4945eea6de |
+| night-outlook/il2cpp_plus | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus | **c1a6876a3801a8343123977a0e230558904fd94d** |
 
-Do not apply old unpublished K source package or substitute the CI-only branch. K's actual changed executable files include `R03TerminalPlayer.cs`, `AssemblyShadowR03Probe.cpp`, `R03Build.cs`, `run_terminal_local.py`, `run_terminal_storage_checked.py`, and new `bee_observation.py`/tests. Source manifest binds native0fa7, not original I c386. Exact executable blobs must match the published concurrent K anchor; later Primary changes here are documentation/CI only.
+`Tools/AssemblyShadow/R03/source-pins.json` must exactly match all three non-demo pins. Compare actual executable bytes with04a3, not ancestry alone. Earlier K native0fa7 and G/J old native/compiler results are historical, not source-equivalent proof ofc1. No smoke/export branch or unpublished alternative candidate is an execution source.
 
-## Results already verified and limitations
+## Completed implementation and evidence limits
 
-J Local **PASS within its read-only collection/native syntax scope**: 55 Local official compiler configurations, 40 preserved Bee files, prescribed host tests, complete source/C custody and SDK preservation, zero Unity or Player launches. Its two associated clang/UnityLinker DAG nodes recorded exit0, but the original I Editor.log contains two strict BuildReport errors absent from captured child output. The exact shared-cache emitter and cause remain **Unavailable**; do not override the failed I Debug build, clear/replace cache, change TMPDIR or ignore `totalErrors`.
+Nativec1 prepares/pins one physical guard-rejection exception at healthy startup, uses actual Exception::Rethrow rather than managed exception construction/stack preparation after poison, and reports only that exact object natively on the terminal unhandled path. First-cause native recovery, ordinary method/class/allocation/finalizer-entry guards and arbitrary-exception policy remain unchanged. This does not generally qualify finalizer resource cleanup, shared exception stack mutation or runtime shutdown.
 
-The published native Boolean reserve creates and pins a physical true Boolean during healthy runtime, retrieving it without terminal allocation or GC-handle actions. Real GC survival, Player linking/startup and ON behavior remain unproved despite J compilation.
+`R03ModuleFactoryLease` forwards one original module slot during the synchronous isolated build, records the exact original factory returns and restores the original slot, without replacing processors or changing strict BuildReport acceptance. New Python receipt checks require complete factory/processor identity fields, SHA256s, consistent integer counts and no acquisition/restoration error. Actual installed-SDK digest joins remain mandatory, not mere hash-syntax acceptance.
 
-The **new** K executable source has [managed Player API CI 38228046199](https://github.com/night-outlook/hybridclr_demo/actions/runs/38228046199) and [build-helper API CI 38228046147](https://github.com/night-outlook/hybridclr_demo/actions/runs/38228046147) Passed. The later Bee receipt-outcome correction has independently [Passed official Unity SDK CI 38231680521](https://github.com/night-outlook/hybridclr_demo/actions/runs/38231680521), with [full 209-file/56-command Primary artifact audit](../History/M07R/R03/IR_Remediation/J_K_RECONCILIATION_2026-10-12/PRIMARY_K_OFFICIAL_CI_AUDIT.json). The only subsequent executable-tree change is K host contract tests, not Player/build-helper/native code. This is official CI **syntax/API**, not a fresh Local compiler or Player result. Independently [K host CI 38231948391](https://github.com/night-outlook/hybridclr_demo/actions/runs/38231948391) passed **78 tests and sanitizer-enabled native snapshot** on both macOS/Ubuntu; it is not real Unity or installed-SDK validation. Historical R03 Primary evolution workflow 38228046222 **Failed** separate prior lifetime coverage and has not been waived.
+Official CI38243672034 independently authenticated current compiled bytes:209 artifact files,56 native command receipts/streams,55 profiles,five managed products and separate expected-negative. Current host CI38262556820 at04a3 Passed **91 tests on each macOS/Ubuntu** plus native snapshot sanitizer. Native source functions also passed independent strict/sanitized Linux host runs with VM/GC dependencies mocked. **No corrected real Player or live Unity Mono factory integration has run here.** All616 repeated Baselib warning occurrences remain retained, without suppression.
 
-## Mandatory K gates and source-independent preservation
+K remainsFAIL:18cells11Passed/7Failed,three buildsPassed,fivePlayers,OFFPassed,threeONFailedphase170,engineSIGABRT/emptyraw,threeBeeUnavailable. K's rawstate0 fields are early-catch defaults, not native reset proof. I/E failures and I old Debug emitterUnavailable remain unchanged. Full historical S custody is stillBlocked:416844 original identities,339367 survivors,77477 missing/four original native roots. Stable scoped preservation does not restore provenance.
 
-Under `/Users/ah/GitHub/hybridclr/r03-local-validation`, all **seven** fresh candidates with suffix `K-after-J-41bc` must be absent/canonical/nonsymlinked/disjoint from source, Editor and all prior S/R/Q/P/O/N/A/B/C/D/E/F/G/H/I/J plus reserved roots:
+## Seven new roots and ordered shared gates
 
-- `Preflight-R03K-after-J-41bc`
-- `ManagedAPI-R03K-after-J-41bc`
-- `NativeSDK-R03K-after-J-41bc`
-- `Scratch-R03K-after-J-41bc`
-- `R03IRLocal-K-after-J-41bc`
-- `StorageCheck-R03IRLocal-K-after-J-41bc`
-- `Storage-R03IRLocal-K-after-J-41bc`
+Under `/Users/ah/GitHub/hybridclr/r03-local-validation` verify all absent, canonical/nonsymlinked/nonoverlapping and disjoint from source, installed Unity and all retained S/R/Q/P/O/N/A/B/C/D/E/F/G/H/I/J/K or earlier reserved roots:
 
-Unity `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity` for StandaloneOSX arm64; existing Python3.14 and recorded compatible .NET/clang; no Unity6000 process, SDK installs, tool upgrades, system/global environment changes. Retained Q read-only `R03LocalBatch-20261006Q-lp-repair`.
+- Preflight-R03L-after-K-52d9
+- ManagedAPI-R03L-after-K-52d9
+- NativeSDK-R03L-after-K-52d9
+- Scratch-R03L-after-K-52d9
+- R03IRLocal-L-after-K-52d9
+- StorageCheck-R03IRLocal-L-after-K-52d9
+- Storage-R03IRLocal-L-after-K-52d9
 
-Before compilers or Unity: authenticate exact four-source pins, full original S nine-part seal/15,712 indexed original files and **15 immutable fixture DLLs**, all C/E/F/G/H/I/J historical Git/manifest/receipts, R failed restoration and Q source/storage. Run fresh 20 scratch, 25 original C custody tests, 65 original R03IR plus all K tests, nine retained-E, 14 J collector and native reporting/Object.h/observer normal+santizer/69 terminal-policy controls. No skips. Complete exhaustive original C **before** live audit: 416,844 expected, 339,367 exact survivor SHA-verified, exactly 77,477 original missing path/hash identities, zero changed/restored/aliased/new missing, `ScopedHistoricalLossStable` and original strict custody **Blocked**. Complete E/F/G/H/I/J, source and SDK before preservation. Stop if any shared gate fails.
+Existing Unity2022.3.62f2 at `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`; StandaloneOSX arm64; recorded Python3.14/.NET8.0.318/Apple clang environment. No installation, toolchain upgrade, Unity6000 process, global PATH/TMPDIR change, protected cleanup or old SDK/app reuse. Preserve established child environment. Retained read-only Q is R03LocalBatch-20261006Q-lp-repair.
 
-Run **once** official `build_api.py` for the changed Player/helper/Unity managed sources (five successful products plus expected-negative), and **once** official `native_validation.py --sdk-scratch <new Scratch>` for 55 exact native SDK syntax combinations including changed overlay. Actual Local commands/streams and source/SDK digests required. Both must Pass before storage; earlier J native syntax and CI alone are not substitutes.
+Follow [L procedure](../History/M07R/R03/IR_Remediation/K_RETURN_L_2e61/L_BATCH_PROCEDURE.md) exactly. Fresh **203 R03 tool/process tests(includes20scratch),91R03IR,25C-custody,nine retained-E,14collector**, separate sanitized snapshot, native rejection/reporting strict+sanitizers,Object.h,observer strict+sanitizers and69policy checks. No skips. Authenticate originalS15DLL fixtures/seal, C/E/F/G/H/I/J/K checkpoints, R/Q and exact source.
 
-Then run one diagnostic-only `run_terminal_storage_checked.py` session, original `max(64 GiB, 2×retained Q + 20 GiB)` threshold and 20 GiB operating floor, allocation/fsync/readback/Q devices, require `Admitted` and `batchStarted=false`. Only after full diagnostic acceptance may one **separate** fresh `--execute` invocation start the changed K matrix. Do not invoke the core runner directly or retry failed cells.
+Mandatory complete **before** C census:416844 expected,339367 verified survivors,77477 exact original missing path/hash identities,zero new/changed/restored/aliased entries,completeScan=true,ScopedHistoricalLossStable and originalStrictCustody=Blocked. Complete E/F/G/H/I/J/K and installed-SDK/tool/source before preservation. A failed shared gate stops compilers/storage/Unity. After-only can never replace unperformed before admission.
 
-## New K runtime scope and interpretation
+## Fresh compilers and one runtime invocation
 
-Actual K source schedules **three native builds, five fresh Players and independent Bee observer cells**; it is NOT the historical fourteen-cell/four-Player matrix. Player cases: ON release-baseline, ON debug-baseline, ON release-type, OFF, and extra ON release-engine-unhandled with a unique bound sentinel. No sixth Player or extra stimulus. Native scalar preopened raw must match PID/run/request/build, full original actual 42/42, private stable0→2/readable2, post-poison reflection/delegate/AOT denied/no side effects, recovery unchanged, direct physical reporting mask15 and OFF mask0, real healthy forced-GC reserve mask31. Missing required raw/recovery/semantic state, crashes, native-fatal, failed debug build or wrong counter remains Failed/Unavailable, never Passed. Fifth engine case's bounded `ObservedNotAccepted` does not establish general engine qualification.
+Run current `build_api.py` once using the new ManagedAPI root and official installed Unity references; require five outputs and separate expected-negative. Run `native_validation.py` once with the explicit new external Scratch root; require55C++17/arm64/syntax-only configurations with exact current source/SDK inputs. The two compiler outcomes are independent while shared gates remain sound; **both must Pass before runtime**. Preserve actual warnings/errors, commands and output digests. No source/flag correction or retry by Local.
 
-Each build retains original strict `BuildReport.summary.totalErrors==0` and source/native installed-hash checks. Bee observation *must not* fabricate same Unity processor/driver identity: public factory may return a different processor. If source-bound capture is unavailable, report that diagnostic **Unavailable/Failed** independently; do not clear cache, ignore errors or claim Debug emitter proven.
+Only then call original `run_terminal_storage_checked.py` once **without --execute** on StorageCheck, followed only after successful fresh admission by one separate call **with --execute** on Storage. Original max(64GiB,2xQ+20GiB) admission, allocation/fsync/readback and20GiB running floor unchanged. Each session independently measures capacity. No direct core invocation or partial retry.
 
-After the attempted batch, run distinct exhaustive original C/E/F/G/H/I/J/SDK/source/fixture preservation and evidence audits even on failure where feasible; no missing before can be repaired by after-only. Preserve actual complete scheduler cells, three build receipts, five Player outputs/logs when produced, bounded seal only if constructed, original/changed source/custody/storage/exit/probe identity. Any protected mutation requires ReturnRequired independently.
+The existing matrix remains **18 cells /3 fresh builds /5 fresh Players**: release-baseline,debug-baseline,release-type,OFF,release-engine-unhandled and three independent Bee observations. No sixth Player or added stimulus. Expected post-repair results:
 
-## Publish and stop
+* Native baseline/type rejection completes the expected caught-wrapper receipt return1. Actual42/42,stable0->2 then readable2,denied reflected/delegate/AOT bodies,unchanged canary,first-failure code21/13 and stable recovery/diagnostics,ONmask15/OFFmask0 remain mandatory; GCreserve31 unchanged. ExplicitFailed JSON fails even when process exit0.
+* Engine uses the original unique uncaught sentinel and healthy logger control; requires valid500ms native completion,1..64 reports,logger1->1,initial6/final9/code13/recovery and a real bound raw/verifier. Record guard-owned finalizer rejection observations if they occur; do not manufacture an extra finalizer test. Empty raw,SIGABRT/SEGV,nativefatal or sentinel-only observation is Failed/Unavailable.
+* Bee capture requires actual original factory-return/driver ownership, initially absent driver, full recorded module/processor identities joined to SDK bytes, consistent sequence/counts,bounded nodes and exact original registry restoration. BuildReport errors==0 stays strict. Unsupported internal Mono proxy or unrestored/concurrent slot change returns failure, not a Local workaround or processor-identity waiver.
 
-Create additive `Docs/AssemblyShadow/History/M07R/R03/local-validation-k-after-j-41bc/`, update **only Local-owned** `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md`, commit/push/verify four remote HEADs, then STOP and return to Primary. Do not modify executable source, adjust thresholds/guards or rerun a failed build/Player. Separate eventual captured-generic/initializer, IR-R03-01, broad legacy/performance and independent R03 Human Review Gate remain unproved.
+## Preservation, publication, stop
 
-I/E FAIL, F/H Blocked, G/J historical compile-only Passed, strict S original custody Blocked with four missing native roots; independent full-stage FAIL/re-review NotRun. `R03Accepted=false`; `H2Passed=false`; `qualificationApproved=false`; `ReadyForHumanReviewGate=false`; `fullLegacyRegressionAcceptance=false`; PureInterpreter disabled. No H2/X02/M08A.
+Run independent full C-after, retained-E after and F/G/H/I/J/K/installed-SDK/source/fixture after checks even after failure where feasible. Any protected mutation independently requires ReturnRequired. Preserve exact native first-error/rejection/phase records, compiler/BuildReport/GC/factory logs, all18cell states,build/app/request/nonce/PID/UUID joins, actual raw JSON/strict verifier and bounded seal only for a constructed batch. No inferred semantics from counters or state defaults.
+
+Publish additive `Docs/AssemblyShadow/History/M07R/R03/local-validation-l-after-k-52d9/` and update only Local-owned `LOCAL_VALIDATION.md` / `RETURN_TO_WEB.md` preserving historical bodies. Keep vendor SDK/compiler/app binaries local; publish permitted logs/inventories/hashes. Commit,push,independently verify all four remote heads,then **STOP and return to Primary after one L result**. No nontrivial code changes left to Local; report such blockers with exact raw evidence.
+
+Allacceptanceflagsfalse;independentR03full-stageFAIL/re-reviewNotRun;strictScustodyBlocked;K/I/EFAIL;F/HBlocked;G/JhistoricalscopePassed;PureInterpreterdisabled. Captured-generic/initializer,IR-R03-01,normal shutdown/resource cleanup and broad legacy/performance remain separate. NoH2/X02/M08A or Human Review Gate approval.
