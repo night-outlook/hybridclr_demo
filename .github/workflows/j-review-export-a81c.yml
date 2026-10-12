@@ -1,0 +1,59 @@
+name: J review pinned source export a81c
+on:
+  push:
+    branches: [codex/connector-smoke-j-review-a81c]
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_demo
+          ref: c83d6feb1f5610c4a14b589a4215d187ea5a70e8
+          path: demo
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/
+            /.github/workflows/
+            /Docs/AssemblyShadow/Plan/
+            /Docs/AssemblyShadow/README.md
+            /Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-j-reserve-6f02/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02/
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 0fa7b4fef94062e54f186fda938dd8a3d2304b7e
+          path: native
+          persist-credentials: false
+      - name: Export exact Git file bytes and bindings, no compilation or Unity
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'j-review-export';out.mkdir()
+          pins={'demo':'c83d6feb1f5610c4a14b589a4215d187ea5a70e8','native':'0fa7b4fef94062e54f186fda938dd8a3d2304b7e'}
+          rows=[]
+          for owner,pin in pins.items():
+              assert subprocess.check_output(['git','-C',owner,'rev-parse','HEAD'],text=True).strip()==pin
+              for path in sorted(Path(owner).rglob('*')):
+                  if not path.is_file() or '.git' in path.parts: continue
+                  rel=path.relative_to(owner)
+                  blob=subprocess.check_output(['git','-C',owner,'rev-parse','HEAD:'+rel.as_posix()],text=True).strip()
+                  data=path.read_bytes()
+                  assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==blob
+                  dest=out/owner/rel;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
+                  rows.append({'path':owner+'/'+rel.as_posix(),'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'gitBlob':blob})
+          (out/'EXPORT_MANIFEST.json').write_text(json.dumps({'kind':'PrimaryPinnedJSourceExport','pins':pins,'files':rows,'unityRun':False,'compilerRun':False},indent=2)+'\n')
+          print(json.dumps({'result':'Exported','files':len(rows),'bytes':sum(r['bytes'] for r in rows)}))
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: j-review-source-a81c
+          path: ${{ runner.temp }}/j-review-export
+          retention-days: 14
+          if-no-files-found: error
