@@ -87,14 +87,16 @@ class BeeContracts(unittest.TestCase):
         self.assertEqual(expected_errors([{'exitCode':0,'output':'source says error: x\n error: y'}]),[])
     def test_capture_not_build_acceptance(self):
         raw={'schemaVersion':1,'kind':'R03BeeResultObservationV1','runtimeAcceptance':False,
-             'sourceManifestSha256':'a','result':'CapturedForAnalysis','sameProcessor':True,
+             'sourceManifestSha256':'a'*64,'result':'CapturedForAnalysis','sameProcessor':True,
              'driverInitiallyAbsent':True,'limitsExceeded':False,'buildErrors':2,
              'acquisition':'ScopedOriginalFactoryForwarderV1','factoryRestored':True,'factoryCalls':2,'selectedFactorySequence':1,
+             'capturedProcessors':1,'moduleType':'Original.Module','processorType':'Original.Bee',
+             'moduleAssemblySha256':'b'*64,'processorAssemblySha256':'c'*64,
              'nodes':[{'exitCode':0,'output':''}],'messages':[]}
-        self.assertFalse(verify_observation(raw,'a')['buildAcceptanceChanged'])
+        self.assertFalse(verify_observation(raw,'a'*64)['buildAcceptanceChanged'])
         for field in ['sameProcessor','driverInitiallyAbsent','factoryRestored']:
             change=copy.deepcopy(raw);change[field]=False
-            with self.assertRaises(ContractError):verify_observation(change,'a')
+            with self.assertRaises(ContractError):verify_observation(change,'a'*64)
         raw['limitsExceeded']=True
-        with self.assertRaises(ContractError):verify_observation(raw,'a')
+        with self.assertRaises(ContractError):verify_observation(raw,'a'*64)
 if __name__=='__main__':unittest.main()
