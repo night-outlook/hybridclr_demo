@@ -1,30 +1,26 @@
-# Current Status — I FAIL; native reserve CI compiled; J confirmation/Debug diagnosis
+# Current Status — J compile/collector Passed; K focused Local pending
 
-**Next Local assignment: one J installed-toolchain native compilation and read-only retained I Debug diagnostic collection. No Unity/Player/build/runtime batch.** Primary implemented and host-tested the reserve candidate, then authenticated successful official SDK CI. Earliest remaining work is Local toolchain confirmation and Debug child-task attribution, followed by separate Primary review of runtime readiness.
+**Next owner:** Local Validation for one new conditionally admitted K source-bound five-Player matrix; no automatic runtime launch is authorized before all current-source/host/C-custody/compiler and separate storage gates. [Current handoff](../Handoff/WEB_TO_LOCAL.md); [Primary review](../History/M07R/R03/IR_Remediation/J_K_RECONCILIATION_2026-10-12/PRIMARY_RECONCILIATION.md); [K procedure](../History/M07R/R03/IR_Remediation/J_K_RECONCILIATION_2026-10-12/K_BATCH_PROCEDURE.md).
 
-Read [J handoff](../Handoff/WEB_TO_LOCAL.md), [latest SDK addendum](../History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02/SDK_CI_ADDENDUM.md), [SDK audit](../History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02/OFFICIAL_SDK_CI_AUDIT.json), [Primary analysis](../History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02/PRIMARY_RECONCILIATION.md) and [J procedure](../History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02/J_COMPILE_DIAGNOSTIC_PROCEDURE.md).
-
-| Evidence | Actual scope/state |
+| Evidence | Actual result |
 | --- | --- |
-| I runtime | FAIL:10 Passed/3 Failed/1 Blocked of14; two ON release SIGABRT, OFF Passed, Debug Failed/Player Blocked |
-| I preservation/storage/seal | Passed within recorded scope; no promotion of failed runtime cells |
-| Native candidate |0fa7b4fef94062e54f186fda938dd8a3d2304b7e; healthy preallocated pinned Boolean; terminal response no allocation; guards intact |
-| Native host CI38203284632 |Passed macOS/Ubuntu normal/sanitized; actual Runtime/guarded allocation fragments with GC/metadata mocks;18 identity/18 fatal modes,20,000 iterations per ON, Object.h/observer/69 policy |
-| Official SDK CI38203526793 |Passed55 native syntax configurations and five managed targets/one expected-negative; exact native0fa7; no Unity launch or linking |
-| Primary official CI audit |209 manifest files,56 native command receipts,55 matrix rows and six managed responses/streams authenticated; changed native source hashes verified |
-| Collector CI38204087861 |14 Passed per OS; no live Bee read; Local child-task collection still NotRun |
-| Separate historical R02 CI |38203284615 Failed frozen-source check; no rebaseline; neither flagged source file changed in this correction |
-| New Local J compilation |NotRun; confirms installed Local toolchain and retains complete receipts |
-| Debug cache cause |Unresolved; matching dyld vm_allocate text is a lead, not emitter/OS-cause proof |
-| New linking/startup/GC/runtime/ON JSON |NotRun/unproved; J prohibits runtime |
-| Full acceptance/strict custody |All flags false; strict historical S Blocked; independent FAIL/re-review NotRun |
+| J Local at `d1b9889e1af198a7f4b51a0a0943c34e16fa5f50` | **Passed J scope**: 55 official Local syntax profiles, host checks, 40-file read-only I Bee collection, custody/SDK preserved, zero Unity/Players |
+| I runtime | **FAIL**: 10 Passed/3 Failed/1 Blocked cells; two ON SIGABRT, Debug summary errors, OFF Passed |
+| I Debug emitter | **Unavailable**: associated clang and UnityLinker recorded node exits0; literal errors only authenticated in Editor.log/result processor, not collected outputs |
+| K new executable source | Demo anchor `02e416ee61d2a4a6fea88bf65176f429f9482947`; fifth engine-unhandled Player and native snapshot/GC/Bee observation cells |
+| K host CI | [38231386680](https://github.com/night-outlook/hybridclr_demo/actions/runs/38231386680) Passed 76 Python tests and sanitizer-enabled snapshot on each macOS/Ubuntu host |
+| K official managed/Build helper API CI | [38228046199](https://github.com/night-outlook/hybridclr_demo/actions/runs/38228046199), [38228046147](https://github.com/night-outlook/hybridclr_demo/actions/runs/38228046147) Passed |
+| Historical primary evolution suite | [38228046222](https://github.com/night-outlook/hybridclr_demo/actions/runs/38228046222) **Failed**, old full-lifetime/183 test condition; unresolved and not rebaselined |
+| K fresh Local official 55 native + managed compilation | **NotRun**; required before runtime |
+| K actual Unity/native linking/GC/ON semantic/engine cases | **NotRun**, requires independent storage |
+| Original strict historical S custody | **Blocked**; 416,844 original, 339,367 survivors, 77,477 missing, four original native roots missing |
+| Full R03 independent review/new re-review | FAIL / NotRun |
+| Acceptance/H2/qualification/Human Review | All false |
 
-The official CI completed after the initial host reconciliation; SDK_CI_ADDENDUM supersedes earlier pending-CI statements. It used macOS15.7.9/Apple clang17, distinct from the recorded Local macOS26.5.2/clang21 environment.616 repeated vendor atomic-memory-order warnings remain retained, not suppressed or accepted as harmless. G's historical74 managed warnings and other failed attempts retain their original outcomes.
+K's runtime owner/runner has **three new native builds and five Players** (release-baseline, debug-baseline, release-type, OFF, release-engine-unhandled), plus independent Bee-observer cells; *not* the prior 14-cell/four-Player matrix. Genuine Unity-engine unhandled sentinel is a **bounded** witness; it is not full engine reporting qualification or generic/initializer closure. Bee reporter identity must be authenticated, and missing current processor/driver output is Failed/Unavailable rather than fabricated. BuildReport `totalErrors==0` unchanged. Strict field counter 42/42, stable0→2/readable2, denied reflection/delegate/AOT entries, immutable recovery, mask15 ON/mask0 OFF and healthy GC reserve mask31 remain required.
 
-Native edits are confined to reserve header, Runtime init/shutdown calls, reporting header, removal of Object.h private friendship, associated tests and CI. Object.cpp/AssemblyShadow.cpp guards are unchanged. Demo edits: source pin, read-only collector/tests/CI and Primary docs/evidence. Player/helper/compiler scripts, runtime scheduler, BuildReport acceptance, fixtures and custody/storage code remain unchanged. Local-owned reports and all original checkpoints untouched.
+Final exact source tuple comes from Primary handoff: four canonical owner paths in `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r`, branch `codex/assembly-shadow-r01b-h1`. Demo final is a Docs/CI-only descendant of K executable anchor, and runtime source blobs must match; non-demo pins are HybridCLR `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, package `948c0e3b4f8891481301770115e8ba4945eea6de`, native `0fa7b4fef94062e54f186fda938dd8a3d2304b7e`.
 
-All owning paths are /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/<repo>, branch codex/assembly-shadow-r01b-h1. Fixed non-demo pins: HybridCLR4b2774b066cfc6afd77a8c8aded6bda7ea574f55; package948c0e3b4f8891481301770115e8ba4945eea6de; native0fa7b4fef94062e54f186fda938dd8a3d2304b7e. Final demo SHA comes from the final Primary prompt. Reject dirty/truncated/divergent inputs or mismatched source-pins.
+New seven external K candidates use suffix `K-after-J-41bc` under `/Users/ah/GitHub/hybridclr/r03-local-validation`: Preflight-R03K, ManagedAPI-R03K, NativeSDK-R03K, Scratch-R03K, R03IRLocal, StorageCheck-R03IRLocal, Storage-R03IRLocal. All must be absent, canonical, nonsymlinked and nonaliasing. Exact steps in [procedure](../History/M07R/R03/IR_Remediation/J_K_RECONCILIATION_2026-10-12/K_BATCH_PROCEDURE.md). Original C exhaustive before/after, retained E/F/G/H/I/J, installed-SDK preservation and original 15 S fixtures stay mandatory. No new source edits by Local, alternate root, cache cleanup, retry, sixth Player, or unplanned stimulus.
 
-J uses new Preflight-R03J-reserve-6f02, NativeSDK-R03J-reserve-6f02, Scratch-R03J-reserve-6f02 and DebugBee-R03J-reserve-6f02 roots after all shared source/host/custody/preservation gates. One native55-configuration invocation and one independent read-only I Bee collection; no retries or cache remedies. Compiler failure alone need not withhold independent diagnostic collection when shared gates remain sound. Preserve actual failures/unavailable data and compare after inventories. Publish local-validation-j-reserve-6f02 and Local-owned reports, push/read back all heads, return to Primary. No runtime permission follows J success.
-
-Preserve I/E FAIL, F/H Blocked, G historical compile Passed and S/R/Q/P/O/N/A/B/C/D states. Strict custody remains Blocked:416,844 entries,339,367 survivors,77,477 original missing/four native roots. Actual engine-originated reporting, post-terminal serialization, captured-generic/initializer, IR-R03-01 and full legacy/performance remain open. R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; fullLegacyRegressionAcceptance=false; PureInterpreter disabled; no H2/X02/M08A/Human Review Gate advancement.
+Preserve all former acceptance and evidence states; historical full custody Blocked. Captured generic/initializer and IR-R03-01 pending. `R03Accepted=false`; `H2Passed=false`; `qualificationApproved=false`; `ReadyForHumanReviewGate=false`; `fullLegacyRegressionAcceptance=false`; PureInterpreter disabled; no H2/X02/M08A/Human Review Gate.
