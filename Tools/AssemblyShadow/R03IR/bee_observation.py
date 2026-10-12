@@ -1,4 +1,5 @@
 """Pure validation of captured Bee result-processing evidence. Never changes BuildReport."""
+import re
 from batch_contract import require
 
 NEEDLE = 'failed to allocate space to load shared cache'
@@ -17,7 +18,9 @@ def expected_errors(nodes):
     return errors
 
 def verify_observation(data, manifest):
-    require(type(data) is dict and data.get('schemaVersion')==1 and
+    require(isinstance(manifest, str) and re.fullmatch(r'[0-9a-f]{64}', manifest) is not None,
+            'Expected build manifest must be a complete SHA-256')
+    require(type(data) is dict and type(data.get('schemaVersion')) is int and data['schemaVersion']==1 and
             data.get('kind')=='R03BeeResultObservationV1' and data.get('runtimeAcceptance') is False,
             'Native build observation schema')
     require(data.get('sourceManifestSha256')==manifest,'Observation must bind current build inputs')
@@ -27,6 +30,20 @@ def verify_observation(data, manifest):
             type(data.get('factoryCalls')) is int and 1 <= data['factoryCalls'] <= 64 and
             type(data.get('selectedFactorySequence')) is int and 1 <= data['selectedFactorySequence'] <= data['factoryCalls'],
             'Current untruncated BeeDriverResult identity required; unavailable does not mean success')
+    # A true flag alone is not evidence of which original factory/processor ran.
+    # These values are emitted by R03BeeObservation from the observed instances.
+    # Hash syntax is checked here; actual SDK/source inventories bind the bytes.
+    require(type(data.get('capturedProcessors')) is int and
+            1 <= data['capturedProcessors'] <= data['factoryCalls'],
+            'Captured processor count must agree with actual factory calls')
+    require(data.get('error') in (None, ''), 'Captured observation must not retain an acquisition error')
+    for key in ('moduleType', 'processorType'):
+        require(isinstance(data.get(key), str) and 0 < len(data[key]) <= 4096 and
+                data[key].strip() == data[key], 'Original factory/processor type identity required: ' + key)
+    for key in ('moduleAssemblySha256', 'processorAssemblySha256'):
+        require(isinstance(data.get(key), str) and
+                re.fullmatch(r'[0-9a-f]{64}', data[key]) is not None,
+                'Original factory/processor assembly SHA-256 required: ' + key)
     require(type(data.get('nodes')) is list and 0<len(data['nodes'])<=4096,'Bounded actual node list')
     require(type(data.get('buildErrors')) is int and data['buildErrors']>=0,'BuildReport error count retained')
     require(type(data.get('messages')) is list,'Raw observed logs required')
