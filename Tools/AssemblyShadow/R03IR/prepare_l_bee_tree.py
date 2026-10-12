@@ -25,13 +25,11 @@ def prepare(root,controls,out):
  assert s.count(a)==1
  s=s[:s.index(a)]+(controls/'Tools/AssemblyShadow/R03IR/l-bee-tail.cs.txt').read_text();p.write_text(s)
  p=root/'Tools/AssemblyShadow/R03IR/bee_observation.py';s=p.read_text()
- a="    require(type(data.get('nodes')) is list and 0<len(data['nodes'])<=4096,'Bounded actual node list')"
- b="""    require(data.get('acquisition')=='ScopedOriginalFactoryForwarderV1' and
-            data.get('factoryRestored') is True and type(data.get('factoryCalls')) is int and
-            1<=data['factoryCalls']<=64 and type(data.get('selectedFactorySequence')) is int and
-            1<=data['selectedFactorySequence']<=data['factoryCalls'],
-            'Actual original factory return and complete module restoration required')
-"""+a
+ a="            data.get('driverInitiallyAbsent') is True and data.get('limitsExceeded') is False,"
+ b="""            data.get('driverInitiallyAbsent') is True and data.get('limitsExceeded') is False and
+            data.get('acquisition') == 'ScopedOriginalFactoryForwarderV1' and data.get('factoryRestored') is True and
+            type(data.get('factoryCalls')) is int and 1 <= data['factoryCalls'] <= 64 and
+            type(data.get('selectedFactorySequence')) is int and 1 <= data['selectedFactorySequence'] <= data['factoryCalls'],"""
  s=once(s,a,b);p.write_text(s)
  p=root/'Tools/AssemblyShadow/R03IR/test_k_contracts.py';s=p.read_text()
  a="             'driverInitiallyAbsent':True,'limitsExceeded':False,'buildErrors':2,"
