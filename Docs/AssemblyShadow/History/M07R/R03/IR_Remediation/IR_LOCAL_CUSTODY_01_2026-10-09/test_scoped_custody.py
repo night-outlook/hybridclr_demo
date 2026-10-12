@@ -1,4 +1,4 @@
-"""Synthetic negative controls for the exact-loss, read-only custody verifier."""
+"""Synthetic negative controls and immutable C bindings for read-only custody."""
 from pathlib import Path
 import tempfile
 import unittest
@@ -11,10 +11,16 @@ from verify_scoped_custody import (
 
 
 class ScopedCustodyUnitTests(unittest.TestCase):
+    def new_fixture_directory(self):
+        return tempfile.TemporaryDirectory()
+
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory()
+        self.tmp = self.new_fixture_directory()
         self.addCleanup(self.tmp.cleanup)
-        self.root = Path(self.tmp.name)
+        # Resolve ONLY the synthetic fixture owner, before deriving audit
+        # inputs. macOS /var/folders often aliases /private/var/folders.
+        # Production parent-symlink rejection stays unchanged.
+        self.root = Path(self.tmp.name).resolve(strict=True)
         self.good = self.root / 'good.txt'
         self.other = self.root / 'other.txt'
         self.absent = self.root / 'missing.bin'
@@ -83,6 +89,32 @@ class ScopedCustodyUnitTests(unittest.TestCase):
     def test_require_is_fail_closed(self):
         with self.assertRaises(AdmissionError):
             require(False, 'test')
+
+
+class AliasedTempScopedCustodyUnitTests(ScopedCustodyUnitTests):
+    """Run identical synthetic controls under a guaranteed symlink temp parent.
+
+    The fixture's real owner is canonicalized by the base setUp. Its deliberate
+    symlink inputs, missing/restored-file expectations and all guard checks
+    remain unchanged. No TMPDIR or global tempfile mutation is allowed.
+    """
+
+    def new_fixture_directory(self):
+        holder = tempfile.TemporaryDirectory()
+        self.addCleanup(holder.cleanup)
+        parent = Path(holder.name).resolve(strict=True)
+        physical = parent / 'physical-temp'
+        physical.mkdir()
+        alias = parent / 'alias-temp'
+        alias.symlink_to(physical, target_is_directory=True)
+        tmp = tempfile.TemporaryDirectory(dir=alias)
+        self.addCleanup(tmp.cleanup)
+        raw = Path(tmp.name)
+        self.assertTrue(alias.is_symlink())
+        self.assertEqual(raw.parent, alias)
+        self.assertNotEqual(raw, raw.resolve(strict=True))
+        return tmp
+
 
 
 class RealImmutableCBindingTests(unittest.TestCase):
