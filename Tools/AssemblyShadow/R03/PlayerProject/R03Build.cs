@@ -139,7 +139,7 @@ namespace AssemblyShadow.R03.Editor
                     {
                         receipt.beeObservationPath = observation.Save(actualReport);
                         receipt.beeObservationSha256 = ShadowHash.File(receipt.beeObservationPath);
-                        receipt.beeObservationStatus = "RecordedForAnalysis";
+                        receipt.beeObservationStatus = observation.Outcome;
                     }
                     catch (Exception diagnosticError) { receipt.beeObservationStatus = "Unavailable:" + diagnosticError.GetType().FullName; }
                     finally { observation.Dispose(); }
@@ -238,6 +238,9 @@ namespace AssemblyShadow.R03.Editor
         private readonly object sync = new object();
         private readonly object initialProcessor, initialDriver;
         private bool disposed, saved;
+        // The receipt must not claim captured Bee nodes when the diagnostic
+        // itself is Unavailable (for example, a non-identical result processor).
+        public string Outcome { get { return data.result; } }
 
         public R03BeeObservation(BuildConfig config, string project)
         {
