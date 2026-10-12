@@ -61,8 +61,10 @@ def main():
             evidence = batch.python_tests()
             log = batch.root / 'commands' / ('%04d' % batch.command_count) / 'stderr.log'
             text = log.read_text()
-            require(re.search(r'Ran 183 tests in ', text) and '\nOK\n' in text and 'skipped=' not in text,
-                    'All 183 tool/process tests must execute without skips')
+            # Original 183 controls plus the subsequently added twenty scratch
+            # cases. Retain an exact no-skip count, never a reduced minimum.
+            require(re.search(r'Ran 203 tests in ', text) and '\nOK\n' in text and 'skipped=' not in text,
+                    'All 203 tool/process tests must execute without skips')
             return evidence
         case('python-contracts', contracts)
         case('baseline-graph', lambda: batch.managed('HostTests', 'baseline-graph', reference, 'baseline'))
