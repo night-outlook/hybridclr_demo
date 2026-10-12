@@ -39,6 +39,34 @@ class EngineContracts(unittest.TestCase):
         self.raw['recovery']['terminalFailureCode']=21
         with self.assertRaises(ContractError):self.check()
 
+class KRuntimeScopeContracts(unittest.TestCase):
+    def test_fixed_five_players_three_builds_and_observation_cells(self):
+        import ast
+        from pathlib import Path
+        source=(Path(__file__).resolve().parent/'run_terminal_local.py').read_text()
+        funcs=[node for node in ast.parse(source).body
+               if isinstance(node,ast.FunctionDef) and node.name=='execute']
+        self.assertEqual(len(funcs),1)
+        assigns=[n for n in ast.walk(funcs[0]) if isinstance(n,ast.Assign)
+                 and any(isinstance(t,ast.Name) and t.id=='cases' for t in n.targets)]
+        self.assertEqual(len(assigns),1)
+        cases=ast.literal_eval(assigns[0].value)
+        self.assertEqual([(c['id'],c['role'],c['stimulus']) for c in cases],[
+            ('IR-R03-02-release-baseline','candidate-release','baseline-owner'),
+            ('IR-R03-02-debug-baseline','candidate-debug','baseline-owner'),
+            ('IR-R03-02-release-type','candidate-release','type-resolution'),
+            ('IR-R03-02-off','candidate-off','off'),
+            ('IR-R03-02-release-engine','candidate-release','engine-unhandled')])
+        self.assertIn("'plannedFreshPlayers':5",source)
+        self.assertIn("'plannedFreshBuilds':3",source)
+        self.assertIn("batch.cell('observe-' + name",source)
+        self.assertIn("('prepare-' + name,)",source)
+        self.assertIn("('build-' + case['role'],)",source)
+        # Exactly 4 shared + 3 per-role prepare/build/observe + 5 Players.
+        self.assertEqual(4+3*3+len(cases),18)
+        self.assertIn("'R03Accepted':False",source)
+        self.assertIn("'H2Passed':False",source)
+
 class BeeReceiptOutcomeContracts(unittest.TestCase):
     def test_build_receipt_uses_actual_observation_result(self):
         from pathlib import Path
