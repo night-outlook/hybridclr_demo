@@ -1,0 +1,32 @@
+{
+  "kind": "PrimaryKHostCiArtifactAudit",
+  "result": "PassedWithinHostTestScope",
+  "runId": 38231948386,
+  "sourceCommit": "df88f6dcee93c5caab7ed4fbd040657ddbf10f6f",
+  "platforms": {
+    "macos": {
+      "artifactId": 11739510324,
+      "artifactSha256": "1dd28471be9e18e4831b9a216875e131d8809c82cd0a576ed0884e053affd9a6",
+      "testLogSha256": "d6566652d6c1704a2ec8b88a321b1e7d21a95035d816457d5b38376478f447f5",
+      "testLogGitBlob": "11ed398dd36cc4f047139079461844ee45cb3da4",
+      "testLogBytes": 10921,
+      "passedTests": 78,
+      "failed": 0,
+      "errors": 0
+    },
+    "ubuntu": {
+      "artifactId": 11739166807,
+      "artifactSha256": "f758c91316533a6e6b261ac7b5abd3bc8fa36277c2919518e67fef371b316955",
+      "testLogSha256": "71109b46b3baec379e00c63e285f7bbc00688821d0ccadbf0ba141e7a688f55f",
+      "testLogGitBlob": "c692d9e3ce6681b071721f688daa0864cdb37ad0",
+      "testLogBytes": 10921,
+      "passedTests": 78,
+      "failed": 0,
+      "errors": 0
+    }
+  },
+  "validation": "Downloaded both original ZIP artifacts, independently authenticated ZIP digest, source-commit provenance and all listed log hashes; raw logs remain in retention-limited original CI artifacts",
+  "unityLaunched": false,
+  "playerLaunched": false,
+  "runtimeAcceptance": false
+}

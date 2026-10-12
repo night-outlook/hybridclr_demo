@@ -1,0 +1,197 @@
+{
+  "state": "EvidenceCaptured",
+  "startUtc": "2026-10-12T10:40:56.480129+00:00",
+  "endUtc": "2026-10-12T10:40:56.577674+00:00",
+  "reports": [
+    {
+      "caseId": "IR-R03-02-release-engine",
+      "pid": 41394,
+      "runId": "a9b9aefc453c433b8012df990b7062e8",
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-K-after-J-41bc/commands/0010/command.json",
+      "captureTime": "2026-10-12 03:33:23.8483 -0700",
+      "originalPath": "/Users/ah/Library/Logs/DiagnosticReports/R03Isolated-2026-10-12-033327.ips",
+      "copyPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03K-after-J-41bc/diagnostics/R03Isolated-2026-10-12-033327.ips",
+      "sha256": "274aa234058d582d9a3a0ec98e02b9c99d82cdb984588cbd3dd596cb926888b4",
+      "exception": {
+        "codes": "0x0000000000000000, 0x0000000000000000",
+        "rawCodes": [
+          0,
+          0
+        ],
+        "type": "EXC_CRASH",
+        "signal": "SIGABRT"
+      },
+      "imageBindings": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-K-after-J-41bc/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "sha256": "8f34c15df932e2e170c8c06b17aca75ecaf986223780c1fbd7f82df3bfb04e9c",
+          "imageUuid": "16630b36-4c21-385e-94e1-848eebb8e956",
+          "uuidMatched": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-K-after-J-41bc/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib",
+          "sha256": "f7c8ec9cd94f7a392de87b8ca9577433c1d1bb861c73c96a26298f7e5106e608",
+          "imageUuid": "7d7df484-e228-3780-9324-bee06f660c9d",
+          "uuidMatched": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-K-after-J-41bc/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib",
+          "sha256": "417339d1c2d2b7bff00e30ac0f7cf0f25ed8918e1511c2340ca756090bb92c5f",
+          "imageUuid": "d94ff91a-61a7-3ad6-8ed2-6b0288e2a49a",
+          "uuidMatched": true
+        }
+      ],
+      "frames": [
+        {
+          "imageOffset": 38376,
+          "symbol": "__pthread_kill",
+          "symbolLocation": 8,
+          "imageIndex": 4
+        },
+        {
+          "imageOffset": 26840,
+          "symbol": "pthread_kill",
+          "symbolLocation": 296,
+          "imageIndex": 9
+        },
+        {
+          "imageOffset": 493124,
+          "symbol": "abort",
+          "symbolLocation": 148,
+          "imageIndex": 5
+        },
+        {
+          "imageOffset": 2337400,
+          "imageIndex": 2
+        },
+        {
+          "imageOffset": 1771852,
+          "sourceLine": 22,
+          "sourceFile": "Runtime.cpp",
+          "symbol": "il2cpp::utils::Runtime::Abort()",
+          "imageIndex": 2,
+          "symbolLocation": 12
+        },
+        {
+          "imageOffset": 2147168,
+          "sourceLine": 939,
+          "sourceFile": "Runtime.cpp",
+          "symbol": "il2cpp::vm::Runtime::CallUnhandledExceptionDelegate(Il2CppDomain*, Il2CppDelegate*, Il2CppException*)",
+          "imageIndex": 2,
+          "symbolLocation": 276
+        },
+        {
+          "imageOffset": 2146872,
+          "sourceLine": 764,
+          "sourceFile": "Runtime.cpp",
+          "symbol": "il2cpp::vm::Runtime::UnhandledException(Il2CppException*)",
+          "imageIndex": 2,
+          "symbolLocation": 116
+        },
+        {
+          "imageOffset": 837708,
+          "sourceLine": 194,
+          "sourceFile": "GarbageCollector.cpp",
+          "symbol": "il2cpp::gc::GarbageCollector::RunFinalizer(void*, void*)",
+          "imageIndex": 2,
+          "symbolLocation": 220
+        },
+        {
+          "imageOffset": 2306540,
+          "sourceLine": 1315,
+          "sourceFile": "finalize.c",
+          "symbol": "GC_invoke_finalizers",
+          "imageIndex": 2,
+          "symbolLocation": 168
+        },
+        {
+          "symbol": "il2cpp::gc::GarbageCollector::InvokeFinalizers()",
+          "inline": true,
+          "imageIndex": 2,
+          "imageOffset": 837356,
+          "symbolLocation": 4,
+          "sourceLine": 481,
+          "sourceFile": "BoehmGC.cpp"
+        },
+        {
+          "imageOffset": 837356,
+          "sourceLine": 107,
+          "sourceFile": "GarbageCollector.cpp",
+          "symbol": "il2cpp::gc::FinalizerThread(void*)",
+          "imageIndex": 2,
+          "symbolLocation": 80
+        },
+        {
+          "imageOffset": 2015060,
+          "sourceLine": 201,
+          "sourceFile": "Thread.cpp",
+          "symbol": "il2cpp::os::Thread::RunWrapper(void*)",
+          "imageIndex": 2,
+          "symbolLocation": 188
+        },
+        {
+          "imageOffset": 899968,
+          "sourceLine": 123,
+          "sourceFile": "ThreadImpl.cpp",
+          "symbol": "il2cpp::os::ThreadImpl::ThreadStartWrapper(void*)",
+          "imageIndex": 2,
+          "symbolLocation": 40
+        },
+        {
+          "imageOffset": 27736,
+          "symbol": "_pthread_start",
+          "symbolLocation": 136,
+          "imageIndex": 9
+        },
+        {
+          "imageOffset": 7196,
+          "symbol": "thread_start",
+          "symbolLocation": 8,
+          "imageIndex": 9
+        }
+      ],
+      "identityBinding": "Fresh PID/time/request plus all three binary Mach-O UUIDs"
+    }
+  ],
+  "unavailableForPids": [],
+  "operations": [
+    {
+      "argv": [
+        "/usr/bin/dwarfdump",
+        "--uuid",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-K-after-J-41bc/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated"
+      ],
+      "startUtc": "2026-10-12T10:40:56.490817+00:00",
+      "endUtc": "2026-10-12T10:40:56.521757+00:00",
+      "exitCode": 0,
+      "stdout": "UUID: 16630B36-4C21-385E-94E1-848EEBB8E956 (arm64) /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-K-after-J-41bc/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/dwarfdump",
+        "--uuid",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-K-after-J-41bc/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib"
+      ],
+      "startUtc": "2026-10-12T10:40:56.521989+00:00",
+      "endUtc": "2026-10-12T10:40:56.528868+00:00",
+      "exitCode": 0,
+      "stdout": "UUID: 7D7DF484-E228-3780-9324-BEE06F660C9D (arm64) /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-K-after-J-41bc/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/dwarfdump",
+        "--uuid",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-K-after-J-41bc/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib"
+      ],
+      "startUtc": "2026-10-12T10:40:56.536845+00:00",
+      "endUtc": "2026-10-12T10:40:56.543270+00:00",
+      "exitCode": 0,
+      "stdout": "UUID: D94FF91A-61A7-3AD6-8ED2-6B0288E2A49A (arm64) /Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-K-after-J-41bc/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib\n",
+      "stderr": ""
+    }
+  ],
+  "newPlayerLaunches": 0,
+  "historicalIOrEReclassified": false
+}

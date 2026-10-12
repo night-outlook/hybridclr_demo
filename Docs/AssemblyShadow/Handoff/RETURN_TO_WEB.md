@@ -1,6 +1,62 @@
 # Local Validation → Primary Implementation
 
-## Current return — J native compilation Passed; I Debug emitter remains Unavailable
+## Current return — K FAIL, three nontrivial Primary findings
+
+**FAIL / ReturnRequired. Local Validation → Primary Implementation.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-k-after-j-41bc/README.md), [factual result](../History/M07R/R03/local-validation-k-after-j-41bc/preflight/LOCAL_K_RESULT.json), [detailed evidence/diagnosis](../History/M07R/R03/local-validation-k-after-j-41bc/preflight/FAILURE_DIAGNOSIS.json). Source/host/full before custody/fresh managed and55-native compiler gates Passed; both storage admissions Passed. One runtime execution:18cells11Passed/7Failed;threebuildsPassed,fivePlayers,OFFPassed/ONfourFailed;threeBeeobservationsUnavailable. Seal and independent afterpreservationPassed. No retries orsourcefixes.
+
+**Exact reproduction, common to all findings:** owning roots/table inLOCAL_VALIDATION; branchcodex/assembly-shadow-r01b-h1,demoe1334d1052dba9ad240a3fa781b751ec5a1d9e9d,native0fa7b4fef94062e54f186fda938dd8a3d2304b7e,HybridCLR4b2774b066cfc6afd77a8c8aded6bda7ea574f55,package948c0e3b4f8891481301770115e8ba4945eea6de,Unity2022.3.62f2/macOS26.5.2arm64/clang21/SDK8.0.318. FollowpinnedKprocedure:historical/fixture/host/fullcustodypreservation→freshcompilers→diagnosticstorage→separateone`--execute`argvexactlyin[receipt](../History/M07R/R03/local-validation-k-after-j-41bc/preflight/commands/storage-execute/receipt.json). Actualroot`/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-K-after-J-41bc`;BuildPlayerrelease/debug/OFFthenfivecases,eachfreshapp/request/run/PID. This consumedKmustnotberetried; successorrequiresnewPrimaryscope/roots/source.
+
+### IR-LOCAL-K-SEMANTICS-01
+
+**Symptom:** Three ON semantic Players exit0 but required native snapshots explicitly Failed at managed phase170; no post-poison attempted-entry/recovery/field proof
+
+**Most likely root cause and evidence boundary:** Terminal rejection bridge does not complete its expected caught-native exception/receipt route. Type probe catch(...) returns -1 instead of Il2CppExceptionWrapper catch return1; baseline route falls to managed catch before nativeGuardJson is assigned. Exact thrown payload and baseline failure substep Unavailable.
+
+**Affected scope:** FailTypeResolution / fixed diagnostic exception construction / native probe bridge and PInvoke return/managed observation after terminal state
+
+**Recommended Primary direction:** Trace the exception type/creation and exact bridge boundary using bounded source-bound instrumentation if needed; preserve first failure and all business guards; make expected rejection observable before the original post-poison checks. No weakening of 42/42, field/canary, attempted entries or mask15.
+
+**Remaining uncertainty:** Raw poisonedState/finalState=0 are unassigned defaults after early catch, not evidence that native terminal state reset. No post-poison field/entry result can be inferred.
+
+**Evidence/excerpts:** [release baseline raw](../History/M07R/R03/local-validation-k-after-j-41bc/batch/players/IR-R03-02-release-baseline/raw.json)/[verdict](../History/M07R/R03/local-validation-k-after-j-41bc/batch/players/IR-R03-02-release-baseline/verification.json), [debug baseline raw](../History/M07R/R03/local-validation-k-after-j-41bc/batch/players/IR-R03-02-debug-baseline/raw.json), [type raw](../History/M07R/R03/local-validation-k-after-j-41bc/batch/players/IR-R03-02-release-type/raw.json). AllfailurePhase170,mask31,pre42/42/field2;baselineerrorsManagedExceptionCaught,typeerrorCaught native-to-managed type failure/return-1. [phase/PID/request/log joins](../History/M07R/R03/local-validation-k-after-j-41bc/preflight/FAILURE_DIAGNOSIS.json). Inspectsource-snapshots nativeAssemblyShadow.cppFailTypeResolution/RequireActiveMethod,Exception.cppFromNameMsg,Object.cpp,probeR03_IR_ForceTypeFailurecatch(...) andC#phase170branch. Exact thrownpayloadnotcaptured; no speculative bypass.
+
+**After-fix validation:** freshly complete the expected native catch/receipt and all original post-poison field/canary,deniedMethodInfo/delegate/AOT attempts,recovery/diagnostics/mask15 inrelease/debugbaseline andtype;preserveON42/42/field2/GC31 andOFF.
+
+### IR-LOCAL-K-ENGINE-02
+
+**Symptom:** Fresh engine Player SIGABRT with zero-byte preopened report and no verification; actual run sentinel reaches native reporter
+
+**Most likely root cause and evidence boundary:** Crash stack proves finalizer-thread RunFinalizer -> UnhandledException -> CallUnhandledExceptionDelegate -> Runtime::Abort. Source aborts when unhandled-exception delegate produces another managed exception. Terminal guard interaction with finalizer/unhandled delegate is supported; exact finalizer and exception payload remain Unavailable.
+
+**Affected scope:** Runtime terminal method rejection, GC finalizer/unhandled-delegate path, bounded native engine observer persistence
+
+**Recommended Primary direction:** Provide a bounded terminal native reporting/disposition for finalizer/unhandled-delegate rejection without running arbitrary managed bodies, overwriting failure or suppressing finalization/GC. Preserve prescribed uncaught sentinel and fresh 500ms completion proof.
+
+**Remaining uncertainty:** Observed sentinel/GC31 is not completed engine qualification; logger counts/recovery/completed reports are Unavailable without semantic JSON.
+
+**Evidence/excerpts:** [engine log](../History/M07R/R03/local-validation-k-after-j-41bc/batch/players/IR-R03-02-release-engine/Player.log), retainedzero-byte raw.json, [crash/PID/time/threeUUIDbindings and fullframes](../History/M07R/R03/local-validation-k-after-j-41bc/preflight/CRASH_DIAGNOSIS.json). Native sequence1 carriesexactrun sentinel thenSIGABRT;faultingthreadFinalizerThread. SourceRuntime.cpp927–939abortwhenCallUnhandledExceptionDelegate'sDelegateInvokereturnse!=NULL;GarbageCollector.cpp169–194sendsfinalizerexceptiontoRuntime::UnhandledException. This locates thefataldelegate/finalizerboundary;doesnotidentifythefinalizerobjectororiginalcallbackexception.
+
+**After-fix validation:** newfreshenginecasewithunchangeduncaughtsentinel,healthyGC31,managedlogger1→1,state6→9/code13,recovery,1–64completedreports andprescribed500msnativecompletion,validsource/request/PID/raw/verifier,noabort/GCsuppression. Sentinelaloneisnotacceptedqualification.
+
+### IR-LOCAL-K-BEE-03
+
+**Symptom:** All three source-bound Bee observations Unavailable, sameProcessor=false, initiallyAbsent=true, nodes0; each observation cell Failed while product builds Passed
+
+**Most likely root cause and evidence boundary:** Processor() calls ModuleManager.GetBuildPostProcessor before and after build; ReferenceEquals fails for returned processor objects. The receipt contains After InvalidOperationException Current build driver identity unavailable.
+
+**Affected scope:** K diagnostic live Bee processor/driver acquisition only; BuildReport error guards remain valid
+
+**Recommended Primary direction:** Capture the actual processor/driver used for this BuildPlayer operation through a supported scoped observation boundary, not two factory lookups. Retain identity/source hashes, bounds, actual nodes and errors==0 guard.
+
+**Remaining uncertainty:** No live node capture or shared-cache messages; historical I emitter/cause remains Unavailable. Fresh Debug zero errors does not repair/reclassify I.
+
+**Evidence/excerpts:** [three-role audit](../History/M07R/R03/local-validation-k-after-j-41bc/preflight/BEE_OBSERVATION_AUDIT.json), raw`batch/builds/<role>/bee-result-observation.json`, strict failedobservecellsin[ledger](../History/M07R/R03/local-validation-k-after-j-41bc/batch/BATCH_EXECUTION.json), pinnedR03Build.csProcessor()/Save(). EachsameProcessor=false,nodes0,driverInitiallyAbsent=true,AfterInvalidOperationExceptionCurrent build driver identity unavailable;buildsPassederrors0. Nohistoricalshared-cacheemitterproof.
+
+**After-fix validation:** newfreshthree-rolecaptureauthenticatingactualsameprocessor/driver,initialabsence,source/assemblyhashes,boundedactualnodes andstrictcaptureverdict;retainindependentBuildReporterrors==0. No factory-identitywaiver orhistoricalI reclassification.
+
+Original full custody remainsBlocked; fourS native rootsMissing. Before/afterboth339367survivors/77477unchangedMissing/zero problems. I/EremainFAIL,G/JscopePassed,F/HBlocked. Allacceptanceflagsfalse,independentfullstageFAIL/re-reviewNotRun;noH2/X02/M08A/expansion/gateapproval. ReturntoPrimaryandstop.
+
+## Historical return — J native compilation Passed; I Debug emitter remains Unavailable
 
 **J Passed within compile/read-only collection scope; Local Validation → Primary Implementation.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-j-reserve-6f02/README.md), [factual result](../History/M07R/R03/local-validation-j-reserve-6f02/preflight/LOCAL_J_RESULT.json). All mandatory fresh host/source/custody/preservation gates Passed; one native syntax invocation passed55 configurations, one bounded collector preserved40 files. No new compiler defect, Local source fix, Unity/Player execution or retry. Managed G inputs unchanged and classifiedReusedAuditedManagedCompilation. All616 vendor warnings retained.
 

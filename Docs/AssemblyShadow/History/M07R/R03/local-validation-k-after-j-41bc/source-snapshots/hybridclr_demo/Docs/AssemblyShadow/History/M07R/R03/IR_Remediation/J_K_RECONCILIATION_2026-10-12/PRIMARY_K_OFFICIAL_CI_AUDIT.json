@@ -1,0 +1,40 @@
+{
+  "kind": "PrimaryOfficialKBuildApiCiAudit",
+  "result": "PassedWithinOfficialSyntaxAndManagedScope",
+  "runId": 38231680521,
+  "artifactId": 11739290857,
+  "artifactSha256": "0b710ccc68faa26e2daee17443ea2a8e2d06775998d1bf3c8064de0c43e7f96d",
+  "artifactMembers": 210,
+  "provenanceFilesAuthenticated": 209,
+  "sourcePins": {
+    "hybridclr_demo": "70476fc301eba9f3b953d0f7e89efac8785d5272",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+  },
+  "nativeResults": "Passed",
+  "nativeCommandReceiptsVerified": 56,
+  "nativeSyntaxConfigurations": 55,
+  "nativeProfiles": {
+    "candidate": 11,
+    "debug": 11,
+    "probe-off": 11,
+    "diagnostics-off": 11,
+    "feature-off": 11
+  },
+  "nativeSourcesBound": 41,
+  "managedResults": "Passed",
+  "managedTargets": 6,
+  "managedProductsPassed": 5,
+  "originalNegativeControlExpectedExit": 1,
+  "editorVersion": "2022.3.62f2",
+  "unityEditorLaunched": false,
+  "linkedPlayers": false,
+  "runtimeAcceptance": false,
+  "sourceEquivalence": "Only Docs/AssemblyShadow and Tools/AssemblyShadow/R03IR/test_k_contracts.py changed after compiler source; no changed compiler/Player/overlay code in 70476...current K feature comparison",
+  "limits": [
+    "Full SDK syntax-only, not Unity runtime or linked Player",
+    "Official CI host macOS15.7.9 clang17 differs from J Local macOS26.5.2 clang21",
+    "Future Local K still performs its own source-matched official compiler and full custody admission"
+  ]
+}

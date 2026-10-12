@@ -1,0 +1,11 @@
+{
+  "error": {
+    "errno": null,
+    "filename": null,
+    "message": "Current untruncated BeeDriverResult identity required; unavailable does not mean success",
+    "traceback": "Traceback (most recent call last):\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_terminal_storage_checked.py\", line 38, in checked\n    return action()\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_terminal_local.py\", line 275, in <lambda>\n    batch.cell('observe-' + name, lambda r=role: observe_build(batch, r), ('prepare-' + name,))\n                                                 ~~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_terminal_local.py\", line 254, in observe_build\n    analysis = verify_observation(data, state['config']['sourceManifestSha256'])\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bee_observation.py\", line 24, in verify_observation\n    require(data.get('result')=='CapturedForAnalysis' and data.get('sameProcessor') is True and\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            data.get('driverInitiallyAbsent') is True and data.get('limitsExceeded') is False,\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'Current untruncated BeeDriverResult identity required; unavailable does not mean success')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/batch_contract.py\", line 13, in require\n    raise ContractError(message)\nbatch_contract.ContractError: Current untruncated BeeDriverResult identity required; unavailable does not mean success\n",
+    "type": "ContractError"
+  },
+  "observedUtc": "2026-10-12T10:32:30.682820+00:00",
+  "phase": "observe-candidate-debug"
+}

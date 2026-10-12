@@ -1,0 +1,5 @@
+# K source-matched Local checkpoint
+
+**FAIL / ReturnRequired.** One runtime attempt:18 cells11Passed/7Failed;three fresh buildsPassed,five fresh Players,OFFPassed/ONfourFailed;Bee threeUnavailable. Fresh host/API/native55/custody/storage gatesPassed;boundedsealPassed;afterpreservationPassed. No retry/sourcefix/cleanup. Read preflight/LOCAL_K_RESULT.json,FAILURE_DIAGNOSIS.json,CRASH_DIAGNOSIS.json,FINAL_EVIDENCE_AUDIT.json,HOST_RESULT.json,compiler verifications,before/aftercustody/SDK and source receipts;batch/players/builds/commands retain exact raw/zero-byte/log/output/verdict records.
+
+Runtime archive122914627bytes SHA080e82e6a652de5cc803e391ffcc7f9cd9d60680c3f63813aedf02908356bd10 transported in ordered32MiB parts; original remains retained locally. FILE_TRANSPORT/COPY_BINDINGS/SOURCE_BINDINGS/MANIFEST.sha256 authenticate publication. VendorSDK/compiler trees and standalonecompiler binaries excluded;freshcoreproductoutputs preserved. External Preflight PUBLICATION_VALIDATION.json/PUBLICATION_RECEIPT.json record final remote readback withoutselfreference. Allacceptanceflagsfalse;historicalstrictcustodyBlocked;returnPrimary.
