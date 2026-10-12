@@ -1,0 +1,72 @@
+name: K return source export
+on:
+  push:
+    branches: [codex/primary-k-return-2e61]
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 2b5cf60363dc7c895deaad26bdaf7af70cde612a
+          path: hybridclr_demo
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/
+            /Docs/AssemblyShadow/Handoff/
+            /Docs/AssemblyShadow/README.md
+            /Docs/AssemblyShadow/Plan/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-k-after-j-41bc/preflight/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-k-after-j-41bc/batch/players/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-k-after-j-41bc/batch/builds/
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 0fa7b4fef94062e54f186fda938dd8a3d2304b7e
+          path: il2cpp_plus
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: hybridclr_unity
+          persist-credentials: false
+      - name: Export only readable source and permitted diagnostics with Git bindings
+        shell: python
+        run: |
+          import hashlib,json,os,shutil,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'k-source';out.mkdir()
+          rows=[]
+          roots={'hybridclr_demo':'2b5cf60363dc7c895deaad26bdaf7af70cde612a','il2cpp_plus':'0fa7b4fef94062e54f186fda938dd8a3d2304b7e','hybridclr_unity':'948c0e3b4f8891481301770115e8ba4945eea6de'}
+          suffixes={'.cs','.cpp','.h','.hpp','.py','.csproj','.json','.md','.log','.txt','.yml','.yaml','.asmdef','.rsp','.sha256'}
+          for name,commit in roots.items():
+            root=Path(name)
+            assert subprocess.check_output(['git','-C',name,'rev-parse','HEAD'],text=True).strip()==commit
+            entries=subprocess.check_output(['git','-C',name,'ls-files','--stage','-z']).split(b'\0')
+            for item in entries:
+              if not item:continue
+              meta,path=item.split(b'\t',1);path=path.decode();blob=meta.split()[1].decode();p=root/path
+              if not p.is_file() or p.is_symlink() or p.suffix not in suffixes or p.stat().st_size>20*1024*1024:continue
+              # Do not export historical huge source manifests/binary caches.
+              if '/ci/' in path and p.stat().st_size>1024*1024:continue
+              data=p.read_bytes()
+              try:data.decode('utf-8')
+              except UnicodeError:continue
+              assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==blob
+              dest=out/name/path;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
+              rows.append({'path':name+'/'+path,'gitBlob':blob,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()})
+          (out/'SOURCE_EXPORT.json').write_text(json.dumps({'kind':'ReadOnlyKReturnSourceExport','repositories':roots,'files':rows,'unityRun':False},indent=2)+'\n')
+          print('Exported',len(rows),'authenticated files')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: k-return-source-2b5cf603
+          path: ${{ runner.temp }}/k-source
+          retention-days: 14
+          if-no-files-found: error
