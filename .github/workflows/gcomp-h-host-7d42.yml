@@ -1,0 +1,44 @@
+name: H runtime host prerequisites 7d42
+on:
+  push:
+    branches: [codex/connector-smoke-20261011-gcomp-reconcile-7d42]
+    paths: ['.github/workflows/gcomp-h-host-7d42.yml']
+permissions:
+  contents: read
+jobs:
+  host:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 4808743fcbbc2075b9be305140bdf5ffa8583b0f
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03/
+            /Tools/AssemblyShadow/R03IR/
+            /Tools/AssemblyShadow/R03Storage/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_RUNTIME_01_2026-10-10/
+      - name: Authenticate original E Git objects and run source-frozen host suites
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          OUT="$RUNNER_TEMP/h-host"
+          mkdir "$OUT"
+          git fetch --no-tags --depth=1 --filter=blob:none origin 75500e3916300d1fd5f7774e0f9de33b9ed3e7da
+          python3 -B -m unittest discover -s Tools/AssemblyShadow/R03IR -p 'test_*.py' -v 2>&1 | tee "$OUT/ir-host.log"
+          python3 -B -m unittest discover -s Tools/AssemblyShadow/R03 -p 'test_native_validation_scratch.py' -v 2>&1 | tee "$OUT/scratch-host.log"
+          python3 -B -m unittest discover -s Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_RUNTIME_01_2026-10-10 -p 'test_retained_e.py' -v 2>&1 | tee "$OUT/e-preservation.log"
+          git diff --check
+          git diff --exit-code
+          git rev-parse HEAD | tee "$OUT/source-commit.txt"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: h-runtime-host-prerequisites-7d42
+          path: ${{ runner.temp }}/h-host
+          retention-days: 14
+          if-no-files-found: warn
