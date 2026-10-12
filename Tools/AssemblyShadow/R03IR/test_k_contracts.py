@@ -39,6 +39,18 @@ class EngineContracts(unittest.TestCase):
         self.raw['recovery']['terminalFailureCode']=21
         with self.assertRaises(ContractError):self.check()
 
+class BeeReceiptOutcomeContracts(unittest.TestCase):
+    def test_build_receipt_uses_actual_observation_result(self):
+        from pathlib import Path
+        source=(Path(__file__).resolve().parents[1]/'R03/PlayerProject/R03Build.cs').read_text()
+        self.assertIn('public string Outcome { get { return data.result; } }',source)
+        self.assertIn('receipt.beeObservationStatus = observation.Outcome;',source)
+        self.assertNotIn('receipt.beeObservationStatus = "RecordedForAnalysis";',source)
+        # A diagnostic being absent never changes strict Unity BuildReport gating.
+        self.assertIn('report.summary.totalErrors != 0',source)
+        self.assertIn('throw new BuildFailedException("Actual IL2CPP Player build did not succeed.")',source)
+
+
 class BeeContracts(unittest.TestCase):
     def test_exit_zero_can_still_report_error(self):
         rows=[{'exitCode':0,'outputFile':'test.o','output':'warning: other\nerror: failed to allocate space to load shared cache file at %s'}]
