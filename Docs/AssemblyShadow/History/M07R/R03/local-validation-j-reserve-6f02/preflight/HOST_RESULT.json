@@ -1,0 +1,561 @@
+{
+  "state": "Passed",
+  "recordedUtc": "2026-10-12T05:59:12.396707+00:00",
+  "suites": [
+    {
+      "suite": "scratch-tests",
+      "Passed": 20,
+      "Failed": 0,
+      "Errors": 0,
+      "Skipped": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/scratch-tests/receipt.json"
+    },
+    {
+      "suite": "c-custody-tests",
+      "Passed": 25,
+      "Failed": 0,
+      "Errors": 0,
+      "Skipped": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/c-custody-tests/receipt.json"
+    },
+    {
+      "suite": "ir-host-tests",
+      "Passed": 65,
+      "Failed": 0,
+      "Errors": 0,
+      "Skipped": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/ir-host-tests/receipt.json"
+    },
+    {
+      "suite": "retained-e-tests",
+      "Passed": 9,
+      "Failed": 0,
+      "Errors": 0,
+      "Skipped": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/retained-e-tests/receipt.json"
+    },
+    {
+      "suite": "collector-tests",
+      "Passed": 14,
+      "Failed": 0,
+      "Errors": 0,
+      "Skipped": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/collector-tests/receipt.json"
+    }
+  ],
+  "nativePolicyChecks": 69,
+  "hostCommands": [
+    {
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "--info"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:58:58.767236+00:00",
+      "endUtc": "2026-10-12T05:58:59.034060+00:00",
+      "exitCode": 0,
+      "pid": 33863,
+      "pgid": 33863,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/dotnet-info/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/dotnet-info/stderr.log",
+      "stdoutSha256": "3bf94b3d3bb0dbb3f71dcca805ac73da3f09804cf9451a51910957378424d02a",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/dotnet-info/invocation.json"
+    },
+    {
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "--version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:58:59.034664+00:00",
+      "endUtc": "2026-10-12T05:58:59.124578+00:00",
+      "exitCode": 0,
+      "pid": 33864,
+      "pgid": 33864,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/dotnet-version/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/dotnet-version/stderr.log",
+      "stdoutSha256": "87d140235528e1e5177051f45163d287ac03dfbbd88f70b34d9dfbe33c7f4682",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/dotnet-version/invocation.json"
+    },
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "--version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:58:59.125097+00:00",
+      "endUtc": "2026-10-12T05:58:59.136986+00:00",
+      "exitCode": 0,
+      "pid": 33867,
+      "pgid": 33867,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/python-version/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/python-version/stderr.log",
+      "stdoutSha256": "917601090ffb73a030e3eaa8b7a01c41400cad4b61366b4218d7756a5733b66c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/python-version/invocation.json"
+    },
+    {
+      "argv": [
+        "/usr/bin/c++",
+        "--version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:58:59.137514+00:00",
+      "endUtc": "2026-10-12T05:58:59.283951+00:00",
+      "exitCode": 0,
+      "pid": 33868,
+      "pgid": 33868,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/clang-version/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/clang-version/stderr.log",
+      "stdoutSha256": "76a924f59997fb65051981eb13105e0a8c151f16cd9c3e45e0f7c27ecefdb839",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/clang-version/invocation.json"
+    },
+    {
+      "argv": [
+        "/usr/bin/sw_vers"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:58:59.284466+00:00",
+      "endUtc": "2026-10-12T05:58:59.296855+00:00",
+      "exitCode": 0,
+      "pid": 33871,
+      "pgid": 33871,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/macos-version/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/macos-version/stderr.log",
+      "stdoutSha256": "9a27ea4f1e11f7b9a4f7573d8729db037a10ce2e457f97cb73f646a96a550b16",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/macos-version/invocation.json"
+    },
+    {
+      "argv": [
+        "/usr/bin/xcrun",
+        "--show-sdk-path"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:58:59.297247+00:00",
+      "endUtc": "2026-10-12T05:58:59.303466+00:00",
+      "exitCode": 0,
+      "pid": 33872,
+      "pgid": 33872,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/sdk-path/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/sdk-path/stderr.log",
+      "stdoutSha256": "71d2d22cf2f2d1a4606d2b131f4f1cc22ab8f2f05df7e76fb6298e428ace92e6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/sdk-path/invocation.json"
+    },
+    {
+      "argv": [
+        "/usr/bin/xcrun",
+        "--show-sdk-version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:58:59.303790+00:00",
+      "endUtc": "2026-10-12T05:58:59.309480+00:00",
+      "exitCode": 0,
+      "pid": 33873,
+      "pgid": 33873,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/sdk-version/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/sdk-version/stderr.log",
+      "stdoutSha256": "25205f2e2f02dc71036ee827e19c49b893b231a3d1af240e35a3ac55aa8cdcb6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/sdk-version/invocation.json"
+    },
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03",
+        "-p",
+        "test_native_validation_scratch.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:58:59.342587+00:00",
+      "endUtc": "2026-10-12T05:58:59.492615+00:00",
+      "exitCode": 0,
+      "pid": 33874,
+      "pgid": 33874,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/scratch-tests/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/scratch-tests/stderr.log",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "9d3587655b20e8d98854306c678aabc139602c9500bc370f63cf64cae172464e",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/scratch-tests/invocation.json"
+    },
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_LOCAL_CUSTODY_01_2026-10-09",
+        "-p",
+        "test_scoped_custody.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:58:59.493187+00:00",
+      "endUtc": "2026-10-12T05:59:00.624659+00:00",
+      "exitCode": 0,
+      "pid": 33875,
+      "pgid": 33875,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/c-custody-tests/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/c-custody-tests/stderr.log",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e90c985600818f4866dfd311c03873ed6b7262f8441ecdd05e9d38067fb7cd88",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/c-custody-tests/invocation.json"
+    },
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:59:00.625654+00:00",
+      "endUtc": "2026-10-12T05:59:02.361298+00:00",
+      "exitCode": 0,
+      "pid": 33887,
+      "pgid": 33887,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/ir-host-tests/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/ir-host-tests/stderr.log",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "74acf761945f836e5b9d9f934bf68c49025e9ac4018c9d0dce6fdaedb1a1d3f0",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/ir-host-tests/invocation.json"
+    },
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_RUNTIME_01_2026-10-10",
+        "-p",
+        "test_retained_e.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:59:02.362020+00:00",
+      "endUtc": "2026-10-12T05:59:02.500655+00:00",
+      "exitCode": 0,
+      "pid": 34071,
+      "pgid": 34071,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/retained-e-tests/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/retained-e-tests/stderr.log",
+      "stdoutSha256": "d461c8b9d318ca71c40470965bb46469f787700aa876aa0eccb175f5199668dd",
+      "stderrSha256": "34b9909708047147dcc872a80460037e5595b7816708e94dc09693054c61b0c1",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/retained-e-tests/invocation.json"
+    },
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02",
+        "-p",
+        "test_debug_collection.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:59:02.501286+00:00",
+      "endUtc": "2026-10-12T05:59:02.591285+00:00",
+      "exitCode": 0,
+      "pid": 34075,
+      "pgid": 34075,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/collector-tests/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/collector-tests/stderr.log",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "f9249404cbb985812681c29324e6f6b262468bcabc5b2873bb6dec8c2bddd0b0",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/collector-tests/invocation.json"
+    },
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/runtime01/test_reporting.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:59:02.591979+00:00",
+      "endUtc": "2026-10-12T05:59:05.095467+00:00",
+      "exitCode": 0,
+      "pid": 34076,
+      "pgid": 34076,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/reporting/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/reporting/stderr.log",
+      "stdoutSha256": "4392b54e53c576093744e511d08649e875effe3bc2f516d93b88f51a51f64e85",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/reporting/invocation.json"
+    },
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/runtime01/test_reporting.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:59:05.096025+00:00",
+      "endUtc": "2026-10-12T05:59:07.308024+00:00",
+      "exitCode": 0,
+      "pid": 34107,
+      "pgid": 34107,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/reporting-sanitized/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/reporting-sanitized/stderr.log",
+      "stdoutSha256": "5e9a1924d33a3a3131f8966acff9a453b615ba492b1ad0c8d6003d6efe214222",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/reporting-sanitized/invocation.json"
+    },
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/runtime01/test_object_access.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:59:07.308644+00:00",
+      "endUtc": "2026-10-12T05:59:07.451352+00:00",
+      "exitCode": 0,
+      "pid": 34138,
+      "pgid": 34138,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/object-access/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/object-access/stderr.log",
+      "stdoutSha256": "803bb2ed811624e6960f0b1b1fefd666ba3b6da983eaa56a45b334d168ea5bbc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/object-access/invocation.json"
+    },
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/runtime01/test_engine_observer.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:59:07.451944+00:00",
+      "endUtc": "2026-10-12T05:59:09.158006+00:00",
+      "exitCode": 0,
+      "pid": 34147,
+      "pgid": 34147,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/engine-observer/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/engine-observer/stderr.log",
+      "stdoutSha256": "30382119be0fdd9058140a8860664e44f3c59e66263488d09041175a4e67311e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/engine-observer/invocation.json"
+    },
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/runtime01/test_engine_observer.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:59:09.158533+00:00",
+      "endUtc": "2026-10-12T05:59:11.124784+00:00",
+      "exitCode": 0,
+      "pid": 34158,
+      "pgid": 34158,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/engine-observer-sanitized/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/engine-observer-sanitized/stderr.log",
+      "stdoutSha256": "9973efbbae24ae68bb436481007fabca6d7da49aede3c9ff27d37551e960d15e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/engine-observer-sanitized/invocation.json"
+    },
+    {
+      "argv": [
+        "/usr/bin/c++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-I/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/terminal_execution_tests.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/policy"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:59:11.125370+00:00",
+      "endUtc": "2026-10-12T05:59:11.378187+00:00",
+      "exitCode": 0,
+      "pid": 34166,
+      "pgid": 34166,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/policy-compile/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/policy-compile/stderr.log",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/policy-compile/invocation.json"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/policy"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "startUtc": "2026-10-12T05:59:11.378685+00:00",
+      "endUtc": "2026-10-12T05:59:11.810882+00:00",
+      "exitCode": 0,
+      "pid": 34171,
+      "pgid": 34171,
+      "pins": {
+        "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+      },
+      "environmentPolicy": "Inherited TMPDIR; per-command SDK8.0.318 PATH/DOTNET_ROOT only, no global changes",
+      "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/policy-checks/stdout.log",
+      "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/policy-checks/stderr.log",
+      "stdoutSha256": "9823be5a86ec4ff505264e80f43bf794d8454a28fe21f328e49ad2b9957c0dcb",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "invocationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/policy-checks/invocation.json"
+    }
+  ],
+  "nativeReportingAndObserver": "Actual production sources with mocked VM dependencies; not Unity runtime",
+  "ObjectHeader": "Actual Object.h access controls",
+  "unityLaunches": 0,
+  "runtimeAcceptance": false
+}

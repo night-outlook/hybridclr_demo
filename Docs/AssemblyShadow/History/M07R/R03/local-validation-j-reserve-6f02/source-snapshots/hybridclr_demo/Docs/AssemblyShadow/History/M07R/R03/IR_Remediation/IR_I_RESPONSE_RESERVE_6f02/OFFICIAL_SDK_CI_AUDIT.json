@@ -1,0 +1,46 @@
+{
+  "kind": "PrimaryOfficialSdkCiAudit",
+  "result": "PassedWithinCompilationScope",
+  "runId": 38203526793,
+  "jobId": 114661878839,
+  "artifactId": 11726757272,
+  "artifactSha256": "8909fb83a83670096500417834897d0fe3ac783f86a7ff91320171b46b78193a",
+  "sourcePins": {
+    "hybridclr_demo": "9683079fb84cc5af5a505dc027f084324380b9a7",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+  },
+  "manifestFilesVerified": 209,
+  "availableNativeSourceHashesVerified": 36,
+  "changedSourceVerified": [
+    {"path":"il2cpp_plus/libil2cpp/vm/Runtime.cpp","sha256":"ee64fad296aec1f6e4a85ec8235af1c9f0eefdccfe485cc71c81e59a7f9b85f1","binding":"native/results.json sources and actual syntax command"},
+    {"path":"il2cpp_plus/libil2cpp/vm/AssemblyShadowFixedBoolean.h","sha256":"a93b3fb8ed44885fe76c470ed2e53a1871c2c56e77d004a517923e379a1dc7ab","binding":"native/results.json sources"},
+    {"path":"il2cpp_plus/libil2cpp/vm/AssemblyShadowTerminalReporting.h","sha256":"6d33d1944d9e7cf48a6fbe53010d679edb8b60ff5d1475f4a19df4e947e4554e","binding":"native/results.json sources"},
+    {"path":"il2cpp_plus/libil2cpp/vm/Object.h","sha256":"4da6b40d5f9619d579b34acb80dce83ca11d3d6d1588f881581eec241ea230da","binding":"native/native-sdk-inputs.json copied libil2cpp/vm/Object.h"}
+  ],
+  "nativeProfiles": {"candidate":11,"debug":11,"probe-off":11,"diagnostics-off":11,"feature-off":11},
+  "nativeSyntaxConfigurations": 55,
+  "nativeCommandReceiptsVerified": 56,
+  "allSyntaxCommandsCxx17Arm64AndSyntaxOnly": true,
+  "commandStreamsAuthenticated": true,
+  "managedTargets": [
+    {"target":"HybridCLR.Runtime","exit":0,"expected":0},
+    {"target":"Unity.HybridCLR.AssemblyShadow.CodeGen","exit":0,"expected":0},
+    {"target":"HybridCLR.Editor","exit":0,"expected":0},
+    {"target":"R03Build","exit":0,"expected":0},
+    {"target":"R03TerminalPlayerApi","exit":0,"expected":0},
+    {"target":"OriginalUnsignedCounts","exit":1,"expected":1}
+  ],
+  "managedReceiptAndResponseHashesVerified": true,
+  "nativeWarningOccurrences": {"failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]":616},
+  "CIHost": "macOS-15.7.9-arm64-arm-64bit-Mach-O",
+  "clang": "Apple clang 17.0.0 (clang-1700.0.13.5); Xcode_16.4.app",
+  "unityVersion": "2022.3.62f2",
+  "unityEditorRun": false,
+  "nativeLinkBuildOrPlayer": false,
+  "runtimeAcceptance": false,
+  "localJCompile": "NotRun",
+  "retention": "Original CI artifact retention-limited; this audit preserves identities, not every raw compiler byte. J records complete Local compiler receipts separately.",
+  "statusEffect": "Supersedes earlier pending-CI statements for this exact source; does not change I failure, Debug cause, historical custody or J no-runtime boundary."
+}

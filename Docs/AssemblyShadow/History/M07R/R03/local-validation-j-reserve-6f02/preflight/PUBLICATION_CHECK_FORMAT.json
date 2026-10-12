@@ -1,0 +1,12 @@
+{
+  "state": "PublicationMetadataCheckerCorrected",
+  "recordedUtc": "2026-10-12T06:10:22.717915+00:00",
+  "firstCheckExit": 1,
+  "exception": "JSONDecodeError: Extra data: line 2 column 1 (char 79)",
+  "cause": "Original Bee tundra.log.json contains newline-delimited JSON objects despite its .json extension; a publication checker copied from I expected one JSON document",
+  "correction": "Parse only the exact reviewed debug-bee/files/tundra.log.json as JSONL; all other .json remain single-document validation",
+  "rawDiagnosticBytesChanged": false,
+  "validationOrCollectorRetry": false,
+  "productSourceChange": false,
+  "scope": "Local publication metadata validation only"
+}

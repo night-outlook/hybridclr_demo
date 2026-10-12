@@ -1,0 +1,122 @@
+{
+  "kind": "R03IRJCompileDiagnosticLocalResult",
+  "recordedUtc": "2026-10-12T06:08:13.400302+00:00",
+  "result": "PassedWithinCompileAndReadOnlyCollectionScope",
+  "exitState": "Local Validation -> Primary Implementation",
+  "sourcePins": {
+    "hybridclr_demo": "d1b9889e1af198a7f4b51a0a0943c34e16fa5f50",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "0fa7b4fef94062e54f186fda938dd8a3d2304b7e"
+  },
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "exactSourceAuthority": "Passed",
+  "originalInputAuthentication": "Passed original C/E/F/G/H/I Git/manifests, S seal/index and 15 original immutable fixture DLLs",
+  "hostSuites": [
+    {
+      "suite": "scratch-tests",
+      "Passed": 20,
+      "Failed": 0,
+      "Errors": 0,
+      "Skipped": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/scratch-tests/receipt.json"
+    },
+    {
+      "suite": "c-custody-tests",
+      "Passed": 25,
+      "Failed": 0,
+      "Errors": 0,
+      "Skipped": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/c-custody-tests/receipt.json"
+    },
+    {
+      "suite": "ir-host-tests",
+      "Passed": 65,
+      "Failed": 0,
+      "Errors": 0,
+      "Skipped": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/ir-host-tests/receipt.json"
+    },
+    {
+      "suite": "retained-e-tests",
+      "Passed": 9,
+      "Failed": 0,
+      "Errors": 0,
+      "Skipped": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/retained-e-tests/receipt.json"
+    },
+    {
+      "suite": "collector-tests",
+      "Passed": 14,
+      "Failed": 0,
+      "Errors": 0,
+      "Skipped": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03J-reserve-6f02/commands/collector-tests/receipt.json"
+    }
+  ],
+  "nativeHostChecks": "Passed reporting normal/sanitized, actual Object.h access, engine observer normal/sanitized; mocked VM only",
+  "nativePolicyChecks": 69,
+  "managedCompile": "ReusedAuditedManagedCompilation",
+  "managedInputBindingsUnchanged": 428,
+  "managedProductTargets": 5,
+  "managedExpectedNegativeControls": 1,
+  "managedScriptInvocations": 0,
+  "nativeCompile": "Passed",
+  "nativeScriptInvocations": 1,
+  "nativeConfigurations": {
+    "Passed": 55,
+    "Failed": 0,
+    "NotRun": 0
+  },
+  "nativeSyntaxOnly": true,
+  "nativeWarningOccurrences": 616,
+  "officialUnitySdk": "2022.3.62f2",
+  "localToolchain": "macOS26.5.2 build25F84; Apple clang21.0.0 arm64; CommandLineTools MacOSX26.5; Python3.14.6",
+  "copiedSdkInventoryFiles": 1888,
+  "readOnlyCollectorInvocations": 1,
+  "diagnosticCollection": "Passed",
+  "diagnosticFiles": 40,
+  "diagnosticBytes": 23578278,
+  "associatedChildCommands": "Identified clang++ object compile and project-local UnityLinker; both retained exit0",
+  "actualSharedCacheDiagnosticEmitter": "Unavailable",
+  "diagnosticCause": "Unavailable",
+  "custody": {
+    "before": "ScopedHistoricalLossStable",
+    "after": "ScopedHistoricalLossStable",
+    "originalEntries": 416844,
+    "survivors": 339367,
+    "unchangedMissing": 77477,
+    "problems": 0,
+    "originalStrictCustody": "Blocked"
+  },
+  "preservation": "Passed E/F/G/H/I, installed SDK/compiler/managed references, R/Q top records and original selected Bee roster",
+  "sdkInstalledInventoryFiles": 2113,
+  "sdkInstalledInventoryBytes": 109847001,
+  "currentSnapshotEntries": 45602,
+  "historicalProvenanceRestored": false,
+  "historicalStates": {
+    "E": "FAIL",
+    "F": "PrerequisiteBlocked",
+    "G": "Passed compile-only",
+    "H": "PrerequisiteBlocked",
+    "I": "FAIL"
+  },
+  "unityLaunches": 0,
+  "playerBuilds": 0,
+  "playerLaunches": 0,
+  "runtimeBatch": "NotRun / not authorized",
+  "runtimeLedgerAndSeal": "Unavailable; no runtime batch constructed",
+  "runtimeStorageAdmission": "NotRun / not requested",
+  "sourceChanges": [],
+  "boundedFixes": [],
+  "retries": 0,
+  "TMPDIRChanges": false,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "ReadyForHumanReviewGate": false,
+  "fullLegacyRegressionAcceptance": false,
+  "pureInterpreterExpansionEnabled": false,
+  "independentFullStageReview": "FAIL",
+  "independentReReview": "NotRun"
+}
