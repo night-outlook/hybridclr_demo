@@ -1,0 +1,63 @@
+name: I pinned source analysis export
+on:
+  push:
+    branches: [codex/connector-smoke-i-response-6f02]
+permissions:
+  contents: read
+jobs:
+  source-export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 3a3d8f384bd6f02e7a685f2e3aae5758e850d72a
+          path: inputs/hybridclr_demo
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03/
+            /Tools/AssemblyShadow/R03IR/
+            /Tools/AssemblyShadow/R03Storage/
+            /.github/workflows/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-i-post-h-custody-7f36/batch/builds/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-i-post-h-custody-7f36/batch/commands/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-i-post-h-custody-7f36/preflight/FAILURE_DIAGNOSIS.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-i-post-h-custody-7f36/preflight/CRASH_DIAGNOSIS.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-i-post-h-custody-7f36/FILE_TRANSPORT.json
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: c386cdd1e8942561f1d1e1fada52d21ca524f174
+          path: inputs/il2cpp_plus
+          persist-credentials: false
+      - name: Package only committed source and permitted diagnostic text
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/i-source"
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,hashlib,subprocess,tarfile,os
+          roots=Path('inputs'); out=Path(os.environ['RUNNER_TEMP'])/'i-source'
+          manifests=[]
+          with tarfile.open(out/'source.tar.gz','w:gz') as tar:
+              for repo in sorted(roots.iterdir()):
+                  head=subprocess.check_output(['git','-C',str(repo),'rev-parse','HEAD'],text=True).strip()
+                  for p in sorted(repo.rglob('*')):
+                      if '.git' in p.parts or not p.is_file() or p.is_symlink():continue
+                      data=p.read_bytes();rel=p.relative_to(repo)
+                      blob=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+                      actual=subprocess.check_output(['git','-C',str(repo),'rev-parse','HEAD:'+str(rel)],text=True).strip()
+                      assert blob==actual,(rel,blob,actual)
+                      name=str(p.relative_to(roots));tar.add(p,arcname=name,recursive=False)
+                      manifests.append({'path':name,'commit':head,'gitBlob':blob,'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)})
+          (out/'manifest.json').write_text(json.dumps(manifests,indent=2)+'\n')
+          print(json.dumps({'files':len(manifests),'archiveSha256':hashlib.sha256((out/'source.tar.gz').read_bytes()).hexdigest(),'readOnly':True}))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: i-pinned-source-6f02
+          path: ${{ runner.temp }}/i-source
+          retention-days: 14
