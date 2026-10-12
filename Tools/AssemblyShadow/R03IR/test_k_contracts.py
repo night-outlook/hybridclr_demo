@@ -89,9 +89,10 @@ class BeeContracts(unittest.TestCase):
         raw={'schemaVersion':1,'kind':'R03BeeResultObservationV1','runtimeAcceptance':False,
              'sourceManifestSha256':'a','result':'CapturedForAnalysis','sameProcessor':True,
              'driverInitiallyAbsent':True,'limitsExceeded':False,'buildErrors':2,
+             'acquisition':'ScopedOriginalFactoryForwarderV1','factoryRestored':True,'factoryCalls':2,'selectedFactorySequence':1,
              'nodes':[{'exitCode':0,'output':''}],'messages':[]}
         self.assertFalse(verify_observation(raw,'a')['buildAcceptanceChanged'])
-        for field in ['sameProcessor','driverInitiallyAbsent']:
+        for field in ['sameProcessor','driverInitiallyAbsent','factoryRestored']:
             change=copy.deepcopy(raw);change[field]=False
             with self.assertRaises(ContractError):verify_observation(change,'a')
         raw['limitsExceeded']=True

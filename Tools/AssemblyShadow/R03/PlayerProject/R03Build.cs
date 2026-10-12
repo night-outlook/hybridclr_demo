@@ -216,7 +216,75 @@ namespace AssemblyShadow.R03.Editor
         }
     }
 
-    // K observational instrumentation. No detours or result-processor replacement.
+    // L observer: forward the original platform-module interface without
+    // changing factory arguments, return values, result processors or errors.
+    // This is a guarded Unity-internal test integration, not a public API.
+    public class R03ModuleFactoryForwarder : DispatchProxy
+    {
+        internal object Original;
+        internal Action<object> FactoryReturned;
+        internal Action<string> CaptureFailed;
+        protected override object Invoke(MethodInfo method, object[] args)
+        {
+            object result;
+            try { result = method.Invoke(Original, args); }
+            catch (TargetInvocationException error)
+            {
+                System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(error.InnerException ?? error).Throw();
+                throw;
+            }
+            if (method.Name == "CreateBuildPostprocessor" && method.GetParameters().Length == 0)
+            {
+                // Observation failure must not change the original factory's
+                // return value or turn the observer into a result processor.
+                try { FactoryReturned(result); }
+                catch (Exception error) { CaptureFailed(error.GetType().FullName); }
+            }
+            return result;
+        }
+    }
+    internal sealed class R03ModuleFactoryLease : IDisposable
+    {
+        private readonly IDictionary registry;
+        private readonly object key, original, proxy;
+        private bool disposed;
+        public bool Restored { get; private set; }
+        public string OriginalType { get { return original.GetType().FullName; } }
+        public Assembly OriginalAssembly { get { return original.GetType().Assembly; } }
+        public R03ModuleFactoryLease(IDictionary registry, object key, Type contract,
+            Action<object> factoryReturned, Action<string> captureFailed)
+        {
+            if (registry == null || key == null || !registry.Contains(key) || contract == null ||
+                !contract.IsInterface || factoryReturned == null || captureFailed == null)
+                throw new InvalidOperationException("Exact module interface/slot required");
+            this.registry = registry; this.key = key; original = registry[key];
+            if (original == null || !contract.IsInstanceOfType(original) || original is R03ModuleFactoryForwarder)
+                throw new InvalidOperationException("Original unwrapped module required");
+            MethodInfo create = typeof(DispatchProxy).GetMethods(BindingFlags.Public | BindingFlags.Static)
+                .Single(m => m.Name == "Create" && m.IsGenericMethodDefinition &&
+                    m.GetGenericArguments().Length == 2 && m.GetParameters().Length == 0);
+            proxy = create.MakeGenericMethod(contract, typeof(R03ModuleFactoryForwarder)).Invoke(null, null);
+            var forwarder = (R03ModuleFactoryForwarder)proxy;
+            forwarder.Original = original;
+            forwarder.FactoryReturned = factoryReturned;
+            forwarder.CaptureFailed = captureFailed;
+            if (!contract.IsInstanceOfType(proxy) || !ReferenceEquals(registry[key], original))
+                throw new InvalidOperationException("Module changed before scoped observation");
+            registry[key] = proxy;
+        }
+        public void Dispose()
+        {
+            if (disposed) return;
+            disposed = true;
+            if (!ReferenceEquals(registry[key], proxy))
+                throw new InvalidOperationException("Module changed during observation; not overwritten");
+            registry[key] = original;
+            Restored = ReferenceEquals(registry[key], original);
+            if (!Restored) throw new InvalidOperationException("Original module restoration failed");
+        }
+    }
+
+    // L observation of actual original factory returns; no processor replacement.
     internal sealed class R03BeeObservation : IDisposable
     {
         [Serializable] private sealed class Message { public string utc, text, stack; public int thread; }
@@ -228,6 +296,9 @@ namespace AssemblyShadow.R03.Editor
             public string kind = "R03BeeResultObservationV1", result = "Unavailable";
             public string project, sourceManifestSha256, utcStart, utcEnd, processorType, processorAssemblySha256, error;
             public bool sameProcessor, driverInitiallyAbsent, limitsExceeded, runtimeAcceptance = false;
+            public string acquisition = "ScopedOriginalFactoryForwarderV1", moduleType, moduleAssemblySha256;
+            public int factoryCalls, capturedProcessors, selectedFactorySequence;
+            public bool factoryRestored;
             public int buildErrors = -1, buildWarnings = -1;
             public Message[] messages;
             public Node[] nodes;
@@ -236,7 +307,10 @@ namespace AssemblyShadow.R03.Editor
         private readonly Observation data = new Observation();
         private readonly List<Message> messages = new List<Message>();
         private readonly object sync = new object();
-        private readonly object initialProcessor, initialDriver;
+        private sealed class FactoryReturn
+        { public object processor, initialDriver; public int sequence; }
+        private readonly List<FactoryReturn> factoryReturns = new List<FactoryReturn>();
+        private readonly R03ModuleFactoryLease factoryLease;
         private bool disposed, saved;
         // The receipt must not claim captured Bee nodes when the diagnostic
         // itself is Unavailable (for example, a non-identical result processor).
@@ -247,9 +321,27 @@ namespace AssemblyShadow.R03.Editor
             this.config = config;
             data.project = project; data.sourceManifestSha256 = config.sourceManifestSha256;
             data.utcStart = DateTime.UtcNow.ToString("o");
-            try { initialProcessor = Processor(); initialDriver = Read(initialProcessor, "BeeDriverResult"); }
-            catch (Exception e) { data.error = "Before:" + e.GetType().FullName; }
-            Application.logMessageReceivedThreaded += OnLog;
+            // Do not call GetBuildPostProcessor: that would create a different
+            // object. Record the actual instances the unchanged original factory
+            // returns to BuildPipeline while this synchronous build owns the slot.
+            Type module = typeof(BuildPipeline).Assembly.GetType("UnityEditor.Modules.ModuleManager", true);
+            const BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
+            PropertyInfo property = module.GetProperty("platformSupportModules", flags);
+            MethodInfo target = module.GetMethod("GetTargetStringFromBuildTarget", flags,
+                null, new[] { typeof(BuildTarget) }, null);
+            if (property == null || target == null) throw new InvalidOperationException("Platform module contract unavailable");
+            var registry = property.GetValue(null, null) as IDictionary;
+            object key = target.Invoke(null, new object[] { BuildTarget.StandaloneOSX });
+            Type contract = property.PropertyType.GetGenericArguments()[1];
+            factoryLease = new R03ModuleFactoryLease(registry, key, contract, CaptureFactoryReturn,
+                error => { lock (sync) data.error = "FactoryCapture:" + error; });
+            try
+            {
+                data.moduleType = factoryLease.OriginalType;
+                data.moduleAssemblySha256 = ShadowHash.File(factoryLease.OriginalAssembly.Location);
+                Application.logMessageReceivedThreaded += OnLog;
+            }
+            catch { factoryLease.Dispose(); throw; }
         }
         private void OnLog(string condition, string stack, LogType type)
         {
@@ -274,13 +366,17 @@ namespace AssemblyShadow.R03.Editor
             }
             return null;
         }
-        private static object Processor()
+        private void CaptureFactoryReturn(object processor)
         {
-            Type module = typeof(BuildPipeline).Assembly.GetType("UnityEditor.Modules.ModuleManager", true);
-            MethodInfo method = module.GetMethod("GetBuildPostProcessor", BindingFlags.Static | BindingFlags.NonPublic,
-                null, new[] { typeof(BuildTargetGroup), typeof(BuildTarget) }, null);
-            if (method == null) throw new MissingMethodException("GetBuildPostProcessor");
-            return method.Invoke(null, new object[] { BuildTargetGroup.Standalone, BuildTarget.StandaloneOSX });
+            lock (sync)
+            {
+                ++data.factoryCalls;
+                if (disposed || processor == null || data.factoryCalls > 64)
+                { data.limitsExceeded = true; return; }
+                if (factoryReturns.Any(r => ReferenceEquals(r.processor, processor))) return;
+                factoryReturns.Add(new FactoryReturn { processor = processor,
+                    initialDriver = Read(processor, "BeeDriverResult"), sequence = data.factoryCalls });
+            }
         }
         public string Save(BuildReport report)
         {
@@ -292,9 +388,20 @@ namespace AssemblyShadow.R03.Editor
             var rows = new List<Node>(); long bytes = 0;
             try
             {
-                object processor = Processor();
-                data.sameProcessor = ReferenceEquals(initialProcessor, processor) && processor != null;
-                data.driverInitiallyAbsent = initialDriver == null;
+                FactoryReturn selected = null;
+                data.capturedProcessors = factoryReturns.Count;
+                foreach (FactoryReturn observed in factoryReturns)
+                    if (Read(observed.processor, "BeeDriverResult") != null)
+                    {
+                        if (selected != null) throw new InvalidOperationException("Multiple actual Bee driver owners");
+                        selected = observed;
+                    }
+                if (selected == null || !data.factoryRestored || data.error != null || data.limitsExceeded)
+                    throw new InvalidOperationException("Actual original factory/driver observation unavailable");
+                object processor = selected.processor;
+                data.sameProcessor = factoryReturns.Any(r => ReferenceEquals(r.processor, processor));
+                data.driverInitiallyAbsent = selected.initialDriver == null;
+                data.selectedFactorySequence = selected.sequence;
                 data.processorType = processor == null ? null : processor.GetType().FullName;
                 if (processor != null) data.processorAssemblySha256 = ShadowHash.File(processor.GetType().Assembly.Location);
                 object driver = Read(processor, "BeeDriverResult");
@@ -332,6 +439,8 @@ namespace AssemblyShadow.R03.Editor
                 if (disposed) return;
                 Application.logMessageReceivedThreaded -= OnLog; disposed = true;
             }
+            factoryLease.Dispose();
+            data.factoryRestored = factoryLease.Restored;
         }
     }
 

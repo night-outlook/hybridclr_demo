@@ -22,7 +22,10 @@ def verify_observation(data, manifest):
             'Native build observation schema')
     require(data.get('sourceManifestSha256')==manifest,'Observation must bind current build inputs')
     require(data.get('result')=='CapturedForAnalysis' and data.get('sameProcessor') is True and
-            data.get('driverInitiallyAbsent') is True and data.get('limitsExceeded') is False,
+            data.get('driverInitiallyAbsent') is True and data.get('limitsExceeded') is False and
+            data.get('acquisition') == 'ScopedOriginalFactoryForwarderV1' and data.get('factoryRestored') is True and
+            type(data.get('factoryCalls')) is int and 1 <= data['factoryCalls'] <= 64 and
+            type(data.get('selectedFactorySequence')) is int and 1 <= data['selectedFactorySequence'] <= data['factoryCalls'],
             'Current untruncated BeeDriverResult identity required; unavailable does not mean success')
     require(type(data.get('nodes')) is list and 0<len(data['nodes'])<=4096,'Bounded actual node list')
     require(type(data.get('buildErrors')) is int and data['buildErrors']>=0,'BuildReport error count retained')
