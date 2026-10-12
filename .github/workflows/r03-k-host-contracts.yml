@@ -1,0 +1,94 @@
+name: R03 K terminal observation host contracts
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-k-host-contracts.yml'
+      - 'Tools/AssemblyShadow/R03IR/**'
+      - 'Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp'
+      - 'Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs'
+      - 'Tools/AssemblyShadow/R03/source-pins.json'
+permissions:
+  contents: read
+jobs:
+  host-contracts:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03/
+            /Tools/AssemblyShadow/R03IR/
+            /Tools/AssemblyShadow/R02/
+            /.github/workflows/r03-k-host-contracts.yml
+      - name: Verify current tracked source syntax and pin identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/r03-k-host"
+          mkdir -p "$OUT"
+          git rev-parse HEAD | tee "$OUT/source-commit.txt"
+          python3 - <<'PY'
+          from pathlib import Path
+          import ast,json,re
+          root=Path('Tools/AssemblyShadow')
+          paths=sorted(list((root/'R03').rglob('*.py'))+list((root/'R03IR').rglob('*.py')))
+          for path in paths: ast.parse(path.read_text(),filename=str(path))
+          pins=json.loads((root/'R03/source-pins.json').read_text())
+          assert pins['branch']=='codex/assembly-shadow-r01b-h1'
+          for name in ('hybridclr','hybridclr_unity','il2cpp_plus'):
+              assert re.fullmatch(r'[0-9a-f]{40}',pins[name]),name
+          print('K current source syntax passed:',len(paths),'Python files')
+          PY
+      - name: Execute R03IR host contracts and actual snapshot transport
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/r03-k-host"
+          python3 -B -m unittest discover -s Tools/AssemblyShadow/R03IR \
+            -p 'test_*.py' -v 2>&1 | tee "$OUT/k-host-tests.log"
+          grep -Eq '^Ran [0-9]+ tests?' "$OUT/k-host-tests.log"
+          grep -q '^OK$' "$OUT/k-host-tests.log"
+          git diff --check
+          git diff --exit-code
+      - name: Bind exact source bytes and complete host output
+        if: always()
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'r03-k-host';out.mkdir(exist_ok=True)
+          paths=[
+           'Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs',
+           'Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs',
+           'Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp',
+           'Tools/AssemblyShadow/R03IR/run_terminal_local.py',
+           'Tools/AssemblyShadow/R03IR/run_terminal_storage_checked.py',
+           'Tools/AssemblyShadow/R03IR/bee_observation.py',
+           'Tools/AssemblyShadow/R03IR/test_k_contracts.py',
+           'Tools/AssemblyShadow/R03IR/test_native_snapshot.py',
+           'Tools/AssemblyShadow/R03/source-pins.json']
+          sources=[]
+          for name in paths:
+              path=Path(name);assert path.is_file()
+              data=path.read_bytes()
+              sources.append(dict(path=name,gitBlob=subprocess.check_output(['git','rev-parse','HEAD:'+name],text=True).strip(),bytes=len(data),sha256=hashlib.sha256(data).hexdigest()))
+          files=[dict(path=p.name,bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in out.iterdir() if p.is_file()]
+          (out/'provenance.json').write_text(json.dumps({'schemaVersion':1,'kind':'R03KHostSourceTest','sourceCommit':os.environ['GITHUB_SHA'],'sources':sources,'files':files,'unityLaunched':False,'playerLaunched':False,'runtimeAcceptance':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-k-host-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-k-host
+          retention-days: 14
+          if-no-files-found: warn
