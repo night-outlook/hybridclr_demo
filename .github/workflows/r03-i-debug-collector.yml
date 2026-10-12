@@ -1,0 +1,60 @@
+name: R03 retained I debug collector contracts
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-i-debug-collector.yml'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02/collect_i_debug_cache.py'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02/test_debug_collection.py'
+permissions:
+  contents: read
+jobs:
+  collector:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02/
+      - name: Run synthetic collection boundaries without original Bee access
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          OUT="$RUNNER_TEMP/r03-i-debug-collector"
+          mkdir -p "$OUT"
+          python3 -B -m unittest discover \
+            -s Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02 \
+            -p test_debug_collection.py -v 2>&1 | tee "$OUT/tests.log"
+          grep -q '^Ran 14 tests' "$OUT/tests.log"
+          grep -q '^OK$' "$OUT/tests.log"
+          git diff --check
+          git diff --exit-code
+      - name: Bind exact sources and test streams
+        if: always()
+        shell: python
+        run: |
+          import ast,hashlib,json,os,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'r03-i-debug-collector';out.mkdir(exist_ok=True)
+          root=Path('Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02')
+          source=[]
+          for name in ('collect_i_debug_cache.py','test_debug_collection.py'):
+              p=root/name;data=p.read_bytes();ast.parse(data,filename=str(p))
+              source.append({'path':str(p),'gitBlob':subprocess.check_output(['git','rev-parse','HEAD:'+str(p)],text=True).strip(),'sha256':hashlib.sha256(data).hexdigest()})
+          files=[{'path':p.name,'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in out.iterdir() if p.is_file()]
+          (out/'provenance.json').write_text(json.dumps({'kind':'IDebugCollectorHostContracts','source':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'sources':source,'files':files,'liveBeeRead':False,'unityLaunched':False,'runtimeAcceptance':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: i-debug-collector-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-i-debug-collector
+          retention-days: 14
+          if-no-files-found: error
