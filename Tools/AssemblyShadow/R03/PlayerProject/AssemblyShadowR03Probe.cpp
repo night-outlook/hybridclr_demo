@@ -402,3 +402,129 @@ extern "C" IL2CPP_EXPORT int32_t R03_IR_ProbeTerminalReporting()
     return 0;
 #endif
 }
+
+// K test-only transport: preopen once while healthy; persist the actual C#
+// observation fields without managed reflection/formatting/file virtual calls.
+// Not a production logging, allocation, recovery, or acceptance API.
+#if HYBRIDCLR_R03_RUNTIME_PROBE
+#include <atomic>
+#include <cstdint>
+#include <cstdlib>
+#include <fcntl.h>
+#include <unistd.h>
+#include "gc/GCHandle.h"
+#include "gc/GarbageCollector.h"
+namespace r03_ir_snapshot {
+constexpr size_t TextLimit = 262144;
+constexpr const char* IntNames[] = {"initialState","poisonedState","finalState","nativeStimulusReturn","preActiveReflection","preActiveDelegate","preCanaryCount","finalCanaryCount","preShadowField","finalShadowField","nativePhase","failurePhase","terminalReportingProbeMask","reserveGcProbeMask","shadowFieldReadable","prePositive","activeReflectionAttempted","activeReflectionSucceeded","activeDelegateAttempted","activeDelegateSucceeded","aotReflectionAttempted","aotReflectionSucceeded","recoveryStable","fixedDiagnosticsReadable","acceptance"};
+constexpr const char* TextNames[] = {"result","runId","caseId","requestSha256","stimulus","unityVersion","platform","error","nativeGuardJson","activeReflectionException","activeDelegateException","aotReflectionException","firstRecovery","finalRecovery","finalDiagnostics","finalExecutionDiagnostics"};
+constexpr int IntCount = 25;
+constexpr int FirstBool = 14;
+constexpr int TextCount = 16;
+static std::atomic<int> state{0}; // 0 unused,1 open,2 sealed,-1 failed
+static FILE* stream = nullptr;
+static int32_t ints[IntCount] = {};
+static bool haveInt[IntCount] = {}, haveText[TextCount] = {}, nullText[TextCount] = {};
+static char texts[TextCount][TextLimit + 1] = {};
+static int Reject() { state.store(-1); return -1; }
+static void Quote(FILE* f, const char* text)
+{
+    if (!text) { std::fputs("null", f); return; }
+    std::fputc('"', f);
+    for (const unsigned char* p = reinterpret_cast<const unsigned char*>(text); *p; ++p)
+    {
+        if (*p == '"' || *p == '\\') { std::fputc('\\', f); std::fputc(*p, f); }
+        else if (*p < 32) std::fprintf(f, "\\u%04x", static_cast<unsigned>(*p));
+        else std::fputc(*p, f); // input is UTF-8 from P/Invoke
+    }
+    std::fputc('"', f);
+}
+}
+extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportOpen(const char* path)
+{
+    using namespace r03_ir_snapshot;
+    int expected = 0;
+    if (!state.compare_exchange_strong(expected, 1)) return -1;
+    if (!path || path[0] != '/') return Reject();
+    int fd = ::open(path, O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW, 0600);
+    if (fd < 0) return Reject();
+    stream = ::fdopen(fd, "w");
+    if (!stream) { ::close(fd); return Reject(); }
+    return 1;
+}
+extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportInt(int32_t field, int32_t value)
+{
+    using namespace r03_ir_snapshot;
+    if (state.load() != 1 || field < 0 || field >= IntCount || haveInt[field] ||
+        (field >= FirstBool && value != 0 && value != 1)) return Reject();
+    ints[field] = value; haveInt[field] = true; return 1;
+}
+extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportText(int32_t field, const char* value)
+{
+    using namespace r03_ir_snapshot;
+    if (state.load() != 1 || field < 0 || field >= TextCount || haveText[field]) return Reject();
+    size_t n = value ? ::strnlen(value, TextLimit + 1) : 0;
+    if (n > TextLimit) return Reject();
+    if (value) std::memcpy(texts[field], value, n + 1);
+    nullText[field] = value == nullptr; haveText[field] = true; return 1;
+}
+extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportSeal()
+{
+    using namespace r03_ir_snapshot;
+    if (state.load() != 1 || !stream) return Reject();
+    for (int i = 0; i < IntCount; ++i) if (!haveInt[i]) return Reject();
+    for (int i = 0; i < TextCount; ++i) if (!haveText[i]) return Reject();
+    std::fprintf(stream, "{\"schemaVersion\":1,\"kind\":\"R03IRPostPoisonEntryV1\","
+        "\"reportTransport\":\"NativePreopenedSnapshotV1\",\"processId\":%d", static_cast<int>(::getpid()));
+    for (int i = 0; i < IntCount; ++i)
+    {
+        std::fputc(',', stream); Quote(stream, IntNames[i]); std::fputc(':', stream);
+        if (i < FirstBool) std::fprintf(stream, "%d", ints[i]);
+        else std::fputs(ints[i] ? "true" : "false", stream);
+    }
+    for (int i = 0; i < TextCount; ++i)
+    {
+        std::fputc(',', stream); Quote(stream, TextNames[i]); std::fputc(':', stream);
+        Quote(stream, nullText[i] ? nullptr : texts[i]);
+    }
+    std::fputs("}\n", stream);
+    bool ok = !std::ferror(stream) && std::fflush(stream) == 0 && ::fsync(::fileno(stream)) == 0;
+    ok = std::fclose(stream) == 0 && ok;
+    stream = nullptr; state.store(ok ? 2 : -1); return ok ? 1 : -1;
+}
+extern "C" IL2CPP_EXPORT void R03_IR_Exit(int32_t code) { std::_Exit(code); }
+
+extern "C" IL2CPP_EXPORT int32_t R03_IR_ProbeBooleanReserve()
+{
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
+    using namespace il2cpp::vm;
+    using namespace il2cpp::vm::assembly_shadow_reporting;
+    try
+    {
+        AssemblyShadowState before;
+        if (AssemblyShadow::GetState(before) != AssemblyShadowError::Success ||
+            before != AssemblyShadowState::Committed) return -1;
+        auto& reserve = BooleanReserve();
+        Il2CppObject* saved = reserve.object.load(std::memory_order_acquire);
+        int32_t mask = saved && IsReadyBoolean(reserve.physicalClass) &&
+            saved->klass == reserve.physicalClass ? 1 : 0;
+        if (saved && reserve.pinnedHandle &&
+            il2cpp::gc::GCHandle::GetTarget(reserve.pinnedHandle) == saved) mask |= 2;
+        const int generation = il2cpp::gc::GarbageCollector::GetMaxGeneration();
+        const int count = il2cpp::gc::GarbageCollector::GetCollectionCount(generation);
+        il2cpp::gc::GarbageCollector::Collect(generation); // healthy, never after poison
+        const int afterCount = il2cpp::gc::GarbageCollector::GetCollectionCount(generation);
+        if (saved && reserve.object.load(std::memory_order_acquire) == saved && afterCount > count) mask |= 4;
+        if (saved && HasTruePayload(saved)) mask |= 8;
+        AssemblyShadowState after;
+        if (AssemblyShadow::GetState(after) == AssemblyShadowError::Success && after == before) mask |= 16;
+        std::fprintf(stderr, "[R03ReserveGcProbe] mask=%d collectionsBefore=%d collectionsAfter=%d\n", mask, count, afterCount);
+        std::fflush(stderr);
+        return mask;
+    }
+    catch (...) { return -2; }
+#else
+    return 0;
+#endif
+}
+#endif // HYBRIDCLR_R03_RUNTIME_PROBE

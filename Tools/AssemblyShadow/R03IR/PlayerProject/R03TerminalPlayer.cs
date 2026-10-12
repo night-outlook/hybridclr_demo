@@ -21,11 +21,6 @@ namespace AssemblyShadow.R03.IR
             public int schemaVersion;
             public string runId, caseId, baselineId, dllPath, dllSha256, stimulus;
         }
-        [Serializable, Preserve] private sealed class NativeGuard
-        {
-            public int schemaVersion, activeGuard, baselineGuard, caughtOldGuard, stateCode;
-            public bool available;
-        }
         [Serializable, Preserve] public sealed class Report
         {
             public int schemaVersion = 1;
@@ -43,8 +38,33 @@ namespace AssemblyShadow.R03.IR
             public string activeReflectionException, activeDelegateException, aotReflectionException;
             public string firstRecovery, finalRecovery, finalDiagnostics, finalExecutionDiagnostics;
             public bool recoveryStable, fixedDiagnosticsReadable;
-            public int nativePhase, failurePhase, terminalReportingProbeMask;
+            public int nativePhase, failurePhase, terminalReportingProbeMask, reserveGcProbeMask;
             public bool acceptance = false;
+        }
+
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_ReportOpen([MarshalAs(UnmanagedType.LPUTF8Str)] string path);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_ReportInt(int field, int value);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_ReportText(int field, [MarshalAs(UnmanagedType.LPUTF8Str)] string value);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_ReportSeal();
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void R03_IR_Exit(int status);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_ProbeBooleanReserve();
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void R03_IR_EngineLoggerCalled();
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_ArmEngineWitness(string output, string run, string caseId, string requestSha);
+
+        [Preserve]
+        private sealed class EngineWitnessLogger : ILogHandler
+        {
+            public void LogException(Exception exception, UnityEngine.Object context) { R03_IR_EngineLoggerCalled(); }
+            public void LogFormat(LogType type, UnityEngine.Object context, string format, params object[] args)
+            { R03_IR_EngineLoggerCalled(); }
         }
 
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
@@ -82,6 +102,8 @@ namespace AssemblyShadow.R03.IR
                 unityVersion = Application.unityVersion,
                 platform = Application.platform.ToString()
             };
+            bool reportOpened = false, engineCase = false, engineArmed = false;
+            Exception engineSentinel = null;
             try
             {
                 Phase(report, 10);
@@ -95,6 +117,20 @@ namespace AssemblyShadow.R03.IR
                 report.runId = request.runId;
                 report.caseId = request.caseId;
                 report.stimulus = request.stimulus;
+                engineCase = request.stimulus == "engine-unhandled";
+                if (!engineCase)
+                {
+                    Require(R03_IR_ReportOpen(outputPath) == 1, "Exclusive native report destination");
+                    reportOpened = true;
+                }
+                else
+                {
+                    // Allocate while healthy; the actual uncaught exception must
+                    // leave Start and be routed by Unity, never by a direct probe.
+                    engineSentinel = new InvalidOperationException("R03_ENGINE_UNHANDLED_" + request.runId);
+                    UnityEngine.Debug.unityLogger.logHandler = new EngineWitnessLogger();
+                    UnityEngine.Debug.LogException(engineSentinel); // One healthy logger control, no forwarding.
+                }
                 Require(Application.platform == RuntimePlatform.OSXPlayer, "Actual macOS Player required");
                 AssemblyShadowState state;
                 var canary = typeof(R03TerminalPlayer).GetMethod("TerminalAotCanary", BindingFlags.NonPublic | BindingFlags.Static);
@@ -116,7 +152,7 @@ namespace AssemblyShadow.R03.IR
                     return;
                 }
 
-                Require(request.stimulus == "baseline-owner" || request.stimulus == "type-resolution",
+                Require(request.stimulus == "baseline-owner" || request.stimulus == "type-resolution" || engineCase,
                     "Supported independent ON stimuli only");
                 Require(!string.IsNullOrEmpty(request.dllPath) && Path.IsPathRooted(request.dllPath) &&
                     !string.IsNullOrEmpty(request.dllSha256) && !string.IsNullOrEmpty(request.baselineId),
@@ -142,6 +178,18 @@ namespace AssemblyShadow.R03.IR
                 Require(AssemblyShadowRuntime.GetState(out state) == AssemblyShadowErrorCode.Success &&
                     state == AssemblyShadowState.Committed, "Committed before poison");
                 report.initialState = (int)state;
+                report.reserveGcProbeMask = R03_IR_ProbeBooleanReserve();
+                Require(report.reserveGcProbeMask == 31, "Physical pinned Boolean must survive real healthy GC");
+                if (engineCase)
+                {
+                    Require(R03_IR_ArmEngineWitness(outputPath, request.runId, request.caseId,
+                        report.requestSha256) == 1, "Exclusive engine witness arm");
+                    engineArmed = true;
+                    // Prescribed production failure, followed by an uncaught,
+                    // preallocated sentinel. No direct report probe is invoked.
+                    R03_IR_ForceTypeFailure();
+                    throw engineSentinel;
+                }
 
                 // True positive control: the same already-resolved active method,
                 // its delegate, and the AOT reflection canary all execute first.
@@ -180,11 +228,15 @@ namespace AssemblyShadow.R03.IR
                     int count = R03_ObserveMethod("Methods", "R03", "Node", "Keep", 3, buffer, buffer.Length);
                     Require(count > 0 && count < buffer.Length, "Native baseline-owner guard receipt");
                     report.nativeGuardJson = Encoding.UTF8.GetString(buffer, 0, count);
-                    NativeGuard guard = JsonUtility.FromJson<NativeGuard>(report.nativeGuardJson);
-                    Require(guard != null && guard.available && guard.activeGuard == 1 &&
-                        guard.baselineGuard == 0 && guard.caughtOldGuard == 1 && guard.stateCode == 9,
+                    // The producer is fixed native JSON; full independent parsing
+                    // remains mandatory in the host. Do not invoke JsonUtility after poison.
+                    Require(GuardFlag(report.nativeGuardJson, "available", "true") &&
+                        GuardFlag(report.nativeGuardJson, "activeGuard", "1") &&
+                        GuardFlag(report.nativeGuardJson, "baselineGuard", "0") &&
+                        GuardFlag(report.nativeGuardJson, "caughtOldGuard", "1") &&
+                        GuardFlag(report.nativeGuardJson, "stateCode", "9"),
                         "First terminal failure and caught managed guard exception required");
-                    report.nativeStimulusReturn = guard.caughtOldGuard;
+                    report.nativeStimulusReturn = 1; // GuardFlag validated the actual returned receipt.
                 }
                 else
                 {
@@ -209,15 +261,15 @@ namespace AssemblyShadow.R03.IR
                 Phase(report, 190);
                 report.activeReflectionAttempted = true;
                 try { activeMethod.Invoke(instance, null); report.activeReflectionSucceeded = true; }
-                catch (Exception failure) { report.activeReflectionException = failure.GetType().FullName; }
+                catch (Exception) { report.activeReflectionException = "ManagedExceptionCaught"; }
                 Phase(report, 200);
                 report.activeDelegateAttempted = true;
                 try { activeDelegate(); report.activeDelegateSucceeded = true; }
-                catch (Exception failure) { report.activeDelegateException = failure.GetType().FullName; }
+                catch (Exception) { report.activeDelegateException = "ManagedExceptionCaught"; }
                 Phase(report, 210);
                 report.aotReflectionAttempted = true;
                 try { canary.Invoke(null, null); report.aotReflectionSucceeded = true; }
-                catch (Exception failure) { report.aotReflectionException = failure.GetType().FullName; }
+                catch (Exception) { report.aotReflectionException = "ManagedExceptionCaught"; }
                 report.finalCanaryCount = s_canary;
                 // Read the already resolved primitive FieldInfo after poison.
                 // A failed read cannot pass: we do not infer no body execution
@@ -254,33 +306,91 @@ namespace AssemblyShadow.R03.IR
                     "Actual active shadow Keep method body must not mutate its instance field after poison");
                 report.result = "Passed";
             }
-            catch (Exception error)
+            catch (Exception)
             {
+                if (engineArmed) throw; // Unity, not this code, routes the unhandled sentinel.
                 // Exception.ToString may make virtual calls in poisoned state.
                 // Original native cause/last phase is retained in flushed stderr.
                 report.failurePhase = report.nativePhase;
                 report.error = "ManagedFailure; see native first-failure and phase checkpoints";
                 Phase(report, 900);
-                try { report.error = s_failedRequirement ?? error.GetType().FullName; }
-                catch { /* Keep literal rather than losing the original report. */ }
+                report.error = s_failedRequirement ?? "ManagedExceptionCaught";
             }
             finally
             {
-                try
+                if (!engineArmed)
                 {
-                    Phase(report, 910);
-                    using (var output = new FileStream(outputPath, FileMode.CreateNew, FileAccess.Write, FileShare.None))
-                    using (var writer = new StreamWriter(output, new UTF8Encoding(false)))
-                        writer.Write(JsonUtility.ToJson(report, true) + "\n");
-                    Application.Quit(0); // Host verifier owns acceptance, not this process exit.
-                }
-                catch (Exception)
-                {
-                    // Never route a reporting failure through a managed logger.
-                    R03_IR_TracePhase(990);
-                    Application.Quit(2);
+                    // A complete native snapshot avoids reflection/virtual I/O
+                    // after poison. Native exit terminates this disposable test
+                    // only; it does NOT validate ordinary runtime shutdown.
+                    int exit = 2;
+                    try
+                    {
+                        Phase(report, 910);
+                        if (!reportOpened && outputPath != null) reportOpened = R03_IR_ReportOpen(outputPath) == 1;
+                        if (reportOpened && EmitNativeReport(report)) exit = 0;
+                    }
+                    catch { R03_IR_TracePhase(990); }
+                    R03_IR_Exit(exit);
                 }
             }
+        }
+
+        private static bool GuardFlag(string json, string key, string value)
+        {
+            if (json == null) return false;
+            string token = "\"" + key + "\":" + value;
+            int pos = json.IndexOf(token, StringComparison.Ordinal);
+            if (pos < 0 || json.IndexOf(token, pos + 1, StringComparison.Ordinal) >= 0) return false;
+            int end = pos + token.Length;
+            return end < json.Length && (json[end] == ',' || json[end] == '}');
+        }
+
+        private static bool EmitNativeReport(Report r)
+        {
+            bool ok = true;
+            ok &= R03_IR_ReportInt(0, r.initialState) == 1;
+            ok &= R03_IR_ReportInt(1, r.poisonedState) == 1;
+            ok &= R03_IR_ReportInt(2, r.finalState) == 1;
+            ok &= R03_IR_ReportInt(3, r.nativeStimulusReturn) == 1;
+            ok &= R03_IR_ReportInt(4, r.preActiveReflection) == 1;
+            ok &= R03_IR_ReportInt(5, r.preActiveDelegate) == 1;
+            ok &= R03_IR_ReportInt(6, r.preCanaryCount) == 1;
+            ok &= R03_IR_ReportInt(7, r.finalCanaryCount) == 1;
+            ok &= R03_IR_ReportInt(8, r.preShadowField) == 1;
+            ok &= R03_IR_ReportInt(9, r.finalShadowField) == 1;
+            ok &= R03_IR_ReportInt(10, r.nativePhase) == 1;
+            ok &= R03_IR_ReportInt(11, r.failurePhase) == 1;
+            ok &= R03_IR_ReportInt(12, r.terminalReportingProbeMask) == 1;
+            ok &= R03_IR_ReportInt(13, r.reserveGcProbeMask) == 1;
+            ok &= R03_IR_ReportInt(14, r.shadowFieldReadable ? 1 : 0) == 1;
+            ok &= R03_IR_ReportInt(15, r.prePositive ? 1 : 0) == 1;
+            ok &= R03_IR_ReportInt(16, r.activeReflectionAttempted ? 1 : 0) == 1;
+            ok &= R03_IR_ReportInt(17, r.activeReflectionSucceeded ? 1 : 0) == 1;
+            ok &= R03_IR_ReportInt(18, r.activeDelegateAttempted ? 1 : 0) == 1;
+            ok &= R03_IR_ReportInt(19, r.activeDelegateSucceeded ? 1 : 0) == 1;
+            ok &= R03_IR_ReportInt(20, r.aotReflectionAttempted ? 1 : 0) == 1;
+            ok &= R03_IR_ReportInt(21, r.aotReflectionSucceeded ? 1 : 0) == 1;
+            ok &= R03_IR_ReportInt(22, r.recoveryStable ? 1 : 0) == 1;
+            ok &= R03_IR_ReportInt(23, r.fixedDiagnosticsReadable ? 1 : 0) == 1;
+            ok &= R03_IR_ReportInt(24, r.acceptance ? 1 : 0) == 1;
+            ok &= R03_IR_ReportText(0, r.result) == 1;
+            ok &= R03_IR_ReportText(1, r.runId) == 1;
+            ok &= R03_IR_ReportText(2, r.caseId) == 1;
+            ok &= R03_IR_ReportText(3, r.requestSha256) == 1;
+            ok &= R03_IR_ReportText(4, r.stimulus) == 1;
+            ok &= R03_IR_ReportText(5, r.unityVersion) == 1;
+            ok &= R03_IR_ReportText(6, r.platform) == 1;
+            ok &= R03_IR_ReportText(7, r.error) == 1;
+            ok &= R03_IR_ReportText(8, r.nativeGuardJson) == 1;
+            ok &= R03_IR_ReportText(9, r.activeReflectionException) == 1;
+            ok &= R03_IR_ReportText(10, r.activeDelegateException) == 1;
+            ok &= R03_IR_ReportText(11, r.aotReflectionException) == 1;
+            ok &= R03_IR_ReportText(12, r.firstRecovery) == 1;
+            ok &= R03_IR_ReportText(13, r.finalRecovery) == 1;
+            ok &= R03_IR_ReportText(14, r.finalDiagnostics) == 1;
+            ok &= R03_IR_ReportText(15, r.finalExecutionDiagnostics) == 1;
+            return ok && R03_IR_ReportSeal() == 1;
         }
 
         private static void Require(bool ok, string message)

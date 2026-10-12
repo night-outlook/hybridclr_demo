@@ -20,6 +20,7 @@ from batch_contract import loads, require, sha
 from batch_evidence import finalize, write
 from command_lifetime import build_arguments
 from ir_original_fixtures import stage_immutable_original_s, S_PUBLICATION, S_INVENTORY_BLOB
+from bee_observation import verify_observation
 
 # Exact deterministic IR-only target observed identically on macOS and Linux.
 # This is not any historical S byte or proof of Player runtime behavior.
@@ -115,6 +116,7 @@ def exact_int(value, expected):
 
 
 def verify_ir(raw, request, launch, build_sha):
+    require(raw.get('reportTransport') == 'NativePreopenedSnapshotV1', 'Native snapshot transport required')
     require(type(raw) is dict and raw.get('schemaVersion') == 1 and
             raw.get('kind') == 'R03IRPostPoisonEntryV1' and raw.get('acceptance') is False,
             'Actual non-authorizing IR Player result contract')
@@ -128,11 +130,13 @@ def verify_ir(raw, request, launch, build_sha):
         require(exact_int(raw.get('initialState'), 0) and exact_int(raw.get('finalState'), 0) and
                 raw.get('prePositive') is True and exact_int(raw.get('preCanaryCount'), 1) and
                 exact_int(raw.get('finalCanaryCount'), 2), 'Feature OFF ordinary calls')
+        require(exact_int(raw.get('reserveGcProbeMask'), 0), 'OFF has no Boolean reserve experiment')
         require(exact_int(raw.get('terminalReportingProbeMask'), 0),
                 'OFF must not report a terminal callback substitution')
         require(not raw.get('activeReflectionAttempted') and not raw.get('activeDelegateAttempted') and
                 not raw.get('aotReflectionAttempted'), 'No synthetic terminal OFF probe')
     else:
+        require(exact_int(raw.get('reserveGcProbeMask'), 31), 'Real healthy GC must preserve pinned reserve')
         require(exact_int(raw.get('initialState'), 6) and exact_int(raw.get('poisonedState'), 9) and
                 exact_int(raw.get('finalState'), 9) and raw.get('prePositive') is True and
                 exact_int(raw.get('preActiveReflection'), 42) and exact_int(raw.get('preActiveDelegate'), 42) and
@@ -169,6 +173,38 @@ def verify_ir(raw, request, launch, build_sha):
             'R03Accepted': False, 'H2Passed': False}
 
 
+def verify_engine(raw, request, launch, log):
+    """Native observer after a genuine uncaught Unity startup callback.
+
+    The sentinel match is mandatory: generic terminal reports or a direct
+    Runtime::Invoke probe cannot substitute for this engine-originated case.
+    """
+    require(type(raw) is dict and raw.get('schemaVersion') == 1 and
+            raw.get('kind') == 'R03IREngineReportingV1' and raw.get('runtimeAcceptance') is False,
+            'Native engine witness schema')
+    require(raw.get('runId') == request['runId'] and raw.get('caseId') == request['caseId'] and
+            type(raw.get('processId')) is int and raw['processId'] == launch['pid'],
+            'Exact engine witness process/request')
+    require(raw.get('result') == 'ObservedNotAccepted' and raw.get('timedOut') is False and
+            exact_int(raw.get('initialState'), 6) and exact_int(raw.get('finalState'), 9) and
+            exact_int(raw.get('preManagedLoggerCalls'), 1) and exact_int(raw.get('finalManagedLoggerCalls'), 1),
+            'Healthy logger control and terminal no-body condition')
+    require(type(raw.get('completedReports')) is int and 1 <= raw['completedReports'] <= 64 and
+            exact_int(raw.get('observationMilliseconds'), 500), 'Bounded native completion')
+    recovery = raw.get('recovery')
+    require(type(recovery) is dict and recovery.get('published') is True and
+            exact_int(recovery.get('stateCode'), 9) and exact_int(recovery.get('terminalFailureCode'), 13) and
+            recovery.get('disposition') == 'RestartRequired', 'Authentic type failure retained')
+    sentinel = 'R03_ENGINE_UNHANDLED_' + request['runId']
+    require(re.search(r'\[AssemblyShadowTerminalReport\] sequence=\d+ state=9 message="' +
+                      re.escape(sentinel) + r'" managedHandlerExecuted=false', log) is not None,
+            'Actual uncaught sentinel must reach native Unity reporter')
+    require('[R03ReserveGcProbe] mask=31 ' in log, 'Real reserve/GC prerequisite in this process')
+    require('fatal=' not in log, 'No native fatal path accepted')
+    return {'result':'Passed','scope':'One bounded engine-originated unhandled sentinel; not full R03',
+            'freshPlayer':True,'runtimeAcceptance':False}
+
+
 def player(batch, case):
     role = case['role']
     batch.verify_build(role)
@@ -199,13 +235,25 @@ def player(batch, case):
             'launchPid': launch['pid'], 'runId': nonce, 'argv': [str(x) for x in cmd]}
     try:
         require(raw.get('requestSha256') == bind['requestSha256'], 'Raw/launch request digest')
-        verdict = verify_ir(raw, request, launch, bind['buildReceiptSha256'])
+        verdict = (verify_engine(raw, request, launch, (root / 'Player.log').read_text())
+                   if case['stimulus'] == 'engine-unhandled' else
+                   verify_ir(raw, request, launch, bind['buildReceiptSha256']))
     except Exception as error:
         write(root / 'verification.json', dict(bind, result='Failed', error=str(error)))
         raise
     verdict.update(bind)
     write(root / 'verification.json', verdict)
     return verdict
+
+
+def observe_build(batch, role):
+    state = batch.builds[role['id']]
+    path = state['root'] / 'bee-result-observation.json'
+    require(path.is_file(), 'Current build observation missing')
+    data = loads(path.read_text())
+    analysis = verify_observation(data, state['config']['sourceManifestSha256'])
+    write(state['root'] / 'bee-result-analysis.json', analysis)
+    return dict(analysis, receiptSha256=sha(path))
 
 
 def execute(workspace, output, unity, demo_commit, *, batch_type=Batch):
@@ -223,11 +271,14 @@ def execute(workspace, output, unity, demo_commit, *, batch_type=Batch):
         name = role['id']
         batch.cell('prepare-' + name, lambda r=role: prepare_ir(batch, r), ('ir-side-effect-fixture',))
         batch.cell('build-' + name, lambda r=role: batch.build(r), ('prepare-' + name,))
+        # Diagnostic collection remains independent of build success; never launches a failed app.
+        batch.cell('observe-' + name, lambda r=role: observe_build(batch, r), ('prepare-' + name,))
     cases = [
         {'id':'IR-R03-02-release-baseline', 'role':'candidate-release', 'stimulus':'baseline-owner'},
         {'id':'IR-R03-02-debug-baseline', 'role':'candidate-debug', 'stimulus':'baseline-owner'},
         {'id':'IR-R03-02-release-type', 'role':'candidate-release', 'stimulus':'type-resolution'},
-        {'id':'IR-R03-02-off', 'role':'candidate-off', 'stimulus':'off'}
+        {'id':'IR-R03-02-off', 'role':'candidate-off', 'stimulus':'off'},
+        {'id':'IR-R03-02-release-engine', 'role':'candidate-release', 'stimulus':'engine-unhandled'}
     ]
     for case in cases:
         batch.cell(case['id'], lambda c=case: player(batch, c), ('build-' + case['role'],))
@@ -239,12 +290,12 @@ def execute(workspace, output, unity, demo_commit, *, batch_type=Batch):
         'result':'ReturnRequired' if batch.failed else 'FocusedEvidenceReadyForPrimaryReview',
         'repositories':batch.pins, 'cells':batch.cells,
         'plannedFreshBuilds':3, 'verifiedFreshBuilds':build_passes,
-        'plannedFreshPlayers':4, 'verifiedFreshPlayers':player_passes,
+        'plannedFreshPlayers':5, 'verifiedFreshPlayers':player_passes,
         'recordedFreshPlayerRawFiles':player_raw,
         'originalSFixtureAuthority':'AuthenticatedOriginalCommit' if hasattr(batch, 'ir_original_s_fixture_authority') else 'NotRun',
         'originalSFixtureAuthoritySha256':sha(batch.ir_original_s_fixture_authority) if hasattr(batch, 'ir_original_s_fixture_authority') else None,
         'freshFixturesRegeneratedFromOldOutputMode':False,
-        'scope':'IR-only side-effecting active Methods instance counter + AOT canary; baseline-owner + synthetic type-failure + OFF; generic/initializer not covered',
+        'scope':'IR active Methods side effects, native snapshot, healthy GC reserve, baseline/type/OFF and bounded engine-originated unhandled reporter; generic/initializer not covered',
         'initializerFailure': 'NotRun', 'capturedGenericFailure': 'NotRun',
         'fullLegacyRegressionAcceptance':False, 'R03Accepted':False, 'H2Passed':False,
         'qualificationApproved':False, 'pureInterpreterExpansionEnabled':False}

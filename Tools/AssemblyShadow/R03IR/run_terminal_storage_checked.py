@@ -21,7 +21,7 @@ from run_local import identity, git, REPOS
 from batch_contract import loads
 from run_terminal_local import Batch, execute
 
-EXPECTED_CELLS = 1 + 1 + 1 + 1 + 3 * 2 + 4  # authority, S, tool, target, 3 builds, 4 Players
+EXPECTED_CELLS = 1 + 1 + 1 + 1 + 3 * 3 + 5  # authority, S, tool, target, 3 build/observe roles, 5 Players
 
 
 class ObservedTerminalBatch(Batch):
@@ -94,6 +94,9 @@ def source_authority(workspace, expected_demo):
         HERE / "test_terminal_storage_checked.py",
         HERE / "PlayerProject/R03TerminalPlayer.cs",
         HERE / "test_terminal_contract.py",
+        HERE / "bee_observation.py",
+        HERE / "test_k_contracts.py",
+        HERE / "test_native_snapshot.py",
         HERE.parent / "R03/source-pins.json",
         HERE.parent / "R03/PlayerProject/AssemblyShadowR03Probe.cpp",
         HERE.parent / "R03/PlayerProject/R03Build.cs",

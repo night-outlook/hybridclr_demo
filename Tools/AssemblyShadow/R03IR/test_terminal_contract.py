@@ -16,6 +16,7 @@ class TerminalReceiptContractTests(unittest.TestCase):
                                     'disposition': 'RestartRequired', 'terminalFailureCode': 21})
         self.raw = {'schemaVersion': 1, 'kind': 'R03IRPostPoisonEntryV1',
             'acceptance': False, 'result': 'Passed', 'error': None,
+            'reportTransport': 'NativePreopenedSnapshotV1', 'reserveGcProbeMask':31,
             'runId': self.request['runId'], 'caseId': self.request['caseId'],
             'stimulus': self.request['stimulus'], 'processId': self.launch['pid'],
             'unityVersion': '2022.3.62f2', 'platform': 'OSXPlayer',
@@ -129,7 +130,7 @@ class TerminalReceiptContractTests(unittest.TestCase):
         self.request['caseId'] = self.raw['caseId'] = 'IR-R03-02-off'
         self.raw.update(initialState=0,finalState=0,prePositive=True,
             preCanaryCount=1,finalCanaryCount=2,activeReflectionAttempted=False,
-            activeDelegateAttempted=False,aotReflectionAttempted=False,terminalReportingProbeMask=0)
+            activeDelegateAttempted=False,aotReflectionAttempted=False,terminalReportingProbeMask=0,reserveGcProbeMask=0)
         self.assertEqual(self.verify()['result'],'Passed')
         self.raw['finalCanaryCount']=1
         with self.assertRaises(ContractError): self.verify()

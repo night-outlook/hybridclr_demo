@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
+using System.Reflection;
+using System.Threading;
 using System.IO;
 using System.Linq;
 using HybridCLR.Editor;
@@ -55,6 +58,7 @@ namespace AssemblyShadow.R03.Editor
         public FileHash[] playerFiles;
         public FileHash[] linkedDlls;
         public string exception;
+        public string beeObservationStatus, beeObservationPath, beeObservationSha256;
         public bool runtimeAcceptance = false;
     }
 
@@ -84,6 +88,8 @@ namespace AssemblyShadow.R03.Editor
                 sourceManifestSha256 = config.sourceManifestSha256, testOverlaySha256 = config.overlaySha256,
                 featureEnabled = config.featureEnabled, diagnosticsLevel = config.diagnosticsLevel,
                 cppConfiguration = config.cppConfiguration, result = "Failed" };
+            R03BeeObservation observation = null;
+            BuildReport actualReport = null;
             try
             {
                 Configure(config);
@@ -102,7 +108,8 @@ namespace AssemblyShadow.R03.Editor
                 // preserved baseline and fixed diagnostic bootstrap.
                 PrebuildCommand.GenerateAll();
                 receipt.nativeArguments = PlayerSettings.GetAdditionalIl2CppArgs();
-                var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions
+                observation = new R03BeeObservation(config, project);
+                var report = actualReport = BuildPipeline.BuildPlayer(new BuildPlayerOptions
                 {
                     scenes = new[] { "Assets/R03.unity" }, locationPathName = config.outputPath,
                     target = BuildTarget.StandaloneOSX, targetGroup = BuildTargetGroup.Standalone,
@@ -124,6 +131,19 @@ namespace AssemblyShadow.R03.Editor
             catch (Exception error) { receipt.exception = error.ToString(); throw; }
             finally
             {
+                if (observation != null)
+                {
+                    // This observes only. It never replaces/suppresses a result
+                    // processor or changes BuildReport/error admission.
+                    try
+                    {
+                        receipt.beeObservationPath = observation.Save(actualReport);
+                        receipt.beeObservationSha256 = ShadowHash.File(receipt.beeObservationPath);
+                        receipt.beeObservationStatus = "RecordedForAnalysis";
+                    }
+                    catch (Exception diagnosticError) { receipt.beeObservationStatus = "Unavailable:" + diagnosticError.GetType().FullName; }
+                    finally { observation.Dispose(); }
+                }
                 Directory.CreateDirectory(Path.GetDirectoryName(config.receiptPath));
                 using (var stream = new FileStream(config.receiptPath, FileMode.CreateNew))
                 using (var writer = new StreamWriter(stream)) writer.Write(JsonUtility.ToJson(receipt, true) + "\n");
@@ -195,4 +215,121 @@ namespace AssemblyShadow.R03.Editor
             throw new ArgumentException("Missing " + key);
         }
     }
+
+    // K observational instrumentation. No detours or result-processor replacement.
+    internal sealed class R03BeeObservation : IDisposable
+    {
+        [Serializable] private sealed class Message { public string utc, text, stack; public int thread; }
+        [Serializable] private sealed class Node
+        { public string annotation, outputFile, outputDirectory, output; public int exitCode; }
+        [Serializable] private sealed class Observation
+        {
+            public int schemaVersion = 1;
+            public string kind = "R03BeeResultObservationV1", result = "Unavailable";
+            public string project, sourceManifestSha256, utcStart, utcEnd, processorType, processorAssemblySha256, error;
+            public bool sameProcessor, driverInitiallyAbsent, limitsExceeded, runtimeAcceptance = false;
+            public int buildErrors = -1, buildWarnings = -1;
+            public Message[] messages;
+            public Node[] nodes;
+        }
+        private readonly BuildConfig config;
+        private readonly Observation data = new Observation();
+        private readonly List<Message> messages = new List<Message>();
+        private readonly object sync = new object();
+        private readonly object initialProcessor, initialDriver;
+        private bool disposed, saved;
+
+        public R03BeeObservation(BuildConfig config, string project)
+        {
+            this.config = config;
+            data.project = project; data.sourceManifestSha256 = config.sourceManifestSha256;
+            data.utcStart = DateTime.UtcNow.ToString("o");
+            try { initialProcessor = Processor(); initialDriver = Read(initialProcessor, "BeeDriverResult"); }
+            catch (Exception e) { data.error = "Before:" + e.GetType().FullName; }
+            Application.logMessageReceivedThreaded += OnLog;
+        }
+        private void OnLog(string condition, string stack, LogType type)
+        {
+            if (condition == null || condition.IndexOf("failed to allocate space to load shared cache", StringComparison.Ordinal) < 0) return;
+            lock (sync)
+            {
+                if (disposed) return;
+                if (messages.Count >= 32 || condition.Length > 65536 || (stack != null && stack.Length > 65536))
+                { data.limitsExceeded = true; return; }
+                messages.Add(new Message { utc = DateTime.UtcNow.ToString("o"), text = condition,
+                    stack = stack, thread = Thread.CurrentThread.ManagedThreadId });
+            }
+        }
+        private static object Read(object target, string name)
+        {
+            if (target == null) return null;
+            for (Type t = target.GetType(); t != null; t = t.BaseType)
+            {
+                const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly;
+                FieldInfo f = t.GetField(name, flags); if (f != null) return f.GetValue(target);
+                PropertyInfo p = t.GetProperty(name, flags); if (p != null && p.GetIndexParameters().Length == 0) return p.GetValue(target, null);
+            }
+            return null;
+        }
+        private static object Processor()
+        {
+            Type module = typeof(BuildPipeline).Assembly.GetType("UnityEditor.Modules.ModuleManager", true);
+            MethodInfo method = module.GetMethod("GetBuildPostProcessor", BindingFlags.Static | BindingFlags.NonPublic,
+                null, new[] { typeof(BuildTargetGroup), typeof(BuildTarget) }, null);
+            if (method == null) throw new MissingMethodException("GetBuildPostProcessor");
+            return method.Invoke(null, new object[] { BuildTargetGroup.Standalone, BuildTarget.StandaloneOSX });
+        }
+        public string Save(BuildReport report)
+        {
+            if (saved) throw new InvalidOperationException("Single-use Bee observation");
+            saved = true;
+            Dispose(); // Freeze callbacks before reading/serializing the snapshot.
+            data.utcEnd = DateTime.UtcNow.ToString("o");
+            if (report != null) { data.buildErrors = report.summary.totalErrors; data.buildWarnings = report.summary.totalWarnings; }
+            var rows = new List<Node>(); long bytes = 0;
+            try
+            {
+                object processor = Processor();
+                data.sameProcessor = ReferenceEquals(initialProcessor, processor) && processor != null;
+                data.driverInitiallyAbsent = initialDriver == null;
+                data.processorType = processor == null ? null : processor.GetType().FullName;
+                if (processor != null) data.processorAssemblySha256 = ShadowHash.File(processor.GetType().Assembly.Location);
+                object driver = Read(processor, "BeeDriverResult");
+                if (!data.sameProcessor || !data.driverInitiallyAbsent || driver == null)
+                    throw new InvalidOperationException("Current build driver identity unavailable");
+                var nodes = Read(driver, "NodeFinishedMessages") as IEnumerable;
+                if (nodes == null) throw new InvalidOperationException("NodeFinishedMessages unavailable");
+                foreach (object message in nodes)
+                {
+                    object node = Read(message, "Node");
+                    string output = Read(message, "Output") as string;
+                    bytes += output == null ? 0 : output.Length;
+                    if (rows.Count >= 4096 || bytes > 16777216) { data.limitsExceeded = true; break; }
+                    object code = Read(message, "ExitCode");
+                    if (!(code is int)) throw new InvalidOperationException("Native result ExitCode unavailable");
+                    rows.Add(new Node { annotation = Read(node, "Annotation") as string,
+                        outputFile = Read(node, "OutputFile") as string,
+                        outputDirectory = Read(node, "OutputDirectory") as string,
+                        output = output, exitCode = (int)code });
+                }
+                if (rows.Count > 0 && !data.limitsExceeded) data.result = "CapturedForAnalysis";
+            }
+            catch (Exception e) { data.error = (data.error ?? "") + ";After:" + e.GetType().FullName + ":" + e.Message; }
+            data.nodes = rows.ToArray(); lock (sync) data.messages = messages.ToArray();
+            string path = Path.Combine(Path.GetDirectoryName(config.receiptPath), "bee-result-observation.json");
+            using (var stream = new FileStream(path, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+            using (var writer = new StreamWriter(stream, new System.Text.UTF8Encoding(false)))
+                writer.Write(JsonUtility.ToJson(data, true) + "\n");
+            return path;
+        }
+        public void Dispose()
+        {
+            lock (sync)
+            {
+                if (disposed) return;
+                Application.logMessageReceivedThreaded -= OnLog; disposed = true;
+            }
+        }
+    }
+
 }

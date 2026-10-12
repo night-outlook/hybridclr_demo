@@ -53,8 +53,8 @@ class FocusedStorageContractTests(unittest.TestCase):
         self.assertEqual(START_MIN,64*1024**3)
         self.assertEqual(FLOOR,20*1024**3)
 
-    def test_same_original_scheduler_and_four_players(self):
-        self.assertEqual(EXPECTED_CELLS,14)
+    def test_same_storage_policy_and_explicit_k_matrix(self):
+        self.assertEqual(EXPECTED_CELLS,18)
         self.assertEqual(ObservedTerminalBatch.__mro__[1].__name__,"Batch")
 
 if __name__=="__main__":
