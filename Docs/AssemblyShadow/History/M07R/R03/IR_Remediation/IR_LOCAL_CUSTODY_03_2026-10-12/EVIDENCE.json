@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "kind": "IR_LOCAL_CUSTODY_03_PRIMARY_FIXTURE_CORRECTION",
+  "owner": "Primary Implementation",
+  "defect": "Noncanonical synthetic TemporaryDirectory parent on macOS: /var/folders -> /private/var/folders; original verifier correctly rejects symlinked parents",
+  "originalH": {
+    "sourceDemo": "1e69bc11e6fbeab3fb1b4219101fb4186c578895",
+    "publicationDemo": "588cafb044e7d5e6da185368c5f69da709903bc4",
+    "result": "PrerequisiteBlocked",
+    "custodyTests": {
+      "total": 15,
+      "passed": 12,
+      "failed": 3,
+      "errors": 0,
+      "skipped": 0
+    },
+    "scratchPassed": 20,
+    "r03irPassed": 65,
+    "liveBeforeCustody": "NotRun",
+    "independentAfterCustody": {
+      "result": "ScopedHistoricalLossStable",
+      "originalExpected": 416844,
+      "presentVerified": 339367,
+      "missing": 77477,
+      "problems": 0,
+      "strictCustody": "Blocked"
+    },
+    "storage": "NotRun",
+    "runtime": "NotRun",
+    "unityLaunches": 0,
+    "playerLaunches": 0,
+    "retries": 0
+  },
+  "fixed": {
+    "changedPath": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_LOCAL_CUSTODY_01_2026-10-09/test_scoped_custody.py",
+    "sourceCommit": "06c4c483aa2ffad661a8c39d5ca5ee25f2c2fe4a",
+    "originalTestBlob": "594b36b505721e246ffbcdbbfcb3037071626aad",
+    "correctedTestBlob": "86f79849f2f4a5771e509815b3a005d3d9f3b0a6",
+    "correctedTestSha256": "5bda30a457d4ab90b646afcd1bce78521ca55b99cd30653a6cc38cef4c5b05e5",
+    "productionVerifierBlobUnchanged": "ccc6af25d5d424b3bffe629ebd609ec5e5beed0a",
+    "productionVerifierSha256Unchanged": "fe4f3a21333f07bbf8f9e6120eb88a736b1faf4a92da01f2f98b0100e0dbb61d",
+    "correction": "Resolve only synthetic owned TemporaryDirectory root before deriving files, and inherit all ten synthetic tests with a guaranteed symlink temp parent; keep all original expectations",
+    "productionGuardsRelaxed": false,
+    "sourcePinsChanged": false,
+    "managedOrNativeRuntimeChanged": false
+  },
+  "ci": {
+    "runId": 38197141796,
+    "runUrl": "https://github.com/night-outlook/hybridclr_demo/actions/runs/38197141796",
+    "sourceBranch": "codex/r03-h-custody-fixture-ci-20261011-4b8e",
+    "sourceCommit": "f37419e6c2c1d0879964169ef3adbd954801ca58",
+    "sourceBranchDelta": "One isolated CI workflow file beyond active feature test source commit 06c4c483aa2ffad661a8c39d5ca5ee25f2c2fe4a",
+    "status": "completed",
+    "conclusion": "success",
+    "macos": {
+      "runner": "macos-14",
+      "jobId": 114642218248,
+      "passed": 25,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "artifactId": 11724215407,
+      "artifactSha256": "e3dd6ffaa1b4d56657218727c1511ee857e62ff227b7568bfdba39d0c096d60e",
+      "artifactLogBytes": 3375,
+      "artifactLogSha256": "75aaadbb2c47601c8fb0d3fb4c6e6b297c315dbc50f3504b0785cc2994801e6e",
+      "retainedLogPath": "ci/macos-14-custody-tests.log",
+      "retainedGitBlob": "538f432b2779f35a0603f6221db30e1b4f695448"
+    },
+    "ubuntu": {
+      "runner": "ubuntu-24.04",
+      "jobId": 114642218442,
+      "passed": 25,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "artifactId": 11723751907,
+      "artifactSha256": "615aa0262bd1acb4cede76b34d657f5553a5ed9af2a2b73c31d4b95cbbad6237",
+      "artifactLogBytes": 3375,
+      "artifactLogSha256": "79a49a965298c8b2fcfee7a561b0af04c0721115382dc7b50c27cba573ad8d35",
+      "retainedLogPath": "ci/ubuntu-24.04-custody-tests.log",
+      "retainedGitBlob": "b27a2e567bea3e00c0797e6c3f7beea67818e9be"
+    },
+    "categories": {
+      "unchangedOriginalSynthetic": 10,
+      "aliasedTempSameSynthetic": 10,
+      "originalImmutableCReceipt": 5
+    },
+    "liveMacCustodyAudit": "NotRun",
+    "unityLaunched": false,
+    "playerExecuted": false,
+    "downloadedArtifactsIndependentlyAuthenticated": true,
+    "retainedLogsByteIdenticalToDownloadedCIArtifacts": true,
+    "artifactRetentionLimited": true
+  },
+  "next": {
+    "attempt": "I-post-H-custody-7f36",
+    "conditionalSourceAudit": true,
+    "fullLocalCustodyRequired": true,
+    "freshStorageAdmissionRequired": true,
+    "atMostOneOriginal14CellThreeBuildFourPlayerBatch": true,
+    "genuineEngineOriginatedUnhandledReporting": "NotCoveredByFourPlayers",
+    "originalECrashResult": "FAIL",
+    "historicalStrictCustody": "Blocked",
+    "originalMissingSNativeRoots": 4,
+    "fullR03Acceptance": false,
+    "independentFullStageReview": "FAIL",
+    "independentReReview": "NotRun"
+  },
+  "acceptance": {
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "pureInterpreterExpansionEnabled": false
+  }
+}
