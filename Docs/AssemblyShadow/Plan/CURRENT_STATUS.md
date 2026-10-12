@@ -7,8 +7,8 @@
 | J Local at `d1b9889e1af198a7f4b51a0a0943c34e16fa5f50` | **Passed J scope**: 55 official Local syntax profiles, host checks, 40-file read-only I Bee collection, custody/SDK preserved, zero Unity/Players |
 | I runtime | **FAIL**: 10 Passed/3 Failed/1 Blocked cells; two ON SIGABRT, Debug summary errors, OFF Passed |
 | I Debug emitter | **Unavailable**: associated clang and UnityLinker recorded node exits0; literal errors only authenticated in Editor.log/result processor, not collected outputs |
-| K new executable source | Demo anchor `02e416ee61d2a4a6fea88bf65176f429f9482947`; fifth engine-unhandled Player and native snapshot/GC/Bee observation cells |
-| K host CI | [38231386680](https://github.com/night-outlook/hybridclr_demo/actions/runs/38231386680) Passed 76 Python tests and sanitizer-enabled snapshot on each macOS/Ubuntu host |
+| K new executable source | Demo anchor `df88f6dcee93c5caab7ed4fbd040657ddbf10f6f`; fifth engine-unhandled Player and native snapshot/GC/Bee observation cells |
+| K host CI | [38231948391](https://github.com/night-outlook/hybridclr_demo/actions/runs/38231948391) Passed 78 Python tests and sanitizer-enabled snapshot on each macOS/Ubuntu host |
 | K official managed/Build helper API CI | [38228046199](https://github.com/night-outlook/hybridclr_demo/actions/runs/38228046199), [38228046147](https://github.com/night-outlook/hybridclr_demo/actions/runs/38228046147) Passed |
 | Historical primary evolution suite | [38228046222](https://github.com/night-outlook/hybridclr_demo/actions/runs/38228046222) **Failed**, old full-lifetime/183 test condition; unresolved and not rebaselined |
 | K fresh Local official 55 native + managed compilation | **NotRun**; required before runtime |
