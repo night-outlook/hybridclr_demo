@@ -1,0 +1,7 @@
+# H-post-GCOMP-7d42 prerequisite checkpoint
+
+**PrerequisiteBlocked; runtime NotRun.** Fresh20 scratch and65 R03IR tests Passed; mandatory15 C-custody suite12 Passed/3 Failed. The synthetic fixture uses an unresolved macOS /var/folders path; the production parent-symlink guard rejects it before intended classifications. No source/TMPDIR correction or retry. All downstream host/before-admission/storage/runtime checks NotRun, zero Unity/Player launches. Planned14-cell scope is an explicit NotRun declaration, not an execution ledger. No runtime index/archive/seal exists.
+
+Read preflight/LOCAL_H_RESULT.json, C_CUSTODY_TEST_DIAGNOSIS.json, failed command/stderr, G_EQUIVALENCE.json and the independent after receipts. Original C after scan ScopedHistoricalLossStable:339,367 verified survivors/77,477 unchanged missing identities/zero problems. Original E and G/installed-SDK byte bindings verified; extra E/F/G snapshots are current-only, with no H-before join. Historical strict custody Blocked, E FAIL, F PrerequisiteBlocked, G compile-only Passed remain unchanged. All acceptance flags false. Return to Primary for a new corrected source-matched attempt; H cannot be resumed.
+
+COPY_BINDINGS/SOURCE_BINDINGS/MANIFEST authenticate permitted source/log/hash/receipt/inventory transport. Vendor SDK/compiler and original fixture binaries remain external; FILE_TRANSPORT gives their disposition. External Preflight PUBLICATION_VALIDATION.json/PUBLICATION_RECEIPT.json record final publication without self-reference.

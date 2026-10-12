@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "owner": "Primary Implementation",
+  "scope": "G-COMP evidence reconciliation and bounded H runtime preparation; not independent full-stage review",
+  "reviewedPublication": "4808743fcbbc2075b9be305140bdf5ffa8583b0f",
+  "localExecutionDemo": "d7f46bfd090313b41b38175ce1196f14484a3d1e",
+  "sourcePins": {
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "c386cdd1e8942561f1d1e1fada52d21ca524f174"
+  },
+  "rawAudit": {
+    "workflowCommit": "77b206da4e66677b3c7ef29174586e0887e41b3d",
+    "workflowPath": ".github/workflows/gcomp-reconcile-7d42.yml",
+    "runId": 38193946749,
+    "jobId": 114632427362,
+    "conclusion": "success",
+    "artifactId": 11723055507,
+    "archiveSha256": "fa9c0483f5d673682b023ec88a9596f190248443b934e417127b521046043ffb",
+    "archiveDownloadedAndAuthenticated": true,
+    "retainedAuditPath": "PRIMARY_G_AUDIT.json",
+    "retainedAuditSha256": "37c3cbf8b275d217ad5297c59dc1e79e9ef6d7f4e30a3a659f0191035f288b69"
+  },
+  "hostTests": {
+    "workflowCommit": "7383ea2be2633190f295419546a6edec86273b7a",
+    "workflowPath": ".github/workflows/gcomp-h-host-7d42.yml",
+    "checkedOutCommit": "4808743fcbbc2075b9be305140bdf5ffa8583b0f",
+    "runId": 38194176062,
+    "conclusion": "success",
+    "platform": "ubuntu-24.04",
+    "artifactId": 11722751974,
+    "archiveSha256": "62c0ff225e51012161b6bc08b4dc18df329c661f6df2dab8a42cdfd19a8f0864",
+    "archiveDownloadedAndAuthenticated": true,
+    "testsPassed": {"R03IR": 65, "sdkScratch": 20, "retainedE": 9},
+    "failed": 0,
+    "skipped": 0,
+    "logs": [
+      {"path":"ir-host.log","bytes":9406,"sha256":"0d01b17082b885b43e25dd10ba5218552f9a4caf4b51bec0fa695635b0255650"},
+      {"path":"scratch-host.log","bytes":3033,"sha256":"6b7d2ac7424b283a3d880809b6c7d33a0b50f6a7bf7fd544f1f178dd4a73eeb0"},
+      {"path":"e-preservation.log","bytes":4728,"sha256":"3f17829d8b6e02024e556ab14d09402960264f876a5c650db1c367c70b3db6b7"}
+    ],
+    "coverage": "Existing host tests, synthetic E preservation controls and genuine original E Git inventories; NOT a new live E/C custody audit"
+  },
+  "transport": {
+    "allFourCanonicalRepositoriesVerified": true,
+    "demoSmokeBase": "4808743fcbbc2075b9be305140bdf5ffa8583b0f",
+    "smokeAndAuditBranch": "codex/connector-smoke-20261011-gcomp-reconcile-7d42",
+    "smokeCommit": "5633b0af597cfa671281dcd2a519f2d552ffe6fe",
+    "remoteReadbackMatched": true,
+    "branchCleanup": "Unavailable through Connector; branch retained with audit workflows",
+    "featureSourceModified": false
+  },
+  "limitations": [
+    "Audit rehashed all 544 published manifest files and raw compiler streams, not the unavailable original Local output binaries.",
+    "Native validation is syntax-only, not link validation or Player execution.",
+    "Official SDK byte provenance is based on Local's retained inventories and preservation receipts; Primary did not rescan the installed SDK.",
+    "No fresh Unity, Player, native build or Local live custody scan was executed by Primary.",
+    "CI artifacts are retention-limited; exact workflow commits, raw original G evidence and the retained audit summary identify the reproducible checks."
+  ],
+  "runtimeAcceptance": false,
+  "independentFullStageReview": "FAIL remains unchanged",
+  "allAcceptanceFlags": false
+}

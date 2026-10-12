@@ -1,0 +1,34 @@
+{
+  "state": "DiagnosedReadOnly",
+  "recordedUtc": "2026-10-12T02:29:33.576220+00:00",
+  "scope": "Static source and inherited environment; no new fixture/test rerun",
+  "counts": {
+    "run": 15,
+    "Passed": 12,
+    "Failed": 3,
+    "Errors": 0,
+    "Skipped": 0
+  },
+  "realOriginalCBindingTestsPassed": 5,
+  "syntheticTestsPassed": 7,
+  "syntheticTestsFailed": 3,
+  "failedTests": [
+    "test_additional_missing_blocks",
+    "test_restoring_originally_missing_requires_primary_review",
+    "test_unchanged_historical_loss_is_scoped_only"
+  ],
+  "systemTempDirectory": "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T",
+  "resolvedSystemTempDirectory": "/private/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T",
+  "varIsSymlink": true,
+  "inheritedTMPDIR": "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/",
+  "fixtureSourcePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_LOCAL_CUSTODY_01_2026-10-09/test_scoped_custody.py",
+  "fixtureSourceGitBlob": "594b36b505721e246ffbcdbbfcb3037071626aad",
+  "fixtureSourceSha256": "29c5804cae624495f0a6c6ae2712c970b534a43c7d6a977ca57355028c9e3e1a",
+  "fixtureRootStatement": "self.root = Path(self.tmp.name)",
+  "productionAdmissionPredicate": "verify_scoped_custody.audit_exact rejects any symlink parent before missing/survivor classification",
+  "actualDiagnostic": "AdmissionError rather than NewMissing/UnexpectedRestorationNeedsPrimaryReview; unchanged-loss result Blocked rather than ScopedHistoricalLossStable",
+  "sourceCorrectionMade": false,
+  "tmpWorkaroundMade": false,
+  "suiteRetry": false,
+  "runtimeLaunched": false
+}

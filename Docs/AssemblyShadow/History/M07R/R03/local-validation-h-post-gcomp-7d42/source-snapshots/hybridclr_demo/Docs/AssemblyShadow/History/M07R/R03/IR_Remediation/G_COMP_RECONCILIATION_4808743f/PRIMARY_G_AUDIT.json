@@ -1,0 +1,32 @@
+{
+  "kind": "PrimaryGCompRawEvidenceAudit",
+  "result": "Passed",
+  "publication": "4808743fcbbc2075b9be305140bdf5ffa8583b0f",
+  "manifestGitBlob": "4dc786b14983cc099e87cbd58189c9816f890de9",
+  "manifestSha256": "eda067e3a425fab00a1754d1f8dfbc3b444b409e70c7832940bec2609cd37fec",
+  "manifestFiles": 544,
+  "commandReceipts": 77,
+  "nativeConfigurations": 55,
+  "nativeOwnedUnits": 11,
+  "managedProductTargets": 5,
+  "expectedNegativeControls": 1,
+  "ownedManagedInputBindings": 213,
+  "managedWarnings": {
+    "HybridCLR.Runtime": 0,
+    "Unity.HybridCLR.AssemblyShadow.CodeGen": 0,
+    "HybridCLR.Editor": 61,
+    "R03Build": 0,
+    "R03TerminalPlayerApi": 13,
+    "OriginalUnsignedCounts": 0
+  },
+  "nativeWarningOccurrences": 616,
+  "nativeWarningCategories": {
+    "failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]": 616
+  },
+  "custody": "OriginalStrictBlocked; scoped before/after stable",
+  "freshCompilersRun": false,
+  "freshUnityRun": false,
+  "runtimeAcceptance": false,
+  "reviewWorkflowSha": "77b206da4e66677b3c7ef29174586e0887e41b3d",
+  "runId": "38193946749"
+}
