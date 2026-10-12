@@ -1,0 +1,59 @@
+{
+  "kind": "LHostPrerequisiteFinding",
+  "state": "ReproducedOnceAndSourceExplained",
+  "id": "IR-LOCAL-L-HOST-01",
+  "pins": {
+    "hybridclr_demo": "fe783e101f53b2799c278ad5a1cc5a73cc9e1ad9",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "c1a6876a3801a8343123977a0e230558904fd94d"
+  },
+  "startUtc": "2026-10-12T15:24:22.669756+00:00",
+  "endUtc": "2026-10-12T15:24:22.671239+00:00",
+  "failureCase": "test_batch_contract.EvidenceContracts.test_complete_file_inventory",
+  "counts": {
+    "state": "FailedPrerequisite",
+    "Passed": 202,
+    "Failed": 0,
+    "Errors": 1,
+    "Skipped": 0,
+    "Total": 203,
+    "failedCase": "test_batch_contract.EvidenceContracts.test_complete_file_inventory",
+    "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03L-after-K-52d9/commands/r03-tool-tests/receipt.json",
+    "stderrSha256": "bf529508d7972129d5609e7b97f35186a49c579acec6a131cfb3898caadbc7f6",
+    "remainingPrescribedHostSuites": "NotRun after first failure",
+    "hostRetry": false
+  },
+  "testSource": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/test_batch_contract.py",
+    "sha256": "30443269ccaa3bbb2a989901eccade18ff1d026ef4cc4fb406b888f31e1ed8d4",
+    "gitBlob": "594eb5e1598c946ccf2e1a6f8e8bfa66349141ef",
+    "line": 209,
+    "premise": "root = Path(temporary) passed to Batch.verify_inventory, without canonicalizing test-owned root"
+  },
+  "productionValidator": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/build_provenance.py",
+    "sha256": "65e1208508b232bd5ccedc0004e5c6f853055b1a2401a71ae17a56dfe04f9ed9",
+    "line": 32,
+    "policy": "Refuse symlinked ancestors before evaluating membership or bytes; guard unchanged"
+  },
+  "originalRejectedPath": "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/tmptfm_d_uq",
+  "currentCanonicalResolution": "/private/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/tmptfm_d_uq",
+  "varIsSymlink": true,
+  "varLinkTarget": "private/var",
+  "inheritedTMPDIR": "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/",
+  "temporaryFixtureCurrentExistence": false,
+  "reproductionCommandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03L-after-K-52d9/commands/r03-tool-tests/receipt.json",
+  "stderrSha256": "bf529508d7972129d5609e7b97f35186a49c579acec6a131cfb3898caadbc7f6",
+  "mostLikelyRootCause": "Positive inventory test supplies a noncanonical test-owned temporary root under macOS /var -> private/var; verifier correctly rejects alias before its intended inventory assertions. This is a fixture-premise error, not evidence that the production symlink guard should be weakened.",
+  "impactBoundary": "R03 full-suite positive inventory fixture blocks every dependent L validation gate. Nearby addition/duplicate/escape negatives also use unresolved temporary roots and can reject for path canonicality before their intended conditions; source-supported coverage limitation, no second execution claimed.",
+  "recommendedPrimaryDirection": "Canonicalize only the test-owned inventory fixture roots before construction and verification; preserve deliberate symlink/escape tests and the strict production canonical-path policy. Add/retain an inherited alias-parent cohort and assert the intended membership/hash/duplicate failure reason where needed. Publish corrected exact source and new attempt/root authority; do not retry L or change TMPDIR.",
+  "remainingUncertainty": "No L IR/factory/native/current SDK compiler/Player behavior was measured. Current 91-test CI and official compiler CI are attributed evidence, not fresh L acceptance.",
+  "validationAfterRepair": "Run full updated prescribed R03 suite on macOS canonical and inherited alias parents, plus IR91/custody/retained-E/collector/native gates, before-custody/preservation, fresh official compilers and separately admitted fresh runtime under a new Primary handoff.",
+  "sourceChanged": false,
+  "hostRetry": false,
+  "UnityLaunches": 0,
+  "Players": 0,
+  "beforeCustodyAdmission": "NotRun",
+  "runtimeBatch": "NotRun"
+}
