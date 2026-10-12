@@ -10,6 +10,17 @@ namespace UnityEngine
     public sealed class RuntimeInitializeOnLoadMethodAttribute : Attribute
     { public RuntimeInitializeOnLoadMethodAttribute(RuntimeInitializeLoadType value) { } }
     public enum RuntimePlatform { OSXPlayer }
+    public class Object { }
+    public enum LogType { Error, Assert, Warning, Log, Exception }
+    public interface ILogHandler
+    {
+        void LogException(Exception exception, Object context);
+        void LogFormat(LogType type, Object context, string format, params object[] args);
+    }
+    public interface ILogger : ILogHandler
+    {
+        ILogHandler logHandler { get; set; }
+    }
     public static class Application
     {
         public static string unityVersion { get { throw new NotSupportedException(); } }
@@ -17,7 +28,10 @@ namespace UnityEngine
         public static void Quit(int code) { throw new NotSupportedException(); }
     }
     public static class Debug
-    { public static void LogException(Exception error) { throw new NotSupportedException(); } }
+    {
+        public static ILogger unityLogger { get { throw new NotSupportedException(); } }
+        public static void LogException(Exception error) { throw new NotSupportedException(); }
+    }
     public static class JsonUtility
     {
         public static T FromJson<T>(string json) { throw new NotSupportedException(); }
