@@ -1,40 +1,30 @@
-# Current Status — I failed; reserved Boolean candidate; J compile/diagnostic handoff
+# Current Status — I FAIL; native reserve CI compiled; J confirmation/Debug diagnosis
 
-## Owner and earliest unfinished work
+**Next Local assignment: one J installed-toolchain native compilation and read-only retained I Debug diagnostic collection. No Unity/Player/build/runtime batch.** Primary implemented and host-tested the reserve candidate, then authenticated successful official SDK CI. Earliest remaining work is Local toolchain confirmation and Debug child-task attribution, followed by separate Primary review of runtime readiness.
 
-Primary implemented the native reserved-response candidate and read-only Debug collector. **Next bounded Local assignment is J: official native compilation and retained Debug diagnostic collection, no Unity/Player launch.** The earliest unfinished evidence is compilation of the new native source against the installed official SDK and attribution of Debug's two shared-cache errors. New startup/GC/reporting runtime behavior and complete ON semantic evidence remain unproved; a separate Primary handoff is required before any runtime attempt.
+Read [J handoff](../Handoff/WEB_TO_LOCAL.md), [latest SDK addendum](../History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02/SDK_CI_ADDENDUM.md), [SDK audit](../History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02/OFFICIAL_SDK_CI_AUDIT.json), [Primary analysis](../History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02/PRIMARY_RECONCILIATION.md) and [J procedure](../History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02/J_COMPILE_DIAGNOSTIC_PROCEDURE.md).
 
-Read [current J WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md), [Primary reconciliation](../History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02/PRIMARY_RECONCILIATION.md), [evidence](../History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02/EVIDENCE.json), [J procedure](../History/M07R/R03/IR_Remediation/IR_I_RESPONSE_RESERVE_6f02/J_COMPILE_DIAGNOSTIC_PROCEDURE.md), and the unchanged Local-owned reports.
-
-## Distinct factual states
-
-| Evidence | State / limit |
+| Evidence | Actual scope/state |
 | --- | --- |
-| I actual runtime | FAIL:10 Passed/3 Failed/1 Blocked of14; Release/OFF builds Passed, Debug Failed; two ON release SIGABRT, OFF Passed, Debug Player Blocked/NotRun |
-| I prerequisites/storage/custody/seal | Passed within recorded scopes; this does not promote failed runtime cells |
-| I Boolean fatal | FixedBooleanAllocationFailed; exact first readiness/allocation check not identified by catch-all; no OOM proof |
-| I first terminal observations | Baseline code21 and prescribed type code13 captured; ON complete JSON/semantic proofs Unavailable; not retrospective E first-error reconstruction |
-| New native candidate | 0fa7b4fef94062e54f186fda938dd8a3d2304b7e, preallocated pinned Boolean before startup gate; no post-terminal allocation in response; ordinary guards intact |
-| Candidate host CI | 38203284632 Passed macOS/Ubuntu normal/sanitizers, actual guarded allocator body plus VM mocks,18 identity negatives/18 fatal modes,20,000 reporting iterations per ON configuration, Object.h/observer/69 policy checks |
-| Collector tests | 14 Passed on macOS and Ubuntu in38204087861; selected retained Bee collection still NotRun locally |
-| New official native SDK compile | Not established by host tests; J must produce source-matched55 syntax configurations |
-| G managed evidence | Historical Passed, reusable only with identical current managed inputs; no fresh J compile claimed |
-| G native evidence | Historical55 Passed for c386 only; cannot prove new0fa7 lifecycle/header |
-| Debug cache cause | Unresolved. Two actual BuildReport errors retained; vm_allocate diagnostic lead is not proof of emitter/root cause |
-| Separate R02 source workflow |38203284615 Failed frozen source-hash verification; not rebaselined or labeled Passed |
-| New Unity build/Player/GC/engine-originated evidence | NotRun; J expressly prohibits runtime work |
-| Historical strict custody / full R03 gates | Blocked / acceptance flags false, independent FAIL/re-review NotRun |
+| I runtime | FAIL:10 Passed/3 Failed/1 Blocked of14; two ON release SIGABRT, OFF Passed, Debug Failed/Player Blocked |
+| I preservation/storage/seal | Passed within recorded scope; no promotion of failed runtime cells |
+| Native candidate |0fa7b4fef94062e54f186fda938dd8a3d2304b7e; healthy preallocated pinned Boolean; terminal response no allocation; guards intact |
+| Native host CI38203284632 |Passed macOS/Ubuntu normal/sanitized; actual Runtime/guarded allocation fragments with GC/metadata mocks;18 identity/18 fatal modes,20,000 iterations per ON, Object.h/observer/69 policy |
+| Official SDK CI38203526793 |Passed55 native syntax configurations and five managed targets/one expected-negative; exact native0fa7; no Unity launch or linking |
+| Primary official CI audit |209 manifest files,56 native command receipts,55 matrix rows and six managed responses/streams authenticated; changed native source hashes verified |
+| Collector CI38204087861 |14 Passed per OS; no live Bee read; Local child-task collection still NotRun |
+| Separate historical R02 CI |38203284615 Failed frozen-source check; no rebaseline; neither flagged source file changed in this correction |
+| New Local J compilation |NotRun; confirms installed Local toolchain and retains complete receipts |
+| Debug cache cause |Unresolved; matching dyld vm_allocate text is a lead, not emitter/OS-cause proof |
+| New linking/startup/GC/runtime/ON JSON |NotRun/unproved; J prohibits runtime |
+| Full acceptance/strict custody |All flags false; strict historical S Blocked; independent FAIL/re-review NotRun |
 
-## Source and changed files
+The official CI completed after the initial host reconciliation; SDK_CI_ADDENDUM supersedes earlier pending-CI statements. It used macOS15.7.9/Apple clang17, distinct from the recorded Local macOS26.5.2/clang21 environment.616 repeated vendor atomic-memory-order warnings remain retained, not suppressed or accepted as harmless. G's historical74 managed warnings and other failed attempts retain their original outcomes.
 
-All repositories on codex/assembly-shadow-r01b-h1 at canonical night-outlook remotes. Owning Local root remains /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/<repo>. Exact final demo SHA is in the final Primary message; non-demo pins: HybridCLR4b2774b066cfc6afd77a8c8aded6bda7ea574f55, package948c0e3b4f8891481301770115e8ba4945eea6de, native0fa7b4fef94062e54f186fda938dd8a3d2304b7e. Current source-pins.json must match.
+Native edits are confined to reserve header, Runtime init/shutdown calls, reporting header, removal of Object.h private friendship, associated tests and CI. Object.cpp/AssemblyShadow.cpp guards are unchanged. Demo edits: source pin, read-only collector/tests/CI and Primary docs/evidence. Player/helper/compiler scripts, runtime scheduler, BuildReport acceptance, fixtures and custody/storage code remain unchanged. Local-owned reports and all original checkpoints untouched.
 
-Native changes: new AssemblyShadowFixedBoolean.h; Runtime.cpp init/shutdown calls; reporting header consumes reserve; Object.h removes private friendship; reporting/Object.h/observer tests and reporting CI updated. No changes to ordinary Object.cpp/AssemblyShadow.cpp guards. Demo changes: native pin, new read-only Debug collector/tests/CI, Primary documentation/evidence. C# Player, core runtime scheduler, BuildReport acceptance, compiler scripts, historical fixtures and custody/storage guards unchanged. Local-owned reports and all prior checkpoints remain untouched.
+All owning paths are /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/<repo>, branch codex/assembly-shadow-r01b-h1. Fixed non-demo pins: HybridCLR4b2774b066cfc6afd77a8c8aded6bda7ea574f55; package948c0e3b4f8891481301770115e8ba4945eea6de; native0fa7b4fef94062e54f186fda938dd8a3d2304b7e. Final demo SHA comes from the final Primary prompt. Reject dirty/truncated/divergent inputs or mismatched source-pins.
 
-## J sequence and stop
+J uses new Preflight-R03J-reserve-6f02, NativeSDK-R03J-reserve-6f02, Scratch-R03J-reserve-6f02 and DebugBee-R03J-reserve-6f02 roots after all shared source/host/custody/preservation gates. One native55-configuration invocation and one independent read-only I Bee collection; no retries or cache remedies. Compiler failure alone need not withhold independent diagnostic collection when shared gates remain sound. Preserve actual failures/unavailable data and compare after inventories. Publish local-validation-j-reserve-6f02 and Local-owned reports, push/read back all heads, return to Primary. No runtime permission follows J success.
 
-Verify exact sources/remotes, current host/collector controls, original C/I/G evidence, reused managed inputs, before scoped custody and installed/retained SDK preservation. Confirm new Preflight-R03J-reserve-6f02, NativeSDK-R03J-reserve-6f02, Scratch-R03J-reserve-6f02 and DebugBee-R03J-reserve-6f02 roots absent/nonaliasing. Run native_validation.py once against installed Unity2022.3.62f2 with external --sdk-scratch; do not launch Unity. Independently run the read-only I Bee collector once and inspect command/task attribution without executing copied commands. A collection unavailable result does not fabricate a cache cause; compiler failures are preserved without retry. Shared preservation/source failure stops both branches.
-
-Complete separate after audits. Publish additive local-validation-j-reserve-6f02 checkpoint plus Local-owned reports, commit/push/verify all four remote heads, and return to Primary. No runtime permission follows J success. Do not clear shared caches, change TMPDIR/PATH/toolchain, suppress errors, regenerate historical data or retry I.
-
-Preserve I/E FAIL, F/H Blocked, G historical compile Passed, all S/R/Q/P/O/N/A/B/C/D facts,74 managed/616 repeated vendor warnings and unaccepted performance risks. Strict S custody remains Blocked with339,367 survivors/77,477 original missing identities from416,844 and four missing native roots. R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; fullLegacyRegressionAcceptance=false; PureInterpreter disabled. No H2/X02/M08A/Human Review Gate advancement.
+Preserve I/E FAIL, F/H Blocked, G historical compile Passed and S/R/Q/P/O/N/A/B/C/D states. Strict custody remains Blocked:416,844 entries,339,367 survivors,77,477 original missing/four native roots. Actual engine-originated reporting, post-terminal serialization, captured-generic/initializer, IR-R03-01 and full legacy/performance remain open. R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; fullLegacyRegressionAcceptance=false; PureInterpreter disabled; no H2/X02/M08A/Human Review Gate advancement.
