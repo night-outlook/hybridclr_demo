@@ -402,3 +402,307 @@ extern "C" IL2CPP_EXPORT int32_t R03_IR_ProbeTerminalReporting()
     return 0;
 #endif
 }
+
+// K diagnostic transport: bind the test report while healthy, then read only
+// its prebound instance fields. No managed serializer or callback after poison.
+// This source is installed only as the explicit R03 test overlay, never a
+// production exception/serialization permission.
+#include "vm/Field.h"
+#include "gc/GCHandle.h"
+#include <fcntl.h>
+#include <unistd.h>
+#include <thread>
+#include <limits>
+
+namespace r03_ir_evidence {
+enum WireKind { WireString, WireInt32, WireBoolean, WireException };
+struct BoundField { const char* name; WireKind kind; int32_t offset; };
+static BoundField fields[] = {
+    {"kind", WireString, 0},
+    {"result", WireString, 0},
+    {"runId", WireString, 0},
+    {"caseId", WireString, 0},
+    {"requestSha256", WireString, 0},
+    {"stimulus", WireString, 0},
+    {"unityVersion", WireString, 0},
+    {"platform", WireString, 0},
+    {"error", WireString, 0},
+    {"nativeGuardJson", WireString, 0},
+    {"activeReflectionException", WireString, 0},
+    {"activeDelegateException", WireString, 0},
+    {"aotReflectionException", WireString, 0},
+    {"firstRecovery", WireString, 0},
+    {"finalRecovery", WireString, 0},
+    {"finalDiagnostics", WireString, 0},
+    {"finalExecutionDiagnostics", WireString, 0},
+    {"schemaVersion", WireInt32, 0},
+    {"processId", WireInt32, 0},
+    {"initialState", WireInt32, 0},
+    {"poisonedState", WireInt32, 0},
+    {"finalState", WireInt32, 0},
+    {"nativeStimulusReturn", WireInt32, 0},
+    {"preActiveReflection", WireInt32, 0},
+    {"preActiveDelegate", WireInt32, 0},
+    {"preCanaryCount", WireInt32, 0},
+    {"finalCanaryCount", WireInt32, 0},
+    {"preShadowField", WireInt32, 0},
+    {"finalShadowField", WireInt32, 0},
+    {"nativePhase", WireInt32, 0},
+    {"failurePhase", WireInt32, 0},
+    {"terminalReportingProbeMask", WireInt32, 0},
+    {"reserveBeforeMask", WireInt32, 0},
+    {"reserveAfterGcMask", WireInt32, 0},
+    {"gcCollectionsBefore", WireInt32, 0},
+    {"gcCollectionsAfter", WireInt32, 0},
+    {"shadowFieldReadable", WireBoolean, 0},
+    {"prePositive", WireBoolean, 0},
+    {"activeReflectionAttempted", WireBoolean, 0},
+    {"activeReflectionSucceeded", WireBoolean, 0},
+    {"activeDelegateAttempted", WireBoolean, 0},
+    {"activeDelegateSucceeded", WireBoolean, 0},
+    {"aotReflectionAttempted", WireBoolean, 0},
+    {"aotReflectionSucceeded", WireBoolean, 0},
+    {"recoveryStable", WireBoolean, 0},
+    {"fixedDiagnosticsReadable", WireBoolean, 0},
+    {"acceptance", WireBoolean, 0},
+    {"activeReflectionError", WireException, 0},
+    {"activeDelegateError", WireException, 0},
+    {"aotReflectionError", WireException, 0},
+    {"caughtFailure", WireException, 0}
+};
+static FILE* stream = nullptr;
+static Il2CppObject* report = nullptr;
+static Il2CppClass* reportClass = nullptr;
+static uint32_t reportRoot = 0;
+static bool prepared = false;
+static std::thread::id writerThread;
+static size_t bytesWritten = 0;
+static char nativeGuard[16384] = {};
+static int nativeGuardLength = 0;
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
+static Il2CppObject* reserveBefore = nullptr;
+static uint32_t reserveHandleBefore = 0;
+#endif
+[[noreturn]] void Fatal(const char* reason)
+{
+    std::fprintf(stderr, "[R03NativeEvidence] failed=%s\n", reason);
+    std::fflush(stderr);
+    std::_Exit(74); // Failed diagnostic process, never a successful witness.
+}
+void Put(char c)
+{
+    if (++bytesWritten > 2u * 1024u * 1024u || std::fputc(c, stream) == EOF)
+        Fatal("OutputLimitOrWrite");
+}
+void Text(const char* value)
+{
+    for (; *value; ++value) Put(*value);
+}
+void QuotedUtf16(const Il2CppString* value)
+{
+    if (!value) { Text("null"); return; }
+    if (reinterpret_cast<const Il2CppObject*>(value)->klass != il2cpp_defaults.string_class || value->length < 0 || value->length > 262144)
+        Fatal("StringIdentityOrLength");
+    Put('"');
+    const char* hex = "0123456789abcdef";
+    for (int32_t i = 0; i < value->length; ++i)
+    {
+        const unsigned c = static_cast<uint16_t>(value->chars[i]);
+        if (c == '"' || c == '\\') { Put('\\'); Put(static_cast<char>(c)); }
+        else if (c >= 32 && c < 127) Put(static_cast<char>(c));
+        else { Text("\\u"); Put(hex[(c >> 12) & 15]); Put(hex[(c >> 8) & 15]); Put(hex[(c >> 4) & 15]); Put(hex[c & 15]); }
+    }
+    Put('"');
+}
+void QuotedAscii(const char* value, size_t length)
+{
+    Put('"');
+    const char* hex = "0123456789abcdef";
+    for (size_t i = 0; i < length; ++i)
+    {
+        unsigned c = static_cast<unsigned char>(value[i]);
+        if (c == '"' || c == '\\') { Put('\\'); Put(static_cast<char>(c)); }
+        else if (c >= 32 && c < 127) Put(static_cast<char>(c));
+        else { Text("\\u00"); Put(hex[c >> 4]); Put(hex[c & 15]); }
+    }
+    Put('"');
+}
+const BoundField* Find(const char* name)
+{
+    for (const auto& f : fields) if (std::strcmp(f.name, name) == 0) return &f;
+    return nullptr;
+}
+template<typename T> T Read(const BoundField& f)
+{
+    T value{};
+    std::memcpy(&value, reinterpret_cast<const char*>(report) + f.offset, sizeof(T));
+    return value;
+}
+void ExceptionName(const char* fieldName)
+{
+    const auto* f = Find(fieldName);
+    if (!f) Fatal("MissingExceptionBinding");
+    Il2CppObject* e = Read<Il2CppObject*>(*f);
+    if (!e) { Text("null"); return; }
+    const Il2CppClass* type = e->klass;
+    const Il2CppClass* ancestor = type;
+    for (unsigned depth = 0; ancestor && ancestor != il2cpp_defaults.exception_class && depth < 64; ++depth)
+        ancestor = ancestor->parent;
+    if (ancestor != il2cpp_defaults.exception_class || !type || !type->name || !type->namespaze)
+        Fatal("ExceptionIdentity");
+    // Metadata names are not formatted by managed Exception.GetType/ToString.
+    char name[512];
+    int count = std::snprintf(name, sizeof(name), "%s.%s", type->namespaze, type->name);
+    if (count < 0 || static_cast<size_t>(count) >= sizeof(name)) Fatal("ExceptionNameLimit");
+    QuotedAscii(name, static_cast<size_t>(count));
+}
+}
+
+extern "C" IL2CPP_EXPORT int32_t R03_IR_PrepareEvidence(uint32_t managedHandle, const char* output)
+{
+    using namespace il2cpp::vm;
+    using namespace r03_ir_evidence;
+    try
+    {
+        AssemblyShadowState state;
+        AssemblyShadow::GetState(state);
+        if (state != AssemblyShadowState::Disabled || prepared || !managedHandle || !output ||
+            output[0] != '/' || std::strlen(output) > 4095) return -1;
+        Il2CppObject* object = il2cpp::gc::GCHandle::GetTarget(managedHandle);
+        Il2CppClass* klass = object ? object->klass : nullptr;
+        const Il2CppClass* outer = klass ? klass->declaringType : nullptr;
+        if (!klass || !outer || !klass->name || std::strcmp(klass->name, "Report") ||
+            !outer->name || std::strcmp(outer->name, "R03TerminalPlayer") || !outer->namespaze ||
+            std::strcmp(outer->namespaze, "AssemblyShadow.R03.IR") || !klass->image ||
+            !klass->image->assembly || !klass->image->assembly->aname.name ||
+            std::strcmp(klass->image->assembly->aname.name, "Assembly-CSharp")) return -2;
+        Class::Init(klass); // Healthy metadata binding, NEVER done in Finish.
+        for (auto& binding : fields)
+        {
+            FieldInfo* field = Class::GetFieldFromName(klass, binding.name);
+            const int type = field && field->type ? field->type->type : -1;
+            const int expected = binding.kind == WireInt32 ? IL2CPP_TYPE_I4 :
+                binding.kind == WireBoolean ? IL2CPP_TYPE_BOOLEAN :
+                binding.kind == WireString ? IL2CPP_TYPE_STRING : IL2CPP_TYPE_CLASS;
+            size_t size = binding.kind == WireInt32 ? 4 : binding.kind == WireBoolean ? 1 : sizeof(void*);
+            if (!field || !field->type || field->type->byref || type != expected ||
+                (field->type->attrs & FIELD_ATTRIBUTE_STATIC) || field->offset < static_cast<int32_t>(sizeof(Il2CppObject)) ||
+                static_cast<uint64_t>(field->offset) + size > klass->instance_size) return -3;
+            binding.offset = field->offset;
+        }
+        const uint32_t handle = il2cpp::gc::GCHandle::New(object, true);
+        if (!handle || il2cpp::gc::GCHandle::GetTarget(handle) != object) return -4;
+        const int fd = ::open(output, O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW, 0600);
+        if (fd < 0) { il2cpp::gc::GCHandle::Free(handle); return -5; }
+        FILE* opened = ::fdopen(fd, "w");
+        if (!opened) { ::close(fd); il2cpp::gc::GCHandle::Free(handle); return -6; }
+        stream = opened; report = object; reportClass = klass; reportRoot = handle;
+        writerThread = std::this_thread::get_id(); prepared = true;
+        return 1;
+    }
+    catch (...) { return -7; }
+}
+
+extern "C" IL2CPP_EXPORT int32_t R03_IR_ProbeReserve(int32_t phase)
+{
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
+    using namespace il2cpp::vm;
+    using namespace assembly_shadow_reporting;
+    using namespace r03_ir_evidence;
+    try
+    {
+        AssemblyShadowState state;
+        AssemblyShadow::GetState(state);
+        if (state != AssemblyShadowState::Disabled || (phase != 0 && phase != 1)) return -1;
+        auto& reserve = BooleanReserve();
+        Il2CppObject* object = reserve.object.load(std::memory_order_acquire);
+        if (phase == 0) { reserveBefore = object; reserveHandleBefore = reserve.pinnedHandle; }
+        int mask = 0;
+        if (object && object == reserveBefore && reserve.pinnedHandle == reserveHandleBefore) mask |= 1;
+        if (object && IsReadyBoolean(object->klass) && HasTruePayload(object)) mask |= 2;
+        if (reserve.pinnedHandle && il2cpp::gc::GCHandle::GetHandleType(reserve.pinnedHandle) == il2cpp::gc::HANDLE_PINNED) mask |= 4;
+        if (reserve.pinnedHandle && il2cpp::gc::GCHandle::GetTarget(reserve.pinnedHandle) == object) mask |= 8;
+        return mask;
+    }
+    catch (...) { return -2; }
+#else
+    (void)phase; return 0;
+#endif
+}
+
+extern "C" IL2CPP_EXPORT int32_t R03_IR_TriggerAndRecord(int32_t stimulus)
+{
+    using namespace r03_ir_evidence;
+    if (!prepared || std::this_thread::get_id() != writerThread) return -10;
+    if (stimulus == 13) return R03_IR_ForceTypeFailure();
+    if (stimulus != 21) return -11;
+    nativeGuardLength = R03_ObserveMethod("Methods", "R03", "Node", "Keep", 3,
+        nativeGuard, sizeof(nativeGuard));
+    if (nativeGuardLength <= 0 || nativeGuardLength >= static_cast<int>(sizeof(nativeGuard))) return -12;
+    nativeGuard[nativeGuardLength] = 0;
+    // The original producer's exact JSON is retained, then independently parsed
+    // by the existing host verifier. No managed JSON parsing is needed here.
+    if (!std::strstr(nativeGuard, "\"available\":true") ||
+        !std::strstr(nativeGuard, "\"activeGuard\":1") ||
+        !std::strstr(nativeGuard, "\"baselineGuard\":0") ||
+        !std::strstr(nativeGuard, "\"caughtOldGuard\":1") ||
+        !std::strstr(nativeGuard, "\"stateCode\":9")) return -13;
+    return 1;
+}
+
+extern "C" IL2CPP_EXPORT void R03_IR_FinishEvidenceAndExit()
+{
+    using namespace r03_ir_evidence;
+    if (!prepared || !stream || !reportRoot || !report || report->klass != reportClass ||
+        std::this_thread::get_id() != writerThread) Fatal("UnpreparedOrWrongWriter");
+    Text("{"); bool first = true;
+    for (const auto& f : fields)
+    {
+        if (f.kind == WireException) continue;
+        if (!first) Put(',');
+        first = false;
+        QuotedAscii(f.name, std::strlen(f.name)); Put(':');
+        if (std::strcmp(f.name, "nativeGuardJson") == 0 && nativeGuardLength > 0)
+            QuotedAscii(nativeGuard, static_cast<size_t>(nativeGuardLength));
+        else if (std::strcmp(f.name, "activeReflectionException") == 0) ExceptionName("activeReflectionError");
+        else if (std::strcmp(f.name, "activeDelegateException") == 0) ExceptionName("activeDelegateError");
+        else if (std::strcmp(f.name, "aotReflectionException") == 0) ExceptionName("aotReflectionError");
+        else if (f.kind == WireString) QuotedUtf16(Read<Il2CppString*>(f));
+        else if (f.kind == WireBoolean)
+        {
+            const uint8_t value = Read<uint8_t>(f);
+            if (value > 1) Fatal("BooleanRepresentation");
+            Text(value ? "true" : "false");
+        }
+        else
+        {
+            char number[32]; int count = std::snprintf(number, sizeof(number), "%d", Read<int32_t>(f));
+            if (count < 0 || static_cast<size_t>(count) >= sizeof(number)) Fatal("IntegerFormat");
+            Text(number);
+        }
+    }
+    Text(",\"nativeCaughtException\":"); ExceptionName("caughtFailure");
+    Text(",\"nativeReportTransport\":\"PreboundFieldSnapshotV1\",\"nativeWriterComplete\":true}\n");
+    const int fd = ::fileno(stream);
+    if (std::fflush(stream) != 0 || ::fsync(fd) != 0 || std::fclose(stream) != 0) Fatal("FlushOrClose");
+    stream = nullptr;
+    std::_Exit(0); // Host verifies raw facts. This test does NOT exercise shutdown.
+}
+
+// A separate engine-only request reaches this without a managed catch/finally.
+// The existing native observer writes its own request-bound result.
+extern "C" IL2CPP_EXPORT void R03_IR_UncaughtTypeFailure(const char* runId)
+{
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
+    if (!runId || std::strlen(runId) != 32) r03_ir_evidence::Fatal("EngineRunId");
+    for (unsigned i = 0; i < 32; ++i)
+        if (!((runId[i] >= '0' && runId[i] <= '9') || (runId[i] >= 'a' && runId[i] <= 'f')))
+            r03_ir_evidence::Fatal("EngineRunId");
+    il2cpp::vm::AssemblyShadow::FailTypeResolution(
+        il2cpp::vm::AssemblyShadowError::ReferenceResolutionFailed,
+        std::string("R03K engine-originated witness ") + runId);
+#else
+    (void)runId;
+#endif
+    r03_ir_evidence::Fatal("EngineFailureReturned");
+}

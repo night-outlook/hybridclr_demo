@@ -44,6 +44,9 @@ namespace AssemblyShadow.R03.IR
             public string firstRecovery, finalRecovery, finalDiagnostics, finalExecutionDiagnostics;
             public bool recoveryStable, fixedDiagnosticsReadable;
             public int nativePhase, failurePhase, terminalReportingProbeMask;
+            public int reserveBeforeMask, reserveAfterGcMask, gcCollectionsBefore, gcCollectionsAfter;
+            // Strongly referenced, observed natively without exception formatting.
+            public Exception activeReflectionError, activeDelegateError, aotReflectionError, caughtFailure;
             public bool acceptance = false;
         }
 
@@ -56,6 +59,14 @@ namespace AssemblyShadow.R03.IR
         private static extern void R03_IR_TracePhase(int phase);
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern int R03_IR_ProbeTerminalReporting();
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_PrepareEvidence(uint reportHandle, string path);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void R03_IR_FinishEvidenceAndExit();
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_TriggerAndRecord(int stimulus);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_ProbeReserve(int phase);
         private static void Phase(Report report, int phase)
         {
             report.nativePhase = phase;
@@ -82,6 +93,7 @@ namespace AssemblyShadow.R03.IR
                 unityVersion = Application.unityVersion,
                 platform = Application.platform.ToString()
             };
+            bool nativeEvidenceReady = false;
             try
             {
                 Phase(report, 10);
@@ -96,6 +108,16 @@ namespace AssemblyShadow.R03.IR
                 report.caseId = request.caseId;
                 report.stimulus = request.stimulus;
                 Require(Application.platform == RuntimePlatform.OSXPlayer, "Actual macOS Player required");
+                // Bind offsets and pin the report while healthy. The native
+                // emitter later snapshots these same facts, never sets Passed.
+                GCHandle transport = GCHandle.Alloc(report, GCHandleType.Normal);
+                try
+                {
+                    nativeEvidenceReady = R03_IR_PrepareEvidence(
+                        checked((uint)GCHandle.ToIntPtr(transport).ToInt64()), outputPath) == 1;
+                }
+                finally { transport.Free(); }
+                Require(nativeEvidenceReady, "Native result transport binding");
                 AssemblyShadowState state;
                 var canary = typeof(R03TerminalPlayer).GetMethod("TerminalAotCanary", BindingFlags.NonPublic | BindingFlags.Static);
                 Require(canary != null, "Preserved AOT canary required");
@@ -118,6 +140,14 @@ namespace AssemblyShadow.R03.IR
 
                 Require(request.stimulus == "baseline-owner" || request.stimulus == "type-resolution",
                     "Supported independent ON stimuli only");
+                report.reserveBeforeMask = R03_IR_ProbeReserve(0);
+                report.gcCollectionsBefore = GC.CollectionCount(0);
+                GC.Collect(); GC.WaitForPendingFinalizers(); GC.Collect();
+                report.gcCollectionsAfter = GC.CollectionCount(0);
+                report.reserveAfterGcMask = R03_IR_ProbeReserve(1);
+                Require(report.reserveBeforeMask == 15 && report.reserveAfterGcMask == 15 &&
+                    report.gcCollectionsAfter > report.gcCollectionsBefore,
+                    "Reserved physical Boolean must survive actual healthy GC");
                 Require(!string.IsNullOrEmpty(request.dllPath) && Path.IsPathRooted(request.dllPath) &&
                     !string.IsNullOrEmpty(request.dllSha256) && !string.IsNullOrEmpty(request.baselineId),
                     "Complete immutable target DLL binding");
@@ -174,25 +204,12 @@ namespace AssemblyShadow.R03.IR
                 Require(report.prePositive, "Pre-poison positive controls must really execute");
 
                 Phase(report, 170);
-                if (request.stimulus == "baseline-owner")
-                {
-                    byte[] buffer = new byte[16384];
-                    int count = R03_ObserveMethod("Methods", "R03", "Node", "Keep", 3, buffer, buffer.Length);
-                    Require(count > 0 && count < buffer.Length, "Native baseline-owner guard receipt");
-                    report.nativeGuardJson = Encoding.UTF8.GetString(buffer, 0, count);
-                    NativeGuard guard = JsonUtility.FromJson<NativeGuard>(report.nativeGuardJson);
-                    Require(guard != null && guard.available && guard.activeGuard == 1 &&
-                        guard.baselineGuard == 0 && guard.caughtOldGuard == 1 && guard.stateCode == 9,
-                        "First terminal failure and caught managed guard exception required");
-                    report.nativeStimulusReturn = guard.caughtOldGuard;
-                }
-                else
-                {
-                    // Calls the actual production type-failure function with
-                    // test-only input; no fabricated state write.
-                    report.nativeStimulusReturn = R03_IR_ForceTypeFailure();
-                    Require(report.nativeStimulusReturn == 1, "Caught native-to-managed type failure");
-                }
+                // Original production stimulus and native guard JSON are
+                // observed by the same native producer. No post-poison
+                // JsonUtility.FromJson/Encoding allocation is required.
+                report.nativeStimulusReturn = R03_IR_TriggerAndRecord(
+                    request.stimulus == "baseline-owner" ? 21 : 13);
+                Require(report.nativeStimulusReturn == 1, "Caught native terminal failure");
                 Require(AssemblyShadowRuntime.GetState(out state) == AssemblyShadowErrorCode.Success &&
                     state == AssemblyShadowState.FailedAfterCommit, "Terminal state retained after caught exception");
                 Phase(report, 180);
@@ -209,15 +226,15 @@ namespace AssemblyShadow.R03.IR
                 Phase(report, 190);
                 report.activeReflectionAttempted = true;
                 try { activeMethod.Invoke(instance, null); report.activeReflectionSucceeded = true; }
-                catch (Exception failure) { report.activeReflectionException = failure.GetType().FullName; }
+                catch (Exception failure) { report.activeReflectionError = failure; report.activeReflectionException = "Caught"; }
                 Phase(report, 200);
                 report.activeDelegateAttempted = true;
                 try { activeDelegate(); report.activeDelegateSucceeded = true; }
-                catch (Exception failure) { report.activeDelegateException = failure.GetType().FullName; }
+                catch (Exception failure) { report.activeDelegateError = failure; report.activeDelegateException = "Caught"; }
                 Phase(report, 210);
                 report.aotReflectionAttempted = true;
                 try { canary.Invoke(null, null); report.aotReflectionSucceeded = true; }
-                catch (Exception failure) { report.aotReflectionException = failure.GetType().FullName; }
+                catch (Exception failure) { report.aotReflectionError = failure; report.aotReflectionException = "Caught"; }
                 report.finalCanaryCount = s_canary;
                 // Read the already resolved primitive FieldInfo after poison.
                 // A failed read cannot pass: we do not infer no body execution
@@ -261,11 +278,18 @@ namespace AssemblyShadow.R03.IR
                 report.failurePhase = report.nativePhase;
                 report.error = "ManagedFailure; see native first-failure and phase checkpoints";
                 Phase(report, 900);
-                try { report.error = s_failedRequirement ?? error.GetType().FullName; }
-                catch { /* Keep literal rather than losing the original report. */ }
+                report.caughtFailure = error;
+                if (s_failedRequirement != null) report.error = s_failedRequirement;
             }
             finally
             {
+                if (nativeEvidenceReady)
+                {
+                    Phase(report, 910);
+                    R03_IR_FinishEvidenceAndExit(); // Fixed native snapshot; never returns.
+                }
+                // Only preparation failures use the old healthy fallback.
+                // A terminal process always has its prebound native transport.
                 try
                 {
                     Phase(report, 910);
@@ -293,6 +317,115 @@ namespace AssemblyShadow.R03.IR
             }
         }
         private static string Argument(string key)
+        {
+            string[] args = Environment.GetCommandLineArgs();
+            for (int i = 0; i + 1 < args.Length; ++i) if (args[i] == key) return args[i + 1];
+            return null;
+        }
+        private static string Hash(byte[] bytes)
+        {
+            using (var hash = SHA256.Create())
+                return BitConverter.ToString(hash.ComputeHash(bytes)).Replace("-", "").ToLowerInvariant();
+        }
+    }
+}
+
+namespace AssemblyShadow.R03.IR
+{
+    // Separate request/process from the caught-terminal semantic cases. No
+    // direct reporting probe is called here: Unity receives the uncaught error.
+    [UnityEngine.Scripting.Preserve]
+    internal static class R03EngineReportingPlayer
+    {
+        [Serializable, Preserve] private sealed class EngineRequest
+        {
+            public int schemaVersion;
+            public string runId, caseId, baselineId, dllPath, dllSha256, stimulus;
+        }
+        [Serializable, Preserve] private sealed class GcProof
+        {
+            public string kind = "R03KHealthyReserveGc", runId, requestSha256;
+            public int processId, beforeMask, afterMask, collectionsBefore, collectionsAfter;
+            public bool runtimeAcceptance = false;
+        }
+        [Preserve] private sealed class ObservedLogger : ILogHandler
+        {
+            public void LogException(Exception exception, UnityEngine.Object context)
+            { R03_IR_EngineLoggerCalled(); }
+            public void LogFormat(LogType type, UnityEngine.Object context, string format, params object[] args) { }
+        }
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_ProbeReserve(int phase);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void R03_IR_EngineLoggerCalled();
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_ArmEngineWitness(string output, string run, string caseId, string requestSha);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void R03_IR_UncaughtTypeFailure(string runId);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void R03_IR_EngineFatal(int phase);
+        private static bool s_started;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void Start()
+        {
+            string requestPath = Arg("-r03EngineRequest");
+            if (requestPath == null || s_started) return;
+            s_started = true;
+            string run = null;
+            try
+            {
+                byte[] bytes = File.ReadAllBytes(requestPath);
+                string requestSha = Hash(bytes);
+                var request = JsonUtility.FromJson<EngineRequest>(Encoding.UTF8.GetString(bytes));
+                string output = Arg("-r03EngineOutput");
+                Check(request != null && request.schemaVersion == 1 && request.stimulus == "engine-unhandled" &&
+                    request.runId == Arg("-r03EngineRunId") && request.runId.Length == 32 &&
+                    Path.IsPathRooted(output) && !File.Exists(output), "Engine identity");
+                Check(Application.unityVersion == "2022.3.62f2" && Application.platform == RuntimePlatform.OSXPlayer,
+                    "Engine platform");
+                run = request.runId;
+                var gc = new GcProof { runId = run, requestSha256 = requestSha,
+                    processId = Process.GetCurrentProcess().Id, beforeMask = R03_IR_ProbeReserve(0),
+                    collectionsBefore = GC.CollectionCount(0) };
+                GC.Collect(); GC.WaitForPendingFinalizers(); GC.Collect();
+                gc.collectionsAfter = GC.CollectionCount(0); gc.afterMask = R03_IR_ProbeReserve(1);
+                Check(gc.beforeMask == 15 && gc.afterMask == 15 && gc.collectionsAfter > gc.collectionsBefore,
+                    "Physical Boolean GC retention");
+                using (var file = new FileStream(output + ".gc.json", FileMode.CreateNew))
+                using (var writer = new StreamWriter(file, new UTF8Encoding(false)))
+                    writer.Write(JsonUtility.ToJson(gc, true) + "\n");
+                byte[] dll = File.ReadAllBytes(request.dllPath);
+                Check(Hash(dll) == request.dllSha256, "Engine target identity");
+                Check(AssemblyShadowRuntime.ConfigureCandidates(request.baselineId,
+                    new[] { "A", "B", "Layout", "Methods", "R03Contract" }, new[] { "mscorlib" }) == AssemblyShadowErrorCode.Success, "Configure");
+                Check(AssemblyShadowRuntime.BeginTransaction("R03K-Engine-" + run, request.baselineId,
+                    new[] { "Methods" }, 2) == AssemblyShadowErrorCode.Success, "Begin");
+                Check(AssemblyShadowRuntime.ReserveMetadataBudget(new[] { dll.LongLength }, 2) == AssemblyShadowErrorCode.Success, "Reserve");
+                Check(AssemblyShadowRuntime.StageAssembly(dll, null) == AssemblyShadowErrorCode.Success, "Stage");
+                Check(AssemblyShadowRuntime.ValidateTransaction() == AssemblyShadowErrorCode.Success, "Validate");
+                Check(AssemblyShadowRuntime.CommitTransaction() == AssemblyShadowErrorCode.Success, "Commit");
+                AssemblyShadowState state;
+                Check(AssemblyShadowRuntime.GetState(out state) == AssemblyShadowErrorCode.Success &&
+                    state == AssemblyShadowState.Committed, "Committed");
+                UnityEngine.Debug.unityLogger.logHandler = new ObservedLogger();
+                UnityEngine.Debug.unityLogger.LogException(new InvalidOperationException("R03K healthy logger " + run));
+                Check(R03_IR_ArmEngineWitness(output, run, request.caseId, requestSha) == 1, "Arm engine witness");
+            }
+            catch (Exception)
+            {
+                // The process failed before the intended unhandled stimulus.
+                R03_IR_EngineFatal(601);
+                return;
+            }
+            // Intentionally outside every managed catch/finally. The engine's
+            // Runtime::Invoke boundary receives the authentic type failure.
+            R03_IR_UncaughtTypeFailure(run);
+            R03_IR_EngineFatal(602);
+        }
+        private static void Check(bool ok, string message)
+        { if (!ok) throw new InvalidOperationException(message); }
+        private static string Arg(string key)
         {
             string[] args = Environment.GetCommandLineArgs();
             for (int i = 0; i + 1 < args.Length; ++i) if (args[i] == key) return args[i + 1];
