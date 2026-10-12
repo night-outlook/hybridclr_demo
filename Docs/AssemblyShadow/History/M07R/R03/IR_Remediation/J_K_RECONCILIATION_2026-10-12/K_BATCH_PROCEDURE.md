@@ -35,6 +35,8 @@ Fail closed after any failed shared gate. Distinct after-audits should still be 
 
 ## Two independent current-source compiler gates
 
+Amended source-bound [official Unity SDK CI 38231680521](https://github.com/night-outlook/hybridclr_demo/actions/runs/38231680521) has Passed five managed products/one expected-negative and 55 syntax cases at native0fa7 and current K build-helper source. [Primary raw artifact audit](PRIMARY_K_OFFICIAL_CI_AUDIT.json) authenticates 209 files and 56 native command records. **This does not waive either fresh Local compiler command below**: the installed SDK/toolchain, exact source and actual compiler output hashes must be checked independently.
+
 One official managed source check against Unity 2022.3.62f2:
 ~~~bash
 PY=/Library/Frameworks/Python.framework/Versions/3.14/bin/python3
