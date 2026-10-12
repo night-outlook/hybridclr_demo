@@ -11,7 +11,8 @@
 | K host CI | [38231948391](https://github.com/night-outlook/hybridclr_demo/actions/runs/38231948391) Passed 78 Python tests and sanitizer-enabled snapshot on each macOS/Ubuntu host |
 | K official managed/Build helper API CI | [38228046199](https://github.com/night-outlook/hybridclr_demo/actions/runs/38228046199), [38228046147](https://github.com/night-outlook/hybridclr_demo/actions/runs/38228046147) Passed |
 | Historical primary evolution suite | [38228046222](https://github.com/night-outlook/hybridclr_demo/actions/runs/38228046222) **Failed**, old full-lifetime/183 test condition; unresolved and not rebaselined |
-| K amended source official SDK CI 38231680521 | **Passed source-matched CI only**: 55 syntax cases, five managed targets plus expected-negative; 209 artifact files /56 native commands independently audited. Not a Local build/Player. |\n| K fresh Local official 55 native + managed compilation | **NotRun**; required before runtime |
+| K amended source official SDK CI 38231680521 | **Passed source-matched CI only**: 55 syntax cases, five managed targets plus expected-negative; 209 artifact files /56 native commands independently audited. Not a Local build/Player. |
+| K fresh Local official 55 native + managed compilation | **NotRun**; required before runtime |
 | K actual Unity/native linking/GC/ON semantic/engine cases | **NotRun**, requires independent storage |
 | Original strict historical S custody | **Blocked**; 416,844 original, 339,367 survivors, 77,477 missing, four original native roots missing |
 | Full R03 independent review/new re-review | FAIL / NotRun |
