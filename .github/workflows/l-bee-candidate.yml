@@ -1,0 +1,79 @@
+name: L Bee factory candidate verification
+on:
+  push:
+    branches: [codex/primary-k-return-2e61]
+    paths:
+      - '.github/workflows/l-bee-candidate.yml'
+      - 'Tools/AssemblyShadow/R03IR/prepare_l_bee_tree.py'
+      - 'Tools/AssemblyShadow/R03IR/l-bee-tail.cs.txt'
+      - 'Tools/AssemblyShadow/R03IR/test_factory_observation.py'
+permissions:
+  contents: write
+jobs:
+  candidate:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: controls
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03IR/
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 2b5cf60363dc7c895deaad26bdaf7af70cde612a
+          path: source
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+        with:
+          dotnet-version: '8.0.318'
+      - name: Prepare exactly bound candidate
+        shell: bash
+        run: |
+          printf '%s\n' '{"sdk":{"version":"8.0.318","rollForward":"disable"}}' > "$GITHUB_WORKSPACE/global.json"
+          python3 -B controls/Tools/AssemblyShadow/R03IR/prepare_l_bee_tree.py --source "$GITHUB_WORKSPACE/source" --controls "$GITHUB_WORKSPACE/controls" --output "$RUNNER_TEMP/l-bee"
+      - name: Actual factory lease and all current IR contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          OUT="$RUNNER_TEMP/l-bee"
+          cd source
+          python3 -B -m unittest discover -s Tools/AssemblyShadow/R03IR -p 'test_*.py' -v > "$OUT/tests.log" 2>&1 || { tail -100 "$OUT/tests.log"; exit 1; }
+          tail -12 "$OUT/tests.log"
+          R03_SANITIZERS=1 python3 -B -m unittest discover -s Tools/AssemblyShadow/R03IR -p test_native_snapshot.py -v > "$OUT/snapshot-sanitized.log" 2>&1
+          git diff --check
+      - name: Assemble verified source Git objects only
+        if: success() && matrix.os == 'ubuntu-24.04'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          python3 -B controls/Tools/AssemblyShadow/R03IR/prepare_l_bee_tree.py --source "$GITHUB_WORKSPACE/source" --controls "$GITHUB_WORKSPACE/controls" --output "$RUNNER_TEMP/l-bee" --objects-only
+      - name: Retain raw source-bound results
+        if: always()
+        shell: python
+        run: |
+          import hashlib,json,os
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'l-bee';out.mkdir(exist_ok=True)
+          rows=[{'path':p.name,'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(out.iterdir()) if p.is_file()]
+          (out/'provenance.json').write_text(json.dumps({'workflowCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'files':rows,'sourceBase':'2b5cf60363dc7c895deaad26bdaf7af70cde612a','unityRun':False,'refsUpdated':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: l-bee-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/l-bee
+          retention-days: 14
+          if-no-files-found: error
