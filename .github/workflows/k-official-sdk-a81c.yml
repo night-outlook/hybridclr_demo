@@ -1,0 +1,132 @@
+name: K exact official Unity SDK compilation a81c
+on:
+  push:
+    branches: [codex/k-combined-sourcecheck-a81c]
+    paths:
+      - '.github/workflows/k-official-sdk-a81c.yml'
+      - 'Tools/AssemblyShadow/R03/PlayerProject/**'
+      - 'Tools/AssemblyShadow/R03IR/PlayerProject/**'
+permissions:
+  contents: read
+jobs:
+  pinned-unity-api:
+    runs-on: macos-15
+    timeout-minutes: 50
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03/
+            /Tools/AssemblyShadow/R03IR/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261001-batch-c-return-required/batch/builds/candidate-release/Editor.log
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261001-batch-c-return-required/batch/projects/candidate-release/Assets/Editor/R03Build.cs
+      - name: Resolve exact package and native source pins
+        id: pins
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os, re
+          from pathlib import Path
+          pins=json.loads(Path('hybridclr_demo/Tools/AssemblyShadow/R03/source-pins.json').read_text())
+          with open(os.environ['GITHUB_OUTPUT'],'a') as output:
+              for repo in ('hybridclr','hybridclr_unity','il2cpp_plus'):
+                  assert re.fullmatch('[0-9a-f]{40}',pins[repo])
+                  output.write(repo+'='+pins[repo]+'\n')
+          PY
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: ${{ steps.pins.outputs.hybridclr_unity }}
+          path: hybridclr_unity
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: ${{ steps.pins.outputs.hybridclr }}
+          path: hybridclr
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /hybridclr/
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: ${{ steps.pins.outputs.il2cpp_plus }}
+          path: il2cpp_plus
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /libil2cpp/
+      - name: Extract exact official Editor without installing or launching Unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/r03-build-api"
+          df -h "$RUNNER_TEMP" | tee "$RUNNER_TEMP/r03-build-api/disk-before.txt"
+          URL=https://download.unity3d.com/download_unity/7670c08855a9/MacEditorInstallerArm64/Unity-2022.3.62f2.pkg
+          for attempt in 1 2 3 4; do
+            current=0
+            if test -f "$RUNNER_TEMP/unity.pkg"; then current="$(stat -f %z "$RUNNER_TEMP/unity.pkg")"; fi
+            echo "attempt=$attempt existingBytes=$current" | tee -a "$RUNNER_TEMP/r03-build-api/installer-transfer.log"
+            if curl --fail --location --proto '=https' --connect-timeout 45 --max-time 900 \
+              --continue-at - "$URL" -o "$RUNNER_TEMP/unity.pkg"; then
+              echo "attempt=$attempt result=Completed" | tee -a "$RUNNER_TEMP/r03-build-api/installer-transfer.log"
+              break
+            else
+              code=$?
+              echo "attempt=$attempt result=Interrupted curlExit=$code" | tee -a "$RUNNER_TEMP/r03-build-api/installer-transfer.log"
+              if test "$attempt" = 4; then exit "$code"; fi
+              if test "$code" = 33; then rm -f "$RUNNER_TEMP/unity.pkg"; fi
+              sleep 5
+            fi
+          done
+          shasum -a 256 "$RUNNER_TEMP/unity.pkg" | tee "$RUNNER_TEMP/r03-build-api/installer.sha256"
+          echo '5d2575c1b10a2a9f1f89bf40631a6b9bec3628fe16ca5f2203720af7943a3f05  '"$RUNNER_TEMP/unity.pkg" | shasum -a 256 -c
+          file "$RUNNER_TEMP/unity.pkg" | tee "$RUNNER_TEMP/r03-build-api/installer-file.txt"
+          pkgutil --expand-full "$RUNNER_TEMP/unity.pkg" "$RUNNER_TEMP/unity-expanded"
+          df -h "$RUNNER_TEMP" | tee "$RUNNER_TEMP/r03-build-api/disk-expanded.txt"
+          rm "$RUNNER_TEMP/unity.pkg"
+          find "$RUNNER_TEMP/unity-expanded" -path '*/Unity.app/Contents/MacOS/Unity' -type f > "$RUNNER_TEMP/r03-build-api/unity-paths.txt"
+          test "$(wc -l < "$RUNNER_TEMP/r03-build-api/unity-paths.txt" | tr -d ' ')" = 1
+      - name: Compile current package, helper and full K Player API
+        shell: bash
+        run: |
+          UNITY="$(cat "$RUNNER_TEMP/r03-build-api/unity-paths.txt")"
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03/build_api.py \
+            --workspace "$GITHUB_WORKSPACE" --unity "$UNITY" \
+            --output "$RUNNER_TEMP/r03-build-api/execution"
+      - name: Compile K overlay and all native profiles against official SDK
+        shell: bash
+        run: |
+          UNITY="$(cat "$RUNNER_TEMP/r03-build-api/unity-paths.txt")"
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03/native_validation.py \
+            --workspace "$GITHUB_WORKSPACE" --unity "$UNITY" \
+            --output "$RUNNER_TEMP/r03-build-api/native" \
+            --sdk-scratch "$RUNNER_TEMP/r03-native-sdk-scratch"
+      - name: Preserve source and complete evidence inventory
+        if: always()
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'r03-build-api';root.mkdir(parents=True,exist_ok=True)
+          repos={n:subprocess.check_output(['git','-C',n,'rev-parse','HEAD'],text=True).strip() for n in ('hybridclr_demo','hybridclr_unity','hybridclr','il2cpp_plus')}
+          files=[{'path':str(p.relative_to(root)),'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.rglob('*')) if p.is_file()]
+          (root/'provenance.json').write_text(json.dumps({'kind':'R03KOfficialSdkSourceEvidence','workflowSha':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'repositories':repos,'files':files,'unityEditorRun':False,'nativeExecution':False,'runtimeAcceptance':False},indent=2)+'\n')
+          PY
+          git -C hybridclr_demo diff --exit-code
+          git -C hybridclr_unity diff --exit-code
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: k-official-sdk-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-build-api
+          retention-days: 14
+          if-no-files-found: error
+          include-hidden-files: true
