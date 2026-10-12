@@ -1,0 +1,159 @@
+name: G-COMP immutable evidence reconciliation 7d42
+on:
+  push:
+    branches: [codex/connector-smoke-20261011-gcomp-reconcile-7d42]
+permissions:
+  contents: read
+jobs:
+  reconcile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 4808743fcbbc2075b9be305140bdf5ffa8583b0f
+          path: hybridclr_demo
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261011-ir-r03-02-g-compile-only/
+            /Tools/AssemblyShadow/R03/
+            /Tools/AssemblyShadow/R03IR/
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: hybridclr_unity
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+          path: hybridclr
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: c386cdd1e8942561f1d1e1fada52d21ca524f174
+          path: il2cpp_plus
+          persist-credentials: false
+      - name: Independently audit raw records without compiler or Unity execution
+        shell: python
+        run: |
+          import hashlib,json,os,re,subprocess
+          from pathlib import Path,PurePosixPath
+          from collections import Counter
+          out=Path(os.environ['RUNNER_TEMP'])/'gcomp-audit';out.mkdir()
+          cp=Path('hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261011-ir-r03-02-g-compile-only')
+          def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
+          def load(p): return json.loads(p.read_text())
+          def require(ok,msg):
+              if not ok: raise RuntimeError(msg)
+          manifest=cp/'MANIFEST.sha256'
+          data=manifest.read_bytes()
+          blob=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+          require(blob=='4dc786b14983cc099e87cbd58189c9816f890de9','Original Connector-bound manifest Git object')
+          names=set()
+          for line in data.decode().splitlines():
+              digest,name=line.split('  ',1)
+              p=PurePosixPath(name)
+              require(re.fullmatch('[0-9a-f]{64}',digest) and not p.is_absolute() and '..' not in p.parts,'Unsafe manifest entry')
+              require(name not in names,'Duplicate manifest path'); names.add(name)
+              require((cp/name).is_file() and not (cp/name).is_symlink() and sha(cp/name)==digest,'Manifest bytes: '+name)
+          actual={str(p.relative_to(cp)) for p in cp.rglob('*') if p.is_file()}
+          require(actual==names|{'MANIFEST.sha256'},'Exact manifest inventory')
+          print('Full immutable G manifest passed:',len(names))
+          records=[]
+          for name in sorted(names):
+              if not name.endswith('.json'): continue
+              d=load(cp/name)
+              if not isinstance(d,dict) or not {'stdoutSha256','stderrSha256','exitCode'} <= set(d): continue
+              parent=(cp/name).parent
+              for stream in ('stdout','stderr'):
+                  require(sha(parent/(stream+'.log'))==d[stream+'Sha256'],'Raw stream digest: '+name+'/'+stream)
+              require(not any(d.get(k) for k in ('timeout','interrupted','remainingProcessGroup','postCleanupGroupExists','startError','cleanupErrors')),'Command lifetime: '+name)
+              records.append((name,d))
+          require(len(records)==77,'Expected 77 actual stream-bound command receipts')
+          negative=[name for name,d in records if d['exitCode']!=0]
+          require(negative==['managed/commands/0006/command.json'],'Only original unsigned-count expected negative may fail')
+          native=load(cp/'native/results.json'); managed=load(cp/'managed/build-api/results.json')
+          require(native['result']=='Passed' and managed['result']=='Passed','Script results')
+          require(len(native['translationUnits'])==55 and len(native['commands'])==56,'Actual native matrix/result lengths')
+          suffix='R03IRCompile-20261011G-canonical-temp'
+          mapping={'NativeSDK-'+suffix:'native','ManagedAPI-'+suffix:'managed','Preflight-'+suffix:'preflight'}
+          def recorded_path(path):
+              parts=PurePosixPath(path).parts
+              matches=[(i,mapping[x]) for i,x in enumerate(parts) if x in mapping]
+              require(len(matches)==1,'Unknown record root: '+path)
+              i,base=matches[0]; return cp/base/Path(*parts[i+1:])
+          for row in native['commands']:
+              require(sha(recorded_path(row['command']))==row['sha256'],'Native result to command binding')
+          profiles={'candidate':(1,1,0,2),'debug':(1,1,1,2),'probe-off':(1,0,0,2),'diagnostics-off':(1,0,0,0),'feature-off':(0,1,0,0)}
+          units={'Runtime.cpp','Object.cpp','AssemblyShadow.cpp','AssemblyShadowRuntimeProbe.cpp','AssemblyShadowEngineReportingProbe.cpp','GarbageCollector.cpp','AssemblyShadowTypeResolver.cpp','AssemblyShadowTypeKey.cpp','StagedAssembly.cpp','InterpreterImage.cpp','AssemblyShadowR03Probe.cpp'}
+          pairs=set(); native_warnings=Counter(); owned_units=set()
+          for i,row in enumerate(native['translationUnits'],2):
+              p=cp/'native/commands'/('%04d'%i)/'command.json'; d=load(p); args=d['command']
+              require(sha(p)==row['commandReceipt'],'Unit receipt binding')
+              profile=row['profile']; f,probe,debug,level=profiles[profile]
+              require(args[-1]==row['source'] and '-fsyntax-only' in args and '-std=c++17' in args,'Real syntax compiler/source')
+              require(args[args.index('-arch')+1]=='arm64','arm64')
+              for val in ('-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW='+str(f),'-DHYBRIDCLR_R03_RUNTIME_PROBE='+str(probe),'-DIL2CPP_DEBUG='+str(debug),'-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL='+str(level)):
+                  require(val in args,'Native defines: '+val)
+              require(not any(x.startswith('-Wno-') for x in args),'No warning suppression')
+              basename=Path(row['source']).name
+              require(basename in units and (profile,basename) not in pairs,'Unique native unit/profile');pairs.add((profile,basename))
+              source=row['source']
+              if '/assembly_shadow_h1r/hybridclr_demo/' in source:
+                  rel=source.split('/assembly_shadow_h1r/hybridclr_demo/',1)[1]; repo='hybridclr_demo'
+              elif '/libil2cpp/hybridclr/' in source:
+                  repo='hybridclr'; rel='hybridclr/'+source.split('/libil2cpp/hybridclr/',1)[1]
+              else:
+                  repo='il2cpp_plus'; rel='libil2cpp/'+source.split('/libil2cpp/',1)[1]
+              source_bytes=subprocess.check_output(['git','-C',repo,'show','HEAD:'+rel])
+              require(hashlib.sha256(source_bytes).hexdigest()==row['sha256'],'Actual compiled unit/current Git source: '+source)
+              owned_units.add((repo,rel))
+              stderr=(p.parent/'stderr.log').read_text()
+              for diag in re.findall(r'warning: ([^\n]+)',stderr): native_warnings[diag]+=1
+              require('error:' not in stderr,'Unexpected native error')
+          require(pairs=={(p,u) for p in profiles for u in units},'Full 11 x 5 matrix')
+          targets=['HybridCLR.Runtime','Unity.HybridCLR.AssemblyShadow.CodeGen','HybridCLR.Editor','R03Build','R03TerminalPlayerApi','OriginalUnsignedCounts']
+          require([x['id'] for x in managed['commands']]==targets,'Managed exact target set')
+          managed_warnings=Counter(); managed_errors={}; response_sources=[]
+          for row in managed['commands']:
+              p=recorded_path(row['receipt']['path']); rsp=recorded_path(row['response']['path'])
+              require(sha(p)==row['receipt']['sha256'] and sha(rsp)==row['response']['sha256'],'Managed record/input binding')
+              d=load(p); require(d['exitCode']==row['expectedExit'],'Managed expected exit')
+              text=(p.parent/'stdout.log').read_text()+(p.parent/'stderr.log').read_text()
+              codes=re.findall(r'error (CS\d+):',text); managed_errors[row['id']]=codes
+              managed_warnings[row['id']]=len(re.findall(r'warning CS\d+:',text))
+              require(codes==(['CS0266','CS0266'] if row['id']=='OriginalUnsignedCounts' else []),'Managed exact errors')
+              require('Unity.app/Contents/Managed/' in rsp.read_text(),'Official Unity managed references')
+              if row['id']=='R03TerminalPlayerApi':
+                  require('Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs' in rsp.read_text(),'Current entire Player in real compiler inputs')
+          require(sum(managed_warnings.values())==74,'Preserved managed warning count')
+          require(sum(native_warnings.values())==616 and len(native_warnings)==1,'Preserved native warning count/category')
+          require('[-Watomic-memory-ordering]' in next(iter(native_warnings)),'Vendor warning category')
+          owned_inputs=0
+          for row in managed['inputs']:
+              marker='/assembly_shadow_h1r/'
+              if marker not in row['path']: continue
+              repo,rel=row['path'].split(marker,1)[1].split('/',1)
+              value=subprocess.check_output(['git','-C',repo,'show','HEAD:'+rel])
+              require(hashlib.sha256(value).hexdigest()==row['sha256'] and len(value)==row['size'],'Owned managed input Git binding: '+row['path'])
+              owned_inputs+=1
+          for phase in ('before','after'):
+              d=load(cp/('preflight/scoped-custody-'+phase+'.json'))
+              require(d['phase']==phase and d['completeScan'] and not d['problems'],'Full custody receipt')
+              require((d['originalExpectedFiles'],d['presentVerified'],d['historicalStillMissing'])==(416844,339367,77477),'Exact frozen loss counts')
+              require(d['originalStrictCustody']=='Blocked' and d['result']=='ScopedHistoricalLossStable' and not d['sourceBuildProcessProvenanceRestored'],'Do not promote strict custody')
+          summary={'kind':'PrimaryGCompRawEvidenceAudit','result':'Passed','publication':'4808743fcbbc2075b9be305140bdf5ffa8583b0f','manifestGitBlob':blob,'manifestSha256':sha(manifest),'manifestFiles':len(names),'commandReceipts':len(records),'nativeConfigurations':len(pairs),'nativeOwnedUnits':len(owned_units),'managedProductTargets':5,'expectedNegativeControls':1,'ownedManagedInputBindings':owned_inputs,'managedWarnings':dict(managed_warnings),'nativeWarningOccurrences':sum(native_warnings.values()),'nativeWarningCategories':dict(native_warnings),'custody':'OriginalStrictBlocked; scoped before/after stable','freshCompilersRun':False,'freshUnityRun':False,'runtimeAcceptance':False,'reviewWorkflowSha':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID']}
+          (out/'PRIMARY_G_AUDIT.json').write_text(json.dumps(summary,indent=2)+'\n')
+          print(json.dumps(summary,indent=2))
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: gcomp-raw-evidence-audit-7d42
+          path: ${{ runner.temp }}/gcomp-audit
+          retention-days: 14
+          if-no-files-found: warn
