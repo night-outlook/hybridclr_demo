@@ -1,0 +1,57 @@
+name: O review exact source export
+on:
+  push:
+    branches: [codex/connector-smoke-o-snapshot-20261013-62fa]
+    paths: [.github/workflows/o-review-source-export.yml]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 3138ce154b8ad1cbe7fc925522bdfec82a386dd5
+          path: demo
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03/
+            /Tools/AssemblyShadow/R03IR/
+            /Tools/AssemblyShadow/R03Storage/
+            /Docs/AssemblyShadow/README.md
+            /Docs/AssemblyShadow/Plan/
+            /Docs/AssemblyShadow/Handoff/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/M_RETURN_N_2026-10-13/
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 0f72078711d4786dac2666c9017d952d857dd041
+          path: native
+          persist-credentials: false
+      - name: Copy selected source bytes and Git identities only
+        shell: python
+        run: |
+          from pathlib import Path
+          import hashlib,json,os,shutil,subprocess
+          out=Path(os.environ['RUNNER_TEMP'])/'o-review-source';out.mkdir()
+          specs=[('demo','hybridclr_demo','3138ce154b8ad1cbe7fc925522bdfec82a386dd5'),('native','il2cpp_plus','0f72078711d4786dac2666c9017d952d857dd041')]
+          records=[]
+          for checkout,name,pin in specs:
+              root=Path(checkout)
+              assert subprocess.check_output(['git','-C',str(root),'rev-parse','HEAD'],text=True).strip()==pin
+              listed=subprocess.check_output(['git','-C',str(root),'ls-files','-z']).decode().split('\0')
+              for rel in sorted(x for x in listed if x):
+                  p=root/rel
+                  if not p.is_file() or p.is_symlink(): continue
+                  if name=='il2cpp_plus' and not (rel.startswith('libil2cpp/') or rel.startswith('tools/r03/') or rel.startswith('.github/workflows/')): continue
+                  data=p.read_bytes(); dest=out/name/rel;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
+                  records.append({'repository':name,'commit':pin,'path':rel,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'gitBlob':subprocess.check_output(['git','-C',str(root),'rev-parse','HEAD:'+rel],text=True).strip()})
+          (out/'SOURCE_MANIFEST.json').write_text(json.dumps({'kind':'OReviewSourceExport','files':records},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: o-review-n-pinned-source
+          path: ${{ runner.temp }}/o-review-source
+          retention-days: 7
+          if-no-files-found: error
