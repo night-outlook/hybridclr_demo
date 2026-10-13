@@ -1,0 +1,66 @@
+{
+  "state": "Passed",
+  "startUtc": "2026-10-13T15:10:18.002812+00:00",
+  "endUtc": "2026-10-13T15:10:18.575480+00:00",
+  "source": {
+    "hybridclr_demo": "daf5fab66aa17a9127e6aa09cbf788ec4bdf5a36",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "0f72078711d4786dac2666c9017d952d857dd041"
+  },
+  "contractTests": 18,
+  "integrationScenariosPerProfile": 26,
+  "strictAndSanitizedRecords": 54,
+  "coupledRecords": 4,
+  "managedScenarios": 13,
+  "managedCompilerProcessRecords": 17,
+  "syntheticProducerBytes": 331078,
+  "syntheticProducerSha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+  "syntheticOutcome": "Slot15/reason9/scan-prefix262145 exceeds original262144 limit",
+  "fullActualPlayerProducerLength": "Unavailable; host synthetic measurement never substituted",
+  "NRootCauseProven": false,
+  "IL2CPPMarshallingTested": false,
+  "UnityLaunched": false,
+  "runtimeAcceptance": false,
+  "hostManifestEntriesVerified": 285,
+  "expectedOwnedNegativeLinks": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-symlink.json",
+      "linkTarget": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/link-target-sanitized",
+      "targetSha256": "1daf82f62247f3a1d148c2d88b1828c9efa2d5f087d7059e98650aafe7afdea3",
+      "targetBytes": 8,
+      "classification": "Source-prescribed owned symlink negative; preserved original target",
+      "hostInvocation": {
+        "argv": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+          "symlink",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-symlink.json"
+        ],
+        "exit": 0,
+        "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSha256": "c1351cdd4e0ddc6222941612cab489dea01bac99627254f33285312ee1dbd2ca"
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-symlink.json",
+      "linkTarget": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/link-target-strict",
+      "targetSha256": "1daf82f62247f3a1d148c2d88b1828c9efa2d5f087d7059e98650aafe7afdea3",
+      "targetBytes": 8,
+      "classification": "Source-prescribed owned symlink negative; preserved original target",
+      "hostInvocation": {
+        "argv": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+          "symlink",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-symlink.json"
+        ],
+        "exit": 0,
+        "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSha256": "dc6f76848870e1543beb06d7c71697bfb4f7bc39611bd6a80264a80a5a7e805f"
+      }
+    }
+  ],
+  "initialOwnArtifactCheck": "Overbroad nonsymlink assertion rejected these two intended test fixtures; target bytes/hashes were unchanged",
+  "correctionScope": "Read-only exact fixture artifact authentication only; source/path guards unchanged",
+  "hostCommandsRepeated": false,
+  "newHostExecutions": 0
+}

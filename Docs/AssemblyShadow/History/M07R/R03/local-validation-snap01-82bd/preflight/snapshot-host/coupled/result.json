@@ -1,0 +1,120 @@
+{
+  "result": "SizeIncompatibilityAndPreciseFailureReproduced",
+  "compilerProcessRecords": 4,
+  "sourceFunctions": "Real execution serializer, actual candidate writer and exact translated C# emission sequence",
+  "syntheticDependencies": "1024-class census/VM metadata, guard producer and report values; no Unity/IL2CPP marshalling",
+  "NRootCauseProven": false,
+  "originalLimitsUnchanged": true,
+  "records": [
+    {
+      "profile": "strict",
+      "compilerArgv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/coupled/producer_to_snapshot.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/coupled/strict"
+      ],
+      "compilerExit": 0,
+      "processArgv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/coupled/strict",
+        "producer-json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/coupled/strict-raw.json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json"
+      ],
+      "processExit": 0,
+      "producerBytes": 331078,
+      "producerSha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+      "stderrSha256": "d47d673a756a2666a69ed107f84a5b7ad8e267aafc920e1775344b30fd0d9c57",
+      "rawBytes": 0,
+      "classification": {
+        "schemaVersion": 1,
+        "kind": "R03SnapshotTransportClassification",
+        "result": "NativeTransportFailureRecorded",
+        "pid": 62937,
+        "logBytes": 160,
+        "logSha256": "d47d673a756a2666a69ed107f84a5b7ad8e267aafc920e1775344b30fd0d9c57",
+        "firstFailure": {
+          "operation": "text",
+          "slot": 15,
+          "reason": "TextExceedsOriginalLimit",
+          "reasonCode": 9,
+          "previousWriterState": 1,
+          "scannedPrefixBytes": 262145,
+          "originalTextLimit": 262144,
+          "fullLengthKnown": false,
+          "lengthMeasured": true,
+          "errno": 0,
+          "integerMask": 33554431,
+          "textMask": 32767
+        },
+        "semanticVerification": "SeparateOriginalRawVerifierRequired",
+        "runtimeAcceptance": false,
+        "historicalResultChanged": false,
+        "limits": "A recorded over-limit length is a bounded prefix, not the full producer length; absence of a failure line does not prove a complete raw file, cause, or successful run."
+      },
+      "NRootCauseProven": false
+    },
+    {
+      "profile": "sanitized",
+      "compilerArgv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/coupled/producer_to_snapshot.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/coupled/sanitized"
+      ],
+      "compilerExit": 0,
+      "processArgv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/coupled/sanitized",
+        "producer-json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/coupled/sanitized-raw.json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json"
+      ],
+      "processExit": 0,
+      "producerBytes": 331078,
+      "producerSha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+      "stderrSha256": "28addbf2f880c660c01ef89538092837ff6008644055f17d4ca95c3dc3a03457",
+      "rawBytes": 0,
+      "classification": {
+        "schemaVersion": 1,
+        "kind": "R03SnapshotTransportClassification",
+        "result": "NativeTransportFailureRecorded",
+        "pid": 62941,
+        "logBytes": 160,
+        "logSha256": "28addbf2f880c660c01ef89538092837ff6008644055f17d4ca95c3dc3a03457",
+        "firstFailure": {
+          "operation": "text",
+          "slot": 15,
+          "reason": "TextExceedsOriginalLimit",
+          "reasonCode": 9,
+          "previousWriterState": 1,
+          "scannedPrefixBytes": 262145,
+          "originalTextLimit": 262144,
+          "fullLengthKnown": false,
+          "lengthMeasured": true,
+          "errno": 0,
+          "integerMask": 33554431,
+          "textMask": 32767
+        },
+        "semanticVerification": "SeparateOriginalRawVerifierRequired",
+        "runtimeAcceptance": false,
+        "historicalResultChanged": false,
+        "limits": "A recorded over-limit length is a bounded prefix, not the full producer length; absence of a failure line does not prove a complete raw file, cause, or successful run."
+      },
+      "NRootCauseProven": false
+    }
+  ]
+}

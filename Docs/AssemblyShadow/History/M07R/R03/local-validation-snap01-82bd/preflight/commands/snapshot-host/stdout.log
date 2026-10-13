@@ -1,0 +1,87 @@
+{
+  "kind": "SnapshotDiagnosticPublicationHostAudit",
+  "source": [
+    {
+      "path": "Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp",
+      "gitBlob": "2f13925190a1576738457d8d43f3646a4c7c095f",
+      "sha256": "c3213713a57f76bbd79460f98851a00490b2e9f76cc62b53bda4467c684b6fd5",
+      "bytes": 36673
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs",
+      "gitBlob": "598feeec3231707091699d99fbf4428d50b52024",
+      "sha256": "0c16bcaad8bb2ceb5568ab3b4bb5147f258da884b05b249b8c174952bc36350d",
+      "bytes": 25552
+    }
+  ],
+  "steps": [
+    {
+      "name": "contracts",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "test_transport_contract",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/work",
+      "exitCode": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "900abb8fcaae4721234622ad4c7b23bd019be9251921333e98e66aab431278ce"
+    },
+    {
+      "name": "integration",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "test_snapshot_integration.py",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/work",
+      "exitCode": 0,
+      "stdoutSha256": "9a7610115e954ea3860063207fb2050def4d707713dc8be7beffda29f81b2f08",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "size",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "test_diagnostic_size.py",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/work",
+      "exitCode": 0,
+      "stdoutSha256": "77e76380f04c9d8e9b97990a43f12d103bbf7f0b20c4d294c76dd3963ee8b222",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "coupled",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "test_producer_to_snapshot.py",
+        "--producer-json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/coupled"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/work",
+      "exitCode": 0,
+      "stdoutSha256": "e0e60e1f943e2ecdf802c26786dd915059886083c3f88644b17738c1e026ec6d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "result": "PassedWithinHostScope",
+  "allCommandsPassed": true,
+  "allResultContractsVerified": true,
+  "sourceUnchanged": true,
+  "runtimeAcceptance": false,
+  "unityLaunched": false,
+  "NRootCauseProven": false,
+  "sizeRepresentationFixed": false,
+  "engineDispositionFixed": false
+}

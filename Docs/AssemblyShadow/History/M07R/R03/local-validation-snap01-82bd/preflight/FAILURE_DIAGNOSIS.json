@@ -1,0 +1,791 @@
+{
+  "state": "DiagnosticEvidenceCollectedReturnRequired",
+  "startUtc": "2026-10-13T15:25:09.162011+00:00",
+  "endUtc": "2026-10-13T15:25:09.164965+00:00",
+  "source": {
+    "hybridclr_demo": "daf5fab66aa17a9127e6aa09cbf788ec4bdf5a36",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "0f72078711d4786dac2666c9017d952d857dd041"
+  },
+  "collectionResult": "EvidenceCollected",
+  "semanticBatchResult": "ReturnRequired",
+  "issues": [
+    {
+      "id": "IR-LOCAL-SNAP01-REPRESENTATION-01",
+      "symptom": "All three ON Players exit2 with zero-byte raw, but each now authenticates its immutable first native failure: text slot14(finalDiagnostics), reason9(TextExceedsOriginalLimit), prior writer state1, scanned prefix262145, limit262144, errno0, intMask01ffffff/textMask00003fff. Full semantic verifier remains Unavailable.",
+      "evidence": "preflight/DIAGNOSTIC_COLLECTION.json and writer-classification-IR-R03-02-{release-baseline,debug-baseline,release-type}.json; source/PID/log hashes and classifier invocations are recorded. Original Player.logs contain one precise failure each: PIDs67344/67364/67373, operation=text field=14 reason=9 previousState=1 length=262145 limit=262144 errno=0 intMask=01ffffff textMask=00003fff. Original raw bytes remain0; core cellsFailed, original batchReturnRequired.",
+      "mostLikelyRootCause": "Confirmed fresh producer/writer capacity incompatibility at finalDiagnostics from AssemblyShadowRuntime.GetDiagnosticsJson: the actual UTF8 text exceeds the original single-slot262144-byte capacity. All25 integer slots and text slots0..13 were present at first rejection; no errno, missing-slot, duplicate-slot or open-state error caused this first failure. Slot15 is not reached as the first failure. The separate host331078-byte execution-diagnostic/slot15 scenario does not identify this fresh payload or historical N cause.",
+      "scope": "Full diagnostic representation/transport in all three ON cases; source-defined slot14, plus any following diagnostic slots requiring complete lossless data. Native guard/field/recovery semantic values remain Unavailable as full raw because strict seal rejects incomplete output.",
+      "direction": "Primary must design a versioned authenticated lossless bounded representation for the complete diagnostics, including general diagnostics(slot14) and execution diagnostics(slot15), with explicit total-resource limits, full content hashes and no missing classes/fields. Use bounded chunks or separately bound complete diagnostic artifacts only after design/review; retain strict slot ownership, semantic verifier, first-failure/recovery and all guards. No larger single-slot limit, truncation, prefix/hash substitute or partial raw acceptance by Local.",
+      "uncertainty": "Exact full actual producer byte lengths/content were not persisted and remain Unavailable.262145 is only strnlen prefix, not exact length;331078 is synthetic only. Current failure is proven for SNAP-01; historical N did not record a failing slot and must not be retroactively rewritten. Completion masks do not authenticate actual field values or establish full semantic PASS.",
+      "validation": "Fresh separately authorized successor must losslessly retain/bind complete actual diagnostics and all three full ON snapshots, authentic baseline guard JSON, actual42/42/field0\u21922/readable2/GC31, denied reflection/delegate/AOT/canary, first21/13/stable recovery/mask15, plus strict missing/duplicate/size/resource and I/O negatives. Keep this diagnostic attempt consumed."
+    },
+    {
+      "id": "IR-LOCAL-SNAP01-ENGINE-02",
+      "symptom": "Engine PID67384 exits71 with valid ObservedNotAccepted raw:51213 uncapped completed reports in500ms, state6\u21929/code13, logger1\u21921. Existing1..64 bound fails; original verifier is Unavailable after nonzero exit.",
+      "evidence": "batch/players/IR-R03-02-release-engine/{request.json,raw.json,Player.log}, preflight/FINAL_EVIDENCE_AUDIT.json and SNAP01_TERMINAL_SITE_ANALYSIS.json. True uncaught sentinel R03_ENGINE_UNHANDLED_edfe9c738b7249b6be4ab4a80b82614e reaches native sequence1.24 bounded denial samples carry Runtime::Invoke across multiple input/rendering/update/Canvas/NavMesh callbacks, plus observed Gen2GcCallback.Finalize.",
+      "mostLikelyRootCause": "The diagnostic candidate deliberately leaves native engine disposition unchanged. Unity continues scheduling ordinary callbacks which terminal business guards reject; handled native reporting does not establish engine-loop quiescence/restart disposition. The source/site samples support this integration boundary, not a dominant single method rate.",
+      "scope": "Native terminal/restart ownership and Unity engine scheduling/reporting afterFailedAfterCommit. General finalizer/shutdown, full legacy/performance and human acceptance remain outside this cycle.",
+      "direction": "Primary must implement and review a safe authenticated native engine terminal/restart boundary accounting for scheduler ownership and necessary maintenance, while preserving original first failure/recovery and rejecting arbitrary managed business/logger bodies. Keep actual uncapped counts,500ms and1..64/logger1\u21921; no count cap/coalescing, callback sleep, finalizer suppression, arbitrary method-name allowlist or early-exit acceptance shortcut.",
+      "uncertainty": "Global first12/power-of-two traces are not per-method counters; dominant callback frequency remains Unavailable. No current crash or empty engine raw occurred; this does not reclassify N/M/K/I/E or prove normal cleanup.",
+      "validation": "Fresh original fifth-engine successor must bind real sentinel/GC31/native state6\u21929/code13/recovery, logger1\u21921 and1..64 actual reports in500ms with exit0 and full raw/verifier, retaining all ON/OFF and custody requirements. No SNAP-01/N retry, sixth Player or extra stimulus."
+    }
+  ],
+  "summary": "Diagnostic collection=EvidenceCollected, with original semanticBatchResult=ReturnRequired and18 cells14Passed/4Failed unchanged. Three source/PID/log-bound first errors prove text slot14(finalDiagnostics) exceeds the original262144-byte limit; prefix262145,errno0,intMask01ffffff,textMask00003fff. Exact actual full lengths remain Unavailable; the synthetic331078-byte slot15 result was never substituted. Three ON raws remain zero-byte/exit2 with semantic verifiersUnavailable. OFF has authentic complete strict raw and native seal. Engine actual count51,213/500ms remains uncapped Failed(exit71); source samples identify Runtime::Invoke callback families without a dominant-method frequency. All three builds and Bee capturesPassed; historical states unchanged.",
+  "originalLogsAndExcerpts": [
+    {
+      "caseId": "IR-R03-02-release-baseline",
+      "pid": 67344,
+      "exitCode": 2,
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/players/IR-R03-02-release-baseline/Player.log",
+      "sha256": "b3b389e84eda240cf4c14fe9115cbedb9f800ab022285f9d83c7dfb0b2fe3d4e",
+      "excerpts": [
+        {
+          "line": 24,
+          "text": "[AssemblyShadowPhase] phase=10 state=0 generation=0"
+        },
+        {
+          "line": 25,
+          "text": "[AssemblyShadowPhase] phase=20 state=0 generation=0"
+        },
+        {
+          "line": 26,
+          "text": "[AssemblyShadowPhase] phase=30 state=1 generation=0"
+        },
+        {
+          "line": 27,
+          "text": "[AssemblyShadowPhase] phase=40 state=2 generation=0"
+        },
+        {
+          "line": 28,
+          "text": "[AssemblyShadowPhase] phase=50 state=2 generation=0"
+        },
+        {
+          "line": 29,
+          "text": "[AssemblyShadowPhase] phase=60 state=3 generation=0"
+        },
+        {
+          "line": 31,
+          "text": "[AssemblyShadowPhase] phase=70 state=4 generation=0"
+        },
+        {
+          "line": 32,
+          "text": "[R03ReserveGcProbe] mask=31 collectionsBefore=7 collectionsAfter=8"
+        },
+        {
+          "line": 33,
+          "text": "[AssemblyShadowPhase] phase=80 state=6 generation=1"
+        },
+        {
+          "line": 34,
+          "text": "[AssemblyShadowPhase] phase=90 state=6 generation=1"
+        },
+        {
+          "line": 36,
+          "text": "[AssemblyShadowPhase] phase=100 state=6 generation=1"
+        },
+        {
+          "line": 37,
+          "text": "[AssemblyShadowPhase] phase=110 state=6 generation=1"
+        },
+        {
+          "line": 38,
+          "text": "[AssemblyShadowPhase] phase=120 state=6 generation=1"
+        },
+        {
+          "line": 39,
+          "text": "[AssemblyShadowPhase] phase=130 state=6 generation=1"
+        },
+        {
+          "line": 40,
+          "text": "[AssemblyShadowPhase] phase=140 state=6 generation=1"
+        },
+        {
+          "line": 41,
+          "text": "[AssemblyShadowPhase] phase=150 state=6 generation=1"
+        },
+        {
+          "line": 42,
+          "text": "[AssemblyShadowPhase] phase=160 state=6 generation=1"
+        },
+        {
+          "line": 43,
+          "text": "[AssemblyShadowPhase] phase=170 state=6 generation=1"
+        },
+        {
+          "line": 44,
+          "text": "[AssemblyShadowFirstFailure] code=21 detail=ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline truncated=0"
+        },
+        {
+          "line": 47,
+          "text": "[AssemblyShadowPhase] phase=180 state=9 generation=1"
+        },
+        {
+          "line": 48,
+          "text": "[AssemblyShadowPhase] phase=185 state=9 generation=1"
+        },
+        {
+          "line": 49,
+          "text": "[AssemblyShadowTerminalReport] sequence=1 state=9 message=null managedHandlerExecuted=false"
+        },
+        {
+          "line": 52,
+          "text": "[AssemblyShadowPhase] phase=190 state=9 generation=1"
+        },
+        {
+          "line": 55,
+          "text": "[AssemblyShadowPhase] phase=200 state=9 generation=1"
+        },
+        {
+          "line": 58,
+          "text": "[AssemblyShadowPhase] phase=210 state=9 generation=1"
+        },
+        {
+          "line": 61,
+          "text": "[AssemblyShadowPhase] phase=220 state=9 generation=1"
+        },
+        {
+          "line": 62,
+          "text": "[AssemblyShadowPhase] phase=910 state=9 generation=1"
+        },
+        {
+          "line": 63,
+          "text": "[R03SnapshotFailure] version=1 pid=67344 operation=text field=14 reason=9 previousState=1 length=262145 limit=262144 errno=0 intMask=01ffffff textMask=00003fff"
+        }
+      ]
+    },
+    {
+      "caseId": "IR-R03-02-debug-baseline",
+      "pid": 67364,
+      "exitCode": 2,
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/players/IR-R03-02-debug-baseline/Player.log",
+      "sha256": "6d8f1a30b690df004ee08c2204e6b460aeee14cb18253600cec31210e7d4c488",
+      "excerpts": [
+        {
+          "line": 24,
+          "text": "[AssemblyShadowPhase] phase=10 state=0 generation=0"
+        },
+        {
+          "line": 25,
+          "text": "[AssemblyShadowPhase] phase=20 state=0 generation=0"
+        },
+        {
+          "line": 26,
+          "text": "[AssemblyShadowPhase] phase=30 state=1 generation=0"
+        },
+        {
+          "line": 27,
+          "text": "[AssemblyShadowPhase] phase=40 state=2 generation=0"
+        },
+        {
+          "line": 28,
+          "text": "[AssemblyShadowPhase] phase=50 state=2 generation=0"
+        },
+        {
+          "line": 29,
+          "text": "[AssemblyShadowPhase] phase=60 state=3 generation=0"
+        },
+        {
+          "line": 31,
+          "text": "[AssemblyShadowPhase] phase=70 state=4 generation=0"
+        },
+        {
+          "line": 32,
+          "text": "[R03ReserveGcProbe] mask=31 collectionsBefore=7 collectionsAfter=8"
+        },
+        {
+          "line": 33,
+          "text": "[AssemblyShadowPhase] phase=80 state=6 generation=1"
+        },
+        {
+          "line": 34,
+          "text": "[AssemblyShadowPhase] phase=90 state=6 generation=1"
+        },
+        {
+          "line": 36,
+          "text": "[AssemblyShadowPhase] phase=100 state=6 generation=1"
+        },
+        {
+          "line": 37,
+          "text": "[AssemblyShadowPhase] phase=110 state=6 generation=1"
+        },
+        {
+          "line": 38,
+          "text": "[AssemblyShadowPhase] phase=120 state=6 generation=1"
+        },
+        {
+          "line": 39,
+          "text": "[AssemblyShadowPhase] phase=130 state=6 generation=1"
+        },
+        {
+          "line": 40,
+          "text": "[AssemblyShadowPhase] phase=140 state=6 generation=1"
+        },
+        {
+          "line": 41,
+          "text": "[AssemblyShadowPhase] phase=150 state=6 generation=1"
+        },
+        {
+          "line": 42,
+          "text": "[AssemblyShadowPhase] phase=160 state=6 generation=1"
+        },
+        {
+          "line": 43,
+          "text": "[AssemblyShadowPhase] phase=170 state=6 generation=1"
+        },
+        {
+          "line": 44,
+          "text": "[AssemblyShadowFirstFailure] code=21 detail=ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline truncated=0"
+        },
+        {
+          "line": 47,
+          "text": "[AssemblyShadowPhase] phase=180 state=9 generation=1"
+        },
+        {
+          "line": 48,
+          "text": "[AssemblyShadowPhase] phase=185 state=9 generation=1"
+        },
+        {
+          "line": 49,
+          "text": "[AssemblyShadowTerminalReport] sequence=1 state=9 message=null managedHandlerExecuted=false"
+        },
+        {
+          "line": 52,
+          "text": "[AssemblyShadowPhase] phase=190 state=9 generation=1"
+        },
+        {
+          "line": 55,
+          "text": "[AssemblyShadowPhase] phase=200 state=9 generation=1"
+        },
+        {
+          "line": 58,
+          "text": "[AssemblyShadowPhase] phase=210 state=9 generation=1"
+        },
+        {
+          "line": 61,
+          "text": "[AssemblyShadowPhase] phase=220 state=9 generation=1"
+        },
+        {
+          "line": 62,
+          "text": "[AssemblyShadowPhase] phase=910 state=9 generation=1"
+        },
+        {
+          "line": 63,
+          "text": "[R03SnapshotFailure] version=1 pid=67364 operation=text field=14 reason=9 previousState=1 length=262145 limit=262144 errno=0 intMask=01ffffff textMask=00003fff"
+        }
+      ]
+    },
+    {
+      "caseId": "IR-R03-02-release-type",
+      "pid": 67373,
+      "exitCode": 2,
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/players/IR-R03-02-release-type/Player.log",
+      "sha256": "bf8b9186527e4c2365529c2c61d79238da6774843864f82eb9a96615023e827e",
+      "excerpts": [
+        {
+          "line": 24,
+          "text": "[AssemblyShadowPhase] phase=10 state=0 generation=0"
+        },
+        {
+          "line": 25,
+          "text": "[AssemblyShadowPhase] phase=20 state=0 generation=0"
+        },
+        {
+          "line": 26,
+          "text": "[AssemblyShadowPhase] phase=30 state=1 generation=0"
+        },
+        {
+          "line": 27,
+          "text": "[AssemblyShadowPhase] phase=40 state=2 generation=0"
+        },
+        {
+          "line": 28,
+          "text": "[AssemblyShadowPhase] phase=50 state=2 generation=0"
+        },
+        {
+          "line": 29,
+          "text": "[AssemblyShadowPhase] phase=60 state=3 generation=0"
+        },
+        {
+          "line": 31,
+          "text": "[AssemblyShadowPhase] phase=70 state=4 generation=0"
+        },
+        {
+          "line": 32,
+          "text": "[R03ReserveGcProbe] mask=31 collectionsBefore=7 collectionsAfter=8"
+        },
+        {
+          "line": 33,
+          "text": "[AssemblyShadowPhase] phase=80 state=6 generation=1"
+        },
+        {
+          "line": 34,
+          "text": "[AssemblyShadowPhase] phase=90 state=6 generation=1"
+        },
+        {
+          "line": 36,
+          "text": "[AssemblyShadowPhase] phase=100 state=6 generation=1"
+        },
+        {
+          "line": 37,
+          "text": "[AssemblyShadowPhase] phase=110 state=6 generation=1"
+        },
+        {
+          "line": 38,
+          "text": "[AssemblyShadowPhase] phase=120 state=6 generation=1"
+        },
+        {
+          "line": 39,
+          "text": "[AssemblyShadowPhase] phase=130 state=6 generation=1"
+        },
+        {
+          "line": 40,
+          "text": "[AssemblyShadowPhase] phase=140 state=6 generation=1"
+        },
+        {
+          "line": 41,
+          "text": "[AssemblyShadowPhase] phase=150 state=6 generation=1"
+        },
+        {
+          "line": 42,
+          "text": "[AssemblyShadowPhase] phase=160 state=6 generation=1"
+        },
+        {
+          "line": 43,
+          "text": "[AssemblyShadowPhase] phase=170 state=6 generation=1"
+        },
+        {
+          "line": 44,
+          "text": "[AssemblyShadowFirstFailure] code=13 detail=R03IR synthetic type-resolution failure (test-only stimulus) truncated=0"
+        },
+        {
+          "line": 46,
+          "text": "[AssemblyShadowPhase] phase=180 state=9 generation=1"
+        },
+        {
+          "line": 47,
+          "text": "[AssemblyShadowPhase] phase=185 state=9 generation=1"
+        },
+        {
+          "line": 48,
+          "text": "[AssemblyShadowTerminalReport] sequence=1 state=9 message=null managedHandlerExecuted=false"
+        },
+        {
+          "line": 51,
+          "text": "[AssemblyShadowPhase] phase=190 state=9 generation=1"
+        },
+        {
+          "line": 54,
+          "text": "[AssemblyShadowPhase] phase=200 state=9 generation=1"
+        },
+        {
+          "line": 57,
+          "text": "[AssemblyShadowPhase] phase=210 state=9 generation=1"
+        },
+        {
+          "line": 60,
+          "text": "[AssemblyShadowPhase] phase=220 state=9 generation=1"
+        },
+        {
+          "line": 61,
+          "text": "[AssemblyShadowPhase] phase=910 state=9 generation=1"
+        },
+        {
+          "line": 62,
+          "text": "[R03SnapshotFailure] version=1 pid=67373 operation=text field=14 reason=9 previousState=1 length=262145 limit=262144 errno=0 intMask=01ffffff textMask=00003fff"
+        }
+      ]
+    },
+    {
+      "caseId": "IR-R03-02-off",
+      "pid": 67382,
+      "exitCode": 0,
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/players/IR-R03-02-off/Player.log",
+      "sha256": "cff4a8da5cdc504585ec4f1b104181fcb28339f004c0a53603aae31efded3458",
+      "excerpts": [
+        {
+          "line": 22,
+          "text": "[AssemblyShadowPhase] phase=10 featureOff=1"
+        },
+        {
+          "line": 23,
+          "text": "[AssemblyShadowPhase] phase=910 featureOff=1"
+        },
+        {
+          "line": 24,
+          "text": "[R03SnapshotSealed] version=1 pid=67382 intMask=01ffffff textMask=0000ffff"
+        }
+      ]
+    },
+    {
+      "caseId": "IR-R03-02-release-engine",
+      "pid": 67384,
+      "exitCode": 71,
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/players/IR-R03-02-release-engine/Player.log",
+      "sha256": "28e4bae620b5dcac6c8d27451724d35744a2e95217f3f912fb4fa376f5edd087",
+      "excerpts": [
+        {
+          "line": 24,
+          "text": "[AssemblyShadowPhase] phase=10 state=0 generation=0"
+        },
+        {
+          "line": 25,
+          "text": "[AssemblyShadowPhase] phase=20 state=0 generation=0"
+        },
+        {
+          "line": 26,
+          "text": "[AssemblyShadowPhase] phase=30 state=1 generation=0"
+        },
+        {
+          "line": 27,
+          "text": "[AssemblyShadowPhase] phase=40 state=2 generation=0"
+        },
+        {
+          "line": 28,
+          "text": "[AssemblyShadowPhase] phase=50 state=2 generation=0"
+        },
+        {
+          "line": 29,
+          "text": "[AssemblyShadowPhase] phase=60 state=3 generation=0"
+        },
+        {
+          "line": 31,
+          "text": "[AssemblyShadowPhase] phase=70 state=4 generation=0"
+        },
+        {
+          "line": 32,
+          "text": "[R03ReserveGcProbe] mask=31 collectionsBefore=7 collectionsAfter=8"
+        },
+        {
+          "line": 33,
+          "text": "[AssemblyShadowFirstFailure] code=13 detail=R03IR synthetic type-resolution failure (test-only stimulus) truncated=0"
+        },
+        {
+          "line": 35,
+          "text": "[AssemblyShadowTerminalReport] sequence=1 state=9 message=\"R03_ENGINE_UNHANDLED_edfe9c738b7249b6be4ab4a80b82614e\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 38,
+          "text": "[AssemblyShadowTerminalReport] sequence=2 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 44,
+          "text": "[AssemblyShadowTerminalReport] sequence=3 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 47,
+          "text": "[AssemblyShadowTerminalReport] sequence=4 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 50,
+          "text": "[AssemblyShadowTerminalReport] sequence=5 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 53,
+          "text": "[AssemblyShadowTerminalReport] sequence=6 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 56,
+          "text": "[AssemblyShadowTerminalReport] sequence=7 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 59,
+          "text": "[AssemblyShadowTerminalReport] sequence=8 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 62,
+          "text": "[AssemblyShadowTerminalReport] sequence=9 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 65,
+          "text": "[AssemblyShadowTerminalReport] sequence=10 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 68,
+          "text": "[AssemblyShadowTerminalReport] sequence=11 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 71,
+          "text": "[AssemblyShadowTerminalReport] sequence=12 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 73,
+          "text": "[AssemblyShadowTerminalReport] sequence=13 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 75,
+          "text": "[AssemblyShadowTerminalReport] sequence=14 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 77,
+          "text": "[AssemblyShadowTerminalReport] sequence=15 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 80,
+          "text": "[AssemblyShadowTerminalReport] sequence=16 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 82,
+          "text": "[AssemblyShadowTerminalReport] sequence=17 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 84,
+          "text": "[AssemblyShadowTerminalReport] sequence=18 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 86,
+          "text": "[AssemblyShadowTerminalReport] sequence=19 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 88,
+          "text": "[AssemblyShadowTerminalReport] sequence=20 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 90,
+          "text": "[AssemblyShadowTerminalReport] sequence=21 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 92,
+          "text": "[AssemblyShadowTerminalReport] sequence=22 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 94,
+          "text": "[AssemblyShadowTerminalReport] sequence=23 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 96,
+          "text": "[AssemblyShadowTerminalReport] sequence=24 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 98,
+          "text": "[AssemblyShadowTerminalReport] sequence=25 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 100,
+          "text": "[AssemblyShadowTerminalReport] sequence=26 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 102,
+          "text": "[AssemblyShadowTerminalReport] sequence=27 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 104,
+          "text": "[AssemblyShadowTerminalReport] sequence=28 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 106,
+          "text": "[AssemblyShadowTerminalReport] sequence=29 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 108,
+          "text": "[AssemblyShadowTerminalReport] sequence=30 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 110,
+          "text": "[AssemblyShadowTerminalReport] sequence=31 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 112,
+          "text": "[AssemblyShadowTerminalReport] sequence=32 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        }
+      ]
+    }
+  ],
+  "authenticatedFirstFailures": [
+    {
+      "caseId": "IR-R03-02-release-baseline",
+      "source": {
+        "hybridclr_demo": "daf5fab66aa17a9127e6aa09cbf788ec4bdf5a36",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0f72078711d4786dac2666c9017d952d857dd041"
+      },
+      "pid": 67344,
+      "runId": "f5f1ad1444c24b88a396de66f8b6a10e",
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/commands/0006/command.json",
+      "commandSha256": "605ebe50e84f6d29ab555d3ed3af0a255f45f4cf0e79d11a15058cf1e25703c4",
+      "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/players/IR-R03-02-release-baseline/Player.log",
+      "logSha256": "b3b389e84eda240cf4c14fe9115cbedb9f800ab022285f9d83c7dfb0b2fe3d4e",
+      "originalCell": "Failed",
+      "processExit": 2,
+      "originalRaw": "Recorded zero-byte file; semantic JSON Unavailable",
+      "originalVerification": "Unavailable",
+      "classificationExit": 0,
+      "expectedSnapshotWriter": true,
+      "writerEvidence": "AuthenticatedFirstNativeFailure",
+      "classification": {
+        "schemaVersion": 1,
+        "kind": "R03SnapshotTransportClassification",
+        "result": "NativeTransportFailureRecorded",
+        "pid": 67344,
+        "logBytes": 4645,
+        "logSha256": "b3b389e84eda240cf4c14fe9115cbedb9f800ab022285f9d83c7dfb0b2fe3d4e",
+        "firstFailure": {
+          "operation": "text",
+          "slot": 14,
+          "reason": "TextExceedsOriginalLimit",
+          "reasonCode": 9,
+          "previousWriterState": 1,
+          "scannedPrefixBytes": 262145,
+          "originalTextLimit": 262144,
+          "fullLengthKnown": false,
+          "lengthMeasured": true,
+          "errno": 0,
+          "integerMask": 33554431,
+          "textMask": 16383
+        },
+        "semanticVerification": "SeparateOriginalRawVerifierRequired",
+        "runtimeAcceptance": false,
+        "historicalResultChanged": false,
+        "limits": "A recorded over-limit length is a bounded prefix, not the full producer length; absence of a failure line does not prove a complete raw file, cause, or successful run."
+      },
+      "classificationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/writer-classification-IR-R03-02-release-baseline.json",
+      "classificationSha256": "7d246621ed227403c1a86d19e4e2293bb925f023f8ff2d4a12931a7366174956"
+    },
+    {
+      "caseId": "IR-R03-02-debug-baseline",
+      "source": {
+        "hybridclr_demo": "daf5fab66aa17a9127e6aa09cbf788ec4bdf5a36",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0f72078711d4786dac2666c9017d952d857dd041"
+      },
+      "pid": 67364,
+      "runId": "b953f8648cb74c9394e04d6b72f631e4",
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/commands/0007/command.json",
+      "commandSha256": "3cee1720f858739569297a9d9f7b89803ddf0f08a2ff8d35f1acd428fce55a8d",
+      "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/players/IR-R03-02-debug-baseline/Player.log",
+      "logSha256": "6d8f1a30b690df004ee08c2204e6b460aeee14cb18253600cec31210e7d4c488",
+      "originalCell": "Failed",
+      "processExit": 2,
+      "originalRaw": "Recorded zero-byte file; semantic JSON Unavailable",
+      "originalVerification": "Unavailable",
+      "classificationExit": 0,
+      "expectedSnapshotWriter": true,
+      "writerEvidence": "AuthenticatedFirstNativeFailure",
+      "classification": {
+        "schemaVersion": 1,
+        "kind": "R03SnapshotTransportClassification",
+        "result": "NativeTransportFailureRecorded",
+        "pid": 67364,
+        "logBytes": 4644,
+        "logSha256": "6d8f1a30b690df004ee08c2204e6b460aeee14cb18253600cec31210e7d4c488",
+        "firstFailure": {
+          "operation": "text",
+          "slot": 14,
+          "reason": "TextExceedsOriginalLimit",
+          "reasonCode": 9,
+          "previousWriterState": 1,
+          "scannedPrefixBytes": 262145,
+          "originalTextLimit": 262144,
+          "fullLengthKnown": false,
+          "lengthMeasured": true,
+          "errno": 0,
+          "integerMask": 33554431,
+          "textMask": 16383
+        },
+        "semanticVerification": "SeparateOriginalRawVerifierRequired",
+        "runtimeAcceptance": false,
+        "historicalResultChanged": false,
+        "limits": "A recorded over-limit length is a bounded prefix, not the full producer length; absence of a failure line does not prove a complete raw file, cause, or successful run."
+      },
+      "classificationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/writer-classification-IR-R03-02-debug-baseline.json",
+      "classificationSha256": "f3d2bbe84aa4315aed592fc5d34949f22264fbfb457ffd2d2fe5d4c462c4fe49"
+    },
+    {
+      "caseId": "IR-R03-02-release-type",
+      "source": {
+        "hybridclr_demo": "daf5fab66aa17a9127e6aa09cbf788ec4bdf5a36",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "0f72078711d4786dac2666c9017d952d857dd041"
+      },
+      "pid": 67373,
+      "runId": "87962eed34d049b6981e62e6f6747f7c",
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/commands/0008/command.json",
+      "commandSha256": "00ce0612c55d215f5ba3c7d6e59b6d5fcb18c5fbed46f5db9f72052c5e18e388",
+      "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/players/IR-R03-02-release-type/Player.log",
+      "logSha256": "bf8b9186527e4c2365529c2c61d79238da6774843864f82eb9a96615023e827e",
+      "originalCell": "Failed",
+      "processExit": 2,
+      "originalRaw": "Recorded zero-byte file; semantic JSON Unavailable",
+      "originalVerification": "Unavailable",
+      "classificationExit": 0,
+      "expectedSnapshotWriter": true,
+      "writerEvidence": "AuthenticatedFirstNativeFailure",
+      "classification": {
+        "schemaVersion": 1,
+        "kind": "R03SnapshotTransportClassification",
+        "result": "NativeTransportFailureRecorded",
+        "pid": 67373,
+        "logBytes": 4496,
+        "logSha256": "bf8b9186527e4c2365529c2c61d79238da6774843864f82eb9a96615023e827e",
+        "firstFailure": {
+          "operation": "text",
+          "slot": 14,
+          "reason": "TextExceedsOriginalLimit",
+          "reasonCode": 9,
+          "previousWriterState": 1,
+          "scannedPrefixBytes": 262145,
+          "originalTextLimit": 262144,
+          "fullLengthKnown": false,
+          "lengthMeasured": true,
+          "errno": 0,
+          "integerMask": 33554431,
+          "textMask": 16383
+        },
+        "semanticVerification": "SeparateOriginalRawVerifierRequired",
+        "runtimeAcceptance": false,
+        "historicalResultChanged": false,
+        "limits": "A recorded over-limit length is a bounded prefix, not the full producer length; absence of a failure line does not prove a complete raw file, cause, or successful run."
+      },
+      "classificationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/writer-classification-IR-R03-02-release-type.json",
+      "classificationSha256": "15f19cefe80eecff52be063c21242814e710698d49e96f799f64cca48a1c3c6f"
+    }
+  ],
+  "actualEngineRaw": {
+    "schemaVersion": 1,
+    "kind": "R03IREngineReportingV1",
+    "result": "ObservedNotAccepted",
+    "runId": "edfe9c738b7249b6be4ab4a80b82614e",
+    "caseId": "IR-R03-02-release-engine",
+    "requestSha256": "6153ede76ede658bb7a1c8cb30d3ced604303964dbd348182f439bd16f1eec8b",
+    "processId": 67384,
+    "initialState": 6,
+    "finalState": 9,
+    "completedReports": 51213,
+    "preManagedLoggerCalls": 1,
+    "finalManagedLoggerCalls": 1,
+    "timedOut": false,
+    "observationMilliseconds": 500,
+    "recovery": {
+      "schemaVersion": 1,
+      "enabled": true,
+      "capabilityVersion": 1,
+      "stateCode": 9,
+      "state": "FailedAfterCommit",
+      "published": true,
+      "abortAllowed": false,
+      "dispositionCode": 0,
+      "disposition": "RestartRequired",
+      "terminalFailureCode": 13,
+      "reason": "R03IR synthetic type-resolution failure (test-only stimulus)",
+      "retainedBytes": 2048,
+      "baselineEligibilityRequiresStartupValidation": true
+    },
+    "runtimeAcceptance": false
+  },
+  "engineRawSha256": "1d222a948b4f0d70abecfd4c3c9ff2ddbb5700c719c6a1d695067170d187d099",
+  "siteAnalysisPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/SNAP01_TERMINAL_SITE_ANALYSIS.json",
+  "slot14SourceName": "finalDiagnostics",
+  "actualFullProducerLengths": "Unavailable",
+  "historicalNRootCauseRetroactivelyChanged": false,
+  "syntheticProducerSubstituted": false,
+  "runtimeVerdictsChanged": false,
+  "sourceChanges": [],
+  "retries": 0,
+  "engineCounterCapped": false,
+  "representationFixed": false,
+  "engineDispositionFixed": false
+}

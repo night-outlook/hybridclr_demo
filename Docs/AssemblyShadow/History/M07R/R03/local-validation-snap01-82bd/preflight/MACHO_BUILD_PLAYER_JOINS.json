@@ -1,0 +1,129 @@
+{
+  "state": "PassedIdentityBinding",
+  "recordedUtc": "2026-10-13T15:22:44.773427+00:00",
+  "roles": [
+    {
+      "role": "candidate-release",
+      "app": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/builds/candidate-release/R03Isolated.app",
+      "images": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "sha256": "6973bf3c11b4d551e3ad0f669a18b98858923b4a6a0718bc100543d6b131422d",
+          "arm64Uuid": "16630B36-4C21-385E-94E1-848EEBB8E956",
+          "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/commands/uuid-candidate-release-R03Isolated/receipt.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib",
+          "sha256": "4ff82d63f3c5a560f25ebf734e49c1d305394c218e00bbcc852b65293ecf0d2b",
+          "arm64Uuid": "B89C2AEF-E0CD-32A6-AE8A-A45B61F33283",
+          "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/commands/uuid-candidate-release-GameAssembly-dylib/receipt.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib",
+          "sha256": "417339d1c2d2b7bff00e30ac0f7cf0f25ed8918e1511c2340ca756090bb92c5f",
+          "arm64Uuid": "D94FF91A-61A7-3AD6-8ED2-6B0288E2A49A",
+          "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/commands/uuid-candidate-release-UnityPlayer-dylib/receipt.json"
+        }
+      ],
+      "players": [
+        {
+          "caseId": "IR-R03-02-release-baseline",
+          "runId": "f5f1ad1444c24b88a396de66f8b6a10e",
+          "pid": 67344,
+          "requestSha256": "f64600d5e8dc5d2bad22d4302f5ab78df90b21f731300df97c51e35bdb60ef41",
+          "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/commands/0006/command.json"
+        },
+        {
+          "caseId": "IR-R03-02-release-type",
+          "runId": "87962eed34d049b6981e62e6f6747f7c",
+          "pid": 67373,
+          "requestSha256": "03d8b288ece342c2c6bf39b6441e50326bcad59b8b4f83773bad143f5a733c7c",
+          "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/commands/0008/command.json"
+        },
+        {
+          "caseId": "IR-R03-02-release-engine",
+          "runId": "edfe9c738b7249b6be4ab4a80b82614e",
+          "pid": 67384,
+          "requestSha256": "6153ede76ede658bb7a1c8cb30d3ced604303964dbd348182f439bd16f1eec8b",
+          "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/commands/0010/command.json"
+        }
+      ]
+    },
+    {
+      "role": "candidate-debug",
+      "app": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/builds/candidate-debug/R03Isolated.app",
+      "images": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/builds/candidate-debug/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "sha256": "c21ba3ecfbde0d6aaa42fa51198d355741c10be9e0f28990610eb1b9d22b7ffa",
+          "arm64Uuid": "16630B36-4C21-385E-94E1-848EEBB8E956",
+          "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/commands/uuid-candidate-debug-R03Isolated/receipt.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/builds/candidate-debug/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib",
+          "sha256": "5e93a0d0c99fea6be193ca3cc0fd7a73c002f766e4d4d4c4dd70723c22ccc4fb",
+          "arm64Uuid": "F6FB687A-4A62-42B2-BB0A-D225C392F503",
+          "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/commands/uuid-candidate-debug-GameAssembly-dylib/receipt.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/builds/candidate-debug/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib",
+          "sha256": "417339d1c2d2b7bff00e30ac0f7cf0f25ed8918e1511c2340ca756090bb92c5f",
+          "arm64Uuid": "D94FF91A-61A7-3AD6-8ED2-6B0288E2A49A",
+          "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/commands/uuid-candidate-debug-UnityPlayer-dylib/receipt.json"
+        }
+      ],
+      "players": [
+        {
+          "caseId": "IR-R03-02-debug-baseline",
+          "runId": "b953f8648cb74c9394e04d6b72f631e4",
+          "pid": 67364,
+          "requestSha256": "04dc2e4d6a83711ed7fb3570f106f1db888df4e3d3223e68c6404e1a489d34e1",
+          "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/commands/0007/command.json"
+        }
+      ]
+    },
+    {
+      "role": "candidate-off",
+      "app": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/builds/candidate-off/R03Isolated.app",
+      "images": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/builds/candidate-off/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "sha256": "c2748c3d0ded82682b3f4efd5b92f3e5bc536a6b91076518a780bbaa7be57689",
+          "arm64Uuid": "16630B36-4C21-385E-94E1-848EEBB8E956",
+          "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/commands/uuid-candidate-off-R03Isolated/receipt.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/builds/candidate-off/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib",
+          "sha256": "58a2514bba3a9343b4faa107a4ae2337165956f9bfa2dfe7645dda49e9b05430",
+          "arm64Uuid": "B900A8DF-EED4-31BA-B716-C3671FCB1EFE",
+          "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/commands/uuid-candidate-off-GameAssembly-dylib/receipt.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/builds/candidate-off/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib",
+          "sha256": "417339d1c2d2b7bff00e30ac0f7cf0f25ed8918e1511c2340ca756090bb92c5f",
+          "arm64Uuid": "D94FF91A-61A7-3AD6-8ED2-6B0288E2A49A",
+          "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/commands/uuid-candidate-off-UnityPlayer-dylib/receipt.json"
+        }
+      ],
+      "players": [
+        {
+          "caseId": "IR-R03-02-off",
+          "runId": "1a14d6106c024203891e7b2d7af5f219",
+          "pid": 67382,
+          "requestSha256": "0893b10285888ffe61440a71f8499e70e5da2a9ac7771db16324aec9e874da60",
+          "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/commands/0009/command.json"
+        }
+      ]
+    }
+  ],
+  "builds": 3,
+  "players": 5,
+  "newPlayerLaunches": 0,
+  "source": {
+    "hybridclr_demo": "daf5fab66aa17a9127e6aa09cbf788ec4bdf5a36",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "0f72078711d4786dac2666c9017d952d857dd041"
+  },
+  "classification": "Read-only fresh M app bytes and actual launch/request/PID joins; UUIDs do not establish acceptance"
+}

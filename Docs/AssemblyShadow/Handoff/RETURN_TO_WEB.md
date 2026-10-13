@@ -1,6 +1,46 @@
 # Local Validation → Primary Implementation
 
-## Current return — N-after-M-6f28 FAIL / ReturnRequired
+## Current return — SNAP-01-82bd FAIL / ReturnRequired
+
+**Local Validation → Primary Implementation.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-snap01-82bd/README.md), [factual result](../History/M07R/R03/local-validation-snap01-82bd/preflight/LOCAL_SNAP01_RESULT.json), [raw diagnosis](../History/M07R/R03/local-validation-snap01-82bd/preflight/FAILURE_DIAGNOSIS.json), [diagnostic collection](../History/M07R/R03/local-validation-snap01-82bd/preflight/DIAGNOSTIC_COLLECTION.json). Diagnostic collection=EvidenceCollected, original semanticBatchResult=ReturnRequired; neither overrides any Failed/Unavailable result. Fresh host/custody/SDK/compiler/storage prerequisites Passed. One 18-cell/three-build/five-Player execution: {'Passed': 14, 'Failed': 4}. Independent after-audits and bounded seal Passed. No Local source changes, retries, guard relaxation, counter cap or extra stimulus.
+
+**Common exact reproduction:** canonical owner paths/table in LOCAL_VALIDATION, branch `codex/assembly-shadow-r01b-h1`; demo `daf5fab66aa17a9127e6aa09cbf788ec4bdf5a36`, native `0f72078711d4786dac2666c9017d952d857dd041`, HybridCLR `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, package `948c0e3b4f8891481301770115e8ba4945eea6de`; official Unity2022.3.62f2/StandaloneOSX arm64, Python3.14.6/.NET8.0.318/Apple clang21/macOS26.5.2. Follow pinned SNAP01_PROCEDURE.md shared, compiler and independent storage gates, then exact [one executing argv/UTC/PID receipt](../History/M07R/R03/local-validation-snap01-82bd/preflight/commands/storage-execute/receipt.json). Runtime root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd`. SNAP-01 is consumed; no retry/resume or use of its apps as fresh successor evidence. N remains untouched FAIL.
+
+### IR-LOCAL-SNAP01-REPRESENTATION-01
+
+**Symptom:** All three ON Players exit2 with zero-byte raw, but each now authenticates its immutable first native failure: text slot14(finalDiagnostics), reason9(TextExceedsOriginalLimit), prior writer state1, scanned prefix262145, limit262144, errno0, intMask01ffffff/textMask00003fff. Full semantic verifier remains Unavailable.
+
+**Evidence and relevant excerpts:** preflight/DIAGNOSTIC_COLLECTION.json and writer-classification-IR-R03-02-{release-baseline,debug-baseline,release-type}.json; source/PID/log hashes and classifier invocations are recorded. Original Player.logs contain one precise failure each: PIDs67344/67364/67373, operation=text field=14 reason=9 previousState=1 length=262145 limit=262144 errno=0 intMask=01ffffff textMask=00003fff. Original raw bytes remain0; core cellsFailed, original batchReturnRequired.
+
+**Most likely root cause:** Confirmed fresh producer/writer capacity incompatibility at finalDiagnostics from AssemblyShadowRuntime.GetDiagnosticsJson: the actual UTF8 text exceeds the original single-slot262144-byte capacity. All25 integer slots and text slots0..13 were present at first rejection; no errno, missing-slot, duplicate-slot or open-state error caused this first failure. Slot15 is not reached as the first failure. The separate host331078-byte execution-diagnostic/slot15 scenario does not identify this fresh payload or historical N cause.
+
+**Affected scope:** Full diagnostic representation/transport in all three ON cases; source-defined slot14, plus any following diagnostic slots requiring complete lossless data. Native guard/field/recovery semantic values remain Unavailable as full raw because strict seal rejects incomplete output.
+
+**Recommended Primary direction:** Primary must design a versioned authenticated lossless bounded representation for the complete diagnostics, including general diagnostics(slot14) and execution diagnostics(slot15), with explicit total-resource limits, full content hashes and no missing classes/fields. Use bounded chunks or separately bound complete diagnostic artifacts only after design/review; retain strict slot ownership, semantic verifier, first-failure/recovery and all guards. No larger single-slot limit, truncation, prefix/hash substitute or partial raw acceptance by Local.
+
+**Remaining uncertainty:** Exact full actual producer byte lengths/content were not persisted and remain Unavailable.262145 is only strnlen prefix, not exact length;331078 is synthetic only. Current failure is proven for SNAP-01; historical N did not record a failing slot and must not be retroactively rewritten. Completion masks do not authenticate actual field values or establish full semantic PASS.
+
+**Required validation after correction:** Fresh separately authorized successor must losslessly retain/bind complete actual diagnostics and all three full ON snapshots, authentic baseline guard JSON, actual42/42/field0→2/readable2/GC31, denied reflection/delegate/AOT/canary, first21/13/stable recovery/mask15, plus strict missing/duplicate/size/resource and I/O negatives. Keep this diagnostic attempt consumed.
+
+### IR-LOCAL-SNAP01-ENGINE-02
+
+**Symptom:** Engine PID67384 exits71 with valid ObservedNotAccepted raw:51213 uncapped completed reports in500ms, state6→9/code13, logger1→1. Existing1..64 bound fails; original verifier is Unavailable after nonzero exit.
+
+**Evidence and relevant excerpts:** batch/players/IR-R03-02-release-engine/{request.json,raw.json,Player.log}, preflight/FINAL_EVIDENCE_AUDIT.json and SNAP01_TERMINAL_SITE_ANALYSIS.json. True uncaught sentinel R03_ENGINE_UNHANDLED_edfe9c738b7249b6be4ab4a80b82614e reaches native sequence1.24 bounded denial samples carry Runtime::Invoke across multiple input/rendering/update/Canvas/NavMesh callbacks, plus observed Gen2GcCallback.Finalize.
+
+**Most likely root cause:** The diagnostic candidate deliberately leaves native engine disposition unchanged. Unity continues scheduling ordinary callbacks which terminal business guards reject; handled native reporting does not establish engine-loop quiescence/restart disposition. The source/site samples support this integration boundary, not a dominant single method rate.
+
+**Affected scope:** Native terminal/restart ownership and Unity engine scheduling/reporting afterFailedAfterCommit. General finalizer/shutdown, full legacy/performance and human acceptance remain outside this cycle.
+
+**Recommended Primary direction:** Primary must implement and review a safe authenticated native engine terminal/restart boundary accounting for scheduler ownership and necessary maintenance, while preserving original first failure/recovery and rejecting arbitrary managed business/logger bodies. Keep actual uncapped counts,500ms and1..64/logger1→1; no count cap/coalescing, callback sleep, finalizer suppression, arbitrary method-name allowlist or early-exit acceptance shortcut.
+
+**Remaining uncertainty:** Global first12/power-of-two traces are not per-method counters; dominant callback frequency remains Unavailable. No current crash or empty engine raw occurred; this does not reclassify N/M/K/I/E or prove normal cleanup.
+
+**Required validation after correction:** Fresh original fifth-engine successor must bind real sentinel/GC31/native state6→9/code13/recovery, logger1→1 and1..64 actual reports in500ms with exit0 and full raw/verifier, retaining all ON/OFF and custody requirements. No SNAP-01/N retry, sixth Player or extra stimulus.
+
+Read full [raw/site analysis](../History/M07R/R03/local-validation-snap01-82bd/preflight/FAILURE_DIAGNOSIS.json), request/PID/app joins, cell ledger and actual logs. Keep engine uncapped count and failed bounds distinct from diagnostic-source attribution; no cascade-fixed claim is authorized. Historical M/K/I/E FAIL, F/H/L Blocked, G/J scoped Passed and strict original S custody Blocked remain immutable. All acceptance flags false; independent full-stage FAIL/rereview NotRun. Return to Primary and stop; no H2/X02/M08A/expansion/Human Review Gate.
+
+## Historical return — N-after-M-6f28 FAIL / ReturnRequired
 
 **Local Validation → Primary Implementation.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-n-after-m-6f28/README.md), [factual result](../History/M07R/R03/local-validation-n-after-m-6f28/preflight/LOCAL_N_RESULT.json), [raw diagnosis](../History/M07R/R03/local-validation-n-after-m-6f28/preflight/FAILURE_DIAGNOSIS.json). Fresh host/custody/SDK/compiler/storage prerequisites Passed. One 18-cell/three-build/five-Player execution: {'Passed': 14, 'Failed': 4}. Independent after-audits and bounded seal Passed. No Local source changes, retries, guard relaxation, counter cap or extra stimulus.
 

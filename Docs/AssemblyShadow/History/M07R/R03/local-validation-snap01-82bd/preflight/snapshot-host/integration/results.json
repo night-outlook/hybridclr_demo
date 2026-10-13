@@ -1,0 +1,576 @@
+{
+  "result": "Passed",
+  "compiler": "/usr/bin/clang++",
+  "profiles": 2,
+  "scenarioCountPerProfile": 26,
+  "compilerProcessRecords": 54,
+  "inputs": {
+    "candidate/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp": "c3213713a57f76bbd79460f98851a00490b2e9f76cc62b53bda4467c684b6fd5",
+    "candidate/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs": "0c16bcaad8bb2ceb5568ab3b4bb5147f258da884b05b249b8c174952bc36350d"
+  },
+  "method": "Actual writer, actual N bridge with mocked R03_ObserveMethod, and mechanically transcribed exact C# emitter call order; no C#/IL2CPP marshaller or Unity execution",
+  "records": [
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/combined.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "baseline",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-baseline.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "009af3e4f2240b5f1a0c6c2277df8b099f8cf38e83518107d8c13af69ce1b46f"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "type",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-type.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "5c3327e5798b728ad7ba69952a5703dc30da6ccac4db8982809fecd9f411ad9b"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "off",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-off.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "056f589e1392f6cf7efd1e44cddfd989365f368aace121f69a31e378e5923013"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "unicode",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-unicode.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "005362069ed9d8cc5f6449f8324de4faab2378261cb9db4186962c00acb3d89a"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "failed-semantic",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-failed-semantic.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "b915bc5eb3667595297cb770d48e73fc542d3d935f1118d5ddd03c00de6ab81d"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "at-limit",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-at-limit.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "33932f39d0cda361f409fcb9861491dd60aeae313696651d8d55e3c4268bdb41"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "repeat-seal",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-repeat-seal.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "6d21cd8e53dc2532cdcdfa96a9f90d545d93cd7d645f8645145ea94bc2be2530"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "no-open",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-no-open.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "eaa6c3a2e50c47e3f35c04331e827c8d5126023d22ffdfa781a27cb187aa4edd"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "relative-open",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-relative-open.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "1b99cf0148bc6937690ccfab8398eda6c33426f0d04d836a4b36ed5680345446"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "fdopen",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-fdopen.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "88acccee55ff52a0636b6dd42b5b903821e5f7227d9669ebdf6912014cdb5222"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "repeat-open",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-repeat-open.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "eceb580fb6c8452d98c53f2c94cc1a97117604878400b2ff21df3c8975bcdaf3"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "occupied",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-occupied.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "b726a4ecd481c34b4f14461ea031b47c63f76677e153b6d0a1490af0a57330e5"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "symlink",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-symlink.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "dc6f76848870e1543beb06d7c71697bfb4f7bc39611bd6a80264a80a5a7e805f"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "wrong-thread-reentry",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-wrong-thread-reentry.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "d2e268376ae4689beb0cf8587047843699e750501d7f38cd4e2cbd913b249058"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "invalid-int",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-invalid-int.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "43563b81dde49e6a70e28be85026d528db3ebe470223b67f60dd5f755e5d5716"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "invalid-text",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-invalid-text.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "fb771bb02bd142e0e37fa3ccd8c4642cdd1e5cd352ae4d764fde716d14cc962d"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "invalid-bool",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-invalid-bool.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "b4ad71242a3f679de30ee537dd10370bc45c78016494dc37c1da5b1a1ba184c3"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "duplicate-int",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-duplicate-int.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "a1b1a6477e2085ed04f2730f111866f3d2fe9a2decd22e245c2809f0e6458012"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "duplicate-text",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-duplicate-text.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "d066ddf077ebc46e6129dc8a0ca5acf81886dcaf9dc33ee3f32096d757d649d3"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "missing-int",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-missing-int.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "37ce52a69029cfdecc2db8205b137a76eda7a5fa809f10a7f3b94a50dd7f9cb7"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "missing-text",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-missing-text.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "f8796e144d77641618cfd9c0da482a4d6a47366b3d2aa906f51cdd5c2610ad70"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "over-limit",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-over-limit.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "3bd6a9b943c9f51fb4688e0519270110b61186e7b55848fbd120ebe4d6569de7"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "write",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-write.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "b3b096e4f7c689a9eb6f0df49eefeb5b9e8896b6e2ca5caf3fd072d1f787d24b"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "flush",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-flush.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "3395035b725fd12b16fa525825db0ab8611d4cfd3315d1df3f1c53e43bb4c7b5"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "fsync",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-fsync.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "370c673a2c270bc53bd00b29e03606d865782c9cbb4f8a3fa85347418deb432a"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-strict",
+        "close",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-close.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "1b8cd023129fae5c9763e34f26ca98bc881fd98a3597070ad91bf54ecea95a38"
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/combined.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "baseline",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-baseline.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "f62b23861975f7a020e284dc393c176c9fd8e1ee6d78e6e7d8ac0ce5d2572d15"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "type",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-type.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "93c8cc023300b0a401d8b93874b6902a6a5a5ee262b2464e3c02e6916794c8cc"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "off",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-off.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "58e562ea0e69eff233990508b1bd21c8b271dd0f75bf6cdd5d4c51f8a52a9c58"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "unicode",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-unicode.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "f1629c983d9cf71a88dd137d20379daebf67db37aa5ba8c60f884438783abac4"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "failed-semantic",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-failed-semantic.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "b0b61c149ea71e096f4b0d67e8fe1cae09f11d4b2ccab32cbfce425c0a636175"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "at-limit",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-at-limit.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "9253e8f382083465c95d278eb8362084557c0528a97ffdeb887ce739eed549dd"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "repeat-seal",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-repeat-seal.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "d8ee1bb15d3988667100008614b1385444643ed40227ebd42178ca01102afcf7"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "no-open",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-no-open.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "71ef1360ac9f7a0e7fdfef0633d97a91ba4b0bfdaeaa745b05675ebbf62d570a"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "relative-open",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-relative-open.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "248af3dbb7c806308e9ad9e55d8066da6de76f557d1b0e7525fed9a8a5a3d026"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "fdopen",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-fdopen.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "6bb83f9e6b2aaff5664440dbcdf9ac4d87a37702e082d7c9cc7352fcdbccf0cf"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "repeat-open",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-repeat-open.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "c3aa85248717b33642a48082bcf1fef83ce9af28024b85bedc6f2ee76d8a552e"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "occupied",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-occupied.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "dce3232a5b21e3bab345aaaa11f62582d9bbaa6fa0020f535a1eddb70e887279"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "symlink",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-symlink.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "c1351cdd4e0ddc6222941612cab489dea01bac99627254f33285312ee1dbd2ca"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "wrong-thread-reentry",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-wrong-thread-reentry.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "2ce3784d71a82b1c9231bdb1194637a205a50cad349c80b257e550ec85095351"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "invalid-int",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-invalid-int.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "86266e8e376280b73362d6e893e5b12313278c780273e4ef8dd14e6822a2c330"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "invalid-text",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-invalid-text.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "ded03ba627a81cda0bb74443826ec4066f74c6caab69b3776f04c247d89586a8"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "invalid-bool",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-invalid-bool.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "ea382d9322a3d036045c63d81e7e4d373ab192a87d30143cb862d7cc9cb5afc2"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "duplicate-int",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-duplicate-int.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "3214f0481a5d536ec5a9fe187c3ce5eb447824b0e55de78aa96baf8f2c360d2c"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "duplicate-text",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-duplicate-text.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "da372e1763c65af9bcd74369495e23feebff18dd1b0f050f176e3ad261efb204"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "missing-int",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-missing-int.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "0533d82661ff62808152d257df211fcfbe99ed815ffc67a4c9dfd3f7149193bb"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "missing-text",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-missing-text.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e98938fed51e9a5b98d18131da195634f822610d8bc6440925de85d77e0f2181"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "over-limit",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-over-limit.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "8e640ffa01f93ef376958248f68645fee9a8f36e5f45a05490a1c1438178c6ca"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "write",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-write.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "25e1c18ae732b469dab44815af115a6b70254601e926679c587daa951ae54769"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "flush",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-flush.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "caa779d3ed270c5db992828e3a89a95d0a231b180569b5baa028fd266f9f3c07"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "fsync",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-fsync.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "1b596b6c598ed361412d715a89de4586e346592a3d7540820ae5ae330971a21f"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/test-sanitized",
+        "close",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-close.json"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "f18aa9f2a32a33fe799b0a956177372687de0490e1843d0ed9b717fbfd99b2db"
+    }
+  ],
+  "NRootCauseProven": false,
+  "boundsUnchanged": {
+    "textPerSlot": 262144,
+    "intFields": 25,
+    "textFields": 16
+  }
+}

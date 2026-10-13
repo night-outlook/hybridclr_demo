@@ -1,0 +1,778 @@
+{
+  "state": "PassedExactArtifactClassification",
+  "recordedUtc": "2026-10-13T15:29:15.117351+00:00",
+  "paths": [
+    {
+      "checkpointPath": "preflight/managed-emitter-host/actual-producer.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/actual-producer.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticManagedNegative",
+      "expectedFailure": [
+        "text",
+        15,
+        9
+      ]
+    },
+    {
+      "checkpointPath": "preflight/managed-emitter-host/duplicate-int.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/duplicate-int.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticManagedNegative",
+      "expectedFailure": [
+        "int",
+        0,
+        7
+      ]
+    },
+    {
+      "checkpointPath": "preflight/managed-emitter-host/missing-baseline.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/missing-baseline.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticManagedNegative",
+      "expectedFailure": [
+        "missing-text",
+        8,
+        12
+      ]
+    },
+    {
+      "checkpointPath": "preflight/managed-emitter-host/duplicate-baseline.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/duplicate-baseline.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticManagedNegative",
+      "expectedFailure": [
+        "text",
+        8,
+        7
+      ]
+    },
+    {
+      "checkpointPath": "preflight/managed-emitter-host/oversize-utf8.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/oversize-utf8.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticManagedNegative",
+      "expectedFailure": [
+        "text",
+        15,
+        9
+      ]
+    },
+    {
+      "checkpointPath": "preflight/managed-emitter-host/occupied.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/occupied.json",
+      "bytes": 9,
+      "sha256": "0d8da7dc169a0c12f0a6f121b819ca38b055b6e2440830f3453bb6c17d3c3106",
+      "classification": "ExpectedSyntheticManagedNegative",
+      "expectedFailure": [
+        "open",
+        -1,
+        4
+      ]
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/strict-wrong-thread-reentry.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-wrong-thread-reentry.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "int",
+        1
+      ],
+      "logSha256": "d2e268376ae4689beb0cf8587047843699e750501d7f38cd4e2cbd913b249058",
+      "firstFailure": {
+        "operation": "int",
+        "slot": 0,
+        "reason": "ConcurrentOrReentrantWriter",
+        "reasonCode": 1,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/strict-missing-int.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-missing-int.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "missing-int",
+        11
+      ],
+      "logSha256": "37ce52a69029cfdecc2db8205b137a76eda7a5fa809f10a7f3b94a50dd7f9cb7",
+      "firstFailure": {
+        "operation": "missing-int",
+        "slot": 0,
+        "reason": "MissingIntegerSlot",
+        "reasonCode": 11,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/sanitized-duplicate-int.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-duplicate-int.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "int",
+        7
+      ],
+      "logSha256": "3214f0481a5d536ec5a9fe187c3ce5eb447824b0e55de78aa96baf8f2c360d2c",
+      "firstFailure": {
+        "operation": "int",
+        "slot": 3,
+        "reason": "DuplicateSlot",
+        "reasonCode": 7,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 8,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/strict-invalid-text.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-invalid-text.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "text",
+        6
+      ],
+      "logSha256": "fb771bb02bd142e0e37fa3ccd8c4642cdd1e5cd352ae4d764fde716d14cc962d",
+      "firstFailure": {
+        "operation": "text",
+        "slot": -1,
+        "reason": "InvalidSlotIndex",
+        "reasonCode": 6,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/strict-repeat-open.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-repeat-open.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "open",
+        2
+      ],
+      "logSha256": "eceb580fb6c8452d98c53f2c94cc1a97117604878400b2ff21df3c8975bcdaf3",
+      "firstFailure": {
+        "operation": "open",
+        "slot": -1,
+        "reason": "WrongWriterState",
+        "reasonCode": 2,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/sanitized-duplicate-text.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-duplicate-text.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "text",
+        7
+      ],
+      "logSha256": "da372e1763c65af9bcd74369495e23feebff18dd1b0f050f176e3ad261efb204",
+      "firstFailure": {
+        "operation": "text",
+        "slot": 8,
+        "reason": "DuplicateSlot",
+        "reasonCode": 7,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 0,
+        "textMask": 256
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/sanitized-over-limit.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-over-limit.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "text",
+        9
+      ],
+      "logSha256": "8e640ffa01f93ef376958248f68645fee9a8f36e5f45a05490a1c1438178c6ca",
+      "firstFailure": {
+        "operation": "text",
+        "slot": 15,
+        "reason": "TextExceedsOriginalLimit",
+        "reasonCode": 9,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 262145,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": true,
+        "errno": 0,
+        "integerMask": 33554431,
+        "textMask": 32767
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/sanitized-invalid-int.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-invalid-int.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "int",
+        6
+      ],
+      "logSha256": "86266e8e376280b73362d6e893e5b12313278c780273e4ef8dd14e6822a2c330",
+      "firstFailure": {
+        "operation": "int",
+        "slot": 25,
+        "reason": "InvalidSlotIndex",
+        "reasonCode": 6,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/sanitized-wrong-thread-reentry.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-wrong-thread-reentry.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "int",
+        1
+      ],
+      "logSha256": "2ce3784d71a82b1c9231bdb1194637a205a50cad349c80b257e550ec85095351",
+      "firstFailure": {
+        "operation": "int",
+        "slot": 0,
+        "reason": "ConcurrentOrReentrantWriter",
+        "reasonCode": 1,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/strict-fdopen.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-fdopen.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "fdopen",
+        5
+      ],
+      "logSha256": "88acccee55ff52a0636b6dd42b5b903821e5f7227d9669ebdf6912014cdb5222",
+      "firstFailure": {
+        "operation": "fdopen",
+        "slot": -1,
+        "reason": "FdopenFailed",
+        "reasonCode": 5,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 12,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/sanitized-invalid-text.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-invalid-text.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "text",
+        6
+      ],
+      "logSha256": "ded03ba627a81cda0bb74443826ec4066f74c6caab69b3776f04c247d89586a8",
+      "firstFailure": {
+        "operation": "text",
+        "slot": -1,
+        "reason": "InvalidSlotIndex",
+        "reasonCode": 6,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/strict-duplicate-int.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-duplicate-int.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "int",
+        7
+      ],
+      "logSha256": "a1b1a6477e2085ed04f2730f111866f3d2fe9a2decd22e245c2809f0e6458012",
+      "firstFailure": {
+        "operation": "int",
+        "slot": 3,
+        "reason": "DuplicateSlot",
+        "reasonCode": 7,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 8,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/sanitized-fdopen.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-fdopen.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "fdopen",
+        5
+      ],
+      "logSha256": "6bb83f9e6b2aaff5664440dbcdf9ac4d87a37702e082d7c9cc7352fcdbccf0cf",
+      "firstFailure": {
+        "operation": "fdopen",
+        "slot": -1,
+        "reason": "FdopenFailed",
+        "reasonCode": 5,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 12,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/sanitized-repeat-open.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-repeat-open.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "open",
+        2
+      ],
+      "logSha256": "c3aa85248717b33642a48082bcf1fef83ce9af28024b85bedc6f2ee76d8a552e",
+      "firstFailure": {
+        "operation": "open",
+        "slot": -1,
+        "reason": "WrongWriterState",
+        "reasonCode": 2,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/strict-over-limit.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-over-limit.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "text",
+        9
+      ],
+      "logSha256": "3bd6a9b943c9f51fb4688e0519270110b61186e7b55848fbd120ebe4d6569de7",
+      "firstFailure": {
+        "operation": "text",
+        "slot": 15,
+        "reason": "TextExceedsOriginalLimit",
+        "reasonCode": 9,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 262145,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": true,
+        "errno": 0,
+        "integerMask": 33554431,
+        "textMask": 32767
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/sanitized-occupied.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-occupied.json",
+      "bytes": 8,
+      "sha256": "1daf82f62247f3a1d148c2d88b1828c9efa2d5f087d7059e98650aafe7afdea3",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "open",
+        4
+      ],
+      "logSha256": "dce3232a5b21e3bab345aaaa11f62582d9bbaa6fa0020f535a1eddb70e887279",
+      "firstFailure": {
+        "operation": "open",
+        "slot": -1,
+        "reason": "ExclusiveOpenFailed",
+        "reasonCode": 4,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 17,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/strict-missing-text.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-missing-text.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "missing-text",
+        12
+      ],
+      "logSha256": "f8796e144d77641618cfd9c0da482a4d6a47366b3d2aa906f51cdd5c2610ad70",
+      "firstFailure": {
+        "operation": "missing-text",
+        "slot": 0,
+        "reason": "MissingTextSlot",
+        "reasonCode": 12,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 33554431,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/sanitized-missing-int.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-missing-int.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "missing-int",
+        11
+      ],
+      "logSha256": "0533d82661ff62808152d257df211fcfbe99ed815ffc67a4c9dfd3f7149193bb",
+      "firstFailure": {
+        "operation": "missing-int",
+        "slot": 0,
+        "reason": "MissingIntegerSlot",
+        "reasonCode": 11,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/sanitized-invalid-bool.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-invalid-bool.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "int",
+        8
+      ],
+      "logSha256": "ea382d9322a3d036045c63d81e7e4d373ab192a87d30143cb862d7cc9cb5afc2",
+      "firstFailure": {
+        "operation": "int",
+        "slot": 24,
+        "reason": "InvalidBooleanValue",
+        "reasonCode": 8,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/strict-occupied.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-occupied.json",
+      "bytes": 8,
+      "sha256": "1daf82f62247f3a1d148c2d88b1828c9efa2d5f087d7059e98650aafe7afdea3",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "open",
+        4
+      ],
+      "logSha256": "b726a4ecd481c34b4f14461ea031b47c63f76677e153b6d0a1490af0a57330e5",
+      "firstFailure": {
+        "operation": "open",
+        "slot": -1,
+        "reason": "ExclusiveOpenFailed",
+        "reasonCode": 4,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 17,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/strict-invalid-int.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-invalid-int.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "int",
+        6
+      ],
+      "logSha256": "43563b81dde49e6a70e28be85026d528db3ebe470223b67f60dd5f755e5d5716",
+      "firstFailure": {
+        "operation": "int",
+        "slot": 25,
+        "reason": "InvalidSlotIndex",
+        "reasonCode": 6,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/sanitized-missing-text.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/sanitized-missing-text.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "missing-text",
+        12
+      ],
+      "logSha256": "e98938fed51e9a5b98d18131da195634f822610d8bc6440925de85d77e0f2181",
+      "firstFailure": {
+        "operation": "missing-text",
+        "slot": 0,
+        "reason": "MissingTextSlot",
+        "reasonCode": 12,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 33554431,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/strict-duplicate-text.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-duplicate-text.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "text",
+        7
+      ],
+      "logSha256": "d066ddf077ebc46e6129dc8a0ca5acf81886dcaf9dc33ee3f32096d757d649d3",
+      "firstFailure": {
+        "operation": "text",
+        "slot": 8,
+        "reason": "DuplicateSlot",
+        "reasonCode": 7,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 0,
+        "textMask": 256
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/integration/strict-invalid-bool.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/integration/strict-invalid-bool.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticNativeNegative",
+      "expectedFailure": [
+        "int",
+        8
+      ],
+      "logSha256": "b4ad71242a3f679de30ee537dd10370bc45c78016494dc37c1da5b1a1ba184c3",
+      "firstFailure": {
+        "operation": "int",
+        "slot": 24,
+        "reason": "InvalidBooleanValue",
+        "reasonCode": 8,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 0,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": false,
+        "errno": 0,
+        "integerMask": 0,
+        "textMask": 0
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/coupled/sanitized-raw.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/coupled/sanitized-raw.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticCoupledNegative",
+      "firstFailure": {
+        "operation": "text",
+        "slot": 15,
+        "reason": "TextExceedsOriginalLimit",
+        "reasonCode": 9,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 262145,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": true,
+        "errno": 0,
+        "integerMask": 33554431,
+        "textMask": 32767
+      }
+    },
+    {
+      "checkpointPath": "preflight/snapshot-host/coupled/strict-raw.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/coupled/strict-raw.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "ExpectedSyntheticCoupledNegative",
+      "firstFailure": {
+        "operation": "text",
+        "slot": 15,
+        "reason": "TextExceedsOriginalLimit",
+        "reasonCode": 9,
+        "previousWriterState": 1,
+        "scannedPrefixBytes": 262145,
+        "originalTextLimit": 262144,
+        "fullLengthKnown": false,
+        "lengthMeasured": true,
+        "errno": 0,
+        "integerMask": 33554431,
+        "textMask": 32767
+      }
+    },
+    {
+      "checkpointPath": "batch/players/IR-R03-02-release-baseline/raw.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/players/IR-R03-02-release-baseline/raw.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "FailedPlayerRawSemanticUnavailable",
+      "caseId": "IR-R03-02-release-baseline",
+      "pid": 67344,
+      "exitCode": 2
+    },
+    {
+      "checkpointPath": "batch/players/IR-R03-02-debug-baseline/raw.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/players/IR-R03-02-debug-baseline/raw.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "FailedPlayerRawSemanticUnavailable",
+      "caseId": "IR-R03-02-debug-baseline",
+      "pid": 67364,
+      "exitCode": 2
+    },
+    {
+      "checkpointPath": "batch/players/IR-R03-02-release-type/raw.json",
+      "originalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd/players/IR-R03-02-release-type/raw.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "FailedPlayerRawSemanticUnavailable",
+      "caseId": "IR-R03-02-release-type",
+      "pid": 67373,
+      "exitCode": 2
+    }
+  ],
+  "strictJsonForAllOtherFiles": true,
+  "rawModified": false,
+  "semanticVerdictsChanged": false,
+  "note": "Source-prescribed negative host outputs and three failed Player raws preserved exactly; no generic invalid JSON allowance"
+}

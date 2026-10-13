@@ -1,0 +1,417 @@
+{
+  "kind": "ActualCSharpNativeSnapshotHostRoundTrip",
+  "result": "PassedWithinHostScope",
+  "sources": [
+    {
+      "path": "Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp",
+      "gitBlob": "2f13925190a1576738457d8d43f3646a4c7c095f",
+      "sha256": "c3213713a57f76bbd79460f98851a00490b2e9f76cc62b53bda4467c684b6fd5"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs",
+      "gitBlob": "598feeec3231707091699d99fbf4428d50b52024",
+      "sha256": "0c16bcaad8bb2ceb5568ab3b4bb5147f258da884b05b249b8c174952bc36350d"
+    }
+  ],
+  "cases": [
+    {
+      "mode": "type",
+      "result": "ExpectedHostOutcomeVerified",
+      "writerAccepted": true,
+      "expectedFailure": null,
+      "rawBytes": 1359,
+      "rawSha256": "bad8fb891730564c822b156da035ca9829a5300e318d4dbecb1ce7ecc7c69dea"
+    },
+    {
+      "mode": "baseline",
+      "result": "ExpectedHostOutcomeVerified",
+      "writerAccepted": true,
+      "expectedFailure": null,
+      "rawBytes": 1516,
+      "rawSha256": "df3e8d947d3522904aca539e8a96b6fa8f64f22bdd20d5d59fab878adb512cf6"
+    },
+    {
+      "mode": "off",
+      "result": "ExpectedHostOutcomeVerified",
+      "writerAccepted": true,
+      "expectedFailure": null,
+      "rawBytes": 1344,
+      "rawSha256": "3bcaf579697fc638aafe00a7ec527449aca6297b3e318dbc6672eb54a6b8dcb4"
+    },
+    {
+      "mode": "unicode",
+      "result": "ExpectedHostOutcomeVerified",
+      "writerAccepted": true,
+      "expectedFailure": null,
+      "rawBytes": 1409,
+      "rawSha256": "1b386ac4fcb7709b4ba207293e0b267a18dfafedefaf1944762c5f3d56b2d9ec"
+    },
+    {
+      "mode": "failed-semantic",
+      "result": "ExpectedHostOutcomeVerified",
+      "writerAccepted": true,
+      "expectedFailure": null,
+      "rawBytes": 1372,
+      "rawSha256": "642a2c969a94a33e5b298c65c3c654b320954a4ffa2a581a6123a72e68dc70f7"
+    },
+    {
+      "mode": "exact-utf8",
+      "result": "ExpectedHostOutcomeVerified",
+      "writerAccepted": true,
+      "expectedFailure": null,
+      "rawBytes": 263493,
+      "rawSha256": "bf3dfc3f422574bd25ada0a60e12f46785abc4dab2c8df4ba3a2ede43c84d29c"
+    },
+    {
+      "mode": "oversize-utf8",
+      "result": "ExpectedHostOutcomeVerified",
+      "writerAccepted": false,
+      "expectedFailure": [
+        "text",
+        15,
+        9
+      ],
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "actual-producer",
+      "result": "ExpectedHostOutcomeVerified",
+      "writerAccepted": false,
+      "expectedFailure": [
+        "text",
+        15,
+        9
+      ],
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "duplicate-baseline",
+      "result": "ExpectedHostOutcomeVerified",
+      "writerAccepted": false,
+      "expectedFailure": [
+        "text",
+        8,
+        7
+      ],
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "missing-baseline",
+      "result": "ExpectedHostOutcomeVerified",
+      "writerAccepted": false,
+      "expectedFailure": [
+        "missing-text",
+        8,
+        12
+      ],
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "duplicate-int",
+      "result": "ExpectedHostOutcomeVerified",
+      "writerAccepted": false,
+      "expectedFailure": [
+        "int",
+        0,
+        7
+      ],
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "repeat-seal",
+      "result": "ExpectedHostOutcomeVerified",
+      "writerAccepted": true,
+      "expectedFailure": [
+        "seal",
+        -1,
+        2
+      ],
+      "rawBytes": 1366,
+      "rawSha256": "e68eeea6f2bd86aebda2dd53230d9a864d48f02d3c72dcbbc56c4c23b15e4217"
+    },
+    {
+      "mode": "occupied",
+      "result": "ExpectedHostOutcomeVerified",
+      "writerAccepted": false,
+      "expectedFailure": [
+        "open",
+        -1,
+        4
+      ],
+      "rawBytes": 9,
+      "rawSha256": "0d8da7dc169a0c12f0a6f121b819ca38b055b6e2440830f3453bb6c17d3c3106"
+    }
+  ],
+  "records": [
+    {
+      "tag": "dotnet-info",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "--info"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "3bf94b3d3bb0dbb3f71dcca805ac73da3f09804cf9451a51910957378424d02a",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "tag": "compiler-info",
+      "argv": [
+        "/usr/bin/clang++",
+        "--version"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "76a924f59997fb65051981eb13105e0a8c151f16cd9c3e45e0f7c27ecefdb839",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "tag": "native-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fPIC",
+        "-dynamiclib",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/writer.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/libwriter.dylib"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "tag": "managed-compile",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "build",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project/Bridge.csproj",
+        "-c",
+        "Release",
+        "--nologo",
+        "-p:UseSharedCompilation=false",
+        "--disable-build-servers"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "998cbcf2dddcfb6bc7d3511d04d66a2f5ab8cb33f3f80291233c7051ad9f1ce0",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "tag": "type",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project/bin/Release/net8.0/Bridge.dll",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/libwriter.dylib",
+        "type",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/type.json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "162f78bb3c32d52c363846e8204c5bbd1abbcf6f0983cc62c39c8ef5d1349529",
+      "stderrSha256": "be1d2eda5cfef7fa60128993679b20d78a523059528dabdfb61b9d7df03037c8"
+    },
+    {
+      "tag": "baseline",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project/bin/Release/net8.0/Bridge.dll",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/libwriter.dylib",
+        "baseline",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/baseline.json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "162f78bb3c32d52c363846e8204c5bbd1abbcf6f0983cc62c39c8ef5d1349529",
+      "stderrSha256": "ef86e650d29064eb1f998e4195658813f972d2b7c08f3d5a4257e77efde60979"
+    },
+    {
+      "tag": "off",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project/bin/Release/net8.0/Bridge.dll",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/libwriter.dylib",
+        "off",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/off.json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "162f78bb3c32d52c363846e8204c5bbd1abbcf6f0983cc62c39c8ef5d1349529",
+      "stderrSha256": "ab78bec03a50c0e5f2af95b065750fd4a583f186837874c00db743f7594ea7ef"
+    },
+    {
+      "tag": "unicode",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project/bin/Release/net8.0/Bridge.dll",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/libwriter.dylib",
+        "unicode",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/unicode.json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "162f78bb3c32d52c363846e8204c5bbd1abbcf6f0983cc62c39c8ef5d1349529",
+      "stderrSha256": "2eea528455f6e667aa4f25c53108ec421d6c1bf7b0d492a899b470a132976a4e"
+    },
+    {
+      "tag": "failed-semantic",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project/bin/Release/net8.0/Bridge.dll",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/libwriter.dylib",
+        "failed-semantic",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/failed-semantic.json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "162f78bb3c32d52c363846e8204c5bbd1abbcf6f0983cc62c39c8ef5d1349529",
+      "stderrSha256": "47481cab5f01e250f28bb6dda1487982478bc4fb89c2c5c43aeea378b2606d70"
+    },
+    {
+      "tag": "exact-utf8",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project/bin/Release/net8.0/Bridge.dll",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/libwriter.dylib",
+        "exact-utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/exact-utf8.json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "162f78bb3c32d52c363846e8204c5bbd1abbcf6f0983cc62c39c8ef5d1349529",
+      "stderrSha256": "4013a558101862bac86ddbe96823955b56a480c8feb5806f878496d9064023af"
+    },
+    {
+      "tag": "oversize-utf8",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project/bin/Release/net8.0/Bridge.dll",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/libwriter.dylib",
+        "oversize-utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/oversize-utf8.json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "162f78bb3c32d52c363846e8204c5bbd1abbcf6f0983cc62c39c8ef5d1349529",
+      "stderrSha256": "17aa0cc6c49264101bf919d85b8d7b12de4b9823a462158cfec3c3b4061064bf"
+    },
+    {
+      "tag": "actual-producer",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project/bin/Release/net8.0/Bridge.dll",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/libwriter.dylib",
+        "actual-producer",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/actual-producer.json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "162f78bb3c32d52c363846e8204c5bbd1abbcf6f0983cc62c39c8ef5d1349529",
+      "stderrSha256": "79d16188c7337184cbe0aff6ca4ebc45042a7924ff3b06151266f54c420df95c"
+    },
+    {
+      "tag": "duplicate-baseline",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project/bin/Release/net8.0/Bridge.dll",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/libwriter.dylib",
+        "duplicate-baseline",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/duplicate-baseline.json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "162f78bb3c32d52c363846e8204c5bbd1abbcf6f0983cc62c39c8ef5d1349529",
+      "stderrSha256": "b52d1f8e82f69d1eb57e0e211e197b28aeca0cc6f2e94194c504089a096f9a52"
+    },
+    {
+      "tag": "missing-baseline",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project/bin/Release/net8.0/Bridge.dll",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/libwriter.dylib",
+        "missing-baseline",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/missing-baseline.json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "162f78bb3c32d52c363846e8204c5bbd1abbcf6f0983cc62c39c8ef5d1349529",
+      "stderrSha256": "06e936c9bfd189669f25149f8171f249d95fa7f21a85f69585349c14360c1fe1"
+    },
+    {
+      "tag": "duplicate-int",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project/bin/Release/net8.0/Bridge.dll",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/libwriter.dylib",
+        "duplicate-int",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/duplicate-int.json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "162f78bb3c32d52c363846e8204c5bbd1abbcf6f0983cc62c39c8ef5d1349529",
+      "stderrSha256": "b824b6e1063b7b6a87cb743e5baa28d047fac1185030cffb2a48c11014fe0ad3"
+    },
+    {
+      "tag": "repeat-seal",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project/bin/Release/net8.0/Bridge.dll",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/libwriter.dylib",
+        "repeat-seal",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/repeat-seal.json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "162f78bb3c32d52c363846e8204c5bbd1abbcf6f0983cc62c39c8ef5d1349529",
+      "stderrSha256": "7639a4f33535fa4a7effc7cbbcc970879adec12c4e6f9fecd67143db86d7f421"
+    },
+    {
+      "tag": "occupied",
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project/bin/Release/net8.0/Bridge.dll",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/libwriter.dylib",
+        "occupied",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/occupied.json",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/snapshot-host/size/strict.json"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03SNAP01-82bd/managed-emitter-host/project",
+      "exit": 0,
+      "stdoutSha256": "923bf60a246d7a85f8e9678286b1ae362be83fde149b19ba70738a7922c57593",
+      "stderrSha256": "fe16f0e313f982c496a1153fdb9d90352e5626e8cf80b9aae41559c6261d958f"
+    }
+  ],
+  "sourceUnchanged": true,
+  "actualCSharpEmitterAndPInvokeExecuted": true,
+  "nativeWriterReimplemented": false,
+  "reportValuesSynthetic": true,
+  "baselineSlot8ProducerSynthetic": true,
+  "IL2CPPMarshallingTested": false,
+  "UnityLaunched": false,
+  "runtimeAcceptance": false,
+  "NRootCauseProven": false,
+  "textLimit": 262144,
+  "producerInputSha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a"
+}

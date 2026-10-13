@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03SnapshotTransportClassification",
+  "result": "NativeTransportFailureRecorded",
+  "pid": 67364,
+  "logBytes": 4644,
+  "logSha256": "6d8f1a30b690df004ee08c2204e6b460aeee14cb18253600cec31210e7d4c488",
+  "firstFailure": {
+    "operation": "text",
+    "slot": 14,
+    "reason": "TextExceedsOriginalLimit",
+    "reasonCode": 9,
+    "previousWriterState": 1,
+    "scannedPrefixBytes": 262145,
+    "originalTextLimit": 262144,
+    "fullLengthKnown": false,
+    "lengthMeasured": true,
+    "errno": 0,
+    "integerMask": 33554431,
+    "textMask": 16383
+  },
+  "semanticVerification": "SeparateOriginalRawVerifierRequired",
+  "runtimeAcceptance": false,
+  "historicalResultChanged": false,
+  "limits": "A recorded over-limit length is a bounded prefix, not the full producer length; absence of a failure line does not prove a complete raw file, cause, or successful run."
+}
