@@ -53,5 +53,6 @@ jobs:
         with:
           name: o-review-n-pinned-source
           path: ${{ runner.temp }}/o-review-source
+          include-hidden-files: true
           retention-days: 7
           if-no-files-found: error
