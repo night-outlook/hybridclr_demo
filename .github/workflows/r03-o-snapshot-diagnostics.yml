@@ -75,5 +75,7 @@ jobs:
             ${{ runner.temp }}/r03-o-snapshot
             !${{ runner.temp }}/r03-o-snapshot/**/bin/**
             !${{ runner.temp }}/r03-o-snapshot/**/obj/**
+            !${{ runner.temp }}/r03-o-snapshot/cpp/strict-symlink.json
+            !${{ runner.temp }}/r03-o-snapshot/cpp/sanitized-symlink.json
           retention-days: 14
           if-no-files-found: warn
