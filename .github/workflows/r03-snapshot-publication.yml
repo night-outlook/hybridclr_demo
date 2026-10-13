@@ -28,6 +28,9 @@ jobs:
             /Tools/AssemblyShadow/R03IR/
             /Tools/AssemblyShadow/R03Storage/
             /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+        with:
+          dotnet-version: '8.0.318'
       - name: Actual snapshot writer and emitter contracts
         shell: bash
         run: |
@@ -37,15 +40,29 @@ jobs:
             --repository "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/snapshot-checks"
           git diff --check
           git diff --exit-code
-      - name: Bind run identity
+      - name: Execute actual CSharp to native snapshot bridge
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/test_managed_emitter.py \
+            --repository "$GITHUB_WORKSPACE" \
+            --producer-json "$RUNNER_TEMP/snapshot-checks/size/strict.json" \
+            --output "$RUNNER_TEMP/snapshot-checks/managed-emitter" \
+            2>&1 | tee "$RUNNER_TEMP/snapshot-checks/managed-emitter.log"
+          git diff --check
+          git diff --exit-code
+      - name: Bind run identity and complete nested evidence
         if: always()
         shell: python
         run: |
-          import json,os
+          import hashlib,json,os
           from pathlib import Path
           out=Path(os.environ['RUNNER_TEMP'])/'snapshot-checks'
           out.mkdir(exist_ok=True)
-          (out/'CI_IDENTITY.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'runnerOs':os.environ['RUNNER_OS'],'unityLaunched':False,'runtimeAcceptance':False},indent=2)+'\n')
+          (out/'CI_IDENTITY.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'runnerOs':os.environ['RUNNER_OS'],'unityLaunched':False,'runtimeAcceptance':False,'managedEmitterIsDotNetNotUnity':True},indent=2)+'\n')
+          files=[{'path':str(p.relative_to(out)),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(out.rglob('*')) if p.is_file() and p.name!='CI_MANIFEST.json']
+          (out/'CI_MANIFEST.json').write_text(json.dumps({'files':files},indent=2)+'\n')
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
