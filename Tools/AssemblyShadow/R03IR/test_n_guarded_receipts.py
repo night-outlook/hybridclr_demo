@@ -74,8 +74,8 @@ struct Class {
 }}
 int32_t R03_ObserveMethod(const char*,const char*,const char*,const char*,int32_t mode,char* out,int32_t size) {
  assert(mode==3);
- const char* ok="{\\"available\\":true,\\"activeGuard\\":1,\\"baselineGuard\\":0,\\"caughtOldGuard\\":1,\\"stateCode\\":9}";
- const char* bad="{\\"available\\":true,\\"activeGuard\\":1,\\"baselineGuard\\":0,\\"caughtOldGuard\\":0,\\"stateCode\\":9}";
+ const char* ok="{\"available\":true,\"activeGuard\":1,\"baselineGuard\":0,\"caughtOldGuard\":1,\"stateCode\":9}";
+ const char* bad="{\"available\":true,\"activeGuard\":1,\"baselineGuard\":0,\"caughtOldGuard\":0,\"stateCode\":9}";
  const char* value=ownerAllowed?ok:bad;
  int n=static_cast<int>(std::strlen(value));assert(n+1<size);
  std::memcpy(out,value,n+1);current=9;return n;
@@ -104,12 +104,12 @@ int main(int argc,char**argv) {
  if(mode=="bad-json")ownerAllowed=false;
  int status=R03_IR_ObserveOldGuardIntoSnapshot();
  if(mode=="bad-json"){assert(status==-2 && guardWrites==0);return 0;}
- assert(status==1 && guardWrites==1 && nativeGuard.find("\\"caughtOldGuard\\":1")!=std::string::npos);
+ assert(status==1 && guardWrites==1 && nativeGuard.find("\"caughtOldGuard\":1")!=std::string::npos);
  assert(R03_IR_ObserveOldGuardIntoSnapshot()==-3);
  assert(R03_IR_ReadActiveField(&result)==1 && result==2);
  if(mode=="mutate"){obj.stable=3;result=0;assert(R03_IR_ReadActiveField(&result)==1 && result==3);}
  assert(targetLookupsTerminal==0 && !gcCalledTerminal && pinCreates==1 && pinsFreed==0);
- std::cout<<"{\\"result\\":\\"Passed\\"}"<<std::endl;
+ std::cout<<"{\"result\":\"Passed\"}"<<std::endl;
 }
 """
 
