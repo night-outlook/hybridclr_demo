@@ -1,0 +1,51 @@
+name: Pinned O review source export
+on:
+  push:
+    branches: [codex/connector-smoke-o-snapshot-20261013-84d2]
+    paths: ['.github/workflows/o-source-export.yml']
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 3138ce154b8ad1cbe7fc925522bdfec82a386dd5
+          path: hybridclr_demo
+          persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow
+          filter: blob:none
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 0f72078711d4786dac2666c9017d952d857dd041
+          path: il2cpp_plus
+          persist-credentials: false
+      - name: Bind and export only project-owned source
+        shell: python
+        run: |
+          import os,pathlib,json,hashlib,subprocess,shutil
+          out=pathlib.Path(os.environ['RUNNER_TEMP'])/'o-source';out.mkdir()
+          rows=[]
+          for repo,scope in [('hybridclr_demo','Tools/AssemblyShadow'),('il2cpp_plus','libil2cpp tools .github/workflows')]:
+            root=pathlib.Path(repo)
+            args=['git','-C',repo,'ls-files','-s','-z','--']+scope.split()
+            for record in subprocess.check_output(args).split(b'\0'):
+              if not record: continue
+              meta,path=record.split(b'\t',1);mode,blob,stage=meta.decode().split();name=path.decode()
+              src=root/name
+              if mode!='100644' or not src.is_file(): continue
+              if repo=='hybridclr_demo' and src.suffix not in ('.py','.cs','.cpp','.h','.json','.csproj','.yml','.md','.asmdef'): continue
+              data=src.read_bytes(); actual=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+              assert actual==blob
+              dest=out/repo/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
+              rows.append({'path':str(dest.relative_to(out)),'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'gitBlob':blob})
+          (out/'SOURCE_MANIFEST.json').write_text(json.dumps({'pins':{'hybridclr_demo':'3138ce154b8ad1cbe7fc925522bdfec82a386dd5','il2cpp_plus':'0f72078711d4786dac2666c9017d952d857dd041'},'files':rows},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: o-source-pinned
+          path: ${{ runner.temp }}/o-source
+          retention-days: 7
