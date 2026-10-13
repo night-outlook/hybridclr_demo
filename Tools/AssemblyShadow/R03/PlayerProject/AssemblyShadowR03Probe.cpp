@@ -301,7 +301,7 @@ extern "C" IL2CPP_EXPORT int32_t R03_ReadRuntimeProbe(char* output, int32_t capa
 #undef SCALAR
 #define ARRAY(name, count) out << ",\"" #name "\":"; UIntArray(out, l.name, l.count);
         ARRAY(sourceOffsets, sourceFieldCount) ARRAY(sourceAttrs, sourceFieldCount)
-        ARRAY(targetOffsets, targetFieldCount) ARRAY(targetStorage, targetFieldCount)
+        ARRAY(targetOffsets, targetFieldCount) ARRAY(targetAttrs, targetFieldCount) ARRAY(targetStorage, targetFieldCount)
 #undef ARRAY
         const auto* baseline = static_cast<const Il2CppClass*>(l.baseline);
         out << ",\"baselineInitializedAtRead\":" << bool(baseline && baseline->initialized)
