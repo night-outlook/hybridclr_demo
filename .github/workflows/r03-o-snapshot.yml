@@ -1,0 +1,109 @@
+name: R03 O complete bounded snapshot contracts
+on:
+  push:
+    branches: [codex/o-bounded-snapshot-20261013-84d2, codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-o-snapshot.yml'
+      - 'Tools/AssemblyShadow/R03/**'
+      - 'Tools/AssemblyShadow/R03IR/**'
+permissions:
+  contents: read
+jobs:
+  contracts:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R02
+            Tools/AssemblyShadow/R03
+            Tools/AssemblyShadow/R03IR
+            Tools/AssemblyShadow/R03Storage
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 0f72078711d4786dac2666c9017d952d857dd041
+          path: il2cpp_plus
+          persist-credentials: false
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+        with:
+          dotnet-version: '8.0.318'
+      - name: Run complete host and bounded native suites
+        working-directory: hybridclr_demo
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          OUT="$RUNNER_TEMP/o-snapshot"
+          mkdir -p "$OUT"
+          dotnet --info > "$OUT/dotnet-info.log"
+          python3 -B -m unittest discover -s Tools/AssemblyShadow/R03 -p 'test_*.py' -v > "$OUT/r03.log" 2>&1 || { tail -100 "$OUT/r03.log"; exit 1; }
+          grep -q '^Ran 203 tests' "$OUT/r03.log"
+          grep -q '^OK$' "$OUT/r03.log"
+          python3 -B -m unittest discover -s Tools/AssemblyShadow/R03IR -p 'test_*.py' -v > "$OUT/ir.log" 2>&1 || { tail -150 "$OUT/ir.log"; exit 1; }
+          grep -q '^Ran 110 tests' "$OUT/ir.log"
+          grep -q '^OK$' "$OUT/ir.log"
+          R03_SANITIZERS=1 python3 -B -m unittest discover -s Tools/AssemblyShadow/R03IR -p 'test_snapshot_diagnostics.py' -v > "$OUT/sanitized.log" 2>&1 || { cat "$OUT/sanitized.log"; exit 1; }
+          grep -q '^Ran 4 tests' "$OUT/sanitized.log"
+          grep -q '^OK$' "$OUT/sanitized.log"
+          git diff --check
+          git diff --exit-code
+      - name: Retain real managed emitter compiler and process streams
+        working-directory: hybridclr_demo
+        shell: python
+        run: |
+          import hashlib,itertools,json,os,pathlib,subprocess,sys,time,unittest
+          out=pathlib.Path(os.environ['RUNNER_TEMP'])/'o-snapshot'/'managed-processes';out.mkdir()
+          original=subprocess.run; ids=itertools.count(1)
+          def recorded(argv,*args,**kwargs):
+              item=out/('%04d'%next(ids));item.mkdir()
+              for arg in argv:
+                  path=pathlib.Path(str(arg))
+                  if path.is_file() and path.suffix in ('.cpp','.csproj'):
+                      (item/path.name).write_bytes(path.read_bytes())
+                      program=path.parent/'Program.cs'
+                      if path.suffix=='.csproj' and program.is_file(): (item/'Program.cs').write_bytes(program.read_bytes())
+              start=time.time();result=original(argv,*args,**kwargs)
+              rows=[]
+              for name,data in [('stdout',result.stdout),('stderr',result.stderr)]:
+                  if data is None: data=b''
+                  if isinstance(data,str): data=data.encode()
+                  (item/(name+'.log')).write_bytes(data)
+                  rows.append({'path':name+'.log','bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()})
+              (item/'command.json').write_text(json.dumps({'argv':list(map(str,argv)),'cwd':str(pathlib.Path.cwd()),'startEpoch':start,'endEpoch':time.time(),'exit':result.returncode,'streams':rows},indent=2)+'\n')
+              return result
+          subprocess.run=recorded
+          sys.path.insert(0,str(pathlib.Path('Tools/AssemblyShadow/R03IR').resolve()))
+          suite=unittest.defaultTestLoader.loadTestsFromName('test_managed_snapshot_emitter')
+          with (out.parent/'managed-integration.log').open('w') as stream:
+              result=unittest.TextTestRunner(stream=stream,verbosity=2).run(suite)
+          assert result.testsRun==1 and result.wasSuccessful() and not result.skipped
+      - name: Bind exact source and evidence bytes
+        if: always()
+        working-directory: hybridclr_demo
+        shell: python
+        run: |
+          import hashlib,json,os,pathlib,subprocess
+          out=pathlib.Path(os.environ['RUNNER_TEMP'])/'o-snapshot';out.mkdir(exist_ok=True)
+          roots=['Tools/AssemblyShadow/R03','Tools/AssemblyShadow/R03IR']
+          source=[]
+          for name in subprocess.check_output(['git','ls-files','--',*roots],text=True).splitlines():
+              p=pathlib.Path(name)
+              if p.is_file(): source.append({'path':name,'blob':subprocess.check_output(['git','rev-parse','HEAD:'+name],text=True).strip(),'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
+          files=[{'path':str(p.relative_to(out)),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(out.rglob('*')) if p.is_file()]
+          (out/'provenance.json').write_text(json.dumps({'head':os.environ['GITHUB_SHA'],'nativePin':'0f72078711d4786dac2666c9017d952d857dd041','sources':source,'files':files,'unityExecuted':False,'il2cppMarshallerExecuted':False,'engineDispositionFixed':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: o-snapshot-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/o-snapshot
+          retention-days: 14
+          if-no-files-found: warn
