@@ -1,0 +1,115 @@
+name: O exact emitter and engine disposition candidate
+on:
+  push:
+    branches: [codex/n-return-primary-8c42]
+    paths: ['.github/workflows/o-candidate-test.yml', '.primary/candidate-parts/**']
+permissions:
+  contents: write
+jobs:
+  candidate:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: control
+          sparse-checkout: .primary
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 3138ce154b8ad1cbe7fc925522bdfec82a386dd5
+          path: hybridclr_demo
+          filter: blob:none
+          sparse-checkout: Tools/AssemblyShadow
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: e6d233bafac008e66aaae0f5c47a44fff54e7559
+          path: il2cpp_plus
+          persist-credentials: false
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+        with:
+          dotnet-version: '8.0.318'
+      - name: Authenticate complete candidate and original source before staging
+        shell: python
+        run: |
+          import json,gzip,base64,hashlib,subprocess,os
+          from pathlib import Path
+          parts=Path('control/.primary/candidate-parts')
+          expected=['4fc58f61feec9d95500db59fa0f0f4bc0cc66871','542de743e0f7ff8643f676e156758b6f01ee01f1','17a50de589f0f2e231979bc981838bc4d211b83b','28ee582c8840549e05395df1730f4ba02e02531c','51cff893dbb9300b14a165506a0f60b8b528eb4d']
+          chunks=[]
+          for i,want in enumerate(expected):
+              b=(parts/(str(i)+'.txt')).read_bytes()
+              assert hashlib.sha1(('blob %d\0'%len(b)).encode()+b).hexdigest()==want,('Segment mismatch',i)
+              chunks.append(b.strip())
+          data=gzip.decompress(base64.b64decode(b''.join(chunks),validate=True))
+          assert len(data)==42751 and hashlib.sha256(data).hexdigest()=='d926f8c081adee393695d59a4c62c1200ac605b44cd0f48552ce0288f1d3c015'
+          package=json.loads(data);root=Path('hybridclr_demo')
+          def git(*a):return subprocess.check_output(['git','-C',str(root),*a],text=True).strip()
+          assert git('rev-parse','HEAD')==package['base']=='3138ce154b8ad1cbe7fc925522bdfec82a386dd5'
+          assert not git('status','--porcelain')
+          for f in package['files']:
+              p=root/f['path'];assert f['path'].startswith('Tools/AssemblyShadow/')
+              if f['before']:assert git('rev-parse','HEAD:'+f['path'])==f['before']
+              else:assert not p.exists()
+              subprocess.run(['git','-C',str(root),'apply','--index','-'],input=f['diff'],text=True,check=True)
+              assert git('rev-parse',':'+f['path'])==f['after'],f['path']
+          changed=set(git('diff','--cached','--name-only').splitlines())
+          assert changed=={f['path'] for f in package['files']}
+          subprocess.run(['git','-C',str(root),'diff','--cached','--check'],check=True)
+          out=Path(os.environ['RUNNER_TEMP'])/'o-candidate';out.mkdir()
+          (out/'candidate.json').write_text(json.dumps({'packageSha256':hashlib.sha256(data).hexdigest(),'base':package['base'],'native':package['native'],'sources':[{k:v for k,v in x.items() if k!='diff'} for x in package['files']],'tree':git('write-tree')},indent=2)+'\n')
+      - name: Run current host suites and real CSharp to native writer pipeline
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1 DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1
+          OUT="$RUNNER_TEMP/o-candidate"
+          python3 -B -m unittest discover -s hybridclr_demo/Tools/AssemblyShadow/R03 -p 'test_*.py' -v > "$OUT/r03.log" 2>&1 || { tail -120 "$OUT/r03.log"; exit 1; }
+          python3 -B -m unittest discover -s hybridclr_demo/Tools/AssemblyShadow/R03IR -p 'test_*.py' -v > "$OUT/ir.log" 2>&1 || { tail -180 "$OUT/ir.log"; exit 1; }
+          tail -10 "$OUT/r03.log"; tail -10 "$OUT/ir.log"
+          for suite in test_native_snapshot.py test_n_guarded_receipts.py test_o_engine_loop_stop.py; do
+            R03_SANITIZERS=1 python3 -B -m unittest discover -s hybridclr_demo/Tools/AssemblyShadow/R03IR -p "$suite" -v > "$OUT/sanitized-$suite.log" 2>&1 || { cat "$OUT/sanitized-$suite.log"; exit 1; }
+          done
+          PYTHONPATH=hybridclr_demo/Tools/AssemblyShadow/R03IR R03_SANITIZERS=1 python3 -B -m unittest test_o_snapshot_pipeline.SnapshotPipelineTests.test_native_first_failure_receipt_is_immutable -v > "$OUT/sanitized-failure.log" 2>&1
+          python3 -B il2cpp_plus/tools/r03/runtime01/test_reporting.py > "$OUT/reporting.log" 2>&1
+          R03_SANITIZERS=1 python3 -B il2cpp_plus/tools/r03/runtime01/test_reporting.py > "$OUT/reporting-sanitized.log" 2>&1
+          python3 -B il2cpp_plus/tools/r03/runtime01/test_engine_observer.py > "$OUT/observer.log" 2>&1
+          R03_SANITIZERS=1 python3 -B il2cpp_plus/tools/r03/runtime01/test_engine_observer.py > "$OUT/observer-sanitized.log" 2>&1
+      - name: Publish only candidate Git objects on an isolated staging ref
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd hybridclr_demo
+          TREE=$(git write-tree)
+          export GIT_AUTHOR_NAME='Primary Source Verification' GIT_AUTHOR_EMAIL='actions@users.noreply.github.com'
+          export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME" GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+          COMMIT=$(printf '%s\n' 'test(r03-o): exact tested transport and native scheduling candidate objects only' | git commit-tree "$TREE" -p HEAD)
+          BRANCH="codex/o-candidate-objects-${{ github.run_id }}"
+          test -z "$(git ls-remote origin refs/heads/$BRANCH)"
+          git push origin "$COMMIT:refs/heads/$BRANCH"
+          printf '%s\n' "$COMMIT" > "$RUNNER_TEMP/o-candidate/candidate-commit.txt"
+          printf '%s\n' "$TREE" > "$RUNNER_TEMP/o-candidate/candidate-tree.txt"
+      - name: Bind exact original logs and source inputs
+        if: always()
+        shell: python
+        run: |
+          from pathlib import Path
+          import os,hashlib,json,subprocess
+          out=Path(os.environ['RUNNER_TEMP'])/'o-candidate';out.mkdir(exist_ok=True)
+          records=[]
+          for p in out.rglob('*'):
+              if p.is_file():records.append({'path':str(p.relative_to(out)),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
+          (out/'provenance.json').write_text(json.dumps({'workflowSha':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'files':records,'unityRun':False,'vmDependenciesMocked':True,'actualManagedEmitterInterop':True,'runtimeAcceptance':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: o-candidate-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/o-candidate
+          retention-days: 14
+          if-no-files-found: warn
