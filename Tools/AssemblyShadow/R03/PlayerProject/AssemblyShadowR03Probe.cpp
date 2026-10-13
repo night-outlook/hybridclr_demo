@@ -412,6 +412,8 @@ extern "C" IL2CPP_EXPORT int32_t R03_IR_ProbeTerminalReporting()
 #include <cstdlib>
 #include <fcntl.h>
 #include <unistd.h>
+#include <cerrno>
+#include <climits>
 #include "gc/GCHandle.h"
 #include "gc/GarbageCollector.h"
 namespace r03_ir_snapshot {
@@ -426,7 +428,43 @@ static FILE* stream = nullptr;
 static int32_t ints[IntCount] = {};
 static bool haveInt[IntCount] = {}, haveText[TextCount] = {}, nullText[TextCount] = {};
 static char texts[TextCount][TextLimit + 1] = {};
-static int Reject() { state.store(-1); return -1; }
+// Preserve the first writer failure independently of the semantic raw file.
+// No managed formatting, filename/content echo, recovery-state change or retry.
+static std::atomic<bool> failureRecorded{false};
+static FILE* diagnostic = nullptr;
+static int Reject(const char* operation, int field = -1, long long value = 0,
+    size_t length = 0, int ioError = 0)
+{
+    const int previous = state.exchange(-1);
+    if (!failureRecorded.exchange(true))
+    {
+        uint32_t intMask = 0, textMask = 0;
+        for (int i = 0; i < IntCount; ++i) if (haveInt[i]) intMask |= uint32_t(1) << i;
+        for (int i = 0; i < TextCount; ++i) if (haveText[i]) textMask |= uint32_t(1) << i;
+        std::fprintf(stderr,
+            "[R03SnapshotFailure] operation=%s field=%d previousState=%d value=%lld length=%llu errno=%d intMask=%u textMask=%u\n",
+            operation, field, previous, value, static_cast<unsigned long long>(length), ioError, intMask, textMask);
+        std::fflush(stderr);
+        if (diagnostic)
+        {
+            std::fprintf(diagnostic,
+                "{\"schemaVersion\":1,\"kind\":\"R03NativeSnapshotTransportV1\",\"processId\":%d,"
+                "\"result\":\"Failed\",\"operation\":\"%s\",\"field\":%d,\"previousState\":%d,\"value\":%lld,"
+                "\"length\":%llu,\"errno\":%d,\"intMask\":%u,\"textMask\":%u,\"semanticAcceptance\":false}\n",
+                static_cast<int>(::getpid()), operation, field, previous, value,
+                static_cast<unsigned long long>(length), ioError, intMask, textMask);
+            const bool flushed = std::fflush(diagnostic) == 0 && ::fsync(::fileno(diagnostic)) == 0;
+            const bool closed = std::fclose(diagnostic) == 0;
+            diagnostic = nullptr;
+            if (!flushed || !closed)
+            {
+                std::fputs("[R03SnapshotFailure] diagnosticIoFailed=true\n", stderr);
+                std::fflush(stderr);
+            }
+        }
+    }
+    return -1;
+}
 static void Quote(FILE* f, const char* text)
 {
     if (!text) { std::fputs("null", f); return; }
@@ -444,36 +482,51 @@ extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportOpen(const char* path)
 {
     using namespace r03_ir_snapshot;
     int expected = 0;
-    if (!state.compare_exchange_strong(expected, 1)) return -1;
-    if (!path || path[0] != '/') return Reject();
+    if (!state.compare_exchange_strong(expected, 1)) return Reject("OpenState");
+    if (!path || path[0] != '/') return Reject("OpenPath");
+    // A sibling failure-only receipt is preopened while healthy. It never
+    // replaces raw.json; success leaves it empty and failure writes once.
+    const size_t pathSize = ::strnlen(path, PATH_MAX);
+    if (pathSize + sizeof(".transport.json") >= PATH_MAX) return Reject("OpenPathLength", -1, 0, pathSize);
+    char failurePath[PATH_MAX];
+    std::memcpy(failurePath, path, pathSize);
+    std::memcpy(failurePath + pathSize, ".transport.json", sizeof(".transport.json"));
+    const int diagnosticFd = ::open(failurePath, O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW, 0600);
+    if (diagnosticFd < 0) return Reject("DiagnosticOpen", -1, 0, 0, errno);
+    diagnostic = ::fdopen(diagnosticFd, "w");
+    if (!diagnostic) { const int e = errno; ::close(diagnosticFd); return Reject("DiagnosticFdopen", -1, 0, 0, e); }
     int fd = ::open(path, O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW, 0600);
-    if (fd < 0) return Reject();
+    if (fd < 0) return Reject("RawOpen", -1, 0, 0, errno);
     stream = ::fdopen(fd, "w");
-    if (!stream) { ::close(fd); return Reject(); }
+    if (!stream) { const int e = errno; ::close(fd); return Reject("RawFdopen", -1, 0, 0, e); }
     return 1;
 }
 extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportInt(int32_t field, int32_t value)
 {
     using namespace r03_ir_snapshot;
-    if (state.load() != 1 || field < 0 || field >= IntCount || haveInt[field] ||
-        (field >= FirstBool && value != 0 && value != 1)) return Reject();
+    if (state.load() != 1) return Reject("IntState", field, value);
+    if (field < 0 || field >= IntCount) return Reject("IntIndex", field, value);
+    if (haveInt[field]) return Reject("IntDuplicate", field, value);
+    if (field >= FirstBool && value != 0 && value != 1) return Reject("BooleanValue", field, value);
     ints[field] = value; haveInt[field] = true; return 1;
 }
 extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportText(int32_t field, const char* value)
 {
     using namespace r03_ir_snapshot;
-    if (state.load() != 1 || field < 0 || field >= TextCount || haveText[field]) return Reject();
+    if (state.load() != 1) return Reject("TextState", field);
+    if (field < 0 || field >= TextCount) return Reject("TextIndex", field);
+    if (haveText[field]) return Reject("TextDuplicate", field);
     size_t n = value ? ::strnlen(value, TextLimit + 1) : 0;
-    if (n > TextLimit) return Reject();
+    if (n > TextLimit) return Reject("TextLength", field, 0, n);
     if (value) std::memcpy(texts[field], value, n + 1);
     nullText[field] = value == nullptr; haveText[field] = true; return 1;
 }
 extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportSeal()
 {
     using namespace r03_ir_snapshot;
-    if (state.load() != 1 || !stream) return Reject();
-    for (int i = 0; i < IntCount; ++i) if (!haveInt[i]) return Reject();
-    for (int i = 0; i < TextCount; ++i) if (!haveText[i]) return Reject();
+    if (state.load() != 1 || !stream) return Reject("SealState");
+    for (int i = 0; i < IntCount; ++i) if (!haveInt[i]) return Reject("IntMissing", i);
+    for (int i = 0; i < TextCount; ++i) if (!haveText[i]) return Reject("TextMissing", i);
     std::fprintf(stream, "{\"schemaVersion\":1,\"kind\":\"R03IRPostPoisonEntryV1\","
         "\"reportTransport\":\"NativePreopenedSnapshotV1\",\"processId\":%d", static_cast<int>(::getpid()));
     for (int i = 0; i < IntCount; ++i)
@@ -488,10 +541,26 @@ extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportSeal()
         Quote(stream, nullText[i] ? nullptr : texts[i]);
     }
     std::fputs("}\n", stream);
-    bool ok = !std::ferror(stream) && std::fflush(stream) == 0 && ::fsync(::fileno(stream)) == 0;
-    ok = std::fclose(stream) == 0 && ok;
-    stream = nullptr; state.store(ok ? 2 : -1); return ok ? 1 : -1;
+    const char* failed = nullptr; int error = 0;
+    if (std::ferror(stream)) { failed = "RawWrite"; error = errno; }
+    if (std::fflush(stream) != 0 && !failed) { failed = "RawFlush"; error = errno; }
+    if (::fsync(::fileno(stream)) != 0 && !failed) { failed = "RawSync"; error = errno; }
+    if (std::fclose(stream) != 0 && !failed) { failed = "RawClose"; error = errno; }
+    stream = nullptr;
+    if (failed) return Reject(failed, -1, 0, 0, error);
+    if (diagnostic)
+    {
+        const int written = std::fprintf(diagnostic,
+            "{\"schemaVersion\":1,\"kind\":\"R03NativeSnapshotTransportV1\",\"result\":\"Sealed\","
+            "\"processId\":%d,\"fieldsComplete\":true,\"semanticAcceptance\":false}\n", static_cast<int>(::getpid()));
+        const bool synced = written > 0 && std::fflush(diagnostic) == 0 && ::fsync(::fileno(diagnostic)) == 0;
+        const int result = std::fclose(diagnostic); diagnostic = nullptr;
+        if (!synced || result != 0) return Reject("DiagnosticCommit", -1, 0, 0, errno);
+    }
+    state.store(2); return 1;
 }
+extern "C" IL2CPP_EXPORT void R03_IR_ReportEmissionException()
+{ r03_ir_snapshot::Reject("ManagedEmissionException"); }
 extern "C" IL2CPP_EXPORT void R03_IR_Exit(int32_t code) { std::_Exit(code); }
 
 extern "C" IL2CPP_EXPORT int32_t R03_IR_ProbeBooleanReserve()
@@ -665,3 +734,141 @@ extern "C" IL2CPP_EXPORT int32_t R03_IR_ObserveOldGuardIntoSnapshot()
 #endif
 }
 #endif // HYBRIDCLR_R03_RUNTIME_PROBE
+
+
+// O test-only terminal scheduling disposition. The original graph is kept
+// until the actual preallocated uncaught sentinel reaches Unity's reporter.
+// A one-element zeroed native PlayerLoop graph is prepared/pinned while
+// healthy, then supplied to Unity's original native setter exactly once.
+// No method body is admitted, report count capped, finalizer disabled, or
+// sleep introduced in an engine callback. Not normal shutdown qualification.
+#if HYBRIDCLR_R03_RUNTIME_PROBE
+#include "vm/InternalCalls.h"
+#include "vm/Array.h"
+#include <thread>
+namespace r03_ir_loop_stop {
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
+using namespace il2cpp::vm;
+using Setter = void (*)(Il2CppArray*);
+struct Prepared
+{
+    std::atomic<int> state{0}; // 0 unused,1 healthy prepared,2 setter returned,-1 error
+    Il2CppArray* graph = nullptr;
+    Il2CppClass* arrayClass = nullptr;
+    Il2CppException* sentinel = nullptr;
+    Setter set = nullptr;
+    uint32_t graphPin = 0, sentinelPin = 0;
+    std::thread::id owner;
+    size_t bytes = 0;
+};
+static Prepared prepared;
+static bool ZeroGraph(Il2CppArray* graph, size_t bytes) noexcept
+{
+    if (!graph || graph->max_length != 1 || graph->bounds || !bytes || bytes > 64) return false;
+    const uint8_t* data = reinterpret_cast<const uint8_t*>(Array::GetFirstElementAddress(graph));
+    for (size_t i = 0; i < bytes; ++i) if (data[i]) return false;
+    return true;
+}
+static void Apply(const Il2CppException* exception)
+{
+    if (exception != prepared.sentinel || !exception) return;
+    const int state = prepared.state.load(std::memory_order_acquire);
+    if (state == 2) return; // Setter is single-use; reports still counted normally.
+    AssemblyShadowState current;
+    if (state != 1 || prepared.owner != std::this_thread::get_id() ||
+        AssemblyShadow::GetState(current) != AssemblyShadowError::Success ||
+        current != AssemblyShadowState::FailedAfterCommit ||
+        prepared.graph->klass != prepared.arrayClass || !ZeroGraph(prepared.graph, prepared.bytes))
+    {
+        std::fputs("[R03EngineLoopStop] fatal=InvalidPreparedDisposition\n", stderr);
+        std::fflush(stderr); std::_Exit(73);
+    }
+    try
+    {
+        // Direct native icall captured while healthy: no managed method,
+        // reflective dispatch, GCHandle operation or new managed array here.
+        prepared.set(prepared.graph);
+        prepared.state.store(2, std::memory_order_release);
+        std::fputs("[R03EngineLoopStop] applied=true setterCalls=1 preparedBeforePoison=true managedBodiesAdmitted=0\n", stderr);
+        std::fflush(stderr);
+    }
+    catch (...)
+    {
+        prepared.state.store(-1, std::memory_order_release);
+        std::fputs("[R03EngineLoopStop] fatal=NativeSetterException\n", stderr);
+        std::fflush(stderr); std::_Exit(74);
+    }
+}
+#endif
+}
+extern "C" IL2CPP_EXPORT int32_t R03_IR_PrepareEngineLoopStop(
+    void* graphHandle, void* sentinelHandle, const char* run)
+{
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
+    using namespace il2cpp::vm;
+    using namespace r03_ir_loop_stop;
+    AssemblyShadowState current;
+    if (prepared.state.load() != 0 ||
+        AssemblyShadow::GetState(current) != AssemblyShadowError::Success ||
+        current != AssemblyShadowState::Committed) return -1;
+    const uintptr_t a = reinterpret_cast<uintptr_t>(graphHandle);
+    const uintptr_t e = reinterpret_cast<uintptr_t>(sentinelHandle);
+    if (!a || !e || a > UINT32_MAX || e > UINT32_MAX || !run || std::strlen(run) != 32) return -2;
+    for (int i = 0; i < 32; ++i)
+        if (!((run[i] >= '0' && run[i] <= '9') || (run[i] >= 'a' && run[i] <= 'f'))) return -2;
+    Il2CppObject* graphObject = il2cpp::gc::GCHandle::GetTarget(static_cast<uint32_t>(a));
+    Il2CppObject* exceptionObject = il2cpp::gc::GCHandle::GetTarget(static_cast<uint32_t>(e));
+    const Il2CppAssembly* physical = MetadataCache::GetAotAssemblyByNamePhysical("UnityEngine.CoreModule");
+    if (!graphObject || !graphObject->klass || graphObject->klass->rank != 1 ||
+        !physical || !physical->image || AssemblyShadow::IsCandidate(physical) ||
+        AssemblyShadow::IsShadowedBaseline(physical) || AssemblyShadow::IsActiveShadow(physical)) return -3;
+    Il2CppClass* element = graphObject->klass->element_class;
+    if (!element || element->image != physical->image || !Class::IsValuetype(element) ||
+        element->generic_class || !element->name || !element->namespaze || std::strcmp(element->name, "PlayerLoopSystemInternal") ||
+        std::strcmp(element->namespaze, "UnityEngine.LowLevel") || element->field_count != 5) return -4;
+    // All zero data matches the original Unity 2022.3 public converter's
+    // representation of new PlayerLoopSystem(): exactly one empty root node.
+    const size_t bytes = static_cast<size_t>(graphObject->klass->element_size);
+    Il2CppArray* graph = reinterpret_cast<Il2CppArray*>(graphObject);
+    if (!ZeroGraph(graph, bytes)) return -5;
+    if (!exceptionObject || !exceptionObject->klass ||
+        exceptionObject->klass->image != Image::GetCorlib() ||
+        !exceptionObject->klass->name || !exceptionObject->klass->namespaze ||
+        std::strcmp(exceptionObject->klass->name,"InvalidOperationException") ||
+        std::strcmp(exceptionObject->klass->namespaze,"System")) return -6;
+    Il2CppException* sentinel = reinterpret_cast<Il2CppException*>(exceptionObject);
+    const char* prefix = "R03_ENGINE_UNHANDLED_";
+    const size_t prefixSize = std::strlen(prefix);
+    if (!sentinel->message || sentinel->message->length != static_cast<int32_t>(prefixSize + 32)) return -6;
+    for (size_t i = 0; i < prefixSize + 32; ++i)
+        if (sentinel->message->chars[i] != static_cast<unsigned char>(i < prefixSize ? prefix[i] : run[i-prefixSize])) return -6;
+    Il2CppClass* loop = Class::FromName(physical->image,"UnityEngine.LowLevel","PlayerLoop");
+    const MethodInfo* method = loop ? Class::GetMethodFromName(loop,"SetPlayerLoopInternal",1) : nullptr;
+    if (!method || method->klass != loop || !(method->flags & METHOD_ATTRIBUTE_STATIC) ||
+        !(method->iflags & METHOD_IMPL_ATTRIBUTE_INTERNAL_CALL) || !method->return_type ||
+        method->return_type->type != IL2CPP_TYPE_VOID || !method->parameters ||
+        method->parameters[0]->type != IL2CPP_TYPE_SZARRAY) return -7;
+    Il2CppMethodPointer setter = InternalCalls::Resolve(
+        "UnityEngine.LowLevel.PlayerLoop::SetPlayerLoopInternal(UnityEngine.LowLevel.PlayerLoopSystemInternal[])");
+    if (!setter) return -8;
+    const uint32_t graphPin = il2cpp::gc::GCHandle::New(graphObject, true);
+    const uint32_t sentinelPin = il2cpp::gc::GCHandle::New(exceptionObject, true);
+    if (!graphPin || !sentinelPin || il2cpp::gc::GCHandle::GetTarget(graphPin) != graphObject ||
+        il2cpp::gc::GCHandle::GetTarget(sentinelPin) != exceptionObject)
+    { if (graphPin) il2cpp::gc::GCHandle::Free(graphPin); if (sentinelPin) il2cpp::gc::GCHandle::Free(sentinelPin); return -9; }
+    prepared.graph = graph; prepared.arrayClass = graph->klass; prepared.bytes = bytes;
+    prepared.sentinel = sentinel; prepared.set = reinterpret_cast<Setter>(setter);
+    prepared.graphPin = graphPin; prepared.sentinelPin = sentinelPin;
+    prepared.owner = std::this_thread::get_id();
+    prepared.state.store(1, std::memory_order_release);
+    assembly_shadow_reporting::EngineDisposition expected = nullptr;
+    if (!assembly_shadow_reporting::EngineDispositionObserver().compare_exchange_strong(expected, Apply))
+    { prepared.state.store(-1); return -10; }
+    std::fputs("[R03EngineLoopStop] prepared=true originalGraphStillActive=true setterCalls=0\n", stderr);
+    std::fflush(stderr);
+    return 1;
+#else
+    (void)graphHandle; (void)sentinelHandle; (void)run; return 0;
+#endif
+}
+#endif

@@ -179,6 +179,9 @@ def verify_engine(raw, request, launch, log):
     The sentinel match is mandatory: generic terminal reports or a direct
     Runtime::Invoke probe cannot substitute for this engine-originated case.
     """
+    require(log.count('[R03EngineLoopStop] applied=true setterCalls=1 preparedBeforePoison=true managedBodiesAdmitted=0') == 1 and
+            log.count('[R03EngineLoopStop] prepared=true originalGraphStillActive=true setterCalls=0') == 1,
+            'Actual once-only native scheduling disposition required')
     require(type(raw) is dict and raw.get('schemaVersion') == 1 and
             raw.get('kind') == 'R03IREngineReportingV1' and raw.get('runtimeAcceptance') is False,
             'Native engine witness schema')

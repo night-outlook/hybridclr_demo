@@ -13,8 +13,12 @@ class EngineContracts(unittest.TestCase):
             'timedOut':False,'initialState':6,'finalState':9,'preManagedLoggerCalls':1,
             'finalManagedLoggerCalls':1,'completedReports':1,'observationMilliseconds':500,
             'recovery':{'published':True,'stateCode':9,'terminalFailureCode':13,'disposition':'RestartRequired'}}
-        self.log='[R03ReserveGcProbe] mask=31 collectionsBefore=0 collectionsAfter=1\n[AssemblyShadowTerminalReport] sequence=1 state=9 message="R03_ENGINE_UNHANDLED_'+('a'*32)+'" managedHandlerExecuted=false\n'
+        self.log='[R03EngineLoopStop] prepared=true originalGraphStillActive=true setterCalls=0\n[R03EngineLoopStop] applied=true setterCalls=1 preparedBeforePoison=true managedBodiesAdmitted=0\n[R03ReserveGcProbe] mask=31 collectionsBefore=0 collectionsAfter=1\n[AssemblyShadowTerminalReport] sequence=1 state=9 message="R03_ENGINE_UNHANDLED_'+('a'*32)+'" managedHandlerExecuted=false\n'
     def check(self):return verify_engine(self.raw,self.request,self.launch,self.log)
+    def test_reject_missing_real_loop_disposition(self):
+        self.log=self.log.replace('applied=true','applied=false')
+        with self.assertRaises(ContractError): self.check()
+
     def test_positive_shape(self):self.assertEqual(self.check()['result'],'Passed')
     def test_reject_direct_probe_without_sentinel(self):
         self.log=self.log.replace('R03_ENGINE_UNHANDLED_', 'synthetic-direct-')

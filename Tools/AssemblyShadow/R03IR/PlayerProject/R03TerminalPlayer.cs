@@ -51,6 +51,8 @@ namespace AssemblyShadow.R03.IR
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern int R03_IR_ReportSeal();
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void R03_IR_ReportEmissionException();
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern void R03_IR_Exit(int status);
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern int R03_IR_ProbeBooleanReserve();
@@ -64,6 +66,9 @@ namespace AssemblyShadow.R03.IR
         private static extern int R03_IR_ObserveOldGuardIntoSnapshot();
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern void R03_IR_EngineLoggerCalled();
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_PrepareEngineLoopStop(IntPtr graphHandle, IntPtr sentinelHandle,
+            [MarshalAs(UnmanagedType.LPUTF8Str)] string run);
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern int R03_IR_ArmEngineWitness(string output, string run, string caseId, string requestSha);
 
@@ -186,6 +191,22 @@ namespace AssemblyShadow.R03.IR
                 Require(AssemblyShadowRuntime.GetState(out state) == AssemblyShadowErrorCode.Success &&
                     state == AssemblyShadowState.Committed, "Committed before poison");
                 report.initialState = (int)state;
+                if (engineCase)
+                {
+                    // Prepare the original Unity native empty-loop representation
+                    // while healthy. No scheduling changes until the authentic
+                    // sentinel reaches native reporting; no managed callback is
+                    // allowed after poison to install this disposition.
+                    Type loopType = typeof(Application).Assembly.GetType(
+                        "UnityEngine.LowLevel.PlayerLoopSystemInternal", true);
+                    Array stoppedLoop = Array.CreateInstance(loopType, 1);
+                    GCHandle loopHandle = GCHandle.Alloc(stoppedLoop, GCHandleType.Normal);
+                    GCHandle sentinelHandle = GCHandle.Alloc(engineSentinel, GCHandleType.Normal);
+                    try { Require(R03_IR_PrepareEngineLoopStop(GCHandle.ToIntPtr(loopHandle),
+                        GCHandle.ToIntPtr(sentinelHandle), request.runId) == 1,
+                        "Healthy exact native terminal loop disposition must prepare"); }
+                    finally { sentinelHandle.Free(); loopHandle.Free(); }
+                }
                 report.reserveGcProbeMask = R03_IR_ProbeBooleanReserve();
                 Require(report.reserveGcProbeMask == 31, "Physical pinned Boolean must survive real healthy GC");
                 if (engineCase)
@@ -345,7 +366,7 @@ namespace AssemblyShadow.R03.IR
                         if (!reportOpened && outputPath != null) reportOpened = R03_IR_ReportOpen(outputPath) == 1;
                         if (reportOpened && EmitNativeReport(report)) exit = 0;
                     }
-                    catch { R03_IR_TracePhase(990); }
+                    catch { R03_IR_ReportEmissionException(); R03_IR_TracePhase(990); }
                     R03_IR_Exit(exit);
                 }
             }
@@ -398,7 +419,10 @@ namespace AssemblyShadow.R03.IR
             ok &= R03_IR_ReportText(13, r.finalRecovery) == 1;
             ok &= R03_IR_ReportText(14, r.finalDiagnostics) == 1;
             ok &= R03_IR_ReportText(15, r.finalExecutionDiagnostics) == 1;
-            return ok && R03_IR_ReportSeal() == 1;
+            // Seal must run even after a store fails so it records the first
+            // failing writer boundary. A failed store can never become success.
+            int sealedResult = R03_IR_ReportSeal();
+            return ok && sealedResult == 1;
         }
 
         private static void Require(bool ok, string message)

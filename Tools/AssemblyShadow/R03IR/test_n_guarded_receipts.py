@@ -116,7 +116,7 @@ int main(int argc,char**argv) {
 class GuardedReceipts(unittest.TestCase):
     def test_actual_native_receipt_and_field_helpers(self):
         source = CPP.read_text()
-        fragment = source[source.index("// N: test-only native guard receipt"):]
+        fragment = source[source.index("// N: test-only native guard receipt"):source.index("// O test-only terminal scheduling disposition")]
         fragment = "\n".join(s for s in fragment.splitlines() if not s.startswith('#include "'))
         cc = shutil.which("clang++") or shutil.which("g++")
         self.assertIsNotNone(cc, "C++17 compiler required")
