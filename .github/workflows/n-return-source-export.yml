@@ -1,0 +1,74 @@
+name: N return exact source export
+on:
+  push:
+    branches: [codex/n-return-primary-8c42]
+    paths: ['.github/workflows/n-return-source-export.yml']
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 3138ce154b8ad1cbe7fc925522bdfec82a386dd5
+          path: hybridclr_demo
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/
+            /Docs/AssemblyShadow/README.md
+            /Docs/AssemblyShadow/Plan/
+            /Docs/AssemblyShadow/Handoff/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/M_RETURN_N_2026-10-13/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-n-after-m-6f28/preflight/FAILURE_DIAGNOSIS.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-n-after-m-6f28/preflight/N_TERMINMINAL_SITE_ANALYSIS.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-n-after-m-6f28/preflight/N_TERMINAL_SITE_ANALYSIS.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-n-after-m-6f28/batch/players/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-n-after-m-6f28/batch/LOCAL_BATCH_RESULT.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-n-after-m-6f28/batch/BATCH_EXECUTION.json
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 0f72078711d4786dac2666c9017d952d857dd041
+          path: il2cpp_plus
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+          path: hybridclr
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: hybridclr_unity
+          persist-credentials: false
+      - shell: python
+        run: |
+          from pathlib import Path
+          import os,shutil,hashlib,json,subprocess
+          out=Path(os.environ['RUNNER_TEMP'])/'n-export';out.mkdir()
+          pins={};rows=[]
+          for name in ('hybridclr_demo','il2cpp_plus','hybridclr','hybridclr_unity'):
+              root=Path(name);pins[name]=subprocess.check_output(['git','-C',name,'rev-parse','HEAD'],text=True).strip()
+              for entry in subprocess.check_output(['git','-C',name,'ls-files','-s','-z']).split(b'\0'):
+                  if not entry:continue
+                  meta,rel=entry.decode().split('\t',1);mode,blob,stage=meta.split()
+                  src=root/rel
+                  if not src.is_file() or src.is_symlink():continue
+                  data=src.read_bytes()
+                  assert hashlib.sha1(('blob %d\0'%len(data)).encode()+data).hexdigest()==blob,rel
+                  dst=out/name/rel;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes(data)
+                  rows.append({'path':name+'/'+rel,'gitBlob':blob,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()})
+          (out/'SOURCE_EXPORT.json').write_text(json.dumps({'pins':pins,'files':rows,'unityRun':False,'kind':'NReturnExactSourceExport'},indent=2)+'\n')
+          print(json.dumps({'files':len(rows),'bytes':sum(x['bytes'] for x in rows),'pins':pins}))
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: n-return-source-export
+          path: ${{ runner.temp }}/n-export
+          retention-days: 7
+          include-hidden-files: true
