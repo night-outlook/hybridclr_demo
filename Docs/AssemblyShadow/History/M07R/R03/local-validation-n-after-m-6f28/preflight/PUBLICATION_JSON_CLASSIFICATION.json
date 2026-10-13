@@ -1,0 +1,39 @@
+{
+  "state": "PassedExactFailedRawClassification",
+  "recordedUtc": "2026-10-13T03:17:00.447290+00:00",
+  "initialStaticPublicationCheck": "Failed: generic JSON parser attempted expected zero-byte raw.json",
+  "paths": [
+    {
+      "checkpointPath": "batch/players/IR-R03-02-release-baseline/raw.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "cell": "Failed",
+      "semanticJson": "Unavailable",
+      "exitCode": 2,
+      "originalParserError": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "checkpointPath": "batch/players/IR-R03-02-debug-baseline/raw.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "cell": "Failed",
+      "semanticJson": "Unavailable",
+      "exitCode": 2,
+      "originalParserError": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "checkpointPath": "batch/players/IR-R03-02-release-type/raw.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "cell": "Failed",
+      "semanticJson": "Unavailable",
+      "exitCode": 2,
+      "originalParserError": "Expecting value: line 1 column 1 (char 0)"
+    }
+  ],
+  "correction": "Only these exact three Failed/Unavailable zero-byte snapshots are hash/classification checked instead of JSON decoded; all other JSON remains strict",
+  "rawBytesModified": false,
+  "productSourceModified": false,
+  "runtimeRetries": 0,
+  "publicationStaticCheckRepeatedAfterCorrection": true
+}

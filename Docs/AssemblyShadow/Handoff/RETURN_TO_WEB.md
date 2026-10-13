@@ -1,6 +1,46 @@
 # Local Validation → Primary Implementation
 
-## Current return — M FAIL: three nontrivial Primary findings
+## Current return — N-after-M-6f28 FAIL / ReturnRequired
+
+**Local Validation → Primary Implementation.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-n-after-m-6f28/README.md), [factual result](../History/M07R/R03/local-validation-n-after-m-6f28/preflight/LOCAL_N_RESULT.json), [raw diagnosis](../History/M07R/R03/local-validation-n-after-m-6f28/preflight/FAILURE_DIAGNOSIS.json). Fresh host/custody/SDK/compiler/storage prerequisites Passed. One 18-cell/three-build/five-Player execution: {'Passed': 14, 'Failed': 4}. Independent after-audits and bounded seal Passed. No Local source changes, retries, guard relaxation, counter cap or extra stimulus.
+
+**Common exact reproduction:** canonical owner paths/table in LOCAL_VALIDATION, branch `codex/assembly-shadow-r01b-h1`; demo `73340fc3f2cba0a2920e18f362a59e7a89cce864`, native `0f72078711d4786dac2666c9017d952d857dd041`, HybridCLR `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, package `948c0e3b4f8891481301770115e8ba4945eea6de`; official Unity2022.3.62f2/StandaloneOSX arm64, Python3.14.6/.NET8.0.318/Apple clang21/macOS26.5.2. Follow pinned N_BATCH_PROCEDURE.md shared, compiler and independent storage gates, then exact [one executing argv/UTC/PID receipt](../History/M07R/R03/local-validation-n-after-m-6f28/preflight/commands/storage-execute/receipt.json). Runtime root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28`. N is consumed; no retry/resume or use of its apps as fresh successor evidence.
+
+### IR-LOCAL-N-TRANSPORT-01
+
+**Symptom:** Three ON Players exit2 after phase220 and phase910; each preopened raw.json remains zero bytes and original host verifier is Unavailable. Complete baseline JSON, post-poison field value/recovery/diagnostic and semantic snapshot acceptance cannot be established.
+
+**Evidence and relevant excerpts:** batch/players/IR-R03-02-release-baseline,debug-baseline,release-type: request.json, zero-byte raw.json, Player.log; preflight/FINAL_EVIDENCE_AUDIT.json and this phase/PID analysis. PIDs59195/59208/59223, exits2. All logs include healthyGC31, phases170→180→185→190→200→210→220 at state9, then910; no900/990. Baseline first native21, type13 and actual method denial sites retained.
+
+**Most likely root cause:** The now-reached full native snapshot emission path returns failure without emitting a cause. In current C# finally, exit starts2, only successful EmitNativeReport changes it to0, and caught emission exceptions log990. No990 is logged, locating failure in normal false emission/open/seal outcome. R03_IR_ReportInt/Text/Seal silently reject duplicate/missing/invalid slots, wrong state, over-limit text or I/O; EmitNativeReport combines status into one bool and short-circuits Seal when any store failed. Exact failing slot/state/length/I/O is Unavailable, so no specific duplicate, capacity or GC/layout defect is claimed.
+
+**Affected scope:** Current IR snapshot transport and C# emitter in all three ON cases. Healthy pin/field bind and post-poison code advanced, but missing raw prevents full proof. It is not a compiler result or current SIGABRT.
+
+**Recommended Primary direction:** Add bounded native failure receipts at the existing writer boundary, recording first failing field/index, state/duplicate/missing flags, text length and I/O return/errno without executing managed formatting or replacing accepted raw. Preserve once-only slot8 semantics and strict seal. Exercise the actual producer plus complete emitter/serializer together in source-bound controls, then repair the evidenced cause. Keep partial diagnostics distinct from complete semantic acceptance; no limit increase, guard bypass or N retry.
+
+**Remaining uncertainty:** No native store/Seal return code or report contents were persisted. Absence of phase900/990 supports normal control-flow progress, but does not authenticate final field2, complete native guard JSON, reporter mask/recovery assertions or the C# result. Whether the failure occurred in a store, skipped seal, open or final I/O remains unknown.
+
+**Required validation after correction:** Fresh separately authorized successor must persist all three complete ON JSONs, authentic full baseline slot8/native fields, pinned exact post-field2,42/42/canary/GC31, denied body attempts, first cause21/13, stable recovery/fixed diagnostics/mask15 and successful source-bound verifier with exit0. Negative writer controls must fail with specific bounded diagnostics; keep N consumed.
+
+### IR-LOCAL-N-ENGINE-02
+
+**Symptom:** Engine PID59235 exits71; valid ObservedNotAccepted raw records51283 actual completed reports in500ms, state6→9/code13 and logger1→1. The unchanged1..64 bound fails; original verifier receipt remains Unavailable after nonzero exit.
+
+**Evidence and relevant excerpts:** batch/players/IR-R03-02-release-engine/{raw.json,request.json,Player.log}; preflight/N_TERMINAL_SITE_ANALYSIS.json and FINAL_EVIDENCE_AUDIT.json. True sentinel R03_ENGINE_UNHANDLED_507e2137e1fe4e388f5f08029d8578f0 appears in native sequence1. All24 bounded denial samples carry Runtime::Invoke, including rendering/input/update/canvas/NavMesh and one System.Gen2GcCallback.Finalize. Higher ordinals64/1024/4096 sample NativeInputSystem.ShouldRunUpdate;32/512/32768 sample NavMesh.Internal_CallOnNavMeshPreUpdate; multiple Canvas/rendering methods also repeat.
+
+**Most likely root cause:** Unity continues ordinary engine scheduling/rendering/input callback invocation after terminal state. The business guard rejects each Runtime::Invoke, and native handled-true reporting continues rather than establishing a native terminal/restart disposition for the engine loop. Actual traces now locate repeated engine callback entries instead of only an aggregate counter. Many sampled methods differ; no single producer frequency/dominance is proven.
+
+**Affected scope:** Terminal Unity engine-loop/report integration and source-bound denial attribution. The native guard remains correct in denying bodies; fixed report completion is not engine quiescence. Normal finalizer/shutdown qualification remains outside N.
+
+**Recommended Primary direction:** Use the observed Runtime::Invoke callback families to design an authenticated native terminal/restart disposition or engine-loop containment that stops repeated forbidden callback scheduling while preserving first-error/recovery, native report transport and all managed business/logger denial. Obtain bounded per-site counts only if needed to choose among callback families. Keep actual uncapped CompletedCounter,500ms,1..64 and logger1→1; no counter cap, sleeps through callbacks, business allowlist or finalizer disabling.
+
+**Remaining uncertainty:** First12 plus power-of-two global samples are not a frequency histogram. Runtime::Invoke is the common sampled site; dominant exact method/rate remains Unavailable. The Gen2 finalizer sample is real but not proof of a finalizer-dominated cascade. No current SIGABRT or empty engine raw was observed; this does not reclassify prior M/K/I/E or approve broad cleanup/performance.
+
+**Required validation after correction:** Fresh same five-case successor must bind the true engine sentinel/GC31, native state6→9/code13/recovery, logger1→1 and1..64 actual completed reports in500ms, valid full raw/verifier and exit0, while retaining all ON body-denial/field/recovery and OFF proofs. No N retry, sixth Player or extra stimulus.
+
+Read full [raw/site analysis](../History/M07R/R03/local-validation-n-after-m-6f28/preflight/FAILURE_DIAGNOSIS.json), request/PID/app joins, cell ledger and actual logs. Keep engine uncapped count and failed bounds distinct from diagnostic-source attribution; no cascade-fixed claim is authorized. Historical M/K/I/E FAIL, F/H/L Blocked, G/J scoped Passed and strict original S custody Blocked remain immutable. All acceptance flags false; independent full-stage FAIL/rereview NotRun. Return to Primary and stop; no H2/X02/M08A/expansion/Human Review Gate.
+
+## Historical return — M FAIL: three nontrivial Primary findings
 
 **FAIL / ReturnRequired. Local Validation → Primary Implementation.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-m-after-l-73bc/README.md), [factual result](../History/M07R/R03/local-validation-m-after-l-73bc/preflight/LOCAL_M_RESULT.json), [full diagnosis](../History/M07R/R03/local-validation-m-after-l-73bc/preflight/FAILURE_DIAGNOSIS.json). Fresh host, full before-custody/preservation, official managed/55-native compilers and separate storage gates Passed. One execution: **18 cells, 14 Passed / 4 Failed; three builds Passed; five Players; OFF Passed; three ON and engine Failed**. Three Bee observations Passed with restored original factory and real nodes. After-audits and seal Passed. No retries, Local source changes or extra stimulus.
 

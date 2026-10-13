@@ -1,0 +1,80 @@
+{
+  "state": "Passed",
+  "recordedUtc": "2026-10-13T02:58:51.746206+00:00",
+  "source": {
+    "hybridclr_demo": "73340fc3f2cba0a2920e18f362a59e7a89cce864",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "0f72078711d4786dac2666c9017d952d857dd041"
+  },
+  "sourceBindings": [
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs",
+      "gitBlob": "a7420cbc71c13f2951c1b5330b61307d2c4da5e5",
+      "sha256": "e06face7827175c759de30b6c2de1424308a46e45ef1e1525f26b5084f47d94f"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp",
+      "gitBlob": "2de5e4ef90eaa79daed65c3df0a8faa58ebd5837",
+      "sha256": "dbf1daba02a7f4bb739438de17386bd693ce681f7bebd06bf666c36420f6d4b4"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/test_n_guarded_receipts.py",
+      "gitBlob": "e1e3604208fc7050f233c991d359f6257a318e51",
+      "sha256": "26c3ab79a5dfa7f1a36ad84483157895d0307f465c4113452c87648f26025174"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "gitBlob": "b64d78f9195947c13773479a45bfaf9cf18a0d61",
+      "sha256": "2a07491b32526f2dfb51db17942403e850ea459f8ae1ee9dab499967b2fa384d"
+    }
+  ],
+  "officialCI": {
+    "run": 38337128067,
+    "job": 115099641681,
+    "sourceDemo": "4a8a59571b86bef2145c70d58250098e26a6d668",
+    "compiledNativeSource": "3958fd6f7d4c88904f17d78e86aa48780d49c57c",
+    "artifactId": 11784634827,
+    "artifactZipSha256": "5b9c1695bd85a8ff6fb43bb7d08dd0c7dec52d1abc2c654bc36999406a728bf7",
+    "zipMembers": 210,
+    "manifestFilesVerified": 209,
+    "nativeCompilerCommandReceiptsVerified": 56,
+    "nativeCompilerExitsAllZero": true,
+    "nativeSyntaxCasesPassed": 55,
+    "profiles": {
+      "candidate": 11,
+      "debug": 11,
+      "probe-off": 11,
+      "diagnostics-off": 11,
+      "feature-off": 11
+    },
+    "managedProductsPassed": [
+      "HybridCLR.Runtime",
+      "Unity.HybridCLR.AssemblyShadow.CodeGen",
+      "HybridCLR.Editor",
+      "R03Build",
+      "R03TerminalPlayerApi"
+    ],
+    "separateExpectedNegative": {
+      "name": "OriginalUnsignedCounts",
+      "expectedExit": 1,
+      "actualExit": 1
+    },
+    "unityEditorLaunched": false,
+    "unityPlayerRun": false,
+    "sourceEquivalenceAfterCi": "Demo implementation unchanged; only tests/docs/native pin advanced. Native product unchanged; only CI/test advanced.",
+    "auditBasis": "Downloaded original CI ZIP; verified container SHA256, all 209 manifest byte sizes and SHA256, and 56 original native command.json hashes; output/syntax results from original recorded command exits. Full current Local SDK and real linker/GC not independently tested."
+  },
+  "CIClassification": "Primary attributed source/CI artifacts; actual current Local host/SDK results separately required and recorded",
+  "freshHostR03": 203,
+  "freshHostIR": 93,
+  "inventoryContracts": 29,
+  "strictAndSanitizedConsumer": "Passed in separate prescribed modes",
+  "nativeTrace": "Fresh host synthetic ordinals Passed; actual engine producer NotRun until admitted Player",
+  "changedRuntimePredicates": false,
+  "engineCascadeClaim": "NotFixed; uncapped count and 1..64 in500ms unchanged"
+}

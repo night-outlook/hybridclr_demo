@@ -1,0 +1,2117 @@
+{
+  "format": "Exact permitted copies; large metadata in ordered32MiB parts",
+  "excludedOriginalBinaryAndArchiveFiles": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/original-s-fixtures/baseline/A.dll",
+      "bytes": 2048,
+      "sha256": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/original-s-fixtures/baseline/B.dll",
+      "bytes": 2048,
+      "sha256": "7aa63a4c814eacecbb633b06d687b9a28f97fc73ddb577e73bb6444ac2669a2b",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/original-s-fixtures/baseline/Layout.dll",
+      "bytes": 2048,
+      "sha256": "3adcc44417c6f9c9f0a2a2c255b020746ff24c598dfef67e64f120dea4be13f8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/original-s-fixtures/baseline/Methods.dll",
+      "bytes": 2048,
+      "sha256": "56af53c3165cc28144095b4aa08d2dfbaa5403da2a40c1137114f1e0e9cf3ce8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/original-s-fixtures/baseline/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "7627f977735e56e029d1d823bea46d2362134bd9f01c3086cca9c1afd7c9096e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/original-s-fixtures/interface/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "736f525b05694a577dc2cc6b5d94d2ebe10954d53f51f71e87cc7c2d1297dd40",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/original-s-fixtures/primitive/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "d189a952e9973a729b18e9791b808dc650f793817a19d89ab0e6523b3e444d36",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/original-s-fixtures/private-reference/Layout.dll",
+      "bytes": 2048,
+      "sha256": "76624b0cce75a1f282f6e7b8bebbd81192c3a6c2b698d9aedba4ab95cde6ee25",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/original-s-fixtures/removal/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "69e3334c6d74dff9013a362c1caa3a0bc9bb5930ac1b11265b9ea7c09ff02602",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/original-s-fixtures/reversal/A.dll",
+      "bytes": 2048,
+      "sha256": "c13b628d870be6d2ddab6f5dcd78a27f529f9e446488036cd2c1c889a9346f69",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/original-s-fixtures/reversal/B.dll",
+      "bytes": 2048,
+      "sha256": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/original-s-fixtures/true-cycle/A.dll",
+      "bytes": 2048,
+      "sha256": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/original-s-fixtures/true-cycle/B.dll",
+      "bytes": 2048,
+      "sha256": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/original-s-fixtures/value/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "fa1f7473db2655adcb2a012c0cb29d1181cbae21bc19020abf14d4c39772825e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/original-s-fixtures/virtual-slot/Methods.dll",
+      "bytes": 2048,
+      "sha256": "c21598ce556646601cbbc55e80c0c4f42603d68ca8861d084b4b3fd748a4d144",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28/policy",
+      "bytes": 47704,
+      "sha256": "0778de3650551a0fbe2bdb4b3e1c97b9b80b667b58d83254baaaddd132498a47",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03N-after-M-6f28/build-api/HybridCLR.Editor/HybridCLR.Editor.dll",
+      "bytes": 818176,
+      "sha256": "4739ac089d8a3d89ae750e6da6c1c28bb3854449542c3ae41fabf91e423b8e71",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03N-after-M-6f28/build-api/HybridCLR.Runtime/HybridCLR.Runtime.dll",
+      "bytes": 60928,
+      "sha256": "9c074229db7ebef4b7d8419e028f7d615b5c1932df6b4b0364215b9d034674da",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03N-after-M-6f28/build-api/R03Build/R03Build.dll",
+      "bytes": 24064,
+      "sha256": "e3ae68d8d78c55c47e525d4cffe5ca1ac834dc18691dd36f63b8086db7d94664",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03N-after-M-6f28/build-api/R03TerminalPlayerApi/R03TerminalPlayerApi.dll",
+      "bytes": 15872,
+      "sha256": "dbe1bb68308fa7b99820f5b16c78089dc6a9d7374e8135d7edc5e651ffee8bef",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03N-after-M-6f28/build-api/Unity.HybridCLR.AssemblyShadow.CodeGen/Unity.HybridCLR.AssemblyShadow.CodeGen.dll",
+      "bytes": 120832,
+      "sha256": "4f1376f78eaf12ff7b854043f1f3eb007c8b518ef833be44ab0701a1432f53ae",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib",
+      "bytes": 33030134,
+      "sha256": "4c73c24580cd287114773a3518155bf265881e863db61fcfc371cbf2d147215d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib",
+      "bytes": 84080846,
+      "sha256": "417339d1c2d2b7bff00e30ac0f7cf0f25ed8918e1511c2340ca756090bb92c5f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Info.plist",
+      "bytes": 1526,
+      "sha256": "e9ad39b737602742b858da53c5854346aa208bad9aab82f9ec7826bc8d621064",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/MacOS/R03Isolated",
+      "bytes": 50498,
+      "sha256": "53f6ac14cc8563b887138d42d1cd4be19bbe65a7a8a4d564f72b851eb60c69c1",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/Data/Resources/unity_builtin_extra",
+      "bytes": 394712,
+      "sha256": "1298fd4a0d4c2b7e9901147467d903c4197524fa5499a655f19e88b970209949",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/Data/RuntimeInitializeOnLoads.json",
+      "bytes": 325,
+      "sha256": "c9814f50cf354dd258939e3babb341ca18b1c8564c13817923cc2970dc3dd4c6",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/Data/ScriptingAssemblies.json",
+      "bytes": 2686,
+      "sha256": "9ba923ad1e372f7c2ae860943ddbab612ce325212fcc9e9e6530ed5d1f12597d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/Data/app.info",
+      "bytes": 29,
+      "sha256": "33d6509afdff0df7371b0c872fce745505a0f1b7863b517c2ae8496bbd74e4a8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/Data/boot.config",
+      "bytes": 279,
+      "sha256": "38a434a2ef4937481e6a56b2188a68266e41dc44ee29a738c07b9a30843f36b8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/Data/globalgamemanagers",
+      "bytes": 29452,
+      "sha256": "fed52f81c7b43ce7a38093c3b296ed83805330ee76714dcf8b7e09d4c9b5688d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/Data/globalgamemanagers.assets",
+      "bytes": 31944,
+      "sha256": "59ab4d14f12d5040f3c9683c0d7869ff513a7ee5010f036236b00057faeda38e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/Data/globalgamemanagers.assets.resS",
+      "bytes": 2798288,
+      "sha256": "ebf0f91664c0aa69e3b92e93d4d4e6feae1a9152529b0efeac047e3c9c3b0fc0",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/Data/il2cpp_data/Metadata/global-metadata.dat",
+      "bytes": 2003600,
+      "sha256": "a386742bb18d51be6688376066581ddd2088762804c915b95f3fdc4a9217dd92",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/Data/il2cpp_data/Resources/mscorlib.dll-resources.dat",
+      "bytes": 337563,
+      "sha256": "c5baa176a5b72cd545266340e42102d393a5e43d38c95796bc828918bb95277f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/Data/level0",
+      "bytes": 756,
+      "sha256": "3303191d249d4e6c6c3a2518549f77095b29aa8673f6267eb7ac85893fdf8beb",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/Data/sharedassets0.assets",
+      "bytes": 7984,
+      "sha256": "790f845a128ca95900ad9c4f9bcbc00dd67b6ea46d3795840356ffab4378c644",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/DefaultPreferences.plist",
+      "bytes": 254,
+      "sha256": "5bda0e246a5618951ae91bb7ee342dd2b4a6e8918e3976644313c16aa483d262",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/MainMenu.nib/designable.nib",
+      "bytes": 5071,
+      "sha256": "57188221ba9dc889be4c9e03f0c867bce820726491e32a2fa4928681f006f308",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/MainMenu.nib/keyedobjects.nib",
+      "bytes": 4792,
+      "sha256": "1fae5b7c6ee9b17a767b1636867a41b3e44eaf8f654b1c5e2cafa3261463104d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/PrivacyInfo.xcprivacy",
+      "bytes": 81,
+      "sha256": "0a513a93916b158eaa3af7311e84eac43604ac52a6530afb33184a77805c0970",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/Resources/unity default resources",
+      "bytes": 699648,
+      "sha256": "bd223ee2d9b197d60a95251ecb17c35ed081d1741b699f2f8014387a1366f9c5",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated.app/Contents/_CodeSignature/CodeResources",
+      "bytes": 7127,
+      "sha256": "de49ea80f376086872ea915f4083c82ad45250c159536248b5ddb1c26ef5d73e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/A.dll",
+      "bytes": 2048,
+      "sha256": "ae5984eba05b9482adabf4b1ed31cc59b97c906e0254fbc89a3d021d604a1dd9",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Assembly-CSharp.dll",
+      "bytes": 26112,
+      "sha256": "8e8c25904d88e4c7e8e7e95bb1161cce2b82dd9f13ab8b8d4d6f4232b16af600",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Assembly-CSharp.pdb",
+      "bytes": 21604,
+      "sha256": "05e6530cb3381eae78618a688e06134c6930c42b91e228922025127d71fe8e6d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/B.dll",
+      "bytes": 2048,
+      "sha256": "1da0dadfc9c77c24c69d6055f742c52d7d4c058227bd5532ee93c457da91c6d0",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/HybridCLR.Runtime.dll",
+      "bytes": 21504,
+      "sha256": "22dfd94ec6cfda0a82dbd66637dd22838066339e17b2df85fea525920028a4dc",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/HybridCLR.Runtime.pdb",
+      "bytes": 18776,
+      "sha256": "f62d28dd6e9883d50c872ded813df7215815d49a2ff5a70060399f1c31d4f4b3",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Layout.dll",
+      "bytes": 2048,
+      "sha256": "59d91fd15599012f4f67575c66829ffbf67890a6605d9e61ee05054089edba06",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Methods.dll",
+      "bytes": 2048,
+      "sha256": "49e8929487f51bb8c69c28e34530d82c5e4987ae59080e1c4879e91966fbd486",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Mono.Security.dll",
+      "bytes": 8704,
+      "sha256": "05a3c6be1fde3442ce73a83d606eb3048d6cef950a98a2b59b43842c42cd7be9",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "fe9f05e06d17b6fe647c91eb6fc740b9f861f9a1ac8da10777869120e8e1251c",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.Configuration.dll",
+      "bytes": 5120,
+      "sha256": "1fad17d31f84875654f93367745e7798103430bc5ba42b1de2e1c5d865f01b5e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.Core.dll",
+      "bytes": 23040,
+      "sha256": "c15315df67effcc8211f2d18d5136f36bd863203fba110e7ee4402619682073f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.Xml.dll",
+      "bytes": 14336,
+      "sha256": "e2a51f59ce935b7624a297eb229af288a974327f573cb739c396ba049a257bae",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.dll",
+      "bytes": 176128,
+      "sha256": "4af4e43fe9d5e72fdb465c11a4fd62c96ad73b52c07baea5851a9e7def778875",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AIModule.dll",
+      "bytes": 10240,
+      "sha256": "2ad7de3cd48280a3f9d4c4b3ad6ba5c3681f3345c887af1238040f057730e460",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AIModule.pdb",
+      "bytes": 9232,
+      "sha256": "709d341cb9bc0b07ff701344ab9cf26923266f350c5cd0fdd6215be78283231e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AndroidJNIModule.dll",
+      "bytes": 46592,
+      "sha256": "dbddf3b983bc4a84835f9698807096360103b3ecd9d858af6917e6d4ac87b7eb",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AndroidJNIModule.pdb",
+      "bytes": 27752,
+      "sha256": "0dc2962b0f2dfde361fd8ba947422604add40091b13aa33a7285c0c8d3d56b98",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AnimationModule.dll",
+      "bytes": 20992,
+      "sha256": "f867fdfbb55eebf45283733c42d7876deea610c3d81df794517288f748fb2867",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AnimationModule.pdb",
+      "bytes": 12792,
+      "sha256": "d4b743ae9fc0bc446c4898e5d8c73974e103d431ab666c68a0da5fe916f45264",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AssetBundleModule.dll",
+      "bytes": 10240,
+      "sha256": "b052d98adbaab195b774bbf85f9749fe9a7c82ac89ce1300f185e36f3c57ec51",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AssetBundleModule.pdb",
+      "bytes": 8904,
+      "sha256": "7c5d42081d2691b29c8c488b235d095d041c43f99981222994f27cbdc2626e1e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AudioModule.dll",
+      "bytes": 13312,
+      "sha256": "64bfb6343a6a98a6ad46c5a5609f75a09758d14d35d251d4ceb5c1f8f4ed728f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AudioModule.pdb",
+      "bytes": 10240,
+      "sha256": "6cdb40a8f707b3ca0e02da6232cd9147225b5065f08a82423677700477c29b62",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.CoreModule.dll",
+      "bytes": 215040,
+      "sha256": "cda577972b13ce48f8456ac0c4bf22e6d7397fdb65823ebb819645e5e8742bb1",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.CoreModule.pdb",
+      "bytes": 80792,
+      "sha256": "cb0ca18a2b1da98732e4a2bbc6a1dbfee426adbf01f116e0c76d5bd3494f1513",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.DirectorModule.dll",
+      "bytes": 10240,
+      "sha256": "2d6115c5e5f603d1af81298fceff2114597af071fc9506bb1809471bf8c61c5e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.DirectorModule.pdb",
+      "bytes": 9460,
+      "sha256": "716bf8a2d640faa19acfaac6cf601b0a49a5040633dd4194bddf2b2c0921f1be",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.GameCenterModule.dll",
+      "bytes": 19456,
+      "sha256": "3b49ea42411826f76359810dd45330a39336462dc420334a5f660448ca3b5f7f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.GameCenterModule.pdb",
+      "bytes": 12728,
+      "sha256": "b5798ef9beddee25c7a515e75d31831ccc93ae6a7cddbc23a3622e4a0aa782e4",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.GridModule.dll",
+      "bytes": 10240,
+      "sha256": "9ea01b96151251386acd86ce54bcdb38057e2696370473b388bde4a6fbaff6b3",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.GridModule.pdb",
+      "bytes": 9104,
+      "sha256": "1998571d97c98ccd4ec55a72746562e83e528dd83d4be6dd955e58bb9df525f3",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.IMGUIModule.dll",
+      "bytes": 49152,
+      "sha256": "f123ce5e296c59d4815b1467e54ee1a52357498de6ea5d1f4e055189163c1a87",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.IMGUIModule.pdb",
+      "bytes": 26768,
+      "sha256": "32fbbd0b248305108c07ccd0d01aa3336e666f94b49c5be78ab03255f470cdcd",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.InputLegacyModule.dll",
+      "bytes": 14336,
+      "sha256": "e521b80900013674fe320a870328aac43a5d955efdfe288a0b80a8a0489452dd",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.InputLegacyModule.pdb",
+      "bytes": 10936,
+      "sha256": "4be680ee46165af0173b4ed767b09f3ec88436c6544cf0194c2ef9341526e3ff",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.InputModule.dll",
+      "bytes": 11264,
+      "sha256": "c1e8e3c0fbaa8b3bbec976ee334ff6ebfaeeb58f5ee4e32320c68cc6f44a037d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.InputModule.pdb",
+      "bytes": 9652,
+      "sha256": "8e6f33fb93de65985ad939628ade6b07890a11b0391bed9d9f032ff519f48615",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.JSONSerializeModule.dll",
+      "bytes": 11264,
+      "sha256": "c19305781fc48cdff5409b509b2301ac99e6b4d344a06f68fc60f8c2b30ca9d3",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.JSONSerializeModule.pdb",
+      "bytes": 9380,
+      "sha256": "a926a45059fab9e927eb720a724d2335bdd0652b8e5d7e35c782d9a04238a3cf",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.ParticleSystemModule.dll",
+      "bytes": 13824,
+      "sha256": "9db7ef1aa73bc64b57d140d411caa51284bfe02064b9622786632a6cca250929",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.ParticleSystemModule.pdb",
+      "bytes": 10196,
+      "sha256": "3c6e6c495287e45f24f0cec75c8919733e4d554943e32a9ac1c16e46d228bcbf",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.Physics2DModule.dll",
+      "bytes": 16896,
+      "sha256": "a904fe0fb190444f47d38d0d775d6cdd9d96427e462980c0673e6d2365d698f2",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.Physics2DModule.pdb",
+      "bytes": 10724,
+      "sha256": "d8983b5ee4f99ff09bf0f180755fc60f40a53f25e62f82bfe06f5fce5841388e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.PhysicsModule.dll",
+      "bytes": 23040,
+      "sha256": "faf718931a0165137e1ccf1028c07577432c5d1e8d302434702ea49d0ece790d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.PhysicsModule.pdb",
+      "bytes": 13284,
+      "sha256": "d32eafb566417b454d66c8cab87fdcdd244bf6b5b608070d454380f21e478592",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.PropertiesModule.dll",
+      "bytes": 46592,
+      "sha256": "662f771e4a8e77fea3f2fd3f6e821ded876829cd7cc8230366b4e8fd9378feeb",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.PropertiesModule.pdb",
+      "bytes": 22428,
+      "sha256": "bae1c69bc1dd8e36e9e141d576ced5cf2f92a1baea88e079c3ccb96d9b24a4b0",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.SharedInternalsModule.dll",
+      "bytes": 16384,
+      "sha256": "974c95fd892c8f592516e9c14a072b917922e8387a8e0b31c72cb988d40f8c07",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.SharedInternalsModule.pdb",
+      "bytes": 11584,
+      "sha256": "7ea0540242e12974958decdc4ae782658a4f5d58e53589122439c174e3721c3d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.SubsystemsModule.dll",
+      "bytes": 13824,
+      "sha256": "666dbce0c19385c195b6b7c6b51423cdddf146a27682a730b85055d779dc4fff",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.SubsystemsModule.pdb",
+      "bytes": 11016,
+      "sha256": "9664a0b990216959e8f01a7bec2074dd9a8ceba5774a3b549c05c613cdc29681",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TerrainModule.dll",
+      "bytes": 17920,
+      "sha256": "a3cc51b14ddf95e2147e5a33b720647eb89d4740a1b7b61e8bde5f99f3c83dac",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TerrainModule.pdb",
+      "bytes": 12424,
+      "sha256": "a9a45bddbd49c0f6dfb9df51be31bf0f8b8d71455f1f4bbd2fbe510edb03786c",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TextRenderingModule.dll",
+      "bytes": 10752,
+      "sha256": "d56b6648a06fb83968900c785fc1c5c849f99d2798224a8a4a754416874902e2",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TextRenderingModule.pdb",
+      "bytes": 9304,
+      "sha256": "b2fe82f77d3d800de6d7411cbfac8fee46c7f2bf68574ebb289b8d00c509329f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TilemapModule.dll",
+      "bytes": 17920,
+      "sha256": "07060a29351356196823d2907e764771245966c56feebf58d43afcd4238548a2",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TilemapModule.pdb",
+      "bytes": 12792,
+      "sha256": "9198066892811b0b42090ad1b1fc3eaa06cf6bb928c5cf2c5fd5f6ab7dededba",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UIElementsModule.dll",
+      "bytes": 13312,
+      "sha256": "76f9e2eb5c7d677dabf04ea80fc3304b82cdc9547c9b1c11b6ef8f2eab960891",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UIElementsModule.pdb",
+      "bytes": 10816,
+      "sha256": "6c635cfbb8ee9b0db40e3d8323170d83df8a2a846109ddfa3a9d1f27e2b7da9a",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UIModule.dll",
+      "bytes": 11264,
+      "sha256": "9049740f80ed0b72fb252d0f43c19f2813a40ec8cb04f482b5d252660d14afc3",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UIModule.pdb",
+      "bytes": 9484,
+      "sha256": "7a0291a30da78db2e09bb2686691eaf73d13f0ce8891ccb8f3dc97eb7ff19733",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityAnalyticsModule.dll",
+      "bytes": 12288,
+      "sha256": "0ec4ab8690230a5a15f1a7bac96f2bedf26592c3ea611ab79d01347664a5ec22",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityAnalyticsModule.pdb",
+      "bytes": 10120,
+      "sha256": "efccbbd32d4d5a1f3aa720faa6e4e49b5f0b68a2800fbd3b5548a40709267e6f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityWebRequestModule.dll",
+      "bytes": 11264,
+      "sha256": "14f8b3e6149b4fbd119f4ccb79991463e35ace016f7c86bbc53267dd721fdb09",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityWebRequestModule.pdb",
+      "bytes": 10168,
+      "sha256": "647245ddd3a779fcf77a9749d6031580bfafa1bf46c35ab91c0b44a1dde03ab8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VFXModule.dll",
+      "bytes": 15872,
+      "sha256": "0428bc049335f6f266268d1723d1b719bebafa552f69b8be83b5216d1d6b7009",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VFXModule.pdb",
+      "bytes": 11120,
+      "sha256": "bd79efd7965358499cfe1ac7c57e5a11cbd50c140aec86c3739f66e0f1556211",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VRModule.dll",
+      "bytes": 10240,
+      "sha256": "d00b25f51d64bf9ca42412b8d24acbbef891ef68053536e1db5d5cc40824d8db",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VRModule.pdb",
+      "bytes": 9476,
+      "sha256": "3a70fd218932f5c95b6dffe93f30e24a89b3fab0d34c30369c597130036c9af2",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VideoModule.dll",
+      "bytes": 13824,
+      "sha256": "1c6ff9c5bfc62ab16f50270c09d015f8639add0cfd923860449c35db4aefa645",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VideoModule.pdb",
+      "bytes": 10076,
+      "sha256": "4283e20c05e7fdcd195b0c76faf19979dd62d11d2e6d7d5bcfbef7c31d2ae583",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.XRModule.dll",
+      "bytes": 21504,
+      "sha256": "6e370e5d558a2821d0163cb83461f50b01a9d6b6e8a9d65ce58174a44a707624",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.XRModule.pdb",
+      "bytes": 12964,
+      "sha256": "0fbef403bfaf7977f27c84a498ad72265146e90560f782ea5ea7a09958e28d92",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.dll",
+      "bytes": 33280,
+      "sha256": "490a7032e3862ae755890135ebfe3a2d24096078687665b0b95ce0ca71f43e8c",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.pdb",
+      "bytes": 11164,
+      "sha256": "30fdbf22bd84e45308c52ba8cac49cfe7503ab42539ca0adc15fae538e5389a6",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-debug/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/mscorlib.dll",
+      "bytes": 1756160,
+      "sha256": "1ea6891055a7b565d7c48dbd17d9db3b821d82bdd9429cefc15bcdf6508b3eba",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib",
+      "bytes": 17820710,
+      "sha256": "70071e79f6b1def804d835e2897274e2bad3ff3e04a4484e9c62023c8ecf3684",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib",
+      "bytes": 84080846,
+      "sha256": "417339d1c2d2b7bff00e30ac0f7cf0f25ed8918e1511c2340ca756090bb92c5f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Info.plist",
+      "bytes": 1526,
+      "sha256": "e9ad39b737602742b858da53c5854346aa208bad9aab82f9ec7826bc8d621064",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/MacOS/R03Isolated",
+      "bytes": 50498,
+      "sha256": "0397d36a7c06a8fb82381b778c7d2324f206fe5782fcb32e84b127fcfeaad83b",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/Data/Resources/unity_builtin_extra",
+      "bytes": 394712,
+      "sha256": "1298fd4a0d4c2b7e9901147467d903c4197524fa5499a655f19e88b970209949",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/Data/RuntimeInitializeOnLoads.json",
+      "bytes": 325,
+      "sha256": "c9814f50cf354dd258939e3babb341ca18b1c8564c13817923cc2970dc3dd4c6",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/Data/ScriptingAssemblies.json",
+      "bytes": 2686,
+      "sha256": "4bcdc09d1abcf16c6b8ead3a34cd2a2a806f9ec15ddc6c0e038288cea27c4c46",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/Data/app.info",
+      "bytes": 29,
+      "sha256": "33d6509afdff0df7371b0c872fce745505a0f1b7863b517c2ae8496bbd74e4a8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/Data/boot.config",
+      "bytes": 280,
+      "sha256": "b8e1d49350c32b14d68471e69555ef186245d654a00581dd3577024444181338",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/Data/globalgamemanagers",
+      "bytes": 29452,
+      "sha256": "67fd99d4bcba2311371af6f1d10c576ae10c9d467ee81b3a9054e9d1e6d8da0f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/Data/globalgamemanagers.assets",
+      "bytes": 31944,
+      "sha256": "c5b40450278e0feec68bd52ea509bcd27f260747e01a2074eb6ddd69b87a81a5",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/Data/globalgamemanagers.assets.resS",
+      "bytes": 2798288,
+      "sha256": "ebf0f91664c0aa69e3b92e93d4d4e6feae1a9152529b0efeac047e3c9c3b0fc0",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/Data/il2cpp_data/Metadata/global-metadata.dat",
+      "bytes": 2003600,
+      "sha256": "a386742bb18d51be6688376066581ddd2088762804c915b95f3fdc4a9217dd92",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/Data/il2cpp_data/Resources/mscorlib.dll-resources.dat",
+      "bytes": 337563,
+      "sha256": "c5baa176a5b72cd545266340e42102d393a5e43d38c95796bc828918bb95277f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/Data/level0",
+      "bytes": 756,
+      "sha256": "3303191d249d4e6c6c3a2518549f77095b29aa8673f6267eb7ac85893fdf8beb",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/Data/sharedassets0.assets",
+      "bytes": 7984,
+      "sha256": "790f845a128ca95900ad9c4f9bcbc00dd67b6ea46d3795840356ffab4378c644",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/DefaultPreferences.plist",
+      "bytes": 254,
+      "sha256": "5bda0e246a5618951ae91bb7ee342dd2b4a6e8918e3976644313c16aa483d262",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/MainMenu.nib/designable.nib",
+      "bytes": 5071,
+      "sha256": "57188221ba9dc889be4c9e03f0c867bce820726491e32a2fa4928681f006f308",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/MainMenu.nib/keyedobjects.nib",
+      "bytes": 4792,
+      "sha256": "1fae5b7c6ee9b17a767b1636867a41b3e44eaf8f654b1c5e2cafa3261463104d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/PrivacyInfo.xcprivacy",
+      "bytes": 81,
+      "sha256": "0a513a93916b158eaa3af7311e84eac43604ac52a6530afb33184a77805c0970",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/Resources/unity default resources",
+      "bytes": 699648,
+      "sha256": "bd223ee2d9b197d60a95251ecb17c35ed081d1741b699f2f8014387a1366f9c5",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated.app/Contents/_CodeSignature/CodeResources",
+      "bytes": 7127,
+      "sha256": "d3391b678f47489105954f14fbe03e6c758d61b5abc77df7e0f4150ff9c7307e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/A.dll",
+      "bytes": 2048,
+      "sha256": "ae5984eba05b9482adabf4b1ed31cc59b97c906e0254fbc89a3d021d604a1dd9",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Assembly-CSharp.dll",
+      "bytes": 26112,
+      "sha256": "b9e589fbb654d2043e8bbf05dfc8d98615c48ce127a750b0a6eb1a8ab7d01968",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Assembly-CSharp.pdb",
+      "bytes": 21604,
+      "sha256": "1870787d1f9b7891c19008ee22bd1cc101ed1dbfe27c4411a5eeaa81d25db18e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/B.dll",
+      "bytes": 2048,
+      "sha256": "1da0dadfc9c77c24c69d6055f742c52d7d4c058227bd5532ee93c457da91c6d0",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/HybridCLR.Runtime.dll",
+      "bytes": 21504,
+      "sha256": "22dfd94ec6cfda0a82dbd66637dd22838066339e17b2df85fea525920028a4dc",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/HybridCLR.Runtime.pdb",
+      "bytes": 18776,
+      "sha256": "f62d28dd6e9883d50c872ded813df7215815d49a2ff5a70060399f1c31d4f4b3",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Layout.dll",
+      "bytes": 2048,
+      "sha256": "59d91fd15599012f4f67575c66829ffbf67890a6605d9e61ee05054089edba06",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Methods.dll",
+      "bytes": 2048,
+      "sha256": "49e8929487f51bb8c69c28e34530d82c5e4987ae59080e1c4879e91966fbd486",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Mono.Security.dll",
+      "bytes": 8704,
+      "sha256": "05a3c6be1fde3442ce73a83d606eb3048d6cef950a98a2b59b43842c42cd7be9",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "fe9f05e06d17b6fe647c91eb6fc740b9f861f9a1ac8da10777869120e8e1251c",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.Configuration.dll",
+      "bytes": 5120,
+      "sha256": "1fad17d31f84875654f93367745e7798103430bc5ba42b1de2e1c5d865f01b5e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.Core.dll",
+      "bytes": 23040,
+      "sha256": "c15315df67effcc8211f2d18d5136f36bd863203fba110e7ee4402619682073f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.Xml.dll",
+      "bytes": 14336,
+      "sha256": "e2a51f59ce935b7624a297eb229af288a974327f573cb739c396ba049a257bae",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.dll",
+      "bytes": 176128,
+      "sha256": "4af4e43fe9d5e72fdb465c11a4fd62c96ad73b52c07baea5851a9e7def778875",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AIModule.dll",
+      "bytes": 10240,
+      "sha256": "2ad7de3cd48280a3f9d4c4b3ad6ba5c3681f3345c887af1238040f057730e460",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AIModule.pdb",
+      "bytes": 9232,
+      "sha256": "709d341cb9bc0b07ff701344ab9cf26923266f350c5cd0fdd6215be78283231e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AndroidJNIModule.dll",
+      "bytes": 46592,
+      "sha256": "dbddf3b983bc4a84835f9698807096360103b3ecd9d858af6917e6d4ac87b7eb",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AndroidJNIModule.pdb",
+      "bytes": 27752,
+      "sha256": "0dc2962b0f2dfde361fd8ba947422604add40091b13aa33a7285c0c8d3d56b98",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AnimationModule.dll",
+      "bytes": 20992,
+      "sha256": "f867fdfbb55eebf45283733c42d7876deea610c3d81df794517288f748fb2867",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AnimationModule.pdb",
+      "bytes": 12792,
+      "sha256": "d4b743ae9fc0bc446c4898e5d8c73974e103d431ab666c68a0da5fe916f45264",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AssetBundleModule.dll",
+      "bytes": 10240,
+      "sha256": "b052d98adbaab195b774bbf85f9749fe9a7c82ac89ce1300f185e36f3c57ec51",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AssetBundleModule.pdb",
+      "bytes": 8904,
+      "sha256": "7c5d42081d2691b29c8c488b235d095d041c43f99981222994f27cbdc2626e1e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AudioModule.dll",
+      "bytes": 13312,
+      "sha256": "64bfb6343a6a98a6ad46c5a5609f75a09758d14d35d251d4ceb5c1f8f4ed728f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AudioModule.pdb",
+      "bytes": 10240,
+      "sha256": "6cdb40a8f707b3ca0e02da6232cd9147225b5065f08a82423677700477c29b62",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.CoreModule.dll",
+      "bytes": 215040,
+      "sha256": "cda577972b13ce48f8456ac0c4bf22e6d7397fdb65823ebb819645e5e8742bb1",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.CoreModule.pdb",
+      "bytes": 80792,
+      "sha256": "cb0ca18a2b1da98732e4a2bbc6a1dbfee426adbf01f116e0c76d5bd3494f1513",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.DirectorModule.dll",
+      "bytes": 10240,
+      "sha256": "2d6115c5e5f603d1af81298fceff2114597af071fc9506bb1809471bf8c61c5e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.DirectorModule.pdb",
+      "bytes": 9460,
+      "sha256": "716bf8a2d640faa19acfaac6cf601b0a49a5040633dd4194bddf2b2c0921f1be",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.GameCenterModule.dll",
+      "bytes": 19456,
+      "sha256": "3b49ea42411826f76359810dd45330a39336462dc420334a5f660448ca3b5f7f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.GameCenterModule.pdb",
+      "bytes": 12728,
+      "sha256": "b5798ef9beddee25c7a515e75d31831ccc93ae6a7cddbc23a3622e4a0aa782e4",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.GridModule.dll",
+      "bytes": 10240,
+      "sha256": "9ea01b96151251386acd86ce54bcdb38057e2696370473b388bde4a6fbaff6b3",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.GridModule.pdb",
+      "bytes": 9104,
+      "sha256": "1998571d97c98ccd4ec55a72746562e83e528dd83d4be6dd955e58bb9df525f3",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.IMGUIModule.dll",
+      "bytes": 49152,
+      "sha256": "f123ce5e296c59d4815b1467e54ee1a52357498de6ea5d1f4e055189163c1a87",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.IMGUIModule.pdb",
+      "bytes": 26768,
+      "sha256": "32fbbd0b248305108c07ccd0d01aa3336e666f94b49c5be78ab03255f470cdcd",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.InputLegacyModule.dll",
+      "bytes": 14336,
+      "sha256": "e521b80900013674fe320a870328aac43a5d955efdfe288a0b80a8a0489452dd",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.InputLegacyModule.pdb",
+      "bytes": 10936,
+      "sha256": "4be680ee46165af0173b4ed767b09f3ec88436c6544cf0194c2ef9341526e3ff",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.InputModule.dll",
+      "bytes": 11264,
+      "sha256": "c1e8e3c0fbaa8b3bbec976ee334ff6ebfaeeb58f5ee4e32320c68cc6f44a037d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.InputModule.pdb",
+      "bytes": 9652,
+      "sha256": "8e6f33fb93de65985ad939628ade6b07890a11b0391bed9d9f032ff519f48615",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.JSONSerializeModule.dll",
+      "bytes": 11264,
+      "sha256": "c19305781fc48cdff5409b509b2301ac99e6b4d344a06f68fc60f8c2b30ca9d3",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.JSONSerializeModule.pdb",
+      "bytes": 9380,
+      "sha256": "a926a45059fab9e927eb720a724d2335bdd0652b8e5d7e35c782d9a04238a3cf",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.ParticleSystemModule.dll",
+      "bytes": 13824,
+      "sha256": "9db7ef1aa73bc64b57d140d411caa51284bfe02064b9622786632a6cca250929",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.ParticleSystemModule.pdb",
+      "bytes": 10196,
+      "sha256": "3c6e6c495287e45f24f0cec75c8919733e4d554943e32a9ac1c16e46d228bcbf",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.Physics2DModule.dll",
+      "bytes": 16896,
+      "sha256": "a904fe0fb190444f47d38d0d775d6cdd9d96427e462980c0673e6d2365d698f2",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.Physics2DModule.pdb",
+      "bytes": 10724,
+      "sha256": "d8983b5ee4f99ff09bf0f180755fc60f40a53f25e62f82bfe06f5fce5841388e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.PhysicsModule.dll",
+      "bytes": 23040,
+      "sha256": "faf718931a0165137e1ccf1028c07577432c5d1e8d302434702ea49d0ece790d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.PhysicsModule.pdb",
+      "bytes": 13284,
+      "sha256": "d32eafb566417b454d66c8cab87fdcdd244bf6b5b608070d454380f21e478592",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.PropertiesModule.dll",
+      "bytes": 46592,
+      "sha256": "662f771e4a8e77fea3f2fd3f6e821ded876829cd7cc8230366b4e8fd9378feeb",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.PropertiesModule.pdb",
+      "bytes": 22428,
+      "sha256": "bae1c69bc1dd8e36e9e141d576ced5cf2f92a1baea88e079c3ccb96d9b24a4b0",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.SharedInternalsModule.dll",
+      "bytes": 16384,
+      "sha256": "974c95fd892c8f592516e9c14a072b917922e8387a8e0b31c72cb988d40f8c07",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.SharedInternalsModule.pdb",
+      "bytes": 11584,
+      "sha256": "7ea0540242e12974958decdc4ae782658a4f5d58e53589122439c174e3721c3d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.SubsystemsModule.dll",
+      "bytes": 13824,
+      "sha256": "666dbce0c19385c195b6b7c6b51423cdddf146a27682a730b85055d779dc4fff",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.SubsystemsModule.pdb",
+      "bytes": 11016,
+      "sha256": "9664a0b990216959e8f01a7bec2074dd9a8ceba5774a3b549c05c613cdc29681",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TerrainModule.dll",
+      "bytes": 17920,
+      "sha256": "a3cc51b14ddf95e2147e5a33b720647eb89d4740a1b7b61e8bde5f99f3c83dac",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TerrainModule.pdb",
+      "bytes": 12424,
+      "sha256": "a9a45bddbd49c0f6dfb9df51be31bf0f8b8d71455f1f4bbd2fbe510edb03786c",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TextRenderingModule.dll",
+      "bytes": 10752,
+      "sha256": "d56b6648a06fb83968900c785fc1c5c849f99d2798224a8a4a754416874902e2",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TextRenderingModule.pdb",
+      "bytes": 9304,
+      "sha256": "b2fe82f77d3d800de6d7411cbfac8fee46c7f2bf68574ebb289b8d00c509329f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TilemapModule.dll",
+      "bytes": 17920,
+      "sha256": "07060a29351356196823d2907e764771245966c56feebf58d43afcd4238548a2",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TilemapModule.pdb",
+      "bytes": 12792,
+      "sha256": "9198066892811b0b42090ad1b1fc3eaa06cf6bb928c5cf2c5fd5f6ab7dededba",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UIElementsModule.dll",
+      "bytes": 13312,
+      "sha256": "76f9e2eb5c7d677dabf04ea80fc3304b82cdc9547c9b1c11b6ef8f2eab960891",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UIElementsModule.pdb",
+      "bytes": 10816,
+      "sha256": "6c635cfbb8ee9b0db40e3d8323170d83df8a2a846109ddfa3a9d1f27e2b7da9a",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UIModule.dll",
+      "bytes": 11264,
+      "sha256": "9049740f80ed0b72fb252d0f43c19f2813a40ec8cb04f482b5d252660d14afc3",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UIModule.pdb",
+      "bytes": 9484,
+      "sha256": "7a0291a30da78db2e09bb2686691eaf73d13f0ce8891ccb8f3dc97eb7ff19733",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityAnalyticsModule.dll",
+      "bytes": 12288,
+      "sha256": "0ec4ab8690230a5a15f1a7bac96f2bedf26592c3ea611ab79d01347664a5ec22",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityAnalyticsModule.pdb",
+      "bytes": 10120,
+      "sha256": "efccbbd32d4d5a1f3aa720faa6e4e49b5f0b68a2800fbd3b5548a40709267e6f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityWebRequestModule.dll",
+      "bytes": 11264,
+      "sha256": "14f8b3e6149b4fbd119f4ccb79991463e35ace016f7c86bbc53267dd721fdb09",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityWebRequestModule.pdb",
+      "bytes": 10168,
+      "sha256": "647245ddd3a779fcf77a9749d6031580bfafa1bf46c35ab91c0b44a1dde03ab8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VFXModule.dll",
+      "bytes": 15872,
+      "sha256": "0428bc049335f6f266268d1723d1b719bebafa552f69b8be83b5216d1d6b7009",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VFXModule.pdb",
+      "bytes": 11120,
+      "sha256": "bd79efd7965358499cfe1ac7c57e5a11cbd50c140aec86c3739f66e0f1556211",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VRModule.dll",
+      "bytes": 10240,
+      "sha256": "d00b25f51d64bf9ca42412b8d24acbbef891ef68053536e1db5d5cc40824d8db",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VRModule.pdb",
+      "bytes": 9476,
+      "sha256": "3a70fd218932f5c95b6dffe93f30e24a89b3fab0d34c30369c597130036c9af2",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VideoModule.dll",
+      "bytes": 13824,
+      "sha256": "1c6ff9c5bfc62ab16f50270c09d015f8639add0cfd923860449c35db4aefa645",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VideoModule.pdb",
+      "bytes": 10076,
+      "sha256": "4283e20c05e7fdcd195b0c76faf19979dd62d11d2e6d7d5bcfbef7c31d2ae583",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.XRModule.dll",
+      "bytes": 21504,
+      "sha256": "6e370e5d558a2821d0163cb83461f50b01a9d6b6e8a9d65ce58174a44a707624",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.XRModule.pdb",
+      "bytes": 12964,
+      "sha256": "0fbef403bfaf7977f27c84a498ad72265146e90560f782ea5ea7a09958e28d92",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.dll",
+      "bytes": 33280,
+      "sha256": "490a7032e3862ae755890135ebfe3a2d24096078687665b0b95ce0ca71f43e8c",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.pdb",
+      "bytes": 11164,
+      "sha256": "30fdbf22bd84e45308c52ba8cac49cfe7503ab42539ca0adc15fae538e5389a6",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-off/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/mscorlib.dll",
+      "bytes": 1756160,
+      "sha256": "1ea6891055a7b565d7c48dbd17d9db3b821d82bdd9429cefc15bcdf6508b3eba",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib",
+      "bytes": 19086198,
+      "sha256": "14a0227601391fc2c8eba226f97829bd87892b3aa1b4576bbbf766356fa09e7e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Frameworks/UnityPlayer.dylib",
+      "bytes": 84080846,
+      "sha256": "417339d1c2d2b7bff00e30ac0f7cf0f25ed8918e1511c2340ca756090bb92c5f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Info.plist",
+      "bytes": 1526,
+      "sha256": "e9ad39b737602742b858da53c5854346aa208bad9aab82f9ec7826bc8d621064",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+      "bytes": 50498,
+      "sha256": "523bfc875d5e69200d6556a103a44832270dc0c1d884536d5c08421c2e271d29",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/Resources/unity_builtin_extra",
+      "bytes": 394712,
+      "sha256": "1298fd4a0d4c2b7e9901147467d903c4197524fa5499a655f19e88b970209949",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/RuntimeInitializeOnLoads.json",
+      "bytes": 325,
+      "sha256": "c9814f50cf354dd258939e3babb341ca18b1c8564c13817923cc2970dc3dd4c6",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/ScriptingAssemblies.json",
+      "bytes": 2686,
+      "sha256": "3ce80d972f10bc0b988b3bf6f13c5b272df978c5be59f5bc320165056ec33005",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/app.info",
+      "bytes": 29,
+      "sha256": "33d6509afdff0df7371b0c872fce745505a0f1b7863b517c2ae8496bbd74e4a8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/boot.config",
+      "bytes": 280,
+      "sha256": "fdb51d9f3686bba043fbc51c0d0ba60eafa8bd0731ca914971f925fc9cb60314",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/globalgamemanagers",
+      "bytes": 29452,
+      "sha256": "b3fa39109719e64e52a8661ff3543c2e06536ff531c2ff9e9a8b195a88e484ea",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/globalgamemanagers.assets",
+      "bytes": 31944,
+      "sha256": "0016d1e84c8a574af08da41cfff5e165fd02838669b90effb59bf6f63d547205",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/globalgamemanagers.assets.resS",
+      "bytes": 2798288,
+      "sha256": "ebf0f91664c0aa69e3b92e93d4d4e6feae1a9152529b0efeac047e3c9c3b0fc0",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/il2cpp_data/Metadata/global-metadata.dat",
+      "bytes": 2003600,
+      "sha256": "a386742bb18d51be6688376066581ddd2088762804c915b95f3fdc4a9217dd92",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/il2cpp_data/Resources/mscorlib.dll-resources.dat",
+      "bytes": 337563,
+      "sha256": "c5baa176a5b72cd545266340e42102d393a5e43d38c95796bc828918bb95277f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/level0",
+      "bytes": 756,
+      "sha256": "3303191d249d4e6c6c3a2518549f77095b29aa8673f6267eb7ac85893fdf8beb",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/sharedassets0.assets",
+      "bytes": 7984,
+      "sha256": "790f845a128ca95900ad9c4f9bcbc00dd67b6ea46d3795840356ffab4378c644",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/DefaultPreferences.plist",
+      "bytes": 254,
+      "sha256": "5bda0e246a5618951ae91bb7ee342dd2b4a6e8918e3976644313c16aa483d262",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/MainMenu.nib/designable.nib",
+      "bytes": 5071,
+      "sha256": "57188221ba9dc889be4c9e03f0c867bce820726491e32a2fa4928681f006f308",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/MainMenu.nib/keyedobjects.nib",
+      "bytes": 4792,
+      "sha256": "1fae5b7c6ee9b17a767b1636867a41b3e44eaf8f654b1c5e2cafa3261463104d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/PrivacyInfo.xcprivacy",
+      "bytes": 81,
+      "sha256": "0a513a93916b158eaa3af7311e84eac43604ac52a6530afb33184a77805c0970",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/Resources/unity default resources",
+      "bytes": 699648,
+      "sha256": "bd223ee2d9b197d60a95251ecb17c35ed081d1741b699f2f8014387a1366f9c5",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated.app/Contents/_CodeSignature/CodeResources",
+      "bytes": 7127,
+      "sha256": "c8c9f8868f26cc090dc05e498c5c09b8d04976ef3ae90ac2e03833b23d556d7d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/A.dll",
+      "bytes": 2048,
+      "sha256": "ae5984eba05b9482adabf4b1ed31cc59b97c906e0254fbc89a3d021d604a1dd9",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Assembly-CSharp.dll",
+      "bytes": 26112,
+      "sha256": "13a3b084d39697cd1c81d0dc611b71144fffcaa97f5dd4dfd2f6effd0cbadb2d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Assembly-CSharp.pdb",
+      "bytes": 21608,
+      "sha256": "7012d23d2fc7a004d0ee3a56299b96a6dc3cfffa5b203e9b0dc53f003900a5d2",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/B.dll",
+      "bytes": 2048,
+      "sha256": "1da0dadfc9c77c24c69d6055f742c52d7d4c058227bd5532ee93c457da91c6d0",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/HybridCLR.Runtime.dll",
+      "bytes": 21504,
+      "sha256": "22dfd94ec6cfda0a82dbd66637dd22838066339e17b2df85fea525920028a4dc",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/HybridCLR.Runtime.pdb",
+      "bytes": 18776,
+      "sha256": "f62d28dd6e9883d50c872ded813df7215815d49a2ff5a70060399f1c31d4f4b3",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Layout.dll",
+      "bytes": 2048,
+      "sha256": "59d91fd15599012f4f67575c66829ffbf67890a6605d9e61ee05054089edba06",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Methods.dll",
+      "bytes": 2048,
+      "sha256": "49e8929487f51bb8c69c28e34530d82c5e4987ae59080e1c4879e91966fbd486",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Mono.Security.dll",
+      "bytes": 8704,
+      "sha256": "05a3c6be1fde3442ce73a83d606eb3048d6cef950a98a2b59b43842c42cd7be9",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "fe9f05e06d17b6fe647c91eb6fc740b9f861f9a1ac8da10777869120e8e1251c",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.Configuration.dll",
+      "bytes": 5120,
+      "sha256": "1fad17d31f84875654f93367745e7798103430bc5ba42b1de2e1c5d865f01b5e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.Core.dll",
+      "bytes": 23040,
+      "sha256": "c15315df67effcc8211f2d18d5136f36bd863203fba110e7ee4402619682073f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.Xml.dll",
+      "bytes": 14336,
+      "sha256": "e2a51f59ce935b7624a297eb229af288a974327f573cb739c396ba049a257bae",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.dll",
+      "bytes": 176128,
+      "sha256": "4af4e43fe9d5e72fdb465c11a4fd62c96ad73b52c07baea5851a9e7def778875",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AIModule.dll",
+      "bytes": 10240,
+      "sha256": "2ad7de3cd48280a3f9d4c4b3ad6ba5c3681f3345c887af1238040f057730e460",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AIModule.pdb",
+      "bytes": 9232,
+      "sha256": "709d341cb9bc0b07ff701344ab9cf26923266f350c5cd0fdd6215be78283231e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AndroidJNIModule.dll",
+      "bytes": 46592,
+      "sha256": "dbddf3b983bc4a84835f9698807096360103b3ecd9d858af6917e6d4ac87b7eb",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AndroidJNIModule.pdb",
+      "bytes": 27752,
+      "sha256": "0dc2962b0f2dfde361fd8ba947422604add40091b13aa33a7285c0c8d3d56b98",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AnimationModule.dll",
+      "bytes": 20992,
+      "sha256": "f867fdfbb55eebf45283733c42d7876deea610c3d81df794517288f748fb2867",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AnimationModule.pdb",
+      "bytes": 12792,
+      "sha256": "d4b743ae9fc0bc446c4898e5d8c73974e103d431ab666c68a0da5fe916f45264",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AssetBundleModule.dll",
+      "bytes": 10240,
+      "sha256": "b052d98adbaab195b774bbf85f9749fe9a7c82ac89ce1300f185e36f3c57ec51",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AssetBundleModule.pdb",
+      "bytes": 8904,
+      "sha256": "7c5d42081d2691b29c8c488b235d095d041c43f99981222994f27cbdc2626e1e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AudioModule.dll",
+      "bytes": 13312,
+      "sha256": "64bfb6343a6a98a6ad46c5a5609f75a09758d14d35d251d4ceb5c1f8f4ed728f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AudioModule.pdb",
+      "bytes": 10240,
+      "sha256": "6cdb40a8f707b3ca0e02da6232cd9147225b5065f08a82423677700477c29b62",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.CoreModule.dll",
+      "bytes": 215040,
+      "sha256": "cda577972b13ce48f8456ac0c4bf22e6d7397fdb65823ebb819645e5e8742bb1",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.CoreModule.pdb",
+      "bytes": 80792,
+      "sha256": "cb0ca18a2b1da98732e4a2bbc6a1dbfee426adbf01f116e0c76d5bd3494f1513",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.DirectorModule.dll",
+      "bytes": 10240,
+      "sha256": "2d6115c5e5f603d1af81298fceff2114597af071fc9506bb1809471bf8c61c5e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.DirectorModule.pdb",
+      "bytes": 9460,
+      "sha256": "716bf8a2d640faa19acfaac6cf601b0a49a5040633dd4194bddf2b2c0921f1be",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.GameCenterModule.dll",
+      "bytes": 19456,
+      "sha256": "3b49ea42411826f76359810dd45330a39336462dc420334a5f660448ca3b5f7f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.GameCenterModule.pdb",
+      "bytes": 12728,
+      "sha256": "b5798ef9beddee25c7a515e75d31831ccc93ae6a7cddbc23a3622e4a0aa782e4",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.GridModule.dll",
+      "bytes": 10240,
+      "sha256": "9ea01b96151251386acd86ce54bcdb38057e2696370473b388bde4a6fbaff6b3",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.GridModule.pdb",
+      "bytes": 9104,
+      "sha256": "1998571d97c98ccd4ec55a72746562e83e528dd83d4be6dd955e58bb9df525f3",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.IMGUIModule.dll",
+      "bytes": 49152,
+      "sha256": "f123ce5e296c59d4815b1467e54ee1a52357498de6ea5d1f4e055189163c1a87",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.IMGUIModule.pdb",
+      "bytes": 26768,
+      "sha256": "32fbbd0b248305108c07ccd0d01aa3336e666f94b49c5be78ab03255f470cdcd",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.InputLegacyModule.dll",
+      "bytes": 14336,
+      "sha256": "e521b80900013674fe320a870328aac43a5d955efdfe288a0b80a8a0489452dd",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.InputLegacyModule.pdb",
+      "bytes": 10936,
+      "sha256": "4be680ee46165af0173b4ed767b09f3ec88436c6544cf0194c2ef9341526e3ff",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.InputModule.dll",
+      "bytes": 11264,
+      "sha256": "c1e8e3c0fbaa8b3bbec976ee334ff6ebfaeeb58f5ee4e32320c68cc6f44a037d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.InputModule.pdb",
+      "bytes": 9652,
+      "sha256": "8e6f33fb93de65985ad939628ade6b07890a11b0391bed9d9f032ff519f48615",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.JSONSerializeModule.dll",
+      "bytes": 11264,
+      "sha256": "c19305781fc48cdff5409b509b2301ac99e6b4d344a06f68fc60f8c2b30ca9d3",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.JSONSerializeModule.pdb",
+      "bytes": 9380,
+      "sha256": "a926a45059fab9e927eb720a724d2335bdd0652b8e5d7e35c782d9a04238a3cf",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.ParticleSystemModule.dll",
+      "bytes": 13824,
+      "sha256": "9db7ef1aa73bc64b57d140d411caa51284bfe02064b9622786632a6cca250929",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.ParticleSystemModule.pdb",
+      "bytes": 10196,
+      "sha256": "3c6e6c495287e45f24f0cec75c8919733e4d554943e32a9ac1c16e46d228bcbf",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.Physics2DModule.dll",
+      "bytes": 16896,
+      "sha256": "a904fe0fb190444f47d38d0d775d6cdd9d96427e462980c0673e6d2365d698f2",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.Physics2DModule.pdb",
+      "bytes": 10724,
+      "sha256": "d8983b5ee4f99ff09bf0f180755fc60f40a53f25e62f82bfe06f5fce5841388e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.PhysicsModule.dll",
+      "bytes": 23040,
+      "sha256": "faf718931a0165137e1ccf1028c07577432c5d1e8d302434702ea49d0ece790d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.PhysicsModule.pdb",
+      "bytes": 13284,
+      "sha256": "d32eafb566417b454d66c8cab87fdcdd244bf6b5b608070d454380f21e478592",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.PropertiesModule.dll",
+      "bytes": 46592,
+      "sha256": "662f771e4a8e77fea3f2fd3f6e821ded876829cd7cc8230366b4e8fd9378feeb",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.PropertiesModule.pdb",
+      "bytes": 22428,
+      "sha256": "bae1c69bc1dd8e36e9e141d576ced5cf2f92a1baea88e079c3ccb96d9b24a4b0",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.SharedInternalsModule.dll",
+      "bytes": 16384,
+      "sha256": "974c95fd892c8f592516e9c14a072b917922e8387a8e0b31c72cb988d40f8c07",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.SharedInternalsModule.pdb",
+      "bytes": 11584,
+      "sha256": "7ea0540242e12974958decdc4ae782658a4f5d58e53589122439c174e3721c3d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.SubsystemsModule.dll",
+      "bytes": 13824,
+      "sha256": "666dbce0c19385c195b6b7c6b51423cdddf146a27682a730b85055d779dc4fff",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.SubsystemsModule.pdb",
+      "bytes": 11016,
+      "sha256": "9664a0b990216959e8f01a7bec2074dd9a8ceba5774a3b549c05c613cdc29681",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TerrainModule.dll",
+      "bytes": 17920,
+      "sha256": "a3cc51b14ddf95e2147e5a33b720647eb89d4740a1b7b61e8bde5f99f3c83dac",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TerrainModule.pdb",
+      "bytes": 12424,
+      "sha256": "a9a45bddbd49c0f6dfb9df51be31bf0f8b8d71455f1f4bbd2fbe510edb03786c",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TextRenderingModule.dll",
+      "bytes": 10752,
+      "sha256": "d56b6648a06fb83968900c785fc1c5c849f99d2798224a8a4a754416874902e2",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TextRenderingModule.pdb",
+      "bytes": 9304,
+      "sha256": "b2fe82f77d3d800de6d7411cbfac8fee46c7f2bf68574ebb289b8d00c509329f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TilemapModule.dll",
+      "bytes": 17920,
+      "sha256": "07060a29351356196823d2907e764771245966c56feebf58d43afcd4238548a2",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TilemapModule.pdb",
+      "bytes": 12792,
+      "sha256": "9198066892811b0b42090ad1b1fc3eaa06cf6bb928c5cf2c5fd5f6ab7dededba",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UIElementsModule.dll",
+      "bytes": 13312,
+      "sha256": "76f9e2eb5c7d677dabf04ea80fc3304b82cdc9547c9b1c11b6ef8f2eab960891",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UIElementsModule.pdb",
+      "bytes": 10816,
+      "sha256": "6c635cfbb8ee9b0db40e3d8323170d83df8a2a846109ddfa3a9d1f27e2b7da9a",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UIModule.dll",
+      "bytes": 11264,
+      "sha256": "9049740f80ed0b72fb252d0f43c19f2813a40ec8cb04f482b5d252660d14afc3",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UIModule.pdb",
+      "bytes": 9484,
+      "sha256": "7a0291a30da78db2e09bb2686691eaf73d13f0ce8891ccb8f3dc97eb7ff19733",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityAnalyticsModule.dll",
+      "bytes": 12288,
+      "sha256": "0ec4ab8690230a5a15f1a7bac96f2bedf26592c3ea611ab79d01347664a5ec22",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityAnalyticsModule.pdb",
+      "bytes": 10120,
+      "sha256": "efccbbd32d4d5a1f3aa720faa6e4e49b5f0b68a2800fbd3b5548a40709267e6f",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityWebRequestModule.dll",
+      "bytes": 11264,
+      "sha256": "14f8b3e6149b4fbd119f4ccb79991463e35ace016f7c86bbc53267dd721fdb09",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityWebRequestModule.pdb",
+      "bytes": 10168,
+      "sha256": "647245ddd3a779fcf77a9749d6031580bfafa1bf46c35ab91c0b44a1dde03ab8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VFXModule.dll",
+      "bytes": 15872,
+      "sha256": "0428bc049335f6f266268d1723d1b719bebafa552f69b8be83b5216d1d6b7009",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VFXModule.pdb",
+      "bytes": 11120,
+      "sha256": "bd79efd7965358499cfe1ac7c57e5a11cbd50c140aec86c3739f66e0f1556211",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VRModule.dll",
+      "bytes": 10240,
+      "sha256": "d00b25f51d64bf9ca42412b8d24acbbef891ef68053536e1db5d5cc40824d8db",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VRModule.pdb",
+      "bytes": 9476,
+      "sha256": "3a70fd218932f5c95b6dffe93f30e24a89b3fab0d34c30369c597130036c9af2",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VideoModule.dll",
+      "bytes": 13824,
+      "sha256": "1c6ff9c5bfc62ab16f50270c09d015f8639add0cfd923860449c35db4aefa645",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VideoModule.pdb",
+      "bytes": 10076,
+      "sha256": "4283e20c05e7fdcd195b0c76faf19979dd62d11d2e6d7d5bcfbef7c31d2ae583",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.XRModule.dll",
+      "bytes": 21504,
+      "sha256": "6e370e5d558a2821d0163cb83461f50b01a9d6b6e8a9d65ce58174a44a707624",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.XRModule.pdb",
+      "bytes": 12964,
+      "sha256": "0fbef403bfaf7977f27c84a498ad72265146e90560f782ea5ea7a09958e28d92",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.dll",
+      "bytes": 33280,
+      "sha256": "490a7032e3862ae755890135ebfe3a2d24096078687665b0b95ce0ca71f43e8c",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.pdb",
+      "bytes": 11164,
+      "sha256": "30fdbf22bd84e45308c52ba8cac49cfe7503ab42539ca0adc15fae538e5389a6",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/builds/candidate-release/R03Isolated_BackUpThisFolder_ButDontShipItWithYourGame/Managed/mscorlib.dll",
+      "bytes": 1756160,
+      "sha256": "1ea6891055a7b565d7c48dbd17d9db3b821d82bdd9429cefc15bcdf6508b3eba",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/evidence.tar.gz",
+      "bytes": 123369937,
+      "sha256": "8041ec719c46a2310656e074064b029eb5c3e372f96d1b3910f9ed34f758f4b0",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/ir-side-effect/Methods.dll",
+      "bytes": 2048,
+      "sha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/player-fixtures/baseline/A.dll",
+      "bytes": 2048,
+      "sha256": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/player-fixtures/baseline/B.dll",
+      "bytes": 2048,
+      "sha256": "7aa63a4c814eacecbb633b06d687b9a28f97fc73ddb577e73bb6444ac2669a2b",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/player-fixtures/baseline/Layout.dll",
+      "bytes": 2048,
+      "sha256": "3adcc44417c6f9c9f0a2a2c255b020746ff24c598dfef67e64f120dea4be13f8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/player-fixtures/baseline/Methods.dll",
+      "bytes": 2048,
+      "sha256": "56af53c3165cc28144095b4aa08d2dfbaa5403da2a40c1137114f1e0e9cf3ce8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/player-fixtures/baseline/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "7627f977735e56e029d1d823bea46d2362134bd9f01c3086cca9c1afd7c9096e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/player-fixtures/interface/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "736f525b05694a577dc2cc6b5d94d2ebe10954d53f51f71e87cc7c2d1297dd40",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/player-fixtures/primitive/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "d189a952e9973a729b18e9791b808dc650f793817a19d89ab0e6523b3e444d36",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/player-fixtures/private-reference/Layout.dll",
+      "bytes": 2048,
+      "sha256": "76624b0cce75a1f282f6e7b8bebbd81192c3a6c2b698d9aedba4ab95cde6ee25",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/player-fixtures/removal/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "69e3334c6d74dff9013a362c1caa3a0bc9bb5930ac1b11265b9ea7c09ff02602",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/player-fixtures/reversal/A.dll",
+      "bytes": 2048,
+      "sha256": "c13b628d870be6d2ddab6f5dcd78a27f529f9e446488036cd2c1c889a9346f69",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/player-fixtures/reversal/B.dll",
+      "bytes": 2048,
+      "sha256": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/player-fixtures/true-cycle/A.dll",
+      "bytes": 2048,
+      "sha256": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/player-fixtures/true-cycle/B.dll",
+      "bytes": 2048,
+      "sha256": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/player-fixtures/value/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "fa1f7473db2655adcb2a012c0cb29d1181cbae21bc19020abf14d4c39772825e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/host/player-fixtures/virtual-slot/Methods.dll",
+      "bytes": 2048,
+      "sha256": "c21598ce556646601cbbc55e80c0c4f42603d68ca8861d084b4b3fd748a4d144",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-debug/Assets/Fixtures/A.dll",
+      "bytes": 2048,
+      "sha256": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-debug/Assets/Fixtures/B.dll",
+      "bytes": 2048,
+      "sha256": "7aa63a4c814eacecbb633b06d687b9a28f97fc73ddb577e73bb6444ac2669a2b",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-debug/Assets/Fixtures/Layout.dll",
+      "bytes": 2048,
+      "sha256": "3adcc44417c6f9c9f0a2a2c255b020746ff24c598dfef67e64f120dea4be13f8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-debug/Assets/Fixtures/Methods.dll",
+      "bytes": 2048,
+      "sha256": "56af53c3165cc28144095b4aa08d2dfbaa5403da2a40c1137114f1e0e9cf3ce8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-debug/Assets/Fixtures/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "7627f977735e56e029d1d823bea46d2362134bd9f01c3086cca9c1afd7c9096e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-off/Assets/Fixtures/A.dll",
+      "bytes": 2048,
+      "sha256": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-off/Assets/Fixtures/B.dll",
+      "bytes": 2048,
+      "sha256": "7aa63a4c814eacecbb633b06d687b9a28f97fc73ddb577e73bb6444ac2669a2b",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-off/Assets/Fixtures/Layout.dll",
+      "bytes": 2048,
+      "sha256": "3adcc44417c6f9c9f0a2a2c255b020746ff24c598dfef67e64f120dea4be13f8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-off/Assets/Fixtures/Methods.dll",
+      "bytes": 2048,
+      "sha256": "56af53c3165cc28144095b4aa08d2dfbaa5403da2a40c1137114f1e0e9cf3ce8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-off/Assets/Fixtures/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "7627f977735e56e029d1d823bea46d2362134bd9f01c3086cca9c1afd7c9096e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-release/Assets/Fixtures/A.dll",
+      "bytes": 2048,
+      "sha256": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-release/Assets/Fixtures/B.dll",
+      "bytes": 2048,
+      "sha256": "7aa63a4c814eacecbb633b06d687b9a28f97fc73ddb577e73bb6444ac2669a2b",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-release/Assets/Fixtures/Layout.dll",
+      "bytes": 2048,
+      "sha256": "3adcc44417c6f9c9f0a2a2c255b020746ff24c598dfef67e64f120dea4be13f8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-release/Assets/Fixtures/Methods.dll",
+      "bytes": 2048,
+      "sha256": "56af53c3165cc28144095b4aa08d2dfbaa5403da2a40c1137114f1e0e9cf3ce8",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-release/Assets/Fixtures/R03Contract.dll",
+      "bytes": 2048,
+      "sha256": "7627f977735e56e029d1d823bea46d2362134bd9f01c3086cca9c1afd7c9096e",
+      "reason": "Exact binary/archive retained locally; published original hashes/receipts, no archive rewrite"
+    }
+  ],
+  "coreArchive": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/evidence.tar.gz",
+    "bytes": 123369937,
+    "sha256": "8041ec719c46a2310656e074064b029eb5c3e372f96d1b3910f9ed34f758f4b0"
+  },
+  "coreArchiveContentUploaded": false,
+  "coreArchiveModified": false,
+  "externalSDK": "/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03N-after-M-6f28",
+  "vendorSDKCompilerTreesUploaded": false,
+  "redactions": [],
+  "runtimeRetries": 0,
+  "sealClassification": "Original complete bounded local seal; checkpoint metadata is not a replacement archive"
+}

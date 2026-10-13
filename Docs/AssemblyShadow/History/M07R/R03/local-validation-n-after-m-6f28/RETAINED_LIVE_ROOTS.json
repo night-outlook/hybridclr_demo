@@ -1,0 +1,36 @@
+{
+  "roots": [
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03N-after-M-6f28",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03N-after-M-6f28",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/NativeSDK-R03N-after-M-6f28",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03N-after-M-6f28",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03IRLocal-N-after-M-6f28",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03IRLocal-N-after-M-6f28"
+  ],
+  "coreIndexExclusions": [
+    "reference-worktrees/**",
+    "bin/**",
+    "obj/**",
+    "projects/*/{Library,Temp,Logs,HybridCLRData,obj}/**"
+  ],
+  "nativeInventories": [
+    {
+      "role": "candidate-release",
+      "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+      "files": 976
+    },
+    {
+      "role": "candidate-debug",
+      "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+      "files": 976
+    },
+    {
+      "role": "candidate-off",
+      "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+      "files": 976
+    }
+  ],
+  "allRetained": true,
+  "excludedContent": "Official vendor SDK, standalone compiler/fixture binaries, complete core archive/apps and all original Library/cache roots remain locally at recorded paths"
+}
