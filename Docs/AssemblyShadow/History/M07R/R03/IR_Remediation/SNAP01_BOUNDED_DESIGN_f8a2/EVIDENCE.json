@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "kind": "SNAP01BoundedDesignEvidence",
+  "owner": "Primary Implementation",
+  "sourceBaseline": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "hybridclr_demo": "64da7e51d740d4816907a63864b9c006a9db4b85",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "0f72078711d4786dac2666c9017d952d857dd041"
+  },
+  "historicalSnap01": {
+    "result": "FAIL",
+    "collectionResult": "EvidenceCollected",
+    "semanticBatchResult": "ReturnRequired",
+    "cells": {"total": 18, "passed": 14, "failed": 4},
+    "firstFailure": {"slot": 14, "field": "finalDiagnostics", "reason": 9, "limit": 262144, "scannedPrefix": 262145, "exactFullLength": "Unavailable", "pids": [67344,67364,67373]},
+    "engine": {"pid": 67384, "completedReports": 51213, "windowMs": 500, "exit": 71, "dominantMethodFrequency": "Unavailable"},
+    "originalReleaseLogBlob": "4aee9d33f2fbb3a2605bb4ae15fc8dadd7aaf63c",
+    "historicalStatesChanged": false,
+    "fullArchiveReauditedInThisCycle": false
+  },
+  "referenceDesign": {
+    "transportVersion": "R03BoundedDiagnosticsV2",
+    "framePayloadMaximum": 65536,
+    "physicalTextLimitUnchanged": 262144,
+    "aggregateEncodedBudget": 4194304,
+    "envelopeReserve": 262144,
+    "diagnosticArtifactMaximum": 3932160,
+    "sourceFieldsPreserved": ["finalDiagnostics", "finalExecutionDiagnostics"],
+    "losslessWithinAdmittedBudget": true,
+    "arbitrarilyLargeInputsAccepted": false,
+    "hashesAreSignatures": false,
+    "nativeWriterInstalled": false,
+    "nativeSchedulerAdapterInstalled": false,
+    "originalSemanticVerifierChanged": false,
+    "existingProductSourcesChanged": false
+  },
+  "sourceSha256": {
+    "diagnostic_stream.py": "afc9d1f0fa5d9155c8d75faab4ec2c02bcc8ef8a4b3e02612834778bef113a38",
+    "test_diagnostic_stream.py": "755c0b8c9b84a6b9d614090dcce828a601752fbcb289bf90bf396d666386408c",
+    "terminal_boundary.h": "30db9f31fe1b03c404ec57069c4addfd1a01145eb6049e38505cdba6ae5102c9",
+    "test_terminal_boundary.cpp": "c67e5221c8a267cf1d81a3d487d3606fc5dc7050458b44cfa35b611e2e6488d1",
+    "run_checks.py": "3a1106b84f6f97017d3950d1c61af4ade63775afc320ea96db7ccd88399f74ef"
+  },
+  "executions": {
+    "currentContainer": {"result": "PassedWithinReferenceScope", "pythonTests": 36, "nativeScenariosPerProfile": 21, "profiles": ["strict C++17", "ASan/UBSan"], "compilerProcessRecords": 5, "sourceUnchanged": true},
+    "ci": {
+      "runId": 38435030795,
+      "sourceCommit": "1ae589ce5bc38441ff1c90eb8f632304343f7a3f",
+      "result": "success",
+      "macos": {"jobId": 115426686732, "artifactId": 11833215066, "zipSha256": "4c0385e852dfacf8942d254b3cb43dfea60c8c12e1e4e3c88615d6f6122effb3", "verifiedManifestFiles": 13, "exactZipFiles": 15, "verifiedCommandStreams": 5, "pythonTests": 36, "nativeScenariosPerProfile": 21, "resultSha256": "8aa4566a9b04654149712a070e89ac64179600c42348db22880fbd5fbc5ae11c"},
+      "ubuntu": {"jobId": 115426686915, "artifactId": 11831754726, "zipSha256": "e068424b3b83bde8e3e5230e29364524a5e58b7f70e2a14a8583d71391363d38", "verifiedManifestFiles": 13, "exactZipFiles": 15, "verifiedCommandStreams": 5, "pythonTests": 36, "nativeScenariosPerProfile": 21, "resultSha256": "b97c5d96ebef5b2cbb380ec20c0828e1cb2e6cf42d7c4dacec7333d0faffca62"},
+      "originalArtifactsDownloadedAndAuthenticated": true,
+      "sourceHashesMatchContainerAndPublishedCode": true,
+      "retentionLimited": true
+    }
+  },
+  "notRun": ["native production serializer/sink integration", "V2 original semantic verifier dispatch", "official product SDK compilation of integrated changes", "actual Unity scheduler adapter", "real GC/finalizer and restart", "fresh Local live custody", "new Player execution"],
+  "smoke": {"repo": "night-outlook/hybridclr_demo", "base": "64da7e51d740d4816907a63864b9c006a9db4b85", "branch": "codex/snap02-design-smoke-20261013-f8a2", "commit": "607315fb7eabbf6afd85ffa4145a8218f3e82ed8", "remoteReadback": "Passed", "branchRetained": true},
+  "acceptance": {"R03Accepted": false, "H2Passed": false, "qualificationApproved": false, "ReadyForHumanReviewGate": false, "fullLegacyRegressionAcceptance": false, "PureInterpreterExpansion": false, "strictHistoricalCustody": "Blocked", "independentFullStageReview": "FAIL", "independentReReview": "NotRun"},
+  "nextOwner": "Primary Implementation",
+  "newLocalRuntimeAuthorized": false
+}
