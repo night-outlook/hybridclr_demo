@@ -207,29 +207,56 @@ class EvidenceContracts(unittest.TestCase):
 
     def test_complete_file_inventory(self):
         with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary); file = root / 'source'; file.write_text('original')
+            # Resolve only the owned positive-test fixture. On macOS the
+            # default /var/folders parent may alias /private/var/folders.
+            owned = Path(temporary).resolve(strict=True)
+            root = owned / 'inventory'
+            root.mkdir()
+            file = root / 'source'
+            file.write_text('original')
             entries = [{'path': 'source', 'size': file.stat().st_size, 'sha256': sha(file)}]
-            Batch.verify_inventory(root, entries)
+            self.assertEqual(Batch.verify_inventory(root, entries), 1)
+            # Deliberately noncanonical input must STILL be rejected by the
+            # unchanged production guard before any inventory calculation.
+            alias = owned / 'inventory-alias'
+            alias.symlink_to(root, target_is_directory=True)
+            with self.assertRaisesRegex(ContractError, 'Linked path refused'):
+                Batch.verify_inventory(alias, entries)
+            self.assertEqual(file.read_text(), 'original')
             file.write_text('modified')
-            with self.assertRaises(ContractError): Batch.verify_inventory(root, entries)
+            with self.assertRaisesRegex(ContractError, 'File changed: source'):
+                Batch.verify_inventory(root, entries)
 
     def test_inventory_addition_rejected(self):
         with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary); file = root / 'source'; file.write_text('x')
+            root = Path(temporary).resolve(strict=True)
+            file = root / 'source'
+            file.write_text('x')
             entries = [{'path': 'source', 'size': 1, 'sha256': sha(file)}]
+            self.assertEqual(Batch.verify_inventory(root, entries), 1)
             (root / 'unexpected').write_text('y')
-            with self.assertRaises(ContractError): Batch.verify_inventory(root, entries)
+            with self.assertRaisesRegex(ContractError, 'Exact file membership'):
+                Batch.verify_inventory(root, entries)
 
     def test_inventory_duplicate_rejected(self):
         with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary); file = root / 'source'; file.write_text('x')
+            root = Path(temporary).resolve(strict=True)
+            file = root / 'source'
+            file.write_text('x')
             entry = {'path': 'source', 'size': 1, 'sha256': sha(file)}
-            with self.assertRaises(ContractError): Batch.verify_inventory(root, [entry, entry])
+            self.assertEqual(Batch.verify_inventory(root, [entry]), 1)
+            with self.assertRaisesRegex(ContractError, 'Duplicate inventory path: source'):
+                Batch.verify_inventory(root, [entry, entry])
 
     def test_inventory_path_escape_rejected(self):
         with tempfile.TemporaryDirectory() as temporary:
-            with self.assertRaises(ContractError):
-                Batch.verify_inventory(temporary, [{'path': '../outside', 'size': 0, 'sha256': '0' * 64}])
+            root = Path(temporary).resolve(strict=True)
+            file = root / 'source'
+            file.write_text('x')
+            entry = {'path': 'source', 'size': 1, 'sha256': sha(file)}
+            self.assertEqual(Batch.verify_inventory(root, [entry]), 1)
+            with self.assertRaisesRegex(ContractError, 'Noncanonical inventory path'):
+                Batch.verify_inventory(root, [{'path': '../outside', 'size': 0, 'sha256': '0' * 64}])
 
 
 if __name__ == '__main__':
