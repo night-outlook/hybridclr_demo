@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03PrimaryMReturnNSourceAndHostEvidence",
+  "owner": "Primary Implementation",
+  "mHistorical": {
+    "sourceDemo": "34727adcd4296fefb0d814d2030fbd1cfb581cfe",
+    "publishedDemo": "6684615ef6c86ed29de12fb9218d7e092bedbbfb",
+    "native": "c1a6876a3801a8343123977a0e230558904fd94d",
+    "status": "FAIL",
+    "cells": {
+      "total": 18,
+      "passed": 14,
+      "failed": 4
+    },
+    "buildsPassed": 3,
+    "playersLaunched": 5,
+    "offPassed": true,
+    "beeObservationsPassed": 3,
+    "baselinePhase": 170,
+    "typePhase": 220,
+    "engine": {
+      "completedReports": 50623,
+      "elapsedMilliseconds": 500,
+      "exit": 71
+    },
+    "originalBeforeAfterCustody": "ScopedHistoricalLossStable",
+    "strictHistoricalCustody": "Blocked",
+    "retries": 0
+  },
+  "sourceChanges": {
+    "nativeProduct": {
+      "repository": "night-outlook/il2cpp_plus",
+      "commit": "3958fd6f7d4c88904f17d78e86aa48780d49c57c",
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "gitBlob": "b64d78f9195947c13773479a45bfaf9cf18a0d61",
+      "role": "Test-macro-gated real denied method/type/site/ordinal logs; business-denial behavior unchanged"
+    },
+    "nativeCurrent": {
+      "commit": "0f72078711d4786dac2666c9017d952d857dd041",
+      "deltaAfterCompiledProduct": [
+        ".github/workflows/r03-terminal-rejection.yml",
+        "tools/r03/runtime01/test_terminal_denied_trace.py"
+      ],
+      "sourceEquivalentToCompiledProduct": true
+    },
+    "demoManaged": {
+      "commit": "87e2f31449b106ad07eb745165f37275c271f460",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs",
+      "gitBlob": "a7420cbc71c13f2951c1b5330b61307d2c4da5e5",
+      "role": "Consume native full guard receipt and prebound active primitive field; original semantic checks retained"
+    },
+    "demoOverlay": {
+      "commit": "e8d7e978429261410df1a3fefb2678b0ea790027",
+      "path": "Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp",
+      "gitBlob": "2de5e4ef90eaa79daed65c3df0a8faa58ebd5837",
+      "role": "Test-only exact C++ full native guard JSON to sealed slot8; prebind valid active Methods.R03.Node.stable and pin while healthy; postterminal memcpy value"
+    },
+    "demoTest": {
+      "commit": "ee105e323c6f928294e69546ada972e4451c13ed",
+      "path": "Tools/AssemblyShadow/R03IR/test_n_guarded_receipts.py",
+      "gitBlob": "e1e3604208fc7050f233c991d359f6257a318e51",
+      "role": "Compile actual native bridge with explicit mocked VM/GC and contract negatives"
+    },
+    "demoSourceAtOfficialCi": "4a8a59571b86bef2145c70d58250098e26a6d668",
+    "demoCurrentNativePin": "0f72078711d4786dac2666c9017d952d857dd041",
+    "demoDeltaAfterOfficialCi": "Tests, documentation and source pin only; all compiled C#/C++ implementation bytes unchanged"
+  },
+  "ci": {
+    "native": {
+      "repo": "night-outlook/il2cpp_plus",
+      "run": 38337314323,
+      "head": "0f72078711d4786dac2666c9017d952d857dd041",
+      "conclusion": "success",
+      "os": [
+        "ubuntu-24.04",
+        "macos-14"
+      ],
+      "originalSourceMocks": true,
+      "realUnityExecution": false,
+      "ubuntuJob": 115100217320,
+      "macosJob": 115100217440,
+      "sourceBoundDeniedTrace": {
+        "simulatedCalls": 50623,
+        "expectedLogLines": 24,
+        "observedLogLines": 24,
+        "methodAndSiteOrdinalParsed": true,
+        "counterCapped": false
+      },
+      "archiveIdentities": [
+        {
+          "artifactId": 11784384165,
+          "sha256": "068eceb735966ffd42714369bf9179a6abade5dfb9708fb01c56c80b7dd0853b"
+        },
+        {
+          "artifactId": 11785299321,
+          "sha256": "bee8f6b41e2f876ebe8fe1cdc86086a852f8c2af9705e7e816c06045802a8f56"
+        }
+      ]
+    },
+    "demoHost": {
+      "runs": [
+        38337198369,
+        38337198355
+      ],
+      "head": "ee105e323c6f928294e69546ada972e4451c13ed",
+      "conclusion": "success",
+      "os": [
+        "ubuntu-24.04",
+        "macos-14"
+      ],
+      "hostTestsPerOS": 93,
+      "previousHostTests": 91,
+      "addedCases": 2,
+      "separateNativeSnapshotSanitizer": "Passed",
+      "testVmGcMocked": true,
+      "realUnityExecution": false,
+      "originalFirstMockFixtureFailure": "JSON literal double quoting prevented host compile in run 38337128420; corrected by ee105e; not reclassified"
+    },
+    "managedApi": {
+      "run": 38337128028,
+      "head": "4a8a59571b86bef2145c70d58250098e26a6d668",
+      "conclusion": "success"
+    },
+    "officialUnityApi": {
+      "run": 38337128067,
+      "job": 115099641681,
+      "sourceDemo": "4a8a59571b86bef2145c70d58250098e26a6d668",
+      "compiledNativeSource": "3958fd6f7d4c88904f17d78e86aa48780d49c57c",
+      "artifactId": 11784634827,
+      "artifactZipSha256": "5b9c1695bd85a8ff6fb43bb7d08dd0c7dec52d1abc2c654bc36999406a728bf7",
+      "zipMembers": 210,
+      "manifestFilesVerified": 209,
+      "nativeCompilerCommandReceiptsVerified": 56,
+      "nativeCompilerExitsAllZero": true,
+      "nativeSyntaxCasesPassed": 55,
+      "profiles": {
+        "candidate": 11,
+        "debug": 11,
+        "probe-off": 11,
+        "diagnostics-off": 11,
+        "feature-off": 11
+      },
+      "managedProductsPassed": [
+        "HybridCLR.Runtime",
+        "Unity.HybridCLR.AssemblyShadow.CodeGen",
+        "HybridCLR.Editor",
+        "R03Build",
+        "R03TerminalPlayerApi"
+      ],
+      "separateExpectedNegative": {
+        "name": "OriginalUnsignedCounts",
+        "expectedExit": 1,
+        "actualExit": 1
+      },
+      "unityEditorLaunched": false,
+      "unityPlayerRun": false,
+      "sourceEquivalenceAfterCi": "Demo implementation unchanged; only tests/docs/native pin advanced. Native product unchanged; only CI/test advanced.",
+      "auditBasis": "Downloaded original CI ZIP; verified container SHA256, all 209 manifest byte sizes and SHA256, and 56 original native command.json hashes; output/syntax results from original recorded command exits. Full current Local SDK and real linker/GC not independently tested."
+    }
+  },
+  "remaining": {
+    "engineCascadeQuiescence": "NotFixed; method/site tracing only; 1..64 in 500ms preserved",
+    "activeFieldRealPinnedHandleAndLayout": "NotRun in real Unity",
+    "baselineGuardNativeSnapshotReal": "NotRun in real Unity",
+    "freshLocalCensusCompilerAndUnity": "NotRun",
+    "nextAttempt": "N-after-M-6f28",
+    "sevenNewExternalRoots": true,
+    "actualRuntimeCells": 18,
+    "builds": 3,
+    "players": 5,
+    "retriesAllowed": false
+  },
+  "historicalStrictCustody": {
+    "status": "Blocked",
+    "originalFiles": 416844,
+    "survivorsLastM": 339367,
+    "missingLastM": 77477,
+    "historicalNativeRootsMissing": 4
+  },
+  "acceptance": {
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "pureInterpreterExpansionEnabled": false
+  }
+}
