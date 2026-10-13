@@ -1,0 +1,55 @@
+name: R03 snapshot diagnostic publication contracts
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1, codex/snapshot-publication-20261013-91b7]
+    paths:
+      - '.github/workflows/r03-snapshot-publication.yml'
+      - 'Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp'
+      - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/**'
+permissions:
+  contents: read
+jobs:
+  host:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03/
+            /Tools/AssemblyShadow/R03IR/
+            /Tools/AssemblyShadow/R03Storage/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/
+      - name: Actual snapshot writer and emitter contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/run_checks.py \
+            --repository "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/snapshot-checks"
+          git diff --check
+          git diff --exit-code
+      - name: Bind run identity
+        if: always()
+        shell: python
+        run: |
+          import json,os
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'snapshot-checks'
+          out.mkdir(exist_ok=True)
+          (out/'CI_IDENTITY.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'runnerOs':os.environ['RUNNER_OS'],'unityLaunched':False,'runtimeAcceptance':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: snapshot-diagnostics-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/snapshot-checks
+          retention-days: 14
+          if-no-files-found: warn
