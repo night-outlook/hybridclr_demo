@@ -1,109 +1,99 @@
 # SNAP-01 follow-up: native engine terminal and restart boundary
 
-Status: **architecture proposal and native executable contract only; no Unity scheduler adapter is installed.** Current owner remains Primary Implementation. This document does not claim the51500-class report cascade is repaired; the exact SNAP-01 count is **51213**. No full runtime successor is authorized by this proposal.
+Status: **architecture proposal and native executable contract only; no Unity scheduler adapter is installed.** Current owner remains Primary Implementation. SNAP-01's actual **51213 completed reports in500ms** remain a failure. This proposal authorizes no new runtime execution.
 
-## 1. Evidence and the actual missing ownership boundary
+## 1. Evidence and ownership
 
-SNAP-01 engine PID67384 reached state6→9/code13 and logged its true uncaught sentinel, logger1→1 and500ms, but completed **51213 uncapped native reports**, exiting71. All24 bounded denial samples entered Runtime::Invoke, across input/rendering/update/Canvas/NavMesh plus one Gen2 finalizer. A sampled method is not a frequency histogram and does not establish a dominant producer. The original reporter handles each rejection but does not stop Unity from scheduling another forbidden callback. The guard is doing its job; repeated handled reports are not engine quiescence.
+Engine PID67384 reached state6→9/code13 and its true uncaught sentinel/logger1→1, but exited71 after51213 uncapped native completions. All24 bounded denial samples entered Runtime::Invoke across input/rendering/update/Canvas/NavMesh and one Gen2 finalizer. Sampling does not establish a dominant method frequency. Handling each rejection does not stop Unity from scheduling another prohibited callback.
 
-Immutable authority: `../../local-validation-snap01-82bd/preflight/DIAGNOSTIC_COLLECTION.json`, `FAILURE_DIAGNOSIS.json`, `SNAP01_TERMINAL_SITE_ANALYSIS.json`, original engine request/raw/log and `Handoff/RETURN_TO_WEB.md` at demo64da7e51d740d4816907a63864b9c006a9db4b85. No prior N/M/K/I/E result changes.
+Authority: immutable `../../local-validation-snap01-82bd/preflight/DIAGNOSTIC_COLLECTION.json`, `FAILURE_DIAGNOSIS.json`, `SNAP01_TERMINAL_SITE_ANALYSIS.json`, engine request/raw/log and Local-owned `Handoff/RETURN_TO_WEB.md` at demo64da7e51d740d4816907a63864b9c006a9db4b85. No historical result is changed.
 
-The required division is:
+The architecture separates three owners:
 
-- **IL2CPP owns admission and first-failure/recovery:** it must continue to reject prohibited bodies and preserve the exact first cause.
-- **The native engine owner owns scheduling:** it must stop creating new managed callback work at a real scheduler safe point, drain or cancel owned in-flight native work according to supported semantics, and maintain required native services.
-- **The native lifecycle owner owns teardown/restart:** it must retain complete evidence and perform a real native disposition; the failing managed runtime must not be used as its own recovery controller.
+- IL2CPP preserves the exact first terminal cause/recovery and rejects prohibited managed bodies.
+- The native engine owner stops new managed callback scheduling at an authenticated safe point, resolves in-flight work and maintains required native services.
+- The native lifecycle owner preserves complete evidence and owns supported teardown/restart; poisoned managed code is not its recovery controller.
 
-Changing Runtime::Invoke to return default values for named Unity callbacks, suppressing native report increments, parking a callback thread, disabling finalizers, catching-and-continuing forever, or exiting early to avoid the full observation window does not implement these responsibilities.
+No default-value return in Runtime::Invoke, report coalescing, counter cap, callback parking/sleep, finalizer disabling or arbitrary managed-name exemption is a substitute.
 
-## 2. Public API constraints and platform decision
+## 2. Platform constraints and selected approach
 
-Primary-source references checked for Unity2022.3:
+Official Unity2022.3 references:
 
-1. [PlayerLoopSystem](https://docs.unity3d.com/2022.3/Documentation/ScriptReference/LowLevel.PlayerLoopSystem.html) describes native update/condition values as copied from GetDefaultPlayerLoop; native system parameters should not be modified. It does not document arbitrary C function pointers as a supported extension ABI.
-2. [Application.Unload](https://docs.unity3d.com/2022.3/Documentation/ScriptReference/Application.Unload.html) lists iOS, Android and UWP support, and triggers an unloading event. This does not provide the present **StandaloneOSX** candidate with a supported unload/restart boundary, nor does it prove callbacks after terminal state are safe.
-3. [Unity as a Library](https://docs.unity3d.com/2022.3/Documentation/Manual/UnityasaLibrary.html) lists Android/iOS/Windows/UWP integration and warns that native/managed plugins may require adaptation. Do not assume a UnityFramework API for a macOS standalone executable or use an iOS same-process unload claim to establish fresh-process recovery.
+1. [PlayerLoopSystem](https://docs.unity3d.com/2022.3/Documentation/ScriptReference/LowLevel.PlayerLoopSystem.html) documents native update/condition values copied from GetDefaultPlayerLoop and says native parameters should not be modified. This is not a supported arbitrary-function-pointer extension ABI.
+2. [Application.Unload](https://docs.unity3d.com/2022.3/Documentation/ScriptReference/Application.Unload.html) lists iOS/Android/UWP support and triggers unloading callbacks. It does not establish a **StandaloneOSX** terminal-control solution or safe callbacks in the poisoned runtime.
+3. [Unity as a Library](https://docs.unity3d.com/2022.3/Documentation/Manual/UnityasaLibrary.html) lists Android/iOS/Windows/UWP integration and platform limitations. Do not assume an iOS UnityFramework method for the macOS standalone executable or equate same-process unload with fresh runtime provenance.
 
-Accordingly, the selected architecture is a **source- or vendor-supported native scheduler adapter**, with a pinned implementation and explicitly reviewed safe-point, thread, callback-drain, maintenance and lifecycle contract. No such concrete adapter has been established by this cycle. Its identity, declarations and ownership are a hard integration dependency, not a detail Local should invent.
+**Selected architecture:** a source- or vendor-supported native scheduler adapter with pinned engine/module identity, typed registration, reviewed safe point, owner thread, queue-drain and maintenance semantics. This concrete dependency has **not** been established in this cycle. Native symbols or nonzero function pointers alone are insufficient. The current four repositories have not supplied a reviewed engine-owner interface that meets these obligations.
 
-Alternatives assessed:
+Alternatives:
 
-| Approach | Disposition |
+| Route | Disposition |
 | --- | --- |
-| Verified native engine-owner gate at scheduling safe point | Selected design; requires real supported integration and evidence |
-| Managed SetPlayerLoop/quit callback after poison | Not accepted: managed entry can itself be denied and native callbacks outside the chosen loop/finalizers remain; no safe-point proof |
-| Invented native PlayerLoop pointer/private symbol interception | Rejected without supported ABI, ownership and review; symbol availability is not enough |
-| Supervisor terminates process immediately | Possible separate operational failure-containment policy, **not a passing1..64/500ms experiment**, not authorized here |
-| Counter cap/coalescing/sleeps/default return/managed-name exemptions | Rejected: conceal the failure or change guard semantics |
+| Verified native owner scheduling boundary | Selected design; actual integration still required |
+| Managed SetPlayerLoop/quit after poison | Not accepted: managed entry can be denied and no complete native/finalizer ownership is proved |
+| Invented PlayerLoop pointer or private ABI call | Rejected without supported declarations and ownership review |
+| Immediate external process termination | Possible separate operational failure containment; **not a passing1..64/500ms experiment**, not authorized here |
+| Counter suppression, delay, benign callback return | Rejected because it changes or conceals the required behavior |
 
-If supported native scheduler control is unavailable for this exact standalone target, admission to the *repaired-engine experiment* remains Blocked. Do not claim impossibility in principle, but do not substitute an unverified pointer call or fictitious acknowledgement. Primary must obtain a reviewed engine-owner integration or return an explicit platform/design decision; Local is not asked to implement it.
+If this exact platform lacks the required supported integration, repaired-engine admission stays Blocked. Primary must obtain a reviewed adapter or return a platform/design decision. Do not delegate ABI guessing, scheduler design or unreviewed binary alteration to Local.
 
-## 3. Versioned native ownership contract
+## 3. Native contract and state machine
 
-Prepare one process-lifetime coordinator while healthy, before publishing it to callback threads. Bind ABI version, exact Unity engine/platform build hash, native adapter module hash and instance, owner thread/executor, run/request/nonce/PID, native state generation and evidence descriptors. Function pointers must come from a typed, authenticated registration by the actual owner—not string lookup or a managed delegate created after failure. A SHA-256 digest alone is not proof that an arbitrary pointer is trustworthy.
+Prepare a process-lifetime coordinator while healthy. Bind ABI version, engine/platform build, adapter module and instance, owner executor, run/request/PID/nonce, generation and preopened evidence descriptors. Registration must come from the actual typed native owner. A digest alone does not authorize arbitrary native code.
 
-Prototype: `reference/terminal_boundary.h`. It deliberately contains **no Unity call, adapter installation, thread suspension, process exit, callback sleep, counter increment suppression or method guard override**. It models the ordering and evidence obligations below. All methods except Request, State/MayScheduleManaged and the atomic late-dispatch signal are owner-thread operations; Prepare runs before concurrent publication. The implementation and tests do not certify concurrent arbitrary owner method calls.
+Prototype: `reference/terminal_boundary.h`. It contains **no Unity calls, adapter installation, OS thread suspension, process exit, managed callback, callback sleep, reporting suppression or guard override**. All operations except Request, State/MayScheduleManaged and the atomic late-dispatch signal are serialized owner-thread operations; Prepare runs before concurrent publication. It is not safe to assume arbitrary concurrent owner-method calls.
 
-States:
-
-`Unbound → Prepared → Publishing → Requested → Acknowledged → ReadyForRestart`
-
-Any invalid bound acknowledgement, time/counter regression, unexpected managed dispatch, incomplete maintenance/evidence or failed full-window bound leads to `Failed`. There is no recovery to Prepared in the same instance. Publishing prevents consumers reading partially initialized first-failure metadata; concurrent Request losers cannot overwrite the first cause/generation/time. Unsupported/unbound state cannot admit a repaired runtime launch.
+States: `Unbound → Prepared → Publishing → Requested → Acknowledged → ReadyForRestart`; invalid authenticated transition/evidence leads to `Failed`. No return to Prepared in the same instance. Publishing keeps readers away from incomplete first-failure metadata; concurrent Request losers cannot overwrite cause/generation/time. Unbound cannot admit a repaired runtime experiment.
 
 ### A. Healthy preparation
 
-Keep the original Player loop and guards unchanged until a supported owner registration has been authenticated. Prepare complete capture buffers/output descriptors and preserve old source/app/SDK identity. Record the uncapped native reporting counter **before the genuine trigger**. No managed helper becomes an implicit post-terminal allowlist.
+Authenticate the actual owner and preserve the original loop/guards. Preallocate bounded capture/output/hash state and establish existing precise pinned objects. Bind the source/app/SDK and original uncapped reporting counter **before the genuine trigger**. No new managed terminal allowlist.
 
-### B. Terminal request on the rejection/report path
+### B. Request from the rejection/reporting path
 
-After the actual native terminal state and first recovery are published, latch a single fixed-size request with cause, generation and monotonic origin time. This path performs only bounded lock-free publication; it must not acquire engine/metadata/GC locks, allocate, call Unity, format managed data or wait for another thread. Wakeup must use an already prepared native signaling mechanism whose safety on this callback thread is documented. Report and return/unwind according to the unchanged guard/report behavior.
+After publishing the genuine native terminal state and first recovery, latch one fixed-size request. No engine/metadata/GC lock, allocation, Unity call or wait on this path. A native wakeup may use only a previously prepared mechanism documented safe for the calling thread. Unwind existing frames normally; do not longjmp through C++ destructors or fabricate already-dispatched method results.
 
-The observation starts at the original genuine failure/report event; it does **not** restart after quiescence acknowledgement to hide the transition's report burst. Counters are read from the original CompletedCounter; no derived or saturated counter replaces it.
+The500ms window starts at the original failure/report event, **not at acknowledgement**. Do not discard the transition's burst. Counts come from the original CompletedCounter.
 
-### C. Scheduler safe-point ownership transfer
+### C. Real scheduler acknowledgement
 
-At the owner-controlled scheduling boundary, stop **admission of new managed callback work**, not the execution guard itself. Existing stack frames must unwind through their original ABI; do not longjmp across engine/C++ destructors or fabricate results for already-dispatched methods. Complete/cancel in-flight native jobs according to the actual scheduler contract. Drain render/input/physics/async callbacks through supported cancellation mechanisms. Verify all participating queues and active managed-dispatch counts, including non-main-thread producers.
+At an owner-controlled safe point, close admission of new managed callback work. Resolve already-admitted work according to documented scheduler semantics; account for main-thread and worker queues, render/input/physics/async producers and in-flight callbacks. No variable in a plugin is proof that Unity stopped scheduling.
 
-Only the authentic owner can publish acknowledgement for the exact run/generation/epoch after no new managed dispatch is being admitted and all prescribed in-flight work is resolved. A bool in the plugin is not evidence that the engine obeyed it. Required receipt: adapter build/instance, owner thread, safe-point epoch, queue disposition, in-flight counts, generation, monotonic clock, actual counter, and preserved first recovery.
+Only the verified owner acknowledges the exact run/generation/epoch after in-flight managed dispatch is resolved. Receipt includes adapter source/module/instance, thread, safe-point epoch, queue disposition, in-flight counts, time/counter and first recovery. `MayScheduleManaged` is a scheduler interface obligation, **not a Runtime::Invoke default-return implementation**.
 
-`MayScheduleManaged` in the prototype is an interface obligation for that scheduler. It is **not** added to Runtime::Invoke as a mechanism for returning benign values after a method was already requested.
+### D. Full observation with native maintenance
 
-### D. Native maintenance during the complete500ms observation
+Maintain OS/control responsiveness, native diagnostic I/O, required GC cooperation and lifecycle synchronization without executing arbitrary managed business/logger bodies. Preserve the finalizer worker and its original guards. If native maintenance unavoidably requires prohibited managed execution, classify the adapter Unsupported/Failed and redesign; do not exempt a finalizer by name.
 
-Run the owner's supported native maintenance path. It must keep OS event/control responsiveness, native diagnostic I/O, required GC cooperation and shutdown synchronization functioning without running arbitrary managed business/logger bodies. Maintain original finalizer and class/method guards; do not disable the finalizer worker. If necessary maintenance unavoidably requires forbidden managed work under this runtime policy, mark the integration Unsupported/Failed and redesign it rather than exempt a method name.
+Require authenticated epoch and sequential monotonic maintenance pulses, no late managed admission, nondecreasing original report counts, complete durable diagnostics and the full500ms. The model's mask0x0f and timestamps are **synthetic inputs**, not independent proof of real maintenance. A concrete adapter must observe and authenticate those services; merely setting the mask is not acceptance.
 
-The prototype requires an authenticated epoch, monotonic sequential maintenance pulses, no post-request managed admission, no report counter rewind, a durable complete snapshot, and the full500ms interval. Its maintenance bitmask is **only a model input**; real integration must independently observe the services rather than set mask0x0f to make a test pass. Likewise its timestamps are synthetic test inputs, not proof of wall-clock progress.
-
-At window completion read the original uncapped CompletedCounter and require the unchanged **1..64** delta, exact sentinel and logger1→1, healthy GC31, first state6→9/code13 and recovery. Counts65 or51213 remain failure. A missing ack, dead native pump, early exit, callback sleep or native-fatal cannot become success. The transition itself must meet the bound; do not ignore pre-ack reports.
+At the end require unchanged1..64 actual completed reports, exact sentinel/logger1→1/GC31/state6→9/code13/recovery, and all original ON/OFF assertions. Counts65 or51213 remain failure. Missing acknowledgement, native-pump stall, early exit, sleeps or native-fatal cannot pass. The transition's reports count too.
 
 ### E. Evidence commit and restart
 
-Durably finish the complete raw envelope/diagnostic stream and external command/process receipts. `ReadyForRestart` requires those exact hashes and fsync success; it is a bounded coordinator state, not full R03 acceptance or proof of clean teardown. The selected standalone deployment should transfer restart intent to an authenticated native supervisor and create a **fresh process/runtime generation** only after the old instance's lifecycle disposition is independently recorded. Never reload a poisoned managed runtime and call it a new process. Preserve original source manifest and freshly bound app/PID/nonce; startup dependency validation must run again.
+Durably finish the complete envelope/diagnostic artifact and source/PID-bound command records. ReadyForRestart requires exact hashes and fsync completion but **is not proof of clean teardown**. Transfer restart to an authenticated native supervisor only after the old instance's native disposition is recorded. Prefer a fresh process/runtime generation for the standalone candidate; do not label a poisoned same-process reload fresh. Revalidate source manifest and new app/PID/nonce on startup.
 
-The prototype's BindRestart only rejects same PID/run identities. It does not spawn, tear down, prove address-space replacement, authorize new business logic or certify normal finalizer cleanup. The real supervisor/engine handshake and fresh-process proof remain Primary implementation work. On a lifecycle error preserve Failed/ReturnRequired; operational emergency termination is not a passing acceptance result.
+The prototype's BindRestart only rejects same PID/run identities. It neither spawns nor tears down, proves address-space replacement, approves normal finalizer cleanup or starts new business logic. Real supervisor/lifecycle implementation remains Primary work. Emergency termination remains a failure-containment record, not acceptance.
 
-## 4. Interactions with diagnostic transport and original assertions
+## 4. Interaction with diagnostics and test activation
 
-Lossless diagnostic generation must capture a complete coherent final state without depending on newly denied managed formatting, reflection or file operations. Use the proposed native stream design only after its producer/sink/consumer review. An authenticated summary or prefix is not enough. Pre-poison42/42, stable0→2/readable2, baseline code21/type13, actual reflection/delegate/AOT rejections, unchanged canary and first/final recovery, physical reporting mask15/OFF0 and complete JSON/verifier remain mandatory.
+Use the lossless native stream only after producer/capture/filesystem/verifier integration review. No summary/prefix substitutes for complete slot14/15 data. Retain original25 integers, control fields, guard slot8,42/42, stable0→2/readable2, causes21/13, actual reflection/delegate/AOT denial/no side effects, stable canary/recovery, GC31 and mask15/OFF0.
 
-The caught baseline/type cases and the engine-uncaught case must remain distinct. Caught diagnostic probes must not inadvertently activate a platform restart while the test still needs final field/recovery observations. Activation therefore needs a prearmed **experiment/deployment policy** with a source-bound route and exact terminal ownership classification, not arbitrary inspection of method names or exception strings. Production must eventually define whether all terminal causes mandate immediate ownership transfer; current diagnostic fixtures cannot silently stand in for that policy.
+Caught baseline/type probes and the engine-uncaught case have distinct observation lifetimes. A platform restart must not destroy required caught-case field/recovery evidence. Activation needs a **prearmed, source-bound experiment/deployment policy** and exact ownership classification—not exception text or arbitrary method-name inspection. Eventual production policy for every terminal cause remains separately reviewed; diagnostic fixtures do not define production recovery by accident.
 
-No additional sixth Player, new engine stimulus, smaller observation window or changed semantic threshold is authorized here. A future integration handoff must review any needed scope change explicitly.
+No sixth Player, additional stimulus, shorter observation or relaxed semantic threshold is authorized by this design.
 
-## 5. Executable model coverage and missing platform proof
+## 5. Model tests and integration gates
 
-The native21-scenario suite tests unbound rejection, exactly-once first cause, wrong owner/generation/epoch, in-flight managed work, incomplete maintenance, missing safe-point ack, early-window Pending, time/counter regression, report counts0/65/51213, inclusive64, missing durable evidence, late managed dispatch, and distinct restart identity. Sixteen concurrent request threads verify one winning publisher. It passed strict C++17 and ASan/UBSan here; these results are **synthetic contract tests**, not a real engine loop, scheduler memory model, lock-free ABI, GC or platform lifecycle test. No TSan proof is claimed.
+The21 native scenarios cover unbound rejection, single immutable first cause, wrong owner/generation/epoch, in-flight work, missing maintenance/ack, early Pending, clock/counter regression, actual0/65/51213 failure, inclusive64, missing durable output, late managed dispatch and distinct restart identities. Sixteen competing request threads have one winning publisher. Strict C++17 and ASan/UBSan passed. These are **simulated contracts**, not real Unity scheduling, GC, finalization or lifecycle proof; no TSan claim.
 
-Primary integration gates before runtime:
+Before a runtime successor, Primary must:
 
-1. Obtain and review the actual native scheduler/lifecycle declarations and implementation for exact Unity2022.3.62f2/StandaloneOSX. Record who owns the scheduler, safe point and threads. Verify legitimate ABI access and licensing/provenance. Do not ask Local to invent an interface from binary symbols.
-2. Implement one adapter, native wakeup and supervisor protocol in the owning source, with bounded memory, lock/thread ordering and unsupported-platform handling. Add build inclusion/export tests and actual interface conformance. Keep the adapter unbound when unsupported; no runtime experiment admission.
-3. Integrate the reviewed lossless transport and original semantic predicates. Add failures for unavailable scheduler, invalid ticket, stale generation, reentrant request, uncommitted output, late callback, pending native job, continued finalizer-produced reporting and failed restart handshake. No fake acknowledgements.
-4. Source-bound official managed/native compilation, paired OFF/no-request controls, actual scheduler/GC/finalizer instrumentation, and independent static review of every call on the terminal path.
-5. Only then authorize a fresh Local runtime attempt with original historical custody/storage/SDK/source and five-case acceptance gates. Observe actual quiescence and native service liveness for500ms, count all real reports and record restart separately. No reuse of SNAP-01 or N outputs.
+1. Obtain/review exact supported native engine-owner declarations and implementation for Unity2022.3.62f2/StandaloneOSX, including safe point, thread/lock context, queues, finalizer/GC maintenance and lifecycle. Record legitimate ABI/source provenance.
+2. Implement the adapter, prearmed signal, coordinator and native supervisor; provide source-backed receipt identities and unavailable-capability behavior. Keep unsupported integration unbound.
+3. Integrate complete bounded diagnostics and unchanged semantic predicates. Add real failure cases for stale tickets, continued scheduling, incomplete queue drain, finalizer-produced report overflow, partial evidence and failed restart.
+4. Complete source-bound official native/managed compilation and independent terminal-path review. Host mocks do not certify an engine interface.
+5. Separately authorize fresh Local original custody/SDK/host/compiler/storage gates and five-case runtime. Observe real500ms maintenance and uncapped counts; record restart separately. No SNAP-01/N reuse.
 
-## 6. Immediate next action
-
-This cycle delivers the requested architecture, bounded representation and executable contracts. It intentionally does **not** repeat the known-failing five-Player run or issue a fictional repaired-runtime handoff. Current owner remains Primary Implementation until native producer integration and the actual engine-owner dependency are resolved. A read-only external design review may assess these contracts, but no agent/human acceptance is inferred from the tests.
-
-All acceptance flags remain false. Historical SNAP-01/N/M/K/I/E failures and strict S custody Blocked remain immutable. Independent full-stage R03 FAIL/re-review NotRun; no H2/X02/M08A/PureInterpreter expansion or Human Review Gate approval.
+Current owner stays Primary Implementation until these gates are met. All acceptance flags false; SNAP-01/N/M/K/I/E failures and strict historical S custody Blocked remain immutable. Independent full-stage R03 FAIL/re-review NotRun; no H2/X02/M08A/PureInterpreter expansion or Human Review Gate advancement.
