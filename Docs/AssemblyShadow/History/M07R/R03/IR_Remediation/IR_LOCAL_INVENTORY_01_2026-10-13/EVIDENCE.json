@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03IRLocalInventoryFixturePrimaryCorrection",
+  "owner": "Primary Implementation",
+  "dateUtc": "2026-10-13",
+  "originalL": {
+    "sourceDemo": "fe783e101f53b2799c278ad5a1cc5a73cc9e1ad9",
+    "reportPublication": "329040279d18aa053e3af23b962e608b34c6b01f",
+    "result": "PrerequisiteBlocked",
+    "host": {
+      "total": 203,
+      "passed": 202,
+      "failed": 0,
+      "errors": 1,
+      "skipped": 0,
+      "test": "test_batch_contract.EvidenceContracts.test_complete_file_inventory"
+    },
+    "beforeCustody": "NotRun",
+    "afterOnly": {
+      "state": "ScopedHistoricalLossStable",
+      "original": 416844,
+      "verifiedSurvivors": 339367,
+      "unchangedMissing": 77477,
+      "problems": 0,
+      "originalStrictCustody": "Blocked"
+    },
+    "compilers": "NotRun",
+    "storage": "NotRun",
+    "runtime": "NotRun",
+    "unityLaunches": 0,
+    "playersLaunched": 0,
+    "attemptRetried": false
+  },
+  "sourceCorrection": {
+    "path": "Tools/AssemblyShadow/R03/test_batch_contract.py",
+    "originalGitBlob": "594eb5e1598c946ccf2e1a6f8e8bfa66349141ef",
+    "fixedGitBlob": "dc58b0ab95e1f3f5b595abfbbd04e100a41047e1",
+    "fixedSha256": "542322a4b0beb95ec8527a934920e237384ca4939122113ad5157370d933f954",
+    "originalTestMethods": 29,
+    "currentTestMethods": 29,
+    "sourceCommit": "bd29db408ba7a046695aea940a4e918602a76958",
+    "methodChanges": [
+      "test_complete_file_inventory",
+      "test_inventory_addition_rejected",
+      "test_inventory_duplicate_rejected",
+      "test_inventory_path_escape_rejected"
+    ],
+    "fix": "Resolve only owned TemporaryDirectory fixture root; assert intended membership/hash/duplicate/escape failures and explicitly construct a symlinked root negative; no global TMPDIR change",
+    "productionGuard": {
+      "path": "Tools/AssemblyShadow/R03/build_provenance.py",
+      "gitBlob": "4a9ba7240ded6ad81bcc29ada489ed26cbc2ae50",
+      "sha256": "65e1208508b232bd5ccedc0004e5c6f853055b1a2401a71ae17a56dfe04f9ed9",
+      "unchanged": true
+    },
+    "productionCodeChanged": false,
+    "fixtureDllChanged": false,
+    "storagePolicyChanged": false,
+    "acceptancePredicatesRelaxed": false
+  },
+  "ci": {
+    "isolated": {
+      "branch": "codex/r03-m-inventory-ci-20261012-f4e6",
+      "sourceCommit": "980b3c145a157126f131b403b7585aaa2d121614",
+      "runId": 38332375404,
+      "status": "completed",
+      "conclusion": "success",
+      "ubuntu": {
+        "jobId": 115084797747,
+        "artifactId": 11783113702,
+        "zipSha256": "8d665a32773bbb735bc4e06f1f30e028dc0516fc34ca2f03209dc39b86f62715",
+        "members": {
+          "full-suite.log": {
+            "bytes": 26978,
+            "sha256": "50be0304b74af45a6a7c302a4311bc2fae6296971b851561f08b10464ba96e6b"
+          },
+          "inventory.log": {
+            "bytes": 3526,
+            "sha256": "055b9edcea42c46ed5c6ba5e87abfb30e09daa494a475977ff6e30034480afa7"
+          }
+        }
+      },
+      "macos": {
+        "jobId": 115084798030,
+        "artifactId": 11783685178,
+        "zipSha256": "23c2d0e03c5125cdb9a1d60ca69581ef76cc290eae5c9d3a9c95119d6c1b5367",
+        "members": {
+          "full-suite.log": {
+            "bytes": 26978,
+            "sha256": "7fca10bc089b04c61c24e434f288c4c2493e823ae8c012f4d2235c6abd8708eb"
+          },
+          "inventory.log": {
+            "bytes": 3526,
+            "sha256": "8600e8c4398d61f0a215e0cee15b539f8c09c0a183f0f4db85b1c7cd909cddcf"
+          }
+        }
+      },
+      "eachPlatform": {
+        "inventoryTests": 29,
+        "fullR03Tests": 203,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0
+      },
+      "downloadedArtifactZipsSha256AndAllMembersVerified": true
+    },
+    "active": {
+      "sourceCommit": "a633a69860043a0de56d52d722290997ca6c2ee0",
+      "runId": 38332604506,
+      "ubuntuJobId": 115085508144,
+      "macosJobId": 115085508271,
+      "result": "Passed on both platforms",
+      "inventoryTests": 29,
+      "fullR03Tests": 203,
+      "sourceBound": true
+    }
+  },
+  "next": {
+    "attempt": "M-after-L-73bc",
+    "freshRoots": 7,
+    "localRuntimeState": "NotRun",
+    "plannedNativeBuilds": 3,
+    "plannedPlayers": 5,
+    "plannedSchedulerCells": 18,
+    "requiresFreshHostCompilerCustodyStorage": true,
+    "strictHistoricalCustody": "Blocked",
+    "previousLReused": false,
+    "independentReReview": "NotRun"
+  },
+  "acceptance": {
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "pureInterpreterExpansionEnabled": false
+  }
+}
