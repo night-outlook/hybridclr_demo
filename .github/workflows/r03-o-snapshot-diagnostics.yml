@@ -1,0 +1,79 @@
+name: R03 O snapshot boundary and managed interop
+on:
+  push:
+    branches: [codex/r03-o-snapshot-20261013-c9a4, codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-o-snapshot-diagnostics.yml'
+      - 'Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp'
+      - 'Tools/AssemblyShadow/R03IR/**'
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R02/
+            /Tools/AssemblyShadow/R03/
+            /Tools/AssemblyShadow/R03IR/
+            /Tools/AssemblyShadow/R03Storage/
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+        with:
+          dotnet-version: 8.0.318
+      - name: Source, original suites, native writer and actual host emitter
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          OUT="$(python3 -c 'from pathlib import Path; import os; print(Path(os.environ["RUNNER_TEMP"]).resolve()/"r03-o-snapshot")')"
+          mkdir "$OUT"
+          git rev-parse HEAD > "$OUT/source-commit.txt"
+          dotnet --version > "$OUT/dotnet-version.txt"
+          P=Tools/AssemblyShadow/R03IR/snapshot_diagnostics
+          python3 -B "$P/verify_source.py" > "$OUT/source-audit.json"
+          python3 -B -m unittest discover -s Tools/AssemblyShadow/R03 -p 'test_*.py' -v > "$OUT/r03.log" 2>&1 || { tail -100 "$OUT/r03.log"; exit 1; }
+          grep -q '^Ran 203 tests' "$OUT/r03.log"
+          grep -q '^OK$' "$OUT/r03.log"
+          python3 -B -m unittest discover -s Tools/AssemblyShadow/R03IR -p 'test_*.py' -v > "$OUT/ir.log" 2>&1 || { tail -100 "$OUT/ir.log"; exit 1; }
+          grep -q '^Ran 93 tests' "$OUT/ir.log"
+          grep -q '^OK$' "$OUT/ir.log"
+          python3 -B "$P/run_cpp.py" --output "$OUT/cpp" > "$OUT/cpp-summary.json" 2> "$OUT/cpp-summary.stderr"
+          python3 -B "$P/run_managed.py" --output "$OUT/managed" > "$OUT/managed-summary.json" 2> "$OUT/managed-summary.stderr"
+          cat "$OUT/source-audit.json" "$OUT/cpp-summary.json" "$OUT/managed-summary.json"
+          git diff --check
+          git diff --exit-code
+      - name: Exact source and evidence binding
+        if: always()
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP']).resolve()/'r03-o-snapshot'
+          out.mkdir(exist_ok=True)
+          root=Path('Tools/AssemblyShadow')
+          paths=[root/'R03/PlayerProject/AssemblyShadowR03Probe.cpp',root/'R03IR/PlayerProject/R03TerminalPlayer.cs',*sorted((root/'R03IR/snapshot_diagnostics').glob('*.py'))]
+          sources=[{'path':str(p),'gitBlob':subprocess.check_output(['git','rev-parse','HEAD:'+str(p)],text=True).strip(),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in paths]
+          files=[]
+          for p in sorted(out.rglob('*')):
+              if p.is_file() and not p.is_symlink() and not any(x in p.relative_to(out).parts for x in ('bin','obj')):
+                  files.append({'path':p.relative_to(out).as_posix(),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
+          (out/'PROVENANCE.json').write_text(json.dumps({'kind':'R03OSnapshotHostEvidence','source':os.environ['GITHUB_SHA'],'run':os.environ['GITHUB_RUN_ID'],'sources':sources,'files':files,'hostMarshal':'.NET8, not IL2CPP','UnityLaunched':False,'NRootCauseProven':False,'runtimeAcceptance':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-o-snapshot-${{ matrix.os }}-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/r03-o-snapshot
+            !${{ runner.temp }}/r03-o-snapshot/**/bin/**
+            !${{ runner.temp }}/r03-o-snapshot/**/obj/**
+          retention-days: 14
+          if-no-files-found: warn
