@@ -411,6 +411,7 @@ extern "C" IL2CPP_EXPORT int32_t R03_IR_ProbeTerminalReporting()
 #include <cstdint>
 #include <cstdlib>
 #include <fcntl.h>
+#include <cerrno>
 #include <unistd.h>
 #include "gc/GCHandle.h"
 #include "gc/GarbageCollector.h"
@@ -421,12 +422,146 @@ constexpr const char* TextNames[] = {"result","runId","caseId","requestSha256","
 constexpr int IntCount = 25;
 constexpr int FirstBool = 14;
 constexpr int TextCount = 16;
-static std::atomic<int> state{0}; // 0 unused,1 open,2 sealed,-1 failed
+static std::atomic<int> state{0}; // 0 unused,1 open,2 sealed,3 sealing,-1 failed
 static FILE* stream = nullptr;
 static int32_t ints[IntCount] = {};
 static bool haveInt[IntCount] = {}, haveText[TextCount] = {}, nullText[TextCount] = {};
 static char texts[TextCount][TextLimit + 1] = {};
-static int Reject() { state.store(-1); return -1; }
+
+// The 262144-byte backing slice and whole-report text budget are unchanged.
+// Slot 15 alone may store losslessly packed bytes instead of verbatim bytes.
+// It fits that same byte allocation and never changes the emitted JSON schema.
+// A report's total unescaped text budget is the original 16 * TextLimit.
+constexpr size_t OriginalReportTextBudget = TextCount * TextLimit;
+static size_t decodedTextBytes = 0;
+static bool packedExecution = false;
+static size_t packedBytes = 0, executionDecodedBytes = 0;
+static uint64_t executionByteCheck = 0;
+constexpr uint64_t ByteCheckSeed = 14695981039346656037ULL;
+static uint64_t ByteCheck(uint64_t value, unsigned char byte) noexcept
+{ return (value ^ byte) * 1099511628211ULL; }
+constexpr const char* DiagnosticTokens[] = {
+    "\"logicalAssembly\":", "\"typeKey\":", "\"executionModeCode\":",
+    "\"executionMode\":", "\"physicalImageKind\":", "\"isActive\":",
+    "\"cctorStarted\":", "\"cctorFinished\":", "\"hasInitializationException\":",
+    "\"staticStoragePointer\":", "\"pointerDetailsAvailable\":", "\"staticStorageAvailable\":",
+    "\"schemaVersion\":", "\"stateCode\":", "\"generation\":", "\"AotBaseline\"",
+    "\"InterpreterShadow\"", "\"Interpreter\"", "\"Aot\"", ":false", ":true"
+};
+constexpr size_t DiagnosticTokenCount = sizeof(DiagnosticTokens) / sizeof(DiagnosticTokens[0]);
+static_assert(DiagnosticTokenCount < 255, "Byte token codes required");
+// 0xff,0 encodes a literal 0xff. Other second bytes are 1-based dictionary
+// indices. Ordinary bytes are literal. Expansion is validated before sealing.
+static bool PackExecution(const char* value, size_t bytes) noexcept
+{
+    size_t input = 0, written = 0;
+    while (input < bytes)
+    {
+        size_t token = 0, matched = 0;
+        for (size_t i = 0; i < DiagnosticTokenCount; ++i)
+        {
+            const size_t n = std::strlen(DiagnosticTokens[i]);
+            if (n <= bytes - input && std::memcmp(value + input, DiagnosticTokens[i], n) == 0)
+            { token = i + 1; matched = n; break; }
+        }
+        const unsigned char c = static_cast<unsigned char>(value[input]);
+        const size_t needed = matched || c == 255 ? 2 : 1;
+        if (needed > TextLimit - written) return false;
+        if (matched || c == 255)
+        {
+            texts[15][written++] = static_cast<char>(255);
+            texts[15][written++] = static_cast<char>(token);
+            input += matched ? matched : 1;
+        }
+        else { texts[15][written++] = value[input++]; }
+    }
+    uint64_t check = ByteCheckSeed;
+    for (size_t i = 0; i < bytes; ++i) check = ByteCheck(check, static_cast<unsigned char>(value[i]));
+    executionByteCheck = check; // Internal corruption check, not a cryptographic source proof.
+    packedBytes = written;
+    executionDecodedBytes = bytes;
+    packedExecution = true;
+    return true;
+}
+static bool CheckPackedExecution() noexcept
+{
+    size_t input = 0, decoded = 0;
+    uint64_t check = ByteCheckSeed;
+    if (!packedExecution || packedBytes > TextLimit || executionDecodedBytes > OriginalReportTextBudget)
+        return false;
+    while (input < packedBytes)
+    {
+        const unsigned char c = static_cast<unsigned char>(texts[15][input++]);
+        size_t n = 1;
+        if (c == 255)
+        {
+            if (input == packedBytes) return false;
+            const unsigned char code = static_cast<unsigned char>(texts[15][input++]);
+            if (code > DiagnosticTokenCount) return false;
+            if (code)
+            {
+                const char* token = DiagnosticTokens[code - 1];
+                n = std::strlen(token);
+                for (size_t i = 0; i < n; ++i) check = ByteCheck(check, static_cast<unsigned char>(token[i]));
+            }
+            else check = ByteCheck(check, 255);
+        }
+        else check = ByteCheck(check, c);
+        if (n > executionDecodedBytes - decoded) return false;
+        decoded += n;
+    }
+    return decoded == executionDecodedBytes && check == executionByteCheck;
+}
+static void QuotedByte(FILE* f, unsigned char c)
+{
+    if (c == '"' || c == '\\') { std::fputc('\\', f); std::fputc(c, f); }
+    else if (c < 32) std::fprintf(f, "\\u%04x", static_cast<unsigned>(c));
+    else std::fputc(c, f);
+}
+static void QuotePackedExecution(FILE* f)
+{
+    // The complete compressed stream and expansion length were checked before
+    // any raw output began; output reconstructs every original byte.
+    std::fputc('"', f);
+    for (size_t i = 0; i < packedBytes;)
+    {
+        const unsigned char c = static_cast<unsigned char>(texts[15][i++]);
+        if (c != 255) { QuotedByte(f, c); continue; }
+        const unsigned char code = static_cast<unsigned char>(texts[15][i++]);
+        if (!code) { QuotedByte(f, 255); continue; }
+        for (const unsigned char* p = reinterpret_cast<const unsigned char*>(DiagnosticTokens[code-1]); *p; ++p)
+            QuotedByte(f, *p);
+    }
+    std::fputc('"', f);
+}
+
+static std::atomic<uint32_t> intMask{0}, textMask{0};
+static std::atomic<int> firstFailure{0};
+static std::atomic_flag writerBusy = ATOMIC_FLAG_INIT;
+// First native failure is supplemental evidence, never a replacement for raw.
+// No managed method, dynamic string, new report path or larger limit is used.
+static int Reject(const char* operation, int field, int reason, size_t length = 0,
+                  int errorNumber = 0) noexcept
+{
+    const int previous = state.exchange(-1, std::memory_order_acq_rel);
+    int expected = 0;
+    if (firstFailure.compare_exchange_strong(expected, reason, std::memory_order_acq_rel))
+    {
+        std::fprintf(stderr,
+            "[R03SnapshotFailure] version=1 pid=%d operation=%s field=%d reason=%d previousState=%d length=%zu limit=%zu errno=%d intMask=%08x textMask=%08x\n",
+            static_cast<int>(::getpid()), operation, field, reason, previous,
+            length, TextLimit, errorNumber, intMask.load(std::memory_order_acquire),
+            textMask.load(std::memory_order_acquire));
+        std::fflush(stderr);
+    }
+    return -1;
+}
+struct WriterCall
+{
+    bool owns;
+    WriterCall() noexcept : owns(!writerBusy.test_and_set(std::memory_order_acquire)) {}
+    ~WriterCall() { if (owns) writerBusy.clear(std::memory_order_release); }
+};
 static void Quote(FILE* f, const char* text)
 {
     if (!text) { std::fputs("null", f); return; }
@@ -435,7 +570,7 @@ static void Quote(FILE* f, const char* text)
     {
         if (*p == '"' || *p == '\\') { std::fputc('\\', f); std::fputc(*p, f); }
         else if (*p < 32) std::fprintf(f, "\\u%04x", static_cast<unsigned>(*p));
-        else std::fputc(*p, f); // input is UTF-8 from P/Invoke
+        else std::fputc(*p, f);
     }
     std::fputc('"', f);
 }
@@ -443,37 +578,78 @@ static void Quote(FILE* f, const char* text)
 extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportOpen(const char* path)
 {
     using namespace r03_ir_snapshot;
+    WriterCall call;
+    if (!call.owns) return Reject("open", -1, 1);
     int expected = 0;
-    if (!state.compare_exchange_strong(expected, 1)) return -1;
-    if (!path || path[0] != '/') return Reject();
+    if (!state.compare_exchange_strong(expected, 1)) return Reject("open", -1, 2);
+    if (!path || path[0] != '/') return Reject("open", -1, 3);
+    errno = 0;
     int fd = ::open(path, O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW, 0600);
-    if (fd < 0) return Reject();
+    if (fd < 0) return Reject("open", -1, 4, 0, errno);
+    errno = 0;
     stream = ::fdopen(fd, "w");
-    if (!stream) { ::close(fd); return Reject(); }
+    if (!stream)
+    {
+        const int saved = errno;
+        ::close(fd);
+        return Reject("fdopen", -1, 5, 0, saved);
+    }
     return 1;
 }
 extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportInt(int32_t field, int32_t value)
 {
     using namespace r03_ir_snapshot;
-    if (state.load() != 1 || field < 0 || field >= IntCount || haveInt[field] ||
-        (field >= FirstBool && value != 0 && value != 1)) return Reject();
-    ints[field] = value; haveInt[field] = true; return 1;
+    WriterCall call;
+    if (!call.owns) return Reject("int", field, 1);
+    if (state.load(std::memory_order_acquire) != 1) return Reject("int", field, 2);
+    if (field < 0 || field >= IntCount) return Reject("int", field, 6);
+    if (haveInt[field]) return Reject("int", field, 7);
+    if (field >= FirstBool && value != 0 && value != 1) return Reject("int", field, 8);
+    ints[field] = value; haveInt[field] = true;
+    intMask.fetch_or(uint32_t(1) << field, std::memory_order_release);
+    return state.load(std::memory_order_acquire) == 1 ? 1 : -1;
 }
 extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportText(int32_t field, const char* value)
 {
     using namespace r03_ir_snapshot;
-    if (state.load() != 1 || field < 0 || field >= TextCount || haveText[field]) return Reject();
+    WriterCall call;
+    if (!call.owns) return Reject("text", field, 1);
+    if (state.load(std::memory_order_acquire) != 1) return Reject("text", field, 2);
+    if (field < 0 || field >= TextCount) return Reject("text", field, 6);
+    if (haveText[field]) return Reject("text", field, 7);
     size_t n = value ? ::strnlen(value, TextLimit + 1) : 0;
-    if (n > TextLimit) return Reject();
-    if (value) std::memcpy(texts[field], value, n + 1);
-    nullText[field] = value == nullptr; haveText[field] = true; return 1;
+    if (n > TextLimit)
+    {
+        // No unbounded scan, allocation, truncated record or new file path.
+        // Other text fields retain their original direct representation.
+        if (field != 15) return Reject("text", field, 9, n);
+        n = ::strnlen(value, OriginalReportTextBudget + 1);
+        if (n > OriginalReportTextBudget) return Reject("text-budget", field, 18, n);
+        if (!PackExecution(value, n)) return Reject("text", field, 9, n);
+    }
+    else if (value) std::memcpy(texts[field], value, n + 1);
+    if (n > OriginalReportTextBudget - decodedTextBytes)
+        return Reject("text-budget", field, 18, n);
+    decodedTextBytes += n;
+    nullText[field] = value == nullptr; haveText[field] = true;
+    textMask.fetch_or(uint32_t(1) << field, std::memory_order_release);
+    return state.load(std::memory_order_acquire) == 1 ? 1 : -1;
 }
 extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportSeal()
 {
     using namespace r03_ir_snapshot;
-    if (state.load() != 1 || !stream) return Reject();
-    for (int i = 0; i < IntCount; ++i) if (!haveInt[i]) return Reject();
-    for (int i = 0; i < TextCount; ++i) if (!haveText[i]) return Reject();
+    WriterCall call;
+    if (!call.owns) return Reject("seal", -1, 1);
+    if (state.load(std::memory_order_acquire) != 1) return Reject("seal", -1, 2);
+    if (!stream) return Reject("seal", -1, 10);
+    for (int i = 0; i < IntCount; ++i)
+        if (!haveInt[i]) return Reject("missing-int", i, 11);
+    for (int i = 0; i < TextCount; ++i)
+        if (!haveText[i]) return Reject("missing-text", i, 12);
+    if (packedExecution && !CheckPackedExecution()) return Reject("packed-text", 15, 17);
+    int expected = 1;
+    if (!state.compare_exchange_strong(expected, 3)) return Reject("seal", -1, 2);
+    errno = 0;
     std::fprintf(stream, "{\"schemaVersion\":1,\"kind\":\"R03IRPostPoisonEntryV1\","
         "\"reportTransport\":\"NativePreopenedSnapshotV1\",\"processId\":%d", static_cast<int>(::getpid()));
     for (int i = 0; i < IntCount; ++i)
@@ -485,12 +661,32 @@ extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportSeal()
     for (int i = 0; i < TextCount; ++i)
     {
         std::fputc(',', stream); Quote(stream, TextNames[i]); std::fputc(':', stream);
-        Quote(stream, nullText[i] ? nullptr : texts[i]);
+        if (i == 15 && packedExecution) QuotePackedExecution(stream);
+        else Quote(stream, nullText[i] ? nullptr : texts[i]);
     }
     std::fputs("}\n", stream);
-    bool ok = !std::ferror(stream) && std::fflush(stream) == 0 && ::fsync(::fileno(stream)) == 0;
-    ok = std::fclose(stream) == 0 && ok;
-    stream = nullptr; state.store(ok ? 2 : -1); return ok ? 1 : -1;
+    bool ok = true;
+    if (std::ferror(stream)) { Reject("write", -1, 13, 0, errno); ok = false; }
+    errno = 0;
+    if (std::fflush(stream) != 0) { Reject("flush", -1, 14, 0, errno); ok = false; }
+    errno = 0;
+    if (::fsync(::fileno(stream)) != 0) { Reject("fsync", -1, 15, 0, errno); ok = false; }
+    errno = 0;
+    if (std::fclose(stream) != 0) { Reject("close", -1, 16, 0, errno); ok = false; }
+    stream = nullptr;
+    expected = 3;
+    if (!ok || !state.compare_exchange_strong(expected, 2)) return -1;
+    if (packedExecution)
+    {
+        std::fprintf(stderr, "[R03SnapshotPacked] version=1 pid=%d field=15 inputBytes=%zu storedBytes=%zu totalTextBytes=%zu totalTextLimit=%zu\n",
+            static_cast<int>(::getpid()), executionDecodedBytes, packedBytes, decodedTextBytes, OriginalReportTextBudget);
+        std::fflush(stderr);
+    }
+    std::fprintf(stderr,
+        "[R03SnapshotSealed] version=1 pid=%d intMask=%08x textMask=%08x\n",
+        static_cast<int>(::getpid()), intMask.load(), textMask.load());
+    std::fflush(stderr);
+    return 1;
 }
 extern "C" IL2CPP_EXPORT void R03_IR_Exit(int32_t code) { std::_Exit(code); }
 

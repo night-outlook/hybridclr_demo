@@ -398,7 +398,10 @@ namespace AssemblyShadow.R03.IR
             ok &= R03_IR_ReportText(13, r.finalRecovery) == 1;
             ok &= R03_IR_ReportText(14, r.finalDiagnostics) == 1;
             ok &= R03_IR_ReportText(15, r.finalExecutionDiagnostics) == 1;
-            return ok && R03_IR_ReportSeal() == 1;
+            // Call Seal even after a rejected store, so native failure state is
+            // observed. It must never seal a failed/missing/duplicate field set.
+            int seal = R03_IR_ReportSeal();
+            return ok && seal == 1;
         }
 
         private static void Require(bool ok, string message)
