@@ -68,5 +68,6 @@ jobs:
         with:
           name: snapshot-diagnostics-${{ matrix.os }}-${{ github.sha }}
           path: ${{ runner.temp }}/snapshot-checks
+          include-hidden-files: true
           retention-days: 14
           if-no-files-found: warn
