@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "kind": "PrimarySnapshotDiagnosticReconciliation",
+  "owner": "Primary Implementation",
+  "result": "PassedWithinHostAndCompilationScopeOnly",
+  "historicalN": {
+    "sourceDemo": "73340fc3f2cba0a2920e18f362a59e7a89cce864",
+    "publicationDemo": "3138ce154b8ad1cbe7fc925522bdfec82a386dd5",
+    "result": "FAIL",
+    "cells": {"total":18,"passed":14,"failed":4},
+    "onRaw": "Three zero-byte files; exit2; full semantics Unavailable",
+    "engine": {"completedReports":51283,"milliseconds":500,"exitCode":71,"dominantMethodFrequency":"Unavailable"},
+    "rootCauseProvenBySyntheticSizeTest": false,
+    "retries": 0
+  },
+  "publishedDiagnosticSource": {
+    "implementationCommit": "c5b69990d650293ff2faa6ef7ba712ba2a5147a1",
+    "nativeSnapshotBlob": "2f13925190a1576738457d8d43f3646a4c7c095f",
+    "nativeSnapshotSha256": "c3213713a57f76bbd79460f98851a00490b2e9f76cc62b53bda4467c684b6fd5",
+    "playerBlob": "598feeec3231707091699d99fbf4428d50b52024",
+    "playerSha256": "0c16bcaad8bb2ceb5568ab3b4bb5147f258da884b05b249b8c174952bc36350d",
+    "nativeRuntimePinUnchanged": "0f72078711d4786dac2666c9017d952d857dd041",
+    "purpose": "Immutable first native writer failure and unconditional strict Seal; not larger text capacity or engine containment"
+  },
+  "officialSdkAudit": {
+    "runId":38400656965,"artifactId":11815960235,
+    "sourceDemo":"c5b69990d650293ff2faa6ef7ba712ba2a5147a1",
+    "zipSha256":"148dbb1958337d2cc5e8ac6ebe26e663cdec04ba1ca9106d3ec21b4eb5ad6f5d",
+    "exactZipFiles":210,"verifiedManifestFiles":209,
+    "nativeCommandReceiptsAndStreamsVerified":56,
+    "nativeSyntaxCompilationsPassed":55,
+    "matrix":"Eleven distinct native translation units, each compiled in five profiles",
+    "changedOverlayHashVerifiedInAllFiveProfiles":true,
+    "changedPlayerInputHashVerified":true,
+    "managedTargets":{"HybridCLR.Runtime":0,"Unity.HybridCLR.AssemblyShadow.CodeGen":0,"HybridCLR.Editor":0,"R03Build":0,"R03TerminalPlayerApi":0},
+    "separateExpectedNegative":{"OriginalUnsignedCounts":1},
+    "retainedNativeWarningOccurrences":616,
+    "vendorReferenceBytes":"Inventory-bound; not all vendor source/reference bytes are present in the artifact",
+    "actualUnityRun":false
+  },
+  "originalNativeDiagnosticTests": {
+    "runId":38400657055,"sourceDemo":"c5b69990d650293ff2faa6ef7ba712ba2a5147a1",
+    "bothPlatforms":"macos-14 and ubuntu-24.04",
+    "eachArtifact":{"manifestEntriesVerified":209,"exactZipFiles":211},
+    "contracts":18,"integrationScenariosPerProfile":26,"integrationCompilerProcessRecords":54,
+    "profiles":["strict C++17","ASan/UBSan"],
+    "writerAndGuardBridge":"Actual source; VM/guard-producer dependencies mocked; CSharp emitter mechanically transcribed in these original tests",
+    "syntheticProducer":{"observedClasses":1024,"bytes":331078,"sha256":"3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a"},
+    "coupledProducerWriterCommands":4,
+    "expectedOversizeResult":{"slot":15,"reason":9,"limit":262144,"scannedPrefixBytes":262145,"rawBytes":0,"exactFullLengthKnownToWriter":false}
+  },
+  "actualManagedEmitterTests": {
+    "implementationCommit":"92d32db45393842fbb90eac0357583d49c287833",
+    "currentTestedSource":"126626c71f1571ae9a0de9f95a56b485ae9a5267",
+    "runId":38406447101,
+    "result":"Passed on macos-14 and ubuntu-24.04",
+    "casesPerPlatform":13,"compilerAndProcessRecordsPerPlatform":17,
+    "exactReportDeclarationAndEmitterCompiledAsCSharp":true,
+    "exactPInvokeDeclarationsExecuted":true,
+    "actualNativeSnapshotWriterCompiled":true,
+    "syntheticValuesAndBaselineSlot8Seed":true,
+    "scenarios":["type","baseline","off","unicode","failed-semantic","exact-utf8","oversize-utf8","actual-producer","duplicate-baseline","missing-baseline","duplicate-int","repeat-seal","occupied"],
+    "checks":"Every declared Report field round-trips; synthetic Failed remains Failed; immutable first error only; original 262144-byte UTF8 bound; duplicate/missing slot8 denied; source bytes unchanged",
+    "dotnetHostNotUnityOrIL2CPP":true,
+    "ubuntu":{"artifactId":11818767850,"zipSha256":"2eb2e719c24de1220ac364f557c8789e88614aeb9e81523ad0994733d72ff7ce","exactZipFiles":290,"manifestFilesVerified":289,"resultSha256":"6a6699c89ed348097f4f1d237f7604e8ae59b6fb1967aa6a1b91793537a649af","actualProducerDiagnostic":"[R03SnapshotFailure] version=1 pid=2812 operation=text field=15 reason=9 previousState=1 length=262145 limit=262144 errno=0 intMask=01ffffff textMask=00007fff"},
+    "macos":{"artifactId":11818527986,"zipSha256":"a6cff1e66ecb98ed41d9ebe8242df0a34b7656ae62cd379a2bd62b1ef5259a4c","exactZipFiles":290,"manifestFilesVerified":289,"resultSha256":"c9e1f75966ae2bb73dba47c5c2bae1c34d286bd5d9178b64a4d54cceeb2ca8fa","actualProducerDiagnostic":"[R03SnapshotFailure] version=1 pid=3307 operation=text field=15 reason=9 previousState=1 length=262145 limit=262144 errno=0 intMask=01ffffff textMask=00007fff"},
+    "previousArtifactIssue":{"runId":38405747965,"tests":"Passed","artifactInventory":"Incomplete: upload excluded generated hidden .NETCoreApp assembly-attribute file","correction":"Include hidden files only within the isolated known test output; successful fresh run38406447101; no runtime input changed"}
+  },
+  "separateExistingCiFailure": {
+    "runId":38400656947,
+    "ubuntu":"Passed",
+    "macos":"Failed at checkout, regression steps Skipped",
+    "notReclassified":true
+  },
+  "nextScope": {
+    "attempt":"SNAP-01-82bd",
+    "classification":"One fresh diagnostic-only execution; not a repaired-runtime acceptance batch",
+    "purpose":"Capture source/PID-bound first native writer rejection or verified seal from real IL2CPP while preserving all original semantic verdicts",
+    "fullRepresentationFixed":false,"engineDispositionFixed":false,
+    "runtimeCodeUnchangedSinceCompiledDiagnosticSource":true,
+    "engineCompletedCounterCapped":false,
+    "historicalNRetry":false
+  },
+  "retention":"Original GitHub ZIP artifacts expire under provider policy. Exact audits, source tests and selected unmodified diagnostic records are retained in this directory; full binary/compiler artifacts are not copied into Git.",
+  "acceptance":{"R03Accepted":false,"H2Passed":false,"qualificationApproved":false,"ReadyForHumanReviewGate":false,"fullLegacyRegressionAcceptance":false,"pureInterpreterExpansionEnabled":false,"strictHistoricalCustody":"Blocked","independentFullStageReview":"FAIL","independentReReview":"NotRun"}
+}
