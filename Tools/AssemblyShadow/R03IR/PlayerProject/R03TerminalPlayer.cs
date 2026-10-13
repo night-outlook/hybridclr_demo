@@ -54,6 +54,14 @@ namespace AssemblyShadow.R03.IR
         private static extern void R03_IR_Exit(int status);
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern int R03_IR_ProbeBooleanReserve();
+        // N test-only native observers: bound while healthy, no post-terminal
+        // managed UTF-8 decode or reflective FieldInfo.GetValue dispatch.
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_BindActiveField(IntPtr managedHandle);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_ReadActiveField(out int value);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IR_ObserveOldGuardIntoSnapshot();
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern void R03_IR_EngineLoggerCalled();
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
@@ -220,23 +228,25 @@ namespace AssemblyShadow.R03.IR
                     report.preActiveDelegate == 42 && report.preCanaryCount == 1 &&
                     report.preShadowField == 2;
                 Require(report.prePositive, "Pre-poison positive controls must really execute");
+                // Bind the actual active instance only before poison. The
+                // native test observer retains its own pinned strong root.
+                GCHandle fieldHandle = GCHandle.Alloc(instance, GCHandleType.Normal);
+                try
+                {
+                    Require(R03_IR_BindActiveField(GCHandle.ToIntPtr(fieldHandle)) == 1,
+                        "Healthy native active-instance field observer must bind");
+                }
+                finally { fieldHandle.Free(); }
 
                 Phase(report, 170);
                 if (request.stimulus == "baseline-owner")
                 {
-                    byte[] buffer = new byte[16384];
-                    int count = R03_ObserveMethod("Methods", "R03", "Node", "Keep", 3, buffer, buffer.Length);
-                    Require(count > 0 && count < buffer.Length, "Native baseline-owner guard receipt");
-                    report.nativeGuardJson = Encoding.UTF8.GetString(buffer, 0, count);
-                    // The producer is fixed native JSON; full independent parsing
-                    // remains mandatory in the host. Do not invoke JsonUtility after poison.
-                    Require(GuardFlag(report.nativeGuardJson, "available", "true") &&
-                        GuardFlag(report.nativeGuardJson, "activeGuard", "1") &&
-                        GuardFlag(report.nativeGuardJson, "baselineGuard", "0") &&
-                        GuardFlag(report.nativeGuardJson, "caughtOldGuard", "1") &&
-                        GuardFlag(report.nativeGuardJson, "stateCode", "9"),
-                        "First terminal failure and caught managed guard exception required");
-                    report.nativeStimulusReturn = 1; // GuardFlag validated the actual returned receipt.
+                    // Full ACTUAL native guard JSON is checked and written to
+                    // preopened snapshot slot 8 entirely in native code.
+                    // Managed UTF-8 conversion would be forbidden after poison.
+                    report.nativeStimulusReturn = R03_IR_ObserveOldGuardIntoSnapshot();
+                    Require(report.nativeStimulusReturn == 1,
+                        "Actual caught baseline guard and native snapshot receipt required");
                 }
                 else
                 {
@@ -275,8 +285,13 @@ namespace AssemblyShadow.R03.IR
                 // A failed read cannot pass: we do not infer no body execution
                 // merely from a caught exception or unchanged AOT canary.
                 Phase(report, 220);
-                report.finalShadowField = (int)stableField.GetValue(instance);
-                report.shadowFieldReadable = true;
+                // The original FieldInfo.GetValue virtual call remains
+                // forbidden. Read only the exact instance/field pinned and
+                // validated before poison; retain the original value==2 proof.
+                int afterField;
+                report.shadowFieldReadable = R03_IR_ReadActiveField(out afterField) == 1;
+                report.finalShadowField = afterField;
+                Require(report.shadowFieldReadable, "Bound native primitive field must remain readable");
 
                 string diagnostics, execution;
                 Require(AssemblyShadowRuntime.GetState(out state) == AssemblyShadowErrorCode.Success,
@@ -336,16 +351,6 @@ namespace AssemblyShadow.R03.IR
             }
         }
 
-        private static bool GuardFlag(string json, string key, string value)
-        {
-            if (json == null) return false;
-            string token = "\"" + key + "\":" + value;
-            int pos = json.IndexOf(token, StringComparison.Ordinal);
-            if (pos < 0 || json.IndexOf(token, pos + 1, StringComparison.Ordinal) >= 0) return false;
-            int end = pos + token.Length;
-            return end < json.Length && (json[end] == ',' || json[end] == '}');
-        }
-
         private static bool EmitNativeReport(Report r)
         {
             bool ok = true;
@@ -382,7 +387,10 @@ namespace AssemblyShadow.R03.IR
             ok &= R03_IR_ReportText(5, r.unityVersion) == 1;
             ok &= R03_IR_ReportText(6, r.platform) == 1;
             ok &= R03_IR_ReportText(7, r.error) == 1;
-            ok &= R03_IR_ReportText(8, r.nativeGuardJson) == 1;
+            // Baseline slot 8 was already filled exactly once by the native
+            // guard observer. A second write must never mask/corrupt it.
+            if (r.stimulus != "baseline-owner")
+                ok &= R03_IR_ReportText(8, r.nativeGuardJson) == 1;
             ok &= R03_IR_ReportText(9, r.activeReflectionException) == 1;
             ok &= R03_IR_ReportText(10, r.activeDelegateException) == 1;
             ok &= R03_IR_ReportText(11, r.aotReflectionException) == 1;
