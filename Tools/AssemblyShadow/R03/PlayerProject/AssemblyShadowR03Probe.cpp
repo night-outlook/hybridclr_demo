@@ -528,3 +528,140 @@ extern "C" IL2CPP_EXPORT int32_t R03_IR_ProbeBooleanReserve()
 #endif
 }
 #endif // HYBRIDCLR_R03_RUNTIME_PROBE
+
+// N: test-only native guard receipt and pre-bound primitive field observation.
+// The production class/method execution guards are never modified here.
+// A separate strong pinned root is created while healthy and retained until
+// this disposable Player exits natively; no GCHandle work follows poison.
+#if HYBRIDCLR_R03_RUNTIME_PROBE
+#include "il2cpp-class-internals.h"
+#include "il2cpp-object-internals.h"
+#include "vm/Class.h"
+#include "vm/Field.h"
+#include "gc/GCHandle.h"
+#include <atomic>
+#include <cstdint>
+#include <cstring>
+namespace r03_ir_observe {
+struct BoundField
+{
+    std::atomic<int32_t> state{0};
+    Il2CppObject* object = nullptr;
+    Il2CppClass* owner = nullptr;
+    FieldInfo* field = nullptr;
+    uint32_t pinnedHandle = 0;
+    uint32_t offset = 0;
+};
+static BoundField witness;
+
+static bool UniqueValue(const char* json, const char* key, const char* value) noexcept
+{
+    if (!json || !key || !value) return false;
+    const char* pos = std::strstr(json, key);
+    if (!pos || std::strstr(pos + 1, key) != nullptr) return false;
+    pos += std::strlen(key);
+    const size_t n = std::strlen(value);
+    return std::strncmp(pos, value, n) == 0 && (pos[n] == ',' || pos[n] == '}');
+}
+}
+
+extern "C" IL2CPP_EXPORT int32_t R03_IR_BindActiveField(void* managedObjectHandle)
+{
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
+    using namespace il2cpp::vm;
+    using namespace r03_ir_observe;
+    if (!managedObjectHandle || witness.state.load(std::memory_order_acquire) != 0) return -1;
+    AssemblyShadowState current;
+    if (AssemblyShadow::GetState(current) != AssemblyShadowError::Success ||
+        current != AssemblyShadowState::Committed) return -2;
+    const uintptr_t raw = reinterpret_cast<uintptr_t>(managedObjectHandle);
+    if (!raw || raw > static_cast<uintptr_t>(UINT32_MAX)) return -3;
+    Il2CppObject* object = il2cpp::gc::GCHandle::GetTarget(static_cast<uint32_t>(raw));
+    if (!object || !object->klass) return -4;
+    Il2CppClass* owner = object->klass;
+    if (!owner->image || !owner->image->assembly ||
+        !AssemblyShadow::IsActiveShadow(owner->image->assembly) ||
+        !owner->namespaze || std::strcmp(owner->namespaze, "R03") ||
+        !owner->name || std::strcmp(owner->name, "Node") ||
+        !owner->image->assembly->aname.name ||
+        std::strcmp(owner->image->assembly->aname.name, "Methods")) return -5;
+    // Only this real active instance and its nonstatic primitive stable field
+    // can be observed. Class::GetFieldFromName is invoked only when healthy.
+    FieldInfo* field = Class::GetFieldFromName(owner, "stable");
+    if (!field || field->parent != owner || !field->name ||
+        std::strcmp(field->name, "stable") || !field->type ||
+        field->type->type != IL2CPP_TYPE_I4 ||
+        (field->type->attrs & FIELD_ATTRIBUTE_STATIC) ||
+        field->offset < sizeof(Il2CppObject) ||
+        static_cast<uint64_t>(field->offset) + sizeof(int32_t) > owner->instance_size)
+        return -6;
+    int32_t initial = 0;
+    std::memcpy(&initial, reinterpret_cast<const uint8_t*>(object) + field->offset, sizeof initial);
+    if (initial != 2) return -7;
+    const uint32_t pinned = il2cpp::gc::GCHandle::New(object, true);
+    if (!pinned) return -8;
+    if (il2cpp::gc::GCHandle::GetTarget(pinned) != object)
+    { il2cpp::gc::GCHandle::Free(pinned); return -9; }
+    witness.object = object;
+    witness.owner = owner;
+    witness.field = field;
+    witness.offset = field->offset;
+    witness.pinnedHandle = pinned;
+    witness.state.store(1, std::memory_order_release);
+    return 1;
+#else
+    (void)managedObjectHandle; return 0;
+#endif
+}
+
+extern "C" IL2CPP_EXPORT int32_t R03_IR_ReadActiveField(int32_t* output)
+{
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
+    using namespace il2cpp::vm;
+    using namespace r03_ir_observe;
+    if (!output || witness.state.load(std::memory_order_acquire) != 1) return -1;
+    AssemblyShadowState current;
+    if (AssemblyShadow::GetState(current) != AssemblyShadowError::Success ||
+        current != AssemblyShadowState::FailedAfterCommit) return -2;
+    Il2CppObject* object = witness.object;
+    if (!object || object->klass != witness.owner || !witness.field ||
+        witness.field->parent != witness.owner || witness.field->offset != witness.offset)
+        return -3;
+    // No managed virtual dispatch, class init, boxing, field writing,
+    // allocation or GCHandle target lookup after terminal failure.
+    int32_t observed = 0;
+    std::memcpy(&observed, reinterpret_cast<const uint8_t*>(object) + witness.offset, sizeof observed);
+    *output = observed;
+    return 1;
+#else
+    (void)output; return 0;
+#endif
+}
+
+extern "C" IL2CPP_EXPORT int32_t R03_IR_ObserveOldGuardIntoSnapshot()
+{
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
+    using namespace il2cpp::vm;
+    using namespace r03_ir_observe;
+    char buffer[16384] = {};
+    const int32_t count = R03_ObserveMethod("Methods", "R03", "Node", "Keep", 3,
+        buffer, static_cast<int32_t>(sizeof buffer));
+    if (count <= 0 || count >= static_cast<int32_t>(sizeof buffer) || buffer[count] != '\0')
+        return -1;
+    AssemblyShadowState state;
+    if (AssemblyShadow::GetState(state) != AssemblyShadowError::Success ||
+        state != AssemblyShadowState::FailedAfterCommit ||
+        !UniqueValue(buffer, "\"available\":", "true") ||
+        !UniqueValue(buffer, "\"activeGuard\":", "1") ||
+        !UniqueValue(buffer, "\"baselineGuard\":", "0") ||
+        !UniqueValue(buffer, "\"caughtOldGuard\":", "1") ||
+        !UniqueValue(buffer, "\"stateCode\":", "9"))
+        return -2;
+    // Preserve complete original native producer JSON directly into the
+    // once-only preopened snapshot. Host independently parses exact fields.
+    return R03_IR_ReportText(8, buffer) == 1 ? 1 : -3;
+#else
+    return 0;
+#endif
+}
+#endif // HYBRIDCLR_R03_RUNTIME_PROBE
