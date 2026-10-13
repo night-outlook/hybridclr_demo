@@ -1,0 +1,11 @@
+{
+  "error": {
+    "errno": null,
+    "filename": null,
+    "message": "Player witness must explicitly pass",
+    "traceback": "Traceback (most recent call last):\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_terminal_storage_checked.py\", line 38, in checked\n    return action()\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_terminal_local.py\", line 284, in <lambda>\n    batch.cell(case['id'], lambda c=case: player(batch, c), ('build-' + case['role'],))\n                                          ~~~~~~^^^^^^^^^^\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_terminal_local.py\", line 240, in player\n    verify_ir(raw, request, launch, bind['buildReceiptSha256']))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_terminal_local.py\", line 123, in verify_ir\n    require(raw.get('result') == 'Passed' and not raw.get('error'), 'Player witness must explicitly pass')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/batch_contract.py\", line 13, in require\n    raise ContractError(message)\nbatch_contract.ContractError: Player witness must explicitly pass\n",
+    "type": "ContractError"
+  },
+  "observedUtc": "2026-10-13T01:57:44.298134+00:00",
+  "phase": "IR-R03-02-release-baseline"
+}

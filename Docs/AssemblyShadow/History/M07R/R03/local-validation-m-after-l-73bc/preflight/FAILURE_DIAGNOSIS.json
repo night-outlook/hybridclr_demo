@@ -1,0 +1,984 @@
+{
+  "state": "NontrivialReturnRequired",
+  "startUtc": "2026-10-13T02:04:19.491947+00:00",
+  "endUtc": "2026-10-13T02:04:19.511314+00:00",
+  "pins": {
+    "hybridclr_demo": "34727adcd4296fefb0d814d2030fbd1cfb581cfe",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "c1a6876a3801a8343123977a0e230558904fd94d"
+  },
+  "issues": [
+    {
+      "id": "IR-LOCAL-M-BASELINE-01",
+      "symptom": "Release/debug baseline Players exit0 but semantic raw/verifier Failed at phase170, error ManagedExceptionCaught; native first cause21 retained and no post-poison checks reached.",
+      "evidence": "batch/players/IR-R03-02-{release,debug}-baseline/{request.json,raw.json,verification.json,Player.log}; preflight/generated-diagnosis/{candidate-release,candidate-debug}.json. Raw pre42/42,field2,GC31; first native code21, two fixed rejection throws, phase900/910 state9. No state reset is proved by unfilled raw0.",
+      "mostLikelyRootCause": "The receipt consumer still executes ordinary virtual managed decoding after poison. Generated Assembly-CSharp.cpp invokes UTF8 GetString through VirtualFuncInvoker3 slot33 before nativeGuardJson assignment; current installed codegen.virtual calls RequireActiveMethod and rejects all terminal managed methods. The native probe catches the prepared Il2CppExceptionWrapper, but the following Encoding path triggers another rejection before the bridge can finish. This is source-supported correlation, not a newly traced second exception site.",
+      "scope": "Baseline-owner managed diagnostic consumer in R03TerminalPlayer phase170, guarded virtual-dispatch boundary and receipt capture. Native first-error preservation must remain unchanged.",
+      "direction": "Move the receipt decode/flag verification to authenticated native/fixed transport or prepare all needed consumer data while healthy. Bind the real native caughtOldGuard result and first cause without requiring post-poison virtual business/BCL calls. Do not permit Encoding by broad guard bypass or accept missing receipt/postchecks.",
+      "uncertainty": "Raw nativeGuardJson is unassigned; exact second rejection site/payload not traced. Generated output plus fixed throw count strongly narrows the consumer boundary, but does not independently recover the native JSON buffer.",
+      "validation": "Fresh successor release/debug baseline must preserve first code21, actual native caught guard receipt,42/42/field2/GC31, all denied reflection/delegate/AOT attempts, exact post-field2 and original recovery/diagnostics/mask15. No M retry."
+    },
+    {
+      "id": "IR-LOCAL-M-FIELD-02",
+      "symptom": "Type Player exit0 with Failed raw/verifier at phase220. It catches real type failure(return1), reaches state9 and reporter15, and denies all three attempted body entries without canary mutation, but post-poison FieldInfo.GetValue throws; final field/recovery checks not reached.",
+      "evidence": "batch/players/IR-R03-02-release-type/{raw.json,verification.json,Player.log}; generated-diagnosis/candidate-release.json. Raw firstRecovery code13,poisonedState9,GC31,terminalReportingProbeMask15; attempted reflection/delegate/AOT true and successesfalse; finalCanaryCount1; failurePhase220,shadowFieldReadablefalse. Generated output calls VirtualFuncInvoker1 slot23 before assigning finalShadowField.",
+      "mostLikelyRootCause": "The required post-poison observational read itself invokes an ordinary managed virtual method. The generated FieldInfo.GetValue slot23 dispatch passes through the same source-authenticated codegen.virtual terminal RequireActiveMethod guard before normal RuntimeFieldInfo/Field::GetValueObject handling. Thus the unchanged business-denial rule conflicts with this managed witness consumer; boxing/type-use paths may additionally need evaluation after dispatch.",
+      "scope": "Post-poison active-instance primitive-field observation and downstream diagnostics in the IR witness; not evidence of active body execution or a reset of state.",
+      "direction": "Reconcile the required field observation with terminal denial through a narrowly authenticated read-only route for the already-resolved exact instance/field, with healthy lifetime/identity preparation and no managed method/body/cctor admission after poison. Preserve the exact final2 proof and deny all business reflection/delegate/AOT paths; do not waive the field requirement or relax guards.",
+      "uncertainty": "Exact dynamic exception payload/site not captured; generated guarded virtual path is established. Field value after denial remains Unavailable, so unchanged canary alone cannot certify the active instance was unchanged. FinalRecovery/rawstate0 is unfilled, not a proven reset.",
+      "validation": "Fresh type and baseline successor must actually read exact stable2 after poison, while all three denied entries retain side-effect checks, original code13/21/recovery and mask15. Complete the unchanged final diagnostics checks."
+    },
+    {
+      "id": "IR-LOCAL-M-ENGINE-03",
+      "symptom": "Engine Player PID52820 exits71 with valid ObservedNotAccepted JSON, completedReports50623 over the prescribed500ms window; 1..64 bound fails. Original host verification receipt is Unavailable because exit71 failed before that stage.",
+      "evidence": "batch/players/IR-R03-02-release-engine/{request.json,raw.json,Player.log}; original command receipt/PID/run joins in FINAL_EVIDENCE_AUDIT.json and failed cell in BATCH_EXECUTION.json. First native sequence1 carries R03_ENGINE_UNHANDLED_2925be241deb454cb5da8119649ab4e1; subsequent fixed-rejection reports are visible. Raw state6\u21929/code13,logger1\u21921,500ms,timedOutfalse,reports50623. No crash/zero-byte raw this time.",
+      "mostLikelyRootCause": "Native transport handles the exact report but terminal Unity/engine callbacks repeatedly attempt denied ordinary entry during the observation window, producing a report cascade. CompletedCounter increments on each TryHandle; returning handled-true prevents the prior fatal reporting path but does not quiesce repeated engine rejection/re-entry. The bounded stderr first32 messages are not the complete counter count.",
+      "scope": "Terminal engine-report/re-entry integration in the current Unity Player; broader finalizer/shutdown qualification still outside M.",
+      "direction": "Identify actual repeating callback/producer through a bounded native identity/site counter that retains original guard-owned transport and first failure. Reconcile a terminal engine state with genuine bounded reporting/quiescence without executing managed logger/business bodies. Keep1..64,500ms and logger1\u21921 expectations; no log-only counter cap, longer window, finalizer disablement or acceptance relaxation.",
+      "uncertainty": "Actual producer/site of the50623 completed calls is not identified by current aggregate counter; the one visible native unhandled fixed-rejection may be a finalizer but no current crash/stack proves that it is the dominant source. No performance/general cleanup qualification follows.",
+      "validation": "Fresh same fifth-engine successor must bind true uncaught sentinel, healthyGC31,native reporter,state6\u21929/code13/recovery,logger1\u21921 and1..64 actual completed reports in500ms with valid raw and exit0/source-bound verifier. No sixth Player/extra stimulus or M retry."
+    }
+  ],
+  "summary": "Two baseline snapshots fail at the guarded post-poison receipt-consumer boundary (phase170). Type advances through caught cause13, reporter15 and all three denied entries/canary1, then fails at virtual FieldInfo.GetValue (phase220), so post-field2/recovery proof remains Unavailable. Engine now preserves valid raw and avoids the earlier SIGABRT, but records50,623 completed reports in500ms and exits71; original engine verifier is Unavailable, not Passed. All three Bee observations Passed with615 nodes,8 original factory calls,selected sequence7,captured processors8 and verified restoration/SDK assembly digests. These fresh changes do not reclassify K/I/E.",
+  "rawPlayers": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-M-after-L-73bc/players/IR-R03-02-off/raw.json",
+      "sha256": "13d9d3a60e63886121b8ace1f5f7d325a2ddd271e0a5759979e3e37c597cc518",
+      "raw": {
+        "schemaVersion": 1,
+        "kind": "R03IRPostPoisonEntryV1",
+        "reportTransport": "NativePreopenedSnapshotV1",
+        "processId": 52804,
+        "initialState": 0,
+        "poisonedState": 0,
+        "finalState": 0,
+        "nativeStimulusReturn": 0,
+        "preActiveReflection": 0,
+        "preActiveDelegate": 0,
+        "preCanaryCount": 1,
+        "finalCanaryCount": 2,
+        "preShadowField": 0,
+        "finalShadowField": 0,
+        "nativePhase": 910,
+        "failurePhase": 0,
+        "terminalReportingProbeMask": 0,
+        "reserveGcProbeMask": 0,
+        "shadowFieldReadable": false,
+        "prePositive": true,
+        "activeReflectionAttempted": false,
+        "activeReflectionSucceeded": false,
+        "activeDelegateAttempted": false,
+        "activeDelegateSucceeded": false,
+        "aotReflectionAttempted": false,
+        "aotReflectionSucceeded": false,
+        "recoveryStable": false,
+        "fixedDiagnosticsReadable": false,
+        "acceptance": false,
+        "result": "Passed",
+        "runId": "34ff9f09ef1d4d3294f66087c9b13bff",
+        "caseId": "IR-R03-02-off",
+        "requestSha256": "d9aed75f4fc87407127338b44ff72d52bc50ee9b1359460693a569b60b7c3999",
+        "stimulus": "off",
+        "unityVersion": "2022.3.62f2",
+        "platform": "OSXPlayer",
+        "error": null,
+        "nativeGuardJson": null,
+        "activeReflectionException": null,
+        "activeDelegateException": null,
+        "aotReflectionException": null,
+        "firstRecovery": null,
+        "finalRecovery": null,
+        "finalDiagnostics": null,
+        "finalExecutionDiagnostics": null
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-M-after-L-73bc/players/IR-R03-02-release-baseline/raw.json",
+      "sha256": "4d089e5a1c40a6b42086f03a1c3b385e18cb8909f13981ca9124f8307b7fa4f2",
+      "raw": {
+        "schemaVersion": 1,
+        "kind": "R03IRPostPoisonEntryV1",
+        "reportTransport": "NativePreopenedSnapshotV1",
+        "processId": 52782,
+        "initialState": 6,
+        "poisonedState": 0,
+        "finalState": 0,
+        "nativeStimulusReturn": 0,
+        "preActiveReflection": 42,
+        "preActiveDelegate": 42,
+        "preCanaryCount": 1,
+        "finalCanaryCount": 0,
+        "preShadowField": 2,
+        "finalShadowField": 0,
+        "nativePhase": 910,
+        "failurePhase": 170,
+        "terminalReportingProbeMask": 0,
+        "reserveGcProbeMask": 31,
+        "shadowFieldReadable": false,
+        "prePositive": true,
+        "activeReflectionAttempted": false,
+        "activeReflectionSucceeded": false,
+        "activeDelegateAttempted": false,
+        "activeDelegateSucceeded": false,
+        "aotReflectionAttempted": false,
+        "aotReflectionSucceeded": false,
+        "recoveryStable": false,
+        "fixedDiagnosticsReadable": false,
+        "acceptance": false,
+        "result": "Failed",
+        "runId": "7d8d4d9d5b664ac5b932545d43936e48",
+        "caseId": "IR-R03-02-release-baseline",
+        "requestSha256": "6301b4d8fc830d4442b71d5d3942e44e896cefb0ec443148de76ab5adbd416a6",
+        "stimulus": "baseline-owner",
+        "unityVersion": "2022.3.62f2",
+        "platform": "OSXPlayer",
+        "error": "ManagedExceptionCaught",
+        "nativeGuardJson": null,
+        "activeReflectionException": null,
+        "activeDelegateException": null,
+        "aotReflectionException": null,
+        "firstRecovery": null,
+        "finalRecovery": null,
+        "finalDiagnostics": null,
+        "finalExecutionDiagnostics": null
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-M-after-L-73bc/players/IR-R03-02-debug-baseline/raw.json",
+      "sha256": "1f9e6c6e518d697f1985a4b64fb9d3ae33f151847b27066d67c80b718b623f7d",
+      "raw": {
+        "schemaVersion": 1,
+        "kind": "R03IRPostPoisonEntryV1",
+        "reportTransport": "NativePreopenedSnapshotV1",
+        "processId": 52792,
+        "initialState": 6,
+        "poisonedState": 0,
+        "finalState": 0,
+        "nativeStimulusReturn": 0,
+        "preActiveReflection": 42,
+        "preActiveDelegate": 42,
+        "preCanaryCount": 1,
+        "finalCanaryCount": 0,
+        "preShadowField": 2,
+        "finalShadowField": 0,
+        "nativePhase": 910,
+        "failurePhase": 170,
+        "terminalReportingProbeMask": 0,
+        "reserveGcProbeMask": 31,
+        "shadowFieldReadable": false,
+        "prePositive": true,
+        "activeReflectionAttempted": false,
+        "activeReflectionSucceeded": false,
+        "activeDelegateAttempted": false,
+        "activeDelegateSucceeded": false,
+        "aotReflectionAttempted": false,
+        "aotReflectionSucceeded": false,
+        "recoveryStable": false,
+        "fixedDiagnosticsReadable": false,
+        "acceptance": false,
+        "result": "Failed",
+        "runId": "d14cd9ff6ea340259aca69e3ff49d9a5",
+        "caseId": "IR-R03-02-debug-baseline",
+        "requestSha256": "7f916cbea267286cd7f981350c6d5a3a28ecb6273e39be7ed0d66f9d4afde159",
+        "stimulus": "baseline-owner",
+        "unityVersion": "2022.3.62f2",
+        "platform": "OSXPlayer",
+        "error": "ManagedExceptionCaught",
+        "nativeGuardJson": null,
+        "activeReflectionException": null,
+        "activeDelegateException": null,
+        "aotReflectionException": null,
+        "firstRecovery": null,
+        "finalRecovery": null,
+        "finalDiagnostics": null,
+        "finalExecutionDiagnostics": null
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-M-after-L-73bc/players/IR-R03-02-release-engine/raw.json",
+      "sha256": "35d01c60883674d0a0d58ac6b1ff4aeadcd20014cd4d47ea305f296e9b768cb0",
+      "raw": {
+        "schemaVersion": 1,
+        "kind": "R03IREngineReportingV1",
+        "result": "ObservedNotAccepted",
+        "runId": "2925be241deb454cb5da8119649ab4e1",
+        "caseId": "IR-R03-02-release-engine",
+        "requestSha256": "90a0be1e71a15ba58a023962227f1de345a0204d044bf2bf155cddb11cd12028",
+        "processId": 52820,
+        "initialState": 6,
+        "finalState": 9,
+        "completedReports": 50623,
+        "preManagedLoggerCalls": 1,
+        "finalManagedLoggerCalls": 1,
+        "timedOut": false,
+        "observationMilliseconds": 500,
+        "recovery": {
+          "schemaVersion": 1,
+          "enabled": true,
+          "capabilityVersion": 1,
+          "stateCode": 9,
+          "state": "FailedAfterCommit",
+          "published": true,
+          "abortAllowed": false,
+          "dispositionCode": 0,
+          "disposition": "RestartRequired",
+          "terminalFailureCode": 13,
+          "reason": "R03IR synthetic type-resolution failure (test-only stimulus)",
+          "retainedBytes": 2048,
+          "baselineEligibilityRequiresStartupValidation": true
+        },
+        "runtimeAcceptance": false
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-M-after-L-73bc/players/IR-R03-02-release-type/raw.json",
+      "sha256": "120bb5b1d4a8fcdf28506db9c48d7d0bd4b32f9f4c4174a247912aadc1ae47a1",
+      "raw": {
+        "schemaVersion": 1,
+        "kind": "R03IRPostPoisonEntryV1",
+        "reportTransport": "NativePreopenedSnapshotV1",
+        "processId": 52800,
+        "initialState": 6,
+        "poisonedState": 9,
+        "finalState": 0,
+        "nativeStimulusReturn": 1,
+        "preActiveReflection": 42,
+        "preActiveDelegate": 42,
+        "preCanaryCount": 1,
+        "finalCanaryCount": 1,
+        "preShadowField": 2,
+        "finalShadowField": 0,
+        "nativePhase": 910,
+        "failurePhase": 220,
+        "terminalReportingProbeMask": 15,
+        "reserveGcProbeMask": 31,
+        "shadowFieldReadable": false,
+        "prePositive": true,
+        "activeReflectionAttempted": true,
+        "activeReflectionSucceeded": false,
+        "activeDelegateAttempted": true,
+        "activeDelegateSucceeded": false,
+        "aotReflectionAttempted": true,
+        "aotReflectionSucceeded": false,
+        "recoveryStable": false,
+        "fixedDiagnosticsReadable": false,
+        "acceptance": false,
+        "result": "Failed",
+        "runId": "9015ea12335a4a158ba89a5f389b9c21",
+        "caseId": "IR-R03-02-release-type",
+        "requestSha256": "607f99aee33e1ca1e56d31d7673306bcebef2350d19f2fa14ce051885502a413",
+        "stimulus": "type-resolution",
+        "unityVersion": "2022.3.62f2",
+        "platform": "OSXPlayer",
+        "error": "ManagedExceptionCaught",
+        "nativeGuardJson": null,
+        "activeReflectionException": "ManagedExceptionCaught",
+        "activeDelegateException": "ManagedExceptionCaught",
+        "aotReflectionException": "ManagedExceptionCaught",
+        "firstRecovery": "{\"schemaVersion\":1,\"enabled\":true,\"capabilityVersion\":1,\"stateCode\":9,\"state\":\"FailedAfterCommit\",\"published\":true,\"abortAllowed\":false,\"dispositionCode\":0,\"disposition\":\"RestartRequired\",\"terminalFailureCode\":13,\"reason\":\"R03IR synthetic type-resolution failure (test-only stimulus)\",\"retainedBytes\":2048,\"baselineEligibilityRequiresStartupValidation\":true}",
+        "finalRecovery": null,
+        "finalDiagnostics": null,
+        "finalExecutionDiagnostics": null
+      }
+    }
+  ],
+  "phaseExcerpts": [
+    {
+      "caseId": "IR-R03-02-off",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-M-after-L-73bc/players/IR-R03-02-off/Player.log",
+      "sha256": "951292d9dbe5ae8f8e4ab274ed76b03b0622bb1ca5b7c5da8a6d4ec3f572e71b",
+      "excerpts": [
+        {
+          "line": 22,
+          "text": "[AssemblyShadowPhase] phase=10 featureOff=1"
+        },
+        {
+          "line": 23,
+          "text": "[AssemblyShadowPhase] phase=910 featureOff=1"
+        }
+      ]
+    },
+    {
+      "caseId": "IR-R03-02-release-baseline",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-M-after-L-73bc/players/IR-R03-02-release-baseline/Player.log",
+      "sha256": "06da37975a3080ce6e707d4b54ac70f05407a656f144831fb64d867f02699b08",
+      "excerpts": [
+        {
+          "line": 1,
+          "text": "[AssemblyShadowTerminalRejection] prepared=true pinned=true"
+        },
+        {
+          "line": 24,
+          "text": "[AssemblyShadowPhase] phase=10 state=0 generation=0"
+        },
+        {
+          "line": 25,
+          "text": "[AssemblyShadowPhase] phase=20 state=0 generation=0"
+        },
+        {
+          "line": 26,
+          "text": "[AssemblyShadowPhase] phase=30 state=1 generation=0"
+        },
+        {
+          "line": 27,
+          "text": "[AssemblyShadowPhase] phase=40 state=2 generation=0"
+        },
+        {
+          "line": 28,
+          "text": "[AssemblyShadowPhase] phase=50 state=2 generation=0"
+        },
+        {
+          "line": 29,
+          "text": "[AssemblyShadowPhase] phase=60 state=3 generation=0"
+        },
+        {
+          "line": 31,
+          "text": "[AssemblyShadowPhase] phase=70 state=4 generation=0"
+        },
+        {
+          "line": 32,
+          "text": "[R03ReserveGcProbe] mask=31 collectionsBefore=7 collectionsAfter=8"
+        },
+        {
+          "line": 33,
+          "text": "[AssemblyShadowPhase] phase=80 state=6 generation=1"
+        },
+        {
+          "line": 34,
+          "text": "[AssemblyShadowPhase] phase=90 state=6 generation=1"
+        },
+        {
+          "line": 36,
+          "text": "[AssemblyShadowPhase] phase=100 state=6 generation=1"
+        },
+        {
+          "line": 37,
+          "text": "[AssemblyShadowPhase] phase=110 state=6 generation=1"
+        },
+        {
+          "line": 38,
+          "text": "[AssemblyShadowPhase] phase=120 state=6 generation=1"
+        },
+        {
+          "line": 39,
+          "text": "[AssemblyShadowPhase] phase=130 state=6 generation=1"
+        },
+        {
+          "line": 40,
+          "text": "[AssemblyShadowPhase] phase=140 state=6 generation=1"
+        },
+        {
+          "line": 41,
+          "text": "[AssemblyShadowPhase] phase=150 state=6 generation=1"
+        },
+        {
+          "line": 42,
+          "text": "[AssemblyShadowPhase] phase=160 state=6 generation=1"
+        },
+        {
+          "line": 43,
+          "text": "[AssemblyShadowPhase] phase=170 state=6 generation=1"
+        },
+        {
+          "line": 44,
+          "text": "[AssemblyShadowFirstFailure] code=21 detail=ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline truncated=0"
+        },
+        {
+          "line": 45,
+          "text": "[AssemblyShadowTerminalRejection] throw=1 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 46,
+          "text": "[AssemblyShadowTerminalRejection] throw=2 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 47,
+          "text": "[AssemblyShadowPhase] phase=900 state=9 generation=1"
+        },
+        {
+          "line": 48,
+          "text": "[AssemblyShadowPhase] phase=910 state=9 generation=1"
+        }
+      ]
+    },
+    {
+      "caseId": "IR-R03-02-debug-baseline",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-M-after-L-73bc/players/IR-R03-02-debug-baseline/Player.log",
+      "sha256": "64848a78452d13d141d871546abe45fbd6465903eb36cdd35da7aa52cb9ed6fb",
+      "excerpts": [
+        {
+          "line": 1,
+          "text": "[AssemblyShadowTerminalRejection] prepared=true pinned=true"
+        },
+        {
+          "line": 24,
+          "text": "[AssemblyShadowPhase] phase=10 state=0 generation=0"
+        },
+        {
+          "line": 25,
+          "text": "[AssemblyShadowPhase] phase=20 state=0 generation=0"
+        },
+        {
+          "line": 26,
+          "text": "[AssemblyShadowPhase] phase=30 state=1 generation=0"
+        },
+        {
+          "line": 27,
+          "text": "[AssemblyShadowPhase] phase=40 state=2 generation=0"
+        },
+        {
+          "line": 28,
+          "text": "[AssemblyShadowPhase] phase=50 state=2 generation=0"
+        },
+        {
+          "line": 29,
+          "text": "[AssemblyShadowPhase] phase=60 state=3 generation=0"
+        },
+        {
+          "line": 31,
+          "text": "[AssemblyShadowPhase] phase=70 state=4 generation=0"
+        },
+        {
+          "line": 32,
+          "text": "[R03ReserveGcProbe] mask=31 collectionsBefore=7 collectionsAfter=8"
+        },
+        {
+          "line": 33,
+          "text": "[AssemblyShadowPhase] phase=80 state=6 generation=1"
+        },
+        {
+          "line": 34,
+          "text": "[AssemblyShadowPhase] phase=90 state=6 generation=1"
+        },
+        {
+          "line": 36,
+          "text": "[AssemblyShadowPhase] phase=100 state=6 generation=1"
+        },
+        {
+          "line": 37,
+          "text": "[AssemblyShadowPhase] phase=110 state=6 generation=1"
+        },
+        {
+          "line": 38,
+          "text": "[AssemblyShadowPhase] phase=120 state=6 generation=1"
+        },
+        {
+          "line": 39,
+          "text": "[AssemblyShadowPhase] phase=130 state=6 generation=1"
+        },
+        {
+          "line": 40,
+          "text": "[AssemblyShadowPhase] phase=140 state=6 generation=1"
+        },
+        {
+          "line": 41,
+          "text": "[AssemblyShadowPhase] phase=150 state=6 generation=1"
+        },
+        {
+          "line": 42,
+          "text": "[AssemblyShadowPhase] phase=160 state=6 generation=1"
+        },
+        {
+          "line": 43,
+          "text": "[AssemblyShadowPhase] phase=170 state=6 generation=1"
+        },
+        {
+          "line": 44,
+          "text": "[AssemblyShadowFirstFailure] code=21 detail=ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline truncated=0"
+        },
+        {
+          "line": 45,
+          "text": "[AssemblyShadowTerminalRejection] throw=1 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 46,
+          "text": "[AssemblyShadowTerminalRejection] throw=2 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 47,
+          "text": "[AssemblyShadowPhase] phase=900 state=9 generation=1"
+        },
+        {
+          "line": 48,
+          "text": "[AssemblyShadowPhase] phase=910 state=9 generation=1"
+        }
+      ]
+    },
+    {
+      "caseId": "IR-R03-02-release-engine",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-M-after-L-73bc/players/IR-R03-02-release-engine/Player.log",
+      "sha256": "bb0b41ebd046930f4b7ac98a4708238d0c76652e75a2640f8d8413d19a2407fb",
+      "excerpts": [
+        {
+          "line": 1,
+          "text": "[AssemblyShadowTerminalRejection] prepared=true pinned=true"
+        },
+        {
+          "line": 24,
+          "text": "[AssemblyShadowPhase] phase=10 state=0 generation=0"
+        },
+        {
+          "line": 25,
+          "text": "[AssemblyShadowPhase] phase=20 state=0 generation=0"
+        },
+        {
+          "line": 26,
+          "text": "[AssemblyShadowPhase] phase=30 state=1 generation=0"
+        },
+        {
+          "line": 27,
+          "text": "[AssemblyShadowPhase] phase=40 state=2 generation=0"
+        },
+        {
+          "line": 28,
+          "text": "[AssemblyShadowPhase] phase=50 state=2 generation=0"
+        },
+        {
+          "line": 29,
+          "text": "[AssemblyShadowPhase] phase=60 state=3 generation=0"
+        },
+        {
+          "line": 31,
+          "text": "[AssemblyShadowPhase] phase=70 state=4 generation=0"
+        },
+        {
+          "line": 32,
+          "text": "[R03ReserveGcProbe] mask=31 collectionsBefore=7 collectionsAfter=8"
+        },
+        {
+          "line": 33,
+          "text": "[AssemblyShadowFirstFailure] code=13 detail=R03IR synthetic type-resolution failure (test-only stimulus) truncated=0"
+        },
+        {
+          "line": 34,
+          "text": "[AssemblyShadowTerminalRejection] throw=1 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 35,
+          "text": "[AssemblyShadowTerminalReport] sequence=1 state=9 message=\"R03_ENGINE_UNHANDLED_2925be241deb454cb5da8119649ab4e1\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 36,
+          "text": "[AssemblyShadowTerminalRejection] throw=2 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 37,
+          "text": "[AssemblyShadowTerminalReport] sequence=2 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 38,
+          "text": "[AssemblyShadowTerminalRejection] throw=3 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 39,
+          "text": "[AssemblyShadowTerminalRejection] unhandled=1 state=9 nativeOnly=true delegateInvoked=false"
+        },
+        {
+          "line": 40,
+          "text": "[AssemblyShadowTerminalRejection] throw=4 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 41,
+          "text": "[AssemblyShadowTerminalReport] sequence=3 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 42,
+          "text": "[AssemblyShadowTerminalRejection] throw=5 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 43,
+          "text": "[AssemblyShadowTerminalReport] sequence=4 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 44,
+          "text": "[AssemblyShadowTerminalRejection] throw=6 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 45,
+          "text": "[AssemblyShadowTerminalReport] sequence=5 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 46,
+          "text": "[AssemblyShadowTerminalRejection] throw=7 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 47,
+          "text": "[AssemblyShadowTerminalReport] sequence=6 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 48,
+          "text": "[AssemblyShadowTerminalRejection] throw=8 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 49,
+          "text": "[AssemblyShadowTerminalReport] sequence=7 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 50,
+          "text": "[AssemblyShadowTerminalRejection] throw=9 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 51,
+          "text": "[AssemblyShadowTerminalReport] sequence=8 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 52,
+          "text": "[AssemblyShadowTerminalRejection] throw=10 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 53,
+          "text": "[AssemblyShadowTerminalReport] sequence=9 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 54,
+          "text": "[AssemblyShadowTerminalRejection] throw=11 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 55,
+          "text": "[AssemblyShadowTerminalReport] sequence=10 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 56,
+          "text": "[AssemblyShadowTerminalRejection] throw=12 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 57,
+          "text": "[AssemblyShadowTerminalReport] sequence=11 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 58,
+          "text": "[AssemblyShadowTerminalRejection] throw=13 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 59,
+          "text": "[AssemblyShadowTerminalReport] sequence=12 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 60,
+          "text": "[AssemblyShadowTerminalRejection] throw=14 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 61,
+          "text": "[AssemblyShadowTerminalReport] sequence=13 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 62,
+          "text": "[AssemblyShadowTerminalRejection] throw=15 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 63,
+          "text": "[AssemblyShadowTerminalReport] sequence=14 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 64,
+          "text": "[AssemblyShadowTerminalRejection] throw=16 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 65,
+          "text": "[AssemblyShadowTerminalReport] sequence=15 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 66,
+          "text": "[AssemblyShadowTerminalRejection] throw=17 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 67,
+          "text": "[AssemblyShadowTerminalReport] sequence=16 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 68,
+          "text": "[AssemblyShadowTerminalRejection] throw=18 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 69,
+          "text": "[AssemblyShadowTerminalReport] sequence=17 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 70,
+          "text": "[AssemblyShadowTerminalRejection] throw=19 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 71,
+          "text": "[AssemblyShadowTerminalReport] sequence=18 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 72,
+          "text": "[AssemblyShadowTerminalRejection] throw=20 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 73,
+          "text": "[AssemblyShadowTerminalReport] sequence=19 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 74,
+          "text": "[AssemblyShadowTerminalRejection] throw=21 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 75,
+          "text": "[AssemblyShadowTerminalReport] sequence=20 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 76,
+          "text": "[AssemblyShadowTerminalRejection] throw=22 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 77,
+          "text": "[AssemblyShadowTerminalReport] sequence=21 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 78,
+          "text": "[AssemblyShadowTerminalRejection] throw=23 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 79,
+          "text": "[AssemblyShadowTerminalReport] sequence=22 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 80,
+          "text": "[AssemblyShadowTerminalRejection] throw=24 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 81,
+          "text": "[AssemblyShadowTerminalReport] sequence=23 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 82,
+          "text": "[AssemblyShadowTerminalRejection] throw=25 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 83,
+          "text": "[AssemblyShadowTerminalReport] sequence=24 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 84,
+          "text": "[AssemblyShadowTerminalRejection] throw=26 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 85,
+          "text": "[AssemblyShadowTerminalReport] sequence=25 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 86,
+          "text": "[AssemblyShadowTerminalRejection] throw=27 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 87,
+          "text": "[AssemblyShadowTerminalReport] sequence=26 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 88,
+          "text": "[AssemblyShadowTerminalRejection] throw=28 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 89,
+          "text": "[AssemblyShadowTerminalReport] sequence=27 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 90,
+          "text": "[AssemblyShadowTerminalRejection] throw=29 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 91,
+          "text": "[AssemblyShadowTerminalReport] sequence=28 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 92,
+          "text": "[AssemblyShadowTerminalRejection] throw=30 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 93,
+          "text": "[AssemblyShadowTerminalReport] sequence=29 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 94,
+          "text": "[AssemblyShadowTerminalRejection] throw=31 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 95,
+          "text": "[AssemblyShadowTerminalReport] sequence=30 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 96,
+          "text": "[AssemblyShadowTerminalRejection] throw=32 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 97,
+          "text": "[AssemblyShadowTerminalReport] sequence=31 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        },
+        {
+          "line": 98,
+          "text": "[AssemblyShadowTerminalReport] sequence=32 state=9 message=\"Assembly Shadow terminal execution rejected. Read the immutable native recovery record for the original failure.\" managedHandlerExecuted=false"
+        }
+      ]
+    },
+    {
+      "caseId": "IR-R03-02-release-type",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-M-after-L-73bc/players/IR-R03-02-release-type/Player.log",
+      "sha256": "d7e3454ca818638d4b2aa16547be5322ae0241ecb93a6f678e5910e03496b09e",
+      "excerpts": [
+        {
+          "line": 1,
+          "text": "[AssemblyShadowTerminalRejection] prepared=true pinned=true"
+        },
+        {
+          "line": 24,
+          "text": "[AssemblyShadowPhase] phase=10 state=0 generation=0"
+        },
+        {
+          "line": 25,
+          "text": "[AssemblyShadowPhase] phase=20 state=0 generation=0"
+        },
+        {
+          "line": 26,
+          "text": "[AssemblyShadowPhase] phase=30 state=1 generation=0"
+        },
+        {
+          "line": 27,
+          "text": "[AssemblyShadowPhase] phase=40 state=2 generation=0"
+        },
+        {
+          "line": 28,
+          "text": "[AssemblyShadowPhase] phase=50 state=2 generation=0"
+        },
+        {
+          "line": 29,
+          "text": "[AssemblyShadowPhase] phase=60 state=3 generation=0"
+        },
+        {
+          "line": 31,
+          "text": "[AssemblyShadowPhase] phase=70 state=4 generation=0"
+        },
+        {
+          "line": 32,
+          "text": "[R03ReserveGcProbe] mask=31 collectionsBefore=7 collectionsAfter=8"
+        },
+        {
+          "line": 33,
+          "text": "[AssemblyShadowPhase] phase=80 state=6 generation=1"
+        },
+        {
+          "line": 34,
+          "text": "[AssemblyShadowPhase] phase=90 state=6 generation=1"
+        },
+        {
+          "line": 36,
+          "text": "[AssemblyShadowPhase] phase=100 state=6 generation=1"
+        },
+        {
+          "line": 37,
+          "text": "[AssemblyShadowPhase] phase=110 state=6 generation=1"
+        },
+        {
+          "line": 38,
+          "text": "[AssemblyShadowPhase] phase=120 state=6 generation=1"
+        },
+        {
+          "line": 39,
+          "text": "[AssemblyShadowPhase] phase=130 state=6 generation=1"
+        },
+        {
+          "line": 40,
+          "text": "[AssemblyShadowPhase] phase=140 state=6 generation=1"
+        },
+        {
+          "line": 41,
+          "text": "[AssemblyShadowPhase] phase=150 state=6 generation=1"
+        },
+        {
+          "line": 42,
+          "text": "[AssemblyShadowPhase] phase=160 state=6 generation=1"
+        },
+        {
+          "line": 43,
+          "text": "[AssemblyShadowPhase] phase=170 state=6 generation=1"
+        },
+        {
+          "line": 44,
+          "text": "[AssemblyShadowFirstFailure] code=13 detail=R03IR synthetic type-resolution failure (test-only stimulus) truncated=0"
+        },
+        {
+          "line": 45,
+          "text": "[AssemblyShadowTerminalRejection] throw=1 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 46,
+          "text": "[AssemblyShadowPhase] phase=180 state=9 generation=1"
+        },
+        {
+          "line": 47,
+          "text": "[AssemblyShadowPhase] phase=185 state=9 generation=1"
+        },
+        {
+          "line": 48,
+          "text": "[AssemblyShadowTerminalReport] sequence=1 state=9 message=null managedHandlerExecuted=false"
+        },
+        {
+          "line": 49,
+          "text": "[AssemblyShadowTerminalRejection] throw=2 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 50,
+          "text": "[AssemblyShadowPhase] phase=190 state=9 generation=1"
+        },
+        {
+          "line": 51,
+          "text": "[AssemblyShadowTerminalRejection] throw=3 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 52,
+          "text": "[AssemblyShadowPhase] phase=200 state=9 generation=1"
+        },
+        {
+          "line": 53,
+          "text": "[AssemblyShadowTerminalRejection] throw=4 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 54,
+          "text": "[AssemblyShadowPhase] phase=210 state=9 generation=1"
+        },
+        {
+          "line": 55,
+          "text": "[AssemblyShadowTerminalRejection] throw=5 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 56,
+          "text": "[AssemblyShadowPhase] phase=220 state=9 generation=1"
+        },
+        {
+          "line": 57,
+          "text": "[AssemblyShadowTerminalRejection] throw=6 constructorRun=false stackPrepared=false"
+        },
+        {
+          "line": 58,
+          "text": "[AssemblyShadowPhase] phase=900 state=9 generation=1"
+        },
+        {
+          "line": 59,
+          "text": "[AssemblyShadowPhase] phase=910 state=9 generation=1"
+        }
+      ]
+    }
+  ],
+  "generatedConsumerEvidence": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-M-after-L-73bc/projects/candidate-release/Library/Bee/artifacts/MacStandalonePlayerBuildProgram/il2cppOutput/cpp/Assembly-CSharp.cpp",
+      "sha256": "8e10a85be55ee96df894907fbaaf583d1259d1c3e6d179199a525d1441619fe4",
+      "snippetReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03M-after-L-73bc/generated-diagnosis/candidate-release.json"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-M-after-L-73bc/projects/candidate-debug/Library/Bee/artifacts/MacStandalonePlayerBuildProgram/il2cppOutput/cpp/Assembly-CSharp.cpp",
+      "sha256": "8e10a85be55ee96df894907fbaaf583d1259d1c3e6d179199a525d1441619fe4",
+      "snippetReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03M-after-L-73bc/generated-diagnosis/candidate-debug.json"
+    }
+  ],
+  "installedCodegenHeader": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/codegen/il2cpp-codegen-il2cpp.h",
+    "sha256": "036832ca37cdd73e577a4c75fce5d8871a4e310636f99730674125c008257ef8",
+    "gitBlob": "ed3bea86061b9c168848ac732fb5d17db259ad3d",
+    "allThreeInstalledCopiesByteIdentical": true
+  },
+  "noRetryNoNewStimulus": true,
+  "defaultFieldsNotResetEvidence": true,
+  "newRuntimeLaunches": 0
+}

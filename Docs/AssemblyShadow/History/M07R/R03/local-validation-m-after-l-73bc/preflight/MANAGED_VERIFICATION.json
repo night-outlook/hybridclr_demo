@@ -1,0 +1,110 @@
+{
+  "state": "Passed",
+  "startUtc": "2026-10-13T01:53:51.198292+00:00",
+  "endUtc": "2026-10-13T01:53:51.222513+00:00",
+  "pins": {
+    "hybridclr_demo": "34727adcd4296fefb0d814d2030fbd1cfb581cfe",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "c1a6876a3801a8343123977a0e230558904fd94d"
+  },
+  "invocations": 1,
+  "commands": [
+    {
+      "target": "HybridCLR.Runtime",
+      "expectedExit": 0,
+      "actualExit": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03M-after-L-73bc/commands/0001/command.json",
+      "receiptSha256": "9c57c8172a527b24d42d671a0f6f2d3346968bb766f4a8551681e05b87256f70",
+      "responseSha256": "35e17aa7078d2a9732c5a29eb3c3d76843c686ec784141886ab87f1c75c9ed10",
+      "errors": []
+    },
+    {
+      "target": "Unity.HybridCLR.AssemblyShadow.CodeGen",
+      "expectedExit": 0,
+      "actualExit": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03M-after-L-73bc/commands/0002/command.json",
+      "receiptSha256": "c26df325107534a23fea1768487d977b13b4cd280fb11468ec788cf6819f7c69",
+      "responseSha256": "3e8ffe2f44e445d6f7ae1e76b21626c66e206bdbfc6f8bcecdcd7a883e791b63",
+      "errors": []
+    },
+    {
+      "target": "HybridCLR.Editor",
+      "expectedExit": 0,
+      "actualExit": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03M-after-L-73bc/commands/0003/command.json",
+      "receiptSha256": "7aecf56c26cecb04faf0f44d62cfa9b312efe14c9e2b662f6bc39307bf3d2380",
+      "responseSha256": "0538ea6eccefb589b585b3c3a13290d6c6eb79d9df46f4980a27a368b4c50986",
+      "errors": []
+    },
+    {
+      "target": "R03Build",
+      "expectedExit": 0,
+      "actualExit": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03M-after-L-73bc/commands/0004/command.json",
+      "receiptSha256": "7c84c6069fb2028d5cd53451a84024508fdff6a950b1035650eb9e69f79bf9b9",
+      "responseSha256": "b620fc51da99736254b868a6adcb0e8b8caff3e23f210cc09a170297cc7f6a8d",
+      "errors": []
+    },
+    {
+      "target": "R03TerminalPlayerApi",
+      "expectedExit": 0,
+      "actualExit": 0,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03M-after-L-73bc/commands/0005/command.json",
+      "receiptSha256": "05a797ce7fee1ddc4d57a102df79063e469c55de2f57b796c34d1b8d54eb9036",
+      "responseSha256": "599b948dfe0db5ca85c11842ce66b7e65b9b3c50f140240a3f909e28714734e2",
+      "errors": []
+    },
+    {
+      "target": "OriginalUnsignedCounts",
+      "expectedExit": 1,
+      "actualExit": 1,
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03M-after-L-73bc/commands/0006/command.json",
+      "receiptSha256": "a17b0cb195dd633086ed0e21fbd0c692b2b6cbb7693384043366a6f67a0c1e95",
+      "responseSha256": "6f5bb70ce365434c8add6029f47de0609d8bd1ce43455e68084a72409a79d0ba",
+      "errors": [
+        "CS0266",
+        "CS0266"
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03M-after-L-73bc/build-api/HybridCLR.Runtime/HybridCLR.Runtime.dll",
+      "sha256": "2f16fbfdf1d6f7aa77e46ddbe0a1f986a1300c4a1aca99463a7d04962fa11c67",
+      "size": 60928
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03M-after-L-73bc/build-api/Unity.HybridCLR.AssemblyShadow.CodeGen/Unity.HybridCLR.AssemblyShadow.CodeGen.dll",
+      "sha256": "3e61fd215542b948caff5c90b518417bbfb3684fc42a8c500ea0ae2dae86f498",
+      "size": 120832
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03M-after-L-73bc/build-api/HybridCLR.Editor/HybridCLR.Editor.dll",
+      "sha256": "6ea4df7f8ce507181f5af0a7bca72d8da1c0cb9cc9015f3a863b48d034b3c9b2",
+      "size": 818176
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03M-after-L-73bc/build-api/R03Build/R03Build.dll",
+      "sha256": "92f8cefc71f78066d72f8d8f95ead53f5da0f8b7936177c0f80eb9bf691f575b",
+      "size": 24064
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/ManagedAPI-R03M-after-L-73bc/build-api/R03TerminalPlayerApi/R03TerminalPlayerApi.dll",
+      "sha256": "161f8ffa27646fc48bd19f345da8ad7ca20adc15f89496fb5ccc0b091d8cb97b",
+      "size": 15872
+    }
+  ],
+  "currentCompilerInputFiles": 428,
+  "warningCount": 68,
+  "warningCodes": {
+    "CS0649": 68
+  },
+  "currentHelperSha256": "94fce53aacec2818631c540baa38cebfa6ce5ace1b539a62d42977210f156c06",
+  "currentPlayerSha256": "caa73a74927f5fff43a49d992aa9e8740d8853651b857c179ba6518d3b181d36",
+  "freshOfficialManagedCompilation": true,
+  "expectedNegativeClassification": "PassedExpectedNegative; never a product build",
+  "UnityLaunches": 0,
+  "Players": 0,
+  "runtimeAcceptance": false
+}

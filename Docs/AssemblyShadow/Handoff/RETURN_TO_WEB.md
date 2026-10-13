@@ -1,6 +1,64 @@
 # Local Validation → Primary Implementation
 
-## Current return — L prerequisite blocked by the inventory test fixture
+## Current return — M FAIL: three nontrivial Primary findings
+
+**FAIL / ReturnRequired. Local Validation → Primary Implementation.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-m-after-l-73bc/README.md), [factual result](../History/M07R/R03/local-validation-m-after-l-73bc/preflight/LOCAL_M_RESULT.json), [full diagnosis](../History/M07R/R03/local-validation-m-after-l-73bc/preflight/FAILURE_DIAGNOSIS.json). Fresh host, full before-custody/preservation, official managed/55-native compilers and separate storage gates Passed. One execution: **18 cells, 14 Passed / 4 Failed; three builds Passed; five Players; OFF Passed; three ON and engine Failed**. Three Bee observations Passed with restored original factory and real nodes. After-audits and seal Passed. No retries, Local source changes or extra stimulus.
+
+**Common exact reproduction:** use only the canonical owner paths and exact four execution SHA values in LOCAL_VALIDATION, branch `codex/assembly-shadow-r01b-h1`, demo `34727adcd4296fefb0d814d2030fbd1cfb581cfe`, native `c1a6876a3801a8343123977a0e230558904fd94d`, Unity2022.3.62f2/macOS26.5.2 arm64/.NET8.0.318/Apple clang21. Follow pinned M_BATCH_PROCEDURE.md gates, then the exact diagnostic and separately admitted `--execute` argv/UTC/PID in [execution receipt](../History/M07R/R03/local-validation-m-after-l-73bc/preflight/commands/storage-execute/receipt.json). Runtime root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-M-after-L-73bc`. This consumed attempt must not be retried. Fresh successor scope, pins and roots must come from Primary.
+
+### IR-LOCAL-M-BASELINE-01
+
+**Symptom:** Release/debug baseline Players exit 0 but semantic raw/verifier Failed at phase 170, error ManagedExceptionCaught; native first cause 21 retained and no post-poison checks reached.
+
+**Evidence and excerpts:** batch/players/IR-R03-02-{release,debug}-baseline/{request.json,raw.json,verification.json,Player.log}; preflight/generated-diagnosis/{candidate-release,candidate-debug}.json. Raw pre42/42,field 2,GC mask31; first native code 21, two fixed rejection throws, phase 900/910 state 9. No state reset is proved by unfilled raw0.
+
+**Most likely root cause:** The receipt consumer still executes ordinary virtual managed decoding after poison. Generated Assembly-CSharp.cpp invokes UTF8 GetString through VirtualFuncInvoker3 slot 33 before nativeGuardJson assignment; current installed codegen.virtual calls RequireActiveMethod and rejects all terminal managed methods. The native probe catches the prepared Il2CppExceptionWrapper, but the following Encoding path triggers another rejection before the bridge can finish. This is source-supported correlation, not a newly traced second exception site.
+
+**Affected scope:** Baseline-owner managed diagnostic consumer in R03TerminalPlayer phase 170, guarded virtual-dispatch boundary and receipt capture. Native first-error preservation must remain unchanged.
+
+**Recommended Primary direction:** Move the receipt decode/flag verification to authenticated native/fixed transport or prepare all needed consumer data while healthy. Bind the real native caughtOldGuard result and first cause without requiring post-poison virtual business/BCL calls. Do not permit Encoding by broad guard bypass or accept missing receipt/postchecks.
+
+**Remaining uncertainty:** Raw nativeGuardJson is unassigned; exact second rejection site/payload not traced. Generated output plus fixed throw count strongly narrows the consumer boundary, but does not independently recover the native JSON buffer.
+
+**Required validation after correction:** Fresh successor release/debug baseline must preserve first code 21, actual native caught guard receipt,42/42/field 2/GC mask31, all denied reflection/delegate/AOT attempts, exact post-field 2 and original recovery/diagnostics/mask15. No M retry.
+
+### IR-LOCAL-M-FIELD-02
+
+**Symptom:** Type Player exit 0 with Failed raw/verifier at phase 220. It catches real type failure(return1), reaches state 9 and reporter15, and denies all three attempted body entries without canary mutation, but post-poison FieldInfo.GetValue throws; final field/recovery checks not reached.
+
+**Evidence and excerpts:** batch/players/IR-R03-02-release-type/{raw.json,verification.json,Player.log}; generated-diagnosis/candidate-release.json. Raw firstRecovery code 13,poisonedState9,GC mask31,terminalReportingProbeMask15; attempted reflection/delegate/AOT true and successesfalse; finalCanaryCount1; failurePhase220,shadowFieldReadablefalse. Generated output calls VirtualFuncInvoker1 slot 23 before assigning finalShadowField.
+
+**Most likely root cause:** The required post-poison observational read itself invokes an ordinary managed virtual method. The generated FieldInfo.GetValue slot 23 dispatch passes through the same source-authenticated codegen.virtual terminal RequireActiveMethod guard before normal RuntimeFieldInfo/Field::GetValueObject handling. Thus the unchanged business-denial rule conflicts with this managed witness consumer; boxing/type-use paths may additionally need evaluation after dispatch.
+
+**Affected scope:** Post-poison active-instance primitive-field observation and downstream diagnostics in the IR witness; not evidence of active body execution or a reset of state.
+
+**Recommended Primary direction:** Reconcile the required field observation with terminal denial through a narrowly authenticated read-only route for the already-resolved exact instance/field, with healthy lifetime/identity preparation and no managed method/body/cctor admission after poison. Preserve the exact final value2 proof and deny all business reflection/delegate/AOT paths; do not waive the field requirement or relax guards.
+
+**Remaining uncertainty:** Exact dynamic exception payload/site not captured; generated guarded virtual path is established. Field value after denial remains Unavailable, so unchanged canary alone cannot certify the active instance was unchanged. FinalRecovery/rawstate0 is unfilled, not a proven reset.
+
+**Required validation after correction:** Fresh type and baseline successor must actually read exact stable2 after poison, while all three denied entries retain side-effect checks, original code 13/21/recovery and mask15. Complete the unchanged final diagnostics checks.
+
+### IR-LOCAL-M-ENGINE-03
+
+**Symptom:** Engine Player PID 52820 exits 71 with valid ObservedNotAccepted JSON, completedReports=50623 over the prescribed 500 ms window; 1..64 bound fails. Original host verification receipt is Unavailable because exit71 failed before that stage.
+
+**Evidence and excerpts:** batch/players/IR-R03-02-release-engine/{request.json,raw.json,Player.log}; original command receipt/PID/run joins in FINAL_EVIDENCE_AUDIT.json and failed cell in BATCH_EXECUTION.json. First native sequence1 carries R03_ENGINE_UNHANDLED_2925be241deb454cb5da8119649ab4e1; subsequent fixed-rejection reports are visible. Raw state6→9/code 13,logger1→1,500 ms,timedOutfalse,reports=50623. No crash/zero-byte raw this time.
+
+**Most likely root cause:** Native transport handles the exact report but terminal Unity/engine callbacks repeatedly attempt denied ordinary entry during the observation window, producing a report cascade. CompletedCounter increments on each TryHandle; returning handled-true prevents the prior fatal reporting path but does not quiesce repeated engine rejection/re-entry. The bounded stderr first 32 messages are not the complete counter count.
+
+**Affected scope:** Terminal engine-report/re-entry integration in the current Unity Player; broader finalizer/shutdown qualification still outside M.
+
+**Recommended Primary direction:** Identify actual repeating callback/producer through a bounded native identity/site counter that retains original guard-owned transport and first failure. Reconcile a terminal engine state with genuine bounded reporting/quiescence without executing managed logger/business bodies. Keep1..64,500 ms and logger1→1 expectations; no log-only counter cap, longer window, finalizer disablement or acceptance relaxation.
+
+**Remaining uncertainty:** Actual producer/site of the 50,623 completed calls is not identified by current aggregate counter; the one visible native unhandled fixed-rejection may be a finalizer but no current crash/stack proves that it is the dominant source. No performance/general cleanup qualification follows.
+
+**Required validation after correction:** Fresh same fifth-engine successor must bind true uncaught sentinel, healthyGC mask31,native reporter,state6→9/code 13/recovery,logger1→1 and1..64 actual completed reports in500 ms with valid raw and exit 0/source-bound verifier. No sixth Player/extra stimulus or M retry.
+
+Actual raw and phase data are retained in [diagnosis](../History/M07R/R03/local-validation-m-after-l-73bc/preflight/FAILURE_DIAGNOSIS.json) and batch/players. Every original command/build/request/PID/hash join is in [evidence audit](../History/M07R/R03/local-validation-m-after-l-73bc/preflight/FINAL_EVIDENCE_AUDIT.json); generated snippets are in preflight/generated-diagnosis, current codegen/native/C# bindings in source-snapshots. The original engine verifier remains Unavailable, not a fabricated successful receipt. Current Bee capture success does not resolve historical I's unavailable diagnostic emitter.
+
+Before/after custody both retain 339,367 original survivors and 77,477 unchanged missing identities; strict S custody remains Blocked. All earlier E/I/K FAIL, F/H/L Blocked and G/J scoped Passed states remain immutable. All acceptance flags false; independent full-stage FAIL/rereview NotRun. Return to Primary and stop; no H2/X02/M08A, expansion or Human Review Gate approval.
+
+## Historical return — L prerequisite blocked by the inventory test fixture
 
 **PrerequisiteBlocked; runtime NotRun. Local Validation → Primary Implementation.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-l-after-k-52d9/README.md), [factual result](../History/M07R/R03/local-validation-l-after-k-52d9/preflight/LOCAL_L_RESULT.json), [source-bound diagnosis](../History/M07R/R03/local-validation-l-after-k-52d9/preflight/FAILURE_DIAGNOSIS.json). First R03 suite:202 Passed/1 Error of203; all later suites, before admission, compilers, storage and runtime NotRun. Zero Unity/Player launches, no retry or Local source change.
 
