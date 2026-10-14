@@ -1,0 +1,43 @@
+name: SNAP02 isolated source review export
+on:
+  push:
+    branches: [codex/snap02-consumer-smoke-4a73]
+    paths: ['.github/workflows/snap02-review-export.yml']
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R02/
+            /Tools/AssemblyShadow/R03/
+            /Tools/AssemblyShadow/R03IR/
+            /Tools/AssemblyShadow/R03Storage/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/NATIVE_V2_COMPONENT_c271/
+      - name: Bind owned source bytes
+        shell: python
+        run: |
+          from pathlib import Path
+          import hashlib,json,os,subprocess,shutil
+          out=Path(os.environ['RUNNER_TEMP'])/'review-source';out.mkdir()
+          files=[]
+          for top in ('Tools','Docs'):
+              for p in sorted(Path(top).rglob('*')):
+                  if p.is_file():
+                      data=p.read_bytes();dst=out/p;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes(data)
+                      files.append({'path':str(p),'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'gitBlob':subprocess.check_output(['git','rev-parse','HEAD:'+str(p)],text=True).strip()})
+          (out/'SOURCE_MANIFEST.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'baseCommit':'4102c6b38fba4d1f37fbe04a84395fbadb105dce','files':files},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: snap02-owned-source
+          path: ${{ runner.temp }}/review-source
+          retention-days: 7
+          if-no-files-found: error
