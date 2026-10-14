@@ -108,8 +108,8 @@ def read_verified_files(root: Path, expected: dict) -> tuple[bytes, bytes]:
         # close errors must be surfaced before a successful return.
         while handles:
             os.close(handles.pop())
-        os.close(directory_fd)
-        directory_fd=-1
+        owned, directory_fd = directory_fd, -1
+        os.close(owned)  # Never retry a close after an error on a possibly reused FD.
         return content[1],content[0]
     finally:
         for fd in handles:
