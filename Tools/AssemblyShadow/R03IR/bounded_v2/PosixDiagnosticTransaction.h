@@ -82,6 +82,15 @@ class PosixDiagnosticTransaction {
         return a.st_dev==b.st_dev && a.st_ino==b.st_ino && a.st_uid==b.st_uid &&
             a.st_gid==b.st_gid && a.st_mode==b.st_mode;
     }
+    static bool Version(const struct stat& a,const struct stat& b) noexcept {
+#ifdef __APPLE__
+        const auto am=a.st_mtimespec, bm=b.st_mtimespec, ac=a.st_ctimespec, bc=b.st_ctimespec;
+#else
+        const auto am=a.st_mtim, bm=b.st_mtim, ac=a.st_ctim, bc=b.st_ctim;
+#endif
+        return a.st_size==b.st_size && a.st_nlink==b.st_nlink &&
+            am.tv_sec==bm.tv_sec && am.tv_nsec==bm.tv_nsec && ac.tv_sec==bc.tv_sec && ac.tv_nsec==bc.tv_nsec;
+    }
     static FileIdentity Identity(const struct stat& s,size_t bytes,Digest hash={}) noexcept {
         return {uint64_t(s.st_dev),uint64_t(s.st_ino),uint64_t(s.st_uid),
             uint64_t(s.st_mode & 07777),uint64_t(bytes),hash};
@@ -101,14 +110,15 @@ class PosixDiagnosticTransaction {
         }
         return failure_.error==FileError::None;
     }
-    bool Named(const char* name,const struct stat& original,size_t bytes) noexcept {
+    bool Named(const char* name,const struct stat& original,size_t bytes,bool stable=false) noexcept {
         struct stat s{};
         if(Ops::StatAt(Root(),name,&s)) return Fail(FileError::Identity,"file-fstatat",errno);
-        if(!Same(original,s)||!S_ISREG(s.st_mode)||s.st_nlink!=1||s.st_size<0||uint64_t(s.st_size)!=bytes)
+        if(!Same(original,s)||!S_ISREG(s.st_mode)||s.st_nlink!=1||s.st_size<0||uint64_t(s.st_size)!=bytes||
+            (stable&&!Version(original,s)))
             return Fail(FileError::Identity,"file-replaced-or-resized");
         return true;
     }
-    bool Disk(int fd,const struct stat& original,size_t bytes,Digest expected) noexcept {
+    bool Disk(int fd,struct stat& original,size_t bytes,Digest expected) noexcept {
         struct stat before{},after{};
         if(Ops::Stat(fd,&before)) return Fail(FileError::Identity,"file-fstat",errno);
         if(!Same(original,before)||before.st_nlink!=1||before.st_size<0||uint64_t(before.st_size)!=bytes)
@@ -124,8 +134,9 @@ class PosixDiagnosticTransaction {
         }
         if(hash.Finish()!=expected) return Fail(FileError::Content,"readback-sha256");
         if(Ops::Stat(fd,&after)) return Fail(FileError::Identity,"file-fstat-after",errno);
-        if(!Same(before,after)||after.st_nlink!=1||before.st_size!=after.st_size)
+        if(!Same(before,after)||!Version(before,after)||after.st_nlink!=1)
             return Fail(FileError::Identity,"file-changed-during-readback");
+        original=after; // Pin the exact byte version whose digest was verified.
         return failure_.error==FileError::None;
     }
     bool WriteAll(int fd,const uint8_t* p,size_t n,size_t& count,Sha256& hash) noexcept {
@@ -227,7 +238,7 @@ public:
         if(!Chain()||!Named(kDiagnosticFile,artifactStat_,artifactBytes_)||
             !Disk(artifact_,artifactStat_,artifactBytes_,expected.sha256)||
             !Sync(artifact_,false,"artifact-sync")||!Close(artifact_)||
-            !Named(kDiagnosticFile,artifactStat_,artifactBytes_)||!Sync(Root(),true,"artifact-directory-sync")) return false;
+            !Named(kDiagnosticFile,artifactStat_,artifactBytes_,true)||!Sync(Root(),true,"artifact-directory-sync")) return false;
         receipt_.artifact=Identity(artifactStat_,artifactBytes_,expected.sha256);
         state_=FileState::ArtifactDurable;return true;
     }
@@ -235,12 +246,12 @@ public:
         Call call(*this); if(!call.entered) return false;
         if(state_!=FileState::ArtifactDurable) return Fail(FileError::State,"envelope-order");
         if(!bytes||!n||n>kEnvelopeReserve) return Fail(FileError::Resource,"envelope-bound");
-        if(!Chain()||!Named(kDiagnosticFile,artifactStat_,artifactBytes_)||!Named(kEnvelopeFile,envelopeStat_,0)) return false;
+        if(!Chain()||!Named(kDiagnosticFile,artifactStat_,artifactBytes_,true)||!Named(kEnvelopeFile,envelopeStat_,0)) return false;
         Sha256 hash;
         if(!WriteAll(envelope_,bytes,n,envelopeBytes_,hash)||!Disk(envelope_,envelopeStat_,n,hash.Finish())||
             !Sync(envelope_,false,"envelope-sync")||!Close(envelope_)||
             !Sync(Root(),true,"commit-directory-sync")||!Chain()||
-            !Named(kDiagnosticFile,artifactStat_,artifactBytes_)||!Named(kEnvelopeFile,envelopeStat_,n)) return false;
+            !Named(kDiagnosticFile,artifactStat_,artifactBytes_,true)||!Named(kEnvelopeFile,envelopeStat_,n,true)) return false;
         receipt_.envelope=Identity(envelopeStat_,n,hash.Finish());
         // Checked close of every held directory is part of success.
         for(size_t i=nodeCount_;i>0;--i) if(!Close(nodes_[i-1].fd)) return false;
