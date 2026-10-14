@@ -37,6 +37,8 @@ struct Publication {
 // Optional TEST seam. Returning false injects EIO; it never changes actual
 // production syscall flags. The callback may not retain spans or mutate inputs.
 using Gate = bool (*)(void*,Stage,Target) noexcept;
+// Optional test syscall seam; production defaults to the real write syscall.
+using WriteCall = ssize_t (*)(void*,int,const uint8_t*,size_t) noexcept;
 class Transaction {
     char root_[kPathBytes]{};
     int dir_=-1, artifact_=-1, envelope_=-1;
@@ -46,6 +48,7 @@ class Transaction {
     Digest context_{};
     FirstFailure first_{};
     Gate gate_=nullptr; void* gateContext_=nullptr;
+    WriteCall writer_=nullptr; void* writerContext_=nullptr;
     size_t written_[2]{};
     bool Fail(FileError error,Stage stage,Target target,int systemError=0) noexcept {
         if(first_.error==FileError::None)
@@ -113,15 +116,16 @@ class Transaction {
         unsigned interrupted=0;
         while(n){
             if(!Allow(Stage::Write,target))return false;
-            const ssize_t actual=::write(fd,p,n);
+            const ssize_t actual=writer_?writer_(writerContext_,fd,p,n) : ::write(fd,p,n);
             if(actual<0){if(errno==EINTR && ++interrupted<=8)continue;
                 return Fail(FileError::Io,Stage::Write,target,errno);}
             if(actual==0)return Fail(FileError::Io,Stage::Write,target,EIO);
             const size_t consumed=static_cast<size_t>(actual);
             if(consumed>n)return Fail(FileError::Io,Stage::Write,target,EIO);
             written_[index]+=consumed;p+=consumed;n-=consumed;
+            if(first_.error!=FileError::None)return false;
         }
-        return true;
+        return first_.error==FileError::None;
     }
     static bool ArtifactSink(void* self,const uint8_t* p,size_t n) noexcept {
         auto& tx=*static_cast<Transaction*>(self);
@@ -173,7 +177,8 @@ class Transaction {
         out[64]=0;
     }
 public:
-    explicit Transaction(Gate gate=nullptr,void* user=nullptr) noexcept : gate_(gate),gateContext_(user) {}
+    explicit Transaction(Gate gate=nullptr,void* user=nullptr,WriteCall writer=nullptr,void* writerUser=nullptr) noexcept
+        : gate_(gate),gateContext_(user),writer_(writer),writerContext_(writerUser) {}
     Transaction(const Transaction&)=delete;Transaction& operator=(const Transaction&)=delete;
     ~Transaction(){if(artifact_>=0)::close(artifact_);if(envelope_>=0)::close(envelope_);if(dir_>=0)::close(dir_);}
     FirstFailure failure() const noexcept {return first_;}
