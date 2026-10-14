@@ -1,0 +1,77 @@
+name: R03 bounded V2 consumer integration
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1, codex/snap02-v2-consumer-4a73]
+    paths:
+      - '.github/workflows/r03-bounded-consumer.yml'
+      - 'Tools/AssemblyShadow/R03IR/bounded_snapshot.py'
+      - 'Tools/AssemblyShadow/R03IR/run_terminal_local.py'
+      - 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/**'
+permissions:
+  contents: read
+jobs:
+  consumer:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R02/
+            /Tools/AssemblyShadow/R03/
+            /Tools/AssemblyShadow/R03IR/
+            /Tools/AssemblyShadow/R03Storage/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+        with:
+          dotnet-version: '8.0.x'
+      - name: Consumer, unchanged original suites and native integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Tools/AssemblyShadow/R03IR/NativeDiagnostics/run_consumer_checks.py \
+            --output "$RUNNER_TEMP/consumer-checks"
+          git diff --check
+          git diff --exit-code
+      - name: Record toolchain and source provenance
+        if: always()
+        shell: python
+        run: |
+          import hashlib,json,os,platform,shutil,subprocess,sys
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'consumer-checks';out.mkdir(exist_ok=True)
+          names=['Tools/AssemblyShadow/R03IR/bounded_snapshot.py','Tools/AssemblyShadow/R03IR/run_terminal_local.py',
+                 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/diagnostic_wire.py',
+                 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_bounded_consumer.py',
+                 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/run_consumer_checks.py',
+                 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedDiagnosticsV2.h',
+                 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/native_codec_driver.cpp']
+          files=[]
+          for name in names:
+              p=Path(name)
+              if p.exists():
+                  b=p.read_bytes();files.append({'path':name,'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest(),'gitBlob':subprocess.check_output(['git','rev-parse','HEAD:'+name],text=True).strip()})
+          tools={}
+          for name,args in [('dotnet',['--info']),('clang++',['--version'])]:
+              exe=shutil.which(name)
+              if exe:
+                  r=subprocess.run([exe,*args],capture_output=True,text=True,timeout=30)
+                  tools[name]={'path':exe,'exit':r.returncode,'stdout':r.stdout,'stderr':r.stderr}
+          (out/'CI_IDENTITY.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'platform':platform.platform(),'python':sys.version,'tools':tools,'sourceFiles':files,'unityLaunched':False,'runtimeAcceptance':False},indent=2)+'\n')
+          records=[{'path':str(p.relative_to(out)),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(out.rglob('*')) if p.is_file() and not p.is_symlink() and p.name!='CI_MANIFEST.json']
+          (out/'CI_MANIFEST.json').write_text(json.dumps({'files':records},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-bounded-consumer-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/consumer-checks
+          retention-days: 14
+          if-no-files-found: error
