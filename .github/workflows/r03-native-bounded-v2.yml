@@ -1,0 +1,65 @@
+name: R03 native bounded diagnostics V2 component
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-native-bounded-v2.yml'
+      - 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/**'
+permissions:
+  contents: read
+jobs:
+  native-component:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03IR/NativeDiagnostics/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/diagnostic_stream.py
+      - name: Actual native codec and file operations, strict and sanitized
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_native_v2.py \
+            --output "$RUNNER_TEMP/native-v2-result"
+          git diff --check
+          git diff --exit-code
+      - name: Preserve complete original outputs and test-owned link metadata
+        if: always()
+        shell: python
+        run: |
+          from pathlib import Path
+          import os,hashlib,json,tarfile,subprocess
+          out=Path(os.environ['RUNNER_TEMP'])/'native-v2-result'
+          bundle=Path(os.environ['RUNNER_TEMP'])/'native-v2-bundle'
+          bundle.mkdir(exist_ok=True)
+          source=Path('Tools/AssemblyShadow/R03IR/NativeDiagnostics')
+          sources=[]
+          for p in sorted(source.glob('*')):
+              if p.is_file():
+                  sources.append({'path':str(p),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'gitBlob':subprocess.check_output(['git','rev-parse','HEAD:'+str(p)],text=True).strip()})
+          archive=bundle/'original-evidence.tar.gz'
+          if out.exists():
+              with tarfile.open(archive,'w:gz',dereference=False) as tar:
+                  for p in sorted(out.rglob('*')):
+                      tar.add(p,arcname=str(p.relative_to(out)),recursive=False)
+          receipt={'sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'sources':sources,'unityLaunched':False,'runtimeAcceptance':False,'coverage':'Actual native codec/POSIX syscalls; synthetic fields, trusted directory descriptor and injectable syscall failures'}
+          if archive.exists():
+              receipt['archive']={'name':archive.name,'bytes':archive.stat().st_size,'sha256':hashlib.sha256(archive.read_bytes()).hexdigest()}
+          (bundle/'CI_IDENTITY.json').write_text(json.dumps(receipt,indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: native-bounded-v2-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/native-v2-bundle
+          retention-days: 14
+          if-no-files-found: error
