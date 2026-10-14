@@ -1,0 +1,63 @@
+name: R03 bounded native V2 codec interop
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1, codex/snap-v2-native-20261014-c2e8]
+    paths:
+      - '.github/workflows/r03-bounded-v2-native.yml'
+      - 'Tools/AssemblyShadow/R03IR/bounded_v2/**'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/diagnostic_stream.py'
+permissions:
+  contents: read
+jobs:
+  codec:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            cxx: clang++
+            label: linux-clang
+          - os: ubuntu-24.04
+            cxx: g++
+            label: linux-gcc
+          - os: macos-14
+            cxx: clang++
+            label: macos-clang
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03IR/bounded_v2/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/
+      - name: Exact C++17 framing, reference decode and negative controls
+        env:
+          CXX: ${{ matrix.cxx }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Tools/AssemblyShadow/R03IR/bounded_v2/run_tests.py \
+            --repository "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/bounded-v2"
+          git diff --check
+          git diff --exit-code
+      - name: Record immutable run identity
+        if: always()
+        shell: python
+        run: |
+          import json,os
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'bounded-v2'
+          out.mkdir(exist_ok=True)
+          (out/'CI_IDENTITY.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'], 'runId':os.environ['GITHUB_RUN_ID'], 'runnerOs':os.environ['RUNNER_OS'], 'actualUnity':False, 'playerTransportEnabled':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: bounded-native-v2-${{ matrix.label }}-${{ github.sha }}
+          path: ${{ runner.temp }}/bounded-v2
+          retention-days: 14
+          if-no-files-found: warn
