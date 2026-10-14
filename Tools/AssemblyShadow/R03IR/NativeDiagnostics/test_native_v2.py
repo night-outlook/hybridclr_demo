@@ -23,6 +23,12 @@ HERE = Path(__file__).resolve().parent
 OUT: Path
 RECORDS: list[dict] = []
 PROFILES = ('strict', 'sanitized')
+# The Apple ASan runtime rejects leak detection before entering the binary.
+# Keep address/undefined instrumentation and fail-fast behavior on both OSes;
+# explicitly record Darwin leak coverage as unavailable, never as Passed.
+LEAK_CHECK = sys.platform != 'darwin'
+ASAN = f'detect_leaks={int(LEAK_CHECK)}:abort_on_error=1'
+UBSAN = 'halt_on_error=1:print_stacktrace=1'
 
 def sha(data): return hashlib.sha256(data).hexdigest()
 def blob(data): return hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
@@ -30,9 +36,9 @@ def blob(data): return hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data)
 def run(argv, expected=0):
     n=len(RECORDS)
     start=time.time()
-    env=dict(os.environ, PYTHONDONTWRITEBYTECODE='1', ASAN_OPTIONS='detect_leaks=1:abort_on_error=1', UBSAN_OPTIONS='halt_on_error=1:print_stacktrace=1')
+    env=dict(os.environ, PYTHONDONTWRITEBYTECODE='1', ASAN_OPTIONS=ASAN, UBSAN_OPTIONS=UBSAN)
     result=subprocess.run([str(x) for x in argv],cwd=HERE,env=env,capture_output=True,timeout=40)
-    row={'argv':[str(x) for x in argv],'cwd':str(HERE),'startUnix':start,'elapsedSeconds':time.time()-start,'exit':result.returncode,'expectedExit':expected}
+    row={'argv':[str(x) for x in argv],'cwd':str(HERE),'startUnix':start,'elapsedSeconds':time.time()-start,'exit':result.returncode,'expectedExit':expected,'sanitizerEnvironment':{'ASAN_OPTIONS':ASAN,'UBSAN_OPTIONS':UBSAN}}
     for name,data in [('stdout',result.stdout),('stderr',result.stderr)]:
         p=OUT/'commands'/f'{n:04d}.{name}';p.write_bytes(data)
         row[name]={'path':str(p.relative_to(OUT)),'bytes':len(data),'sha256':sha(data)}
@@ -211,7 +217,7 @@ def main():
         if any(sha((ROOT/p).read_bytes())!=value for p,value in original.items()):raise RuntimeError('source changed')
         status='PassedWithinNativeComponentScope'
     finally:
-        result={'kind':'R03NativeDiagnosticsV2ComponentTest','result':status,'tests':count,'commands':RECORDS,'sourceSha256':original,'referenceGitBlob':REFERENCE_BLOB,'platform':sys.platform,
+        result={'kind':'R03NativeDiagnosticsV2ComponentTest','result':status,'tests':count,'commands':RECORDS,'sourceSha256':original,'referenceGitBlob':REFERENCE_BLOB,'platform':sys.platform,'leakDetection':('Enabled' if LEAK_CHECK else 'UnavailableInAppleRuntime'),'sanitizerEnvironment':{'ASAN_OPTIONS':ASAN,'UBSAN_OPTIONS':UBSAN},
                 'notUnity':True,'actualProducerCaptureIntegrated':False,'envelopeTransactionIntegrated':False,'engineAdapterImplemented':False,'runtimeAcceptance':False}
         (OUT/'RESULT.json').write_text(json.dumps(result,indent=2)+'\n')
         inventory=[{'path':str(p.relative_to(OUT)),'bytes':p.stat().st_size,'sha256':sha(p.read_bytes())} for p in sorted(OUT.rglob('*')) if p.is_file() and not p.is_symlink()]
