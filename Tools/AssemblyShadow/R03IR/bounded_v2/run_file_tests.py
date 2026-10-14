@@ -152,7 +152,7 @@ class FileTests(unittest.TestCase):
 
     def test_synchronous_reentry_rejected(self):
         receipt=self.execute('reentry');self.assertTrue(receipt['faultActed']);self.assertFalse(receipt['complete'])
-        self.assertEqual(receipt['error'],3)
+        self.assertEqual(receipt['error'],2)  # FileError::Reentered, not Input
 
     def test_transaction_reuse_refused(self):
         receipt=self.execute('reuse');self.assertTrue(receipt['complete']);self.assertTrue(receipt['reuseRejected']);self.decode(receipt)
@@ -164,6 +164,36 @@ class FileTests(unittest.TestCase):
     def test_inline_budget_overflow(self):
         self.inline['value']='x'*258048
         receipt=self.execute();self.assertFalse(receipt['complete']);self.assertEqual((self.root/'raw.json').read_bytes(),b'')
+
+    def test_short_writes_are_completed_exactly(self):
+        receipt=self.execute('short-write');self.assertTrue(receipt['complete']);self.decode(receipt)
+        self.assertGreater(receipt['writeCalls'],20)
+
+    def test_interrupted_write_can_complete(self):
+        receipt=self.execute('eintr-once');self.assertTrue(receipt['complete']);self.decode(receipt)
+
+    def test_interrupted_write_retry_bound(self):
+        receipt=self.execute('eintr-always');self.assertFalse(receipt['complete'])
+        self.assertEqual(receipt['writeCalls'],9);self.assertEqual(receipt['errno'],4)
+        self.assertEqual((self.root/'raw.json').read_bytes(),b'')
+
+    def test_partial_write_then_error_retains_exact_prefix(self):
+        receipt=self.execute('partial-error');self.assertFalse(receipt['complete'])
+        self.assertEqual(receipt['artifactWrittenAtFirstError'],3)
+        self.assertEqual((self.root/'diagnostics.v2.bin').read_bytes(),b'R03')
+        self.assertEqual((self.root/'raw.json').read_bytes(),b'')
+
+    def test_zero_write_is_failure(self):
+        receipt=self.execute('zero-write');self.assertFalse(receipt['complete'])
+        self.assertEqual(receipt['writeCalls'],1);self.assertEqual(receipt['errno'],5)
+
+    def test_inline_changed_during_encoding_rejected(self):
+        receipt=self.execute('inline-mutation');self.assertTrue(receipt['faultActed']);self.assertFalse(receipt['complete'])
+        self.assertEqual((self.root/'raw.json').read_bytes(),b'')
+
+    def test_inline_scratch_overlap_rejected(self):
+        receipt=self.execute('inline-overlap');self.assertFalse(receipt['complete'])
+        self.assertEqual(receipt['error'],3);self.assertEqual((self.root/'raw.json').read_bytes(),b'')
 
     def test_every_gate_failure_prevents_receipt(self):
         receipt=self.execute();self.assertTrue(receipt['complete']);calls=receipt['gateCalls']
