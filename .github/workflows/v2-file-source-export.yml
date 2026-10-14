@@ -1,0 +1,39 @@
+name: V2 file component scoped source export
+on:
+  push:
+    branches: [codex/connector-smoke-v2file-20261014-5a71]
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03IR/bounded_v2/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/
+            /Docs/AssemblyShadow/README.md
+            /Docs/AssemblyShadow/Plan/CURRENT_STATUS.md
+            /Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md
+      - shell: python
+        run: |
+          import os,json,hashlib,shutil,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'export';out.mkdir()
+          paths=[x for x in subprocess.check_output(['git','ls-files'],text=True).splitlines() if (Path(x).is_file() and (x.startswith('Tools/AssemblyShadow/R03IR/bounded_v2/') or x.startswith('Docs/AssemblyShadow/')))]
+          files=[]
+          for name in paths:
+              data=Path(name).read_bytes();p=out/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
+              files.append({'path':name,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'gitBlob':subprocess.check_output(['git','rev-parse','HEAD:'+name],text=True).strip()})
+          (out/'MANIFEST.json').write_text(json.dumps({'source':os.environ['GITHUB_SHA'],'base':'b48ba6f320c04ad0a53117a8f30ba6c0f191f689','files':files},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v2-file-sources-5a71
+          path: ${{ runner.temp }}/export
+          retention-days: 7
+          if-no-files-found: error
