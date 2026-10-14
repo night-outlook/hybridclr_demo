@@ -128,8 +128,13 @@ def main():
             overlay=demo/'Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp'
             units=[copy/'vm/Runtime.cpp',copy/'vm/Object.cpp',copy/'vm/AssemblyShadow.cpp',copy/'vm/AssemblyShadowRuntimeProbe.cpp',copy/'vm/AssemblyShadowEngineReportingProbe.cpp',copy/'gc/GarbageCollector.cpp',copy/'vm/AssemblyShadowTypeResolver.cpp',copy/'vm/AssemblyShadowTypeKey.cpp',
                    copy/'hybridclr/metadata/StagedAssembly.cpp',copy/'hybridclr/metadata/InterpreterImage.cpp',overlay]
+            # Explicitly cover the shared general serializer; historical matrix was 11 x 5.
+            units.append(copy/'vm/AssemblyShadowDiagnostics.cpp')
             profiles=[('candidate',1,1,0,2),('debug',1,1,1,2),('probe-off',1,0,0,2),
                       ('diagnostics-off',1,0,0,0),('feature-off',0,1,0,0)]
+            require(len(units)==12 and len(set(units))==12 and len(profiles)==5,
+                    'Complete twelve-unit five-profile syntax matrix required')
+            result['plannedTranslationUnitCount']=60
             for label,feature,probe,debug,diagnostics in profiles:
                 for source in units:
                     cmd=[cc,'-std=c++17','-fsyntax-only','-arch','arm64','-DBASELIB_INLINE_NAMESPACE=il2cpp_baselib',
@@ -138,6 +143,7 @@ def main():
                          '-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL='+str(diagnostics),*[('-I'+str(p)) for p in includes if p.is_dir()],str(source)]
                     folder,_=c.run(cmd)
                     result['translationUnits'].append({'profile':label,'source':str(source),'sha256':sha(source),'commandReceipt':sha(folder/'command.json')})
+            require(len(result['translationUnits'])==60, 'All current native syntax configurations required')
             sdk_inputs=[{'path':str(p.relative_to(scratch)),'sha256':sha(p)} for p in sorted(scratch.rglob('*')) if p.is_file()]
             write(output/'native-sdk-inputs.json',{'files':sdk_inputs,'vendorFilesUploaded':False})
         require(sources==[{'path':str(p.relative_to(ws)),'sha256':sha(p)} for p in sorted(files)],'Native source bytes changed')
