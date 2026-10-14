@@ -148,6 +148,9 @@ class FileTransaction(unittest.TestCase):
     def test_reentry_is_immutable_first_failure(self):
         self.negative(mode='reentry', expected='reentry')
 
+    def test_same_size_mutation_after_sync_is_rejected(self):
+        self.negative(mode='mutate-after-sync', expected='file-replaced-or-resized')
+
     def test_bad_encoder_receipt_fails_before_envelope(self):
         root, _ = self.negative(mode='wrong-receipt', expected='encoder-receipt')
         self.assertEqual((root/READER.ENVELOPE).stat().st_size, 0)
