@@ -1,0 +1,60 @@
+name: R03 V2 persistence and resolver
+on:
+  push:
+    branches: [codex/snap-v2-persist-20261014-59d1]
+permissions:
+  contents: read
+jobs:
+  persistence:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03IR/
+            /Tools/AssemblyShadow/R03/
+            /Tools/AssemblyShadow/R03Storage/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/
+      - name: Source-bound persistence tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          if test -f Tools/AssemblyShadow/R03IR/bounded_v2/run_persistence_tests.py; then
+            python3 -B Tools/AssemblyShadow/R03IR/bounded_v2/run_persistence_tests.py --repository "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/v2-persistence/result"
+          fi
+          git diff --check
+          git diff --exit-code
+      - name: Retain exact owned source and results
+        if: always()
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'v2-persistence'
+          out.mkdir(exist_ok=True)
+          rows=[]
+          tracked=subprocess.check_output(['git','ls-files','Tools/AssemblyShadow/R03IR','Tools/AssemblyShadow/R03','Tools/AssemblyShadow/R03Storage','Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference'],text=True).splitlines()
+          for p in tracked:
+              f=Path(p)
+              if f.is_file() and not f.is_symlink():
+                  data=f.read_bytes(); dst=out/'source'/p; dst.parent.mkdir(parents=True,exist_ok=True); dst.write_bytes(data)
+                  rows.append({'path':p,'gitBlob':hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest(),'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)})
+          (out/'SOURCE.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'files':rows,'actualUnity':False},indent=2)+'\n')
+          files=[{'path':str(p.relative_to(out)),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(out.rglob('*')) if p.is_file()]
+          (out/'MANIFEST.json').write_text(json.dumps({'files':files},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: v2-persistence-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/v2-persistence
+          retention-days: 14
+          if-no-files-found: error
