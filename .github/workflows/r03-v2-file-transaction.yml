@@ -1,0 +1,82 @@
+name: R03 V2 native file transaction
+on:
+  push:
+    branches: [codex/v2-file-transaction-20261014-7a93, codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-v2-file-transaction.yml'
+      - 'Tools/AssemblyShadow/R03IR/bounded_v2/**'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/diagnostic_stream.py'
+permissions:
+  contents: read
+jobs:
+  files:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            cxx: clang++
+            label: linux-clang
+          - os: ubuntu-24.04
+            cxx: g++
+            label: linux-gcc
+          - os: macos-14
+            cxx: clang++
+            label: macos-clang
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03IR/bounded_v2/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/
+      - name: Real filesystem transaction and exact V2 decode
+        shell: bash
+        env:
+          CXX: ${{ matrix.cxx }}
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Tools/AssemblyShadow/R03IR/bounded_v2/run_file_tests.py \
+            --repository "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/v2-files" \
+            > "$RUNNER_TEMP/v2-files-console.log" 2>&1 \
+            || { cat "$RUNNER_TEMP/v2-files-console.log"; exit 1; }
+          cat "$RUNNER_TEMP/v2-files-console.log"
+          git diff --check
+          git diff --exit-code
+      - name: Preserve synthetic evidence and intentional symlink metadata
+        if: always()
+        shell: python
+        run: |
+          import hashlib,json,os,shutil,tarfile
+          from pathlib import Path,PurePosixPath
+          tmp=Path(os.environ['RUNNER_TEMP'])
+          root=tmp/'v2-files';package=tmp/'v2-file-package';package.mkdir()
+          manifest=root/'MANIFEST.json'
+          if manifest.is_file():
+              rows=json.loads(manifest.read_text())['files']
+              with tarfile.open(package/'evidence.tar.gz','w:gz',dereference=False) as archive:
+                  archive.add(manifest,arcname='MANIFEST.json',recursive=False)
+                  for row in rows:
+                      path=PurePosixPath(row['path'])
+                      if path.is_absolute() or '..' in path.parts:
+                          raise RuntimeError('Unsafe evidence member')
+                      # Do not dereference the deliberate test-created symlinks.
+                      archive.add(root/row['path'],arcname=row['path'],recursive=False)
+          console=tmp/'v2-files-console.log'
+          if console.is_file():shutil.copyfile(console,package/'console.log')
+          result=root/'RESULT.json'
+          if result.is_file():shutil.copyfile(result,package/'RESULT.json')
+          files=[{'path':p.name,'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(package.iterdir()) if p.is_file()]
+          (package/'CI_IDENTITY.json').write_text(json.dumps({'kind':'V2FileTransactionCI','sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'runner':os.environ['RUNNER_OS'],'files':files,'actualUnity':False,'protectedUserFilesRead':False,'intentionalSymlinksPreservedNotFollowed':True},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: v2-files-${{ matrix.label }}-${{ github.sha }}
+          path: ${{ runner.temp }}/v2-file-package
+          retention-days: 14
+          if-no-files-found: warn
