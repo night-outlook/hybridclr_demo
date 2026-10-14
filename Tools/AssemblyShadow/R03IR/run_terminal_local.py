@@ -117,6 +117,12 @@ def exact_int(value, expected):
 
 def verify_ir(raw, request, launch, build_sha):
     require(raw.get('reportTransport') == 'NativePreopenedSnapshotV1', 'Native snapshot transport required')
+    return _verify_ir_semantics(raw, request, launch, build_sha)
+
+
+def _verify_ir_semantics(raw, request, launch, build_sha):
+    # Transport admission belongs to verify_ir (V1) or the authenticated V2 consumer.
+    # Keep every original semantic predicate and its order unchanged.
     require(type(raw) is dict and raw.get('schemaVersion') == 1 and
             raw.get('kind') == 'R03IRPostPoisonEntryV1' and raw.get('acceptance') is False,
             'Actual non-authorizing IR Player result contract')
