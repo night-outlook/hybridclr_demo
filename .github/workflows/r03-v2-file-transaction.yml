@@ -1,0 +1,74 @@
+name: R03 V2 descriptor-bound file transaction
+on:
+  push:
+    branches: [codex/v2-files-20261014-b91e]
+permissions:
+  contents: read
+jobs:
+  files:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            compiler: clang++
+            label: linux-clang
+          - os: ubuntu-24.04
+            compiler: g++
+            label: linux-gcc
+          - os: macos-14
+            compiler: clang++
+            label: macos-clang
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03IR/bounded_v2/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/
+      - name: Actual codec, POSIX files and independent consumer
+        env:
+          CXX: ${{ matrix.compiler }}
+          PYTHONDONTWRITEBYTECODE: '1'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B Tools/AssemblyShadow/R03IR/bounded_v2/run_file_tests.py \
+            --repository "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/v2-files"
+          git diff --check
+          git diff --exit-code
+      - name: Export exact regular evidence without following synthetic links
+        if: always()
+        shell: python
+        run: |
+          import hashlib,json,os,shutil
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'v2-files'
+          target=Path(os.environ['RUNNER_TEMP'])/'v2-files-evidence'
+          target.mkdir()
+          if root.is_dir():
+              for current,dirs,files in os.walk(root,followlinks=False):
+                  dirs[:]=[n for n in dirs if not (Path(current)/n).is_symlink()]
+                  for name in files:
+                      src=Path(current)/name
+                      if src.is_symlink(): continue
+                      dst=target/src.relative_to(root);dst.parent.mkdir(parents=True,exist_ok=True)
+                      shutil.copyfile(src,dst)
+          # Source export is retained even if the first compiler fails.
+          source=Path(os.environ['GITHUB_WORKSPACE'])
+          for name in ('BoundedDiagnosticsV2.h','BoundedFileTransactionV2.h','file_transaction_driver.cpp','read_verified_files.py','run_file_tests.py'):
+              dst=target/'source-export'/name;dst.parent.mkdir(parents=True,exist_ok=True)
+              shutil.copyfile(source/'Tools/AssemblyShadow/R03IR/bounded_v2'/name,dst)
+          shutil.copyfile(source/'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/diagnostic_stream.py',target/'source-export/diagnostic_stream.py')
+          (target/'CI_IDENTITY.json').write_text(json.dumps(dict(sourceCommit=os.environ['GITHUB_SHA'],runId=os.environ['GITHUB_RUN_ID'],actualUnity=False,symlinksNotFollowed=True),indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: v2-files-${{ matrix.label }}-${{ github.sha }}
+          path: ${{ runner.temp }}/v2-files-evidence
+          retention-days: 14
+          if-no-files-found: error
