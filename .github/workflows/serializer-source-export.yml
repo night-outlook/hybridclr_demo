@@ -1,0 +1,54 @@
+name: Owned serializer source export
+on:
+  push:
+    branches: [codex/connector-smoke-serializer-20261014-6e42]
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 91c3dfe2b0d2661b2fb2c448ada480a8329e6851
+          path: hybridclr_demo
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 0f72078711d4786dac2666c9017d952d857dd041
+          path: il2cpp_plus
+          persist-credentials: false
+      - name: Export source bytes and Git bindings only
+        shell: python
+        run: |
+          from pathlib import Path
+          import json,subprocess,hashlib,shutil,os
+          out=Path(os.environ['RUNNER_TEMP'])/'owned-source';out.mkdir()
+          rows=[]
+          for name in ('hybridclr_demo','il2cpp_plus'):
+              repo=Path(name)
+              sha=subprocess.check_output(['git','-C',name,'rev-parse','HEAD'],text=True).strip()
+              for line in subprocess.check_output(['git','-C',name,'ls-files','-s'],text=True).splitlines():
+                  meta,rel=line.split('\t',1)
+                  p=repo/rel
+                  if not p.is_file() or p.is_symlink():continue
+                  if not (rel.startswith('Tools/AssemblyShadow/') or rel.startswith('Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/') or rel.startswith('Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/') or (name=='il2cpp_plus' and (rel.startswith('libil2cpp/vm/AssemblyShadow') or rel.startswith('tools/r03/')))):continue
+                  d=p.read_bytes();blob=hashlib.sha1(b'blob '+str(len(d)).encode()+b'\0'+d).hexdigest()
+                  assert blob==meta.split()[1]
+                  target=out/name/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(d)
+                  rows.append({'path':name+'/'+rel,'sourceCommit':sha,'gitBlob':blob,'bytes':len(d),'sha256':hashlib.sha256(d).hexdigest()})
+          (out/'MANIFEST.json').write_text(json.dumps({'kind':'ExactOwnedSourceExport','files':rows},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: owned-serializer-source
+          path: ${{ runner.temp }}/owned-source
+          retention-days: 14
+          if-no-files-found: error
