@@ -1,0 +1,85 @@
+name: R03 bounded V2 durable transaction
+on:
+  push:
+    branches: [codex/snap-v2-durable-20261014-6ac4]
+permissions:
+  contents: read
+jobs:
+  durable:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03IR/bounded_v2/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 87aedc1248141d7438d82d53521aadaac22c45ae
+          path: native-source
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /libil2cpp/vm/AssemblyShadow.cpp
+            /libil2cpp/vm/AssemblyShadow.h
+            /libil2cpp/vm/AssemblyShadowDiagnostics.cpp
+            /libil2cpp/vm/AssemblyShadowDiagnostics.h
+            /libil2cpp/vm/AssemblyShadowDiagnosticWriter.h
+            /tools/r03/diagnostic_stream/
+      - name: Export immutable source bindings
+        shell: python
+        run: |
+          import os,hashlib,json,shutil,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'bounded-durable';out.mkdir()
+          roots=[(Path('.'),'demo', ['Tools/AssemblyShadow/R03IR/bounded_v2','Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference']), (Path('native-source'),'native',['libil2cpp/vm','tools/r03/diagnostic_stream'])]
+          rows=[]
+          for root,name,folders in roots:
+              commit=subprocess.check_output(['git','-C',str(root),'rev-parse','HEAD'],text=True).strip()
+              for folder in folders:
+                  for src in sorted((root/folder).rglob('*')):
+                      if not src.is_file(): continue
+                      rel=src.relative_to(root);data=src.read_bytes()
+                      blob=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+                      expected=subprocess.check_output(['git','-C',str(root),'rev-parse','HEAD:'+str(rel)],text=True).strip()
+                      assert blob==expected
+                      target=out/'source'/name/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
+                      rows.append({'path':str(target.relative_to(out)),'sourceCommit':commit,'gitBlob':blob,'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)})
+          (out/'SOURCE.json').write_text(json.dumps(rows,indent=2)+'\n')
+      - name: Execute bounded transaction contracts when source is present
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          TEST=Tools/AssemblyShadow/R03IR/bounded_v2/test_durable.py
+          if test -f "$TEST"; then
+            python3 -B "$TEST" --repository "$GITHUB_WORKSPACE" --native "$GITHUB_WORKSPACE/native-source" --output "$RUNNER_TEMP/bounded-durable/checks"
+          else
+            printf '%s\n' 'Source export only; new transaction tests NotRun' > "$RUNNER_TEMP/bounded-durable/NOTRUN.txt"
+          fi
+      - name: Complete manifest
+        if: always()
+        shell: python
+        run: |
+          from pathlib import Path
+          import hashlib,os,json
+          out=Path(os.environ['RUNNER_TEMP'])/'bounded-durable';out.mkdir(exist_ok=True)
+          rows=[{'path':str(p.relative_to(out)),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(out.rglob('*')) if p.is_file()]
+          (out/'MANIFEST.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'files':rows},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: bounded-durable-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/bounded-durable
+          retention-days: 14
+          if-no-files-found: warn
