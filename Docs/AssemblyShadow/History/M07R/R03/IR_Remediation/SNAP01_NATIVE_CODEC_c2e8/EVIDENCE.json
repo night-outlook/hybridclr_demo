@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "kind": "InactiveBoundedNativeV2CodecPrimaryEvidence",
+  "owner": "Primary Implementation",
+  "historicalSnap01": {"publication":"64da7e51d740d4816907a63864b9c006a9db4b85","semanticBatchResult":"ReturnRequired","collectionResult":"EvidenceCollected","cells":{"total":18,"passed":14,"failed":4},"firstTextSlot":14,"reason":9,"limit":262144,"scannedPrefix":262145,"exactFullLengths":"Unavailable","engineReports":51213,"engineMilliseconds":500,"engineExit":71,"notRetried":true},
+  "source": {"base":"09720df7692598561d59722753a0e58e08e276ad","testedCommit":"8120ca91c0c762b8b29f703f087ab1bfdaf0f532","testedBranch":"codex/snap-v2-native-20261014-c2e8","headerBlob":"174766c40235216d8c954107dd5e026116a510fa","driverBlob":"66d799bc6f21f9219d388c2b945a9eea388c1dae","testRunnerBlob":"7ba066393f5b9a608155902ef600f6575f78f79d","unchangedReferenceBlob":"0866b07f758a20284d2a5d5d933b2be577b20b50","productionIntegration":false,"nativeRuntimePinUnchanged":"0f72078711d4786dac2666c9017d952d857dd041"},
+  "budgets": {"originalTextBytes":262144,"framePayloadBytes":65536,"inlineCanonicalBytes":258048,"envelopeReserveBytes":262144,"artifactBytes":3932160,"totalEncodedBytes":4194304,"observedEncoderSize":144,"observedCaptureSize":72,"observedSha256Size":112,"fullProcessMemoryBoundProven":false},
+  "ci": {
+    "runId":38529319047,
+    "sourceCommit":"8120ca91c0c762b8b29f703f087ab1bfdaf0f532",
+    "result":"PassedWithinCodecScope",
+    "uniqueTestCases":20,
+    "profilesPerCompiler":2,
+    "totalCompilerProcessRecords":492,
+    "manifestEntriesIndependentlyVerified":2445,
+    "allSourceBindingsAndCommandStreamsVerified":true,
+    "artifacts":[
+      {"platform":"macos-clang","artifactId":11877272537,"zipSha256":"637a20c087d2172a5846134771b23c5e9af735a94ae22647e0248686e815e1f5","manifestFiles":819,"zipFiles":821,"commands":164,"strictTests":20,"sanitizedTests":20,"failures":0,"errors":0,"skips":0,"leakSanitizer":"UnavailableOnAppleRunner","resultSha256":"e9a825d0c70e9e9fd3628f422da7727165a718c28756164d97d4da376d2c9c29"},
+      {"platform":"linux-clang","artifactId":11877530165,"zipSha256":"c38a2eeb915e11f6fa3c37f4ac870c8a26e9cb68db68b909d10a3dfe2d775228","manifestFiles":813,"zipFiles":815,"commands":164,"strictTests":20,"sanitizedTests":20,"failures":0,"errors":0,"skips":0,"leakSanitizer":"Enabled","resultSha256":"0f5f6db3cdeba04633e31fe82415443c21572cbe334aa138721b1fae3adae5c9"},
+      {"platform":"linux-gcc","artifactId":11876479766,"zipSha256":"2bf6e2bed092fcf8bd1d57344d6b43fd708f151fc87cb5b993d99eb3467baa9f","manifestFiles":813,"zipFiles":815,"commands":164,"strictTests":20,"sanitizedTests":20,"failures":0,"errors":0,"skips":0,"leakSanitizer":"Enabled","resultSha256":"96cad844d37505591eab73b76e754fb1200bf895c204f2ad145ddc558af69ac9"}
+    ],
+    "originalFailedRun":{"runId":38528871444,"sourceCommit":"9e49d92242fcac416577ee99c075dee5aa427fa7","macosJobId":115735635440,"macosStrict":"Passed","macosSanitized":"Failed before program body: detect_leaks is not supported on this platform","artifactId":11876932443,"zipSha256":"e1eec5abd249488474a406441f288c006286898619edf462cad5b7141067565e","reclassified":false,"fix":"Test subprocess options only; retain ASan and UBSan, explicitly report unsupported Apple LeakSanitizer"}
+  },
+  "currentContainer":{"linuxClang":{"strict":20,"sanitized":20,"commands":164,"result":"Passed"},"linuxGcc":{"strict":20,"sanitized":20,"commands":164,"result":"Passed"},"initialGccWarning":"Misleading-indentation diagnosed and fixed before source publication; Werror retained","currentCodecCallsOperatorNew":false,"arbitraryAllocatorOrVmAllocationBoundProven":false},
+  "remaining":{"P1a":"Implemented inactive codec/capture sink","actualSharedSerializersAndCoherentVmCapture":"NotIntegrated","durablePrearmedFileTransaction":"NotImplemented","actualV2PlayerAndSemanticDispatch":"NotIntegrated","supportedStandaloneOSXNativeSchedulerAdapter":"Unresolved","actualEngineMaintenanceAndRestart":"NotImplemented","officialIntegratedProductCompilation":"NotRun","correctedPlayerRuntime":"NotRun"},
+  "smoke":{"branch":"codex/connector-smoke-bounded-native-20261014-c2e8","commit":"09cb670fd2cf8b01edf1986f39bcf71d7acd1070","writeReadbackPassed":true,"productEvidence":false,"branchRetained":true},
+  "acceptance":{"R03Accepted":false,"H2Passed":false,"qualificationApproved":false,"ReadyForHumanReviewGate":false,"fullLegacyRegressionAcceptance":false,"pureInterpreterExpansionEnabled":false,"strictHistoricalCustody":"Blocked","independentFullStageReview":"FAIL","independentReReview":"NotRun","newLocalRuntimeAuthorized":false},
+  "retention":"Original ZIP artifacts expire under GitHub policy; RETAINED_LOGS.json preserves six exact original logs with size/SHA-256 and reproducible decoding. No vendor binaries or old Player data uploaded."
+}

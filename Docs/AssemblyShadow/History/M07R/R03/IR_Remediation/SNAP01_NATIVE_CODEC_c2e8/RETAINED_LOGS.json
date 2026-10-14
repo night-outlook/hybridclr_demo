@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "kind": "ExactOriginalNativeCodecCILogs",
+  "sourceCommit": "8120ca91c0c762b8b29f703f087ab1bfdaf0f532",
+  "runId": 38529319047,
+  "encoding": "common-prefix-utf8",
+  "prefix": "test_both_fields_exceed_old_slot_without_loss (__main__.NativeCodecTests.test_both_fields_exceed_old_slot_without_loss) ... ok\ntest_changed_frozen_input_latches_error_before_footer (__main__.NativeCodecTests.test_changed_frozen_input_latches_error_before_footer) ... ok\ntest_each_sink_failure_retains_incomplete_receipt (__main__.NativeCodecTests.test_each_sink_failure_retains_incomplete_receipt) ... ok\ntest_exact_aggregate_limit_and_one_byte_over (__main__.NativeCodecTests.test_exact_aggregate_limit_and_one_byte_over) ... ok\ntest_failed_report_never_promoted_by_hydration (__main__.NativeCodecTests.test_failed_report_never_promoted_by_hydration) ... ok\ntest_frame_and_hash_block_boundaries (__main__.NativeCodecTests.test_frame_and_hash_block_boundaries) ... ok\ntest_hash_and_capture_state_controls (__main__.NativeCodecTests.test_hash_and_capture_state_controls) ... ok\ntest_inline_budget_unchanged (__main__.NativeCodecTests.test_inline_budget_unchanged) ... ok\ntest_interior_corruption_rejected_even_with_new_outer_hash (__main__.NativeCodecTests.test_interior_corruption_rejected_even_with_new_outer_hash) ... ok\ntest_invalid_semantic_json_rejected_after_lossless_transport (__main__.NativeCodecTests.test_invalid_semantic_json_rejected_after_lossless_transport) ... ok\ntest_invalid_utf8_fails_before_emission (__main__.NativeCodecTests.test_invalid_utf8_fails_before_emission) ... ok\ntest_null_empty_and_distinct_kinds (__main__.NativeCodecTests.test_null_empty_and_distinct_kinds) ... ok\ntest_null_with_bytes_is_not_silently_ignored (__main__.NativeCodecTests.test_null_with_bytes_is_not_silently_ignored) ... ok\ntest_one_shot_no_second_artifact (__main__.NativeCodecTests.test_one_shot_no_second_artifact) ... ok\ntest_random_independent_reference_vectors (__main__.NativeCodecTests.test_random_independent_reference_vectors) ... ok\ntest_replay_identity_rejected (__main__.NativeCodecTests.test_replay_identity_rejected) ... ok\ntest_scratch_alias_short_buffer_and_null_pointer_fail_before_io (__main__.NativeCodecTests.test_scratch_alias_short_buffer_and_null_pointer_fail_before_io) ... ok\ntest_short_trailing_and_missing_sections_rejected (__main__.NativeCodecTests.test_short_trailing_and_missing_sections_rejected) ... ok\ntest_synchronous_sink_reentry_fails_closed (__main__.NativeCodecTests.test_synchronous_sink_reentry_fails_closed) ... ok\ntest_utf8_cross_frame_and_embedded_nul (__main__.NativeCodecTests.test_utf8_cross_frame_and_embedded_nul) ... ok\n\n----------------------------------------------------------------------\n",
+  "files": [
+    {
+      "path": "linux-clang/sanitized.log",
+      "bytes": 2571,
+      "sha256": "297b9dcbd2bc47af52a99fceee499bddbaca4f7bc094b48a9492bfbbc0c26c5f",
+      "suffix": "Ran 20 tests in 2.367s\n\nOK\n"
+    },
+    {
+      "path": "linux-clang/strict.log",
+      "bytes": 2571,
+      "sha256": "0eac1aacc3cc142afa148b574e2ac3fec5aa3ae0edd530f3879bdc1098087ec5",
+      "suffix": "Ran 20 tests in 1.045s\n\nOK\n"
+    },
+    {
+      "path": "linux-gcc/sanitized.log",
+      "bytes": 2571,
+      "sha256": "1edbe1709dc0949ba736ac644edfb010dc7773d6a4f5bbfe242c172d1fbab761",
+      "suffix": "Ran 20 tests in 2.399s\n\nOK\n"
+    },
+    {
+      "path": "linux-gcc/strict.log",
+      "bytes": 2571,
+      "sha256": "9e72d0993c3994e5ea7545271110982b3bc1591ed9a6c83436ce105c7cd4da30",
+      "suffix": "Ran 20 tests in 0.690s\n\nOK\n"
+    },
+    {
+      "path": "macos/sanitized.log",
+      "bytes": 2572,
+      "sha256": "948649ce08a18a11dcd0a615da3d4b0711a2f82746fcd0136445127a04d74e04",
+      "suffix": "Ran 20 tests in 15.975s\n\nOK\n"
+    },
+    {
+      "path": "macos/strict.log",
+      "bytes": 2571,
+      "sha256": "595b2188f10c9528e17c825175c9e764917415ea162d955121d3ba1dc99075c8",
+      "suffix": "Ran 20 tests in 1.731s\n\nOK\n"
+    }
+  ]
+}
