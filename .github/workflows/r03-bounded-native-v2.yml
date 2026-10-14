@@ -1,0 +1,65 @@
+name: R03 native bounded diagnostics V2 contracts
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-bounded-native-v2.yml'
+      - 'Tools/AssemblyShadow/R03IR/BoundedDiagnosticsV2/**'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/diagnostic_stream.py'
+permissions:
+  contents: read
+jobs:
+  native-codec:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03IR/BoundedDiagnosticsV2/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/
+      - name: Actual native wire and POSIX transaction with independent decoder
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          TEMP_ROOT="$(python3 -c 'import os;from pathlib import Path;print(Path(os.environ["RUNNER_TEMP"]).resolve(strict=True))')"
+          python3 -B Tools/AssemblyShadow/R03IR/BoundedDiagnosticsV2/tests/test_native_transport.py \
+            --reference Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/diagnostic_stream.py \
+            --output "$TEMP_ROOT/bounded-native-v2"
+          git diff --check
+          git diff --exit-code
+      - name: Record exact run and source identity
+        if: always()
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP']).resolve(strict=True)/'bounded-native-v2'
+          out.mkdir(exist_ok=True)
+          root=Path('Tools/AssemblyShadow/R03IR/BoundedDiagnosticsV2')
+          rows=[]
+          for path in sorted(root.rglob('*')):
+              if path.is_file() and path.suffix in ('.h','.cpp','.py'):
+                  data=path.read_bytes()
+                  rows.append({'path':str(path),'gitBlob':subprocess.check_output(['git','rev-parse','HEAD:'+str(path)],text=True).strip(),'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)})
+          (out/'CI_IDENTITY.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'os':os.environ['RUNNER_OS'],'sources':rows,'UnityLaunched':False,'runtimeAccepted':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: bounded-native-v2-${{ matrix.os }}-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/bounded-native-v2/TEST_EVIDENCE.tar.gz
+            ${{ runner.temp }}/bounded-native-v2/RESULT.json
+            ${{ runner.temp }}/bounded-native-v2/MANIFEST.json
+            ${{ runner.temp }}/bounded-native-v2/tests.log
+            ${{ runner.temp }}/bounded-native-v2/CI_IDENTITY.json
+          retention-days: 14
+          if-no-files-found: warn
