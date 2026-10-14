@@ -133,8 +133,10 @@ int main(int argc,char** argv){
     if(Eq("path-too-long"))preparePath=std::string(kPathBytes,'x');
     {
         FileTransaction<Ops> txn;active=&txn;Ops::reenter=Reenter;
+        if(Eq("commit-before-prepare"))txn.Commit(reinterpret_cast<const uint8_t*>(inlineText.data()),inlineText.size(),fields,scratch.data(),scratch.size(),second);
         watchNew=true;prepared=txn.Prepare(preparePath.c_str(),expected,context);watchNew=false;newAtPrepare=newCalls;
         Ops::afterPrepare=true;
+        if(prepared&&Eq("prepare-reuse"))txn.Prepare(preparePath.c_str(),expected,context);
         if(prepared){
             if(Eq("artifact-replaced")){
                 Must(::rename((root+"/"+kArtifactName).c_str(),(root+"/original-artifact").c_str())==0);
