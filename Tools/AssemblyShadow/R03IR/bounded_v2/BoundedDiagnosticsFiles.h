@@ -215,6 +215,7 @@ public:
         if(busy_)return Fail(FileError::Reentered);
         Busy scope(busy_);stage_=FileStage::Prepare;
         if(attempted_)return Fail(FileError::Reused);
+        if(!Ok())return false;
         attempted_=true;
         if(!absoluteDirectory)return Fail(FileError::InvalidInput);
         const size_t n=::strnlen(absoluteDirectory,kPathBytes);
