@@ -81,14 +81,24 @@ template<class Io=PosixIo> class Transaction final {
             return failure_.Set(Error::Changed,i,written_[i],errno);
         const auto& old=id_[i];
         if(!S_ISREG(st.st_mode)||st.st_uid!=::geteuid()||(st.st_mode&07777)!=0600||st.st_nlink!=1||
-           st.st_dev!=old.st_dev||st.st_ino!=old.st_ino||st.st_size<0||
+           st.st_dev!=old.st_dev||st.st_ino!=old.st_ino||st.st_gid!=old.st_gid||st.st_size<0||
            static_cast<std::uint64_t>(st.st_size)!=written_[i])return failure_.Set(Error::Changed,i,written_[i]);
+        // A name match alone does not establish that the descriptor being
+        // written still names that inode. Check both while the FD is held.
+        if(fd_[i]>=0){
+            struct stat held{};
+            if(::fstat(fd_[i],&held)!=0)return failure_.Set(Error::Changed,i,written_[i],errno);
+            if(held.st_dev!=st.st_dev||held.st_ino!=st.st_ino||held.st_mode!=st.st_mode||
+               held.st_uid!=st.st_uid||held.st_gid!=st.st_gid||held.st_nlink!=st.st_nlink||
+               held.st_size!=st.st_size)return failure_.Set(Error::Changed,i,written_[i]);
+        }
         return true;
     }
     bool WriteAll(unsigned i,const void* p,std::size_t n) noexcept{
         if(failure_.code!=Error::None)return false;
         const std::size_t bound=i==0?kMaxStream:kEnvelopeReserve;
-        if(n>bound-written_[i])return failure_.Set(Error::Resource,i,written_[i]);
+        if((!p&&n)||fd_[i]<0)return failure_.Set(Error::Input,i,written_[i]);
+        if(written_[i]>bound||n>bound-written_[i])return failure_.Set(Error::Resource,i,written_[i]);
         const auto* bytes=static_cast<const std::uint8_t*>(p);unsigned interrupted=0;
         while(n){
             const auto request=n<kChunk?n:kChunk;
@@ -130,6 +140,7 @@ public:
     }
     bool Commit(const Capture& capture,Digest binding,const void* inlineData,
                 std::size_t inlineSize,Descriptor& result) noexcept{
+        result=Descriptor{}; // Never return a prior successful descriptor on failure.
         if(failure_.code!=Error::None)return false;
         if(state_!=2)return failure_.Set(Error::State);state_=3;
         const auto* text=static_cast<const char*>(inlineData);
