@@ -303,8 +303,15 @@ class V2AdmissionTests(PairFixture):
         wrapper=functions['verify_ir'];body=functions['_verify_ir_semantics'].body
         self.assertEqual(len(wrapper.body),2)
         self.assertIn('NativePreopenedSnapshotV1',ast.unparse(wrapper.body[0]))
-        self.assertEqual(consumer.digest(ast.dump(ast.Module(body=body,type_ignores=[]),include_attributes=False).encode()),
-                         '600381c7734c760af107d4dd28d6a23fd5e292ef7f26ed8c9a936120ad0392d2')
+        # AST serialization differs across Python versions. Parse the exact
+        # original function and candidate in THIS interpreter, after checking
+        # the retained original byte hash; never accept a version-specific list.
+        original=(HERE/'original_verify_ir.txt').read_bytes()
+        self.assertEqual(consumer.digest(original),'77b47c0dda798ef6f9712a930b3a22fb5096ba86f05e988520072362c9add297')
+        baseline=ast.parse(original).body[0]
+        self.assertEqual(baseline.name,'verify_ir')
+        self.assertEqual(ast.dump(ast.Module(body=body,type_ignores=[]),include_attributes=False),
+                         ast.dump(ast.Module(body=baseline.body[1:],type_ignores=[]),include_attributes=False))
 
 class OriginalSemanticNegativesV2(original_tests.TerminalReceiptContractTests, PairFixture):
     """Every inherited original semantic test now traverses the authenticated V2 path."""
