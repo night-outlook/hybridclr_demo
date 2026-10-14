@@ -28,7 +28,8 @@ static int opened(int fd){if(fd>=0){if(liveCount==256)std::abort();liveDescripto
 static void (*reenter)()=nullptr;
 struct TestOps:PosixFileOps {
     static bool Event(const char* op) noexcept {
-        if(eventCount>=16384)std::abort(); events[eventCount++]=op;
+        if(eventCount>=16384)std::abort();
+        events[eventCount++]=op;
         if(eventCount==failAt){errno=EIO;return true;}return false;
     }
     static int OpenRoot() noexcept {return Event("root-open")?-1:opened(PosixFileOps::OpenRoot());}
@@ -52,7 +53,14 @@ struct TestOps:PosixFileOps {
         if(mode=="bad-readback"&&result>0)p[0]^=1;
         return result;
     }
-    static int Sync(int f,bool d) noexcept {return Event(d?"directory-sync":"file-sync")?-1:PosixFileOps::Sync(f,d);}
+    static int Sync(int f,bool d) noexcept {
+        if(Event(d?"directory-sync":"file-sync"))return -1;
+        const int result=PosixFileOps::Sync(f,d);
+        if(!d && result==0 && mode=="mutate-after-sync" && !altered){
+            altered=true;const uint8_t corrupt='X';if(::pwrite(f,&corrupt,1,0)!=1)std::abort();
+        }
+        return result;
+    }
     static int Close(int f) noexcept {
         const bool fail=Event("close");
         size_t i=0;while(i<liveCount&&liveDescriptors[i]!=f)++i;
