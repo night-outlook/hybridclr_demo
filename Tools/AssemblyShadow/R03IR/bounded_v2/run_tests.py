@@ -41,14 +41,16 @@ def sha(data):
 
 def command(argv, prefix):
     env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1',
-               ASAN_OPTIONS='detect_leaks=1:abort_on_error=1',
+               ASAN_OPTIONS=('detect_leaks=0:abort_on_error=1' if sys.platform == 'darwin'
+                             else 'detect_leaks=1:abort_on_error=1'),
                UBSAN_OPTIONS='halt_on_error=1:print_stacktrace=1')
     r = subprocess.run([str(a) for a in argv], capture_output=True, env=env, timeout=120)
     prefix.with_suffix('.stdout').write_bytes(r.stdout)
     prefix.with_suffix('.stderr').write_bytes(r.stderr)
     COMMANDS.append(dict(argv=[str(a) for a in argv], exit=r.returncode,
                          stdoutSha256=sha(r.stdout), stderrSha256=sha(r.stderr),
-                         record=str(prefix.relative_to(OUT))))
+                         record=str(prefix.relative_to(OUT)),
+                         asanOptions=env['ASAN_OPTIONS'], ubsanOptions=env['UBSAN_OPTIONS']))
     if r.returncode:
         raise RuntimeError(f'{argv[0]} exit {r.returncode}: {r.stderr[-2000:]!r}')
     return r
@@ -261,7 +263,8 @@ def main():
         unchanged=all(sha(f.read_bytes())==s['sha256'] for f,s in zip(inputs,sources))
         (OUT/'RESULT.json').write_text(json.dumps(dict(kind='BoundedNativeV2Interop',results=results,
             sources=sources,sourceUnchanged=unchanged,commands=COMMANDS,
-            actualUnity=False,productionIntegration=False,runtimeAcceptance=False),indent=2)+'\n')
+            actualUnity=False,productionIntegration=False,runtimeAcceptance=False,
+            leakSanitizer=('UnavailableOnAppleRunner' if sys.platform=='darwin' else 'Enabled')),indent=2)+'\n')
         files=[dict(path=str(f.relative_to(OUT)),bytes=f.stat().st_size,sha256=sha(f.read_bytes())) for f in sorted(OUT.rglob('*')) if f.is_file()]
         (OUT/'MANIFEST.json').write_text(json.dumps(dict(files=files),indent=2)+'\n')
     if not unchanged:raise RuntimeError('Source changed')
