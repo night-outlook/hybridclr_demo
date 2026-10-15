@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "kind": "PrimaryInactiveV2FileTransactionPublication",
+  "owner": "Primary Implementation",
+  "date": "2026-10-14",
+  "history": {
+    "SNAP01": {
+      "status": "FAIL/ReturnRequired",
+      "collection": "EvidenceCollected",
+      "cells": {
+        "total": 18,
+        "passed": 14,
+        "failed": 4
+      },
+      "onFirstFailure": {
+        "slot": 14,
+        "field": "finalDiagnostics",
+        "reason": 9,
+        "originalTextBytes": 262144,
+        "scannedPrefixBytes": 262145,
+        "exactLengths": "Unavailable"
+      },
+      "engine": {
+        "uncappedReports": 51213,
+        "windowMilliseconds": 500,
+        "exitCode": 71
+      }
+    },
+    "originalStrictSCustody": "Blocked",
+    "frozenC": {
+      "total": 416844,
+      "survivors": 339367,
+      "missing": 77477
+    },
+    "missingOriginalInstalledNativeRoots": 4,
+    "independentR03Review": "FAIL",
+    "reReview": "NotRun"
+  },
+  "source": {
+    "activeSourceCommit": "f039e0df247ccaec162c405be2120691e2d6b47e",
+    "selectedCiBranch": "codex/v2-file-transaction-20261014-5a71",
+    "selectedCiCommit": "0793ecb4c6d42605f7959c6190dd09e866ff54a5",
+    "selectedBlobs": {
+      "Tools/AssemblyShadow/R03IR/bounded_v2/PosixDiagnosticTransaction.h": "4352a9c0282984898f13b36a3a8eed679e3911e0",
+      "Tools/AssemblyShadow/R03IR/bounded_v2/transaction_reader.py": "e41a2d657cb94d9ddacf6e77ac830bb18e1a4f6d",
+      "Tools/AssemblyShadow/R03IR/bounded_v2/transaction_driver.cpp": "2e6019435c2eaf725eb6fea5526f7a477e23f2c3",
+      "Tools/AssemblyShadow/R03IR/bounded_v2/run_transaction_tests.py": "50f5c25e3d8422b079c9e7ac4fd75e0754066c56"
+    },
+    "activeWorkflowSha": "0e6244f56f8058144f07c476ca3084726bc45ddb",
+    "nativeSourcePin": "87aedc1248141d7438d82d53521aadaac22c45ae",
+    "hybridclrPin": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "packagePin": "948c0e3b4f8891481301770115e8ba4945eea6de"
+  },
+  "ci": {
+    "runId": 38671600319,
+    "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/38671600319",
+    "sourceCommit": "f039e0df247ccaec162c405be2120691e2d6b47e",
+    "result": "Passed",
+    "jobs": [
+      {
+        "platform": "macos-14",
+        "compiler": "Apple Clang",
+        "jobId": 116215744528,
+        "artifactId": 11944328602,
+        "artifactSha256": "b7ef6f5cb76395dfb97f56b2d47eb27526081db0db771112c988a09706193a07",
+        "manifestRegularFiles": 1137,
+        "archiveFiles": 1139,
+        "commands": 172
+      },
+      {
+        "platform": "ubuntu-24.04",
+        "compiler": "GCC",
+        "jobId": 116215744248,
+        "artifactId": 11944132469,
+        "artifactSha256": "bfdff63c59c937ab34dfa7da0b192cb861a458d7a7d92a0357797713a17df327",
+        "manifestRegularFiles": 1131,
+        "archiveFiles": 1133,
+        "commands": 172
+      },
+      {
+        "platform": "ubuntu-24.04",
+        "compiler": "Clang",
+        "jobId": 116215744510,
+        "artifactId": 11943708779,
+        "artifactSha256": "5d47c34e19a7141c34f58eda0775abf1ba63073fd5feb66044db4893a9105247",
+        "manifestRegularFiles": 1131,
+        "archiveFiles": 1133,
+        "commands": 172
+      }
+    ],
+    "tests": {
+      "uniqueMethods": 27,
+      "profilesPerCompiler": 2,
+      "casesAcrossProfiles": 162,
+      "perProfile": {
+        "passed": 27,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "originalManifestMemberCount": 3399,
+      "allOriginalManifestMemberHashesIndependentlyVerified": true,
+      "allZipDigestsMatched": true,
+      "originalArtifactIncludesTwoExtraSelfReferentialFilesEach": true,
+      "sourceBoundsAndResultsVerified": true
+    }
+  },
+  "boundaries": {
+    "newComponent": "Inactive, no Unity/VM/Player link",
+    "actualFsyncAndMacFullFsyncReturnedSuccess": true,
+    "hardwarePowerCutTested": false,
+    "officialIntegratedSdkCompilation": "NotRun",
+    "currentLiveMacCustody": "NotRun",
+    "actualExecutionProducerCapture": "NotIntegrated",
+    "liveV2SemanticVerifier": "NotIntegrated",
+    "nativeEngineOwnerAdapter": "NotImplemented",
+    "engineCascadeFixed": false,
+    "oldV1SemanticPredicatesChanged": false,
+    "originalOnRawsStill": "Unavailable",
+    "newLocalRuntimeAuthorized": false
+  },
+  "acceptance": {
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "pureInterpreterExpansionEnabled": false
+  }
+}
