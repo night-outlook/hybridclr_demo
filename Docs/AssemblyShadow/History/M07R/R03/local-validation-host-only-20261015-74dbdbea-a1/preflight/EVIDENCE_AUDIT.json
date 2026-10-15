@@ -1,0 +1,158 @@
+{
+  "result": "PassedIndependentHostEvidenceAudit",
+  "batchResult": "PassedHostOnly",
+  "time": "2026-10-15T06:20:02.383591+00:00",
+  "inventory": {
+    "entries": 3164,
+    "symlinks": 4,
+    "manifestSha256": "88d90ae88f27f43110dc3c313b520c100f93621fb58fde60d01e98d17504c87f"
+  },
+  "resultSha256": "ea5dd8a85d1c6d4851ac123771c5e6c2d4f6827e7bcecce7f112017e21c62f4f",
+  "outerPassed": 8,
+  "outerFailed": 0,
+  "sourcePreserved": true,
+  "allFourPostSourceRemoteIdentitiesVerified": true,
+  "nestedCommandStreamsVerified": {
+    "native-general-stream": 73,
+    "native-v2-codec": 164,
+    "native-v2-file-transaction": 184,
+    "native-v2-legacy-sink": 122,
+    "current-frozen-producer": 24
+  },
+  "totalNestedCommandReceipts": 567,
+  "components": {
+    "native-general-stream": {
+      "result": "PassedWithinHostScope",
+      "profiles": [
+        {
+          "name": "strict",
+          "tests": 25,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "name": "sanitized",
+          "tests": 25,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      ],
+      "sourceUnchanged": true,
+      "oldExecutionProducer": "Passed",
+      "currentExecutionProducer": "Passed",
+      "firstFailure": null
+    },
+    "native-v2-codec": {
+      "results": [
+        {
+          "profile": "strict",
+          "tests": 20,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "profile": "sanitized",
+          "tests": 20,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      ],
+      "sourceUnchanged": true
+    },
+    "native-v2-file-transaction": {
+      "profiles": [
+        {
+          "profile": "strict",
+          "tests": 27,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "profile": "sanitized",
+          "tests": 27,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      ]
+    },
+    "native-v2-legacy-sink": {
+      "result": "PassedWithinNativeComponentScope",
+      "tests": 32
+    }
+  },
+  "parityCases": [
+    {
+      "profile": "strict",
+      "variant": "n-large",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 331078,
+      "sha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+      "exactByteParity": true
+    },
+    {
+      "profile": "strict",
+      "variant": "empty",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 0,
+      "bytes": 327,
+      "sha256": "f77a59c273a6856ab85019922f8947eb3259833b93678f3d16aa5955045bbd75",
+      "exactByteParity": true
+    },
+    {
+      "profile": "strict",
+      "variant": "debug-class-flags",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 342307,
+      "sha256": "33d99dbb2c95cc9a90b333add09eb98bbe6815a4db2865f33c21d96dbc191669",
+      "exactByteParity": true
+    },
+    {
+      "profile": "sanitized",
+      "variant": "n-large",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 331078,
+      "sha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+      "exactByteParity": true
+    },
+    {
+      "profile": "sanitized",
+      "variant": "empty",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 0,
+      "bytes": 327,
+      "sha256": "f77a59c273a6856ab85019922f8947eb3259833b93678f3d16aa5955045bbd75",
+      "exactByteParity": true
+    },
+    {
+      "profile": "sanitized",
+      "variant": "debug-class-flags",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 342307,
+      "sha256": "33d99dbb2c95cc9a90b333add09eb98bbe6815a4db2865f33c21d96dbc191669",
+      "exactByteParity": true
+    }
+  ],
+  "oldFunctionSha256": "051497faf816e4094b8f4e8f194c5b877812cee034c6901c755e8b6efdff9c40",
+  "currentFunctionSha256": "4829a3ae7b9b0df57d054738f99d940b4ad7644a364df0502c9976469819d372",
+  "warningStreams": [],
+  "priorEvidencePreserved": true,
+  "limitations": {
+    "AppleLeakSanitizer": "Unavailable; component policy detect_leaks=0",
+    "LinuxClangAndGcc": "NotRun Locally; CI only",
+    "HistoricalFullCustodyRevalidation": "NotRun",
+    "UnityPlayerIntegratedSdk": "NotRun",
+    "LiveVMCaptureEngineLifecycle": "NoCoverage",
+    "HardwarePowerLoss": "NoCoverage"
+  },
+  "runtimeAcceptance": false
+}

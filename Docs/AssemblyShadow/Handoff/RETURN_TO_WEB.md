@@ -1,6 +1,14 @@
 # Local Validation → Primary Implementation
 
-## Current return — R03 host-only 20261015-fc0d3565 FAIL
+## Current return — host-only successor 20261015-74dbdbea-a1
+
+**PASS / PassedHostOnly; Local Validation → Primary Implementation.** [Factual report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-host-only-20261015-74dbdbea-a1/README.md), [prior finding revalidation](../History/M07R/R03/local-validation-host-only-20261015-74dbdbea-a1/PRIOR_FINDING_REVALIDATION.json). One batch completed with eight Passed outer records, both25-case general profiles and all retained host suites Passed, plus six full current/frozen byte-parity cases/24 receipts. Source and previous evidence preservation Passed. No new substantive Local finding; no Local implementation changes or retry.
+
+IR-LOCAL-HOST-EXECUTION-BINDING-01 is **verified corrected at the new exact source tuple** in LOCAL_VALIDATION. This does not rewrite the consumed prior FAIL or its NotRun profiles; the complete earlier return remains below. All current original/current output bytes and command/source bindings are retained. No Unity/Player/integrated SDK compilation or live VM/engine acceptance was performed.
+
+The nontrivial Primary issues already recorded below remain open: full coherent bounded capture, actual authenticated V2 Player/unchanged semantic integration and supported engine-owner lifecycle. Historical SNAP-01/N/M/K/I/E remain FAIL, historical strict custody remains Blocked; all acceptance flags false, no Human Review Gate or next-milestone authority. Reconcile the fresh host evidence before any separately authorized future Local assignment.
+
+## Historical return — R03 host-only 20261015-fc0d3565 FAIL
 
 **Local Validation → Primary Implementation.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-host-only-20261015-fc0d3565/README.md), [machine finding](../History/M07R/R03/local-validation-host-only-20261015-fc0d3565/FINDING.json). One batch, FailedOrIncomplete; no retry/source changes. Known runtime failures remain unchanged.
 

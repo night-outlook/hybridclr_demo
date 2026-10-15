@@ -1,0 +1,186 @@
+[
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-15T06:17:28.489023+00:00",
+    "end": "2026-10-15T06:17:32.898052+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_demo\n * branch              codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "7b9d1d4e37d1731f9f00042eb04892a8afaf7e80"
+    ],
+    "start": "2026-10-15T06:17:32.898251+00:00",
+    "end": "2026-10-15T06:17:32.918364+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge",
+      "--ff-only",
+      "7b9d1d4e37d1731f9f00042eb04892a8afaf7e80"
+    ],
+    "start": "2026-10-15T06:17:32.918513+00:00",
+    "end": "2026-10-15T06:17:33.162265+00:00",
+    "exit": 0,
+    "stdout": "Updating 8570a924..7b9d1d4e\nFast-forward\n .github/workflows/r03-primary-host-preflight.yml   |  7 +-\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        | 26 +++++--\n .../HOST_PRODUCER_PARITY_2026-10-15/EVIDENCE.json  | 86 ++++++++++++++++++++++\n .../PRIMARY_RECONCILIATION.md                      | 48 ++++++++++++\n Docs/AssemblyShadow/Plan/CURRENT_STATUS.md         | 10 ++-\n Docs/AssemblyShadow/README.md                      | 12 ++-\n Tools/AssemblyShadow/R03/source-pins.json          |  2 +-\n .../NativeDiagnostics/native_codec_driver.cpp      |  7 +-\n .../R03IR/NativeDiagnostics/posix_sink_driver.cpp  | 11 ++-\n .../R03IR/run_primary_host_preflight.py            | 34 ++++++++-\n 10 files changed, 221 insertions(+), 22 deletions(-)\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/HOST_PRODUCER_PARITY_2026-10-15/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/HOST_PRODUCER_PARITY_2026-10-15/PRIMARY_RECONCILIATION.md\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-15T06:17:33.710694+00:00",
+    "end": "2026-10-15T06:17:37.662017+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+    ],
+    "start": "2026-10-15T06:17:37.662240+00:00",
+    "end": "2026-10-15T06:17:37.683156+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "merge",
+      "--ff-only",
+      "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+    ],
+    "start": "2026-10-15T06:17:37.683313+00:00",
+    "end": "2026-10-15T06:17:37.699274+00:00",
+    "exit": 0,
+    "stdout": "Already up to date.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-15T06:17:37.720016+00:00",
+    "end": "2026-10-15T06:17:41.759611+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_unity\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "948c0e3b4f8891481301770115e8ba4945eea6de"
+    ],
+    "start": "2026-10-15T06:17:41.759857+00:00",
+    "end": "2026-10-15T06:17:41.781316+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "merge",
+      "--ff-only",
+      "948c0e3b4f8891481301770115e8ba4945eea6de"
+    ],
+    "start": "2026-10-15T06:17:41.781484+00:00",
+    "end": "2026-10-15T06:17:41.797500+00:00",
+    "exit": 0,
+    "stdout": "Already up to date.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-15T06:17:41.821448+00:00",
+    "end": "2026-10-15T06:17:46.148661+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/il2cpp_plus\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   fc0d356..74dbdbe  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "74dbdbea80d83923863303bd2b2c0a87f36541b1"
+    ],
+    "start": "2026-10-15T06:17:46.148842+00:00",
+    "end": "2026-10-15T06:17:46.163729+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "merge",
+      "--ff-only",
+      "74dbdbea80d83923863303bd2b2c0a87f36541b1"
+    ],
+    "start": "2026-10-15T06:17:46.163828+00:00",
+    "end": "2026-10-15T06:17:46.188336+00:00",
+    "exit": 0,
+    "stdout": "Updating fc0d356..74dbdbe\nFast-forward\n .github/workflows/r03-general-current-producer.yml | 111 ++++++++++\n tools/r03/diagnostic_stream/README.md              |   6 +-\n .../current_execution_producer.py                  | 235 +++++++++++++++++++++\n tools/r03/diagnostic_stream/run_tests.py           | 128 ++++++++---\n 4 files changed, 445 insertions(+), 35 deletions(-)\n create mode 100644 .github/workflows/r03-general-current-producer.yml\n create mode 100644 tools/r03/diagnostic_stream/current_execution_producer.py\n",
+    "stderr": ""
+  }
+]
