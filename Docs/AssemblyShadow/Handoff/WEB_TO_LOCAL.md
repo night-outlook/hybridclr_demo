@@ -8,7 +8,7 @@ The previous Local host-only attempt remains **FAIL/FailedOrIncomplete** and is 
 
 **Primary correction:** native runner now invokes the immutable N producer separately from the CURRENT production execution function using identical pinned VM fixtures. It requires six full old/current byte-parity specimens (1024-class 331078-byte N synthetic original, empty inventory, deterministic DEBUG/class-state/storage scenario), 24 compile/process receipts, and the unchanged 25 general-stream tests/profile under both strict and ASan/UBSan. The old exact-text equality check was replaced by independent original and current SHA-256/function/Git-blob gates; historical source remains unmodified. Early source refusal now produces a fail-closed component RESULT/MANIFEST. The outer batch verifies these inner receipts explicitly.
 
-**Verified native source-bound CI:** [38689771914](https://github.com/night-outlook/il2cpp_plus/actions/runs/38689771914), all three Apple Clang/macOS and Linux Clang/GCC jobs SUCCESS, including a negative mutated-frozen-source test-copy refusal. [Primary reconciliation](../History/M07R/R03/IR_Remediation/HOST_PRODUCER_PARITY_2026-10-15/PRIMARY_RECONCILIATION.md) distinguishes this host finding from runtime semantics. The fresh outer four-repository host CI is tracked separately: its SUCCESS cannot be inferred from the native CI alone.
+**Verified native source-bound CI:** [38689771914](https://github.com/night-outlook/il2cpp_plus/actions/runs/38689771914), all three Apple Clang/macOS and Linux Clang/GCC jobs SUCCESS, including a negative mutated-frozen-source test-copy refusal. [Primary reconciliation](../History/M07R/R03/IR_Remediation/HOST_PRODUCER_PARITY_2026-10-15/PRIMARY_RECONCILIATION.md) distinguishes this host finding from runtime semantics. **Verified full four-repository source-bound host CI:** [38690552733](https://github.com/night-outlook/hybridclr_demo/actions/runs/38690552733), all macOS Apple Clang/Linux Clang/Linux GCC jobs SUCCESS; each eight outer records Passed. The independently authenticated [three original artifact ZIPs and 9,282 SHA-256-verified regular files](../History/M07R/R03/IR_Remediation/HOST_PRODUCER_PARITY_2026-10-15/EVIDENCE.json) bind each host result to exact four-source pins. This is CI host evidence, not the installed Local Mac or a Player acceptance.
 
 Host-only new source is native 74dbdbea80d83923863303bd2b2c0a87f36541b1; exact demo remote HEAD is provided in the terminal Primary→Local prompt. Unchanged HybridCLR and Unity-package pins are in the tuple below. One fresh separately authorized Local HOST batch may run; **Unity/Player and integrated SDK compile remain PAUSED**.
 
@@ -16,9 +16,10 @@ Host-only new source is native 74dbdbea80d83923863303bd2b2c0a87f36541b1; exact d
 
 1. Docs/AssemblyShadow/README.md, Plan/CURRENT_STATUS.md and this WEB_TO_LOCAL.md.
 2. Local-owned Handoff/LOCAL_VALIDATION.md and Handoff/RETURN_TO_WEB.md, plus immutable local SNAP-01 checkpoint and original evidence.
-3. History/M07R/R03/IR_Remediation/SNAP01_EXECUTION_FORMATTER_2026-10-15/PRIMARY_RECONCILIATION.md and ENGINE_OWNER_CAPABILITY_ASSESSMENT.md.
-4. History/M07R/R03/IR_Remediation/SNAP01_FILE_TRANSACTION_PROMOTION_2026-10-14/PRIMARY_RECONCILIATION.md and EVIDENCE.json.
-5. Historical native V2, original bounded design/Primary plan, all prior R03 full-stage FAIL and Human Review Gates.
+3. History/M07R/R03/IR_Remediation/HOST_PRODUCER_PARITY_2026-10-15/PRIMARY_RECONCILIATION.md and EVIDENCE.json (current source-bound host correction/audit).
+4. History/M07R/R03/IR_Remediation/SNAP01_EXECUTION_FORMATTER_2026-10-15/PRIMARY_RECONCILIATION.md and ENGINE_OWNER_CAPABILITY_ASSESSMENT.md.
+5. History/M07R/R03/IR_Remediation/SNAP01_FILE_TRANSACTION_PROMOTION_2026-10-14/PRIMARY_RECONCILIATION.md and EVIDENCE.json.
+6. Historical native V2, original bounded design/Primary plan, all prior R03 full-stage FAIL and Human Review Gates.
 
 The final README and this file are published on canonical branch codex/assembly-shadow-r01b-h1. **The latest pushed demo commit is supplied as an exact 40-character SHA in the accompanying Primary→Local prompt and must equal the remote HEAD before any host test.** This document cannot reliably hardcode its own final containing commit SHA. Do not infer demo SHA from any older execution or source anchor.
 
@@ -38,7 +39,7 @@ Source/ABI package: Unity2022.3.62f2 StandaloneOSX arm64 is a future integrated 
 - Native CI 38675806461 **Passed** across macOS Apple Clang, Linux Clang and Linux GCC after correcting a host include-path-only failure. No official Unity/Player acceptance is claimed.
 - Demo Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py and .github/workflows/r03-primary-host-preflight.yml provide a read-only, branch/remote/clean-worktree-verified multi-suite host batch. It records each command, source-before/after hashes, stdout/stderr SHA-256 and final external artifacts.
 
-The prior general formatter, V2 codec and POSIX transaction remain inactive host-testable components. The host-only native codec driver received **whitespace-only statement separation** to preserve strict Linux GCC -Werror warning diagnostics without suppressing warnings, changing predicates or changing output bounds. New source does not connect those components to a Player or repair the original failure.
+The prior general formatter, V2 codec and POSIX transaction remain inactive host-testable components. The two host-only native codec and POSIX drivers received **whitespace-only statement separation** to preserve strict Linux GCC -Werror warning diagnostics without suppressing warnings, changing predicates or changing output bounds. New source does not connect those components to a Player or repair the original failure.
 
 ## ONE host-only Local Validation command
 
