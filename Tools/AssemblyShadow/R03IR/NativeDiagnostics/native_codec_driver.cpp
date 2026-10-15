@@ -26,7 +26,9 @@ struct MemorySink {
         if(s.reenter) { auto* c=s.reenter; s.reenter=nullptr; c->Begin(14,false); }
         if(n>FrameLimit || n>ArtifactBudget-s.used) { error=75; return false; }
         if(n>s.maxWrite)s.maxWrite=n;
-        if(n)std::memcpy(s.bytes.get()+s.used,p,n); s.used+=n; return true;
+        if(n) std::memcpy(s.bytes.get()+s.used,p,n);
+        s.used+=n;
+        return true;
     }
     static bool Finish(void* self,int& error) noexcept {
         auto& s=*static_cast<MemorySink*>(self);
@@ -48,7 +50,8 @@ static bool Fill(Capture& c,const Digest& a,const Digest& b,
 }
 static std::string Hex(const Digest& d) {std::string out;for(auto b:d){out+="0123456789abcdef"[b>>4];out+="0123456789abcdef"[b&15];}return out;}
 static Digest Parse(const std::string& text) {
-    if(text.size()!=64)throw std::runtime_error("hash length"); Digest d{};
+    if(text.size()!=64) throw std::runtime_error("hash length");
+    Digest d{};
     for(unsigned i=0;i<32;++i){unsigned v=0;for(unsigned j=0;j<2;++j){char c=text[i*2+j];if(c>='0'&&c<='9')v=v*16+unsigned(c-'0');else if(c>='a'&&c<='f')v=v*16+unsigned(c-'a'+10);else throw std::runtime_error("hash characters");}d[i]=static_cast<std::uint8_t>(v);}return d;
 }
 static std::vector<std::uint8_t> Read(const std::string& path) {
