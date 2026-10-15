@@ -1,5 +1,12 @@
 # Plan Changelog
 
+## 2026-10-15 — P1 owned frozen execution capture component (inactive; no new Local task)
+
+- Primary added a bounded 1024-row / 2MiB owned text frozen execution snapshot under native il2cpp_plus@096ad96168e025a43a8581b3f15b704a66731f29. It is a source-lifetime isolation step only; actual GetDiagnosticsJson / GetExecutionDiagnosticsJson are unchanged and still allocate during VM acquisition.
+- [Native CI38698299448](https://github.com/night-outlook/il2cpp_plus/actions/runs/38698299448) Passed strict/sanitized host tests on macOS Apple Clang, Linux Clang and GCC; real V2 memory codec matches unchanged reference wire bytes and failed semantic status remains Failed. Audited original ZIP manifests: 150 verified V2 files, zero mismatches.
+- Published independent source/lifetime, lock-boundary, memory-budget audit and Primary reconciliation under History/M07R/R03/IR_Remediation/P1_FROZEN_CAPTURE_2026-10-15. The old Local host PASS and even older FAIL/SNAP-01 failed evidence remain immutable. No official Unity SDK compilation, Player or real engine-owner interface is claimed.
+- WEB_TO_LOCAL stays explicitly PAUSED, P1 remains Incomplete, E0 blocked, all R03/H2/readiness/qualification gates false; no next milestone.
+
 ## 2026-10-08/09 — Primary IR-R03-02 source candidate and separate focused evidence (gate still FAIL)
 
 - GitHub Connector write verified on disposable demo/native branches, no smoke merge; authoring on feature branch preserved S/R/Q/P/O/N evidence.
