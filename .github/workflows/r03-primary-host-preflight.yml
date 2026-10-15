@@ -1,0 +1,80 @@
+name: R03 Primary four-repo host preflight
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - 'Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py'
+      - 'Tools/AssemblyShadow/R03/source-pins.json'
+      - '.github/workflows/r03-primary-host-preflight.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pinned-host-batch:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            compiler: clang++
+          - os: ubuntu-24.04
+            compiler: g++
+          - os: macos-15
+            compiler: clang++
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: r03-workspace/hybridclr_demo
+          ref: codex/assembly-shadow-r01b-h1
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          path: r03-workspace/hybridclr
+          ref: codex/assembly-shadow-r01b-h1
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          path: r03-workspace/hybridclr_unity
+          ref: codex/assembly-shadow-r01b-h1
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          path: r03-workspace/il2cpp_plus
+          ref: codex/assembly-shadow-r01b-h1
+          persist-credentials: false
+      - name: Pin sources, validate runner Python syntax and execute all host suites
+        shell: bash
+        env:
+          CXX: ${{ matrix.compiler }}
+          GIT_TERMINAL_PROMPT: '0'
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE/r03-workspace/hybridclr_demo"
+          python3 -B -m py_compile Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py
+          python3 -B - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('Tools/AssemblyShadow/R03/source-pins.json').read_text())
+          assert p['il2cpp_plus']=='fc0d3565ecc5c9d1a31520a26ff3f9fda25bc98f'
+          assert p['hybridclr']=='4b2774b066cfc6afd77a8c8aded6bda7ea574f55'
+          assert p['hybridclr_unity']=='948c0e3b4f8891481301770115e8ba4945eea6de'
+          PY
+          output="$RUNNER_TEMP/r03-host-preflight-${{ github.run_id }}-${{ github.run_attempt }}"
+          python3 -B Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py \
+            --workspace "$GITHUB_WORKSPACE/r03-workspace" \
+            --expected-demo "$GITHUB_SHA" \
+            --expected-native fc0d3565ecc5c9d1a31520a26ff3f9fda25bc98f \
+            --output "$output"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-primary-host-${{ matrix.os }}-${{ matrix.compiler }}-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-host-preflight-${{ github.run_id }}-${{ github.run_attempt }}
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
