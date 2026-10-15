@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1TransactionInventoryActualNativeMethodHostEvidence",
+  "sourceBranch": "codex/assembly-shadow-r01b-h1",
+  "sourceNativeCommit": "51c28cf535dc0dcd3294ec49bc6877064d22c75a",
+  "baseNativeCommit": "10a6bece70ec4990dc795daa11b3f4a7629b7a61",
+  "sourceMethodSha256": "aecef83b206047463c24a355487222a41117c9ba97eb4f0afb38615c2faad3d9",
+  "result": "PassedWithinHostScope",
+  "ci": {
+    "repository": "night-outlook/il2cpp_plus",
+    "runId": 38778487071,
+    "url": "https://github.com/night-outlook/il2cpp_plus/actions/runs/38778487071",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "platform": "macos-15",
+        "compiler": "clang++",
+        "conclusion": "success",
+        "profiles": [
+          "strict",
+          "sanitized"
+        ],
+        "artifactId": 11994083467,
+        "artifactZipSha256": "9694a1b622bc62a255d15c458482d5816809c6415ebfc0b60a0c12cd2a5cbd51",
+        "regularFileSha256Verified": 21,
+        "commands": 4
+      },
+      {
+        "platform": "ubuntu-24.04",
+        "compiler": "clang++",
+        "conclusion": "success",
+        "profiles": [
+          "strict",
+          "sanitized"
+        ],
+        "artifactId": 11993329617,
+        "artifactZipSha256": "5793d19ca0576a58aa70e606427d4ff278de960a25ae0e8334c2a07de99df665",
+        "regularFileSha256Verified": 18,
+        "commands": 4
+      },
+      {
+        "platform": "ubuntu-24.04",
+        "compiler": "g++",
+        "conclusion": "success",
+        "profiles": [
+          "strict",
+          "sanitized"
+        ],
+        "artifactId": 11995115862,
+        "artifactZipSha256": "da73f476787d508aa1876a17bb16607c06c5d0b091b2511aab143b3e8c9d77b2",
+        "regularFileSha256Verified": 18,
+        "commands": 4
+      }
+    ]
+  },
+  "independentArtifactAudit": {
+    "source": "Original three ZIPs downloaded from GitHub Actions through GitHub Connector; hashes and sizes independently compared against archive bytes",
+    "totalRegularFiles": 57,
+    "missingFiles": 0,
+    "hashOrLengthMismatches": 0,
+    "unlistedFiles": 0,
+    "sourceBeforeAfterPreservedInAllJobs": true,
+    "exactProductionMethodShaIdenticalAcrossAllJobs": true,
+    "strictAndSanitizedStdoutMatchesAcrossCompilers": true,
+    "syntheticGeneralV1Bytes": 1705,
+    "syntheticFixtureIncludesMockedOtherVmFields": true
+  },
+  "sourceScope": {
+    "actualNativeMethodBodyExtractedAndCompiled": true,
+    "existingGetDiagnosticsJsonMethodUnchanged": true,
+    "existingGetExecutionDiagnosticsJsonMethodUnchanged": true,
+    "existingTryCaptureBoundedTransactionStatusMethodUnchanged": true,
+    "noExistingDiagnosticGetterCallsNewMethod": true
+  },
+  "ownedInventoryCaps": {
+    "stableNames": 4096,
+    "closureRows": 4096,
+    "commitNames": 4096,
+    "eventRows": 4096,
+    "textArenaBytes": 1048576,
+    "additionalObjectSizeUpperHeadroomBytes": 600000,
+    "sourceStatusDetailBytes": 32768,
+    "sourceStatusBuildIdBytes": 8192,
+    "sourceStatusPatchIdBytes": 8192
+  },
+  "testCoverage": [
+    "one transaction mutex for status and all source lists",
+    "preserves order of stable names, closure/assembly flags, commit names and events",
+    "first TypeFailure overrides transaction status after unlock",
+    "strict/ASan-UBSan host mock actual native method",
+    "no operator-new calls observed in prepared method mock path",
+    "deep-copy strings survive source mutation",
+    "source-state/active pointer/type failure/configuration pointer flips fail closed",
+    "stable/closure/commit/event count overflow fails closed",
+    "combined owned text overflow fails closed",
+    "null candidate invalid source fail closed",
+    "status detail overflow fails closed",
+    "bad stage and aliased input reject",
+    "separate adjacent source memory accepted",
+    "synthetic composed general V1 exact byte equality using frozen general builder"
+  ],
+  "notProven": [
+    "official installed Unity SDK compile",
+    "Unity Player run",
+    "actual after-terminal mutex acquisition, owner or maximum hold time",
+    "complete real VM diagnostic field14/15 producer",
+    "all class, assembly, first-use and R02 source epoch coherence",
+    "stable module initializer flags form a single atomic epoch",
+    "actual metadata type-key and class lifetime",
+    "process peak memory/GC/RSS",
+    "authenticated native/C# V2 file transaction and unchanged semantic verifier",
+    "E0/E1 native engine owner, callback drain, finalizer and restart"
+  ],
+  "lastLocalHostPassNativeCommit": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
+  "lastLocalHostPassDemoCommit": "7b9d1d4e37d1731f9f00042eb04892a8afaf7e80",
+  "lastLocalHostPassConsumed": true,
+  "previousLocalHostFailPreserved": true,
+  "SNAP01": {
+    "result": "FAIL/ReturnRequired",
+    "passedCells": 14,
+    "failedCells": 4,
+    "slot14FirstScannedPrefix": 262145,
+    "slot14OriginalLimit": 262144,
+    "actualSlot14CompleteLength": "Unavailable",
+    "engineCompletedUncappedReportsPer500ms": 51213,
+    "engineExit": 71
+  },
+  "originalStrictCustody": {
+    "result": "Blocked",
+    "expected": 416844,
+    "survivors": 339367,
+    "missing": 77477,
+    "missingNativeRoots": 4
+  },
+  "acceptance": {
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "nextOwner": "Primary Implementation",
+  "newLocalAssignmentAuthorized": false
+}
