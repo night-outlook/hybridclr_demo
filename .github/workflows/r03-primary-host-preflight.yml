@@ -5,6 +5,8 @@ on:
     paths:
       - 'Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py'
       - 'Tools/AssemblyShadow/R03/source-pins.json'
+      - 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/**'
+      - 'Tools/AssemblyShadow/R03IR/bounded_v2/**'
       - '.github/workflows/r03-primary-host-preflight.yml'
   workflow_dispatch:
 permissions:
