@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1StagedGeneralHostEvidence",
+  "sourceNativeCommit": "37972fe7b0eabc6332a87422c70fd9c21bedb235",
+  "sourceBranch": "codex/assembly-shadow-r01b-h1",
+  "CI": {
+    "repository": "night-outlook/il2cpp_plus",
+    "id": 38738123792,
+    "url": "https://github.com/night-outlook/il2cpp_plus/actions/runs/38738123792",
+    "conclusion": "success",
+    "platformJobs": [
+      {
+        "os": "macos-15",
+        "compiler": "clang++",
+        "conclusion": "success",
+        "profiles": [
+          "strict",
+          "sanitized"
+        ]
+      },
+      {
+        "os": "ubuntu-24.04",
+        "compiler": "clang++",
+        "conclusion": "success",
+        "profiles": [
+          "strict",
+          "sanitized"
+        ]
+      },
+      {
+        "os": "ubuntu-24.04",
+        "compiler": "g++",
+        "conclusion": "success",
+        "profiles": [
+          "strict",
+          "sanitized"
+        ]
+      }
+    ]
+  },
+  "sourceFiles": [
+    "libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+    "tools/r03/diagnostic_stream/frozen_general_capture_tests.cpp",
+    ".github/workflows/r03-p1-frozen-general.yml"
+  ],
+  "immutableOriginalGeneralSerializerGitBlob": "226b01273d3e30d190422c4c4c740c49a8d957f0",
+  "tests": {
+    "threeWayParity": [
+      "immutable original general V1",
+      "current product general V1",
+      "frozen staged owned V1"
+    ],
+    "fixtureClassesAndBytes": [
+      {
+        "classes": 0,
+        "enabled": false,
+        "bytes": 580
+      },
+      {
+        "classes": 1,
+        "enabled": true,
+        "bytes": 1757
+      },
+      {
+        "classes": 4096,
+        "enabled": true,
+        "bytes": 859356
+      }
+    ],
+    "negativeControls": [
+      "invalid ordering",
+      "null views",
+      "invalid UTF8",
+      "oversize record",
+      "unsupported locale",
+      "short destination no sink call",
+      "sink failure at first callback",
+      "sink failure at second callback",
+      "no prefix accepted"
+    ],
+    "maximumSinkCallbackBytes": 65536,
+    "captureOperatorNewObservedDuringPreparedHostPath": 0
+  },
+  "limits": {
+    "captureOwnedBufferBytes": 3932160,
+    "combinedEncodedArtifactBytes": 4194304,
+    "v2ArtifactMaximumBytes": 3932160,
+    "v1IndividualTextSlotBytes": 262144,
+    "warning": "Capture buffer is a single unencoded field bound and NOT separate aggregate wire allowance or process RSS bound"
+  },
+  "result": "PassedWithinInactiveHostFormattingScope",
+  "notProven": {
+    "realGeneralVMCollectorIntegrated": true,
+    "realExecutionVMCollectorIntegrated": true,
+    "liveVMMetadataLifetime": true,
+    "globallyCoherentEpoch": true,
+    "typeKeyAcquisitionBound": true,
+    "processPeakMemoryAndGC": true,
+    "actualOnPlayerSlot14Length": true,
+    "authenticatedV2PlayerAndSemanticVerifier": true,
+    "engineOwnerLifecycle": true,
+    "officialUnitySdkCompile": true
+  },
+  "lastLocalHostExecutionNativeCommit": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
+  "previousLocalPassedHostOnlyConsumed": true,
+  "olderLocalFailedEvidenceUnchanged": true,
+  "historicalSNAP01": {
+    "result": "FAIL/ReturnRequired",
+    "passed": 14,
+    "failed": 4,
+    "slot14ScannedPrefix": 262145,
+    "slot14FullActualLength": "Unavailable",
+    "engineUncappedReports500ms": 51213,
+    "engineExit": 71
+  },
+  "acceptance": {
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "pureInterpreterEnabled": false
+  },
+  "nextOwner": "Primary Implementation",
+  "localAssignmentAuthorized": false
+}
