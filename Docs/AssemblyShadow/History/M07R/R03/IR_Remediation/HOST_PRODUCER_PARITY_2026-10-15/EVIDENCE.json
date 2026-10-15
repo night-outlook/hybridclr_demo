@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03PrimaryHostCurrentProducerParityCIAudit",
+  "auditDate": "2026-10-15",
+  "source": {
+    "demo": "6eab889b2a3623e576f46e931b9e76b371c20162",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
+    "branch": "codex/assembly-shadow-r01b-h1"
+  },
+  "CI": {
+    "runId": 38690552733,
+    "conclusion": "success",
+    "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/38690552733",
+    "nativeFocusedRunId": 38689771914,
+    "nativeFocusedConclusion": "success"
+  },
+  "coverageEachPlatform": {
+    "outerCommandsPassed": 8,
+    "outerCommandsFailed": 0,
+    "generalStrictTestsPassed": 25,
+    "generalSanitizedTestsPassed": 25,
+    "codecStrictPassed": 20,
+    "codecSanitizedPassed": 20,
+    "transactionStrictPassed": 27,
+    "transactionSanitizedPassed": 27,
+    "legacySinkTestsPassed": 32,
+    "currentFrozenParityCasesPassed": 6,
+    "currentFrozenParityCompileProcessRecords": 24,
+    "sourcePreserved": true,
+    "realUnity": false,
+    "realPlayer": false,
+    "integratedSdkCompile": false
+  },
+  "artifacts": [
+    {
+      "platform": "Linux GCC",
+      "artifactId": 11951139171,
+      "zipSha256": "ce32bbe49337d9d2db7652bc35de69a506252f5ab032a30837a4679c09005dcf",
+      "zipArchiveEntries": 3076,
+      "declaredRegularFiles": 3073,
+      "sha256VerifiedRegularFiles": 3073,
+      "declaredTestSymlinks": 4,
+      "badOrMissingRegularFiles": 0
+    },
+    {
+      "platform": "macOS 15 arm64 Apple Clang",
+      "artifactId": 11951207695,
+      "zipSha256": "944abe5ef8233e8660d1c19ac7a20eee2b071916efd2b70e6cf480dc89436e24",
+      "zipArchiveEntries": 3139,
+      "declaredRegularFiles": 3136,
+      "sha256VerifiedRegularFiles": 3136,
+      "declaredTestSymlinks": 4,
+      "badOrMissingRegularFiles": 0
+    },
+    {
+      "platform": "Linux Clang",
+      "artifactId": 11952088525,
+      "zipSha256": "c5763fa000855a6637c2a317e0e196b77caabeb95f93a0a6cf96e6809fbdf8ba",
+      "zipArchiveEntries": 3076,
+      "declaredRegularFiles": 3073,
+      "sha256VerifiedRegularFiles": 3073,
+      "declaredTestSymlinks": 4,
+      "badOrMissingRegularFiles": 0
+    }
+  ],
+  "independentAudit": "Downloaded original CI ZIPs through GitHub Connector; independently checked SHA-256 of all manifest-declared regular files against ZIP bytes, re-read nested RESULT.json for exact profile counts, all eight outer commands, six old/new current producer byte parity cases, checked four source pin values and sourcePreserved=true. Manifest-declared symlink records remain metadata only; archive ZIP does not authenticate original symlink inode/target semantics.",
+  "originalLocalAttempt": "FAIL/FailedOrIncomplete: seven Passed one Failed; general 25 tests/profile NotRun in consumed Local run. Do not change historical outcome.",
+  "limitations": [
+    "CI host VM mocks, not real metadata or Player",
+    "No official installed Unity2022.3.62f2 SDK compiler/Player run",
+    "No peak VM GC/RSS capture bound",
+    "No device power-loss durability proof",
+    "No native Unity scheduler safe-point and finalizer ownership",
+    "Mac LeakSanitizer unavailable; Apple ASan/UBSan only",
+    "ZIP symlink identity and source originals not independently reconstructed",
+    "No R03 acceptance or Human Review Gate approval"
+  ],
+  "acceptance": {
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false
+  }
+}
