@@ -68,6 +68,11 @@ def source_hashes(demo: Path, native: Path) -> dict:
              native / "libil2cpp/vm/AssemblyShadowExecutionSerializer.h",
              native / "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
              native / "tools/r03/diagnostic_stream/execution_serializer_tests.cpp",
+             native / "tools/r03/diagnostic_stream/run_tests.py",
+             native / "tools/r03/diagnostic_stream/current_execution_producer.py",
+             native / "tools/r03/diagnostic_stream/serializer_driver.cpp",
+             demo / "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/checks/test_diagnostic_size.py",
+             demo / "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/checks/source-extracts/GetExecutionDiagnosticsJson.function.cpp",
              demo / "Tools/AssemblyShadow/R03IR/bounded_v2/BoundedDiagnosticsV2.h",
              demo / "Tools/AssemblyShadow/R03IR/bounded_v2/PosixDiagnosticTransaction.h",
              demo / "Tools/AssemblyShadow/R03IR/bounded_v2/transaction_reader.py",
@@ -147,7 +152,34 @@ def main():
         )
         # Independent host suites continue after a single component failure.
         for name, argv in tests:
-            results.append(run_case(name, argv, dest))
+            receipt = run_case(name, argv, dest)
+            if name == "native-general-stream" and receipt["status"] == "Passed":
+                # Do not permit an exit-zero wrapper to substitute for the full
+                # immutable/current source and original 25-case/profile matrix.
+                try:
+                    general = json.loads((dest / name / "evidence" / "RESULT.json").read_text())
+                    parity = json.loads((dest / name / "evidence" / "current-execution-parity" / "RESULT.json").read_text())
+                    complete = (general["result"] == "PassedWithinHostScope"
+                                and general["sourceUnchanged"]
+                                and general["oldExecutionProducer"] == "Passed"
+                                and general["currentExecutionProducer"] == "Passed"
+                                and len(general["profiles"]) == 2
+                                and all(p["tests"] == 25 and p["failures"] == 0 and p["errors"] == 0
+                                        and p["skipped"] == 0 for p in general["profiles"])
+                                and parity["result"] == "PassedHostOnly"
+                                and len(parity["cases"]) == 6
+                                and len(parity["commands"]) == 24
+                                and all(p["exactByteParity"] for p in parity["cases"]))
+                    receipt["innerGeneralAndProducerVerified"] = bool(complete)
+                    if not complete:
+                        receipt["status"] = "Failed"
+                        receipt["error"] = "Incomplete source-bound current/frozen and general test matrix"
+                except Exception as error:
+                    receipt["status"] = "Failed"
+                    receipt["innerGeneralAndProducerVerified"] = False
+                    receipt["error"] = repr(error)
+                (dest / name / "command.json").write_text(json.dumps(receipt, indent=2) + "\n")
+            results.append(receipt)
         compiler = shutil.which(os.environ.get("CXX", "clang++"))
         if compiler:
             source = native / "tools/r03/diagnostic_stream/execution_serializer_tests.cpp"
