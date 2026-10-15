@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1ActualTransactionStatusHostMockEvidence",
+  "result": "PassedWithinHostScope",
+  "sourceBranch": "codex/assembly-shadow-r01b-h1",
+  "sourceNativeCommit": "10a6bece70ec4990dc795daa11b3f4a7629b7a61",
+  "priorNativeCommit": "37972fe7b0eabc6332a87422c70fd9c21bedb235",
+  "realStatusMethodSha256": "5f56ff8cc96ac63bc0c81bd2c2abce1ca74b01ccc9953a832984153be4dc34bf",
+  "sourceBodyPreservation": {
+    "GetDiagnosticsJson": "Exact byte equality to prior native source",
+    "GetExecutionDiagnosticsJson": "Exact byte equality to prior native source",
+    "newNativeMethod": "Additive only, no existing getter calls it"
+  },
+  "ci": {
+    "repository": "night-outlook/il2cpp_plus",
+    "runId": 38750613093,
+    "url": "https://github.com/night-outlook/il2cpp_plus/actions/runs/38750613093",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "platform": "macos-15",
+        "compiler": "clang++",
+        "status": "success",
+        "profiles": [
+          "strict",
+          "sanitized"
+        ]
+      },
+      {
+        "platform": "ubuntu-24.04",
+        "compiler": "clang++",
+        "status": "success",
+        "profiles": [
+          "strict",
+          "sanitized"
+        ]
+      },
+      {
+        "platform": "ubuntu-24.04",
+        "compiler": "g++",
+        "status": "success",
+        "profiles": [
+          "strict",
+          "sanitized"
+        ]
+      }
+    ]
+  },
+  "originalArtifacts": [
+    {
+      "platform": "macos-15 clang++",
+      "artifactId": 11981316137,
+      "zipSha256": "fce6d055f6e45ba5117321439de7e4cc5d4bef2c17bf3ad7bb69a4af713f732b",
+      "regularFilesSha256Checked": 21,
+      "manifestMismatchCount": 0,
+      "unlistedCount": 0
+    },
+    {
+      "platform": "ubuntu-24.04 clang++",
+      "artifactId": 11981141378,
+      "zipSha256": "19a971f28e5499e6c0bba5d78bceb575ece2848ac4fc7fe1ca5fa5016379ddc9",
+      "regularFilesSha256Checked": 18,
+      "manifestMismatchCount": 0,
+      "unlistedCount": 0
+    },
+    {
+      "platform": "ubuntu-24.04 g++",
+      "artifactId": 11980892167,
+      "zipSha256": "64bb6b2dc7379e9524d0f8c1643a6c1169b8d173021200ff11e63d1066d113e7",
+      "regularFilesSha256Checked": 18,
+      "manifestMismatchCount": 0,
+      "unlistedCount": 0
+    }
+  ],
+  "audit": {
+    "totalRegularFilesSha256Verified": 57,
+    "commandRecordsInArtifacts": 12,
+    "sourceFilesRetainedPerJob": 6,
+    "sourcePreserved": true,
+    "allThreeMethodHashesIdentical": true,
+    "independentAudit": "Downloaded ZIP via GitHub Connector; compared declared regular-file byte lengths and SHA256 to archive, inspected status/method SHA and source preservation; excludes unlisted external runtime inputs."
+  },
+  "testScope": [
+    "Real product AssemblyShadow::TryCaptureBoundedTransactionStatus method text mechanically extracted and compiled",
+    "Explicit mock Transaction/mutex, ActiveSnapshot, TypeFailure, atomic state and flags",
+    "No allocation observed during preprepared mock Capture under operator-new instrumentation",
+    "Owned status scalar fields and control/NUL text",
+    "Late baseline/unexpected/type first-failure precedence and active state",
+    "Deterministic first-failure pointer/state/active/flag flip fail-closed",
+    "Oversized detail/build ID/patch ID fail-closed",
+    "Double use and invalid phase reject",
+    "Deterministic immediately adjacent sibling source buffer accepted after alias guard repair"
+  ],
+  "exploratory": {
+    "failedRunIds": [
+      38749497024,
+      38749854416,
+      38750226304
+    ],
+    "classification": "Earlier new-component alias-guard false-positive for separate adjacent storage. Fixed at final native source; previous CI failures remain failed evidence."
+  },
+  "memoryCaps": {
+    "detailBytes": 32768,
+    "buildIdBytes": 8192,
+    "patchIdBytes": 8192
+  },
+  "limits": {
+    "actualSourceMethodCompiledUnderMocks": true,
+    "fullUnityNativeSDKCompile": false,
+    "localValidationPerformed": false,
+    "activeNativePlayerCapture": false,
+    "realVmGenerationCoherenceProven": false,
+    "prewarmCurrentTransactionGuaranteed": false,
+    "terminalMutexSafePointProven": false,
+    "metadataTypeKeyCaptureBounded": false,
+    "R03Accepted": false
+  },
+  "lastLocalHostPassConsumed": true,
+  "historicalSNAP01": "FAIL/ReturnRequired 14Passed/4Failed; V1 slot14 prefix262145, true size Unavailable; engine51213 reports/500ms exit71",
+  "humanReviewGateReady": false,
+  "nextOwner": "Primary Implementation",
+  "newLocalTaskAuthorized": false
+}
