@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1OwnedFrozenExecutionCaptureHostEvidence",
+  "dateUTC": "2026-10-15",
+  "sourceAuthority": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "il2cpp_plus": "096ad96168e025a43a8581b3f15b704a66731f29",
+    "hybridclr_demoReference": "7b9d1d4e37d1731f9f00042eb04892a8afaf7e80",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de"
+  },
+  "CI": {
+    "runId": 38698299448,
+    "url": "https://github.com/night-outlook/il2cpp_plus/actions/runs/38698299448",
+    "conclusion": "success",
+    "jobs": 3,
+    "compilerProfiles": [
+      "macOS 15 arm64 Apple Clang",
+      "Ubuntu 24.04 Clang",
+      "Ubuntu 24.04 GCC"
+    ],
+    "each": [
+      "strict C++17",
+      "ASan/UBSan"
+    ]
+  },
+  "contract": {
+    "ownedRowCapacity": 1024,
+    "ownedTextArenaBytes": 2097152,
+    "compileTimeMaxCaptureObjectBytes": 3145728,
+    "snapshotStore": "P1 owned deep-copy only; no VM metadata source",
+    "strictHistoricalFixtureBytes": 331078,
+    "strictHistoricalFixtureSha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+    "V2Fixture": {
+      "generalBytes": 300032,
+      "executionBytes": 331078,
+      "encodedBytes": 631720,
+      "sha256": "f1e193ee55e34bcf051f6835949c1889deeec019064fcfc9604fd1264891038e",
+      "reference": "unchanged historical SNAP01_BOUNDED_DESIGN_f8a2 diagnostic_stream.py",
+      "exactNativeReferenceWireByteParity": true,
+      "unchangedFailedSemanticStatus": "Failed"
+    },
+    "profilesPerJob": 2,
+    "nativeV2DriverCommandsPerJob": 12,
+    "successfulDriverCommandsPerJob": 12,
+    "failClosedNegatives": [
+      "state/input/row-limit/text-limit/duplicate/after-freeze rejection",
+      "one-byte-short bounded Writer output",
+      "synchronous sink-denial",
+      "pre-encoder source UTF-8 rejection",
+      "aggregate native V2 resource overrun",
+      "encoded wire sink failure and strict original decoder rejection of partial bytes"
+    ],
+    "allocationScope": "zero counted scalar/array/aligned C++ operator-new during prepared owned snapshot capture/format and encoding; NOT malloc, live VM index construction, GC, RSS, filesystem or SDK evidence"
+  },
+  "artifacts": [
+    {
+      "artifactId": 11954378005,
+      "platform": "macOS Apple Clang",
+      "zipSha256": "4dec4cbe555fc82e023bf3206baad0f0b0a7c0eda79fd48b14df76699953b6fe",
+      "zipEntries": 74,
+      "declaredV2ManifestFiles": 52,
+      "verifiedV2ManifestFiles": 52,
+      "mismatched": 0,
+      "unlistedV2Files": 0
+    },
+    {
+      "artifactId": 11954463038,
+      "platform": "Linux GCC",
+      "zipSha256": "eedf8e7751ad779b2070603764ef913280c2edff8b077a003d5cb9c4e5909d6a",
+      "zipEntries": 68,
+      "declaredV2ManifestFiles": 49,
+      "verifiedV2ManifestFiles": 49,
+      "mismatched": 0,
+      "unlistedV2Files": 0
+    },
+    {
+      "artifactId": 11955421008,
+      "platform": "Linux Clang",
+      "zipSha256": "f0800afe1bfa566a6558d3305ebb9efbfecbf0077b5cc9b7c27ec9803e98dbaf",
+      "zipEntries": 68,
+      "declaredV2ManifestFiles": 49,
+      "verifiedV2ManifestFiles": 49,
+      "mismatched": 0,
+      "unlistedV2Files": 0
+    }
+  ],
+  "independentAudit": "Primary downloaded the original ZIPs via GitHub Connector, recalculated their full SHA-256, parsed each P1 V2 RESULT.json, cross-checked strict/sanitized output/wire SHA-256s and directly SHA-256 validated all 150 manifest-declared V2 host files (52+49+49). This audit is distinct from the GitHub CI job conclusions. The earlier standalone frozen fixture files under p1-frozen are bound by ZIP SHA and CI cmd logs, not separately fully manifest audited.",
+  "attempts": "Earlier exploratory P1-V2 CI runs failed to compile a new test-only driver because std::string was passed where const char* was required; Primary fixed the test driver before final successful run. Earlier FAILED CI is immutable and not evidence of runtime failure.",
+  "limitations": {
+    "realVmCaptureIntegrated": false,
+    "realVmLockLifetimeReviewed": false,
+    "allocationsWhileProducingTypeKeyBounded": false,
+    "coherentGeneralCaptureIntegrated": false,
+    "R02MetricsFrozen": false,
+    "actualOnPlayerDiagnosticsKnown": false,
+    "nativeCSharpEmitterIntegrated": false,
+    "semanticVerifierIntegrated": false,
+    "officialUnitySdkCompileRun": false,
+    "UnityPlayerRun": false,
+    "UnityEngineOwnerLifecycleEstablished": false,
+    "MacLeakSanitizer": "Unavailable",
+    "powerLossDurability": false,
+    "peakVmGcRssBounded": false
+  },
+  "history": {
+    "localHostResult": "PassedHostOnly at prior source pins",
+    "previousLocalHostFailure": "FAIL/FailedOrIncomplete preserved",
+    "SNAP01": "FAIL/ReturnRequired",
+    "SNAP01Cells": {
+      "passed": 14,
+      "failed": 4
+    },
+    "realSlot14PrefixScanned": 262145,
+    "fullActualSlot14Length": "Unavailable",
+    "engineReports500msUncapped": 51213,
+    "strictSCustody": "Blocked"
+  },
+  "acceptance": {
+    "P1Complete": false,
+    "P2Complete": false,
+    "E0Passed": false,
+    "E1Passed": false,
+    "P3Complete": false,
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false,
+    "qualificationApproved": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "newLocalValidationAuthorized": false
+}
