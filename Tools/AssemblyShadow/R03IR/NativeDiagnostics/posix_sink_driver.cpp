@@ -13,9 +13,14 @@ int main(int argc,char** argv){
     if(argc!=3)return 99;
     const std::string mode=argv[1];int directory=::open(argv[2],O_RDONLY|O_DIRECTORY|O_NOFOLLOW|O_CLOEXEC);if(directory<0)return 98;
     PosixCalls calls{TestWrite,TestSync,TestClose};PosixDiagnosticFile sink(calls);
-    if(mode=="write-error")writeMode=1;if(mode=="zero-write")writeMode=2;if(mode=="repeated-eintr")writeMode=3;
-    if(mode=="once-eintr")writeMode=4;if(mode=="short-writes")writeMode=5;
-    if(mode=="file-sync-error")syncMode=1;if(mode=="dir-sync-error")syncMode=2;if(mode=="close-error")closeMode=1;
+    if(mode=="write-error") writeMode=1;
+    if(mode=="zero-write") writeMode=2;
+    if(mode=="repeated-eintr") writeMode=3;
+    if(mode=="once-eintr") writeMode=4;
+    if(mode=="short-writes") writeMode=5;
+    if(mode=="file-sync-error") syncMode=1;
+    if(mode=="dir-sync-error") syncMode=2;
+    if(mode=="close-error") closeMode=1;
     bool prepared=sink.Prepare(directory);bool ok=false;
     auto c=std::make_unique<Capture>();Digest d=Hash("context",7);Descriptor out;
     if(prepared){
