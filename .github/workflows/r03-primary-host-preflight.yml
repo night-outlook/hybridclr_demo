@@ -55,7 +55,11 @@ jobs:
         run: |
           set -euo pipefail
           cd "$GITHUB_WORKSPACE/r03-workspace/hybridclr_demo"
-          python3 -B -m py_compile Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py
+          python3 -B - <<'PY'
+          from pathlib import Path
+          p=Path('Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py')
+          compile(p.read_text(), str(p), 'exec')
+          PY
           python3 -B - <<'PY'
           import json
           from pathlib import Path
