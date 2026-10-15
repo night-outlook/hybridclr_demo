@@ -1,42 +1,69 @@
-# Primary Implementation → Local Validation — PAUSED (V2 file transaction component)
+# Primary Implementation → Local Validation — HOST-ONLY HANDOFF; RUNTIME PAUSED
 
-**No new Local Validation execution or compiler assignment is authorized. Current owner remains Primary Implementation.** SNAP-01 and N are consumed failed attempts; no old app/SDK/output root may be reused. This document is an explicit **stop gate**, not a four-repository runtime handoff.
+**Primary Implementation authorizes one READ-ONLY source-bound host diagnostic preflight only. No Unity Editor/Player, IL2CPP SDK integrated compile, engine sentinel runtime run, historic evidence re-run, or new seven-root Player execution is authorized.** This limited host assignment does not change the historical SNAP-01 FAIL/ReturnRequired or remove the Primary responsibility for P1/P2/E0/E1/P3.
 
-## Read in order
+## Mandatory read order and authority
 
-1. `Docs/AssemblyShadow/README.md`; `Plan/CURRENT_STATUS.md`; this pause; factual Local-owned `LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md`.
-2. [New V2 file transaction Primary reconciliation](../History/M07R/R03/IR_Remediation/SNAP01_FILE_TRANSACTION_PROMOTION_2026-10-14/PRIMARY_RECONCILIATION.md) and [authenticated three-platform evidence](../History/M07R/R03/IR_Remediation/SNAP01_FILE_TRANSACTION_PROMOTION_2026-10-14/EVIDENCE.json).
-3. [Native V2 codec background](../History/M07R/R03/IR_Remediation/SNAP01_NATIVE_CODEC_c2e8/PRIMARY_RECONCILIATION.md); [original bounded diagnostics design](../History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/LOSSLESS_DIAGNOSTICS_DESIGN.md), [native engine terminal design](../History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/ENGINE_TERMINAL_DESIGN.md), [unfinished Primary plan](../History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/IMPLEMENTATION_PLAN.md).
-4. Original SNAP-01 immutable raw evidence/checkpoint, original C/S custody, retained R/Q, all earlier failures and independent full-stage R03 FAIL/Human Review Gates.
+1. Docs/AssemblyShadow/README.md, Plan/CURRENT_STATUS.md and this WEB_TO_LOCAL.md.
+2. Local-owned Handoff/LOCAL_VALIDATION.md and Handoff/RETURN_TO_WEB.md, plus immutable local SNAP-01 checkpoint and original evidence.
+3. History/M07R/R03/IR_Remediation/SNAP01_EXECUTION_FORMATTER_2026-10-15/PRIMARY_RECONCILIATION.md and ENGINE_OWNER_CAPABILITY_ASSESSMENT.md.
+4. History/M07R/R03/IR_Remediation/SNAP01_FILE_TRANSACTION_PROMOTION_2026-10-14/PRIMARY_RECONCILIATION.md and EVIDENCE.json.
+5. Historical native V2, original bounded design/Primary plan, all prior R03 full-stage FAIL and Human Review Gates.
 
-## Published code (not a runtime assignment)
+The final README and this file are published on canonical branch codex/assembly-shadow-r01b-h1. **The latest pushed demo commit is supplied as an exact 40-character SHA in the accompanying Primary→Local prompt and must equal the remote HEAD before any host test.** This document cannot reliably hardcode its own final containing commit SHA. Do not infer demo SHA from any older execution or source anchor.
 
-The prior `BoundedDiagnosticsV2.h` provides a fixed-storage V2 encoder for logical fields14 and15. The *new inactive files* `PosixDiagnosticTransaction.h`, `transaction_driver.cpp`, `transaction_reader.py` and `run_transaction_tests.py` under `Tools/AssemblyShadow/R03IR/bounded_v2/` provide descriptor-bound exclusive file creation, full artifact-before-envelope durability checks, retained failure receipts and a strict reader. They are not included in the current Player native overlay, C# P/Invoke, VM diagnostics producer or original semantic verifier.
+| Canonical GitHub repository | Local exact owned path | Branch | Required pushed SHA |
+| --- | --- | --- | --- |
+| night-outlook/hybridclr_demo | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo | codex/assembly-shadow-r01b-h1 | Final Primary-published branch HEAD, exactly as in handoff prompt |
+| night-outlook/hybridclr | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr | codex/assembly-shadow-r01b-h1 | 4b2774b066cfc6afd77a8c8aded6bda7ea574f55 |
+| night-outlook/hybridclr_unity | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity | codex/assembly-shadow-r01b-h1 | 948c0e3b4f8891481301770115e8ba4945eea6de |
+| night-outlook/il2cpp_plus | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus | codex/assembly-shadow-r01b-h1 | fc0d3565ecc5c9d1a31520a26ff3f9fda25bc98f |
 
-[Active CI38671600319](https://github.com/night-outlook/hybridclr_demo/actions/runs/38671600319) passed **27 tests per strict and ASan/UBSan** on macOS Apple Clang and Ubuntu Clang/GCC. All 3399 original declared artifact file hashes and 516 compiler/process records were authenticated. This demonstrates the selected component on CI filesystem/compilers, not a fresh installed Unity SDK/Local Mac, coherent VM capture or successful Player.
+Source/ABI package: Unity2022.3.62f2 StandaloneOSX arm64 is a future integrated compilation/Player target, NOT exercised by this host batch. Tools/AssemblyShadow/R03/source-pins.json pins the three non-demo SHAs above. Exact README source history is not an execution tuple. Historical SNAP-01 original four-source execution SHAs and real output roots remain immutable. Never use obsolete Player overlays or old build roots as new runtime evidence.
 
-Encoded bounds remain <=65536 bytes/frame, <=3932160 diagnostic artifact, <=262144 envelope, <=4194304 combined encoded output; V1 original individual text-slot <=262144. No truncation, larger budget, hash-only substitute, changed semantic predicate, mutated original evidence, suppressed error or retry is permitted.
+## Work completed by Primary (bounded scope)
 
-The current four **review-only** source pins, all branch `codex/assembly-shadow-r01b-h1`, owned Local paths `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/<repo>`:
+- New native VM-independent typed execution JSON formatter in il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionSerializer.h. The REAL enabled GetExecutionDiagnosticsJson now uses its shared Header/ClassRow/Begin/AppendClass/EndClasses for its existing legacy string output; original VM metadata acquisition remains unchanged/unbounded.
+- Focused strict/sanitized golden-byte, max integer, escape/NUL, exact-capacity and rejected-sink tests in il2cpp_plus/tools/r03/diagnostic_stream/execution_serializer_tests.cpp.
+- Native CI 38675806461 **Passed** across macOS Apple Clang, Linux Clang and Linux GCC after correcting a host include-path-only failure. No official Unity/Player acceptance is claimed.
+- Demo Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py and .github/workflows/r03-primary-host-preflight.yml provide a read-only, branch/remote/clean-worktree-verified multi-suite host batch. It records each command, source-before/after hashes, stdout/stderr SHA-256 and final external artifacts.
 
-| Repository | Source authority |
-| --- | --- |
-| `night-outlook/hybridclr_demo` | Current remote HEAD from final Primary publication; inactive file component source anchor `f039e0df247ccaec162c405be2120691e2d6b47e` |
-| `night-outlook/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
-| `night-outlook/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
-| `night-outlook/il2cpp_plus` | `87aedc1248141d7438d82d53521aadaac22c45ae` |
+The pre-existing general bounded serializer, native V2 codec and POSIX file transaction are unchanged/inactive components and remain host-testable. New source does not connect those components to a Player or repair the original failure.
 
-The demo `Tools/AssemblyShadow/R03/source-pins.json` matches these three non-demo SHAs. Current documents and hashes are **not authorization to compile/build or launch**. Local-owned factual files are unchanged.
+## ONE host-only Local Validation command
 
-## Required Primary completion
+First independently verify clean four-repo worktrees on the exact remote branch/commits above. Confirm the requested output directory does not exist and resides on an external test volume/root separate from all four repositories and protected historical evidence. For example, using an existing writable parent directory /Users/ah/GitHub/hybridclr/r03-local-validation:
 
-1. Produce one shared schema- and byte-preserving *general and execution* VM diagnostic serializer and a coherent, preallocated/frozen bounded native capture with reviewed lock/lifetime and peak memory. Current execution metadata census still allocates.
-2. Wire exact native codec/file transaction to healthy-time independently admitted fixed output root, context and run/PID/request/build/source; integrate actual Player native/C# emitter with complete finalDiagnostics and finalExecutionDiagnostics. Use an explicit V2 semantic dispatch into **every unchanged original** verifier predicate; keep V1 historical verification intact.
-3. Establish source/vendor-backed supported StandaloneOSX native engine owner safe point and lifecycle/maintenance/restart integration; do not guess scheduler pointers or fabricate callback drainage. Preserve complete 500ms observation and **1–64 uncapped reports**. Do not cap/coalesce reports, sleep, disable finalizers, widen business admission or exit early to claim success.
-4. Perform source-bound official Unity2022.3.62f2 C# and 55-native SDK compile of the **integrated** implementation, negative/failure tests and independent review before publishing a new handoff with a fresh 4-SHA tuple and **seven previously unused** candidate roots. No new attempt or roots are designated now; no nontrivial work is delegated to Local.
+    python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py \
+      --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r \
+      --expected-demo [40-character commit from final Primary handoff prompt] \
+      --expected-native fc0d3565ecc5c9d1a31520a26ff3f9fda25bc98f \
+      --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03-PRIMARY-HOST-ONLY-20261015-fc0d3565
 
-## Immutable prior results and acceptance
+The demo SHA shown as square-bracket notation above is an explanatory parameter, NOT an authorized literal shell argument. Replace it only with the exact verified commit in the final handoff message. The output path is a suggested fresh **host-only** location, not one of the seven future runtime candidate roots. The preflight fails closed if the output exists, the parent is absent, paths alias a repository, any repo is dirty, branch/HEAD/remote differs or local commands fail. Do not delete or overwrite any existing path to satisfy it; choose a different unused host-only output name instead.
 
-SNAP-01 `FAIL/ReturnRequired` with diagnostic `EvidenceCollected`: 18 cells **14 Passed / 4 Failed**, three ON zero-byte raw/exit2 with real slot14/limit262144/prefix262145 (complete actual lengths Unavailable), engine **51,213** uncapped reports in500ms/exit71. All earlier N/M/K/I/E failures, F/H/L blocked and G/J limited passes remain unchanged. Original S strict custody `Blocked`: 416844 original,339367 survivors,77477 missing identities and four old installed native roots Missing. Independent R03 full-stage FAIL/re-review NotRun.
+Expected suites, all under the one batch (distinct failures preserved):
+1. il2cpp_plus/tools/r03/diagnostic_stream/run_tests.py: original general stream/legacy byte parity and bounded V2 interop, strict/sanitized.
+2. demo/Tools/AssemblyShadow/R03IR/bounded_v2/run_tests.py: fixed-storage native V2 codec/invalid input/identity and resource limits, strict/sanitized.
+3. demo/Tools/AssemblyShadow/R03IR/bounded_v2/run_transaction_tests.py: descriptor-bound POSIX file transaction, durability requests, faults and strict read-only decoder, strict/sanitized.
+4. demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_native_v2.py: existing native sink/codec contract negatives, strict/sanitized.
+5. New execution_serializer_tests.cpp: strict and sanitized source-bound native host compile/execute using local CXX and quote-only include paths.
 
-`R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `fullLegacyRegressionAcceptance=false`, PureInterpreter expansion disabled. No H2/X02/M08A, no auto Human Review Gate. This pause remains active until a **separate exact-commit Primary handoff** is committed/pushed and verified.
+Required evidence: chosen external root RESULT.json (result PassedHostOnly or FailedOrIncomplete), MANIFEST.json and all files/symlinks inventoried; per-component evidence subdirectories, stdout.bin/stderr.bin SHA-256, command.json, original strict/sanitized logs and compiler receipts. Preserve the actual compiler, runtime OS and inability to execute any component. Verify original-source hashes before/after and record source/runner paths, exact SHAs, any warning, uncovered platform/sanitizer property and full failures. Do not label a host result as integrated SDK compile, Player PASS, SNAP-01 repair, R03 acceptance or a completed Human Review Gate.
+
+## Local ownership, allowed operations and stop
+
+Allowed: read-only repo/source inspection, clean fast-forward to the exact published remote SHAs **only if clean and safe**, running the above host-only command once, collecting receipt/CI/source facts, recording a new factual section in Handoff/LOCAL_VALIDATION.md, recording nontrivial problems in Handoff/RETURN_TO_WEB.md when present, and committing/pushing only the Local-owned factual documentation. Any discovered source mismatch, credential/provenance error, test failure or unavailable compiler stops host promotion; report the failure without retrying consumed Player attempts or mutating tests/source. Compiler tool selection (clang++/g++ and safe ASan/UBSan environment) and fresh output-directory selection are bounded environment actions, **not** architectural fixes.
+
+Forbidden: any modifications to Primary-owned product/VM/native/managed code, serializer/reader/validator, tests or workflow; no unapproved local bug workaround; no changes to original semantic predicates, 1–64 uncapped reports, 500ms window, current V1 per-text262144, V2 frame65536, artifact3932160/envelope262144/combined4194304; no caps/coalescing/no-op dispatch/early exit, finalizer suppression, native scheduler ABI guesses, stage migration, history rewrites or starting H2/M08A/X02. Do not use uncommitted local results as authoritative handoff. A failure of a host test must be returned to Primary before changing substantive code.
+
+## Remaining Primary prerequisites: no runtime assignment
+
+P1 **Not completed**: allocation- and lifetime-reviewed coherent general+execution VM capture, full lossless actual diagnostics, bounded peak memory/freeze and no terminal managed bulk strings.
+P2 **Not completed**: actual native/C# V2 emitter/wire, independently authenticated health-time file identity and transaction, complete readback into **every unchanged original V1 semantic predicate** with tagged V2, full failures.
+E0/E1 **Blocked**: supported Unity2022.3.62f2 StandaloneOSX engine-owner safe point, queued/in-flight callback drain, native GC/finalizer/service maintenance, restart lifecycle. A modeled coordinator and Unity public PlayerLoop/plugin callbacks are not evidence of these capabilities.
+P3 **NotRun**: four-source integrated official Unity managed/55-native compile, independent terminal path review and fresh authorized 3-build/5-Player Local runtime successor.
+
+Immutable outcomes: SNAP-01 18 cells 14Passed/4Failed, 3 ON zero-byte/exit2 with authentic slot14 prefix262145, engine51213 reports/500ms/exit71; N/M/K/I/E FAIL, S custody Blocked (416844 original,339367 survivors,77477 missing, four original native roots Missing), independent full-stage R03 FAIL / re-review NotRun.
+
+R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; fullLegacyRegressionAcceptance=false; PureInterpreter disabled. **A successful host-only batch returns factual host evidence to Primary, not authorization to continue the Player/engine phase.**
