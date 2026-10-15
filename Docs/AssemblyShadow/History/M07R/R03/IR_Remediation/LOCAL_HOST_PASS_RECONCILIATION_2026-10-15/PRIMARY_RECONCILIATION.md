@@ -4,7 +4,7 @@
 
 ## 1. Authority and provenance
 
-The published [Local factual report](../../../../Handoff/LOCAL_VALIDATION.md), [Local return](../../../../Handoff/RETURN_TO_WEB.md), [immutable checkpoint](../../../../History/M07R/R03/local-validation-host-only-20261015-74dbdbea-a1/README.md), [raw result](../../../../History/M07R/R03/local-validation-host-only-20261015-74dbdbea-a1/host/RESULT.json), [independent Local evidence audit](../../../../History/M07R/R03/local-validation-host-only-20261015-74dbdbea-a1/preflight/EVIDENCE_AUDIT.json) and [finding revalidation](../../../../History/M07R/R03/local-validation-host-only-20261015-74dbdbea-a1/PRIOR_FINDING_REVALIDATION.json) are the factual inputs. Local exit was 0, with run interval 2026-10-15T06:18:10.405717Z through 06:19:11.121169Z. No Unity, Player or integrated official SDK compilation occurred.
+The published [Local factual report](../../../../../Handoff/LOCAL_VALIDATION.md), [Local return](../../../../../Handoff/RETURN_TO_WEB.md), [immutable checkpoint](../../local-validation-host-only-20261015-74dbdbea-a1/README.md), [raw result](../../local-validation-host-only-20261015-74dbdbea-a1/host/RESULT.json), [independent Local evidence audit](../../local-validation-host-only-20261015-74dbdbea-a1/preflight/EVIDENCE_AUDIT.json) and [finding revalidation](../../local-validation-host-only-20261015-74dbdbea-a1/PRIOR_FINDING_REVALIDATION.json) are the factual inputs. Local exit was 0, with run interval 2026-10-15T06:18:10.405717Z through 06:19:11.121169Z. No Unity, Player or integrated official SDK compilation occurred.
 
 The **exact tested code tuple** on branch codex/assembly-shadow-r01b-h1:
 
