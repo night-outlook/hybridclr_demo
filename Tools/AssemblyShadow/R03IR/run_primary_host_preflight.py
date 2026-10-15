@@ -155,7 +155,7 @@ def main():
                 name = "execution-serializer-" + profile
                 binary = dest / name / "test"
                 flags = ["-std=c++17", "-Wall", "-Wextra", "-Werror", "-pedantic",
-                         "-I" + str(native / "libil2cpp/vm")]
+                         "-iquote", str(native / "libil2cpp/vm")]
                 flags += ["-O2"] if profile == "strict" else [
                     "-O1", "-g", "-fno-omit-frame-pointer", "-fsanitize=address,undefined"]
                 receipt = run_case(name, [compiler, *flags, str(source), "-o", str(binary)], dest, timeout=120)
