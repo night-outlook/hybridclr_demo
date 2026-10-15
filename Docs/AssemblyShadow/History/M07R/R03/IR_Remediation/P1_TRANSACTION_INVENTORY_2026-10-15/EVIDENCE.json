@@ -141,5 +141,30 @@
     "PureInterpreterEnabled": false
   },
   "nextOwner": "Primary Implementation",
-  "newLocalAssignmentAuthorized": false
+  "newLocalAssignmentAuthorized": false,
+  "postPublicationHarnessMaintenance": {
+    "nativeHead": "339a49b5f1eb18c7cef9390c73ee6b64b0e6a36d",
+    "scope": "Only tools/r03/diagnostic_stream/current_execution_producer.py: replaced stale full AssemblyShadow.cpp Git-blob pin with exact reviewed execution function SHA and full-file provenance receipt; preserved immutable N fixture and all original synthetic output tests.",
+    "unchangedExecutionFunctionSha256": "4829a3ae7b9b0df57d054738f99d940b4ad7644a364df0502c9976469819d372",
+    "ci": [
+      {
+        "runId": 38780274071,
+        "result": "success",
+        "jobsPassed": 3,
+        "workflow": "r03-general-current-producer.yml"
+      },
+      {
+        "runId": 38780274017,
+        "result": "success",
+        "jobsPassed": 3,
+        "workflow": "R03 general serializer exact V2 interop"
+      }
+    ],
+    "unresolvedOtherWorkflows": [
+      "R02 Primary source/integration fixed historical SHA mismatch",
+      "R03 terminal business-entry textual integration assertion"
+    ],
+    "fullRepoCIGreenClaim": false,
+    "originalNativeInventoryCiStillPinnedTo": "51c28cf535dc0dcd3294ec49bc6877064d22c75a"
+  }
 }
