@@ -4,6 +4,12 @@
 
 This supersedes the prior host-only execution instruction published at demo commit **7b9d1d4e37d1731f9f00042eb04892a8afaf7e80**. The earlier instruction is retained in Git history and the Local historical checkpoint for provenance; it is NOT an active command. A subsequent WEB_TO_LOCAL must be independently written, committed, pushed and remote-verified before any new Local assignment. Do not start a next batch merely because its former command appears in chat or old documents.
 
+## New Primary P1 component — no Local action yet
+
+After the consumed Local host PASS, Primary authored **il2cpp_plus@096ad96168e025a43a8581b3f15b704a66731f29**, containing a bounded frozen execution-text ownership component and host-only native V2 composition tests. [CI 38698299448](https://github.com/night-outlook/il2cpp_plus/actions/runs/38698299448) succeeded across Apple Clang/macOS and Clang/GCC/Linux in strict and ASan/UBSan; its exact 1024-class synthetic N JSON and 631720-byte V2 wire matched the historical reference, and malformed/partial/budget negatives failed closed. The [Primary P1 reconciliation](../History/M07R/R03/IR_Remediation/P1_FROZEN_CAPTURE_2026-10-15/PRIMARY_RECONCILIATION.md) and [VM lock/lifetime audit](../History/M07R/R03/IR_Remediation/P1_FROZEN_CAPTURE_2026-10-15/SOURCE_LIFETIME_AUDIT.md) explain the unimplemented live producer obligations.
+
+**No new Local task.** The last executed Local tuple below remains the authority for its factual host PASS. New P1 native branch HEAD does **not** retroactively become that tuple and is not an official Unity/Player validated source. The current branch's candidate source-pins.json still records the last tested native candidate; it must not be treated as a new Local authorization. Source capture, V2 Player integration, engine ownership and official SDK compiler work remain Primary-owned and incomplete.
+
 ## Mandatory read order
 
 1. Docs/AssemblyShadow/README.md and Plan/CURRENT_STATUS.md (current Primary owner/status).
