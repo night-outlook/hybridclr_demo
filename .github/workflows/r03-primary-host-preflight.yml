@@ -29,24 +29,37 @@ jobs:
           path: r03-workspace/hybridclr_demo
           ref: codex/assembly-shadow-r01b-h1
           persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR
+            Tools/AssemblyShadow/R03/source-pins.json
+            Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference
+          sparse-checkout-cone-mode: false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/hybridclr
           path: r03-workspace/hybridclr
           ref: codex/assembly-shadow-r01b-h1
           persist-credentials: false
+          sparse-checkout: README.md
+          sparse-checkout-cone-mode: false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/hybridclr_unity
           path: r03-workspace/hybridclr_unity
           ref: codex/assembly-shadow-r01b-h1
           persist-credentials: false
+          sparse-checkout: README.md
+          sparse-checkout-cone-mode: false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/il2cpp_plus
           path: r03-workspace/il2cpp_plus
           ref: codex/assembly-shadow-r01b-h1
           persist-credentials: false
+          sparse-checkout: |
+            libil2cpp/vm
+            tools/r03/diagnostic_stream
+          sparse-checkout-cone-mode: false
       - name: Pin sources, validate runner Python syntax and execute all host suites
         shell: bash
         env:
