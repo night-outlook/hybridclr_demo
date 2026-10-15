@@ -1,6 +1,6 @@
 # Primary Implementation → Local Validation — PAUSED (host-only PASS consumed)
 
-**No new Local Validation assignment is authorized. Current owner: Primary Implementation.** The single permitted R03 host-only successor finished **PASS / PassedHostOnly** and returned to Primary. Its one-use host output root and prior failed host attempt are consumed and must not be retried, renamed or promoted to runtime acceptance. Unity/Player, official installed SDK compilation, runtime six/case experiments, seven new Player candidate roots and subsequent milestones remain **PAUSED**.
+**No new Local Validation assignment is authorized. Current owner: Primary Implementation.** The single permitted R03 host-only successor finished **PASS / PassedHostOnly** and returned to Primary. Its one-use host output root and prior failed host attempt are consumed and must not be retried, renamed or promoted to runtime acceptance. Unity/Player, official installed SDK compilation, runtime validation experiments, seven new Player candidate roots and subsequent milestones remain **PAUSED**.
 
 This supersedes the prior host-only execution instruction published at demo commit **7b9d1d4e37d1731f9f00042eb04892a8afaf7e80**. The earlier instruction is retained in Git history and the Local historical checkpoint for provenance; it is NOT an active command. A subsequent WEB_TO_LOCAL must be independently written, committed, pushed and remote-verified before any new Local assignment. Do not start a next batch merely because its former command appears in chat or old documents.
 
