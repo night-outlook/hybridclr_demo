@@ -1,6 +1,22 @@
 # Local Validation → Primary Implementation
 
-## Current return — SNAP-01-82bd FAIL / ReturnRequired
+## Current return — R03 host-only 20261015-fc0d3565 FAIL
+
+**Local Validation → Primary Implementation.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-host-only-20261015-fc0d3565/README.md), [machine finding](../History/M07R/R03/local-validation-host-only-20261015-fc0d3565/FINDING.json). One batch, FailedOrIncomplete; no retry/source changes. Known runtime failures remain unchanged.
+
+### IR-LOCAL-HOST-EXECUTION-BINDING-01
+
+**Symptom and exact reproduction:** Use four exact commits/paths and branch in current LOCAL_VALIDATION, then its pinned `run_primary_host_preflight.py` argv once in an unused external host-only root. At actual `/Users/ah/GitHub/hybridclr/r03-local-validation/R03-PRIMARY-HOST-ONLY-20261015-fc0d3565`, native-general-stream exits1 with `RuntimeError: Original execution producer changed; review needed`, before compiler execution. This consumed root must not be retried.
+
+**Evidence:** [command](../History/M07R/R03/local-validation-host-only-20261015-fc0d3565/host/native-general-stream/command.json), [raw traceback](../History/M07R/R03/local-validation-host-only-20261015-fc0d3565/host/native-general-stream/stderr.bin), [function diff](../History/M07R/R03/local-validation-host-only-20261015-fc0d3565/preflight/EXECUTION_FUNCTION.diff), [source hashes](../History/M07R/R03/local-validation-host-only-20261015-fc0d3565/preflight/SOURCE_BINDINGS.json). Stderr SHA256 `76c04706960c309c70b42ad7e55433d97f6776cc48c053cbf78e32a03b3f0634`; outer RESULT SHA256 `5cbc46d691064e45bc897b4d6c80930e8713fb891c0411bbcb42edcda61fc704`. Full raw paths/hashes and current/frozen function hashes in FINDING.json.
+
+**Root cause and affected scope:** `il2cpp_plus/tools/r03/diagnostic_stream/run_tests.py:135` still requires textual equality with the immutable historical `N_SNAPSHOT_PUBLICATION_91b7/checks/source-extracts/GetExecutionDiagnosticsJson.function.cpp`. The current pinned production function intentionally switched to the new typed shared formatter, so the exact-source precondition fails. Both25-method strict/sanitized general-stream profiles are NotRun. Assertion occurs before the suite try/finally; its own RESULT/MANIFEST are Unavailable. The outer batch retains the failure and all partial files. The other independent host components Passed; these do not supply the missing general/producer integration coverage.
+
+**Concrete Primary direction:** Add an explicitly pinned current-producer harness and verify complete legacy byte parity against the immutable historical implementation under identical VM mocks; retain historical extracts, negative guards and all25 general cases/profile. Ensure early source-gate failure produces a factual component receipt. Do not just delete the exact-source check, overwrite a golden extract or reclassify this run.
+
+**Uncertainty and required validation:** This source-precondition failure does not demonstrate a runtime defect or a byte-parity regression; the producer's complete integration did not execute. After Primary correction, separately authorize one fresh source-bound host batch with every retained suite. Unity/runtime/SDK authorization remains separate. Bounded VM capture, V2 Player integration and engine lifecycle remain open; historical SNAP-01 semantic FAIL and strict custody Blocked remain unchanged.
+
+## Historical return — SNAP-01-82bd FAIL / ReturnRequired
 
 **Local Validation → Primary Implementation.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-snap01-82bd/README.md), [factual result](../History/M07R/R03/local-validation-snap01-82bd/preflight/LOCAL_SNAP01_RESULT.json), [raw diagnosis](../History/M07R/R03/local-validation-snap01-82bd/preflight/FAILURE_DIAGNOSIS.json), [diagnostic collection](../History/M07R/R03/local-validation-snap01-82bd/preflight/DIAGNOSTIC_COLLECTION.json). Diagnostic collection=EvidenceCollected, original semanticBatchResult=ReturnRequired; neither overrides any Failed/Unavailable result. Fresh host/custody/SDK/compiler/storage prerequisites Passed. One 18-cell/three-build/five-Player execution: {'Passed': 14, 'Failed': 4}. Independent after-audits and bounded seal Passed. No Local source changes, retries, guard relaxation, counter cap or extra stimulus.
 

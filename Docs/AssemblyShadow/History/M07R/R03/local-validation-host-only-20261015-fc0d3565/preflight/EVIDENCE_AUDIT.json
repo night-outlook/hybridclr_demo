@@ -1,0 +1,37 @@
+{
+  "time": "2026-10-15T03:41:23.157465+00:00",
+  "result": "FailedOrIncomplete",
+  "topCommands": {
+    "Passed": 7,
+    "Failed": 1
+  },
+  "verifiedInventoryEntries": 2549,
+  "symlinks": 4,
+  "manifestSha256": "294bba26b5f05521496a85d26030ef07b96a46be80a8f41a50da4fba9b1f574e",
+  "resultSha256": "5cbc46d691064e45bc897b4d6c80930e8713fb891c0411bbcb42edcda61fc704",
+  "nestedCommandStreamReceipts": {
+    "native-v2-codec": 164,
+    "native-v2-file-transaction": 184,
+    "native-v2-legacy-sink": 122
+  },
+  "warningStreams": [],
+  "sourcePreserved": true,
+  "allFourPostSourceRemoteIdentitiesVerified": true,
+  "generalStream": {
+    "state": "Failed",
+    "exit": 1,
+    "cause": "Frozen execution producer mismatch at run_tests.py:135",
+    "strictAndSanitized25MethodProfiles": "NotRun",
+    "componentResultAndManifest": "Unavailable: assertion before component try/finally",
+    "stderrSha256": "76c04706960c309c70b42ad7e55433d97f6776cc48c053cbf78e32a03b3f0634"
+  },
+  "platformLimits": {
+    "AppleLeakSanitizer": "Unavailable; detect_leaks=0 in component runners",
+    "OtherOSCompilers": "NotRun",
+    "UnityAndPlayer": "NotRun",
+    "OfficialIntegratedSdkCompile": "NotRun",
+    "PowerLossDurability": "NoCoverage",
+    "LiveVMCaptureAndEngineLifecycle": "NoCoverage"
+  },
+  "unchangedRuntimeAcceptance": false
+}

@@ -1,0 +1,44 @@
+{
+  "id": "IR-LOCAL-HOST-EXECUTION-BINDING-01",
+  "status": "ReturnRequired",
+  "symptom": "native-general-stream exits 1 before compiler/test execution with Original execution producer changed; review needed",
+  "reproduction": {
+    "sources": {
+      "hybridclr_demo": "19f7c8768c2596c876609da30d673afe7e30f3f3",
+      "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "il2cpp_plus": "fc0d3565ecc5c9d1a31520a26ff3f9fda25bc98f"
+    },
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "workspace": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+    "argv": [
+      "python3",
+      "-B",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py",
+      "--workspace",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+      "--expected-demo",
+      "19f7c8768c2596c876609da30d673afe7e30f3f3",
+      "--expected-native",
+      "fc0d3565ecc5c9d1a31520a26ff3f9fda25bc98f",
+      "--output",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-PRIMARY-HOST-ONLY-20261015-fc0d3565"
+    ],
+    "oneBatchConsumed": true
+  },
+  "evidence": {
+    "stderr": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-PRIMARY-HOST-ONLY-20261015-fc0d3565/native-general-stream/stderr.bin",
+    "stderrSha256": "76c04706960c309c70b42ad7e55433d97f6776cc48c053cbf78e32a03b3f0634",
+    "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-PRIMARY-HOST-ONLY-20261015-fc0d3565/native-general-stream/command.json",
+    "currentFunction": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-PRIMARY-HOST-ONLY-20261015-fc0d3565/CURRENT_EXECUTION_FUNCTION.txt",
+    "currentFunctionSha256": "4829a3ae7b9b0df57d054738f99d940b4ad7644a364df0502c9976469819d372",
+    "frozenFunction": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-PRIMARY-HOST-ONLY-20261015-fc0d3565/FROZEN_EXECUTION_FUNCTION.txt",
+    "frozenFunctionSha256": "051497faf816e4094b8f4e8f194c5b877812cee034c6901c755e8b6efdff9c40",
+    "diff": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-PRIMARY-HOST-ONLY-20261015-fc0d3565/EXECUTION_FUNCTION.diff"
+  },
+  "rootCause": "Native diagnostic_stream/run_tests.py:135 still demands textual equality to the immutable historical GetExecutionDiagnosticsJson extract; the pinned current production function now invokes the new shared typed formatter. This intended source change invalidates the old exact-source precondition.",
+  "impact": "General legacy/stream/V2 interop profiles of 25 methods each are NotRun. The suite raises before its try/finally, so component RESULT.json/MANIFEST.json are unavailable; the outer batch retains the exception and manifests the partial evidence. Other independent component results do not close this coverage.",
+  "direction": "Primary should add an explicitly source-bound current-producer host harness and compare its complete legacy output to the immutable historical golden implementation under identical synthetic VM inputs. Retain historical extract and fail-closed guards. Preserve all 25 general cases, strict/sanitized coverage and full command/result receipts on early preflight failure; do not simply remove the equality gate or rebind old evidence.",
+  "uncertainty": "Host failure does not establish a product runtime defect or byte-parity regression; current full producer integration was not reached.",
+  "requiredAfterFix": "One separately authorized fresh host batch at new exact four-source pins; verify complete general suite and immutable legacy parity plus every retained component, without retrying this root. Unity/runtime authorization remains separate."
+}

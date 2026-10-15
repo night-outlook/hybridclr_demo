@@ -1,0 +1,174 @@
+[
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_demo\n * branch              codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n",
+    "time": "2026-10-15T03:38:47.783827+00:00"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "19f7c8768c2596c876609da30d673afe7e30f3f3"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "time": "2026-10-15T03:38:47.804038+00:00"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge",
+      "--ff-only",
+      "19f7c8768c2596c876609da30d673afe7e30f3f3"
+    ],
+    "exit": 0,
+    "stdout": "Updating 64da7e51..19f7c876\nFast-forward\n .github/workflows/r03-bounded-native-v2.yml        |  65 ++++\n .github/workflows/r03-bounded-v2-files.yml         |  64 ++++\n .github/workflows/r03-bounded-v2-native.yml        |  63 ++++\n .github/workflows/r03-native-bounded-v2.yml        |  65 ++++\n .github/workflows/r03-primary-host-preflight.yml   |  97 ++++++\n .github/workflows/r03-snap01-bounded-design.yml    |  50 +++\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        |  96 +++---\n .../IMPLEMENTATION_REVIEW.md                       |  58 ++++\n .../ENGINE_TERMINAL_DESIGN.md                      |  99 ++++++\n .../SNAP01_BOUNDED_DESIGN_f8a2/EVIDENCE.json       |  64 ++++\n .../IMPLEMENTATION_PLAN.md                         |  51 +++\n .../LOSSLESS_DIAGNOSTICS_DESIGN.md                 |  84 +++++\n .../SNAP01_BOUNDED_DESIGN_f8a2/README.md           |  35 ++\n .../reference/diagnostic_stream.py                 | 190 ++++++++++\n .../reference/run_checks.py                        |  67 ++++\n .../reference/terminal_boundary.h                  | 116 +++++++\n .../reference/test_diagnostic_stream.py            | 135 ++++++++\n .../reference/test_terminal_boundary.cpp           |  64 ++++\n .../ENGINE_OWNER_CAPABILITY_ASSESSMENT.md          |  39 +++\n .../PRIMARY_RECONCILIATION.md                      |  42 +++\n .../EVIDENCE.json                                  | 130 +++++++\n .../PRIMARY_RECONCILIATION.md                      |  44 +++\n .../SNAP01_NATIVE_CODEC_c2e8/EVIDENCE.json         |  29 ++\n .../PRIMARY_RECONCILIATION.md                      |  67 ++++\n .../SNAP01_NATIVE_CODEC_c2e8/RETAINED_LOGS.json    |  46 +++\n .../SNAP01_NATIVE_CODEC_c2e8/restore_logs.py       |  54 +++\n Docs/AssemblyShadow/Plan/CURRENT_STATUS.md         |  61 ++--\n Docs/AssemblyShadow/README.md                      |  38 +-\n Tools/AssemblyShadow/R03/native_validation.py      |   6 +\n Tools/AssemblyShadow/R03/source-pins.json          |   2 +-\n .../source/BoundedDiagnosticsV2.h                  | 202 +++++++++++\n .../source/NativeArtifactTransaction.h             | 162 +++++++++\n .../source/read_transaction.py                     | 185 ++++++++++\n .../tests/native_transport_harness.cpp             | 119 +++++++\n .../tests/test_native_transport.py                 | 381 +++++++++++++++++++++\n .../R03IR/NativeDiagnostics/BoundedDiagnosticsV2.h | 238 +++++++++++++\n .../R03IR/NativeDiagnostics/PosixDiagnosticFile.h  | 100 ++++++\n .../NativeDiagnostics/native_codec_driver.cpp      | 106 ++++++\n .../R03IR/NativeDiagnostics/posix_sink_driver.cpp  |  32 ++\n .../R03IR/NativeDiagnostics/test_native_v2.py      | 228 ++++++++++++\n .../R03IR/bounded_v2/BoundedDiagnosticsV2.h        | 240 +++++++++++++\n .../R03IR/bounded_v2/PosixDiagnosticTransaction.h  | 262 ++++++++++++++\n Tools/AssemblyShadow/R03IR/bounded_v2/README.md    |  18 +\n .../R03IR/bounded_v2/native_driver.cpp             | 107 ++++++\n Tools/AssemblyShadow/R03IR/bounded_v2/run_tests.py | 273 +++++++++++++++\n .../R03IR/bounded_v2/run_transaction_tests.py      | 369 ++++++++++++++++++++\n .../R03IR/bounded_v2/transaction_driver.cpp        | 142 ++++++++\n .../R03IR/bounded_v2/transaction_reader.py         | 179 ++++++++++\n .../R03IR/run_primary_host_preflight.py            | 187 ++++++++++\n 49 files changed, 5448 insertions(+), 103 deletions(-)\n create mode 100644 .github/workflows/r03-bounded-native-v2.yml\n create mode 100644 .github/workflows/r03-bounded-v2-files.yml\n create mode 100644 .github/workflows/r03-bounded-v2-native.yml\n create mode 100644 .github/workflows/r03-native-bounded-v2.yml\n create mode 100644 .github/workflows/r03-primary-host-preflight.yml\n create mode 100644 .github/workflows/r03-snap01-bounded-design.yml\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/NATIVE_V2_COMPONENT_c271/IMPLEMENTATION_REVIEW.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/ENGINE_TERMINAL_DESIGN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/IMPLEMENTATION_PLAN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/LOSSLESS_DIAGNOSTICS_DESIGN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/README.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/diagnostic_stream.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/run_checks.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/terminal_boundary.h\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/test_diagnostic_stream.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/test_terminal_boundary.cpp\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_EXECUTION_FORMATTER_2026-10-15/ENGINE_OWNER_CAPABILITY_ASSESSMENT.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_EXECUTION_FORMATTER_2026-10-15/PRIMARY_RECONCILIATION.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_FILE_TRANSACTION_PROMOTION_2026-10-14/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_FILE_TRANSACTION_PROMOTION_2026-10-14/PRIMARY_RECONCILIATION.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_NATIVE_CODEC_c2e8/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_NATIVE_CODEC_c2e8/PRIMARY_RECONCILIATION.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_NATIVE_CODEC_c2e8/RETAINED_LOGS.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_NATIVE_CODEC_c2e8/restore_logs.py\n create mode 100644 Tools/AssemblyShadow/R03IR/BoundedDiagnosticsV2/source/BoundedDiagnosticsV2.h\n create mode 100644 Tools/AssemblyShadow/R03IR/BoundedDiagnosticsV2/source/NativeArtifactTransaction.h\n create mode 100644 Tools/AssemblyShadow/R03IR/BoundedDiagnosticsV2/source/read_transaction.py\n create mode 100644 Tools/AssemblyShadow/R03IR/BoundedDiagnosticsV2/tests/native_transport_harness.cpp\n create mode 100644 Tools/AssemblyShadow/R03IR/BoundedDiagnosticsV2/tests/test_native_transport.py\n create mode 100644 Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedDiagnosticsV2.h\n create mode 100644 Tools/AssemblyShadow/R03IR/NativeDiagnostics/PosixDiagnosticFile.h\n create mode 100644 Tools/AssemblyShadow/R03IR/NativeDiagnostics/native_codec_driver.cpp\n create mode 100644 Tools/AssemblyShadow/R03IR/NativeDiagnostics/posix_sink_driver.cpp\n create mode 100644 Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_native_v2.py\n create mode 100644 Tools/AssemblyShadow/R03IR/bounded_v2/BoundedDiagnosticsV2.h\n create mode 100644 Tools/AssemblyShadow/R03IR/bounded_v2/PosixDiagnosticTransaction.h\n create mode 100644 Tools/AssemblyShadow/R03IR/bounded_v2/README.md\n create mode 100644 Tools/AssemblyShadow/R03IR/bounded_v2/native_driver.cpp\n create mode 100644 Tools/AssemblyShadow/R03IR/bounded_v2/run_tests.py\n create mode 100644 Tools/AssemblyShadow/R03IR/bounded_v2/run_transaction_tests.py\n create mode 100644 Tools/AssemblyShadow/R03IR/bounded_v2/transaction_driver.cpp\n create mode 100644 Tools/AssemblyShadow/R03IR/bounded_v2/transaction_reader.py\n create mode 100644 Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py\n",
+    "stderr": "",
+    "time": "2026-10-15T03:38:48.047579+00:00"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n",
+    "time": "2026-10-15T03:38:52.968128+00:00"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "time": "2026-10-15T03:38:52.988313+00:00"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "merge",
+      "--ff-only",
+      "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+    ],
+    "exit": 0,
+    "stdout": "Already up to date.\n",
+    "stderr": "",
+    "time": "2026-10-15T03:38:53.005215+00:00"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_unity\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n",
+    "time": "2026-10-15T03:38:56.777562+00:00"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "948c0e3b4f8891481301770115e8ba4945eea6de"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "time": "2026-10-15T03:38:56.798133+00:00"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "merge",
+      "--ff-only",
+      "948c0e3b4f8891481301770115e8ba4945eea6de"
+    ],
+    "exit": 0,
+    "stdout": "Already up to date.\n",
+    "stderr": "",
+    "time": "2026-10-15T03:38:56.816154+00:00"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/il2cpp_plus\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   0f72078..fc0d356  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n",
+    "time": "2026-10-15T03:39:01.023263+00:00"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "fc0d3565ecc5c9d1a31520a26ff3f9fda25bc98f"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "time": "2026-10-15T03:39:01.038413+00:00"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "merge",
+      "--ff-only",
+      "fc0d3565ecc5c9d1a31520a26ff3f9fda25bc98f"
+    ],
+    "exit": 0,
+    "stdout": "Updating 0f72078..fc0d356\nFast-forward\n .github/workflows/r03-execution-serializer.yml     |  71 +++++++++\n .github/workflows/r03-general-serializer.yml       |  68 +++++++++\n libil2cpp/vm/AssemblyShadow.cpp                    |  56 ++++---\n libil2cpp/vm/AssemblyShadowDiagnosticWriter.h      | 138 ++++++++++++++++++\n libil2cpp/vm/AssemblyShadowDiagnostics.cpp         |  57 ++++++--\n libil2cpp/vm/AssemblyShadowDiagnostics.h           |   8 +\n libil2cpp/vm/AssemblyShadowExecutionSerializer.h   |  81 +++++++++++\n tools/r03/diagnostic_stream/README.md              |  15 ++\n tools/r03/diagnostic_stream/allocation_probe.cpp   |  31 ++++\n .../execution_serializer_tests.cpp                 |  57 ++++++++\n .../fixtures/AssemblyShadowDiagnostics.h           |  85 +++++++++++\n .../fixtures/LegacyAssemblyShadowDiagnostics.cpp   | 146 +++++++++++++++++++\n tools/r03/diagnostic_stream/run_tests.py           | 162 +++++++++++++++++++++\n tools/r03/diagnostic_stream/serializer_driver.cpp  | 142 ++++++++++++++++++\n 14 files changed, 1077 insertions(+), 40 deletions(-)\n create mode 100644 .github/workflows/r03-execution-serializer.yml\n create mode 100644 .github/workflows/r03-general-serializer.yml\n create mode 100644 libil2cpp/vm/AssemblyShadowDiagnosticWriter.h\n create mode 100644 libil2cpp/vm/AssemblyShadowExecutionSerializer.h\n create mode 100644 tools/r03/diagnostic_stream/README.md\n create mode 100644 tools/r03/diagnostic_stream/allocation_probe.cpp\n create mode 100644 tools/r03/diagnostic_stream/execution_serializer_tests.cpp\n create mode 100644 tools/r03/diagnostic_stream/fixtures/AssemblyShadowDiagnostics.h\n create mode 100644 tools/r03/diagnostic_stream/fixtures/LegacyAssemblyShadowDiagnostics.cpp\n create mode 100644 tools/r03/diagnostic_stream/run_tests.py\n create mode 100644 tools/r03/diagnostic_stream/serializer_driver.cpp\n",
+    "stderr": "",
+    "time": "2026-10-15T03:39:01.062860+00:00"
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "kind": "InactiveNativeFileTransactionTests",
+  "profiles": [
+    {
+      "profile": "strict",
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "profile": "sanitized",
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "sources": [
+    {
+      "path": "Tools/AssemblyShadow/R03IR/bounded_v2/BoundedDiagnosticsV2.h",
+      "bytes": 12252,
+      "sha256": "734e03a470e4562cd18551a84194eb82b391c8da8f4ef7f2c46abcef7fcc034d",
+      "gitBlob": "174766c40235216d8c954107dd5e026116a510fa"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/bounded_v2/PosixDiagnosticTransaction.h",
+      "bytes": 15171,
+      "sha256": "ea6ad39e3572eeb456813e72faf10c984bec35bb517dd55b74df490d36e0a046",
+      "gitBlob": "4352a9c0282984898f13b36a3a8eed679e3911e0"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/bounded_v2/transaction_driver.cpp",
+      "bytes": 8554,
+      "sha256": "d13b74d35883ba6d111fb3273828d382fd1cd6619f9d46430ed800d4605bc5b5",
+      "gitBlob": "2e6019435c2eaf725eb6fea5526f7a477e23f2c3"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/bounded_v2/transaction_reader.py",
+      "bytes": 8786,
+      "sha256": "c135d966b0821c96cb264987fddaba12b49cbfb8826e88e7b962314923f9ddb3",
+      "gitBlob": "e41a2d657cb94d9ddacf6e77ac830bb18e1a4f6d"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/bounded_v2/run_transaction_tests.py",
+      "bytes": 18346,
+      "sha256": "b827467d335043c0ed166f8843a2d8d9ec3c1c593d56edcc0ef5469d22cd97d3",
+      "gitBlob": "50f5c25e3d8422b079c9e7ac4fd75e0754066c56"
+    },
+    {
+      "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/diagnostic_stream.py",
+      "bytes": 9337,
+      "sha256": "afc9d1f0fa5d9155c8d75faab4ec2c02bcc8ef8a4b3e02612834778bef113a38",
+      "gitBlob": "0866b07f758a20284d2a5d5d933b2be577b20b50"
+    }
+  ],
+  "commands": 184,
+  "actualUnity": false,
+  "productionTransportEnabled": false,
+  "VMProducerOrSemanticAcceptanceProven": false,
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "leakSanitizer": "UnavailableOnApple",
+  "devicePowerLossTested": false
+}
