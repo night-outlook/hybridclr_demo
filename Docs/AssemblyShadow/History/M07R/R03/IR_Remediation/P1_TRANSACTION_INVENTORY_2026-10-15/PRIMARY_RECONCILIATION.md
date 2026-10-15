@@ -43,6 +43,16 @@ The three original GitHub CI ZIPs were retrieved and independently verified: **a
 
 **This was NOT** official Unity2022.3.62f2 StandaloneOSX native/managed SDK compilation, actual VM execution, Player test, memory/GC/RSS qualification, metadata lifecycle inspection or semantic acceptance.
 
+## 3A. Existing serializer source-gate maintenance — independently retested
+
+The new additive native entry points changed the **whole AssemblyShadow.cpp file blob** but left its original GetExecutionDiagnosticsJson C++ function exactly unchanged. Two existing production-aware CI workflows consequently failed their obsolete entire-file source gate inside tools/r03/diagnostic_stream/current_execution_producer.py. The original immutable historical N implementation and the current complete execution function still have their original independently pinned SHA-256 identities, and no output byte mismatch or product regression was demonstrated by those failures.
+
+Primary updated **only the host test harness** at native HEAD **339a49b5f1eb18c7cef9390c73ee6b64b0e6a36d**: pin the exact original historical source/fixture Git blobs, execution serializer and writer headers, and the complete current GetExecutionDiagnosticsJson **function SHA-256 4829a3ae7b9b0df57d054738f99d940b4ad7644a364df0502c9976469819d372**; record the complete new AssemblyShadow.cpp Git blob and SHA-256 in the new result's source receipt, rather than rejecting unrelated additive source. This preserves fail-closed detection of a modified execution function, and all existing old/current complete-byte parity tests. No product methods were changed in the maintenance commit.
+
+**Both re-run source-bound workflows passed all 3 jobs** at 339a49b5f1eb18c7cef9390c73ee6b64b0e6a36d: [current/frozen producer CI 38780274071](https://github.com/night-outlook/il2cpp_plus/actions/runs/38780274071), including six complete fixture parity pairs, unchanged 25 general-stream cases/profile and altered-frozen-source negative refusal; and [general serializer/V2 interop CI 38780274017](https://github.com/night-outlook/il2cpp_plus/actions/runs/38780274017), with strict/sanitized host checks across macOS Clang and Linux Clang/GCC. Their CI PASS is scoped host evidence only. Earlier red CI attempts remain failed records, not retroactively recategorized.
+
+**Do not conflate other historical workflows:** R02 Primary fixed whole-file integration verification and the R03 terminal business-entry textual source assertion also had independently failed checks earlier on this evolving branch. Those are not claimed corrected or Accepted by this P1 inventory/harness increment. No Human Review Gate or entire repository-wide CI PASS is asserted.
+
 ## 4. Source lock/lifetime audit and remaining work
 
 Read [SOURCE_LOCK_LIFETIME_AUDIT.md](SOURCE_LOCK_LIFETIME_AUDIT.md) for the exact source lock scope, STM fields, source cap/error behavior, Current() lazy allocation and proof gaps.
