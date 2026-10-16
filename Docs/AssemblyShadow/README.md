@@ -2,6 +2,16 @@
 
 The [Plan](Plan/CURRENT_STATUS.md) defines current scope and Human Review Gates. `Handoff/` separates Primary-owned `WEB_TO_LOCAL.md` from the factual Local-owned `LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md`. `History/` preserves immutable prior evidence and remediation findings.
 
+## 2026-10-16 P1 source increment — metadata teardown admission; one SDK-only Local preflight
+
+**Native `il2cpp_plus@0a0b70156e75d450d75d0bcfd9132843b8abbbb0`** now contains an initially closed process-global native metadata read gate, opens it at the completed `Runtime::Init` tail, closes/drains it before the final `Runtime::Shutdown` metadata teardown, and requires a read ticket before **the two additive, inactive** bounded ordinary-class/physical-assembly readers enter their source locks. Owner refusal fails closed with `OwnerUnavailable`; the original general/execution getters remain unchanged, unbounded and **not admitted**. The read drain can wait indefinitely, a global VM snapshot epoch/GC/RSS bound is not established, and no Unity SDK/Player result is inferred. [Primary source and risk review](History/M07R/R03/IR_Remediation/P1_METADATA_LIFETIME_2026-10-16/PRIMARY_RECONCILIATION.md).
+
+Source-bound native CI passed **3/3 each** for [metadata gate](https://github.com/night-outlook/il2cpp_plus/actions/runs/38847888461), [bounded classes](https://github.com/night-outlook/il2cpp_plus/actions/runs/38847710731), and [physical assemblies](https://github.com/night-outlook/il2cpp_plus/actions/runs/38847715239) (Mac Clang/Linux Clang+GCC, strict/ASan-UBSan). Tests compile the actual header/reader bodies under mocks; they do **not** compile native Runtime with installed Unity headers. Existing SNAP-01/Local historic verdicts remain unchanged.
+
+**A new, independent, single host/official-SDK source preflight** is now explicitly and narrowly authorized in [`Handoff/WEB_TO_LOCAL.md`](Handoff/WEB_TO_LOCAL.md). Its one-shot wrapper `Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py` checks ten source/host/SDK components, including a new opt-in **70-unit native syntax matrix** through the official installed Unity2022.3.62f2 SDK. No Unity Editor launch, actual Player, runtime seven-root batch, original semantic acceptance, Human Review Gate or next milestone is authorized. On return, Primary owns nontrivial corrections and remaining P1/P2/E0/E1. `ReadyForHumanReviewGate=false`.
+
+
+
 ## Latest P1 increment — owned ordinary class rows, terminal lifetime still blocked
 
 Primary published **il2cpp_plus@2db707eb3021516c2cef962b3d294b4d047e4ef9**: a bounded, **inactive** ordinary-class reader using the same g_MetadataLock and il2cpp_class_for_each traversal as the existing getter, but copying every V1 class field into **8192 owned rows / 2MiB text** within the callback rather than retaining Il2CppClass pointers. It preserves namespace-qualified type names, constructed generic/staged flags and the **legacy interpreter predicate on the physical assembly image**, even if class and assembly images differ. Observed ActiveGeneration/private-image publication changes or complete-source overflow reject the entire record; the original CollectOrdinaryClasses/getters remain unchanged.
