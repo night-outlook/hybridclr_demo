@@ -11,6 +11,7 @@ import json
 import os
 from pathlib import Path
 import re
+import stat
 import subprocess
 import sys
 import time
@@ -53,6 +54,54 @@ def verify_repo(base:Path,name:str,sha:str)->dict:
     return {"repository":canonical,"path":str(path),"branch":BRANCH,
             "head":sha,"remoteHead":parts[0],"origin":remote,"clean":True}
 
+def read_managed_result(output:Path, stdout:bytes)->dict:
+    """Bind the completed managed producer's stdout to its exact nested receipt.
+
+    Read/hash/parse the same bytes. Never search for a Passed file, copy an
+    obsolete root receipt, or accept a child exit code as compilation evidence.
+    This consumer does not replace the producer's compiler/output validations.
+    """
+    def strict_object(raw:bytes)->dict:
+        def pairs(items):
+            result={}
+            for key,value in items:
+                if key in result:raise ValueError("Duplicate managed receipt key: "+key)
+                result[key]=value
+            return result
+        def constant(value):
+            raise ValueError("Non-finite managed receipt value: "+value)
+        result=json.loads(raw.decode("utf-8"),object_pairs_hook=pairs,parse_constant=constant)
+        if not isinstance(result,dict):raise ValueError("Managed receipt must be a JSON object")
+        return result
+
+    binding=strict_object(stdout)
+    expected=output/"build-api/results.json"
+    if set(binding)!={"result","sha256"} or binding.get("result")!=str(expected):
+        raise ValueError("Managed producer returned an unexpected result path/binding")
+    digest=binding["sha256"]
+    if not isinstance(digest,str) or not re.fullmatch(r"[0-9a-f]{64}",digest):
+        raise ValueError("Managed producer returned an invalid SHA-256")
+    # Completed child, private component output: refuse symlink redirection,
+    # noncanonical roots and special files. No fallback to another result path.
+    if (not output.is_absolute() or output!=output.resolve(strict=True)
+        or expected!=expected.resolve(strict=True)
+        or not stat.S_ISREG(expected.lstat().st_mode)):
+        raise ValueError("Managed result must be a canonical regular file in its component")
+    raw=expected.read_bytes()
+    actual=hashlib.sha256(raw).hexdigest()
+    if actual!=digest:raise ValueError("Managed receipt SHA-256 mismatch")
+    record=strict_object(raw)
+    if (record.get("kind")!="R03CompleteBuildHelperCompile"
+        or type(record.get("schemaVersion")) is not int or record["schemaVersion"]!=1
+        or record.get("unityVersion")!="2022.3.62f2"
+        or not isinstance(record.get("result"),str)
+        or record["result"] not in ("Passed","Failed")
+        or any(record.get(flag) is not False for flag in
+               ("unityEditorRun","nativeExecution","runtimeAcceptance"))):
+        raise ValueError("Managed receipt identity/schema/scope mismatch")
+    return {"innerResult":record["result"],"innerResultPath":str(expected),
+            "innerResultSha256":actual,"returnedBindingVerified":True}
+
 def main()->None:
     parser=argparse.ArgumentParser(description=__doc__)
     for flag in ("workspace","unity","output","sdk-scratch"):
@@ -83,7 +132,7 @@ def main()->None:
     demo=ws/"hybridclr_demo"
     native=ws/"il2cpp_plus"
     py=sys.executable
-    # Scripts and gate sources are bound both before and after the batch.
+    # Scripts and gate sources are bound both and after the batch.
     inputs=[
         demo/"Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py",
         demo/"Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py",
@@ -104,15 +153,17 @@ def main()->None:
         began=time.time()
         result={"name":name,"command":list(map(str,argv)),"startedUnix":began,
                 "output":str(output),"expectedInnerResult":expected,"status":"Failed"}
+        logdir=dest/"commands"/name
+        logdir.mkdir(parents=True)
         try:
             proc=run(argv,timeout)
-            logdir=dest/"commands"/name
-            logdir.mkdir(parents=True)
             for filename,data in (("stdout.bin",proc.stdout),("stderr.bin",proc.stderr)):
                 (logdir/filename).write_bytes(data)
                 result[filename+"Sha256"]=hashlib.sha256(data).hexdigest()
             result["exit"]=proc.returncode
-            if (output/file).is_file():
+            if name=="managed-sdk":
+                result.update(read_managed_result(output,proc.stdout))
+            elif (output/file).is_file():
                 record=json.loads((output/file).read_text())
                 result["innerResult"]=record.get("result")
                 result["innerResultSha256"]=hash_file(output/file)
@@ -141,7 +192,7 @@ def main()->None:
             execute(name,cmd,expected)
         execute("managed-sdk",[py,"-B",demo/"Tools/AssemblyShadow/R03/build_api.py",
                 "--workspace",ws,"--unity",a.unity,"--output",dest/"managed-sdk"],
-                "Passed",file="results.json",timeout=3600)
+                "Passed",timeout=3600)
         execute("native-sdk",[py,"-B",demo/"Tools/AssemblyShadow/R03/native_validation.py",
                 "--workspace",ws,"--unity",a.unity,"--output",dest/"native-sdk",
                 "--sdk-scratch",scratch,"--candidate-native-sha",a.expected_native],
