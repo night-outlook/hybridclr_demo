@@ -34,6 +34,7 @@ class PreflightContracts(unittest.TestCase):
             "run_bounded_ordinary_classes.py",
             "run_bounded_physical_assemblies.py",
             "run_bounded_first_use.py",
+            "run_bounded_general_composer.py",
             "run_bounded_transaction_status.py",
             "run_bounded_transaction_inventory.py",
             "run_frozen_v2.py",
@@ -43,16 +44,16 @@ class PreflightContracts(unittest.TestCase):
         for name in required:
             with self.subTest(name=name):
                 self.assertIn(name,self.pre)
-        self.assertIn('len(cases)==10',self.pre)
+        self.assertIn('len(cases)==11',self.pre)
         self.assertIn('sourcePreserved',self.pre)
-        self.assertIn('expectedNativeSyntaxUnits":70',self.pre)
+        self.assertIn('expectedNativeSyntaxUnits":75',self.pre)
         self.assertIn('historicalEvidenceReclassified":False',self.pre)
         self.assertIn('"UnityPlayerExecuted":False',self.pre)
 
     def test_candidate_sdk_is_opt_in_and_histories_unchanged(self):
         self.assertIn("--candidate-native-sha",self.pre)
         self.assertIn("--candidate-native-sha",self.sdk)
-        self.assertIn("expected_units=14 if candidate else 12",self.sdk)
+        self.assertIn("expected_units=15 if candidate else 12",self.sdk)
         self.assertIn("candidateNativeSha",self.sdk)
         self.assertIn("historicalPinsOverriddenOnDisk",self.sdk)
         self.assertIn("source-pins.json",self.pre)
