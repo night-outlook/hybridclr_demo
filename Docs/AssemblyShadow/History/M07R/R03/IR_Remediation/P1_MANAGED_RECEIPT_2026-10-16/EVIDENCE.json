@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "kind": "P1ManagedReceiptCorrectionEvidence",
+  "finding": "IR-LOCAL-P1-MANAGED-RECEIPT-01",
+  "returnedCommit": "1abf5df96c61e8f5bd870d6b03a93e33f44182f5",
+  "sourceCommit": "06209426b765a805da2cc2f810ba5da390787099",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "nativeCommitUnchanged": "0a0b70156e75d450d75d0bcfd9132843b8abbbb0",
+  "primaryHost": {
+    "kind": "P1ManagedReceiptPrimaryHostRegression",
+    "result": "PassedWithinHostScope",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "sources": {
+      "/mnt/data/p1_receipt_work/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py": {
+        "sha256": "e85a48a3f841c36fa69cbbb4e23ad5b65016dc86f94becf2d3ac49791cd65446",
+        "gitBlob": "730ff608fee0d41a84db3d6c8dc3dc020ba49aa0"
+      },
+      "/mnt/data/p1_receipt_work/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py": {
+        "sha256": "77acc28516884335d025587f41c250801bbc443744dc663b8d9a9354e548a568",
+        "gitBlob": "c6cd87c986b2b966bc2ae2d078d4093b581259d0"
+      },
+      "/mnt/data/p1_receipt_work/hybridclr_demo/Tools/AssemblyShadow/R03/build_api.py": {
+        "sha256": "c700bf3eff66ad4a249af9e59a6e3cbd0a4bcd6130787442335453acbda87c6d",
+        "gitBlob": "bdbf4c78e0bd1993a0a03c56ee8332a2cb22aa86"
+      },
+      "/mnt/data/p1_receipt_work/baseline/run_p1_metadata_local_preflight.py": {
+        "sha256": "4339eecada2f6176e79e966d6ae2f766a53b606d850edf71cd1731f07d832a5e",
+        "gitBlob": "67447d2476f247e9912eeb6a7f4c090fabb83273"
+      }
+    },
+    "sourcePreserved": true,
+    "commands": [
+      {
+        "name": "baseline-reproduction",
+        "argv": ["/opt/pyvenv/bin/python", "-B", "-m", "unittest", "test_p1_managed_receipt.AggregateReceiptIntegration.test_ten_components_pass_with_actual_producer_response"],
+        "cwd": "/mnt/data/p1_receipt_work/hybridclr_demo/Tools/AssemblyShadow/R03IR",
+        "environmentOverrides": {"P1_RECEIPT_TEST_RUNNER": "/mnt/data/p1_receipt_work/baseline/run_p1_metadata_local_preflight.py"},
+        "startedUtc": "2026-10-16T06:09:10.230673+00:00",
+        "finishedUtc": "2026-10-16T06:09:12.131192+00:00",
+        "exit": 1,
+        "expectedExit": 1,
+        "expectationMatched": true,
+        "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSha256": "1a2d6bfc855f1d05c646f2eee609708ab31a6a08533e0679e7f65b6ec8b8f3be"
+      },
+      {
+        "name": "fixed-regressions",
+        "argv": ["/opt/pyvenv/bin/python", "-B", "test_p1_managed_receipt.py"],
+        "cwd": "/mnt/data/p1_receipt_work/hybridclr_demo/Tools/AssemblyShadow/R03IR",
+        "environmentOverrides": {},
+        "startedUtc": "2026-10-16T06:09:12.131305+00:00",
+        "finishedUtc": "2026-10-16T06:09:13.970460+00:00",
+        "exit": 0,
+        "expectedExit": 0,
+        "expectationMatched": true,
+        "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSha256": "88f212b89c0e039c4f270c172d05959579ed6b8dd2e067e4bcf890cec368f011"
+      }
+    ],
+    "baselineRegressionTests": 1,
+    "baselineExpectedFailures": 1,
+    "fixedTestMethods": 13,
+    "gitAndSDKChildrenMocked": true,
+    "producerReceiptExpressionsFromActualSource": true,
+    "fullProducerCompilerFunctionExecuted": false,
+    "officialSDKRun": false,
+    "UnityPlayerRun": false,
+    "historicalOutcomeReclassified": false
+  },
+  "ci": {
+    "runId": 38859685370,
+    "jobsPassed": 2,
+    "jobsTotal": 2,
+    "artifactHashesAndAll10DeclaredFilesVerified": true,
+    "artifacts": [
+      {"platform": "linux", "artifactId": 12029110630, "archiveSha256": "a67b9ae8a2441165ebb2c3a760ee12b0159f48c24001ceab5fd3df88513edf36", "manifestFilesVerified": 5, "tests": [5, 13], "sourcePreserved": true, "runtimeAcceptance": false},
+      {"platform": "macos", "artifactId": 12029105646, "archiveSha256": "0019898dc2bf1434604770a3388640d6551a10ecfd90e89b4c05cf93ebf7dde6", "manifestFilesVerified": 5, "tests": [5, 13], "sourcePreserved": true, "runtimeAcceptance": false}
+    ]
+  },
+  "consumedLocal": {
+    "aggregate": "FailedOrIncomplete",
+    "outerPassed": 9,
+    "outerFailed": 1,
+    "managedChildExit": 0,
+    "managedActualResult": "Passed",
+    "managedActualResultSha256": "43f38be35063559bcb156c31968f6b80d8707982692aef55fd6ab05285ea916e",
+    "rawAggregateSha256": "13e256649c9c6355b4ed7eb4c5190a0f62acacaf42ad0195a27a21718d3ba565",
+    "actualManagedProducts": 5,
+    "expectedNegativeControls": 1,
+    "nativeSyntaxConfigurationsPassed": 70,
+    "source": "Local-owned report, returned stdout/command, managed receipt excerpt and EVIDENCE_AUDIT read through Connector; external full SDK/raw inventory not re-executed by Primary",
+    "reclassified": false
+  },
+  "successor": "NotRun; separate one-shot authorization in WEB_TO_LOCAL.md",
+  "R03Accepted": false,
+  "ReadyForHumanReviewGate": false,
+  "transportSmoke": {
+    "repository": "night-outlook/hybridclr_demo",
+    "branch": "codex/pio-receipt-smoke-20261016-1abf-7c92",
+    "base": "1abf5df96c61e8f5bd870d6b03a93e33f44182f5",
+    "createdAndReadBackCommit": "b1123b29950a39dc43fbcee6658e4b7faf713bcf",
+    "result": "Passed",
+    "cleanup": "Branch remains; Connector does not expose branch deletion"
+  }
+}
