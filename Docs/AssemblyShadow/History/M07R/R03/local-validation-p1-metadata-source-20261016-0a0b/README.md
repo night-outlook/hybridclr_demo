@@ -1,0 +1,25 @@
+# P1 metadata source/official SDK preflight — 20261016-0a0b
+
+**FAIL / FailedOrIncomplete. Return to Primary Implementation.** One authorized invocation, exit1, 2026-10-16T05:20:29.588309+00:00 → 2026-10-16T05:22:59.059534+00:00 UTC. Ten outer cells:9 Passed/1 Failed. Actual five managed products/expected-negative and all70 native syntax configurations Passed; the managed result path is joined incorrectly by the aggregate. This aggregate verdict and original officialUnitySdkCompilePassed=false remain unchanged. No retry, source fix, Unity Editor/Player or linked runtime build.
+
+Read [Local report](../../../../Handoff/LOCAL_VALIDATION.md), [return](../../../../Handoff/RETURN_TO_WEB.md), [finding](FINDING.json), [raw aggregate](batch/RESULT.json), [independent audit](preflight/EVIDENCE_AUDIT.json), [managed result](batch/managed-sdk/build-api/results.json), [native result](batch/native-sdk/results.json) and [compiler warnings/errors](preflight/COMPILER_DIAGNOSTICS.json).
+
+| Component | Raw/factual result |
+| --- | --- |
+| Retained legacy host batch | PassedHostOnly, all8 records Passed; original25-case general profiles, six current/frozen pairs and retained codec/transaction/sink/formatter tests Passed |
+| Metadata admission gate | PassedWithinHostScope, strict/sanitized; actual header, source-order audit and concurrency/restart mocks |
+| Owned ordinary class reader | PassedWithinHostScope, strict/sanitized; actual callback/method and original/current/frozen mock JSON parity |
+| Bounded physical assembly reader | PassedWithinHostScope, strict/sanitized; actual method and owned-name/legacy parity mocks |
+| Bounded first-use/status/inventory | All3 PassedWithinHostScope, strict/sanitized, actual extracted source under mocks |
+| Frozen execution/V2 | PassedWithinInactiveHostScope, strict/sanitized; synthetic631720-byte wire/reference parity, no real Player |
+| Managed SDK wrapper cell | **Failed**: child exit0 but expected receipt path absent; aggregate innerResult Unavailable |
+| Actual official managed compilation | **Passed** at build-api/results.json:5 products,428 inputs verified; exact negative exit1/two CS0266/no DLL |
+| Official native SDK syntax | **Passed**,14 distinct units ×5 profiles =70;0 Failed/0 NotRun;1900 scratch inputs SHA-verified |
+
+The source tuple and exact commands/times/PIDs are in preflight/EXPECTED.json, SOURCE_BINDINGS.json and RECEIPT.json. Full live batch `/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-METADATA-SOURCE-20261016-0a0b`; SDK scratch `/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-METADATA-20261016-0a0b`; external authority/publication receipts `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-METADATA-SOURCE-20261016-0a0b`. The copied factual text is bound by COPY_BINDINGS; complete original external data, binaries and symlinks remain retained. Top manifest authenticates3658 regular entries; it omits symlinks by construction, so the four deliberate controls were independently joined to the nested legacy manifest/actual link targets. No SDK/vendor bytes or compiled binaries are uploaded.
+
+RESULT SHA256 `13e256649c9c6355b4ed7eb4c5190a0f62acacaf42ad0195a27a21718d3ba565`; raw MANIFEST SHA256 `b0f6c0597a7311ce2ec8647d807da8dcfbef34ee41140a104ef79dc84a10a13f`. All regular output hashes and382 directly localized command-stream receipts verify. Source trees remain clean/exact/remote-matched; installed SDK2405 files/316062203 bytes unchanged. Native copied SDK/overlay1900 inputs and all70 source/command joins verify. Managed428 inputs, five output hashes, six response/command receipts and exact negative control verify. All68 managed and742 native warning occurrences remain unsuppressed; only compiler errors are the two expected old-source CS0266 errors.
+
+Actual host macOS26.5.2 arm64/Python3.14.6/Apple clang21; official SDK2022.3.62f2. Inherited global TMPDIR unchanged; existing owned SDK commands use child TMPDIR=/private/tmp as their recorded policy. SDK was anchored through the Unity executable path without launching it. Five native profiles: candidate/debug/probe-off/diagnostics-off/feature-off. Syntax is not linking or teardown execution. Apple LeakSanitizer unavailable; ASan/UBSan host mocks do not qualify live VM memory/GC/RSS, deadlock freedom/global epoch, engine maintenance or power-loss durability. CI links/source pins in Primary reconciliation are supplemental; no new CI audit/result is claimed here.
+
+The historical source-pins.json retains native74dbdbea80d83923863303bd2b2c0a87f36541b1 exactly as authorized; candidate-native-sha explicitly selected0a0b70156e75d450d75d0bcfd9132843b8abbbb0 without rewriting it. Prior host PASS/FAIL manifest identities unchanged; no historical runtime/full C/S custody scan was rerun. Historical SNAP-01/N/M/K/I/E FAIL and original strict S custody Blocked remain unchanged. P1 complete live capture, P2 V2 Player integration and E0/E1 remain unresolved. All acceptance flags false; no Human Review Gate or next milestone.

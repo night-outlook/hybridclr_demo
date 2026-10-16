@@ -1,0 +1,46 @@
+{
+  "id": "IR-LOCAL-P1-MANAGED-RECEIPT-01",
+  "status": "ReturnRequired",
+  "symptom": "Aggregate managed-sdk Failed with exit0 and no innerResult despite complete official compilation Passed",
+  "sourceTuple": {
+    "hybridclr_demo": "496e92079fdc73af687a47fe4d3c02a462457ff3",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "0a0b70156e75d450d75d0bcfd9132843b8abbbb0"
+  },
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "workspace": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+  "reproduce": [
+    "python3",
+    "-B",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py",
+    "--workspace",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+    "--unity",
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+    "--expected-demo",
+    "496e92079fdc73af687a47fe4d3c02a462457ff3",
+    "--expected-native",
+    "0a0b70156e75d450d75d0bcfd9132843b8abbbb0",
+    "--output",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-METADATA-SOURCE-20261016-0a0b",
+    "--sdk-scratch",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-METADATA-20261016-0a0b"
+  ],
+  "consumedOutputRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-METADATA-SOURCE-20261016-0a0b",
+  "expectedButAbsent": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-METADATA-SOURCE-20261016-0a0b/managed-sdk/results.json",
+  "actualResult": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-METADATA-SOURCE-20261016-0a0b/managed-sdk/build-api/results.json",
+  "actualResultSha256": "43f38be35063559bcb156c31968f6b80d8707982692aef55fd6ab05285ea916e",
+  "aggregateResultSha256": "13e256649c9c6355b4ed7eb4c5190a0f62acacaf42ad0195a27a21718d3ba565",
+  "evidence": [
+    "batch/commands/managed-sdk.json",
+    "batch/commands/managed-sdk/stdout.bin",
+    "batch/managed-sdk/build-api/results.json",
+    "preflight/EVIDENCE_AUDIT.json"
+  ],
+  "rootCause": "run_p1_metadata_local_preflight.py:142-144 supplies file=results.json; execute at115-118 checks output/file. build_api.py:104 writes in root/build-api and prints the true result path/hash at198. No aggregate consumer follows that returned binding.",
+  "impact": "Managed cell and officialUnitySdkCompilePassed aggregate flag remain Failed/false, so aggregate is FailedOrIncomplete. Five managed products and exact negative control independently Passed; all70 native syntax configs and eight host components Passed. No compiler defect demonstrated.",
+  "direction": "Primary should align the exact managed component result path with the existing producer contract, e.g. file=build-api/results.json, or strictly authenticate its returned path/hash within the component root. Add consumer tests for complete real result, missing result, mutated bytes and failed inner verdict. Retain independent five-product/negative/native70/source-preservation requirements; do not copy a synthetic success receipt or upgrade this consumed result.",
+  "uncertainty": "Only the receipt join is disproven; SDK compilation does not establish runtime correctness, bounded live capture, global epoch, safe shutdown or engine ownership.",
+  "afterFix": "Separately authorize one new exact-source batch in unused roots; no retry/resume or reclassification of this batch. Unity/Player remain unauthorized."
+}

@@ -1,0 +1,27 @@
+{
+  "name": "strict-compile",
+  "argv": [
+    "/usr/bin/clang++",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic",
+    "-pthread",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-METADATA-SOURCE-20261016-0a0b/bounded-inventory/stubs",
+    "-O2",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-METADATA-SOURCE-20261016-0a0b/bounded-inventory/mock-test.cpp",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.cpp",
+    "-o",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-METADATA-SOURCE-20261016-0a0b/bounded-inventory/strict.exe"
+  ],
+  "startedUnix": 1792128126.071161,
+  "finishedUnix": 1792128127.212376,
+  "exit": 0,
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

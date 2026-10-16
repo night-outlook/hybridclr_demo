@@ -1,0 +1,186 @@
+[
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-16T05:19:28.600289+00:00",
+    "end": "2026-10-16T05:19:32.364290+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_demo\n * branch              codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "496e92079fdc73af687a47fe4d3c02a462457ff3"
+    ],
+    "start": "2026-10-16T05:19:32.364426+00:00",
+    "end": "2026-10-16T05:19:32.384745+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge",
+      "--ff-only",
+      "496e92079fdc73af687a47fe4d3c02a462457ff3"
+    ],
+    "start": "2026-10-16T05:19:32.384869+00:00",
+    "end": "2026-10-16T05:19:32.655693+00:00",
+    "exit": 0,
+    "stdout": "Updating 8ac3cec2..496e9207\nFast-forward\n .../r03-p1-metadata-preflight-contract.yml         |  39 +++++\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        | 116 ++++++-------\n .../EVIDENCE_DISPOSITION.json                      | 126 ++++++++++++++\n .../PRIMARY_RECONCILIATION.md                      |  60 +++++++\n .../P1_FIRST_USE_2026-10-16/EVIDENCE.json          | 148 +++++++++++++++++\n .../PRIMARY_RECONCILIATION.md                      |  52 ++++++\n .../SOURCE_USAGE_LOCK_AUDIT.md                     |  60 +++++++\n .../P1_FROZEN_CAPTURE_2026-10-15/EVIDENCE.json     | 133 +++++++++++++++\n .../PRIMARY_RECONCILIATION.md                      |  58 +++++++\n .../SOURCE_LIFETIME_AUDIT.md                       |  51 ++++++\n .../P1_METADATA_LIFETIME_2026-10-16/EVIDENCE.json  |  98 +++++++++++\n .../PRIMARY_RECONCILIATION.md                      |  48 ++++++\n .../P1_ORDINARY_CLASSES_2026-10-16/EVIDENCE.json   | 138 ++++++++++++++++\n .../PRIMARY_RECONCILIATION.md                      |  54 ++++++\n .../SOURCE_LIFETIME_AUDIT.md                       |  60 +++++++\n .../EVIDENCE.json                                  | 144 ++++++++++++++++\n .../PRIMARY_RECONCILIATION.md                      |  47 ++++++\n .../SOURCE_LIFETIME_AUDIT.md                       |  49 ++++++\n .../PRIMARY_RECONCILIATION.md                      |  30 ++++\n .../P1_STAGED_GENERAL_2026-10-15/EVIDENCE.json     | 126 ++++++++++++++\n .../LIVE_SOURCE_CONTRACT.md                        |  49 ++++++\n .../PRIMARY_RECONCILIATION.md                      |  47 ++++++\n .../EVIDENCE.json                                  | 170 +++++++++++++++++++\n .../PRIMARY_RECONCILIATION.md                      |  68 ++++++++\n .../SOURCE_LOCK_LIFETIME_AUDIT.md                  |  58 +++++++\n .../P1_TRANSACTION_STATUS_2026-10-15/EVIDENCE.json | 123 ++++++++++++++\n .../PRIMARY_RECONCILIATION.md                      |  46 ++++++\n .../SOURCE_LIFETIME_REVIEW.md                      |  37 +++++\n Docs/AssemblyShadow/Plan/CHANGELOG.md              |   7 +\n Docs/AssemblyShadow/Plan/CURRENT_STATUS.md         |  89 +++++++++-\n Docs/AssemblyShadow/README.md                      |  84 +++++++++-\n Tools/AssemblyShadow/R03/native_validation.py      |  26 ++-\n .../R03IR/run_p1_metadata_local_preflight.py       | 184 +++++++++++++++++++++\n .../R03IR/test_p1_metadata_preflight.py            | 100 +++++++++++\n 34 files changed, 2655 insertions(+), 70 deletions(-)\n create mode 100644 .github/workflows/r03-p1-metadata-preflight-contract.yml\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/LOCAL_HOST_PASS_RECONCILIATION_2026-10-15/EVIDENCE_DISPOSITION.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/LOCAL_HOST_PASS_RECONCILIATION_2026-10-15/PRIMARY_RECONCILIATION.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_FIRST_USE_2026-10-16/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_FIRST_USE_2026-10-16/PRIMARY_RECONCILIATION.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_FIRST_USE_2026-10-16/SOURCE_USAGE_LOCK_AUDIT.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_FROZEN_CAPTURE_2026-10-15/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_FROZEN_CAPTURE_2026-10-15/PRIMARY_RECONCILIATION.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_FROZEN_CAPTURE_2026-10-15/SOURCE_LIFETIME_AUDIT.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_METADATA_LIFETIME_2026-10-16/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_METADATA_LIFETIME_2026-10-16/PRIMARY_RECONCILIATION.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_ORDINARY_CLASSES_2026-10-16/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_ORDINARY_CLASSES_2026-10-16/PRIMARY_RECONCILIATION.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_ORDINARY_CLASSES_2026-10-16/SOURCE_LIFETIME_AUDIT.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_PHYSICAL_ASSEMBLIES_2026-10-16/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_PHYSICAL_ASSEMBLIES_2026-10-16/PRIMARY_RECONCILIATION.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_PHYSICAL_ASSEMBLIES_2026-10-16/SOURCE_LIFETIME_AUDIT.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_R02_FROZEN_2026-10-15/PRIMARY_RECONCILIATION.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_STAGED_GENERAL_2026-10-15/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_STAGED_GENERAL_2026-10-15/LIVE_SOURCE_CONTRACT.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_STAGED_GENERAL_2026-10-15/PRIMARY_RECONCILIATION.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_TRANSACTION_INVENTORY_2026-10-15/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_TRANSACTION_INVENTORY_2026-10-15/PRIMARY_RECONCILIATION.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_TRANSACTION_INVENTORY_2026-10-15/SOURCE_LOCK_LIFETIME_AUDIT.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_TRANSACTION_STATUS_2026-10-15/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_TRANSACTION_STATUS_2026-10-15/PRIMARY_RECONCILIATION.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_TRANSACTION_STATUS_2026-10-15/SOURCE_LIFETIME_REVIEW.md\n create mode 100644 Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py\n create mode 100644 Tools/AssemblyShadow/R03IR/test_p1_metadata_preflight.py\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-16T05:19:33.227701+00:00",
+    "end": "2026-10-16T05:19:38.789681+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+    ],
+    "start": "2026-10-16T05:19:38.789843+00:00",
+    "end": "2026-10-16T05:19:38.806514+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "merge",
+      "--ff-only",
+      "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+    ],
+    "start": "2026-10-16T05:19:38.806631+00:00",
+    "end": "2026-10-16T05:19:38.822313+00:00",
+    "exit": 0,
+    "stdout": "Already up to date.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-16T05:19:38.846878+00:00",
+    "end": "2026-10-16T05:19:43.578505+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_unity\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "948c0e3b4f8891481301770115e8ba4945eea6de"
+    ],
+    "start": "2026-10-16T05:19:43.578889+00:00",
+    "end": "2026-10-16T05:19:43.598375+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "merge",
+      "--ff-only",
+      "948c0e3b4f8891481301770115e8ba4945eea6de"
+    ],
+    "start": "2026-10-16T05:19:43.598496+00:00",
+    "end": "2026-10-16T05:19:43.613044+00:00",
+    "exit": 0,
+    "stdout": "Already up to date.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-16T05:19:43.645413+00:00",
+    "end": "2026-10-16T05:19:49.298636+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/il2cpp_plus\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   74dbdbe..0a0b701  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "0a0b70156e75d450d75d0bcfd9132843b8abbbb0"
+    ],
+    "start": "2026-10-16T05:19:49.298750+00:00",
+    "end": "2026-10-16T05:19:49.310972+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "merge",
+      "--ff-only",
+      "0a0b70156e75d450d75d0bcfd9132843b8abbbb0"
+    ],
+    "start": "2026-10-16T05:19:49.311060+00:00",
+    "end": "2026-10-16T05:19:49.341592+00:00",
+    "exit": 0,
+    "stdout": "Updating 74dbdbe..0a0b701\nFast-forward\n .github/workflows/r03-p1-bounded-first-use.yml     |  76 ++++\n .../workflows/r03-p1-bounded-ordinary-classes.yml  |  79 ++++\n .../r03-p1-bounded-transaction-status.yml          |  69 ++++\n .github/workflows/r03-p1-frozen-execution.yml      | 132 +++++++\n .github/workflows/r03-p1-frozen-general.yml        |  76 ++++\n .../workflows/r03-p1-metadata-lifetime-gate.yml    |  77 ++++\n .github/workflows/r03-p1-physical-assemblies.yml   |  78 ++++\n .github/workflows/r03-p1-r02-sink-parity.yml       |  70 ++++\n .github/workflows/r03-p1-transaction-inventory.yml |  76 ++++\n libil2cpp/vm/Assembly.cpp                          |  37 ++\n libil2cpp/vm/Assembly.h                            |   7 +\n libil2cpp/vm/AssemblyShadow.cpp                    | 240 +++++++++++\n libil2cpp/vm/AssemblyShadow.h                      |  19 +\n .../vm/AssemblyShadowBoundedFirstUseCapture.h      | 266 +++++++++++++\n .../vm/AssemblyShadowBoundedOrdinaryClasses.h      | 167 ++++++++\n .../vm/AssemblyShadowBoundedPhysicalAssemblies.h   | 132 +++++++\n .../vm/AssemblyShadowBoundedTransactionInventory.h | 274 +++++++++++++\n .../vm/AssemblyShadowBoundedTransactionStatus.h    | 154 ++++++++\n .../vm/AssemblyShadowFrozenExecutionCapture.h      | 218 ++++++++++\n libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h  | 344 ++++++++++++++++\n libil2cpp/vm/AssemblyShadowFrozenR02Capture.h      |  76 ++++\n libil2cpp/vm/AssemblyShadowMetadataLifetime.h      |  79 ++++\n libil2cpp/vm/AssemblyShadowR02Diagnostics.h        |   5 +-\n libil2cpp/vm/AssemblyShadowVisibility.cpp          |  59 +++\n libil2cpp/vm/AssemblyShadowVisibility.h            |   8 +\n libil2cpp/vm/Runtime.cpp                           |  22 ++\n .../bounded_first_use_fixture.cpp                  | 355 +++++++++++++++++\n .../bounded_ordinary_classes_fixture.cpp           | 363 +++++++++++++++++\n .../bounded_physical_assemblies_fixture.cpp        | 288 ++++++++++++++\n .../bounded_transaction_inventory_fixture.cpp      | 437 +++++++++++++++++++++\n .../bounded_transaction_source_fixture.cpp         | 267 +++++++++++++\n .../current_execution_producer.py                  |  14 +-\n .../frozen_execution_capture_tests.cpp             | 287 ++++++++++++++\n .../frozen_execution_v2_driver.cpp                 | 189 +++++++++\n .../frozen_general_capture_tests.cpp               | 223 +++++++++++\n .../metadata_lifetime_gate_tests.cpp               |  87 ++++\n .../diagnostic_stream/r02_sink_parity_tests.cpp    | 124 ++++++\n .../r03/diagnostic_stream/run_bounded_first_use.py | 183 +++++++++\n .../run_bounded_ordinary_classes.py                | 207 ++++++++++\n .../run_bounded_physical_assemblies.py             | 195 +++++++++\n .../run_bounded_transaction_inventory.py           | 161 ++++++++\n .../run_bounded_transaction_status.py              | 163 ++++++++\n tools/r03/diagnostic_stream/run_frozen_v2.py       | 172 ++++++++\n .../run_metadata_lifetime_gate.py                  | 149 +++++++\n 44 files changed, 6700 insertions(+), 4 deletions(-)\n create mode 100644 .github/workflows/r03-p1-bounded-first-use.yml\n create mode 100644 .github/workflows/r03-p1-bounded-ordinary-classes.yml\n create mode 100644 .github/workflows/r03-p1-bounded-transaction-status.yml\n create mode 100644 .github/workflows/r03-p1-frozen-execution.yml\n create mode 100644 .github/workflows/r03-p1-frozen-general.yml\n create mode 100644 .github/workflows/r03-p1-metadata-lifetime-gate.yml\n create mode 100644 .github/workflows/r03-p1-physical-assemblies.yml\n create mode 100644 .github/workflows/r03-p1-r02-sink-parity.yml\n create mode 100644 .github/workflows/r03-p1-transaction-inventory.yml\n create mode 100644 libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h\n create mode 100644 libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h\n create mode 100644 libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h\n create mode 100644 libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h\n create mode 100644 libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h\n create mode 100644 libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h\n create mode 100644 libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h\n create mode 100644 libil2cpp/vm/AssemblyShadowFrozenR02Capture.h\n create mode 100644 libil2cpp/vm/AssemblyShadowMetadataLifetime.h\n create mode 100644 tools/r03/diagnostic_stream/bounded_first_use_fixture.cpp\n create mode 100644 tools/r03/diagnostic_stream/bounded_ordinary_classes_fixture.cpp\n create mode 100644 tools/r03/diagnostic_stream/bounded_physical_assemblies_fixture.cpp\n create mode 100644 tools/r03/diagnostic_stream/bounded_transaction_inventory_fixture.cpp\n create mode 100644 tools/r03/diagnostic_stream/bounded_transaction_source_fixture.cpp\n create mode 100644 tools/r03/diagnostic_stream/frozen_execution_capture_tests.cpp\n create mode 100644 tools/r03/diagnostic_stream/frozen_execution_v2_driver.cpp\n create mode 100644 tools/r03/diagnostic_stream/frozen_general_capture_tests.cpp\n create mode 100644 tools/r03/diagnostic_stream/metadata_lifetime_gate_tests.cpp\n create mode 100644 tools/r03/diagnostic_stream/r02_sink_parity_tests.cpp\n create mode 100644 tools/r03/diagnostic_stream/run_bounded_first_use.py\n create mode 100644 tools/r03/diagnostic_stream/run_bounded_ordinary_classes.py\n create mode 100644 tools/r03/diagnostic_stream/run_bounded_physical_assemblies.py\n create mode 100644 tools/r03/diagnostic_stream/run_bounded_transaction_inventory.py\n create mode 100644 tools/r03/diagnostic_stream/run_bounded_transaction_status.py\n create mode 100644 tools/r03/diagnostic_stream/run_frozen_v2.py\n create mode 100644 tools/r03/diagnostic_stream/run_metadata_lifetime_gate.py\n",
+    "stderr": ""
+  }
+]

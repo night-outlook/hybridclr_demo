@@ -1,6 +1,22 @@
 # Local Validation → Primary Implementation
 
-## Current return — host-only successor 20261015-74dbdbea-a1
+## Current return — P1 metadata source/SDK 20261016-0a0b FAIL
+
+**Local Validation → Primary Implementation.** [Factual report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-metadata-source-20261016-0a0b/README.md), [machine finding](../History/M07R/R03/local-validation-p1-metadata-source-20261016-0a0b/FINDING.json). One wrapper invocation produced9 Passed/1 Failed and FailedOrIncomplete. Actual official five-product managed compilation/negative control and all70 native syntax configurations Passed. No retry/source changes or runtime launch.
+
+### IR-LOCAL-P1-MANAGED-RECEIPT-01
+
+**Symptom and reproduction:** Use exact four sources/paths in current LOCAL_VALIDATION, branch codex/assembly-shadow-r01b-h1, official Unity2022.3.62f2 SDK anchor, and its exact one-shot run_p1_metadata_local_preflight.py argv. At retained `/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-METADATA-SOURCE-20261016-0a0b`, managed compiler child exits0 and completes all products, but aggregate managed-sdk status=Failed with innerResult absent; the aggregate remains FailedOrIncomplete. This consumed root must not be retried.
+
+**Evidence:** [managed outer cell](../History/M07R/R03/local-validation-p1-metadata-source-20261016-0a0b/batch/commands/managed-sdk.json), [returned result path/hash](../History/M07R/R03/local-validation-p1-metadata-source-20261016-0a0b/batch/commands/managed-sdk/stdout.bin), [actual managed result](../History/M07R/R03/local-validation-p1-metadata-source-20261016-0a0b/batch/managed-sdk/build-api/results.json), [raw aggregate](../History/M07R/R03/local-validation-p1-metadata-source-20261016-0a0b/batch/RESULT.json), [independent audit](../History/M07R/R03/local-validation-p1-metadata-source-20261016-0a0b/preflight/EVIDENCE_AUDIT.json). Actual managed result SHA256 `43f38be35063559bcb156c31968f6b80d8707982692aef55fd6ab05285ea916e`; aggregate SHA256 `13e256649c9c6355b4ed7eb4c5190a0f62acacaf42ad0195a27a21718d3ba565`. Five output DLL hashes,428 actual input hashes and six compiler/response receipts are retained; all positive exits0, expected original negative exits1 with exactly two CS0266 errors/no DLL. All70 native syntax commands Passed independently. Compiler warning logs retained.
+
+**Confirmed cause/impact:** `Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py:142-144` asks execute for file=results.json. Its115-118 lookup expects `<output>/managed-sdk/results.json`. Existing `Tools/AssemblyShadow/R03/build_api.py:104` creates build-api under that root and198 returns the actual nested result/hash; `<output>/managed-sdk/build-api/results.json` exists and Passed. The wrapper ignores that returned binding. This join defect makes the managed cell and derived officialUnitySdkCompilePassed flag Failed/false; no unexpected compiler error or product runtime failure is established. Keep the raw aggregate unchanged.
+
+**Recommended Primary correction:** Align the consumer with the exact existing managed producer result contract (explicit build-api/results.json, or strictly validate its returned path/hash inside the expected component root). Add aggregate consumer tests covering the complete real response shape, missing result, mutated result and Failed inner verdict. Preserve five-product/expected-negative checks,70-unit matrix, source preservation and all fail-closed decisions. Do not copy a fabricated root success receipt or weaken expected states.
+
+**Remaining uncertainty/required validation:** No real Unity lifecycle/Player execution occurred. Syntax and source mocks do not prove P1 global epoch, lock/shutdown safety, peak GC/RSS or P2/E0/E1 completion. After Primary correction, issue a separate exact-source preflight with new unused roots; no resume or historical reclassification. Historical SNAP-01/strict custody and all acceptance flags retain their prior states.
+
+## Historical return — host-only successor 20261015-74dbdbea-a1
 
 **PASS / PassedHostOnly; Local Validation → Primary Implementation.** [Factual report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-host-only-20261015-74dbdbea-a1/README.md), [prior finding revalidation](../History/M07R/R03/local-validation-host-only-20261015-74dbdbea-a1/PRIOR_FINDING_REVALIDATION.json). One batch completed with eight Passed outer records, both25-case general profiles and all retained host suites Passed, plus six full current/frozen byte-parity cases/24 receipts. Source and previous evidence preservation Passed. No new substantive Local finding; no Local implementation changes or retry.
 

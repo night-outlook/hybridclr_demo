@@ -1,0 +1,141 @@
+{
+  "kind": "R03P1MetadataTeardownAdmissionHost",
+  "result": "PassedWithinHostScope",
+  "sourceContract": {
+    "globalGateDefinitionOffset": 2668,
+    "openBeforeReady": true,
+    "closeBeforeTeardown": true,
+    "classesReadGateBeforeSourceLock": true,
+    "assembliesReadGateBeforeSourceLock": true
+  },
+  "sourceBefore": {
+    "libil2cpp/vm/AssemblyShadowMetadataLifetime.h": {
+      "bytes": 3245,
+      "sha256": "efac2a6c1b9d38e2c8b282dcdf9fe8d14540a079cb6bccdca1e3dac7d3b5bb5a",
+      "gitBlob": "88f60fac00a52c0b518e99f1bda31be61eff0ca0"
+    },
+    "libil2cpp/vm/Runtime.cpp": {
+      "bytes": 53983,
+      "sha256": "f88e1c2165ccc5f723c40b71b6e85912f1be45fe12193106f4f022c250b1e454",
+      "gitBlob": "96b914fbeb31c69d649e4076a802de0b6418daa8"
+    },
+    "libil2cpp/vm/Assembly.cpp": {
+      "bytes": 12099,
+      "sha256": "0c46232f94b6e7afc2b5277d287618d8405a3f19784781ae800dda19ba8c4431",
+      "gitBlob": "cb383d664ed02e138a9dd0cb42f2a64629146207"
+    },
+    "libil2cpp/vm/AssemblyShadowVisibility.cpp": {
+      "bytes": 11520,
+      "sha256": "4bae387bdd6917da03a74e4539207a1da54e0f071b607b46e499d9c170df8bb6",
+      "gitBlob": "1469a44b51ce0adb8d0e98dffd0ac66a0d107aaa"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h": {
+      "bytes": 6620,
+      "sha256": "ae4c2a471c1879510849d4902694caa7308bc70f3804cb6b1d0fb2ac839615a8",
+      "gitBlob": "91f049cc7d81d5e6de95ec50884ed3d6b9b63163"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h": {
+      "bytes": 5084,
+      "sha256": "0545c483230b7a1f6ea007ff28f000ec37a2f85444062c62eff74a048c5986c1",
+      "gitBlob": "4e82e7f3814b8ed021a24d235dcfbe79c4c2412a"
+    },
+    "tools/r03/diagnostic_stream/metadata_lifetime_gate_tests.cpp": {
+      "bytes": 2925,
+      "sha256": "7ac4c254f0ec08c554f5496241528ce3035c9d2996d1391553ad26e8dbc45641",
+      "gitBlob": "53f91430cb5f84a27f72c25da0e3adfb6a6851f0"
+    },
+    "tools/r03/diagnostic_stream/run_metadata_lifetime_gate.py": {
+      "bytes": 8007,
+      "sha256": "7f3d422d4da576cb4500923c22f2aa16629f685b094806009c458e3187ebf5ee",
+      "gitBlob": "cd2159c15a74405b5ffe8fbd5a66c4dc9afb1c90"
+    }
+  },
+  "sourcePreserved": true,
+  "profilesCompleted": [
+    "strict",
+    "sanitized"
+  ],
+  "commands": [
+    {
+      "label": "strict-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-O2",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/metadata_lifetime_gate_tests.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-METADATA-SOURCE-20261016-0a0b/metadata-gate/strict.exe"
+      ],
+      "startUnix": 1792128111.56084,
+      "finishUnix": 1792128111.875791,
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "strict-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-METADATA-SOURCE-20261016-0a0b/metadata-gate/strict.exe"
+      ],
+      "startUnix": 1792128111.875812,
+      "finishUnix": 1792128112.292544,
+      "exit": 0,
+      "stdoutSha256": "6d9ee490b6868615fa61d184e7132383b7cd3c2261e3497769c8549175ffe13b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "sanitized-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/metadata_lifetime_gate_tests.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-METADATA-SOURCE-20261016-0a0b/metadata-gate/sanitized.exe"
+      ],
+      "startUnix": 1792128112.292572,
+      "finishUnix": 1792128112.764075,
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "sanitized-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-METADATA-SOURCE-20261016-0a0b/metadata-gate/sanitized.exe"
+      ],
+      "startUnix": 1792128112.7641118,
+      "finishUnix": 1792128113.2583191,
+      "exit": 0,
+      "stdoutSha256": "6d9ee490b6868615fa61d184e7132383b7cd3c2261e3497769c8549175ffe13b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "firstError": null,
+  "nativeHeaderRealSourceCompiled": true,
+  "productionRuntimeBodiesHostCompiled": false,
+  "originalGettersUnmodified": true,
+  "officialUnitySDKCompiled": false,
+  "UnityPlayerExecuted": false,
+  "allVmEpochProven": false,
+  "engineOwnerProven": false,
+  "shutdownDeadlockFreedomProven": false,
+  "runtimeAcceptance": false
+}
