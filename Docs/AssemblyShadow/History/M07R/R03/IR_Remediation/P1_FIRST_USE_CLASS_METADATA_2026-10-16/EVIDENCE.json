@@ -1,0 +1,349 @@
+{
+  "schemaVersion": 1,
+  "kind": "UnpublishedPrimaryP1FirstUseClassMetadataCandidateEvidence",
+  "status": "NativeSourcePublished_SourceBoundHostCI_Passed_LocalSdkNotRun",
+  "repositoryBranch": "codex/assembly-shadow-r01b-h1",
+  "remoteBaselines": {
+    "hybridclr_demo": "eb482858203ac9322f3f08da38fab7d6877ad586",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "f71691407bf9af5544d00dd54bff9e2e7eb77307"
+  },
+  "publication": {
+    "committed": true,
+    "pushed": true,
+    "connectorWriteActionsAvailable": true,
+    "connectorWriteSmokeTest": "Passed_ReadBackBothAffectedRepos",
+    "nativeSourceCommit": "f598f8da5749e7c09ad5816630ce7e40b3f4ebca",
+    "nativeFinalHead": "1e1d152f0e05b8038427c76a9c8a9b4b60998a72",
+    "demoDocsPublication": "This document's containing commit is Docs-only; not an SDK execution",
+    "newCIExecuted": true,
+    "newLocalValidationAuthorized": false,
+    "sourceWholeVmFileWasFetchedAndPatchedWithExactHunkChecks": true
+  },
+  "candidateMethodSha256": "67fcd9f6660c67c8a60ed610cdc9b3c3cfc06adb01f9805a581e6dd97dd42be2",
+  "candidateFileBindings": [
+    {
+      "path": "candidate/.github/workflows/r03-p1-bounded-first-use.yml",
+      "bytes": 3776,
+      "sha256": "15201ee8ee309255e501dd5c74574bc0a7340328199d6850eec6595d284a9c57"
+    },
+    {
+      "path": "candidate/TryCaptureBoundedFirstUses.function.cpp",
+      "bytes": 4099,
+      "sha256": "0632b5973b5dc0e85d638efeaff43859a7a4efa0df008107e63b7ced93b18322"
+    },
+    {
+      "path": "candidate/libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+      "bytes": 13880,
+      "sha256": "b77a46ffc4ba6e522fc8c34e0ac43283f502639a8ca4f6b9282afc097fa5c895"
+    },
+    {
+      "path": "candidate/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+      "bytes": 6070,
+      "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605"
+    },
+    {
+      "path": "candidate/libil2cpp/vm/AssemblyShadowDiagnostics.cpp",
+      "bytes": 8176,
+      "sha256": "62f2d9b038ed8e4f3e352c06ad72355ae5d6e69e800e3a39647a70271d295902"
+    },
+    {
+      "path": "candidate/libil2cpp/vm/AssemblyShadowDiagnostics.h",
+      "bytes": 2990,
+      "sha256": "5017cadef623509190bd7b486c935b7b8ca462207f7d13760d2223216112f038"
+    },
+    {
+      "path": "candidate/libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+      "bytes": 14775,
+      "sha256": "db843e21ec6f05da367f3e747bd7599b7ab8985517559491bce53da08531d96e"
+    },
+    {
+      "path": "candidate/libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+      "bytes": 4637,
+      "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716"
+    },
+    {
+      "path": "candidate/libil2cpp/vm/AssemblyShadowTypes.h",
+      "bytes": 1825,
+      "sha256": "df149952bd8beefd0ee6580f337262f28614c43f7eb695554a3a284eca1a1257"
+    },
+    {
+      "path": "candidate/tools/r03/diagnostic_stream/allocation_probe.cpp",
+      "bytes": 1427,
+      "sha256": "80428db4e93796feea1c6f9b7d64d17ecf005496518bf44c3a3d52440832988f"
+    },
+    {
+      "path": "candidate/tools/r03/diagnostic_stream/bounded_first_use_fixture.cpp",
+      "bytes": 29824,
+      "sha256": "fa9221f413208bdec0c2e6b7b2e15cbabd51dc0f1782edbebb25004d627fb7ac"
+    },
+    {
+      "path": "candidate/tools/r03/diagnostic_stream/run_bounded_first_use.py",
+      "bytes": 9764,
+      "sha256": "a08adc21553d4f31c20fb028a7f46dc53efca645ab984020efe0552f1aa17acc"
+    },
+    {
+      "path": "candidate/tools/r03/diagnostic_stream/test_first_use_runner.py",
+      "bytes": 6101,
+      "sha256": "e18af2d0fc10477c6130800dd2bd2dc3b541222e85e4d8f8647b54482d023e41"
+    }
+  ],
+  "sourceTranscription": "Eleven complete baseline files verified by Git blob; full AssemblyShadow.cpp not materialized",
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "compilers": {
+      "clang++": "clang version 17.0.0 (https://github.com/swiftlang/llvm-project.git 10999b6d034fe318f3d56c83bddb6572593a8bb0)",
+      "g++": "g++ (Debian 14.2.0-19) 14.2.0"
+    }
+  },
+  "finalHostMatrix": [
+    {
+      "compiler": "Clang 17.0.0",
+      "profile": "strict",
+      "groupsPassed": [
+        "classless-ownership",
+        "existing-fail-closed",
+        "existing-capacity-phase",
+        "existing-token-contract",
+        "classless-general-parity",
+        "class-ownership",
+        "null-absent-names",
+        "cstring-budget",
+        "cstring-alias",
+        "owner-unavailable",
+        "usage-after-metadata",
+        "shutdown-drain",
+        "dense-general-parity",
+        "unresolved-refusal",
+        "parallel-captures"
+      ],
+      "result": "PassedCandidateExcerptWithF716GateUnderHostMocks",
+      "resultPath": "evidence/f716-runner-clang/RESULT.json",
+      "resultSha256": "2cc5d17461174858ad9cf0ea907656d9e8d9a1da2255b8c3d59da51704200c87"
+    },
+    {
+      "compiler": "Clang 17.0.0",
+      "profile": "sanitized",
+      "groupsPassed": [
+        "classless-ownership",
+        "existing-fail-closed",
+        "existing-capacity-phase",
+        "existing-token-contract",
+        "classless-general-parity",
+        "class-ownership",
+        "null-absent-names",
+        "cstring-budget",
+        "cstring-alias",
+        "owner-unavailable",
+        "usage-after-metadata",
+        "shutdown-drain",
+        "dense-general-parity",
+        "unresolved-refusal",
+        "parallel-captures"
+      ],
+      "result": "PassedCandidateExcerptWithF716GateUnderHostMocks",
+      "resultPath": "evidence/f716-runner-clang/RESULT.json",
+      "resultSha256": "2cc5d17461174858ad9cf0ea907656d9e8d9a1da2255b8c3d59da51704200c87"
+    },
+    {
+      "compiler": "GCC 14.2.0",
+      "profile": "strict",
+      "groupsPassed": [
+        "classless-ownership",
+        "existing-fail-closed",
+        "existing-capacity-phase",
+        "existing-token-contract",
+        "classless-general-parity",
+        "class-ownership",
+        "null-absent-names",
+        "cstring-budget",
+        "cstring-alias",
+        "owner-unavailable",
+        "usage-after-metadata",
+        "shutdown-drain",
+        "dense-general-parity",
+        "unresolved-refusal",
+        "parallel-captures"
+      ],
+      "result": "PassedCandidateExcerptWithF716GateUnderHostMocks",
+      "resultPath": "evidence/f716-runner-gcc/RESULT.json",
+      "resultSha256": "9e0daa3e46513dcacd2e30ad60477bc569096eac300b0691815ddc9b32ec874d"
+    },
+    {
+      "compiler": "GCC 14.2.0",
+      "profile": "sanitized",
+      "groupsPassed": [
+        "classless-ownership",
+        "existing-fail-closed",
+        "existing-capacity-phase",
+        "existing-token-contract",
+        "classless-general-parity",
+        "class-ownership",
+        "null-absent-names",
+        "cstring-budget",
+        "cstring-alias",
+        "owner-unavailable",
+        "usage-after-metadata",
+        "shutdown-drain",
+        "dense-general-parity",
+        "unresolved-refusal",
+        "parallel-captures"
+      ],
+      "result": "PassedCandidateExcerptWithF716GateUnderHostMocks",
+      "resultPath": "evidence/f716-runner-gcc/RESULT.json",
+      "resultSha256": "9e0daa3e46513dcacd2e30ad60477bc569096eac300b0691815ddc9b32ec874d"
+    }
+  ],
+  "finalCPlusPlusGroupExecutions": 60,
+  "runnerContracts": {
+    "uniqueMethods": 8,
+    "result": "PassedUnderSyntheticInput",
+    "scope": "Exact excerpt and synthetic API-declaration marker, no VM TU",
+    "receiptPath": "evidence/f716-runner-contracts/RESULT.json",
+    "stderrPath": "evidence/f716-runner-contracts/runner-contracts.stderr"
+  },
+  "oldSourceRegression": {
+    "result": "ExpectedRuntimeAssertionReproduced",
+    "rawOutcome": "FailedOrIncomplete",
+    "compileExit": 0,
+    "runExit": -6,
+    "path": "evidence/f716-old-method-control/RESULT.json"
+  },
+  "retainedDevelopmentFailures": [
+    "evidence/candidate-clang-strict-01/RESULT.json",
+    "evidence/old-method-class-control/RESULT.json"
+  ],
+  "v1Parity": {
+    "serializer": "Exact pinned current V1 serializer and staged frozen general builder",
+    "classlessBytes": 980,
+    "classBearingRows": 4096,
+    "completeSyntheticGeneralBytes": 692677,
+    "expectedValuesIndependentOfCapture": true,
+    "otherVmDomains": "Mocked",
+    "actualPlayerPayload": false
+  },
+  "resources": {
+    "candidateCapacity": 4096,
+    "textArenaBytes": 1048576,
+    "newCallsInWatchedSynchronousMockCapture": 0,
+    "wholeVmMallocGcRssQualified": false
+  },
+  "scopeLimits": {
+    "fullAssemblyShadowTranslationUnitCompiled": false,
+    "fullPinnedCheckoutPatchApplication": "CompleteAssemblyShadowCppExactHunksAppliedThroughConnector",
+    "patchMechanics": "PassedSyntheticExactContexts",
+    "officialUnitySDK": "NotRun_NewNativeSource",
+    "MacOS": "Host source tests PASSED in GitHub Actions macos-15; Unity/macOS installed SDK NOT RUN",
+    "Player": "NotRun",
+    "legacyOtherNineComponents": "NotRunForCandidate",
+    "wholeVmEpochProven": false,
+    "realShutdownDeadlockFreedomProven": false,
+    "sameGateReopening": "Initial-only reader rejection verified under the unmodified f716 gate in host tests; not general reload support"
+  },
+  "history": {
+    "prior0620": "Consumed_PASS_PassedSourceHostAndSDKOnly_OldNative0a0b",
+    "prior0a0b": "Consumed_FAIL_FailedOrIncomplete_NotReclassified",
+    "historicalEvidenceChanged": false
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked_Unavailable",
+    "E1": "BlockedByE0",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterExpansion": false
+  },
+  "initialNativeRemoteHead": "0a0b70156e75d450d75d0bcfd9132843b8abbbb0",
+  "remoteAdvance": {
+    "observedFrom": "0a0b70156e75d450d75d0bcfd9132843b8abbbb0",
+    "observedTo": "f71691407bf9af5544d00dd54bff9e2e7eb77307",
+    "aheadBy": 1,
+    "changedFiles": [
+      ".github/workflows/r03-p1-metadata-lifetime-gate.yml",
+      "libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+      "tools/r03/diagnostic_stream/fixtures/metadata_lifetime_v0/AssemblyShadowMetadataLifetime.h",
+      "tools/r03/diagnostic_stream/metadata_lifetime_gate_tests.cpp",
+      "tools/r03/diagnostic_stream/metadata_lifetime_readers_fixture.cpp",
+      "tools/r03/diagnostic_stream/metadata_lifetime_reopen_regression.cpp",
+      "tools/r03/diagnostic_stream/run_metadata_lifetime_gate.py"
+    ],
+    "authoredByThisSession": false,
+    "gateBlobReadAndVerified": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd",
+    "gateImplementationModifiedByCandidate": false,
+    "firstUseSourceBodyAndOtherPatchBaseFilesUnchanged": true,
+    "integrationDisposition": "CandidateRetestedWithUnmodifiedF716Gate"
+  },
+  "oldGateDependencyControl": {
+    "path": "evidence/f716-old-gate-control/RESULT.json",
+    "result": "ExpectedReopenedAdmissionAssertionReproduced",
+    "compileExit": 0,
+    "runExit": -6,
+    "nativeGateFixAuthoredHere": false
+  },
+  "remoteSourceAndCI": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "baseNativeHead": "f71691407bf9af5544d00dd54bff9e2e7eb77307",
+    "nativeSourceCommit": "f598f8da5749e7c09ad5816630ce7e40b3f4ebca",
+    "nativeFinalWorkflowOnlyHead": "1e1d152f0e05b8038427c76a9c8a9b4b60998a72",
+    "changedSourceFiles": 6,
+    "sourceMethodBlob": "b7c99eeaefb77bd7739304214277484d8b2ab261",
+    "expectedNewSourceBlobsVerified": 5,
+    "gitWriteBranchLeaseVerified": true,
+    "firstUseCI": {
+      "runId": 38876310270,
+      "result": "success",
+      "jobsPassed": 3,
+      "jobsTotal": 3,
+      "profilesPerJob": [
+        "strict",
+        "sanitized"
+      ],
+      "groupsPerProfile": 15,
+      "archiveCustody": [
+        {
+          "platform": "macOS Apple Clang",
+          "bytes": 606920,
+          "zipSha256": "5cb901a7c3f21ec658a81298f24db8ed52460bb6ff8f2e33763b14588db1ee31",
+          "manifestFiles": 21,
+          "verified": 21
+        },
+        {
+          "platform": "Linux GCC",
+          "bytes": 961953,
+          "zipSha256": "c2cd01d4aa8f703ceac555a66066a82c79520661fe28f6dad2bb52a03e939d9a",
+          "manifestFiles": 18,
+          "verified": 18
+        },
+        {
+          "platform": "Linux Clang",
+          "bytes": 1004512,
+          "zipSha256": "64fc78ab6ac20adc5abb60d778f501e5ba981791e06763fdbf42e1c4a554c062",
+          "manifestFiles": 18,
+          "verified": 18
+        }
+      ],
+      "liveMetadataShutdownProven": false,
+      "runtimeAcceptance": false
+    },
+    "terminalWorkflow": {
+      "runId": 38876957263,
+      "sourceOnlyWorkflowFix": true,
+      "productionTerminalCodeModified": false,
+      "jobsPassed": 2,
+      "jobsTotal": 2,
+      "result": "success"
+    },
+    "historicalSourceGate": {
+      "runId": 38876310298,
+      "result": "failure",
+      "reason": "Historical R02 immutable whole-file fingerprints; not new runtime regression",
+      "reclassified": false
+    }
+  }
+}
