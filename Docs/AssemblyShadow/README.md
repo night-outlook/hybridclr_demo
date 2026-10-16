@@ -1,6 +1,15 @@
 # HybridCLR Assembly Shadow
 
-## Current — P1 first-use class source/SDK PASS reconciled; Primary owns remaining work
+## Current — P1 bounded owned-source general JSON composer, new scoped Local preflight
+
+Primary has published a new **inactive bounded general JSON composition layer** at native commit 3dc9b848d1d6b7616b257c95dc4727db06fd05f7. It combines already-owned and individually completed transaction inventory, first-use, physical assembly and ordinary-class captures into the frozen original general V1 schema and rejects observed cross-reader generation mismatches. It does not read live VM data, hold VM locks, allocate after prewarm in host tests, or change original getters, Player or semantic predicates. **Equal generation numbers do not establish a coherent all-VM epoch.** [Primary review](History/M07R/R03/IR_Remediation/P1_OWNED_GENERAL_COMPOSER_2026-10-16/PRIMARY_RECONCILIATION.md) · [machine evidence](History/M07R/R03/IR_Remediation/P1_OWNED_GENERAL_COMPOSER_2026-10-16/EVIDENCE.json).
+
+[Native source CI 38885246083](https://github.com/night-outlook/il2cpp_plus/actions/runs/38885246083) **Passed 3/3 Mac/Linux jobs**, 11 unique groups in each strict/sanitized profile (66 group executions, zero heap allocations after prewarm), 51/51 original artifact files independently checked. [Demo contract CI 38885611665](https://github.com/night-outlook/hybridclr_demo/actions/runs/38885611665) **Passed 2/2 jobs** (18 tests per OS; 10/10 original artifact manifest files verified). This CI only establishes host source/producer and CLI scopes.
+
+The next narrow Local batch is defined in [WEB_TO_LOCAL.md](Handoff/WEB_TO_LOCAL.md): **11 separately receipted components, five official managed product targets plus exact expected-negative, and 75 native syntax configurations (15 units × five profiles)** against installed Unity2022.3.62f2, under fresh unused roots. **No Unity Editor/Player or runtime seven-root batch is authorized.** P1 full live coherent capture, P2 real authenticated V2 native/C# integration, and E0/E1 source-proven Unity engine lifecycle remain incomplete or blocked; all acceptance flags stay false.
+
+
+## Previously reconciled — first-use class source/SDK PASS (consumed)
 
 **Owner: Primary Implementation. Local Validation: PAUSED.** The one authorized `20261016-f598` Local batch completed **PASS / `PassedSourceHostAndSDKOnly` (10/10 components)** and is **consumed**. The first-use reader passed **15 distinct host case groups in each strict/sanitized profile**, all four compile/run receipts, five official managed products plus their expected-negative control, and **70/70 official Unity2022.3.62f2 native C++ arm64 syntax configurations**. The corrected managed producer path/hash/inner verdict matched; source, SDK, and previously consumed evidence were locally audited as preserved. **Unity Editor and Player were not launched.**
 
@@ -14,13 +23,6 @@ The previously consumed `20261016-0620` **PASS (10/10)** remains distinct. The e
 
 **Read order:** [Plan/CURRENT_STATUS.md](Plan/CURRENT_STATUS.md), factual Local-owned [LOCAL_VALIDATION.md](Handoff/LOCAL_VALIDATION.md), [RETURN_TO_WEB.md](Handoff/RETURN_TO_WEB.md), then [WEB_TO_LOCAL.md](Handoff/WEB_TO_LOCAL.md). **The handoff is PAUSED: no new Local command, output root, Unity/Player attempt, Human Review Gate or next milestone is authorized.** Further P1/P2/E0/E1 design and implementation remain Primary-owned.
 
-## Current — P1 bounded owned-source general JSON composer, new scoped Local preflight
-
-Primary has published a new **inactive bounded general JSON composition layer** at native commit 3dc9b848d1d6b7616b257c95dc4727db06fd05f7. It combines already-owned and individually completed transaction inventory, first-use, physical assembly and ordinary-class captures into the frozen original general V1 schema and rejects observed cross-reader generation mismatches. It does not read live VM data, hold VM locks, allocate after prewarm in host tests, or change original getters, Player or semantic predicates. **Equal generation numbers do not establish a coherent all-VM epoch.** [Primary review](History/M07R/R03/IR_Remediation/P1_OWNED_GENERAL_COMPOSER_2026-10-16/PRIMARY_RECONCILIATION.md) · [machine evidence](History/M07R/R03/IR_Remediation/P1_OWNED_GENERAL_COMPOSER_2026-10-16/EVIDENCE.json).
-
-[Native source CI 38885246083](https://github.com/night-outlook/il2cpp_plus/actions/runs/38885246083) **Passed 3/3 Mac/Linux jobs**, 11 unique groups in each strict/sanitized profile (66 group executions, zero heap allocations after prewarm), 51/51 original artifact files independently checked. [Demo contract CI 38885611665](https://github.com/night-outlook/hybridclr_demo/actions/runs/38885611665) **Passed 2/2 jobs** (18 tests per OS; 10/10 original artifact manifest files verified). This CI only establishes host source/producer and CLI scopes.
-
-The next narrow Local batch is defined in [WEB_TO_LOCAL.md](Handoff/WEB_TO_LOCAL.md): **11 separately receipted components, five official managed product targets plus exact expected-negative, and 75 native syntax configurations (15 units × five profiles)** against installed Unity2022.3.62f2, under fresh unused roots. **No Unity Editor/Player or runtime seven-root batch is authorized.** P1 full live coherent capture, P2 real authenticated V2 native/C# integration, and E0/E1 source-proven Unity engine lifecycle remain incomplete or blocked; all acceptance flags stay false.
 
 ## Prior first-use class source/SDK PASS — consumed and immutable
 
