@@ -144,6 +144,11 @@ def main()->None:
         native/"libil2cpp/vm/Assembly.cpp",
         native/"libil2cpp/vm/AssemblyShadowVisibility.cpp",
         native/"tools/r03/diagnostic_stream/run_metadata_lifetime_gate.py",
+        native/"libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+        native/"libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+        native/"tools/r03/diagnostic_stream/run_bounded_general_composer.py",
+        native/"tools/r03/diagnostic_stream/bounded_general_composer_fixture.cpp",
+        demo/"Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowGeneralComposeSyntax.cpp",
     ]
     hashes={str(p):hash_file(p) for p in inputs}
     dest.mkdir(mode=0o700)
@@ -181,6 +186,7 @@ def main()->None:
             ("bounded-class","run_bounded_ordinary_classes.py","PassedWithinHostScope"),
             ("bounded-physical","run_bounded_physical_assemblies.py","PassedWithinHostScope"),
             ("bounded-first-use","run_bounded_first_use.py","PassedWithinHostScope"),
+            ("owned-general","run_bounded_general_composer.py","PassedWithinOwnedHostScope"),
             ("bounded-status","run_bounded_transaction_status.py","PassedWithinHostScope"),
             ("bounded-inventory","run_bounded_transaction_inventory.py","PassedWithinHostScope"),
             ("frozen-v2","run_frozen_v2.py","PassedWithinInactiveHostScope"),
@@ -205,12 +211,12 @@ def main()->None:
             preserved=before==after and hashes=={str(p):hash_file(p) for p in inputs}
         except Exception as e:
             # Even if source changed or a checkout disappeared, retain the
-            # ten cases and first factual postflight error, never mark PASS.
+            # eleven independent cases and factual postflight errors, never mark PASS.
             postflight_error=repr(e)
             preserved=False
-        success=preserved and len(cases)==10 and all(c["status"]=="Passed" for c in cases)
+        success=preserved and len(cases)==11 and all(c["status"]=="Passed" for c in cases)
         statuses={c["name"]:c["status"] for c in cases}
-        summary={"kind":"R03P1MetadataAdmissionLocalSourcePreflight",
+        summary={"kind":"R03P1OwnedGeneralSourceSDKPreflight",
           "result":"PassedSourceHostAndSDKOnly" if success else "FailedOrIncomplete",
           "fourRepositoriesBefore":before,"fourRepositoriesAfter":after,
           "sourceSha256":hashes,"sourcePreserved":preserved,
@@ -219,7 +225,7 @@ def main()->None:
           "officialUnitySdkCompilePassed":statuses.get("managed-sdk")=="Passed" and
                                           statuses.get("native-sdk")=="Passed",
           "nativeSDKCandidateMode":True,
-          "expectedNativeSyntaxUnits":70,
+          "expectedNativeSyntaxUnits":75,
           "realUnityEditorLaunched":False,"UnityPlayerExecuted":False,
           "engineOwnerProven":False,"R03Accepted":False,"ReadyForHumanReviewGate":False,
           "historicalEvidenceReclassified":False}
