@@ -1,0 +1,103 @@
+P1 managed receipt correction — raw host test stderr streams
+All compilers/Git/SDK child suites in these tests are mocked.
+
+=== primary/baseline-reproduction.stderr.txt | sha256=1a2d6bfc855f1d05c646f2eee609708ab31a6a08533e0679e7f65b6ec8b8f3be ===
+F
+======================================================================
+FAIL: test_ten_components_pass_with_actual_producer_response (test_p1_managed_receipt.AggregateReceiptIntegration.test_ten_components_pass_with_actual_producer_response)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/p1_receipt_work/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py", line 231, in test_ten_components_pass_with_actual_producer_response
+    self.assertEqual(code,0)
+    ~~~~~~~~~~~~~~~~^^^^^^^^
+AssertionError: 1 != 0
+
+----------------------------------------------------------------------
+Ran 1 test in 0.028s
+
+FAILED (failures=1)
+
+=== primary/fixed-regressions.stderr.txt | sha256=88f212b89c0e039c4f270c172d05959579ed6b8dd2e067e4bcf890cec368f011 ===
+test_managed_failures_preserve_nine_passed_one_failed (__main__.AggregateReceiptIntegration.test_managed_failures_preserve_nine_passed_one_failed) ... ok
+test_postflight_error_retains_failure_receipt (__main__.AggregateReceiptIntegration.test_postflight_error_retains_failure_receipt) ... ok
+test_source_change_never_becomes_aggregate_pass (__main__.AggregateReceiptIntegration.test_source_change_never_becomes_aggregate_pass) ... ok
+test_ten_components_pass_with_actual_producer_response (__main__.AggregateReceiptIntegration.test_ten_components_pass_with_actual_producer_response) ... ok
+test_actual_producer_response_joins_nested_file (__main__.ManagedReceiptContracts.test_actual_producer_response_joins_nested_file) ... ok
+test_directory_in_place_of_receipt_is_rejected (__main__.ManagedReceiptContracts.test_directory_in_place_of_receipt_is_rejected) ... ok
+test_failed_inner_verdict_is_not_promoted (__main__.ManagedReceiptContracts.test_failed_inner_verdict_is_not_promoted) ... ok
+test_file_and_parent_symlinks_are_rejected (__main__.ManagedReceiptContracts.test_file_and_parent_symlinks_are_rejected) ... ok
+test_invalid_binding_shapes_hashes_and_duplicate_keys (__main__.ManagedReceiptContracts.test_invalid_binding_shapes_hashes_and_duplicate_keys) ... ok
+test_invalid_inner_json_or_identity_is_rejected (__main__.ManagedReceiptContracts.test_invalid_inner_json_or_identity_is_rejected) ... ok
+test_missing_result_and_obsolete_root_decoy_are_rejected (__main__.ManagedReceiptContracts.test_missing_result_and_obsolete_root_decoy_are_rejected) ... ok
+test_mutated_result_bytes_are_rejected (__main__.ManagedReceiptContracts.test_mutated_result_bytes_are_rejected) ... ok
+test_wrong_returned_paths_are_rejected (__main__.ManagedReceiptContracts.test_wrong_returned_paths_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.417s
+
+OK
+
+=== linux/test_p1_managed_receipt.py.stderr.bin | sha256=08d5fadf827a41c28319479c5567b777883120e490e00ffcc3900bf6ccb8ea5c ===
+test_managed_failures_preserve_nine_passed_one_failed (__main__.AggregateReceiptIntegration.test_managed_failures_preserve_nine_passed_one_failed) ... ok
+test_postflight_error_retains_failure_receipt (__main__.AggregateReceiptIntegration.test_postflight_error_retains_failure_receipt) ... ok
+test_source_change_never_becomes_aggregate_pass (__main__.AggregateReceiptIntegration.test_source_change_never_becomes_aggregate_pass) ... ok
+test_ten_components_pass_with_actual_producer_response (__main__.AggregateReceiptIntegration.test_ten_components_pass_with_actual_producer_response) ... ok
+test_actual_producer_response_joins_nested_file (__main__.ManagedReceiptContracts.test_actual_producer_response_joins_nested_file) ... ok
+test_directory_in_place_of_receipt_is_rejected (__main__.ManagedReceiptContracts.test_directory_in_place_of_receipt_is_rejected) ... ok
+test_failed_inner_verdict_is_not_promoted (__main__.ManagedReceiptContracts.test_failed_inner_verdict_is_not_promoted) ... ok
+test_file_and_parent_symlinks_are_rejected (__main__.ManagedReceiptContracts.test_file_and_parent_symlinks_are_rejected) ... ok
+test_invalid_binding_shapes_hashes_and_duplicate_keys (__main__.ManagedReceiptContracts.test_invalid_binding_shapes_hashes_and_duplicate_keys) ... ok
+test_invalid_inner_json_or_identity_is_rejected (__main__.ManagedReceiptContracts.test_invalid_inner_json_or_identity_is_rejected) ... ok
+test_missing_result_and_obsolete_root_decoy_are_rejected (__main__.ManagedReceiptContracts.test_missing_result_and_obsolete_root_decoy_are_rejected) ... ok
+test_mutated_result_bytes_are_rejected (__main__.ManagedReceiptContracts.test_mutated_result_bytes_are_rejected) ... ok
+test_wrong_returned_paths_are_rejected (__main__.ManagedReceiptContracts.test_wrong_returned_paths_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.331s
+
+OK
+
+=== linux/test_p1_metadata_preflight.py.stderr.bin | sha256=d097cf69ebb5b8574c2847dba2b8f4bc5a86bf53eebba8587941f4d014ed3062 ===
+test_bounds_and_case_matrix (__main__.PreflightContracts.test_bounds_and_case_matrix) ... ok
+test_candidate_sdk_is_opt_in_and_histories_unchanged (__main__.PreflightContracts.test_candidate_sdk_is_opt_in_and_histories_unchanged) ... ok
+test_help_has_explicit_pins (__main__.PreflightContracts.test_help_has_explicit_pins) ... ok
+test_invalid_pin_and_roots_refuse_before_io (__main__.PreflightContracts.test_invalid_pin_and_roots_refuse_before_io) ... ok
+test_known_remote_identity_pin_coverage (__main__.PreflightContracts.test_known_remote_identity_pin_coverage) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.325s
+
+OK
+
+=== macos/test_p1_managed_receipt.py.stderr.bin | sha256=c5a5da85bf39fe51ab092b77abc7350c3c30d08957b501e97ce507833f686fc0 ===
+test_managed_failures_preserve_nine_passed_one_failed (__main__.AggregateReceiptIntegration.test_managed_failures_preserve_nine_passed_one_failed) ... ok
+test_postflight_error_retains_failure_receipt (__main__.AggregateReceiptIntegration.test_postflight_error_retains_failure_receipt) ... ok
+test_source_change_never_becomes_aggregate_pass (__main__.AggregateReceiptIntegration.test_source_change_never_becomes_aggregate_pass) ... ok
+test_ten_components_pass_with_actual_producer_response (__main__.AggregateReceiptIntegration.test_ten_components_pass_with_actual_producer_response) ... ok
+test_actual_producer_response_joins_nested_file (__main__.ManagedReceiptContracts.test_actual_producer_response_joins_nested_file) ... ok
+test_directory_in_place_of_receipt_is_rejected (__main__.ManagedReceiptContracts.test_directory_in_place_of_receipt_is_rejected) ... ok
+test_failed_inner_verdict_is_not_promoted (__main__.ManagedReceiptContracts.test_failed_inner_verdict_is_not_promoted) ... ok
+test_file_and_parent_symlinks_are_rejected (__main__.ManagedReceiptContracts.test_file_and_parent_symlinks_are_rejected) ... ok
+test_invalid_binding_shapes_hashes_and_duplicate_keys (__main__.ManagedReceiptContracts.test_invalid_binding_shapes_hashes_and_duplicate_keys) ... ok
+test_invalid_inner_json_or_identity_is_rejected (__main__.ManagedReceiptContracts.test_invalid_inner_json_or_identity_is_rejected) ... ok
+test_missing_result_and_obsolete_root_decoy_are_rejected (__main__.ManagedReceiptContracts.test_missing_result_and_obsolete_root_decoy_are_rejected) ... ok
+test_mutated_result_bytes_are_rejected (__main__.ManagedReceiptContracts.test_mutated_result_bytes_are_rejected) ... ok
+test_wrong_returned_paths_are_rejected (__main__.ManagedReceiptContracts.test_wrong_returned_paths_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.461s
+
+OK
+
+=== macos/test_p1_metadata_preflight.py.stderr.bin | sha256=5afbb54ae67b06bca14f830caf215a7d5e28e355bc004f9dad9b19e2d5fdcf47 ===
+test_bounds_and_case_matrix (__main__.PreflightContracts.test_bounds_and_case_matrix) ... ok
+test_candidate_sdk_is_opt_in_and_histories_unchanged (__main__.PreflightContracts.test_candidate_sdk_is_opt_in_and_histories_unchanged) ... ok
+test_help_has_explicit_pins (__main__.PreflightContracts.test_help_has_explicit_pins) ... ok
+test_invalid_pin_and_roots_refuse_before_io (__main__.PreflightContracts.test_invalid_pin_and_roots_refuse_before_io) ... ok
+test_known_remote_identity_pin_coverage (__main__.PreflightContracts.test_known_remote_identity_pin_coverage) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.249s
+
+OK
+
