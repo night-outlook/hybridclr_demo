@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1OwnedOrdinaryClassesActualSourceHostEvidence",
+  "sourceBranch": "codex/assembly-shadow-r01b-h1",
+  "nativeSourceCommit": "2db707eb3021516c2cef962b3d294b4d047e4ef9",
+  "nativeBaseCommit": "fba5b62148076943ba689b40333894f0edd3c7df",
+  "result": "PassedWithinHostScope",
+  "sourceIdentity": {
+    "newReader": "AssemblyShadowVisibility::TryCaptureBoundedOrdinaryClasses",
+    "newCallback": "CaptureOwnedOrdinaryClass",
+    "methodSha256": "0b5ba5bdd6d77d751c3cb90bf5aad8d301c2b4502a630072fd1912a51a518a24",
+    "callbackSha256": "0c908fd16e253a6cd597a2cf0edd9ae64750ef70ac94773225e65707ec77f8a7",
+    "immutableOriginalCollectorSha256": "fb28116f235946d3cdeba64c45e7a09c2f5e73648aad1845b3db3dcbc1b7d0d7",
+    "immutableGeneralSerializerGitBlob": "226b01273d3e30d190422c4c4c740c49a8d957f0",
+    "previousCollectorBodyByteIdentical": true,
+    "existingLegacyAndPlayerSourcesUnchanged": true
+  },
+  "ci": {
+    "repository": "night-outlook/il2cpp_plus",
+    "runId": 38845581521,
+    "url": "https://github.com/night-outlook/il2cpp_plus/actions/runs/38845581521",
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "platform": "ubuntu-24.04 Clang",
+        "compiler": "clang++",
+        "conclusion": "success",
+        "artifactId": 12022793245,
+        "zipSha256": "c3099bb4a310d145d0d2d9d2a3564b70118dfad3b75f32d93b352e88da7a781f",
+        "declaredRegularFilesSha256Verified": 27
+      },
+      {
+        "platform": "ubuntu-24.04 GCC",
+        "compiler": "g++",
+        "conclusion": "success",
+        "artifactId": 12023082255,
+        "zipSha256": "de6f7a53707f6cf4d617d614fed3612673f22a2df306e8a563995d79cb0e911a",
+        "declaredRegularFilesSha256Verified": 27
+      },
+      {
+        "platform": "macos-15 Apple Clang",
+        "compiler": "clang++",
+        "conclusion": "success",
+        "artifactId": 12023146624,
+        "zipSha256": "4d1967ab9afe3aee1a1cb66176d991b274626e4d0cb57861a6b0b4297da5021d",
+        "declaredRegularFilesSha256Verified": 30
+      }
+    ]
+  },
+  "artifactAudit": {
+    "method": "Downloaded original ZIP artifacts using GitHub Connector, read each manifest, compared full ZIP member bytes and SHA256, verified all stdout/stderr command SHA256 receipts, inspected RESULT.json and both test profile stdout.",
+    "archivesChecked": 3,
+    "regularFilesVerified": 84,
+    "missingFiles": 0,
+    "shaOrSizeMismatches": 0,
+    "unlistedFiles": 0,
+    "commandsVerified": 18,
+    "strictAndSanitizedPassedAllJobs": true,
+    "identicalCurrentSourceHashesAcrossThreeJobs": true,
+    "sourcePreservedAllJobs": true
+  },
+  "tests": {
+    "fixedSourceMaximumClasses": 8192,
+    "fixedSourceTextBytes": 2097152,
+    "exactCapacity8192Accepted": true,
+    "overflow8193Rejected": true,
+    "noSourcePointerRetained": true,
+    "originalPhysicalAssemblyImageInterpreterPredicateMatched": true,
+    "explicitMismatchingClassImageVsAssemblyImageFixture": true,
+    "observedActiveGenerationFlipRejected": true,
+    "observedPrivateImagePublicationRejected": true,
+    "missingImageAssemblyPhysicalImageOrNameRejected": true,
+    "sourceNameMutationAfterCaptureImmutable": true,
+    "bufferSelfAliasRejectedAdjacentExternalAccepted": true,
+    "namespaceNullOrEmptyDoesNotAddLeadingDot": true,
+    "constructedGenericAndStagedMetadataFlagsRetained": true,
+    "frozenGeneralOldCurrentThreeWayByteParity": true,
+    "syntheticGeneralV1Bytes": 1403463,
+    "remainingVmDomainsInSyntheticFullV1": "EXPLICIT MOCKS",
+    "fullLiveVmGenerationTicketProven": false
+  },
+  "exploratoryRuns": {
+    "firstApprovedMockTestBeforeFullSourceFix": 38845013705,
+    "failedIntermediates": [
+      38845269722,
+      38845305022,
+      38845505956,
+      38845548286
+    ],
+    "disposition": "Historical failed CI attempts retained; only the final source-bound successful run qualifies the final implementation."
+  },
+  "limits": {
+    "newNativeMethodActuallyInvokedByPlayer": false,
+    "actualUnityNativeSdkCompile": false,
+    "realPlayerRun": false,
+    "realMetadataShutdownReadLeaseProven": false,
+    "upstreamIl2cppClassForEachAllocationBoundProven": false,
+    "recursiveStagedVisibilityStackBoundProven": false,
+    "lockHoldMaxMeasured": false,
+    "metadataClassLifetimeAcrossShutdownProven": false,
+    "fullGeneralExecutionR02CapturesIntegrated": false,
+    "fullyAuthenticatedV2NativeCSharpSemanticVerifier": false,
+    "engineOwnerE0E1Proven": false,
+    "R03Accepted": false
+  },
+  "priorLocal": {
+    "hostPassConsumed": true,
+    "oldNativeCommit": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
+    "oldDemoCommit": "7b9d1d4e37d1731f9f00042eb04892a8afaf7e80",
+    "earlierHostFailPreserved": true
+  },
+  "historicalSNAP01": {
+    "status": "FAIL/ReturnRequired",
+    "passedCells": 14,
+    "failedCells": 4,
+    "slot14ObservedPrefix": 262145,
+    "slot14OriginalV1Limit": 262144,
+    "completeSlot14Length": "Unavailable",
+    "engineUncappedReports500ms": 51213,
+    "engineExit": 71,
+    "originalStrictSCustody": "Blocked"
+  },
+  "acceptance": {
+    "P1Complete": false,
+    "P2Integrated": false,
+    "E0Proven": false,
+    "E1Proven": false,
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "currentOwner": "Primary Implementation",
+  "newLocalValidationAuthorized": false
+}
