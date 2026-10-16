@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1BoundedFirstUseActualSourceHostEvidence",
+  "dateUtc": "2026-10-16",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "nativeSourceCommit": "1d66565855e729bedeaf93ed24078e9a6dbc83ed",
+  "nativeBaseCommit": "339a49b5f1eb18c7cef9390c73ee6b64b0e6a36d",
+  "nativeFirstUseMethodSha256": "c3626338497a16466c3f358f3771eb663fc211b94d6bd5ee6223364763bf4a2b",
+  "result": "PassedWithinHostScope",
+  "CI": {
+    "repository": "night-outlook/il2cpp_plus",
+    "runId": 38839990454,
+    "url": "https://github.com/night-outlook/il2cpp_plus/actions/runs/38839990454",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "platform": "macos-15 Apple Clang",
+        "conclusion": "success",
+        "artifactId": 12020224795,
+        "archiveBytes": 430222,
+        "archiveSha256": "42f9d25ee014da0c01e46ed51a9c90f99de647f1b18311839ab118f1d70c8ef6",
+        "regularFilesVerified": 21
+      },
+      {
+        "platform": "ubuntu-24.04 GCC",
+        "conclusion": "success",
+        "artifactId": 12020434078,
+        "archiveBytes": 791524,
+        "archiveSha256": "73949de16183d515a80fa86383934984df3bbc809c470adca4c60c381fe96ef6",
+        "regularFilesVerified": 18
+      },
+      {
+        "platform": "ubuntu-24.04 Clang",
+        "conclusion": "success",
+        "artifactId": 12021270626,
+        "archiveBytes": 863522,
+        "archiveSha256": "81cd397380f2f46b31ab00facc27711abf99c72f23eb38ea07302ad310e9eb89",
+        "regularFilesVerified": 18
+      }
+    ],
+    "profilesEachJob": [
+      "strict",
+      "sanitized"
+    ],
+    "commandsEachJob": [
+      "strict-compile",
+      "strict-run",
+      "sanitized-compile",
+      "sanitized-run"
+    ]
+  },
+  "independentArchiveAudit": {
+    "method": "Download original ZIPs via GitHub Connector; independently check all manifest-declared regular file lengths and SHA-256 against ZIP entry bytes; inspect RESULT.json source/method hashes and command receipts.",
+    "regularFiles": 57,
+    "missing": 0,
+    "hashOrLengthMismatches": 0,
+    "unlisted": 0,
+    "sha256IdenticalMethodAcrossThreeJobs": true,
+    "sourcePreservedAllJobs": true,
+    "completeStrictAndSanitizedAllJobs": true
+  },
+  "additionalCurrentSourceCi": {
+    "runId": 38839990408,
+    "workflow": "R03 general serializer exact V2 interop",
+    "nativeSourceCommit": "1d66565855e729bedeaf93ed24078e9a6dbc83ed",
+    "conclusion": "success",
+    "platformJobsPassed": 3,
+    "scope": "Existing general snapshot/serializer and V2 host contract, not live P1 metadata"
+  },
+  "sourceScope": {
+    "newNativeApi": "AssemblyShadow::TryCaptureBoundedFirstUses",
+    "newHeader": "libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+    "originalGetDiagnosticsJsonUnchanged": true,
+    "originalGetExecutionDiagnosticsJsonUnchanged": true,
+    "previousTryCaptureBoundedTransactionStatusUnchanged": true,
+    "previousTryCaptureBoundedTransactionInventoryUnchanged": true,
+    "realProductionMethodBodyCompiledUnderMocks": true,
+    "UsageLockRawCopyWithoutClassDereference": true,
+    "candidateNamesCopiedAfterUsageLock": true,
+    "sUsageGenerationReadOnlyUnderUsageLock": true,
+    "changedSourceDetected": true,
+    "noExistingPlayerOrManagedSourceCallsNewMethod": true,
+    "liveClassBearingRowsRefusedWithoutMetadataProof": true
+  },
+  "limits": {
+    "maxCandidateSlots": 4096,
+    "ownedNameDetailTypeTextBytes": 1048576,
+    "rawDetailBytesPerCandidate": 160,
+    "classTypeResolverSourceLifetimeProof": "Unavailable",
+    "classBearingNativeMethodComplete": false,
+    "opaqueClassTokenMayNotBeDereferencedWithoutLifetimeTicket": true,
+    "lastLocalHostValidationNativeCommit": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
+    "lastLocalHostValidationDemoCommit": "7b9d1d4e37d1731f9f00042eb04892a8afaf7e80"
+  },
+  "tests": [
+    "first-use exact legacy name/detail/sequence/kind/thread/timestamp for class-free fields",
+    "sequence 0 and UINT64_MAX decimal formatting",
+    "candidate name embedded NUL and bounded raw detail C-string",
+    "source data mutation after capture does not change owned row",
+    "4096 candidate slots accepted; 4097 rejected",
+    "source generation change under second short UsageLock rejected",
+    "candidate registry identity change rejected",
+    "malformed missing NUL terminator in char[160] rejected",
+    "null Candidate entry rejected",
+    "oversized name and fixed text budget rejected",
+    "wrong phase/duplicate Seal rejected",
+    "self-alias rejected and independent adjacent buffer accepted",
+    "class-bearing real source refuses complete capture",
+    "synthetic future metadata resolver requires matching opaque token and preserves namespace-dot-name",
+    "complete general V1 JSON synthesized with MOCKED non-first-use VM sources: 980 bytes exact parity"
+  ],
+  "hostEvidenceLimitations": [
+    "all tests compile actual new production method source against mocked CandidateRegistry and UsageLock",
+    "no installed official Unity/IL2CPP build or actual Player executed",
+    "candidate/Class/Metadata lifetime after terminal not proved",
+    "metadata resolver is fixture-only, not called by live method",
+    "no measured production UsageLock duration, contention, RSS, GC, finalizer or scheduler",
+    "no whole-VM generation/atomic epoch or field14/15 semantic acceptance",
+    "no new Local Validation request or run"
+  ],
+  "historical": {
+    "SNAP01": "FAIL/ReturnRequired",
+    "SNAP01CellsPassed": 14,
+    "SNAP01CellsFailed": 4,
+    "slot14FirstObservedPrefix": 262145,
+    "slot14OriginalV1Limit": 262144,
+    "slot14TrueLength": "Unavailable",
+    "engineUncappedReportsPer500ms": 51213,
+    "engineExit": 71,
+    "strictOriginalSCustody": "Blocked",
+    "previousLocalHostPASSConsumed": true,
+    "earlierLocalHostFAILPreserved": true
+  },
+  "acceptance": {
+    "P1Complete": false,
+    "P2Integrated": false,
+    "E0EngineOwnerProven": false,
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "nextOwner": "Primary Implementation",
+  "newLocalAssignmentAuthorized": false,
+  "unrelatedRedHistoricalCI": "Separate R02 primary and terminal business-entry source assertions are not qualified as green by this scoped CI."
+}
