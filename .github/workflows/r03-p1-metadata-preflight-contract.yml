@@ -1,10 +1,12 @@
-name: R03 P1 Local candidate source-preflight CLI guards
+name: R03 P1 managed receipt and aggregate contracts
 on:
   push:
     branches: ['codex/assembly-shadow-r01b-h1']
     paths:
       - 'Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py'
       - 'Tools/AssemblyShadow/R03IR/test_p1_metadata_preflight.py'
+      - 'Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py'
+      - 'Tools/AssemblyShadow/R03/build_api.py'
       - 'Tools/AssemblyShadow/R03/native_validation.py'
       - '.github/workflows/r03-p1-metadata-preflight-contract.yml'
   workflow_dispatch:
@@ -27,13 +29,61 @@ jobs:
           sparse-checkout: |
             Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py
             Tools/AssemblyShadow/R03IR/test_p1_metadata_preflight.py
+            Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py
+            Tools/AssemblyShadow/R03/build_api.py
             Tools/AssemblyShadow/R03/native_validation.py
             Tools/AssemblyShadow/R03/batch_contract.py
             Tools/AssemblyShadow/R03/batch_evidence.py
             Tools/AssemblyShadow/R03/command_lifetime.py
           sparse-checkout-cone-mode: false
-      - name: Static parser, source ownership and negative argument gates
+      - name: Original CLI and source-bound producer receipt integration
         shell: bash
         run: |
           set -euo pipefail
-          python3 -B Tools/AssemblyShadow/R03IR/test_p1_metadata_preflight.py
+          python3 -B - "$RUNNER_TEMP/p1-managed-receipt-${{ github.run_id }}-${{ github.run_attempt }}" <<'PY'
+          import hashlib,json,os,platform,re,subprocess,sys,time
+          from pathlib import Path
+          out=Path(sys.argv[1]);out.mkdir(mode=0o700)
+          root=Path('Tools/AssemblyShadow')
+          paths=[root/'R03IR'/n for n in ('run_p1_metadata_local_preflight.py','test_p1_metadata_preflight.py','test_p1_managed_receipt.py')]
+          paths += [root/'R03'/n for n in ('build_api.py','native_validation.py')]
+          def hashes():
+              return {str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
+          before=hashes();rows=[]
+          for name,count in (('test_p1_metadata_preflight.py',5),('test_p1_managed_receipt.py',13)):
+              argv=[sys.executable,'-B',str(root/'R03IR'/name)]
+              row={'argv':argv,'expectedTests':count,'startedUnix':time.time(),'status':'Failed'}
+              try:
+                  p=subprocess.run(argv,capture_output=True,timeout=180)
+                  (out/(name+'.stdout.bin')).write_bytes(p.stdout)
+                  (out/(name+'.stderr.bin')).write_bytes(p.stderr)
+                  text=p.stderr.decode('utf-8',errors='replace')
+                  match=re.search(r'Ran (\d+) tests? in ',text)
+                  found=int(match.group(1)) if match else 0
+                  row.update(exit=p.returncode,tests=found,
+                      stdoutSha256=hashlib.sha256(p.stdout).hexdigest(),
+                      stderrSha256=hashlib.sha256(p.stderr).hexdigest())
+                  row['status']='Passed' if p.returncode==0 and found==count else 'Failed'
+                  print(text)
+              except Exception as error:
+                  row['exception']=repr(error)
+              row['finishedUnix']=time.time();rows.append(row)
+          after=hashes();passed=before==after and len(rows)==2 and all(r['status']=='Passed' for r in rows)
+          result={'kind':'R03P1ManagedReceiptHostCI','result':'PassedWithinHostScope' if passed else 'FailedOrIncomplete',
+              'sourceCommit':os.environ['GITHUB_SHA'],'platform':platform.platform(),'python':sys.version,
+              'commands':rows,'sourcesBefore':before,'sourcesAfter':after,'sourcePreserved':before==after,
+              'gitAndSdkChildrenMocked':True,'producerReceiptExpressionsFromActualSource':True,
+              'officialSdkCompile':False,'UnityPlayerRun':False,'runtimeAcceptance':False}
+          (out/'RESULT.json').write_text(json.dumps(result,indent=2)+'\n')
+          files=[{'path':p.name,'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(out.iterdir()) if p.is_file()]
+          (out/'MANIFEST.json').write_text(json.dumps({'files':files},indent=2)+'\n')
+          if not passed:raise SystemExit(1)
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: p1-managed-receipt-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/p1-managed-receipt-${{ github.run_id }}-${{ github.run_attempt }}
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
