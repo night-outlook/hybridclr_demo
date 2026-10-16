@@ -147,14 +147,27 @@ def main()->None:
                 "--sdk-scratch",scratch,"--candidate-native-sha",a.expected_native],
                 "Passed",file="results.json",timeout=7200)
     finally:
-        after=[verify_repo(ws,n,pins[n]) for n in REPOS]
-        preserved=before==after and hashes=={str(p):hash_file(p) for p in inputs}
+        postflight_error=None
+        after=[]
+        try:
+            after=[verify_repo(ws,n,pins[n]) for n in REPOS]
+            preserved=before==after and hashes=={str(p):hash_file(p) for p in inputs}
+        except Exception as e:
+            # Even if source changed or a checkout disappeared, retain the
+            # ten cases and first factual postflight error, never mark PASS.
+            postflight_error=repr(e)
+            preserved=False
         success=preserved and len(cases)==10 and all(c["status"]=="Passed" for c in cases)
+        statuses={c["name"]:c["status"] for c in cases}
         summary={"kind":"R03P1MetadataAdmissionLocalSourcePreflight",
           "result":"PassedSourceHostAndSDKOnly" if success else "FailedOrIncomplete",
           "fourRepositoriesBefore":before,"fourRepositoriesAfter":after,
-          "sourceSha256":hashes,"sourcePreserved":preserved,"commands":cases,
-          "officialUnitySdkCompile":True,"nativeSDKCandidateMode":True,
+          "sourceSha256":hashes,"sourcePreserved":preserved,
+          "postflightError":postflight_error,"commands":cases,
+          "officialUnitySdkCompileAttempted":"managed-sdk" in statuses and "native-sdk" in statuses,
+          "officialUnitySdkCompilePassed":statuses.get("managed-sdk")=="Passed" and
+                                          statuses.get("native-sdk")=="Passed",
+          "nativeSDKCandidateMode":True,
           "expectedNativeSyntaxUnits":70,
           "realUnityEditorLaunched":False,"UnityPlayerExecuted":False,
           "engineOwnerProven":False,"R03Accepted":False,"ReadyForHumanReviewGate":False,
