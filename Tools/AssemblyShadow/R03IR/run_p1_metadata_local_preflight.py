@@ -1,0 +1,171 @@
+#!/usr/bin/env python3
+"""One-shot R03 P1 SOURCE preflight: host suites + SDK syntax, NO Players.
+
+A separately authorized candidate preflight. Historical Local/Player roots and
+R03/source-pins.json are immutable. This is not R03/V1/runtime acceptance.
+"""
+from __future__ import annotations
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import sys
+import time
+
+BRANCH="codex/assembly-shadow-r01b-h1"
+REPOS=("hybridclr_demo","hybridclr","hybridclr_unity","il2cpp_plus")
+FIXED={"hybridclr":"4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+       "hybridclr_unity":"948c0e3b4f8891481301770115e8ba4945eea6de"}
+
+def hash_file(path:Path)->str:
+    h=hashlib.sha256()
+    with path.open("rb") as f:
+        for part in iter(lambda:f.read(1<<20),b""):h.update(part)
+    return h.hexdigest()
+
+def run(args:list[str],timeout:int=120):
+    return subprocess.run(list(map(str,args)),capture_output=True,timeout=timeout)
+
+def verify_repo(base:Path,name:str,sha:str)->dict:
+    path=base/name
+    if not path.is_dir() or path.is_symlink() or path.resolve()!=path:
+        raise RuntimeError("Invalid canonical local checkout: "+str(path))
+    def git(*args):
+        p=run(["git","-C",path,*args])
+        if p.returncode:raise RuntimeError("git verification failed "+name+": "+str(args))
+        return p.stdout.decode().strip()
+    remote=git("remote","get-url","origin")
+    canonical="night-outlook/"+name
+    if remote not in {"https://github.com/"+canonical,"https://github.com/"+canonical+".git",
+                   "git@github.com:"+canonical,"git@github.com:"+canonical+".git",
+                   "ssh://git@github.com/"+canonical+".git"}:
+        raise RuntimeError("Remote repository identity mismatch "+name)
+    if git("branch","--show-current")!=BRANCH or git("rev-parse","HEAD")!=sha:
+        raise RuntimeError("Branch/commit mismatch "+name)
+    if git("status","--porcelain"):
+        raise RuntimeError("Dirty source checkout "+name)
+    parts=git("ls-remote","origin","refs/heads/"+BRANCH).split()
+    if len(parts)!=2 or parts[0]!=sha or parts[1]!="refs/heads/"+BRANCH:
+        raise RuntimeError("Remote HEAD differs or unavailable "+name)
+    return {"repository":canonical,"path":str(path),"branch":BRANCH,
+            "head":sha,"remoteHead":parts[0],"origin":remote,"clean":True}
+
+def main()->None:
+    parser=argparse.ArgumentParser(description=__doc__)
+    for flag in ("workspace","unity","output","sdk-scratch"):
+        parser.add_argument("--"+flag,required=True,type=Path)
+    for flag in ("expected-demo","expected-native"):
+        parser.add_argument("--"+flag,required=True)
+    a=parser.parse_args()
+    if not __debug__:raise RuntimeError("Python -O forbidden")
+    for commit in (a.expected_demo,a.expected_native):
+        if not re.fullmatch(r"[a-f0-9]{40}",commit):raise RuntimeError("Expected full 40-hex SHA")
+    ws=a.workspace
+    if not ws.is_absolute() or ws!=ws.resolve(strict=True) or not ws.is_dir():
+        raise RuntimeError("Canonical absolute workspace required")
+    dest=a.output
+    scratch=a.sdk_scratch
+    if (not dest.is_absolute() or dest!=dest.resolve(strict=False) or dest.exists()
+        or not dest.parent.is_dir() or not scratch.is_absolute()
+        or scratch!=scratch.resolve(strict=False) or scratch.exists()
+        or not scratch.parent.is_dir() or ws in dest.parents or dest in ws.parents
+        or ws in scratch.parents or scratch in ws.parents
+        or scratch==dest or scratch in dest.parents or dest in scratch.parents):
+        raise RuntimeError("Unused external distinct evidence and SDK scratch roots required")
+    if not a.unity.is_file() or not a.unity.as_posix().endswith(
+            "/2022.3.62f2/Unity.app/Contents/MacOS/Unity"):
+        raise RuntimeError("Exact installed Unity2022.3.62f2 Editor binary required")
+    pins=dict(FIXED,hybridclr_demo=a.expected_demo,il2cpp_plus=a.expected_native)
+    before=[verify_repo(ws,n,pins[n]) for n in REPOS]
+    demo=ws/"hybridclr_demo"
+    native=ws/"il2cpp_plus"
+    py=sys.executable
+    # Scripts and gate sources are bound both before and after the batch.
+    inputs=[
+        demo/"Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py",
+        demo/"Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py",
+        demo/"Tools/AssemblyShadow/R03/native_validation.py",
+        demo/"Tools/AssemblyShadow/R03/build_api.py",
+        demo/"Tools/AssemblyShadow/R03/source-pins.json",
+        native/"libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+        native/"libil2cpp/vm/Runtime.cpp",
+        native/"libil2cpp/vm/Assembly.cpp",
+        native/"libil2cpp/vm/AssemblyShadowVisibility.cpp",
+        native/"tools/r03/diagnostic_stream/run_metadata_lifetime_gate.py",
+    ]
+    hashes={str(p):hash_file(p) for p in inputs}
+    dest.mkdir(mode=0o700)
+    cases=[]
+    def execute(name:str,argv:list,expected:str,file:str="RESULT.json",timeout:int=1800):
+        output=dest/name
+        began=time.time()
+        result={"name":name,"command":list(map(str,argv)),"startedUnix":began,
+                "output":str(output),"expectedInnerResult":expected,"status":"Failed"}
+        try:
+            proc=run(argv,timeout)
+            logdir=dest/"commands"/name
+            logdir.mkdir(parents=True)
+            for filename,data in (("stdout.bin",proc.stdout),("stderr.bin",proc.stderr)):
+                (logdir/filename).write_bytes(data)
+                result[filename+"Sha256"]=hashlib.sha256(data).hexdigest()
+            result["exit"]=proc.returncode
+            if (output/file).is_file():
+                record=json.loads((output/file).read_text())
+                result["innerResult"]=record.get("result")
+                result["innerResultSha256"]=hash_file(output/file)
+            result["status"]="Passed" if proc.returncode==0 and result.get("innerResult")==expected else "Failed"
+        except Exception as e:result["exception"]=repr(e)
+        result["finishedUnix"]=time.time()
+        cases.append(result)
+        (dest/"commands"/(name+".json")).write_text(json.dumps(result,indent=2)+"\n")
+    try:
+        execute("legacy-host",[py,"-B",demo/"Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py",
+              "--workspace",ws,"--expected-demo",a.expected_demo,
+              "--expected-native",a.expected_native,"--output",dest/"legacy-host"],"PassedHostOnly")
+        specs=(
+            ("metadata-gate","run_metadata_lifetime_gate.py","PassedWithinHostScope"),
+            ("bounded-class","run_bounded_ordinary_classes.py","PassedWithinHostScope"),
+            ("bounded-physical","run_bounded_physical_assemblies.py","PassedWithinHostScope"),
+            ("bounded-first-use","run_bounded_first_use.py","PassedWithinHostScope"),
+            ("bounded-status","run_bounded_transaction_status.py","PassedWithinHostScope"),
+            ("bounded-inventory","run_bounded_transaction_inventory.py","PassedWithinHostScope"),
+            ("frozen-v2","run_frozen_v2.py","PassedWithinInactiveHostScope"),
+        )
+        for name,script,expected in specs:
+            cmd=[py,"-B",native/"tools/r03/diagnostic_stream"/script,
+                 "--native",native,"--output",dest/name]
+            if name=="frozen-v2":cmd.extend(("--demo",demo))
+            execute(name,cmd,expected)
+        execute("managed-sdk",[py,"-B",demo/"Tools/AssemblyShadow/R03/build_api.py",
+                "--workspace",ws,"--unity",a.unity,"--output",dest/"managed-sdk"],
+                "Passed",file="results.json",timeout=3600)
+        execute("native-sdk",[py,"-B",demo/"Tools/AssemblyShadow/R03/native_validation.py",
+                "--workspace",ws,"--unity",a.unity,"--output",dest/"native-sdk",
+                "--sdk-scratch",scratch,"--candidate-native-sha",a.expected_native],
+                "Passed",file="results.json",timeout=7200)
+    finally:
+        after=[verify_repo(ws,n,pins[n]) for n in REPOS]
+        preserved=before==after and hashes=={str(p):hash_file(p) for p in inputs}
+        success=preserved and len(cases)==10 and all(c["status"]=="Passed" for c in cases)
+        summary={"kind":"R03P1MetadataAdmissionLocalSourcePreflight",
+          "result":"PassedSourceHostAndSDKOnly" if success else "FailedOrIncomplete",
+          "fourRepositoriesBefore":before,"fourRepositoriesAfter":after,
+          "sourceSha256":hashes,"sourcePreserved":preserved,"commands":cases,
+          "officialUnitySdkCompile":True,"nativeSDKCandidateMode":True,
+          "expectedNativeSyntaxUnits":70,
+          "realUnityEditorLaunched":False,"UnityPlayerExecuted":False,
+          "engineOwnerProven":False,"R03Accepted":False,"ReadyForHumanReviewGate":False,
+          "historicalEvidenceReclassified":False}
+        (dest/"RESULT.json").write_text(json.dumps(summary,indent=2)+"\n")
+        # Inventory final evidence outputs but never copy SDK/vendor bytes.
+        manifest=[{"path":str(p.relative_to(dest)),"size":p.stat().st_size,
+                   "sha256":hash_file(p)} for p in sorted(dest.rglob("*")) if p.is_file() and not p.is_symlink()]
+        (dest/"MANIFEST.json").write_text(json.dumps({"files":manifest},indent=2)+"\n")
+    print(json.dumps({"result":summary["result"],
+                      "cases":[(c["name"],c["status"]) for c in cases]},indent=2))
+    if summary["result"]!="PassedSourceHostAndSDKOnly":raise SystemExit(1)
+
+if __name__=="__main__":main()
