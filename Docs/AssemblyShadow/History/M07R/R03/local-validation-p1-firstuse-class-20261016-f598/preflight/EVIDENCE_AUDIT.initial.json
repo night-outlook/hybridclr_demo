@@ -1,0 +1,261 @@
+{
+  "result": "PassedFactualEvidenceAudit",
+  "batchResult": "PassedSourceHostAndSDKOnly",
+  "outerStates": {
+    "Passed": 10
+  },
+  "rawResultSha256": "dabfae25587fcbbaae81d7d3bbe4c8d94928e29a7c1b85228e75a8a83a9943bc",
+  "rawManifestSha256": "8852c93d82f008b7cde8498a3fb3a8d8597d0870f1e71e2fa4bcfdf44ceaf860",
+  "regularInventoryEntries": 3696,
+  "symlinksOmittedByOuterManifestButAuthenticatedByLegacyManifest": [
+    {
+      "path": "legacy-host/native-v2-legacy-sink/evidence/cases/posix-93/diagnostics.v2",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-FIRSTUSE-CLASS-20261016-f598/legacy-host/native-v2-legacy-sink/evidence/cases/posix-93/target"
+    },
+    {
+      "path": "legacy-host/native-v2-legacy-sink/evidence/cases/posix-92/diagnostics.v2",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-FIRSTUSE-CLASS-20261016-f598/legacy-host/native-v2-legacy-sink/evidence/cases/posix-92/target"
+    },
+    {
+      "path": "legacy-host/native-v2-file-transaction/evidence/sanitized/case-0164/alias",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-FIRSTUSE-CLASS-20261016-f598/legacy-host/native-v2-file-transaction/evidence/sanitized/case-0164/transaction"
+    },
+    {
+      "path": "legacy-host/native-v2-file-transaction/evidence/strict/case-0071/alias",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-FIRSTUSE-CLASS-20261016-f598/legacy-host/native-v2-file-transaction/evidence/strict/case-0071/transaction"
+    }
+  ],
+  "localizedCommandStreamReceiptsVerified": 394,
+  "sourcePreserved": true,
+  "installedSdkPreserved": true,
+  "managed": {
+    "actualResult": "Passed",
+    "aggregateState": "Passed",
+    "exit": 0,
+    "obsoleteRootReceiptAbsent": true,
+    "innerResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-FIRSTUSE-CLASS-20261016-f598/managed-sdk/build-api/results.json",
+    "innerResultSha256": "425577db1a66ab5b6d62ceca778ad6350d41ab767b7c3de7e61f1650e81427af",
+    "returnedBindingVerified": true,
+    "actualResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-FIRSTUSE-CLASS-20261016-f598/managed-sdk/build-api/results.json",
+    "actualResultSha256": "425577db1a66ab5b6d62ceca778ad6350d41ab767b7c3de7e61f1650e81427af",
+    "productCount": 5,
+    "inputCount": 428,
+    "expectedNegative": [
+      "classless-ownership",
+      "existing-fail-closed",
+      "existing-capacity-phase",
+      "existing-token-contract",
+      "classless-general-parity",
+      "class-ownership",
+      "null-absent-names",
+      "cstring-budget",
+      "cstring-alias",
+      "owner-unavailable",
+      "usage-after-metadata",
+      "shutdown-drain",
+      "dense-general-parity",
+      "unresolved-refusal",
+      "parallel-captures"
+    ],
+    "warnings": 68
+  },
+  "native": {
+    "actualResult": "Passed",
+    "passedConfigurations": 70,
+    "failedConfigurations": 0,
+    "notRunConfigurations": 0,
+    "distinctTranslationUnits": 14,
+    "profiles": [
+      "candidate",
+      "debug",
+      "diagnostics-off",
+      "feature-off",
+      "probe-off"
+    ],
+    "copiedSdkInputsVerified": 1900,
+    "candidateNativeSha": "1e1d152f0e05b8038427c76a9c8a9b4b60998a72",
+    "warnings": 742
+  },
+  "hostSummaries": {
+    "metadata-gate": {
+      "result": "PassedWithinHostScope",
+      "profilesCompleted": [
+        "strict",
+        "sanitized"
+      ],
+      "sourcePreserved": true,
+      "firstError": null,
+      "sourceContract": {
+        "globalGateDefinitionOffset": 2668,
+        "openBeforeReady": true,
+        "closeBeforeTeardown": true,
+        "defaultReaderSourceEpoch": 1,
+        "assembliesReadGateBeforeSourceLock": true,
+        "classesReadGateBeforeSourceLock": true
+      },
+      "commandCount": 12
+    },
+    "bounded-class": {
+      "result": "PassedWithinHostScope",
+      "profilesCompleted": [
+        "strict",
+        "sanitized"
+      ],
+      "sourcePreserved": true,
+      "firstError": null,
+      "commandCount": 6
+    },
+    "bounded-physical": {
+      "result": "PassedWithinHostScope",
+      "profilesCompleted": [
+        "strict",
+        "sanitized"
+      ],
+      "sourcePreserved": true,
+      "firstError": null,
+      "commandCount": 6
+    },
+    "bounded-first-use": {
+      "result": "PassedWithinHostScope",
+      "profilesCompleted": [
+        "strict",
+        "sanitized"
+      ],
+      "sourcePreserved": true,
+      "firstError": null,
+      "commandCount": 4
+    },
+    "bounded-status": {
+      "result": "PassedWithinHostScope",
+      "profilesCompleted": [
+        "strict",
+        "sanitized"
+      ],
+      "sourceUnchanged": true,
+      "firstError": null,
+      "commandCount": 4
+    },
+    "bounded-inventory": {
+      "result": "PassedWithinHostScope",
+      "completedProfiles": [
+        "strict",
+        "sanitized"
+      ],
+      "sourcePreserved": true,
+      "firstFailure": null,
+      "commandCount": 4
+    },
+    "frozen-v2": {
+      "result": "PassedWithinInactiveHostScope",
+      "profiles": [
+        {
+          "profile": "strict",
+          "originalGeneralBytes": 300032,
+          "originalExecutionBytes": 331078,
+          "encodedBytes": 631720,
+          "sha256": "f1e193ee55e34bcf051f6835949c1889deeec019064fcfc9604fd1264891038e",
+          "strictWireReferenceByteParity": true,
+          "originalSemanticStatus": "Failed",
+          "completeCapturedClasses": 1024,
+          "overflowRejected": true,
+          "partialSinkRejected": true,
+          "invalidUtf8Rejected": true,
+          "combinedArtifactOverflowRejected": true
+        },
+        {
+          "profile": "sanitized",
+          "originalGeneralBytes": 300032,
+          "originalExecutionBytes": 331078,
+          "encodedBytes": 631720,
+          "sha256": "f1e193ee55e34bcf051f6835949c1889deeec019064fcfc9604fd1264891038e",
+          "strictWireReferenceByteParity": true,
+          "originalSemanticStatus": "Failed",
+          "completeCapturedClasses": 1024,
+          "overflowRejected": true,
+          "partialSinkRejected": true,
+          "invalidUtf8Rejected": true,
+          "combinedArtifactOverflowRejected": true
+        }
+      ],
+      "sourceUnchanged": true,
+      "firstError": null,
+      "commandCount": 12
+    }
+  },
+  "legacyGeneralProfiles": [
+    {
+      "name": "strict",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "sanitized",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "legacyParityCases": [
+    {
+      "profile": "strict",
+      "variant": "n-large",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 331078,
+      "sha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+      "exactByteParity": true
+    },
+    {
+      "profile": "strict",
+      "variant": "empty",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 0,
+      "bytes": 327,
+      "sha256": "f77a59c273a6856ab85019922f8947eb3259833b93678f3d16aa5955045bbd75",
+      "exactByteParity": true
+    },
+    {
+      "profile": "strict",
+      "variant": "debug-class-flags",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 342307,
+      "sha256": "33d99dbb2c95cc9a90b333add09eb98bbe6815a4db2865f33c21d96dbc191669",
+      "exactByteParity": true
+    },
+    {
+      "profile": "sanitized",
+      "variant": "n-large",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 331078,
+      "sha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+      "exactByteParity": true
+    },
+    {
+      "profile": "sanitized",
+      "variant": "empty",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 0,
+      "bytes": 327,
+      "sha256": "f77a59c273a6856ab85019922f8947eb3259833b93678f3d16aa5955045bbd75",
+      "exactByteParity": true
+    },
+    {
+      "profile": "sanitized",
+      "variant": "debug-class-flags",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 342307,
+      "sha256": "33d99dbb2c95cc9a90b333add09eb98bbe6815a4db2865f33c21d96dbc191669",
+      "exactByteParity": true
+    }
+  ],
+  "noNewCompilerErrors": true,
+  "aggregateVerdictPreserved": true,
+  "realUnityOrPlayerRun": false,
+  "runtimeAcceptance": false
+}

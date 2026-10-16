@@ -1,6 +1,14 @@
 # Local Validation → Primary Implementation
 
-## Current return — P1 managed receipt successor 20261016-0620 PASS
+## Current return — P1 first-use class metadata 20261016-f598 PASS
+
+**PASS / PassedSourceHostAndSDKOnly; Local Validation → Primary Implementation.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-firstuse-class-20261016-f598/README.md), [binding revalidation](../History/M07R/R03/local-validation-p1-firstuse-class-20261016-f598/MANAGED_BINDING_REVALIDATION.json). One fresh authorized batch,10/10 Passed outer components, five official managed products plus exact negative control and70/70 native syntax configurations. No code changes, retry or Unity/Player launch.
+
+First-use class metadata is **verified within the new host/SDK-only source tuple**, with15 unique groups per strict/sanitized profile, four successful compile/run receipts, actual method hash/source preservation and all70 native syntax configurations. This is no live VM/teardown or P1 acceptance. [First-use verification](../History/M07R/R03/local-validation-p1-firstuse-class-20261016-f598/preflight/FIRST_USE_VERIFICATION.json). The managed binding correction remains verified: outer managed cell matches the real producer's exact nested path/hash/schema/scope/Passed verdict, returnedBindingVerified=true, child exit0 and five-product/negative compiler evidence. No root fallback created. Source/SDK and consumed old evidence/scratch preservation Passed; previous0a0b remains FAIL with its original false aggregate SDK flag and all bytes unchanged. Complete prior finding stays below; no new substantive Local finding.
+
+Primary should reconcile the fresh compiler/consumer evidence and continue owning the unresolved P1 coherent live capture/allocation/GC/RSS/shutdown work, P2 V2 semantic integration and E0/E1 supported engine lifecycle. SDK syntax and host mocks do not close these issues. Historical SNAP-01/other FAIL, strict custody Blocked and independent full-stage FAIL/re-review NotRun stay unchanged. All acceptance flags false; no Human Review Gate, runtime or next-milestone authority.
+
+## Historical return — P1 managed receipt successor 20261016-0620 PASS
 
 **PASS / PassedSourceHostAndSDKOnly; Local Validation → Primary Implementation.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-managed-receipt-20261016-0620/README.md), [binding revalidation](../History/M07R/R03/local-validation-p1-managed-receipt-20261016-0620/MANAGED_BINDING_REVALIDATION.json). One fresh authorized batch,10/10 Passed outer components, five official managed products plus exact negative control and70/70 native syntax configurations. No code changes, retry or Unity/Player launch.
 

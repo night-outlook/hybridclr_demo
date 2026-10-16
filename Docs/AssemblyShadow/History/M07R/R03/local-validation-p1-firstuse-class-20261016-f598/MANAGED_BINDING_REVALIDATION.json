@@ -1,0 +1,49 @@
+{
+  "priorFinding": "IR-LOCAL-P1-MANAGED-RECEIPT-01",
+  "status": "VerifiedInCurrentSourceSDKOnlyCycle",
+  "priorOutcomeUnchanged": "FAIL/FailedOrIncomplete",
+  "sourceTuple": {
+    "hybridclr_demo": "c83707ac2d8b562a745ea2568cde77fc2cf030c4",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "1e1d152f0e05b8038427c76a9c8a9b4b60998a72"
+  },
+  "testedDemoSourceAnchor": "06209426b765a805da2cc2f810ba5da390787099",
+  "managedOuter": {
+    "name": "managed-sdk",
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+      "-B",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/build_api.py",
+      "--workspace",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+      "--unity",
+      "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+      "--output",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-FIRSTUSE-CLASS-20261016-f598/managed-sdk"
+    ],
+    "startedUnix": 1792141765.174318,
+    "output": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-FIRSTUSE-CLASS-20261016-f598/managed-sdk",
+    "expectedInnerResult": "Passed",
+    "status": "Passed",
+    "stdout.binSha256": "23fbdc2a9bc55160e80146c93cd4b57169e4f719cd1f5561c269daf6b9ad2e62",
+    "stderr.binSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exit": 0,
+    "innerResult": "Passed",
+    "innerResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-FIRSTUSE-CLASS-20261016-f598/managed-sdk/build-api/results.json",
+    "innerResultSha256": "425577db1a66ab5b6d62ceca778ad6350d41ab767b7c3de7e61f1650e81427af",
+    "returnedBindingVerified": true,
+    "finishedUnix": 1792141767.661367
+  },
+  "actualManagedReceiptSha256": "425577db1a66ab5b6d62ceca778ad6350d41ab767b7c3de7e61f1650e81427af",
+  "fiveProductOutputsHashVerified": true,
+  "expectedNegativeVerified": true,
+  "all70NativeConfigurationsVerified": true,
+  "sourceSdkAndConsumedEvidencePreserved": true,
+  "runtimeAcceptance": false,
+  "remainingPrimaryWork": [
+    "P1 coherent bounded live capture/GC/RSS/shutdown safety",
+    "P2 native/C# V2 semantic integration",
+    "E0/E1 supported engine-owner lifecycle"
+  ]
+}

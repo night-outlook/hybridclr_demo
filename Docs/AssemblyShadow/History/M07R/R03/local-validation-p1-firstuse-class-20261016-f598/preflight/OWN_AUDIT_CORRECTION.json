@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-16T09:11:56.048759+00:00",
+  "scope": "Owned read-only audit metadata only",
+  "reason": "First-use group-list local variable shadowed the earlier expected-negative receipt list when rendering the combined audit. All compiler and group assertions had already passed; only the managed expectedNegative metadata field was mislabeled.",
+  "originalAuditSha256": "108a2d3d951886d13e849a72e244cc0f742ccf4204974141aa98c0fe858f5963",
+  "archivedInitialAudit": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-FIRSTUSE-CLASS-20261016-f598/EVIDENCE_AUDIT.initial.json",
+  "correction": "Use distinct first_expected variable; regenerate factual audit without rerunning any test/compiler or changing any raw result.",
+  "productOrTestSourceChanged": false,
+  "rawEvidenceChanged": false,
+  "correctedAuditSha256": "e7d930a76c53c1ff47f991581f3a9d0854fd73093c93f1e272c61345902fb279",
+  "onlyManagedExpectedNegativeMetadataChanged": true
+}
