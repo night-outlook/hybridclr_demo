@@ -1,6 +1,14 @@
 # HybridCLR Assembly Shadow
 
-## Current — receipt successor PASS reconciled; Primary owns remaining P1 work
+## Current — P1 first-use class source published; one new SDK-only Local validation
+
+Primary published additive **native first-use class-bearing capture** on `il2cpp_plus@f598f8da5749e7c09ad5816630ce7e40b3f4ebca`, following the independently published metadata admission epoch gate `f71691407bf9af5544d00dd54bff9e2e7eb77307`. The complete updated native branch now ends at **`1e1d152f0e05b8038427c76a9c8a9b4b60998a72`**, whose extra commits change **only source-bound terminal CI assertions**, not production terminal behavior. The new first-use reader copies physical `namespace + "." + name` under one metadata admission and a distinct `g_MetadataLock` after releasing `UsageLock`, then rejects observed usage changes. The original getters/Player remain unchanged and the new path **inactive**. [Primary source/lifetime audit](History/M07R/R03/IR_Remediation/P1_FIRST_USE_CLASS_METADATA_2026-10-16/PRIMARY_REVIEW.md) · [machine evidence](History/M07R/R03/IR_Remediation/P1_FIRST_USE_CLASS_METADATA_2026-10-16/EVIDENCE.json).
+
+[First-use source-bound CI 38876310270](https://github.com/night-outlook/il2cpp_plus/actions/runs/38876310270) **PASSED 3/3 jobs** on macOS Apple Clang, Linux Clang and GCC, strict and ASan/UBSan; **15 cases per profile**, with **57/57** original artifact-manifest files independently SHA-256 checked. The current unrelated terminal-policy workflow [38876957263](https://github.com/night-outlook/il2cpp_plus/actions/runs/38876957263) also **PASSED 2/2** after updating obsolete source-shape assertions. An old R02 whole-file historical fingerprint job remains FAIL, not accepted.
+
+**One fresh, separately authorized host + installed Unity2022.3.62f2 SDK syntax-only Local cycle** is defined in [WEB_TO_LOCAL.md](Handoff/WEB_TO_LOCAL.md). It checks ten components together, including first-use 15-group host cases and 70 native syntax configurations. It does **not** authorize Unity Editor/Player, runtime scheduler investigation, new milestone or Human Review Gate. P1 live complete capture, P2 semantic V2 and E0/E1 remain Primary-owned and incomplete. The original receipt-successor PASS and preceding FAIL remain immutable and consumed; all acceptance flags remain false.
+
+## Previous — receipt successor PASS reconciled; historical Local assignment consumed
 
 The fresh `20261016-0620` Local successor completed **PASS / PassedSourceHostAndSDKOnly: 10/10 outer components Passed**. Primary reconciled the raw aggregate, managed outer/producer binding, nested verdict and source authority. **IR-LOCAL-P1-MANAGED-RECEIPT-01 is VerifiedCorrectedInFreshSourceSDKOnlySuccessor.** The exact nested receipt path/hash/verdict was verified in the real source/official-SDK-only cycle; five managed products, the expected-negative control and all 70 native syntax configurations Passed within their recorded scope.
 
