@@ -9,6 +9,7 @@ import json
 import os
 from pathlib import Path
 import platform
+import re
 import shutil
 import subprocess
 import sys
@@ -50,16 +51,23 @@ def main():
     parser.add_argument('--unity',type=Path)
     parser.add_argument('--sdk-scratch',type=Path,help='Required fresh, nonaliasing external SDK-copy root for --unity')
     parser.add_argument('--sanitizers',action='store_true')
+    parser.add_argument('--candidate-native-sha',help='Explicit P1 SDK syntax-only candidate pin; leaves historical source-pins.json unchanged')
     args=parser.parse_args(); ws=args.workspace.resolve(); output=args.output.resolve()
     require(not output.exists(),'Unused native check root required');output.mkdir(parents=True)
     native=ws/'il2cpp_plus'; hybrid=ws/'hybridclr';demo=ws/'hybridclr_demo'
     pins=loads((demo/'Tools/AssemblyShadow/R03/source-pins.json').read_text())
+    candidate=args.candidate_native_sha
+    if candidate is not None:
+        require(bool(args.unity) and bool(re.fullmatch(r'[0-9a-f]{40}',candidate)),
+                'Explicit 40-hex candidate pin requires official --unity syntax-only mode')
     for name in ('il2cpp_plus','hybridclr','hybridclr_unity'):
         path=ws/name
         if (path/'.git').exists():
-            require(subprocess.check_output(['git','-C',str(path),'rev-parse','HEAD'],text=True).strip()==pins[name],'Exact source pin: '+name)
+            expected=candidate if name=='il2cpp_plus' and candidate else pins[name]
+            require(subprocess.check_output(['git','-C',str(path),'rev-parse','HEAD'],text=True).strip()==expected,'Exact source pin: '+name)
     c=Commands(output); result={'kind':'R03NativeRuntimePrerequisites','result':'Failed','platform':platform.platform(),
-                               'unitCases':[],'translationUnits':[], 'runtimeAcceptance':False,'unityEditorRun':False}
+                               'unitCases':[],'translationUnits':[], 'runtimeAcceptance':False,'unityEditorRun':False,
+                               'candidateNativeSha':candidate,'historicalPinsOverriddenOnDisk':False}
     files=[p for root in (native/'libil2cpp/vm',native/'libil2cpp/gc',native/'tools/r03',hybrid/'hybridclr/metadata') for p in root.glob('*')
            if p.is_file() and (p.name.startswith('AssemblyShadow') or p.name in ('InterpreterImage.h','StagedAssembly.cpp','runtime_probe_tests.cpp','runtime_probe_other.cpp','producer_fence_tests.cpp','probe_identity_tests.cpp','GarbageCollector.cpp','Runtime.cpp','Object.cpp'))]
     sources=[{'path':str(p.relative_to(ws)),'sha256':sha(p)} for p in sorted(files)]
@@ -130,11 +138,16 @@ def main():
                    copy/'hybridclr/metadata/StagedAssembly.cpp',copy/'hybridclr/metadata/InterpreterImage.cpp',overlay]
             # Explicitly cover the shared general serializer; historical matrix was 11 x 5.
             units.append(copy/'vm/AssemblyShadowDiagnostics.cpp')
+            if candidate:
+                # P1 candidate mode compiles actual physical/class readers too.
+                # The historical official SDK matrix remains exactly 12 x 5.
+                units.extend((copy/'vm/Assembly.cpp',copy/'vm/AssemblyShadowVisibility.cpp'))
             profiles=[('candidate',1,1,0,2),('debug',1,1,1,2),('probe-off',1,0,0,2),
                       ('diagnostics-off',1,0,0,0),('feature-off',0,1,0,0)]
-            require(len(units)==12 and len(set(units))==12 and len(profiles)==5,
-                    'Complete twelve-unit five-profile syntax matrix required')
-            result['plannedTranslationUnitCount']=60
+            expected_units=14 if candidate else 12
+            require(len(units)==expected_units and len(set(units))==expected_units and len(profiles)==5,
+                    'Complete current candidate/historical syntax matrix required')
+            result['plannedTranslationUnitCount']=expected_units*len(profiles)
             for label,feature,probe,debug,diagnostics in profiles:
                 for source in units:
                     cmd=[cc,'-std=c++17','-fsyntax-only','-arch','arm64','-DBASELIB_INLINE_NAMESPACE=il2cpp_baselib',
@@ -143,7 +156,8 @@ def main():
                          '-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL='+str(diagnostics),*[('-I'+str(p)) for p in includes if p.is_dir()],str(source)]
                     folder,_=c.run(cmd)
                     result['translationUnits'].append({'profile':label,'source':str(source),'sha256':sha(source),'commandReceipt':sha(folder/'command.json')})
-            require(len(result['translationUnits'])==60, 'All current native syntax configurations required')
+            require(len(result['translationUnits'])==expected_units*len(profiles),
+                    'All current native syntax configurations required')
             sdk_inputs=[{'path':str(p.relative_to(scratch)),'sha256':sha(p)} for p in sorted(scratch.rglob('*')) if p.is_file()]
             write(output/'native-sdk-inputs.json',{'files':sdk_inputs,'vendorFilesUploaded':False})
         require(sources==[{'path':str(p.relative_to(ws)),'sha256':sha(p)} for p in sorted(files)],'Native source bytes changed')
