@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1OwnedGeneralLocalPassPrimaryEvidenceReconciliation",
+  "disposition": "VerifiedWithinFreshSourceHostAndSdkSyntaxScope",
+  "currentOwner": "Primary Implementation",
+  "localValidationStatus": "PAUSED_Consumed_NoNewAssignment",
+  "repositoryBranch": "codex/assembly-shadow-r01b-h1",
+  "sources": {
+    "hybridclr_demo": {
+      "repo": "night-outlook/hybridclr_demo",
+      "localExecutionSha": "bfb6056bead9dadf2f94d6aace8d3d600b8bdaad",
+      "localEvidencePublicationSha": "9e862190e29f332114ad8b648cf3f7dca90a30c3",
+      "sourceCITestAnchor": "85257e495a141e553b56bc1ef47369eb36f572a5",
+      "exactNonDocsRootTreesIdentical": true,
+      "gitHubRemoteHeadVerifiedAtStart": true
+    },
+    "hybridclr": {
+      "repo": "night-outlook/hybridclr",
+      "localExecutionSha": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "gitHubRemoteHeadVerifiedAtStart": true
+    },
+    "hybridclr_unity": {
+      "repo": "night-outlook/hybridclr_unity",
+      "localExecutionSha": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "gitHubRemoteHeadVerifiedAtStart": true
+    },
+    "il2cpp_plus": {
+      "repo": "night-outlook/il2cpp_plus",
+      "localExecutionSha": "3dc9b848d1d6b7616b257c95dc4727db06fd05f7",
+      "gitHubRemoteHeadVerifiedAtStart": true
+    },
+    "nativeComposerSourceBlobs": {
+      "libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h": "bf3c19fab543c24134712ea08dc2cb78190f7f3a",
+      "libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h": "08856d4a610ed3fa519cee67bad8a307dd82a34b",
+      "tools/r03/diagnostic_stream/run_bounded_general_composer.py": "59fd0b4360a4e3b1768c64c1a4d19de765fb1469"
+    },
+    "historicalSourcePinsUnchanged": true
+  },
+  "singleLocalAttempt": {
+    "name": "20261016-3dc9",
+    "startUtc": "2026-10-16T10:35:20.028775Z",
+    "endUtc": "2026-10-16T10:37:54.060784Z",
+    "processExit": 0,
+    "result": "PassedSourceHostAndSDKOnly",
+    "outerCases": 11,
+    "outerPassed": 11,
+    "outerFailed": 0,
+    "outerCommands": [
+      [
+        "legacy-host",
+        "PassedHostOnly"
+      ],
+      [
+        "metadata-gate",
+        "PassedWithinHostScope"
+      ],
+      [
+        "bounded-class",
+        "PassedWithinHostScope"
+      ],
+      [
+        "bounded-physical",
+        "PassedWithinHostScope"
+      ],
+      [
+        "bounded-first-use",
+        "PassedWithinHostScope"
+      ],
+      [
+        "owned-general",
+        "PassedWithinOwnedHostScope"
+      ],
+      [
+        "bounded-status",
+        "PassedWithinHostScope"
+      ],
+      [
+        "bounded-inventory",
+        "PassedWithinHostScope"
+      ],
+      [
+        "frozen-v2",
+        "PassedWithinInactiveHostScope"
+      ],
+      [
+        "managed-sdk",
+        "Passed"
+      ],
+      [
+        "native-sdk",
+        "Passed"
+      ]
+    ],
+    "allChildExitZero": true,
+    "sourcePreserved": true,
+    "postflightError": null,
+    "sdkCompileAttempted": true,
+    "sdkCompilePassed": true,
+    "expectedNativeSyntaxUnits": 75,
+    "unityEditorLaunched": false,
+    "unityPlayerExecuted": false,
+    "historicalEvidenceReclassified": false,
+    "primaryRehashedConnectorPublished": {
+      "batch/RESULT.json": {
+        "sha256": "706a7a8e981c036a31bccfbe4ab267dcb3108465d19d46c45351e81a16426b8c",
+        "bytes": 19725,
+        "verified": true
+      },
+      "batch/owned-general/RESULT.json": {
+        "sha256": "a8bf2d7036008890231a03d9d659a06be087b46bbc9899055ac7e8f63f52803a",
+        "bytes": 9109,
+        "verified": true
+      },
+      "batch/commands/managed-sdk/stdout.bin": {
+        "sha256": "cd693266b987c5a78d9825906d48f3429888dc751fb1eb0065a2ddc37a5add26",
+        "bytes": 210,
+        "verified": true
+      },
+      "batch/managed-sdk/build-api/results.json": {
+        "sha256": "5638ebd6f1a587ce672a22ca9d92727f578b50d337d30c447a3999c2f04c8d3a",
+        "bytes": 119119,
+        "verified": true
+      }
+    },
+    "localAuditedManifestSha256": "71045ef14e868faeb1f3eb22d30a8f6ba1279a0de4d74de861553dfcfa6a18f1",
+    "localAuditedOutputRegularFileCount": 3734,
+    "localAuditedCommandStreams": 403,
+    "localAuditedNegativeControlSymlinks": 4,
+    "primaryRehashedEntireExternalManifest": false,
+    "primaryRanSdkCompilersOrUnity": false
+  },
+  "ownedGeneralComponent": {
+    "result": "PassedWithinOwnedHostScope",
+    "profiles": [
+      "strict",
+      "sanitized"
+    ],
+    "uniqueCaseGroupsPerProfile": 11,
+    "fourCompileRunReceiptsAllExitZero": true,
+    "byteExactOriginalV1Json": true,
+    "watchedCppAllocationsAfterPrewarm": 0,
+    "actualProductionHeadersAndLegacySerializerCompiled": true,
+    "sourceContractRequiredFragments": 20,
+    "sourceOwnedBeforeCompose": true,
+    "sourcePreserved": true,
+    "rejectedCases": [
+      "missing and incomplete sources",
+      "physical/class generation mismatch",
+      "startup count and null reference",
+      "general output budget",
+      "invalid UTF8",
+      "partial output and repeated compose"
+    ],
+    "globalVmEpochProven": false,
+    "realClassPointerProven": false,
+    "originalLiveGettersReplaced": false,
+    "runtimeAcceptance": false
+  },
+  "officialManagedSdk": {
+    "innerAndOuterResult": "Passed",
+    "productsPassed": 5,
+    "sourceInputHashesLocallyVerified": 428,
+    "expectedNegativeControl": "OriginalUnsignedCounts",
+    "expectedNegativeExit": 1,
+    "expectedNegativeCS0266Errors": 2,
+    "expectedNegativeNoDll": true,
+    "managedReceiptKind": "R03CompleteBuildHelperCompile",
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "nestedPathSuffix": "managed-sdk/build-api/results.json",
+    "nestedReceiptSha256": "5638ebd6f1a587ce672a22ca9d92727f578b50d337d30c447a3999c2f04c8d3a",
+    "returnedBindingVerified": true,
+    "childExit": 0,
+    "editorRun": false,
+    "runtimeAcceptance": false
+  },
+  "officialNativeSdk": {
+    "result": "Passed",
+    "candidateNativeSha": "3dc9b848d1d6b7616b257c95dc4727db06fd05f7",
+    "translationUnits": 15,
+    "profiles": [
+      "candidate",
+      "debug",
+      "probe-off",
+      "diagnostics-off",
+      "feature-off"
+    ],
+    "passedSyntaxConfigurations": 75,
+    "failed": 0,
+    "notRun": 0,
+    "includesNewComposerProbe": "AssemblyShadowGeneralComposeSyntax.cpp",
+    "scratchInputsLocallyVerified": 1901,
+    "linkedRuntime": false,
+    "unityEditorRun": false,
+    "playerRun": false
+  },
+  "localAudit": {
+    "result": "PassedFactualEvidenceAudit",
+    "installedSdkFilesPreserved": 2405,
+    "installedSdkBytesPreserved": 316062203,
+    "managedWarningOccurrences": 68,
+    "nativeWarningOccurrences": 742,
+    "unexpectedCompilerErrors": 0,
+    "historicalRootsPreserved": true,
+    "appleLeakSanitizer": "Unavailable",
+    "auditOwnership": "Local Validation; Primary did not repeat full external bytes/tree audit"
+  },
+  "historicalUnchanged": [
+    {
+      "name": "20261016-f598",
+      "result": "PassedSourceHostAndSDKOnly",
+      "outerPassed": 10,
+      "outerCases": 10,
+      "status": "Consumed"
+    },
+    {
+      "name": "20261016-0620",
+      "result": "PassedSourceHostAndSDKOnly",
+      "outerPassed": 10,
+      "outerCases": 10,
+      "status": "Consumed"
+    },
+    {
+      "name": "20261016-0a0b",
+      "result": "FailedOrIncomplete",
+      "outerPassed": 9,
+      "outerCases": 10,
+      "officialUnitySdkCompilePassed": false,
+      "rawResultSha256": "13e256649c9c6355b4ed7eb4c5190a0f62acacaf42ad0195a27a21718d3ba565",
+      "status": "Consumed"
+    },
+    {
+      "name": "SNAP-01",
+      "result": "FAIL/ReturnRequired",
+      "cellsPassed": 14,
+      "cellsTotal": 18
+    },
+    {
+      "name": "N/M/K/I/E and historic R02 fingerprint",
+      "result": "FAIL"
+    },
+    {
+      "name": "original strict S custody",
+      "result": "Blocked"
+    },
+    {
+      "name": "R03 independent full-stage review",
+      "result": "FAIL; rereview NotRun"
+    }
+  ],
+  "remainingStages": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete"
+  },
+  "acceptance": {
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterExpansion": false,
+    "coherentVmEpochProven": false,
+    "realEngineOwnerProven": false,
+    "newUnityOrPlayerRunAuthorized": false,
+    "newLocalValidationAuthorized": false
+  },
+  "connectorWriteSmoke": {
+    "repo": "night-outlook/hybridclr_demo",
+    "base": "9e862190e29f332114ad8b648cf3f7dca90a30c3",
+    "branch": "codex/pio-smoke-owned-general-pass-20261016-9e86a8",
+    "commit": "72df1be34a2e7891739042144de028a6f3760251",
+    "exactRemoteReadbackVerified": true,
+    "branchRetainedBecauseDeletionUnavailable": true,
+    "affectedFeatureBranch": false
+  }
+}
