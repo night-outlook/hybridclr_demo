@@ -16,7 +16,7 @@ All repositories: `codex/assembly-shadow-r01b-h1` from canonical `night-outlook/
 
 | Repository | Exact Local checkout path | This preflight source pin |
 | --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | **Latest pushed remote branch HEAD from the final Primary handoff message** (the DEMO source anchor preceding Docs is `1a861c3c777e25d422248f1621f610b30669f2cc`) |
+| `night-outlook/hybridclr_demo` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | **Latest pushed remote branch HEAD from the final Primary handoff message** (the DEMO source anchor preceding Docs is `96480ac9e7671ad4ff7cb23b4d8088bd08810f32`) |
 | `night-outlook/hybridclr` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
 | `night-outlook/hybridclr_unity` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
 | `night-outlook/il2cpp_plus` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `0a0b70156e75d450d75d0bcfd9132843b8abbbb0` |
