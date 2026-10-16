@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1OwnedGeneralCompositionPrimarySourceHostEvidence",
+  "source": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "repoNative": "night-outlook/il2cpp_plus",
+    "nativeHead": "3dc9b848d1d6b7616b257c95dc4727db06fd05f7",
+    "changedNativePaths": [
+      "libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+      "libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+      "tools/r03/diagnostic_stream/bounded_general_composer_fixture.cpp",
+      "tools/r03/diagnostic_stream/run_bounded_general_composer.py",
+      ".github/workflows/r03-p1-bounded-general-composer.yml"
+    ],
+    "repoDemo": "night-outlook/hybridclr_demo",
+    "demoTestSourceAnchor": "85257e495a141e553b56bc1ef47369eb36f572a5",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "retainedPriorNative": "1e1d152f0e05b8038427c76a9c8a9b4b60998a72",
+    "historicalSourcePinsModified": false,
+    "originalLiveGettersModified": false
+  },
+  "nativeHostCi": {
+    "run": 38885246083,
+    "commit": "3dc9b848d1d6b7616b257c95dc4727db06fd05f7",
+    "url": "https://github.com/night-outlook/il2cpp_plus/actions/runs/38885246083",
+    "status": "PassedWithinOwnedHostScope",
+    "jobsPassed": 3,
+    "jobsTotal": 3,
+    "profilesPerJob": [
+      "strict",
+      "sanitized"
+    ],
+    "caseGroupsPerProfile": 11,
+    "successfulCompilationExecutionCommands": 12,
+    "newHeapAllocationsAfterPrewarm": 0,
+    "zipArtifacts": [
+      {
+        "os": "macos-15",
+        "compiler": "clang++",
+        "archiveBytes": 528456,
+        "sha256": "c54177fb20fe6a3febb11ca67b74ba66b4b6e8026956f721b22cdd93f255970f",
+        "manifestFiles": 19
+      },
+      {
+        "os": "ubuntu-24.04",
+        "compiler": "g++",
+        "archiveBytes": 1008816,
+        "sha256": "d60e26e75c3443f07ea04f6c799a54d8061e98d0415aff610757a6dffb768fbe",
+        "manifestFiles": 16
+      },
+      {
+        "os": "ubuntu-24.04",
+        "compiler": "clang++",
+        "archiveBytes": 930296,
+        "sha256": "9c7af41f88b97ca951bf20a7f15d8ba87f9d9069ffa84843d3529e36d1449286",
+        "manifestFiles": 16
+      }
+    ],
+    "manifestFilesIndependentlyVerified": 51,
+    "legacyOriginalSerializerSameSourceCompiled": true,
+    "actualBoundedSourceHeadersCompiled": true,
+    "originalV1JsonBytesMatched": true,
+    "malformedInputsFailClosed": true,
+    "globalVmEpochProven": false,
+    "realClassPointerOriginProven": false,
+    "runtimeAcceptance": false
+  },
+  "demoHostCi": {
+    "run": 38885611665,
+    "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/38885611665",
+    "commit": "85257e495a141e553b56bc1ef47369eb36f572a5",
+    "status": "PassedWithinHostScope",
+    "jobsPassed": 2,
+    "jobsTotal": 2,
+    "operatingSystems": [
+      "macos-15",
+      "ubuntu-24.04"
+    ],
+    "testMethodsPerJob": 18,
+    "zipArtifacts": [
+      {
+        "os": "ubuntu-24.04",
+        "bytes": 2883,
+        "sha256": "a09af367f5ac31e29b74ee18ff718c12b98328c11d94ae88e5af8523764b6ed5",
+        "manifestFiles": 5
+      },
+      {
+        "os": "macos-15",
+        "bytes": 2904,
+        "sha256": "8651cb9449b64e41b1baa9472e7329ed84c290bd158ab8bb8a6b6ee52fd51690",
+        "manifestFiles": 5
+      }
+    ],
+    "manifestFilesIndependentlyVerified": 10,
+    "mockGitSdkCompilerChildren": true,
+    "actualInstalledUnitySdkNotRun": true
+  },
+  "nextLocal": {
+    "status": "NotRun",
+    "type": "OneFreshElevenComponentSourceHostAndOfficialSdkSyntaxOnly",
+    "expectedOuterComponents": 11,
+    "expectedNativeArm64SyntaxConfigurations": 75,
+    "expectedCandidateTranslationUnits": 15,
+    "expectedNativeProfiles": [
+      "candidate",
+      "debug",
+      "probe-off",
+      "diagnostics-off",
+      "feature-off"
+    ],
+    "managedProducts": 5,
+    "expectedNegativeCompilerControl": "OriginalUnsignedCounts",
+    "unityEditorOrPlayerExecutionAuthorized": false
+  },
+  "memoryScope": {
+    "maximumCombinedOwnedObjectBudgetBytes": 16777216,
+    "frozenGeneralMaxBytes": 3932160,
+    "v1TextSlotUnchanged": 262144,
+    "serializedV2AggregateAcceptance": false,
+    "allVmSourceEpochProven": false,
+    "peakNativeGcOrRssMeasured": false,
+    "nativeMetadataShutdownQualified": false
+  },
+  "preserved": {
+    "firstUsePriorLocal": "20261016-f598 PASS 10/10 consumed",
+    "managedReceiptPriorLocal": "20261016-0620 PASS 10/10 consumed",
+    "earlierManagedReceiptFailure": "20261016-0a0b FAIL 9/10 consumed",
+    "historicalSnap01": "FAIL/ReturnRequired 14/18",
+    "historicalR02WholeFileCheck": "FAIL separate unchanged provenance gate",
+    "strictSCustody": "Blocked",
+    "fullR03IndependentReview": "FAIL, rereview NotRun"
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterExpansion": false
+  }
+}
