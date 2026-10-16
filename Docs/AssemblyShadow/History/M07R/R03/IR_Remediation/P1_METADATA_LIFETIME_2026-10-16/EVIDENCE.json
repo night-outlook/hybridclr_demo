@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1MetadataLifetimePrimarySourceAndCIEvidence",
+  "source": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "native": {
+      "repo": "night-outlook/il2cpp_plus",
+      "base": "2db707eb3021516c2cef962b3d294b4d047e4ef9",
+      "head": "0a0b70156e75d450d75d0bcfd9132843b8abbbb0"
+    },
+    "demoSourceAnchor": {
+      "repo": "night-outlook/hybridclr_demo",
+      "commit": "96480ac9e7671ad4ff7cb23b4d8088bd08810f32"
+    },
+    "hybridclr": {
+      "repo": "night-outlook/hybridclr",
+      "head": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+    },
+    "unityPackage": {
+      "repo": "night-outlook/hybridclr_unity",
+      "head": "948c0e3b4f8891481301770115e8ba4945eea6de"
+    }
+  },
+  "verifiedCI": [
+    {
+      "repo": "night-outlook/il2cpp_plus",
+      "runId": 38847888461,
+      "head": "0a0b70156e75d450d75d0bcfd9132843b8abbbb0",
+      "jobsPassed": 3,
+      "jobsTotal": 3,
+      "status": "PassedWithinHostScope",
+      "scope": "current native gate header compiled strict/asan-ubsan and actual Runtime.cpp/readers source-order audit; explicit mock lifecycle; no SDK integration"
+    },
+    {
+      "repo": "night-outlook/il2cpp_plus",
+      "runId": 38847710731,
+      "head": "188965619ec1a962f66e9dc8d108cb8c3535d92a",
+      "jobsPassed": 3,
+      "jobsTotal": 3,
+      "status": "PassedWithinHostScope",
+      "scope": "current bounded ordinary class callback/method compiled with host metadata mocks and exact source V1 parity"
+    },
+    {
+      "repo": "night-outlook/il2cpp_plus",
+      "runId": 38847715239,
+      "head": "b07d622f47bd99a09fa0e33637d6f3bd5a407652",
+      "jobsPassed": 3,
+      "jobsTotal": 3,
+      "status": "PassedWithinHostScope",
+      "scope": "current bounded physical assembly method compiled with registry mocks and exact source V1 parity"
+    },
+    {
+      "repo": "night-outlook/il2cpp_plus",
+      "runId": 38847888573,
+      "head": "0a0b70156e75d450d75d0bcfd9132843b8abbbb0",
+      "jobsPassed": 3,
+      "jobsTotal": 3,
+      "status": "PassedWithinHostScope",
+      "scope": "existing serializer interop host regression at final native source"
+    },
+    {
+      "repo": "night-outlook/hybridclr_demo",
+      "runId": 38849046345,
+      "head": "96480ac9e7671ad4ff7cb23b4d8088bd08810f32",
+      "jobsPassed": 2,
+      "jobsTotal": 2,
+      "status": "PassedWithinHostScope",
+      "scope": "new candidate single-batch Python parser and negative CLI guard tests Mac/Linux; no Unity SDK installed compile"
+    }
+  ],
+  "plannedLocal": {
+    "kind": "SingleSourceBoundHostAndOfficialSdkSyntaxPreflight",
+    "authorization": "OneShotOnly",
+    "components": 10,
+    "expectedNativeSyntaxConfigurations": 70,
+    "officialUnitySDKCompilation": "NotRun",
+    "realUnityPlayerExecution": "NotRun",
+    "UnityEngineOwnerCapability": "Blocked"
+  },
+  "immutable": {
+    "snap01SemanticBatch": "FAIL/ReturnRequired",
+    "snap01Cells": {
+      "passed": 14,
+      "failed": 4,
+      "total": 18
+    },
+    "firstFailingTextSlot": 14,
+    "originalV1TextLimit": 262144,
+    "scannedPrefixMinimum": 262145,
+    "realFullProducerLength": "Unavailable",
+    "engineCompletedReportsPer500ms": 51213,
+    "engineExitCode": 71,
+    "originalStrictSCustody": "Blocked",
+    "independentR03Review": "FAIL",
+    "r03Accepted": false,
+    "readyForHumanReviewGate": false
+  }
+}
