@@ -97,3 +97,5 @@ Previous 20261016-f598 PASS, 20261016-0620 PASS, and 20261016-0a0b FAIL are cons
 R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; fullLegacyRegressionAcceptance=false; PureInterpreter disabled.
 
 **STOP after exactly this ONE host/SDK-only cycle.** Return to Primary Implementation. No subsequent Unity/Player batch, additional source work, E0/E1 implementation, Human Review Gate or H2/X02/M08A is authorized by this document.
+
+**Publication and freshness check:** This handoff is the final Primary transport document for this one-shot assignment. It is valid only when the git log -1 commit for this exact WEB_TO_LOCAL.md equals the checked-out demo HEAD and equals the 40-character demo commit in the Primary handoff prompt. A later Docs or source commit invalidates this exact batch authorization until Primary publishes a new reviewed handoff. Old source/SDK receipts never inherit a newer HEAD.
