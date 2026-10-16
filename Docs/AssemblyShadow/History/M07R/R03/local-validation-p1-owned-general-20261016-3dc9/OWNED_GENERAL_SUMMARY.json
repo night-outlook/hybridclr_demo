@@ -1,0 +1,78 @@
+{
+  "result": "PassedWithinOwnedHostAndSDKSyntaxScope",
+  "sourceTuple": {
+    "hybridclr_demo": "bfb6056bead9dadf2f94d6aace8d3d600b8bdaad",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "3dc9b848d1d6b7616b257c95dc4727db06fd05f7"
+  },
+  "testedDemoSourceAnchor": "85257e495a141e553b56bc1ef47369eb36f572a5",
+  "hostProfiles": {
+    "strict": {
+      "result": "PassedWithinHostScope",
+      "cases": [
+        "byte-exact-general-owned-parity",
+        "composition-no-new-allocation",
+        "missing-source-fail-closed",
+        "incomplete-source-fail-closed",
+        "cross-reader-generation-mismatch",
+        "startup-source-bounds",
+        "invalid-borrowed-startup-refusal",
+        "complete-output-budget-refusal",
+        "invalid-utf8-refusal",
+        "single-owner-single-freeze",
+        "no-coherent-vm-epoch-or-player-claim"
+      ],
+      "allocationsAfterPrewarm": 0
+    },
+    "sanitized": {
+      "result": "PassedWithinHostScope",
+      "cases": [
+        "byte-exact-general-owned-parity",
+        "composition-no-new-allocation",
+        "missing-source-fail-closed",
+        "incomplete-source-fail-closed",
+        "cross-reader-generation-mismatch",
+        "startup-source-bounds",
+        "invalid-borrowed-startup-refusal",
+        "complete-output-budget-refusal",
+        "invalid-utf8-refusal",
+        "single-owner-single-freeze",
+        "no-coherent-vm-epoch-or-player-claim"
+      ],
+      "allocationsAfterPrewarm": 0
+    }
+  },
+  "fourCompileRunReceiptsVerified": true,
+  "sourceContract": {
+    "requiredProductionFragments": 20,
+    "caseNames": [
+      "byte-exact-general-owned-parity",
+      "composition-no-new-allocation",
+      "missing-source-fail-closed",
+      "incomplete-source-fail-closed",
+      "cross-reader-generation-mismatch",
+      "startup-source-bounds",
+      "invalid-borrowed-startup-refusal",
+      "complete-output-budget-refusal",
+      "invalid-utf8-refusal",
+      "single-owner-single-freeze",
+      "no-coherent-vm-epoch-or-player-claim"
+    ],
+    "onlyOwnedCompletedSourcesRead": true,
+    "noVmOrFileOperationsInComposer": true,
+    "crossEnumerationGenerationMismatchRejected": true,
+    "globalVmEpochProven": false
+  },
+  "actualHeadersAndLegacySerializerCompiled": true,
+  "nativeSyntaxConfigurations": 75,
+  "nativeDistinctUnits": 15,
+  "globalVmEpochProven": false,
+  "runtimeAcceptance": false,
+  "originalGettersReplaced": false,
+  "remainingPrimaryWork": [
+    "P1 coherent bounded live capture and metadata/GC/RSS/shutdown safety",
+    "P2 real authenticated V2 semantic integration",
+    "E0/E1 supported engine-owner lifecycle"
+  ]
+}

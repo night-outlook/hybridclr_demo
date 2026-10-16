@@ -1,6 +1,12 @@
 # Local Validation → Primary Implementation
 
-## Current return — P1 first-use class metadata 20261016-f598 PASS
+## Current return — P1 owned general source/SDK 20261016-3dc9 PASS
+
+**PASS / PassedSourceHostAndSDKOnly; Local Validation → Primary Implementation.** [Report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-owned-general-20261016-3dc9/README.md), [composer verification](../History/M07R/R03/local-validation-p1-owned-general-20261016-3dc9/preflight/OWNED_GENERAL_VERIFICATION.json), [scope summary](../History/M07R/R03/local-validation-p1-owned-general-20261016-3dc9/OWNED_GENERAL_SUMMARY.json). One fresh cycle,11/11 Passed. Owned-general11 unique groups per strict/sanitized profile/four compile-run successes, actual owned headers/legacy V1 byte parity and prewarmed counter0 verified. Exact managed binding/five products/negative control and75/75 official native syntax configurations Passed. Source/SDK and all three consumed P1 raw/scratch states preserved.
+
+No new substantive Local finding or Local source fix. Composition remains inactive; independent source captures and matching generations do not certify a global live VM epoch. Primary must reconcile this limited source/SDK evidence while retaining P1 live capture/metadata/GC/RSS/teardown work, P2 real authenticated V2 semantic integration and E0/E1 engine-owner lifecycle gates. No Unity Editor/Player, runtime or Human Review Gate authority follows. All acceptance flags false; all historical failures/consumed verdicts remain unchanged below.
+
+## Historical return — P1 first-use class metadata 20261016-f598 PASS
 
 **PASS / PassedSourceHostAndSDKOnly; Local Validation → Primary Implementation.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-firstuse-class-20261016-f598/README.md), [binding revalidation](../History/M07R/R03/local-validation-p1-firstuse-class-20261016-f598/MANAGED_BINDING_REVALIDATION.json). One fresh authorized batch,10/10 Passed outer components, five official managed products plus exact negative control and70/70 native syntax configurations. No code changes, retry or Unity/Player launch.
 
