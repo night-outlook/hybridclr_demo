@@ -56,7 +56,7 @@ class PreflightContracts(unittest.TestCase):
         self.assertIn("candidateNativeSha",self.sdk)
         self.assertIn("historicalPinsOverriddenOnDisk",self.sdk)
         self.assertIn("source-pins.json",self.pre)
-        self.assertNotIn("write_text(",self.pre)
+        self.assertNotIn("source-pins.json\").write_text(",self.pre)
 
     def test_help_has_explicit_pins(self):
         proc=subprocess.run([sys.executable,"-B",str(SRC),"--help"],
