@@ -1,0 +1,31 @@
+{
+  "name": "sanitized-compile",
+  "argv": [
+    "/usr/bin/clang++",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic",
+    "-pthread",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/bounded-physical/stubs",
+    "-O1",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/bounded-physical/mock-compiled.cpp",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.cpp",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/bounded-physical/sanitized-original.o",
+    "-o",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/bounded-physical/sanitized.exe"
+  ],
+  "startUnix": 1792134330.269608,
+  "finishUnix": 1792134331.5689511,
+  "exit": 0,
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

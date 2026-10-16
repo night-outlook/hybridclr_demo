@@ -1,0 +1,775 @@
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:8:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowTerminalReporting.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/MetadataCache.h:22:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/os/Mutex.h:9:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/ReentrantLock.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Baselib_ReentrantLock.h:15:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/Baselib_ReentrantLock.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Baselib_Lock.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/Baselib_Lock_SemaphoreBased.inl.h:4:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Baselib_CappedSemaphore.h:21:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Baselib_CappedSemaphore_SemaphoreBased.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic_TypeSafe.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic.h:404:
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:140:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]
+  132 | Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE(
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  133 |     detail_LOAD,            // load
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  134 |     detail_STORE,           // store
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  135 |     detail_ALU,             // add
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  136 |     detail_ALU,             // and
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  137 |     detail_ALU,             // or
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  138 |     detail_ALU,             // xor
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |     detail_XCHG,            // exchange
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  140 |     detail_CMP_XCHG_WEAK,   // compare_exchange_weak
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  141 |     detail_CMP_XCHG_STRONG, // compare_exchange_strong
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  142 | )
+      | ~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:108:152: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE'
+  108 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, __VA_ARGS__) \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:83:143: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE'
+   83 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, 8, 8, int8_t __VA_ARGS__)       \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:41:59: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER'
+   41 |     DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER(CMP_XCHG_WEAK_MACRO_, compare_exchange_weak, __VA_ARGS__)     \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+note: (skipping 2 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+<scratch space>:62:1: note: expanded from here
+   62 | detail_ldst_intrinsic_seq_cst
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:30:43: note: expanded from macro 'detail_ldst_intrinsic_seq_cst'
+   30 |     #define detail_ldst_intrinsic_seq_cst __ATOMIC_ACQ_REL
+      |                                           ^~~~~~~~~~~~~~~~
+<built-in>:17:26: note: expanded from macro '__ATOMIC_ACQ_REL'
+   17 | #define __ATOMIC_ACQ_REL 4
+      |                          ^
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:8:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowTerminalReporting.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/MetadataCache.h:22:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/os/Mutex.h:9:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/ReentrantLock.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Baselib_ReentrantLock.h:15:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/Baselib_ReentrantLock.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Baselib_Lock.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/Baselib_Lock_SemaphoreBased.inl.h:4:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Baselib_CappedSemaphore.h:21:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Baselib_CappedSemaphore_SemaphoreBased.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic_TypeSafe.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic.h:404:
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:141:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]
+  132 | Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE(
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  133 |     detail_LOAD,            // load
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  134 |     detail_STORE,           // store
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  135 |     detail_ALU,             // add
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  136 |     detail_ALU,             // and
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  137 |     detail_ALU,             // or
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  138 |     detail_ALU,             // xor
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |     detail_XCHG,            // exchange
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  140 |     detail_CMP_XCHG_WEAK,   // compare_exchange_weak
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  141 |     detail_CMP_XCHG_STRONG, // compare_exchange_strong
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  142 | )
+      | ~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:108:174: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE'
+  108 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, __VA_ARGS__) \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:83:165: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE'
+   83 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, 8, 8, int8_t __VA_ARGS__)       \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:42:59: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER'
+   42 |     DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER(CMP_XCHG_STRONG_MACRO_, compare_exchange_strong, __VA_ARGS__)
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+note: (skipping 2 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+<scratch space>:85:1: note: expanded from here
+   85 | detail_ldst_intrinsic_seq_cst
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:30:43: note: expanded from macro 'detail_ldst_intrinsic_seq_cst'
+   30 |     #define detail_ldst_intrinsic_seq_cst __ATOMIC_ACQ_REL
+      |                                           ^~~~~~~~~~~~~~~~
+<built-in>:17:26: note: expanded from macro '__ATOMIC_ACQ_REL'
+   17 | #define __ATOMIC_ACQ_REL 4
+      |                          ^
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:8:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowTerminalReporting.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/MetadataCache.h:22:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/os/Mutex.h:9:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/ReentrantLock.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Baselib_ReentrantLock.h:15:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/Baselib_ReentrantLock.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Baselib_Lock.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/Baselib_Lock_SemaphoreBased.inl.h:4:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Baselib_CappedSemaphore.h:21:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Baselib_CappedSemaphore_SemaphoreBased.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic_TypeSafe.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic.h:404:
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:140:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]
+  132 | Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE(
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  133 |     detail_LOAD,            // load
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  134 |     detail_STORE,           // store
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  135 |     detail_ALU,             // add
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  136 |     detail_ALU,             // and
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  137 |     detail_ALU,             // or
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  138 |     detail_ALU,             // xor
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |     detail_XCHG,            // exchange
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  140 |     detail_CMP_XCHG_WEAK,   // compare_exchange_weak
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  141 |     detail_CMP_XCHG_STRONG, // compare_exchange_strong
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  142 | )
+      | ~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:108:152: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE'
+  108 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, __VA_ARGS__) \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:84:143: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE'
+   84 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, 16, 16, int16_t, __VA_ARGS__)   \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:41:59: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER'
+   41 |     DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER(CMP_XCHG_WEAK_MACRO_, compare_exchange_weak, __VA_ARGS__)     \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+note: (skipping 2 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+<scratch space>:14:1: note: expanded from here
+   14 | detail_ldst_intrinsic_seq_cst
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:30:43: note: expanded from macro 'detail_ldst_intrinsic_seq_cst'
+   30 |     #define detail_ldst_intrinsic_seq_cst __ATOMIC_ACQ_REL
+      |                                           ^~~~~~~~~~~~~~~~
+<built-in>:17:26: note: expanded from macro '__ATOMIC_ACQ_REL'
+   17 | #define __ATOMIC_ACQ_REL 4
+      |                          ^
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:8:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowTerminalReporting.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/MetadataCache.h:22:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/os/Mutex.h:9:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/ReentrantLock.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Baselib_ReentrantLock.h:15:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/Baselib_ReentrantLock.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Baselib_Lock.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/Baselib_Lock_SemaphoreBased.inl.h:4:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Baselib_CappedSemaphore.h:21:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Baselib_CappedSemaphore_SemaphoreBased.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic_TypeSafe.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic.h:404:
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:141:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]
+  132 | Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE(
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  133 |     detail_LOAD,            // load
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  134 |     detail_STORE,           // store
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  135 |     detail_ALU,             // add
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  136 |     detail_ALU,             // and
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  137 |     detail_ALU,             // or
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  138 |     detail_ALU,             // xor
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |     detail_XCHG,            // exchange
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  140 |     detail_CMP_XCHG_WEAK,   // compare_exchange_weak
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  141 |     detail_CMP_XCHG_STRONG, // compare_exchange_strong
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  142 | )
+      | ~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:108:174: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE'
+  108 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, __VA_ARGS__) \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:84:165: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE'
+   84 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, 16, 16, int16_t, __VA_ARGS__)   \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:42:59: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER'
+   42 |     DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER(CMP_XCHG_STRONG_MACRO_, compare_exchange_strong, __VA_ARGS__)
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+note: (skipping 2 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+<scratch space>:39:1: note: expanded from here
+   39 | detail_ldst_intrinsic_seq_cst
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:30:43: note: expanded from macro 'detail_ldst_intrinsic_seq_cst'
+   30 |     #define detail_ldst_intrinsic_seq_cst __ATOMIC_ACQ_REL
+      |                                           ^~~~~~~~~~~~~~~~
+<built-in>:17:26: note: expanded from macro '__ATOMIC_ACQ_REL'
+   17 | #define __ATOMIC_ACQ_REL 4
+      |                          ^
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:8:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowTerminalReporting.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/MetadataCache.h:22:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/os/Mutex.h:9:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/ReentrantLock.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Baselib_ReentrantLock.h:15:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/Baselib_ReentrantLock.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Baselib_Lock.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/Baselib_Lock_SemaphoreBased.inl.h:4:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Baselib_CappedSemaphore.h:21:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Baselib_CappedSemaphore_SemaphoreBased.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic_TypeSafe.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic.h:404:
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:140:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]
+  132 | Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE(
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  133 |     detail_LOAD,            // load
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  134 |     detail_STORE,           // store
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  135 |     detail_ALU,             // add
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  136 |     detail_ALU,             // and
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  137 |     detail_ALU,             // or
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  138 |     detail_ALU,             // xor
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |     detail_XCHG,            // exchange
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  140 |     detail_CMP_XCHG_WEAK,   // compare_exchange_weak
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  141 |     detail_CMP_XCHG_STRONG, // compare_exchange_strong
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  142 | )
+      | ~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:108:152: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE'
+  108 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, __VA_ARGS__) \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:85:143: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE'
+   85 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, 32, 32, int32_t, __VA_ARGS__)   \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:41:59: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER'
+   41 |     DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER(CMP_XCHG_WEAK_MACRO_, compare_exchange_weak, __VA_ARGS__)     \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+note: (skipping 2 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+<scratch space>:62:1: note: expanded from here
+   62 | detail_ldst_intrinsic_seq_cst
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:30:43: note: expanded from macro 'detail_ldst_intrinsic_seq_cst'
+   30 |     #define detail_ldst_intrinsic_seq_cst __ATOMIC_ACQ_REL
+      |                                           ^~~~~~~~~~~~~~~~
+<built-in>:17:26: note: expanded from macro '__ATOMIC_ACQ_REL'
+   17 | #define __ATOMIC_ACQ_REL 4
+      |                          ^
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:8:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowTerminalReporting.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/MetadataCache.h:22:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/os/Mutex.h:9:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/ReentrantLock.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Baselib_ReentrantLock.h:15:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/Baselib_ReentrantLock.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Baselib_Lock.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/Baselib_Lock_SemaphoreBased.inl.h:4:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Baselib_CappedSemaphore.h:21:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Baselib_CappedSemaphore_SemaphoreBased.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic_TypeSafe.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic.h:404:
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:141:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]
+  132 | Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE(
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  133 |     detail_LOAD,            // load
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  134 |     detail_STORE,           // store
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  135 |     detail_ALU,             // add
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  136 |     detail_ALU,             // and
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  137 |     detail_ALU,             // or
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  138 |     detail_ALU,             // xor
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |     detail_XCHG,            // exchange
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  140 |     detail_CMP_XCHG_WEAK,   // compare_exchange_weak
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  141 |     detail_CMP_XCHG_STRONG, // compare_exchange_strong
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  142 | )
+      | ~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:108:174: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE'
+  108 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, __VA_ARGS__) \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:85:165: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE'
+   85 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, 32, 32, int32_t, __VA_ARGS__)   \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:42:59: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER'
+   42 |     DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER(CMP_XCHG_STRONG_MACRO_, compare_exchange_strong, __VA_ARGS__)
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+note: (skipping 2 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+<scratch space>:86:1: note: expanded from here
+   86 | detail_ldst_intrinsic_seq_cst
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:30:43: note: expanded from macro 'detail_ldst_intrinsic_seq_cst'
+   30 |     #define detail_ldst_intrinsic_seq_cst __ATOMIC_ACQ_REL
+      |                                           ^~~~~~~~~~~~~~~~
+<built-in>:17:26: note: expanded from macro '__ATOMIC_ACQ_REL'
+   17 | #define __ATOMIC_ACQ_REL 4
+      |                          ^
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:8:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowTerminalReporting.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/MetadataCache.h:22:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/os/Mutex.h:9:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/ReentrantLock.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Baselib_ReentrantLock.h:15:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/Baselib_ReentrantLock.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Baselib_Lock.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/Baselib_Lock_SemaphoreBased.inl.h:4:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Baselib_CappedSemaphore.h:21:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Baselib_CappedSemaphore_SemaphoreBased.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic_TypeSafe.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic.h:404:
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:140:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]
+  132 | Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE(
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  133 |     detail_LOAD,            // load
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  134 |     detail_STORE,           // store
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  135 |     detail_ALU,             // add
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  136 |     detail_ALU,             // and
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  137 |     detail_ALU,             // or
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  138 |     detail_ALU,             // xor
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |     detail_XCHG,            // exchange
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  140 |     detail_CMP_XCHG_WEAK,   // compare_exchange_weak
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  141 |     detail_CMP_XCHG_STRONG, // compare_exchange_strong
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  142 | )
+      | ~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:108:152: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE'
+  108 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, __VA_ARGS__) \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:86:143: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE'
+   86 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, 64, 64, int64_t, __VA_ARGS__)
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:41:59: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER'
+   41 |     DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER(CMP_XCHG_WEAK_MACRO_, compare_exchange_weak, __VA_ARGS__)     \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+note: (skipping 2 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+<scratch space>:16:1: note: expanded from here
+   16 | detail_ldst_intrinsic_seq_cst
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:30:43: note: expanded from macro 'detail_ldst_intrinsic_seq_cst'
+   30 |     #define detail_ldst_intrinsic_seq_cst __ATOMIC_ACQ_REL
+      |                                           ^~~~~~~~~~~~~~~~
+<built-in>:17:26: note: expanded from macro '__ATOMIC_ACQ_REL'
+   17 | #define __ATOMIC_ACQ_REL 4
+      |                          ^
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:8:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowTerminalReporting.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/MetadataCache.h:22:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/os/Mutex.h:9:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/ReentrantLock.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Baselib_ReentrantLock.h:15:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/Baselib_ReentrantLock.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Baselib_Lock.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/Baselib_Lock_SemaphoreBased.inl.h:4:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Baselib_CappedSemaphore.h:21:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Baselib_CappedSemaphore_SemaphoreBased.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic_TypeSafe.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic.h:404:
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:141:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]
+  132 | Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE(
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  133 |     detail_LOAD,            // load
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  134 |     detail_STORE,           // store
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  135 |     detail_ALU,             // add
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  136 |     detail_ALU,             // and
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  137 |     detail_ALU,             // or
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  138 |     detail_ALU,             // xor
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |     detail_XCHG,            // exchange
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  140 |     detail_CMP_XCHG_WEAK,   // compare_exchange_weak
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  141 |     detail_CMP_XCHG_STRONG, // compare_exchange_strong
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  142 | )
+      | ~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:108:174: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE'
+  108 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, __VA_ARGS__) \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:86:165: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_INT_TYPE'
+   86 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, 64, 64, int64_t, __VA_ARGS__)
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:42:59: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER'
+   42 |     DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER(CMP_XCHG_STRONG_MACRO_, compare_exchange_strong, __VA_ARGS__)
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+note: (skipping 2 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+<scratch space>:41:1: note: expanded from here
+   41 | detail_ldst_intrinsic_seq_cst
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:30:43: note: expanded from macro 'detail_ldst_intrinsic_seq_cst'
+   30 |     #define detail_ldst_intrinsic_seq_cst __ATOMIC_ACQ_REL
+      |                                           ^~~~~~~~~~~~~~~~
+<built-in>:17:26: note: expanded from macro '__ATOMIC_ACQ_REL'
+   17 | #define __ATOMIC_ACQ_REL 4
+      |                          ^
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:8:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowTerminalReporting.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/MetadataCache.h:22:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/os/Mutex.h:9:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/ReentrantLock.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Baselib_ReentrantLock.h:15:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/Baselib_ReentrantLock.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Baselib_Lock.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/Baselib_Lock_SemaphoreBased.inl.h:4:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Baselib_CappedSemaphore.h:21:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Baselib_CappedSemaphore_SemaphoreBased.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic_TypeSafe.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic.h:404:
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:140:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]
+  132 | Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE(
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  133 |     detail_LOAD,            // load
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  134 |     detail_STORE,           // store
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  135 |     detail_ALU,             // add
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  136 |     detail_ALU,             // and
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  137 |     detail_ALU,             // or
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  138 |     detail_ALU,             // xor
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |     detail_XCHG,            // exchange
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  140 |     detail_CMP_XCHG_WEAK,   // compare_exchange_weak
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  141 |     detail_CMP_XCHG_STRONG, // compare_exchange_strong
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  142 | )
+      | ~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:109:143: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE'
+  109 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, ptr, DETAIL__Baselib_Atomic_PTR_SIZE, intptr_t, __VA_ARGS__)
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:41:59: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER'
+   41 |     DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER(CMP_XCHG_WEAK_MACRO_, compare_exchange_weak, __VA_ARGS__)     \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:167:33: note: expanded from macro 'DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER'
+  167 |     DETAIL__Baselib_Atomic_EVAL(MACRO_(OP_, seq_cst, seq_cst, __VA_ARGS__))
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+<scratch space>:68:1: note: expanded from here
+   68 | detail_ldst_intrinsic_seq_cst
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:30:43: note: expanded from macro 'detail_ldst_intrinsic_seq_cst'
+   30 |     #define detail_ldst_intrinsic_seq_cst __ATOMIC_ACQ_REL
+      |                                           ^~~~~~~~~~~~~~~~
+<built-in>:17:26: note: expanded from macro '__ATOMIC_ACQ_REL'
+   17 | #define __ATOMIC_ACQ_REL 4
+      |                          ^
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:8:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowTerminalReporting.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/MetadataCache.h:22:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/os/Mutex.h:9:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/ReentrantLock.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Baselib_ReentrantLock.h:15:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/Baselib_ReentrantLock.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Baselib_Lock.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/Baselib_Lock_SemaphoreBased.inl.h:4:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Baselib_CappedSemaphore.h:21:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Baselib_CappedSemaphore_SemaphoreBased.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic_TypeSafe.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic.h:404:
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:141:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]
+  132 | Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE(
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  133 |     detail_LOAD,            // load
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  134 |     detail_STORE,           // store
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  135 |     detail_ALU,             // add
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  136 |     detail_ALU,             // and
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  137 |     detail_ALU,             // or
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  138 |     detail_ALU,             // xor
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |     detail_XCHG,            // exchange
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  140 |     detail_CMP_XCHG_WEAK,   // compare_exchange_weak
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  141 |     detail_CMP_XCHG_STRONG, // compare_exchange_strong
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  142 | )
+      | ~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:109:165: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_MEMORY_ORDER_AND_TYPE'
+  109 |     Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER(LOAD_MACRO_, STORE_MACRO_, ADD_MACRO_, AND_MACRO_, OR_MACRO_, XOR_MACRO_, XCHG_MACRO_, CMP_XCHG_WEAK_MACRO_, CMP_XCHG_STRONG_MACRO_, ptr, DETAIL__Baselib_Atomic_PTR_SIZE, intptr_t, __VA_ARGS__)
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:42:59: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER'
+   42 |     DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER(CMP_XCHG_STRONG_MACRO_, compare_exchange_strong, __VA_ARGS__)
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:167:33: note: expanded from macro 'DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER'
+  167 |     DETAIL__Baselib_Atomic_EVAL(MACRO_(OP_, seq_cst, seq_cst, __VA_ARGS__))
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+<scratch space>:92:1: note: expanded from here
+   92 | detail_ldst_intrinsic_seq_cst
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:30:43: note: expanded from macro 'detail_ldst_intrinsic_seq_cst'
+   30 |     #define detail_ldst_intrinsic_seq_cst __ATOMIC_ACQ_REL
+      |                                           ^~~~~~~~~~~~~~~~
+<built-in>:17:26: note: expanded from macro '__ATOMIC_ACQ_REL'
+   17 | #define __ATOMIC_ACQ_REL 4
+      |                          ^
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:8:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowTerminalReporting.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/MetadataCache.h:22:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/os/Mutex.h:9:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/ReentrantLock.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Baselib_ReentrantLock.h:15:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/Baselib_ReentrantLock.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Baselib_Lock.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/Baselib_Lock_SemaphoreBased.inl.h:4:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Baselib_CappedSemaphore.h:21:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Baselib_CappedSemaphore_SemaphoreBased.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic_TypeSafe.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic.h:404:
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:218:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]
+  210 | Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER(
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  211 |     detail_LOAD_NOT_CONST,      // load
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  212 |     detail_STORE,               // store
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  213 |     detail_NOT_SUPPORTED,       // add
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  214 |     detail_NOT_SUPPORTED,       // and
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  215 |     detail_NOT_SUPPORTED,       // or
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  216 |     detail_NOT_SUPPORTED,       // xor
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  217 |     detail_XCHG,                // exchange
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  218 |     detail_CMP_XCHG_WEAK,       // compare_exchange_weak
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  219 |     detail_CMP_XCHG_STRONG,     // compare_exchange_strong
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  220 |     128, 128, __int128          // type information
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  221 | )
+      | ~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:41:59: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER'
+   41 |     DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER(CMP_XCHG_WEAK_MACRO_, compare_exchange_weak, __VA_ARGS__)     \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:167:33: note: expanded from macro 'DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER'
+  167 |     DETAIL__Baselib_Atomic_EVAL(MACRO_(OP_, seq_cst, seq_cst, __VA_ARGS__))
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:102:82: note: expanded from macro 'detail_CMP_XCHG_WEAK'
+  102 |         detail_QNX_CMP_XCHG_BARRIER_ORDER2_PATCH(detail_ldst_intrinsic_##order1, detail_ldst_intrinsic_##order2));          \
+      |                                                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<scratch space>:82:1: note: expanded from here
+   82 | detail_ldst_intrinsic_seq_cst
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:30:43: note: expanded from macro 'detail_ldst_intrinsic_seq_cst'
+   30 |     #define detail_ldst_intrinsic_seq_cst __ATOMIC_ACQ_REL
+      |                                           ^~~~~~~~~~~~~~~~
+<built-in>:17:26: note: expanded from macro '__ATOMIC_ACQ_REL'
+   17 | #define __ATOMIC_ACQ_REL 4
+      |                          ^
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:8:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowTerminalReporting.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/MetadataCache.h:22:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/os/Mutex.h:9:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/ReentrantLock.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Baselib_ReentrantLock.h:15:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/Baselib_ReentrantLock.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Baselib_Lock.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/Baselib_Lock_SemaphoreBased.inl.h:4:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Baselib_CappedSemaphore.h:21:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Baselib_CappedSemaphore_SemaphoreBased.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic_TypeSafe.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic.h:404:
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:219:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]
+  210 | Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER(
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  211 |     detail_LOAD_NOT_CONST,      // load
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  212 |     detail_STORE,               // store
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  213 |     detail_NOT_SUPPORTED,       // add
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  214 |     detail_NOT_SUPPORTED,       // and
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  215 |     detail_NOT_SUPPORTED,       // or
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  216 |     detail_NOT_SUPPORTED,       // xor
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  217 |     detail_XCHG,                // exchange
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  218 |     detail_CMP_XCHG_WEAK,       // compare_exchange_weak
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  219 |     detail_CMP_XCHG_STRONG,     // compare_exchange_strong
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  220 |     128, 128, __int128          // type information
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  221 | )
+      | ~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:42:59: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER'
+   42 |     DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER(CMP_XCHG_STRONG_MACRO_, compare_exchange_strong, __VA_ARGS__)
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:167:33: note: expanded from macro 'DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER'
+  167 |     DETAIL__Baselib_Atomic_EVAL(MACRO_(OP_, seq_cst, seq_cst, __VA_ARGS__))
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:119:82: note: expanded from macro 'detail_CMP_XCHG_STRONG'
+  119 |         detail_QNX_CMP_XCHG_BARRIER_ORDER2_PATCH(detail_ldst_intrinsic_##order1, detail_ldst_intrinsic_##order2));          \
+      |                                                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<scratch space>:14:1: note: expanded from here
+   14 | detail_ldst_intrinsic_seq_cst
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:30:43: note: expanded from macro 'detail_ldst_intrinsic_seq_cst'
+   30 |     #define detail_ldst_intrinsic_seq_cst __ATOMIC_ACQ_REL
+      |                                           ^~~~~~~~~~~~~~~~
+<built-in>:17:26: note: expanded from macro '__ATOMIC_ACQ_REL'
+   17 | #define __ATOMIC_ACQ_REL 4
+      |                          ^
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:8:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowTerminalReporting.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/MetadataCache.h:22:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/os/Mutex.h:9:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/ReentrantLock.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Baselib_ReentrantLock.h:15:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/Baselib_ReentrantLock.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Baselib_Lock.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/Baselib_Lock_SemaphoreBased.inl.h:4:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Baselib_CappedSemaphore.h:21:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Baselib_CappedSemaphore_SemaphoreBased.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic_TypeSafe.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic.h:404:
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:231:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]
+  223 | Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER(
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  224 |     detail_LOAD_NOT_CONST,      // load
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  225 |     detail_STORE,               // store
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  226 |     detail_NOT_SUPPORTED,       // add
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  227 |     detail_NOT_SUPPORTED,       // and
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  228 |     detail_NOT_SUPPORTED,       // or
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  229 |     detail_NOT_SUPPORTED,       // xor
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  230 |     detail_XCHG,                // exchange
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  231 |     detail_CMP_XCHG_WEAK,       // compare_exchange_weak
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  232 |     detail_CMP_XCHG_STRONG,     // compare_exchange_strong
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  233 |     ptr2x, 128, __int128        // type information
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  234 | )
+      | ~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:41:59: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER'
+   41 |     DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER(CMP_XCHG_WEAK_MACRO_, compare_exchange_weak, __VA_ARGS__)     \
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:167:33: note: expanded from macro 'DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER'
+  167 |     DETAIL__Baselib_Atomic_EVAL(MACRO_(OP_, seq_cst, seq_cst, __VA_ARGS__))
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:102:82: note: expanded from macro 'detail_CMP_XCHG_WEAK'
+  102 |         detail_QNX_CMP_XCHG_BARRIER_ORDER2_PATCH(detail_ldst_intrinsic_##order1, detail_ldst_intrinsic_##order2));          \
+      |                                                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<scratch space>:7:1: note: expanded from here
+    7 | detail_ldst_intrinsic_seq_cst
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:30:43: note: expanded from macro 'detail_ldst_intrinsic_seq_cst'
+   30 |     #define detail_ldst_intrinsic_seq_cst __ATOMIC_ACQ_REL
+      |                                           ^~~~~~~~~~~~~~~~
+<built-in>:17:26: note: expanded from macro '__ATOMIC_ACQ_REL'
+   17 | #define __ATOMIC_ACQ_REL 4
+      |                          ^
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:8:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/AssemblyShadowTerminalReporting.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/vm/MetadataCache.h:22:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/libil2cpp/os/Mutex.h:9:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/ReentrantLock.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Baselib_ReentrantLock.h:15:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/Baselib_ReentrantLock.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Baselib_Lock.h:12:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/Baselib_Lock_SemaphoreBased.inl.h:4:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Baselib_CappedSemaphore.h:21:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Baselib_CappedSemaphore_SemaphoreBased.inl.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic_TypeSafe.h:3:
+In file included from /Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Baselib_Atomic.h:404:
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:232:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]
+  223 | Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER(
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  224 |     detail_LOAD_NOT_CONST,      // load
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  225 |     detail_STORE,               // store
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  226 |     detail_NOT_SUPPORTED,       // add
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  227 |     detail_NOT_SUPPORTED,       // and
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  228 |     detail_NOT_SUPPORTED,       // or
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  229 |     detail_NOT_SUPPORTED,       // xor
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  230 |     detail_XCHG,                // exchange
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  231 |     detail_CMP_XCHG_WEAK,       // compare_exchange_weak
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  232 |     detail_CMP_XCHG_STRONG,     // compare_exchange_strong
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  233 |     ptr2x, 128, __int128        // type information
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  234 | )
+      | ~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:42:59: note: expanded from macro 'Baselib_Atomic_FOR_EACH_ATOMIC_OP_AND_MEMORY_ORDER'
+   42 |     DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER(CMP_XCHG_STRONG_MACRO_, compare_exchange_strong, __VA_ARGS__)
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/../../../C/Baselib_Atomic_Macros.h:167:33: note: expanded from macro 'DETAIL__Baselib_Atomic_FOR_EACH_CMP_XCHG_MEMORY_ORDER'
+  167 |     DETAIL__Baselib_Atomic_EVAL(MACRO_(OP_, seq_cst, seq_cst, __VA_ARGS__))
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:119:82: note: expanded from macro 'detail_CMP_XCHG_STRONG'
+  119 |         detail_QNX_CMP_XCHG_BARRIER_ORDER2_PATCH(detail_ldst_intrinsic_##order1, detail_ldst_intrinsic_##order2));          \
+      |                                                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<scratch space>:35:1: note: expanded from here
+   35 | detail_ldst_intrinsic_seq_cst
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-MANAGED-RECEIPT-20261016-0620/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:30:43: note: expanded from macro 'detail_ldst_intrinsic_seq_cst'
+   30 |     #define detail_ldst_intrinsic_seq_cst __ATOMIC_ACQ_REL
+      |                                           ^~~~~~~~~~~~~~~~
+<built-in>:17:26: note: expanded from macro '__ATOMIC_ACQ_REL'
+   17 | #define __ATOMIC_ACQ_REL 4
+      |                          ^
+14 warnings generated.

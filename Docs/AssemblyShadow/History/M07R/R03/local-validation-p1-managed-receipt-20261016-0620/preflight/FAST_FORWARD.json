@@ -1,0 +1,186 @@
+[
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-16T07:03:23.002807+00:00",
+    "end": "2026-10-16T07:03:27.309188+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_demo\n * branch              codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "9427336ebce4fa4e633e9408fbbef4841ea9ff45"
+    ],
+    "start": "2026-10-16T07:03:27.309299+00:00",
+    "end": "2026-10-16T07:03:27.327013+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge",
+      "--ff-only",
+      "9427336ebce4fa4e633e9408fbbef4841ea9ff45"
+    ],
+    "start": "2026-10-16T07:03:27.327130+00:00",
+    "end": "2026-10-16T07:03:27.575464+00:00",
+    "exit": 0,
+    "stdout": "Updating 1abf5df9..9427336e\nFast-forward\n .../r03-p1-metadata-preflight-contract.yml         |  56 ++++-\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        | 110 ++++-----\n .../P1_MANAGED_RECEIPT_2026-10-16/EVIDENCE.json    | 106 +++++++++\n .../HOST_TEST_LOGS.txt                             | 103 ++++++++\n .../PRIMARY_RECONCILIATION.md                      |  43 ++++\n Docs/AssemblyShadow/Plan/CURRENT_STATUS.md         | 131 +++--------\n Docs/AssemblyShadow/README.md                      | 120 ++--------\n .../R03IR/run_p1_metadata_local_preflight.py       |  61 ++++-\n .../R03IR/test_p1_managed_receipt.py               | 262 +++++++++++++++++++++\n 9 files changed, 721 insertions(+), 271 deletions(-)\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_MANAGED_RECEIPT_2026-10-16/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_MANAGED_RECEIPT_2026-10-16/HOST_TEST_LOGS.txt\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_MANAGED_RECEIPT_2026-10-16/PRIMARY_RECONCILIATION.md\n create mode 100644 Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-16T07:03:28.145606+00:00",
+    "end": "2026-10-16T07:03:31.868529+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+    ],
+    "start": "2026-10-16T07:03:31.868768+00:00",
+    "end": "2026-10-16T07:03:31.889412+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "merge",
+      "--ff-only",
+      "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+    ],
+    "start": "2026-10-16T07:03:31.889550+00:00",
+    "end": "2026-10-16T07:03:31.906449+00:00",
+    "exit": 0,
+    "stdout": "Already up to date.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-16T07:03:31.931317+00:00",
+    "end": "2026-10-16T07:03:35.862808+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_unity\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "948c0e3b4f8891481301770115e8ba4945eea6de"
+    ],
+    "start": "2026-10-16T07:03:35.863063+00:00",
+    "end": "2026-10-16T07:03:35.883656+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "merge",
+      "--ff-only",
+      "948c0e3b4f8891481301770115e8ba4945eea6de"
+    ],
+    "start": "2026-10-16T07:03:35.883814+00:00",
+    "end": "2026-10-16T07:03:35.900274+00:00",
+    "exit": 0,
+    "stdout": "Already up to date.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-16T07:03:35.926982+00:00",
+    "end": "2026-10-16T07:03:39.901823+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/il2cpp_plus\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "0a0b70156e75d450d75d0bcfd9132843b8abbbb0"
+    ],
+    "start": "2026-10-16T07:03:39.902007+00:00",
+    "end": "2026-10-16T07:03:39.923383+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "merge",
+      "--ff-only",
+      "0a0b70156e75d450d75d0bcfd9132843b8abbbb0"
+    ],
+    "start": "2026-10-16T07:03:39.923503+00:00",
+    "end": "2026-10-16T07:03:39.939491+00:00",
+    "exit": 0,
+    "stdout": "Already up to date.\n",
+    "stderr": ""
+  }
+]

@@ -1,6 +1,14 @@
 # Local Validation → Primary Implementation
 
-## Current return — P1 metadata source/SDK 20261016-0a0b FAIL
+## Current return — P1 managed receipt successor 20261016-0620 PASS
+
+**PASS / PassedSourceHostAndSDKOnly; Local Validation → Primary Implementation.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-managed-receipt-20261016-0620/README.md), [binding revalidation](../History/M07R/R03/local-validation-p1-managed-receipt-20261016-0620/MANAGED_BINDING_REVALIDATION.json). One fresh authorized batch,10/10 Passed outer components, five official managed products plus exact negative control and70/70 native syntax configurations. No code changes, retry or Unity/Player launch.
+
+IR-LOCAL-P1-MANAGED-RECEIPT-01 is **verified corrected at this new exact four-source tuple**: outer managed cell matches the real producer's exact nested path/hash/schema/scope/Passed verdict, returnedBindingVerified=true, child exit0 and five-product/negative compiler evidence. No root fallback created. Source/SDK and consumed old evidence/scratch preservation Passed; previous0a0b remains FAIL with its original false aggregate SDK flag and all bytes unchanged. Complete prior finding stays below; no new substantive Local finding.
+
+Primary should reconcile the fresh compiler/consumer evidence and continue owning the unresolved P1 coherent live capture/allocation/GC/RSS/shutdown work, P2 V2 semantic integration and E0/E1 supported engine lifecycle. SDK syntax and host mocks do not close these issues. Historical SNAP-01/other FAIL, strict custody Blocked and independent full-stage FAIL/re-review NotRun stay unchanged. All acceptance flags false; no Human Review Gate, runtime or next-milestone authority.
+
+## Historical return — P1 metadata source/SDK 20261016-0a0b FAIL
 
 **Local Validation → Primary Implementation.** [Factual report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-metadata-source-20261016-0a0b/README.md), [machine finding](../History/M07R/R03/local-validation-p1-metadata-source-20261016-0a0b/FINDING.json). One wrapper invocation produced9 Passed/1 Failed and FailedOrIncomplete. Actual official five-product managed compilation/negative control and all70 native syntax configurations Passed. No retry/source changes or runtime launch.
 

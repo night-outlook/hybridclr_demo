@@ -1,0 +1,156 @@
+{
+  "kind": "P1BoundedFirstUseActualSourceHost",
+  "result": "PassedWithinHostScope",
+  "compiledActualProductionMethod": true,
+  "methodSha256": "c3626338497a16466c3f358f3771eb663fc211b94d6bd5ee6223364763bf4a2b",
+  "sourceBefore": {
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 119536,
+      "sha256": "db6667175e0f102d3be635060f93a083618a9efe8a2f8ab34f2eb119e98a7547",
+      "gitBlob": "0012b9ccadcb8c0bbc2ec5411e206dc733f04eeb"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.h": {
+      "bytes": 8230,
+      "sha256": "4a753388d5ca926953da0c3b1d83f90fb18d4f697d6777048c54b1487f378f74",
+      "gitBlob": "d5a6449f0033e914577853806c4979a1c8630838"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h": {
+      "bytes": 11230,
+      "sha256": "1d3862aef59f75a9133dbcf2dfd775f47940cdafaec9103ba9b588a156d8f505",
+      "gitBlob": "dba631ae622d5b5187cccdce516411c45afe28de"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h": {
+      "bytes": 14775,
+      "sha256": "db843e21ec6f05da367f3e747bd7599b7ab8985517559491bce53da08531d96e",
+      "gitBlob": "862dfffb3acfce6c0ed36c70a510c80bc645f63f"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.cpp": {
+      "bytes": 8176,
+      "sha256": "62f2d9b038ed8e4f3e352c06ad72355ae5d6e69e800e3a39647a70271d295902",
+      "gitBlob": "f51e6ca403fe12dec66ace96148f2da3bc17fc56"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.h": {
+      "bytes": 2990,
+      "sha256": "5017cadef623509190bd7b486c935b7b8ca462207f7d13760d2223216112f038",
+      "gitBlob": "f243ac8b42d31a59b6a1d5641ea101807383243b"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowTypes.h": {
+      "bytes": 1825,
+      "sha256": "df149952bd8beefd0ee6580f337262f28614c43f7eb695554a3a284eca1a1257",
+      "gitBlob": "6d1379bc33300e4682468705942721d355481ca7"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h": {
+      "bytes": 6070,
+      "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605",
+      "gitBlob": "9dee4c9ea6febe4a919d1c7eb8faf2ad00b8a8e5"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/bounded_first_use_fixture.cpp": {
+      "bytes": 13740,
+      "sha256": "18367330425964b2cf79679408af79035b792fd907fbeb50bf4fe17c9f59533a",
+      "gitBlob": "556f078d40a47dfc2cf5fd64a73590e9a992e5d2"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp": {
+      "bytes": 1427,
+      "sha256": "80428db4e93796feea1c6f9b7d64d17ecf005496518bf44c3a3d52440832988f",
+      "gitBlob": "7b58a198f86378b9b0daf3864799867d359a772d"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/run_bounded_first_use.py": {
+      "bytes": 8059,
+      "sha256": "3c401276c656a73b740eb48a8baeb9669ea91af2ef33429dd359609576cc5aef",
+      "gitBlob": "c364b52bf9d3a42181a38a2b80aec34de691581d"
+    }
+  },
+  "sourcePreserved": true,
+  "profilesCompleted": [
+    "strict",
+    "sanitized"
+  ],
+  "commands": [
+    {
+      "name": "strict-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/bounded-first-use/stubs",
+        "-O2",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/bounded-first-use/mock-execution.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/bounded-first-use/strict.exe"
+      ],
+      "start": 1792134332.111433,
+      "end": 1792134333.083918,
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "strict-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/bounded-first-use/strict.exe"
+      ],
+      "start": 1792134333.084123,
+      "end": 1792134333.488265,
+      "exit": 0,
+      "stdoutSha256": "8840e3857a8632082a4580b2f88bdb8681a6932fbb5678e1c3d0d1493d0c8565",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "sanitized-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/bounded-first-use/stubs",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/bounded-first-use/mock-execution.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/bounded-first-use/sanitized.exe"
+      ],
+      "start": 1792134333.488587,
+      "end": 1792134334.7833111,
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "sanitized-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/bounded-first-use/sanitized.exe"
+      ],
+      "start": 1792134334.783503,
+      "end": 1792134335.284009,
+      "exit": 0,
+      "stdoutSha256": "8840e3857a8632082a4580b2f88bdb8681a6932fbb5678e1c3d0d1493d0c8565",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "firstError": null,
+  "realMetadataClassLifetimeTicket": false,
+  "classBearingLiveProducerComplete": false,
+  "classPointerDereferencedInSourceMethod": false,
+  "actualUnitySdkCompile": false,
+  "realPlayerRun": false,
+  "semanticAcceptance": false
+}

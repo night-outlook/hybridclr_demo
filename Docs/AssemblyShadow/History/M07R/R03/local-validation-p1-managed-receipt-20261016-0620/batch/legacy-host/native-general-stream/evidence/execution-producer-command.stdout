@@ -1,0 +1,57 @@
+{
+  "result": "StructuralSizeMismatchReproduced",
+  "sourceFunction": "AssemblyShadow::GetExecutionDiagnosticsJson",
+  "functionSHA256": "051497faf816e4094b8f4e8f194c5b877812cee034c6901c755e8b6efdff9c40",
+  "serializerBody": "Actual source; VM/metadata helpers and class inventory are synthetic",
+  "NActualClassCount": "Unavailable",
+  "NActualFailureReason": "Unproved",
+  "noLimitChange": true,
+  "records": [
+    {
+      "profile": "strict",
+      "sourceFunctionSha256": "051497faf816e4094b8f4e8f194c5b877812cee034c6901c755e8b6efdff9c40",
+      "syntheticClassCount": 1024,
+      "actualFunctionOutputBytes": 331078,
+      "originalSnapshotSlotLimit": 262144,
+      "exceedsByBytes": 68934,
+      "outputSha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+      "compileCommand": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/legacy-host/native-general-stream/evidence/execution-producer/actual_serializer.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/legacy-host/native-general-stream/evidence/execution-producer/strict"
+      ],
+      "compileExit": 0,
+      "processExit": 0
+    },
+    {
+      "profile": "sanitized",
+      "sourceFunctionSha256": "051497faf816e4094b8f4e8f194c5b877812cee034c6901c755e8b6efdff9c40",
+      "syntheticClassCount": 1024,
+      "actualFunctionOutputBytes": 331078,
+      "originalSnapshotSlotLimit": 262144,
+      "exceedsByBytes": 68934,
+      "outputSha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+      "compileCommand": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/legacy-host/native-general-stream/evidence/execution-producer/actual_serializer.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-MANAGED-RECEIPT-20261016-0620/legacy-host/native-general-stream/evidence/execution-producer/sanitized"
+      ],
+      "compileExit": 0,
+      "processExit": 0
+    }
+  ]
+}
