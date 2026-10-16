@@ -1,4 +1,17 @@
-# Current status — fresh managed receipt PASS reconciled; Local assignment consumed
+# Current status — R03 P1 first-use class source increment published; SDK-only Local assignment
+
+## Fresh P1 source, CI and owner
+
+**Current scope:** one new host/official SDK syntax-only Local Validation batch is independently authorized in [WEB_TO_LOCAL.md](../Handoff/WEB_TO_LOCAL.md). Its fresh roots, exact commits, source-provenance gates and stop conditions supersede the consumed earlier receipt batch; the earlier PASS/FAIL receipts themselves remain unchanged.
+
+Primary published a six-file native source/test/CI increment at **`il2cpp_plus@f598f8da5749e7c09ad5816630ce7e40b3f4ebca`** on top of source-epoch admission `f71691407bf9af5544d00dd54bff9e2e7eb77307`. Final native branch HEAD is **`1e1d152f0e05b8038427c76a9c8a9b4b60998a72`**, with only terminal source-test assertion corrections after the P1 source commit. Original first-use and general/execution diagnostics getters remain unchanged/inactive. The new bounded reader acquires metadata admission before reading the candidate registry, copies first-use records under UsageLock, resolves complete physical class names after unlocking under a separate metadata mutex, then verifies usage generation before sealing. Default source admission does not extend into a reopened runtime session.
+
+[Native first-use CI 38876310270](https://github.com/night-outlook/il2cpp_plus/actions/runs/38876310270) PASSED **3/3 macOS/Linux compiler jobs**, 15 groups per strict/sanitized profile; three original CI ZIP hashes and **57/57** files independently verified. The restored [terminal source-workflow CI 38876957263](https://github.com/night-outlook/il2cpp_plus/actions/runs/38876957263) passed **2/2**; older red terminal source assertions and the historical R02 whole-file identity job remain their original separate records. [Primary reconciliation](../History/M07R/R03/IR_Remediation/P1_FIRST_USE_CLASS_METADATA_2026-10-16/PRIMARY_REVIEW.md) · [evidence](../History/M07R/R03/IR_Remediation/P1_FIRST_USE_CLASS_METADATA_2026-10-16/EVIDENCE.json).
+
+**P1 Incomplete:** full admitted and coherent live general/execution/R02 VM capture, per-class ownership provenance, type-key allocation/lifetime, global generation/epoch, GC/RSS bounds, shutdown deadlock freedom and real original getter integration are not proven. **P2 NotIntegrated; E0 Blocked/Unavailable; E1 BlockedByE0; full P3 Incomplete.** The next Local batch does not contain Unity Editor, Player, linked runtime or engine-owner validation. Historical SNAP-01/N/M/K/I/E FAIL, strict original S custody Blocked, independent R03 review FAIL/re-review NotRun remain unchanged; `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `fullLegacyRegressionAcceptance=false`, PureInterpreter disabled. No H2/X02/M08A.
+
+## Previous status — managed receipt correction and consumed Local PASS
+
 
 ## Current ownership and completed finding
 
