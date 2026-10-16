@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1PhysicalAssemblyActualMethodHostEvidence",
+  "sourceBranch": "codex/assembly-shadow-r01b-h1",
+  "implementationNativeCommit": "fba5b62148076943ba689b40333894f0edd3c7df",
+  "baseNativeCommit": "1d66565855e729bedeaf93ed24078e9a6dbc83ed",
+  "result": "PassedWithinHostScope",
+  "methodSha256": "fc88097a67c3a93a00b0f0150b09531074c11f77f5f9e6bd4aa5af1ba274a3da",
+  "legacyPhysicalEnumerationSha256": "bec8878dda2755b5f48c49f16dd87de27cff8b3a189689679a3c6dbdb3afa540",
+  "immutableLegacyGeneralSerializerGitBlob": "226b01273d3e30d190422c4c4c740c49a8d957f0",
+  "CI": {
+    "repository": "night-outlook/il2cpp_plus",
+    "runId": 38842846530,
+    "url": "https://github.com/night-outlook/il2cpp_plus/actions/runs/38842846530",
+    "status": "completed",
+    "conclusion": "success",
+    "platforms": [
+      {
+        "platform": "ubuntu-24.04 clang++",
+        "status": "success",
+        "artifactId": 12022310702,
+        "archiveSha256": "9259524a2702026340367ef4b60e6b0122fc862e3ac21f25ba38badb1b08bfd5",
+        "manifestDeclaredFiles": 26,
+        "verifiedFiles": 26,
+        "profiles": [
+          "strict",
+          "sanitized"
+        ],
+        "commands": 6
+      },
+      {
+        "platform": "macos-15 clang++",
+        "status": "success",
+        "artifactId": 12021722914,
+        "archiveSha256": "2aa6c0c3e929b0494e5868c493d18d5b145e8fd448cb71ea002d27837bcd6316",
+        "manifestDeclaredFiles": 29,
+        "verifiedFiles": 29,
+        "profiles": [
+          "strict",
+          "sanitized"
+        ],
+        "commands": 6
+      },
+      {
+        "platform": "ubuntu-24.04 g++",
+        "status": "success",
+        "artifactId": 12021549808,
+        "archiveSha256": "128934663257d6e70803150e1d14478bd570cfe56ce053181dc7f2f1f3fd774a",
+        "manifestDeclaredFiles": 26,
+        "verifiedFiles": 26,
+        "profiles": [
+          "strict",
+          "sanitized"
+        ],
+        "commands": 6
+      }
+    ]
+  },
+  "independentArtifactAudit": {
+    "method": "download original CI ZIPs via GitHub Connector then independently check SHA-256 and byte length for every MANIFEST.json declared file against actual ZIP member data; read RESULT.json and strict/sanitized stdout",
+    "archivesChecked": 3,
+    "regularFilesVerified": 81,
+    "missing": 0,
+    "shaOrSizeMismatches": 0,
+    "unlisted": 0,
+    "shaOfProductionMethodConsistent": true,
+    "sourceBeforeAfterPreservedInAllJobs": true,
+    "allEighteenCompilationAndExecutionCommandsSucceeded": true
+  },
+  "sourceContract": {
+    "newProductFiles": [
+      "libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+      "libil2cpp/vm/Assembly.cpp",
+      "libil2cpp/vm/Assembly.h"
+    ],
+    "actualProductMethodCompiledUnderMocks": true,
+    "previousAssemblyCaptureShadowEnumerationBodyByteIdentical": true,
+    "originalGetDiagnosticsJsonUnchanged": true,
+    "originalGetExecutionDiagnosticsJsonUnchanged": true,
+    "physicalTokenFilterExact": true,
+    "preservesPhysicalSourceOrderAndDuplicates": true,
+    "interpreterFlagFromExistingUnderLockPredicate": true,
+    "copiesBorrowedNamesUnderAssemblyLock": true,
+    "outputsOnlyOwnedBytes": true,
+    "observedGenerationFlipFailsClosed": true
+  },
+  "limits": {
+    "physicalAssemblyEntries": 4096,
+    "nameBytes": 1048576,
+    "sourceLock": "s_assemblyLock",
+    "capturedGeneration": "AssemblyShadow::ActiveGeneration sampled under s_assemblyLock; NOT global epoch",
+    "lastExecutedLocalDemoCommit": "7b9d1d4e37d1731f9f00042eb04892a8afaf7e80",
+    "lastExecutedLocalNativeCommit": "74dbdbea80d83923863303bd2b2c0a87f36541b1"
+  },
+  "hostTests": [
+    "Zero, four, 4096 and 4097 registry entries, exact physical order and filter",
+    "Different physical interpreter flags and duplicate names preserved without deduplication",
+    "Borrowed names survive source name mutation after Capture",
+    "Missing assembly/image/name fail closed; truncated count never seals",
+    "Name capacity overflow fail closed",
+    "Wrong stage, capture self-alias rejected, adjacent independent input accepted",
+    "Observed active-generation change rejects entire record",
+    "No operator-new calls during prepared host capture path",
+    "Three-way whole JSON byte parity: immutable original general V1, current general V1, staged frozen V1",
+    "411154-byte synthetic general JSON includes mocked nonassembly fields and 4096 physical names",
+    "All strict C++17 and ASan/UBSan profiles passed on three compilers"
+  ],
+  "hostQualificationLimitations": [
+    "Real Unity/IL2CPP SDK compilation NOT performed",
+    "Actual VM metadata pool/assembly name lifetime during Runtime::Shutdown is NOT proven",
+    "Physical registry host mocks are not native Player evidence",
+    "Assembly lock maximum hold time and process peak RSS/GC are unmeasured",
+    "Il2CppClass* first-use metadata remains opaque and unresolved",
+    "Complete native general/execution/R02 field14/15 producer and authenticated V2 Player integration NOT implemented",
+    "Original R03 engine 500ms/1..64 reports / callback drain / finalizer maintenance NOT satisfied",
+    "External original S custody and all historical negative evidence unchanged"
+  ],
+  "historical": {
+    "SNAP01": "FAIL/ReturnRequired",
+    "cellsPassed": 14,
+    "cellsFailed": 4,
+    "realSlot14ObservedPrefix": 262145,
+    "realSlot14FullLength": "Unavailable",
+    "originalV1FieldTextLimit": 262144,
+    "engineReportsUncappedIn500ms": 51213,
+    "engineExit": 71,
+    "strictSCustody": "Blocked",
+    "oldLocalHostPassConsumed": true,
+    "olderLocalHostFailImmutable": true
+  },
+  "acceptance": {
+    "P1Complete": false,
+    "P2Integrated": false,
+    "E0EngineOwnerProven": false,
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "currentOwner": "Primary Implementation",
+  "newLocalValidationAuthorized": false
+}
