@@ -139,12 +139,16 @@ def main():
             # Explicitly cover the shared general serializer; historical matrix was 11 x 5.
             units.append(copy/'vm/AssemblyShadowDiagnostics.cpp')
             if candidate:
-                # P1 candidate mode compiles actual physical/class readers too.
+                # P1 candidate mode includes actual physical/class readers and
+                # the new inactive general composition SDK syntax probe.
                 # The historical official SDK matrix remains exactly 12 x 5.
                 units.extend((copy/'vm/Assembly.cpp',copy/'vm/AssemblyShadowVisibility.cpp'))
+                # Compile the new real bounded-source composer header through
+                # one separate official Unity SDK translation-unit probe.
+                units.append(demo/'Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowGeneralComposeSyntax.cpp')
             profiles=[('candidate',1,1,0,2),('debug',1,1,1,2),('probe-off',1,0,0,2),
                       ('diagnostics-off',1,0,0,0),('feature-off',0,1,0,0)]
-            expected_units=14 if candidate else 12
+            expected_units=15 if candidate else 12
             require(len(units)==expected_units and len(set(units))==expected_units and len(profiles)==5,
                     'Complete current candidate/historical syntax matrix required')
             result['plannedTranslationUnitCount']=expected_units*len(profiles)
