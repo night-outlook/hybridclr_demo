@@ -1,5 +1,18 @@
 # Current status — SNAP-01 consumed; inactive V2 codec and file transaction verified
 
+
+## Latest Primary status — 2026-10-16 P1 native lifetime admission and Local SDK-only preflight
+
+**Current assignment:** a separate **ONE-SHOT source-bound host/official-SDK syntax** Local Validation preflight is authorized by the current [WEB_TO_LOCAL.md](../Handoff/WEB_TO_LOCAL.md); previously consumed host/Player roots are not reusable. This does NOT authorize a Player runtime batch, full R03 acceptance or Human Review Gate. Source anchor `il2cpp_plus@0a0b70156e75d450d75d0bcfd9132843b8abbbb0`, current demo source preflight anchor `1a861c3c777e25d422248f1621f610b30669f2cc` (the final documentation HEAD is supplied separately with exact remote verification).
+
+Primary added an initially closed process-global metadata read admission/drain to `Runtime.cpp` and two existing **inactive** bounded source readers under their original locks. Host CI passed **3/3** each for [gate](https://github.com/night-outlook/il2cpp_plus/actions/runs/38847888461), [classes](https://github.com/night-outlook/il2cpp_plus/actions/runs/38847710731) and [assemblies](https://github.com/night-outlook/il2cpp_plus/actions/runs/38847715239), all synthetic/mock/native-header scope. The demo's new script aggregates **ten components** in one batch; explicit `native_validation.py --candidate-native-sha` compiles the native candidate with installed Unity SDK **14 TUs x 5 profiles = 70** (instead of historical 12 x 5 = 60), without changing historical source-pins.json. Local remains responsible only for empirical compilation/evidence, not product fixes.
+
+**Still P1 Incomplete:** the original general/execution getters have not been replaced with one coherent, live bounded VM capture; lifetime admission is limited to two inactive readers and does not prove global epoch, shutdown lock safety, all callbacks/GC or allocation/RSS limits. **P2 NotIntegrated; E0 Blocked; E1 BlockedByE0**; official SDK 70-unit validation and actual runtime `NotRun` until Local. Engine 500ms/uncapped 1–64 acceptance and complete native+C# V2 semantic integration are not bypassed. All original FAIL/Blocked/evidence remain unchanged and `R03Accepted=false`, `ReadyForHumanReviewGate=false`; no H2/X02/M08A.
+
+[Primary reconciliation and source/CI limits](../History/M07R/R03/IR_Remediation/P1_METADATA_LIFETIME_2026-10-16/PRIMARY_RECONCILIATION.md).
+
+
+
 **Owner: Primary Implementation. The previously authorized host-only Local batch completed PASS and is consumed; no further Local host/Unity runtime/integrated SDK compiler assignment is authorized.** SNAP-01's semantic batch remains `FAIL/ReturnRequired` with 18 cells (**14 Passed/4 Failed**); collected diagnostics were useful (`EvidenceCollected`) but did not change the verdict. Three ON first writer errors are actual slot14 finalDiagnostics >262144 bytes (prefix262145, exact lengths Unavailable); engine had51213 uncapped reports in500ms, exit71. N/M/K/I/E are historical FAIL; F/H/L prerequisite Blocked; G/J passed their historical limited scopes.
 
 ## Latest Primary P1 — bounded real ordinary-class callback (CI source only)
