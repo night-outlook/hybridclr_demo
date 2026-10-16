@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1FirstUseClassMetadataPrimaryReconciliation",
+  "disposition": "VerifiedWithinFreshHostAndSdkSyntaxScope",
+  "owner": "Primary Implementation",
+  "localValidation": "PAUSED; successor consumed; no new command authorized",
+  "source": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "demo": {
+      "repository": "night-outlook/hybridclr_demo",
+      "executionCommit": "c83707ac2d8b562a745ea2568cde77fc2cf030c4",
+      "localPublicationCommit": "1eb4fa5118734c5d533052c028e596ee0650dfa7",
+      "nonDocsRootTreesIdentical": true
+    },
+    "hybridclr": {
+      "repository": "night-outlook/hybridclr",
+      "executionCommit": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+    },
+    "hybridclr_unity": {
+      "repository": "night-outlook/hybridclr_unity",
+      "executionCommit": "948c0e3b4f8891481301770115e8ba4945eea6de"
+    },
+    "il2cpp_plus": {
+      "repository": "night-outlook/il2cpp_plus",
+      "executionCommit": "1e1d152f0e05b8038427c76a9c8a9b4b60998a72",
+      "implementationCommit": "f598f8da5749e7c09ad5816630ce7e40b3f4ebca",
+      "epochGateCommit": "f71691407bf9af5544d00dd54bff9e2e7eb77307",
+      "postImplementationChangedPaths": [
+        ".github/workflows/r03-ir-terminal.yml"
+      ],
+      "verifiedProductionCppGitBlob": "b7c99eeaefb77bd7739304214277484d8b2ab261"
+    }
+  },
+  "localExecution": {
+    "result": "PassedSourceHostAndSDKOnly",
+    "batchName": "20261016-f598",
+    "batchStart": "2026-10-16T09:07:40.874844+00:00",
+    "batchEnd": "2026-10-16T09:10:09.867119+00:00",
+    "exit": 0,
+    "aggregate": "PassedSourceHostAndSDKOnly",
+    "components": 10,
+    "passed": 10,
+    "failed": 0,
+    "allChildExitZero": true,
+    "sourcePreserved": true,
+    "postflightError": null,
+    "officialUnitySdkCompileAttempted": true,
+    "officialUnitySdkCompilePassed": true,
+    "rawResult": {
+      "sha256": "dabfae25587fcbbaae81d7d3bbe4c8d94928e29a7c1b85228e75a8a83a9943bc",
+      "bytes": 17638,
+      "independentlyRehashedByPrimary": true
+    },
+    "rawManifest": {
+      "sha256": "8852c93d82f008b7cde8498a3fb3a8d8597d0870f1e71e2fa4bcfdf44ceaf860",
+      "auditedBy": "Local Validation",
+      "independentlyRehashedByPrimary": false
+    },
+    "firstUse": {
+      "result": "PassedWithinHostScope",
+      "profiles": [
+        "strict",
+        "sanitized"
+      ],
+      "uniqueGroupsPerProfile": 15,
+      "compileAndRunReceipts": 4,
+      "compileAndRunExitZero": 4,
+      "sourceMethodSha256": "67fcd9f6660c67c8a60ed610cdc9b3c3cfc06adb01f9805a581e6dd97dd42be2",
+      "sourceVerifiedByLocal": true,
+      "sourceGitBlobsCheckedByPrimary": true,
+      "preciseChecks": [
+        "physical namespace + literal dot + name including .Class",
+        "source name lifetime/owned bytes",
+        "4096 capacity",
+        "non-nested UsageLock and metadata lock",
+        "initial-session metadata admission only",
+        "generation-change refusal",
+        "null/alias/capacity/overflow refusal",
+        "mock shutdown drain and parallel captures"
+      ],
+      "realClassPointerOriginProven": false,
+      "coherentGlobalVmEpochProven": false,
+      "playerPathActivated": false
+    },
+    "managed": {
+      "result": "Passed",
+      "products": 5,
+      "negativeControl": "OriginalUnsignedCounts",
+      "negativeControlExpectedExit": 1,
+      "expectedCS0266Count": 2,
+      "inputHashesLocallyVerified": 428,
+      "kind": "R03CompleteBuildHelperCompile",
+      "returnedBindingVerified": true,
+      "nestedReceiptSha256": "425577db1a66ab5b6d62ceca778ad6350d41ab767b7c3de7e61f1650e81427af",
+      "nestedReceiptBytes": 119136,
+      "nestedReceiptIndependentlyRehashedByPrimary": true,
+      "producerStdoutSha256": "23fbdc2a9bc55160e80146c93cd4b57169e4f719cd1f5561c269daf6b9ad2e62",
+      "producerStdoutBytes": 211,
+      "stdoutIndependentlyRehashedByPrimary": true,
+      "inheritedRuntimeAcceptance": false
+    },
+    "nativeSyntax": {
+      "result": "Passed",
+      "passedConfigurations": 70,
+      "failedConfigurations": 0,
+      "notRunConfigurations": 0,
+      "translationUnits": 14,
+      "profiles": 5,
+      "candidateSha": "1e1d152f0e05b8038427c76a9c8a9b4b60998a72",
+      "copiedSdkInputsLocallyVerified": 1900,
+      "unityEditorLaunched": false,
+      "linkedPlayerExecuted": false,
+      "runtimeAcceptance": false
+    },
+    "localAudit": {
+      "result": "PassedFactualEvidenceAudit",
+      "regularOutputFilesLocallyVerified": 3696,
+      "localizedCommandReceiptsLocallyVerified": 394,
+      "deliberateNegativeSymlinksLocallyAuthenticated": 4,
+      "installedSdkFilesPreserved": 2405,
+      "installedSdkBytesPreserved": 316062203,
+      "managedWarnings": 68,
+      "nativeWarnings": 742,
+      "unexpectedCompilerErrors": 0,
+      "appleLeakSanitizer": "Unavailable",
+      "primaryRepeatedEntireExternalAudit": false
+    }
+  },
+  "preservedHistorical": [
+    {
+      "batch": "20261016-0620",
+      "result": "PassedSourceHostAndSDKOnly",
+      "status": "Consumed",
+      "demoExecution": "9427336ebce4fa4e633e9408fbbef4841ea9ff45",
+      "nativeExecution": "0a0b70156e75d450d75d0bcfd9132843b8abbbb0",
+      "rawResultSha256": "d9fca3f1b223fd41907276ce321b7a58c4b1dd41526ad93e0b8bcfa7a499e901"
+    },
+    {
+      "batch": "20261016-0a0b",
+      "result": "FailedOrIncomplete",
+      "status": "Consumed",
+      "sdkAggregatePassed": false,
+      "rawResultSha256": "13e256649c9c6355b4ed7eb4c5190a0f62acacaf42ad0195a27a21718d3ba565",
+      "originalManagedSha256": "43f38be35063559bcb156c31968f6b80d8707982692aef55fd6ab05285ea916e"
+    },
+    {
+      "batch": "SNAP-01",
+      "result": "FAIL/ReturnRequired",
+      "passedCells": 14,
+      "totalCells": 18,
+      "firstFailingTextSlot": 14,
+      "originalV1Bound": 262144,
+      "scannedMinimum": 262145,
+      "realTotal": "Unavailable",
+      "engineUncappedReportsPer500ms": 51213,
+      "engineExit": 71
+    },
+    {
+      "gate": "R02 historical whole-file fingerprint",
+      "result": "Failed",
+      "reclassified": false
+    },
+    {
+      "gate": "Original strict S custody",
+      "result": "Blocked"
+    },
+    {
+      "gate": "Full-stage R03 independent review",
+      "result": "FAIL; rereview NotRun"
+    }
+  ],
+  "scope": {
+    "P1": "Incomplete: coherent admitted live general/execution/R02 capture, pointer provenance, global epoch, GC/RSS, lock/shutdown, original getter integration",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete",
+    "unityEditorRun": false,
+    "actualPlayerRun": false,
+    "officialSdkSyntaxIsLinkedRuntime": false,
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterExpansion": false,
+    "newLocalValidationAuthorized": false,
+    "humanReviewGateAuthorized": false
+  }
+}
