@@ -1,68 +1,61 @@
-# Current status — R03 P1 first-use class source increment published; SDK-only Local assignment
+# Current status — R03 P1 first-use class source/SDK PASS reconciled
 
-## Fresh P1 source, CI and owner
+## Ownership and active authorization
 
-**Current scope:** one new host/official SDK syntax-only Local Validation batch is independently authorized in [WEB_TO_LOCAL.md](../Handoff/WEB_TO_LOCAL.md). Its fresh roots, exact commits, source-provenance gates and stop conditions supersede the consumed earlier receipt batch; the earlier PASS/FAIL receipts themselves remain unchanged.
+**Primary Implementation owns the next engineering stage. Local Validation is PAUSED.** One `20261016-f598` source/SDK-only batch completed **PASS / `PassedSourceHostAndSDKOnly`, 10/10 Passed** and is consumed. The Local agent's factual [LOCAL_VALIDATION](../Handoff/LOCAL_VALIDATION.md), [RETURN_TO_WEB](../Handoff/RETURN_TO_WEB.md) and [checkpoint](../History/M07R/R03/local-validation-p1-firstuse-class-20261016-f598/README.md) remain immutable; [Primary reconciliation](../History/M07R/R03/IR_Remediation/P1_FIRST_USE_CLASS_PASS_2026-10-16/PRIMARY_RECONCILIATION.md) and [machine evidence](../History/M07R/R03/IR_Remediation/P1_FIRST_USE_CLASS_PASS_2026-10-16/EVIDENCE_DISPOSITION.json) record exact findings and verification boundaries.
 
-Primary published a six-file native source/test/CI increment at **`il2cpp_plus@f598f8da5749e7c09ad5816630ce7e40b3f4ebca`** on top of source-epoch admission `f71691407bf9af5544d00dd54bff9e2e7eb77307`. Final native branch HEAD is **`1e1d152f0e05b8038427c76a9c8a9b4b60998a72`**, with only terminal source-test assertion corrections after the P1 source commit. Original first-use and general/execution diagnostics getters remain unchanged/inactive. The new bounded reader acquires metadata admission before reading the candidate registry, copies first-use records under UsageLock, resolves complete physical class names after unlocking under a separate metadata mutex, then verifies usage generation before sealing. Default source admission does not extend into a reopened runtime session.
+**No new Local Validation commands, output roots, Unity Editor/Player execution, runtime seven-root batch, Human Review Gate or H2/X02/M08A are authorized.** The previous [WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md) has been closed and replaced by a PAUSED handoff. Both older source/SDK cycles are consumed and cannot be reused.
 
-[Native first-use CI 38876310270](https://github.com/night-outlook/il2cpp_plus/actions/runs/38876310270) PASSED **3/3 macOS/Linux compiler jobs**, 15 groups per strict/sanitized profile; three original CI ZIP hashes and **57/57** files independently verified. The restored [terminal source-workflow CI 38876957263](https://github.com/night-outlook/il2cpp_plus/actions/runs/38876957263) passed **2/2**; older red terminal source assertions and the historical R02 whole-file identity job remain their original separate records. [Primary reconciliation](../History/M07R/R03/IR_Remediation/P1_FIRST_USE_CLASS_METADATA_2026-10-16/PRIMARY_REVIEW.md) · [evidence](../History/M07R/R03/IR_Remediation/P1_FIRST_USE_CLASS_METADATA_2026-10-16/EVIDENCE.json).
+## Exact executed source tuple
 
-**P1 Incomplete:** full admitted and coherent live general/execution/R02 VM capture, per-class ownership provenance, type-key allocation/lifetime, global generation/epoch, GC/RSS bounds, shutdown deadlock freedom and real original getter integration are not proven. **P2 NotIntegrated; E0 Blocked/Unavailable; E1 BlockedByE0; full P3 Incomplete.** The next Local batch does not contain Unity Editor, Player, linked runtime or engine-owner validation. Historical SNAP-01/N/M/K/I/E FAIL, strict original S custody Blocked, independent R03 review FAIL/re-review NotRun remain unchanged; `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `fullLegacyRegressionAcceptance=false`, PureInterpreter disabled. No H2/X02/M08A.
+All four repositories use `codex/assembly-shadow-r01b-h1` and canonical `night-outlook` GitHub remotes.
 
-## Previous status — managed receipt correction and consumed Local PASS
+| Repository | Actual Local execution commit | Latest returned Local publication at reconciliation |
+| --- | --- | --- |
+| `night-outlook/hybridclr_demo` | `c83707ac2d8b562a745ea2568cde77fc2cf030c4` | `1eb4fa5118734c5d533052c028e596ee0650dfa7` (Docs-only after execution) |
+| `night-outlook/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` | same |
+| `night-outlook/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` | same |
+| `night-outlook/il2cpp_plus` | `1e1d152f0e05b8038427c76a9c8a9b4b60998a72` | same |
 
+The native first-use implementation is `f598f8da5749e7c09ad5816630ce7e40b3f4ebca` after the independently published metadata source-epoch admission `f71691407bf9af5544d00dd54bff9e2e7eb77307`. Only `.github/workflows/r03-ir-terminal.yml` changed between native f598 and actual Local native HEAD; product first-use code is identical. The historical demo source/CI anchor remains `06209426b765a805da2cc2f810ba5da390787099`; the historical `Tools/AssemblyShadow/R03/source-pins.json` retains the prior native pin `74dbdbea80d83923863303bd2b2c0a87f36541b1` and is not rewritten.
 
-## Current ownership and completed finding
+## Fresh factual scope and evidence
 
-**Owner: Primary Implementation. Local Validation is PAUSED.** The sole authorized `20261016-0620` successor completed **PASS / PassedSourceHostAndSDKOnly**, ten Passed outer components. Primary reconciled the published raw result, managed path/hash/verdict bindings and source authority. **IR-LOCAL-P1-MANAGED-RECEIPT-01: VerifiedCorrectedInFreshSourceSDKOnlySuccessor.** No new substantive Local finding was returned.
+The fresh single batch ran `2026-10-16T09:07:40.874844+00:00` through `2026-10-16T09:10:09.867119+00:00` (exit0):
 
-This closes the receipt-consumer defect in the fresh, exact-source host/official-SDK scope only. It does not complete P1, establish Unity engine ownership or authorize runtime acceptance. Both the fresh PASS and the preceding FAIL are consumed; no new Local command, root or validation is assigned.
-
-Read the unchanged Local-owned [LOCAL_VALIDATION](../Handoff/LOCAL_VALIDATION.md) and [RETURN_TO_WEB](../Handoff/RETURN_TO_WEB.md), then [Primary reconciliation](../History/M07R/R03/IR_Remediation/P1_MANAGED_RECEIPT_PASS_2026-10-16/PRIMARY_RECONCILIATION.md) and [machine disposition](../History/M07R/R03/IR_Remediation/P1_MANAGED_RECEIPT_PASS_2026-10-16/EVIDENCE_DISPOSITION.json). [WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md) now records the consumed authorization and has no executable successor command.
-
-## Fresh factual scope and evidence ownership
-
-The [20261016-0620 checkpoint](../History/M07R/R03/local-validation-p1-managed-receipt-20261016-0620/README.md) records actual official managed compilation of five products plus the expected-negative control and all **70 native syntax configurations Passed** (14 units x five profiles). The outer managed cell records exit0, inner Passed, returnedBindingVerified=true, and the exact `managed-sdk/build-api/results.json` path and SHA-256. Both aggregate SDK attempted/passed flags are true. No obsolete root-level fallback was created.
-
-Primary read all ten raw aggregate records, reconciled producer stdout with the outer binding, recomputed the stdout hash/Git blob, inspected the nested final verdict/schema/scope, and compared complete root Git trees for executed versus returned demo publication. Extensive compiler/input/SDK/external inventory checks remain **Local-audited evidence**: five managed products/428 inputs, expected negative exit1/two CS0266/no DLL, 70 native configurations/1900 scratch inputs, 2405 installed files/316062203 bytes preserved, 3658 regular output entries and 382 localized command-stream pairs. Four intentional negative symlinks were separately audited by Local. Primary did not repeat those complete external audits or run any SDK/Unity/Player commands in this reconciliation.
-
-The fresh warning occurrences remain **68 managed and 742 native**, retained unsuppressed. A host or syntax Pass is neither a warning-elimination claim nor evidence of linking, metadata teardown, callback draining or real Player behavior. Apple LeakSanitizer remains Unavailable as recorded by Local; ASan/UBSan host mocks retain their limited scope.
-
-## Preserved consumed FAIL
-
-The [20261016-0a0b checkpoint](../History/M07R/R03/local-validation-p1-metadata-source-20261016-0a0b/README.md) remains **FAIL / FailedOrIncomplete: 9 Passed / 1 Failed**, including `officialUnitySdkCompilePassed=false`. Its managed child/compiler results remain individually Passed, but the original aggregate is not repaired or reclassified. Local audited its raw and scratch preservation; no old root was reused.
-
-Old RESULT SHA-256: `13e256649c9c6355b4ed7eb4c5190a0f62acacaf42ad0195a27a21718d3ba565`. Old managed result SHA-256: `43f38be35063559bcb156c31968f6b80d8707982692aef55fd6ab05285ea916e`. The fresh PASS has separate RESULT `d9fca3f1b223fd41907276ce321b7a58c4b1dd41526ad93e0b8bcfa7a499e901` and managed result `3e2dc122b1d317bda78e9354d191a15d035269fc8ae9700d2eaf19d93ca04130`; these are not substitutes for the old receipts.
-
-## Remaining engineering gates
-
-| Area | Current disposition |
+| Area | Verifiable result |
 | --- | --- |
-| IR-LOCAL-P1-MANAGED-RECEIPT-01 | VerifiedCorrectedInFreshSourceSDKOnlySuccessor; exact executed tuple only |
-| Official managed/API and native syntax | Fresh PassedSourceHostAndSDKOnly, five managed products/negative control and 70/70 native configurations; cycle consumed |
-| P1 coherent bounded live VM capture | Incomplete; original general/execution getter integration, metadata/type-key lifetime, global epoch, allocation/GC/RSS and lock/shutdown safety remain Primary-owned |
-| P2 authenticated native/C# V2 semantic integration | NotIntegrated |
-| E0 Unity2022.3.62f2 StandaloneOSX supported engine-owner capability | Blocked/Unavailable |
-| E1 native scheduling, maintenance, callback drain and restart | BlockedByE0 |
-| Full P3 integrated/runtime preparation | Incomplete despite scoped official compiler evidence; no full linked/runtime qualification |
-| Unity Editor/Player for this source/SDK cycle | NotRun |
-| Independent full-stage R03 re-review | NotRun; historical full-stage review remains FAIL |
+| Overall | **10/10 Passed**, `PassedSourceHostAndSDKOnly`, source preserved, SDK attempted/passed flags true |
+| First-use class-bearing source | **15 distinct groups per strict and sanitized profile**, four compile/run receipts exit0; complete physical `namespace + "." + name` with `.Class`, bounded ownership/generation/alias/overflow and nonnested lock mocks; method SHA256 `67fcd9f6660c67c8a60ed610cdc9b3c3cfc06adb01f9805a581e6dd97dd42be2` |
+| Other host components | Legacy general/execution byte parity, metadata gate, bounded class/physical assembly, status, inventory and frozen V2 within their respective mock/source-only scopes |
+| Managed official compiler | **Five products Passed**, expected-negative `OriginalUnsignedCounts` exit1/two CS0266/no DLL; 428 input hashes Local verified |
+| Managed receipt | `managed-sdk/build-api/results.json` child exit0 and inner Passed, exact returned SHA256 `425577db1a66ab5b6d62ceca778ad6350d41ab767b7c3de7e61f1650e81427af`, `returnedBindingVerified=true` |
+| Native official SDK | **70/70 C++17 arm64 syntax-only configurations** (14 units × five profiles), no unexpected compiler error, 1,900 copied SDK inputs Local verified |
+| Warnings | 68 managed and 742 native warning occurrences preserved without suppression |
+| Source/SDK/past evidence | Primary confirmed unchanged non-Docs Git tree identities; Local independently verified 2,405 installed SDK files/316,062,203 bytes preserved and old consumed roots unchanged |
 
-**Earliest unfinished stage: P1 live general/execution VM capture.** Primary must complete and review nontrivial source, integration, diagnostic and test work before delegating further validation. Obtaining the supported engine-owner contract remains an explicit E0 dependency; a modeled coordinator or guessed interface is not an implementation. No additional Local batch is justified solely by this receipt closure.
+[Native first-use host CI 38876310270](https://github.com/night-outlook/il2cpp_plus/actions/runs/38876310270) passed 3/3; [terminal source-workflow CI 38876957263](https://github.com/night-outlook/il2cpp_plus/actions/runs/38876957263) passed 2/2 after correcting test assertions only. Historical failed CI/source identity runs retain their own verdicts.
 
-The [remaining Primary implementation plan](../History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/IMPLEMENTATION_PLAN.md) and [E0 assessment](../History/M07R/R03/IR_Remediation/SNAP01_EXECUTION_FORMATTER_2026-10-15/ENGINE_OWNER_CAPABILITY_ASSESSMENT.md) remain in force. This reconciliation does not start a new milestone or approve a Human Review Gate.
+Primary independently inspected the complete 10-command raw result, first-use nested result, native SDK and managed results, production first-use method and current epoch gate; independently recomputed the SHA256 of the raw aggregate `dabfae25587fcbbaae81d7d3bbe4c8d94928e29a7c1b85228e75a8a83a9943bc`, managed stdout `23fbdc2a9bc55160e80146c93cd4b57169e4f719cd1f5561c269daf6b9ad2e62` and nested managed receipt `425577db1a66ab5b6d62ceca778ad6350d41ab767b7c3de7e61f1650e81427af`. The full 3,696-file external evidence tree, all SDK copied inputs and 394 command stream pairs remain **Local-audited**, not separately rerun by Primary. Four deliberate negative symlinks were audited by Local. Apple LeakSanitizer is Unavailable.
 
-## Exact source versus publication
+## Immutable consumed history
 
-All repositories use `codex/assembly-shadow-r01b-h1`. Fresh execution: demo `9427336ebce4fa4e633e9408fbbef4841ea9ff45`, HybridCLR `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, package `948c0e3b4f8891481301770115e8ba4945eea6de`, native `0a0b70156e75d450d75d0bcfd9132843b8abbbb0`. Demo source/CI anchor: `06209426b765a805da2cc2f810ba5da390787099`. Local evidence publication: `af22a2391a6e15127593f0d3a77fe965ad08f71a`; all non-Docs root entries match the executed revision. Later Primary reconciliation publication is Docs-only, not a new execution pin.
+| Local cycle | Preserved result | Disposition |
+| --- | --- | --- |
+| `20261016-f598` | **PASS, 10/10**, new exact first-use native source | Consumed |
+| `20261016-0620` | **PASS, 10/10**, earlier native `0a0b7015...` | Consumed |
+| `20261016-0a0b` | **FAIL / FailedOrIncomplete, 9/10**; `officialUnitySdkCompilePassed=false` in original aggregate | Consumed, unchanged |
 
-Historical source-pins.json, compiler procedures, production, tests, Local-owned reports and existing evidence remain unchanged. Current remote publication identity must be read from Git, not substituted into historical test receipts.
+The earlier `20261016-0a0b` raw aggregate SHA256 remains `13e256649c9c6355b4ed7eb4c5190a0f62acacaf42ad0195a27a21718d3ba565`; neither its managed result nor old false aggregate flag is promoted by subsequent PASS evidence. SNAP-01 remains FAIL/ReturnRequired (14/18), original 262144-byte slot14 overflow (scanned prefix262145, exact full length Unavailable), engine 51213 uncapped reports/500ms exit71. N/M/K/I/E FAIL, strict S custody Blocked, R02 historical whole-file identity FAIL, and independent R03 full-stage review FAIL/rereview NotRun remain untouched.
 
-## Immutable runtime history and acceptance
+## Earliest unfinished stage: P1 live coherent diagnostics capture
 
-SNAP-01 remains FAIL/ReturnRequired (14/18 cells Passed; three ON files empty after original slot14 limit262144 was exceeded; scanned prefix262145 only; full real length Unavailable). The engine witness remains Failed at51213 uncapped reports/500ms, exit71. N/M/K/I/E FAIL, strict original S custody Blocked and independent full-stage R03 FAIL/re-review NotRun are unchanged.
+**P1 — Incomplete:** The new bounded first-use class capture remains **inactive** and demonstrates source/memory ownership and first-session admission only in mocks and syntax checks. It does **not** authenticate stored `Il2CppClass*` provenance, establish an all-VM epoch, integrate the original allocating general/execution getter and R02 counters, bound real recursive type-key/metadata enumeration allocation/GC/RSS, or prove shutdown locking/deadlock freedom.
 
-V1 text limit262144; V2 frame65536, artifact3932160, envelope262144 and combined encoded4194304 remain unchanged. No truncation, counter cap/coalescing, callback sleep, finalizer suppression or changed semantic predicate is introduced or authorized.
+**P2 — NotIntegrated:** authentic native/C# V2 artifact and envelope emission, durable file transaction and original semantic verifier integration are missing. **E0 — Blocked/Unavailable:** no verified Unity2022.3.62f2 StandaloneOSX engine-owner safe point or maintenance ABI has been established. **E1 — BlockedByE0:** no genuine native scheduler, callback drain, required maintenance or restart receipt. **Full P3 — Incomplete** beyond source mocks and syntax-only SDK coverage.
 
-`R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter disabled. No new Unity/Player runtime, seven-root batch, H2/X02/M08A or Human Review Gate.
+The [remaining Primary plan](../History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/IMPLEMENTATION_PLAN.md) and [E0 source capability assessment](../History/M07R/R03/IR_Remediation/SNAP01_EXECUTION_FORMATTER_2026-10-15/ENGINE_OWNER_CAPABILITY_ASSESSMENT.md) still govern future Primary work. All nontrivial design, native/managed implementation, test preparation and Human Review Gate readiness remain Primary responsibilities.
+
+`R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter expansion disabled. No new Local or Player batch and no milestone advancement follow from this scoped PASS.
+
+[Prior full P1/receipt status at returned Local publication](https://github.com/night-outlook/hybridclr_demo/blob/1eb4fa5118734c5d533052c028e596ee0650dfa7/Docs/AssemblyShadow/Plan/CURRENT_STATUS.md) remains available in Git for historical provenance but is not current execution authority.
