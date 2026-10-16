@@ -1,6 +1,28 @@
-# Current status — R03 P1 first-use class source/SDK PASS reconciled
+# Current status — R03 P1 owned general V1 source composition ready for SDK-only Local test
 
-## Ownership and active authorization
+## Primary published source and scoped Local assignment
+
+**Owner: Local Validation for one NEW 11-component host/SDK-only preflight**, as explicitly constrained by current [WEB_TO_LOCAL.md](../Handoff/WEB_TO_LOCAL.md). No Unity Editor/Player execution, scheduler experiment, runtime seven-root batch, Human Review Gate or milestone advancement is authorized. The previous first-use class 20261016-f598 PASS (10/10), prior 20261016-0620 PASS (10/10) and earlier 20261016-0a0b FAIL (9/10) remain consumed, immutable and source-pinned.
+
+**Native head 3dc9b848d1d6b7616b257c95dc4727db06fd05f7:** new standalone AssemblyShadowBoundedGeneralComposer.h, small fail-closed abort helper on FrozenGeneralCapture, real owned-source fixture, source-bound strict/sanitized runner and Mac/Linux CI. Four previously implemented bounded read sources are combined into the exact original legacy general field sequence. A physical/class ActiveGeneration mismatch rejects; a match is NOT a global coherent VM epoch, pointer-origin proof, shutdown proof or runtime admission. No production getter/Player code was changed. The maximum total object preallocation is statically constrained to 16MiB; this is not process RSS/GC and not total V2 budget acceptance.
+
+[Native CI 38885246083](https://github.com/night-outlook/il2cpp_plus/actions/runs/38885246083) Passed **3/3** Mac/Linux Clang/GCC jobs; 11 case groups per strict/sanitized profile, 51/51 independently verified manifest files. [Demo CI 38885611665](https://github.com/night-outlook/hybridclr_demo/actions/runs/38885611665) Passed **2/2**, original five CLI + thirteen source-bound receipt/aggregate methods each OS; its 10/10 artifact files were independently verified. These are host/mocked SDK checks, not Unity SDK tests. [Primary review](../History/M07R/R03/IR_Remediation/P1_OWNED_GENERAL_COMPOSER_2026-10-16/PRIMARY_RECONCILIATION.md) · [evidence](../History/M07R/R03/IR_Remediation/P1_OWNED_GENERAL_COMPOSER_2026-10-16/EVIDENCE.json).
+
+The demo aggregate runner now requires **11** source/SDK components and adds owned-general real-header host testing. The official installed Unity candidate SDK syntax matrix now adds the dedicated composer probe in each profile: **15 distinct native C++ TUs x 5 =75**; historical noncandidate 12x5=60 stays intact. Managed positive five products/expected-negative still use the unmodified official compiler. A new, single unused-root SDK-only Local batch is required to verify 75 real compiler invocations. Do not reclassify old 70-unit evidence or old R02 historical whole-file fingerprint failure.
+
+## Earliest unresolved engineering gate remains P1
+
+**P1 Incomplete:** complete live coherent general/execution/R02 VM source acquisition, actual metadata pointer origin and lifetime, global epoch/ABA, type-key recursion, real allocation/GC/RSS, shutdown deadlock safety, original getter integration and post-terminal native owner. New owned composer is inactive; a valid JSON byte record from independently sampled sources does not certify that those sources represent one atomic VM state.
+
+**P2 NotIntegrated:** authenticated native/C# V2 file/envelope and original semantic verifier integration. **E0 Blocked/Unavailable:** Unity2022.3.62f2 StandaloneOSX source-supported engine scheduler owner/safe point still unproven. **E1 BlockedByE0:** real callback drain, GC/finalizer/service maintenance and restart. Full P3 integrated linking/runtime NotRun. Keep original semantic conditions and source/SDK/provenance boundaries.
+
+The [full implementation plan](../History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/IMPLEMENTATION_PLAN.md), factual [LOCAL_VALIDATION](../Handoff/LOCAL_VALIDATION.md) and [RETURN_TO_WEB](../Handoff/RETURN_TO_WEB.md) remain authoritative for earlier evidence. Previous SNAP-01/N/M/K/I/E failures, original S custody Blocked, historical R02 fingerprint FAIL, R03 independent review FAIL/rereview NotRun remain unchanged. All thresholds, V1/sidecar limits and uncapped 500ms engine witness remain untouched.
+
+R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; fullLegacyRegressionAcceptance=false; PureInterpreter disabled. No H2/X02/M08A advancement.
+
+## Prior Local 20261016-f598 reconciliation — historical, no active commands
+
+
 
 **Primary Implementation owns the next engineering stage. Local Validation is PAUSED.** One `20261016-f598` source/SDK-only batch completed **PASS / `PassedSourceHostAndSDKOnly`, 10/10 Passed** and is consumed. The Local agent's factual [LOCAL_VALIDATION](../Handoff/LOCAL_VALIDATION.md), [RETURN_TO_WEB](../Handoff/RETURN_TO_WEB.md) and [checkpoint](../History/M07R/R03/local-validation-p1-firstuse-class-20261016-f598/README.md) remain immutable; [Primary reconciliation](../History/M07R/R03/IR_Remediation/P1_FIRST_USE_CLASS_PASS_2026-10-16/PRIMARY_RECONCILIATION.md) and [machine evidence](../History/M07R/R03/IR_Remediation/P1_FIRST_USE_CLASS_PASS_2026-10-16/EVIDENCE_DISPOSITION.json) record exact findings and verification boundaries.
 
