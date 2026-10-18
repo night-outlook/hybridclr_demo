@@ -1,24 +1,35 @@
-# STAGING BRANCH — No Local Validation assignment
+# Primary Implementation → Local Validation — STAGING / NO EXECUTION
 
-**No Local Validation execution is authorized from `codex/p1-execution-scalars-20261018`.** This isolated branch contains Primary Implementation work for a bounded execution scalar header and its host tests. It is not a replacement for the canonical active `codex/assembly-shadow-r01b-h1` handoff, and it has no official SDK or Unity/Player validation receipt.
+**No Local Validation assignment is authorized from this staging branch.** The `codex/p1-execution-scalars-20261018` branches in `night-outlook/il2cpp_plus` and `night-outlook/hybridclr_demo` are deliberately isolated from the active `codex/assembly-shadow-r01b-h1` one-shot Local source/SDK authorization.
 
-## Authoritative active assignment is unchanged
+## Authoritative active handoff (unchanged)
 
-The previously published [active WEB_TO_LOCAL.md at exact demo `25d5986c5919ab70119364ce36e8b670329ad5b0`](https://github.com/night-outlook/hybridclr_demo/blob/25d5986c5919ab70119364ce36e8b670329ad5b0/Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md) authorizes exactly **one fresh 12-component, 75-native-SDK-syntax source-only** Local run with these active source commits:
+The actual active [WEB_TO_LOCAL.md](https://github.com/night-outlook/hybridclr_demo/blob/25d5986c5919ab70119364ce36e8b670329ad5b0/Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md) authorizes **one** 12-component/75-native-configuration source/SDK-only cycle, at these exact current feature pins:
 
-- `night-outlook/hybridclr_demo` `25d5986c5919ab70119364ce36e8b670329ad5b0`
-- `night-outlook/hybridclr` `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`
-- `night-outlook/hybridclr_unity` `948c0e3b4f8891481301770115e8ba4945eea6de`
-- `night-outlook/il2cpp_plus` `5667e3712f49e4b38c7dd7359e57f81e344626da`
+| Canonical repository | Branch | Active commit |
+| --- | --- | --- |
+| night-outlook/hybridclr_demo | `codex/assembly-shadow-r01b-h1` | `25d5986c5919ab70119364ce36e8b670329ad5b0` |
+| night-outlook/hybridclr | `codex/assembly-shadow-r01b-h1` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| night-outlook/hybridclr_unity | `codex/assembly-shadow-r01b-h1` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| night-outlook/il2cpp_plus | `codex/assembly-shadow-r01b-h1` | `5667e3712f49e4b38c7dd7359e57f81e344626da` |
 
-Branch for all of those active source pins: `codex/assembly-shadow-r01b-h1`. Current Local return for that assignment: **NotReturned** as of staging publication. Do not substitute the staged source for the pending Local run; do not rerun prior consumed batches, overwrite historical evidence or infer missing results from CI.
+That active Local cycle has not returned a published factual result as of this staging record. Do not replace active execution pins with staging SHA, treat CI host passes as official SDK results, reuse old evidence roots, or rerun consumed validation.
 
-## Primary staging output — not a Local handoff
+## Staged source — read-only for Local until separately authorized
 
-Native staged source branch: `codex/p1-execution-scalars-20261018`, forked from active native `5667e3712f49e4b38c7dd7359e57f81e344626da`. Demo staged documentation branch of the same name, forked from active demo `25d5986c5919ab70119364ce36e8b670329ad5b0`.
+`night-outlook/il2cpp_plus@codex/p1-execution-scalars-20261018`, code HEAD `2cd731be7629d4bd0698176554720a609fcb3d10`, is an **inactive P1 next source slice** built on the active native HEAD. It includes:
 
-The staged `AssemblyShadow::TryCaptureBoundedExecutionHeader` copies only execution-diagnostic scalar header fields, verifies observed counter/state/active changes, rejects unusable counter coverage, and remains **inactive**. [Source review](../History/M07R/R03/IR_Remediation/P1_EXECUTION_SCALARS_2026-10-18/PRIMARY_STAGING_REVIEW.md) and [machine CI evidence](../History/M07R/R03/IR_Remediation/P1_EXECUTION_SCALARS_2026-10-18/EVIDENCE.json). [Host CI run 39095475904](https://github.com/night-outlook/il2cpp_plus/actions/runs/39095475904) Passed 3/3. This is host-model evidence, not installed Unity SDK, linked native or Player evidence.
+- Previously reviewed `TryCaptureBoundedExecutionHeader` scalar capture (initial source CI [39095475904](https://github.com/night-outlook/il2cpp_plus/actions/runs/39095475904) PASSED 3/3).
+- A source-owned snapshot of the **22 actual original R02 diagnostics metric fields**, with complete-coverage refusal and original R02 JSON parity; [CI 39106258581](https://github.com/night-outlook/il2cpp_plus/actions/runs/39106258581) PASSED 3/3.
+- A test-only bounded **classless** execution-header + R02 JSON composer (32 KiB cap), tested against exact original classless serializer output; [CI 39106675107](https://github.com/night-outlook/il2cpp_plus/actions/runs/39106675107) PASSED 3/3.
+- [Detailed source review](../History/M07R/R03/IR_Remediation/P1_R02_CLASSLESS_EXECUTION_2026-10-18/PRIMARY_STAGING_REVIEW.md) and [machine evidence](../History/M07R/R03/IR_Remediation/P1_R02_CLASSLESS_EXECUTION_2026-10-18/EVIDENCE.json).
 
-After the active Local return, Primary must reconcile its factual result separately and decide whether/how to cherry-pick or merge the native staged changes into the active branch. A new exact-four-repository-source review and separately authorized Local handoff would then be necessary. **No commands, output roots, Test Runner, Unity Editor/Player or Human Review Gate are assigned by this staging branch.**
+These are native source/host fixture capabilities. They do **not** replace the real general/execution getters, prove class-bearing execution diagnostics, run linked Unity/Player or address P2/E0/E1. The original source/CLI and Local-owned `LOCAL_VALIDATION.md`/`RETURN_TO_WEB.md` remain immutable.
 
-P1 incomplete, P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0. `R03Accepted=false`, `ReadyForHumanReviewGate=false`, PureInterpreter disabled. The old PASS and FAIL evidence retains its recorded states.
+## Stop and next owner
+
+**Local commands now on this staging branch: NONE. Output roots: NONE. New requested evidence: NONE.** Local Validation must only use the original active handoff on its exact branch/source pins if its one-shot attempt remains unused; once executed, it must return the factual original PASS/FAIL/Blocked result to Primary.
+
+After that active return, Primary Implementation will reconcile exact evidence, review the isolated staging diff against actual then-current source, make all nontrivial changes, and publish a **separate new exact-source handoff** only if SDK/local validation is justified. No Unity Player, Human Review Gate, H2/X02/M08A or scheduler/engine-owner validation is authorized here.
+
+`P1=Incomplete`, `P2=NotIntegrated`, `E0=Blocked/Unavailable`, `E1=BlockedByE0`; all R03 acceptance flags remain false. Historical original FAIL/PASS records are not reclassified.
