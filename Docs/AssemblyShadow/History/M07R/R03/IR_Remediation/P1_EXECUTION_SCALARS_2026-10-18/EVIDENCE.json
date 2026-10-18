@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1ExecutionScalarIsolatedPrimaryStaging",
+  "scope": "StagingOnly_NoActiveSourceOrLocalHandoffModification",
+  "source": {
+    "stagingBranch": "codex/p1-execution-scalars-20261018",
+    "nativeRepo": "night-outlook/il2cpp_plus",
+    "activeBase": "5667e3712f49e4b38c7dd7359e57f81e344626da",
+    "testedNativeCommit": "39d4637b868726c92f50d1db92a5c269ff0bafe5",
+    "demoRepo": "night-outlook/hybridclr_demo",
+    "activeBaseDemo": "25d5986c5919ab70119364ce36e8b670329ad5b0",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "stagedNativeFiles": [
+      "libil2cpp/vm/AssemblyShadowBoundedExecutionHeader.h",
+      "libil2cpp/vm/AssemblyShadowBoundedExecutionHeaderSource.inl",
+      "libil2cpp/vm/AssemblyShadow.cpp",
+      "libil2cpp/vm/AssemblyShadow.h",
+      "tools/r03/diagnostic_stream/bounded_execution_header_fixture.cpp",
+      "tools/r03/diagnostic_stream/run_bounded_execution_header.py",
+      ".github/workflows/r03-p1-bounded-execution-header-staging.yml"
+    ],
+    "directGitBlobBindings": {
+      "libil2cpp/vm/AssemblyShadowBoundedExecutionHeader.h": "b7c7d6459ccc4db6dcef8a1b5c140590d197095d",
+      "libil2cpp/vm/AssemblyShadowBoundedExecutionHeaderSource.inl": "7dfca5c60291326e487978ba27236758c522baac",
+      "libil2cpp/vm/AssemblyShadow.cpp": "60110cf9bcf38d9bc5496f26729a3fe4a636dc38",
+      "tools/r03/diagnostic_stream/run_bounded_execution_header.py": "f873830a711f83afc7331b5e152cd4eca1b704e5"
+    }
+  },
+  "ci": {
+    "passed": {
+      "workflow": "R03 P1 execution scalar header staging source contract",
+      "runId": 39095475904,
+      "url": "https://github.com/night-outlook/il2cpp_plus/actions/runs/39095475904",
+      "result": "success",
+      "jobsPassed": 3,
+      "jobsTotal": 3,
+      "platforms": [
+        "macos-15 clang++",
+        "ubuntu-24.04 clang++",
+        "ubuntu-24.04 g++"
+      ],
+      "profiles": [
+        "strict",
+        "sanitized"
+      ],
+      "uniqueGroupsPerProfile": 13,
+      "totalGroupExecutions": 78,
+      "compilerRunnerCommandsExitZero": 12,
+      "methodSha256": "3faac86c05fff40eaab190d1621eb8eb68b450785bd9a399ab458568cf96024a",
+      "artifacts": [
+        {
+          "environment": "macos-15 clang++",
+          "id": 12123949613,
+          "zipBytes": 236793,
+          "zipSha256": "db57b552899bddcfc14f1953c26b13b985276bcabb000cd7981eda0a418c36a0",
+          "manifestFiles": 21
+        },
+        {
+          "environment": "ubuntu-24.04 clang++",
+          "id": 12124223539,
+          "zipBytes": 704955,
+          "zipSha256": "96f8bd60ff1f9d645f3b8e567e95c7687b04c04d2e2417a95cc7f16ea9525f98",
+          "manifestFiles": 18
+        },
+        {
+          "environment": "ubuntu-24.04 g++",
+          "id": 12123519206,
+          "zipBytes": 360520,
+          "zipSha256": "6d5981e89735b12ec71dbbbb0d44043e1c1138086f3d68d2d604aa88aa4ddd28",
+          "manifestFiles": 18
+        }
+      ],
+      "originalZipDigestsIndependentlyVerified": true,
+      "allManifestDeclaredFileHashesAndSizesVerified": 57,
+      "actualProductionInlMethodCompiledInHostFixture": true,
+      "actualExecutionScalarCaptureAndExistingSerializerCompiled": true,
+      "usesModeledVmSources": true,
+      "zeroWatchedNewAfterPrewarmWithinHostFixture": true,
+      "sdkCompiled": false,
+      "playerRun": false,
+      "runtimeAcceptance": false
+    },
+    "earlierFailurePreserved": {
+      "runId": 39095444605,
+      "result": "failure",
+      "scope": "Host runner strict source-reference check had counted dropped-thread and saturation source calls once instead of twice; corrected test bound, production scalar source unchanged",
+      "reclassified": false
+    }
+  },
+  "captureContract": {
+    "fields": [
+      "stateCode",
+      "state",
+      "generation",
+      "methodChecks",
+      "shadowMethodChecks",
+      "rejectedBaselineMethods",
+      "baselineClassCctorStarted",
+      "shadowClassCctorStarted",
+      "interpreterTransformations",
+      "shadowInterpreterTransformations",
+      "droppedClassObservations"
+    ],
+    "inputStateEnumMappingOwnership": "Returned from static StateName, never borrowed pointer",
+    "captureSingleOwnerAndOneShot": true,
+    "maximumObjectBytes": 256,
+    "acquireOrderingMirrorsOriginalGetter": true,
+    "droppedThreadAndSaturationCoverageFailClosed": true,
+    "observedCounterAndStateChangesFailClosed": true,
+    "stateAndActiveRecheckAfterSecondCounterWindow": true,
+    "stableReadPairProvesAtomicVmEpoch": false,
+    "classRowsAndR02DetailedMetricSetCaptured": false,
+    "originalGetterInvokesNewCapture": false,
+    "nativeMetadataShutdownSafetyProven": false,
+    "realGcRssOrIl2cppAllocationsProven": false,
+    "authenticatedV2TransportIntegrated": false
+  },
+  "unaffectedActiveLocal": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "demo": "25d5986c5919ab70119364ce36e8b670329ad5b0",
+    "native": "5667e3712f49e4b38c7dd7359e57f81e344626da",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "pendingAuthorizedBatch": "12 components/75 native SDK syntax, source & SDK only, no Player",
+    "result": "NotReturnedYet",
+    "stagingIsNotNewLocalAssignment": true
+  },
+  "historicalUnchanged": [
+    {
+      "batch": "20261016-3dc9",
+      "result": "PassedSourceHostAndSDKOnly",
+      "components": "11/11"
+    },
+    {
+      "batch": "20261016-f598",
+      "result": "PassedSourceHostAndSDKOnly",
+      "components": "10/10"
+    },
+    {
+      "batch": "20261016-0620",
+      "result": "PassedSourceHostAndSDKOnly",
+      "components": "10/10"
+    },
+    {
+      "batch": "20261016-0a0b",
+      "result": "FailedOrIncomplete",
+      "components": "9/10",
+      "officialSdkAggregatePass": false
+    },
+    {
+      "gate": "SNAP-01",
+      "result": "FAIL/ReturnRequired, 14/18"
+    },
+    {
+      "gate": "R02 original fingerprint",
+      "result": "FAIL"
+    },
+    {
+      "gate": "strict S custody",
+      "result": "Blocked"
+    },
+    {
+      "gate": "independent R03 full-stage review",
+      "result": "FAIL, rereview NotRun"
+    }
+  ],
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterExpansion": false,
+    "mergedToActive": false,
+    "newLocalRunAuthorized": false
+  }
+}
