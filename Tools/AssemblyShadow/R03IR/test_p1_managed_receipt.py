@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Host-only receipt consumer and eleven-component orchestration regression tests.
+"""Host-only receipt consumer and twelve-component orchestration regression tests.
 
 Git, compilers, SDK inputs and all child suites are MOCKED. The managed result
 root, initial record, final write and returned binding are executed from the
@@ -169,9 +169,12 @@ class AggregateReceiptIntegration(unittest.TestCase):
                       ('AssemblyShadowMetadataLifetime.h','Runtime.cpp','Assembly.cpp','AssemblyShadowVisibility.cpp')]
             paths += [native/'tools/r03/diagnostic_stream'/n for n in
                       ('run_metadata_lifetime_gate.py','run_bounded_general_composer.py',
-                       'bounded_general_composer_fixture.cpp')]
+                       'bounded_general_composer_fixture.cpp',
+                       'run_bounded_general_live.py','bounded_general_live_fixture.cpp')]
             paths += [native/'libil2cpp/vm'/n for n in
-                      ('AssemblyShadowBoundedGeneralComposer.h','AssemblyShadowFrozenGeneralCapture.h')]
+                      ('AssemblyShadowBoundedGeneralComposer.h','AssemblyShadowFrozenGeneralCapture.h',
+                       'AssemblyShadowBoundedGeneralLive.h','AssemblyShadowBoundedGeneralLiveSource.inl',
+                       'AssemblyShadow.h','AssemblyShadow.cpp')]
             paths += [demo/'Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowGeneralComposeSyntax.cpp']
             for p in paths:
                 p.parent.mkdir(parents=True, exist_ok=True); p.write_text('mock SDK/source input\n')
@@ -197,9 +200,13 @@ class AggregateReceiptIntegration(unittest.TestCase):
                     if mode == 'wrong-binding':
                         stdout=json.dumps({'result':str(dest/'results.json'),'sha256':digest(receipt)}).encode()
                     return subprocess.CompletedProcess(args, 9 if mode=='exit-nonzero' else 0, stdout, b'mock warning\n')
+                if mode=='live-general-failed' and name=='live-general':
+                    (dest/'RESULT.json').write_text(json.dumps({'result':'FailedOrIncomplete'}))
+                    return subprocess.CompletedProcess(args,1,b'mock failed bridge\n',b'')
                 expected = ('PassedHostOnly' if name=='legacy-host' else
                             'Passed' if name=='native-sdk' else
                             'PassedWithinOwnedHostScope' if name=='owned-general' else
+                            'PassedWithinInactiveSourceHostScope' if name=='live-general' else
                             'PassedWithinInactiveHostScope' if name=='frozen-v2' else 'PassedWithinHostScope')
                 (dest/('results.json' if name=='native-sdk' else 'RESULT.json')).write_text(json.dumps({'result':expected}))
                 return subprocess.CompletedProcess(args, 0, b'mock child\n', b'')
@@ -212,9 +219,9 @@ class AggregateReceiptIntegration(unittest.TestCase):
                 try: runner.main()
                 except SystemExit as e: exit_code=e.code
             report=json.loads((output/'RESULT.json').read_bytes())
-            self.assertEqual(len(report['commands']),11)
-            self.assertEqual(len(launched),11)
-            self.assertEqual(len(set(Path(cmd[2]).name for cmd in launched)),11)
+            self.assertEqual(len(report['commands']),12)
+            self.assertEqual(len(launched),12)
+            self.assertEqual(len(set(Path(cmd[2]).name for cmd in launched)),12)
             self.assertFalse(scratch.exists()) # no compiler, SDK copy or Unity execution
             self.assertEqual(report['expectedNativeSyntaxUnits'],75)
             self.assertFalse(report['R03Accepted'])
@@ -232,7 +239,7 @@ class AggregateReceiptIntegration(unittest.TestCase):
             self.assertEqual(launched[-1][-2:],['--candidate-native-sha','b'*40])
             return exit_code,report,managed
 
-    def test_eleven_components_pass_with_actual_producer_response(self):
+    def test_twelve_components_pass_with_actual_producer_response(self):
         code,report,managed=self.exercise()
         self.assertEqual(code,0)
         self.assertEqual(report['result'],'PassedSourceHostAndSDKOnly')
@@ -240,17 +247,32 @@ class AggregateReceiptIntegration(unittest.TestCase):
         self.assertTrue(managed['returnedBindingVerified'])
         self.assertTrue(managed['innerResultPath'].endswith('/managed-sdk/build-api/results.json'))
 
-    def test_managed_failures_preserve_ten_passed_one_failed(self):
+    def test_managed_failures_preserve_eleven_passed_one_failed(self):
         for mode in ('missing','root-only','mutated','wrong-binding','inner-failed','exit-nonzero','child-exception'):
             with self.subTest(mode=mode):
                 code,report,managed=self.exercise(mode)
                 self.assertEqual(code,1)
                 self.assertEqual(report['result'],'FailedOrIncomplete')
-                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),10)
+                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),11)
                 self.assertEqual(managed['status'],'Failed')
                 self.assertFalse(report['officialUnitySdkCompilePassed'])
                 self.assertTrue(report['sourcePreserved'])
                 if mode=='inner-failed': self.assertEqual(managed['innerResult'],'Failed')
+
+    def test_live_source_child_failure_retains_accurate_aggregate_and_sdk_flags(self):
+        code,report,_=self.exercise('live-general-failed')
+        self.assertEqual(code,1)
+        self.assertEqual(report['result'],'FailedOrIncomplete')
+        self.assertEqual(len(report['commands']),12)
+        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),11)
+        child=next(c for c in report['commands'] if c['name']=='live-general')
+        self.assertEqual(child['status'],'Failed')
+        self.assertEqual(child['exit'],1)
+        self.assertEqual(child['innerResult'],'FailedOrIncomplete')
+        # The official child compile still passed, but the whole batch failed.
+        self.assertTrue(report['officialUnitySdkCompilePassed'])
+        self.assertTrue(report['sourcePreserved'])
+        self.assertFalse(report['R03Accepted'])
 
     def test_source_change_never_becomes_aggregate_pass(self):
         code,report,_=self.exercise('source-changed')
