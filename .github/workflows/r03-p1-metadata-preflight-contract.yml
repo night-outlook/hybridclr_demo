@@ -50,7 +50,7 @@ jobs:
           def hashes():
               return {str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
           before=hashes();rows=[]
-          for name,count in (('test_p1_metadata_preflight.py',5),('test_p1_managed_receipt.py',13)):
+          for name,count in (('test_p1_metadata_preflight.py',5),('test_p1_managed_receipt.py',14)):
               argv=[sys.executable,'-B',str(root/'R03IR'/name)]
               row={'argv':argv,'expectedTests':count,'startedUnix':time.time(),'status':'Failed'}
               try:
