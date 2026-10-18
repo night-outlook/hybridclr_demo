@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1InactiveGeneralLiveSourcePrimaryHostCI",
+  "status": "SourcePublished_HostCI_Passed_LocalOfficialSDK_NotRun",
+  "source": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "nativeRepository": "night-outlook/il2cpp_plus",
+    "nativeInitialCommit": "3dc9b848d1d6b7616b257c95dc4727db06fd05f7",
+    "nativeCurrentCommit": "5667e3712f49e4b38c7dd7359e57f81e344626da",
+    "newProductSource": [
+      "libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+      "libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl"
+    ],
+    "updatedProductFiles": [
+      "libil2cpp/vm/AssemblyShadow.cpp",
+      "libil2cpp/vm/AssemblyShadow.h"
+    ],
+    "newTests": [
+      "tools/r03/diagnostic_stream/bounded_general_live_fixture.cpp",
+      "tools/r03/diagnostic_stream/run_bounded_general_live.py",
+      ".github/workflows/r03-p1-bounded-general-live-source.yml"
+    ],
+    "demoRepository": "night-outlook/hybridclr_demo",
+    "demoSourceAndCliCICommit": "d7b923e9d97b89d67149d6f659d61546a966de6f",
+    "demoAdditiveChanges": [
+      "Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py",
+      "Tools/AssemblyShadow/R03IR/test_p1_metadata_preflight.py",
+      "Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py",
+      ".github/workflows/r03-p1-metadata-preflight-contract.yml"
+    ],
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "historicalSourcePinsChanged": false
+  },
+  "nativeCI": {
+    "workflow": "R03 P1 inactive live general source contract",
+    "runId": 39085622437,
+    "url": "https://github.com/night-outlook/il2cpp_plus/actions/runs/39085622437",
+    "head": "5667e3712f49e4b38c7dd7359e57f81e344626da",
+    "result": "success",
+    "jobsPassed": 3,
+    "jobsTotal": 3,
+    "environments": [
+      "macos-15 clang++",
+      "ubuntu-24.04 clang++",
+      "ubuntu-24.04 g++"
+    ],
+    "profiles": [
+      "strict",
+      "sanitized"
+    ],
+    "caseGroupsPerProfile": 13,
+    "totalExecutedGroupChecks": 78,
+    "successfulCompilerRunnerCommands": 12,
+    "sourceMethodSha256": "232bd739bc6a54e8047118fbba8eb301a58f67e869ca8ce974902c8c382244a8",
+    "artifacts": [
+      {
+        "os": "ubuntu-24.04",
+        "compiler": "g++",
+        "zipBytes": 697499,
+        "zipSha256": "689cc72b438025c367d4243683f2afc0916a5b423c76ac4fff51f485d11936b1",
+        "filesInManifest": 18
+      },
+      {
+        "os": "ubuntu-24.04",
+        "compiler": "clang++",
+        "zipBytes": 861871,
+        "zipSha256": "4bcf2177683fb027bb39f44d84d71e18fa4bb1947d0a798e7ce841c14179afb3",
+        "filesInManifest": 18
+      },
+      {
+        "os": "macos-15",
+        "compiler": "clang++",
+        "zipBytes": 407772,
+        "zipSha256": "39535d2babb235fb23e988b8842e921981adb5082906d1aa024b7aeaa37037f9",
+        "filesInManifest": 21
+      }
+    ],
+    "artifactZipDigestsIndependentlyVerified": true,
+    "manifestFileSha256AndSizesIndependentlyVerified": 57,
+    "actualNativeSourceMethodCompiled": true,
+    "actualOwnedSourceTypesCompiled": true,
+    "originalSerializerByteParityWithinMock": true,
+    "sourceFencesAndFailuresExercisedUnderMocks": true,
+    "watchedOperatorNewAfterPrewarm": 0,
+    "runtimeAcceptance": false
+  },
+  "demoCI": {
+    "workflow": "R03 P1 managed receipt and aggregate contracts",
+    "runId": 39085881448,
+    "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/39085881448",
+    "head": "d7b923e9d97b89d67149d6f659d61546a966de6f",
+    "result": "success",
+    "jobsPassed": 2,
+    "jobsTotal": 2,
+    "platforms": [
+      "macos-15",
+      "ubuntu-24.04"
+    ],
+    "cliTestsPerJob": 5,
+    "receiptAndAggregateTestsPerJob": 14,
+    "totalTestsPerJob": 19,
+    "artifacts": [
+      {
+        "os": "macos-15",
+        "zipBytes": 2932,
+        "zipSha256": "fb905d438450f654546cfecb034e5f110d475ec22d7e117140cabc71bdd0027d",
+        "filesInManifest": 5
+      },
+      {
+        "os": "ubuntu-24.04",
+        "zipBytes": 2915,
+        "zipSha256": "37e8823395714e1488a3d817a583e11723c5b56d3ccbba49413d427f60664dd4",
+        "filesInManifest": 5
+      }
+    ],
+    "artifactZipDigestsIndependentlyVerified": true,
+    "manifestFileSha256AndSizesIndependentlyVerified": 10,
+    "allGitSdkCompilerSubprocessesMocked": true,
+    "negativeLiveSourceChildForcesAggregateFail": true,
+    "managedCompilerSuccessDoesNotPromoteFailedAggregate": true
+  },
+  "nextLocal": {
+    "result": "NotRun",
+    "allowed": "One fresh 12-component source/host/installed Unity2022.3.62f2 SDK syntax-only attempt after published reviewed handoff",
+    "components": 12,
+    "expectedNativeSyntaxConfigurations": 75,
+    "expectedNativeTranslationUnits": 15,
+    "nativeProfiles": [
+      "candidate",
+      "debug",
+      "probe-off",
+      "diagnostics-off",
+      "feature-off"
+    ],
+    "managedPositiveProducts": 5,
+    "expectedNegative": "OriginalUnsignedCounts; exit1 exactly two CS0266, no DLL",
+    "unityEditorLaunchAuthorized": false,
+    "unityPlayerOrRuntimeBatchAuthorized": false,
+    "expectedInnerLiveGeneralResult": "PassedWithinInactiveSourceHostScope"
+  },
+  "sourceBoundary": {
+    "liveBridgeConnectedToOriginalGetter": false,
+    "heldMetadataReadTicketAcrossCollectionAndFormatter": true,
+    "allMutableSourceOwnerLocksNested": false,
+    "watchablePublicationFenceSampledThreeTimes": true,
+    "sourceFenceEqualityProvesGlobalEpoch": false,
+    "nativeClassPointerOriginAuthenticated": false,
+    "nativeShutdownDeadlockFreedomProven": false,
+    "VMTypeKeyAllocationGCOrRssProven": false,
+    "processNativeRSSMeasured": false,
+    "fullUnityCppTranslationUnitCompiledThisTurn": false,
+    "nativeActualSDKLinkOrPlayerExecuted": false,
+    "P2NativeCSharpAuthenticatedWireNotIntegrated": true,
+    "E0EngineOwnerSupportedAPIUnavailable": true
+  },
+  "historicalPreserved": [
+    {
+      "batch": "20261016-3dc9",
+      "result": "PassedSourceHostAndSDKOnly",
+      "outer": "11/11",
+      "native": "75/75",
+      "consumed": true
+    },
+    {
+      "batch": "20261016-f598",
+      "result": "PassedSourceHostAndSDKOnly",
+      "outer": "10/10",
+      "native": "70/70",
+      "consumed": true
+    },
+    {
+      "batch": "20261016-0620",
+      "result": "PassedSourceHostAndSDKOnly",
+      "outer": "10/10",
+      "native": "70/70",
+      "consumed": true
+    },
+    {
+      "batch": "20261016-0a0b",
+      "result": "FailedOrIncomplete",
+      "outer": "9/10",
+      "originalSdkAggregateFlag": false,
+      "consumed": true
+    },
+    {
+      "gate": "SNAP-01",
+      "result": "FAIL/ReturnRequired (14/18)"
+    },
+    {
+      "gate": "original N/M/K/I/E",
+      "result": "FAIL"
+    },
+    {
+      "gate": "historical R02 whole-file fingerprint",
+      "result": "FAIL",
+      "rebaselined": false
+    },
+    {
+      "gate": "strict original S custody",
+      "result": "Blocked"
+    },
+    {
+      "gate": "full-stage independent R03 review",
+      "result": "FAIL; new review NotRun"
+    }
+  ],
+  "remainingStages": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreter": false
+  }
+}
