@@ -1,0 +1,54 @@
+# R03 P1 — inactive live-source acquisition for bounded general V1 composition
+
+## Scope, design and disposition
+
+**Primary Implementation has authored and published an additive, inactive native live-source acquisition method and source-bound host tests.** It is not connected to the original general/execution getters, managed API, native V2 transport or Player, and it does not establish a coherent cross-domain VM epoch. The next validation request is **one new 12-component host + official installed Unity2022.3.62f2 native SDK syntax-only Local batch**, not a runtime test or acceptance review.
+
+The previous P1 work already provided preallocated, individually owned transaction inventory, first-use, physical assemblies and ordinary-class readers plus an exact frozen general-V1 composer. The narrow gap addressed here: there was no actual native VM source method that invoked these readers sequentially, held a teardown admission across all four and formatting, and rejected *witnessed* changes across the entire collection.
+
+### Published native implementation
+
+- `libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h` introduces a preallocated source-reference bundle, bounded startup-name scratch and a permanent fail-closed source receipt. This adds at most 4096 startup-name spans, scanning a total of at most 3,932,160 startup bytes, with compile-time scratch storage bounded by 70,000 bytes. This is **not process RSS or GC memory measurement**.
+- `libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl` contains the **actual** inactive `AssemblyShadow::TryCaptureBoundedGeneralLive` body. It is included exactly once in `AssemblyShadow.cpp` while the class's VM source and original UsageLock/global identities are visible.
+- `libil2cpp/vm/AssemblyShadow.h` declares the inactive method under the existing feature compilation gate. No original public getter, managed icall or Player entrypoint is changed.
+
+The method accepts only preconstructed single-owner captures and output. `Current()` and the transaction singleton must also be prewarmed during healthy startup; the method does not claim allocator freedom if an uninitialized singleton is reached. A `g_MetadataLifetimeGate.Reader` is acquired **before source access** and retained **through the entire composition**, avoiding a teardown gap between individually admitted readers. Within the outer admission, the producer calls `TryCaptureBoundedTransactionInventory`, `TryCaptureBoundedFirstUses`, `Assembly::TryCaptureBoundedPhysicalAssemblies` and `AssemblyShadowVisibility::TryCaptureBoundedOrdinaryClasses` sequentially. Their transaction/usage/assembly/metadata mutexes are **never nested by this orchestration**.
+
+The conservative source read fence samples the process-lifetime ActiveSnapshot, candidate registry, stable configuration, first TypeFailure, first reference-failure detail, startup state, diagnostic state, unexpected/late/reference flags, early tracking, active generation and **the actual plain usage generation under UsageLock**. The method samples at three points: before collection; after all four source readers and bounded startup-name extraction; and after formatting. Any observed mismatch fails the entire output, including if the frozen writer already finished. A source/subcomponent error, expired/closed gate, malformed startup or pre-used Scratch causes permanent failure with no valid output, never a truncated alternative record. No retry/reentry or fabricated V1 success result is introduced.
+
+**Critical limitation:** comparing stable before/after values cannot exclude ABA, private metadata mutations, R02 counter changes, or any other unobserved concurrent write. A positive `Receipt.observableSourceFenceStable=true` means only no *witnessed* change by that precise fence, **not** a coherent all-VM epoch, pointer origin authentication, lock/deadlock freedom or runtime acceptance. `coherentVmEpochProven`, `playerExecution` and `runtimeAcceptance` remain explicitly false. The healthy-time Native Runtime admission gate can wait indefinitely on a deadlocked live reader; real lock-order/Shutdown proof remains outstanding.
+
+### Memory, V1/V2 and operation boundaries
+
+The composer and its source captures retain their original reviewed per-component capacities; the new startup scratch adds a bounded array and no output-sized heap string. No new output wire format is introduced: the original general JSON field order, exact legacy escaping, V1 262,144-byte individual slot limit, V2 65,536-byte frame, 3,932,160-byte artifact field cap and 4,194,304-byte combined encoded bound remain unchanged. The inactive method invokes the already validated composer but does not publish its output through the original getters or native/C# V2 path.
+
+The source-bound host allocation probe watches `operator new` while executing the mock-driven **exact method** after prewarm and expects **zero new allocations**. It does not observe native IL2CPP's real metadata iterator, GC, malloc, object allocator or process RSS. The source method may block Shutdown while a reader runs; the CI does not prove deadlock freedom.
+
+## Tests and evidence
+
+Native paths added:
+1. `tools/r03/diagnostic_stream/bounded_general_live_fixture.cpp`, a controlled test with actual bounded Capture classes and the original serializer; separate mock VM globals, source-owned method adapters and an actual native metadata Gate.
+2. `tools/r03/diagnostic_stream/run_bounded_general_live.py`, which verifies source blobs and that the real `.inl` is included once in the production native translation unit, then substitutes the **unmodified real method bytes** into its test fixture and compiles/runs strict and ASan/UBSan C++17 profiles. The runner never claims Unity SDK/Player execution.
+3. `.github/workflows/r03-p1-bounded-general-live-source.yml`, across macOS 15 Clang and Ubuntu 24.04 Clang/GCC.
+
+[Native CI 39085622437](https://github.com/night-outlook/il2cpp_plus/actions/runs/39085622437) **Passed 3/3 jobs**. Each job compiled and executed the exact method under strict and sanitized profiles, **13 distinct source-bound groups per profile (78 total executions)**, with 12 successful compiler/runner commands. Tests include actual original general-V1 JSON parity, bounded startup names, zero C++ `new` after warmup, absent owned source, four independent child-reader errors, changed usage generation during collection, changed usage generation after formatting, observed state change, one-shot output and closed metadata-admission failure. The three original ZIP digests and **57/57 manifest-declared artifact files** were independently SHA256+size checked. All three `RESULT.json` method SHA256 values agree: `232bd739bc6a54e8047118fbba8eb301a58f67e869ca8ce974902c8c382244a8`.
+
+The previously published ordinary class, physical, first-use, inventory, terminal source and general serializer regression CI suites remain independently scoped. A historical R02 whole-file immutable-source fingerprint job still fails after changing the owning `AssemblyShadow.cpp`; this is an **expected unchanged historical fingerprint gate**, not a fresh SDK/Player result, and is not rebaselined or promoted.
+
+Demo tooling now adds `live-general` as the **twelfth independently receipted component** of the source/SDK-only one-shot runner, with expected inner state `PassedWithinInactiveSourceHostScope`. It hashes the current native source header/body and test runner before/after. The earlier `owned-general` component remains, with its exact original `PassedWithinOwnedHostScope` evidence. The candidate SDK compiler retains its existing **75 native C++17 arm64 syntax configurations**: `AssemblyShadow.cpp` itself now includes/compiles the real inactive method under every candidate/debug/probe-off/diagnostics-off/feature-off profile. No extra translation unit or product behavior has been silently added. The managed five-product/expected-negative control and exact nested managed result consumer are unchanged.
+
+[Demo CI 39085881448](https://github.com/night-outlook/hybridclr_demo/actions/runs/39085881448) **Passed 2/2 jobs** (macOS15/Ubuntu24.04): original five CLI tests + **fourteen** receipt/aggregate tests per OS. The new negative test requires a failed `live-general` child to make the overall **12-child aggregate FailedOrIncomplete even if both SDK compiler children remain Passed**. The two original ZIPs and **10/10 manifest-declared files** were independently SHA256+size verified. All Git/SDK/child commands in these demo CI tests are mocks, not an installed SDK qualification.
+
+[Machine evidence record](EVIDENCE.json) retains exact commits, CI runs/artifact hashes and limits.
+
+## Remaining engineering and acceptance gates
+
+**P1 remains Incomplete.** The new live-source bridge is real native source, but no actual Player invocation/metadata teardown test has been performed, and the method is not wired to any diagnostic getter. It captures independent bounded domain observations under one outer metadata lifetime ticket and rejects witnessed publication changes; it does **not** prove a single atomic VM snapshot, safe class-pointer provenance under concurrent metadata replacement, global R02+execution counters, worst-case metadata iteration/class type-key costs, native thread/lock/GC/RSS/Shutdown freedom or terminal-safe scheduling. Completing these and presenting a reviewed design decision remains **Primary-owned**.
+
+**P2 NotIntegrated** (native+C# authenticated V2 file transaction, sidecar and unchanged semantic verifier). **E0 Blocked/Unavailable** (source/vendor-supported Unity2022.3.62f2 StandaloneOSX engine owner-safe point). **E1 BlockedByE0** (actual callback drain, GC/finalizer maintenance and restart). **Full P3 Incomplete** (host and SDK syntax are not full link/runtime acceptance). No Human Review Gate is authorized.
+
+Prior immutable Local outcomes: `20261016-3dc9` PASS 11/11, `20261016-f598` PASS 10/10, `20261016-0620` PASS 10/10, `20261016-0a0b` FAIL 9/10 (original aggregate SDK flag false). SNAP-01 FAIL/ReturnRequired 14/18, native engine 51,213 uncapped reports/500ms/exit71, N/M/K/I/E FAIL, historic R02 fingerprint FAIL, strict S custody Blocked and independent full-stage R03 review FAIL/review NotRun all remain unchanged. Historical source-pins.json is not modified, and all original semantic predicates and thresholds remain fixed.
+
+`R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter expansion disabled.
+
+**Decision:** no Player/runtime gate can begin from host CI. A separate, exact-four-commit, source/SDK-only Local assignment (12 components, 75 syntax configurations, fresh roots, no Editor launch) may be issued after a reviewed and remotely verified `WEB_TO_LOCAL.md`.
