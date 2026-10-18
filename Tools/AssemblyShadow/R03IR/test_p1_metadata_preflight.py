@@ -35,6 +35,7 @@ class PreflightContracts(unittest.TestCase):
             "run_bounded_physical_assemblies.py",
             "run_bounded_first_use.py",
             "run_bounded_general_composer.py",
+            "run_bounded_general_live.py",
             "run_bounded_transaction_status.py",
             "run_bounded_transaction_inventory.py",
             "run_frozen_v2.py",
@@ -44,7 +45,7 @@ class PreflightContracts(unittest.TestCase):
         for name in required:
             with self.subTest(name=name):
                 self.assertIn(name,self.pre)
-        self.assertIn('len(cases)==11',self.pre)
+        self.assertIn('len(cases)==12',self.pre)
         self.assertIn('sourcePreserved',self.pre)
         self.assertIn('expectedNativeSyntaxUnits":75',self.pre)
         self.assertIn('historicalEvidenceReclassified":False',self.pre)
