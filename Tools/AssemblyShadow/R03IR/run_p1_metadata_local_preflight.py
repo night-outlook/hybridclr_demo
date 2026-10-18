@@ -148,6 +148,12 @@ def main()->None:
         native/"libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
         native/"tools/r03/diagnostic_stream/run_bounded_general_composer.py",
         native/"tools/r03/diagnostic_stream/bounded_general_composer_fixture.cpp",
+        native/"libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+        native/"libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+        native/"libil2cpp/vm/AssemblyShadow.h",
+        native/"libil2cpp/vm/AssemblyShadow.cpp",
+        native/"tools/r03/diagnostic_stream/run_bounded_general_live.py",
+        native/"tools/r03/diagnostic_stream/bounded_general_live_fixture.cpp",
         demo/"Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowGeneralComposeSyntax.cpp",
     ]
     hashes={str(p):hash_file(p) for p in inputs}
@@ -187,6 +193,7 @@ def main()->None:
             ("bounded-physical","run_bounded_physical_assemblies.py","PassedWithinHostScope"),
             ("bounded-first-use","run_bounded_first_use.py","PassedWithinHostScope"),
             ("owned-general","run_bounded_general_composer.py","PassedWithinOwnedHostScope"),
+            ("live-general","run_bounded_general_live.py","PassedWithinInactiveSourceHostScope"),
             ("bounded-status","run_bounded_transaction_status.py","PassedWithinHostScope"),
             ("bounded-inventory","run_bounded_transaction_inventory.py","PassedWithinHostScope"),
             ("frozen-v2","run_frozen_v2.py","PassedWithinInactiveHostScope"),
@@ -211,12 +218,12 @@ def main()->None:
             preserved=before==after and hashes=={str(p):hash_file(p) for p in inputs}
         except Exception as e:
             # Even if source changed or a checkout disappeared, retain the
-            # eleven independent cases and factual postflight errors, never mark PASS.
+            # twelve independent cases and factual postflight errors, never mark PASS.
             postflight_error=repr(e)
             preserved=False
-        success=preserved and len(cases)==11 and all(c["status"]=="Passed" for c in cases)
+        success=preserved and len(cases)==12 and all(c["status"]=="Passed" for c in cases)
         statuses={c["name"]:c["status"] for c in cases}
-        summary={"kind":"R03P1OwnedGeneralSourceSDKPreflight",
+        summary={"kind":"R03P1InactiveLiveGeneralSourceSDKPreflight",
           "result":"PassedSourceHostAndSDKOnly" if success else "FailedOrIncomplete",
           "fourRepositoriesBefore":before,"fourRepositoriesAfter":after,
           "sourceSha256":hashes,"sourcePreserved":preserved,
