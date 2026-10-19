@@ -172,12 +172,23 @@ class AggregateReceiptIntegration(unittest.TestCase):
                       ('run_metadata_lifetime_gate.py','run_bounded_general_composer.py',
                        'bounded_general_composer_fixture.cpp',
                        'run_bounded_general_live.py','bounded_general_live_fixture.cpp',
-                       'test_bounded_general_live_command.py')]
+                       'test_bounded_general_live_command.py',
+                       'run_frozen_execution.py','frozen_execution_fixture.cpp',
+                       'frozen_execution_allocations.cpp',
+                       'test_frozen_execution_include_path.py')]
             paths += [native/'libil2cpp/vm'/n for n in
                       ('AssemblyShadowBoundedGeneralComposer.h','AssemblyShadowFrozenGeneralCapture.h',
                        'AssemblyShadowBoundedGeneralLive.h','AssemblyShadowBoundedGeneralLiveSource.inl',
-                       'AssemblyShadow.h','AssemblyShadow.cpp')]
-            paths += [demo/'Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowGeneralComposeSyntax.cpp']
+                       'AssemblyShadow.h','AssemblyShadow.cpp',
+                       'AssemblyShadowFrozenExecutionRecord.h','AssemblyShadowR02Snapshot.h',
+                       'AssemblyShadowFrozenR02Serializer.h','AssemblyShadowExecutionSerializer.h',
+                       'AssemblyShadowR02Diagnostics.h','AssemblyShadowDiagnosticWriter.h',
+                       'AssemblyShadowObservationCounters.h','AssemblyShadowObservationMemo.h',
+                       'AssemblyShadowDiagnosticsProfile.h')]
+            paths += [native/'tools/r03/diagnostic_stream/reference'/n for n in
+                      ('AssemblyShadowExecutionSerializer.h','AssemblyShadowR02Diagnostics.h')]
+            paths += [demo/'Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowGeneralComposeSyntax.cpp',
+                      demo/'Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowExecutionComposeSyntax.cpp']
             for p in paths:
                 p.parent.mkdir(parents=True, exist_ok=True); p.write_text('mock SDK/source input\n')
             unity = root/'Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity'
@@ -209,6 +220,7 @@ class AggregateReceiptIntegration(unittest.TestCase):
                             'Passed' if name=='native-sdk' else
                             'PassedWithinOwnedHostScope' if name=='owned-general' else
                             'PassedWithinInactiveSourceHostScope' if name=='live-general' else
+                            'PassedWithinOwnedExecutionHostScope' if name=='owned-execution' else
                             'PassedWithinInactiveHostScope' if name=='frozen-v2' else 'PassedWithinHostScope')
                 (dest/('results.json' if name=='native-sdk' else 'RESULT.json')).write_text(json.dumps({'result':expected}))
                 return subprocess.CompletedProcess(args, 0, b'mock child\n', b'')
@@ -221,11 +233,11 @@ class AggregateReceiptIntegration(unittest.TestCase):
                 try: runner.main()
                 except SystemExit as e: exit_code=e.code
             report=json.loads((output/'RESULT.json').read_bytes())
-            self.assertEqual(len(report['commands']),13)
-            self.assertEqual(len(launched),13)
-            self.assertEqual(len(set(Path(cmd[2]).name for cmd in launched)),13)
+            self.assertEqual(len(report['commands']),14)
+            self.assertEqual(len(launched),14)
+            self.assertEqual(len(set(Path(cmd[2]).name for cmd in launched)),14)
             self.assertFalse(scratch.exists()) # no compiler, SDK copy or Unity execution
-            self.assertEqual(report['expectedNativeSyntaxUnits'],75)
+            self.assertEqual(report['expectedNativeSyntaxUnits'],80)
             self.assertFalse(report['R03Accepted'])
             self.assertFalse(report['UnityPlayerExecuted'])
             self.assertFalse(report['historicalEvidenceReclassified'])
@@ -241,7 +253,7 @@ class AggregateReceiptIntegration(unittest.TestCase):
             self.assertEqual(launched[-1][-2:],['--candidate-native-sha','b'*40])
             return exit_code,report,managed
 
-    def test_thirteen_components_pass_with_actual_producer_response(self):
+    def test_fourteen_components_pass_with_actual_producer_response(self):
         code,report,managed=self.exercise()
         self.assertEqual(code,0)
         self.assertEqual(report['result'],'PassedSourceHostAndSDKOnly')
@@ -249,13 +261,13 @@ class AggregateReceiptIntegration(unittest.TestCase):
         self.assertTrue(managed['returnedBindingVerified'])
         self.assertTrue(managed['innerResultPath'].endswith('/managed-sdk/build-api/results.json'))
 
-    def test_managed_failures_preserve_twelve_passed_one_failed(self):
+    def test_managed_failures_preserve_thirteen_passed_one_failed(self):
         for mode in ('missing','root-only','mutated','wrong-binding','inner-failed','exit-nonzero','child-exception'):
             with self.subTest(mode=mode):
                 code,report,managed=self.exercise(mode)
                 self.assertEqual(code,1)
                 self.assertEqual(report['result'],'FailedOrIncomplete')
-                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),12)
+                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),13)
                 self.assertEqual(managed['status'],'Failed')
                 self.assertFalse(report['officialUnitySdkCompilePassed'])
                 self.assertTrue(report['sourcePreserved'])
@@ -265,7 +277,7 @@ class AggregateReceiptIntegration(unittest.TestCase):
         code,report,_=self.exercise('live-general-failed')
         self.assertEqual(code,1)
         self.assertEqual(report['result'],'FailedOrIncomplete')
-        self.assertEqual(len(report['commands']),13)
+        self.assertEqual(len(report['commands']),14)
         self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),12)
         child=next(c for c in report['commands'] if c['name']=='live-general')
         self.assertEqual(child['status'],'Failed')

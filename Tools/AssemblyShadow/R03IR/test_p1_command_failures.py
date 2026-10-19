@@ -165,6 +165,7 @@ class BatchFailureScheduling(unittest.TestCase):
                           'PassedHostOnly' if name=='legacy-host' else
                           'PassedWithinOwnedHostScope' if name=='owned-general' else
                           'PassedWithinInactiveSourceHostScope' if name=='live-general' else
+                          'PassedWithinOwnedExecutionHostScope' if name=='owned-execution' else
                           'PassedWithinInactiveHostScope' if name=='frozen-v2' else 'PassedWithinHostScope')
                 data={'result':expected,'commandLifetimeUnverified':name==target and mode=='nested-timeout'}
                 if name=='managed-sdk':
@@ -185,10 +186,10 @@ class BatchFailureScheduling(unittest.TestCase):
                 except SystemExit as error:code=error.code
             report=json.loads((dest/'RESULT.json').read_bytes())
             manifest=json.loads((dest/'MANIFEST.json').read_bytes())
-            self.assertEqual(len(report['commands']),13)
-            self.assertEqual(report['componentCount'],13)
+            self.assertEqual(len(report['commands']),14)
+            self.assertEqual(report['componentCount'],14)
             self.assertEqual(report['attemptedComponentCount'],len(launched))
-            self.assertEqual(report['expectedNativeSyntaxUnits'],75)
+            self.assertEqual(report['expectedNativeSyntaxUnits'],80)
             self.assertFalse(report['R03Accepted']);self.assertFalse(report['UnityPlayerExecuted'])
             self.assertFalse(report['historicalEvidenceReclassified'])
             for row in report['commands']:
@@ -199,9 +200,9 @@ class BatchFailureScheduling(unittest.TestCase):
                 self.assertEqual(row['sha256'],hashlib.sha256(raw).hexdigest());self.assertEqual(row['size'],len(raw))
             return code,report,manifest,launched,checks
 
-    def test_all_thirteen_components_have_independent_success(self):
+    def test_all_fourteen_components_have_independent_success(self):
         code,report,manifest,launched,checks=self.exercise()
-        self.assertEqual(code,0);self.assertEqual(len(launched),13);self.assertEqual(len(checks),8)
+        self.assertEqual(code,0);self.assertEqual(len(launched),14);self.assertEqual(len(checks),8)
         self.assertTrue(report['sourcePreserved']);self.assertIsNone(report['stoppedAfter'])
         self.assertTrue(report['officialUnitySdkCompileAttempted']);self.assertTrue(report['officialUnitySdkCompilePassed'])
         self.assertEqual(manifest['inventoryScope'],'CompletedBatchFiles')
@@ -209,7 +210,7 @@ class BatchFailureScheduling(unittest.TestCase):
     def assert_stopped(self,mode,target='live-general',code=1):
         actual,report,manifest,launched,checks=self.exercise(mode,target)
         self.assertEqual(actual,code);self.assertEqual(launched[-1],target)
-        self.assertLess(len(launched),13);self.assertEqual(len(checks),4)
+        self.assertLess(len(launched),14);self.assertEqual(len(checks),4)
         self.assertFalse(report['sourcePreserved']);self.assertTrue(report['commandLifetimeUnverified'])
         self.assertEqual(report['result'],'FailedOrIncomplete')
         self.assertFalse(report['officialUnitySdkCompileAttempted'])
@@ -221,24 +222,25 @@ class BatchFailureScheduling(unittest.TestCase):
     def test_nested_timeout_stops_even_with_passed_child_verdict(self):self.assert_stopped('nested-timeout')
     def test_unknown_outcome_stops_without_fabricating_postflight(self):self.assert_stopped('unknown')
     def test_keyboard_interrupt_preserves_summary_and_exit130(self):self.assert_stopped('interrupted',code=130)
-    def test_first_component_timeout_leaves_twelve_notrun(self):self.assert_stopped('timeout','command-failures')
+    def test_first_component_timeout_leaves_thirteen_notrun(self):self.assert_stopped('timeout','command-failures')
 
     def test_completed_nonzero_keeps_other_independent_checks(self):
-        code,report,manifest,launched,checks=self.exercise('nonzero')
-        self.assertEqual(code,1);self.assertEqual(len(launched),13);self.assertEqual(len(checks),8)
-        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),12)
+        code,report,manifest,launched,checks=self.exercise('nonzero','owned-execution')
+        self.assertEqual(code,1);self.assertEqual(len(launched),14);self.assertEqual(len(checks),8)
+        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),13)
+        self.assertEqual(next(c for c in report['commands'] if c['name']=='owned-execution')['status'],'Failed')
         self.assertTrue(report['officialUnitySdkCompilePassed']);self.assertTrue(report['sourcePreserved'])
         self.assertIsNone(report['stoppedAfter'])
 
     def test_known_launch_failure_is_retained_without_faking_an_exit(self):
         code,report,manifest,launched,checks=self.exercise('spawn-failed')
-        self.assertEqual(code,1);self.assertEqual(len(launched),13)
+        self.assertEqual(code,1);self.assertEqual(len(launched),14)
         record=next(c for c in report['commands'] if c['name']=='live-general')
         self.assertIsNone(record['exit']);self.assertIn('FileNotFoundError',record['exception'])
 
     def test_last_sdk_timeout_is_attempted_but_not_passed(self):
         code,report,manifest,launched,checks=self.exercise('timeout','native-sdk')
-        self.assertEqual(code,1);self.assertEqual(len(launched),13)
+        self.assertEqual(code,1);self.assertEqual(len(launched),14)
         self.assertTrue(report['officialUnitySdkCompileAttempted'])
         self.assertFalse(report['officialUnitySdkCompilePassed']);self.assertFalse(report['sourcePreserved'])
         self.assertTrue(report['commandLifetimeUnverified'])

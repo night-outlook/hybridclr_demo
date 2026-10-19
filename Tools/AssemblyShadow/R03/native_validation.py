@@ -146,9 +146,11 @@ def main():
                 # Compile the new real bounded-source composer header through
                 # one separate official Unity SDK translation-unit probe.
                 units.append(demo/'Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowGeneralComposeSyntax.cpp')
+                # SDK syntax for the new inactive owned execution/R02 record.
+                units.append(demo/'Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowExecutionComposeSyntax.cpp')
             profiles=[('candidate',1,1,0,2),('debug',1,1,1,2),('probe-off',1,0,0,2),
                       ('diagnostics-off',1,0,0,0),('feature-off',0,1,0,0)]
-            expected_units=15 if candidate else 12
+            expected_units=16 if candidate else 12
             require(len(units)==expected_units and len(set(units))==expected_units and len(profiles)==5,
                     'Complete current candidate/historical syntax matrix required')
             result['plannedTranslationUnitCount']=expected_units*len(profiles)

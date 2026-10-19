@@ -239,11 +239,28 @@ def main()->None:
         native/"tools/r03/diagnostic_stream/bounded_general_composer_fixture.cpp",
         native/"libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
         native/"libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+        # Inactive owned execution / typed R02 record and immutable references.
+        native/"libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+        native/"libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+        native/"libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+        native/"libil2cpp/vm/AssemblyShadowExecutionSerializer.h",
+        native/"libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+        native/"libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+        native/"libil2cpp/vm/AssemblyShadowObservationCounters.h",
+        native/"libil2cpp/vm/AssemblyShadowObservationMemo.h",
+        native/"libil2cpp/vm/AssemblyShadowDiagnosticsProfile.h",
+        native/"tools/r03/diagnostic_stream/run_frozen_execution.py",
+        native/"tools/r03/diagnostic_stream/frozen_execution_fixture.cpp",
+        native/"tools/r03/diagnostic_stream/frozen_execution_allocations.cpp",
+        native/"tools/r03/diagnostic_stream/test_frozen_execution_include_path.py",
+        native/"tools/r03/diagnostic_stream/reference/AssemblyShadowExecutionSerializer.h",
+        native/"tools/r03/diagnostic_stream/reference/AssemblyShadowR02Diagnostics.h",
         native/"libil2cpp/vm/AssemblyShadow.h",
         native/"libil2cpp/vm/AssemblyShadow.cpp",
         native/"tools/r03/diagnostic_stream/run_bounded_general_live.py",
         native/"tools/r03/diagnostic_stream/bounded_general_live_fixture.cpp",
         demo/"Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowGeneralComposeSyntax.cpp",
+        demo/"Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowExecutionComposeSyntax.cpp",
     ]
     hashes={str(p):hash_file(p) for p in inputs}
     dest.mkdir(mode=0o700)
@@ -277,6 +294,7 @@ def main()->None:
             ("bounded-first-use","run_bounded_first_use.py","PassedWithinHostScope"),
             ("owned-general","run_bounded_general_composer.py","PassedWithinOwnedHostScope"),
             ("live-general","run_bounded_general_live.py","PassedWithinInactiveSourceHostScope"),
+            ("owned-execution","run_frozen_execution.py","PassedWithinOwnedExecutionHostScope"),
             ("bounded-status","run_bounded_transaction_status.py","PassedWithinHostScope"),
             ("bounded-inventory","run_bounded_transaction_inventory.py","PassedWithinHostScope"),
             ("frozen-v2","run_frozen_v2.py","PassedWithinInactiveHostScope"),
@@ -306,12 +324,12 @@ def main()->None:
             # thirteen independent cases and factual postflight errors, never mark PASS.
             postflight_error=repr(e)
             preserved=False
-        success=preserved and stopped is None and len(cases)==13 and all(c["status"]=="Passed" for c in cases)
+        success=preserved and stopped is None and len(cases)==14 and all(c["status"]=="Passed" for c in cases)
         statuses={c["name"]:c["status"] for c in cases}
         summary={"kind":"R03P1FailureAwareSourceSDKPreflight","schemaVersion":2,
           "stoppedAfter":stopped,"commandLifetimeUnverified":stopped is not None,
           "descendantQuiescenceProven":False,
-          "componentCount":13,"attemptedComponentCount":sum(c["commandInvoked"] for c in cases),
+          "componentCount":14,"attemptedComponentCount":sum(c["commandInvoked"] for c in cases),
           "result":"PassedSourceHostAndSDKOnly" if success else "FailedOrIncomplete",
           "fourRepositoriesBefore":before,"fourRepositoriesAfter":after,
           "sourceSha256":hashes,"sourcePreserved":preserved,
@@ -321,7 +339,7 @@ def main()->None:
           "officialUnitySdkCompilePassed":statuses.get("managed-sdk")=="Passed" and
                                           statuses.get("native-sdk")=="Passed",
           "nativeSDKCandidateMode":True,
-          "expectedNativeSyntaxUnits":75,
+          "expectedNativeSyntaxUnits":80,
           "realUnityEditorLaunched":False,"UnityPlayerExecuted":False,
           "engineOwnerProven":False,"R03Accepted":False,"ReadyForHumanReviewGate":False,
           "historicalEvidenceReclassified":False}
