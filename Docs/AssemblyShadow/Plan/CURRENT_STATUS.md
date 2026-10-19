@@ -1,49 +1,35 @@
-# R03 P1 current status — inactive live general-source bridge host-tested; next Local SDK preflight
+# R03/P1 current status — failure-aware command receipts published; one Local source/SDK preflight
 
-## Current bounded assignment
+**Owner: Primary Implementation.** The prior `20261018-5667` Local return is **PASS / PassedSourceHostAndSDKOnly within 12-component source/host/installed-SDK syntax scope** and is consumed. No new product-runtime acceptance follows. Primary has now published the failure-aware Python tooling, regression coverage, and one source-pinned 13-component Local cycle. Read [WEB_TO_LOCAL.md](../Handoff/WEB_TO_LOCAL.md) for execution authorization and stop boundary.
 
-Primary has authored and published a native `AssemblyShadow::TryCaptureBoundedGeneralLive` method that **combines actual separately implemented source readers** and feeds the previously reviewed byte-exact owned-general composer under one MetadataLifetimeGate.Reader admission, then rejects **observed** before/after source changes. The implementation remains **inactive**, is not called from original general/execution getters, and is not a live Player diagnostic replacement. No coherent global VM epoch, physical class source/lifetime, metadata teardown safety or process GC/RSS bound is established.
+## Source commits and owner paths
 
-**Source/host testing status: PASS within mocks only.** [Native CI 39085622437](https://github.com/night-outlook/il2cpp_plus/actions/runs/39085622437) passed 3/3 (Mac Clang, Linux Clang/GCC), strict and ASan/UBSan with 13 distinct groups/profile, exact native source body extracted/included against actual Capture and serializer types; 57/57 original manifest files verified. [Demo CI 39085881448](https://github.com/night-outlook/hybridclr_demo/actions/runs/39085881448) passed 2/2 OS jobs (5 CLI +14 managed receipt/aggregate tests/OS), 10/10 original manifest files verified. CI hosts mock all installed SDK/VM inputs; a host success is not official installed SDK evidence.
+All four repositories use `codex/assembly-shadow-r01b-h1`. Exact feature source pins are:
 
-**Next authorized Local Validation is only ONE fresh, separately committed and source-pinned host/SDK syntax-only cycle**, with **12 independently receipted components** (the previous 11 plus `live-general`) and **75 actual C++17 macOS arm64 native syntax configurations** (15 units × 5 profiles), plus five official managed product outputs and the unchanged expected-negative control. The full source preflight script and exact new roots live in [WEB_TO_LOCAL.md](../Handoff/WEB_TO_LOCAL.md). No Unity Editor/Player Test Runner, runtime seven-root batch, source/engine adapter experiment, H2/X02/M08A or Human Review Gate may run. Local only validates and records factual evidence; all substantive design/changes remain Primary-owned.
-
-## Exact source pins and source of truth
-
-All four canonical `night-outlook/<repo>` remotes use branch `codex/assembly-shadow-r01b-h1`. The source/CI tested native implementation is `il2cpp_plus@5667e3712f49e4b38c7dd7359e57f81e344626da`, the demo CLI/producer integration CI anchor is `hybridclr_demo@d7b923e9d97b89d67149d6f659d61546a966de6f`, the HybridCLR fork remains `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` and Unity package remains `948c0e3b4f8891481301770115e8ba4945eea6de`.
-
-Later demo `Docs/` publications do not alter the tested source. The precise authoritative demo Local-execution pin will be the **final remote handoff-containing commit** and must be matched against checkout HEAD and the Primary Local-agent prompt. No prior Local execution SHA may be replaced by a later transport commit; historical `Tools/AssemblyShadow/R03/source-pins.json` remains unchanged at its previous factual native pin.
-
-### Published native files
-
-- `libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h` — preallocated startup-name scratch, source pointers, fail-closed receipt, noncoherence flags.
-- `libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl` — actual inactive source collector included once by `AssemblyShadow.cpp`, `AssemblyShadow.h` declares it only inside the existing feature flag.
-- `tools/r03/diagnostic_stream/bounded_general_live_fixture.cpp`, `run_bounded_general_live.py`, and `.github/workflows/r03-p1-bounded-general-live-source.yml` — actual method under mocks, positive/negative source/epoch/admission/control tests and executable retained evidence.
-- Demo `run_p1_metadata_local_preflight.py`, its two regression files and `.github/workflows/r03-p1-metadata-preflight-contract.yml` — scoped 12th source child, source SHA custody and 12-child failure semantics. Existing managed consumer, full native SDK translator list and runtime probes remain functionally unchanged.
-
-[Primary review](../History/M07R/R03/IR_Remediation/P1_INACTIVE_LIVE_GENERAL_2026-10-17/PRIMARY_REVIEW.md) · [machine evidence](../History/M07R/R03/IR_Remediation/P1_INACTIVE_LIVE_GENERAL_2026-10-17/EVIDENCE.json).
-
-## Immutable consumed empirical Local evidence
-
-| Local cycle | Recorded original result | Authority |
+| Repository | Existing Local checkout | Required source / HEAD |
 | --- | --- | --- |
-| `20261016-3dc9` | `PassedSourceHostAndSDKOnly` **11/11**, 75 SDK syntax | Consumed, actual native `3dc9b848...` |
-| `20261016-f598` | `PassedSourceHostAndSDKOnly` **10/10**, 70 SDK syntax | Consumed |
-| `20261016-0620` | `PassedSourceHostAndSDKOnly` **10/10**, 70 SDK syntax | Consumed |
-| `20261016-0a0b` | `FailedOrIncomplete` **9/10**, original aggregate SDK flag FALSE | Consumed, never reclassified |
-| SNAP-01 | **FAIL / ReturnRequired, 14/18** | Historical |
-| N/M/K/I/E, historical R02 immutable whole-file fingerprint | **FAIL** | Historical |
-| Original strict S custody | **Blocked** | Historical |
-| R03 independent full-stage review / rereview | **FAIL / NotRun** | Historical |
+| `night-outlook/hybridclr_demo` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | Tested source commit `d67846e9a28add70046198da9a4fba7e27f0764b`; final Docs-only remote HEAD must equal the accompanying Primary handoff prompt and latest `WEB_TO_LOCAL.md` commit. |
+| `night-outlook/hybridclr` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `night-outlook/hybridclr_unity` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| `night-outlook/il2cpp_plus` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `e29a38f66331ccabe5822a9f83401cd4a2b20c5a` |
 
-The original V1 slot14 >262144, scanned prefix262145 (exact full bytes Unavailable) and the engine 51,213 uncapped reports/500ms, exit71 remain previous FAIL. Original logger, GC, canary, recovery, sidecar and native reporting limits/predicates are unchanged. No current source/host result upgrades these.
+Native HEAD retains predecessor `d8a1df3007e93aeb65dd9fe97ab96b4771de8f17` containing a separate inactive owned execution/R02 feature; that feature is NOT claimed covered by the new command-failure contracts. Historical `Tools/AssemblyShadow/R03/source-pins.json` is not changed; native candidate syntax mode uses explicit `e29a38f66331ccabe5822a9f83401cd4a2b20c5a`.
 
-## Remaining gates
+## Completed Primary increment
 
-**P1 incomplete:** the new source collector uses one outer metadata lifetime ticket and rejects witnessed concurrent source changes, but does **not** prove global atomic VM epoch/ABA freedom, live class pointer origin, class iterator/type-key allocation, GC/RSS and shutdown/drain/lock safety. Original `GetDiagnosticsJson` and `GetExecutionDiagnosticsJson` still run their old allocating implementations, and no R02+execution complete live capture is integrated.
+- Reproduced original timeout output disappearance and outer continuation under an unverified execution lifetime.
+- Native Python host-runner failure receipts now record stream availability/completeness, exact captured bytes/hashes and failed RESULT even on missing compiler/postflight source change. Compiled-source claims require actual successful compiler commands.
+- Outer 13-component preflight stops immediately on timeout/interruption/unknown lifetime/child-reported unsafe lifetime, writes explicit `NotRun` cells, refrains from later subprocesses/postflight remote verification, preserves a nonaccepted observation inventory. Strict component-result JSON parsing rejects duplicates, nonfinite values and symlink targets.
+- Source-bound host harness passed **53/53 unique tests**, with three additional admission refusal checks, all original 12 components kept and native SDK matrix **75 syntax configurations** unchanged. The five positive managed products and the expected OriginalUnsignedCounts negative are unchanged.
 
-**P2 NotIntegrated:** actual native/C# authenticated V2 artifact/envelope/file transaction and original semantic verifier. **E0 Blocked/Unavailable:** Unity2022.3.62f2 StandaloneOSX native/vendor-supported engine owner-safe point. **E1 BlockedByE0:** callback drain, genuine GC/finalizer native maintenance and restart. **Full P3 Incomplete:** native `-fsyntax-only` compilation is neither linking nor Player runtime/teardown acceptance.
+This is **Python tooling only**; no native C++ or managed runtime production code was altered for this increment. The focused demo/native command-failure GitHub CI workflows both passed ([demo 39208716350](https://github.com/night-outlook/hybridclr_demo/actions/runs/39208716350), [native 39208403729](https://github.com/night-outlook/il2cpp_plus/actions/runs/39208403729)). A separate inherited owned-execution/R02 workflow has one [macOS Clang failure](https://github.com/night-outlook/il2cpp_plus/actions/runs/39208403669), which is a Primary-owned distinct issue and not qualified in this focused batch. Fresh installed-SDK execution remains separate evidence; host mocks do not establish actual Unity execution or native runtime acceptance. [Primary review](../History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/PRIMARY_REVIEW.md) · [publication](../History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/PUBLICATION.md) · [original evidence](../History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/EVIDENCE.json).
 
-All acceptance flags remain false: `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter disabled. No automatic Human Review Gate or milestone transition.
+## Next Local assignment and limits
 
-[Local-owned factual validation](../Handoff/LOCAL_VALIDATION.md), [RETURN_TO_WEB](../Handoff/RETURN_TO_WEB.md) and [last consumed Primary reconciliation](../History/M07R/R03/IR_Remediation/P1_OWNED_GENERAL_LOCAL_PASS_2026-10-16/PRIMARY_RECONCILIATION.md) remain immutable evidence. The [remaining implementation plan](../History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/IMPLEMENTATION_PLAN.md) governs later Primary work.
+Exactly **one unused source/host + installed Unity2022.3.62f2 official SDK syntax-only cycle**, 13 independently receipted children (new command-failure harness + 12 retained), with 75 actual arm64 C++17 native syntax configurations, five managed products and original expected-negative control. All four checked-out repos must match current remote pins, be clean, preserve consumed evidence and SDK bytes, use one fresh set of external roots, run once and stop. No Editor, Player, Test Runner, linked runtime, new terminal experiment, automatic retry or Human Review Gate is authorized. Local only records observations in `LOCAL_VALIDATION.md`, `RETURN_TO_WEB.md`, and designated additive checkpoint; substantive work remains Primary-owned.
+
+## Immutable historical evidence and remaining production work
+
+`20261018-5667` remains PASS 12/12; `20261016-3dc9`, `20261016-f598`, `20261016-0620` remain source/SDK PASS, `20261016-0a0b` remains source/SDK FAIL 9/10. SNAP-01/N/M/K/I/E FAIL, historic R02 source-fingerprint FAIL, strict original S custody Blocked, R03 independent full-stage FAIL/rereview NotRun all unchanged. Original V1 slot14 >262144 and native engine 51,213 reports in 500ms remain unresolved. Native logger/GC/recovery/canary and V1/V2 budgets remain unchanged.
+
+P1 coherent all-VM epoch/ABA, pointer ownership, complete R02/execution live capture/getters, type-key/class memory bounds, GC/RSS and real Shutdown/lock proof still Incomplete. P2 authenticated native/C# V2 file transaction and semantics NotIntegrated. E0 actual StandaloneOSX engine-owner safe point Blocked/Unavailable; E1 BlockedByE0; full P3 linked Player/runtime acceptance incomplete. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter expansion disabled. No automatic milestone advance.
