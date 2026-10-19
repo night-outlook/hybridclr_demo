@@ -122,7 +122,7 @@ def read_component_result(output:Path, filename:str, require_lifetime_marker:boo
         raise ValueError("Non-finite component receipt value: "+value)
     record=json.loads(raw.decode("utf-8"),object_pairs_hook=pairs,parse_constant=constant)
     if not isinstance(record,dict):raise ValueError("Component result must be an object")
-    # The new native empty-live producer is fail-stop aware. An absent or
+    # The native empty-live and opaque-inventory producers are fail-stop aware. An absent or
     # malformed marker cannot be interpreted as a verified-safe lifetime.
     # Older unrelated producers retain the original optional marker policy.
     if require_lifetime_marker and "commandLifetimeUnverified" not in record:
@@ -161,7 +161,7 @@ def execute_component(dest:Path,name:str,argv:list,expected:str,
             result.update(read_managed_result(output,stdout))
         else:
             result.update(read_component_result(
-                output,file,require_lifetime_marker=(name=="empty-live")))
+                output,file,require_lifetime_marker=(name in ("empty-live","opaque-inventory"))))
         if result["commandLifetimeUnverified"]:
             result["stopBatchReason"]="ChildReportedUnverifiedCommandLifetime"
         elif proc.returncode==0 and result.get("innerResult")==expected:
@@ -176,11 +176,11 @@ def execute_component(dest:Path,name:str,argv:list,expected:str,
                       commandLifetimeUnverified=True,stopBatchReason="OuterCommandInterrupted")
     except Exception as error:
         result["exception"]=repr(error)
-        if returned and name=="empty-live":
+        if returned and name in ("empty-live","opaque-inventory"):
             # A completed child without a valid lifetime receipt could have
             # timed out internally. Do not schedule more subprocess children.
             result.update(commandLifetimeUnverified=True,
-                          stopBatchReason="EmptyLiveReceiptUnavailableOrInvalid")
+                          stopBatchReason="NativeLiveReceiptUnavailableOrInvalid")
         elif not returned and not isinstance(error,OSError):
             result.update(commandLifetimeUnverified=True,
                           stopBatchReason="UnknownCommandExecutionOutcome")

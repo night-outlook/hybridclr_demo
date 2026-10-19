@@ -170,17 +170,19 @@ class BatchFailureScheduling(unittest.TestCase):
                           'PassedWithinInactiveOpaqueHostScope' if name=='opaque-inventory' else
                           'PassedWithinInactiveHostScope' if name=='frozen-v2' else 'PassedWithinHostScope')
                 data={'result':expected,'commandLifetimeUnverified':name==target and mode=='nested-timeout'}
-                if name=='empty-live' and name==target:
+                if name in ('empty-live','opaque-inventory') and name==target:
                     if mode=='missing-lifetime-marker':
                         data.pop('commandLifetimeUnverified')
                     if mode=='malformed-lifetime-marker':
                         data['commandLifetimeUnverified']='false'
+                    if mode=='null-lifetime-marker':
+                        data['commandLifetimeUnverified']=None
                 if name=='managed-sdk':
                     data.update(kind='R03CompleteBuildHelperCompile',schemaVersion=1,unityVersion='2022.3.62f2',
                                 unityEditorRun=False,nativeExecution=False,runtimeAcceptance=False)
                     (out/'build-api').mkdir();file=out/'build-api/results.json'
                 else:file=out/('results.json' if name=='native-sdk' else 'RESULT.json')
-                if not (name=='empty-live' and name==target and mode=='missing-result'):
+                if not (name in ('empty-live','opaque-inventory') and name==target and mode=='missing-result'):
                     file.write_text(json.dumps(data))
                 stdout=(json.dumps({'result':str(file),'sha256':hashlib.sha256(file.read_bytes()).hexdigest()}).encode()
                         if name=='managed-sdk' else b'mock child\n')
@@ -284,5 +286,20 @@ class BatchFailureScheduling(unittest.TestCase):
         self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),15)
         self.assertEqual(next(c for c in report['commands']
                               if c['name']=='empty-live')['status'],'Failed')
+
+    def test_opaque_reported_lifetime_uncertainty_stops_batch(self):
+        self.assert_stopped('nested-timeout','opaque-inventory')
+
+    def test_missing_opaque_lifetime_marker_stops_batch(self):
+        self.assert_stopped('missing-lifetime-marker','opaque-inventory')
+
+    def test_malformed_opaque_lifetime_marker_stops_batch(self):
+        self.assert_stopped('malformed-lifetime-marker','opaque-inventory')
+
+    def test_null_opaque_lifetime_marker_stops_batch(self):
+        self.assert_stopped('null-lifetime-marker','opaque-inventory')
+
+    def test_missing_opaque_result_stops_batch(self):
+        self.assert_stopped('missing-result','opaque-inventory')
 
 if __name__=='__main__':unittest.main(verbosity=2)
