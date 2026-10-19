@@ -1,0 +1,63 @@
+{
+  "kind": "R03P1OwnedExecutionPrimarySourceAndCiEvidence",
+  "schemaVersion": 1,
+  "reconciledLocal": {
+    "cycle": "20261019-cmdfail-e29a",
+    "result": "PassedSourceHostAndSDKOnly",
+    "componentsPassed": 13,
+    "nativeSdkSyntaxPassed": 75,
+    "commandFailureTests": 53,
+    "executionDemoSha": "ae221f69a8c75a4a1b9332f0f903b223453a7c36",
+    "handoffReturnDemoSha": "26aeb841f06634b708ebcb12b23950c77bd3e077",
+    "sourcePreserved": true,
+    "NoUnityPlayer": true,
+    "consumed": true
+  },
+  "macOriginalCi": {
+    "runId": 39208403669,
+    "commit": "e29a38f66331ccabe5822a9f83401cd4a2b20c5a",
+    "state": "Failed",
+    "macCompileProfilesFailed": 6,
+    "macGroupsExecuted": 0,
+    "reason": "-I native libil2cpp/vm hijacks standard C string.h from cstring",
+    "historicalUnchanged": true
+  },
+  "nativeCorrection": {
+    "commit": "f0c5afe43fe256ac09fabacd5d40f82956988fe2",
+    "runId": 39212760872,
+    "status": "Passed",
+    "jobsPassed": 3,
+    "profilesPerJob": 6,
+    "expectedGroupsPerProfile": 35,
+    "scope": "HostOnly_NoUnitySdk_NoPlayer"
+  },
+  "demoSource": {
+    "commit": "35c5a02e90f32be4f6da8307d0a539bdf696a10f",
+    "managedAggregateCi": {
+      "id": 39213798210,
+      "status": "Passed"
+    },
+    "commandFailureCi": {
+      "id": 39213581041,
+      "status": "Passed"
+    },
+    "syntaxHostCi": {
+      "id": 39213944245,
+      "status": "Passed",
+      "jobsPassed": 2,
+      "diagnosticsProfilesPerJob": 3
+    },
+    "componentsPlanned": 14,
+    "nativeSdkSyntaxPlanned": 80,
+    "actualOfficialSdkRun": "NotRun"
+  },
+  "limits": {
+    "coherentVmEpochProven": false,
+    "nativeClassPointerOriginProven": false,
+    "realShutdownDeadlockFreedomProven": false,
+    "PlayerExecution": false,
+    "R03Accepted": false,
+    "ReadyForHumanReviewGate": false
+  },
+  "historicalFailuresReclassified": false
+}
