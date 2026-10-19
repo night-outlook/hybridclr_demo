@@ -1,0 +1,46 @@
+{
+  "result": "ProductionNativeAndCompilerPoliciesByteUnchanged",
+  "checks": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+        "diff",
+        "--exit-code",
+        "d16d2f7eee4c0f2333f31c4ec6e40422956d8fd1",
+        "48ee6468065a6b559f53719dc310d901d8181ab8",
+        "--",
+        "libil2cpp"
+      ],
+      "start": "2026-10-19T10:09:29.165132+00:00",
+      "end": "2026-10-19T10:09:29.174624+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "diff",
+        "--exit-code",
+        "8514c03cce722c0b036267552ba026ecb548edaa",
+        "465c14e660b576836f544da2b410dcb8b9e6c05f",
+        "--",
+        "Tools/AssemblyShadow/R03/build_api.py",
+        "Tools/AssemblyShadow/R03/native_validation.py",
+        "Tools/AssemblyShadow/R03/source-pins.json"
+      ],
+      "start": "2026-10-19T10:09:29.174687+00:00",
+      "end": "2026-10-19T10:09:29.184966+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "newNativePython": "64b0f16f5398c35bf2c0211bd2b8c1d6ed8bdef3b8dcb93f08d1d6cdb718f794",
+  "newOuterPython": "5697f68e21531d9143a6599f9081ff749e11b586724fbf0542b591766814a858",
+  "newNativeTests": "775fe1437c6b612724ebb723dd40fd423bc76def3f74215d862222bd783846f4"
+}
