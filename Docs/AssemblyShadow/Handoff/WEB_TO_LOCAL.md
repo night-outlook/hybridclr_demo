@@ -17,10 +17,11 @@ That active Local cycle has not returned a published factual result as of this s
 
 ## Staged source — read-only for Local until separately authorized
 
-`night-outlook/il2cpp_plus@codex/p1-execution-scalars-20261018`, code HEAD `2cd731be7629d4bd0698176554720a609fcb3d10`, is an **inactive P1 next source slice** built on the active native HEAD. It includes:
+`night-outlook/il2cpp_plus@codex/p1-execution-scalars-20261018`, current *host-tested* native code HEAD `dc9c7113d8a0373532e77938a2299d011ccf3433`, is an **inactive P1 next source slice** built on the active native HEAD. It includes:
 
 - Previously reviewed `TryCaptureBoundedExecutionHeader` scalar capture (initial source CI [39095475904](https://github.com/night-outlook/il2cpp_plus/actions/runs/39095475904) PASSED 3/3).
 - A source-owned snapshot of the **22 actual original R02 diagnostics metric fields**, with complete-coverage refusal and original R02 JSON parity; [CI 39106258581](https://github.com/night-outlook/il2cpp_plus/actions/runs/39106258581) PASSED 3/3.
+- A bounded **execution-class identity-only census** under the existing execution observation lock. It reads the original 2,048-slot table into a count/internal change witness (maximum 1,024 entries), retaining no raw class pointers or class metadata names. Source CI [39189008508](https://github.com/night-outlook/il2cpp_plus/actions/runs/39189008508) **PASSED 3/3**, strict/sanitized with 12 groups/profile; 54/54 original artifact files verified. It does **not** prove class-pointer provenance, a coherent VM epoch or produce full execution diagnostic rows. [Review](../History/M07R/R03/IR_Remediation/P1_EXECUTION_IDENTITY_CENSUS_2026-10-18/PRIMARY_STAGING_REVIEW.md) · [Machine evidence](../History/M07R/R03/IR_Remediation/P1_EXECUTION_IDENTITY_CENSUS_2026-10-18/EVIDENCE.json).
 - A test-only bounded **classless** execution-header + R02 JSON composer (32 KiB cap), tested against exact original classless serializer output; [CI 39106675107](https://github.com/night-outlook/il2cpp_plus/actions/runs/39106675107) PASSED 3/3.
 - [Detailed source review](../History/M07R/R03/IR_Remediation/P1_R02_CLASSLESS_EXECUTION_2026-10-18/PRIMARY_STAGING_REVIEW.md) and [machine evidence](../History/M07R/R03/IR_Remediation/P1_R02_CLASSLESS_EXECUTION_2026-10-18/EVIDENCE.json).
 
