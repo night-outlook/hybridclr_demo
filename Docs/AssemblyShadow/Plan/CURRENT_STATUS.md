@@ -1,5 +1,15 @@
 # R03 staging status — P1 execution scalar + R02 owned source
 
+## Latest isolated P1 increment — bounded execution identity census
+
+Primary published an additional **inactive identity-only census** at `night-outlook/il2cpp_plus@dc9c7113d8a0373532e77938a2299d011ccf3433` on this *isolated staging branch*. It reads the existing execution-class observation table only inside two separately locked scans, under initial metadata lifetime admission. It counts up to 1024 observed entries across 2048 slots, compares count + an internal slot-sensitive pointer-bit witness, rejects source changes or dropped/saturated coverage, and exports just count and scope flags. It never dereferences an `Il2CppClass*`, retains no class pointer and produces **no** executable class rows/type keys.
+
+[Source review](../History/M07R/R03/IR_Remediation/P1_EXECUTION_IDENTITY_CENSUS_2026-10-18/PRIMARY_STAGING_REVIEW.md) · [machine evidence](../History/M07R/R03/IR_Remediation/P1_EXECUTION_IDENTITY_CENSUS_2026-10-18/EVIDENCE.json). [Native host CI 39189008508](https://github.com/night-outlook/il2cpp_plus/actions/runs/39189008508) **PASSED 3/3**, strict and sanitizer, 12 groups/profile = 72 executions, three original ZIP digests and 54/54 original manifest files verified. No installed Unity SDK, real native linker, Player or runtime/GC/RSS work was executed on this increment. The actual original registry *writer* was mocked in host fixtures; no global VM snapshot guarantee is established.
+
+**Important dependency:** Active `codex/assembly-shadow-r01b-h1` remote heads are still demo `25d5986c5919ab70119364ce36e8b670329ad5b0` and native `5667e3712f49e4b38c7dd7359e57f81e344626da` (other two repos unchanged). The **existing one 12/75 Local source/SDK-only assignment** has no published Local return. Do not alter active source or reuse Local roots to test staging. Staging's `WEB_TO_LOCAL.md` remains **NO EXECUTION**. Reconcile that active Local result before staging promotion.
+
+## Earlier staging — scalar header, R02 metrics and classless execution JSON
+
 **Owner: Primary Implementation (isolated staging only). Local Validation on this branch: PAUSED.** No real Unity Editor/Player or official installed SDK compilation has been executed for the staged execution scalar/R02/classless increments. Do not promote host source validation into P1, R03, Human Review Gate, or future milestone approval.
 
 ## Current staging source and host evidence
