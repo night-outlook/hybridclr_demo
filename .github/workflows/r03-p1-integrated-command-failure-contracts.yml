@@ -24,12 +24,18 @@ jobs:
         with:
           path: demo
           persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR
+            Tools/AssemblyShadow/R03
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/il2cpp_plus
           ref: 48ee6468065a6b559f53719dc310d901d8181ab8
           path: native
           persist-credentials: false
+          sparse-checkout: |
+            libil2cpp/vm
+            tools/r03/diagnostic_stream
       - name: Exact 70 tests over real checked-in Python source
         shell: bash
         run: |
