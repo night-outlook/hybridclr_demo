@@ -224,7 +224,8 @@ class AggregateReceiptIntegration(unittest.TestCase):
                 if (mode=='live-general-failed' and name=='live-general') or \
                    (mode=='owned-execution-failed' and name=='owned-execution') or \
                    (mode=='empty-live-failed' and name=='empty-live'):
-                    (dest/'RESULT.json').write_text(json.dumps({'result':'FailedOrIncomplete'}))
+                    (dest/'RESULT.json').write_text(json.dumps({
+                        'result':'FailedOrIncomplete','commandLifetimeUnverified':False}))
                     return subprocess.CompletedProcess(args,1,b'mock failed bridge\n',b'')
                 expected = ('PassedHostOnly' if name=='legacy-host' else
                             'Passed' if name=='native-sdk' else
