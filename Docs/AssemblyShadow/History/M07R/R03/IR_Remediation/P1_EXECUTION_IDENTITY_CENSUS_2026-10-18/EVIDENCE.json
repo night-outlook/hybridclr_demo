@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1IdentityOnlyExecutionCensusStagingPrimaryEvidence",
+  "status": "HostSourcePassed_InstalledSdkNotRun_PlayerNotRun_StagingOnly",
+  "source": {
+    "workingBranch": "codex/p1-execution-scalars-20261018",
+    "repoNative": "night-outlook/il2cpp_plus",
+    "nativeStageBase": "2cd731be7629d4bd0698176554720a609fcb3d10",
+    "nativeHostTestedHead": "dc9c7113d8a0373532e77938a2299d011ccf3433",
+    "demoRepo": "night-outlook/hybridclr_demo",
+    "demoStagingBase": "7fc0b813101a0970ae3f7522d25957edaf167a73",
+    "newProductionPaths": [
+      "libil2cpp/vm/AssemblyShadowBoundedExecutionCensus.h",
+      "libil2cpp/vm/AssemblyShadowBoundedExecutionCensusSource.inl"
+    ],
+    "modifiedProductionPaths": [
+      "libil2cpp/vm/AssemblyShadow.h",
+      "libil2cpp/vm/AssemblyShadow.cpp"
+    ],
+    "newTestPaths": [
+      "tools/r03/diagnostic_stream/bounded_execution_census_fixture.cpp",
+      "tools/r03/diagnostic_stream/run_bounded_execution_census.py",
+      ".github/workflows/r03-p1-execution-census-staging.yml"
+    ],
+    "gitBlobs": {
+      "libil2cpp/vm/AssemblyShadowBoundedExecutionCensus.h": "64fe8b95e51465959f31485f5a51cc3f61b6a8cf",
+      "libil2cpp/vm/AssemblyShadowBoundedExecutionCensusSource.inl": "ae57d7884943a679158eed95650b6f99bf86b56d",
+      "libil2cpp/vm/AssemblyShadow.cpp": "11602c22ec098209dd7dac55096719343222bb36"
+    },
+    "priorNativeExecutionScalarHostTested": "39d4637b868726c92f50d1db92a5c269ff0bafe5",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "activeSourceBranchModified": false
+  },
+  "nativeCI": {
+    "runId": 39189008508,
+    "url": "https://github.com/night-outlook/il2cpp_plus/actions/runs/39189008508",
+    "nativeSourceCommit": "dc9c7113d8a0373532e77938a2299d011ccf3433",
+    "status": "success",
+    "jobsPassed": 3,
+    "jobsTotal": 3,
+    "profiles": [
+      "strict",
+      "sanitized"
+    ],
+    "groupsPerProfile": 12,
+    "totalGroupExecutions": 72,
+    "childCompileAndRunCommandsTotal": 12,
+    "allChildExitZero": true,
+    "exactSourceMethodSha256": "53741797f26464881ab3b9b687fd1c3d7089b4a77f013fe793d87a842a2b2c47",
+    "jobs": [
+      {
+        "environment": "ubuntu-24.04 clang++",
+        "artifactId": 12159470925,
+        "artifactZipBytes": 604221,
+        "zipSha256": "03adeeac55cb888787f0878f7b8f4780afab58fe8cacda101872cae4e9ba366b",
+        "manifestEntriesAuthenticated": 17
+      },
+      {
+        "environment": "macos-15 clang++",
+        "artifactId": 12159113046,
+        "artifactZipBytes": 104618,
+        "zipSha256": "783789377d175ea5f956ec8602a8d7a82b1b73056098d2dc111ca278e395acbc",
+        "manifestEntriesAuthenticated": 20
+      },
+      {
+        "environment": "ubuntu-24.04 g++",
+        "artifactId": 12158739736,
+        "artifactZipBytes": 89680,
+        "zipSha256": "b2bc231545cc04e8340c58a277976f3c4ba8829cc7c75c71c8f6af9b55da6eea",
+        "manifestEntriesAuthenticated": 17
+      }
+    ],
+    "totalOriginalZipDigestsVerified": 3,
+    "totalManifestDeclaredFilesBytesAndSha256Verified": 54,
+    "sourcePreserved": true,
+    "actualProductionInlMethodCompiledUnderExplicitVmMocks": true,
+    "actualBoundedCaptureAndMetadataGateHeadersCompiled": true,
+    "originalProductionRegistryWriterLinked": false,
+    "realVmSdkCompilerRun": false,
+    "realPlayerRun": false
+  },
+  "identityContract": {
+    "registeredTableSlots": 2048,
+    "maximumDistinctRecords": 1024,
+    "sourceObservationLock": "ExecutionObservationLock",
+    "classMetadataDereferenced": false,
+    "rawPointerExported": false,
+    "captureInternallyStoresNoncryptographicPointerBitsDigest": true,
+    "longLivedClassPointerRetainedInCapture": false,
+    "capturedResultFields": [
+      "distinctClasses",
+      "scannedSlots",
+      "classIdentitySourceOnly",
+      "classPointerOriginProven=false",
+      "coherentVmEpochProven=false",
+      "classTypeKeyCaptured=false",
+      "runtimeAcceptance=false"
+    ],
+    "invalidReportedVsPresentCountRejected": true,
+    "concurrentInsertOrRebindObservedRejected": true,
+    "missingCounterCoverageRejected": true,
+    "diagnosticsLevelRequires": 2,
+    "sourceGateSourceEpochDefault": 1,
+    "maximumCaptureObjectBytes": 128,
+    "fingerprintCollisionExcluded": false,
+    "abaOrUnobservedInterleavingExcluded": false,
+    "nativeClassPointerLifetimeProven": false,
+    "fullExecutionClassDiagnosticFieldsCovered": false,
+    "allocationCostScope": "Host C++ operator new after prewarm only; not real Unity VM memory or RSS",
+    "actualUnitySdkCompilation": "NotRun"
+  },
+  "activeLocalDependency": {
+    "activeBranch": "codex/assembly-shadow-r01b-h1",
+    "demo": "25d5986c5919ab70119364ce36e8b670329ad5b0",
+    "native": "5667e3712f49e4b38c7dd7359e57f81e344626da",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "onlyAuthorizedLocalCycle": "one 12-component/75-native-syntax host plus installed Unity SDK without Editor/Player",
+    "localResultPublished": false,
+    "currentStagingAuthorizesLocalExecution": false,
+    "allHistoricalLocalReportsModified": false,
+    "historicalSourcePinsChanged": false
+  },
+  "preservedHistory": [
+    {
+      "name": "20261016-3dc9",
+      "result": "PASS 11/11 source host SDK, consumed"
+    },
+    {
+      "name": "20261016-f598",
+      "result": "PASS 10/10 source host SDK, consumed"
+    },
+    {
+      "name": "20261016-0620",
+      "result": "PASS 10/10 source host SDK, consumed"
+    },
+    {
+      "name": "20261016-0a0b",
+      "result": "FAIL 9/10 FailedOrIncomplete, original SDK aggregate false, consumed"
+    },
+    {
+      "name": "SNAP-01",
+      "result": "FAIL/ReturnRequired 14/18"
+    },
+    {
+      "name": "N/M/K/I/E and historic R02",
+      "result": "FAIL"
+    },
+    {
+      "name": "S strict custody",
+      "result": "Blocked"
+    },
+    {
+      "name": "Independent full R03 stage",
+      "result": "FAIL; rereview NotRun"
+    }
+  ],
+  "gates": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterExpansion": false
+  }
+}
