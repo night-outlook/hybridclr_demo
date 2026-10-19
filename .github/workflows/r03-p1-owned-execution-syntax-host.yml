@@ -1,0 +1,82 @@
+name: R03 P1 owned execution header host syntax
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - 'Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowExecutionComposeSyntax.cpp'
+      - '.github/workflows/r03-p1-owned-execution-syntax-host.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  header-syntax:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: demo
+          persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowExecutionComposeSyntax.cpp
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: f0c5afe43fe256ac09fabacd5d40f82956988fe2
+          path: native
+          persist-credentials: false
+          sparse-checkout: |
+            libil2cpp/vm
+          sparse-checkout-cone-mode: false
+      - name: Three diagnostics-level native header syntax profiles
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B - "$RUNNER_TEMP/owned-execution-syntax-${{ github.run_id }}-${{ github.run_attempt }}" <<'PY'
+          import hashlib,json,platform,shutil,subprocess,sys,time
+          from pathlib import Path
+          root=Path(sys.argv[1]);root.mkdir(mode=0o700)
+          native=Path('native/libil2cpp').resolve()
+          probe=Path('demo/Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowExecutionComposeSyntax.cpp').resolve()
+          cxx=shutil.which('clang++')
+          if not cxx:raise RuntimeError('Host compiler unavailable')
+          def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+          inp=[probe,*sorted((native/'vm').glob('AssemblyShadow*.h'))]
+          before={str(p):sha(p) for p in inp}
+          rows=[]
+          for level in (0,1,2):
+              cmd=[cxx,'-std=c++17','-fsyntax-only','-Wall','-Wextra','-Werror','-pedantic',
+                   '-I'+str(native),'-iquote',str(native/'vm'),
+                   '-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL='+str(level),str(probe)]
+              p=subprocess.run(cmd,capture_output=True,timeout=120)
+              for stream,data in (('stdout',p.stdout),('stderr',p.stderr)):
+                  (root/(f'level{level}.'+stream+'.bin')).write_bytes(data)
+              rows.append({'level':level,'command':cmd,'exit':p.returncode,
+                           'stdoutSha256':hashlib.sha256(p.stdout).hexdigest(),
+                           'stderrSha256':hashlib.sha256(p.stderr).hexdigest()})
+          preserved=before=={str(p):sha(p) for p in inp}
+          passed=len(rows)==3 and all(r['exit']==0 for r in rows) and preserved
+          result={'kind':'R03P1ExecutionSyntaxHost','result':'PassedWithinHostScope' if passed else 'FailedOrIncomplete',
+                  'nativeCommit':'f0c5afe43fe256ac09fabacd5d40f82956988fe2',
+                  'demoSourceCommit':__import__('os').environ['GITHUB_SHA'],
+                  'inputSha256':before,'sourcePreserved':preserved,'compiler':cxx,'platform':platform.platform(),
+                  'profiles':rows,'officialSdkCompile':False,'UnityPlayerExecuted':False,'runtimeAcceptance':False}
+          (root/'RESULT.json').write_text(json.dumps(result,indent=2)+'\n')
+          manifest=[{'path':p.name,'bytes':p.stat().st_size,'sha256':sha(p)}
+                    for p in sorted(root.iterdir()) if p.is_file()]
+          (root/'MANIFEST.json').write_text(json.dumps({'files':manifest},indent=2)+'\n')
+          if not passed:raise SystemExit(1)
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: owned-execution-syntax-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/owned-execution-syntax-${{ github.run_id }}-${{ github.run_attempt }}
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
