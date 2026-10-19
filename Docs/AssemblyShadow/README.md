@@ -1,5 +1,15 @@
 # HybridCLR Assembly Shadow — isolated P1 execution staging
 
+## Current staging increment — execution identity-only census, host CI Passed
+
+**The latest P1 staging source is an inactive execution-class observation census**, published at native `il2cpp_plus@dc9c7113d8a0373532e77938a2299d011ccf3433` on `codex/p1-execution-scalars-20261018`. It samples the real, pre-existing 2048-slot execution-class pointer table under its original observation lock, checks that its occupied count agrees with the original maximum-1024 monotone count, rejects observable concurrent identity changes and incomplete R02 coverage, then exports **only a bounded class count**. It does NOT dereference class metadata, export raw addresses, prove class-pointer source lifetime/epoch, or produce JSON class/type-key rows.
+
+[Actual-source review](History/M07R/R03/IR_Remediation/P1_EXECUTION_IDENTITY_CENSUS_2026-10-18/PRIMARY_STAGING_REVIEW.md) · [machine evidence](History/M07R/R03/IR_Remediation/P1_EXECUTION_IDENTITY_CENSUS_2026-10-18/EVIDENCE.json). [CI 39189008508](https://github.com/night-outlook/il2cpp_plus/actions/runs/39189008508) **PASSED 3/3 Mac/Linux jobs**, strict+ASan/UBSan, 12 groups/profile, **72 total group executions**, and three ZIP digests plus **54/54 original manifest files independently verified**. All tests are host source fixtures with mocked registry writers, NOT installed Unity SDK/Player execution. No R03 acceptance flags changed.
+
+**Active Local remains independent:** canonical `codex/assembly-shadow-r01b-h1` source pins are untouched; its previously authorized **one 12-component/75-native-syntax installed-SDK-only Local cycle has not returned a published report**. Staging `WEB_TO_LOCAL.md` issues no Local commands. Do not merge staging into active before reconciling the active Local result.
+
+## Prior staging increments — execution scalar header, real R02 and classless JSON
+
 ## Current — real R02 metrics and classless execution composition host-tested
 
 **Staging only. Primary Implementation owns this work; no Local Validation command is authorized by this branch.** The active canonical `codex/assembly-shadow-r01b-h1` one-shot 12-component/75-native-syntax SDK-only handoff remains unchanged and has no published Local result. Do not merge or cherry-pick the staging source until its factual Local return is reconciled.
