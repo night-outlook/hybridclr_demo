@@ -1,0 +1,33 @@
+# R03 P1 — native empty-live receipt/lifetime fail-stop correction
+
+## Bounded defect, objective and source trace
+
+Local item **IR-LOCAL-P1-EMPTY-LIVE-RECEIPT-01** has original state `SourceConfirmed_NotFaultInjected` at consumed `20261019-d16d` 15/15 PASS. Source path:
+
+1. Native `tools/r03/diagnostic_stream/run_bounded_execution_empty_live.py::run()` catches a compiler/host timeout and persists `commandLifetimeUnverified=true` only in the individual `<name>.json` command receipt.
+2. Its `main()` emits `RESULT.json` without that lifetime field. The outer demo `read_component_result()` uses an optional false default, so completed exit1 and a failed inner verdict cannot enforce fail-stop of later independent SDK/compiler cells. This is **unsafe continuation**, not a false overall PASS.
+3. The native aggregate always said `actualProductionHeaderAndMethodCompiled=true`, regardless of whether compiler version/strict/sanitized builds actually succeeded.
+4. Original Local batch had no such timeout/fault injection and five direct native receipts all exit0. Do not recast its original PASS as a FAIL.
+
+## Primary correction and invariant contracts
+
+**Native command:** Each command receipt now has explicit `commandLifetimeUnverified`, `timedOut`, `interrupted`, `exit` (null when unknown), `outputCompleteness`, stdout/stderr available flags, exact captured sizes and SHA256. A `TimeoutExpired` retains available byte prefixes, marks the lifetime unverified and returns a Failed command; interruption/unknown subprocess exception also marks it unverified. Known `OSError` startup failure and a finished nonzero exit remain Failed with no witnessed unknown runtime lifetime; they do not automatically stop unrelated safe checks. No child retry, substitute output, global kill, custom environment or timeout extension is introduced.
+
+**Native aggregate and inventory:** `RESULT.json.commandLifetimeUnverified` must equal the OR of all direct command receipts. When true, do **not** hash source after the uncertain command, do not claim source preserved or full evidence inventory completeness; retain `sourceAfter={}`, `sourcePreserved=false`, an explanatory `postflightError`, and `MANIFEST.inventoryScope=UnsealedObservedFiles` with the same marker. A normal exited nonzero compile can retain a completed source postflight; the result remains `FailedOrIncomplete` and can never become success. A compiler discovery error is recorded only **after** creating a new independent output root so it still produces a fail-closed summary. Preserve first failure and collected raw output on all paths.
+
+**Compilation claim:** `actualProductionHeaderAndMethodCompiled` requires **both** `strict-compile` and `sanitized-compile` direct receipts with `exit=0`, `status=Passed`, plus a completed source-preservation check; `compiler-version` alone does not qualify. Include `successfulSourceCompileProfiles` to expose the exact evidence. This does not mean the Unity SDK compiled or linked a Player, which always remains false in host receipts.
+
+**Outer source consumer:** The `empty-live` component is a newly lifetime-aware producer, so its top-level marker is mandatory and boolean. If its result is missing/unreadable, has absent/ill-typed marker, invalid/double JSON keys or other rejected receipt details, the outer wrapper records a failed child, `commandLifetimeUnverified=true`, a concrete stop reason and **`NotRun` for every subsequent scheduled child without creating its root**. Once uncertain lifetime is seen, no postflight Git verification subprocesses are run and aggregate cannot pass. Older unrelated producer receipts retain their existing optional-marker contract; ordinary completed nonzero with valid explicit `false` stays Failed while later independent cells may run safely. This is a deliberately narrow compatibility boundary.
+
+## Source-bound tests and evidence
+
+- Native new 12 tests: real runner command receipt timeout with prefixes and null exit; timeout without streams; interruption; known spawn failure; completed nonzero; unknown exception; native `main()` missing compiler, compiler-version nonzero, compile nonzero, compile timeout with source postflight skipped, interrupted exit130 and uncertain subprocess exception. The `main()` tests use source bytes from the checked-out native repository and control subprocess/compiler return values; neither test Unity nor any real VM class registry.
+- Demo new five outer tests on actual main/consumer with mocked child/Git/SDK inputs: valid nested empty-live timeout, missing marker, malformed marker, missing result all enforce fail-stop/NotRun and unsealed inventory; known completed empty-live nonzero retains ordinary Failed while safe following SDK checks execute. Retained command suites are unchanged except their mock source list/explicit boolean markers.
+- Source-bound complete host contract inventory: 5 metadata/CLI +14 canonical managed/aggregate +29 outer command controls +10 original general command controls +12 new empty-live controls = **70 methods**. Dedicated native Mac/Linux Clang/GCC workflows, focused demo Mac/Linux workflows and one cross-repository pinned Mac/Linux 70-test CI independently publish raw results. A CI PASS is host/source proof only, **not installed official Unity SDK syntax or runtime acceptance**.
+- Local successor retains **15 independently receipted components**, existing 2×20 native empty-live and 6×35 owned execution/R02, managed five positive outputs and unchanged exact expected-negative, and **85** native SDK `-fsyntax-only` commands (17 units × five profiles). Run once on fresh roots after a final four-SHA handoff; do not rerun the old 15/15 Local PASS.
+
+## Explicit nonacceptance and remaining risks
+
+Even with a source-bound test PASS, `descendantQuiescenceProven=false`: the outer wrapper cannot authenticate detached descendants, process RSS, real metadata GC, or Unity runtime scheduling. Unknown lifetime is fail-stopped, not repaired. The inactive original zero-class bridge does not authenticate a coherent all-VM epoch, class pointer origin, full nonempty class snapshot or live getter safety. Original historical FAIL/Blocked outcomes, 500ms/1..64 uncapped reporter constraints, V1/V2 budgets, semantic verifier/guard behavior, signature schema, engine-owner restrictions and rollback policies are unchanged.
+
+P1 Incomplete, P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, full P3 Incomplete. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter disabled. One Local source/SDK cycle returns to Primary; no Human Review Gate or automatic later milestone.

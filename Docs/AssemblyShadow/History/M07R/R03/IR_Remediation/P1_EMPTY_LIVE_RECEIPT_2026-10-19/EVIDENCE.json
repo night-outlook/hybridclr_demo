@@ -1,0 +1,177 @@
+{
+  "kind": "R03P1EmptyLiveLifetimeReceiptPrimaryReconciliation",
+  "schemaVersion": 1,
+  "cycle": "IR-LOCAL-P1-EMPTY-LIVE-RECEIPT-01",
+  "historicalLocalReturn": {
+    "cycle": "20261019-d16d",
+    "originalResult": "PassedSourceHostAndSDKOnly",
+    "outerComponentsPassed": 15,
+    "officialNativeSdkSyntaxPassed": 85,
+    "commandFailureTestsPassed": 53,
+    "managedPositiveProductsPassed": 5,
+    "expectedNegative": "OriginalUnsignedCounts: exit1 exactly two CS0266, no DLL",
+    "exactExecutionDemoSha": "8514c03cce722c0b036267552ba026ecb548edaa",
+    "executionNativeSha": "d16d2f7eee4c0f2333f31c4ec6e40422956d8fd1",
+    "latestConsumedEvidenceDemoSha": "62b9102bc7a49d4c2bae90942a1e438587c8be2d",
+    "sourceFindingState": "SourceConfirmed_NotFaultInjected",
+    "observedCurrentBatchFault": false,
+    "historicalEvidenceReclassified": false,
+    "resultIsConsumed": true,
+    "unityEditorPlayerLaunched": false,
+    "runtimeAcceptance": false
+  },
+  "primarySourceCommits": {
+    "hybridclr_demo": "22f058f47ba41fbcb72d4dced8b658870d4f1149",
+    "il2cpp_plus": "48ee6468065a6b559f53719dc310d901d8181ab8",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "branch": "codex/assembly-shadow-r01b-h1"
+  },
+  "nativeCorrection": {
+    "affectedPath": "tools/r03/diagnostic_stream/run_bounded_execution_empty_live.py",
+    "testPath": "tools/r03/diagnostic_stream/test_bounded_execution_empty_live_receipts.py",
+    "workflowPath": ".github/workflows/r03-p1-empty-execution-live-source.yml",
+    "commandTimeoutMarkerPropagated": true,
+    "interruptionAndUnknownChildLifetimePropagated": true,
+    "partialStdoutStderrReceiptsRetained": true,
+    "missingCompilerSummaryRecorded": true,
+    "unsafeSourcePostflightSkipped": true,
+    "unsealedEvidenceInventoryOnUnknownLifetime": true,
+    "actualProductionHeaderAndMethodCompiledDerivedFromTwoSuccessfulCompilesAndSourcePreservation": true,
+    "actualDescendantProcessQuiescenceProven": false,
+    "nativeCxxProductionChanges": false,
+    "nativeHostRegressionTestsPassedLocally": 12,
+    "summaryLifetimeMarkerPresentOnCommandFailureAndSuccess": true,
+    "preCommandSourceOrFixturePreparationFailuresOutOfScope": true
+  },
+  "demoCorrection": {
+    "affectedPaths": [
+      "Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py",
+      "Tools/AssemblyShadow/R03IR/test_p1_command_failures.py",
+      "Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py",
+      "Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py"
+    ],
+    "mandatoryLifetimeMarkerFor": "empty-live only",
+    "missingMalformedOrUnreadableMarkerStopsOuter": true,
+    "followingCellsNotRunWithoutRoots": true,
+    "postflightGitSubprocessesSkippedOnUnknownLifetime": true,
+    "completedNonzeroWithFalseMarkerCanContinueSafeChecks": true,
+    "fullSourceBoundTestModules": [
+      5,
+      14,
+      29,
+      10,
+      12
+    ],
+    "fullSourceBoundTestCount": 70,
+    "newNativeRegressionTests": 12,
+    "newOuterRegressionTests": 5,
+    "previousRegressionTestsPreserved": 53
+  },
+  "sourceBoundCi": [
+    {
+      "repository": "night-outlook/il2cpp_plus",
+      "runId": 39225984719,
+      "commit": "48ee6468065a6b559f53719dc310d901d8181ab8",
+      "workflow": "R03 P1 inactive zero-class execution R02 live source",
+      "result": "Passed",
+      "jobsPassed": 3,
+      "os": [
+        "macos-15 Clang",
+        "ubuntu-24.04 Clang",
+        "ubuntu-24.04 GCC"
+      ],
+      "testsPerOs": 12,
+      "nativeStrictAndSanitizedGroupsPerProfile": 20,
+      "officialSdkCompile": false
+    },
+    {
+      "repository": "night-outlook/hybridclr_demo",
+      "runId": 39225880493,
+      "commit": "2632c838eb7ee15d5b813091e42f0dcbbf606d7d",
+      "workflow": "R03 P1 command failure receipt contracts",
+      "result": "Passed",
+      "hostTestsPerJob": 29,
+      "sourceMocks": true
+    },
+    {
+      "repository": "night-outlook/hybridclr_demo",
+      "runId": 39226255467,
+      "commit": "4d02e3da3bd3c4ad93465fc2ba4b9f0c1eb090fe",
+      "workflow": "R03 P1 managed receipt and aggregate contracts",
+      "result": "Passed",
+      "hostTestsPerJob": 19,
+      "sourceMocks": true
+    },
+    {
+      "repository": "night-outlook/hybridclr_demo",
+      "runId": 39227242254,
+      "commit": "22f058f47ba41fbcb72d4dced8b658870d4f1149",
+      "workflow": "R03 P1 integrated source-bound command failure contracts",
+      "result": "Passed",
+      "jobsPassed": 2,
+      "os": [
+        "macos-15",
+        "ubuntu-24.04"
+      ],
+      "testsPerJob": 70,
+      "exactTestModules": [
+        5,
+        14,
+        29,
+        10,
+        12
+      ],
+      "nativeCheckoutPin": "48ee6468065a6b559f53719dc310d901d8181ab8",
+      "officialSdkCompile": false,
+      "runtimeAcceptance": false
+    }
+  ],
+  "preservedHistoricalFailedCi": [
+    {
+      "repository": "night-outlook/il2cpp_plus",
+      "runId": 39225595286,
+      "result": "Failed",
+      "scope": "macOS NativeSummaryContracts temporary path alias fixture; no product source failure proven",
+      "notReclassified": true
+    },
+    {
+      "repository": "night-outlook/hybridclr_demo",
+      "runId": 39225880407,
+      "result": "Failed",
+      "scope": "original incomplete synthetic empty-live lifetime marker fixtures",
+      "notReclassified": true
+    },
+    {
+      "repository": "night-outlook/hybridclr_demo",
+      "runId": 39226086879,
+      "result": "Failed",
+      "scope": "completed negative empty-live synthetic receipt omitted mandatory false lifetime marker",
+      "notReclassified": true
+    }
+  ],
+  "nextLocalBatch": {
+    "status": "NotRun",
+    "components": 15,
+    "commandFailureSourceBoundTests": 70,
+    "officialNativeSdkSyntaxConfigurations": 85,
+    "officialManagedPositiveProducts": 5,
+    "expectedNegativePreserved": true,
+    "reusePriorLocalEvidenceForbidden": true,
+    "singleFreshRunOnly": true,
+    "PlayerRun": false
+  },
+  "acceptance": {
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false,
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "BlockedOrUnavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete"
+  }
+}
