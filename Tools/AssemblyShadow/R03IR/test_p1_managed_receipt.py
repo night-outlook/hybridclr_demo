@@ -233,7 +233,8 @@ class AggregateReceiptIntegration(unittest.TestCase):
                             'PassedWithinOwnedExecutionHostScope' if name=='owned-execution' else
                             'PassedWithinInactiveZeroClassHostScope' if name=='empty-live' else
                             'PassedWithinInactiveHostScope' if name=='frozen-v2' else 'PassedWithinHostScope')
-                (dest/('results.json' if name=='native-sdk' else 'RESULT.json')).write_text(json.dumps({'result':expected}))
+                (dest/('results.json' if name=='native-sdk' else 'RESULT.json')).write_text(json.dumps({
+                    'result':expected,'commandLifetimeUnverified':False}))
                 return subprocess.CompletedProcess(args, 0, b'mock child\n', b'')
             argv = [str(RUNNER), '--workspace',str(ws),'--unity',str(unity),
                     '--output',str(output),'--sdk-scratch',str(scratch),
