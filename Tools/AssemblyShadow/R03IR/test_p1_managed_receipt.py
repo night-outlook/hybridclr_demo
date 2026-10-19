@@ -213,7 +213,8 @@ class AggregateReceiptIntegration(unittest.TestCase):
                     if mode == 'wrong-binding':
                         stdout=json.dumps({'result':str(dest/'results.json'),'sha256':digest(receipt)}).encode()
                     return subprocess.CompletedProcess(args, 9 if mode=='exit-nonzero' else 0, stdout, b'mock warning\n')
-                if mode=='live-general-failed' and name=='live-general':
+                if (mode=='live-general-failed' and name=='live-general') or \
+                   (mode=='owned-execution-failed' and name=='owned-execution'):
                     (dest/'RESULT.json').write_text(json.dumps({'result':'FailedOrIncomplete'}))
                     return subprocess.CompletedProcess(args,1,b'mock failed bridge\n',b'')
                 expected = ('PassedHostOnly' if name=='legacy-host' else
@@ -273,20 +274,23 @@ class AggregateReceiptIntegration(unittest.TestCase):
                 self.assertTrue(report['sourcePreserved'])
                 if mode=='inner-failed': self.assertEqual(managed['innerResult'],'Failed')
 
-    def test_live_source_child_failure_retains_accurate_aggregate_and_sdk_flags(self):
-        code,report,_=self.exercise('live-general-failed')
-        self.assertEqual(code,1)
-        self.assertEqual(report['result'],'FailedOrIncomplete')
-        self.assertEqual(len(report['commands']),14)
-        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),12)
-        child=next(c for c in report['commands'] if c['name']=='live-general')
-        self.assertEqual(child['status'],'Failed')
-        self.assertEqual(child['exit'],1)
-        self.assertEqual(child['innerResult'],'FailedOrIncomplete')
-        # The official child compile still passed, but the whole batch failed.
-        self.assertTrue(report['officialUnitySdkCompilePassed'])
-        self.assertTrue(report['sourcePreserved'])
-        self.assertFalse(report['R03Accepted'])
+    def test_inactive_native_child_failure_retains_accurate_aggregate_and_sdk_flags(self):
+        for mode,target in (('live-general-failed','live-general'),
+                            ('owned-execution-failed','owned-execution')):
+            with self.subTest(mode=mode):
+                code,report,_=self.exercise(mode)
+                self.assertEqual(code,1)
+                self.assertEqual(report['result'],'FailedOrIncomplete')
+                self.assertEqual(len(report['commands']),14)
+                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),13)
+                child=next(c for c in report['commands'] if c['name']==target)
+                self.assertEqual(child['status'],'Failed')
+                self.assertEqual(child['exit'],1)
+                self.assertEqual(child['innerResult'],'FailedOrIncomplete')
+                # Compiler children may pass but cannot promote a failed host.
+                self.assertTrue(report['officialUnitySdkCompilePassed'])
+                self.assertTrue(report['sourcePreserved'])
+                self.assertFalse(report['R03Accepted'])
 
     def test_source_change_never_becomes_aggregate_pass(self):
         code,report,_=self.exercise('source-changed')
