@@ -1,0 +1,82 @@
+{
+  "kind": "PrimaryStaticReview",
+  "result": "PassedWithinStaticScope",
+  "checks": [
+    {
+      "name": "exact_original_blobs",
+      "result": "Passed",
+      "detail": {
+        "hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py": "ceeec43d6a7cc70f8360598123961e7dbc9e9d05",
+        "hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_metadata_preflight.py": "87f9583b625e1dc66ee8ea73e8a55fcf269a6b58",
+        "hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py": "3dcf0e4e6c755098c82f56471790783c25658853",
+        "hybridclr_demo/Tools/AssemblyShadow/R03/build_api.py": "bdbf4c78e0bd1993a0a03c56ee8332a2cb22aa86",
+        "hybridclr_demo/Tools/AssemblyShadow/R03/native_validation.py": "cfa508fe2f9d17c358aab4770925cd873ffae662",
+        "il2cpp_plus/tools/r03/diagnostic_stream/run_bounded_general_live.py": "1ec5b9846d459b6210650a8808dae05139a2d5fe"
+      }
+    },
+    {
+      "name": "managed_receipt_consumer_unchanged",
+      "result": "Passed",
+      "detail": "Exact AST equality"
+    },
+    {
+      "name": "sdk_compiler_helpers_unchanged",
+      "result": "Passed",
+      "detail": "Exact byte equality; neither is a deliverable change"
+    },
+    {
+      "name": "native_group_source_contract_unchanged",
+      "result": "Passed",
+      "detail": "All 13 original group names and provenance/source FILES unchanged"
+    },
+    {
+      "name": "native_profile_settings_retained",
+      "result": "Passed",
+      "detail": "C++17 flags, optimizations, sanitizers and 180-second timeout unchanged"
+    },
+    {
+      "name": "canonical_repo_checks_retained",
+      "result": "Passed",
+      "detail": "Four repositories, branch and unchanged package/core pins"
+    },
+    {
+      "name": "production_and_local_owned_scope",
+      "result": "Passed",
+      "detail": "No C++/header/C# or Local-owned report file in candidate changes"
+    },
+    {
+      "name": "python_parse",
+      "result": "Passed",
+      "detail": "All candidate and unchanged support Python files parse"
+    },
+    {
+      "name": "ci_static_validation",
+      "result": "Passed",
+      "detail": "Both workflow YAML and embedded Python parse; read-only permissions; execution NotRun"
+    },
+    {
+      "name": "tested_source_matches_candidate",
+      "result": "Passed",
+      "detail": "All nine final-run source identities still match"
+    },
+    {
+      "name": "fresh_test_manifest_verified",
+      "result": "Passed",
+      "detail": "RESULT.json and full unittest log exact SHA-256/byte matches"
+    },
+    {
+      "name": "patch_roundtrip_hybridclr_demo",
+      "result": "Passed",
+      "detail": "git apply --check --whitespace=error-all; actual apply in temporary source mirror; all bytes equal; no Git commit/remote operation"
+    },
+    {
+      "name": "patch_roundtrip_il2cpp_plus",
+      "result": "Passed",
+      "detail": "git apply --check --whitespace=error-all; actual apply in temporary source mirror; all bytes equal; no Git commit/remote operation"
+    }
+  ],
+  "independentReview": false,
+  "GitHubCIRun": false,
+  "runtimeAcceptance": false,
+  "commitOrPushPerformed": false
+}

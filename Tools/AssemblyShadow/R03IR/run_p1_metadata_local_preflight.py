@@ -102,6 +102,92 @@ def read_managed_result(output:Path, stdout:bytes)->dict:
     return {"innerResult":record["result"],"innerResultPath":str(expected),
             "innerResultSha256":actual,"returnedBindingVerified":True}
 
+def read_component_result(output:Path, filename:str)->dict:
+    """Parse and hash the same canonical receipt bytes; do not follow decoys."""
+    if Path(filename).name!=filename:
+        raise ValueError("A direct component result filename is required")
+    source=output/filename
+    if (not output.is_absolute() or output!=output.resolve(strict=True)
+        or source!=source.resolve(strict=True)
+        or not stat.S_ISREG(source.lstat().st_mode)):
+        raise ValueError("Component result must be a canonical regular file")
+    raw=source.read_bytes()
+    def pairs(items):
+        result={}
+        for key,value in items:
+            if key in result:raise ValueError("Duplicate component receipt key: "+key)
+            result[key]=value
+        return result
+    def constant(value):
+        raise ValueError("Non-finite component receipt value: "+value)
+    record=json.loads(raw.decode("utf-8"),object_pairs_hook=pairs,parse_constant=constant)
+    if not isinstance(record,dict):raise ValueError("Component result must be an object")
+    unknown=record.get("commandLifetimeUnverified",False)
+    if type(unknown) is not bool:raise ValueError("Invalid command lifetime marker")
+    return {"innerResult":record.get("result"),"innerResultPath":str(source),
+            "innerResultSha256":hashlib.sha256(raw).hexdigest(),
+            "commandLifetimeUnverified":unknown}
+
+
+def execute_component(dest:Path,name:str,argv:list,expected:str,
+                      file:str="RESULT.json",timeout:int=1800)->dict:
+    """Record failure before return. Unknown command lifetime stops the batch.
+
+    No process-group/session policy or child environment is changed. Retained
+    timeout output is explicitly partial; this function cannot prove that
+    detached compiler/SDK descendants have stopped.
+    """
+    output=dest/name
+    result={"name":name,"command":list(map(str,argv)),"startedUnix":time.time(),
+            "output":str(output),"expectedInnerResult":expected,"status":"Failed",
+            "commandInvoked":True,"exit":None,"timedOut":False,"interrupted":False,
+            "commandLifetimeUnverified":False,"descendantQuiescenceProven":False,"stopBatchReason":None,
+            "outputCompleteness":"Unavailable"}
+    logdir=dest/"commands"/name
+    logdir.mkdir(parents=True)
+    stdout=stderr=None
+    returned=False
+    try:
+        proc=run(argv,timeout)
+        returned=True
+        stdout,stderr=proc.stdout,proc.stderr
+        result.update(exit=proc.returncode,outputCompleteness="CompleteDirectChildStreams")
+        if name=="managed-sdk":
+            result.update(read_managed_result(output,stdout))
+        else:
+            result.update(read_component_result(output,file))
+        if result["commandLifetimeUnverified"]:
+            result["stopBatchReason"]="ChildReportedUnverifiedCommandLifetime"
+        elif proc.returncode==0 and result.get("innerResult")==expected:
+            result["status"]="Passed"
+    except subprocess.TimeoutExpired as error:
+        stdout,stderr=error.stdout,error.stderr
+        result.update(exception=repr(error),timedOut=True,
+                      commandLifetimeUnverified=True,outputCompleteness="CapturedPrefix",
+                      stopBatchReason="OuterCommandTimeout")
+    except KeyboardInterrupt as error:
+        result.update(exception=type(error).__name__,interrupted=True,
+                      commandLifetimeUnverified=True,stopBatchReason="OuterCommandInterrupted")
+    except Exception as error:
+        result["exception"]=repr(error)
+        if not returned and not isinstance(error,OSError):
+            result.update(commandLifetimeUnverified=True,
+                          stopBatchReason="UnknownCommandExecutionOutcome")
+    finally:
+        for stream,data in (("stdout",stdout),("stderr",stderr)):
+            result[stream+"Available"]=data is not None
+            if data is None:data=b""
+            if not isinstance(data,bytes):
+                raise TypeError("Command capture must return bytes")
+            filename=stream+".bin"
+            (logdir/filename).write_bytes(data)
+            result[filename+"Sha256"]=hashlib.sha256(data).hexdigest()
+            result[stream+"CapturedBytes"]=len(data)
+        result["finishedUnix"]=time.time()
+        (dest/"commands"/(name+".json")).write_text(json.dumps(result,indent=2)+"\n")
+    return result
+
+
 def main()->None:
     parser=argparse.ArgumentParser(description=__doc__)
     for flag in ("workspace","unity","output","sdk-scratch"):
@@ -136,6 +222,9 @@ def main()->None:
     inputs=[
         demo/"Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py",
         demo/"Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py",
+        demo/"Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py",
+        demo/"Tools/AssemblyShadow/R03IR/test_p1_command_failures.py",
+        native/"tools/r03/diagnostic_stream/test_bounded_general_live_command.py",
         demo/"Tools/AssemblyShadow/R03/native_validation.py",
         demo/"Tools/AssemblyShadow/R03/build_api.py",
         demo/"Tools/AssemblyShadow/R03/source-pins.json",
@@ -159,31 +248,25 @@ def main()->None:
     hashes={str(p):hash_file(p) for p in inputs}
     dest.mkdir(mode=0o700)
     cases=[]
+    stopped=None
     def execute(name:str,argv:list,expected:str,file:str="RESULT.json",timeout:int=1800):
-        output=dest/name
-        began=time.time()
-        result={"name":name,"command":list(map(str,argv)),"startedUnix":began,
-                "output":str(output),"expectedInnerResult":expected,"status":"Failed"}
-        logdir=dest/"commands"/name
-        logdir.mkdir(parents=True)
-        try:
-            proc=run(argv,timeout)
-            for filename,data in (("stdout.bin",proc.stdout),("stderr.bin",proc.stderr)):
-                (logdir/filename).write_bytes(data)
-                result[filename+"Sha256"]=hashlib.sha256(data).hexdigest()
-            result["exit"]=proc.returncode
-            if name=="managed-sdk":
-                result.update(read_managed_result(output,proc.stdout))
-            elif (output/file).is_file():
-                record=json.loads((output/file).read_text())
-                result["innerResult"]=record.get("result")
-                result["innerResultSha256"]=hash_file(output/file)
-            result["status"]="Passed" if proc.returncode==0 and result.get("innerResult")==expected else "Failed"
-        except Exception as e:result["exception"]=repr(e)
-        result["finishedUnix"]=time.time()
+        nonlocal stopped
+        if stopped is not None:
+            # A scheduled cell is NOT a launched child. Retain an explicit
+            # NotRun receipt without creating or reusing its component root.
+            result={"name":name,"command":list(map(str,argv)),
+                    "output":str(dest/name),"expectedInnerResult":expected,
+                    "status":"NotRun","commandInvoked":False,
+                    "reason":"StoppedAfter:"+stopped}
+            (dest/"commands"/(name+".json")).write_text(json.dumps(result,indent=2)+"\n")
+        else:
+            result=execute_component(dest,name,argv,expected,file,timeout)
+            if result.get("stopBatchReason"):
+                stopped=name+":"+result["stopBatchReason"]
         cases.append(result)
-        (dest/"commands"/(name+".json")).write_text(json.dumps(result,indent=2)+"\n")
     try:
+        execute("command-failures",[py,"-B",demo/"Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py",
+                "--native",native,"--output",dest/"command-failures"],"PassedWithinHostScope")
         execute("legacy-host",[py,"-B",demo/"Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py",
               "--workspace",ws,"--expected-demo",a.expected_demo,
               "--expected-native",a.expected_native,"--output",dest/"legacy-host"],"PassedHostOnly")
@@ -214,21 +297,27 @@ def main()->None:
         postflight_error=None
         after=[]
         try:
+            if stopped is not None:
+                raise RuntimeError("Postflight unavailable: command lifetime unverified; "+stopped)
             after=[verify_repo(ws,n,pins[n]) for n in REPOS]
             preserved=before==after and hashes=={str(p):hash_file(p) for p in inputs}
         except Exception as e:
             # Even if source changed or a checkout disappeared, retain the
-            # twelve independent cases and factual postflight errors, never mark PASS.
+            # thirteen independent cases and factual postflight errors, never mark PASS.
             postflight_error=repr(e)
             preserved=False
-        success=preserved and len(cases)==12 and all(c["status"]=="Passed" for c in cases)
+        success=preserved and stopped is None and len(cases)==13 and all(c["status"]=="Passed" for c in cases)
         statuses={c["name"]:c["status"] for c in cases}
-        summary={"kind":"R03P1InactiveLiveGeneralSourceSDKPreflight",
+        summary={"kind":"R03P1FailureAwareSourceSDKPreflight","schemaVersion":2,
+          "stoppedAfter":stopped,"commandLifetimeUnverified":stopped is not None,
+          "descendantQuiescenceProven":False,
+          "componentCount":13,"attemptedComponentCount":sum(c["commandInvoked"] for c in cases),
           "result":"PassedSourceHostAndSDKOnly" if success else "FailedOrIncomplete",
           "fourRepositoriesBefore":before,"fourRepositoriesAfter":after,
           "sourceSha256":hashes,"sourcePreserved":preserved,
           "postflightError":postflight_error,"commands":cases,
-          "officialUnitySdkCompileAttempted":"managed-sdk" in statuses and "native-sdk" in statuses,
+          "officialUnitySdkCompileAttempted":all(any(c["name"]==n and c["commandInvoked"] for c in cases)
+                                                 for n in ("managed-sdk","native-sdk")),
           "officialUnitySdkCompilePassed":statuses.get("managed-sdk")=="Passed" and
                                           statuses.get("native-sdk")=="Passed",
           "nativeSDKCandidateMode":True,
@@ -240,9 +329,12 @@ def main()->None:
         # Inventory final evidence outputs but never copy SDK/vendor bytes.
         manifest=[{"path":str(p.relative_to(dest)),"size":p.stat().st_size,
                    "sha256":hash_file(p)} for p in sorted(dest.rglob("*")) if p.is_file() and not p.is_symlink()]
-        (dest/"MANIFEST.json").write_text(json.dumps({"files":manifest},indent=2)+"\n")
+        (dest/"MANIFEST.json").write_text(json.dumps({"files":manifest,
+            "inventoryScope":"UnsealedObservedFiles" if stopped is not None else "CompletedBatchFiles",
+            "commandLifetimeUnverified":stopped is not None},indent=2)+"\n")
     print(json.dumps({"result":summary["result"],
                       "cases":[(c["name"],c["status"]) for c in cases]},indent=2))
+    if any(c.get("interrupted") for c in cases):raise SystemExit(130)
     if summary["result"]!="PassedSourceHostAndSDKOnly":raise SystemExit(1)
 
 if __name__=="__main__":main()

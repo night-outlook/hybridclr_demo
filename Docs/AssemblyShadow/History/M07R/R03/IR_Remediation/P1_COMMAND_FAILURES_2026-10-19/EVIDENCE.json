@@ -1,0 +1,48 @@
+{
+  "kind": "R03P1CommandFailurePrimaryEvidence",
+  "publicationStatus": "Unpublished",
+  "sourceBases": {
+    "hybridclr_demo": "d49b85bfd633f25b9f8351e03efd406c6f1df53b",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "5667e3712f49e4b38c7dd7359e57f81e344626da"
+  },
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "result": "PassedWithinHostToolingScope",
+  "tests": {
+    "uniqueMethods": 53,
+    "testsRun": 53,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "sourcePreserved": true,
+    "harnessAdmissionControlsPassed": 3
+  },
+  "primaryFreshEvidence": [
+    "evidence/baseline-timeout/RESULT.json",
+    "evidence/final-contracts/RESULT.json",
+    "evidence/final-contracts/unittest.log",
+    "evidence/final-contracts/MANIFEST.json",
+    "evidence/harness-admission-controls.json"
+  ],
+  "retainedLocalCycle": "20261018-5667",
+  "retainedLocalResult": "PassedSourceHostAndSDKOnly",
+  "retainedLocalResultIndependentlyRerun": false,
+  "historical3759FileInventoryReaudited": false,
+  "newBatchPreparedComponentCount": 13,
+  "nativeSyntaxConfigurationsUnchanged": 75,
+  "nativeProductionSourceChanged": false,
+  "managedOrNativeCompilerHelpersChanged": false,
+  "newCppCompilerExecution": "NotRun",
+  "newMacHostExecution": "NotRun",
+  "newGitHubCI": "NotRun",
+  "newOfficialUnitySdkExecution": "NotRun",
+  "PlayerExecution": "NotRun",
+  "independentFullStageReview": "NotRun",
+  "runtimeAcceptance": false,
+  "R03Accepted": false,
+  "ReadyForHumanReviewGate": false,
+  "historicalEvidenceReclassified": false,
+  "handoffReady": false,
+  "LocalValidationAuthorized": false
+}

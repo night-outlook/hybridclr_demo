@@ -1,0 +1,15 @@
+{
+  "name": "timed-child",
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-B",
+    "-c",
+    "import os,time;os.write(1,b'BEFORE_TIMEOUT_STDOUT\\n');os.write(2,b'BEFORE_TIMEOUT_STDERR\\n');time.sleep(30)"
+  ],
+  "startedUnix": 1792379493.075686,
+  "output": "/mnt/data/assembly-shadow-primary/evidence/baseline-timeout/outer/timed-child",
+  "expectedInnerResult": "Passed",
+  "status": "Failed",
+  "exception": "TimeoutExpired(['/opt/pyvenv/bin/python', '-B', '-c', \"import os,time;os.write(1,b'BEFORE_TIMEOUT_STDOUT\\\\n');os.write(2,b'BEFORE_TIMEOUT_STDERR\\\\n');time.sleep(30)\"], 0.8)",
+  "finishedUnix": 1792379493.8816626
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "PrimaryPublicationBlocker",
+  "state": "BlockedBeforePublication",
+  "authorizationIssued": false,
+  "connector": "GitHub",
+  "pluginInstalled": true,
+  "readAccessVerified": true,
+  "mutationActionsExposed": false,
+  "discoveryQueriesWithoutResults": [
+    "create",
+    "update"
+  ],
+  "baseBranch": "codex/assembly-shadow-r01b-h1",
+  "verifiedRemoteBases": {
+    "hybridclr_demo": "d49b85bfd633f25b9f8351e03efd406c6f1df53b",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "5667e3712f49e4b38c7dd7359e57f81e344626da"
+  },
+  "newSourceCommits": null,
+  "commitPerformed": false,
+  "pushPerformed": false,
+  "currentWriteSmokeTest": "Unavailable",
+  "historicalSmokeTestNotReusedAsCurrentReadiness": true,
+  "LocalMayImplementOrPublishCandidate": false,
+  "requiredActionOwner": "Primary Implementation",
+  "requiredAction": "Expose Connector mutation actions, rerun write/read-back prerequisite, review/publish candidate and exact final handoff."
+}

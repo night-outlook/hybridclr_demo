@@ -29,6 +29,7 @@ class PreflightContracts(unittest.TestCase):
 
     def test_bounds_and_case_matrix(self):
         required=(
+            "run_p1_command_failure_tests.py",
             "run_primary_host_preflight.py",
             "run_metadata_lifetime_gate.py",
             "run_bounded_ordinary_classes.py",
@@ -45,7 +46,7 @@ class PreflightContracts(unittest.TestCase):
         for name in required:
             with self.subTest(name=name):
                 self.assertIn(name,self.pre)
-        self.assertIn('len(cases)==12',self.pre)
+        self.assertIn('len(cases)==13',self.pre)
         self.assertIn('sourcePreserved',self.pre)
         self.assertIn('expectedNativeSyntaxUnits":75',self.pre)
         self.assertIn('historicalEvidenceReclassified":False',self.pre)

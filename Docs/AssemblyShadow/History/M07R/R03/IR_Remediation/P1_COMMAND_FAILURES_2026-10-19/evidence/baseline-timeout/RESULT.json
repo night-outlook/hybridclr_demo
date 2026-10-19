@@ -1,0 +1,41 @@
+{
+  "scope": "Source-authenticated Python command recording only; no SDK/Player execution",
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "argv": [
+    "/opt/pyvenv/bin/python",
+    "-B",
+    "-c",
+    "import os,time;os.write(1,b'BEFORE_TIMEOUT_STDOUT\\n');os.write(2,b'BEFORE_TIMEOUT_STDERR\\n');time.sleep(30)"
+  ],
+  "timeoutSeconds": 0.8,
+  "sources": {
+    "base/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py": "520647e0d0f6c9bea2c7b558fa44444c171e799628ba9c7c54c98fcbcdb294c5",
+    "base/il2cpp_plus/tools/r03/diagnostic_stream/run_bounded_general_live.py": "f0049d9e5ab2ca7724e00388b7142d09cb3c30c5d5a3d9ea9258135a914ab069"
+  },
+  "outerCase": {
+    "name": "timed-child",
+    "command": [
+      "/opt/pyvenv/bin/python",
+      "-B",
+      "-c",
+      "import os,time;os.write(1,b'BEFORE_TIMEOUT_STDOUT\\n');os.write(2,b'BEFORE_TIMEOUT_STDERR\\n');time.sleep(30)"
+    ],
+    "startedUnix": 1792379493.075686,
+    "output": "/mnt/data/assembly-shadow-primary/evidence/baseline-timeout/outer/timed-child",
+    "expectedInnerResult": "Passed",
+    "status": "Failed",
+    "exception": "TimeoutExpired(['/opt/pyvenv/bin/python', '-B', '-c', \"import os,time;os.write(1,b'BEFORE_TIMEOUT_STDOUT\\\\n');os.write(2,b'BEFORE_TIMEOUT_STDERR\\\\n');time.sleep(30)\"], 0.8)",
+    "finishedUnix": 1792379493.8816626
+  },
+  "outerMissingStdout": true,
+  "outerContinuesAfterTimeout": true,
+  "nativeCommandsRecorded": 0,
+  "nativeFilesWritten": 0,
+  "nativeFailure": {
+    "exception": "TimeoutExpired",
+    "capturedStdoutInException": "BEFORE_TIMEOUT_STDOUT\n",
+    "capturedStderrInException": "BEFORE_TIMEOUT_STDERR\n"
+  },
+  "actualNativeCompilerExecuted": false,
+  "UnityPlayerExecuted": false
+}

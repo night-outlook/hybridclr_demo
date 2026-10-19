@@ -1,0 +1,41 @@
+"""Actual Python subprocess timeout; no Unity, native compilation or Git writes."""
+import ast,hashlib,importlib.util,json,subprocess,sys,time
+from pathlib import Path
+from unittest.mock import patch
+ROOT=Path(__file__).resolve().parent
+OUT=ROOT/'evidence/baseline-timeout'
+OUT.mkdir(exist_ok=False)
+argv=[sys.executable,'-B','-c',"import os,time;os.write(1,b'BEFORE_TIMEOUT_STDOUT\\n');os.write(2,b'BEFORE_TIMEOUT_STDERR\\n');time.sleep(30)"]
+def load(path,name):
+ spec=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+pre_path=ROOT/'base/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py'
+pre=load(pre_path,'baseline_preflight')
+main=next(n for n in ast.parse(pre_path.read_text()).body if isinstance(n,ast.FunctionDef) and n.name=='main')
+execute=next(n for n in main.body if isinstance(n,ast.FunctionDef) and n.name=='execute')
+namespace=dict(pre.__dict__,dest=OUT/'outer',cases=[],run=lambda args,timeout: pre.run(args,0.8))
+namespace['dest'].mkdir()
+exec(compile(ast.Module(body=[execute],type_ignores=[]),str(pre_path),'exec'),namespace)
+namespace['execute']('timed-child',argv,'Passed')
+(OUT/'outer/subsequent-work-reached.txt').write_text('execute returned after uncontained timeout\n')
+native_path=ROOT/'base/il2cpp_plus/tools/r03/diagnostic_stream/run_bounded_general_live.py'
+native=load(native_path,'baseline_native')
+native_root=OUT/'native';native_root.mkdir();commands=[];original=subprocess.run;failure=None
+
+def short_run(*args,**kwargs):
+ kwargs['timeout']=0.8
+ return original(*args,**kwargs)
+with patch.object(native.subprocess,'run',side_effect=short_run):
+ try:native.run(argv,native_root,'timed-child',commands)
+ except subprocess.TimeoutExpired as e:
+  failure={'exception':type(e).__name__,'capturedStdoutInException':e.stdout.decode(),
+           'capturedStderrInException':e.stderr.decode()}
+report={'scope':'Source-authenticated Python command recording only; no SDK/Player execution',
+        'python':sys.version,'argv':argv,'timeoutSeconds':0.8,
+        'sources':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [pre_path,native_path]},
+        'outerCase':namespace['cases'][0],
+        'outerMissingStdout':not (OUT/'outer/commands/timed-child/stdout.bin').exists(),
+        'outerContinuesAfterTimeout':(OUT/'outer/subsequent-work-reached.txt').exists(),
+        'nativeCommandsRecorded':len(commands),'nativeFilesWritten':len(list(native_root.iterdir())),
+        'nativeFailure':failure,'actualNativeCompilerExecuted':False,'UnityPlayerExecuted':False}
+(OUT/'RESULT.json').write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps(report,indent=2))

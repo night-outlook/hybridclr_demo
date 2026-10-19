@@ -1,0 +1,251 @@
+#!/usr/bin/env python3
+"""P1 failure handling: real Python children; Git/SDK/VM children explicitly mocked."""
+from __future__ import annotations
+import ast
+import contextlib
+import hashlib
+import importlib.util
+import io
+import json
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
+import unittest
+from unittest.mock import patch
+
+SOURCE=Path(__file__).with_name('run_p1_metadata_local_preflight.py')
+
+def load():
+    spec=importlib.util.spec_from_file_location('p1_preflight_failure_under_test',SOURCE)
+    mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
+    return mod
+
+class ComponentFailureReceipts(unittest.TestCase):
+    def setUp(self):
+        self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
+        self.root=Path(self.temp.name).resolve();self.mod=load()
+
+    def execute(self,effect=None,completed=None):
+        with patch.object(self.mod,'run',side_effect=effect,return_value=completed):
+            result=self.mod.execute_component(self.root,'test',['mock-command'],'Passed')
+        self.assertEqual(result,json.loads((self.root/'commands/test.json').read_bytes()))
+        for stream in ('stdout','stderr'):
+            raw=(self.root/'commands/test'/(stream+'.bin')).read_bytes()
+            self.assertEqual(hashlib.sha256(raw).hexdigest(),result[stream+'.binSha256'])
+        return result
+
+    def write_result(self,raw=b'{"result":"Passed"}'):
+        component=self.root/'test';component.mkdir()
+        (component/'RESULT.json').write_bytes(raw)
+        return component
+
+    def test_real_outer_timeout_keeps_exact_prefix(self):
+        cmd=[sys.executable,'-B','-c',"import os,time;os.write(1,b'outer-out');os.write(2,b'outer-err');time.sleep(30)"]
+        record=self.mod.execute_component(self.root,'test',cmd,'Passed',timeout=0.8)
+        self.assertEqual(record['status'],'Failed')
+        self.assertEqual(record['stopBatchReason'],'OuterCommandTimeout')
+        self.assertTrue(record['commandLifetimeUnverified'])
+        self.assertIsNone(record['exit'])
+        self.assertEqual(record['outputCompleteness'],'CapturedPrefix')
+        self.assertEqual((self.root/'commands/test/stdout.bin').read_bytes(),b'outer-out')
+        self.assertEqual((self.root/'commands/test/stderr.bin').read_bytes(),b'outer-err')
+
+    def test_timeout_missing_capture_remains_unavailable(self):
+        record=self.execute(effect=subprocess.TimeoutExpired(['mock'],1))
+        self.assertFalse(record['stdoutAvailable']);self.assertFalse(record['stderrAvailable'])
+        self.assertEqual(record['outputCompleteness'],'CapturedPrefix')
+        self.assertEqual(record['status'],'Failed')
+
+    def test_interruption_is_retained_for_batch_stop(self):
+        record=self.execute(effect=KeyboardInterrupt)
+        self.assertTrue(record['interrupted'])
+        self.assertEqual(record['stopBatchReason'],'OuterCommandInterrupted')
+        self.assertEqual(record['outputCompleteness'],'Unavailable')
+
+    def test_real_missing_command_keeps_failed_receipt(self):
+        record=self.mod.execute_component(self.root,'test',[str(self.root/'missing')],'Passed')
+        self.assertEqual(record['status'],'Failed');self.assertIsNone(record['exit'])
+        self.assertIn('FileNotFoundError',record['exception'])
+        self.assertFalse(record['stdoutAvailable'])
+
+    def test_unknown_command_exception_stops(self):
+        record=self.execute(effect=RuntimeError('unknown execution state'))
+        self.assertEqual(record['stopBatchReason'],'UnknownCommandExecutionOutcome')
+
+    def test_normal_nonzero_is_not_promoted_or_mislabeled_timeout(self):
+        self.write_result()
+        record=self.execute(completed=subprocess.CompletedProcess(['mock'],9,b'out',b'err'))
+        self.assertEqual(record['status'],'Failed');self.assertEqual(record['exit'],9)
+        self.assertFalse(record['timedOut']);self.assertIsNone(record['stopBatchReason'])
+        self.assertEqual(record['outputCompleteness'],'CompleteDirectChildStreams')
+
+    def test_child_lifetime_marker_overrides_passed_verdict(self):
+        self.write_result(b'{"result":"Passed","commandLifetimeUnverified":true}')
+        record=self.execute(completed=subprocess.CompletedProcess(['mock'],0,b'out',b''))
+        self.assertEqual(record['status'],'Failed')
+        self.assertEqual(record['stopBatchReason'],'ChildReportedUnverifiedCommandLifetime')
+
+    def test_invalid_json_cannot_become_pass(self):
+        self.write_result(b'{"result":"Passed",')
+        record=self.execute(completed=subprocess.CompletedProcess(['mock'],0,b'out',b'err'))
+        self.assertEqual(record['status'],'Failed');self.assertIn('exception',record)
+        self.assertIsNone(record['stopBatchReason'])
+
+    def test_duplicate_keys_rejected(self):
+        component=self.write_result(b'{"result":"Failed","result":"Passed"}')
+        with self.assertRaisesRegex(ValueError,'Duplicate'):
+            self.mod.read_component_result(component,'RESULT.json')
+
+    def test_nonfinite_and_nonobject_records_rejected(self):
+        component=self.write_result()
+        for raw in (b'[]',b'null',b'{"result":NaN}',b'{"result":"Passed","commandLifetimeUnverified":1}'):
+            with self.subTest(raw=raw):
+                (component/'RESULT.json').write_bytes(raw)
+                with self.assertRaises(ValueError):self.mod.read_component_result(component,'RESULT.json')
+
+    def test_result_file_symlink_is_rejected(self):
+        component=self.write_result();file=component/'RESULT.json';target=self.root/'outside.json'
+        file.replace(target);file.symlink_to(target)
+        with self.assertRaises(ValueError):self.mod.read_component_result(component,'RESULT.json')
+
+    def test_parent_symlink_is_rejected(self):
+        component=self.write_result();target=self.root/'elsewhere';component.rename(target)
+        component.symlink_to(target,target_is_directory=True)
+        with self.assertRaises(ValueError):self.mod.read_component_result(component,'RESULT.json')
+
+    def test_receipt_hash_matches_exact_parsed_bytes(self):
+        raw=b' {"result": "Passed"}\n';component=self.write_result(raw)
+        result=self.mod.read_component_result(component,'RESULT.json')
+        self.assertEqual(result['innerResultSha256'],hashlib.sha256(raw).hexdigest())
+        self.assertEqual(result['innerResult'],'Passed')
+
+    def test_managed_binding_remains_nested_and_hash_authenticated(self):
+        component=self.root/'managed-sdk';nested=component/'build-api';nested.mkdir(parents=True)
+        source=nested/'results.json'
+        record={'kind':'R03CompleteBuildHelperCompile','schemaVersion':1,
+                'unityVersion':'2022.3.62f2','result':'Passed','unityEditorRun':False,
+                'nativeExecution':False,'runtimeAcceptance':False}
+        source.write_text(json.dumps(record))
+        stdout=json.dumps({'result':str(source),'sha256':hashlib.sha256(source.read_bytes()).hexdigest()}).encode()
+        consumed=self.mod.read_managed_result(component,stdout)
+        self.assertTrue(consumed['returnedBindingVerified'])
+        source.write_bytes(source.read_bytes()+b' ')
+        with self.assertRaisesRegex(ValueError,'SHA-256'):self.mod.read_managed_result(component,stdout)
+
+class BatchFailureScheduling(unittest.TestCase):
+    def exercise(self,mode='passed',target='live-general'):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td).resolve();ws=root/'workspace';ws.mkdir()
+            demo=ws/'hybridclr_demo';native=ws/'il2cpp_plus'
+            # Execute the actual input-path expression; only file CONTENTS,
+            # Git answers, SDK anchor and child execution are mocks.
+            tree=ast.parse(SOURCE.read_text())
+            main=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='main')
+            node=next(n for n in main.body if isinstance(n,ast.Assign) and
+                      isinstance(n.targets[0],ast.Name) and n.targets[0].id=='inputs')
+            paths=eval(compile(ast.Expression(node.value),str(SOURCE),'eval'),{'demo':demo,'native':native})
+            for path in paths:path.parent.mkdir(parents=True,exist_ok=True);path.write_text('MOCK SOURCE\n')
+            unity=root/'Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity'
+            unity.parent.mkdir(parents=True);unity.write_text('MOCK SDK ANCHOR; NOT EXECUTED')
+            dest=root/'batch';mod=load();launched=[];checks=[]
+            def verify(base,name,sha):
+                checks.append(name)
+                if mode=='postflight-error' and len(checks)>4:raise RuntimeError('mock remote failure')
+                return {'repository':'night-outlook/'+name,'head':sha,'clean':True}
+            def child(argv,timeout=120):
+                args=list(map(str,argv));out=Path(args[args.index('--output')+1]);name=out.name
+                launched.append(name);out.mkdir()
+                if name==target:
+                    if mode=='timeout':raise subprocess.TimeoutExpired(args,timeout,output=b'partial-out',stderr=b'partial-err')
+                    if mode=='interrupted':raise KeyboardInterrupt
+                    if mode=='unknown':raise RuntimeError('mock unknown outcome')
+                    if mode=='spawn-failed':raise FileNotFoundError('mock launch failure')
+                expected=('Passed' if name in ('managed-sdk','native-sdk') else
+                          'PassedHostOnly' if name=='legacy-host' else
+                          'PassedWithinOwnedHostScope' if name=='owned-general' else
+                          'PassedWithinInactiveSourceHostScope' if name=='live-general' else
+                          'PassedWithinInactiveHostScope' if name=='frozen-v2' else 'PassedWithinHostScope')
+                data={'result':expected,'commandLifetimeUnverified':name==target and mode=='nested-timeout'}
+                if name=='managed-sdk':
+                    data.update(kind='R03CompleteBuildHelperCompile',schemaVersion=1,unityVersion='2022.3.62f2',
+                                unityEditorRun=False,nativeExecution=False,runtimeAcceptance=False)
+                    (out/'build-api').mkdir();file=out/'build-api/results.json'
+                else:file=out/('results.json' if name=='native-sdk' else 'RESULT.json')
+                file.write_text(json.dumps(data))
+                stdout=(json.dumps({'result':str(file),'sha256':hashlib.sha256(file.read_bytes()).hexdigest()}).encode()
+                        if name=='managed-sdk' else b'mock child\n')
+                return subprocess.CompletedProcess(args,7 if mode=='nonzero' and name==target else 0,stdout,b'mock stderr\n')
+            argv=['runner','--workspace',str(ws),'--unity',str(unity),'--output',str(dest),
+                  '--sdk-scratch',str(root/'scratch'),'--expected-demo','a'*40,'--expected-native','b'*40]
+            code=0
+            with patch.object(sys,'argv',argv),patch.object(mod,'verify_repo',side_effect=verify), \
+                 patch.object(mod,'run',side_effect=child),contextlib.redirect_stdout(io.StringIO()):
+                try:mod.main()
+                except SystemExit as error:code=error.code
+            report=json.loads((dest/'RESULT.json').read_bytes())
+            manifest=json.loads((dest/'MANIFEST.json').read_bytes())
+            self.assertEqual(len(report['commands']),13)
+            self.assertEqual(report['componentCount'],13)
+            self.assertEqual(report['attemptedComponentCount'],len(launched))
+            self.assertEqual(report['expectedNativeSyntaxUnits'],75)
+            self.assertFalse(report['R03Accepted']);self.assertFalse(report['UnityPlayerExecuted'])
+            self.assertFalse(report['historicalEvidenceReclassified'])
+            for row in report['commands']:
+                self.assertEqual(row,json.loads((dest/'commands'/(row['name']+'.json')).read_bytes()))
+                if row['status']=='NotRun':self.assertFalse((dest/row['name']).exists())
+            for row in manifest['files']:
+                raw=(dest/row['path']).read_bytes()
+                self.assertEqual(row['sha256'],hashlib.sha256(raw).hexdigest());self.assertEqual(row['size'],len(raw))
+            return code,report,manifest,launched,checks
+
+    def test_all_thirteen_components_have_independent_success(self):
+        code,report,manifest,launched,checks=self.exercise()
+        self.assertEqual(code,0);self.assertEqual(len(launched),13);self.assertEqual(len(checks),8)
+        self.assertTrue(report['sourcePreserved']);self.assertIsNone(report['stoppedAfter'])
+        self.assertTrue(report['officialUnitySdkCompileAttempted']);self.assertTrue(report['officialUnitySdkCompilePassed'])
+        self.assertEqual(manifest['inventoryScope'],'CompletedBatchFiles')
+
+    def assert_stopped(self,mode,target='live-general',code=1):
+        actual,report,manifest,launched,checks=self.exercise(mode,target)
+        self.assertEqual(actual,code);self.assertEqual(launched[-1],target)
+        self.assertLess(len(launched),13);self.assertEqual(len(checks),4)
+        self.assertFalse(report['sourcePreserved']);self.assertTrue(report['commandLifetimeUnverified'])
+        self.assertEqual(report['result'],'FailedOrIncomplete')
+        self.assertFalse(report['officialUnitySdkCompileAttempted'])
+        self.assertEqual(manifest['inventoryScope'],'UnsealedObservedFiles')
+        self.assertIn(target,report['stoppedAfter'])
+        self.assertGreater(sum(c['status']=='NotRun' for c in report['commands']),0)
+
+    def test_outer_timeout_stops_remaining_commands(self):self.assert_stopped('timeout')
+    def test_nested_timeout_stops_even_with_passed_child_verdict(self):self.assert_stopped('nested-timeout')
+    def test_unknown_outcome_stops_without_fabricating_postflight(self):self.assert_stopped('unknown')
+    def test_keyboard_interrupt_preserves_summary_and_exit130(self):self.assert_stopped('interrupted',code=130)
+    def test_first_component_timeout_leaves_twelve_notrun(self):self.assert_stopped('timeout','command-failures')
+
+    def test_completed_nonzero_keeps_other_independent_checks(self):
+        code,report,manifest,launched,checks=self.exercise('nonzero')
+        self.assertEqual(code,1);self.assertEqual(len(launched),13);self.assertEqual(len(checks),8)
+        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),12)
+        self.assertTrue(report['officialUnitySdkCompilePassed']);self.assertTrue(report['sourcePreserved'])
+        self.assertIsNone(report['stoppedAfter'])
+
+    def test_known_launch_failure_is_retained_without_faking_an_exit(self):
+        code,report,manifest,launched,checks=self.exercise('spawn-failed')
+        self.assertEqual(code,1);self.assertEqual(len(launched),13)
+        record=next(c for c in report['commands'] if c['name']=='live-general')
+        self.assertIsNone(record['exit']);self.assertIn('FileNotFoundError',record['exception'])
+
+    def test_last_sdk_timeout_is_attempted_but_not_passed(self):
+        code,report,manifest,launched,checks=self.exercise('timeout','native-sdk')
+        self.assertEqual(code,1);self.assertEqual(len(launched),13)
+        self.assertTrue(report['officialUnitySdkCompileAttempted'])
+        self.assertFalse(report['officialUnitySdkCompilePassed']);self.assertFalse(report['sourcePreserved'])
+        self.assertTrue(report['commandLifetimeUnverified'])
+
+    def test_postflight_failure_cannot_turn_green(self):
+        code,report,manifest,launched,checks=self.exercise('postflight-error')
+        self.assertEqual(code,1);self.assertFalse(report['sourcePreserved'])
+        self.assertIn('mock remote failure',report['postflightError'])
+
+if __name__=='__main__':unittest.main(verbosity=2)

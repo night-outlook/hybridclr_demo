@@ -1,0 +1,50 @@
+[
+  {
+    "name": "used-output",
+    "argv": [
+      "/opt/pyvenv/bin/python",
+      "-B",
+      "/mnt/data/assembly-shadow-primary/work/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py",
+      "--native",
+      "/mnt/data/assembly-shadow-primary/work/il2cpp_plus",
+      "--output",
+      "/mnt/data/assembly-shadow-primary/evidence/integrated-contracts"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/mnt/data/assembly-shadow-primary/work/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py\", line 118, in <module>\n    if __name__==\"__main__\":main()\n                            ~~~~^^\n  File \"/mnt/data/assembly-shadow-primary/work/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py\", line 49, in main\n    raise RuntimeError(\"Canonical native source and unused external output required\")\nRuntimeError: Canonical native source and unused external output required\n",
+    "result": "PassedExpectedRefusal"
+  },
+  {
+    "name": "alternate-source",
+    "argv": [
+      "/opt/pyvenv/bin/python",
+      "-B",
+      "/mnt/data/assembly-shadow-primary/work/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py",
+      "--native",
+      "/mnt/data/assembly-shadow-primary/work/il2cpp_plus",
+      "--output",
+      "/mnt/data/assembly-shadow-primary/evidence/refused-override"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/mnt/data/assembly-shadow-primary/work/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py\", line 118, in <module>\n    if __name__==\"__main__\":main()\n                            ~~~~^^\n  File \"/mnt/data/assembly-shadow-primary/work/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py\", line 42, in main\n    raise RuntimeError(\"Alternate receipt test source override forbidden\")\nRuntimeError: Alternate receipt test source override forbidden\n",
+    "result": "PassedExpectedRefusal"
+  },
+  {
+    "name": "source-contained",
+    "argv": [
+      "/opt/pyvenv/bin/python",
+      "-B",
+      "/mnt/data/assembly-shadow-primary/work/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py",
+      "--native",
+      "/mnt/data/assembly-shadow-primary/work/il2cpp_plus",
+      "--output",
+      "/mnt/data/assembly-shadow-primary/work/il2cpp_plus/refused-output"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/mnt/data/assembly-shadow-primary/work/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py\", line 118, in <module>\n    if __name__==\"__main__\":main()\n                            ~~~~^^\n  File \"/mnt/data/assembly-shadow-primary/work/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py\", line 52, in main\n    raise RuntimeError(\"Test evidence must be disjoint from source roots\")\nRuntimeError: Test evidence must be disjoint from source roots\n",
+    "result": "PassedExpectedRefusal"
+  }
+]
