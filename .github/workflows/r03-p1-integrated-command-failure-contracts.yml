@@ -1,0 +1,68 @@
+name: R03 P1 integrated source-bound command failure contracts
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - 'Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py'
+      - 'Tools/AssemblyShadow/R03IR/test_p1_command_failures.py'
+      - 'Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py'
+      - 'Tools/AssemblyShadow/R03IR/test_p1_metadata_preflight.py'
+      - '.github/workflows/r03-p1-integrated-command-failure-contracts.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integrated-host-contracts:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: demo
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 48ee6468065a6b559f53719dc310d901d8181ab8
+          path: native
+          persist-credentials: false
+      - name: Exact 70 tests over real checked-in Python source
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/p1-integrated-${{ github.run_id }}-${{ github.run_attempt }}"
+          python3 -B "$GITHUB_WORKSPACE/demo/Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py" \
+            --native "$GITHUB_WORKSPACE/native" --output "$OUT"
+          python3 -B - "$OUT" <<'PY'
+          import hashlib,json,sys
+          from pathlib import Path
+          output=Path(sys.argv[1])
+          summary=json.loads((output/'RESULT.json').read_bytes())
+          assert summary['kind']=='R03P1CommandFailureContracts'
+          assert summary['result']=='PassedWithinHostScope'
+          assert summary['expectedTestCount']==70 and summary['testsRun']==70
+          assert len(set(summary['testIds']))==70
+          assert [m['expectedTests'] for m in summary['modules']]==[5,14,29,10,12]
+          assert summary['sourcePreserved'] is True
+          assert summary['commandLifetimeUnverified'] is False
+          assert summary['runtimeAcceptance'] is False
+          assert summary['officialUnitySdkCompiled'] is False
+          manifest=json.loads((output/'MANIFEST.json').read_bytes())
+          assert manifest['inventoryScope']=='CompletedContractFiles'
+          for item in manifest['files']:
+              raw=(output/item['path']).read_bytes()
+              assert item['sha256']==hashlib.sha256(raw).hexdigest()
+              assert item['bytes']==len(raw)
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: p1-integrated-70-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/p1-integrated-${{ github.run_id }}-${{ github.run_attempt }}
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
