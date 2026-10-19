@@ -1,6 +1,12 @@
 # Local Validation → Primary Implementation
 
-## Current return — P1 owned general source/SDK 20261016-3dc9 PASS
+## Current return — P1 inactive live-general source/SDK 20261018-5667 PASS
+
+**PASS / PassedSourceHostAndSDKOnly; Local Validation → Primary Implementation.** [Report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-live-general-20261018-5667/README.md), [live verification](../History/M07R/R03/local-validation-p1-live-general-20261018-5667/preflight/LIVE_GENERAL_VERIFICATION.json), [scope summary](../History/M07R/R03/local-validation-p1-live-general-20261018-5667/LIVE_GENERAL_SUMMARY.json). One new invocation, 12/12 components Passed. Actual inactive live method 13 unique groups per strict/sanitized profile/four compile-run successes; zero watched allocation assertion and V1 parity under explicit VM mocks. Exact managed receipt/five products/negative control and 75/75 official native SDK syntax configurations verified. Source/SDK and all consumed P1 outcomes/raw/scratch preserved; no code changes or retries.
+
+No new substantive Local finding. Primary must reconcile this limited source/SDK evidence and continue owning P1 coherent live VM epoch/ABA/pointer origin/full captures/GC/RSS/shutdown proof, P2 real authenticated native/C# V2 integration and E0/E1 vendor-supported engine lifecycle. A stable observed source fence is not a coherent VM epoch. No Unity Editor/Player, runtime or Human Review Gate authority follows; all acceptance flags remain false. All historical findings/results remain unchanged below.
+
+## Historical return — P1 owned general source/SDK 20261016-3dc9 PASS
 
 **PASS / PassedSourceHostAndSDKOnly; Local Validation → Primary Implementation.** [Report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-owned-general-20261016-3dc9/README.md), [composer verification](../History/M07R/R03/local-validation-p1-owned-general-20261016-3dc9/preflight/OWNED_GENERAL_VERIFICATION.json), [scope summary](../History/M07R/R03/local-validation-p1-owned-general-20261016-3dc9/OWNED_GENERAL_SUMMARY.json). One fresh cycle,11/11 Passed. Owned-general11 unique groups per strict/sanitized profile/four compile-run successes, actual owned headers/legacy V1 byte parity and prewarmed counter0 verified. Exact managed binding/five products/negative control and75/75 official native syntax configurations Passed. Source/SDK and all three consumed P1 raw/scratch states preserved.
 

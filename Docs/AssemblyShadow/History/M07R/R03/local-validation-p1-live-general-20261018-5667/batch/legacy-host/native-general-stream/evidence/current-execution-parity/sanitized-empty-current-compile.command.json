@@ -1,0 +1,33 @@
+{
+  "name": "sanitized-empty-current-compile",
+  "argv": [
+    "/usr/bin/clang++",
+    "-std=c++17",
+    "-O1",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-LIVE-GENERAL-20261018-5667/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-empty-current.cpp",
+    "-o",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-LIVE-GENERAL-20261018-5667/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-empty-current.exe"
+  ],
+  "startedUnix": 1792377358.4282691,
+  "finishedUnix": 1792377358.948231,
+  "exit": 0,
+  "stdout": {
+    "file": "sanitized-empty-current-compile.stdout.bin",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "stderr": {
+    "file": "sanitized-empty-current-compile.stderr.bin",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}
