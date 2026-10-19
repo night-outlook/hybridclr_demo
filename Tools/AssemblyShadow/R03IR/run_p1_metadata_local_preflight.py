@@ -255,6 +255,10 @@ def main()->None:
         # P1 inactive source-bound zero-class execution and mock fixture.
         native/"libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
         native/"libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+        native/"libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+        native/"libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+        native/"tools/r03/diagnostic_stream/run_opaque_execution_inventory.py",
+        native/"tools/r03/diagnostic_stream/opaque_inventory_fixture.cpp",
         native/"tools/r03/diagnostic_stream/run_bounded_execution_empty_live.py",
         native/"tools/r03/diagnostic_stream/test_bounded_execution_empty_live_receipts.py",
         native/"tools/r03/diagnostic_stream/empty_live_fixture/MockRuntime.h",
@@ -282,6 +286,7 @@ def main()->None:
         demo/"Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowGeneralComposeSyntax.cpp",
         demo/"Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowExecutionComposeSyntax.cpp",
         demo/"Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowExecutionEmptyLiveSyntax.cpp",
+        demo/"Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowOpaqueInventorySyntax.cpp",
     ]
     hashes={str(p):hash_file(p) for p in inputs}
     dest.mkdir(mode=0o700)
@@ -317,6 +322,7 @@ def main()->None:
             ("live-general","run_bounded_general_live.py","PassedWithinInactiveSourceHostScope"),
             ("owned-execution","run_frozen_execution.py","PassedWithinOwnedExecutionHostScope"),
             ("empty-live","run_bounded_execution_empty_live.py","PassedWithinInactiveZeroClassHostScope"),
+            ("opaque-inventory","run_opaque_execution_inventory.py","PassedWithinInactiveOpaqueHostScope"),
             ("bounded-status","run_bounded_transaction_status.py","PassedWithinHostScope"),
             ("bounded-inventory","run_bounded_transaction_inventory.py","PassedWithinHostScope"),
             ("frozen-v2","run_frozen_v2.py","PassedWithinInactiveHostScope"),
@@ -346,12 +352,12 @@ def main()->None:
             # thirteen independent cases and factual postflight errors, never mark PASS.
             postflight_error=repr(e)
             preserved=False
-        success=preserved and stopped is None and len(cases)==15 and all(c["status"]=="Passed" for c in cases)
+        success=preserved and stopped is None and len(cases)==16 and all(c["status"]=="Passed" for c in cases)
         statuses={c["name"]:c["status"] for c in cases}
         summary={"kind":"R03P1FailureAwareSourceSDKPreflight","schemaVersion":2,
           "stoppedAfter":stopped,"commandLifetimeUnverified":stopped is not None,
           "descendantQuiescenceProven":False,
-          "componentCount":15,"attemptedComponentCount":sum(c["commandInvoked"] for c in cases),
+          "componentCount":16,"attemptedComponentCount":sum(c["commandInvoked"] for c in cases),
           "result":"PassedSourceHostAndSDKOnly" if success else "FailedOrIncomplete",
           "fourRepositoriesBefore":before,"fourRepositoriesAfter":after,
           "sourceSha256":hashes,"sourcePreserved":preserved,
@@ -361,7 +367,7 @@ def main()->None:
           "officialUnitySdkCompilePassed":statuses.get("managed-sdk")=="Passed" and
                                           statuses.get("native-sdk")=="Passed",
           "nativeSDKCandidateMode":True,
-          "expectedNativeSyntaxUnits":85,
+          "expectedNativeSyntaxUnits":90,
           "realUnityEditorLaunched":False,"UnityPlayerExecuted":False,
           "engineOwnerProven":False,"R03Accepted":False,"ReadyForHumanReviewGate":False,
           "historicalEvidenceReclassified":False}
