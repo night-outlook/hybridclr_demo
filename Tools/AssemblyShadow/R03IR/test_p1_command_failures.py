@@ -169,12 +169,18 @@ class BatchFailureScheduling(unittest.TestCase):
                           'PassedWithinInactiveZeroClassHostScope' if name=='empty-live' else
                           'PassedWithinInactiveHostScope' if name=='frozen-v2' else 'PassedWithinHostScope')
                 data={'result':expected,'commandLifetimeUnverified':name==target and mode=='nested-timeout'}
+                if name=='empty-live' and name==target:
+                    if mode=='missing-lifetime-marker':
+                        data.pop('commandLifetimeUnverified')
+                    if mode=='malformed-lifetime-marker':
+                        data['commandLifetimeUnverified']='false'
                 if name=='managed-sdk':
                     data.update(kind='R03CompleteBuildHelperCompile',schemaVersion=1,unityVersion='2022.3.62f2',
                                 unityEditorRun=False,nativeExecution=False,runtimeAcceptance=False)
                     (out/'build-api').mkdir();file=out/'build-api/results.json'
                 else:file=out/('results.json' if name=='native-sdk' else 'RESULT.json')
-                file.write_text(json.dumps(data))
+                if not (name=='empty-live' and name==target and mode=='missing-result'):
+                    file.write_text(json.dumps(data))
                 stdout=(json.dumps({'result':str(file),'sha256':hashlib.sha256(file.read_bytes()).hexdigest()}).encode()
                         if name=='managed-sdk' else b'mock child\n')
                 return subprocess.CompletedProcess(args,7 if mode=='nonzero' and name==target else 0,stdout,b'mock stderr\n')
@@ -250,5 +256,30 @@ class BatchFailureScheduling(unittest.TestCase):
         code,report,manifest,launched,checks=self.exercise('postflight-error')
         self.assertEqual(code,1);self.assertFalse(report['sourcePreserved'])
         self.assertIn('mock remote failure',report['postflightError'])
+
+    def test_native_empty_live_nested_timeout_stops_outer_children(self):
+        self.assert_stopped('nested-timeout','empty-live')
+
+    def test_missing_native_empty_live_marker_stops_outer_children(self):
+        self.assert_stopped('missing-lifetime-marker','empty-live')
+
+    def test_malformed_native_empty_live_marker_stops_outer_children(self):
+        self.assert_stopped('malformed-lifetime-marker','empty-live')
+
+    def test_missing_native_empty_live_result_stops_outer_children(self):
+        self.assert_stopped('missing-result','empty-live')
+
+    def test_known_nonzero_empty_live_continues_without_claiming_pass(self):
+        code,report,manifest,launched,checks=self.exercise('nonzero','empty-live')
+        self.assertEqual(code,1)
+        self.assertEqual(len(launched),15)
+        self.assertEqual(len(checks),8)
+        self.assertIsNone(report['stoppedAfter'])
+        self.assertFalse(report['commandLifetimeUnverified'])
+        self.assertTrue(report['sourcePreserved'])
+        self.assertTrue(report['officialUnitySdkCompilePassed'])
+        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),14)
+        self.assertEqual(next(c for c in report['commands']
+                              if c['name']=='empty-live')['status'],'Failed')
 
 if __name__=='__main__':unittest.main(verbosity=2)

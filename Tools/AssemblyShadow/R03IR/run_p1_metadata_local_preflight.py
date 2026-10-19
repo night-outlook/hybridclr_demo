@@ -102,7 +102,7 @@ def read_managed_result(output:Path, stdout:bytes)->dict:
     return {"innerResult":record["result"],"innerResultPath":str(expected),
             "innerResultSha256":actual,"returnedBindingVerified":True}
 
-def read_component_result(output:Path, filename:str)->dict:
+def read_component_result(output:Path, filename:str, require_lifetime_marker:bool=False)->dict:
     """Parse and hash the same canonical receipt bytes; do not follow decoys."""
     if Path(filename).name!=filename:
         raise ValueError("A direct component result filename is required")
@@ -122,6 +122,11 @@ def read_component_result(output:Path, filename:str)->dict:
         raise ValueError("Non-finite component receipt value: "+value)
     record=json.loads(raw.decode("utf-8"),object_pairs_hook=pairs,parse_constant=constant)
     if not isinstance(record,dict):raise ValueError("Component result must be an object")
+    # The new native empty-live producer is fail-stop aware. An absent or
+    # malformed marker cannot be interpreted as a verified-safe lifetime.
+    # Older unrelated producers retain the original optional marker policy.
+    if require_lifetime_marker and "commandLifetimeUnverified" not in record:
+        raise ValueError("Missing required command lifetime marker")
     unknown=record.get("commandLifetimeUnverified",False)
     if type(unknown) is not bool:raise ValueError("Invalid command lifetime marker")
     return {"innerResult":record.get("result"),"innerResultPath":str(source),
@@ -155,7 +160,8 @@ def execute_component(dest:Path,name:str,argv:list,expected:str,
         if name=="managed-sdk":
             result.update(read_managed_result(output,stdout))
         else:
-            result.update(read_component_result(output,file))
+            result.update(read_component_result(
+                output,file,require_lifetime_marker=(name=="empty-live")))
         if result["commandLifetimeUnverified"]:
             result["stopBatchReason"]="ChildReportedUnverifiedCommandLifetime"
         elif proc.returncode==0 and result.get("innerResult")==expected:
@@ -170,7 +176,12 @@ def execute_component(dest:Path,name:str,argv:list,expected:str,
                       commandLifetimeUnverified=True,stopBatchReason="OuterCommandInterrupted")
     except Exception as error:
         result["exception"]=repr(error)
-        if not returned and not isinstance(error,OSError):
+        if returned and name=="empty-live":
+            # A completed child without a valid lifetime receipt could have
+            # timed out internally. Do not schedule more subprocess children.
+            result.update(commandLifetimeUnverified=True,
+                          stopBatchReason="EmptyLiveReceiptUnavailableOrInvalid")
+        elif not returned and not isinstance(error,OSError):
             result.update(commandLifetimeUnverified=True,
                           stopBatchReason="UnknownCommandExecutionOutcome")
     finally:
@@ -245,6 +256,7 @@ def main()->None:
         native/"libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
         native/"libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
         native/"tools/r03/diagnostic_stream/run_bounded_execution_empty_live.py",
+        native/"tools/r03/diagnostic_stream/test_bounded_execution_empty_live_receipts.py",
         native/"tools/r03/diagnostic_stream/empty_live_fixture/MockRuntime.h",
         native/"tools/r03/diagnostic_stream/empty_live_fixture/AssemblyShadowFrozenExecutionRecord.h",
         native/"tools/r03/diagnostic_stream/empty_live_fixture/AssemblyShadowMetadataLifetime.h",

@@ -176,7 +176,8 @@ class AggregateReceiptIntegration(unittest.TestCase):
                        'run_frozen_execution.py','frozen_execution_fixture.cpp',
                        'frozen_execution_allocations.cpp',
                        'test_frozen_execution_include_path.py',
-                       'run_bounded_execution_empty_live.py')]
+                       'run_bounded_execution_empty_live.py',
+                       'test_bounded_execution_empty_live_receipts.py')]
             paths += [native/'libil2cpp/vm'/n for n in
                       ('AssemblyShadowBoundedGeneralComposer.h','AssemblyShadowFrozenGeneralCapture.h',
                        'AssemblyShadowBoundedGeneralLive.h','AssemblyShadowBoundedGeneralLiveSource.inl',
