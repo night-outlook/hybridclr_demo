@@ -1,0 +1,49 @@
+{
+  "result": "PASS",
+  "batchResult": "PassedSourceHostAndSDKOnly",
+  "outerStates": {
+    "Passed": 15
+  },
+  "emptyLiveProfiles": 2,
+  "emptyLiveGroupsPerProfile": 20,
+  "emptyLiveDirectReceipts": 5,
+  "zeroClassSubsetOnly": true,
+  "completeExecutionSource": false,
+  "sourceFindings": [
+    "IR-LOCAL-P1-EMPTY-LIVE-RECEIPT-01"
+  ],
+  "sourceFindingStatus": "SourceConfirmed_NotFaultInjected",
+  "currentBatchFaultObserved": false,
+  "primaryRemediationRequired": true,
+  "ownedExecutionProfiles": 6,
+  "ownedExecutionGroupsPerProfile": 35,
+  "ownedExecutionGroupsExecuted": 210,
+  "ownedExecutionCommandReceipts": 13,
+  "commandFailureTests": 53,
+  "commandFailureErrors": 0,
+  "stoppedAfter": null,
+  "descendantQuiescenceProven": false,
+  "liveGeneralGroupsPerProfile": 13,
+  "liveGeneralCompileRunRecords": 4,
+  "managed": "PassedFiveProductsAndExactExpectedNegative",
+  "nativeConfigurations": 85,
+  "nativeUnits": 17,
+  "executionSourcePins": {
+    "hybridclr_demo": "8514c03cce722c0b036267552ba026ecb548edaa",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "d16d2f7eee4c0f2333f31c4ec6e40422956d8fd1"
+  },
+  "testedDemoAnchor": "84d9360903573dc473e9dd5cbee25883d07e1a0c",
+  "start": "2026-10-19T08:08:34.590056+00:00",
+  "end": "2026-10-19T08:11:35.579487+00:00",
+  "rawRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-EMPTY-LIVE-20261019-d16d",
+  "sdkScratch": "/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-EMPTY-LIVE-20261019-d16d",
+  "nextState": "Primary Implementation",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "ReadyForHumanReviewGate": false,
+  "fullLegacyRegressionAcceptance": false,
+  "runtimeAcceptance": false
+}

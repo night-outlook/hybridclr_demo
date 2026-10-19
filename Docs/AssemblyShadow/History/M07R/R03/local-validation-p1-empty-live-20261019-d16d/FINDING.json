@@ -1,0 +1,80 @@
+{
+  "id": "IR-LOCAL-P1-EMPTY-LIVE-RECEIPT-01",
+  "status": "SourceConfirmed_NotFaultInjected",
+  "time": "2026-10-19T08:10:03.839562+00:00",
+  "executionPins": {
+    "hybridclr_demo": "8514c03cce722c0b036267552ba026ecb548edaa",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "d16d2f7eee4c0f2333f31c4ec6e40422956d8fd1"
+  },
+  "sourceEvidence": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/run_bounded_execution_empty_live.py",
+      "sha256": "76e1aea1c20ef45e55926d9758523b3e61a7dfd40653c9153ac7bc6bc9ebc1d2",
+      "excerpts": [
+        {
+          "needle": "receipt['commandLifetimeUnverified']=True",
+          "startLine": 99,
+          "endLine": 105,
+          "text": "        stdout,stderr=e.stdout,e.stderr\n        receipt['exception']=repr(e);receipt['outputCompleteness']='CapturedPrefix'\n        receipt['commandLifetimeUnverified']=True\n    except OSError as e:\n        receipt['exception']=repr(e)\n    finally:\n        for stream,raw in (('stdout',stdout),('stderr',stderr)):"
+        },
+        {
+          "needle": "result={'kind':'R03P1EmptyExecutionLiveSourceHost'",
+          "startLine": 162,
+          "endLine": 168,
+          "text": "        passed=(firstError is None and preserved and len(receipts)==5 and\n                all(x['status']=='Passed' for x in receipts) and len(profiles)==2)\n        result={'kind':'R03P1EmptyExecutionLiveSourceHost','schemaVersion':1,\n                'result':'PassedWithinInactiveZeroClassHostScope' if passed else 'FailedOrIncomplete',\n                'originalProductionMethodSha256':digest(code.encode()),\n                'sourceBefore':before,'sourceAfter':after,'sourcePreserved':preserved,\n                'commands':receipts,'profiles':profiles,'firstError':firstError,"
+        },
+        {
+          "needle": "'actualProductionHeaderAndMethodCompiled':True",
+          "startLine": 167,
+          "endLine": 173,
+          "text": "                'sourceBefore':before,'sourceAfter':after,'sourcePreserved':preserved,\n                'commands':receipts,'profiles':profiles,'firstError':firstError,\n                'actualProductionHeaderAndMethodCompiled':True,\n                'nativeVmInputsExplicitlyMocked':True,\n                'zeroClassSubsetOnly':True,'completeExecutionSource':False,\n                'coherentVmEpochProven':False,'classPointerOriginProven':False,\n                'officialUnitySdkCompiled':False,'UnityPlayerExecuted':False,"
+        },
+        {
+          "needle": "write(output/'MANIFEST.json',{'files':manifest})",
+          "startLine": 177,
+          "endLine": 183,
+          "text": "                   'sha256':digest(p.read_bytes())} for p in sorted(output.rglob('*'))\n                  if p.is_file() and not p.is_symlink()]\n        write(output/'MANIFEST.json',{'files':manifest})\n    print(json.dumps({'result':result['result'],'profiles':list(profiles),\n                      'testsPerProfile':len(GROUPS)}))\n    if not passed:raise SystemExit(1)\nif __name__=='__main__':main()"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py",
+      "sha256": "41991302282bd370ca226504617d09264cbd704e00dc2a1f90419b62d2caa448",
+      "excerpts": [
+        {
+          "needle": "unknown=record.get(\"commandLifetimeUnverified\",False)",
+          "startLine": 123,
+          "endLine": 129,
+          "text": "    record=json.loads(raw.decode(\"utf-8\"),object_pairs_hook=pairs,parse_constant=constant)\n    if not isinstance(record,dict):raise ValueError(\"Component result must be an object\")\n    unknown=record.get(\"commandLifetimeUnverified\",False)\n    if type(unknown) is not bool:raise ValueError(\"Invalid command lifetime marker\")\n    return {\"innerResult\":record.get(\"result\"),\"innerResultPath\":str(source),\n            \"innerResultSha256\":hashlib.sha256(raw).hexdigest(),\n            \"commandLifetimeUnverified\":unknown}"
+        },
+        {
+          "needle": "if result[\"commandLifetimeUnverified\"]:",
+          "startLine": 157,
+          "endLine": 163,
+          "text": "        else:\n            result.update(read_component_result(output,file))\n        if result[\"commandLifetimeUnverified\"]:\n            result[\"stopBatchReason\"]=\"ChildReportedUnverifiedCommandLifetime\"\n        elif proc.returncode==0 and result.get(\"innerResult\")==expected:\n            result[\"status\"]=\"Passed\"\n    except subprocess.TimeoutExpired as error:"
+        }
+      ]
+    }
+  ],
+  "symptom": "Native empty-live command timeout marks only the command receipt unsafe; the component summary omits that marker, so the outer consumer reads false and may continue later cells after the completed nonzero runner exit. A version/start/compile failure can also retain actualProductionHeaderAndMethodCompiled=true with no successful compilation.",
+  "observedCurrentBatchFault": false,
+  "faultInjection": "NotRun_OutsideSinglePrescribedBatch",
+  "staticChain": [
+    "run(): TimeoutExpired stores commandLifetimeUnverified=true in receipts, returns by raising RuntimeError",
+    "main(): catches Exception, writes FailedOrIncomplete RESULT without propagating commandLifetimeUnverified",
+    "outer read_component_result(): defaults missing lifetime marker to false",
+    "outer execute_component(): ordinary nonzero child remains Failed with no stopBatchReason; main can schedule later cells",
+    "Aggregate still remains FailedOrIncomplete; this finding does not allege a false aggregate PASS"
+  ],
+  "reproductionForPrimary": [
+    "Under the exact source tuple, add a source-bound controlled unittest that mocks native subprocess.run to raise TimeoutExpired during compiler-version or a compile, with stdout/stderr prefixes. No Unity or SDK tool is needed.",
+    "Run the native main in one fresh test-owned root; verify command receipt has lifetime-unverified=true and component RESULT currently omits it. Verify compilation claim can be true with zero successful compile commands.",
+    "Pass that completed failed child/result through the actual outer consumer and orchestration fixture; confirm the missing marker is interpreted false, stopBatchReason stays null and later scheduled cells are not NotRun."
+  ],
+  "impactBoundary": "New empty-live native host runner and its outer failure/lifetime/compilation-claim contract. Successful scheduled host/SDK commands and their raw aggregate remain independent factual evidence; actual surviving descendants were not observed.",
+  "recommendedPrimaryDirection": "Propagate command lifetime uncertainty through the component result, distinguish incomplete source preservation/inventory, and derive compiled-source flags from successful strict/sanitized compiler receipts. Cover timeout/interruption/missing compiler/nonzero compile and outer fail-stop/NotRun integration with source-bound regressions. Preserve all original failed/partial receipts; no global kills, retries or supervisor redesign by Local.",
+  "remainingUncertainty": "No failure was injected and no descendant-survival event was observed in this Local cycle. The source branch is confirmed statically, not a reproduced real compiler/Unity timeout. Other producers require their own Primary audit.",
+  "validationAfterFix": "Fresh focused native and outer failure-contract tests including retained prefixes/availability/null exit and NotRun roots, followed only by a newly authorized source-pinned Local cycle; do not retry this consumed batch."
+}

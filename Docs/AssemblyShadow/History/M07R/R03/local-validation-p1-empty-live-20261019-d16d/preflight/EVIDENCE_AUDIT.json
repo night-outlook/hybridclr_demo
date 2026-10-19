@@ -1,0 +1,324 @@
+{
+  "result": "PassedFactualEvidenceAudit",
+  "batchResult": "PassedSourceHostAndSDKOnly",
+  "outerStates": {
+    "Passed": 15
+  },
+  "rawResultSha256": "77927925425c4911291d2cf59c309ea44a54b22630386611da1378fd0e7eefe7",
+  "rawManifestSha256": "b1e94c6a58666bfe70c277002497663fef324c4ab22ae5140c713a8e35271953",
+  "regularInventoryEntries": 3894,
+  "symlinksOmittedByOuterManifestButAuthenticatedByLegacyManifest": [
+    {
+      "path": "legacy-host/native-v2-legacy-sink/evidence/cases/posix-93/diagnostics.v2",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-EMPTY-LIVE-20261019-d16d/legacy-host/native-v2-legacy-sink/evidence/cases/posix-93/target"
+    },
+    {
+      "path": "legacy-host/native-v2-legacy-sink/evidence/cases/posix-92/diagnostics.v2",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-EMPTY-LIVE-20261019-d16d/legacy-host/native-v2-legacy-sink/evidence/cases/posix-92/target"
+    },
+    {
+      "path": "legacy-host/native-v2-file-transaction/evidence/sanitized/case-0164/alias",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-EMPTY-LIVE-20261019-d16d/legacy-host/native-v2-file-transaction/evidence/sanitized/case-0164/transaction"
+    },
+    {
+      "path": "legacy-host/native-v2-file-transaction/evidence/strict/case-0071/alias",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-EMPTY-LIVE-20261019-d16d/legacy-host/native-v2-file-transaction/evidence/strict/case-0071/transaction"
+    }
+  ],
+  "localizedCommandStreamReceiptsVerified": 435,
+  "sourcePreserved": true,
+  "installedSdkPreserved": true,
+  "managed": {
+    "actualResult": "Passed",
+    "aggregateState": "Passed",
+    "exit": 0,
+    "obsoleteRootReceiptAbsent": true,
+    "innerResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-EMPTY-LIVE-20261019-d16d/managed-sdk/build-api/results.json",
+    "innerResultSha256": "2065d11e913b9c2a846901e097de2e7e5d14ff1040ce041184117fc246ad94ea",
+    "returnedBindingVerified": true,
+    "actualResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-EMPTY-LIVE-20261019-d16d/managed-sdk/build-api/results.json",
+    "actualResultSha256": "2065d11e913b9c2a846901e097de2e7e5d14ff1040ce041184117fc246ad94ea",
+    "productCount": 5,
+    "inputCount": 428,
+    "expectedNegative": [
+      {
+        "id": "OriginalUnsignedCounts",
+        "exit": 1,
+        "CS0266Errors": 2
+      }
+    ],
+    "warnings": 68
+  },
+  "native": {
+    "actualResult": "Passed",
+    "passedConfigurations": 85,
+    "failedConfigurations": 0,
+    "notRunConfigurations": 0,
+    "distinctTranslationUnits": 17,
+    "profiles": [
+      "candidate",
+      "debug",
+      "diagnostics-off",
+      "feature-off",
+      "probe-off"
+    ],
+    "copiedSdkInputsVerified": 1908,
+    "candidateNativeSha": "d16d2f7eee4c0f2333f31c4ec6e40422956d8fd1",
+    "warnings": 742
+  },
+  "hostSummaries": {
+    "metadata-gate": {
+      "result": "PassedWithinHostScope",
+      "profilesCompleted": [
+        "strict",
+        "sanitized"
+      ],
+      "sourcePreserved": true,
+      "firstError": null,
+      "sourceContract": {
+        "globalGateDefinitionOffset": 2668,
+        "openBeforeReady": true,
+        "closeBeforeTeardown": true,
+        "defaultReaderSourceEpoch": 1,
+        "assembliesReadGateBeforeSourceLock": true,
+        "classesReadGateBeforeSourceLock": true
+      },
+      "commandCount": 12
+    },
+    "bounded-class": {
+      "result": "PassedWithinHostScope",
+      "profilesCompleted": [
+        "strict",
+        "sanitized"
+      ],
+      "sourcePreserved": true,
+      "firstError": null,
+      "commandCount": 6
+    },
+    "bounded-physical": {
+      "result": "PassedWithinHostScope",
+      "profilesCompleted": [
+        "strict",
+        "sanitized"
+      ],
+      "sourcePreserved": true,
+      "firstError": null,
+      "commandCount": 6
+    },
+    "bounded-first-use": {
+      "result": "PassedWithinHostScope",
+      "profilesCompleted": [
+        "strict",
+        "sanitized"
+      ],
+      "sourcePreserved": true,
+      "firstError": null,
+      "commandCount": 4
+    },
+    "bounded-status": {
+      "result": "PassedWithinHostScope",
+      "profilesCompleted": [
+        "strict",
+        "sanitized"
+      ],
+      "sourceUnchanged": true,
+      "firstError": null,
+      "commandCount": 4
+    },
+    "bounded-inventory": {
+      "result": "PassedWithinHostScope",
+      "completedProfiles": [
+        "strict",
+        "sanitized"
+      ],
+      "sourcePreserved": true,
+      "firstFailure": null,
+      "commandCount": 4
+    },
+    "frozen-v2": {
+      "result": "PassedWithinInactiveHostScope",
+      "profiles": [
+        {
+          "profile": "strict",
+          "originalGeneralBytes": 300032,
+          "originalExecutionBytes": 331078,
+          "encodedBytes": 631720,
+          "sha256": "f1e193ee55e34bcf051f6835949c1889deeec019064fcfc9604fd1264891038e",
+          "strictWireReferenceByteParity": true,
+          "originalSemanticStatus": "Failed",
+          "completeCapturedClasses": 1024,
+          "overflowRejected": true,
+          "partialSinkRejected": true,
+          "invalidUtf8Rejected": true,
+          "combinedArtifactOverflowRejected": true
+        },
+        {
+          "profile": "sanitized",
+          "originalGeneralBytes": 300032,
+          "originalExecutionBytes": 331078,
+          "encodedBytes": 631720,
+          "sha256": "f1e193ee55e34bcf051f6835949c1889deeec019064fcfc9604fd1264891038e",
+          "strictWireReferenceByteParity": true,
+          "originalSemanticStatus": "Failed",
+          "completeCapturedClasses": 1024,
+          "overflowRejected": true,
+          "partialSinkRejected": true,
+          "invalidUtf8Rejected": true,
+          "combinedArtifactOverflowRejected": true
+        }
+      ],
+      "sourceUnchanged": true,
+      "firstError": null,
+      "commandCount": 12
+    },
+    "owned-general": {
+      "result": "PassedWithinOwnedHostScope",
+      "profiles": {
+        "strict": {
+          "result": "PassedWithinHostScope",
+          "cases": [
+            "byte-exact-general-owned-parity",
+            "composition-no-new-allocation",
+            "missing-source-fail-closed",
+            "incomplete-source-fail-closed",
+            "cross-reader-generation-mismatch",
+            "startup-source-bounds",
+            "invalid-borrowed-startup-refusal",
+            "complete-output-budget-refusal",
+            "invalid-utf8-refusal",
+            "single-owner-single-freeze",
+            "no-coherent-vm-epoch-or-player-claim"
+          ],
+          "allocationsAfterPrewarm": 0
+        },
+        "sanitized": {
+          "result": "PassedWithinHostScope",
+          "cases": [
+            "byte-exact-general-owned-parity",
+            "composition-no-new-allocation",
+            "missing-source-fail-closed",
+            "incomplete-source-fail-closed",
+            "cross-reader-generation-mismatch",
+            "startup-source-bounds",
+            "invalid-borrowed-startup-refusal",
+            "complete-output-budget-refusal",
+            "invalid-utf8-refusal",
+            "single-owner-single-freeze",
+            "no-coherent-vm-epoch-or-player-claim"
+          ],
+          "allocationsAfterPrewarm": 0
+        }
+      },
+      "sourcePreserved": true,
+      "firstError": null,
+      "sourceContract": {
+        "requiredProductionFragments": 20,
+        "caseNames": [
+          "byte-exact-general-owned-parity",
+          "composition-no-new-allocation",
+          "missing-source-fail-closed",
+          "incomplete-source-fail-closed",
+          "cross-reader-generation-mismatch",
+          "startup-source-bounds",
+          "invalid-borrowed-startup-refusal",
+          "complete-output-budget-refusal",
+          "invalid-utf8-refusal",
+          "single-owner-single-freeze",
+          "no-coherent-vm-epoch-or-player-claim"
+        ],
+        "onlyOwnedCompletedSourcesRead": true,
+        "noVmOrFileOperationsInComposer": true,
+        "crossEnumerationGenerationMismatchRejected": true,
+        "globalVmEpochProven": false
+      },
+      "commandCount": 4
+    },
+    "live-general": {
+      "result": "PassedWithinInactiveSourceHostScope",
+      "sourcePreserved": true,
+      "firstError": null,
+      "commandCount": 4
+    }
+  },
+  "legacyGeneralProfiles": [
+    {
+      "name": "strict",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "sanitized",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "legacyParityCases": [
+    {
+      "profile": "strict",
+      "variant": "n-large",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 331078,
+      "sha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+      "exactByteParity": true
+    },
+    {
+      "profile": "strict",
+      "variant": "empty",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 0,
+      "bytes": 327,
+      "sha256": "f77a59c273a6856ab85019922f8947eb3259833b93678f3d16aa5955045bbd75",
+      "exactByteParity": true
+    },
+    {
+      "profile": "strict",
+      "variant": "debug-class-flags",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 342307,
+      "sha256": "33d99dbb2c95cc9a90b333add09eb98bbe6815a4db2865f33c21d96dbc191669",
+      "exactByteParity": true
+    },
+    {
+      "profile": "sanitized",
+      "variant": "n-large",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 331078,
+      "sha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+      "exactByteParity": true
+    },
+    {
+      "profile": "sanitized",
+      "variant": "empty",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 0,
+      "bytes": 327,
+      "sha256": "f77a59c273a6856ab85019922f8947eb3259833b93678f3d16aa5955045bbd75",
+      "exactByteParity": true
+    },
+    {
+      "profile": "sanitized",
+      "variant": "debug-class-flags",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 342307,
+      "sha256": "33d99dbb2c95cc9a90b333add09eb98bbe6815a4db2865f33c21d96dbc191669",
+      "exactByteParity": true
+    }
+  ],
+  "noNewCompilerErrors": true,
+  "aggregateVerdictPreserved": true,
+  "realUnityOrPlayerRun": false,
+  "runtimeAcceptance": false,
+  "knownSourceFindings": [
+    "IR-LOCAL-P1-EMPTY-LIVE-RECEIPT-01"
+  ],
+  "sourceFindingStatus": "SourceConfirmed_NotFaultInjected",
+  "currentBatchVerdictNotChangedBySourceFinding": true
+}

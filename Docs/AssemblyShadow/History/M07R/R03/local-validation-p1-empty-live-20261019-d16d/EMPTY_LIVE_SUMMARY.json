@@ -1,0 +1,726 @@
+{
+  "kind": "R03P1EmptyExecutionLiveLocalSummary",
+  "result": "PassedSourceHostAndSDKOnly",
+  "executionSourceTuple": {
+    "hybridclr_demo": "8514c03cce722c0b036267552ba026ecb548edaa",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "d16d2f7eee4c0f2333f31c4ec6e40422956d8fd1"
+  },
+  "testedDemoAnchor": "84d9360903573dc473e9dd5cbee25883d07e1a0c",
+  "emptyLive": {
+    "result": "PassedWithinInactiveZeroClassHostAndOfficialSDKSyntaxScope",
+    "sourceMethodSha256": "14b422a81986960c0de25ad0fe4214241cc9f7ea4e6ad9a724330dbd9230de4d",
+    "profiles": {
+      "sanitized": {
+        "caseGroups": [
+          "level2-zero-class",
+          "level1-zero-class",
+          "level0-zero-class",
+          "reused-frozen-output",
+          "metadata-closed",
+          "nonempty-class-inventory",
+          "inconsistent-class-inventory",
+          "counter-first-failure",
+          "counter-second-failure",
+          "dropped-threads-refused",
+          "saturated-refused",
+          "dropped-class-rows-refused",
+          "state-changed-mid-source",
+          "class-added-mid-source",
+          "state-changed-during-format",
+          "counter-changed-during-format",
+          "generation-changed-during-format",
+          "class-added-during-format",
+          "begin-refusal",
+          "freeze-refusal"
+        ],
+        "result": "PassedWithinHostScope"
+      },
+      "strict": {
+        "caseGroups": [
+          "level2-zero-class",
+          "level1-zero-class",
+          "level0-zero-class",
+          "reused-frozen-output",
+          "metadata-closed",
+          "nonempty-class-inventory",
+          "inconsistent-class-inventory",
+          "counter-first-failure",
+          "counter-second-failure",
+          "dropped-threads-refused",
+          "saturated-refused",
+          "dropped-class-rows-refused",
+          "state-changed-mid-source",
+          "class-added-mid-source",
+          "state-changed-during-format",
+          "counter-changed-during-format",
+          "generation-changed-during-format",
+          "class-added-during-format",
+          "begin-refusal",
+          "freeze-refusal"
+        ],
+        "result": "PassedWithinHostScope"
+      }
+    },
+    "directVersionCompileRunReceipts": 5,
+    "successfulCompilersActuallyVerified": 2,
+    "groupsPerProfile": 20,
+    "sourceInputs": {
+      "libil2cpp/vm/AssemblyShadow.cpp": {
+        "bytes": 121187,
+        "gitBlob": "53aecc2d113b20b6ff825d0aa4ca0f4372a7cce2",
+        "sha256": "6021bce2939c45a7bd5b44a881c67a052eac1902b6b0eb30d8f620142344c5a9"
+      },
+      "libil2cpp/vm/AssemblyShadow.h": {
+        "bytes": 9637,
+        "gitBlob": "32956c2c4084951131b497c1201712a0d4fe11b3",
+        "sha256": "74b0e63cb5a007a7f6bd3fa45435d1700b6041427515138fafd003ed5ffc8498"
+      },
+      "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h": {
+        "bytes": 2599,
+        "gitBlob": "5b2afe1cfcf14570e64b8836ef4f995ee5e6db57",
+        "sha256": "d4f4d495fc0636fcdd41f1121a1aa71404e838e1dfedfc7a7a3d10d70777e734"
+      },
+      "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl": {
+        "bytes": 4563,
+        "gitBlob": "f465f0435edf17e99385f283ee36a75fdd46f7e9",
+        "sha256": "14b422a81986960c0de25ad0fe4214241cc9f7ea4e6ad9a724330dbd9230de4d"
+      },
+      "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h": {
+        "bytes": 9831,
+        "gitBlob": "eeb413f8c8c0f6c1658da68ddd404b9b478e6e70",
+        "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9"
+      },
+      "libil2cpp/vm/AssemblyShadowMetadataLifetime.h": {
+        "bytes": 4637,
+        "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd",
+        "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716"
+      },
+      "libil2cpp/vm/AssemblyShadowR02Snapshot.h": {
+        "bytes": 6769,
+        "gitBlob": "9f7266014b1514adfd0935948ff417375df274d8",
+        "sha256": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf"
+      },
+      "tools/r03/diagnostic_stream/empty_live_fixture/AssemblyShadowFrozenExecutionRecord.h": {
+        "bytes": 38,
+        "gitBlob": "6bfc4009e9b53d77856c628ae59a721d2c5a0a4b",
+        "sha256": "f0880e0829c8cadecff272c0dfd2bcbe8c5768a6863b6e6215307e40703f2f96"
+      },
+      "tools/r03/diagnostic_stream/empty_live_fixture/AssemblyShadowMetadataLifetime.h": {
+        "bytes": 38,
+        "gitBlob": "6bfc4009e9b53d77856c628ae59a721d2c5a0a4b",
+        "sha256": "f0880e0829c8cadecff272c0dfd2bcbe8c5768a6863b6e6215307e40703f2f96"
+      },
+      "tools/r03/diagnostic_stream/empty_live_fixture/MockRuntime.h": {
+        "bytes": 4439,
+        "gitBlob": "a7c4485a804efb0f65d60d542fb5aba34c43bcb0",
+        "sha256": "cf1a597d1d1130da7d0fcf8688891144d047a2201a658659de0e0839eae6c2fc"
+      },
+      "tools/r03/diagnostic_stream/empty_live_fixture/fixture.cpp": {
+        "bytes": 5108,
+        "gitBlob": "e8e73cf62edf30cddce706484714091554de9547",
+        "sha256": "a51a84385e644a4884f6f3b1592c7981ecdc369e992808e2cd9e6e80caa7d62c"
+      },
+      "tools/r03/diagnostic_stream/run_bounded_execution_empty_live.py": {
+        "bytes": 9736,
+        "gitBlob": "07b92c168dcf8dadd171521616d4cb8d18f8d2b4",
+        "sha256": "76e1aea1c20ef45e55926d9758523b3e61a7dfd40653c9153ac7bc6bc9ebc1d2"
+      }
+    },
+    "sourcePreserved": true,
+    "actualHeaderAndMethodBytes": true,
+    "VMAndCounterAndRecordInputsExplicitMocks": true,
+    "zeroClassSubsetOnly": true,
+    "completeExecutionSource": false,
+    "coherentVmEpochProven": false,
+    "classPointerOriginProven": false,
+    "runtimeAcceptance": false,
+    "originalGettersUnchanged": true,
+    "SDKConfigurations": 85,
+    "SDKUnits": 17,
+    "SDKProbe": "AssemblyShadowExecutionEmptyLiveSyntax.cpp",
+    "newProbeAndRealAssemblyShadowCppAllFiveSyntaxProfiles": true,
+    "failurePathsFaultInjected": false,
+    "sourceFinding": "IR-LOCAL-P1-EMPTY-LIVE-RECEIPT-01"
+  },
+  "zeroClassSubsetOnly": true,
+  "completeExecutionSource": false,
+  "knownSourceFindings": [
+    {
+      "id": "IR-LOCAL-P1-EMPTY-LIVE-RECEIPT-01",
+      "status": "SourceConfirmed_NotFaultInjected",
+      "time": "2026-10-19T08:10:03.839562+00:00",
+      "executionPins": {
+        "hybridclr_demo": "8514c03cce722c0b036267552ba026ecb548edaa",
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "d16d2f7eee4c0f2333f31c4ec6e40422956d8fd1"
+      },
+      "sourceEvidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/run_bounded_execution_empty_live.py",
+          "sha256": "76e1aea1c20ef45e55926d9758523b3e61a7dfd40653c9153ac7bc6bc9ebc1d2",
+          "excerpts": [
+            {
+              "needle": "receipt['commandLifetimeUnverified']=True",
+              "startLine": 99,
+              "endLine": 105,
+              "text": "        stdout,stderr=e.stdout,e.stderr\n        receipt['exception']=repr(e);receipt['outputCompleteness']='CapturedPrefix'\n        receipt['commandLifetimeUnverified']=True\n    except OSError as e:\n        receipt['exception']=repr(e)\n    finally:\n        for stream,raw in (('stdout',stdout),('stderr',stderr)):"
+            },
+            {
+              "needle": "result={'kind':'R03P1EmptyExecutionLiveSourceHost'",
+              "startLine": 162,
+              "endLine": 168,
+              "text": "        passed=(firstError is None and preserved and len(receipts)==5 and\n                all(x['status']=='Passed' for x in receipts) and len(profiles)==2)\n        result={'kind':'R03P1EmptyExecutionLiveSourceHost','schemaVersion':1,\n                'result':'PassedWithinInactiveZeroClassHostScope' if passed else 'FailedOrIncomplete',\n                'originalProductionMethodSha256':digest(code.encode()),\n                'sourceBefore':before,'sourceAfter':after,'sourcePreserved':preserved,\n                'commands':receipts,'profiles':profiles,'firstError':firstError,"
+            },
+            {
+              "needle": "'actualProductionHeaderAndMethodCompiled':True",
+              "startLine": 167,
+              "endLine": 173,
+              "text": "                'sourceBefore':before,'sourceAfter':after,'sourcePreserved':preserved,\n                'commands':receipts,'profiles':profiles,'firstError':firstError,\n                'actualProductionHeaderAndMethodCompiled':True,\n                'nativeVmInputsExplicitlyMocked':True,\n                'zeroClassSubsetOnly':True,'completeExecutionSource':False,\n                'coherentVmEpochProven':False,'classPointerOriginProven':False,\n                'officialUnitySdkCompiled':False,'UnityPlayerExecuted':False,"
+            },
+            {
+              "needle": "write(output/'MANIFEST.json',{'files':manifest})",
+              "startLine": 177,
+              "endLine": 183,
+              "text": "                   'sha256':digest(p.read_bytes())} for p in sorted(output.rglob('*'))\n                  if p.is_file() and not p.is_symlink()]\n        write(output/'MANIFEST.json',{'files':manifest})\n    print(json.dumps({'result':result['result'],'profiles':list(profiles),\n                      'testsPerProfile':len(GROUPS)}))\n    if not passed:raise SystemExit(1)\nif __name__=='__main__':main()"
+            }
+          ]
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py",
+          "sha256": "41991302282bd370ca226504617d09264cbd704e00dc2a1f90419b62d2caa448",
+          "excerpts": [
+            {
+              "needle": "unknown=record.get(\"commandLifetimeUnverified\",False)",
+              "startLine": 123,
+              "endLine": 129,
+              "text": "    record=json.loads(raw.decode(\"utf-8\"),object_pairs_hook=pairs,parse_constant=constant)\n    if not isinstance(record,dict):raise ValueError(\"Component result must be an object\")\n    unknown=record.get(\"commandLifetimeUnverified\",False)\n    if type(unknown) is not bool:raise ValueError(\"Invalid command lifetime marker\")\n    return {\"innerResult\":record.get(\"result\"),\"innerResultPath\":str(source),\n            \"innerResultSha256\":hashlib.sha256(raw).hexdigest(),\n            \"commandLifetimeUnverified\":unknown}"
+            },
+            {
+              "needle": "if result[\"commandLifetimeUnverified\"]:",
+              "startLine": 157,
+              "endLine": 163,
+              "text": "        else:\n            result.update(read_component_result(output,file))\n        if result[\"commandLifetimeUnverified\"]:\n            result[\"stopBatchReason\"]=\"ChildReportedUnverifiedCommandLifetime\"\n        elif proc.returncode==0 and result.get(\"innerResult\")==expected:\n            result[\"status\"]=\"Passed\"\n    except subprocess.TimeoutExpired as error:"
+            }
+          ]
+        }
+      ],
+      "symptom": "Native empty-live command timeout marks only the command receipt unsafe; the component summary omits that marker, so the outer consumer reads false and may continue later cells after the completed nonzero runner exit. A version/start/compile failure can also retain actualProductionHeaderAndMethodCompiled=true with no successful compilation.",
+      "observedCurrentBatchFault": false,
+      "faultInjection": "NotRun_OutsideSinglePrescribedBatch",
+      "staticChain": [
+        "run(): TimeoutExpired stores commandLifetimeUnverified=true in receipts, returns by raising RuntimeError",
+        "main(): catches Exception, writes FailedOrIncomplete RESULT without propagating commandLifetimeUnverified",
+        "outer read_component_result(): defaults missing lifetime marker to false",
+        "outer execute_component(): ordinary nonzero child remains Failed with no stopBatchReason; main can schedule later cells",
+        "Aggregate still remains FailedOrIncomplete; this finding does not allege a false aggregate PASS"
+      ],
+      "reproductionForPrimary": [
+        "Under the exact source tuple, add a source-bound controlled unittest that mocks native subprocess.run to raise TimeoutExpired during compiler-version or a compile, with stdout/stderr prefixes. No Unity or SDK tool is needed.",
+        "Run the native main in one fresh test-owned root; verify command receipt has lifetime-unverified=true and component RESULT currently omits it. Verify compilation claim can be true with zero successful compile commands.",
+        "Pass that completed failed child/result through the actual outer consumer and orchestration fixture; confirm the missing marker is interpreted false, stopBatchReason stays null and later scheduled cells are not NotRun."
+      ],
+      "impactBoundary": "New empty-live native host runner and its outer failure/lifetime/compilation-claim contract. Successful scheduled host/SDK commands and their raw aggregate remain independent factual evidence; actual surviving descendants were not observed.",
+      "recommendedPrimaryDirection": "Propagate command lifetime uncertainty through the component result, distinguish incomplete source preservation/inventory, and derive compiled-source flags from successful strict/sanitized compiler receipts. Cover timeout/interruption/missing compiler/nonzero compile and outer fail-stop/NotRun integration with source-bound regressions. Preserve all original failed/partial receipts; no global kills, retries or supervisor redesign by Local.",
+      "remainingUncertainty": "No failure was injected and no descendant-survival event was observed in this Local cycle. The source branch is confirmed statically, not a reproduced real compiler/Unity timeout. Other producers require their own Primary audit.",
+      "validationAfterFix": "Fresh focused native and outer failure-contract tests including retained prefixes/availability/null exit and NotRun roots, followed only by a newly authorized source-pinned Local cycle; do not retry this consumed batch."
+    }
+  ],
+  "primaryRemediationRequired": true,
+  "ownedExecution": {
+    "result": "PassedWithinOwnedExecutionHostAndOfficialSDKSyntaxScope",
+    "profiles": [
+      {
+        "name": "level0-strict",
+        "diagnosticsLevel": 0,
+        "sanitized": false,
+        "groups": 35,
+        "watchedOperatorNew": 0,
+        "snapshotObjectBytes": 320,
+        "recordObjectBytes": 3932512
+      },
+      {
+        "name": "level0-sanitized",
+        "diagnosticsLevel": 0,
+        "sanitized": true,
+        "groups": 35,
+        "watchedOperatorNew": 0,
+        "snapshotObjectBytes": 320,
+        "recordObjectBytes": 3932512
+      },
+      {
+        "name": "level1-strict",
+        "diagnosticsLevel": 1,
+        "sanitized": false,
+        "groups": 35,
+        "watchedOperatorNew": 0,
+        "snapshotObjectBytes": 320,
+        "recordObjectBytes": 3932512
+      },
+      {
+        "name": "level1-sanitized",
+        "diagnosticsLevel": 1,
+        "sanitized": true,
+        "groups": 35,
+        "watchedOperatorNew": 0,
+        "snapshotObjectBytes": 320,
+        "recordObjectBytes": 3932512
+      },
+      {
+        "name": "level2-strict",
+        "diagnosticsLevel": 2,
+        "sanitized": false,
+        "groups": 35,
+        "watchedOperatorNew": 0,
+        "snapshotObjectBytes": 320,
+        "recordObjectBytes": 3932512
+      },
+      {
+        "name": "level2-sanitized",
+        "diagnosticsLevel": 2,
+        "sanitized": true,
+        "groups": 35,
+        "watchedOperatorNew": 0,
+        "snapshotObjectBytes": 320,
+        "recordObjectBytes": 3932512
+      }
+    ],
+    "caseGroups": [
+      "snapshot-all-fields-and-read-order",
+      "every-metric-change-clears-destination",
+      "every-source-metadata-change",
+      "invalid-subsets-rejected",
+      "disabled-policy",
+      "coverage-precedence",
+      "empty-original-v1-parity",
+      "256-boolean-row-original-v1-parity",
+      "counted-nonterminated-state",
+      "unicode-and-control-byte-parity",
+      "owned-inputs-survive-mutation",
+      "invalid-utf8-rejected",
+      "invalid-null-inputs",
+      "missing-extra-and-overlimit-rows",
+      "1024-row-original-v1-parity",
+      "wrong-stages-and-reuse",
+      "whole-object-input-alias",
+      "invalid-range-before-dereference",
+      "exact-field-byte-limit",
+      "one-byte-over-field-limit",
+      "escape-expanded-byte-limit",
+      "nonclassic-locale-rejected",
+      "incomplete-counters-rejected",
+      "late-source-revocation",
+      "sink-preflight-no-callback",
+      "bounded-chunked-emission",
+      "sink-failure-no-continuation",
+      "reentrant-sink-rejected",
+      "revoking-sink-rejected",
+      "writer-finish-contract-unchanged",
+      "zero-watched-operator-new",
+      "actual-r02-source-and-live-wrapper-parity",
+      "actual-concurrent-counter-source",
+      "actual-counter-saturation",
+      "actual-counter-thread-capacity"
+    ],
+    "hostGroupsExecuted": 210,
+    "successfulCompilerVersionCompileRunReceipts": 13,
+    "sourceIdentity": {
+      "gitBranch": "codex/assembly-shadow-r01b-h1",
+      "gitClean": true,
+      "gitHead": "d16d2f7eee4c0f2333f31c4ec6e40422956d8fd1",
+      "mode": "GitCheckout",
+      "origin": "git@github.com:night-outlook/il2cpp_plus.git"
+    },
+    "sourceHashes": {
+      "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605",
+      "libil2cpp/vm/AssemblyShadowDiagnosticsProfile.h": "9c3833d1654b23a26cfd5567fee1bacf057887a2bc3afc1e50cbfa31c2cdea3e",
+      "libil2cpp/vm/AssemblyShadowExecutionSerializer.h": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef",
+      "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9",
+      "libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h": "c383afe1ba28b3c88f00abcea4ff469d40e3557bdff0303368d6a31ded1ed378",
+      "libil2cpp/vm/AssemblyShadowObservationCounters.h": "4ce6a868fc7c50361924ed0b9523a18a163719509f4c1879f3e72c03b7506575",
+      "libil2cpp/vm/AssemblyShadowObservationMemo.h": "d26695e7f01ee7e6b2d4845900ba20324882ae366587d9be215b72627b15cb82",
+      "libil2cpp/vm/AssemblyShadowR02Diagnostics.h": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba",
+      "libil2cpp/vm/AssemblyShadowR02Snapshot.h": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf",
+      "tools/r03/diagnostic_stream/frozen_execution_allocations.cpp": "e3e01f68acab9226dd5123a23f5edbe6991f2a1c4b5c89216c9cfb07792a7e37",
+      "tools/r03/diagnostic_stream/frozen_execution_fixture.cpp": "3a0142a340c0a0f433265837123f1e6c25eac6362c37b36ea829fbd0e7638384",
+      "tools/r03/diagnostic_stream/reference/AssemblyShadowExecutionSerializer.h": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef",
+      "tools/r03/diagnostic_stream/reference/AssemblyShadowR02Diagnostics.h": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba",
+      "tools/r03/diagnostic_stream/run_frozen_execution.py": "38707a85eb9eff727a3619b0dc26242d25b69b1ba3242849945463dfc71d5785"
+    },
+    "sourcePreserved": true,
+    "referenceSha256": {
+      "AssemblyShadowExecutionSerializer.h": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef",
+      "AssemblyShadowR02Diagnostics.h": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba"
+    },
+    "referenceAdapters": {
+      "AssemblyShadowExecutionSerializer.h": {
+        "onlyAddedCommentPrefix": true,
+        "originalSha256": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef",
+        "path": "reference-AssemblyShadowExecutionSerializer.h",
+        "sha256": "971eda9b8f7e0505edbfbada251b3a048fd533744e611256078892eba77ba810"
+      },
+      "AssemblyShadowR02Diagnostics.h": {
+        "onlyAddedCommentPrefix": true,
+        "originalSha256": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba",
+        "path": "reference-AssemblyShadowR02Diagnostics.h",
+        "sha256": "f2589462e267d395481cfd4e34e94d943f638de6d3f984465fb7ba8aedde3982"
+      }
+    },
+    "hostR02CounterSourceCases": true,
+    "classRowsAreHostFixtures": true,
+    "coherentVmEpochProven": false,
+    "classPointerOriginProven": false,
+    "originalLiveGettersReplaced": false,
+    "runtimeAcceptance": false,
+    "SDKProbe": "AssemblyShadowExecutionComposeSyntax.cpp",
+    "probeCompiledUnderAllFiveOfficialSdkProfiles": true,
+    "SDKConfigurations": 85,
+    "watchedOperatorNewAfterPrewarm": 0,
+    "processGcRssMeasured": false,
+    "realVmShutdownSafetyProven": false,
+    "legacyMacCIFailureUnchanged": true
+  },
+  "commandFailureContracts": {
+    "result": "PassedWithinHostToolingScope",
+    "uniqueTests": 53,
+    "modules": [
+      {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_metadata_preflight.py",
+        "expectedTests": 5,
+        "testIds": [
+          "p1_contract_suite_0.PreflightContracts.test_bounds_and_case_matrix",
+          "p1_contract_suite_0.PreflightContracts.test_candidate_sdk_is_opt_in_and_histories_unchanged",
+          "p1_contract_suite_0.PreflightContracts.test_help_has_explicit_pins",
+          "p1_contract_suite_0.PreflightContracts.test_invalid_pin_and_roots_refuse_before_io",
+          "p1_contract_suite_0.PreflightContracts.test_known_remote_identity_pin_coverage"
+        ]
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py",
+        "expectedTests": 14,
+        "testIds": [
+          "p1_contract_suite_1.AggregateReceiptIntegration.test_fifteen_components_pass_with_actual_producer_response",
+          "p1_contract_suite_1.AggregateReceiptIntegration.test_inactive_native_child_failure_retains_accurate_aggregate_and_sdk_flags",
+          "p1_contract_suite_1.AggregateReceiptIntegration.test_managed_failures_preserve_fourteen_passed_one_failed",
+          "p1_contract_suite_1.AggregateReceiptIntegration.test_postflight_error_retains_failure_receipt",
+          "p1_contract_suite_1.AggregateReceiptIntegration.test_source_change_never_becomes_aggregate_pass",
+          "p1_contract_suite_1.ManagedReceiptContracts.test_actual_producer_response_joins_nested_file",
+          "p1_contract_suite_1.ManagedReceiptContracts.test_directory_in_place_of_receipt_is_rejected",
+          "p1_contract_suite_1.ManagedReceiptContracts.test_failed_inner_verdict_is_not_promoted",
+          "p1_contract_suite_1.ManagedReceiptContracts.test_file_and_parent_symlinks_are_rejected",
+          "p1_contract_suite_1.ManagedReceiptContracts.test_invalid_binding_shapes_hashes_and_duplicate_keys",
+          "p1_contract_suite_1.ManagedReceiptContracts.test_invalid_inner_json_or_identity_is_rejected",
+          "p1_contract_suite_1.ManagedReceiptContracts.test_missing_result_and_obsolete_root_decoy_are_rejected",
+          "p1_contract_suite_1.ManagedReceiptContracts.test_mutated_result_bytes_are_rejected",
+          "p1_contract_suite_1.ManagedReceiptContracts.test_wrong_returned_paths_are_rejected"
+        ]
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_command_failures.py",
+        "expectedTests": 24,
+        "testIds": [
+          "p1_contract_suite_2.BatchFailureScheduling.test_all_fifteen_components_have_independent_success",
+          "p1_contract_suite_2.BatchFailureScheduling.test_completed_nonzero_keeps_other_independent_checks",
+          "p1_contract_suite_2.BatchFailureScheduling.test_first_component_timeout_leaves_fourteen_notrun",
+          "p1_contract_suite_2.BatchFailureScheduling.test_keyboard_interrupt_preserves_summary_and_exit130",
+          "p1_contract_suite_2.BatchFailureScheduling.test_known_launch_failure_is_retained_without_faking_an_exit",
+          "p1_contract_suite_2.BatchFailureScheduling.test_last_sdk_timeout_is_attempted_but_not_passed",
+          "p1_contract_suite_2.BatchFailureScheduling.test_nested_timeout_stops_even_with_passed_child_verdict",
+          "p1_contract_suite_2.BatchFailureScheduling.test_outer_timeout_stops_remaining_commands",
+          "p1_contract_suite_2.BatchFailureScheduling.test_postflight_failure_cannot_turn_green",
+          "p1_contract_suite_2.BatchFailureScheduling.test_unknown_outcome_stops_without_fabricating_postflight",
+          "p1_contract_suite_2.ComponentFailureReceipts.test_child_lifetime_marker_overrides_passed_verdict",
+          "p1_contract_suite_2.ComponentFailureReceipts.test_duplicate_keys_rejected",
+          "p1_contract_suite_2.ComponentFailureReceipts.test_interruption_is_retained_for_batch_stop",
+          "p1_contract_suite_2.ComponentFailureReceipts.test_invalid_json_cannot_become_pass",
+          "p1_contract_suite_2.ComponentFailureReceipts.test_managed_binding_remains_nested_and_hash_authenticated",
+          "p1_contract_suite_2.ComponentFailureReceipts.test_nonfinite_and_nonobject_records_rejected",
+          "p1_contract_suite_2.ComponentFailureReceipts.test_normal_nonzero_is_not_promoted_or_mislabeled_timeout",
+          "p1_contract_suite_2.ComponentFailureReceipts.test_parent_symlink_is_rejected",
+          "p1_contract_suite_2.ComponentFailureReceipts.test_real_missing_command_keeps_failed_receipt",
+          "p1_contract_suite_2.ComponentFailureReceipts.test_real_outer_timeout_keeps_exact_prefix",
+          "p1_contract_suite_2.ComponentFailureReceipts.test_receipt_hash_matches_exact_parsed_bytes",
+          "p1_contract_suite_2.ComponentFailureReceipts.test_result_file_symlink_is_rejected",
+          "p1_contract_suite_2.ComponentFailureReceipts.test_timeout_missing_capture_remains_unavailable",
+          "p1_contract_suite_2.ComponentFailureReceipts.test_unknown_command_exception_stops"
+        ]
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/test_bounded_general_live_command.py",
+        "expectedTests": 10,
+        "testIds": [
+          "p1_contract_suite_3.NativeCommandReceipts.test_existing_sanitizer_and_environment_policy_is_preserved",
+          "p1_contract_suite_3.NativeCommandReceipts.test_interruption_records_before_propagating",
+          "p1_contract_suite_3.NativeCommandReceipts.test_real_missing_executable_is_a_recorded_launch_failure",
+          "p1_contract_suite_3.NativeCommandReceipts.test_real_nonzero_preserves_receipt_and_failure",
+          "p1_contract_suite_3.NativeCommandReceipts.test_real_success_preserves_binary_streams",
+          "p1_contract_suite_3.NativeCommandReceipts.test_real_timeout_preserves_prefix_and_no_invented_exit",
+          "p1_contract_suite_3.NativeCommandReceipts.test_timeout_without_capture_is_unavailable_not_full_empty_output",
+          "p1_contract_suite_3.NativeCommandReceipts.test_unknown_execution_exception_is_not_assumed_quiescent",
+          "p1_contract_suite_3.NativeSummaryFailureReceipts.test_missing_compiler_still_writes_failure_summary",
+          "p1_contract_suite_3.NativeSummaryFailureReceipts.test_postflight_source_loss_preserves_failure_summary"
+        ]
+      }
+    ],
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "sourceInputs": {
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py": {
+        "bytes": 5981,
+        "sha256": "eda5d128b9910b964456f5b9c38b57258cd93dee29e02098bdaa2ccaab8efe04",
+        "gitBlob": "62ba2df576692e8168e1485333e01d30bd733ac4"
+      },
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py": {
+        "bytes": 21071,
+        "sha256": "41991302282bd370ca226504617d09264cbd704e00dc2a1f90419b62d2caa448",
+        "gitBlob": "fe11844e4017e2f7c126a0b89a9841ce8a1d3607"
+      },
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/build_api.py": {
+        "bytes": 11055,
+        "sha256": "c700bf3eff66ad4a249af9e59a6e3cbd0a4bcd6130787442335453acbda87c6d",
+        "gitBlob": "bdbf4c78e0bd1993a0a03c56ee8332a2cb22aa86"
+      },
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/native_validation.py": {
+        "bytes": 13578,
+        "sha256": "c7b6f8398ad6b9461dbdb254491f4a7c35125cb97d0beeac488c9563062355d2",
+        "gitBlob": "0f591edf52e4263881947b516dc239ffd836ff5e"
+      },
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/run_bounded_general_live.py": {
+        "bytes": 12023,
+        "sha256": "4fb0cf6b6c3027314abd60a81799ec90b4282a85e678c16c580a43836ab6c2df",
+        "gitBlob": "91e71f481dd481ac31b4dde872994cbd4cfd9033"
+      },
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_metadata_preflight.py": {
+        "bytes": 4513,
+        "sha256": "2b0474fe9e8b6c86c79184cb277c9d926e07390e9262ed43fb616bb717d10b92",
+        "gitBlob": "16ca99f0f9c1790aac7b83e9dff1f52fab2dfd67"
+      },
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py": {
+        "bytes": 19208,
+        "sha256": "23c5de11f873c18eea4974b678bf2b6620885825d2f2714f49999afca89ab382",
+        "gitBlob": "83c651367fdc5fcd74da1150611e25d8f1e95697"
+      },
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_command_failures.py": {
+        "bytes": 15979,
+        "sha256": "c62fb32ef33b30e57bf784fceff850b04e8da3f407bf556a80b8ab3f460f44cf",
+        "gitBlob": "3f815559278147a8df6f885a590a5f33a33a0193"
+      },
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/test_bounded_general_live_command.py": {
+        "bytes": 8033,
+        "sha256": "79413b9fab37b9d08207cad40658bb8b377f98e299f97366270ba530f466b800",
+        "gitBlob": "84789d4e02c75e100d8677a7f9179aec64bb697a"
+      }
+    },
+    "sourcePreserved": true,
+    "fullUnittestLogSha256": "4479e5650cfeec283438e322355d7b49e521227b38a531329d5b8950b0471629",
+    "realControlledPythonChildren": true,
+    "gitSdkVmChildrenMocked": true,
+    "currentBatch15CompleteDirectChildren": true,
+    "noUnsafeStopWitnessed": true,
+    "descendantQuiescenceProven": false,
+    "timeoutInterruptAndNotRunSemanticsCheckedByContracts": true,
+    "productionRuntimeOrProcessTreeSupervisionProven": false
+  },
+  "descendantQuiescenceProven": false,
+  "liveMethod": {
+    "result": "PassedWithinInactiveSourceHostAndOfficialSDKSyntaxScope",
+    "sourceMethodSha256": "232bd739bc6a54e8047118fbba8eb301a58f67e869ca8ce974902c8c382244a8",
+    "caseGroups": {
+      "strict": {
+        "result": "PassedWithinHostScope",
+        "caseGroups": [
+          "actual-method-legacy-v1-parity",
+          "actual-method-zero-new-after-prewarm",
+          "missing-owned-source-denied",
+          "transaction-source-failure",
+          "first-use-source-failure",
+          "physical-assembly-source-failure",
+          "ordinary-class-source-failure",
+          "usage-generation-changed-during-read",
+          "usage-generation-changed-during-compose",
+          "terminal-state-changed-during-read",
+          "bounded-startup-scan-refusal",
+          "single-owner-one-shot-output",
+          "closed-metadata-admission-refusal"
+        ]
+      },
+      "sanitized": {
+        "result": "PassedWithinHostScope",
+        "caseGroups": [
+          "actual-method-legacy-v1-parity",
+          "actual-method-zero-new-after-prewarm",
+          "missing-owned-source-denied",
+          "transaction-source-failure",
+          "first-use-source-failure",
+          "physical-assembly-source-failure",
+          "ordinary-class-source-failure",
+          "usage-generation-changed-during-read",
+          "usage-generation-changed-during-compose",
+          "terminal-state-changed-during-read",
+          "bounded-startup-scan-refusal",
+          "single-owner-one-shot-output",
+          "closed-metadata-admission-refusal"
+        ]
+      }
+    },
+    "fourCompileRunReceiptsVerified": true,
+    "sourceInputs": {
+      "libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl": {
+        "bytes": 7154,
+        "sha256": "232bd739bc6a54e8047118fbba8eb301a58f67e869ca8ce974902c8c382244a8",
+        "gitBlob": "def5d5b3533fe88e829e4863e1ba150b5f4d2e93"
+      },
+      "libil2cpp/vm/AssemblyShadow.cpp": {
+        "bytes": 121187,
+        "sha256": "6021bce2939c45a7bd5b44a881c67a052eac1902b6b0eb30d8f620142344c5a9",
+        "gitBlob": "53aecc2d113b20b6ff825d0aa4ca0f4372a7cce2"
+      },
+      "libil2cpp/vm/AssemblyShadow.h": {
+        "bytes": 9637,
+        "sha256": "74b0e63cb5a007a7f6bd3fa45435d1700b6041427515138fafd003ed5ffc8498",
+        "gitBlob": "32956c2c4084951131b497c1201712a0d4fe11b3"
+      },
+      "libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h": {
+        "bytes": 3469,
+        "sha256": "1dc1a731f75a773494edf669965a7034d1fa908c2201401a3eb2238228e1b7f5",
+        "gitBlob": "b554eb36f6337c139a3f24beb168ab3f2b6e4343"
+      },
+      "libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h": {
+        "bytes": 10378,
+        "sha256": "876f83104d7ea81b043e1ae30ac83aa83c5e9e13f53a19ad0c032df52d693fa0",
+        "gitBlob": "bf3c19fab543c24134712ea08dc2cb78190f7f3a"
+      },
+      "libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h": {
+        "bytes": 15083,
+        "sha256": "bc8660655e19ee15c02caf21403ef90f5f87c95b0fa1dcc212a7ca7a61573e6e",
+        "gitBlob": "08856d4a610ed3fa519cee67bad8a307dd82a34b"
+      },
+      "libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h": {
+        "bytes": 10793,
+        "sha256": "fe37931e27f1616bea8e08c134a2349567161bd8cd5c739c3954be349b9da3c8",
+        "gitBlob": "d2a6fb798de9a3599f6b6c63149515cb23ab3350"
+      },
+      "libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h": {
+        "bytes": 6530,
+        "sha256": "b5b91b9480016493f1b26fcd78be96f9c1ff107b866950d7b08d999870ea785a",
+        "gitBlob": "fc3a569ea0f617b67b3867a804126e9583d86b72"
+      },
+      "libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h": {
+        "bytes": 13880,
+        "sha256": "b77a46ffc4ba6e522fc8c34e0ac43283f502639a8ca4f6b9282afc097fa5c895",
+        "gitBlob": "b7ba5dffb2e3ecebe7406f598e97a1ab97251cdf"
+      },
+      "libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h": {
+        "bytes": 5084,
+        "sha256": "0545c483230b7a1f6ea007ff28f000ec37a2f85444062c62eff74a048c5986c1",
+        "gitBlob": "4e82e7f3814b8ed021a24d235dcfbe79c4c2412a"
+      },
+      "libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h": {
+        "bytes": 6620,
+        "sha256": "ae4c2a471c1879510849d4902694caa7308bc70f3804cb6b1d0fb2ac839615a8",
+        "gitBlob": "91f049cc7d81d5e6de95ec50884ed3d6b9b63163"
+      },
+      "libil2cpp/vm/AssemblyShadowMetadataLifetime.h": {
+        "bytes": 4637,
+        "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716",
+        "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd"
+      },
+      "libil2cpp/vm/AssemblyShadowDiagnostics.cpp": {
+        "bytes": 8176,
+        "sha256": "62f2d9b038ed8e4f3e352c06ad72355ae5d6e69e800e3a39647a70271d295902",
+        "gitBlob": "f51e6ca403fe12dec66ace96148f2da3bc17fc56"
+      },
+      "libil2cpp/vm/AssemblyShadowDiagnostics.h": {
+        "bytes": 2990,
+        "sha256": "5017cadef623509190bd7b486c935b7b8ca462207f7d13760d2223216112f038",
+        "gitBlob": "f243ac8b42d31a59b6a1d5641ea101807383243b"
+      },
+      "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h": {
+        "bytes": 6070,
+        "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605",
+        "gitBlob": "9dee4c9ea6febe4a919d1c7eb8faf2ad00b8a8e5"
+      },
+      "libil2cpp/vm/AssemblyShadowTypes.h": {
+        "bytes": 1825,
+        "sha256": "df149952bd8beefd0ee6580f337262f28614c43f7eb695554a3a284eca1a1257",
+        "gitBlob": "6d1379bc33300e4682468705942721d355481ca7"
+      },
+      "tools/r03/diagnostic_stream/bounded_general_live_fixture.cpp": {
+        "bytes": 12117,
+        "sha256": "455dabfcd912808db1a404afc29fc61d1e102a06b777a1514a63932ee2becdfd",
+        "gitBlob": "3ddd09439a8cc00b869a183aa1965363083a99fb"
+      },
+      "tools/r03/diagnostic_stream/allocation_probe.cpp": {
+        "bytes": 1427,
+        "sha256": "80428db4e93796feea1c6f9b7d64d17ecf005496518bf44c3a3d52440832988f",
+        "gitBlob": "7b58a198f86378b9b0daf3864799867d359a772d"
+      },
+      "tools/r03/diagnostic_stream/run_bounded_general_live.py": {
+        "bytes": 12023,
+        "sha256": "4fb0cf6b6c3027314abd60a81799ec90b4282a85e678c16c580a43836ab6c2df",
+        "gitBlob": "91e71f481dd481ac31b4dde872994cbd4cfd9033"
+      }
+    },
+    "actualProductionMethodBytesCompiled": true,
+    "actualOwnedCapturesAndLegacySerializer": true,
+    "sourcePreserved": true,
+    "watchedNewAllocationsAfterPrewarm": 0,
+    "allocationEvidence": "Passing exact production method fixture assertion; no separately emitted numeric counter receipt",
+    "productionAssemblyShadowCppIncludedInAllFiveOfficialSdkProfiles": true,
+    "coherentVmEpochProven": false,
+    "nativeClassPointerOriginProven": false,
+    "realShutdownDeadlockFreedomProven": false,
+    "originalLiveGettersReplaced": false,
+    "runtimeAcceptance": false
+  },
+  "managed": {
+    "actualResult": "Passed",
+    "aggregateState": "Passed",
+    "exit": 0,
+    "obsoleteRootReceiptAbsent": true,
+    "innerResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-EMPTY-LIVE-20261019-d16d/managed-sdk/build-api/results.json",
+    "innerResultSha256": "2065d11e913b9c2a846901e097de2e7e5d14ff1040ce041184117fc246ad94ea",
+    "returnedBindingVerified": true,
+    "actualResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-EMPTY-LIVE-20261019-d16d/managed-sdk/build-api/results.json",
+    "actualResultSha256": "2065d11e913b9c2a846901e097de2e7e5d14ff1040ce041184117fc246ad94ea",
+    "productCount": 5,
+    "inputCount": 428,
+    "expectedNegative": [
+      {
+        "id": "OriginalUnsignedCounts",
+        "exit": 1,
+        "CS0266Errors": 2
+      }
+    ],
+    "warnings": 68
+  },
+  "native": {
+    "actualResult": "Passed",
+    "passedConfigurations": 85,
+    "failedConfigurations": 0,
+    "notRunConfigurations": 0,
+    "distinctTranslationUnits": 17,
+    "profiles": [
+      "candidate",
+      "debug",
+      "diagnostics-off",
+      "feature-off",
+      "probe-off"
+    ],
+    "copiedSdkInputsVerified": 1908,
+    "candidateNativeSha": "d16d2f7eee4c0f2333f31c4ec6e40422956d8fd1",
+    "warnings": 742
+  },
+  "realUnityEditorLaunched": false,
+  "playerExecuted": false,
+  "runtimeAcceptance": false,
+  "remainingPrimaryWork": [
+    "P1 coherent VM epoch/ABA and source-pointer origin, full live capture, GC/RSS/locks/Shutdown",
+    "P2 authenticated native/C# V2 integration and unchanged semantic verification",
+    "E0/E1 vendor-supported engine safe point, maintenance/drain/restart",
+    "Full P3 linked Player qualification"
+  ]
+}
