@@ -1,0 +1,186 @@
+[
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-19T06:38:59.711007+00:00",
+    "end": "2026-10-19T06:39:04.149699+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_demo\n * branch              codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "ae221f69a8c75a4a1b9332f0f903b223453a7c36"
+    ],
+    "start": "2026-10-19T06:39:04.149777+00:00",
+    "end": "2026-10-19T06:39:04.160886+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge",
+      "--ff-only",
+      "ae221f69a8c75a4a1b9332f0f903b223453a7c36"
+    ],
+    "start": "2026-10-19T06:39:04.160972+00:00",
+    "end": "2026-10-19T06:39:04.424769+00:00",
+    "exit": 0,
+    "stdout": "Updating d49b85bf..ae221f69\nFast-forward\n .../workflows/r03-p1-command-failure-contracts.yml |  83 +++++++\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        | 113 +++++----\n .../P1_COMMAND_FAILURES_2026-10-19/DESIGN.md       |  59 +++++\n .../P1_COMMAND_FAILURES_2026-10-19/EVIDENCE.json   |  48 ++++\n .../PRIMARY_REVIEW.md                              |  44 ++++\n .../P1_COMMAND_FAILURES_2026-10-19/PUBLICATION.md  |  36 +++\n .../PUBLICATION_BLOCKER.json                       |  28 +++\n .../REMOTE_READBACK.json                           |  41 ++++\n .../STATIC_REVIEW.json                             |  82 +++++++\n .../evidence/baseline-timeout/RESULT.json          |  41 ++++\n .../outer/commands/timed-child.json                |  15 ++\n .../outer/subsequent-work-reached.txt              |   1 +\n .../evidence/executed_reproducer.py.txt            |  41 ++++\n .../evidence/final-contracts/MANIFEST.json         |  17 ++\n .../evidence/final-contracts/RESULT.json           | 257 +++++++++++++++++++++\n .../evidence/final-contracts/unittest.log          |  58 +++++\n .../evidence/harness-admission-controls.json       |  50 ++++\n Docs/AssemblyShadow/Plan/CURRENT_STATUS.md         |  58 ++---\n Docs/AssemblyShadow/README.md                      |  44 ++--\n .../R03IR/run_p1_command_failure_tests.py          | 118 ++++++++++\n .../R03IR/run_p1_metadata_local_preflight.py       | 146 +++++++++---\n .../R03IR/test_p1_command_failures.py              | 251 ++++++++++++++++++++\n .../R03IR/test_p1_managed_receipt.py               |  26 ++-\n .../R03IR/test_p1_metadata_preflight.py            |   3 +-\n 24 files changed, 1512 insertions(+), 148 deletions(-)\n create mode 100644 .github/workflows/r03-p1-command-failure-contracts.yml\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/DESIGN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/PRIMARY_REVIEW.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/PUBLICATION.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/PUBLICATION_BLOCKER.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/REMOTE_READBACK.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/STATIC_REVIEW.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/evidence/baseline-timeout/RESULT.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/evidence/baseline-timeout/outer/commands/timed-child.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/evidence/baseline-timeout/outer/subsequent-work-reached.txt\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/evidence/executed_reproducer.py.txt\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/evidence/final-contracts/MANIFEST.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/evidence/final-contracts/RESULT.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/evidence/final-contracts/unittest.log\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_COMMAND_FAILURES_2026-10-19/evidence/harness-admission-controls.json\n create mode 100644 Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py\n create mode 100644 Tools/AssemblyShadow/R03IR/test_p1_command_failures.py\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-19T06:39:05.042535+00:00",
+    "end": "2026-10-19T06:39:09.625102+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+    ],
+    "start": "2026-10-19T06:39:09.625316+00:00",
+    "end": "2026-10-19T06:39:09.647256+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "merge",
+      "--ff-only",
+      "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+    ],
+    "start": "2026-10-19T06:39:09.647406+00:00",
+    "end": "2026-10-19T06:39:09.663503+00:00",
+    "exit": 0,
+    "stdout": "Already up to date.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-19T06:39:09.687658+00:00",
+    "end": "2026-10-19T06:39:13.680571+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_unity\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "948c0e3b4f8891481301770115e8ba4945eea6de"
+    ],
+    "start": "2026-10-19T06:39:13.680750+00:00",
+    "end": "2026-10-19T06:39:13.697300+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "merge",
+      "--ff-only",
+      "948c0e3b4f8891481301770115e8ba4945eea6de"
+    ],
+    "start": "2026-10-19T06:39:13.697444+00:00",
+    "end": "2026-10-19T06:39:13.710259+00:00",
+    "exit": 0,
+    "stdout": "Already up to date.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-19T06:39:13.733000+00:00",
+    "end": "2026-10-19T06:39:18.696095+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/il2cpp_plus\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   5667e37..e29a38f  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "e29a38f66331ccabe5822a9f83401cd4a2b20c5a"
+    ],
+    "start": "2026-10-19T06:39:18.696242+00:00",
+    "end": "2026-10-19T06:39:18.708611+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "merge",
+      "--ff-only",
+      "e29a38f66331ccabe5822a9f83401cd4a2b20c5a"
+    ],
+    "start": "2026-10-19T06:39:18.708711+00:00",
+    "end": "2026-10-19T06:39:18.733295+00:00",
+    "exit": 0,
+    "stdout": "Updating 5667e37..e29a38f\nFast-forward\n .../workflows/r03-p1-command-failure-contracts.yml |  83 ++++\n .github/workflows/r03-p1-frozen-execution.yml      | 123 ++---\n libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h | 204 ++++++++\n libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h   |  57 +++\n libil2cpp/vm/AssemblyShadowR02Snapshot.h           | 139 ++++++\n .../frozen_execution_allocations.cpp               |  32 ++\n .../diagnostic_stream/frozen_execution_fixture.cpp | 516 +++++++++++++++++++++\n .../reference/AssemblyShadowExecutionSerializer.h  |  81 ++++\n .../reference/AssemblyShadowR02Diagnostics.h       |  56 +++\n .../diagnostic_stream/run_bounded_general_live.py  |  93 +++-\n .../r03/diagnostic_stream/run_frozen_execution.py  | 206 ++++++++\n .../test_bounded_general_live_command.py           | 157 +++++++\n 12 files changed, 1628 insertions(+), 119 deletions(-)\n create mode 100644 .github/workflows/r03-p1-command-failure-contracts.yml\n create mode 100644 libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h\n create mode 100644 libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h\n create mode 100644 libil2cpp/vm/AssemblyShadowR02Snapshot.h\n create mode 100644 tools/r03/diagnostic_stream/frozen_execution_allocations.cpp\n create mode 100644 tools/r03/diagnostic_stream/frozen_execution_fixture.cpp\n create mode 100644 tools/r03/diagnostic_stream/reference/AssemblyShadowExecutionSerializer.h\n create mode 100644 tools/r03/diagnostic_stream/reference/AssemblyShadowR02Diagnostics.h\n create mode 100644 tools/r03/diagnostic_stream/run_frozen_execution.py\n create mode 100644 tools/r03/diagnostic_stream/test_bounded_general_live_command.py\n",
+    "stderr": ""
+  }
+]

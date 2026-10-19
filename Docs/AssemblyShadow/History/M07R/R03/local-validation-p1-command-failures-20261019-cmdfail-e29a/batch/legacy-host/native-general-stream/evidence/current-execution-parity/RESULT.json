@@ -1,0 +1,711 @@
+{
+  "kind": "CurrentExecutionProducerVsImmutableN",
+  "result": "PassedHostOnly",
+  "sourceBindings": {
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionSerializer.h": {
+      "gitBlob": "3a0e7b1cc25bdeb16d0f341b67715b3433f04689",
+      "sha256": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h": {
+      "gitBlob": "9dee4c9ea6febe4a919d1c7eb8faf2ad00b8a8e5",
+      "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/checks/test_diagnostic_size.py": {
+      "gitBlob": "2a60eecdd3e9de7ae03556495d683cbdb52930e2",
+      "sha256": "90e0ee4a80ade2c26bdb35f60922bde6f844cef49d204fd6535fe8ca5f39c6c2"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/checks/test_snapshot_integration.py": {
+      "gitBlob": "921f286002fe76ed43aceee8912d4c55f1378bf0",
+      "sha256": "8cf35ab25be4343076444f8b6dfa104dc82f74fc90b85688e9e21323f9c3766d"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/checks/source-extracts/GetExecutionDiagnosticsJson.function.cpp": {
+      "gitBlob": "19d8c6ac259ea8200fc570136d4df25874c663ca",
+      "sha256": "051497faf816e4094b8f4e8f194c5b877812cee034c6901c755e8b6efdff9c40"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp": {
+      "gitBlob": "35e2371014e786e2784b40f69a2d65b176799311",
+      "sha256": "874f2afa3775c8ddb077c1a9afd627ca18f9e1314013a5e58b46a9cb7a8c74f0",
+      "identityRule": "ExactExtractedExecutionFunctionSHA256",
+      "expectedFunctionSha256": "4829a3ae7b9b0df57d054738f99d940b4ad7644a364df0502c9976469819d372"
+    }
+  },
+  "oldFunctionSha256": "051497faf816e4094b8f4e8f194c5b877812cee034c6901c755e8b6efdff9c40",
+  "currentFunctionSha256": "4829a3ae7b9b0df57d054738f99d940b4ad7644a364df0502c9976469819d372",
+  "historicalMockOnly": true,
+  "currentProductionFunctionBody": true,
+  "immutableHistoricalSourceUntouched": true,
+  "cases": [
+    {
+      "profile": "strict",
+      "variant": "n-large",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 331078,
+      "sha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+      "exactByteParity": true
+    },
+    {
+      "profile": "strict",
+      "variant": "empty",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 0,
+      "bytes": 327,
+      "sha256": "f77a59c273a6856ab85019922f8947eb3259833b93678f3d16aa5955045bbd75",
+      "exactByteParity": true
+    },
+    {
+      "profile": "strict",
+      "variant": "debug-class-flags",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 342307,
+      "sha256": "33d99dbb2c95cc9a90b333add09eb98bbe6815a4db2865f33c21d96dbc191669",
+      "exactByteParity": true
+    },
+    {
+      "profile": "sanitized",
+      "variant": "n-large",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 331078,
+      "sha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+      "exactByteParity": true
+    },
+    {
+      "profile": "sanitized",
+      "variant": "empty",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 0,
+      "bytes": 327,
+      "sha256": "f77a59c273a6856ab85019922f8947eb3259833b93678f3d16aa5955045bbd75",
+      "exactByteParity": true
+    },
+    {
+      "profile": "sanitized",
+      "variant": "debug-class-flags",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 342307,
+      "sha256": "33d99dbb2c95cc9a90b333add09eb98bbe6815a4db2865f33c21d96dbc191669",
+      "exactByteParity": true
+    }
+  ],
+  "commands": [
+    {
+      "name": "strict-n-large-frozen-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-n-large-frozen.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-n-large-frozen.exe"
+      ],
+      "startedUnix": 1792392038.513489,
+      "finishedUnix": 1792392038.9778519,
+      "exit": 0,
+      "stdout": {
+        "file": "strict-n-large-frozen-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "file": "strict-n-large-frozen-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "strict-n-large-frozen-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-n-large-frozen.exe",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-n-large-frozen.json"
+      ],
+      "startedUnix": 1792392038.978018,
+      "finishedUnix": 1792392039.37319,
+      "exit": 0,
+      "stdout": {
+        "file": "strict-n-large-frozen-run.stdout.bin",
+        "sha256": "9a07e2760e6b74de2dc076d77468be2ed74269fa9e85e7100af29de10ccf879d",
+        "bytes": 7
+      },
+      "stderr": {
+        "file": "strict-n-large-frozen-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "strict-n-large-current-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-n-large-current.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-n-large-current.exe"
+      ],
+      "startedUnix": 1792392039.37423,
+      "finishedUnix": 1792392039.799325,
+      "exit": 0,
+      "stdout": {
+        "file": "strict-n-large-current-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "file": "strict-n-large-current-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "strict-n-large-current-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-n-large-current.exe",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-n-large-current.json"
+      ],
+      "startedUnix": 1792392039.799482,
+      "finishedUnix": 1792392040.203022,
+      "exit": 0,
+      "stdout": {
+        "file": "strict-n-large-current-run.stdout.bin",
+        "sha256": "9a07e2760e6b74de2dc076d77468be2ed74269fa9e85e7100af29de10ccf879d",
+        "bytes": 7
+      },
+      "stderr": {
+        "file": "strict-n-large-current-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "strict-empty-frozen-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-empty-frozen.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-empty-frozen.exe"
+      ],
+      "startedUnix": 1792392040.207268,
+      "finishedUnix": 1792392040.611918,
+      "exit": 0,
+      "stdout": {
+        "file": "strict-empty-frozen-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "file": "strict-empty-frozen-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "strict-empty-frozen-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-empty-frozen.exe",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-empty-frozen.json"
+      ],
+      "startedUnix": 1792392040.6121159,
+      "finishedUnix": 1792392041.0046961,
+      "exit": 0,
+      "stdout": {
+        "file": "strict-empty-frozen-run.stdout.bin",
+        "sha256": "f633d15c1d503ad547fd405870d34dfadad5b5386f6990699d234c06a4150447",
+        "bytes": 4
+      },
+      "stderr": {
+        "file": "strict-empty-frozen-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "strict-empty-current-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-empty-current.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-empty-current.exe"
+      ],
+      "startedUnix": 1792392041.00512,
+      "finishedUnix": 1792392041.388222,
+      "exit": 0,
+      "stdout": {
+        "file": "strict-empty-current-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "file": "strict-empty-current-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "strict-empty-current-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-empty-current.exe",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-empty-current.json"
+      ],
+      "startedUnix": 1792392041.388385,
+      "finishedUnix": 1792392041.791886,
+      "exit": 0,
+      "stdout": {
+        "file": "strict-empty-current-run.stdout.bin",
+        "sha256": "f633d15c1d503ad547fd405870d34dfadad5b5386f6990699d234c06a4150447",
+        "bytes": 4
+      },
+      "stderr": {
+        "file": "strict-empty-current-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "strict-debug-class-flags-frozen-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-debug-class-flags-frozen.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-debug-class-flags-frozen.exe"
+      ],
+      "startedUnix": 1792392041.7938209,
+      "finishedUnix": 1792392042.22326,
+      "exit": 0,
+      "stdout": {
+        "file": "strict-debug-class-flags-frozen-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "file": "strict-debug-class-flags-frozen-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "strict-debug-class-flags-frozen-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-debug-class-flags-frozen.exe",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-debug-class-flags-frozen.json"
+      ],
+      "startedUnix": 1792392042.223423,
+      "finishedUnix": 1792392042.6213582,
+      "exit": 0,
+      "stdout": {
+        "file": "strict-debug-class-flags-frozen-run.stdout.bin",
+        "sha256": "b55184b47d9e578c69b569ad971597abcea2965c709383e1104a6f830ebc89f4",
+        "bytes": 7
+      },
+      "stderr": {
+        "file": "strict-debug-class-flags-frozen-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "strict-debug-class-flags-current-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-debug-class-flags-current.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-debug-class-flags-current.exe"
+      ],
+      "startedUnix": 1792392042.622441,
+      "finishedUnix": 1792392043.038183,
+      "exit": 0,
+      "stdout": {
+        "file": "strict-debug-class-flags-current-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "file": "strict-debug-class-flags-current-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "strict-debug-class-flags-current-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-debug-class-flags-current.exe",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/strict-debug-class-flags-current.json"
+      ],
+      "startedUnix": 1792392043.03836,
+      "finishedUnix": 1792392043.440864,
+      "exit": 0,
+      "stdout": {
+        "file": "strict-debug-class-flags-current-run.stdout.bin",
+        "sha256": "b55184b47d9e578c69b569ad971597abcea2965c709383e1104a6f830ebc89f4",
+        "bytes": 7
+      },
+      "stderr": {
+        "file": "strict-debug-class-flags-current-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "sanitized-n-large-frozen-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-n-large-frozen.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-n-large-frozen.exe"
+      ],
+      "startedUnix": 1792392043.444834,
+      "finishedUnix": 1792392043.989912,
+      "exit": 0,
+      "stdout": {
+        "file": "sanitized-n-large-frozen-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "file": "sanitized-n-large-frozen-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "sanitized-n-large-frozen-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-n-large-frozen.exe",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-n-large-frozen.json"
+      ],
+      "startedUnix": 1792392043.9900758,
+      "finishedUnix": 1792392044.458907,
+      "exit": 0,
+      "stdout": {
+        "file": "sanitized-n-large-frozen-run.stdout.bin",
+        "sha256": "9a07e2760e6b74de2dc076d77468be2ed74269fa9e85e7100af29de10ccf879d",
+        "bytes": 7
+      },
+      "stderr": {
+        "file": "sanitized-n-large-frozen-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "sanitized-n-large-current-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-n-large-current.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-n-large-current.exe"
+      ],
+      "startedUnix": 1792392044.459263,
+      "finishedUnix": 1792392044.981111,
+      "exit": 0,
+      "stdout": {
+        "file": "sanitized-n-large-current-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "file": "sanitized-n-large-current-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "sanitized-n-large-current-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-n-large-current.exe",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-n-large-current.json"
+      ],
+      "startedUnix": 1792392044.981281,
+      "finishedUnix": 1792392045.4473758,
+      "exit": 0,
+      "stdout": {
+        "file": "sanitized-n-large-current-run.stdout.bin",
+        "sha256": "9a07e2760e6b74de2dc076d77468be2ed74269fa9e85e7100af29de10ccf879d",
+        "bytes": 7
+      },
+      "stderr": {
+        "file": "sanitized-n-large-current-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "sanitized-empty-frozen-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-empty-frozen.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-empty-frozen.exe"
+      ],
+      "startedUnix": 1792392045.449294,
+      "finishedUnix": 1792392045.9677,
+      "exit": 0,
+      "stdout": {
+        "file": "sanitized-empty-frozen-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "file": "sanitized-empty-frozen-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "sanitized-empty-frozen-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-empty-frozen.exe",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-empty-frozen.json"
+      ],
+      "startedUnix": 1792392045.967854,
+      "finishedUnix": 1792392046.436197,
+      "exit": 0,
+      "stdout": {
+        "file": "sanitized-empty-frozen-run.stdout.bin",
+        "sha256": "f633d15c1d503ad547fd405870d34dfadad5b5386f6990699d234c06a4150447",
+        "bytes": 4
+      },
+      "stderr": {
+        "file": "sanitized-empty-frozen-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "sanitized-empty-current-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-empty-current.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-empty-current.exe"
+      ],
+      "startedUnix": 1792392046.436532,
+      "finishedUnix": 1792392046.9545789,
+      "exit": 0,
+      "stdout": {
+        "file": "sanitized-empty-current-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "file": "sanitized-empty-current-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "sanitized-empty-current-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-empty-current.exe",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-empty-current.json"
+      ],
+      "startedUnix": 1792392046.954738,
+      "finishedUnix": 1792392047.420563,
+      "exit": 0,
+      "stdout": {
+        "file": "sanitized-empty-current-run.stdout.bin",
+        "sha256": "f633d15c1d503ad547fd405870d34dfadad5b5386f6990699d234c06a4150447",
+        "bytes": 4
+      },
+      "stderr": {
+        "file": "sanitized-empty-current-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "sanitized-debug-class-flags-frozen-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-debug-class-flags-frozen.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-debug-class-flags-frozen.exe"
+      ],
+      "startedUnix": 1792392047.4213068,
+      "finishedUnix": 1792392047.981941,
+      "exit": 0,
+      "stdout": {
+        "file": "sanitized-debug-class-flags-frozen-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "file": "sanitized-debug-class-flags-frozen-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "sanitized-debug-class-flags-frozen-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-debug-class-flags-frozen.exe",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-debug-class-flags-frozen.json"
+      ],
+      "startedUnix": 1792392047.9821172,
+      "finishedUnix": 1792392048.450038,
+      "exit": 0,
+      "stdout": {
+        "file": "sanitized-debug-class-flags-frozen-run.stdout.bin",
+        "sha256": "b55184b47d9e578c69b569ad971597abcea2965c709383e1104a6f830ebc89f4",
+        "bytes": 7
+      },
+      "stderr": {
+        "file": "sanitized-debug-class-flags-frozen-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "sanitized-debug-class-flags-current-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-debug-class-flags-current.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-debug-class-flags-current.exe"
+      ],
+      "startedUnix": 1792392048.45038,
+      "finishedUnix": 1792392049.011926,
+      "exit": 0,
+      "stdout": {
+        "file": "sanitized-debug-class-flags-current-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "file": "sanitized-debug-class-flags-current-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "sanitized-debug-class-flags-current-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-debug-class-flags-current.exe",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-debug-class-flags-current.json"
+      ],
+      "startedUnix": 1792392049.0121129,
+      "finishedUnix": 1792392049.4914382,
+      "exit": 0,
+      "stdout": {
+        "file": "sanitized-debug-class-flags-current-run.stdout.bin",
+        "sha256": "b55184b47d9e578c69b569ad971597abcea2965c709383e1104a6f830ebc89f4",
+        "bytes": 7
+      },
+      "stderr": {
+        "file": "sanitized-debug-class-flags-current-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  ],
+  "error": null,
+  "liveVmCaptureProven": false,
+  "unityPlayerRun": false,
+  "runtimeAcceptance": false
+}

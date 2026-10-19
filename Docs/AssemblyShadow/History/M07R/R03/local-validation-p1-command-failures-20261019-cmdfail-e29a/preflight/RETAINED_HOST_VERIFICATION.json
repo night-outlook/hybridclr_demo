@@ -1,0 +1,82 @@
+{
+  "metadata-gate": {
+    "result": "PassedWithinHostScope",
+    "sourcePreserved": true,
+    "profiles": [
+      "strict",
+      "sanitized"
+    ],
+    "commandsVerified": 12,
+    "expectedNegativeCommands": [
+      {
+        "label": "old-reopen-run",
+        "argv": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-COMMAND-FAILURES-20261019-cmdfail-e29a/metadata-gate/old-reopen"
+        ],
+        "startUnix": 1792392080.516581,
+        "finishUnix": 1792392080.914322,
+        "exit": 4,
+        "expectedExit": 4,
+        "timedOut": false,
+        "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSha256": "752f52deab8f8efda233f82c2695d495a3ba1245ce8770b4a0297f1b5d05d918"
+      }
+    ],
+    "runtimeAcceptance": false
+  },
+  "bounded-class": {
+    "result": "PassedWithinHostScope",
+    "sourcePreserved": true,
+    "profiles": [
+      "strict",
+      "sanitized"
+    ],
+    "commandsVerified": 6,
+    "expectedNegativeCommands": [],
+    "runtimeAcceptance": false
+  },
+  "bounded-physical": {
+    "result": "PassedWithinHostScope",
+    "sourcePreserved": true,
+    "profiles": [
+      "strict",
+      "sanitized"
+    ],
+    "commandsVerified": 6,
+    "expectedNegativeCommands": [],
+    "runtimeAcceptance": false
+  },
+  "bounded-status": {
+    "result": "PassedWithinHostScope",
+    "sourcePreserved": true,
+    "profiles": [
+      "strict",
+      "sanitized"
+    ],
+    "commandsVerified": 4,
+    "expectedNegativeCommands": [],
+    "runtimeAcceptance": false
+  },
+  "bounded-inventory": {
+    "result": "PassedWithinHostScope",
+    "sourcePreserved": true,
+    "profiles": [
+      "strict",
+      "sanitized"
+    ],
+    "commandsVerified": 4,
+    "expectedNegativeCommands": [],
+    "runtimeAcceptance": false
+  },
+  "frozen-v2": {
+    "result": "PassedWithinInactiveHostScope",
+    "sourcePreserved": true,
+    "profiles": [
+      "strict",
+      "sanitized"
+    ],
+    "commandsVerified": 12,
+    "expectedNegativeCommands": [],
+    "runtimeAcceptance": false
+  }
+}
