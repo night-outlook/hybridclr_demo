@@ -1,53 +1,55 @@
-# Primary Implementation → Local Validation — ONE P1 owned-execution source/SDK cycle
+# Primary Implementation → Local Validation — ONE 15-component P1 zero-class execution/R02 source/SDK cycle
 
-**Authorized: exactly one fresh 14-component source/host + installed Unity2022.3.62f2 SDK SYNTAX-ONLY Local Validation batch.** The underlying owned execution/R02 feature, frozen-general bridge, original Player getters and V1/V2 semantic transport remain inactive/unchanged. This does NOT authorize launching Unity Editor, Test Runner, Player, linked native runtime, SNAP-01, another seven-root runtime batch, engine scheduler experimentation, Human Review Gate, H2/X02/M08A or other milestones.
+**ONE NEW source-pinned SOURCE/HOST + official installed Unity2022.3.62f2 SDK SYNTAX-ONLY cycle is authorized.** Objective: validate the **inactive, fail-closed zero-observed-class execution/R02 live-source bridge** together with every previously retained P1 child, managed SDK contract and exact 85 native C++17 arm64 syntax profiles. This is not authority to launch Unity Editor, Test Runner, Player, linked native binaries, seven-root runtime acceptance, engine-owner tests, SNAP-01, Human Review Gate, H2/X02/M08A, or another milestone. **Local must not modify nontrivial code/design/tests/compiler tooling.**
 
-**Prior Local evidence is consumed.** The original `20261019-cmdfail-e29a` Local return is PASS / `PassedSourceHostAndSDKOnly`, 13/13 including 53 command-failure tests and 75/75 official SDK syntax; the earlier `20261018-5667` 12/12 PASS and earlier 11/10-component cycles are also consumed. Do not rerun or reclassify any original PASS/FAIL/Blocked evidence. This is one new source-pinned successor, not a retry.
+**Consumed Local evidence:** `20261019-f0c5` 14/14 PASS / `PassedSourceHostAndSDKOnly`, 80 official native SDK syntax configurations, 53 command-failure tests, owned-execution 6×35 host groups, unchanged five official managed products plus `OriginalUnsignedCounts` negative. This run and all prior 13/12/11/10-component P1 PASS/FAIL cycles, SNAP-01/N/M/K/I/E failed results and strict S custody Blocked are immutable. Never rerun, reuse roots, or reclassify historical evidence.
 
-## Mandatory next-agent read order
+## Required read order
 
-1. `night-outlook/hybridclr_demo/Docs/AssemblyShadow/README.md` and `Plan/CURRENT_STATUS.md`.
-2. Local-owned `Handoff/LOCAL_VALIDATION.md` **first**, then `Handoff/RETURN_TO_WEB.md`; preserve exact original factual states and the latest cmdfail-e29a checkpoint.
-3. [Primary P1 design](../History/M07R/R03/IR_Remediation/P1_OWNED_EXECUTION_SOURCE_2026-10-19/DESIGN.md), [review](../History/M07R/R03/IR_Remediation/P1_OWNED_EXECUTION_SOURCE_2026-10-19/PRIMARY_REVIEW.md), [evidence](../History/M07R/R03/IR_Remediation/P1_OWNED_EXECUTION_SOURCE_2026-10-19/EVIDENCE.json).
-4. This entire handoff; follow source checks/one command/stop without inferring missing commits or authorizations from chat.
+1. `Docs/AssemblyShadow/README.md` then `Docs/AssemblyShadow/Plan/CURRENT_STATUS.md`.
+2. Local-owned `Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md` **first**, then `Docs/AssemblyShadow/Handoff/RETURN_TO_WEB.md`, including the original `20261019-f0c5` PASS and all consumed failures.
+3. [Primary bounded source design](../History/M07R/R03/IR_Remediation/P1_EMPTY_EXECUTION_LIVE_2026-10-19/DESIGN.md), [review](../History/M07R/R03/IR_Remediation/P1_EMPTY_EXECUTION_LIVE_2026-10-19/PRIMARY_REVIEW.md), [machine evidence](../History/M07R/R03/IR_Remediation/P1_EMPTY_EXECUTION_LIVE_2026-10-19/EVIDENCE.json).
+4. This entire exact handoff, without borrowing assumptions from chat, then the unchanged remaining production plan.
 
-## Source authority — four exact canonical repositories
+## Four canonical repositories, branch, and complete exact source pins
 
-Every local checkout is a separate clean Git repository on `codex/assembly-shadow-r01b-h1`, with canonical `night-outlook/<repo>` origin and local HEAD exactly equal to its verified remote HEAD. Workspace root is `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r`; the parent directory itself is not a repository. Fast-forward clean ancestor working trees only; do not reset, clean, force-push, overwrite or silently include unrelated work.
+Each nested path is a **separate Git working tree** on `codex/assembly-shadow-r01b-h1`, with canonical HTTPS or corresponding SSH origin for `night-outlook/<repo>`, clean status and local HEAD exactly matching live remote HEAD. Default workspace root: `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r`. Parent directory is not itself a repository. Use clean ancestor-only fast-forwards; never `git reset --hard`, `git clean`, overwrite dirty files, force-push or merge unrelated commits.
 
-| Canonical repository | Local absolute checkout | Required commit |
+| Canonical repository | Absolute Local checkout | Required published head |
 | --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | **Final pushed HEAD containing this exact `WEB_TO_LOCAL.md`**, equal to `git log -1 --format=%H -- Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md` and the exact 40-hex demo SHA in Primary's accompanying final Local prompt. Source/tests/CI anchor `35c5a02e90f32be4f6da8307d0a539bdf696a10f`; ALL later changes must be under `Docs/**` only. |
+| `night-outlook/hybridclr_demo` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | **Final pushed and independently verified Docs-only handoff-containing commit**, exactly equal to `git log -1 --format=%H -- Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md`, demo remote HEAD and the accompanying Primary final prompt's full 40-hex demo SHA. Tested source anchor `84d9360903573dc473e9dd5cbee25883d07e1a0c`. Changes after this anchor must be `Docs/**` ONLY. |
 | `night-outlook/hybridclr` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
 | `night-outlook/hybridclr_unity` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
-| `night-outlook/il2cpp_plus` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `f0c5afe43fe256ac09fabacd5d40f82956988fe2` |
+| `night-outlook/il2cpp_plus` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `d16d2f7eee4c0f2333f31c4ec6e40422956d8fd1` |
 
-The demo source anchor is not the Local execution SHA: Local must use the final handoff-containing remote HEAD from Primary's exact prompt. A subsequent source or Docs-only update invalidates this authorization until Primary publishes another reviewed handoff. The native fix retains preceding inactive owned execution/R02 source commit `d8a1df3007e93aeb65dd9fe97ab96b4771de8f17`; the original macOS CI FAIL 39208403669 is historical. [Native CI 39212760872](https://github.com/night-outlook/il2cpp_plus/actions/runs/39212760872) PASSED 3/3 after the compiler `-I vm` → `-iquote vm` fix, but is host-only. [Demo managed receipt/aggregate CI 39213798210](https://github.com/night-outlook/hybridclr_demo/actions/runs/39213798210), [command failure CI 39213581041](https://github.com/night-outlook/hybridclr_demo/actions/runs/39213581041), and [new owned syntax host CI 39213944245](https://github.com/night-outlook/hybridclr_demo/actions/runs/39213944245) PASSED; none are installed SDK/Player evidence.
+The source anchor is not the final demo execution commit; take final demo HEAD **only from the Primary prompt plus remote verification**, not an older Local/published document commit. A later modification, even Docs-only, to the final handoff-containing demo HEAD invalidates this assignment until Primary reviews/reissues it.
 
-Historical `Tools/AssemblyShadow/R03/source-pins.json` **must not be edited**: it records earlier real executions. Candidate native source `f0c5afe...` is provided explicitly through `--candidate-native-sha` by the orchestration script, which must preserve historical on-disk pins and originally failed results.
+Do **not** update historical `Tools/AssemblyShadow/R03/source-pins.json` at earlier native `74dbdbea80d83923863303bd2b2c0a87f36541b1`; it is original provenance, not this source candidate. The candidate `--candidate-native-sha d16d2f7...` is passed explicitly by this outer script. Retain all historical source and ABI fingerprint FAILs without rebasing.
 
-## Primary changes completed — Local must only validate
+**Current host-only CI:** [native zero-class source run 39218817115](https://github.com/night-outlook/il2cpp_plus/actions/runs/39218817115) Passed 3/3 macOS Clang, Linux Clang/GCC. [Demo managed/aggregate run 39219174802](https://github.com/night-outlook/hybridclr_demo/actions/runs/39219174802) and [command-failure run 39219174857](https://github.com/night-outlook/hybridclr_demo/actions/runs/39219174857) Passed, with explicitly mocked child compilers/source. These results are not installed Unity SDK, linked Player or full runtime evidence. The original immutable R02 whole-file fingerprint CI failed after the `AssemblyShadow.cpp` inclusion; do not recast it as a new Player failure or silently rebaseline.
 
-- Inactive native owned execution/R02 record `AssemblyShadowFrozenExecutionRecord.h`, `AssemblyShadowR02Snapshot.h`, `AssemblyShadowFrozenR02Serializer.h` retains its bounded/immutable type design and source-bound 35-case per profile strict/sanitized host fixture. No active original getter/caller/Player invokes it.
-- New `owned-execution` fourteenth host child invokes `tools/r03/diagnostic_stream/run_frozen_execution.py` and independently expects `PassedWithinOwnedExecutionHostScope`. Six profiles = diagnostics 0/1/2 × strict/ASan+UBSan; retained source hashes, original reference headers, actual counter-source host controls, 13 compiler/version/run receipts and zero watched-new assertion. All observed source equality is bounded and not a coherent all-VM epoch; host class rows are fixtures.
-- Existing 13 child checks, all error paths, fail-stop/NotRun receipts, original 53 command-failure regressions, managed five positive product builds plus separate `OriginalUnsignedCounts` expected-negative exit1/two CS0266/no DLL, historical source and SDK preservation are retained, without changing semantic guards.
-- Native SDK candidate matrix expands from **75 → 80 actual C++17 arm64 `-fsyntax-only` configurations**: 16 real translation units × existing 5 candidate/debug/probe-off/diagnostics-off/feature-off profiles. The new 16th unit `Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowExecutionComposeSyntax.cpp` compiles actual record/counters types, capacities and signature pointers against the installed official SDK; it is NOT a stub-only substitute. Original noncandidate unit count remains 12×5.
-- New mock negative aggregate integration tests reject failures in both `live-general` and `owned-execution` even when managed/native SDK children pass. No fake receipt, default PASS, policy relaxation, R02 fingerprint rebasing, test skip or threshold increase is permitted.
+## Implementation completed by Primary, not delegated
 
-## ONE authorized unused root set and original SDK anchor
+Native `libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h` and `AssemblyShadowBoundedExecutionEmptyLiveSource.inl` declare/implement the actual `AssemblyShadow::TryCaptureBoundedEmptyExecutionLive` method. It is included once by `AssemblyShadow.cpp`, gated by the existing Assembly Shadow compilation switch, and has no original public getter/managed/Player caller. It is safe only within its **bounded zero-observed-class subset**: one outer metadata admission ticket; three fixed-array/observation-lock stamps (count only, no physical pointer dereference); `Snapshot::TryCaptureCurrent` before and after `Record::Begin`/`Freeze`; typed R02 full metric equality and complete coverage required. The method rejects a single nonempty class, mismatched count, dropped/saturated counters, closed ticket, source change, output reuse, formatting errors or invalid/incomplete input. It **does not** prove class pointer lifetime, VM-wide coherence, ABA freedom or real Shutdown/deadlock/GC/RSS costs.
 
-All four paths below must be **ABSENT before preflight**, canonical, mutually disjoint, outside all checkout/Unity installation/prior evidence, with approved external disk space. The prior cmdfail-e29a raw/scratch/audit/checkpoint roots and all earlier evidence must remain untouched.
+Actual native test `tools/r03/diagnostic_stream/run_bounded_execution_empty_live.py` compiles the exact checked-in method header/inl bytes against explicitly mocked VM/counter/record types, checks source before/after and single source inclusion. **20 distinct groups per strict/sanitized profile; five direct command receipts** (compiler-version + two compile/two execute), all expected to pass. Host mock C++ new allocations or memory are **not** Unity runtime acceptance. New output explicitly states `zeroClassSubsetOnly=true`, `completeExecutionSource=false`, `coherentVmEpochProven=false`, `classPointerOriginProven=false`, `officialUnitySdkCompiled=false`, `UnityPlayerExecuted=false`, `runtimeAcceptance=false`.
 
-- Raw batch: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-OWNED-EXECUTION-20261019-f0c5`
-- SDK copy scratch: `/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-OWNED-EXECUTION-20261019-f0c5`
-- Independent Local authority/audit: `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-OWNED-EXECUTION-20261019-f0c5`
-- Additive checked-in checkpoint: `Docs/AssemblyShadow/History/M07R/R03/local-validation-p1-owned-execution-20261019-f0c5/`
+Demo one-shot `Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py` now adds the 15th independently checked `empty-live` cell, retains 53 command-failure contract tests and every 14 previous host/SDK cells, and refuses incomplete/failure/unknown-lifetime sources without turning them into PASS. Official installed native SDK candidate syntax is **85 commands** = **17 actual C++17 arm64 translation units × five original candidate/debug/probe-off/diagnostics-off/feature-off profiles**. The 17th `AssemblyShadowExecutionEmptyLiveSyntax.cpp` checks the typed method/API/budget surface; `AssemblyShadow.cpp` itself is compiled in all five modes with the actual new `.inl` method. Existing five positive managed products plus the `OriginalUnsignedCounts` expected-negative compiler error (exit1, precisely two CS0266, no DLL), original receipts, warnings and report predicates remain unchanged.
 
-Installed official read-only Unity2022.3.62f2 SDK anchor (do NOT launch): `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`. Keep original inherited TMPDIR and existing child/private/tmp compiler ownership policy; no Local workaround or vendor SDK change.
+## One unused raw/SDK/audit/checkpoint set — ONLY this cycle
 
-### Exact one-shot invocation
+Confirm ALL four names below are **absent**, canonical, mutually disjoint, outside checkout, installed SDK/Unity, and all prior raw/scratch/audit/checkpoint roots, with sufficient independently approved external disk. Preserve prior original `20261019-f0c5` raw/SDK scratch/audit/checkpoint and all older consumed roots, original 24+ symlink historical negative controls and original FAILs exactly.
 
-Only after all four clean canonical source/remote pins, pre-evidence/historical inventories, SDK before-hashes, audit-root absence and space admission are verified:
+- New raw: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-EMPTY-LIVE-20261019-d16d`
+- New SDK copy scratch: `/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-EMPTY-LIVE-20261019-d16d`
+- New independent Local authority/audit: `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-EMPTY-LIVE-20261019-d16d`
+- New versioned Local checkpoint: `Docs/AssemblyShadow/History/M07R/R03/local-validation-p1-empty-live-20261019-d16d/`
+
+Read-only official SDK anchor (**do not run the Unity executable**):
+`/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`.
+Keep inherited TMPDIR, existing owned/private child SDK compiler lifecycle rules, no copied vendor binaries into Git or into previously consumed evidence. Local may create only its own audit and checkpoint after verifying source/remote/space/evidence admission; Primary runner must not precreate those.
+
+## EXACTLY one invocation after all preflight checks
 
 ```bash
 set -euo pipefail
@@ -55,8 +57,8 @@ W=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r
 D="$W/hybridclr_demo"
 B=/Users/ah/GitHub/hybridclr/r03-local-validation
 UNITY=/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
-SOURCE=35c5a02e90f32be4f6da8307d0a539bdf696a10f
-NATIVE=f0c5afe43fe256ac09fabacd5d40f82956988fe2
+SOURCE=84d9360903573dc473e9dd5cbee25883d07e1a0c
+NATIVE=d16d2f7eee4c0f2333f31c4ec6e40422956d8fd1
 DEMO_SHA="$(git -C "$D" rev-parse HEAD)"
 test "$(git -C "$D" branch --show-current)" = codex/assembly-shadow-r01b-h1
 test "$DEMO_SHA" = "$(git -C "$D" log -1 --format=%H -- Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md)"
@@ -65,22 +67,24 @@ git -C "$D" diff --exit-code "$SOURCE" "$DEMO_SHA" -- . ':(exclude)Docs/**'
 python3 -B "$D/Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py" \
   --workspace "$W" --unity "$UNITY" \
   --expected-demo "$DEMO_SHA" --expected-native "$NATIVE" \
-  --output "$B/R03-P1-OWNED-EXECUTION-20261019-f0c5" \
-  --sdk-scratch "$B/Scratch-R03-P1-OWNED-EXECUTION-20261019-f0c5"
+  --output "$B/R03-P1-EMPTY-LIVE-20261019-d16d" \
+  --sdk-scratch "$B/Scratch-R03-P1-EMPTY-LIVE-20261019-d16d"
 ```
 
-ONE invocation only. A failed or blocked attempt consumes these roots and must not be retried or resumed. Do not execute a second batch under a renamed root, patch compiler/SDK/native source locally, or run a skipped child separately to turn a result green. An unknown child lifetime halts later commands and requires preserved `NotRun` receipts; do not assume descendant quiescence from process exit.
+This ONE invocation consumes the new roots on PASS, FAIL, interruption or Blocked. **NO retries**, child resumes, duplicate root names with suffix, or manual compilation to manufacture a pass. A true command timeout/unknown descendant lifetime stops the outer batch; mark remaining cells `NotRun`, preserve partial output and do not start postflight Git subprocesses while a child may remain active. No source/compiler/test fixes are delegated to Local.
 
-## Independent validation and output requirements
+## Local validation and evidence checklist
 
-Inspect all **14 outer cells**, not merely the aggregate: `command-failures`, `legacy-host`, `metadata-gate`, `bounded-class`, `bounded-physical`, `bounded-first-use`, `owned-general`, `live-general`, new `owned-execution`, `bounded-status`, `bounded-inventory`, `frozen-v2`, `managed-sdk`, `native-sdk`.
+Require **15 distinct** independent cells, not aggregate alone: `command-failures`, `legacy-host`, `metadata-gate`, `bounded-class`, `bounded-physical`, `bounded-first-use`, `owned-general`, `live-general`, `owned-execution`, **new `empty-live`**, `bounded-status`, `bounded-inventory`, `frozen-v2`, `managed-sdk`, `native-sdk`. To classify exact new **PASS / PassedSourceHostAndSDKOnly**, require 15/15 `Passed`, `sourcePreserved=true`, `postflightError=null`, `stoppedAfter=null`, accurate attempted/passed SDK flags, stable exact four-repo pins and no historical status reclassification.
 
-For fresh **PASS / PassedSourceHostAndSDKOnly**: 14/14 `Passed`, all child inner results match exact documented scope; sourcePreserved=true, postflightError=null, stoppedAfter=null, both SDK attempted and passed, exact four source/remote pins, no historical evidence reinterpretation. Verify `owned-execution` has 6 profiles each 35 distinct case groups, 13 successful version/compile/run receipts, exact original reference content hashes, type ownership/V1 parity, actual **host** R02 source cases, expected negative cases, and retained `officialSdkCompile=false`, `UnityPlayerExecuted=false`, `coherentVmEpochProven=false`, `classPointerOriginProven=false`, `runtimeAcceptance=false` flags. Source/host counters and mocks cannot prove live VM epoch/race/teardown.
+**New `empty-live`:** inner result exactly `PassedWithinInactiveZeroClassHostScope`; host mocks explicitly acknowledged; strict and ASan/UBSan profiles each **20 unique source groups**, 5 direct version/compile/run receipts exits0 and complete source hash preservation, no test skip or automatic host/runtime acceptance. Validate output receipt markers remain `zeroClassSubsetOnly=true`, `completeExecutionSource=false` and all nonacceptance/provenance flags false. Verify real `AssemblyShadow.cpp` includes the method once and original getters remain unchanged. Nonempty observed class rows must never be treated as complete successful `classes:[]`.
 
-Confirm 80 actual native SDK syntax receipts = 16 distinct units × five profiles, including the exact new owned execution probe and the retained existing `AssemblyShadow.cpp` real live-general body. Verify SDK file/input hashes and warning/error inventories; retain diagnostics even on failure. Managed must preserve exact producer nested path+SHA join, five positive products and one expected-negative compiler with exactly two CS0266/no DLL. Warn counts are observations, not silently forced to historical values.
+**Existing components:** command-failures retains 53 unique source-bound tests (5+14+24+10, zero failures/skips); live-general retains 13/profile under VM mocks, owned-general 11/profile and first-use 15/profile. Owned-execution retains six profiles of 35 groups/profile and all 13 successful compiler/source receipts, typed R02 tests and exact V1 parity under host fixture. Legacy/metadata/class/physical/transaction/frozen-V2 remain distinct source-preserved results; no historical case removed. Managed official result must bind exact nested file path/hash, five positive products and unchanged expected-negative exit1/two CS0266/no DLL. Native SDK must independently execute all **85** actual arm64 C++17 syntax commands (17 unique units × 5 profiles); source compile includes exact `AssemblyShadow.cpp` and the new probe. Warnings are observations, not a reason to suppress diagnostics or change expected flags.
 
-Rehash all consumed P1 root/manifests and external SDK scratch/source before/after, including the original historical symlink negative controls; source and installed SDK must remain unchanged, no Unity vendor/product binaries uploaded. Retain original failures and individual error statuses if any child fails, do not recompute historical success. Collect command stdout/stderr binary receipt hashes, original checked result/manifest, independently audited artifact inventories and copy bindings to unchanged external inputs. Create a new additively versioned checkpoint under the single path listed above. Local may update ONLY factual `LOCAL_VALIDATION.md`, `RETURN_TO_WEB.md`, and this new checkpoint, with strictly bounded environment diagnosis; all nontrivial fixes remain Primary-owned.
+Preserve current source+SDK input hashes and installed Unity SDK (before/after), all prior P1 original raw/batch/manifest and external scratch/ownership receipts, 24+ deliberate historical symlink controls, original R02 immutable fingerprint failure, SNAP-01/N/M/K/I/E FAIL, strict S custody Blocked and full-stage R03 independent FAIL/re-review NotRun. Retain complete command binaries+hashes, signed nested receipts/aggregate, `MANIFEST` with every regular file and separately authenticated symlink controls, source/SDK copy bindings, independent audit receipt and exact Local execution command/time/PID.
 
-## Required stop / next-agent state
+Local may update **only** `Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md`, `RETURN_TO_WEB.md` and the newly additive checkpoint, plus bounded environment-only diagnosis, then commit/push factual evidence. Do not edit production headers, source, tests, branch pins, V1/V2 semantics, vendor SDK, native runtime/engine owner or old evidence. Return evidence and all four latest remote SHA tuples to Primary Implementation.
 
-Immediately after ONE factual source/host/SDK preflight, commit and push exact evidence and four source/remote tuples, then return to **Primary Implementation**. Even a 14/14 PASS **does not** authorize linked native Player, Unity Editor, new engine scheduler, P2 production integration, runtime seven-root acceptance, Human Review Gate or next milestone. P1 coherent global VM epoch/ABA, live getter integration, real class pointer origin, allocation/GC/RSS/Shutdown safety remain Incomplete; P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, full P3 Incomplete. Original SNAP-01/N/M/K/I/E FAIL, historic R02 fingerprint FAIL, strict S custody Blocked and independent R03 full-stage FAIL/re-review NotRun remain unchanged. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter disabled.
+## Stop and remaining acceptance restrictions
+
+**STOP after this single bounded batch** regardless of outcome; no second batch, Unity Editor/Player, scheduler experiment, future milestone or Human Review Gate. A source/SDK syntax PASS would still mean P1 **Incomplete**: original live general+execution getters, nonempty class capture/pointer provenance, VM-wide coherent epoch/ABA, allocation/GC/RSS, metadata lock/deadlock/Shutdown still unresolved. P2 `NotIntegrated`, E0 `Blocked/Unavailable`, E1 `BlockedByE0`, full P3 `Incomplete`; original 500ms/1–64 uncapped reporting, logger/GC/canary/recovery and V1/V2 size predicates unchanged. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter disabled.

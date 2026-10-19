@@ -1,0 +1,69 @@
+{
+  "demoSourceCommit": "84d9360903573dc473e9dd5cbee25883d07e1a0c",
+  "githubActions": {
+    "demoCommandFailure": {
+      "result": "success",
+      "runId": 39219174857,
+      "scope": "PythonHostMocked"
+    },
+    "demoManagedAggregate": {
+      "result": "success",
+      "runId": 39219174802,
+      "scope": "GitSdkVmMocked"
+    },
+    "nativeSourceHost": {
+      "casesPerProfile": 20,
+      "jobsPassed": 3,
+      "profilesPerJob": 2,
+      "runId": 39218817115,
+      "scope": "ExplicitVmMocks"
+    }
+  },
+  "kind": "R03P1InactiveBoundedEmptyExecutionLiveSourceEvidence",
+  "limits": {
+    "R03Accepted": false,
+    "ReadyForHumanReviewGate": false,
+    "classPointerOriginProven": false,
+    "coherentVmEpochProven": false,
+    "fullLegacyRegressionAcceptance": false,
+    "realShutdownDeadlockFreedomProven": false,
+    "zeroClassSubsetOnly": true
+  },
+  "localSyntheticHost": {
+    "casesEach": 20,
+    "compiler": "clang++",
+    "profiles": [
+      "strict",
+      "ASanUBSan"
+    ],
+    "scope": "ExplicitVmMocks",
+    "status": "Passed"
+  },
+  "nativeSourceCommit": "d16d2f7eee4c0f2333f31c4ec6e40422956d8fd1",
+  "nextLocal": {
+    "UnityPlayer": "NotRun",
+    "componentCount": 15,
+    "expectedNativeSyntax": 85,
+    "historicalPinsModified": false,
+    "officialUnitySDKNewSource": "NotRun"
+  },
+  "reconciledLocal": {
+    "components": 14,
+    "consumed": true,
+    "cycle": "20261019-f0c5",
+    "expectedNegative": "OriginalUnsignedCounts 2 CS0266 and no DLL",
+    "managedProducts": 5,
+    "nativeSDKArm64Syntax": 80,
+    "oldEvidenceReclassified": false,
+    "result": "PassedSourceHostAndSDKOnly"
+  },
+  "schemaVersion": 1,
+  "sourceSha256": {
+    "AssemblyShadowBoundedExecutionEmptyLive.h": "d4f4d495fc0636fcdd41f1121a1aa71404e838e1dfedfc7a7a3d10d70777e734",
+    "AssemblyShadowBoundedExecutionEmptyLiveSource.inl": "14b422a81986960c0de25ad0fe4214241cc9f7ea4e6ad9a724330dbd9230de4d",
+    "MockRuntime.h": "cf1a597d1d1130da7d0fcf8688891144d047a2201a658659de0e0839eae6c2fc",
+    "fixture.cpp": "a51a84385e644a4884f6f3b1592c7981ecdc369e992808e2cd9e6e80caa7d62c",
+    "r03-p1-empty-execution-live-source.yml": "b4c9c87fb0cc3fdd04edd04b7709374ecbd3c5af535dddbf003d86c4913b9648",
+    "run_bounded_execution_empty_live.py": "76e1aea1c20ef45e55926d9758523b3e61a7dfd40653c9153ac7bc6bc9ebc1d2"
+  }
+}

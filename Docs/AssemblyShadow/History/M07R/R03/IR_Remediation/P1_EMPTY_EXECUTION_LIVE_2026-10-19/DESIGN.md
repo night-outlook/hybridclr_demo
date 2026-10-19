@@ -1,0 +1,27 @@
+# R03 P1 — fail-closed live execution/R02 zero-class subset
+
+## Narrow objective
+
+Bridge the previously host/SDK validated **owned R02 Snapshot + FrozenExecutionRecord** to a real but **inactive native VM source method**, with one metadata lifetime admission, direct fixed-size execution observation census and complete source-before/after-reformat readbacks. Do not attempt nonempty class resolution until actual `Il2CppClass*` physical origin and lifetime can be verified without class initialization or unmanaged allocation surprises.
+
+## Direct production changes
+
+- New `libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h` contains error classification, receipt, typed complete-coverage guard and comparison of **all** typed R02 metrics, thread/storage/memo/counter coverage. `Fail` permanently invalidates the owned `Record`; it cannot leave `Complete()` or a usable byte prefix.
+- New `libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl` defines the **actual** `AssemblyShadow::TryCaptureBoundedEmptyExecutionLive` body, included exactly once from the existing `AssemblyShadow.cpp` native translation unit. `AssemblyShadow.h` declares it only while Assembly Shadow feature is enabled. No original `GetExecutionDiagnosticsJson`, `GetDiagnosticsJson`, managed C# API, icall, native V2 transaction, diagnostic reporting guards, or Player call site is changed.
+- The caller must preconstruct/prewarm the 3,932,160-byte bounded `Record` while healthy and exclusively own it. One `MetadataLifetimeGate.Reader` covers initial observation, first typed R02 snapshot, `Record::Begin`/`Freeze`, second full typed R02 capture and final inventory/state comparison. Reuse, closed admission, stale/malformed class counts, nonempty class rows, incomplete/saturated/dropped counters, source failure or formatter failure make a complete output impossible.
+
+## Locking and correctness boundary
+
+- `ExecutionObservationLock` briefly covers the **size** and count of nonnull members of the existing fixed 2,048-slot `s_executionClasses` array. No `Il2CppClass*` is dereferenced or returned, and no other VM metadata/transaction/UsageLock is nested with the observation lock. An already nonempty source is expressly refused as `ClassRowsNotSupported` (not converted to empty `classes[]`). A publication during/between source reads or formatting is rejected if witnessed by count/state/active pointer/generation and all typed R02 metrics on the final readback.
+- The R02 sample is individually double-read by `Snapshot::TryCaptureCurrent` twice, once before and once after formatting (four finite typed passes total). The outer method checks stable complete coverage and exact values, including all counter metadata, but **can miss ABA and independent simultaneous mutations**. `observableSourceFenceStable` means only no **witnessed** change; it is NOT a coherent global VM epoch or actual class pointer provenance.
+- `Record::Begin` and `Freeze` format the **zero-class subset** into the already existing original-compatible owned execution JSON. They can have runtime/locale allocation effects unrelated to bounded object sizes. No promise of zero process allocations, GC pressure, RSS bound, deadlock freedom or shutdown safety is made from this step. The existing host fixture is specifically a mock, and a successful result does not imply a complete execution inventory at diagnostics level 2 in a nonempty real game.
+
+## Tests and source provenance
+
+The new `run_bounded_execution_empty_live.py` compiles the original checked-in header/inl exact bytes inside a generated **host-only** include directory with explicit mock VM type surfaces. All actual `.inl` method text is compiled (no manually transcribed variant); source hashing checks included headers, API declaration, single TU include, fixture, runner and retained typed R02/frozen record sources before and after. Two C++17 strict/ASan+UBSan execution profiles, each with 20 unique positive and negative groups, test zero-class levels 0/1/2, record one-shot refusal, closed metadata ticket, opaque invalid-pointer non-dereference, class-count inconsistency, R02 read failures, coverage rejection, source changes during collection and formatting, output Begin/Freeze refusal. Two host runs under C++ compilers do **not** prove real Unity behavior.
+
+`native_validation.py` candidate SDK mode adds `AssemblyShadowExecutionEmptyLiveSyntax.cpp` after the already independently verified owned-execution probe. It compiles the **real entire `AssemblyShadow.cpp` containing the method** and signature/scope checks under installed Unity2022.3.62f2 SDK across existing five profile modes. Candidate matrix is now **17 C++ translation units × 5 = 85** syntax commands. No new native `.cpp` or IL2CPP binary ABI export is introduced. Existing five managed products + expected-negative, 53 command-failure controls, original prior 14 host children, historical source pin and consumed evidence remain unchanged.
+
+## Fail/stop criteria
+
+Treat any host group missing/duplicate, source/hash change, original preserved child failure, SDK or managed compiler failure, receipt/source mismatch, uncertain command lifetime, wrong profile count or historical evidence mutation as `FailedOrIncomplete`. The source runner has no claim of process-group descendant quiescence. The Local batch stops after one attempt, returns original raw logs and never self-upgrades R03 acceptance. P1 overall remains incomplete; no E0/E1/Player or Human Review Gate authorization follows.
