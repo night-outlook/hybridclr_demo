@@ -255,8 +255,20 @@ class AggregateReceiptIntegration(unittest.TestCase):
                             'PassedWithinInactivePhysicalEnumerationHostScope' if name=='physical-membership' else
                             'PassedWithinInactiveOwnedPhysicalNamesHostScope' if name=='owned-physical-names' else
                             'PassedWithinInactiveHostScope' if name=='frozen-v2' else 'PassedWithinHostScope')
-                (dest/('results.json' if name=='native-sdk' else 'RESULT.json')).write_text(json.dumps({
-                    'result':expected,'commandLifetimeUnverified':False}))
+                receipt={'result':expected,'commandLifetimeUnverified':False}
+                if name=='owned-physical-names':
+                    # Source-bound positive mock for the newly strict consumer;
+                    # all compiler/VM inputs remain explicitly synthetic.
+                    receipt.update(kind='R03P1InactiveOwnedObservedPhysicalNamesSourceHost',
+                        schemaVersion=1,actualSourceCompiled=True,sourcePreserved=True,
+                        ownedPhysicalNamesOnly=True,completeExecutionTypeKeys=False,
+                        physicalClassPointerOriginProven=False,metadataPointerLifetimeProven=False,
+                        coherentVmEpochProven=False,officialUnitySdkCompiled=False,
+                        UnityPlayerExecuted=False,runtimeAcceptance=False,
+                        profiles={profile:{'result':'PassedWithinExplicitVmMocks',
+                            'caseGroups':list(runner.EXPECTED_OWNED_BINDING_GROUPS)}
+                            for profile in ('strict','sanitized')})
+                (dest/('results.json' if name=='native-sdk' else 'RESULT.json')).write_text(json.dumps(receipt))
                 return subprocess.CompletedProcess(args, 0, b'mock child\n', b'')
             argv = [str(RUNNER), '--workspace',str(ws),'--unity',str(unity),
                     '--output',str(output),'--sdk-scratch',str(scratch),
@@ -272,6 +284,7 @@ class AggregateReceiptIntegration(unittest.TestCase):
             self.assertEqual(len(set(Path(cmd[2]).name for cmd in launched)),18)
             self.assertFalse(scratch.exists()) # no compiler, SDK copy or Unity execution
             self.assertEqual(report['expectedNativeSyntaxUnits'],100)
+            self.assertEqual(report['expectedOwnedBindingCaseGroupsPerProfile'],28)
             self.assertFalse(report['R03Accepted'])
             self.assertFalse(report['UnityPlayerExecuted'])
             self.assertFalse(report['historicalEvidenceReclassified'])
