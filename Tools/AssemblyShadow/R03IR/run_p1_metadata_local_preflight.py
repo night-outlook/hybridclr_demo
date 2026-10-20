@@ -21,6 +21,39 @@ REPOS=("hybridclr_demo","hybridclr","hybridclr_unity","il2cpp_plus")
 FIXED={"hybridclr":"4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
        "hybridclr_unity":"948c0e3b4f8891481301770115e8ba4945eea6de"}
 
+# Source-pinned native owned physical-name/registration-binding case inventory.
+# No case can be silently dropped or renamed in the Local evidence consumer.
+EXPECTED_OWNED_BINDING_GROUPS=(
+    "empty-physical-owned",
+    "one-physical-owned",
+    "two-roles-owned",
+    "duplicate-enumerated-owned-once",
+    "unrelated-malformed-class-not-dereferenced",
+    "null-namespace-copied-as-empty",
+    "owned-bytes-survive-vm-change",
+    "reverse-enumeration-role-binding",
+    "same-display-name-distinct-binding",
+    "hash-collision-binding",
+    "missing-physical-row-refused",
+    "bad-matched-image-refused",
+    "bad-matched-assembly-refused",
+    "bad-matched-assembly-name-refused",
+    "bad-matched-simple-name-refused",
+    "field-overlong-refused",
+    "owned-text-budget-refused",
+    "source-revision-changed-after-iteration",
+    "state-changed-after-iteration",
+    "active-changed-after-iteration",
+    "closed-admission-refused",
+    "unknown-callback-null-refused",
+    "binding-not-matched-refused",
+    "unobserved-binding-refused",
+    "invalid-slot-refused-and-scrubbed",
+    "invalid-role-refused-and-scrubbed",
+    "duplicate-registration-binding-refused-and-scrubbed",
+    "reused-owned-capture-refused",
+)
+
 def hash_file(path:Path)->str:
     h=hashlib.sha256()
     with path.open("rb") as f:
@@ -102,7 +135,8 @@ def read_managed_result(output:Path, stdout:bytes)->dict:
     return {"innerResult":record["result"],"innerResultPath":str(expected),
             "innerResultSha256":actual,"returnedBindingVerified":True}
 
-def read_component_result(output:Path, filename:str, require_lifetime_marker:bool=False)->dict:
+def read_component_result(output:Path, filename:str, require_lifetime_marker:bool=False,
+                          expected_owned_binding_groups:tuple[str,...]|None=None)->dict:
     """Parse and hash the same canonical receipt bytes; do not follow decoys."""
     if Path(filename).name!=filename:
         raise ValueError("A direct component result filename is required")
@@ -129,9 +163,39 @@ def read_component_result(output:Path, filename:str, require_lifetime_marker:boo
         raise ValueError("Missing required command lifetime marker")
     unknown=record.get("commandLifetimeUnverified",False)
     if type(unknown) is not bool:raise ValueError("Invalid command lifetime marker")
+    # A successful binding producer must prove every named strict/sanitized
+    # source-host case. This is host-only: no Player, metadata lifetime, or
+    # canonical type-key acceptance follows. Failed/uncertain child outcomes
+    # remain factual and must not fabricate a successful case inventory.
+    inventory_verified=False
+    if expected_owned_binding_groups is not None and not unknown and (
+       record.get("result")=="PassedWithinInactiveOwnedPhysicalNamesHostScope"):
+        if (record.get("kind")!="R03P1InactiveOwnedObservedPhysicalNamesSourceHost"
+            or record.get("schemaVersion")!=1 or
+            record.get("actualSourceCompiled") is not True or
+            record.get("sourcePreserved") is not True or
+            record.get("ownedPhysicalNamesOnly") is not True or
+            any(record.get(flag) is not False for flag in (
+                "completeExecutionTypeKeys","physicalClassPointerOriginProven",
+                "metadataPointerLifetimeProven","coherentVmEpochProven",
+                "officialUnitySdkCompiled","UnityPlayerExecuted",
+                "runtimeAcceptance"))):
+            raise ValueError("Owned binding source/host identity or scope invalid")
+        profiles=record.get("profiles")
+        if not isinstance(profiles,dict) or set(profiles)!={"strict","sanitized"}:
+            raise ValueError("Owned binding host profiles missing or duplicated")
+        for label in ("strict","sanitized"):
+            group=profiles[label]
+            if (not isinstance(group,dict) or
+                group.get("result")!="PassedWithinExplicitVmMocks" or
+                type(group.get("caseGroups")) is not list or
+                group["caseGroups"]!=list(expected_owned_binding_groups)):
+                raise ValueError("Owned binding host case inventory mismatch: "+label)
+        inventory_verified=True
     return {"innerResult":record.get("result"),"innerResultPath":str(source),
             "innerResultSha256":hashlib.sha256(raw).hexdigest(),
-            "commandLifetimeUnverified":unknown}
+            "commandLifetimeUnverified":unknown,
+            "ownedBindingCaseInventoryVerified":inventory_verified}
 
 
 def execute_component(dest:Path,name:str,argv:list,expected:str,
@@ -161,7 +225,8 @@ def execute_component(dest:Path,name:str,argv:list,expected:str,
             result.update(read_managed_result(output,stdout))
         else:
             result.update(read_component_result(
-                output,file,require_lifetime_marker=(name in ("empty-live","opaque-inventory","physical-membership","owned-physical-names"))))
+                output,file,require_lifetime_marker=(name in ("empty-live","opaque-inventory","physical-membership","owned-physical-names")),
+                expected_owned_binding_groups=EXPECTED_OWNED_BINDING_GROUPS if name=="owned-physical-names" else None))
         if result["commandLifetimeUnverified"]:
             result["stopBatchReason"]="ChildReportedUnverifiedCommandLifetime"
         elif proc.returncode==0 and result.get("innerResult")==expected:
@@ -383,6 +448,7 @@ def main()->None:
                                           statuses.get("native-sdk")=="Passed",
           "nativeSDKCandidateMode":True,
           "expectedNativeSyntaxUnits":100,
+          "expectedOwnedBindingCaseGroupsPerProfile":len(EXPECTED_OWNED_BINDING_GROUPS),
           "realUnityEditorLaunched":False,"UnityPlayerExecuted":False,
           "engineOwnerProven":False,"R03Accepted":False,"ReadyForHumanReviewGate":False,
           "historicalEvidenceReclassified":False}

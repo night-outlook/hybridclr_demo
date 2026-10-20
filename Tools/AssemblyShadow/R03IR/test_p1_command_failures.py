@@ -133,6 +133,44 @@ class ComponentFailureReceipts(unittest.TestCase):
         source.write_bytes(source.read_bytes()+b' ')
         with self.assertRaisesRegex(ValueError,'SHA-256'):self.mod.read_managed_result(component,stdout)
 
+class OwnedBindingInventoryContract(unittest.TestCase):
+    def test_exact_host_binding_inventory_and_fail_closed_mutations(self):
+        mod=load();expected=mod.EXPECTED_OWNED_BINDING_GROUPS
+        self.assertEqual(len(expected),28)
+        self.assertEqual(len(set(expected)),28)
+        with tempfile.TemporaryDirectory() as td:
+            out=Path(td).resolve();result=out/'RESULT.json'
+            baseline=dict(kind='R03P1InactiveOwnedObservedPhysicalNamesSourceHost',
+                schemaVersion=1,result='PassedWithinInactiveOwnedPhysicalNamesHostScope',
+                commandLifetimeUnverified=False,actualSourceCompiled=True,
+                sourcePreserved=True,ownedPhysicalNamesOnly=True,
+                completeExecutionTypeKeys=False,physicalClassPointerOriginProven=False,
+                metadataPointerLifetimeProven=False,coherentVmEpochProven=False,
+                officialUnitySdkCompiled=False,UnityPlayerExecuted=False,
+                runtimeAcceptance=False,
+                profiles={profile:{'result':'PassedWithinExplicitVmMocks',
+                      'caseGroups':list(expected)} for profile in ('strict','sanitized')})
+            def check(data):
+                result.write_text(json.dumps(data))
+                return mod.read_component_result(out,'RESULT.json',True,expected)
+            self.assertTrue(check(baseline)['ownedBindingCaseInventoryVerified'])
+            for mutate in ('missing-case','duplicate-case','wrong-result','false-runtime-scope',
+                           'missing-source-compile','missing-sanitized','wrong-kind'):
+                with self.subTest(mutate=mutate):
+                    variant=json.loads(json.dumps(baseline))
+                    if mutate=='missing-case':variant['profiles']['strict']['caseGroups'].pop()
+                    elif mutate=='duplicate-case':variant['profiles']['strict']['caseGroups'][-1]=variant['profiles']['strict']['caseGroups'][0]
+                    elif mutate=='wrong-result':variant['profiles']['sanitized']['result']='Failed'
+                    elif mutate=='false-runtime-scope':variant['runtimeAcceptance']=True
+                    elif mutate=='missing-source-compile':variant.pop('actualSourceCompiled')
+                    elif mutate=='missing-sanitized':variant['profiles'].pop('sanitized')
+                    elif mutate=='wrong-kind':variant['kind']='Unrelated'
+                    with self.assertRaisesRegex(ValueError,'Owned binding'):check(variant)
+            unverified=json.loads(json.dumps(baseline))
+            unverified['commandLifetimeUnverified']=True
+            self.assertFalse(check(unverified)['ownedBindingCaseInventoryVerified'])
+
+
 class BatchFailureScheduling(unittest.TestCase):
     def exercise(self,mode='passed',target='live-general'):
         with tempfile.TemporaryDirectory() as td:
@@ -172,6 +210,17 @@ class BatchFailureScheduling(unittest.TestCase):
                           'PassedWithinInactiveOwnedPhysicalNamesHostScope' if name=='owned-physical-names' else
                           'PassedWithinInactiveHostScope' if name=='frozen-v2' else 'PassedWithinHostScope')
                 data={'result':expected,'commandLifetimeUnverified':name==target and mode=='nested-timeout'}
+                if name=='owned-physical-names':
+                    data.update(kind='R03P1InactiveOwnedObservedPhysicalNamesSourceHost',
+                                schemaVersion=1,actualSourceCompiled=True,
+                                sourcePreserved=True,ownedPhysicalNamesOnly=True,
+                                completeExecutionTypeKeys=False,physicalClassPointerOriginProven=False,
+                                metadataPointerLifetimeProven=False,coherentVmEpochProven=False,
+                                officialUnitySdkCompiled=False,UnityPlayerExecuted=False,
+                                runtimeAcceptance=False,
+                                profiles={mode_name:{'result':'PassedWithinExplicitVmMocks',
+                                      'caseGroups':list(mod.EXPECTED_OWNED_BINDING_GROUPS)}
+                                      for mode_name in ('strict','sanitized')})
                 if name in ('empty-live','opaque-inventory','physical-membership','owned-physical-names') and name==target:
                     if mode=='missing-lifetime-marker':
                         data.pop('commandLifetimeUnverified')
@@ -202,6 +251,7 @@ class BatchFailureScheduling(unittest.TestCase):
             self.assertEqual(report['componentCount'],18)
             self.assertEqual(report['attemptedComponentCount'],len(launched))
             self.assertEqual(report['expectedNativeSyntaxUnits'],100)
+            self.assertEqual(report['expectedOwnedBindingCaseGroupsPerProfile'],28)
             self.assertFalse(report['R03Accepted']);self.assertFalse(report['UnityPlayerExecuted'])
             self.assertFalse(report['historicalEvidenceReclassified'])
             for row in report['commands']:
