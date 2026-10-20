@@ -10,6 +10,10 @@
 - `il2cpp_plus/tools/r03/diagnostic_stream/{owned_physical_names_fixture.cpp,run_owned_physical_names.py}`: actual production header/.inl compiled under explicit VM/lock mocks; strict/sanitized 28-item inventories; first-match, reversed role, display-name and hash collisions, invalid/duplicate/scrub tests; original CPP/API/physical header reconstructed against immutable prior Git blobs.
 - `hybridclr_demo/Tools/AssemblyShadow/R03IR/{run_p1_metadata_local_preflight.py,test_p1_command_failures.py,test_p1_managed_receipt.py}`: an apparently Passed child cannot substitute incomplete 28-group inventories or false scope flags; original missing/malformed lifetime fail-stop and bounded one-shot batch controls remain.
 
+## Factual host CI status
+
+Native source-bound [CI 39452191805](https://github.com/night-outlook/il2cpp_plus/actions/runs/39452191805) PASSED all three macOS/Linux Clang/GCC jobs, after a cancelled macOS job was rerun on the unchanged source. Final demo code source at `b2d6345f66fdf76456b5fab943f0737da4c62974` PASSED [CI 39453924018](https://github.com/night-outlook/hybridclr_demo/actions/runs/39453924018) integrated contracts, [CI 39453924051](https://github.com/night-outlook/hybridclr_demo/actions/runs/39453924051) managed aggregate and [CI 39453923997](https://github.com/night-outlook/hybridclr_demo/actions/runs/39453923997) failure contracts, Mac/Linux. The earlier precompile/source-inventory FAILs remain factual and untouched. These are host source/mocks, not the future official installed SDK or runtime acceptance.
+
 ## Findings and dispositions
 
 - **Closed in code (needs Local official SDK verification):** owned name rows previously could not be associated with a witnessed observed slot/source without class-pointer fallback. Returned rows now carry registration binding but only for the current observed registry snapshot.
