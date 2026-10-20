@@ -1,6 +1,14 @@
 # Local Validation → Primary Implementation
 
-## Current return — P1 opaque-inventory lifetime source/SDK 20261019-d548 PASS
+## Current return — P1 execution-registry revision source/SDK 20261020-f09e PASS
+
+**No new nontrivial issue requires implementation from this bounded cycle.** [Local factual report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-registry-revision-20261020-f09e/README.md), [independent audit](../History/M07R/R03/local-validation-p1-registry-revision-20261020-f09e/preflight/EVIDENCE_AUDIT.json), [registry verification](../History/M07R/R03/local-validation-p1-registry-revision-20261020-f09e/preflight/REGISTRY_REVISION_VERIFICATION.json). One authorized invocation Passed 16/16 components, 75 contracts, opaque strict/sanitized 21 groups/profile and five direct successes, five real managed products/exact original negative and 90/90 actual native SDK syntax configurations. Source/SDK/ten consumed P1 histories preserved; no retry or Unity/Player launch.
+
+The registry-only fence rejects changed revision with identical slots and saturated MAX; the successful nonzero fixture checks equal before/after/current revision and fenceStable=true through source-authenticated runtime require assertions. No separately emitted per-case numeric revision samples exist; evidence is the exact compiled fixture assertions and complete PASS group output. New actual revision header/instrumentation compiles in full AssemblyShadow.cpp and the SDK probe across all five profiles. This does not establish general ABA freedom, class provenance/lifetime, coherent VM epoch, real descendant quiescence or runtime teardown.
+
+Required Primary action: reconcile this factual evidence and continue its existing P1/P2/E0/E1/full P3 work under separate authority. All acceptance flags remain false, historical outcomes unchanged. Further Local execution requires a fresh exact source-pinned handoff. Stop/return state: Primary Implementation.
+
+## Historical return — P1 opaque-inventory lifetime source/SDK 20261019-d548 PASS
 
 **No new nontrivial issue requires implementation from this bounded cycle.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-opaque-lifetime-20261019-d548/README.md), [independent audit](../History/M07R/R03/local-validation-p1-opaque-lifetime-20261019-d548/preflight/EVIDENCE_AUDIT.json). One authorized invocation Passed 16/16 source/host/SDK components, 75 source-bound contracts, opaque strict/sanitized 18 groups/profile and five direct successful commands, five positive managed products/exact negative control and 90/90 official native SDK syntax configurations. Sources, installed SDK and all consumed evidence preserved; no retry or Unity/Player launch.
 

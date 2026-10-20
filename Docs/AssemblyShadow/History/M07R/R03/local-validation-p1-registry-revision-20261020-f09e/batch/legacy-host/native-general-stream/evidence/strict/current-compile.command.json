@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "/usr/bin/clang++",
+    "-std=c++17",
+    "-O1",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+    "-I/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2",
+    "-I/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-REVISION-20261020-f09e/legacy-host/native-general-stream/evidence/stubs",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/serializer_driver.cpp",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.cpp",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-REVISION-20261020-f09e/legacy-host/native-general-stream/evidence/strict/original.o",
+    "-o",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-REVISION-20261020-f09e/legacy-host/native-general-stream/evidence/strict/serializer"
+  ],
+  "exit": 0,
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "record": "strict/current-compile",
+  "asan": "detect_leaks=0:abort_on_error=1",
+  "ubsan": "halt_on_error=1:print_stacktrace=1"
+}

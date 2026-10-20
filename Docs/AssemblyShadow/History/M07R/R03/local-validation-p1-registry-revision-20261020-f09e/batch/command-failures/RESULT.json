@@ -1,0 +1,327 @@
+{
+  "kind": "R03P1CommandFailureContracts",
+  "schemaVersion": 1,
+  "result": "PassedWithinHostScope",
+  "startedUnix": 1792464883.6886022,
+  "expectedTestCount": 75,
+  "testsRun": 75,
+  "testIds": [
+    "p1_contract_suite_0.PreflightContracts.test_bounds_and_case_matrix",
+    "p1_contract_suite_0.PreflightContracts.test_candidate_sdk_is_opt_in_and_histories_unchanged",
+    "p1_contract_suite_0.PreflightContracts.test_help_has_explicit_pins",
+    "p1_contract_suite_0.PreflightContracts.test_invalid_pin_and_roots_refuse_before_io",
+    "p1_contract_suite_0.PreflightContracts.test_known_remote_identity_pin_coverage",
+    "p1_contract_suite_1.AggregateReceiptIntegration.test_inactive_native_child_failure_retains_accurate_aggregate_and_sdk_flags",
+    "p1_contract_suite_1.AggregateReceiptIntegration.test_managed_failures_preserve_fifteen_passed_one_failed",
+    "p1_contract_suite_1.AggregateReceiptIntegration.test_postflight_error_retains_failure_receipt",
+    "p1_contract_suite_1.AggregateReceiptIntegration.test_sixteen_components_pass_with_actual_producer_response",
+    "p1_contract_suite_1.AggregateReceiptIntegration.test_source_change_never_becomes_aggregate_pass",
+    "p1_contract_suite_1.ManagedReceiptContracts.test_actual_producer_response_joins_nested_file",
+    "p1_contract_suite_1.ManagedReceiptContracts.test_directory_in_place_of_receipt_is_rejected",
+    "p1_contract_suite_1.ManagedReceiptContracts.test_failed_inner_verdict_is_not_promoted",
+    "p1_contract_suite_1.ManagedReceiptContracts.test_file_and_parent_symlinks_are_rejected",
+    "p1_contract_suite_1.ManagedReceiptContracts.test_invalid_binding_shapes_hashes_and_duplicate_keys",
+    "p1_contract_suite_1.ManagedReceiptContracts.test_invalid_inner_json_or_identity_is_rejected",
+    "p1_contract_suite_1.ManagedReceiptContracts.test_missing_result_and_obsolete_root_decoy_are_rejected",
+    "p1_contract_suite_1.ManagedReceiptContracts.test_mutated_result_bytes_are_rejected",
+    "p1_contract_suite_1.ManagedReceiptContracts.test_wrong_returned_paths_are_rejected",
+    "p1_contract_suite_2.BatchFailureScheduling.test_all_sixteen_components_have_independent_success",
+    "p1_contract_suite_2.BatchFailureScheduling.test_completed_nonzero_keeps_other_independent_checks",
+    "p1_contract_suite_2.BatchFailureScheduling.test_first_component_timeout_leaves_fifteen_notrun",
+    "p1_contract_suite_2.BatchFailureScheduling.test_keyboard_interrupt_preserves_summary_and_exit130",
+    "p1_contract_suite_2.BatchFailureScheduling.test_known_launch_failure_is_retained_without_faking_an_exit",
+    "p1_contract_suite_2.BatchFailureScheduling.test_known_nonzero_empty_live_continues_without_claiming_pass",
+    "p1_contract_suite_2.BatchFailureScheduling.test_last_sdk_timeout_is_attempted_but_not_passed",
+    "p1_contract_suite_2.BatchFailureScheduling.test_malformed_native_empty_live_marker_stops_outer_children",
+    "p1_contract_suite_2.BatchFailureScheduling.test_malformed_opaque_lifetime_marker_stops_batch",
+    "p1_contract_suite_2.BatchFailureScheduling.test_missing_native_empty_live_marker_stops_outer_children",
+    "p1_contract_suite_2.BatchFailureScheduling.test_missing_native_empty_live_result_stops_outer_children",
+    "p1_contract_suite_2.BatchFailureScheduling.test_missing_opaque_lifetime_marker_stops_batch",
+    "p1_contract_suite_2.BatchFailureScheduling.test_missing_opaque_result_stops_batch",
+    "p1_contract_suite_2.BatchFailureScheduling.test_native_empty_live_nested_timeout_stops_outer_children",
+    "p1_contract_suite_2.BatchFailureScheduling.test_nested_timeout_stops_even_with_passed_child_verdict",
+    "p1_contract_suite_2.BatchFailureScheduling.test_null_opaque_lifetime_marker_stops_batch",
+    "p1_contract_suite_2.BatchFailureScheduling.test_opaque_reported_lifetime_uncertainty_stops_batch",
+    "p1_contract_suite_2.BatchFailureScheduling.test_outer_timeout_stops_remaining_commands",
+    "p1_contract_suite_2.BatchFailureScheduling.test_postflight_failure_cannot_turn_green",
+    "p1_contract_suite_2.BatchFailureScheduling.test_unknown_outcome_stops_without_fabricating_postflight",
+    "p1_contract_suite_2.ComponentFailureReceipts.test_child_lifetime_marker_overrides_passed_verdict",
+    "p1_contract_suite_2.ComponentFailureReceipts.test_duplicate_keys_rejected",
+    "p1_contract_suite_2.ComponentFailureReceipts.test_interruption_is_retained_for_batch_stop",
+    "p1_contract_suite_2.ComponentFailureReceipts.test_invalid_json_cannot_become_pass",
+    "p1_contract_suite_2.ComponentFailureReceipts.test_managed_binding_remains_nested_and_hash_authenticated",
+    "p1_contract_suite_2.ComponentFailureReceipts.test_nonfinite_and_nonobject_records_rejected",
+    "p1_contract_suite_2.ComponentFailureReceipts.test_normal_nonzero_is_not_promoted_or_mislabeled_timeout",
+    "p1_contract_suite_2.ComponentFailureReceipts.test_parent_symlink_is_rejected",
+    "p1_contract_suite_2.ComponentFailureReceipts.test_real_missing_command_keeps_failed_receipt",
+    "p1_contract_suite_2.ComponentFailureReceipts.test_real_outer_timeout_keeps_exact_prefix",
+    "p1_contract_suite_2.ComponentFailureReceipts.test_receipt_hash_matches_exact_parsed_bytes",
+    "p1_contract_suite_2.ComponentFailureReceipts.test_result_file_symlink_is_rejected",
+    "p1_contract_suite_2.ComponentFailureReceipts.test_timeout_missing_capture_remains_unavailable",
+    "p1_contract_suite_2.ComponentFailureReceipts.test_unknown_command_exception_stops",
+    "p1_contract_suite_3.NativeCommandReceipts.test_existing_sanitizer_and_environment_policy_is_preserved",
+    "p1_contract_suite_3.NativeCommandReceipts.test_interruption_records_before_propagating",
+    "p1_contract_suite_3.NativeCommandReceipts.test_real_missing_executable_is_a_recorded_launch_failure",
+    "p1_contract_suite_3.NativeCommandReceipts.test_real_nonzero_preserves_receipt_and_failure",
+    "p1_contract_suite_3.NativeCommandReceipts.test_real_success_preserves_binary_streams",
+    "p1_contract_suite_3.NativeCommandReceipts.test_real_timeout_preserves_prefix_and_no_invented_exit",
+    "p1_contract_suite_3.NativeCommandReceipts.test_timeout_without_capture_is_unavailable_not_full_empty_output",
+    "p1_contract_suite_3.NativeCommandReceipts.test_unknown_execution_exception_is_not_assumed_quiescent",
+    "p1_contract_suite_3.NativeSummaryFailureReceipts.test_missing_compiler_still_writes_failure_summary",
+    "p1_contract_suite_3.NativeSummaryFailureReceipts.test_postflight_source_loss_preserves_failure_summary",
+    "p1_contract_suite_4.CommandReceipts.test_completed_nonzero_retains_known_exit_and_complete_streams",
+    "p1_contract_suite_4.CommandReceipts.test_interruption_is_explicitly_unverified_and_preserved",
+    "p1_contract_suite_4.CommandReceipts.test_known_spawn_failure_is_failed_but_not_unknown_lifetime",
+    "p1_contract_suite_4.CommandReceipts.test_timeout_keeps_partial_streams_null_exit_and_uncertainty",
+    "p1_contract_suite_4.CommandReceipts.test_timeout_without_streams_keeps_availability_false",
+    "p1_contract_suite_4.CommandReceipts.test_unknown_subprocess_exception_is_unverified",
+    "p1_contract_suite_4.NativeSummaryContracts.test_compile_timeout_propagates_lifetime_and_skips_source_postflight",
+    "p1_contract_suite_4.NativeSummaryContracts.test_failed_compiler_version_never_claims_method_compiled",
+    "p1_contract_suite_4.NativeSummaryContracts.test_keyboard_interrupt_propagates_failstop_and_exits_130",
+    "p1_contract_suite_4.NativeSummaryContracts.test_missing_compiler_emits_failed_summary_with_no_compile_claim",
+    "p1_contract_suite_4.NativeSummaryContracts.test_strict_compile_nonzero_does_not_claim_compilation",
+    "p1_contract_suite_4.NativeSummaryContracts.test_unknown_subprocess_exception_propagates_failstop"
+  ],
+  "modules": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_metadata_preflight.py",
+      "expectedTests": 5,
+      "testIds": [
+        "p1_contract_suite_0.PreflightContracts.test_bounds_and_case_matrix",
+        "p1_contract_suite_0.PreflightContracts.test_candidate_sdk_is_opt_in_and_histories_unchanged",
+        "p1_contract_suite_0.PreflightContracts.test_help_has_explicit_pins",
+        "p1_contract_suite_0.PreflightContracts.test_invalid_pin_and_roots_refuse_before_io",
+        "p1_contract_suite_0.PreflightContracts.test_known_remote_identity_pin_coverage"
+      ]
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py",
+      "expectedTests": 14,
+      "testIds": [
+        "p1_contract_suite_1.AggregateReceiptIntegration.test_inactive_native_child_failure_retains_accurate_aggregate_and_sdk_flags",
+        "p1_contract_suite_1.AggregateReceiptIntegration.test_managed_failures_preserve_fifteen_passed_one_failed",
+        "p1_contract_suite_1.AggregateReceiptIntegration.test_postflight_error_retains_failure_receipt",
+        "p1_contract_suite_1.AggregateReceiptIntegration.test_sixteen_components_pass_with_actual_producer_response",
+        "p1_contract_suite_1.AggregateReceiptIntegration.test_source_change_never_becomes_aggregate_pass",
+        "p1_contract_suite_1.ManagedReceiptContracts.test_actual_producer_response_joins_nested_file",
+        "p1_contract_suite_1.ManagedReceiptContracts.test_directory_in_place_of_receipt_is_rejected",
+        "p1_contract_suite_1.ManagedReceiptContracts.test_failed_inner_verdict_is_not_promoted",
+        "p1_contract_suite_1.ManagedReceiptContracts.test_file_and_parent_symlinks_are_rejected",
+        "p1_contract_suite_1.ManagedReceiptContracts.test_invalid_binding_shapes_hashes_and_duplicate_keys",
+        "p1_contract_suite_1.ManagedReceiptContracts.test_invalid_inner_json_or_identity_is_rejected",
+        "p1_contract_suite_1.ManagedReceiptContracts.test_missing_result_and_obsolete_root_decoy_are_rejected",
+        "p1_contract_suite_1.ManagedReceiptContracts.test_mutated_result_bytes_are_rejected",
+        "p1_contract_suite_1.ManagedReceiptContracts.test_wrong_returned_paths_are_rejected"
+      ]
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_command_failures.py",
+      "expectedTests": 34,
+      "testIds": [
+        "p1_contract_suite_2.BatchFailureScheduling.test_all_sixteen_components_have_independent_success",
+        "p1_contract_suite_2.BatchFailureScheduling.test_completed_nonzero_keeps_other_independent_checks",
+        "p1_contract_suite_2.BatchFailureScheduling.test_first_component_timeout_leaves_fifteen_notrun",
+        "p1_contract_suite_2.BatchFailureScheduling.test_keyboard_interrupt_preserves_summary_and_exit130",
+        "p1_contract_suite_2.BatchFailureScheduling.test_known_launch_failure_is_retained_without_faking_an_exit",
+        "p1_contract_suite_2.BatchFailureScheduling.test_known_nonzero_empty_live_continues_without_claiming_pass",
+        "p1_contract_suite_2.BatchFailureScheduling.test_last_sdk_timeout_is_attempted_but_not_passed",
+        "p1_contract_suite_2.BatchFailureScheduling.test_malformed_native_empty_live_marker_stops_outer_children",
+        "p1_contract_suite_2.BatchFailureScheduling.test_malformed_opaque_lifetime_marker_stops_batch",
+        "p1_contract_suite_2.BatchFailureScheduling.test_missing_native_empty_live_marker_stops_outer_children",
+        "p1_contract_suite_2.BatchFailureScheduling.test_missing_native_empty_live_result_stops_outer_children",
+        "p1_contract_suite_2.BatchFailureScheduling.test_missing_opaque_lifetime_marker_stops_batch",
+        "p1_contract_suite_2.BatchFailureScheduling.test_missing_opaque_result_stops_batch",
+        "p1_contract_suite_2.BatchFailureScheduling.test_native_empty_live_nested_timeout_stops_outer_children",
+        "p1_contract_suite_2.BatchFailureScheduling.test_nested_timeout_stops_even_with_passed_child_verdict",
+        "p1_contract_suite_2.BatchFailureScheduling.test_null_opaque_lifetime_marker_stops_batch",
+        "p1_contract_suite_2.BatchFailureScheduling.test_opaque_reported_lifetime_uncertainty_stops_batch",
+        "p1_contract_suite_2.BatchFailureScheduling.test_outer_timeout_stops_remaining_commands",
+        "p1_contract_suite_2.BatchFailureScheduling.test_postflight_failure_cannot_turn_green",
+        "p1_contract_suite_2.BatchFailureScheduling.test_unknown_outcome_stops_without_fabricating_postflight",
+        "p1_contract_suite_2.ComponentFailureReceipts.test_child_lifetime_marker_overrides_passed_verdict",
+        "p1_contract_suite_2.ComponentFailureReceipts.test_duplicate_keys_rejected",
+        "p1_contract_suite_2.ComponentFailureReceipts.test_interruption_is_retained_for_batch_stop",
+        "p1_contract_suite_2.ComponentFailureReceipts.test_invalid_json_cannot_become_pass",
+        "p1_contract_suite_2.ComponentFailureReceipts.test_managed_binding_remains_nested_and_hash_authenticated",
+        "p1_contract_suite_2.ComponentFailureReceipts.test_nonfinite_and_nonobject_records_rejected",
+        "p1_contract_suite_2.ComponentFailureReceipts.test_normal_nonzero_is_not_promoted_or_mislabeled_timeout",
+        "p1_contract_suite_2.ComponentFailureReceipts.test_parent_symlink_is_rejected",
+        "p1_contract_suite_2.ComponentFailureReceipts.test_real_missing_command_keeps_failed_receipt",
+        "p1_contract_suite_2.ComponentFailureReceipts.test_real_outer_timeout_keeps_exact_prefix",
+        "p1_contract_suite_2.ComponentFailureReceipts.test_receipt_hash_matches_exact_parsed_bytes",
+        "p1_contract_suite_2.ComponentFailureReceipts.test_result_file_symlink_is_rejected",
+        "p1_contract_suite_2.ComponentFailureReceipts.test_timeout_missing_capture_remains_unavailable",
+        "p1_contract_suite_2.ComponentFailureReceipts.test_unknown_command_exception_stops"
+      ]
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/test_bounded_general_live_command.py",
+      "expectedTests": 10,
+      "testIds": [
+        "p1_contract_suite_3.NativeCommandReceipts.test_existing_sanitizer_and_environment_policy_is_preserved",
+        "p1_contract_suite_3.NativeCommandReceipts.test_interruption_records_before_propagating",
+        "p1_contract_suite_3.NativeCommandReceipts.test_real_missing_executable_is_a_recorded_launch_failure",
+        "p1_contract_suite_3.NativeCommandReceipts.test_real_nonzero_preserves_receipt_and_failure",
+        "p1_contract_suite_3.NativeCommandReceipts.test_real_success_preserves_binary_streams",
+        "p1_contract_suite_3.NativeCommandReceipts.test_real_timeout_preserves_prefix_and_no_invented_exit",
+        "p1_contract_suite_3.NativeCommandReceipts.test_timeout_without_capture_is_unavailable_not_full_empty_output",
+        "p1_contract_suite_3.NativeCommandReceipts.test_unknown_execution_exception_is_not_assumed_quiescent",
+        "p1_contract_suite_3.NativeSummaryFailureReceipts.test_missing_compiler_still_writes_failure_summary",
+        "p1_contract_suite_3.NativeSummaryFailureReceipts.test_postflight_source_loss_preserves_failure_summary"
+      ]
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/test_bounded_execution_empty_live_receipts.py",
+      "expectedTests": 12,
+      "testIds": [
+        "p1_contract_suite_4.CommandReceipts.test_completed_nonzero_retains_known_exit_and_complete_streams",
+        "p1_contract_suite_4.CommandReceipts.test_interruption_is_explicitly_unverified_and_preserved",
+        "p1_contract_suite_4.CommandReceipts.test_known_spawn_failure_is_failed_but_not_unknown_lifetime",
+        "p1_contract_suite_4.CommandReceipts.test_timeout_keeps_partial_streams_null_exit_and_uncertainty",
+        "p1_contract_suite_4.CommandReceipts.test_timeout_without_streams_keeps_availability_false",
+        "p1_contract_suite_4.CommandReceipts.test_unknown_subprocess_exception_is_unverified",
+        "p1_contract_suite_4.NativeSummaryContracts.test_compile_timeout_propagates_lifetime_and_skips_source_postflight",
+        "p1_contract_suite_4.NativeSummaryContracts.test_failed_compiler_version_never_claims_method_compiled",
+        "p1_contract_suite_4.NativeSummaryContracts.test_keyboard_interrupt_propagates_failstop_and_exits_130",
+        "p1_contract_suite_4.NativeSummaryContracts.test_missing_compiler_emits_failed_summary_with_no_compile_claim",
+        "p1_contract_suite_4.NativeSummaryContracts.test_strict_compile_nonzero_does_not_claim_compilation",
+        "p1_contract_suite_4.NativeSummaryContracts.test_unknown_subprocess_exception_propagates_failstop"
+      ]
+    }
+  ],
+  "sourceBefore": {
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py": {
+      "bytes": 6135,
+      "sha256": "753f80ee09f8edf633466614470cb60a049958d891bd7aef2b2ada29ed24d711",
+      "gitBlob": "cd4fb423029dd35d016e32d12978699ed41db00f"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py": {
+      "bytes": 22623,
+      "sha256": "814f6e79b279c6959356095017455358b32282c99da791e38eb5f0aaf7fbaf09",
+      "gitBlob": "8b98ef92ffb631227d775c987f05dcaf19d34ac3"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/build_api.py": {
+      "bytes": 11055,
+      "sha256": "c700bf3eff66ad4a249af9e59a6e3cbd0a4bcd6130787442335453acbda87c6d",
+      "gitBlob": "bdbf4c78e0bd1993a0a03c56ee8332a2cb22aa86"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/native_validation.py": {
+      "bytes": 13780,
+      "sha256": "148b7c06c5fc7fdb7cfc6c750a3bcbcf75ebf75f4a725c7d83ca97da222fa476",
+      "gitBlob": "da9b1cee19e5c473f62d8ec2fcea605721bcec9a"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/run_bounded_general_live.py": {
+      "bytes": 12023,
+      "sha256": "4fb0cf6b6c3027314abd60a81799ec90b4282a85e678c16c580a43836ab6c2df",
+      "gitBlob": "91e71f481dd481ac31b4dde872994cbd4cfd9033"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/run_bounded_execution_empty_live.py": {
+      "bytes": 11918,
+      "sha256": "64b0f16f5398c35bf2c0211bd2b8c1d6ed8bdef3b8dcb93f08d1d6cdb718f794",
+      "gitBlob": "741b227e1c320f6a94f9fd9591edb8470ba6ce26"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_metadata_preflight.py": {
+      "bytes": 4674,
+      "sha256": "c0a383cf48c944ea0fdc22beb68ee94bf8a20bebd8d26f44bdc9679913a20cf1",
+      "gitBlob": "764a4385605f3d8fad1890cb7e84ac4ac7222644"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py": {
+      "bytes": 20067,
+      "sha256": "79761b02345d13b4c3723d5ce40bfcb602df625787573760ad52ebf37d7dcad0",
+      "gitBlob": "baed780bd9057ee6a6bd87d006a38d2400084b55"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_command_failures.py": {
+      "bytes": 18714,
+      "sha256": "c9ef0678cee0c143f122d7defed5526eb0dd0f11e5b5997ecf57fd5a2dd2f7f5",
+      "gitBlob": "1a3afa74ad0e82a6d0fd40d2d295d9fcfda5c134"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/test_bounded_general_live_command.py": {
+      "bytes": 8033,
+      "sha256": "79413b9fab37b9d08207cad40658bb8b377f98e299f97366270ba530f466b800",
+      "gitBlob": "84789d4e02c75e100d8677a7f9179aec64bb697a"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/test_bounded_execution_empty_live_receipts.py": {
+      "bytes": 9640,
+      "sha256": "775fe1437c6b612724ebb723dd40fd423bc76def3f74215d862222bd783846f4",
+      "gitBlob": "94decc4754c213a7af84b3e59d9b8305affea151"
+    }
+  },
+  "sourcePreserved": true,
+  "python": "3.14.6 (v3.14.6:c63aec69bd5, Jun 10 2026, 08:07:54) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "realPythonChildTests": true,
+  "gitSdkVmChildrenMocked": true,
+  "nativeCompilerExecuted": false,
+  "officialUnitySdkCompiled": false,
+  "UnityPlayerExecuted": false,
+  "runtimeAcceptance": false,
+  "commandLifetimeUnverified": false,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "expectedFailures": 0,
+  "unexpectedSuccesses": 0,
+  "sourceAfter": {
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py": {
+      "bytes": 6135,
+      "sha256": "753f80ee09f8edf633466614470cb60a049958d891bd7aef2b2ada29ed24d711",
+      "gitBlob": "cd4fb423029dd35d016e32d12978699ed41db00f"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py": {
+      "bytes": 22623,
+      "sha256": "814f6e79b279c6959356095017455358b32282c99da791e38eb5f0aaf7fbaf09",
+      "gitBlob": "8b98ef92ffb631227d775c987f05dcaf19d34ac3"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/build_api.py": {
+      "bytes": 11055,
+      "sha256": "c700bf3eff66ad4a249af9e59a6e3cbd0a4bcd6130787442335453acbda87c6d",
+      "gitBlob": "bdbf4c78e0bd1993a0a03c56ee8332a2cb22aa86"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/native_validation.py": {
+      "bytes": 13780,
+      "sha256": "148b7c06c5fc7fdb7cfc6c750a3bcbcf75ebf75f4a725c7d83ca97da222fa476",
+      "gitBlob": "da9b1cee19e5c473f62d8ec2fcea605721bcec9a"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/run_bounded_general_live.py": {
+      "bytes": 12023,
+      "sha256": "4fb0cf6b6c3027314abd60a81799ec90b4282a85e678c16c580a43836ab6c2df",
+      "gitBlob": "91e71f481dd481ac31b4dde872994cbd4cfd9033"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/run_bounded_execution_empty_live.py": {
+      "bytes": 11918,
+      "sha256": "64b0f16f5398c35bf2c0211bd2b8c1d6ed8bdef3b8dcb93f08d1d6cdb718f794",
+      "gitBlob": "741b227e1c320f6a94f9fd9591edb8470ba6ce26"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_metadata_preflight.py": {
+      "bytes": 4674,
+      "sha256": "c0a383cf48c944ea0fdc22beb68ee94bf8a20bebd8d26f44bdc9679913a20cf1",
+      "gitBlob": "764a4385605f3d8fad1890cb7e84ac4ac7222644"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py": {
+      "bytes": 20067,
+      "sha256": "79761b02345d13b4c3723d5ce40bfcb602df625787573760ad52ebf37d7dcad0",
+      "gitBlob": "baed780bd9057ee6a6bd87d006a38d2400084b55"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/test_p1_command_failures.py": {
+      "bytes": 18714,
+      "sha256": "c9ef0678cee0c143f122d7defed5526eb0dd0f11e5b5997ecf57fd5a2dd2f7f5",
+      "gitBlob": "1a3afa74ad0e82a6d0fd40d2d295d9fcfda5c134"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/test_bounded_general_live_command.py": {
+      "bytes": 8033,
+      "sha256": "79413b9fab37b9d08207cad40658bb8b377f98e299f97366270ba530f466b800",
+      "gitBlob": "84789d4e02c75e100d8677a7f9179aec64bb697a"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/test_bounded_execution_empty_live_receipts.py": {
+      "bytes": 9640,
+      "sha256": "775fe1437c6b612724ebb723dd40fd423bc76def3f74215d862222bd783846f4",
+      "gitBlob": "94decc4754c213a7af84b3e59d9b8305affea151"
+    }
+  },
+  "finishedUnix": 1792464886.731928,
+  "log": {
+    "bytes": 11629,
+    "sha256": "69a6e71c0dcf98e14ae4463b4d89d1bb44f6d050e2cae4cbd00ec00527a203df",
+    "gitBlob": "0b0284d81315d32cd27c403c9ccf233ee3184a0e"
+  }
+}

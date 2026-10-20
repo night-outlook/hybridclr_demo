@@ -1,0 +1,34 @@
+RUN classless-ownership
+PASS classless-ownership
+RUN existing-fail-closed
+PASS existing-fail-closed
+RUN existing-capacity-phase
+first-use exact 4096-candidate capacity and sparse output passed
+PASS existing-capacity-phase
+RUN existing-token-contract
+PASS existing-token-contract
+RUN classless-general-parity
+P1 candidate first-use subset + MOCK other VM fields, independent V1 bytes=980 exact
+PASS classless-general-parity
+RUN class-ownership
+PASS class-ownership
+RUN null-absent-names
+PASS null-absent-names
+RUN cstring-budget
+PASS cstring-budget
+RUN cstring-alias
+PASS cstring-alias
+RUN owner-unavailable
+PASS owner-unavailable
+RUN usage-after-metadata
+PASS usage-after-metadata
+RUN shutdown-drain
+PASS shutdown-drain
+RUN dense-general-parity
+P1 candidate first-use subset + MOCK other VM fields, independent V1 bytes=692677 exact
+PASS dense-general-parity
+RUN unresolved-refusal
+PASS unresolved-refusal
+RUN parallel-captures
+PASS parallel-captures
+P1 first-use metadata HOST cases=15 PASSED

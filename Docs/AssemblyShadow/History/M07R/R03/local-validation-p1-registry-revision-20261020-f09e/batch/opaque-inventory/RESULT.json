@@ -1,0 +1,267 @@
+{
+  "UnityPlayerExecuted": false,
+  "actualNativeOpaqueMethodCompiled": true,
+  "classPointersNeverDereferenced": true,
+  "coherentVmEpochProven": false,
+  "commandLifetimeUnverified": false,
+  "commands": [
+    {
+      "command": [
+        "/usr/bin/clang++",
+        "--version"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792464980.8715708,
+      "name": "compiler-version",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792464980.8602,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 159,
+      "stdoutSha256": "76a924f59997fb65051981eb13105e0a8c151f16cd9c3e45e0f7c27ecefdb839"
+    },
+    {
+      "command": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-O2",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/opaque_inventory_fixture.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-REVISION-20261020-f09e/opaque-inventory/strict.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792464981.233402,
+      "name": "strict-compile",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792464980.87171,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-REVISION-20261020-f09e/opaque-inventory/strict.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792464981.6423979,
+      "name": "strict-run",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792464981.233587,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 683,
+      "stdoutSha256": "05c56fe2a685a74ea30570693daa3d62643943b023a00ddea1030d0c84dd83a3"
+    },
+    {
+      "command": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/opaque_inventory_fixture.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-REVISION-20261020-f09e/opaque-inventory/sanitized.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792464982.229975,
+      "name": "sanitized-compile",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792464981.642845,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-REVISION-20261020-f09e/opaque-inventory/sanitized.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792464982.719174,
+      "name": "sanitized-run",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792464982.23009,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 683,
+      "stdoutSha256": "05c56fe2a685a74ea30570693daa3d62643943b023a00ddea1030d0c84dd83a3"
+    }
+  ],
+  "completeExecutionSource": false,
+  "firstError": null,
+  "kind": "R03P1InactiveOpaqueExecutionInventoryHost",
+  "officialUnitySdkCompiled": false,
+  "opaqueNonemptySourceExercised": true,
+  "physicalClassPointerOriginProven": false,
+  "postflightError": null,
+  "profiles": {
+    "sanitized": {
+      "caseGroups": [
+        "empty-inventory",
+        "one-nonempty-opaque",
+        "three-scattered-opaque",
+        "full-capacity-opaque",
+        "closed-metadata-ticket",
+        "declared-count-too-large",
+        "over-capacity-actual-entries",
+        "missing-identity-for-count",
+        "unexpected-identity-with-count-zero",
+        "duplicate-pointer",
+        "class-added-before-second-sample",
+        "same-count-replacement",
+        "same-count-relocation",
+        "state-flip",
+        "active-identity-flip",
+        "one-shot-failure",
+        "second-sample-count-corruption",
+        "same-slots-new-registry-revision",
+        "stable-nonzero-registry-revision",
+        "saturated-registry-revision-refused",
+        "successful-scratch-reuse-refused"
+      ],
+      "result": "PassedWithinInactiveOpaqueHostScope"
+    },
+    "strict": {
+      "caseGroups": [
+        "empty-inventory",
+        "one-nonempty-opaque",
+        "three-scattered-opaque",
+        "full-capacity-opaque",
+        "closed-metadata-ticket",
+        "declared-count-too-large",
+        "over-capacity-actual-entries",
+        "missing-identity-for-count",
+        "unexpected-identity-with-count-zero",
+        "duplicate-pointer",
+        "class-added-before-second-sample",
+        "same-count-replacement",
+        "same-count-relocation",
+        "state-flip",
+        "active-identity-flip",
+        "one-shot-failure",
+        "second-sample-count-corruption",
+        "same-slots-new-registry-revision",
+        "stable-nonzero-registry-revision",
+        "saturated-registry-revision-refused",
+        "successful-scratch-reuse-refused"
+      ],
+      "result": "PassedWithinInactiveOpaqueHostScope"
+    }
+  },
+  "result": "PassedWithinInactiveOpaqueHostScope",
+  "runtimeAcceptance": false,
+  "schemaVersion": 1,
+  "sourceAfter": {
+    "libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 121730,
+      "gitBlob": "c9cfb38e9585995037610c32098906080ddea0aa",
+      "sha256": "af72f69ccd229c34ceb961986baa374189f6fc4015cb0ef6e611ddabea280758"
+    },
+    "libil2cpp/vm/AssemblyShadow.h": {
+      "bytes": 10046,
+      "gitBlob": "4f4d6a59675d66786826e32906d863efa4485d27",
+      "sha256": "aae0d7f0e460f6ab8642f767db07bb7c3672e4c1c6b5528660ffe31b886e57ee"
+    },
+    "libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h": {
+      "bytes": 788,
+      "gitBlob": "46a313742295acaa52d5022f238fbcba4430c6df",
+      "sha256": "4d318426f4be784fe3eb6065ef47ed97539416f871fbe060f6c4ca6e8be41d5e"
+    },
+    "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h": {
+      "bytes": 3865,
+      "gitBlob": "379969f6021687d776d9bb995a96aa459f7ca33a",
+      "sha256": "37feb1012b65fae38293ef1083e665f70c5ae750080a26a3e6258444dcd27680"
+    },
+    "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl": {
+      "bytes": 3218,
+      "gitBlob": "8510063cc8eea80edda3b952d3b53786c0dbefe2",
+      "sha256": "1efc259b3cc083fd42bd58a53c3ed3564680d9a3bea34fe588438ab845f62811"
+    },
+    "tools/r03/diagnostic_stream/opaque_inventory_fixture.cpp": {
+      "bytes": 8798,
+      "gitBlob": "fcef01209cdccfa87d79db16438e162b975cb5e4",
+      "sha256": "198ac75a2f6554bf198c75381b3ec4d9e2595c84e7075181fb7714d1b5d6efc4"
+    },
+    "tools/r03/diagnostic_stream/run_opaque_execution_inventory.py": {
+      "bytes": 11938,
+      "gitBlob": "862b8299367a6e792426c0ca79fa32a5190f7d6a",
+      "sha256": "8ecc8f71580241494b7a0cd26bdd4bb98ee6f4f6075e6871f747978b72c53573"
+    }
+  },
+  "sourceBefore": {
+    "libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 121730,
+      "gitBlob": "c9cfb38e9585995037610c32098906080ddea0aa",
+      "sha256": "af72f69ccd229c34ceb961986baa374189f6fc4015cb0ef6e611ddabea280758"
+    },
+    "libil2cpp/vm/AssemblyShadow.h": {
+      "bytes": 10046,
+      "gitBlob": "4f4d6a59675d66786826e32906d863efa4485d27",
+      "sha256": "aae0d7f0e460f6ab8642f767db07bb7c3672e4c1c6b5528660ffe31b886e57ee"
+    },
+    "libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h": {
+      "bytes": 788,
+      "gitBlob": "46a313742295acaa52d5022f238fbcba4430c6df",
+      "sha256": "4d318426f4be784fe3eb6065ef47ed97539416f871fbe060f6c4ca6e8be41d5e"
+    },
+    "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h": {
+      "bytes": 3865,
+      "gitBlob": "379969f6021687d776d9bb995a96aa459f7ca33a",
+      "sha256": "37feb1012b65fae38293ef1083e665f70c5ae750080a26a3e6258444dcd27680"
+    },
+    "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl": {
+      "bytes": 3218,
+      "gitBlob": "8510063cc8eea80edda3b952d3b53786c0dbefe2",
+      "sha256": "1efc259b3cc083fd42bd58a53c3ed3564680d9a3bea34fe588438ab845f62811"
+    },
+    "tools/r03/diagnostic_stream/opaque_inventory_fixture.cpp": {
+      "bytes": 8798,
+      "gitBlob": "fcef01209cdccfa87d79db16438e162b975cb5e4",
+      "sha256": "198ac75a2f6554bf198c75381b3ec4d9e2595c84e7075181fb7714d1b5d6efc4"
+    },
+    "tools/r03/diagnostic_stream/run_opaque_execution_inventory.py": {
+      "bytes": 11938,
+      "gitBlob": "862b8299367a6e792426c0ca79fa32a5190f7d6a",
+      "sha256": "8ecc8f71580241494b7a0cd26bdd4bb98ee6f4f6075e6871f747978b72c53573"
+    }
+  },
+  "sourceMethodSha256": "1efc259b3cc083fd42bd58a53c3ed3564680d9a3bea34fe588438ab845f62811",
+  "sourcePreserved": true
+}
