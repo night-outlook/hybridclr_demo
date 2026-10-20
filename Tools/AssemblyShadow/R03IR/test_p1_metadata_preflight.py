@@ -42,6 +42,7 @@ class PreflightContracts(unittest.TestCase):
             "run_opaque_execution_inventory.py",
             "AssemblyShadowExecutionRegistryRevision.h",
             "AssemblyShadowExecutionRegistrationWitness.h",
+            "AssemblyShadowExecutionRegistryPublisher.h",
             "AssemblyShadowOpaqueInventorySyntax.cpp",
             "AssemblyShadowExecutionEmptyLiveSyntax.cpp",
             "AssemblyShadowExecutionComposeSyntax.cpp",
