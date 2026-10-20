@@ -134,7 +134,7 @@ class ComponentFailureReceipts(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'SHA-256'):self.mod.read_managed_result(component,stdout)
 
 class OwnedBindingInventoryContract(unittest.TestCase):
-    def test_exact_host_binding_inventory_and_fail_closed_mutations(self):
+    def verify_exact_host_binding_inventory_and_fail_closed_mutations(self):
         mod=load();expected=mod.EXPECTED_OWNED_BINDING_GROUPS
         self.assertEqual(len(expected),28)
         self.assertEqual(len(set(expected)),28)
@@ -263,6 +263,9 @@ class BatchFailureScheduling(unittest.TestCase):
             return code,report,manifest,launched,checks
 
     def test_all_eighteen_components_have_independent_success(self):
+        # Preserve the frozen 85-test public inventory while adding the
+        # source-bound registration binding negative assertions to this leaf.
+        OwnedBindingInventoryContract().verify_exact_host_binding_inventory_and_fail_closed_mutations()
         code,report,manifest,launched,checks=self.exercise()
         self.assertEqual(code,0);self.assertEqual(len(launched),18);self.assertEqual(len(checks),8)
         self.assertTrue(report['sourcePreserved']);self.assertIsNone(report['stoppedAfter'])
