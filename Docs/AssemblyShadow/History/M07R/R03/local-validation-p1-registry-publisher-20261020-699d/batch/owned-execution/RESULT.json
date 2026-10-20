@@ -1,0 +1,781 @@
+{
+  "UnityPlayerExecuted": false,
+  "actualR02CounterSourceExercised": true,
+  "actualR02CounterSourceProfiles": [
+    "level0-strict",
+    "level0-sanitized",
+    "level1-strict",
+    "level1-sanitized",
+    "level2-strict",
+    "level2-sanitized"
+  ],
+  "classPointerOriginProven": false,
+  "classRowsAreHostFixtures": true,
+  "coherentVmEpochProven": false,
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "--version"
+      ],
+      "exit": 0,
+      "finishedUnix": 1792480208.1857212,
+      "label": "compiler-version",
+      "startedUnix": 1792480208.1737,
+      "status": "Passed",
+      "stderr.bin": {
+        "bytes": 0,
+        "path": "compiler-version.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout.bin": {
+        "bytes": 159,
+        "path": "compiler-version.stdout.bin",
+        "sha256": "76a924f59997fb65051981eb13105e0a8c151f16cd9c3e45e0f7c27ecefdb839"
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=0",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-DFROZEN_EXECUTION_REFERENCE_HEADER=\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/reference-AssemblyShadowExecutionSerializer.h\"",
+        "-DFROZEN_R02_REFERENCE_HEADER=\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/reference-AssemblyShadowR02Diagnostics.h\"",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_fixture.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_allocations.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/level0-strict"
+      ],
+      "exit": 0,
+      "finishedUnix": 1792480208.7938418,
+      "label": "level0-strict-compile",
+      "startedUnix": 1792480208.1858492,
+      "status": "Passed",
+      "stderr.bin": {
+        "bytes": 0,
+        "path": "level0-strict-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout.bin": {
+        "bytes": 0,
+        "path": "level0-strict-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/level0-strict"
+      ],
+      "exit": 0,
+      "finishedUnix": 1792480209.263757,
+      "label": "level0-strict-run",
+      "startedUnix": 1792480208.794006,
+      "status": "Passed",
+      "stderr.bin": {
+        "bytes": 0,
+        "path": "level0-strict-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout.bin": {
+        "bytes": 1398,
+        "path": "level0-strict-run.stdout.bin",
+        "sha256": "81da1e17a8801e9043bd6071cc101814f4f0e1c7db2680d18d8e86006fb71b77"
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=0",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-DFROZEN_EXECUTION_REFERENCE_HEADER=\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/reference-AssemblyShadowExecutionSerializer.h\"",
+        "-DFROZEN_R02_REFERENCE_HEADER=\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/reference-AssemblyShadowR02Diagnostics.h\"",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_fixture.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_allocations.cpp",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/level0-sanitized"
+      ],
+      "exit": 0,
+      "finishedUnix": 1792480210.191988,
+      "label": "level0-sanitized-compile",
+      "startedUnix": 1792480209.264161,
+      "status": "Passed",
+      "stderr.bin": {
+        "bytes": 0,
+        "path": "level0-sanitized-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout.bin": {
+        "bytes": 0,
+        "path": "level0-sanitized-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/level0-sanitized"
+      ],
+      "exit": 0,
+      "finishedUnix": 1792480210.802887,
+      "label": "level0-sanitized-run",
+      "startedUnix": 1792480210.1922162,
+      "status": "Passed",
+      "stderr.bin": {
+        "bytes": 0,
+        "path": "level0-sanitized-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout.bin": {
+        "bytes": 1398,
+        "path": "level0-sanitized-run.stdout.bin",
+        "sha256": "81da1e17a8801e9043bd6071cc101814f4f0e1c7db2680d18d8e86006fb71b77"
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=1",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-DFROZEN_EXECUTION_REFERENCE_HEADER=\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/reference-AssemblyShadowExecutionSerializer.h\"",
+        "-DFROZEN_R02_REFERENCE_HEADER=\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/reference-AssemblyShadowR02Diagnostics.h\"",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_fixture.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_allocations.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/level1-strict"
+      ],
+      "exit": 0,
+      "finishedUnix": 1792480211.436915,
+      "label": "level1-strict-compile",
+      "startedUnix": 1792480210.803081,
+      "status": "Passed",
+      "stderr.bin": {
+        "bytes": 0,
+        "path": "level1-strict-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout.bin": {
+        "bytes": 0,
+        "path": "level1-strict-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/level1-strict"
+      ],
+      "exit": 0,
+      "finishedUnix": 1792480211.936515,
+      "label": "level1-strict-run",
+      "startedUnix": 1792480211.437075,
+      "status": "Passed",
+      "stderr.bin": {
+        "bytes": 0,
+        "path": "level1-strict-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout.bin": {
+        "bytes": 1398,
+        "path": "level1-strict-run.stdout.bin",
+        "sha256": "c2914de36e79378dba6557d7c953e0e281530b0c7cca905e22977bdfa5df676f"
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=1",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-DFROZEN_EXECUTION_REFERENCE_HEADER=\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/reference-AssemblyShadowExecutionSerializer.h\"",
+        "-DFROZEN_R02_REFERENCE_HEADER=\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/reference-AssemblyShadowR02Diagnostics.h\"",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_fixture.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_allocations.cpp",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/level1-sanitized"
+      ],
+      "exit": 0,
+      "finishedUnix": 1792480212.8887198,
+      "label": "level1-sanitized-compile",
+      "startedUnix": 1792480211.936739,
+      "status": "Passed",
+      "stderr.bin": {
+        "bytes": 0,
+        "path": "level1-sanitized-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout.bin": {
+        "bytes": 0,
+        "path": "level1-sanitized-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/level1-sanitized"
+      ],
+      "exit": 0,
+      "finishedUnix": 1792480213.484499,
+      "label": "level1-sanitized-run",
+      "startedUnix": 1792480212.888861,
+      "status": "Passed",
+      "stderr.bin": {
+        "bytes": 0,
+        "path": "level1-sanitized-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout.bin": {
+        "bytes": 1398,
+        "path": "level1-sanitized-run.stdout.bin",
+        "sha256": "1b8f0301bef81ed5c2f7a14bacd4736bd2bd368472d67edd58399834cd95a936"
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=2",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-DFROZEN_EXECUTION_REFERENCE_HEADER=\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/reference-AssemblyShadowExecutionSerializer.h\"",
+        "-DFROZEN_R02_REFERENCE_HEADER=\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/reference-AssemblyShadowR02Diagnostics.h\"",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_fixture.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_allocations.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/level2-strict"
+      ],
+      "exit": 0,
+      "finishedUnix": 1792480214.119854,
+      "label": "level2-strict-compile",
+      "startedUnix": 1792480213.4846919,
+      "status": "Passed",
+      "stderr.bin": {
+        "bytes": 0,
+        "path": "level2-strict-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout.bin": {
+        "bytes": 0,
+        "path": "level2-strict-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/level2-strict"
+      ],
+      "exit": 0,
+      "finishedUnix": 1792480214.5947049,
+      "label": "level2-strict-run",
+      "startedUnix": 1792480214.119988,
+      "status": "Passed",
+      "stderr.bin": {
+        "bytes": 0,
+        "path": "level2-strict-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout.bin": {
+        "bytes": 1398,
+        "path": "level2-strict-run.stdout.bin",
+        "sha256": "cd67c57072b1c227759fd9a41a381a82d84a27110003293e895d4581ac6eb2dc"
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=2",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-DFROZEN_EXECUTION_REFERENCE_HEADER=\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/reference-AssemblyShadowExecutionSerializer.h\"",
+        "-DFROZEN_R02_REFERENCE_HEADER=\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/reference-AssemblyShadowR02Diagnostics.h\"",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_fixture.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_allocations.cpp",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/level2-sanitized"
+      ],
+      "exit": 0,
+      "finishedUnix": 1792480215.5473542,
+      "label": "level2-sanitized-compile",
+      "startedUnix": 1792480214.594906,
+      "status": "Passed",
+      "stderr.bin": {
+        "bytes": 0,
+        "path": "level2-sanitized-compile.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout.bin": {
+        "bytes": 0,
+        "path": "level2-sanitized-compile.stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-REGISTRY-PUBLISHER-20261020-699d/owned-execution/level2-sanitized"
+      ],
+      "exit": 0,
+      "finishedUnix": 1792480216.1463091,
+      "label": "level2-sanitized-run",
+      "startedUnix": 1792480215.547489,
+      "status": "Passed",
+      "stderr.bin": {
+        "bytes": 0,
+        "path": "level2-sanitized-run.stderr.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout.bin": {
+        "bytes": 1398,
+        "path": "level2-sanitized-run.stdout.bin",
+        "sha256": "5bd1db2d8b1541d562707de96350ce6cb3ca3bd0f356871f027af408fbb30a38"
+      }
+    }
+  ],
+  "kind": "R03P1FrozenExecutionHost",
+  "leakSanitizer": "UnavailableOnAppleHost",
+  "legacyReferenceCommit": "5667e3712f49e4b38c7dd7359e57f81e344626da",
+  "officialSdkCompile": false,
+  "originalLiveGettersReplaced": false,
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "profiles": [
+    {
+      "allocation": [
+        [
+          "0",
+          "320",
+          "3932512"
+        ]
+      ],
+      "compileReceipt": "level0-strict-compile.json",
+      "diagnosticsLevel": 0,
+      "name": "level0-strict",
+      "result": "Passed",
+      "runReceipt": "level0-strict-run.json",
+      "sanitized": false,
+      "tests": [
+        "snapshot-all-fields-and-read-order",
+        "every-metric-change-clears-destination",
+        "every-source-metadata-change",
+        "invalid-subsets-rejected",
+        "disabled-policy",
+        "coverage-precedence",
+        "empty-original-v1-parity",
+        "256-boolean-row-original-v1-parity",
+        "counted-nonterminated-state",
+        "unicode-and-control-byte-parity",
+        "owned-inputs-survive-mutation",
+        "invalid-utf8-rejected",
+        "invalid-null-inputs",
+        "missing-extra-and-overlimit-rows",
+        "1024-row-original-v1-parity",
+        "wrong-stages-and-reuse",
+        "whole-object-input-alias",
+        "invalid-range-before-dereference",
+        "exact-field-byte-limit",
+        "one-byte-over-field-limit",
+        "escape-expanded-byte-limit",
+        "nonclassic-locale-rejected",
+        "incomplete-counters-rejected",
+        "late-source-revocation",
+        "sink-preflight-no-callback",
+        "bounded-chunked-emission",
+        "sink-failure-no-continuation",
+        "reentrant-sink-rejected",
+        "revoking-sink-rejected",
+        "writer-finish-contract-unchanged",
+        "zero-watched-operator-new",
+        "actual-r02-source-and-live-wrapper-parity",
+        "actual-concurrent-counter-source",
+        "actual-counter-saturation",
+        "actual-counter-thread-capacity"
+      ]
+    },
+    {
+      "allocation": [
+        [
+          "0",
+          "320",
+          "3932512"
+        ]
+      ],
+      "compileReceipt": "level0-sanitized-compile.json",
+      "diagnosticsLevel": 0,
+      "name": "level0-sanitized",
+      "result": "Passed",
+      "runReceipt": "level0-sanitized-run.json",
+      "sanitized": true,
+      "tests": [
+        "snapshot-all-fields-and-read-order",
+        "every-metric-change-clears-destination",
+        "every-source-metadata-change",
+        "invalid-subsets-rejected",
+        "disabled-policy",
+        "coverage-precedence",
+        "empty-original-v1-parity",
+        "256-boolean-row-original-v1-parity",
+        "counted-nonterminated-state",
+        "unicode-and-control-byte-parity",
+        "owned-inputs-survive-mutation",
+        "invalid-utf8-rejected",
+        "invalid-null-inputs",
+        "missing-extra-and-overlimit-rows",
+        "1024-row-original-v1-parity",
+        "wrong-stages-and-reuse",
+        "whole-object-input-alias",
+        "invalid-range-before-dereference",
+        "exact-field-byte-limit",
+        "one-byte-over-field-limit",
+        "escape-expanded-byte-limit",
+        "nonclassic-locale-rejected",
+        "incomplete-counters-rejected",
+        "late-source-revocation",
+        "sink-preflight-no-callback",
+        "bounded-chunked-emission",
+        "sink-failure-no-continuation",
+        "reentrant-sink-rejected",
+        "revoking-sink-rejected",
+        "writer-finish-contract-unchanged",
+        "zero-watched-operator-new",
+        "actual-r02-source-and-live-wrapper-parity",
+        "actual-concurrent-counter-source",
+        "actual-counter-saturation",
+        "actual-counter-thread-capacity"
+      ]
+    },
+    {
+      "allocation": [
+        [
+          "0",
+          "320",
+          "3932512"
+        ]
+      ],
+      "compileReceipt": "level1-strict-compile.json",
+      "diagnosticsLevel": 1,
+      "name": "level1-strict",
+      "result": "Passed",
+      "runReceipt": "level1-strict-run.json",
+      "sanitized": false,
+      "tests": [
+        "snapshot-all-fields-and-read-order",
+        "every-metric-change-clears-destination",
+        "every-source-metadata-change",
+        "invalid-subsets-rejected",
+        "disabled-policy",
+        "coverage-precedence",
+        "empty-original-v1-parity",
+        "256-boolean-row-original-v1-parity",
+        "counted-nonterminated-state",
+        "unicode-and-control-byte-parity",
+        "owned-inputs-survive-mutation",
+        "invalid-utf8-rejected",
+        "invalid-null-inputs",
+        "missing-extra-and-overlimit-rows",
+        "1024-row-original-v1-parity",
+        "wrong-stages-and-reuse",
+        "whole-object-input-alias",
+        "invalid-range-before-dereference",
+        "exact-field-byte-limit",
+        "one-byte-over-field-limit",
+        "escape-expanded-byte-limit",
+        "nonclassic-locale-rejected",
+        "incomplete-counters-rejected",
+        "late-source-revocation",
+        "sink-preflight-no-callback",
+        "bounded-chunked-emission",
+        "sink-failure-no-continuation",
+        "reentrant-sink-rejected",
+        "revoking-sink-rejected",
+        "writer-finish-contract-unchanged",
+        "zero-watched-operator-new",
+        "actual-r02-source-and-live-wrapper-parity",
+        "actual-concurrent-counter-source",
+        "actual-counter-saturation",
+        "actual-counter-thread-capacity"
+      ]
+    },
+    {
+      "allocation": [
+        [
+          "0",
+          "320",
+          "3932512"
+        ]
+      ],
+      "compileReceipt": "level1-sanitized-compile.json",
+      "diagnosticsLevel": 1,
+      "name": "level1-sanitized",
+      "result": "Passed",
+      "runReceipt": "level1-sanitized-run.json",
+      "sanitized": true,
+      "tests": [
+        "snapshot-all-fields-and-read-order",
+        "every-metric-change-clears-destination",
+        "every-source-metadata-change",
+        "invalid-subsets-rejected",
+        "disabled-policy",
+        "coverage-precedence",
+        "empty-original-v1-parity",
+        "256-boolean-row-original-v1-parity",
+        "counted-nonterminated-state",
+        "unicode-and-control-byte-parity",
+        "owned-inputs-survive-mutation",
+        "invalid-utf8-rejected",
+        "invalid-null-inputs",
+        "missing-extra-and-overlimit-rows",
+        "1024-row-original-v1-parity",
+        "wrong-stages-and-reuse",
+        "whole-object-input-alias",
+        "invalid-range-before-dereference",
+        "exact-field-byte-limit",
+        "one-byte-over-field-limit",
+        "escape-expanded-byte-limit",
+        "nonclassic-locale-rejected",
+        "incomplete-counters-rejected",
+        "late-source-revocation",
+        "sink-preflight-no-callback",
+        "bounded-chunked-emission",
+        "sink-failure-no-continuation",
+        "reentrant-sink-rejected",
+        "revoking-sink-rejected",
+        "writer-finish-contract-unchanged",
+        "zero-watched-operator-new",
+        "actual-r02-source-and-live-wrapper-parity",
+        "actual-concurrent-counter-source",
+        "actual-counter-saturation",
+        "actual-counter-thread-capacity"
+      ]
+    },
+    {
+      "allocation": [
+        [
+          "0",
+          "320",
+          "3932512"
+        ]
+      ],
+      "compileReceipt": "level2-strict-compile.json",
+      "diagnosticsLevel": 2,
+      "name": "level2-strict",
+      "result": "Passed",
+      "runReceipt": "level2-strict-run.json",
+      "sanitized": false,
+      "tests": [
+        "snapshot-all-fields-and-read-order",
+        "every-metric-change-clears-destination",
+        "every-source-metadata-change",
+        "invalid-subsets-rejected",
+        "disabled-policy",
+        "coverage-precedence",
+        "empty-original-v1-parity",
+        "256-boolean-row-original-v1-parity",
+        "counted-nonterminated-state",
+        "unicode-and-control-byte-parity",
+        "owned-inputs-survive-mutation",
+        "invalid-utf8-rejected",
+        "invalid-null-inputs",
+        "missing-extra-and-overlimit-rows",
+        "1024-row-original-v1-parity",
+        "wrong-stages-and-reuse",
+        "whole-object-input-alias",
+        "invalid-range-before-dereference",
+        "exact-field-byte-limit",
+        "one-byte-over-field-limit",
+        "escape-expanded-byte-limit",
+        "nonclassic-locale-rejected",
+        "incomplete-counters-rejected",
+        "late-source-revocation",
+        "sink-preflight-no-callback",
+        "bounded-chunked-emission",
+        "sink-failure-no-continuation",
+        "reentrant-sink-rejected",
+        "revoking-sink-rejected",
+        "writer-finish-contract-unchanged",
+        "zero-watched-operator-new",
+        "actual-r02-source-and-live-wrapper-parity",
+        "actual-concurrent-counter-source",
+        "actual-counter-saturation",
+        "actual-counter-thread-capacity"
+      ]
+    },
+    {
+      "allocation": [
+        [
+          "0",
+          "320",
+          "3932512"
+        ]
+      ],
+      "compileReceipt": "level2-sanitized-compile.json",
+      "diagnosticsLevel": 2,
+      "name": "level2-sanitized",
+      "result": "Passed",
+      "runReceipt": "level2-sanitized-run.json",
+      "sanitized": true,
+      "tests": [
+        "snapshot-all-fields-and-read-order",
+        "every-metric-change-clears-destination",
+        "every-source-metadata-change",
+        "invalid-subsets-rejected",
+        "disabled-policy",
+        "coverage-precedence",
+        "empty-original-v1-parity",
+        "256-boolean-row-original-v1-parity",
+        "counted-nonterminated-state",
+        "unicode-and-control-byte-parity",
+        "owned-inputs-survive-mutation",
+        "invalid-utf8-rejected",
+        "invalid-null-inputs",
+        "missing-extra-and-overlimit-rows",
+        "1024-row-original-v1-parity",
+        "wrong-stages-and-reuse",
+        "whole-object-input-alias",
+        "invalid-range-before-dereference",
+        "exact-field-byte-limit",
+        "one-byte-over-field-limit",
+        "escape-expanded-byte-limit",
+        "nonclassic-locale-rejected",
+        "incomplete-counters-rejected",
+        "late-source-revocation",
+        "sink-preflight-no-callback",
+        "bounded-chunked-emission",
+        "sink-failure-no-continuation",
+        "reentrant-sink-rejected",
+        "revoking-sink-rejected",
+        "writer-finish-contract-unchanged",
+        "zero-watched-operator-new",
+        "actual-r02-source-and-live-wrapper-parity",
+        "actual-concurrent-counter-source",
+        "actual-counter-saturation",
+        "actual-counter-thread-capacity"
+      ]
+    }
+  ],
+  "python": "3.14.6 (v3.14.6:c63aec69bd5, Jun 10 2026, 08:07:54) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "referenceAdapters": {
+    "AssemblyShadowExecutionSerializer.h": {
+      "onlyAddedCommentPrefix": true,
+      "originalSha256": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef",
+      "path": "reference-AssemblyShadowExecutionSerializer.h",
+      "sha256": "971eda9b8f7e0505edbfbada251b3a048fd533744e611256078892eba77ba810"
+    },
+    "AssemblyShadowR02Diagnostics.h": {
+      "onlyAddedCommentPrefix": true,
+      "originalSha256": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba",
+      "path": "reference-AssemblyShadowR02Diagnostics.h",
+      "sha256": "f2589462e267d395481cfd4e34e94d943f638de6d3f984465fb7ba8aedde3982"
+    }
+  },
+  "referenceSha256": {
+    "AssemblyShadowExecutionSerializer.h": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef",
+    "AssemblyShadowR02Diagnostics.h": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba"
+  },
+  "result": "PassedWithinOwnedExecutionHostScope",
+  "runtimeAcceptance": false,
+  "sanitizerEnvironment": {
+    "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+  },
+  "schemaVersion": 1,
+  "sourceIdentity": {
+    "gitBranch": "codex/assembly-shadow-r01b-h1",
+    "gitClean": true,
+    "gitHead": "699dec4698a529c66e201aca1802ee8f498d8334",
+    "mode": "GitCheckout",
+    "origin": "git@github.com:night-outlook/il2cpp_plus.git"
+  },
+  "sourceIdentityAfter": {
+    "gitBranch": "codex/assembly-shadow-r01b-h1",
+    "gitClean": true,
+    "gitHead": "699dec4698a529c66e201aca1802ee8f498d8334",
+    "mode": "GitCheckout",
+    "origin": "git@github.com:night-outlook/il2cpp_plus.git"
+  },
+  "sourcePreserved": true,
+  "sourceSha256After": {
+    "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605",
+    "libil2cpp/vm/AssemblyShadowDiagnosticsProfile.h": "9c3833d1654b23a26cfd5567fee1bacf057887a2bc3afc1e50cbfa31c2cdea3e",
+    "libil2cpp/vm/AssemblyShadowExecutionSerializer.h": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef",
+    "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9",
+    "libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h": "c383afe1ba28b3c88f00abcea4ff469d40e3557bdff0303368d6a31ded1ed378",
+    "libil2cpp/vm/AssemblyShadowObservationCounters.h": "4ce6a868fc7c50361924ed0b9523a18a163719509f4c1879f3e72c03b7506575",
+    "libil2cpp/vm/AssemblyShadowObservationMemo.h": "d26695e7f01ee7e6b2d4845900ba20324882ae366587d9be215b72627b15cb82",
+    "libil2cpp/vm/AssemblyShadowR02Diagnostics.h": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba",
+    "libil2cpp/vm/AssemblyShadowR02Snapshot.h": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf",
+    "tools/r03/diagnostic_stream/frozen_execution_allocations.cpp": "e3e01f68acab9226dd5123a23f5edbe6991f2a1c4b5c89216c9cfb07792a7e37",
+    "tools/r03/diagnostic_stream/frozen_execution_fixture.cpp": "3a0142a340c0a0f433265837123f1e6c25eac6362c37b36ea829fbd0e7638384",
+    "tools/r03/diagnostic_stream/reference/AssemblyShadowExecutionSerializer.h": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef",
+    "tools/r03/diagnostic_stream/reference/AssemblyShadowR02Diagnostics.h": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba",
+    "tools/r03/diagnostic_stream/run_frozen_execution.py": "38707a85eb9eff727a3619b0dc26242d25b69b1ba3242849945463dfc71d5785"
+  },
+  "sourceSha256Before": {
+    "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605",
+    "libil2cpp/vm/AssemblyShadowDiagnosticsProfile.h": "9c3833d1654b23a26cfd5567fee1bacf057887a2bc3afc1e50cbfa31c2cdea3e",
+    "libil2cpp/vm/AssemblyShadowExecutionSerializer.h": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef",
+    "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9",
+    "libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h": "c383afe1ba28b3c88f00abcea4ff469d40e3557bdff0303368d6a31ded1ed378",
+    "libil2cpp/vm/AssemblyShadowObservationCounters.h": "4ce6a868fc7c50361924ed0b9523a18a163719509f4c1879f3e72c03b7506575",
+    "libil2cpp/vm/AssemblyShadowObservationMemo.h": "d26695e7f01ee7e6b2d4845900ba20324882ae366587d9be215b72627b15cb82",
+    "libil2cpp/vm/AssemblyShadowR02Diagnostics.h": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba",
+    "libil2cpp/vm/AssemblyShadowR02Snapshot.h": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf",
+    "tools/r03/diagnostic_stream/frozen_execution_allocations.cpp": "e3e01f68acab9226dd5123a23f5edbe6991f2a1c4b5c89216c9cfb07792a7e37",
+    "tools/r03/diagnostic_stream/frozen_execution_fixture.cpp": "3a0142a340c0a0f433265837123f1e6c25eac6362c37b36ea829fbd0e7638384",
+    "tools/r03/diagnostic_stream/reference/AssemblyShadowExecutionSerializer.h": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef",
+    "tools/r03/diagnostic_stream/reference/AssemblyShadowR02Diagnostics.h": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba",
+    "tools/r03/diagnostic_stream/run_frozen_execution.py": "38707a85eb9eff727a3619b0dc26242d25b69b1ba3242849945463dfc71d5785"
+  },
+  "testGroupsExecuted": 210,
+  "unityEditorRun": false
+}

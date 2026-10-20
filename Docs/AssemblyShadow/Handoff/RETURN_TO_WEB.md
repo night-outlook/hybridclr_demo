@@ -1,6 +1,14 @@
 # Local Validation → Primary Implementation
 
-## Current return — P1 execution-registry revision source/SDK 20261020-f09e PASS
+## Current return — P1 shared registry publisher source/SDK 20261020-699d PASS
+
+**No new nontrivial issue requires implementation from this bounded cycle.** [Local factual report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-registry-publisher-20261020-699d/README.md), [publisher verification](../History/M07R/R03/local-validation-p1-registry-publisher-20261020-699d/preflight/REGISTRY_PUBLISHER_VERIFICATION.json). One authorized invocation Passed 16/16, 75 contracts, 34 opaque/publisher groups per strict/sanitized profile and five direct successes, five official managed positives/exact original negative, 90/90 actual native SDK syntax configurations. Source/SDK/eleven consumed P1 histories preserved; no retry or Unity/Player launch.
+
+The exact shared publisher header is source-bound to the real ObserveExecutionClass call and host fixture. All nine writer groups Passed, including role/count integration with the actual inactive collector, collision handling, existing-at-capacity, conflicting witness, invalid source and saturated revision refusal before witness publication. Production caller behavior is source/SDK-syntax checked; host execution covers the shared helper under explicit VM/single-threaded mocks, not full runtime ObserveExecutionClass. Fixture source-authenticated assertions and complete PASS groups carry numeric count/revision proof; no independent numeric JSON/log samples were manufactured. Superseded witness roots remain absent without an inferred execution outcome.
+
+Required Primary action: reconcile this evidence and continue existing P1/P2/E0/E1/full P3 work under separate authority. Registration-path witnesses do not establish physical class-pointer ownership/lifetime, global VM coherence/ABA, descendant quiescence, linked Player or engine lifecycle. All acceptance flags false; all historical outcomes unchanged. Further Local execution requires a fresh exact source-pinned handoff. Stop/return state: Primary Implementation.
+
+## Historical return — P1 execution-registry revision source/SDK 20261020-f09e PASS
 
 **No new nontrivial issue requires implementation from this bounded cycle.** [Local factual report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-registry-revision-20261020-f09e/README.md), [independent audit](../History/M07R/R03/local-validation-p1-registry-revision-20261020-f09e/preflight/EVIDENCE_AUDIT.json), [registry verification](../History/M07R/R03/local-validation-p1-registry-revision-20261020-f09e/preflight/REGISTRY_REVISION_VERIFICATION.json). One authorized invocation Passed 16/16 components, 75 contracts, opaque strict/sanitized 21 groups/profile and five direct successes, five real managed products/exact original negative and 90/90 actual native SDK syntax configurations. Source/SDK/ten consumed P1 histories preserved; no retry or Unity/Player launch.
 
