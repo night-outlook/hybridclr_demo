@@ -13,7 +13,7 @@
 
 ## 2. Four authoritative repositories and exact test-source pins
 
-Branch for **every** independent repository: `codex/assembly-shadow-r01b-h1`. Canonical remotes are the four `https://github.com/night-outlook/<repo>.git` equivalents (or SSH resolving to the same repositories). Parent `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r` is NOT a repository. Local must inspect each nested repository, branch, `git status --porcelain`, submodule identity, local HEAD and live `git ls-remote` and fast-forward **only clean ancestor checkouts**; no reset/clean/force/merge, no unrelated modifications.
+Branch for **every** independent repository: `codex/assembly-shadow-r01b-h1`. Canonical remotes are `https://github.com/night-outlook/hybridclr_demo.git`, `https://github.com/night-outlook/hybridclr.git`, `https://github.com/night-outlook/hybridclr_unity.git`, and `https://github.com/night-outlook/il2cpp_plus.git` (or equivalent SSH remotes resolving to those exact repositories). Parent `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r` is NOT a repository. Local must inspect each nested repository, branch, `git status --porcelain`, submodule identity, local HEAD and live `git ls-remote` and fast-forward **only clean ancestor checkouts**; no reset/clean/force/merge, no unrelated modifications.
 
 | Repository | Exact existing Local checkout | Required latest pushed HEAD |
 | --- | --- | --- |
