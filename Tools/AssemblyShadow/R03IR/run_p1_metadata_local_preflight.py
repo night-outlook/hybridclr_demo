@@ -171,7 +171,7 @@ def read_component_result(output:Path, filename:str, require_lifetime_marker:boo
     if expected_owned_binding_groups is not None and not unknown and (
        record.get("result")=="PassedWithinInactiveOwnedPhysicalNamesHostScope"):
         if (record.get("kind")!="R03P1InactiveOwnedObservedPhysicalNamesSourceHost"
-            or record.get("schemaVersion")!=1 or
+            or type(record.get("schemaVersion")) is not int or record["schemaVersion"]!=1 or
             record.get("actualSourceCompiled") is not True or
             record.get("sourcePreserved") is not True or
             record.get("ownedPhysicalNamesOnly") is not True or

@@ -155,7 +155,7 @@ class OwnedBindingInventoryContract(unittest.TestCase):
                 return mod.read_component_result(out,'RESULT.json',True,expected)
             self.assertTrue(check(baseline)['ownedBindingCaseInventoryVerified'])
             for mutate in ('missing-case','duplicate-case','wrong-result','false-runtime-scope',
-                           'missing-source-compile','missing-sanitized','wrong-kind'):
+                           'missing-source-compile','missing-sanitized','wrong-kind','bool-schema'):
                 with self.subTest(mutate=mutate):
                     variant=json.loads(json.dumps(baseline))
                     if mutate=='missing-case':variant['profiles']['strict']['caseGroups'].pop()
@@ -165,6 +165,7 @@ class OwnedBindingInventoryContract(unittest.TestCase):
                     elif mutate=='missing-source-compile':variant.pop('actualSourceCompiled')
                     elif mutate=='missing-sanitized':variant['profiles'].pop('sanitized')
                     elif mutate=='wrong-kind':variant['kind']='Unrelated'
+                    elif mutate=='bool-schema':variant['schemaVersion']=True
                     with self.assertRaisesRegex(ValueError,'Owned binding'):check(variant)
             unverified=json.loads(json.dumps(baseline))
             unverified['commandLifetimeUnverified']=True
