@@ -8,7 +8,7 @@
 - `il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h`: fixed-capacity row slot+role, typed invalid/duplicate rejection, no retained VM class/name pointers, full text/row/slot-bitmap scrub on failure. New arrays are bounded under existing 512 KiB static assertion.
 - `il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl`: binding lookup only after FirstMatch and before physical metadata text is copied, under existing metadata lock; observed registry recheck remains post-iterator and under a distinct short lock. A failed collector propagates its original typed error; no existing getter is called.
 - `il2cpp_plus/tools/r03/diagnostic_stream/{owned_physical_names_fixture.cpp,run_owned_physical_names.py}`: actual production header/.inl compiled under explicit VM/lock mocks; strict/sanitized 28-item inventories; first-match, reversed role, display-name and hash collisions, invalid/duplicate/scrub tests; original CPP/API/physical header reconstructed against immutable prior Git blobs.
-- `hybridclr_demo/Tools/AssemblyShadow/R03IR/{run_p1_metadata_local_preflight.py,test_p1_command_failures.py}`: an apparently Passed child cannot substitute incomplete 28-group inventories or false scope flags; original missing/malformed lifetime fail-stop and bounded one-shot batch controls remain.
+- `hybridclr_demo/Tools/AssemblyShadow/R03IR/{run_p1_metadata_local_preflight.py,test_p1_command_failures.py,test_p1_managed_receipt.py}`: an apparently Passed child cannot substitute incomplete 28-group inventories or false scope flags; original missing/malformed lifetime fail-stop and bounded one-shot batch controls remain.
 
 ## Findings and dispositions
 
