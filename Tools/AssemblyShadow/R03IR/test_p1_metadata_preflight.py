@@ -40,6 +40,7 @@ class PreflightContracts(unittest.TestCase):
             "run_frozen_execution.py",
             "run_bounded_execution_empty_live.py",
             "run_opaque_execution_inventory.py",
+            "AssemblyShadowExecutionRegistryRevision.h",
             "AssemblyShadowOpaqueInventorySyntax.cpp",
             "AssemblyShadowExecutionEmptyLiveSyntax.cpp",
             "AssemblyShadowExecutionComposeSyntax.cpp",

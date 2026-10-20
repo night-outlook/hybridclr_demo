@@ -191,6 +191,7 @@ class AggregateReceiptIntegration(unittest.TestCase):
                        'AssemblyShadowBoundedExecutionEmptyLive.h',
                        'AssemblyShadowBoundedExecutionEmptyLiveSource.inl',
                        'AssemblyShadowOpaqueExecutionInventory.h',
+                       'AssemblyShadowExecutionRegistryRevision.h',
                        'AssemblyShadowOpaqueExecutionInventorySource.inl')]
             paths += [native/'tools/r03/diagnostic_stream/empty_live_fixture'/n for n in
                       ('MockRuntime.h','AssemblyShadowFrozenExecutionRecord.h',

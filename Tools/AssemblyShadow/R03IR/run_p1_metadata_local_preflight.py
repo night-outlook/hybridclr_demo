@@ -256,6 +256,7 @@ def main()->None:
         native/"libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
         native/"libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
         native/"libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+        native/"libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h",
         native/"libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
         native/"tools/r03/diagnostic_stream/run_opaque_execution_inventory.py",
         native/"tools/r03/diagnostic_stream/opaque_inventory_fixture.cpp",
