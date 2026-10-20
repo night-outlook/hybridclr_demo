@@ -1,0 +1,61 @@
+{
+  "kind": "R03P1RegistryPublisherPrimarySourceAndHostReview",
+  "schemaVersion": 1,
+  "priorLocal": {
+    "cycle": "20261020-f09e",
+    "verdict": "PassedSourceHostAndSDKOnly",
+    "components": 16,
+    "commandTests": 75,
+    "officialNativeSyntax": 90,
+    "managedPositive": 5,
+    "negativeControl": true,
+    "consumed": true
+  },
+  "source": {
+    "hybridclr_demo": "22c935c3a3bcebd1fe08bb75ba18727eaabbc9d7",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "699dec4698a529c66e201aca1802ee8f498d8334"
+  },
+  "changes": {
+    "nativePublisherHeader": true,
+    "productionCallerUsesSharedWriter": true,
+    "oldGetterBlobRestoredBySourceAudit": true,
+    "writerCaseGroupsAdded": 9,
+    "totalOpaqueGroupsPerProfile": 34,
+    "profileCount": 2,
+    "newLocks": 0,
+    "newRuntimeClassDereferences": 0,
+    "revisionOverflowRefusedBeforePublication": true
+  },
+  "hostEvidence": {
+    "nativeCiRun": 39382804881,
+    "nativeHostJobsPassed": 3,
+    "demoIntegratedCi": 39382994571,
+    "demoCommandFailureCi": 39382994501,
+    "demoManagedAggregateCi": 39382994639,
+    "allPassed": true
+  },
+  "newLocal": {
+    "componentCount": 16,
+    "commandFailureTests": 75,
+    "opaqueGroupsPerProfile": 34,
+    "nativeSyntaxCommands": 90,
+    "managedPositiveProducts": 5,
+    "negativeControlRequired": true,
+    "scope": "SourceHostOfficialInstalledUnitySdkSyntaxOnly",
+    "result": "NotRun"
+  },
+  "restrictions": {
+    "classPointerOriginProven": false,
+    "coherentVmEpochProven": false,
+    "officialUnitySdkAtNewPins": false,
+    "unityPlayerExecuted": false,
+    "p2Integrated": false,
+    "e0CapabilityAvailable": false,
+    "fullP3Complete": false,
+    "R03Accepted": false,
+    "ReadyForHumanReviewGate": false,
+    "historicalResultsReclassified": false
+  }
+}
