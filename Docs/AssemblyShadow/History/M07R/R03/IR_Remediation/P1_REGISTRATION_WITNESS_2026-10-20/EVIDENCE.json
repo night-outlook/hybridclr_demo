@@ -1,0 +1,64 @@
+{
+  "kind": "R03P1RegistrationWitnessPrimarySourceHostEvidence",
+  "schemaVersion": 1,
+  "consumedLocal": {
+    "cycle": "20261020-f09e",
+    "result": "PassedSourceHostAndSDKOnly",
+    "components": 16,
+    "commandFailureTests": 75,
+    "nativeSyntaxPassed": 90,
+    "managedPositiveProducts": 5,
+    "managedNegativeControl": true,
+    "reused": false,
+    "preserved": true
+  },
+  "source": {
+    "native": "f0cb6f9f7a80c0601b5bc95c1a1cdda78a116e16",
+    "demo": "d7cbcc9deeb3d8f384887826bb8d65cec8324641",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de"
+  },
+  "nativeHost": {
+    "failedSourceAuditRun": 39366207558,
+    "correctedRun": 39366349420,
+    "jobsPassed": 3,
+    "profilesPerJob": 2,
+    "casesPerProfile": 25,
+    "actualSdk": false
+  },
+  "demoHost": {
+    "integrated75Run": 39366390774,
+    "focusedCommandRun": 39366390772,
+    "managedAggregateRun": 39366390737,
+    "allPassed": true
+  },
+  "witness": {
+    "slots": 2048,
+    "tableMaxBytes": 40960,
+    "sourceKinds": [
+      "Candidate",
+      "ActiveShadow"
+    ],
+    "wrongMissingPhantomRefused": true,
+    "rawPointerEmitted": false,
+    "physicalClassPointerOriginProven": false
+  },
+  "nextLocal": {
+    "components": 16,
+    "pythonContracts": 75,
+    "opaqueGroupsPerProfile": 25,
+    "nativeSyntaxPlanned": 90,
+    "translationUnits": 18,
+    "profiles": 5,
+    "managedPositiveProducts": 5,
+    "negativeControlUnchanged": true,
+    "actualSdk": "NotRun"
+  },
+  "acceptance": {
+    "R03Accepted": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "historicalReclassification": false
+}
