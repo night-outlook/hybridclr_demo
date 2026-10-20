@@ -1,0 +1,64 @@
+{
+  "kind": "R03P1BoundRegistryRowsPrimarySourceEvidence",
+  "schemaVersion": 1,
+  "priorLocal": {
+    "cycle": "20261020-e6a3",
+    "result": "PassedSourceHostAndSDKOnly",
+    "componentsPassed": 18,
+    "commandFailureCases": 85,
+    "nativeSdkSyntaxPassed": 100,
+    "managedPositives": 5,
+    "expectedNegative": true,
+    "consumed": true
+  },
+  "currentCandidate": {
+    "native": "bc3b7df43c5009fa4bc7f6d94e414ad9cd135f62",
+    "demoSourceAnchor": "6b6659fdca0d2b758c165d3d05e3b54677335909",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de"
+  },
+  "hostSuite": {
+    "newCaseGroupsPerProfile": 28,
+    "originalCaseGroupsPerProfile": 20,
+    "profiles": [
+      "strict",
+      "ASan+UBSan"
+    ],
+    "oldNativePrecompileRun": 39452019927,
+    "oldNativePrecompileResult": "FailedSourceInventoryLabel",
+    "successCandidateRun": 39452191805,
+    "macOSStatus": "PendingAtEvidencePublication",
+    "linuxGcc": "Passed",
+    "linuxClang": "Passed"
+  },
+  "demoSource": {
+    "oldIntegratedCI": 39452772587,
+    "oldIntegratedResult": "FailedChangedInventoryBeforeExecution",
+    "currentSourceAnchor": "6b6659fdca0d2b758c165d3d05e3b54677335909",
+    "configuredExpectedCommandFailureCases": 85,
+    "sourceChangeAddsTestLeaf": false
+  },
+  "nextLocal": {
+    "result": "NotRun",
+    "components": 18,
+    "commandFailureCases": 85,
+    "ownedBindingCasesPerProfile": 28,
+    "nativeSdkSyntaxConfigurations": 100,
+    "managedPositiveProducts": 5,
+    "managedExpectedNegative": true
+  },
+  "limits": {
+    "registrationSlotIsSnapshotScoped": true,
+    "completeExecutionTypeKeys": false,
+    "classPointerOriginProven": false,
+    "classPointerLifetimeProven": false,
+    "globalCoherentVmEpochProven": false,
+    "playerExecuted": false,
+    "runtimeAcceptance": false
+  },
+  "acceptance": {
+    "R03Accepted": false,
+    "ReadyForHumanReviewGate": false,
+    "PureInterpreterEnabled": false
+  }
+}
