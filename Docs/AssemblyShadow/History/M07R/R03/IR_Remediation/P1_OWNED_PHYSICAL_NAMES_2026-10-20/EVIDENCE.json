@@ -1,0 +1,68 @@
+{
+  "kind": "R03P1OwnedObservedPhysicalNamesPrimaryReview",
+  "schemaVersion": 1,
+  "priorLocal": {
+    "cycle": "20261020-699d",
+    "result": "PassedSourceHostAndSDKOnly",
+    "components": 16,
+    "commandTests": 75,
+    "nativeSdkSyntax": 90,
+    "managedPositiveProducts": 5,
+    "expectedNegative": true,
+    "consumed": true
+  },
+  "newSources": {
+    "native": "e6a350eb684a388b0c7a598f7ad0d1bae9b4f4e5",
+    "demoSourceAnchor": "6e3d84d649b5f0ff2d19df48f355c173ef2d0be9",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de"
+  },
+  "nativeSource": {
+    "ciPass": 39393569677,
+    "compilerJobsPassed": 3,
+    "hostCasesPerProfile": 20,
+    "profiles": [
+      "strict",
+      "ASan+UBSan"
+    ],
+    "firstFailedPrecompileCI": 39393330975,
+    "oldPhysicalAndOpaqueSourceCI_Passed": true
+  },
+  "demoHost": {
+    "integratedCi": 39394007824,
+    "focusedCi": 39394007860,
+    "aggregateCi": 39394007845,
+    "commandTests": 85,
+    "passed": true
+  },
+  "scope": {
+    "ownedNameRowsMax": 1024,
+    "textBytesMax": 262144,
+    "fieldBytesMax": 4096,
+    "captureObjectBytesMax": 524288,
+    "sourcePointerEscapes": false,
+    "physicalClassPointerOriginProven": false,
+    "completeExecutionTypeKeys": false,
+    "coherentVmEpochProven": false,
+    "playerExecuted": false
+  },
+  "nextLocal": {
+    "components": 18,
+    "commandFailureTests": 85,
+    "ownedPhysicalNameCasesPerProfile": 20,
+    "nativeSyntaxCommands": 100,
+    "translationUnits": 20,
+    "profiles": 5,
+    "managedPositiveProducts": 5,
+    "expectedNegative": true,
+    "result": "NotRun",
+    "scope": "SourceHostInstalledSDKOnly"
+  },
+  "historicalReclassification": false,
+  "acceptance": {
+    "R03Accepted": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  }
+}
