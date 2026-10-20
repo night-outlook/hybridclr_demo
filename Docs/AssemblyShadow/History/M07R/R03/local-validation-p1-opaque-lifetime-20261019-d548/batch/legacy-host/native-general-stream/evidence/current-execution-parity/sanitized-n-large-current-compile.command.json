@@ -1,0 +1,33 @@
+{
+  "name": "sanitized-n-large-current-compile",
+  "argv": [
+    "/usr/bin/clang++",
+    "-std=c++17",
+    "-O1",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-OPAQUE-LIFETIME-20261019-d548/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-n-large-current.cpp",
+    "-o",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-OPAQUE-LIFETIME-20261019-d548/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-n-large-current.exe"
+  ],
+  "startedUnix": 1792462682.2161658,
+  "finishedUnix": 1792462682.750221,
+  "exit": 0,
+  "stdout": {
+    "file": "sanitized-n-large-current-compile.stdout.bin",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "stderr": {
+    "file": "sanitized-n-large-current-compile.stderr.bin",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}

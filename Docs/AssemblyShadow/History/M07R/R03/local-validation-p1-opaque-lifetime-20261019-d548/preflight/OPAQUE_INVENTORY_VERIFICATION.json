@@ -1,0 +1,131 @@
+{
+  "result": "PassedWithinInactiveOpaqueHostAndOfficialSDKSyntaxScope",
+  "sourceMethodSha256": "574ed4a99e7664686f2093cbf27a6c95df06e35440aef1c3331229aac2542152",
+  "sourceInputs": {
+    "libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 121376,
+      "gitBlob": "2565395f55d712ac8717e899658171e25fd5a073",
+      "sha256": "1628ca0005ea059347dbaea9ea31c48be9febd28c9710517a45ce3703d91adb0"
+    },
+    "libil2cpp/vm/AssemblyShadow.h": {
+      "bytes": 10046,
+      "gitBlob": "4f4d6a59675d66786826e32906d863efa4485d27",
+      "sha256": "aae0d7f0e460f6ab8642f767db07bb7c3672e4c1c6b5528660ffe31b886e57ee"
+    },
+    "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h": {
+      "bytes": 3367,
+      "gitBlob": "286ada352d2b84dd73659e017b4ef3a32f94320d",
+      "sha256": "f7ac8684f0e8394475d01b042860150b745cec6b12dbce2df2a47b6d25af4bc9"
+    },
+    "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl": {
+      "bytes": 2960,
+      "gitBlob": "20b205fde64a36ab6dd7df724aff51701d3745a8",
+      "sha256": "574ed4a99e7664686f2093cbf27a6c95df06e35440aef1c3331229aac2542152"
+    },
+    "tools/r03/diagnostic_stream/opaque_inventory_fixture.cpp": {
+      "bytes": 7258,
+      "gitBlob": "afcd140f8e89cc6855f4ac2ad0bc4d25964e4cee",
+      "sha256": "a6de4cc0db815185f3bad2493f05d4418dfe5e43071aec98c5571d1f0a7bb92a"
+    },
+    "tools/r03/diagnostic_stream/run_opaque_execution_inventory.py": {
+      "bytes": 10790,
+      "gitBlob": "f1c63afef34252b884129aadb85828a12d9a874e",
+      "sha256": "ec531e5610c3c7718c013d4954e97f259b8cb13f09450ce1eedbeee0a3772e75"
+    }
+  },
+  "profiles": {
+    "sanitized": {
+      "caseGroups": [
+        "empty-inventory",
+        "one-nonempty-opaque",
+        "three-scattered-opaque",
+        "full-capacity-opaque",
+        "closed-metadata-ticket",
+        "declared-count-too-large",
+        "over-capacity-actual-entries",
+        "missing-identity-for-count",
+        "unexpected-identity-with-count-zero",
+        "duplicate-pointer",
+        "class-added-before-second-sample",
+        "same-count-replacement",
+        "same-count-relocation",
+        "state-flip",
+        "active-identity-flip",
+        "one-shot-failure",
+        "second-sample-count-corruption",
+        "successful-scratch-reuse-refused"
+      ],
+      "result": "PassedWithinInactiveOpaqueHostScope"
+    },
+    "strict": {
+      "caseGroups": [
+        "empty-inventory",
+        "one-nonempty-opaque",
+        "three-scattered-opaque",
+        "full-capacity-opaque",
+        "closed-metadata-ticket",
+        "declared-count-too-large",
+        "over-capacity-actual-entries",
+        "missing-identity-for-count",
+        "unexpected-identity-with-count-zero",
+        "duplicate-pointer",
+        "class-added-before-second-sample",
+        "same-count-replacement",
+        "same-count-relocation",
+        "state-flip",
+        "active-identity-flip",
+        "one-shot-failure",
+        "second-sample-count-corruption",
+        "successful-scratch-reuse-refused"
+      ],
+      "result": "PassedWithinInactiveOpaqueHostScope"
+    }
+  },
+  "caseGroups": [
+    "empty-inventory",
+    "one-nonempty-opaque",
+    "three-scattered-opaque",
+    "full-capacity-opaque",
+    "closed-metadata-ticket",
+    "declared-count-too-large",
+    "over-capacity-actual-entries",
+    "missing-identity-for-count",
+    "unexpected-identity-with-count-zero",
+    "duplicate-pointer",
+    "class-added-before-second-sample",
+    "same-count-replacement",
+    "same-count-relocation",
+    "state-flip",
+    "active-identity-flip",
+    "one-shot-failure",
+    "second-sample-count-corruption",
+    "successful-scratch-reuse-refused"
+  ],
+  "groupsPerProfile": 18,
+  "directCommandReceiptPairs": 5,
+  "allSuccessfulCompilerClaimsBackedByBothCompileReceipts": true,
+  "summaryLifetime": false,
+  "manifestScope": "CompletedHostFiles",
+  "outer75ContractsVerified": true,
+  "fiveOpaqueFailureContractIds": [
+    "p1_contract_suite_2.BatchFailureScheduling.test_malformed_opaque_lifetime_marker_stops_batch",
+    "p1_contract_suite_2.BatchFailureScheduling.test_missing_opaque_lifetime_marker_stops_batch",
+    "p1_contract_suite_2.BatchFailureScheduling.test_missing_opaque_result_stops_batch",
+    "p1_contract_suite_2.BatchFailureScheduling.test_null_opaque_lifetime_marker_stops_batch",
+    "p1_contract_suite_2.BatchFailureScheduling.test_opaque_reported_lifetime_uncertainty_stops_batch"
+  ],
+  "SDKConfigurations": 90,
+  "SDKUnits": 18,
+  "probe": "AssemblyShadowOpaqueInventorySyntax.cpp",
+  "allFiveProfilesCompileActualProductionCppAndProbe": true,
+  "sourcePreserved": true,
+  "slotCount": 2048,
+  "maximumOpaqueValues": 1024,
+  "scratchStaticAssertBytes": 33000,
+  "classPointersNeverDereferenced": true,
+  "physicalClassPointerOriginProven": false,
+  "coherentVmEpochProven": false,
+  "completeExecutionSource": false,
+  "descendantQuiescenceProven": false,
+  "runtimeAcceptance": false
+}

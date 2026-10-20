@@ -1,0 +1,110 @@
+{
+  "result": "PassedWithinFirstUseHostScope",
+  "methodSha256": "67fcd9f6660c67c8a60ed610cdc9b3c3cfc06adb01f9805a581e6dd97dd42be2",
+  "profiles": [
+    "strict",
+    "sanitized"
+  ],
+  "caseGroups": {
+    "strict": [
+      "classless-ownership",
+      "existing-fail-closed",
+      "existing-capacity-phase",
+      "existing-token-contract",
+      "classless-general-parity",
+      "class-ownership",
+      "null-absent-names",
+      "cstring-budget",
+      "cstring-alias",
+      "owner-unavailable",
+      "usage-after-metadata",
+      "shutdown-drain",
+      "dense-general-parity",
+      "unresolved-refusal",
+      "parallel-captures"
+    ],
+    "sanitized": [
+      "classless-ownership",
+      "existing-fail-closed",
+      "existing-capacity-phase",
+      "existing-token-contract",
+      "classless-general-parity",
+      "class-ownership",
+      "null-absent-names",
+      "cstring-budget",
+      "cstring-alias",
+      "owner-unavailable",
+      "usage-after-metadata",
+      "shutdown-drain",
+      "dense-general-parity",
+      "unresolved-refusal",
+      "parallel-captures"
+    ]
+  },
+  "fourCompileRunReceiptsVerified": true,
+  "realClassMetadataProven": false,
+  "contract": "Physical namespace-dot-name including .Class; copied ownership;4096 row limit; nonnested usage/metadata locks; initial epoch only; generation/mutation/overflow/null/alias controls under explicit mocks",
+  "sourceInputs": {
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 121376,
+      "sha256": "1628ca0005ea059347dbaea9ea31c48be9febd28c9710517a45ce3703d91adb0",
+      "gitBlob": "2565395f55d712ac8717e899658171e25fd5a073"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.h": {
+      "bytes": 10046,
+      "sha256": "aae0d7f0e460f6ab8642f767db07bb7c3672e4c1c6b5528660ffe31b886e57ee",
+      "gitBlob": "4f4d6a59675d66786826e32906d863efa4485d27"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h": {
+      "bytes": 13880,
+      "sha256": "b77a46ffc4ba6e522fc8c34e0ac43283f502639a8ca4f6b9282afc097fa5c895",
+      "gitBlob": "b7ba5dffb2e3ecebe7406f598e97a1ab97251cdf"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h": {
+      "bytes": 15083,
+      "sha256": "bc8660655e19ee15c02caf21403ef90f5f87c95b0fa1dcc212a7ca7a61573e6e",
+      "gitBlob": "08856d4a610ed3fa519cee67bad8a307dd82a34b"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.cpp": {
+      "bytes": 8176,
+      "sha256": "62f2d9b038ed8e4f3e352c06ad72355ae5d6e69e800e3a39647a70271d295902",
+      "gitBlob": "f51e6ca403fe12dec66ace96148f2da3bc17fc56"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.h": {
+      "bytes": 2990,
+      "sha256": "5017cadef623509190bd7b486c935b7b8ca462207f7d13760d2223216112f038",
+      "gitBlob": "f243ac8b42d31a59b6a1d5641ea101807383243b"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowTypes.h": {
+      "bytes": 1825,
+      "sha256": "df149952bd8beefd0ee6580f337262f28614c43f7eb695554a3a284eca1a1257",
+      "gitBlob": "6d1379bc33300e4682468705942721d355481ca7"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h": {
+      "bytes": 6070,
+      "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605",
+      "gitBlob": "9dee4c9ea6febe4a919d1c7eb8faf2ad00b8a8e5"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/bounded_first_use_fixture.cpp": {
+      "bytes": 29824,
+      "sha256": "fa9221f413208bdec0c2e6b7b2e15cbabd51dc0f1782edbebb25004d627fb7ac",
+      "gitBlob": "83ecec6357736bd20554acdc7809e5ea26af1c47"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp": {
+      "bytes": 1427,
+      "sha256": "80428db4e93796feea1c6f9b7d64d17ecf005496518bf44c3a3d52440832988f",
+      "gitBlob": "7b58a198f86378b9b0daf3864799867d359a772d"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/run_bounded_first_use.py": {
+      "bytes": 9764,
+      "sha256": "a08adc21553d4f31c20fb028a7f46dc53efca645ab984020efe0552f1aa17acc",
+      "gitBlob": "f4d4fe74096b6c9e9fa02053d407018d7e4df49c"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowMetadataLifetime.h": {
+      "bytes": 4637,
+      "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716",
+      "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd"
+    }
+  },
+  "sourcePreserved": true
+}

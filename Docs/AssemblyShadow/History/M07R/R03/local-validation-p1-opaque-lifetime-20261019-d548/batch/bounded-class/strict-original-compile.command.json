@@ -1,0 +1,27 @@
+{
+  "name": "strict-original-compile",
+  "command": [
+    "/usr/bin/clang++",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic",
+    "-pthread",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-OPAQUE-LIFETIME-20261019-d548/bounded-class/stubs",
+    "-O2",
+    "-DAssemblyShadowDiagnostics=OriginalDiagnostics",
+    "-c",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/fixtures/LegacyAssemblyShadowDiagnostics.cpp",
+    "-o",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-OPAQUE-LIFETIME-20261019-d548/bounded-class/strict-original.o"
+  ],
+  "startedUnix": 1792462723.0772648,
+  "finishedUnix": 1792462723.3655128,
+  "exit": 0,
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

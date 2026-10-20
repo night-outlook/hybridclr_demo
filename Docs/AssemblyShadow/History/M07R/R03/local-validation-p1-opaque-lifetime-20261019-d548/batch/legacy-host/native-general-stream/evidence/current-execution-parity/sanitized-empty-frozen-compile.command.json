@@ -1,0 +1,31 @@
+{
+  "name": "sanitized-empty-frozen-compile",
+  "argv": [
+    "/usr/bin/clang++",
+    "-std=c++17",
+    "-O1",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-OPAQUE-LIFETIME-20261019-d548/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-empty-frozen.cpp",
+    "-o",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-OPAQUE-LIFETIME-20261019-d548/legacy-host/native-general-stream/evidence/current-execution-parity/sanitized-empty-frozen.exe"
+  ],
+  "startedUnix": 1792462683.239818,
+  "finishedUnix": 1792462683.7394948,
+  "exit": 0,
+  "stdout": {
+    "file": "sanitized-empty-frozen-compile.stdout.bin",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "stderr": {
+    "file": "sanitized-empty-frozen-compile.stderr.bin",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}

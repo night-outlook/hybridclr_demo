@@ -1,0 +1,32 @@
+test_artifact_hash_and_size_corruption_rejected (__main__.FileTransaction.test_artifact_hash_and_size_corruption_rejected) ... ok
+test_bad_encoder_receipt_fails_before_envelope (__main__.FileTransaction.test_bad_encoder_receipt_fails_before_envelope) ... ok
+test_bad_lexical_components_rejected (__main__.FileTransaction.test_bad_lexical_components_rejected) ... ok
+test_change_during_decode_is_not_returned (__main__.FileTransaction.test_change_during_decode_is_not_returned) ... ok
+test_complete_native_encoder_file_consumer (__main__.FileTransaction.test_complete_native_encoder_file_consumer) ... ok
+test_directory_replacement_cannot_redirect_original_descriptors (__main__.FileTransaction.test_directory_replacement_cannot_redirect_original_descriptors) ... ok
+test_early_and_repeated_commit_not_accepted (__main__.FileTransaction.test_early_and_repeated_commit_not_accepted) ... ok
+test_envelope_budget_unchanged (__main__.FileTransaction.test_envelope_budget_unchanged) ... ok
+test_envelope_hash_changes_are_rejected (__main__.FileTransaction.test_envelope_hash_changes_are_rejected) ... ok
+test_every_commit_io_failure_fails_closed (__main__.FileTransaction.test_every_commit_io_failure_fails_closed) ... ok
+test_incomplete_receipt_cannot_be_read_as_complete (__main__.FileTransaction.test_incomplete_receipt_cannot_be_read_as_complete) ... ok
+test_large_fields_and_utf8_cross_frames (__main__.FileTransaction.test_large_fields_and_utf8_cross_frames) ... ok
+test_link_and_replacement_preserve_original_files (__main__.FileTransaction.test_link_and_replacement_preserve_original_files) ... ok
+test_noncanonical_root_is_not_resolved_away (__main__.FileTransaction.test_noncanonical_root_is_not_resolved_away) ... ok
+test_null_and_failed_report_are_not_promoted (__main__.FileTransaction.test_null_and_failed_report_are_not_promoted) ... ok
+test_occupied_names_remain_untouched (__main__.FileTransaction.test_occupied_names_remain_untouched) ... ok
+test_overflowed_diagnostic_numbers_rejected (__main__.FileTransaction.test_overflowed_diagnostic_numbers_rejected) ... ok
+test_pid_and_source_replay_rejected (__main__.FileTransaction.test_pid_and_source_replay_rejected) ... ok
+test_postcommit_same_bytes_new_inode_and_hardlink_rejected (__main__.FileTransaction.test_postcommit_same_bytes_new_inode_and_hardlink_rejected) ... ok
+test_readback_corruption_is_not_a_commit (__main__.FileTransaction.test_readback_corruption_is_not_a_commit) ... ok
+test_reentry_is_immutable_first_failure (__main__.FileTransaction.test_reentry_is_immutable_first_failure) ... ok
+test_same_size_mutation_after_sync_is_rejected (__main__.FileTransaction.test_same_size_mutation_after_sync_is_rejected) ... ok
+test_short_write_and_single_eintr_preserve_bytes (__main__.FileTransaction.test_short_write_and_single_eintr_preserve_bytes) ... ok
+test_strict_envelope_json_transport_and_collisions (__main__.FileTransaction.test_strict_envelope_json_transport_and_collisions) ... ok
+test_strict_receipt_types_keys_and_sync_policy (__main__.FileTransaction.test_strict_receipt_types_keys_and_sync_policy) ... ok
+test_wrong_root_identity_and_permissions (__main__.FileTransaction.test_wrong_root_identity_and_permissions) ... ok
+test_zero_write_and_bounded_interruption_fail (__main__.FileTransaction.test_zero_write_and_bounded_interruption_fail) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 5.973s
+
+OK

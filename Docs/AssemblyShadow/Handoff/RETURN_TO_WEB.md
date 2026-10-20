@@ -1,6 +1,14 @@
 # Local Validation → Primary Implementation
 
-## Current return — P1 empty-live receipt/lifetime successor 20261019-48ee PASS
+## Current return — P1 opaque-inventory lifetime source/SDK 20261019-d548 PASS
+
+**No new nontrivial issue requires implementation from this bounded cycle.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-opaque-lifetime-20261019-d548/README.md), [independent audit](../History/M07R/R03/local-validation-p1-opaque-lifetime-20261019-d548/preflight/EVIDENCE_AUDIT.json). One authorized invocation Passed 16/16 source/host/SDK components, 75 source-bound contracts, opaque strict/sanitized 18 groups/profile and five direct successful commands, five positive managed products/exact negative control and 90/90 official native SDK syntax configurations. Sources, installed SDK and all consumed evidence preserved; no retry or Unity/Player launch.
+
+Primary finding P1-OPAQUE-LIFETIME-01 is verified corrected within controlled host receipt tests at this new tuple: absent/string/null/missing opaque receipt or explicit lifetime uncertainty produces fail-stop and later NotRun without component roots or postflight Git calls. Original completed false/nonzero semantics and prior 70 tests remain intact. Actual official compiler timeout/survivor and runtime teardown were not exercised. [Fresh 75-method result](../History/M07R/R03/local-validation-p1-opaque-lifetime-20261019-d548/batch/command-failures/RESULT.json), [full log](../History/M07R/R03/local-validation-p1-opaque-lifetime-20261019-d548/batch/command-failures/unittest.log), [opaque verification](../History/M07R/R03/local-validation-p1-opaque-lifetime-20261019-d548/preflight/OPAQUE_INVENTORY_VERIFICATION.json). The superseded opaque handoff roots remain absent, with no inferred execution result; prior 48ee and all earlier findings/results remain unchanged.
+
+Required Primary action: reconcile this factual host/SDK evidence and continue previously documented production work under its own authority. Real descendant quiescence, pointer origin/lifetime, all-VM epoch/ABA, P1 complete capture, P2 integration, E0/E1 engine lifecycle and full P3 remain unresolved. All acceptance flags false. Any further Local cycle needs a new exact source-pinned handoff. Stop/return state: Primary Implementation.
+
+## Historical return — P1 empty-live receipt/lifetime successor 20261019-48ee PASS
 
 **No new nontrivial issue requires implementation from this bounded cycle.** [Local factual report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-empty-live-receipt-20261019-48ee/README.md), [correction verification](../History/M07R/R03/local-validation-p1-empty-live-receipt-20261019-48ee/preflight/RECEIPT_FIX_VERIFICATION.json). One invocation Passed 15/15 components, 70 source-bound host contracts, empty-live 2×20 groups/five actual direct successes, managed five products/exact expected-negative control, 85/85 official native syntax configurations. All source/SDK/consumed evidence preserved.
 
