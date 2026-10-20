@@ -1,6 +1,14 @@
 # Local Validation → Primary Implementation
 
-## Current return — P1 shared registry publisher source/SDK 20261020-699d PASS
+## Current return — P1 owned physical names source/SDK 20261020-e6a3 PASS
+
+**No new nontrivial issue requires implementation from this bounded cycle.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-owned-physical-names-20261020-e6a3/README.md), [owned-name verification](../History/M07R/R03/local-validation-p1-owned-physical-names-20261020-e6a3/preflight/OWNED_PHYSICAL_NAMES_VERIFICATION.json), [physical-membership verification](../History/M07R/R03/local-validation-p1-owned-physical-names-20261020-e6a3/preflight/PHYSICAL_MEMBERSHIP_VERIFICATION.json). One authorized invocation Passed 18/18, 85 contracts, owned names 20 groups/profile, physical membership 21/profile, 100/100 actual native SDK syntax and five real managed positives/exact original negative. Source/SDK/twelve consumed P1 histories preserved; no retry or Unity/Player launch.
+
+The exact owned header/.inl and first-match callback classification passed strict/sanitized tests. Source-authenticated assertions verify copied physical assembly/namespace/simple-name bytes, unchanged owned bytes after source-string mutation, first-match-only reads, nonnested mock locks and fail-closed invalid/oversized/incomplete/changed/reused cases. No separate row/name JSON samples were emitted. Original CPP/API and prior physical header reconstruct from reviewed additions; original void enumerator API preserved. Superseded physical-membership roots absent, no inferred prior execution result.
+
+Required Primary action: reconcile this factual evidence and continue P1/P2/E0/E1/full P3 work under separate authority. Physical display-name ownership does not establish canonical TypeKeys, class allocator/pointer lifetime, global VM epoch/ABA, descendant quiescence, process GC/RSS, actual lock/Shutdown or Player qualification. All acceptance flags false and historical outcomes unchanged. Further Local execution needs a fresh exact source-pinned handoff. Stop/return state: Primary Implementation.
+
+## Historical return — P1 shared registry publisher source/SDK 20261020-699d PASS
 
 **No new nontrivial issue requires implementation from this bounded cycle.** [Local factual report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-registry-publisher-20261020-699d/README.md), [publisher verification](../History/M07R/R03/local-validation-p1-registry-publisher-20261020-699d/preflight/REGISTRY_PUBLISHER_VERIFICATION.json). One authorized invocation Passed 16/16, 75 contracts, 34 opaque/publisher groups per strict/sanitized profile and five direct successes, five official managed positives/exact original negative, 90/90 actual native SDK syntax configurations. Source/SDK/eleven consumed P1 histories preserved; no retry or Unity/Player launch.
 
