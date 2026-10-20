@@ -30,13 +30,13 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/il2cpp_plus
-          ref: 48ee6468065a6b559f53719dc310d901d8181ab8
+          ref: fdce2b81f9ad0113aacb6686d098619c4d21051c
           path: native
           persist-credentials: false
           sparse-checkout: |
             libil2cpp/vm
             tools/r03/diagnostic_stream
-      - name: Exact 75 tests over real checked-in Python source
+      - name: Exact 80 tests over real checked-in Python source
         shell: bash
         run: |
           set -euo pipefail
@@ -50,9 +50,9 @@ jobs:
           summary=json.loads((output/'RESULT.json').read_bytes())
           assert summary['kind']=='R03P1CommandFailureContracts'
           assert summary['result']=='PassedWithinHostScope'
-          assert summary['expectedTestCount']==75 and summary['testsRun']==75
-          assert len(set(summary['testIds']))==75
-          assert [m['expectedTests'] for m in summary['modules']]==[5,14,34,10,12]
+          assert summary['expectedTestCount']==80 and summary['testsRun']==80
+          assert len(set(summary['testIds']))==80
+          assert [m['expectedTests'] for m in summary['modules']]==[5,14,39,10,12]
           assert summary['sourcePreserved'] is True
           assert summary['commandLifetimeUnverified'] is False
           assert summary['runtimeAcceptance'] is False
@@ -67,7 +67,7 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: p1-integrated-75-${{ matrix.os }}-${{ github.sha }}
+          name: p1-integrated-80-${{ matrix.os }}-${{ github.sha }}
           path: ${{ runner.temp }}/p1-integrated-${{ github.run_id }}-${{ github.run_attempt }}
           include-hidden-files: true
           if-no-files-found: error

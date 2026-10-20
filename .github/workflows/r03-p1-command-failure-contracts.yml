@@ -40,7 +40,7 @@ jobs:
           before=hashes()
           result={'kind':'R03P1CommandFailureHostCI','result':'FailedOrIncomplete',
               'sourceCommit':os.environ['GITHUB_SHA'],'startedUnix':time.time(),
-              'platform':platform.platform(),'python':sys.version,'expectedTests':34,
+              'platform':platform.platform(),'python':sys.version,'expectedTests':39,
               'sourceBefore':before,'sourcePreserved':False,'commandLifetimeUnverified':False,
               'realPythonChildTests':True,'gitSdkVmChildrenMocked':True,
               'officialUnitySdkCompiled':False,'nativeCompilerExecuted':False,'runtimeAcceptance':False}
@@ -53,7 +53,7 @@ jobs:
               count=int(match.group(1)) if match else 0
               after=hashes()
               result.update(exit=p.returncode,tests=count,sourceAfter=after,sourcePreserved=before==after)
-              if p.returncode==0 and count==34 and text.rstrip().endswith('OK') and before==after:
+              if p.returncode==0 and count==39 and text.rstrip().endswith('OK') and before==after:
                   result['result']='PassedWithinHostScope'
           except subprocess.TimeoutExpired as e:
               stdout,stderr=e.stdout,e.stderr
