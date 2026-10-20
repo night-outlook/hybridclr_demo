@@ -179,7 +179,8 @@ class AggregateReceiptIntegration(unittest.TestCase):
                        'run_bounded_execution_empty_live.py',
                        'test_bounded_execution_empty_live_receipts.py',
                        'run_opaque_execution_inventory.py','opaque_inventory_fixture.cpp',
-                       'run_physical_membership.py','physical_membership_fixture.cpp')]
+                       'run_physical_membership.py','physical_membership_fixture.cpp',
+                       'run_owned_physical_names.py','owned_physical_names_fixture.cpp')]
             paths += [native/'libil2cpp/vm'/n for n in
                       ('AssemblyShadowBoundedGeneralComposer.h','AssemblyShadowFrozenGeneralCapture.h',
                        'AssemblyShadowBoundedGeneralLive.h','AssemblyShadowBoundedGeneralLiveSource.inl',
@@ -197,7 +198,9 @@ class AggregateReceiptIntegration(unittest.TestCase):
                        'AssemblyShadowExecutionRegistryPublisher.h',
                        'AssemblyShadowOpaqueExecutionInventorySource.inl',
                        'AssemblyShadowPhysicalMembership.h',
-                       'AssemblyShadowPhysicalMembershipSource.inl')]
+                       'AssemblyShadowPhysicalMembershipSource.inl',
+                       'AssemblyShadowOwnedPhysicalNames.h',
+                       'AssemblyShadowOwnedPhysicalNamesSource.inl')]
             paths += [native/'tools/r03/diagnostic_stream/empty_live_fixture'/n for n in
                       ('MockRuntime.h','AssemblyShadowFrozenExecutionRecord.h',
                        'AssemblyShadowMetadataLifetime.h','fixture.cpp')]
@@ -207,7 +210,8 @@ class AggregateReceiptIntegration(unittest.TestCase):
                       demo/'Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowExecutionComposeSyntax.cpp',
                       demo/'Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowExecutionEmptyLiveSyntax.cpp',
                       demo/'Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowOpaqueInventorySyntax.cpp',
-                      demo/'Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowPhysicalMembershipSyntax.cpp']
+                      demo/'Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowPhysicalMembershipSyntax.cpp',
+                      demo/'Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowOwnedPhysicalNamesSyntax.cpp']
             for p in paths:
                 p.parent.mkdir(parents=True, exist_ok=True); p.write_text('mock SDK/source input\n')
             unity = root/'Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity'
@@ -236,7 +240,8 @@ class AggregateReceiptIntegration(unittest.TestCase):
                    (mode=='owned-execution-failed' and name=='owned-execution') or \
                    (mode=='empty-live-failed' and name=='empty-live') or \
                    (mode=='opaque-inventory-failed' and name=='opaque-inventory') or \
-                   (mode=='physical-membership-failed' and name=='physical-membership'):
+                   (mode=='physical-membership-failed' and name=='physical-membership') or \
+                   (mode=='owned-physical-names-failed' and name=='owned-physical-names'):
                     (dest/'RESULT.json').write_text(json.dumps({
                         'result':'FailedOrIncomplete','commandLifetimeUnverified':False}))
                     return subprocess.CompletedProcess(args,1,b'mock failed bridge\n',b'')
@@ -248,6 +253,7 @@ class AggregateReceiptIntegration(unittest.TestCase):
                             'PassedWithinInactiveZeroClassHostScope' if name=='empty-live' else
                             'PassedWithinInactiveOpaqueHostScope' if name=='opaque-inventory' else
                             'PassedWithinInactivePhysicalEnumerationHostScope' if name=='physical-membership' else
+                            'PassedWithinInactiveOwnedPhysicalNamesHostScope' if name=='owned-physical-names' else
                             'PassedWithinInactiveHostScope' if name=='frozen-v2' else 'PassedWithinHostScope')
                 (dest/('results.json' if name=='native-sdk' else 'RESULT.json')).write_text(json.dumps({
                     'result':expected,'commandLifetimeUnverified':False}))
@@ -261,11 +267,11 @@ class AggregateReceiptIntegration(unittest.TestCase):
                 try: runner.main()
                 except SystemExit as e: exit_code=e.code
             report=json.loads((output/'RESULT.json').read_bytes())
-            self.assertEqual(len(report['commands']),17)
-            self.assertEqual(len(launched),17)
-            self.assertEqual(len(set(Path(cmd[2]).name for cmd in launched)),17)
+            self.assertEqual(len(report['commands']),18)
+            self.assertEqual(len(launched),18)
+            self.assertEqual(len(set(Path(cmd[2]).name for cmd in launched)),18)
             self.assertFalse(scratch.exists()) # no compiler, SDK copy or Unity execution
-            self.assertEqual(report['expectedNativeSyntaxUnits'],95)
+            self.assertEqual(report['expectedNativeSyntaxUnits'],100)
             self.assertFalse(report['R03Accepted'])
             self.assertFalse(report['UnityPlayerExecuted'])
             self.assertFalse(report['historicalEvidenceReclassified'])
@@ -281,7 +287,7 @@ class AggregateReceiptIntegration(unittest.TestCase):
             self.assertEqual(launched[-1][-2:],['--candidate-native-sha','b'*40])
             return exit_code,report,managed
 
-    def test_seventeen_components_pass_with_actual_producer_response(self):
+    def test_eighteen_components_pass_with_actual_producer_response(self):
         code,report,managed=self.exercise()
         self.assertEqual(code,0)
         self.assertEqual(report['result'],'PassedSourceHostAndSDKOnly')
@@ -289,13 +295,13 @@ class AggregateReceiptIntegration(unittest.TestCase):
         self.assertTrue(managed['returnedBindingVerified'])
         self.assertTrue(managed['innerResultPath'].endswith('/managed-sdk/build-api/results.json'))
 
-    def test_managed_failures_preserve_sixteen_passed_one_failed(self):
+    def test_managed_failures_preserve_seventeen_passed_one_failed(self):
         for mode in ('missing','root-only','mutated','wrong-binding','inner-failed','exit-nonzero','child-exception'):
             with self.subTest(mode=mode):
                 code,report,managed=self.exercise(mode)
                 self.assertEqual(code,1)
                 self.assertEqual(report['result'],'FailedOrIncomplete')
-                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),16)
+                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),17)
                 self.assertEqual(managed['status'],'Failed')
                 self.assertFalse(report['officialUnitySdkCompilePassed'])
                 self.assertTrue(report['sourcePreserved'])
@@ -306,13 +312,14 @@ class AggregateReceiptIntegration(unittest.TestCase):
                             ('owned-execution-failed','owned-execution'),
                             ('empty-live-failed','empty-live'),
                             ('opaque-inventory-failed','opaque-inventory'),
-                            ('physical-membership-failed','physical-membership')):
+                            ('physical-membership-failed','physical-membership'),
+                          ('owned-physical-names-failed','owned-physical-names')):
             with self.subTest(mode=mode):
                 code,report,_=self.exercise(mode)
                 self.assertEqual(code,1)
                 self.assertEqual(report['result'],'FailedOrIncomplete')
-                self.assertEqual(len(report['commands']),17)
-                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),16)
+                self.assertEqual(len(report['commands']),18)
+                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),17)
                 child=next(c for c in report['commands'] if c['name']==target)
                 self.assertEqual(child['status'],'Failed')
                 self.assertEqual(child['exit'],1)

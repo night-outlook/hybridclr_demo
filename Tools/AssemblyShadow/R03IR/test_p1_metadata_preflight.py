@@ -44,6 +44,10 @@ class PreflightContracts(unittest.TestCase):
             "AssemblyShadowPhysicalMembership.h",
             "AssemblyShadowPhysicalMembershipSource.inl",
             "AssemblyShadowPhysicalMembershipSyntax.cpp",
+            "AssemblyShadowOwnedPhysicalNames.h",
+            "AssemblyShadowOwnedPhysicalNamesSource.inl",
+            "AssemblyShadowOwnedPhysicalNamesSyntax.cpp",
+            "run_owned_physical_names.py",
             "AssemblyShadowExecutionRegistryRevision.h",
             "AssemblyShadowExecutionRegistrationWitness.h",
             "AssemblyShadowExecutionRegistryPublisher.h",
@@ -59,16 +63,16 @@ class PreflightContracts(unittest.TestCase):
         for name in required:
             with self.subTest(name=name):
                 self.assertIn(name,self.pre)
-        self.assertIn('len(cases)==17',self.pre)
+        self.assertIn('len(cases)==18',self.pre)
         self.assertIn('sourcePreserved',self.pre)
-        self.assertIn('expectedNativeSyntaxUnits":95',self.pre)
+        self.assertIn('expectedNativeSyntaxUnits":100',self.pre)
         self.assertIn('historicalEvidenceReclassified":False',self.pre)
         self.assertIn('"UnityPlayerExecuted":False',self.pre)
 
     def test_candidate_sdk_is_opt_in_and_histories_unchanged(self):
         self.assertIn("--candidate-native-sha",self.pre)
         self.assertIn("--candidate-native-sha",self.sdk)
-        self.assertIn("expected_units=19 if candidate else 12",self.sdk)
+        self.assertIn("expected_units=20 if candidate else 12",self.sdk)
         self.assertIn("candidateNativeSha",self.sdk)
         self.assertIn("historicalPinsOverriddenOnDisk",self.sdk)
         self.assertIn("source-pins.json",self.pre)

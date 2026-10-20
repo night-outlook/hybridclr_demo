@@ -54,7 +54,7 @@ def main()->None:
     modules=(
         (HERE/"test_p1_metadata_preflight.py",5),
         (HERE/"test_p1_managed_receipt.py",14),
-        (HERE/"test_p1_command_failures.py",39),
+        (HERE/"test_p1_command_failures.py",44),
         (native_tests/"test_bounded_general_live_command.py",10),
         (native_tests/"test_bounded_execution_empty_live_receipts.py",12),
     )
@@ -63,12 +63,13 @@ def main()->None:
              native_tests/"run_bounded_general_live.py",
              native_tests/"run_bounded_execution_empty_live.py",
              native_tests/"run_physical_membership.py",
+             native_tests/"run_owned_physical_names.py",
              *[p for p,_ in modules]]
     before={str(p):binding(p) for p in sources}
     out.mkdir(mode=0o700)
     record={"kind":"R03P1CommandFailureContracts","schemaVersion":1,
             "result":"FailedOrIncomplete","startedUnix":time.time(),
-            "expectedTestCount":80,"testsRun":0,"testIds":[],"modules":[],
+            "expectedTestCount":85,"testsRun":0,"testIds":[],"modules":[],
             "sourceBefore":before,"sourcePreserved":False,
             "python":sys.version,"platform":platform.platform(),
             "realPythonChildTests":True,"gitSdkVmChildrenMocked":True,
@@ -90,7 +91,7 @@ def main()->None:
                 record["modules"].append({"path":str(path),"expectedTests":count,"testIds":ids})
                 record["testIds"].extend(ids)
                 suite.addTests(part)
-            if len(set(record["testIds"]))!=80 or loader.errors:
+            if len(set(record["testIds"]))!=85 or loader.errors:
                 raise RuntimeError("Duplicate/missing test IDs or test loading errors")
             result=unittest.TextTestRunner(stream=stream,verbosity=2).run(suite)
             record.update(testsRun=result.testsRun,failures=len(result.failures),
@@ -99,7 +100,7 @@ def main()->None:
                           unexpectedSuccesses=len(result.unexpectedSuccesses))
             after={str(p):binding(p) for p in sources}
             record.update(sourceAfter=after,sourcePreserved=before==after)
-            if (result.wasSuccessful() and result.testsRun==80 and before==after
+            if (result.wasSuccessful() and result.testsRun==85 and before==after
                 and not result.skipped and not result.expectedFailures and not result.unexpectedSuccesses):
                 record["result"]="PassedWithinHostScope"
         except BaseException as error:
