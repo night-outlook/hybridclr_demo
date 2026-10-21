@@ -49,6 +49,9 @@ class PreflightContracts(unittest.TestCase):
             "AssemblyShadowOwnedPhysicalNamesSyntax.cpp",
             "run_owned_physical_names.py",
             "run_owned_physical_json.py",
+            "run_owned_physical_live_json.py",
+            "AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+            "owned_physical_live_json_fixture.cpp",
             "AssemblyShadowOwnedPhysicalNamesJson.h",
             "owned_physical_json_fixture.cpp",
             "AssemblyShadowExecutionRegistryRevision.h",
@@ -66,10 +69,11 @@ class PreflightContracts(unittest.TestCase):
         for name in required:
             with self.subTest(name=name):
                 self.assertIn(name,self.pre)
-        self.assertIn('len(cases)==19',self.pre)
+        self.assertIn('len(cases)==20',self.pre)
         self.assertIn('sourcePreserved',self.pre)
         self.assertIn('expectedNativeSyntaxUnits":100',self.pre)
         self.assertIn('expectedOwnedPhysicalJsonCaseGroupsPerProfile',self.pre)
+        self.assertIn('expectedLiveOwnedPhysicalJsonCaseGroupsPerProfile',self.pre)
         self.assertIn('historicalEvidenceReclassified":False',self.pre)
         self.assertIn('"UnityPlayerExecuted":False',self.pre)
 

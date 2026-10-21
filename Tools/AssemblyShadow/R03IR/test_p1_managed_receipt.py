@@ -181,7 +181,8 @@ class AggregateReceiptIntegration(unittest.TestCase):
                        'run_opaque_execution_inventory.py','opaque_inventory_fixture.cpp',
                        'run_physical_membership.py','physical_membership_fixture.cpp',
                        'run_owned_physical_names.py','owned_physical_names_fixture.cpp',
-                       'run_owned_physical_json.py','owned_physical_json_fixture.cpp')]
+                       'run_owned_physical_json.py','owned_physical_json_fixture.cpp',
+                       'run_owned_physical_live_json.py','owned_physical_live_json_fixture.cpp')]
             paths += [native/'libil2cpp/vm'/n for n in
                       ('AssemblyShadowBoundedGeneralComposer.h','AssemblyShadowFrozenGeneralCapture.h',
                        'AssemblyShadowBoundedGeneralLive.h','AssemblyShadowBoundedGeneralLiveSource.inl',
@@ -202,7 +203,8 @@ class AggregateReceiptIntegration(unittest.TestCase):
                        'AssemblyShadowPhysicalMembershipSource.inl',
                        'AssemblyShadowOwnedPhysicalNames.h',
                        'AssemblyShadowOwnedPhysicalNamesSource.inl',
-                       'AssemblyShadowOwnedPhysicalNamesJson.h')]
+                       'AssemblyShadowOwnedPhysicalNamesJson.h',
+                       'AssemblyShadowOwnedPhysicalLiveJsonSource.inl')]
             paths += [native/'tools/r03/diagnostic_stream/empty_live_fixture'/n for n in
                       ('MockRuntime.h','AssemblyShadowFrozenExecutionRecord.h',
                        'AssemblyShadowMetadataLifetime.h','fixture.cpp')]
@@ -244,7 +246,8 @@ class AggregateReceiptIntegration(unittest.TestCase):
                    (mode=='opaque-inventory-failed' and name=='opaque-inventory') or \
                    (mode=='physical-membership-failed' and name=='physical-membership') or \
                    (mode=='owned-physical-names-failed' and name=='owned-physical-names') or \
-                   (mode=='owned-physical-json-failed' and name=='owned-physical-json'):
+                   (mode=='owned-physical-json-failed' and name=='owned-physical-json') or \
+                   (mode=='live-owned-physical-json-failed' and name=='live-owned-physical-json'):
                     (dest/'RESULT.json').write_text(json.dumps({
                         'result':'FailedOrIncomplete','commandLifetimeUnverified':False}))
                     return subprocess.CompletedProcess(args,1,b'mock failed bridge\n',b'')
@@ -258,6 +261,7 @@ class AggregateReceiptIntegration(unittest.TestCase):
                             'PassedWithinInactivePhysicalEnumerationHostScope' if name=='physical-membership' else
                             'PassedWithinInactiveOwnedPhysicalNamesHostScope' if name=='owned-physical-names' else
                             'PassedWithinOwnedPhysicalNamesJsonHostScope' if name=='owned-physical-json' else
+                            'PassedWithinInactiveLiveOwnedPhysicalJsonVmMockScope' if name=='live-owned-physical-json' else
                             'PassedWithinInactiveHostScope' if name=='frozen-v2' else 'PassedWithinHostScope')
                 receipt={'result':expected,'commandLifetimeUnverified':False}
                 if name=='owned-physical-names':
@@ -285,6 +289,24 @@ class AggregateReceiptIntegration(unittest.TestCase):
                         profiles={profile:{'result':'PassedWithinOwnedNonCanonicalJsonHostScope',
                             'caseGroups':list(runner.EXPECTED_OWNED_JSON_GROUPS)}
                             for profile in ('strict','sanitized')})
+                if name=='live-owned-physical-json':
+                    receipt.update(kind='R03P1InactiveLiveOwnedPhysicalJsonSourceHost',
+                        schemaVersion=1,actualSourceCompiled=True,sourcePreserved=True,
+                        sourceToJsonIntegrationTestedWithMocks=True,
+                        physicalClassPointerOriginProven=False,metadataPointerLifetimeProven=False,
+                        canonicalExecutionTypeKeys=False,coherentVmEpochProven=False,
+                        officialUnitySdkCompiled=False,UnityPlayerExecuted=False,
+                        runtimeAcceptance=False,
+                        sourceContract={'originalNativeCppAndApiFingerprintPreserved':True,
+                            'productionSourceMethodsCompiled':2,
+                            'bridgeDoesNotReadAdditionalVmPointers':True,
+                            'sourcePassBeforePureOwnedSerialization':True,
+                            'caseGroups':list(runner.EXPECTED_LIVE_OWNED_JSON_GROUPS),
+                            'canonicalExecutionTypeKeys':False,'runtimeAcceptance':False},
+                        profiles={key:{'result':'PassedWithinInactiveLiveOwnedPhysicalJsonVmMockScope',
+                            'originalNameGroups':list(runner.EXPECTED_OWNED_BINDING_GROUPS),
+                            'liveIntegrationGroups':list(runner.EXPECTED_LIVE_OWNED_JSON_GROUPS)}
+                            for key in ('strict','sanitized')})
                 (dest/('results.json' if name=='native-sdk' else 'RESULT.json')).write_text(json.dumps(receipt))
                 return subprocess.CompletedProcess(args, 0, b'mock child\n', b'')
             argv = [str(RUNNER), '--workspace',str(ws),'--unity',str(unity),
@@ -296,13 +318,14 @@ class AggregateReceiptIntegration(unittest.TestCase):
                 try: runner.main()
                 except SystemExit as e: exit_code=e.code
             report=json.loads((output/'RESULT.json').read_bytes())
-            self.assertEqual(len(report['commands']),19)
-            self.assertEqual(len(launched),19)
-            self.assertEqual(len(set(Path(cmd[2]).name for cmd in launched)),19)
+            self.assertEqual(len(report['commands']),20)
+            self.assertEqual(len(launched),20)
+            self.assertEqual(len(set(Path(cmd[2]).name for cmd in launched)),20)
             self.assertFalse(scratch.exists()) # no compiler, SDK copy or Unity execution
             self.assertEqual(report['expectedNativeSyntaxUnits'],100)
             self.assertEqual(report['expectedOwnedBindingCaseGroupsPerProfile'],28)
             self.assertEqual(report['expectedOwnedPhysicalJsonCaseGroupsPerProfile'],21)
+            self.assertEqual(report['expectedLiveOwnedPhysicalJsonCaseGroupsPerProfile'],12)
             self.assertFalse(report['R03Accepted'])
             self.assertFalse(report['UnityPlayerExecuted'])
             self.assertFalse(report['historicalEvidenceReclassified'])
@@ -332,7 +355,7 @@ class AggregateReceiptIntegration(unittest.TestCase):
                 code,report,managed=self.exercise(mode)
                 self.assertEqual(code,1)
                 self.assertEqual(report['result'],'FailedOrIncomplete')
-                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),18)
+                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),19)
                 self.assertEqual(managed['status'],'Failed')
                 self.assertFalse(report['officialUnitySdkCompilePassed'])
                 self.assertTrue(report['sourcePreserved'])
@@ -345,13 +368,14 @@ class AggregateReceiptIntegration(unittest.TestCase):
                             ('opaque-inventory-failed','opaque-inventory'),
                             ('physical-membership-failed','physical-membership'),
                           ('owned-physical-names-failed','owned-physical-names'),
-                            ('owned-physical-json-failed','owned-physical-json')):
+                            ('owned-physical-json-failed','owned-physical-json'),
+                            ('live-owned-physical-json-failed','live-owned-physical-json')):
             with self.subTest(mode=mode):
                 code,report,_=self.exercise(mode)
                 self.assertEqual(code,1)
                 self.assertEqual(report['result'],'FailedOrIncomplete')
-                self.assertEqual(len(report['commands']),19)
-                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),18)
+                self.assertEqual(len(report['commands']),20)
+                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),19)
                 child=next(c for c in report['commands'] if c['name']==target)
                 self.assertEqual(child['status'],'Failed')
                 self.assertEqual(child['exit'],1)

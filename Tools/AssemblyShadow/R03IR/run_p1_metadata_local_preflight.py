@@ -78,6 +78,21 @@ EXPECTED_OWNED_JSON_GROUPS=(
     "worst-case-escaped-text-under-fixed-budget",
 )
 
+EXPECTED_LIVE_OWNED_JSON_GROUPS=(
+    "empty-live-physical-json",
+    "one-live-candidate-json",
+    "two-live-mixed-witnesses",
+    "reversed-live-iterator-binding",
+    "owned-live-source-mutation-independent",
+    "unmatched-live-physical-refused",
+    "invalid-live-matched-name-refused",
+    "invalid-live-utf8-refused-after-copy",
+    "source-revision-after-enumeration-refused",
+    "limited-json-output-atomic-refusal",
+    "invalid-oversized-limit-no-iterator",
+    "reused-json-output-no-iterator",
+)
+
 def hash_file(path:Path)->str:
     h=hashlib.sha256()
     with path.open("rb") as f:
@@ -161,7 +176,8 @@ def read_managed_result(output:Path, stdout:bytes)->dict:
 
 def read_component_result(output:Path, filename:str, require_lifetime_marker:bool=False,
                           expected_owned_binding_groups:tuple[str,...]|None=None,
-                          expected_owned_json_groups:tuple[str,...]|None=None)->dict:
+                          expected_owned_json_groups:tuple[str,...]|None=None,
+                          expected_live_owned_json_groups:tuple[str,...]|None=None)->dict:
     """Parse and hash the same canonical receipt bytes; do not follow decoys."""
     if Path(filename).name!=filename:
         raise ValueError("A direct component result filename is required")
@@ -248,11 +264,50 @@ def read_component_result(output:Path, filename:str, require_lifetime_marker:boo
                 or profile["caseGroups"]!=list(expected_owned_json_groups)):
                 raise ValueError("Owned physical JSON host case inventory mismatch: "+label)
         owned_json_verified=True
+    live_json_verified=False
+    if expected_live_owned_json_groups is not None and not unknown and (
+       record.get("result")=="PassedWithinInactiveLiveOwnedPhysicalJsonVmMockScope"):
+        if (record.get("kind")!="R03P1InactiveLiveOwnedPhysicalJsonSourceHost"
+            or type(record.get("schemaVersion")) is not int
+            or record["schemaVersion"]!=1
+            or record.get("actualSourceCompiled") is not True
+            or record.get("sourcePreserved") is not True
+            or record.get("sourceToJsonIntegrationTestedWithMocks") is not True
+            or any(record.get(flag) is not False for flag in (
+                "physicalClassPointerOriginProven","metadataPointerLifetimeProven",
+                "canonicalExecutionTypeKeys","coherentVmEpochProven",
+                "officialUnitySdkCompiled","UnityPlayerExecuted","runtimeAcceptance"))):
+            raise ValueError("Inactive live physical JSON source/identity/scope invalid")
+        contract=record.get("sourceContract")
+        if (not isinstance(contract,dict) or
+            contract.get("originalNativeCppAndApiFingerprintPreserved") is not True
+            or type(contract.get("productionSourceMethodsCompiled")) is not int
+            or contract["productionSourceMethodsCompiled"]!=2
+            or contract.get("bridgeDoesNotReadAdditionalVmPointers") is not True
+            or contract.get("sourcePassBeforePureOwnedSerialization") is not True
+            or contract.get("caseGroups")!=list(expected_live_owned_json_groups)
+            or contract.get("canonicalExecutionTypeKeys") is not False
+            or contract.get("runtimeAcceptance") is not False):
+            raise ValueError("Inactive live physical JSON source contract invalid")
+        profiles=record.get("profiles")
+        if not isinstance(profiles,dict) or set(profiles)!={"strict","sanitized"}:
+            raise ValueError("Inactive live physical JSON host profiles absent")
+        for label in ("strict","sanitized"):
+            row=profiles[label]
+            if (not isinstance(row,dict) or
+                row.get("result")!="PassedWithinInactiveLiveOwnedPhysicalJsonVmMockScope"
+                or type(row.get("originalNameGroups")) is not list
+                or row["originalNameGroups"]!=list(EXPECTED_OWNED_BINDING_GROUPS)
+                or type(row.get("liveIntegrationGroups")) is not list
+                or row["liveIntegrationGroups"]!=list(expected_live_owned_json_groups)):
+                raise ValueError("Inactive live physical JSON host case inventory mismatch: "+label)
+        live_json_verified=True
     return {"innerResult":record.get("result"),"innerResultPath":str(source),
             "innerResultSha256":hashlib.sha256(raw).hexdigest(),
             "commandLifetimeUnverified":unknown,
             "ownedBindingCaseInventoryVerified":inventory_verified,
-            "ownedPhysicalJsonCaseInventoryVerified":owned_json_verified}
+            "ownedPhysicalJsonCaseInventoryVerified":owned_json_verified,
+            "liveOwnedPhysicalJsonCaseInventoryVerified":live_json_verified}
 
 
 def execute_component(dest:Path,name:str,argv:list,expected:str,
@@ -282,9 +337,10 @@ def execute_component(dest:Path,name:str,argv:list,expected:str,
             result.update(read_managed_result(output,stdout))
         else:
             result.update(read_component_result(
-                output,file,require_lifetime_marker=(name in ("empty-live","opaque-inventory","physical-membership","owned-physical-names","owned-physical-json")),
+                output,file,require_lifetime_marker=(name in ("empty-live","opaque-inventory","physical-membership","owned-physical-names","owned-physical-json","live-owned-physical-json")),
                 expected_owned_binding_groups=EXPECTED_OWNED_BINDING_GROUPS if name=="owned-physical-names" else None,
-                expected_owned_json_groups=EXPECTED_OWNED_JSON_GROUPS if name=="owned-physical-json" else None))
+                expected_owned_json_groups=EXPECTED_OWNED_JSON_GROUPS if name=="owned-physical-json" else None,
+                expected_live_owned_json_groups=EXPECTED_LIVE_OWNED_JSON_GROUPS if name=="live-owned-physical-json" else None))
         if result["commandLifetimeUnverified"]:
             result["stopBatchReason"]="ChildReportedUnverifiedCommandLifetime"
         elif proc.returncode==0 and result.get("innerResult")==expected:
@@ -299,7 +355,7 @@ def execute_component(dest:Path,name:str,argv:list,expected:str,
                       commandLifetimeUnverified=True,stopBatchReason="OuterCommandInterrupted")
     except Exception as error:
         result["exception"]=repr(error)
-        if returned and name in ("empty-live","opaque-inventory","physical-membership","owned-physical-names","owned-physical-json"):
+        if returned and name in ("empty-live","opaque-inventory","physical-membership","owned-physical-names","owned-physical-json","live-owned-physical-json"):
             # A completed child without a valid lifetime receipt could have
             # timed out internally. Do not schedule more subprocess children.
             result.update(commandLifetimeUnverified=True,
@@ -389,6 +445,9 @@ def main()->None:
         native/"tools/r03/diagnostic_stream/run_owned_physical_names.py",
         native/"tools/r03/diagnostic_stream/owned_physical_names_fixture.cpp",
         native/"libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+        native/"libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+        native/"tools/r03/diagnostic_stream/run_owned_physical_live_json.py",
+        native/"tools/r03/diagnostic_stream/owned_physical_live_json_fixture.cpp",
         native/"tools/r03/diagnostic_stream/run_owned_physical_json.py",
         native/"tools/r03/diagnostic_stream/owned_physical_json_fixture.cpp",
         native/"tools/r03/diagnostic_stream/run_physical_membership.py",
@@ -465,6 +524,7 @@ def main()->None:
             ("physical-membership","run_physical_membership.py","PassedWithinInactivePhysicalEnumerationHostScope"),
             ("owned-physical-names","run_owned_physical_names.py","PassedWithinInactiveOwnedPhysicalNamesHostScope"),
             ("owned-physical-json","run_owned_physical_json.py","PassedWithinOwnedPhysicalNamesJsonHostScope"),
+            ("live-owned-physical-json","run_owned_physical_live_json.py","PassedWithinInactiveLiveOwnedPhysicalJsonVmMockScope"),
             ("bounded-status","run_bounded_transaction_status.py","PassedWithinHostScope"),
             ("bounded-inventory","run_bounded_transaction_inventory.py","PassedWithinHostScope"),
             ("frozen-v2","run_frozen_v2.py","PassedWithinInactiveHostScope"),
@@ -494,12 +554,12 @@ def main()->None:
             # thirteen independent cases and factual postflight errors, never mark PASS.
             postflight_error=repr(e)
             preserved=False
-        success=preserved and stopped is None and len(cases)==19 and all(c["status"]=="Passed" for c in cases)
+        success=preserved and stopped is None and len(cases)==20 and all(c["status"]=="Passed" for c in cases)
         statuses={c["name"]:c["status"] for c in cases}
         summary={"kind":"R03P1FailureAwareSourceSDKPreflight","schemaVersion":2,
           "stoppedAfter":stopped,"commandLifetimeUnverified":stopped is not None,
           "descendantQuiescenceProven":False,
-          "componentCount":19,"attemptedComponentCount":sum(c["commandInvoked"] for c in cases),
+          "componentCount":20,"attemptedComponentCount":sum(c["commandInvoked"] for c in cases),
           "result":"PassedSourceHostAndSDKOnly" if success else "FailedOrIncomplete",
           "fourRepositoriesBefore":before,"fourRepositoriesAfter":after,
           "sourceSha256":hashes,"sourcePreserved":preserved,
@@ -512,6 +572,7 @@ def main()->None:
           "expectedNativeSyntaxUnits":100,
           "expectedOwnedBindingCaseGroupsPerProfile":len(EXPECTED_OWNED_BINDING_GROUPS),
           "expectedOwnedPhysicalJsonCaseGroupsPerProfile":len(EXPECTED_OWNED_JSON_GROUPS),
+          "expectedLiveOwnedPhysicalJsonCaseGroupsPerProfile":len(EXPECTED_LIVE_OWNED_JSON_GROUPS),
           "realUnityEditorLaunched":False,"UnityPlayerExecuted":False,
           "engineOwnerProven":False,"R03Accepted":False,"ReadyForHumanReviewGate":False,
           "historicalEvidenceReclassified":False}

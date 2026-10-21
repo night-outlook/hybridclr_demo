@@ -38,5 +38,11 @@ bool RequireOwnedPhysicalJsonSourceSyntax(const owned::Capture& capture,
 using Signature=bool(*)(physical::Scratch&,owned::Capture&,owned::Receipt&);
 Signature RequireInactiveOwnedNamesSourceSyntax() noexcept
 {return &AssemblyShadow::TryCaptureOwnedObservedPhysicalNames;}
+// Compile the real inactive VM source→owned JSON entry point with the
+// same official installed SDK features/profiles, without a new source TU.
+using LiveJsonSignature=bool(*)(physical::Scratch&,owned::Capture&,
+    owned::Receipt&,ownedJson::Record&,ownedJson::Receipt&,size_t);
+LiveJsonSignature RequireInactiveLiveOwnedJsonSourceSyntax() noexcept
+{return &AssemblyShadow::TryCaptureOwnedObservedPhysicalJson;}
 #endif
 }}} // namespaces
