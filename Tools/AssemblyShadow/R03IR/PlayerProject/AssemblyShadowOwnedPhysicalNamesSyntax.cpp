@@ -78,5 +78,12 @@ using LiveTypeShapeSignature=bool(*)(physical::Scratch&,owned::Capture&,
     owned::Receipt&,shapeCensus::Result&);
 LiveTypeShapeSignature RequireInactiveLiveTypeShapeCensusSyntax() noexcept
 {return &AssemblyShadow::TryCaptureObservedTypeShapeCensus;}
+// Source-bound production VM->shape census->pure JSON signature; still one
+// existing official SDK translation unit across the unchanged five profiles.
+using VmShapeJsonSignature=bool(*)(physical::Scratch&,owned::Capture&,
+    owned::Receipt&,shapeCensus::Result&,shapeJson::Record&,
+    shapeJson::Receipt&,size_t);
+VmShapeJsonSignature RequireInactiveVmShapeJsonSyntax() noexcept
+{return &AssemblyShadow::TryCaptureObservedTypeShapeJson;}
 #endif
 }}} // namespaces

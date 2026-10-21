@@ -53,6 +53,9 @@ class PreflightContracts(unittest.TestCase):
             "run_observed_type_shape_census.py",
             "run_observed_type_shape_live.py",
             "run_observed_type_shape_json.py",
+            "run_observed_type_shape_json_live.py",
+            "observed_type_shape_json_live_fixture.cpp",
+            "AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
             "observed_type_shape_json_fixture.cpp",
             "AssemblyShadowObservedTypeShapeJson.h",
             "observed_type_shape_live_fixture.cpp",
@@ -79,7 +82,7 @@ class PreflightContracts(unittest.TestCase):
         for name in required:
             with self.subTest(name=name):
                 self.assertIn(name,self.pre)
-        self.assertIn('len(cases)==23',self.pre)
+        self.assertIn('len(cases)==24',self.pre)
         self.assertIn('sourcePreserved',self.pre)
         self.assertIn('expectedNativeSyntaxUnits":100',self.pre)
         self.assertIn('expectedOwnedPhysicalJsonCaseGroupsPerProfile',self.pre)
@@ -87,6 +90,7 @@ class PreflightContracts(unittest.TestCase):
         self.assertIn('expectedObservedTypeShapeCaseGroupsPerProfile',self.pre)
         self.assertIn('expectedLiveTypeShapeCensusCaseGroupsPerProfile',self.pre)
         self.assertIn('expectedObservedTypeShapeJsonCaseGroupsPerProfile',self.pre)
+        self.assertIn('expectedVmShapeJsonCaseGroupsPerProfile',self.pre)
         self.assertIn('historicalEvidenceReclassified":False',self.pre)
         self.assertIn('"UnityPlayerExecuted":False',self.pre)
 

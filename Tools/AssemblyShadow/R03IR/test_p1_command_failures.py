@@ -477,6 +477,100 @@ def make_shape_json_positive(mod):
             'liveIntegrationGroups':live,'shapeJsonGroups':json_cases}
             for k in ('strict','sanitized')}}
 
+    def verify_real_vm_shape_json_receipt_and_fail_closed_mutations(self):
+        mod=load();expected=mod.EXPECTED_VM_SHAPE_JSON_GROUPS
+        self.assertEqual(len(expected),16)
+        self.assertEqual(len(set(expected)),16)
+        with tempfile.TemporaryDirectory() as td:
+            out=Path(td).resolve();path=out/'RESULT.json'
+            def check(data):
+                path.write_text(json.dumps(data))
+                return mod.read_component_result(out,'RESULT.json',True,
+                    expected_vm_shape_json_groups=expected)
+            baseline=make_vm_shape_json_positive(mod)
+            baseline['commandLifetimeUnverified']=False
+            self.assertTrue(check(baseline)['vmShapeJsonSourceCaseInventoryVerified'])
+            for name in ('missing-case','duplicate-case','wrong-kind',
+                'nonint-schema','missing-source-compiler','wrong-vm-source',
+                'wrong-preflight','wrong-lock-order','fake-typekey',
+                'fake-epoch','previous-shape-json-scope','previous-json-budget',
+                'previous-source-proof','missing-original-name-group',
+                'missing-json-group','missing-sanitized','wrong-profile'):
+                with self.subTest(mutation=name):
+                    item=json.loads(json.dumps(baseline))
+                    if name=='missing-case':
+                        item['profiles']['strict']['newBridgeGroups'].pop()
+                    elif name=='duplicate-case':
+                        item['profiles']['strict']['newBridgeGroups'][-1]=expected[0]
+                    elif name=='wrong-kind':item['kind']='Old'
+                    elif name=='nonint-schema':item['schemaVersion']=True
+                    elif name=='missing-source-compiler':item['actualSourceCompiled']=False
+                    elif name=='wrong-vm-source':
+                        item['sourceContract']['threeActualVmSourceMethodsCompiled']=False
+                    elif name=='wrong-preflight':
+                        item['sourceContract']['preflightBeforeIterator']=False
+                    elif name=='wrong-lock-order':
+                        item['sourceContract']['sourceLocksReleasedBeforePureJson']=False
+                    elif name=='fake-typekey':item['canonicalExecutionTypeKeys']=True
+                    elif name=='fake-epoch':
+                        item['sourceContract']['coherentVmEpochProven']=True
+                    elif name=='previous-shape-json-scope':
+                        item['sourceContract']['precedingActualVmAndPureJsonSourceVerified']['rowScope']='execution-v1'
+                    elif name=='previous-json-budget':
+                        item['sourceContract']['precedingActualVmAndPureJsonSourceVerified']['fixedOwnedMaximumBytes']=True
+                    elif name=='previous-source-proof':
+                        item['sourceContract']['precedingActualVmAndPureJsonSourceVerified']['predecessor']={}
+                    elif name=='missing-original-name-group':
+                        item['profiles']['strict']['oldNameGroups']=[]
+                    elif name=='missing-json-group':
+                        item['sourceContract']['oldShapeJsonGroups']=[]
+                    elif name=='missing-sanitized':item['profiles'].pop('sanitized')
+                    elif name=='wrong-profile':
+                        item['profiles']['sanitized']['result']='Failed'
+                    with self.assertRaisesRegex(ValueError,'Inactive genuine VM shape JSON'):
+                        check(item)
+            uncertain=json.loads(json.dumps(baseline))
+            uncertain['commandLifetimeUnverified']=True
+            self.assertFalse(check(uncertain)['vmShapeJsonSourceCaseInventoryVerified'])
+
+
+def make_vm_shape_json_positive(mod):
+    old=make_shape_json_positive(mod)["sourceContract"]
+    names=list(mod.EXPECTED_OWNED_BINDING_GROUPS)
+    shapes=list(mod.EXPECTED_TYPE_SHAPE_GROUPS)
+    live=list(mod.EXPECTED_LIVE_TYPE_SHAPE_GROUPS)
+    json=list(mod.EXPECTED_SHAPE_JSON_GROUPS)
+    new=list(mod.EXPECTED_VM_SHAPE_JSON_GROUPS)
+    return {
+        'kind':'R03P1InactiveLiveObservedTypeShapeJsonSourceHost',
+        'schemaVersion':1,'result':'PassedWithinInactiveVmShapeJsonHostScope',
+        'actualSourceCompiled':True,'sourcePreserved':True,
+        'canonicalExecutionTypeKeys':False,'fullExecutionV1':False,
+        'physicalClassPointerOriginProven':False,'coherentVmEpochProven':False,
+        'officialUnitySdkCompiled':False,'UnityPlayerExecuted':False,
+        'runtimeAcceptance':False,
+        'sourceContract':{
+            'precedingActualVmAndPureJsonSourceVerified':old,
+            'originalNativeCppAndApiFingerprintPreserved':True,
+            'threeActualVmSourceMethodsCompiled':True,
+            'preflightBeforeIterator':True,
+            'sourceLocksReleasedBeforePureJson':True,
+            'ownedPointerFreeJsonOnly':True,
+            'oldNameGroups':names,'oldShapeGroups':shapes,
+            'oldLiveCensusGroups':live,'oldShapeJsonGroups':json,
+            'newBridgeGroups':new,
+            'canonicalExecutionTypeKeys':False,
+            'coherentVmEpochProven':False,
+            'physicalClassPointerOriginProven':False,
+            'fullExecutionV1':False,'runtimeAcceptance':False},
+        'profiles':{mode:{
+            'result':'PassedWithinInactiveVmShapeJsonHostScope',
+            'oldNameGroups':names,'oldShapeGroups':shapes,
+            'oldLiveCensusGroups':live,'oldShapeJsonGroups':json,
+            'newBridgeGroups':new}
+            for mode in ('strict','sanitized')}
+    }
+
 class BatchFailureScheduling(unittest.TestCase):
     def exercise(self,mode='passed',target='live-general'):
         with tempfile.TemporaryDirectory() as td:
@@ -519,6 +613,7 @@ class BatchFailureScheduling(unittest.TestCase):
                           'PassedWithinObservedTypeShapeSourceHostScope' if name=='observed-type-shape' else
                           'PassedWithinInactiveLiveTypeShapeCensusHostScope' if name=='live-type-shape-census' else
                           'PassedWithinOwnedTypeShapeJsonSourceHostScope' if name=='observed-type-shape-json' else
+                          'PassedWithinInactiveVmShapeJsonHostScope' if name=='vm-shape-json' else
                           'PassedWithinInactiveHostScope' if name=='frozen-v2' else 'PassedWithinHostScope')
                 data={'result':expected,'commandLifetimeUnverified':name==target and mode=='nested-timeout'}
                 if name=='owned-physical-names':
@@ -616,13 +711,16 @@ class BatchFailureScheduling(unittest.TestCase):
                             'originalShapeGroups':list(mod.EXPECTED_TYPE_SHAPE_GROUPS),
                             'liveIntegrationGroups':list(mod.EXPECTED_LIVE_TYPE_SHAPE_GROUPS)}
                             for p in ('strict','sanitized')})
+                if name=='vm-shape-json':
+                    # Preserve separately injected timeout/lifetime evidence.
+                    data.update(make_vm_shape_json_positive(mod))
                 if name=='observed-type-shape-json':
                     positive=make_shape_json_positive(mod)
                     # Keep the independently injected timeout/lifetime state;
                     # a source-host positive mock must never erase this fault.
                     positive.pop('commandLifetimeUnverified')
                     data.update(positive)
-                if name in ('empty-live','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json') and name==target:
+                if name in ('empty-live','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json','vm-shape-json') and name==target:
                     if mode=='missing-lifetime-marker':
                         data.pop('commandLifetimeUnverified')
                     if mode=='malformed-lifetime-marker':
@@ -634,7 +732,7 @@ class BatchFailureScheduling(unittest.TestCase):
                                 unityEditorRun=False,nativeExecution=False,runtimeAcceptance=False)
                     (out/'build-api').mkdir();file=out/'build-api/results.json'
                 else:file=out/('results.json' if name=='native-sdk' else 'RESULT.json')
-                if not (name in ('empty-live','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json') and name==target and mode=='missing-result'):
+                if not (name in ('empty-live','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json','vm-shape-json') and name==target and mode=='missing-result'):
                     file.write_text(json.dumps(data))
                 if mode=='missing-result' and name==target:
                     # Ensure this failure injection remains an actual absent
@@ -654,8 +752,8 @@ class BatchFailureScheduling(unittest.TestCase):
                 except SystemExit as error:code=error.code
             report=json.loads((dest/'RESULT.json').read_bytes())
             manifest=json.loads((dest/'MANIFEST.json').read_bytes())
-            self.assertEqual(len(report['commands']),23)
-            self.assertEqual(report['componentCount'],23)
+            self.assertEqual(len(report['commands']),24)
+            self.assertEqual(report['componentCount'],24)
             self.assertEqual(report['attemptedComponentCount'],len(launched))
             self.assertEqual(report['expectedNativeSyntaxUnits'],100)
             self.assertEqual(report['expectedOwnedBindingCaseGroupsPerProfile'],28)
@@ -664,6 +762,7 @@ class BatchFailureScheduling(unittest.TestCase):
             self.assertEqual(report['expectedObservedTypeShapeCaseGroupsPerProfile'],15)
             self.assertEqual(report['expectedLiveTypeShapeCensusCaseGroupsPerProfile'],16)
             self.assertEqual(report['expectedObservedTypeShapeJsonCaseGroupsPerProfile'],16)
+            self.assertEqual(report['expectedVmShapeJsonCaseGroupsPerProfile'],16)
             self.assertFalse(report['R03Accepted']);self.assertFalse(report['UnityPlayerExecuted'])
             self.assertFalse(report['historicalEvidenceReclassified'])
             for row in report['commands']:
@@ -683,8 +782,9 @@ class BatchFailureScheduling(unittest.TestCase):
         OwnedBindingInventoryContract().verify_observed_type_shape_receipt_and_failure_mutations()
         OwnedBindingInventoryContract().verify_live_type_shape_census_receipt_and_fail_closed_mutations()
         OwnedBindingInventoryContract().verify_noncanonical_shape_json_receipts_and_mutations()
+        OwnedBindingInventoryContract().verify_real_vm_shape_json_receipt_and_fail_closed_mutations()
         code,report,manifest,launched,checks=self.exercise()
-        self.assertEqual(code,0);self.assertEqual(len(launched),23);self.assertEqual(len(checks),8)
+        self.assertEqual(code,0);self.assertEqual(len(launched),24);self.assertEqual(len(checks),8)
         self.assertTrue(report['sourcePreserved']);self.assertIsNone(report['stoppedAfter'])
         self.assertTrue(report['officialUnitySdkCompileAttempted']);self.assertTrue(report['officialUnitySdkCompilePassed'])
         self.assertEqual(manifest['inventoryScope'],'CompletedBatchFiles')
@@ -692,7 +792,7 @@ class BatchFailureScheduling(unittest.TestCase):
     def assert_stopped(self,mode,target='live-general',code=1):
         actual,report,manifest,launched,checks=self.exercise(mode,target)
         self.assertEqual(actual,code);self.assertEqual(launched[-1],target)
-        self.assertLess(len(launched),23);self.assertEqual(len(checks),4)
+        self.assertLess(len(launched),24);self.assertEqual(len(checks),4)
         self.assertFalse(report['sourcePreserved']);self.assertTrue(report['commandLifetimeUnverified'])
         self.assertEqual(report['result'],'FailedOrIncomplete')
         self.assertFalse(report['officialUnitySdkCompileAttempted'])
@@ -707,24 +807,24 @@ class BatchFailureScheduling(unittest.TestCase):
     def test_first_component_timeout_leaves_seventeen_notrun(self):self.assert_stopped('timeout','command-failures')
 
     def test_completed_nonzero_keeps_other_independent_checks(self):
-        for target in ('owned-execution','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json'):
+        for target in ('owned-execution','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json','vm-shape-json'):
             with self.subTest(target=target):
                 code,report,manifest,launched,checks=self.exercise('nonzero',target)
-                self.assertEqual(code,1);self.assertEqual(len(launched),23);self.assertEqual(len(checks),8)
-                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),22)
+                self.assertEqual(code,1);self.assertEqual(len(launched),24);self.assertEqual(len(checks),8)
+                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),23)
                 self.assertEqual(next(c for c in report['commands'] if c['name']==target)['status'],'Failed')
                 self.assertTrue(report['officialUnitySdkCompilePassed']);self.assertTrue(report['sourcePreserved'])
                 self.assertIsNone(report['stoppedAfter'])
 
     def test_known_launch_failure_is_retained_without_faking_an_exit(self):
         code,report,manifest,launched,checks=self.exercise('spawn-failed')
-        self.assertEqual(code,1);self.assertEqual(len(launched),23)
+        self.assertEqual(code,1);self.assertEqual(len(launched),24)
         record=next(c for c in report['commands'] if c['name']=='live-general')
         self.assertIsNone(record['exit']);self.assertIn('FileNotFoundError',record['exception'])
 
     def test_last_sdk_timeout_is_attempted_but_not_passed(self):
         code,report,manifest,launched,checks=self.exercise('timeout','native-sdk')
-        self.assertEqual(code,1);self.assertEqual(len(launched),23)
+        self.assertEqual(code,1);self.assertEqual(len(launched),24)
         self.assertTrue(report['officialUnitySdkCompileAttempted'])
         self.assertFalse(report['officialUnitySdkCompilePassed']);self.assertFalse(report['sourcePreserved'])
         self.assertTrue(report['commandLifetimeUnverified'])
@@ -749,13 +849,13 @@ class BatchFailureScheduling(unittest.TestCase):
     def test_known_nonzero_empty_live_continues_without_claiming_pass(self):
         code,report,manifest,launched,checks=self.exercise('nonzero','empty-live')
         self.assertEqual(code,1)
-        self.assertEqual(len(launched),23)
+        self.assertEqual(len(launched),24)
         self.assertEqual(len(checks),8)
         self.assertIsNone(report['stoppedAfter'])
         self.assertFalse(report['commandLifetimeUnverified'])
         self.assertTrue(report['sourcePreserved'])
         self.assertTrue(report['officialUnitySdkCompilePassed'])
-        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),22)
+        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),23)
         self.assertEqual(next(c for c in report['commands']
                               if c['name']=='empty-live')['status'],'Failed')
 
@@ -828,5 +928,10 @@ class BatchFailureScheduling(unittest.TestCase):
         self.assert_stopped('malformed-lifetime-marker','observed-type-shape-json')
         self.assert_stopped('null-lifetime-marker','observed-type-shape-json')
         self.assert_stopped('missing-result','observed-type-shape-json')
+        self.assert_stopped('nested-timeout','vm-shape-json')
+        self.assert_stopped('missing-lifetime-marker','vm-shape-json')
+        self.assert_stopped('malformed-lifetime-marker','vm-shape-json')
+        self.assert_stopped('null-lifetime-marker','vm-shape-json')
+        self.assert_stopped('missing-result','vm-shape-json')
 
 if __name__=='__main__':unittest.main(verbosity=2)
