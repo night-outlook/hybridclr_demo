@@ -1,0 +1,39 @@
+PASS snapshot-all-fields-and-read-order
+PASS every-metric-change-clears-destination
+PASS every-source-metadata-change
+PASS invalid-subsets-rejected
+PASS disabled-policy
+PASS coverage-precedence
+PASS empty-original-v1-parity
+PASS 256-boolean-row-original-v1-parity
+PASS counted-nonterminated-state
+PASS unicode-and-control-byte-parity
+PASS owned-inputs-survive-mutation
+PASS invalid-utf8-rejected
+PASS invalid-null-inputs
+PASS missing-extra-and-overlimit-rows
+PASS 1024-row-original-v1-parity
+PASS wrong-stages-and-reuse
+PASS whole-object-input-alias
+PASS invalid-range-before-dereference
+PASS exact-field-byte-limit
+PASS one-byte-over-field-limit
+PASS escape-expanded-byte-limit
+PASS nonclassic-locale-rejected
+PASS incomplete-counters-rejected
+PASS late-source-revocation
+PASS sink-preflight-no-callback
+PASS bounded-chunked-emission
+PASS sink-failure-no-continuation
+PASS reentrant-sink-rejected
+PASS revoking-sink-rejected
+PASS writer-finish-contract-unchanged
+OBSERVATION watchedOperatorNew=0 snapshotBytes=320 recordBytes=3932512
+PASS zero-watched-operator-new
+PASS actual-r02-source-and-live-wrapper-parity
+OBSERVATION concurrentAccepted=62 concurrentRejected=66 coherentVmEpochProven=false
+PASS actual-concurrent-counter-source
+PASS actual-counter-saturation
+OBSERVATION droppedCounterThreads=7
+PASS actual-counter-thread-capacity
+SUMMARY tests=35 diagnosticsLevel=1 runtimeAcceptance=false

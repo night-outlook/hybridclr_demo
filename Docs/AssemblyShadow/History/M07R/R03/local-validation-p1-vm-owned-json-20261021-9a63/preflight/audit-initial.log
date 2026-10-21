@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-VM-OWNED-JSON-20261021-9a63/audit.py", line 661, in <module>
+    assert jcode.replace(fresh_line,'').encode()==subprocess.check_output(['git','-C',str(N),'show','d9cb2a63396e66e213ad0f30581f533457d2ae52:libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
