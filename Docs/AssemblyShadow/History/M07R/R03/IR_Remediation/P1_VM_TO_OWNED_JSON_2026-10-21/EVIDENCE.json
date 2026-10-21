@@ -1,0 +1,132 @@
+{
+  "kind": "R03P1InactiveVmToOwnedJsonPrimaryEvidence",
+  "schemaVersion": 1,
+  "lastLocal": {
+    "cycle": "20261021-d9cb",
+    "result": "PassedSourceHostAndSDKOnly",
+    "sourceTuple": {
+      "demo": "4bb40108804e1e1f68d5f1b1dbf69d60f44e683e",
+      "native": "d9cb2a63396e66e213ad0f30581f533457d2ae52",
+      "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de"
+    },
+    "components": 19,
+    "commandFailureTests": 85,
+    "namesGroupsPerProfile": 28,
+    "pureJsonGroupsPerProfile": 21,
+    "actualNativeSdkSyntax": 100,
+    "managedPositiveProducts": 5,
+    "managedOriginalExpectedNegative": true,
+    "consumed": true,
+    "unityEditorRun": false,
+    "unityPlayerRun": false,
+    "acceptance": false
+  },
+  "newSource": {
+    "native": "9a6394f2854b4f34e82697df8f87e6866f8577ef",
+    "demoCodeAnchor": "0cf27ed166c0811ad23777668603d0e9dadea8f7",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de"
+  },
+  "implementation": {
+    "addedInactiveNativeMethod": "AssemblyShadow::TryCaptureOwnedObservedPhysicalJson",
+    "realSourceMethodCallsOriginalOwnedNames": true,
+    "pureSerializationAfterReaderAndLocks": true,
+    "outputMaxBytes": 2097152,
+    "outputPreflightBeforeEnumerator": true,
+    "originalGetterBehaviorChanged": false,
+    "producesCanonicalTypeKeys": false,
+    "sourcePathCompileMode": "INACTIVE",
+    "newLiveGroupsPerProfile": 12,
+    "retainedOldNameGroupsPerProfile": 28,
+    "originalImmutableCppApiFingerprintConstantsChanged": false,
+    "demoComponentCount": 20,
+    "originalCommandFailureTestInventory": 85,
+    "nativeOfficialSdkSyntaxMatrixPlanned": 100
+  },
+  "hostCi": {
+    "liveNative": {
+      "run": 39552486903,
+      "passed": 3,
+      "total": 3,
+      "profiles": [
+        "strict",
+        "ASan+UBSan"
+      ],
+      "originalGroupsPerProfile": 28,
+      "liveGroupsPerProfile": 12
+    },
+    "nativeOldNames": {
+      "run": 39552486817,
+      "passed": 3,
+      "total": 3
+    },
+    "nativeOpaque": {
+      "run": 39552486867,
+      "passed": 3,
+      "total": 3
+    },
+    "demoIntegrated": {
+      "run": 39552994851,
+      "passed": 2,
+      "total": 2,
+      "tests": 85
+    },
+    "demoCommandFailure": {
+      "run": 39552994916,
+      "passed": 2,
+      "total": 2
+    },
+    "demoManagedReceipt": {
+      "run": 39552994931,
+      "passed": 2,
+      "total": 2
+    },
+    "historicalR02Fingerprint": {
+      "run": 39552486829,
+      "result": "FailedHistoricalSourceFingerprintMismatch",
+      "mismatchedPaths": [
+        "libil2cpp/vm/AssemblyShadowTypeResolver.cpp",
+        "libil2cpp/vm/AssemblyShadow.cpp"
+      ],
+      "preservedWithoutReclassification": true
+    }
+  },
+  "nextLocal": {
+    "result": "NotRun",
+    "sourceHostOfficialSdkOnly": true,
+    "components": 20,
+    "originalCommandFailureTests": 85,
+    "ownedBindingGroupsPerProfile": 28,
+    "pureJsonGroupsPerProfile": 21,
+    "newLiveIntegrationGroupsPerProfile": 12,
+    "nativeSdkSyntaxConfigs": 100,
+    "managedPositiveProducts": 5,
+    "managedExpectedNegative": true,
+    "unityEditorLaunched": false,
+    "playerLaunched": false
+  },
+  "limits": {
+    "physicalAllocationPointerLifetimeProven": false,
+    "canonicalExecutionTypeKeys": false,
+    "coherentVmEpochProven": false,
+    "fullExecutionV1Json": false,
+    "linkedNativeRuntime": false,
+    "realGcRssShutdown": false,
+    "descendantQuiescenceProven": false
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "fullP3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "historicalEvidenceReclassified": false
+}
