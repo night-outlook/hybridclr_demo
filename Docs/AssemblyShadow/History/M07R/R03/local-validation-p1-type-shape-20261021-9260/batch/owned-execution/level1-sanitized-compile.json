@@ -1,0 +1,39 @@
+{
+  "argv": [
+    "/usr/bin/clang++",
+    "-std=c++17",
+    "-O1",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic",
+    "-pthread",
+    "-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=1",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+    "-DFROZEN_EXECUTION_REFERENCE_HEADER=\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-TYPE-SHAPE-20261021-9260/owned-execution/reference-AssemblyShadowExecutionSerializer.h\"",
+    "-DFROZEN_R02_REFERENCE_HEADER=\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-TYPE-SHAPE-20261021-9260/owned-execution/reference-AssemblyShadowR02Diagnostics.h\"",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_fixture.cpp",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_allocations.cpp",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "-o",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-TYPE-SHAPE-20261021-9260/owned-execution/level1-sanitized"
+  ],
+  "exit": 0,
+  "finishedUnix": 1792571488.196053,
+  "label": "level1-sanitized-compile",
+  "startedUnix": 1792571487.191616,
+  "status": "Passed",
+  "stderr.bin": {
+    "bytes": 0,
+    "path": "level1-sanitized-compile.stderr.bin",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout.bin": {
+    "bytes": 0,
+    "path": "level1-sanitized-compile.stdout.bin",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,186 @@
+[
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-21T08:27:13.095495+00:00",
+    "end": "2026-10-21T08:27:17.467357+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_demo\n * branch                codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "ddc1bd29d32db66acccb11caaab70179cbcc53f1"
+    ],
+    "start": "2026-10-21T08:27:17.467540+00:00",
+    "end": "2026-10-21T08:27:17.486851+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge",
+      "--ff-only",
+      "ddc1bd29d32db66acccb11caaab70179cbcc53f1"
+    ],
+    "start": "2026-10-21T08:27:17.486963+00:00",
+    "end": "2026-10-21T08:27:17.784596+00:00",
+    "exit": 0,
+    "stdout": "Updating ef5054eb1..ddc1bd29d\nFast-forward\n ...r03-p1-integrated-command-failure-contracts.yml |   2 +-\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        | 121 +++++++++++----------\n .../P1_OBSERVED_TYPE_SHAPE_2026-10-21/DESIGN.md    |  36 ++++++\n .../EVIDENCE.json                                  | 120 ++++++++++++++++++++\n .../P1_OBSERVED_TYPE_SHAPE_2026-10-21/PLAN.md      |  27 +++++\n .../PRIMARY_SOURCE_AUDIT.md                        |  30 +++++\n Docs/AssemblyShadow/Plan/CURRENT_STATUS.md         |  22 ++--\n Docs/AssemblyShadow/README.md                      |  22 ++--\n .../AssemblyShadowOwnedPhysicalNamesSyntax.cpp     |  14 +++\n .../R03IR/run_p1_command_failure_tests.py          |   4 +\n .../R03IR/run_p1_metadata_local_preflight.py       |  84 ++++++++++++--\n .../R03IR/test_p1_command_failures.py              | 112 ++++++++++++++++---\n .../R03IR/test_p1_managed_receipt.py               |  49 +++++++--\n .../R03IR/test_p1_metadata_preflight.py            |   7 +-\n 14 files changed, 539 insertions(+), 111 deletions(-)\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_OBSERVED_TYPE_SHAPE_2026-10-21/DESIGN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_OBSERVED_TYPE_SHAPE_2026-10-21/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_OBSERVED_TYPE_SHAPE_2026-10-21/PLAN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_OBSERVED_TYPE_SHAPE_2026-10-21/PRIMARY_SOURCE_AUDIT.md\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-21T08:27:18.530616+00:00",
+    "end": "2026-10-21T08:27:24.331340+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+    ],
+    "start": "2026-10-21T08:27:24.331484+00:00",
+    "end": "2026-10-21T08:27:24.352983+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "merge",
+      "--ff-only",
+      "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+    ],
+    "start": "2026-10-21T08:27:24.353102+00:00",
+    "end": "2026-10-21T08:27:24.370856+00:00",
+    "exit": 0,
+    "stdout": "Already up to date.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-21T08:27:24.396023+00:00",
+    "end": "2026-10-21T08:27:28.657525+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_unity\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "948c0e3b4f8891481301770115e8ba4945eea6de"
+    ],
+    "start": "2026-10-21T08:27:28.657675+00:00",
+    "end": "2026-10-21T08:27:28.676522+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "merge",
+      "--ff-only",
+      "948c0e3b4f8891481301770115e8ba4945eea6de"
+    ],
+    "start": "2026-10-21T08:27:28.676614+00:00",
+    "end": "2026-10-21T08:27:28.691997+00:00",
+    "exit": 0,
+    "stdout": "Already up to date.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-21T08:27:28.717642+00:00",
+    "end": "2026-10-21T08:27:34.043956+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/il2cpp_plus\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   9a6394f..9260ece  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "9260eceaedb9ad1d06de6a769bd070e9c946cc90"
+    ],
+    "start": "2026-10-21T08:27:34.044057+00:00",
+    "end": "2026-10-21T08:27:34.057493+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "merge",
+      "--ff-only",
+      "9260eceaedb9ad1d06de6a769bd070e9c946cc90"
+    ],
+    "start": "2026-10-21T08:27:34.057575+00:00",
+    "end": "2026-10-21T08:27:34.086706+00:00",
+    "exit": 0,
+    "stdout": "Updating 9a6394f..9260ece\nFast-forward\n .github/workflows/r03-p1-observed-type-shape.yml   |  52 +++\n libil2cpp/vm/AssemblyShadowObservedTypeShape.h     |  75 ++++\n .../vm/AssemblyShadowObservedTypeShapeCensus.h     | 112 ++++++\n libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h    |  15 +-\n .../vm/AssemblyShadowOwnedPhysicalNamesSource.inl  |  23 +-\n .../owned_physical_live_json_fixture.cpp           |  15 +-\n .../owned_physical_names_fixture.cpp               |  15 +-\n .../owned_type_shape_census_fixture.cpp            | 445 +++++++++++++++++++++\n .../run_observed_type_shape_census.py              | 190 +++++++++\n 9 files changed, 938 insertions(+), 4 deletions(-)\n create mode 100644 .github/workflows/r03-p1-observed-type-shape.yml\n create mode 100644 libil2cpp/vm/AssemblyShadowObservedTypeShape.h\n create mode 100644 libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h\n create mode 100644 tools/r03/diagnostic_stream/owned_type_shape_census_fixture.cpp\n create mode 100644 tools/r03/diagnostic_stream/run_observed_type_shape_census.py\n",
+    "stderr": ""
+  }
+]
