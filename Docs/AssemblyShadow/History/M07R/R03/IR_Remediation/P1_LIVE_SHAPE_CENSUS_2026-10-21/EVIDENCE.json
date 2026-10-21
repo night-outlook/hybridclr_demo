@@ -31,8 +31,8 @@
     "unityPlayerLaunched": false
   },
   "candidateSource": {
-    "demoCodeAnchor": "cf6c577c26c3da467947ffd0e3d79d048fa65601",
-    "native": "f01ab33857cd53f68cdeabf270965293040be773",
+    "demoCodeAnchor": "01b093fd1f450c7dc69d0395de237590ddcf6b5f",
+    "native": "d8d4695c2d3da0e541f9e1a525cfffbcc3b1c230",
     "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
     "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de"
   },
@@ -42,7 +42,8 @@
     "nativeChanged": [
       "libil2cpp/vm/AssemblyShadow.cpp",
       "libil2cpp/vm/AssemblyShadow.h",
-      "libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h"
+      "libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+      "libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl"
     ],
     "preflightBeforeIterator": true,
     "actualOldSourceCalled": true,
@@ -58,20 +59,25 @@
     "physicalClassPointerOriginProven": false,
     "coherentVmEpochProven": false,
     "PlayerExecuted": false,
-    "runtimeAcceptance": false
+    "runtimeAcceptance": false,
+    "callerNamesReceiptClearedBeforeEarlyPreflight": true,
+    "noPriorSuccessReceiptOnStaleRejection": true
   },
   "ci": {
     "focusedNative": {
-      "id": 39574560340,
+      "id": 39576958372,
       "ubuntuClang": "Passed",
       "ubuntuGcc": "Passed",
       "macosClang": "Passed",
-      "scope": "actual two source inls with explicit VM mocks, strict and ASan+UBSan"
+      "source": "d8d4695c2d3da0e541f9e1a525cfffbcc3b1c230",
+      "scope": "two actual production source methods and 28+15+16 strict/sanitized host mock groups including clear-stale-name-receipt"
     },
     "demoIntegrated": {
-      "id": 39575176551,
+      "id": 39577003715,
       "ubuntu": "Passed",
       "macos": "Passed",
+      "source": "01b093fd1f450c7dc69d0395de237590ddcf6b5f",
+      "nativeSource": "d8d4695c2d3da0e541f9e1a525cfffbcc3b1c230",
       "original85ControlledTests": true,
       "gitSdkVmMocks": true
     },
@@ -79,20 +85,37 @@
       "id": 39575177002,
       "ubuntu": "Passed",
       "macos": "Passed",
-      "mockSdk": true
+      "mockSdk": true,
+      "executedBeforeWorkflowNativePinOnlyChange": true
     },
     "demoCommandFailures": {
       "id": 39575177118,
       "ubuntu": "Passed",
       "macos": "Passed",
-      "sourceHostOnly": true
+      "sourceHostOnly": true,
+      "executedBeforeWorkflowNativePinOnlyChange": true
     },
     "preservedHistoricalR02Fingerprint": {
-      "id": 39574560201,
+      "id": 39576958358,
       "result": "FailedHistoricalImmutableSourceFingerprint",
       "reclassified": false
     },
-    "hostCiFullyPassedAtFinalReview": true
+    "hostCiFullyPassedAtFinalReview": true,
+    "preCorrectionFocusedNative": {
+      "id": 39574560340,
+      "ubuntuClang": "Passed",
+      "ubuntuGcc": "Passed",
+      "macosClang": "Passed",
+      "scope": "actual two source inls with explicit VM mocks, strict and ASan+UBSan"
+    },
+    "preCorrectionDemoIntegrated": {
+      "id": 39575176551,
+      "ubuntu": "Passed",
+      "macos": "Passed",
+      "original85ControlledTests": true,
+      "gitSdkVmMocks": true
+    },
+    "previousR02SourceFingerprintRun": 39574560201
   },
   "nextLocal": {
     "result": "NotRun",
