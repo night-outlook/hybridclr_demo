@@ -632,6 +632,12 @@ class BatchFailureScheduling(unittest.TestCase):
                 else:file=out/('results.json' if name=='native-sdk' else 'RESULT.json')
                 if not (name in ('empty-live','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json') and name==target and mode=='missing-result'):
                     file.write_text(json.dumps(data))
+                if mode=='missing-result' and name==target:
+                    # Ensure this failure injection remains an actual absent
+                    # producer result (not a cached positive response).
+                    file.unlink(missing_ok=True)
+                    if file.exists():
+                        raise AssertionError("Missing-result fixture retained positive bytes")
                 stdout=(json.dumps({'result':str(file),'sha256':hashlib.sha256(file.read_bytes()).hexdigest()}).encode()
                         if name=='managed-sdk' else b'mock child\n')
                 return subprocess.CompletedProcess(args,7 if mode=='nonzero' and name==target else 0,stdout,b'mock stderr\n')
