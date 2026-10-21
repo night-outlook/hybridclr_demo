@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-LIVE-SHAPE-20261021-f01a/run-once.py", line 196, in <module>
+    names=subprocess.check_output(['git','-C',str(D),'diff-tree','--no-commit-id','--name-only','-r',commit],text=True).splitlines();assert all(x.startswith('Docs/') for x in names);percommit.append(dict(commit=commit,paths=names))
+                                                                                                                                            ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

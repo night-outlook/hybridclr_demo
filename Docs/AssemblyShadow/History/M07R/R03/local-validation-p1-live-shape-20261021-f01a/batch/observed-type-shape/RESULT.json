@@ -1,0 +1,432 @@
+{
+  "UnityPlayerExecuted": false,
+  "actualSourceCompiled": true,
+  "coherentVmEpochProven": false,
+  "commandLifetimeUnverified": false,
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "--version"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792577249.6981041,
+      "name": "compiler-version",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792577249.687299,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 159,
+      "stdoutSha256": "76a924f59997fb65051981eb13105e0a8c151f16cd9c3e45e0f7c27ecefdb839"
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-O2",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/owned_type_shape_census_fixture.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-LIVE-SHAPE-20261021-f01a/observed-type-shape/strict.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792577250.231068,
+      "name": "strict-compile",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792577249.698292,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-LIVE-SHAPE-20261021-f01a/observed-type-shape/strict.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792577250.6307101,
+      "name": "strict-run",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792577250.231223,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 1739,
+      "stdoutSha256": "cdf8ac3e2fb9d12eeda9405d135239365d0f3cd702cae4237a5eb16df1999ceb"
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/owned_type_shape_census_fixture.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-LIVE-SHAPE-20261021-f01a/observed-type-shape/sanitized.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792577251.628903,
+      "name": "sanitized-compile",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792577250.6312478,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-LIVE-SHAPE-20261021-f01a/observed-type-shape/sanitized.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792577252.1090019,
+      "name": "sanitized-run",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792577251.629031,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 1739,
+      "stdoutSha256": "cdf8ac3e2fb9d12eeda9405d135239365d0f3cd702cae4237a5eb16df1999ceb"
+    }
+  ],
+  "completeExecutionTypeKeys": false,
+  "firstError": null,
+  "kind": "R03P1ObservedTypeShapeActualVmSourceHost",
+  "officialUnitySdkCompiled": false,
+  "physicalClassPointerOriginProven": false,
+  "postflightError": null,
+  "profiles": {
+    "sanitized": {
+      "originalNameGroups": [
+        "empty-physical-owned",
+        "one-physical-owned",
+        "two-roles-owned",
+        "duplicate-enumerated-owned-once",
+        "unrelated-malformed-class-not-dereferenced",
+        "null-namespace-copied-as-empty",
+        "owned-bytes-survive-vm-change",
+        "reverse-enumeration-role-binding",
+        "same-display-name-distinct-binding",
+        "hash-collision-binding",
+        "missing-physical-row-refused",
+        "bad-matched-image-refused",
+        "bad-matched-assembly-refused",
+        "bad-matched-assembly-name-refused",
+        "bad-matched-simple-name-refused",
+        "field-overlong-refused",
+        "owned-text-budget-refused",
+        "source-revision-changed-after-iteration",
+        "state-changed-after-iteration",
+        "active-changed-after-iteration",
+        "closed-admission-refused",
+        "unknown-callback-null-refused",
+        "binding-not-matched-refused",
+        "unobserved-binding-refused",
+        "invalid-slot-refused-and-scrubbed",
+        "invalid-role-refused-and-scrubbed",
+        "duplicate-registration-binding-refused-and-scrubbed",
+        "reused-owned-capture-refused"
+      ],
+      "result": "PassedWithinObservedTypeShapeSourceHostScope",
+      "shapeGroups": [
+        "zero-observed-shape-subset",
+        "plain-reference-definition-candidate",
+        "plain-value-definition-candidate",
+        "missing-metadata-definition",
+        "ranked-array-is-not-definition-candidate",
+        "constructed-generic-is-not-definition-candidate",
+        "generic-definition-is-not-plain-candidate",
+        "nested-definition-is-not-plain-candidate",
+        "unsupported-raw-type-code",
+        "conflicting-flags-reject-conservatively",
+        "mixed-candidate-active-witness-shapes",
+        "manual-unobserved-raw-shape-refused",
+        "missing-shape-source-receipt-refused",
+        "reused-census-revokes-prior-success",
+        "missing-physical-source-cannot-certify-shape"
+      ]
+    },
+    "strict": {
+      "originalNameGroups": [
+        "empty-physical-owned",
+        "one-physical-owned",
+        "two-roles-owned",
+        "duplicate-enumerated-owned-once",
+        "unrelated-malformed-class-not-dereferenced",
+        "null-namespace-copied-as-empty",
+        "owned-bytes-survive-vm-change",
+        "reverse-enumeration-role-binding",
+        "same-display-name-distinct-binding",
+        "hash-collision-binding",
+        "missing-physical-row-refused",
+        "bad-matched-image-refused",
+        "bad-matched-assembly-refused",
+        "bad-matched-assembly-name-refused",
+        "bad-matched-simple-name-refused",
+        "field-overlong-refused",
+        "owned-text-budget-refused",
+        "source-revision-changed-after-iteration",
+        "state-changed-after-iteration",
+        "active-changed-after-iteration",
+        "closed-admission-refused",
+        "unknown-callback-null-refused",
+        "binding-not-matched-refused",
+        "unobserved-binding-refused",
+        "invalid-slot-refused-and-scrubbed",
+        "invalid-role-refused-and-scrubbed",
+        "duplicate-registration-binding-refused-and-scrubbed",
+        "reused-owned-capture-refused"
+      ],
+      "result": "PassedWithinObservedTypeShapeSourceHostScope",
+      "shapeGroups": [
+        "zero-observed-shape-subset",
+        "plain-reference-definition-candidate",
+        "plain-value-definition-candidate",
+        "missing-metadata-definition",
+        "ranked-array-is-not-definition-candidate",
+        "constructed-generic-is-not-definition-candidate",
+        "generic-definition-is-not-plain-candidate",
+        "nested-definition-is-not-plain-candidate",
+        "unsupported-raw-type-code",
+        "conflicting-flags-reject-conservatively",
+        "mixed-candidate-active-witness-shapes",
+        "manual-unobserved-raw-shape-refused",
+        "missing-shape-source-receipt-refused",
+        "reused-census-revokes-prior-success",
+        "missing-physical-source-cannot-certify-shape"
+      ]
+    }
+  },
+  "result": "PassedWithinObservedTypeShapeSourceHostScope",
+  "runtimeAcceptance": false,
+  "schemaVersion": 1,
+  "sourceAfter": {
+    "libil2cpp/il2cpp-class-internals.h": {
+      "bytes": 22438,
+      "gitBlob": "3bbef0474179f09ad1fce7b567423d69bbfd3884",
+      "sha256": "149c56f0bcdb5d81a2a8e35a8753b7b8dc28c6782bb4f708b2b4f57dcfda1947"
+    },
+    "libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 122962,
+      "gitBlob": "50426b96e9973c62f74c8effec0f653edbbb6bab",
+      "sha256": "2257df1a049e9cd6cd671faa5a7a8a456acf6f328bd17f6d2fc3395ea1872a31"
+    },
+    "libil2cpp/vm/AssemblyShadow.h": {
+      "bytes": 12539,
+      "gitBlob": "617253fe2ad4e9d482d308e8deecc333055bccd4",
+      "sha256": "c345084c15d6d38879d5f9c863ebbaf9887dc6e89f735aa5533f20c9fd4aa3b9"
+    },
+    "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h": {
+      "bytes": 1774,
+      "gitBlob": "ce360fce0bbbc16ee12d8bdbb849d8c0b7726b34",
+      "sha256": "4dfe7294faa17fa69b217e85db0f7ce7fed8847af07c6742aa7486d3ca3ddf9e"
+    },
+    "libil2cpp/vm/AssemblyShadowObservedTypeShape.h": {
+      "bytes": 3138,
+      "gitBlob": "9625544a62c4907c73da251f4062dea0731758b7",
+      "sha256": "c2dd2249c945a89ddc8ac2e712d0b56f5cde3e4dc474a364a4fd6f1b471c3a89"
+    },
+    "libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h": {
+      "bytes": 5684,
+      "gitBlob": "23065b67456ee7d19c7019cf24900e66daaf28db",
+      "sha256": "83f2d79c4c7d6480267c1cb18392af914dcc7b2513f9a7b003131ecd1ddd9d14"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h": {
+      "bytes": 8477,
+      "gitBlob": "da06714c197010343a021a4b1535887951f23cd1",
+      "sha256": "2f478332ac71c205b20045907b63bed7b482a8014fa644539ccd2c2ce8406a1d"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl": {
+      "bytes": 6697,
+      "gitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3",
+      "sha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177"
+    },
+    "libil2cpp/vm/AssemblyShadowPhysicalMembership.h": {
+      "bytes": 7576,
+      "gitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3",
+      "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7"
+    },
+    "tools/r03/diagnostic_stream/owned_physical_names_fixture.cpp": {
+      "bytes": 16893,
+      "gitBlob": "d7f3a2edd7bc4f82a3954cb16ba0fdecd0594f83",
+      "sha256": "08ae959317b9051c0a03b94c08bcc9794e6345de2c37dfe36af590fda0452297"
+    },
+    "tools/r03/diagnostic_stream/owned_type_shape_census_fixture.cpp": {
+      "bytes": 24762,
+      "gitBlob": "3e2b005a7702e743acaf195aff26471d2ec822b2",
+      "sha256": "a1ce0f5ffb202e8ca2d56ac115f543070e44d070cddab9d4b4942c30ce3533e4"
+    },
+    "tools/r03/diagnostic_stream/run_observed_type_shape_census.py": {
+      "bytes": 10931,
+      "gitBlob": "e546790d05b414b9b45ec847dae0f8a60c6b1fb4",
+      "sha256": "d8712003d4d913b438e4d70760e20689b8eb861aab45f661f663fc224ed613b8"
+    },
+    "tools/r03/diagnostic_stream/run_owned_physical_names.py": {
+      "bytes": 20209,
+      "gitBlob": "29bd51ce5f827ec8ea4fe6f5c82ed08a764600ad",
+      "sha256": "39e19a09225563a61f120248402c6a360986845b97a4258c86ee9c4cfc6a66b5"
+    }
+  },
+  "sourceBefore": {
+    "libil2cpp/il2cpp-class-internals.h": {
+      "bytes": 22438,
+      "gitBlob": "3bbef0474179f09ad1fce7b567423d69bbfd3884",
+      "sha256": "149c56f0bcdb5d81a2a8e35a8753b7b8dc28c6782bb4f708b2b4f57dcfda1947"
+    },
+    "libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 122962,
+      "gitBlob": "50426b96e9973c62f74c8effec0f653edbbb6bab",
+      "sha256": "2257df1a049e9cd6cd671faa5a7a8a456acf6f328bd17f6d2fc3395ea1872a31"
+    },
+    "libil2cpp/vm/AssemblyShadow.h": {
+      "bytes": 12539,
+      "gitBlob": "617253fe2ad4e9d482d308e8deecc333055bccd4",
+      "sha256": "c345084c15d6d38879d5f9c863ebbaf9887dc6e89f735aa5533f20c9fd4aa3b9"
+    },
+    "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h": {
+      "bytes": 1774,
+      "gitBlob": "ce360fce0bbbc16ee12d8bdbb849d8c0b7726b34",
+      "sha256": "4dfe7294faa17fa69b217e85db0f7ce7fed8847af07c6742aa7486d3ca3ddf9e"
+    },
+    "libil2cpp/vm/AssemblyShadowObservedTypeShape.h": {
+      "bytes": 3138,
+      "gitBlob": "9625544a62c4907c73da251f4062dea0731758b7",
+      "sha256": "c2dd2249c945a89ddc8ac2e712d0b56f5cde3e4dc474a364a4fd6f1b471c3a89"
+    },
+    "libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h": {
+      "bytes": 5684,
+      "gitBlob": "23065b67456ee7d19c7019cf24900e66daaf28db",
+      "sha256": "83f2d79c4c7d6480267c1cb18392af914dcc7b2513f9a7b003131ecd1ddd9d14"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h": {
+      "bytes": 8477,
+      "gitBlob": "da06714c197010343a021a4b1535887951f23cd1",
+      "sha256": "2f478332ac71c205b20045907b63bed7b482a8014fa644539ccd2c2ce8406a1d"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl": {
+      "bytes": 6697,
+      "gitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3",
+      "sha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177"
+    },
+    "libil2cpp/vm/AssemblyShadowPhysicalMembership.h": {
+      "bytes": 7576,
+      "gitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3",
+      "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7"
+    },
+    "tools/r03/diagnostic_stream/owned_physical_names_fixture.cpp": {
+      "bytes": 16893,
+      "gitBlob": "d7f3a2edd7bc4f82a3954cb16ba0fdecd0594f83",
+      "sha256": "08ae959317b9051c0a03b94c08bcc9794e6345de2c37dfe36af590fda0452297"
+    },
+    "tools/r03/diagnostic_stream/owned_type_shape_census_fixture.cpp": {
+      "bytes": 24762,
+      "gitBlob": "3e2b005a7702e743acaf195aff26471d2ec822b2",
+      "sha256": "a1ce0f5ffb202e8ca2d56ac115f543070e44d070cddab9d4b4942c30ce3533e4"
+    },
+    "tools/r03/diagnostic_stream/run_observed_type_shape_census.py": {
+      "bytes": 10931,
+      "gitBlob": "e546790d05b414b9b45ec847dae0f8a60c6b1fb4",
+      "sha256": "d8712003d4d913b438e4d70760e20689b8eb861aab45f661f663fc224ed613b8"
+    },
+    "tools/r03/diagnostic_stream/run_owned_physical_names.py": {
+      "bytes": 20209,
+      "gitBlob": "29bd51ce5f827ec8ea4fe6f5c82ed08a764600ad",
+      "sha256": "39e19a09225563a61f120248402c6a360986845b97a4258c86ee9c4cfc6a66b5"
+    }
+  },
+  "sourceContract": {
+    "candidateRowsAreOnlySimpleShapeHints": true,
+    "canonicalExecutionTypeKeys": false,
+    "exactPinnedIl2CppClassAbiSourceInspected": true,
+    "globalVmEpochProven": false,
+    "noMetadataPointersRetained": true,
+    "originalCppApiFingerprintVerified": true,
+    "originalNameGroups": [
+      "empty-physical-owned",
+      "one-physical-owned",
+      "two-roles-owned",
+      "duplicate-enumerated-owned-once",
+      "unrelated-malformed-class-not-dereferenced",
+      "null-namespace-copied-as-empty",
+      "owned-bytes-survive-vm-change",
+      "reverse-enumeration-role-binding",
+      "same-display-name-distinct-binding",
+      "hash-collision-binding",
+      "missing-physical-row-refused",
+      "bad-matched-image-refused",
+      "bad-matched-assembly-refused",
+      "bad-matched-assembly-name-refused",
+      "bad-matched-simple-name-refused",
+      "field-overlong-refused",
+      "owned-text-budget-refused",
+      "source-revision-changed-after-iteration",
+      "state-changed-after-iteration",
+      "active-changed-after-iteration",
+      "closed-admission-refused",
+      "unknown-callback-null-refused",
+      "binding-not-matched-refused",
+      "unobserved-binding-refused",
+      "invalid-slot-refused-and-scrubbed",
+      "invalid-role-refused-and-scrubbed",
+      "duplicate-registration-binding-refused-and-scrubbed",
+      "reused-owned-capture-refused"
+    ],
+    "physicalPointerOriginProven": false,
+    "playerExecution": false,
+    "runtimeAcceptance": false,
+    "shapeGroups": [
+      "zero-observed-shape-subset",
+      "plain-reference-definition-candidate",
+      "plain-value-definition-candidate",
+      "missing-metadata-definition",
+      "ranked-array-is-not-definition-candidate",
+      "constructed-generic-is-not-definition-candidate",
+      "generic-definition-is-not-plain-candidate",
+      "nested-definition-is-not-plain-candidate",
+      "unsupported-raw-type-code",
+      "conflicting-flags-reject-conservatively",
+      "mixed-candidate-active-witness-shapes",
+      "manual-unobserved-raw-shape-refused",
+      "missing-shape-source-receipt-refused",
+      "reused-census-revokes-prior-success",
+      "missing-physical-source-cannot-certify-shape"
+    ],
+    "typedFieldsCopiedOnlyFromMatchedCallback": true
+  },
+  "sourcePreserved": true,
+  "typeShapeCategoriesOnly": true
+}

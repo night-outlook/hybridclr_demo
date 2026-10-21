@@ -1,0 +1,38 @@
+{
+  "kind": "LocalReadOnlyReconstructionCollectorCorrection",
+  "initialFailure": "Outdated Local-only predecessor reconstruction retained reviewed live-shape CPP/API additions",
+  "sourceBindings": [
+    {
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "actualSha256": "2257df1a049e9cd6cd671faa5a7a8a456acf6f328bd17f6d2fc3395ea1872a31",
+      "restoredPriorSha256": "b6f092303fbeca9842d0f4882f23dd5460577ec9b031e002d043fe4714bd1bd2",
+      "exactRemovedLiterals": {
+        "shape_header": "#include \"AssemblyShadowObservedTypeShapeCensus.h\"\n",
+        "shape_source": "// P1 inactive, actual VM first-match source to a primitive shape-only census.\n#include \"AssemblyShadowObservedTypeShapeLiveSource.inl\"\n"
+      },
+      "restoredByteIdenticalTo9260": true
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadow.h",
+      "actualSha256": "c345084c15d6d38879d5f9c863ebbaf9887dc6e89f735aa5533f20c9fd4aa3b9",
+      "restoredPriorSha256": "658c8cf82d06a3fa5ff4ddba0fa44e7cd24beb422d1efbf92efc65548a306505",
+      "exactRemovedLiterals": {
+        "shape_forward": "namespace assembly_shadow_observed_type_shape_census { struct Result; }\n",
+        "shape_declaration": "    // P1 INACTIVE: copy actual first-matched physical class header facts while\n    // metadata is admitted, then count shape categories after all VM locks\n    // are released. Returns only primitive aggregates; no live pointers,\n    // canonical execution TypeKeys, Player/managed API, or VM-wide epoch.\n    static bool TryCaptureObservedTypeShapeCensus(\n        assembly_shadow_physical_membership::Scratch& membershipScratch,\n        assembly_shadow_owned_physical_names::Capture& names,\n        assembly_shadow_owned_physical_names::Receipt& namesReceipt,\n        assembly_shadow_observed_type_shape_census::Result& censusResult);\n"
+      },
+      "restoredByteIdenticalTo9260": true
+    }
+  ],
+  "coreBatchNotInvokedBeforeCorrection": true,
+  "implementationTestsCompilerScriptsUnchanged": true,
+  "noBatchRetry": true,
+  "initialHelperSha256": "4de03a874d733a7ba2959c350774351cd316702dded5572d7098923ba38ae3b6",
+  "correctedHelperSha256": "15276a7110da49fc8459adc4d6eab43a37bd619e0d21b8bf9b4b745be6d08db0",
+  "additionalCollectorCorrection": {
+    "initialDocsDescentAnchor": "086f7ecba74d75b90f13036a3c48f65c86a280e9",
+    "currentRequiredAnchor": "01b093fd1f450c7dc69d0395de237590ddcf6b5f",
+    "reason": "Reused Local-only helper retained predecessor code anchor; use exact current handoff anchor, not changed expectations",
+    "coreBatchStillNotInvoked": true,
+    "retainedInitialDiagnostic": "run-once-second.log"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "strict-compile",
+  "command": [
+    "/usr/bin/clang++",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic",
+    "-pthread",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-LIVE-SHAPE-20261021-f01a/bounded-class/stubs",
+    "-O2",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-LIVE-SHAPE-20261021-f01a/bounded-class/mock-combined.cpp",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.cpp",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-LIVE-SHAPE-20261021-f01a/bounded-class/strict-original.o",
+    "-o",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-LIVE-SHAPE-20261021-f01a/bounded-class/strict.exe"
+  ],
+  "startedUnix": 1792577210.625249,
+  "finishedUnix": 1792577211.54798,
+  "exit": 0,
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
