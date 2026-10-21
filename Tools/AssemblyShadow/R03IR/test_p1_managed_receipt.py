@@ -231,9 +231,9 @@ class AggregateReceiptIntegration(unittest.TestCase):
             unity = root/'Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity'
             unity.parent.mkdir(parents=True); unity.write_text('mock anchor: never executed')
             runner = load_runner(); launched = []; verifying = []
-            def verify(base, name, sha):
+            def verify(base, name, sha, git_probe=None):
                 verifying.append(name)
-                if mode == 'postflight-error' and len(verifying)>4:
+                if mode == 'postflight-error' and len(verifying)>5:
                     raise RuntimeError('mock remote mismatch after execution')
                 return {'repository':'night-outlook/'+name, 'head':sha, 'clean':True}
             def child(argv, timeout=120):
@@ -555,6 +555,10 @@ class AggregateReceiptIntegration(unittest.TestCase):
         self.assertEqual(code,1)
         self.assertIn('mock remote mismatch',report['postflightError'])
         self.assertFalse(report['sourcePreserved'])
+        self.assertEqual(len(report['fourRepositoriesAfter']),1)
+        self.assertEqual(report['postflightGitDiagnostics']['completedRepositoryCount'],1)
+        self.assertFalse(report['postflightGitDiagnostics']['commandLifetimeUnverified'])
+        self.assertEqual(report['result'],'FailedOrIncomplete')
 
 if __name__=='__main__':
     unittest.main(verbosity=2)

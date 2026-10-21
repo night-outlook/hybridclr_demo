@@ -587,12 +587,24 @@ class BatchFailureScheduling(unittest.TestCase):
             unity=root/'Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity'
             unity.parent.mkdir(parents=True);unity.write_text('MOCK SDK ANCHOR; NOT EXECUTED')
             dest=root/'batch';mod=load();launched=[];checks=[]
-            def verify(base,name,sha):
+            def verify(base,name,sha,git_probe=None):
                 checks.append(name)
-                if mode=='postflight-error' and len(checks)>4:raise RuntimeError('mock remote failure')
+                if mode=='postflight-error' and len(checks)>5:
+                    raise RuntimeError('mock remote failure')
+                if mode=='postflight-git-timeout' and len(checks)>5:
+                    # The only instrumented command is a deliberately timed-out
+                    # fake ls-remote. Never execute Git/SSH in host tests.
+                    assert git_probe is not None
+                    git_probe.command(name,["git","-C",base/name,"ls-remote",
+                                           "origin","refs/heads/"+mod.BRANCH])
                 return {'repository':'night-outlook/'+name,'head':sha,'clean':True}
             def child(argv,timeout=120):
-                args=list(map(str,argv));out=Path(args[args.index('--output')+1]);name=out.name
+                args=list(map(str,argv))
+                if args[0]=='git':
+                    raise subprocess.TimeoutExpired(args,timeout,
+                        output=b'partial-git-authority-stdout',
+                        stderr=b'partial-ssh-transport-stderr')
+                out=Path(args[args.index('--output')+1]);name=out.name
                 launched.append(name);out.mkdir()
                 if name==target:
                     if mode=='timeout':raise subprocess.TimeoutExpired(args,timeout,output=b'partial-out',stderr=b'partial-err')
@@ -783,11 +795,90 @@ class BatchFailureScheduling(unittest.TestCase):
         OwnedBindingInventoryContract().verify_live_type_shape_census_receipt_and_fail_closed_mutations()
         OwnedBindingInventoryContract().verify_noncanonical_shape_json_receipts_and_mutations()
         OwnedBindingInventoryContract().verify_real_vm_shape_json_receipt_and_fail_closed_mutations()
+        self.verify_bounded_git_postflight_direct_command_receipts()
         code,report,manifest,launched,checks=self.exercise()
         self.assertEqual(code,0);self.assertEqual(len(launched),24);self.assertEqual(len(checks),8)
         self.assertTrue(report['sourcePreserved']);self.assertIsNone(report['stoppedAfter'])
+        # Git identity commands are intentionally mocked here; do not claim
+        # host test values are real SSH/remote stream evidence.
+        self.assertEqual(report['postflightGitDiagnostics']['actualDirectCommandCount'],0)
+        self.assertFalse(report['postflightGitDiagnostics']['receiptsRecorded'])
+        self.assertEqual(report['postflightGitDiagnostics']['completedRepositoryCount'],4)
         self.assertTrue(report['officialUnitySdkCompileAttempted']);self.assertTrue(report['officialUnitySdkCompilePassed'])
         self.assertEqual(manifest['inventoryScope'],'CompletedBatchFiles')
+
+    def verify_bounded_git_postflight_direct_command_receipts(self):
+        mod=load()
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            workspace=root/"workspace";workspace.mkdir()
+            identity="hybridclr_demo";source=workspace/identity;source.mkdir()
+            expected="a"*40
+            commands=[]
+            def fake_git(argv,timeout=120):
+                arguments=list(map(str,argv))
+                commands.append((arguments,timeout))
+                op=arguments[3]
+                results={
+                    "remote":b"https://github.com/night-outlook/hybridclr_demo.git\n",
+                    "branch":(mod.BRANCH+"\n").encode(),
+                    "rev-parse":(expected+"\n").encode(),
+                    "status":b"",
+                    "ls-remote":(expected+"\trefs/heads/"+mod.BRANCH+"\n").encode(),
+                }
+                return subprocess.CompletedProcess(arguments,0,results[op],b"")
+            probe=mod.GitPostflightProbe(root/"postflight-git")
+            with patch.object(mod,"run",side_effect=fake_git):
+                identityRow=mod.verify_repo(workspace,identity,expected,git_probe=probe)
+            self.assertEqual(identityRow["head"],expected)
+            self.assertEqual(len(commands),5)
+            self.assertTrue(all(t==120 for _,t in commands))
+            self.assertEqual([record["status"] for record in probe.records],["Completed"]*5)
+            self.assertFalse(probe.unknown_lifetime)
+            completed=probe.summary([identityRow])
+            self.assertEqual(completed["completedRepositoryCount"],1)
+            self.assertEqual(completed["actualDirectCommandCount"],5)
+            self.assertFalse(completed["descendantQuiescenceProven"])
+            full=root/"postflight-git"/identity/"05-ls-remote"
+            actual=(expected+"\trefs/heads/"+mod.BRANCH+"\n").encode()
+            self.assertEqual((full/"stdout.bin").read_bytes(),actual)
+            receipt=json.loads((full/"RESULT.json").read_bytes())
+            self.assertEqual(receipt["stdoutCapturedSha256"],hashlib.sha256(actual).hexdigest())
+            self.assertEqual(receipt["timeoutSeconds"],120)
+            self.assertFalse(receipt["timedOut"])
+            self.assertEqual(receipt["exit"],0)
+            # Simulate the exact previously missing postflight authority
+            # evidence. No retry and no executable SSH work takes place.
+            failed=mod.GitPostflightProbe(root/"postflight-failed")
+            timed=["git","-C",workspace/"hybridclr","ls-remote","origin",
+                   "refs/heads/"+mod.BRANCH]
+            with patch.object(mod,"run",side_effect=subprocess.TimeoutExpired(
+                    timed,120,output=b'partial-remote-head',
+                    stderr=b'partial-ssh-handshake')) as cmd:
+                with self.assertRaises(subprocess.TimeoutExpired):
+                    failed.command("hybridclr",timed)
+                self.assertEqual(cmd.call_count,1)
+            line=failed.records[0]
+            self.assertEqual(line["status"],"TimedOut")
+            self.assertEqual(line["exit"],None)
+            self.assertTrue(line["commandLifetimeUnverified"])
+            self.assertEqual(line["timeoutSeconds"],120)
+            self.assertFalse(line["descendantQuiescenceProven"])
+            self.assertEqual((root/"postflight-failed/hybridclr/01-ls-remote/stdout.bin").read_bytes(),
+                             b'partial-remote-head')
+            self.assertEqual((root/"postflight-failed/hybridclr/01-ls-remote/stderr.bin").read_bytes(),
+                             b'partial-ssh-handshake')
+            self.assertTrue(failed.summary([])["commandLifetimeUnverified"])
+            # Known completed nonzero remains distinct from unknown lifetime.
+            nonzero=mod.GitPostflightProbe(root/"postflight-nonzero")
+            argv=["git","-C",workspace/"hybridclr","ls-remote","origin",
+                  "refs/heads/"+mod.BRANCH]
+            with patch.object(mod,"run",return_value=subprocess.CompletedProcess(
+                    argv,128,b'',b'unknown host')):
+                response=nonzero.command("hybridclr",argv)
+            self.assertEqual(response.returncode,128)
+            self.assertEqual(nonzero.records[0]["status"],"CompletedNonzero")
+            self.assertFalse(nonzero.unknown_lifetime)
 
     def assert_stopped(self,mode,target='live-general',code=1):
         actual,report,manifest,launched,checks=self.exercise(mode,target)
@@ -833,6 +924,32 @@ class BatchFailureScheduling(unittest.TestCase):
         code,report,manifest,launched,checks=self.exercise('postflight-error')
         self.assertEqual(code,1);self.assertFalse(report['sourcePreserved'])
         self.assertIn('mock remote failure',report['postflightError'])
+        self.assertEqual(len(report['fourRepositoriesAfter']),1)
+        self.assertEqual(report['postflightGitDiagnostics']['completedRepositoryCount'],1)
+        self.assertEqual(report['postflightGitDiagnostics']['actualDirectCommandCount'],0)
+        self.assertFalse(report['postflightGitDiagnostics']['receiptsRecorded'])
+        self.assertEqual(report['result'],'FailedOrIncomplete')
+        # Reproduce the c776 successor's exact aggregate failure mode
+        # using one fake partial-output timeout, never a live SSH probe.
+        code,report,manifest,launched,checks=self.exercise('postflight-git-timeout')
+        self.assertEqual(code,1)
+        self.assertEqual(len(launched),24)
+        self.assertEqual(len(report['fourRepositoriesAfter']),1)
+        self.assertEqual(report['componentCount'],24)
+        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),24)
+        self.assertFalse(report['sourcePreserved'])
+        self.assertTrue(report['commandLifetimeUnverified'])
+        self.assertEqual(report['result'],'FailedOrIncomplete')
+        self.assertIsNone(report['stoppedAfter'])
+        self.assertTrue(report['officialUnitySdkCompilePassed'])
+        self.assertEqual(manifest['inventoryScope'],'UnsealedObservedFiles')
+        self.assertIn('TimeoutExpired',report['postflightError'])
+        self.assertEqual(report['postflightGitDiagnostics']['timedOutCommands'],1)
+        self.assertEqual(report['postflightGitDiagnostics']['completedRepositoryCount'],1)
+        self.assertFalse(report['postflightGitDiagnostics']['descendantQuiescenceProven'])
+        # Per-command bytes are preserved and hashed under new raw root.
+        # The helper returns after its TemporaryDirectory ends, so inspect
+        # the serialized aggregate rather than guessing a separate path.
 
     def test_native_empty_live_nested_timeout_stops_outer_children(self):
         self.assert_stopped('nested-timeout','empty-live')

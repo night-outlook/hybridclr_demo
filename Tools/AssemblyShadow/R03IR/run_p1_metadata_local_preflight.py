@@ -177,12 +177,125 @@ def hash_file(path:Path)->str:
 def run(args:list[str],timeout:int=120):
     return subprocess.run(list(map(str,args)),capture_output=True,timeout=timeout)
 
-def verify_repo(base:Path,name:str,sha:str)->dict:
+
+# Preserve the established 120-second timeout and original remote/branch guards.
+# This transport probe is postflight-only. No retry, SSH option/timeout override,
+# alternate transport, or acceptance shortcut is permitted.
+GIT_AUTHORITY_TIMEOUT_SECONDS=120
+GIT_AUTHORITY_STREAM_PREFIX_LIMIT=65536
+
+class GitPostflightProbe:
+    """Bounded direct-child Git authority evidence; never certifies SSH descendants."""
+
+    def __init__(self, root:Path):
+        self.root=root
+        self.records=[]
+        self.unknown_lifetime=False
+
+    def command(self, repository:str, argv:list[str]):
+        if repository not in REPOS or len(argv)<4 or argv[0]!="git":
+            raise ValueError("Unexpected postflight authority command/repository")
+        ordinal=1+sum(r["repository"]==repository for r in self.records)
+        operation=argv[3]
+        if operation not in ("remote","branch","rev-parse","status","ls-remote"):
+            raise ValueError("Unreviewed Git postflight operation: "+operation)
+        # The parent batch root already exists; only this new run's private
+        # postflight directory is created, never a historical result root.
+        dest=self.root/repository/("%02d-%s"%(ordinal,operation))
+        dest.mkdir(parents=True,mode=0o700,exist_ok=False)
+        started=time.time()
+        monotonic=time.monotonic()
+        record={"kind":"R03P1PostflightGitDirectCommand","schemaVersion":1,
+                "repository":repository,"ordinal":ordinal,
+                "argv":list(map(str,argv)),"timeoutSeconds":GIT_AUTHORITY_TIMEOUT_SECONDS,
+                "startedUnix":started,"invoked":True,"exit":None,
+                "status":"Unknown","timedOut":False,"commandLifetimeUnverified":False,
+                "descendantQuiescenceProven":False,"transportCauseProven":False}
+        (dest/"START.json").write_text(json.dumps(record,indent=2)+"\n")
+        stdout=stderr=None
+        response=None
+        error=None
+        try:
+            response=run(argv,timeout=GIT_AUTHORITY_TIMEOUT_SECONDS)
+            stdout,stderr=response.stdout,response.stderr
+            record["exit"]=response.returncode
+            record["status"]="Completed" if response.returncode==0 else "CompletedNonzero"
+            return response
+        except subprocess.TimeoutExpired as exc:
+            error=exc
+            stdout,stderr=exc.stdout,exc.stderr
+            record.update(status="TimedOut",timedOut=True,
+                          commandLifetimeUnverified=True,
+                          exception=repr(exc))
+            self.unknown_lifetime=True
+            raise
+        except KeyboardInterrupt as exc:
+            error=exc
+            record.update(status="Interrupted",commandLifetimeUnverified=True,
+                          exception=type(exc).__name__)
+            self.unknown_lifetime=True
+            raise
+        except OSError as exc:
+            error=exc
+            record.update(status="LaunchFailed",exception=repr(exc))
+            raise
+        except BaseException as exc:
+            error=exc
+            record.update(status="UnknownExecutionError",exception=repr(exc),
+                          commandLifetimeUnverified=True)
+            self.unknown_lifetime=True
+            raise
+        finally:
+            record["elapsedSeconds"]=time.monotonic()-monotonic
+            record["finishedUnix"]=time.time()
+            for stream,data in (("stdout",stdout),("stderr",stderr)):
+                available=data is not None
+                if data is None: data=b""
+                if isinstance(data,str):data=data.encode("utf-8",errors="replace")
+                if not isinstance(data,bytes):
+                    # No successful Git authority may be inferred if transport
+                    # returned a malformed stream type.
+                    raise TypeError("Git direct-child stream must be bytes")
+                prefix=data[:GIT_AUTHORITY_STREAM_PREFIX_LIMIT]
+                (dest/(stream+".bin")).write_bytes(prefix)
+                record[stream+"Available"]=available
+                record[stream+"CapturedBytes"]=len(data)
+                record[stream+"StoredPrefixBytes"]=len(prefix)
+                record[stream+"PrefixOnly"]=len(prefix)<len(data)
+                record[stream+"CapturedSha256"]=(hashlib.sha256(data).hexdigest()
+                                                  if available else None)
+                record[stream+"StoredSha256"]=hashlib.sha256(prefix).hexdigest()
+            record["streamScope"]=("CapturedPrefixAfterUnknownLifetime"
+                                   if record["commandLifetimeUnverified"]
+                                   else "CompletedDirectChildStreams"
+                                   if response is not None else "Unavailable")
+            (dest/"RESULT.json").write_text(json.dumps(record,indent=2)+"\n")
+            self.records.append(record)
+
+    def summary(self,completed_repositories:list[dict])->dict:
+        return {"kind":"R03P1PostflightGitAuthorityDiagnostics",
+                "schemaVersion":1,"relativeRoot":"postflight-git",
+                "actualDirectCommandCount":len(self.records),
+                "timeoutSecondsUnchanged":GIT_AUTHORITY_TIMEOUT_SECONDS,
+                "capturedStreamPrefixLimit":GIT_AUTHORITY_STREAM_PREFIX_LIMIT,
+                "completedRepositoryCount":len(completed_repositories),
+                "completedRepositoryNames":[r["repository"] for r in completed_repositories],
+                "timedOutCommands":sum(r["timedOut"] for r in self.records),
+                "completedNonzeroCommands":sum(r["status"]=="CompletedNonzero"
+                                               for r in self.records),
+                "commandLifetimeUnverified":self.unknown_lifetime,
+                "descendantQuiescenceProven":False,
+                "noRetry":True,
+                "transportCauseProven":False,
+                "receiptsRecorded":bool(self.records)}
+
+def verify_repo(base:Path,name:str,sha:str, git_probe:GitPostflightProbe|None=None)->dict:
     path=base/name
     if not path.is_dir() or path.is_symlink() or path.resolve()!=path:
         raise RuntimeError("Invalid canonical local checkout: "+str(path))
     def git(*args):
-        p=run(["git","-C",path,*args])
+        argv=["git","-C",path,*args]
+        p=(git_probe.command(name,argv) if git_probe is not None else run(argv))
         if p.returncode:raise RuntimeError("git verification failed "+name+": "+str(args))
         return p.stdout.decode().strip()
     remote=git("remote","get-url","origin")
@@ -872,26 +985,39 @@ def main()->None:
     finally:
         postflight_error=None
         after=[]
+        git_probe=GitPostflightProbe(dest/"postflight-git")
+        postflight_interrupted=False
         try:
             if stopped is not None:
                 raise RuntimeError("Postflight unavailable: command lifetime unverified; "+stopped)
-            after=[verify_repo(ws,n,pins[n]) for n in REPOS]
+            # Preserve each individually verified repository, even when a
+            # later remote probe times out. A partial list NEVER proves all
+            # four source heads or turns the aggregate green.
+            for name in REPOS:
+                after.append(verify_repo(ws,name,pins[name],git_probe=git_probe))
             preserved=before==after and hashes=={str(p):hash_file(p) for p in inputs}
-        except Exception as e:
-            # Even if source changed or a checkout disappeared, retain the
-            # thirteen independent cases and factual postflight errors, never mark PASS.
+        except BaseException as e:
+            # Every source/remote error remains fatal; later independent
+            # checks cannot rewrite this original aggregate evidence.
             postflight_error=repr(e)
             preserved=False
-        success=preserved and stopped is None and len(cases)==24 and all(c["status"]=="Passed" for c in cases)
+            postflight_interrupted=isinstance(e,KeyboardInterrupt)
+        git_postflight=git_probe.summary(after)
+        unknown_lifetime=stopped is not None or git_probe.unknown_lifetime
+        success=(preserved and stopped is None and not unknown_lifetime
+                 and len(cases)==24 and all(c["status"]=="Passed" for c in cases))
         statuses={c["name"]:c["status"] for c in cases}
         summary={"kind":"R03P1FailureAwareSourceSDKPreflight","schemaVersion":2,
-          "stoppedAfter":stopped,"commandLifetimeUnverified":stopped is not None,
+          "stoppedAfter":stopped,"commandLifetimeUnverified":unknown_lifetime,
           "descendantQuiescenceProven":False,
           "componentCount":24,"attemptedComponentCount":sum(c["commandInvoked"] for c in cases),
           "result":"PassedSourceHostAndSDKOnly" if success else "FailedOrIncomplete",
           "fourRepositoriesBefore":before,"fourRepositoriesAfter":after,
           "sourceSha256":hashes,"sourcePreserved":preserved,
-          "postflightError":postflight_error,"commands":cases,
+          "postflightError":postflight_error,
+          "postflightGitDiagnostics":git_postflight,
+          "postflightInterrupted":postflight_interrupted,
+          "commands":cases,
           "officialUnitySdkCompileAttempted":all(any(c["name"]==n and c["commandInvoked"] for c in cases)
                                                  for n in ("managed-sdk","native-sdk")),
           "officialUnitySdkCompilePassed":statuses.get("managed-sdk")=="Passed" and
@@ -913,11 +1039,11 @@ def main()->None:
         manifest=[{"path":str(p.relative_to(dest)),"size":p.stat().st_size,
                    "sha256":hash_file(p)} for p in sorted(dest.rglob("*")) if p.is_file() and not p.is_symlink()]
         (dest/"MANIFEST.json").write_text(json.dumps({"files":manifest,
-            "inventoryScope":"UnsealedObservedFiles" if stopped is not None else "CompletedBatchFiles",
+            "inventoryScope":"UnsealedObservedFiles" if unknown_lifetime else "CompletedBatchFiles",
             "commandLifetimeUnverified":stopped is not None},indent=2)+"\n")
     print(json.dumps({"result":summary["result"],
                       "cases":[(c["name"],c["status"]) for c in cases]},indent=2))
-    if any(c.get("interrupted") for c in cases):raise SystemExit(130)
+    if postflight_interrupted or any(c.get("interrupted") for c in cases):raise SystemExit(130)
     if summary["result"]!="PassedSourceHostAndSDKOnly":raise SystemExit(1)
 
 if __name__=="__main__":main()
