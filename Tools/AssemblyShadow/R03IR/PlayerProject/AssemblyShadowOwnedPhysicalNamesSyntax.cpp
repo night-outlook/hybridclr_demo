@@ -5,11 +5,15 @@
 #include "vm/AssemblyShadowPhysicalMembership.h"
 #include "vm/AssemblyShadowOwnedPhysicalNames.h"
 #include "vm/AssemblyShadowOwnedPhysicalNamesJson.h"
+#include "vm/AssemblyShadowObservedTypeShape.h"
+#include "vm/AssemblyShadowObservedTypeShapeCensus.h"
 #include <cstddef>
 namespace il2cpp { namespace vm { namespace assembly_shadow_sdk_syntax {
 namespace owned=assembly_shadow_owned_physical_names;
 namespace physical=assembly_shadow_physical_membership;
 namespace ownedJson=assembly_shadow_owned_physical_json;
+namespace observedShape=assembly_shadow_observed_type_shape;
+namespace shapeCensus=assembly_shadow_observed_type_shape_census;
 static_assert(owned::kMaximumRows==physical::kMaximumObserved,
               "Owned name rows must match observed registry bound");
 static_assert(owned::kMaximumTextBytes==256u*1024u,
@@ -20,6 +24,16 @@ static_assert(!owned::Receipt{}.classPointerOwnershipProven,
               "Owned names cannot prove class pointer ownership");
 static_assert(!owned::Receipt{}.completeExecutionTypeKeys,
               "Physical names are not canonical execution TypeKeys");
+static_assert(observedShape::kCategoryCount==9 &&
+              observedShape::kClassTypeCode==0x12 &&
+              observedShape::kValueTypeCode==0x11,
+              "Shape hint categories differ from reviewed IL2CPP ABI");
+bool RequireObservedTypeShapeCensusSyntax(const owned::Capture& names,
+                                         const owned::Receipt& source,
+                                         shapeCensus::Result& destination) noexcept
+{
+    return shapeCensus::Build(names,source,destination);
+}
 static_assert(ownedJson::Record::kMaximumBytes==2u*1024u*1024u,
               "Owned JSON fixed output limit changed");
 static_assert(sizeof(ownedJson::Record)<=ownedJson::Record::kMaximumObjectBytes,
