@@ -1,0 +1,322 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03PrimaryHostOnlyPreflight",
+  "result": "PassedHostOnly",
+  "repositories": [
+    {
+      "repository": "night-outlook/hybridclr_demo",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "origin": "git@github.com:night-outlook/hybridclr_demo.git",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "bf4ebab005d008e7d936e4c9b17f62d06afcd37c",
+      "remoteHead": "bf4ebab005d008e7d936e4c9b17f62d06afcd37c",
+      "clean": true
+    },
+    {
+      "repository": "night-outlook/hybridclr",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "origin": "git@github.com:night-outlook/hybridclr.git",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "remoteHead": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "clean": true
+    },
+    {
+      "repository": "night-outlook/hybridclr_unity",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "origin": "git@github.com:night-outlook/hybridclr_unity.git",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "remoteHead": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "clean": true
+    },
+    {
+      "repository": "night-outlook/il2cpp_plus",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "origin": "git@github.com:night-outlook/il2cpp_plus.git",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "82ddcef9417e3d662fdd39916a92124b5c835094",
+      "remoteHead": "82ddcef9417e3d662fdd39916a92124b5c835094",
+      "clean": true
+    }
+  ],
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.6 (v3.14.6:c63aec69bd5, Jun 10 2026, 08:07:54) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "commands": [
+    {
+      "name": "native-general-stream",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/native-general-stream",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/run_tests.py",
+        "--native",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+        "--demo",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/native-general-stream/evidence"
+      ],
+      "cwd": null,
+      "startedUnix": 1792592956.415961,
+      "finishedUnix": 1792592976.931438,
+      "exit": 0,
+      "stdoutSha256": "ad139486358d24ef90ab5868abbb2bd420ceee7007d206ec509b85fba49adbf3",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "innerGeneralAndProducerVerified": true
+    },
+    {
+      "name": "native-v2-codec",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/native-v2-codec",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/run_tests.py",
+        "--repository",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/native-v2-codec/evidence"
+      ],
+      "cwd": null,
+      "startedUnix": 1792592976.932417,
+      "finishedUnix": 1792592984.164895,
+      "exit": 0,
+      "stdoutSha256": "f7da19b5dd51c987ca092d453ec7bc7a1887a838d33e039e9e6873139de0070e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "native-v2-file-transaction",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/native-v2-file-transaction",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/run_transaction_tests.py",
+        "--repository",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/native-v2-file-transaction/evidence"
+      ],
+      "cwd": null,
+      "startedUnix": 1792592984.165298,
+      "finishedUnix": 1792592992.41222,
+      "exit": 0,
+      "stdoutSha256": "40a67d47acbe17bb9df6b054a6e1839fe2e64e455447b7ea957e5b3a3aac8d0d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "native-v2-legacy-sink",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/native-v2-legacy-sink",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_native_v2.py",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/native-v2-legacy-sink/evidence"
+      ],
+      "cwd": null,
+      "startedUnix": 1792592992.412639,
+      "finishedUnix": 1792592998.9661372,
+      "exit": 0,
+      "stdoutSha256": "55cc89ddda17f66d84b679ec86d8cffc645170d5ffb35391de22fbc752dc7969",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "execution-serializer-strict",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/execution-serializer-strict",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-O2",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/execution_serializer_tests.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/execution-serializer-strict/test"
+      ],
+      "cwd": null,
+      "startedUnix": 1792592998.966669,
+      "finishedUnix": 1792592999.275486,
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "execution-serializer-strict-run",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/execution-serializer-strict-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/execution-serializer-strict/test"
+      ],
+      "cwd": null,
+      "startedUnix": 1792592999.2759051,
+      "finishedUnix": 1792592999.6750138,
+      "exit": 0,
+      "stdoutSha256": "7b1671bb97a427ef5627d39455fce17f6bc5bb2643be369ab0a187a4cffff209",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "execution-serializer-sanitized",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/execution-serializer-sanitized",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/execution_serializer_tests.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/execution-serializer-sanitized/test"
+      ],
+      "cwd": null,
+      "startedUnix": 1792592999.676117,
+      "finishedUnix": 1792593000.0833302,
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "execution-serializer-sanitized-run",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/execution-serializer-sanitized-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/legacy-host/execution-serializer-sanitized/test"
+      ],
+      "cwd": null,
+      "startedUnix": 1792593000.083694,
+      "finishedUnix": 1792593000.545683,
+      "exit": 0,
+      "stdoutSha256": "7b1671bb97a427ef5627d39455fce17f6bc5bb2643be369ab0a187a4cffff209",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "sourceBefore": {
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 123146,
+      "sha256": "31e0c39e51c83306933ee52de3f9855cc397836427608fcd135a76cf34dda036"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionSerializer.h": {
+      "bytes": 3416,
+      "sha256": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h": {
+      "bytes": 6070,
+      "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/execution_serializer_tests.cpp": {
+      "bytes": 4295,
+      "sha256": "2a64d6c36c94590d348cf341cf88eb916b519bad0d12d42ce3ee005530b0ad50"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/run_tests.py": {
+      "bytes": 16005,
+      "sha256": "1543e119df8fe839550e754aa24f156424ab0fa1cc19770a32dca9866f5f15c6"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/current_execution_producer.py": {
+      "bytes": 13321,
+      "sha256": "9ab147d8be5a138f6262adf2c80c69f6409fc61a3944e8e9e3b3b6207419ba15"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/serializer_driver.cpp": {
+      "bytes": 11009,
+      "sha256": "29550d5c7dda9c72b09f20f97dab49d79ce97b1801fc03dab76a63e3656ab718"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/checks/test_diagnostic_size.py": {
+      "bytes": 5650,
+      "sha256": "90e0ee4a80ade2c26bdb35f60922bde6f844cef49d204fd6535fe8ca5f39c6c2"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/checks/source-extracts/GetExecutionDiagnosticsJson.function.cpp": {
+      "bytes": 5207,
+      "sha256": "051497faf816e4094b8f4e8f194c5b877812cee034c6901c755e8b6efdff9c40"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/BoundedDiagnosticsV2.h": {
+      "bytes": 12252,
+      "sha256": "734e03a470e4562cd18551a84194eb82b391c8da8f4ef7f2c46abcef7fcc034d"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/PosixDiagnosticTransaction.h": {
+      "bytes": 15171,
+      "sha256": "ea6ad39e3572eeb456813e72faf10c984bec35bb517dd55b74df490d36e0a046"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/transaction_reader.py": {
+      "bytes": 8786,
+      "sha256": "c135d966b0821c96cb264987fddaba12b49cbfb8826e88e7b962314923f9ddb3"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs": {
+      "bytes": 25552,
+      "sha256": "0c16bcaad8bb2ceb5568ab3b4bb5147f258da884b05b249b8c174952bc36350d"
+    }
+  },
+  "sourceAfter": {
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 123146,
+      "sha256": "31e0c39e51c83306933ee52de3f9855cc397836427608fcd135a76cf34dda036"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionSerializer.h": {
+      "bytes": 3416,
+      "sha256": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h": {
+      "bytes": 6070,
+      "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/execution_serializer_tests.cpp": {
+      "bytes": 4295,
+      "sha256": "2a64d6c36c94590d348cf341cf88eb916b519bad0d12d42ce3ee005530b0ad50"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/run_tests.py": {
+      "bytes": 16005,
+      "sha256": "1543e119df8fe839550e754aa24f156424ab0fa1cc19770a32dca9866f5f15c6"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/current_execution_producer.py": {
+      "bytes": 13321,
+      "sha256": "9ab147d8be5a138f6262adf2c80c69f6409fc61a3944e8e9e3b3b6207419ba15"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/serializer_driver.cpp": {
+      "bytes": 11009,
+      "sha256": "29550d5c7dda9c72b09f20f97dab49d79ce97b1801fc03dab76a63e3656ab718"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/checks/test_diagnostic_size.py": {
+      "bytes": 5650,
+      "sha256": "90e0ee4a80ade2c26bdb35f60922bde6f844cef49d204fd6535fe8ca5f39c6c2"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/checks/source-extracts/GetExecutionDiagnosticsJson.function.cpp": {
+      "bytes": 5207,
+      "sha256": "051497faf816e4094b8f4e8f194c5b877812cee034c6901c755e8b6efdff9c40"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/BoundedDiagnosticsV2.h": {
+      "bytes": 12252,
+      "sha256": "734e03a470e4562cd18551a84194eb82b391c8da8f4ef7f2c46abcef7fcc034d"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/PosixDiagnosticTransaction.h": {
+      "bytes": 15171,
+      "sha256": "ea6ad39e3572eeb456813e72faf10c984bec35bb517dd55b74df490d36e0a046"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/transaction_reader.py": {
+      "bytes": 8786,
+      "sha256": "c135d966b0821c96cb264987fddaba12b49cbfb8826e88e7b962314923f9ddb3"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs": {
+      "bytes": 25552,
+      "sha256": "0c16bcaad8bb2ceb5568ab3b4bb5147f258da884b05b249b8c174952bc36350d"
+    }
+  },
+  "sourcePreserved": true,
+  "actualUnityOrPlayerRun": false,
+  "officialUnitySdkCompile": false,
+  "runtimeAcceptance": false,
+  "historicalEvidenceUpgraded": false
+}

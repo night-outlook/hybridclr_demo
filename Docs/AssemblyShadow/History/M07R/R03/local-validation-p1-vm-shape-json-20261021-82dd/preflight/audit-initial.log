@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-VM-SHAPE-JSON-20261021-82dd/audit.py", line 37, in <module>
+    r=load(O/'RESULT.json');assert r['result']=='PassedSourceHostAndSDKOnly' and r['sourcePreserved'] and len(r['commands'])==24 and r['expectedNativeSyntaxUnits']==100 and r['postflightError'] is None and all(c['status']=='Passed' for c in r['commands']) and r['officialUnitySdkCompileAttempted'] is True and r['officialUnitySdkCompilePassed'] is True
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

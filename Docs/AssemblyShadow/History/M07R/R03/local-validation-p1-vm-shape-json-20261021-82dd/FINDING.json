@@ -1,0 +1,59 @@
+{
+  "id": "IR-LOCAL-P1-VM-SHAPE-JSON-POSTFLIGHT-01",
+  "classification": "MandatoryAuthorityPostflightTimeout_NoProductDefectEstablished",
+  "status": "OpenForPrimaryReconciliation",
+  "symptom": "All 24 child results Passed, but raw aggregate FailedOrIncomplete, sourcePreserved=false, fourRepositoriesAfter=[] and process exit1",
+  "executionPins": {
+    "hybridclr_demo": "bf4ebab005d008e7d936e4c9b17f62d06afcd37c",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "82ddcef9417e3d662fdd39916a92124b5c835094"
+  },
+  "exactReproduction": [
+    "python3",
+    "-B",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py",
+    "--workspace",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+    "--unity",
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+    "--expected-demo",
+    "bf4ebab005d008e7d936e4c9b17f62d06afcd37c",
+    "--expected-native",
+    "82ddcef9417e3d662fdd39916a92124b5c835094",
+    "--output",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd",
+    "--sdk-scratch",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-VM-SHAPE-JSON-20261021-82dd"
+  ],
+  "start": "2026-10-21T14:28:26.879554+00:00",
+  "end": "2026-10-21T14:33:44.752843+00:00",
+  "pid": 72101,
+  "rawResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/RESULT.json",
+  "rawResultSha256": "855b1468b61fe56bd5206c9fedf8303784eb3b25c338a6d3fe67b65e028aa22a",
+  "rawManifestSha256": "5c3bb157b2c73783a45adbb191dc95bd904f9babbbf6caf02d447e81411af57a",
+  "postflightError": "TimeoutExpired(['git', '-C', '/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr', 'ls-remote', 'origin', 'refs/heads/codex/assembly-shadow-r01b-h1'], 120)",
+  "evidencePaths": [
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/RESULT.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/MANIFEST.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-VM-SHAPE-JSON-20261021-82dd/RECEIPT.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-VM-SHAPE-JSON-20261021-82dd/stdout.bin",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-VM-SHAPE-JSON-20261021-82dd/stderr.bin",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-VM-SHAPE-JSON-20261021-82dd/AGGREGATE_FAILURE_DISPOSITION.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-VM-SHAPE-JSON-20261021-82dd/GIT_AFTER.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-VM-SHAPE-JSON-20261021-82dd/SDK_AFTER.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-VM-SHAPE-JSON-20261021-82dd/EVIDENCE_AUDIT.json"
+  ],
+  "mostLikelyCause": "Git/SSH remote-authority probe did not finish within the unchanged 120-second postflight limit; transport cause Unavailable without retained per-command postflight streams",
+  "impactBoundary": "Aggregate authority/source-preservation proof, not the already completed 24 component compiler/host verdicts. Actual source mutation is not established. Later independent audit cannot repair the raw aggregate.",
+  "recommendedPrimaryAction": "Reconcile this consumed FAIL; inspect the finalizer remote probe and consider bounded per-repository Git/SSH command/lifetime diagnostics under the established design. Preserve guards and timeout. Any fresh Local execution requires a new reviewed handoff/root set; no retry or source reclassification.",
+  "remainingUncertainty": [
+    "Exact remote-probe timing and root cause Unavailable",
+    "The runner did not retain per-postflight Git stdout/stderr or partial fourRepositoriesAfter entries",
+    "No independent descendant-quiescence claim for the timed-out Git/SSH probe"
+  ],
+  "validationStillRequired": "Only a newly authorized source-bound cycle can produce a clean final four-repository postflight and accepted SourceHostAndSDKOnly aggregate; all product runtime work remains unproved.",
+  "batchRetried": false,
+  "rawResultRewritten": false,
+  "allAcceptanceFlagsFalse": true
+}

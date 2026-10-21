@@ -1,0 +1,39 @@
+{
+  "sourceAnchor": "702aead824dd70e3383bd40839855bdf48280d5e",
+  "transport": "bf4ebab005d008e7d936e4c9b17f62d06afcd37c",
+  "nonDocsDifference": false,
+  "checks": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "log",
+        "-1",
+        "--format=%H",
+        "--",
+        "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md"
+      ],
+      "exit": 0,
+      "stdout": "bf4ebab005d008e7d936e4c9b17f62d06afcd37c\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "diff",
+        "--exit-code",
+        "702aead824dd70e3383bd40839855bdf48280d5e",
+        "bf4ebab005d008e7d936e4c9b17f62d06afcd37c",
+        "--",
+        ".",
+        ":(exclude)Docs/**"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

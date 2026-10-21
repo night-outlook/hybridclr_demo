@@ -1,0 +1,27 @@
+{
+  "name": "strict-legacy-compile",
+  "argv": [
+    "/usr/bin/clang++",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic",
+    "-pthread",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/bounded-physical/stubs",
+    "-O2",
+    "-DAssemblyShadowDiagnostics=OriginalDiagnostics",
+    "-c",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/fixtures/LegacyAssemblyShadowDiagnostics.cpp",
+    "-o",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-VM-SHAPE-JSON-20261021-82dd/bounded-physical/strict-original.o"
+  ],
+  "startUnix": 1792593009.360213,
+  "finishUnix": 1792593009.622259,
+  "exit": 0,
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
