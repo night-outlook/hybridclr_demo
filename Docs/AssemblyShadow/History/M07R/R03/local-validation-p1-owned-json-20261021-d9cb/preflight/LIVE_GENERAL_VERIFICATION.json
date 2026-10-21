@@ -1,0 +1,151 @@
+{
+  "result": "PassedWithinInactiveSourceHostAndOfficialSDKSyntaxScope",
+  "sourceMethodSha256": "232bd739bc6a54e8047118fbba8eb301a58f67e869ca8ce974902c8c382244a8",
+  "caseGroups": {
+    "strict": {
+      "result": "PassedWithinHostScope",
+      "caseGroups": [
+        "actual-method-legacy-v1-parity",
+        "actual-method-zero-new-after-prewarm",
+        "missing-owned-source-denied",
+        "transaction-source-failure",
+        "first-use-source-failure",
+        "physical-assembly-source-failure",
+        "ordinary-class-source-failure",
+        "usage-generation-changed-during-read",
+        "usage-generation-changed-during-compose",
+        "terminal-state-changed-during-read",
+        "bounded-startup-scan-refusal",
+        "single-owner-one-shot-output",
+        "closed-metadata-admission-refusal"
+      ]
+    },
+    "sanitized": {
+      "result": "PassedWithinHostScope",
+      "caseGroups": [
+        "actual-method-legacy-v1-parity",
+        "actual-method-zero-new-after-prewarm",
+        "missing-owned-source-denied",
+        "transaction-source-failure",
+        "first-use-source-failure",
+        "physical-assembly-source-failure",
+        "ordinary-class-source-failure",
+        "usage-generation-changed-during-read",
+        "usage-generation-changed-during-compose",
+        "terminal-state-changed-during-read",
+        "bounded-startup-scan-refusal",
+        "single-owner-one-shot-output",
+        "closed-metadata-admission-refusal"
+      ]
+    }
+  },
+  "fourCompileRunReceiptsVerified": true,
+  "sourceInputs": {
+    "libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl": {
+      "bytes": 7154,
+      "sha256": "232bd739bc6a54e8047118fbba8eb301a58f67e869ca8ce974902c8c382244a8",
+      "gitBlob": "def5d5b3533fe88e829e4863e1ba150b5f4d2e93"
+    },
+    "libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 122585,
+      "sha256": "a81eec3a1bd80675a0fb8d9fb793ab909f6e0dfcdfb23533c640301f5e499f05",
+      "gitBlob": "9088d17f6d3317242dd7f2863cbbd46daf2dd67b"
+    },
+    "libil2cpp/vm/AssemblyShadow.h": {
+      "bytes": 11033,
+      "sha256": "978b8a61625cdba96acd514893eca7070836a0ebd18d64545926404469a6a40b",
+      "gitBlob": "b70651fe4fddfbfd6f0962314def12e6960b5913"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h": {
+      "bytes": 3469,
+      "sha256": "1dc1a731f75a773494edf669965a7034d1fa908c2201401a3eb2238228e1b7f5",
+      "gitBlob": "b554eb36f6337c139a3f24beb168ab3f2b6e4343"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h": {
+      "bytes": 10378,
+      "sha256": "876f83104d7ea81b043e1ae30ac83aa83c5e9e13f53a19ad0c032df52d693fa0",
+      "gitBlob": "bf3c19fab543c24134712ea08dc2cb78190f7f3a"
+    },
+    "libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h": {
+      "bytes": 15083,
+      "sha256": "bc8660655e19ee15c02caf21403ef90f5f87c95b0fa1dcc212a7ca7a61573e6e",
+      "gitBlob": "08856d4a610ed3fa519cee67bad8a307dd82a34b"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h": {
+      "bytes": 10793,
+      "sha256": "fe37931e27f1616bea8e08c134a2349567161bd8cd5c739c3954be349b9da3c8",
+      "gitBlob": "d2a6fb798de9a3599f6b6c63149515cb23ab3350"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h": {
+      "bytes": 6530,
+      "sha256": "b5b91b9480016493f1b26fcd78be96f9c1ff107b866950d7b08d999870ea785a",
+      "gitBlob": "fc3a569ea0f617b67b3867a804126e9583d86b72"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h": {
+      "bytes": 13880,
+      "sha256": "b77a46ffc4ba6e522fc8c34e0ac43283f502639a8ca4f6b9282afc097fa5c895",
+      "gitBlob": "b7ba5dffb2e3ecebe7406f598e97a1ab97251cdf"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h": {
+      "bytes": 5084,
+      "sha256": "0545c483230b7a1f6ea007ff28f000ec37a2f85444062c62eff74a048c5986c1",
+      "gitBlob": "4e82e7f3814b8ed021a24d235dcfbe79c4c2412a"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h": {
+      "bytes": 6620,
+      "sha256": "ae4c2a471c1879510849d4902694caa7308bc70f3804cb6b1d0fb2ac839615a8",
+      "gitBlob": "91f049cc7d81d5e6de95ec50884ed3d6b9b63163"
+    },
+    "libil2cpp/vm/AssemblyShadowMetadataLifetime.h": {
+      "bytes": 4637,
+      "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716",
+      "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd"
+    },
+    "libil2cpp/vm/AssemblyShadowDiagnostics.cpp": {
+      "bytes": 8176,
+      "sha256": "62f2d9b038ed8e4f3e352c06ad72355ae5d6e69e800e3a39647a70271d295902",
+      "gitBlob": "f51e6ca403fe12dec66ace96148f2da3bc17fc56"
+    },
+    "libil2cpp/vm/AssemblyShadowDiagnostics.h": {
+      "bytes": 2990,
+      "sha256": "5017cadef623509190bd7b486c935b7b8ca462207f7d13760d2223216112f038",
+      "gitBlob": "f243ac8b42d31a59b6a1d5641ea101807383243b"
+    },
+    "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h": {
+      "bytes": 6070,
+      "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605",
+      "gitBlob": "9dee4c9ea6febe4a919d1c7eb8faf2ad00b8a8e5"
+    },
+    "libil2cpp/vm/AssemblyShadowTypes.h": {
+      "bytes": 1825,
+      "sha256": "df149952bd8beefd0ee6580f337262f28614c43f7eb695554a3a284eca1a1257",
+      "gitBlob": "6d1379bc33300e4682468705942721d355481ca7"
+    },
+    "tools/r03/diagnostic_stream/bounded_general_live_fixture.cpp": {
+      "bytes": 12117,
+      "sha256": "455dabfcd912808db1a404afc29fc61d1e102a06b777a1514a63932ee2becdfd",
+      "gitBlob": "3ddd09439a8cc00b869a183aa1965363083a99fb"
+    },
+    "tools/r03/diagnostic_stream/allocation_probe.cpp": {
+      "bytes": 1427,
+      "sha256": "80428db4e93796feea1c6f9b7d64d17ecf005496518bf44c3a3d52440832988f",
+      "gitBlob": "7b58a198f86378b9b0daf3864799867d359a772d"
+    },
+    "tools/r03/diagnostic_stream/run_bounded_general_live.py": {
+      "bytes": 12023,
+      "sha256": "4fb0cf6b6c3027314abd60a81799ec90b4282a85e678c16c580a43836ab6c2df",
+      "gitBlob": "91e71f481dd481ac31b4dde872994cbd4cfd9033"
+    }
+  },
+  "actualProductionMethodBytesCompiled": true,
+  "actualOwnedCapturesAndLegacySerializer": true,
+  "sourcePreserved": true,
+  "watchedNewAllocationsAfterPrewarm": 0,
+  "allocationEvidence": "Passing exact production method fixture assertion; no separately emitted numeric counter receipt",
+  "productionAssemblyShadowCppIncludedInAllFiveOfficialSdkProfiles": true,
+  "coherentVmEpochProven": false,
+  "nativeClassPointerOriginProven": false,
+  "realShutdownDeadlockFreedomProven": false,
+  "originalLiveGettersReplaced": false,
+  "runtimeAcceptance": false
+}

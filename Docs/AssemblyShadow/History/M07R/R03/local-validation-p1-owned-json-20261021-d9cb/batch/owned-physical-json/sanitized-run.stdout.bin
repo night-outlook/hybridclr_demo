@@ -1,0 +1,22 @@
+PASS empty-owned-json
+PASS one-candidate-exact-json
+PASS reverse-source-order-and-partition
+PASS same-display-name-distinct-registered-slots
+PASS escaping-quotes-backslash-and-controls
+PASS valid-utf8-retained-unchanged
+PASS invalid-utf8-continuation-refused
+PASS overlong-and-surrogate-utf8-refused
+PASS empty-required-physical-assembly-refused
+PASS empty-required-simple-name-refused
+PASS invalid-source-capture-refused
+PASS missing-source-witness-flag-refused
+PASS mismatched-row-count-and-text-byte-receipts-refused
+PASS revision-and-saturated-revision-refused
+PASS forbidden-success-scope-refused
+PASS small-byte-budget-atomically-refused
+PASS output-limit-above-fixed-cap-refused
+PASS single-use-output-revokes-on-reuse
+PASS owned-json-survives-source-revoke
+PASS source-string-mutation-before-compose-independent
+PASS worst-case-escaped-text-under-fixed-budget
+P1 OWNED PHYSICAL JSON HOST PASS

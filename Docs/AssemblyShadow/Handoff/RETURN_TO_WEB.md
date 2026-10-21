@@ -1,6 +1,16 @@
 # Local Validation → Primary Implementation
 
-## Current return — P1 registry-bound owned names 20261020-bc3b PASS
+## Current return — P1 owned physical-name JSON 20261021-d9cb PASS
+
+**No new nontrivial implementation finding in this bounded cycle.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-owned-json-20261021-d9cb/README.md), [JSON audit](../History/M07R/R03/local-validation-p1-owned-json-20261021-d9cb/preflight/OWNED_PHYSICAL_JSON_VERIFICATION.json), [binding audit](../History/M07R/R03/local-validation-p1-owned-json-20261021-d9cb/preflight/BOUND_REGISTRY_VERIFICATION.json). One authorized cycle Passed all 19 components, 85 failure-contract leaves, 28+28 ordered owned-name binding groups, new 21+21 owned JSON groups, retained 21+21 physical membership groups, five real managed positives/exact negative and 100/100 native official SDK syntax configurations. Aggregate ownedBindingCaseInventoryVerified=true and ownedPhysicalJsonCaseInventoryVerified=true. Source, installed SDK and all 14 consumed P1 histories preserved; no retry or Unity/Player launch.
+
+New pure JSON fixtures verify exact bytes, UTF-8/escaping, slot/source partition, typed zero-output refusal and independence after source Revoke. Both ordered producer inventories and outer verification flags Passed. No per-row JSON files were emitted; the fixture expected literal is source-derived. Nine JSON receipt mutation subcases run inside the original 85 leaves.
+
+Actual fixture assertions join each row's snapshot-local slot/source to the observed registry witness, including reverse order, identical names/different slots, hash collision/linear probing, before-match/unobserved refusal, typed invalid slot/role and duplicate scrub. Mutable source text does not alter copied bytes. These are source-authenticated strict/sanitized host assertions; no separate raw row JSON or real VM ownership proof was emitted. CPP/API, membership query, owned-name capture and existing Writer bytes remain unchanged from consumed bc3b. Eight adversarial consumer subcases run inside the existing successful 85-leaf inventory.
+
+Required Primary action: reconcile this evidence and continue remaining P1/P2/E0/E1/full P3 implementation under separate authority. Snapshot-local registration binding does not resolve pointer provenance/lifetime, canonical generic-aware TypeKeys, global VM epoch/ABA, descendant quiescence, full execution JSON, actual Shutdown/lock safety, process GC/RSS/latency or Player qualification. Historical findings/outcomes and all false acceptance flags remain unchanged. Further Local execution needs a new exact source-pinned handoff. Stop/return state: Primary Implementation.
+
+## Historical return — P1 registry-bound owned names 20261020-bc3b PASS
 
 **No new nontrivial implementation finding in this bounded cycle.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-bound-registry-20261020-bc3b/README.md), [binding audit](../History/M07R/R03/local-validation-p1-bound-registry-20261020-bc3b/preflight/BOUND_REGISTRY_VERIFICATION.json). One authorized cycle Passed all 18 components, 85 failure-contract leaves, 28+28 ordered owned-name binding groups, retained 21+21 physical membership groups, five real managed positives/exact negative and 100/100 native official SDK syntax configurations. Aggregate ownedBindingCaseInventoryVerified=true. Source, installed SDK and all 13 consumed P1 histories preserved; no retry or Unity/Player launch.
 
