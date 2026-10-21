@@ -810,7 +810,7 @@ class BatchFailureScheduling(unittest.TestCase):
     def verify_bounded_git_postflight_direct_command_receipts(self):
         mod=load()
         with tempfile.TemporaryDirectory() as td:
-            root=Path(td)
+            root=Path(td).resolve()
             workspace=root/"workspace";workspace.mkdir()
             identity="hybridclr_demo";source=workspace/identity;source.mkdir()
             expected="a"*40
