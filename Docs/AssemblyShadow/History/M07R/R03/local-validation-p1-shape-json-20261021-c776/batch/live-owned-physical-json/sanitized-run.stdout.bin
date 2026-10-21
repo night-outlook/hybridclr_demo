@@ -1,0 +1,41 @@
+PASS empty-physical-owned
+PASS one-physical-owned
+PASS two-roles-owned
+PASS duplicate-enumerated-owned-once
+PASS unrelated-malformed-class-not-dereferenced
+PASS null-namespace-copied-as-empty
+PASS owned-bytes-survive-vm-change
+PASS reverse-enumeration-role-binding
+PASS same-display-name-distinct-binding
+PASS hash-collision-binding
+PASS missing-physical-row-refused
+PASS bad-matched-image-refused
+PASS bad-matched-assembly-refused
+PASS bad-matched-assembly-name-refused
+PASS bad-matched-simple-name-refused
+PASS field-overlong-refused
+PASS owned-text-budget-refused
+PASS source-revision-changed-after-iteration
+PASS state-changed-after-iteration
+PASS active-changed-after-iteration
+PASS closed-admission-refused
+PASS unknown-callback-null-refused
+PASS binding-not-matched-refused
+PASS unobserved-binding-refused
+PASS invalid-slot-refused-and-scrubbed
+PASS invalid-role-refused-and-scrubbed
+PASS duplicate-registration-binding-refused-and-scrubbed
+PASS reused-owned-capture-refused
+PASS LIVE empty-live-physical-json
+PASS LIVE one-live-candidate-json
+PASS LIVE two-live-mixed-witnesses
+PASS LIVE reversed-live-iterator-binding
+PASS LIVE owned-live-source-mutation-independent
+PASS LIVE unmatched-live-physical-refused
+PASS LIVE invalid-live-matched-name-refused
+PASS LIVE invalid-live-utf8-refused-after-copy
+PASS LIVE source-revision-after-enumeration-refused
+PASS LIVE limited-json-output-atomic-refusal
+PASS LIVE invalid-oversized-limit-no-iterator
+PASS LIVE reused-json-output-no-iterator
+P1 LIVE OWNED PHYSICAL JSON HOST PASS

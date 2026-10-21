@@ -1,0 +1,221 @@
+{
+  "result": "PassedWithinInactiveVmToOwnedPhysicalJsonHostAndOfficialSDKSyntaxScope",
+  "groupsPerProfile": 12,
+  "retainedOriginalNameGroupsPerProfile": 28,
+  "profiles": {
+    "sanitized": {
+      "liveIntegrationGroups": [
+        "empty-live-physical-json",
+        "one-live-candidate-json",
+        "two-live-mixed-witnesses",
+        "reversed-live-iterator-binding",
+        "owned-live-source-mutation-independent",
+        "unmatched-live-physical-refused",
+        "invalid-live-matched-name-refused",
+        "invalid-live-utf8-refused-after-copy",
+        "source-revision-after-enumeration-refused",
+        "limited-json-output-atomic-refusal",
+        "invalid-oversized-limit-no-iterator",
+        "reused-json-output-no-iterator"
+      ],
+      "originalNameGroups": [
+        "empty-physical-owned",
+        "one-physical-owned",
+        "two-roles-owned",
+        "duplicate-enumerated-owned-once",
+        "unrelated-malformed-class-not-dereferenced",
+        "null-namespace-copied-as-empty",
+        "owned-bytes-survive-vm-change",
+        "reverse-enumeration-role-binding",
+        "same-display-name-distinct-binding",
+        "hash-collision-binding",
+        "missing-physical-row-refused",
+        "bad-matched-image-refused",
+        "bad-matched-assembly-refused",
+        "bad-matched-assembly-name-refused",
+        "bad-matched-simple-name-refused",
+        "field-overlong-refused",
+        "owned-text-budget-refused",
+        "source-revision-changed-after-iteration",
+        "state-changed-after-iteration",
+        "active-changed-after-iteration",
+        "closed-admission-refused",
+        "unknown-callback-null-refused",
+        "binding-not-matched-refused",
+        "unobserved-binding-refused",
+        "invalid-slot-refused-and-scrubbed",
+        "invalid-role-refused-and-scrubbed",
+        "duplicate-registration-binding-refused-and-scrubbed",
+        "reused-owned-capture-refused"
+      ],
+      "result": "PassedWithinInactiveLiveOwnedPhysicalJsonVmMockScope"
+    },
+    "strict": {
+      "liveIntegrationGroups": [
+        "empty-live-physical-json",
+        "one-live-candidate-json",
+        "two-live-mixed-witnesses",
+        "reversed-live-iterator-binding",
+        "owned-live-source-mutation-independent",
+        "unmatched-live-physical-refused",
+        "invalid-live-matched-name-refused",
+        "invalid-live-utf8-refused-after-copy",
+        "source-revision-after-enumeration-refused",
+        "limited-json-output-atomic-refusal",
+        "invalid-oversized-limit-no-iterator",
+        "reused-json-output-no-iterator"
+      ],
+      "originalNameGroups": [
+        "empty-physical-owned",
+        "one-physical-owned",
+        "two-roles-owned",
+        "duplicate-enumerated-owned-once",
+        "unrelated-malformed-class-not-dereferenced",
+        "null-namespace-copied-as-empty",
+        "owned-bytes-survive-vm-change",
+        "reverse-enumeration-role-binding",
+        "same-display-name-distinct-binding",
+        "hash-collision-binding",
+        "missing-physical-row-refused",
+        "bad-matched-image-refused",
+        "bad-matched-assembly-refused",
+        "bad-matched-assembly-name-refused",
+        "bad-matched-simple-name-refused",
+        "field-overlong-refused",
+        "owned-text-budget-refused",
+        "source-revision-changed-after-iteration",
+        "state-changed-after-iteration",
+        "active-changed-after-iteration",
+        "closed-admission-refused",
+        "unknown-callback-null-refused",
+        "binding-not-matched-refused",
+        "unobserved-binding-refused",
+        "invalid-slot-refused-and-scrubbed",
+        "invalid-role-refused-and-scrubbed",
+        "duplicate-registration-binding-refused-and-scrubbed",
+        "reused-owned-capture-refused"
+      ],
+      "result": "PassedWithinInactiveLiveOwnedPhysicalJsonVmMockScope"
+    }
+  },
+  "sourceInputs": {
+    "libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 122962,
+      "gitBlob": "50426b96e9973c62f74c8effec0f653edbbb6bab",
+      "sha256": "2257df1a049e9cd6cd671faa5a7a8a456acf6f328bd17f6d2fc3395ea1872a31"
+    },
+    "libil2cpp/vm/AssemblyShadow.h": {
+      "bytes": 12539,
+      "gitBlob": "617253fe2ad4e9d482d308e8deecc333055bccd4",
+      "sha256": "c345084c15d6d38879d5f9c863ebbaf9887dc6e89f735aa5533f20c9fd4aa3b9"
+    },
+    "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h": {
+      "bytes": 6070,
+      "gitBlob": "9dee4c9ea6febe4a919d1c7eb8faf2ad00b8a8e5",
+      "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605"
+    },
+    "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h": {
+      "bytes": 1774,
+      "gitBlob": "ce360fce0bbbc16ee12d8bdbb849d8c0b7726b34",
+      "sha256": "4dfe7294faa17fa69b217e85db0f7ce7fed8847af07c6742aa7486d3ca3ddf9e"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl": {
+      "bytes": 2332,
+      "gitBlob": "dff6f12dca1c4f89dec7151ced6b63febeb0769f",
+      "sha256": "865a36b154965f0ae69bc788f6ba21fc6a841d546a34215a6448112110bb6604"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h": {
+      "bytes": 8477,
+      "gitBlob": "da06714c197010343a021a4b1535887951f23cd1",
+      "sha256": "2f478332ac71c205b20045907b63bed7b482a8014fa644539ccd2c2ce8406a1d"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h": {
+      "bytes": 10926,
+      "gitBlob": "35d4d000faa588cdd5147a0b2abdf00d566c0b06",
+      "sha256": "944d663e2d55e8ed07be3c62b1f6c7f7f6aee1bf0c34b9a464550b6817c5c15a"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl": {
+      "bytes": 6697,
+      "gitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3",
+      "sha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177"
+    },
+    "libil2cpp/vm/AssemblyShadowPhysicalMembership.h": {
+      "bytes": 7576,
+      "gitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3",
+      "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7"
+    },
+    "tools/r03/diagnostic_stream/owned_physical_live_json_fixture.cpp": {
+      "bytes": 24778,
+      "gitBlob": "8742daa47aebb5a5954adb9dd1b9de3a84808345",
+      "sha256": "b51cf6739e0c941c260b3735b6a3fb6be1f0fb5f222fae65699a749662effccc"
+    },
+    "tools/r03/diagnostic_stream/run_owned_physical_live_json.py": {
+      "bytes": 9548,
+      "gitBlob": "4bee04272a6c5b17e170fe38077be9bd0093f6d6",
+      "sha256": "9b2bed76cd085a883189c0d2bb12c901c915d0ecc8c8238249b3a099ab84025a"
+    },
+    "tools/r03/diagnostic_stream/run_owned_physical_names.py": {
+      "bytes": 20209,
+      "gitBlob": "29bd51ce5f827ec8ea4fe6f5c82ed08a764600ad",
+      "sha256": "39e19a09225563a61f120248402c6a360986845b97a4258c86ee9c4cfc6a66b5"
+    }
+  },
+  "sourceContract": {
+    "bridgeDoesNotReadAdditionalVmPointers": true,
+    "canonicalExecutionTypeKeys": false,
+    "caseGroups": [
+      "empty-live-physical-json",
+      "one-live-candidate-json",
+      "two-live-mixed-witnesses",
+      "reversed-live-iterator-binding",
+      "owned-live-source-mutation-independent",
+      "unmatched-live-physical-refused",
+      "invalid-live-matched-name-refused",
+      "invalid-live-utf8-refused-after-copy",
+      "source-revision-after-enumeration-refused",
+      "limited-json-output-atomic-refusal",
+      "invalid-oversized-limit-no-iterator",
+      "reused-json-output-no-iterator"
+    ],
+    "originalNativeCppAndApiFingerprintPreserved": true,
+    "productionSourceMethodsCompiled": 2,
+    "runtimeAcceptance": false,
+    "sourcePassBeforePureOwnedSerialization": true
+  },
+  "fiveDirectVersionCompileRunReceiptsVerified": true,
+  "liveOwnedPhysicalJsonCaseInventoryVerified": true,
+  "ownedBindingCaseInventoryVerified": true,
+  "ownedPhysicalJsonCaseInventoryVerified": true,
+  "outerReceiptSha256": "c631e5723213bd30b332388184ba69a856ac0f728717a46da09810eeda442499",
+  "producerResultSha256": "9e859ef37f09aeeca8920db81943397c2ee26c14a0421a5fc9510cbc1cf220cb",
+  "actualBridgeMethodSha256": "865a36b154965f0ae69bc788f6ba21fc6a841d546a34215a6448112110bb6604",
+  "actualOriginalNameMethodSha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177",
+  "fixtureSha256": "b51cf6739e0c941c260b3735b6a3fb6be1f0fb5f222fae65699a749662effccc",
+  "bothProductionMethodsCompiled": true,
+  "actualOriginalNameReceiptFeedsPureComposeUnderMocks": true,
+  "freshAndOversizedLimitCheckBeforeCapture": true,
+  "sourceCaptureThenComposeThenNameRevocationVerifiedBySourceOrder": true,
+  "postReturnMockLocksAndReaderCountersZeroAsserted": true,
+  "noIndependentComposeEntryCounterReceipt": true,
+  "temporaryNamesAndPointerScratchRevokedAsserted": true,
+  "typedSourceUtf8BudgetReuseRefusalAsserted": true,
+  "oversizedAndReusedOutputIteratorCountZeroAsserted": true,
+  "sourceStringMutationIndependenceAsserted": true,
+  "separateRawPerRowJsonEmitted": false,
+  "exactCppApiAdditionsRemovedToPriorD9cbBytes": true,
+  "originalCppApiFingerprintOraclesPreserved": true,
+  "onlyFreshAccessorAddedToPriorPureJsonHeader": true,
+  "SDKConfigurations": 100,
+  "SDKTranslationUnits": 20,
+  "actualMethodSignatureSdkProbeSha256": "1a82320b28ccb0d26a1935203ebac808556c1876865b2347f6e336123e4db91b",
+  "consumerAdversarialCases": 10,
+  "consumerHelperSha256": "7bb640357b0e2edac91be621c5e9b61474e6ec7b5f075def994bc88bc76678bc",
+  "consumerSubcasesInsideOriginal85Leaves": true,
+  "physicalClassPointerOriginProven": false,
+  "metadataPointerLifetimeProven": false,
+  "canonicalExecutionTypeKeys": false,
+  "completeExecutionV1Json": false,
+  "coherentVmEpochProven": false,
+  "descendantQuiescenceProven": false,
+  "runtimeAcceptance": false
+}

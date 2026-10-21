@@ -1,0 +1,104 @@
+{
+  "result": "PassedFactualEvidenceAudit",
+  "batchResult": "PassedSourceHostAndSDKOnly",
+  "outerStates": {
+    "Passed": 23
+  },
+  "rawResultSha256": "bfb1bae44bd5b6a3ba2f90cccbcc30fe3af316250d9b0d3b7a09aa7558f9375c",
+  "rawManifestSha256": "3e5a03eb7c00aa2a00c377a2ef3b88aef24cc9d2291a3d1b79e5f16e56a3770c",
+  "regularInventoryEntries": 4139,
+  "symlinksOmittedByOuterManifestButAuthenticatedByLegacyManifest": [
+    {
+      "path": "legacy-host/native-v2-legacy-sink/evidence/cases/posix-93/diagnostics.v2",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-SHAPE-JSON-20261021-c776/legacy-host/native-v2-legacy-sink/evidence/cases/posix-93/target"
+    },
+    {
+      "path": "legacy-host/native-v2-legacy-sink/evidence/cases/posix-92/diagnostics.v2",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-SHAPE-JSON-20261021-c776/legacy-host/native-v2-legacy-sink/evidence/cases/posix-92/target"
+    },
+    {
+      "path": "legacy-host/native-v2-file-transaction/evidence/sanitized/case-0164/alias",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-SHAPE-JSON-20261021-c776/legacy-host/native-v2-file-transaction/evidence/sanitized/case-0164/transaction"
+    },
+    {
+      "path": "legacy-host/native-v2-file-transaction/evidence/strict/case-0071/alias",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-SHAPE-JSON-20261021-c776/legacy-host/native-v2-file-transaction/evidence/strict/case-0071/transaction"
+    }
+  ],
+  "localizedCommandStreamReceiptsVerified": 490,
+  "sourcePreserved": true,
+  "installedSdkPreserved": true,
+  "managed": {
+    "actualResult": "Passed",
+    "aggregateState": "Passed",
+    "exit": 0,
+    "obsoleteRootReceiptAbsent": true,
+    "innerResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-SHAPE-JSON-20261021-c776/managed-sdk/build-api/results.json",
+    "innerResultSha256": "dd9b3590550084a823c492c7cb5be8c4e27ac34a16f410dc5f43ea43a422f6b6",
+    "returnedBindingVerified": true,
+    "actualResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-SHAPE-JSON-20261021-c776/managed-sdk/build-api/results.json",
+    "actualResultSha256": "dd9b3590550084a823c492c7cb5be8c4e27ac34a16f410dc5f43ea43a422f6b6",
+    "productCount": 5,
+    "inputCount": 428,
+    "expectedNegative": [
+      {
+        "id": "OriginalUnsignedCounts",
+        "exit": 1,
+        "CS0266Errors": 2
+      }
+    ],
+    "warnings": 68
+  },
+  "native": {
+    "actualResult": "Passed",
+    "passedConfigurations": 100,
+    "failedConfigurations": 0,
+    "notRunConfigurations": 0,
+    "distinctTranslationUnits": 20,
+    "profiles": [
+      "candidate",
+      "debug",
+      "diagnostics-off",
+      "feature-off",
+      "probe-off"
+    ],
+    "copiedSdkInputsVerified": 1923,
+    "candidateNativeSha": "c7762af878f36c102ac7a953035e082b55aebf40",
+    "warnings": 742
+  },
+  "legacyGeneralProfiles": [
+    {
+      "name": "strict",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "sanitized",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "noNewCompilerErrors": true,
+  "aggregateVerdictPreserved": true,
+  "realUnityOrPlayerRun": false,
+  "runtimeAcceptance": false,
+  "newNontrivialFindings": [],
+  "priorFindingId": "IR-LOCAL-P1-EMPTY-LIVE-RECEIPT-01",
+  "priorFindingStatusUnchanged": "SourceConfirmed_NotFaultInjected",
+  "successorFixValidation": "PassedWithinOwnedTypeShapeJsonSourceHostAndSDKSyntaxScope",
+  "opaqueVerification": "OPAQUE_INVENTORY_VERIFICATION.json",
+  "registryRevisionVerification": "REGISTRY_REVISION_VERIFICATION.json",
+  "publisherVerification": "REGISTRY_PUBLISHER_VERIFICATION.json",
+  "ownedPhysicalNamesVerification": "OWNED_PHYSICAL_NAMES_VERIFICATION.json",
+  "physicalMembershipVerification": "PHYSICAL_MEMBERSHIP_VERIFICATION.json",
+  "boundRegistryVerification": "BOUND_REGISTRY_VERIFICATION.json",
+  "ownedPhysicalJsonVerification": "OWNED_PHYSICAL_JSON_VERIFICATION.json",
+  "liveOwnedPhysicalJsonVerification": "LIVE_OWNED_PHYSICAL_JSON_VERIFICATION.json",
+  "observedTypeShapeVerification": "OBSERVED_TYPE_SHAPE_VERIFICATION.json",
+  "liveTypeShapeCensusVerification": "LIVE_TYPE_SHAPE_CENSUS_VERIFICATION.json",
+  "observedTypeShapeJsonVerification": "OBSERVED_TYPE_SHAPE_JSON_VERIFICATION.json"
+}

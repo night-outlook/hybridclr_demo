@@ -1,0 +1,44 @@
+PASS empty-physical-owned
+PASS one-physical-owned
+PASS two-roles-owned
+PASS duplicate-enumerated-owned-once
+PASS unrelated-malformed-class-not-dereferenced
+PASS null-namespace-copied-as-empty
+PASS owned-bytes-survive-vm-change
+PASS reverse-enumeration-role-binding
+PASS same-display-name-distinct-binding
+PASS hash-collision-binding
+PASS missing-physical-row-refused
+PASS bad-matched-image-refused
+PASS bad-matched-assembly-refused
+PASS bad-matched-assembly-name-refused
+PASS bad-matched-simple-name-refused
+PASS field-overlong-refused
+PASS owned-text-budget-refused
+PASS source-revision-changed-after-iteration
+PASS state-changed-after-iteration
+PASS active-changed-after-iteration
+PASS closed-admission-refused
+PASS unknown-callback-null-refused
+PASS binding-not-matched-refused
+PASS unobserved-binding-refused
+PASS invalid-slot-refused-and-scrubbed
+PASS invalid-role-refused-and-scrubbed
+PASS duplicate-registration-binding-refused-and-scrubbed
+PASS reused-owned-capture-refused
+PASS SHAPE zero-observed-shape-subset
+PASS SHAPE plain-reference-definition-candidate
+PASS SHAPE plain-value-definition-candidate
+PASS SHAPE missing-metadata-definition
+PASS SHAPE ranked-array-is-not-definition-candidate
+PASS SHAPE constructed-generic-is-not-definition-candidate
+PASS SHAPE generic-definition-is-not-plain-candidate
+PASS SHAPE nested-definition-is-not-plain-candidate
+PASS SHAPE unsupported-raw-type-code
+PASS SHAPE conflicting-flags-reject-conservatively
+PASS SHAPE mixed-candidate-active-witness-shapes
+PASS SHAPE manual-unobserved-raw-shape-refused
+PASS SHAPE missing-shape-source-receipt-refused
+PASS SHAPE reused-census-revokes-prior-success
+PASS SHAPE missing-physical-source-cannot-certify-shape
+P1 OWNED TYPE SHAPE SOURCE HOST PASS
