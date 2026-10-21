@@ -1,0 +1,122 @@
+{
+  "kind": "R03P1PostflightGitAuthorityPrimaryEvidence",
+  "schemaVersion": 1,
+  "consumedLocal": {
+    "cycle": "20261021-82dd",
+    "aggregate": "FailedOrIncomplete",
+    "componentsPassed": 24,
+    "componentCount": 24,
+    "actualSourceTuple": {
+      "demo": "bf4ebab005d008e7d936e4c9b17f62d06afcd37c",
+      "native": "82ddcef9417e3d662fdd39916a92124b5c835094",
+      "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de"
+    },
+    "rawResultSha256": "855b1468b61fe56bd5206c9fedf8303784eb3b25c338a6d3fe67b65e028aa22a",
+    "rawResultExit": 1,
+    "sourcePreserved": false,
+    "fourRepositoriesAfter": [],
+    "firstError": "TimeoutExpired git -C .../hybridclr ls-remote origin refs/heads/codex/assembly-shadow-r01b-h1 120",
+    "localFindingId": "IR-LOCAL-P1-VM-SHAPE-JSON-POSTFLIGHT-01",
+    "independentEvidenceAuditPassed": true,
+    "sourceAndSdkIndependentlyPreserved": true,
+    "rawAggregateReclassified": false,
+    "componentFailureTests": 85,
+    "caseInventoriesVerified": 7,
+    "managedPositiveProducts": 5,
+    "managedOriginalExpectedNegative": {
+      "id": "OriginalUnsignedCounts",
+      "exit": 1,
+      "CS0266": 2,
+      "noDll": true
+    },
+    "nativeSdkSyntaxConfigurations": 100,
+    "coreBatchRetried": false,
+    "UnityPlayerExecuted": false
+  },
+  "primarySource": {
+    "demoCodeAnchor": "7c2c41e192f7afe7350d47632b8e452dcc1a8aad",
+    "candidateNativeUnchanged": "82ddcef9417e3d662fdd39916a92124b5c835094",
+    "hybridclrUnchanged": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclrUnityUnchanged": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "modifiedFiles": [
+      "Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py",
+      "Tools/AssemblyShadow/R03IR/test_p1_command_failures.py",
+      "Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py",
+      "Tools/AssemblyShadow/R03IR/test_p1_metadata_preflight.py"
+    ],
+    "postflightGitTimeoutSeconds": 120,
+    "postflightStreamLimitEach": 65536,
+    "noExtraProbeNoRetry": true,
+    "partialFourRepositoriesAfterIsNonAccepting": true,
+    "unknownLifetimeFailsClosed": true,
+    "postflightDescendantQuiescenceProven": false,
+    "sourceAcceptanceGuardUnchanged": true,
+    "sshAuthTransportChanged": false,
+    "originalTestIdCount": 85,
+    "originalComponentCount": 24,
+    "originalNativeSdkSyntax": 100,
+    "independentlyVerifiedSourceResult": "NotRunUntilLocal"
+  },
+  "ci": {
+    "firstCodeAnchor": "4c33aa6c01cfaea8ec9d25881fdbf17e409e469b",
+    "firstFocused": {
+      "run": 39630599234,
+      "ubuntu": "Passed",
+      "macos": "FailedMacTemporaryAlias",
+      "preserved": true
+    },
+    "firstIntegrated": {
+      "run": 39630599200,
+      "ubuntu": "Passed",
+      "macos": "FailedMacTemporaryAlias",
+      "preserved": true
+    },
+    "managedReceipt": {
+      "run": 39630599185,
+      "ubuntu": "Passed",
+      "macos": "Passed",
+      "sourceAfterwardsOnlyChangedControlledFailureTest": true
+    },
+    "correctedCodeAnchor": "7c2c41e192f7afe7350d47632b8e452dcc1a8aad",
+    "focused": {
+      "run": 39630866124,
+      "ubuntu": "Passed",
+      "macos": "Passed",
+      "tests": 44
+    },
+    "integrated": {
+      "run": 39630866119,
+      "ubuntu": "Passed",
+      "macos": "Passed",
+      "tests": 85
+    }
+  },
+  "nextLocal": {
+    "result": "NotRun",
+    "components": 24,
+    "exactSourceNotYetExecuted": true,
+    "newRootSuffix": "20261021-7c2c",
+    "requiresActualFourRepositoryPostflight": true,
+    "requiresActualCommandStreamProof": true,
+    "managedPositives": 5,
+    "expectedManagedNegative": true,
+    "nativeSdkSyntax": 100,
+    "UnityEditorLaunched": false,
+    "UnityPlayerExecuted": false
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "fullP3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "oldHistoricalEvidenceReclassified": false
+}
