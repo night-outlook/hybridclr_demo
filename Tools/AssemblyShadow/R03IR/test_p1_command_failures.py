@@ -444,39 +444,6 @@ class OwnedBindingInventoryContract(unittest.TestCase):
             pending['commandLifetimeUnverified']=True
             self.assertFalse(check(pending)['observedTypeShapeJsonCaseInventoryVerified'])
 
-def make_shape_json_positive(mod):
-    names=list(mod.EXPECTED_OWNED_BINDING_GROUPS)
-    shapes=list(mod.EXPECTED_TYPE_SHAPE_GROUPS)
-    live=list(mod.EXPECTED_LIVE_TYPE_SHAPE_GROUPS)
-    json_cases=list(mod.EXPECTED_SHAPE_JSON_GROUPS)
-    previous={'originalNativeCppAndApiFingerprintPreserved':True,
-        'sourceLocksReleasedBeforePureCensus':True,
-        'originalNameGroups':names,'originalShapeGroups':shapes,
-        'liveIntegrationGroups':live}
-    proof={'sourceKind':'R03P1ObservedTypeShapeCounts',
-        'rowScope':'ObservedRegistrySubsetShapeCountsOnly',
-        'fixedOwnedMaximumBytes':4096,
-        'predecessorActualVmSourcesAndFingerprintVerified':True,
-        'purePointerFreeNoVmCalls':True,'nonCanonicalOnly':True,
-        'previousNameGroups':names,'previousShapeGroups':shapes,
-        'previousLiveCensusGroups':live,'newJsonGroups':json_cases,
-        'fullExecutionV1':False,'canonicalExecutionTypeKeys':False,
-        'physicalClassPointerOriginProven':False,
-        'coherentVmEpochProven':False,'runtimeAcceptance':False,
-        'predecessor':previous}
-    return {'kind':'R03P1ObservedTypeShapeJsonActualVmSourceHost',
-        'schemaVersion':1,'result':'PassedWithinOwnedTypeShapeJsonSourceHostScope',
-        'sourcePreserved':True,'actualSourceCompiled':True,
-        'commandLifetimeUnverified':False,'noncanonicalShapeCountsOnly':True,
-        'completeExecutionTypeKeys':False,'fullExecutionV1':False,
-        'physicalClassPointerOriginProven':False,'coherentVmEpochProven':False,
-        'officialUnitySdkCompiled':False,'UnityPlayerExecuted':False,
-        'runtimeAcceptance':False,'sourceContract':proof,
-        'profiles':{k:{'result':'PassedWithinOwnedTypeShapeJsonSourceHostScope',
-            'originalNameGroups':names,'originalShapeGroups':shapes,
-            'liveIntegrationGroups':live,'shapeJsonGroups':json_cases}
-            for k in ('strict','sanitized')}}
-
     def verify_real_vm_shape_json_receipt_and_fail_closed_mutations(self):
         mod=load();expected=mod.EXPECTED_VM_SHAPE_JSON_GROUPS
         self.assertEqual(len(expected),16)
@@ -533,6 +500,39 @@ def make_shape_json_positive(mod):
             uncertain['commandLifetimeUnverified']=True
             self.assertFalse(check(uncertain)['vmShapeJsonSourceCaseInventoryVerified'])
 
+
+def make_shape_json_positive(mod):
+    names=list(mod.EXPECTED_OWNED_BINDING_GROUPS)
+    shapes=list(mod.EXPECTED_TYPE_SHAPE_GROUPS)
+    live=list(mod.EXPECTED_LIVE_TYPE_SHAPE_GROUPS)
+    json_cases=list(mod.EXPECTED_SHAPE_JSON_GROUPS)
+    previous={'originalNativeCppAndApiFingerprintPreserved':True,
+        'sourceLocksReleasedBeforePureCensus':True,
+        'originalNameGroups':names,'originalShapeGroups':shapes,
+        'liveIntegrationGroups':live}
+    proof={'sourceKind':'R03P1ObservedTypeShapeCounts',
+        'rowScope':'ObservedRegistrySubsetShapeCountsOnly',
+        'fixedOwnedMaximumBytes':4096,
+        'predecessorActualVmSourcesAndFingerprintVerified':True,
+        'purePointerFreeNoVmCalls':True,'nonCanonicalOnly':True,
+        'previousNameGroups':names,'previousShapeGroups':shapes,
+        'previousLiveCensusGroups':live,'newJsonGroups':json_cases,
+        'fullExecutionV1':False,'canonicalExecutionTypeKeys':False,
+        'physicalClassPointerOriginProven':False,
+        'coherentVmEpochProven':False,'runtimeAcceptance':False,
+        'predecessor':previous}
+    return {'kind':'R03P1ObservedTypeShapeJsonActualVmSourceHost',
+        'schemaVersion':1,'result':'PassedWithinOwnedTypeShapeJsonSourceHostScope',
+        'sourcePreserved':True,'actualSourceCompiled':True,
+        'commandLifetimeUnverified':False,'noncanonicalShapeCountsOnly':True,
+        'completeExecutionTypeKeys':False,'fullExecutionV1':False,
+        'physicalClassPointerOriginProven':False,'coherentVmEpochProven':False,
+        'officialUnitySdkCompiled':False,'UnityPlayerExecuted':False,
+        'runtimeAcceptance':False,'sourceContract':proof,
+        'profiles':{k:{'result':'PassedWithinOwnedTypeShapeJsonSourceHostScope',
+            'originalNameGroups':names,'originalShapeGroups':shapes,
+            'liveIntegrationGroups':live,'shapeJsonGroups':json_cases}
+            for k in ('strict','sanitized')}}
 
 def make_vm_shape_json_positive(mod):
     old=make_shape_json_positive(mod)["sourceContract"]
