@@ -4,10 +4,12 @@
 #include "vm/AssemblyShadow.h"
 #include "vm/AssemblyShadowPhysicalMembership.h"
 #include "vm/AssemblyShadowOwnedPhysicalNames.h"
+#include "vm/AssemblyShadowOwnedPhysicalNamesJson.h"
 #include <cstddef>
 namespace il2cpp { namespace vm { namespace assembly_shadow_sdk_syntax {
 namespace owned=assembly_shadow_owned_physical_names;
 namespace physical=assembly_shadow_physical_membership;
+namespace ownedJson=assembly_shadow_owned_physical_json;
 static_assert(owned::kMaximumRows==physical::kMaximumObserved,
               "Owned name rows must match observed registry bound");
 static_assert(owned::kMaximumTextBytes==256u*1024u,
@@ -18,6 +20,20 @@ static_assert(!owned::Receipt{}.classPointerOwnershipProven,
               "Owned names cannot prove class pointer ownership");
 static_assert(!owned::Receipt{}.completeExecutionTypeKeys,
               "Physical names are not canonical execution TypeKeys");
+static_assert(ownedJson::Record::kMaximumBytes==2u*1024u*1024u,
+              "Owned JSON fixed output limit changed");
+static_assert(sizeof(ownedJson::Record)<=ownedJson::Record::kMaximumObjectBytes,
+              "Owned JSON object exceeded reviewed bound");
+static_assert(!ownedJson::Receipt{}.canonicalExecutionTypeKeys &&
+              !ownedJson::Receipt{}.runtimeAcceptance,
+              "Owned JSON is not a complete execution record");
+bool RequireOwnedPhysicalJsonSourceSyntax(const owned::Capture& capture,
+                                          const owned::Receipt& sourceReceipt,
+                                          ownedJson::Record& destination,
+                                          ownedJson::Receipt& receipt) noexcept
+{
+    return ownedJson::Compose(capture,sourceReceipt,destination,receipt);
+}
 #if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
 using Signature=bool(*)(physical::Scratch&,owned::Capture&,owned::Receipt&);
 Signature RequireInactiveOwnedNamesSourceSyntax() noexcept

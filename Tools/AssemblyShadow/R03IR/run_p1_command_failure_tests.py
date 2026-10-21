@@ -64,6 +64,10 @@ def main()->None:
              native_tests/"run_bounded_execution_empty_live.py",
              native_tests/"run_physical_membership.py",
              native_tests/"run_owned_physical_names.py",
+             native_tests/"run_owned_physical_json.py",
+             native_tests/"owned_physical_json_fixture.cpp",
+             native/"libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+             HERE/"PlayerProject/AssemblyShadowOwnedPhysicalNamesSyntax.cpp",
              *[p for p,_ in modules]]
     before={str(p):binding(p) for p in sources}
     out.mkdir(mode=0o700)
