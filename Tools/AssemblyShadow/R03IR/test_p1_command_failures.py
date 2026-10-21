@@ -617,7 +617,11 @@ class BatchFailureScheduling(unittest.TestCase):
                             'liveIntegrationGroups':list(mod.EXPECTED_LIVE_TYPE_SHAPE_GROUPS)}
                             for p in ('strict','sanitized')})
                 if name=='observed-type-shape-json':
-                    data.update(make_shape_json_positive(mod))
+                    positive=make_shape_json_positive(mod)
+                    # Keep the independently injected timeout/lifetime state;
+                    # a source-host positive mock must never erase this fault.
+                    positive.pop('commandLifetimeUnverified')
+                    data.update(positive)
                 if name in ('empty-live','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json') and name==target:
                     if mode=='missing-lifetime-marker':
                         data.pop('commandLifetimeUnverified')
@@ -687,17 +691,6 @@ class BatchFailureScheduling(unittest.TestCase):
 
     def assert_stopped(self,mode,target='live-general',code=1):
         actual,report,manifest,launched,checks=self.exercise(mode,target)
-        if mode=='missing-result' and target=='owned-physical-names':
-            print('DEBUG missing-owned-names '+json.dumps({
-                'actual':actual,'wanted':code,
-                'result':report.get('result'),
-                'stoppedAfter':report.get('stoppedAfter'),
-                'launched':launched,
-                'targetStatus':next((c.get('status') for c in report['commands']
-                                     if c['name']==target),None),
-                'targetException':next((c.get('exception') for c in report['commands']
-                                        if c['name']==target),None)}),
-                file=sys.stderr)
         self.assertEqual(actual,code);self.assertEqual(launched[-1],target)
         self.assertLess(len(launched),23);self.assertEqual(len(checks),4)
         self.assertFalse(report['sourcePreserved']);self.assertTrue(report['commandLifetimeUnverified'])
