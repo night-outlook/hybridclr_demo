@@ -1,0 +1,134 @@
+{
+  "kind": "R03P1InactiveGenuineVmShapeJsonPrimaryEvidence",
+  "schemaVersion": 1,
+  "lastLocal": {
+    "cycle": "20261021-c776",
+    "result": "PassedSourceHostAndSDKOnly",
+    "consumed": true,
+    "components": 23,
+    "executed": {
+      "demo": "1144284ba3cbc2cdb75b68edf3df26d241860ccc",
+      "native": "c7762af878f36c102ac7a953035e082b55aebf40",
+      "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de"
+    },
+    "failureTests": 85,
+    "oldCaseGroupsPerProfile": {
+      "names": 28,
+      "purePhysicalJson": 21,
+      "livePhysicalJson": 12,
+      "observedShape": 15,
+      "liveShapeCensus": 16,
+      "pureShapeJson": 16
+    },
+    "managedPositives": 5,
+    "managedNegative": {
+      "id": "OriginalUnsignedCounts",
+      "exit": 1,
+      "CS0266Errors": 2,
+      "noDll": true
+    },
+    "nativeOfficialSdkSyntax": 100,
+    "independentAuditPassed": true,
+    "sourceAndSdkPreserved": true,
+    "noBatchRetry": true,
+    "unityEditorExecuted": false,
+    "UnityPlayerExecuted": false
+  },
+  "candidate": {
+    "native": "82ddcef9417e3d662fdd39916a92124b5c835094",
+    "demoCodeAnchor": "702aead824dd70e3383bd40839855bdf48280d5e",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de"
+  },
+  "implementation": {
+    "vmMethod": "AssemblyShadow::TryCaptureObservedTypeShapeJson",
+    "nativeNewMethod": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+    "nameAndCensusActualSourceMethodsInvoked": true,
+    "sourceLockAndReaderReleasedBeforePureJson": true,
+    "preflightBeforePhysicalIterator": true,
+    "maxOwnedJsonBytes": 4096,
+    "actualSourceMethodsPerHostFixture": 3,
+    "newBridgeGroupsPerProfile": 16,
+    "retainedGroupsPerProfile": 75,
+    "expectedTotalHostGroupsPerProfile": 91,
+    "originalExecutionGettersChanged": false,
+    "canonicalExecutionTypeKeys": false,
+    "fullExecutionV1": false,
+    "physicalClassPointerOriginProven": false,
+    "coherentVmEpochProven": false,
+    "linkedPlayerRuntime": false
+  },
+  "hostCi": {
+    "focusedNative": {
+      "run": 39612530315,
+      "linuxGcc": "Passed",
+      "linuxClang": "Passed",
+      "macosClang": "QueuedAtReview",
+      "scope": "actual three production VM inls and pure owned shape JSON, strict+ASanUBSan"
+    },
+    "demoInitialIntegratedFailure": {
+      "run": 39613340946,
+      "result": "FailedHostReceiptTestMethodOutOfClass",
+      "preserved": true
+    },
+    "demoIntegratedCorrected": {
+      "run": 39613519250,
+      "ubuntu": "Passed",
+      "macos": "QueuedAtReview"
+    },
+    "demoCommandFailureCorrected": {
+      "run": 39613519172,
+      "ubuntu": "Passed",
+      "macos": "QueuedAtReview"
+    },
+    "historicalR02Fingerprint": {
+      "run": 39612530215,
+      "result": "FailedHistoricalImmutableSourceFingerprint",
+      "reclassified": false
+    }
+  },
+  "nextLocal": {
+    "result": "NotRun",
+    "components": 24,
+    "originalFailureTests": 85,
+    "newBridgeGroupsPerProfile": 16,
+    "oldGroupedInventory": [
+      28,
+      21,
+      12,
+      15,
+      16,
+      16
+    ],
+    "outerFlagsRequired": 7,
+    "managedPositives": 5,
+    "expectedManagedNegative": true,
+    "nativeOfficialSdkSyntaxExpected": 100,
+    "unityEditorLaunched": false,
+    "UnityPlayerExecuted": false
+  },
+  "unproved": {
+    "canonicalGenericAwareExecutionTypeKeys": true,
+    "physicalClassAllocatorPointerProvenanceLifetime": true,
+    "coherentVmEpochAba": true,
+    "completeNonemptyExecutionV1": true,
+    "realProcessGcRssLatency": true,
+    "actualMetadataShutdown": true,
+    "linkedNativePlayer": true
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "fullP3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "historicalEvidenceReclassified": false
+}
