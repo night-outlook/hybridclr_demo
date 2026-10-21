@@ -135,6 +135,11 @@ def main()->None:
                 "inventoryScope":"UnsealedObservedFiles" if record["commandLifetimeUnverified"]
                                  else "CompletedContractFiles"},indent=2)+"\n",encoding="utf-8")
     print(json.dumps({"result":record["result"],"testsRun":record["testsRun"]}))
-    if record["result"]!="PassedWithinHostScope":raise SystemExit(1)
+    if record["result"]!="PassedWithinHostScope":
+        # Expose the retained, bounded unittest source evidence in CI logs;
+        # the complete original log and byte hash remain in the artifact.
+        log=(out/"unittest.log").read_text(encoding="utf-8")
+        print(log[-24576:],file=sys.stderr)
+        raise SystemExit(1)
 
 if __name__=="__main__":main()
