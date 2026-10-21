@@ -1,0 +1,144 @@
+{
+  "kind": "R03P1ObservedTypeShapeJsonPrimaryEvidence",
+  "schemaVersion": 1,
+  "lastCompletedLocal": {
+    "cycle": "20261021-f01a",
+    "result": "PassedSourceHostAndSDKOnly",
+    "consumed": true,
+    "components": 22,
+    "executedSources": {
+      "demo": "2f72fcb6df30890962bc6415325d3f0830ef376f",
+      "native": "d8d4695c2d3da0e541f9e1a525cfffbcc3b1c230",
+      "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de"
+    },
+    "commandFailureTests": 85,
+    "previousNamesGroupsPerProfile": 28,
+    "previousPurePhysicalJsonGroupsPerProfile": 21,
+    "previousLivePhysicalJsonGroupsPerProfile": 12,
+    "previousShapeGroupsPerProfile": 15,
+    "previousLiveCensusGroupsPerProfile": 16,
+    "managedPositiveProducts": 5,
+    "originalExpectedNegative": {
+      "id": "OriginalUnsignedCounts",
+      "exit": 1,
+      "CS0266": 2,
+      "noDll": true
+    },
+    "nativeSdkSyntaxConfigs": 100,
+    "independentEvidenceAuditPassed": true,
+    "historicalSourceSdkPreserved": true,
+    "localCollectorCorrectionPreserved": true,
+    "coreBatchRetried": false,
+    "unityEditorLaunched": false,
+    "unityPlayerLaunched": false
+  },
+  "candidateSource": {
+    "native": "c7762af878f36c102ac7a953035e082b55aebf40",
+    "demoCodeAnchor": "0a348b282b8d8000f19c26243fd08bbc2a9180c9",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de"
+  },
+  "implementation": {
+    "newHeader": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+    "newFixture": "tools/r03/diagnostic_stream/observed_type_shape_json_fixture.cpp",
+    "newRunner": "tools/r03/diagnostic_stream/run_observed_type_shape_json.py",
+    "nativePreviousCppApiUnchanged": true,
+    "purePointerFreeNoVmCalls": true,
+    "kind": "R03P1ObservedTypeShapeCounts",
+    "scope": "ObservedRegistrySubsetShapeCountsOnly",
+    "maximumJsonBytes": 4096,
+    "newJsonGroupsPerProfile": 16,
+    "retainedOriginalNameGroupsPerProfile": 28,
+    "retainedOriginalShapeGroupsPerProfile": 15,
+    "retainedLiveCensusGroupsPerProfile": 16,
+    "officialSdkSyntaxTuCountPlanned": 20,
+    "officialSdkSyntaxProfilesPlanned": 5,
+    "canonicalExecutionTypeKeys": false,
+    "fullExecutionV1": false,
+    "physicalClassPointerOriginProven": false,
+    "coherentVmEpochProven": false,
+    "runtimeAcceptance": false
+  },
+  "hostCi": {
+    "nativeFocused": {
+      "run": 39587667797,
+      "passed": 3,
+      "total": 3,
+      "scope": "strict+santized Mac Clang Linux Clang/GCC actual production two source inls and pure owned JSON"
+    },
+    "firstDemoIntegratedFailure": {
+      "run": 39588454698,
+      "result": "FailedMockLifetimeOverride",
+      "preserved": true
+    },
+    "firstDemoFailureContract": {
+      "run": 39588454512,
+      "result": "FailedMockLifetimeOverride",
+      "preserved": true
+    },
+    "demoIntegratedFinal": {
+      "run": 39589468731,
+      "passed": 2,
+      "total": 2,
+      "tests": 85
+    },
+    "demoFocusedFailureFinal": {
+      "run": 39589468651,
+      "passed": 2,
+      "total": 2
+    },
+    "demoManagedReceiptPriorCode": {
+      "run": 39588454664,
+      "passed": 2,
+      "total": 2,
+      "sourceAfterOnlyFailureMockChanges": true
+    },
+    "historicalR02": {
+      "run": 39587667782,
+      "result": "FailedImmutableHistoricalSourceFingerprint",
+      "preservedWithoutReclassification": true
+    }
+  },
+  "nextLocal": {
+    "result": "NotRun",
+    "components": 23,
+    "newShapeJsonGroupsPerProfile": 16,
+    "previousInventories": [
+      28,
+      21,
+      12,
+      15,
+      16
+    ],
+    "outerInventoryFlagsRequired": 6,
+    "commandFailureTests": 85,
+    "managedPositiveProducts": 5,
+    "managedOriginalNegative": true,
+    "nativeOfficialSdkSyntaxConfigs": 100,
+    "unityEditorLaunched": false,
+    "UnityPlayerExecuted": false
+  },
+  "unproved": {
+    "physicalClassAllocatorOriginLifetime": true,
+    "canonicalGenericAwareExecutionTypeKeys": true,
+    "coherentVmEpochAba": true,
+    "completeNonemptyExecutionV1": true,
+    "processGcRssShutdown": true,
+    "linkedProductPlayer": true
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "fullP3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "historicalEvidenceReclassified": false
+}
