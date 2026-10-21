@@ -7,6 +7,7 @@
 #include "vm/AssemblyShadowOwnedPhysicalNamesJson.h"
 #include "vm/AssemblyShadowObservedTypeShape.h"
 #include "vm/AssemblyShadowObservedTypeShapeCensus.h"
+#include "vm/AssemblyShadowObservedTypeShapeJson.h"
 #include <cstddef>
 namespace il2cpp { namespace vm { namespace assembly_shadow_sdk_syntax {
 namespace owned=assembly_shadow_owned_physical_names;
@@ -14,6 +15,7 @@ namespace physical=assembly_shadow_physical_membership;
 namespace ownedJson=assembly_shadow_owned_physical_json;
 namespace observedShape=assembly_shadow_observed_type_shape;
 namespace shapeCensus=assembly_shadow_observed_type_shape_census;
+namespace shapeJson=assembly_shadow_observed_type_shape_json;
 static_assert(owned::kMaximumRows==physical::kMaximumObserved,
               "Owned name rows must match observed registry bound");
 static_assert(owned::kMaximumTextBytes==256u*1024u,
@@ -28,6 +30,18 @@ static_assert(observedShape::kCategoryCount==9 &&
               observedShape::kClassTypeCode==0x12 &&
               observedShape::kValueTypeCode==0x11,
               "Shape hint categories differ from reviewed IL2CPP ABI");
+static_assert(shapeJson::Record::kMaximumBytes==4096 &&
+              sizeof(shapeJson::Record)<=shapeJson::Record::kMaximumObjectBytes,
+              "Noncanonical shape output exceeded reviewed byte bound");
+static_assert(!shapeJson::Receipt{}.canonicalExecutionTypeKeys &&
+              !shapeJson::Receipt{}.runtimeAcceptance,
+              "Shape counts cannot prove canonical execution/runtime");
+bool RequireObservedTypeShapeJsonSourceSyntax(const shapeCensus::Result& source,
+                                              shapeJson::Record& dest,
+                                              shapeJson::Receipt& receipt) noexcept
+{
+    return shapeJson::Compose(source,dest,receipt);
+}
 bool RequireObservedTypeShapeCensusSyntax(const owned::Capture& names,
                                          const owned::Receipt& source,
                                          shapeCensus::Result& destination) noexcept

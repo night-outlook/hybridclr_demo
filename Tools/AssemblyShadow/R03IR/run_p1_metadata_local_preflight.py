@@ -130,6 +130,25 @@ EXPECTED_LIVE_TYPE_SHAPE_GROUPS=(
     "reused-success-revoked-before-iterator",
 )
 
+EXPECTED_SHAPE_JSON_GROUPS=(
+    "empty-census-exact-json",
+    "plain-reference-candidate-only",
+    "genuine-iterator-value-source-json",
+    "genuine-iterator-generic-excluded",
+    "genuine-mixed-role-shape-cohort",
+    "output-independent-after-source-mutation",
+    "incomplete-census-zero-output",
+    "forged-typekey-or-epoch-refused",
+    "inconsistent-role-count-refused",
+    "inconsistent-category-census-refused",
+    "unmatched-callback-category-refused",
+    "saturated-revision-refused",
+    "small-byte-budget-atomic-refusal",
+    "oversize-output-request-refused",
+    "reused-output-scrubs-earlier-success",
+    "failed-output-cannot-be-reused",
+)
+
 def hash_file(path:Path)->str:
     h=hashlib.sha256()
     with path.open("rb") as f:
@@ -216,7 +235,8 @@ def read_component_result(output:Path, filename:str, require_lifetime_marker:boo
                           expected_owned_json_groups:tuple[str,...]|None=None,
                           expected_live_owned_json_groups:tuple[str,...]|None=None,
                           expected_type_shape_groups:tuple[str,...]|None=None,
-                          expected_live_type_shape_groups:tuple[str,...]|None=None)->dict:
+                          expected_live_type_shape_groups:tuple[str,...]|None=None,
+                          expected_shape_json_groups:tuple[str,...]|None=None)->dict:
     """Parse and hash the same canonical receipt bytes; do not follow decoys."""
     if Path(filename).name!=filename:
         raise ValueError("A direct component result filename is required")
@@ -434,6 +454,63 @@ def read_component_result(output:Path, filename:str, require_lifetime_marker:boo
                 profile["liveIntegrationGroups"]!=list(expected_live_type_shape_groups)):
                 raise ValueError("Inactive live type-shape census test group mismatch: "+label)
         live_shape_verified=True
+    json_shape_verified=False
+    if expected_shape_json_groups is not None and not unknown and (
+       record.get("result")=="PassedWithinOwnedTypeShapeJsonSourceHostScope"):
+        if (record.get("kind")!="R03P1ObservedTypeShapeJsonActualVmSourceHost"
+            or type(record.get("schemaVersion")) is not int
+            or record["schemaVersion"]!=1
+            or record.get("actualSourceCompiled") is not True
+            or record.get("sourcePreserved") is not True
+            or record.get("noncanonicalShapeCountsOnly") is not True
+            or any(record.get(flag) is not False for flag in (
+                "completeExecutionTypeKeys","fullExecutionV1",
+                "physicalClassPointerOriginProven","coherentVmEpochProven",
+                "officialUnitySdkCompiled","UnityPlayerExecuted","runtimeAcceptance"))):
+            raise ValueError("Observed type-shape JSON source identity/scope invalid")
+        proof=record.get("sourceContract")
+        if (not isinstance(proof,dict)
+            or proof.get("sourceKind")!="R03P1ObservedTypeShapeCounts"
+            or proof.get("rowScope")!="ObservedRegistrySubsetShapeCountsOnly"
+            or type(proof.get("fixedOwnedMaximumBytes")) is not int
+            or proof["fixedOwnedMaximumBytes"]!=4096
+            or proof.get("predecessorActualVmSourcesAndFingerprintVerified") is not True
+            or proof.get("purePointerFreeNoVmCalls") is not True
+            or proof.get("nonCanonicalOnly") is not True
+            or proof.get("previousNameGroups")!=list(EXPECTED_OWNED_BINDING_GROUPS)
+            or proof.get("previousShapeGroups")!=list(EXPECTED_TYPE_SHAPE_GROUPS)
+            or proof.get("previousLiveCensusGroups")!=list(EXPECTED_LIVE_TYPE_SHAPE_GROUPS)
+            or proof.get("newJsonGroups")!=list(expected_shape_json_groups)
+            or any(proof.get(flag) is not False for flag in (
+                "fullExecutionV1","canonicalExecutionTypeKeys",
+                "physicalClassPointerOriginProven","coherentVmEpochProven",
+                "runtimeAcceptance"))):
+            raise ValueError("Observed type-shape JSON noncanonical source proof invalid")
+        previous=proof.get("predecessor")
+        if (not isinstance(previous,dict)
+            or previous.get("originalNativeCppAndApiFingerprintPreserved") is not True
+            or previous.get("sourceLocksReleasedBeforePureCensus") is not True
+            or previous.get("originalNameGroups")!=list(EXPECTED_OWNED_BINDING_GROUPS)
+            or previous.get("originalShapeGroups")!=list(EXPECTED_TYPE_SHAPE_GROUPS)
+            or previous.get("liveIntegrationGroups")!=list(EXPECTED_LIVE_TYPE_SHAPE_GROUPS)):
+            raise ValueError("Observed type-shape JSON VM predecessor proof invalid")
+        profiles=record.get("profiles")
+        if not isinstance(profiles,dict) or set(profiles)!={"strict","sanitized"}:
+            raise ValueError("Observed type-shape JSON host profiles missing")
+        for label in ("strict","sanitized"):
+            row=profiles[label]
+            if (not isinstance(row,dict)
+                or row.get("result")!="PassedWithinOwnedTypeShapeJsonSourceHostScope"
+                or type(row.get("originalNameGroups")) is not list
+                or row["originalNameGroups"]!=list(EXPECTED_OWNED_BINDING_GROUPS)
+                or type(row.get("originalShapeGroups")) is not list
+                or row["originalShapeGroups"]!=list(EXPECTED_TYPE_SHAPE_GROUPS)
+                or type(row.get("liveIntegrationGroups")) is not list
+                or row["liveIntegrationGroups"]!=list(EXPECTED_LIVE_TYPE_SHAPE_GROUPS)
+                or type(row.get("shapeJsonGroups")) is not list
+                or row["shapeJsonGroups"]!=list(expected_shape_json_groups)):
+                raise ValueError("Observed type-shape JSON ordered source-host groups mismatch: "+label)
+        json_shape_verified=True
     return {"innerResult":record.get("result"),"innerResultPath":str(source),
             "innerResultSha256":hashlib.sha256(raw).hexdigest(),
             "commandLifetimeUnverified":unknown,
@@ -441,7 +518,8 @@ def read_component_result(output:Path, filename:str, require_lifetime_marker:boo
             "ownedPhysicalJsonCaseInventoryVerified":owned_json_verified,
             "liveOwnedPhysicalJsonCaseInventoryVerified":live_json_verified,
             "observedTypeShapeCaseInventoryVerified":shape_verified,
-            "liveTypeShapeCensusCaseInventoryVerified":live_shape_verified}
+            "liveTypeShapeCensusCaseInventoryVerified":live_shape_verified,
+            "observedTypeShapeJsonCaseInventoryVerified":json_shape_verified}
 
 
 def execute_component(dest:Path,name:str,argv:list,expected:str,
@@ -471,12 +549,13 @@ def execute_component(dest:Path,name:str,argv:list,expected:str,
             result.update(read_managed_result(output,stdout))
         else:
             result.update(read_component_result(
-                output,file,require_lifetime_marker=(name in ("empty-live","opaque-inventory","physical-membership","owned-physical-names","owned-physical-json","live-owned-physical-json","observed-type-shape","live-type-shape-census")),
+                output,file,require_lifetime_marker=(name in ("empty-live","opaque-inventory","physical-membership","owned-physical-names","owned-physical-json","live-owned-physical-json","observed-type-shape","live-type-shape-census","observed-type-shape-json")),
                 expected_owned_binding_groups=EXPECTED_OWNED_BINDING_GROUPS if name=="owned-physical-names" else None,
                 expected_owned_json_groups=EXPECTED_OWNED_JSON_GROUPS if name=="owned-physical-json" else None,
                 expected_live_owned_json_groups=EXPECTED_LIVE_OWNED_JSON_GROUPS if name=="live-owned-physical-json" else None,
                 expected_type_shape_groups=EXPECTED_TYPE_SHAPE_GROUPS if name=="observed-type-shape" else None,
-                expected_live_type_shape_groups=EXPECTED_LIVE_TYPE_SHAPE_GROUPS if name=="live-type-shape-census" else None))
+                expected_live_type_shape_groups=EXPECTED_LIVE_TYPE_SHAPE_GROUPS if name=="live-type-shape-census" else None,
+                expected_shape_json_groups=EXPECTED_SHAPE_JSON_GROUPS if name=="observed-type-shape-json" else None))
         if result["commandLifetimeUnverified"]:
             result["stopBatchReason"]="ChildReportedUnverifiedCommandLifetime"
         elif proc.returncode==0 and result.get("innerResult")==expected:
@@ -491,7 +570,7 @@ def execute_component(dest:Path,name:str,argv:list,expected:str,
                       commandLifetimeUnverified=True,stopBatchReason="OuterCommandInterrupted")
     except Exception as error:
         result["exception"]=repr(error)
-        if returned and name in ("empty-live","opaque-inventory","physical-membership","owned-physical-names","owned-physical-json","live-owned-physical-json","observed-type-shape","live-type-shape-census"):
+        if returned and name in ("empty-live","opaque-inventory","physical-membership","owned-physical-names","owned-physical-json","live-owned-physical-json","observed-type-shape","live-type-shape-census","observed-type-shape-json"):
             # A completed child without a valid lifetime receipt could have
             # timed out internally. Do not schedule more subprocess children.
             result.update(commandLifetimeUnverified=True,
@@ -579,6 +658,9 @@ def main()->None:
         native/"libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
         native/"libil2cpp/vm/AssemblyShadowObservedTypeShape.h",
         native/"libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+        native/"libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+        native/"tools/r03/diagnostic_stream/run_observed_type_shape_json.py",
+        native/"tools/r03/diagnostic_stream/observed_type_shape_json_fixture.cpp",
         native/"libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
         native/"tools/r03/diagnostic_stream/run_observed_type_shape_live.py",
         native/"tools/r03/diagnostic_stream/observed_type_shape_live_fixture.cpp",
@@ -671,6 +753,7 @@ def main()->None:
             ("live-owned-physical-json","run_owned_physical_live_json.py","PassedWithinInactiveLiveOwnedPhysicalJsonVmMockScope"),
             ("observed-type-shape","run_observed_type_shape_census.py","PassedWithinObservedTypeShapeSourceHostScope"),
             ("live-type-shape-census","run_observed_type_shape_live.py","PassedWithinInactiveLiveTypeShapeCensusHostScope"),
+            ("observed-type-shape-json","run_observed_type_shape_json.py","PassedWithinOwnedTypeShapeJsonSourceHostScope"),
             ("bounded-status","run_bounded_transaction_status.py","PassedWithinHostScope"),
             ("bounded-inventory","run_bounded_transaction_inventory.py","PassedWithinHostScope"),
             ("frozen-v2","run_frozen_v2.py","PassedWithinInactiveHostScope"),
@@ -700,12 +783,12 @@ def main()->None:
             # thirteen independent cases and factual postflight errors, never mark PASS.
             postflight_error=repr(e)
             preserved=False
-        success=preserved and stopped is None and len(cases)==22 and all(c["status"]=="Passed" for c in cases)
+        success=preserved and stopped is None and len(cases)==23 and all(c["status"]=="Passed" for c in cases)
         statuses={c["name"]:c["status"] for c in cases}
         summary={"kind":"R03P1FailureAwareSourceSDKPreflight","schemaVersion":2,
           "stoppedAfter":stopped,"commandLifetimeUnverified":stopped is not None,
           "descendantQuiescenceProven":False,
-          "componentCount":22,"attemptedComponentCount":sum(c["commandInvoked"] for c in cases),
+          "componentCount":23,"attemptedComponentCount":sum(c["commandInvoked"] for c in cases),
           "result":"PassedSourceHostAndSDKOnly" if success else "FailedOrIncomplete",
           "fourRepositoriesBefore":before,"fourRepositoriesAfter":after,
           "sourceSha256":hashes,"sourcePreserved":preserved,
@@ -721,6 +804,7 @@ def main()->None:
           "expectedLiveOwnedPhysicalJsonCaseGroupsPerProfile":len(EXPECTED_LIVE_OWNED_JSON_GROUPS),
           "expectedObservedTypeShapeCaseGroupsPerProfile":len(EXPECTED_TYPE_SHAPE_GROUPS),
           "expectedLiveTypeShapeCensusCaseGroupsPerProfile":len(EXPECTED_LIVE_TYPE_SHAPE_GROUPS),
+          "expectedObservedTypeShapeJsonCaseGroupsPerProfile":len(EXPECTED_SHAPE_JSON_GROUPS),
           "realUnityEditorLaunched":False,"UnityPlayerExecuted":False,
           "engineOwnerProven":False,"R03Accepted":False,"ReadyForHumanReviewGate":False,
           "historicalEvidenceReclassified":False}

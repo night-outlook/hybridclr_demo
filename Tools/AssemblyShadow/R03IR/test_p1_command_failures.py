@@ -391,6 +391,92 @@ class OwnedBindingInventoryContract(unittest.TestCase):
             self.assertFalse(check(unknown)['liveTypeShapeCensusCaseInventoryVerified'])
 
 
+    def verify_noncanonical_shape_json_receipts_and_mutations(self):
+        mod=load();expected=mod.EXPECTED_SHAPE_JSON_GROUPS
+        self.assertEqual(len(expected),16)
+        self.assertEqual(len(set(expected)),16)
+        with tempfile.TemporaryDirectory() as td:
+            out=Path(td).resolve();path=out/'RESULT.json'
+            def check(value):
+                path.write_text(json.dumps(value))
+                return mod.read_component_result(out,'RESULT.json',True,
+                    expected_shape_json_groups=expected)
+            baseline=make_shape_json_positive(mod)
+            self.assertTrue(check(baseline)['observedTypeShapeJsonCaseInventoryVerified'])
+            for name in ('missing-case','duplicate-case','wrong-profile',
+                         'false-compiled','false-source-preserved','bogus-kind',
+                         'bool-schema','wrong-json-scope','wrong-limit',
+                         'fake-typekey','fake-epoch','wrong-predecessor',
+                         'missing-original-name-group','missing-sanitized',
+                         'missing-pure-proof','missing-old-live-group'):
+                with self.subTest(mutation=name):
+                    data=json.loads(json.dumps(baseline))
+                    if name=='missing-case':data['profiles']['strict']['shapeJsonGroups'].pop()
+                    elif name=='duplicate-case':
+                        data['profiles']['strict']['shapeJsonGroups'][-1]=expected[0]
+                    elif name=='wrong-profile':
+                        data['profiles']['sanitized']['result']='Failed'
+                    elif name=='false-compiled':data['actualSourceCompiled']=False
+                    elif name=='false-source-preserved':data['sourcePreserved']=False
+                    elif name=='bogus-kind':data['kind']='Other'
+                    elif name=='bool-schema':data['schemaVersion']=True
+                    elif name=='wrong-json-scope':
+                        data['sourceContract']['rowScope']='ExecutionV1'
+                    elif name=='wrong-limit':
+                        data['sourceContract']['fixedOwnedMaximumBytes']=True
+                    elif name=='fake-typekey':
+                        data['completeExecutionTypeKeys']=True
+                    elif name=='fake-epoch':
+                        data['sourceContract']['coherentVmEpochProven']=True
+                    elif name=='wrong-predecessor':
+                        data['sourceContract']['predecessor']={}
+                    elif name=='missing-original-name-group':
+                        data['profiles']['strict']['originalNameGroups']=[]
+                    elif name=='missing-sanitized':
+                        data['profiles'].pop('sanitized')
+                    elif name=='missing-pure-proof':
+                        data['sourceContract']['purePointerFreeNoVmCalls']=False
+                    elif name=='missing-old-live-group':
+                        data['sourceContract']['previousLiveCensusGroups']=[]
+                    with self.assertRaisesRegex(ValueError,'Observed type-shape JSON'):
+                        check(data)
+            pending=json.loads(json.dumps(baseline))
+            pending['commandLifetimeUnverified']=True
+            self.assertFalse(check(pending)['observedTypeShapeJsonCaseInventoryVerified'])
+
+def make_shape_json_positive(mod):
+    names=list(mod.EXPECTED_OWNED_BINDING_GROUPS)
+    shapes=list(mod.EXPECTED_TYPE_SHAPE_GROUPS)
+    live=list(mod.EXPECTED_LIVE_TYPE_SHAPE_GROUPS)
+    json_cases=list(mod.EXPECTED_SHAPE_JSON_GROUPS)
+    previous={'originalNativeCppAndApiFingerprintPreserved':True,
+        'sourceLocksReleasedBeforePureCensus':True,
+        'originalNameGroups':names,'originalShapeGroups':shapes,
+        'liveIntegrationGroups':live}
+    proof={'sourceKind':'R03P1ObservedTypeShapeCounts',
+        'rowScope':'ObservedRegistrySubsetShapeCountsOnly',
+        'fixedOwnedMaximumBytes':4096,
+        'predecessorActualVmSourcesAndFingerprintVerified':True,
+        'purePointerFreeNoVmCalls':True,'nonCanonicalOnly':True,
+        'previousNameGroups':names,'previousShapeGroups':shapes,
+        'previousLiveCensusGroups':live,'newJsonGroups':json_cases,
+        'fullExecutionV1':False,'canonicalExecutionTypeKeys':False,
+        'physicalClassPointerOriginProven':False,
+        'coherentVmEpochProven':False,'runtimeAcceptance':False,
+        'predecessor':previous}
+    return {'kind':'R03P1ObservedTypeShapeJsonActualVmSourceHost',
+        'schemaVersion':1,'result':'PassedWithinOwnedTypeShapeJsonSourceHostScope',
+        'sourcePreserved':True,'actualSourceCompiled':True,
+        'commandLifetimeUnverified':False,'noncanonicalShapeCountsOnly':True,
+        'completeExecutionTypeKeys':False,'fullExecutionV1':False,
+        'physicalClassPointerOriginProven':False,'coherentVmEpochProven':False,
+        'officialUnitySdkCompiled':False,'UnityPlayerExecuted':False,
+        'runtimeAcceptance':False,'sourceContract':proof,
+        'profiles':{k:{'result':'PassedWithinOwnedTypeShapeJsonSourceHostScope',
+            'originalNameGroups':names,'originalShapeGroups':shapes,
+            'liveIntegrationGroups':live,'shapeJsonGroups':json_cases}
+            for k in ('strict','sanitized')}}
+
 class BatchFailureScheduling(unittest.TestCase):
     def exercise(self,mode='passed',target='live-general'):
         with tempfile.TemporaryDirectory() as td:
@@ -432,6 +518,7 @@ class BatchFailureScheduling(unittest.TestCase):
                           'PassedWithinInactiveLiveOwnedPhysicalJsonVmMockScope' if name=='live-owned-physical-json' else
                           'PassedWithinObservedTypeShapeSourceHostScope' if name=='observed-type-shape' else
                           'PassedWithinInactiveLiveTypeShapeCensusHostScope' if name=='live-type-shape-census' else
+                          'PassedWithinOwnedTypeShapeJsonSourceHostScope' if name=='observed-type-shape-json' else
                           'PassedWithinInactiveHostScope' if name=='frozen-v2' else 'PassedWithinHostScope')
                 data={'result':expected,'commandLifetimeUnverified':name==target and mode=='nested-timeout'}
                 if name=='owned-physical-names':
@@ -529,7 +616,9 @@ class BatchFailureScheduling(unittest.TestCase):
                             'originalShapeGroups':list(mod.EXPECTED_TYPE_SHAPE_GROUPS),
                             'liveIntegrationGroups':list(mod.EXPECTED_LIVE_TYPE_SHAPE_GROUPS)}
                             for p in ('strict','sanitized')})
-                if name in ('empty-live','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census') and name==target:
+                if name=='observed-type-shape-json':
+                    data.update(make_shape_json_positive(mod))
+                if name in ('empty-live','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json') and name==target:
                     if mode=='missing-lifetime-marker':
                         data.pop('commandLifetimeUnverified')
                     if mode=='malformed-lifetime-marker':
@@ -541,7 +630,7 @@ class BatchFailureScheduling(unittest.TestCase):
                                 unityEditorRun=False,nativeExecution=False,runtimeAcceptance=False)
                     (out/'build-api').mkdir();file=out/'build-api/results.json'
                 else:file=out/('results.json' if name=='native-sdk' else 'RESULT.json')
-                if not (name in ('empty-live','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census') and name==target and mode=='missing-result'):
+                if not (name in ('empty-live','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json') and name==target and mode=='missing-result'):
                     file.write_text(json.dumps(data))
                 stdout=(json.dumps({'result':str(file),'sha256':hashlib.sha256(file.read_bytes()).hexdigest()}).encode()
                         if name=='managed-sdk' else b'mock child\n')
@@ -555,8 +644,8 @@ class BatchFailureScheduling(unittest.TestCase):
                 except SystemExit as error:code=error.code
             report=json.loads((dest/'RESULT.json').read_bytes())
             manifest=json.loads((dest/'MANIFEST.json').read_bytes())
-            self.assertEqual(len(report['commands']),22)
-            self.assertEqual(report['componentCount'],22)
+            self.assertEqual(len(report['commands']),23)
+            self.assertEqual(report['componentCount'],23)
             self.assertEqual(report['attemptedComponentCount'],len(launched))
             self.assertEqual(report['expectedNativeSyntaxUnits'],100)
             self.assertEqual(report['expectedOwnedBindingCaseGroupsPerProfile'],28)
@@ -564,6 +653,7 @@ class BatchFailureScheduling(unittest.TestCase):
             self.assertEqual(report['expectedLiveOwnedPhysicalJsonCaseGroupsPerProfile'],12)
             self.assertEqual(report['expectedObservedTypeShapeCaseGroupsPerProfile'],15)
             self.assertEqual(report['expectedLiveTypeShapeCensusCaseGroupsPerProfile'],16)
+            self.assertEqual(report['expectedObservedTypeShapeJsonCaseGroupsPerProfile'],16)
             self.assertFalse(report['R03Accepted']);self.assertFalse(report['UnityPlayerExecuted'])
             self.assertFalse(report['historicalEvidenceReclassified'])
             for row in report['commands']:
@@ -582,8 +672,9 @@ class BatchFailureScheduling(unittest.TestCase):
         OwnedBindingInventoryContract().verify_live_owned_json_receipt_and_fail_closed_mutations()
         OwnedBindingInventoryContract().verify_observed_type_shape_receipt_and_failure_mutations()
         OwnedBindingInventoryContract().verify_live_type_shape_census_receipt_and_fail_closed_mutations()
+        OwnedBindingInventoryContract().verify_noncanonical_shape_json_receipts_and_mutations()
         code,report,manifest,launched,checks=self.exercise()
-        self.assertEqual(code,0);self.assertEqual(len(launched),22);self.assertEqual(len(checks),8)
+        self.assertEqual(code,0);self.assertEqual(len(launched),23);self.assertEqual(len(checks),8)
         self.assertTrue(report['sourcePreserved']);self.assertIsNone(report['stoppedAfter'])
         self.assertTrue(report['officialUnitySdkCompileAttempted']);self.assertTrue(report['officialUnitySdkCompilePassed'])
         self.assertEqual(manifest['inventoryScope'],'CompletedBatchFiles')
@@ -591,7 +682,7 @@ class BatchFailureScheduling(unittest.TestCase):
     def assert_stopped(self,mode,target='live-general',code=1):
         actual,report,manifest,launched,checks=self.exercise(mode,target)
         self.assertEqual(actual,code);self.assertEqual(launched[-1],target)
-        self.assertLess(len(launched),22);self.assertEqual(len(checks),4)
+        self.assertLess(len(launched),23);self.assertEqual(len(checks),4)
         self.assertFalse(report['sourcePreserved']);self.assertTrue(report['commandLifetimeUnverified'])
         self.assertEqual(report['result'],'FailedOrIncomplete')
         self.assertFalse(report['officialUnitySdkCompileAttempted'])
@@ -606,24 +697,24 @@ class BatchFailureScheduling(unittest.TestCase):
     def test_first_component_timeout_leaves_seventeen_notrun(self):self.assert_stopped('timeout','command-failures')
 
     def test_completed_nonzero_keeps_other_independent_checks(self):
-        for target in ('owned-execution','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census'):
+        for target in ('owned-execution','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json'):
             with self.subTest(target=target):
                 code,report,manifest,launched,checks=self.exercise('nonzero',target)
-                self.assertEqual(code,1);self.assertEqual(len(launched),22);self.assertEqual(len(checks),8)
-                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),21)
+                self.assertEqual(code,1);self.assertEqual(len(launched),23);self.assertEqual(len(checks),8)
+                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),22)
                 self.assertEqual(next(c for c in report['commands'] if c['name']==target)['status'],'Failed')
                 self.assertTrue(report['officialUnitySdkCompilePassed']);self.assertTrue(report['sourcePreserved'])
                 self.assertIsNone(report['stoppedAfter'])
 
     def test_known_launch_failure_is_retained_without_faking_an_exit(self):
         code,report,manifest,launched,checks=self.exercise('spawn-failed')
-        self.assertEqual(code,1);self.assertEqual(len(launched),22)
+        self.assertEqual(code,1);self.assertEqual(len(launched),23)
         record=next(c for c in report['commands'] if c['name']=='live-general')
         self.assertIsNone(record['exit']);self.assertIn('FileNotFoundError',record['exception'])
 
     def test_last_sdk_timeout_is_attempted_but_not_passed(self):
         code,report,manifest,launched,checks=self.exercise('timeout','native-sdk')
-        self.assertEqual(code,1);self.assertEqual(len(launched),22)
+        self.assertEqual(code,1);self.assertEqual(len(launched),23)
         self.assertTrue(report['officialUnitySdkCompileAttempted'])
         self.assertFalse(report['officialUnitySdkCompilePassed']);self.assertFalse(report['sourcePreserved'])
         self.assertTrue(report['commandLifetimeUnverified'])
@@ -648,13 +739,13 @@ class BatchFailureScheduling(unittest.TestCase):
     def test_known_nonzero_empty_live_continues_without_claiming_pass(self):
         code,report,manifest,launched,checks=self.exercise('nonzero','empty-live')
         self.assertEqual(code,1)
-        self.assertEqual(len(launched),22)
+        self.assertEqual(len(launched),23)
         self.assertEqual(len(checks),8)
         self.assertIsNone(report['stoppedAfter'])
         self.assertFalse(report['commandLifetimeUnverified'])
         self.assertTrue(report['sourcePreserved'])
         self.assertTrue(report['officialUnitySdkCompilePassed'])
-        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),21)
+        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),22)
         self.assertEqual(next(c for c in report['commands']
                               if c['name']=='empty-live')['status'],'Failed')
 
@@ -722,5 +813,10 @@ class BatchFailureScheduling(unittest.TestCase):
         self.assert_stopped('malformed-lifetime-marker','live-type-shape-census')
         self.assert_stopped('null-lifetime-marker','live-type-shape-census')
         self.assert_stopped('missing-result','live-type-shape-census')
+        self.assert_stopped('nested-timeout','observed-type-shape-json')
+        self.assert_stopped('missing-lifetime-marker','observed-type-shape-json')
+        self.assert_stopped('malformed-lifetime-marker','observed-type-shape-json')
+        self.assert_stopped('null-lifetime-marker','observed-type-shape-json')
+        self.assert_stopped('missing-result','observed-type-shape-json')
 
 if __name__=='__main__':unittest.main(verbosity=2)

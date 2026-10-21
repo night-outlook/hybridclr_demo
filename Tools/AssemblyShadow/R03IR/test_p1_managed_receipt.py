@@ -184,7 +184,8 @@ class AggregateReceiptIntegration(unittest.TestCase):
                        'run_owned_physical_json.py','owned_physical_json_fixture.cpp',
                        'run_owned_physical_live_json.py','owned_physical_live_json_fixture.cpp',
                        'run_observed_type_shape_census.py','owned_type_shape_census_fixture.cpp',
-                       'run_observed_type_shape_live.py','observed_type_shape_live_fixture.cpp')]
+                       'run_observed_type_shape_live.py','observed_type_shape_live_fixture.cpp',
+                       'run_observed_type_shape_json.py','observed_type_shape_json_fixture.cpp')]
             paths += [native/'libil2cpp/vm'/n for n in
                       ('AssemblyShadowBoundedGeneralComposer.h','AssemblyShadowFrozenGeneralCapture.h',
                        'AssemblyShadowBoundedGeneralLive.h','AssemblyShadowBoundedGeneralLiveSource.inl',
@@ -209,6 +210,7 @@ class AggregateReceiptIntegration(unittest.TestCase):
                        'AssemblyShadowOwnedPhysicalLiveJsonSource.inl',
                        'AssemblyShadowObservedTypeShape.h',
                        'AssemblyShadowObservedTypeShapeCensus.h',
+                       'AssemblyShadowObservedTypeShapeJson.h',
                        'AssemblyShadowObservedTypeShapeLiveSource.inl')]
             paths += [native/'libil2cpp/il2cpp-class-internals.h']
             paths += [native/'tools/r03/diagnostic_stream/empty_live_fixture'/n for n in
@@ -255,7 +257,8 @@ class AggregateReceiptIntegration(unittest.TestCase):
                    (mode=='owned-physical-json-failed' and name=='owned-physical-json') or \
                    (mode=='live-owned-physical-json-failed' and name=='live-owned-physical-json') or \
                    (mode=='observed-type-shape-failed' and name=='observed-type-shape') or \
-                   (mode=='live-type-shape-census-failed' and name=='live-type-shape-census'):
+                   (mode=='live-type-shape-census-failed' and name=='live-type-shape-census') or \
+                   (mode=='observed-type-shape-json-failed' and name=='observed-type-shape-json'):
                     (dest/'RESULT.json').write_text(json.dumps({
                         'result':'FailedOrIncomplete','commandLifetimeUnverified':False}))
                     return subprocess.CompletedProcess(args,1,b'mock failed bridge\n',b'')
@@ -272,6 +275,7 @@ class AggregateReceiptIntegration(unittest.TestCase):
                             'PassedWithinInactiveLiveOwnedPhysicalJsonVmMockScope' if name=='live-owned-physical-json' else
                             'PassedWithinObservedTypeShapeSourceHostScope' if name=='observed-type-shape' else
                             'PassedWithinInactiveLiveTypeShapeCensusHostScope' if name=='live-type-shape-census' else
+                            'PassedWithinOwnedTypeShapeJsonSourceHostScope' if name=='observed-type-shape-json' else
                             'PassedWithinInactiveHostScope' if name=='frozen-v2' else 'PassedWithinHostScope')
                 receipt={'result':expected,'commandLifetimeUnverified':False}
                 if name=='owned-physical-names':
@@ -366,6 +370,40 @@ class AggregateReceiptIntegration(unittest.TestCase):
                             'originalShapeGroups':list(runner.EXPECTED_TYPE_SHAPE_GROUPS),
                             'liveIntegrationGroups':list(runner.EXPECTED_LIVE_TYPE_SHAPE_GROUPS)}
                             for p in ('strict','sanitized')})
+                if name=='observed-type-shape-json':
+                    names=list(runner.EXPECTED_OWNED_BINDING_GROUPS)
+                    shapes=list(runner.EXPECTED_TYPE_SHAPE_GROUPS)
+                    live=list(runner.EXPECTED_LIVE_TYPE_SHAPE_GROUPS)
+                    cases=list(runner.EXPECTED_SHAPE_JSON_GROUPS)
+                    receipt.update(kind='R03P1ObservedTypeShapeJsonActualVmSourceHost',
+                        schemaVersion=1,actualSourceCompiled=True,sourcePreserved=True,
+                        noncanonicalShapeCountsOnly=True,
+                        completeExecutionTypeKeys=False,fullExecutionV1=False,
+                        physicalClassPointerOriginProven=False,coherentVmEpochProven=False,
+                        officialUnitySdkCompiled=False,UnityPlayerExecuted=False,
+                        runtimeAcceptance=False,
+                        sourceContract={
+                            'sourceKind':'R03P1ObservedTypeShapeCounts',
+                            'rowScope':'ObservedRegistrySubsetShapeCountsOnly',
+                            'fixedOwnedMaximumBytes':4096,
+                            'predecessorActualVmSourcesAndFingerprintVerified':True,
+                            'purePointerFreeNoVmCalls':True,'nonCanonicalOnly':True,
+                            'previousNameGroups':names,'previousShapeGroups':shapes,
+                            'previousLiveCensusGroups':live,'newJsonGroups':cases,
+                            'fullExecutionV1':False,'canonicalExecutionTypeKeys':False,
+                            'physicalClassPointerOriginProven':False,
+                            'coherentVmEpochProven':False,'runtimeAcceptance':False,
+                            'predecessor':{
+                                'originalNativeCppAndApiFingerprintPreserved':True,
+                                'sourceLocksReleasedBeforePureCensus':True,
+                                'originalNameGroups':names,
+                                'originalShapeGroups':shapes,
+                                'liveIntegrationGroups':live}},
+                        profiles={key:{
+                            'result':'PassedWithinOwnedTypeShapeJsonSourceHostScope',
+                            'originalNameGroups':names,'originalShapeGroups':shapes,
+                            'liveIntegrationGroups':live,'shapeJsonGroups':cases}
+                            for key in ('strict','sanitized')})
                 (dest/('results.json' if name=='native-sdk' else 'RESULT.json')).write_text(json.dumps(receipt))
                 return subprocess.CompletedProcess(args, 0, b'mock child\n', b'')
             argv = [str(RUNNER), '--workspace',str(ws),'--unity',str(unity),
@@ -377,9 +415,9 @@ class AggregateReceiptIntegration(unittest.TestCase):
                 try: runner.main()
                 except SystemExit as e: exit_code=e.code
             report=json.loads((output/'RESULT.json').read_bytes())
-            self.assertEqual(len(report['commands']),22)
-            self.assertEqual(len(launched),22)
-            self.assertEqual(len(set(Path(cmd[2]).name for cmd in launched)),22)
+            self.assertEqual(len(report['commands']),23)
+            self.assertEqual(len(launched),23)
+            self.assertEqual(len(set(Path(cmd[2]).name for cmd in launched)),23)
             self.assertFalse(scratch.exists()) # no compiler, SDK copy or Unity execution
             self.assertEqual(report['expectedNativeSyntaxUnits'],100)
             self.assertEqual(report['expectedOwnedBindingCaseGroupsPerProfile'],28)
@@ -387,6 +425,7 @@ class AggregateReceiptIntegration(unittest.TestCase):
             self.assertEqual(report['expectedLiveOwnedPhysicalJsonCaseGroupsPerProfile'],12)
             self.assertEqual(report['expectedObservedTypeShapeCaseGroupsPerProfile'],15)
             self.assertEqual(report['expectedLiveTypeShapeCensusCaseGroupsPerProfile'],16)
+            self.assertEqual(report['expectedObservedTypeShapeJsonCaseGroupsPerProfile'],16)
             self.assertFalse(report['R03Accepted'])
             self.assertFalse(report['UnityPlayerExecuted'])
             self.assertFalse(report['historicalEvidenceReclassified'])
@@ -416,7 +455,7 @@ class AggregateReceiptIntegration(unittest.TestCase):
                 code,report,managed=self.exercise(mode)
                 self.assertEqual(code,1)
                 self.assertEqual(report['result'],'FailedOrIncomplete')
-                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),21)
+                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),22)
                 self.assertEqual(managed['status'],'Failed')
                 self.assertFalse(report['officialUnitySdkCompilePassed'])
                 self.assertTrue(report['sourcePreserved'])
@@ -432,13 +471,14 @@ class AggregateReceiptIntegration(unittest.TestCase):
                             ('owned-physical-json-failed','owned-physical-json'),
                             ('live-owned-physical-json-failed','live-owned-physical-json'),
                             ('observed-type-shape-failed','observed-type-shape'),
-                            ('live-type-shape-census-failed','live-type-shape-census')):
+                            ('live-type-shape-census-failed','live-type-shape-census'),
+                            ('observed-type-shape-json-failed','observed-type-shape-json')):
             with self.subTest(mode=mode):
                 code,report,_=self.exercise(mode)
                 self.assertEqual(code,1)
                 self.assertEqual(report['result'],'FailedOrIncomplete')
-                self.assertEqual(len(report['commands']),22)
-                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),21)
+                self.assertEqual(len(report['commands']),23)
+                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),22)
                 child=next(c for c in report['commands'] if c['name']==target)
                 self.assertEqual(child['status'],'Failed')
                 self.assertEqual(child['exit'],1)
