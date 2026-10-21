@@ -687,6 +687,17 @@ class BatchFailureScheduling(unittest.TestCase):
 
     def assert_stopped(self,mode,target='live-general',code=1):
         actual,report,manifest,launched,checks=self.exercise(mode,target)
+        if mode=='missing-result' and target=='owned-physical-names':
+            print('DEBUG missing-owned-names '+json.dumps({
+                'actual':actual,'wanted':code,
+                'result':report.get('result'),
+                'stoppedAfter':report.get('stoppedAfter'),
+                'launched':launched,
+                'targetStatus':next((c.get('status') for c in report['commands']
+                                     if c['name']==target),None),
+                'targetException':next((c.get('exception') for c in report['commands']
+                                        if c['name']==target),None)}),
+                file=sys.stderr)
         self.assertEqual(actual,code);self.assertEqual(launched[-1],target)
         self.assertLess(len(launched),23);self.assertEqual(len(checks),4)
         self.assertFalse(report['sourcePreserved']);self.assertTrue(report['commandLifetimeUnverified'])
