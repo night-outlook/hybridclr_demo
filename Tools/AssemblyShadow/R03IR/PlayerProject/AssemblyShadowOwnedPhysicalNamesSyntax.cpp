@@ -58,5 +58,11 @@ using LiveJsonSignature=bool(*)(physical::Scratch&,owned::Capture&,
     owned::Receipt&,ownedJson::Record&,ownedJson::Receipt&,size_t);
 LiveJsonSignature RequireInactiveLiveOwnedJsonSourceSyntax() noexcept
 {return &AssemblyShadow::TryCaptureOwnedObservedPhysicalJson;}
+// Compile the genuine first-match VM-source→primitive type-shape census
+// entry point in each official SDK feature profile, without another TU.
+using LiveTypeShapeSignature=bool(*)(physical::Scratch&,owned::Capture&,
+    owned::Receipt&,shapeCensus::Result&);
+LiveTypeShapeSignature RequireInactiveLiveTypeShapeCensusSyntax() noexcept
+{return &AssemblyShadow::TryCaptureObservedTypeShapeCensus;}
 #endif
 }}} // namespaces
