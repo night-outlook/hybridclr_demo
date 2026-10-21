@@ -1,0 +1,1309 @@
+{
+  "kind": "SharedGeneralSerializerV2HostInterop",
+  "result": "PassedWithinHostScope",
+  "profiles": [
+    {
+      "name": "strict",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "sanitized",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "oldExecutionProducer": "Passed",
+  "currentExecutionProducer": "Passed",
+  "currentExecutionFunctionSha256": "4829a3ae7b9b0df57d054738f99d940b4ad7644a364df0502c9976469819d372",
+  "originalExecutionFunctionSha256": "051497faf816e4094b8f4e8f194c5b877812cee034c6901c755e8b6efdff9c40",
+  "sources": {
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.cpp": {
+      "gitBlob": "f51e6ca403fe12dec66ace96148f2da3bc17fc56",
+      "sha256": "62f2d9b038ed8e4f3e352c06ad72355ae5d6e69e800e3a39647a70271d295902"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.h": {
+      "gitBlob": "f243ac8b42d31a59b6a1d5641ea101807383243b",
+      "sha256": "5017cadef623509190bd7b486c935b7b8ca462207f7d13760d2223216112f038"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h": {
+      "gitBlob": "9dee4c9ea6febe4a919d1c7eb8faf2ad00b8a8e5",
+      "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionSerializer.h": {
+      "gitBlob": "3a0e7b1cc25bdeb16d0f341b67715b3433f04689",
+      "sha256": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowTypes.h": {
+      "gitBlob": "6d1379bc33300e4682468705942721d355481ca7",
+      "sha256": "df149952bd8beefd0ee6580f337262f28614c43f7eb695554a3a284eca1a1257"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp": {
+      "gitBlob": "9088d17f6d3317242dd7f2863cbbd46daf2dd67b",
+      "sha256": "a81eec3a1bd80675a0fb8d9fb793ab909f6e0dfcdfb23533c640301f5e499f05"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/BoundedDiagnosticsV2.h": {
+      "gitBlob": "174766c40235216d8c954107dd5e026116a510fa",
+      "sha256": "734e03a470e4562cd18551a84194eb82b391c8da8f4ef7f2c46abcef7fcc034d"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/diagnostic_stream.py": {
+      "gitBlob": "0866b07f758a20284d2a5d5d933b2be577b20b50",
+      "sha256": "afc9d1f0fa5d9155c8d75faab4ec2c02bcc8ef8a4b3e02612834778bef113a38"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/run_tests.py": {
+      "gitBlob": "a0443802fb1edfa59c35ff0572f0bd5da4d9de39",
+      "sha256": "1543e119df8fe839550e754aa24f156424ab0fa1cc19770a32dca9866f5f15c6"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/serializer_driver.cpp": {
+      "gitBlob": "4c4be6d3ce8c0f6eac7910ff46cb6f7c366aa6b6",
+      "sha256": "29550d5c7dda9c72b09f20f97dab49d79ce97b1801fc03dab76a63e3656ab718"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp": {
+      "gitBlob": "7b58a198f86378b9b0daf3864799867d359a772d",
+      "sha256": "80428db4e93796feea1c6f9b7d64d17ecf005496518bf44c3a3d52440832988f"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/current_execution_producer.py": {
+      "gitBlob": "a6dce71908f122b7cfa5fd8880f7e2482df468fc",
+      "sha256": "9ab147d8be5a138f6262adf2c80c69f6409fc61a3944e8e9e3b3b6207419ba15"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/fixtures/LegacyAssemblyShadowDiagnostics.cpp": {
+      "gitBlob": "226b01273d3e30d190422c4c4c740c49a8d957f0",
+      "sha256": "cb4fc34a4310c9a71aa972e6add33afb3ee7928316a0560f7ff683082adf1887"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/fixtures/AssemblyShadowDiagnostics.h": {
+      "gitBlob": "d76bb25a7e896d3c42af172ec3c80012ef2f2419",
+      "sha256": "be949eaf66c299db17cce36c9b72e1a8e6decc1841b0201a1e9e7b00daed3c19"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/checks/test_diagnostic_size.py": {
+      "gitBlob": "2a60eecdd3e9de7ae03556495d683cbdb52930e2",
+      "sha256": "90e0ee4a80ade2c26bdb35f60922bde6f844cef49d204fd6535fe8ca5f39c6c2"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/checks/test_snapshot_integration.py": {
+      "gitBlob": "921f286002fe76ed43aceee8912d4c55f1378bf0",
+      "sha256": "8cf35ab25be4343076444f8b6dfa104dc82f74fc90b85688e9e21323f9c3766d"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/checks/source-extracts/GetExecutionDiagnosticsJson.function.cpp": {
+      "gitBlob": "19d8c6ac259ea8200fc570136d4df25874c663ca",
+      "sha256": "051497faf816e4094b8f4e8f194c5b877812cee034c6901c755e8b6efdff9c40"
+    }
+  },
+  "sourceUnchanged": true,
+  "commands": [
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/checks/test_diagnostic_size.py",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/execution-producer"
+      ],
+      "exit": 0,
+      "stdoutSha256": "19f131434aa3a0ecb0cc964e2061d0613bc4524fd891fd54a513a7dbc7244dd6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "execution-producer-command",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/current_execution_producer.py",
+        "--native",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+        "--demo",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "--historical-output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/execution-producer",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/current-execution-parity"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "current-execution-parity-command",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "--version"
+      ],
+      "exit": 0,
+      "stdoutSha256": "76a924f59997fb65051981eb13105e0a8c151f16cd9c3e45e0f7c27ecefdb839",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "compiler",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-I/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2",
+        "-I/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/stubs",
+        "-DAssemblyShadowDiagnostics=OriginalDiagnostics",
+        "-c",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/fixtures/LegacyAssemblyShadowDiagnostics.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/original.o"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/legacy-compile",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-I/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2",
+        "-I/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/stubs",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/serializer_driver.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.cpp",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/original.o",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/current-compile",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "1",
+        "9",
+        "1",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-001",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "8143d9c500bcb56a5b7b2c90292f5dc736634855f905d76731cbb07a9ebae7b7",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-001/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "4096",
+        "9",
+        "1",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-002",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "649b6fb33128a3e7b90cd2d2e2af7db5457d414862aa27bc9290cd948de086b5",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-002/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "negative",
+        "all-sink-failures",
+        "0"
+      ],
+      "exit": 0,
+      "stdoutSha256": "4a644db8ddde9d3f7ee2ab9c3c7382c29ff34b1d04fc2e33edcea381d653b455",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/process-003",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "0",
+        "0",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-004",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "ae943382555a1cc4afa415e5db5ee4d763d4e5ef779b16f92e73e2e8524f19fc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-004/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "0",
+        "1",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-005",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "571cb48701b0ee46af7406384a078a357a756103530d36c5b17f355025e2ddd9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-005/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "0",
+        "2",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-006",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "55a24988c9f41b02cc266232a593d4fcc9f7670223c43fdbd5afb1c7772d32d6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-006/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "0",
+        "3",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-007",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "faad855616ba4cff2674d655cef2e1706937df987dd5cbea717b77384f7e610b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-007/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "0",
+        "4",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-008",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "ae943382555a1cc4afa415e5db5ee4d763d4e5ef779b16f92e73e2e8524f19fc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-008/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "0",
+        "5",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-009",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "002615529cbf76897d990d32c30b6cea6a34180ce6b1598cb8a3582fe82f820b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-009/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "0",
+        "6",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-010",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "ae943382555a1cc4afa415e5db5ee4d763d4e5ef779b16f92e73e2e8524f19fc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-010/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "0",
+        "7",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-011",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "55a24988c9f41b02cc266232a593d4fcc9f7670223c43fdbd5afb1c7772d32d6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-011/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "0",
+        "8",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-012",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "faad855616ba4cff2674d655cef2e1706937df987dd5cbea717b77384f7e610b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-012/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "0",
+        "9",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-013",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "3a099304b5ab15401c7aceba7c4d9a097caffebc5b0481f0ca5f84b65351ef24",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-013/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "0",
+        "-1",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-014",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "84d5454c0349c493f5eeae9ead685e296ba9dac51767ab46b91b22a01dcf917e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-014/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "0",
+        "0",
+        "6",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-015",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "5d993ac5985615cd2317f06322932cc9b0bcebec879a6dbd266a03ed8bc8f6ac",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-015/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "0",
+        "9",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-016",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "3a099304b5ab15401c7aceba7c4d9a097caffebc5b0481f0ca5f84b65351ef24",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-016/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "negative",
+        "limit",
+        "999999"
+      ],
+      "exit": 0,
+      "stdoutSha256": "a7b46c36e8afa143a4dd52690c05db8d6dbb35df3b067b0db5a25de8b7c548a2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/process-017",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "reenter-finish"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/process-018",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "1",
+        "9",
+        "4",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-019",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "158c464271ca2523fa9a5a324bfc50a4355ffb8a72ac4e3d697a82e43414400c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-019/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "1",
+        "9",
+        "2",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-020",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "06e64d4adab388d816139803775c9d5237cd1aaca7c416695a29932aedf38364",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-020/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "1",
+        "9",
+        "5",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-021",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "4bb1c296226a41c7a08d4d07009f03fb3d4024528aea3a3273829773a53eeec2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-021/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "integers"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/process-022",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "negative-length"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/process-023",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "nonclassic"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/process-024",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "bad-input"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/process-025",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "negative",
+        "null-sink",
+        "0"
+      ],
+      "exit": 0,
+      "stdoutSha256": "a7b46c36e8afa143a4dd52690c05db8d6dbb35df3b067b0db5a25de8b7c548a2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/process-026",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "repeat-finish"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/process-027",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "negative",
+        "limit",
+        "100"
+      ],
+      "exit": 0,
+      "stdoutSha256": "a7b46c36e8afa143a4dd52690c05db8d6dbb35df3b067b0db5a25de8b7c548a2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/process-028",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "roundtrip",
+        "1",
+        "9",
+        "3",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/field-029",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "25b8602e46aae833ea27c7081f1921d033d079fcdb444d5d087ffbe494a69dd6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/field-029/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "bad-manipulator"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/process-030",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "write-after-finish"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/process-031",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "reenter"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/process-032",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/strict/serializer",
+        "negative",
+        "limit",
+        "0"
+      ],
+      "exit": 0,
+      "stdoutSha256": "a7b46c36e8afa143a4dd52690c05db8d6dbb35df3b067b0db5a25de8b7c548a2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/process-033",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-I/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2",
+        "-I/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/stubs",
+        "-DAssemblyShadowDiagnostics=OriginalDiagnostics",
+        "-c",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/fixtures/LegacyAssemblyShadowDiagnostics.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/original.o"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/legacy-compile",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-I/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2",
+        "-I/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/stubs",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/serializer_driver.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.cpp",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/original.o",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/current-compile",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "1",
+        "9",
+        "1",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-034",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "8143d9c500bcb56a5b7b2c90292f5dc736634855f905d76731cbb07a9ebae7b7",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-034/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "4096",
+        "9",
+        "1",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-035",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "649b6fb33128a3e7b90cd2d2e2af7db5457d414862aa27bc9290cd948de086b5",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-035/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "negative",
+        "all-sink-failures",
+        "0"
+      ],
+      "exit": 0,
+      "stdoutSha256": "4a644db8ddde9d3f7ee2ab9c3c7382c29ff34b1d04fc2e33edcea381d653b455",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/process-036",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "0",
+        "0",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-037",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "ae943382555a1cc4afa415e5db5ee4d763d4e5ef779b16f92e73e2e8524f19fc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-037/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "0",
+        "1",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-038",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "571cb48701b0ee46af7406384a078a357a756103530d36c5b17f355025e2ddd9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-038/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "0",
+        "2",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-039",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "55a24988c9f41b02cc266232a593d4fcc9f7670223c43fdbd5afb1c7772d32d6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-039/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "0",
+        "3",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-040",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "faad855616ba4cff2674d655cef2e1706937df987dd5cbea717b77384f7e610b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-040/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "0",
+        "4",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-041",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "ae943382555a1cc4afa415e5db5ee4d763d4e5ef779b16f92e73e2e8524f19fc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-041/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "0",
+        "5",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-042",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "002615529cbf76897d990d32c30b6cea6a34180ce6b1598cb8a3582fe82f820b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-042/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "0",
+        "6",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-043",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "ae943382555a1cc4afa415e5db5ee4d763d4e5ef779b16f92e73e2e8524f19fc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-043/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "0",
+        "7",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-044",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "55a24988c9f41b02cc266232a593d4fcc9f7670223c43fdbd5afb1c7772d32d6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-044/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "0",
+        "8",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-045",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "faad855616ba4cff2674d655cef2e1706937df987dd5cbea717b77384f7e610b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-045/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "0",
+        "9",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-046",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "3a099304b5ab15401c7aceba7c4d9a097caffebc5b0481f0ca5f84b65351ef24",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-046/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "0",
+        "-1",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-047",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "84d5454c0349c493f5eeae9ead685e296ba9dac51767ab46b91b22a01dcf917e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-047/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "0",
+        "0",
+        "6",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-048",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "5d993ac5985615cd2317f06322932cc9b0bcebec879a6dbd266a03ed8bc8f6ac",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-048/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "0",
+        "9",
+        "0",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-049",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "3a099304b5ab15401c7aceba7c4d9a097caffebc5b0481f0ca5f84b65351ef24",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-049/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "negative",
+        "limit",
+        "999999"
+      ],
+      "exit": 0,
+      "stdoutSha256": "a7b46c36e8afa143a4dd52690c05db8d6dbb35df3b067b0db5a25de8b7c548a2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/process-050",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "reenter-finish"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/process-051",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "1",
+        "9",
+        "4",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-052",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "158c464271ca2523fa9a5a324bfc50a4355ffb8a72ac4e3d697a82e43414400c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-052/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "1",
+        "9",
+        "2",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-053",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "06e64d4adab388d816139803775c9d5237cd1aaca7c416695a29932aedf38364",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-053/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "1",
+        "9",
+        "5",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-054",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "4bb1c296226a41c7a08d4d07009f03fb3d4024528aea3a3273829773a53eeec2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-054/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "integers"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/process-055",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "negative-length"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/process-056",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "nonclassic"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/process-057",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "bad-input"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/process-058",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "negative",
+        "null-sink",
+        "0"
+      ],
+      "exit": 0,
+      "stdoutSha256": "a7b46c36e8afa143a4dd52690c05db8d6dbb35df3b067b0db5a25de8b7c548a2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/process-059",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "repeat-finish"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/process-060",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "negative",
+        "limit",
+        "100"
+      ],
+      "exit": 0,
+      "stdoutSha256": "a7b46c36e8afa143a4dd52690c05db8d6dbb35df3b067b0db5a25de8b7c548a2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/process-061",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "roundtrip",
+        "1",
+        "9",
+        "3",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/field-062",
+        "b37dd3ab0a72756503edb2b46e76569bab516a7286d0eb3cb7bc459e59c3643c",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3"
+      ],
+      "exit": 0,
+      "stdoutSha256": "25b8602e46aae833ea27c7081f1921d033d079fcdb444d5d087ffbe494a69dd6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/field-062/run",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "bad-manipulator"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/process-063",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "write-after-finish"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/process-064",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "reenter"
+      ],
+      "exit": 0,
+      "stdoutSha256": "fd2fd0ad47de28eda743dfac39b3bd625cbed71bbd976729f27b279e499638a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/process-065",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/legacy-host/native-general-stream/evidence/sanitized/serializer",
+        "negative",
+        "limit",
+        "0"
+      ],
+      "exit": 0,
+      "stdoutSha256": "a7b46c36e8afa143a4dd52690c05db8d6dbb35df3b067b0db5a25de8b7c548a2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/process-066",
+      "asan": "detect_leaks=0:abort_on_error=1",
+      "ubsan": "halt_on_error=1:print_stacktrace=1"
+    }
+  ],
+  "firstFailure": null,
+  "observedNewAllocationsDuringPreparedGeneralFormattingAndCaptureEncoding": 0,
+  "generalSerializer": "Actual legacy/current native product source; synthetic immutable VM snapshot",
+  "executionSerializer": "Actual pinned historical/current VM function bodies with byte parity over identical synthetic VM inputs; no live bounded acquisition",
+  "captureVmAllocationBoundProven": false,
+  "liveCaptureCoherenceProven": false,
+  "durableRuntimeFiles": false,
+  "v2PlayerEnabled": false,
+  "actualUnity": false,
+  "runtimeAcceptance": false
+}

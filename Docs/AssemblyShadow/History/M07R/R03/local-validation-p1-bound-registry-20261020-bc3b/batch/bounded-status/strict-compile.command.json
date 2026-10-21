@@ -1,0 +1,26 @@
+{
+  "name": "strict-compile",
+  "argv": [
+    "/usr/bin/clang++",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic",
+    "-pthread",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/bounded-status/stubs",
+    "-O2",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/bounded-status/mock-compilation.cpp",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp",
+    "-o",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/bounded-status/strict.exe"
+  ],
+  "startedUnix": 1792549965.093687,
+  "finishedUnix": 1792549965.429461,
+  "exit": 0,
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

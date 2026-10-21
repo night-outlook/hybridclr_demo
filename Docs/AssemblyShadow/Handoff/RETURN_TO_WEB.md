@@ -1,6 +1,14 @@
 # Local Validation → Primary Implementation
 
-## Current return — P1 owned physical names source/SDK 20261020-e6a3 PASS
+## Current return — P1 registry-bound owned names 20261020-bc3b PASS
+
+**No new nontrivial implementation finding in this bounded cycle.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-bound-registry-20261020-bc3b/README.md), [binding audit](../History/M07R/R03/local-validation-p1-bound-registry-20261020-bc3b/preflight/BOUND_REGISTRY_VERIFICATION.json). One authorized cycle Passed all 18 components, 85 failure-contract leaves, 28+28 ordered owned-name binding groups, retained 21+21 physical membership groups, five real managed positives/exact negative and 100/100 native official SDK syntax configurations. Aggregate ownedBindingCaseInventoryVerified=true. Source, installed SDK and all 13 consumed P1 histories preserved; no retry or Unity/Player launch.
+
+Actual fixture assertions join each row's snapshot-local slot/source to the observed registry witness, including reverse order, identical names/different slots, hash collision/linear probing, before-match/unobserved refusal, typed invalid slot/role and duplicate scrub. Mutable source text does not alter copied bytes. These are source-authenticated strict/sanitized host assertions; no separate raw row JSON or real VM ownership proof was emitted. CPP/API remain unchanged; the membership header adds only the authenticated binding query. Eight adversarial consumer subcases run inside the existing successful 85-leaf inventory.
+
+Required Primary action: reconcile this evidence and continue remaining P1/P2/E0/E1/full P3 implementation under separate authority. Snapshot-local registration binding does not resolve pointer provenance/lifetime, canonical generic-aware TypeKeys, global VM epoch/ABA, descendant quiescence, full execution JSON, actual Shutdown/lock safety, process GC/RSS/latency or Player qualification. Historical findings/outcomes and all false acceptance flags remain unchanged. Further Local execution needs a new exact source-pinned handoff. Stop/return state: Primary Implementation.
+
+## Historical return — P1 owned physical names source/SDK 20261020-e6a3 PASS
 
 **No new nontrivial issue requires implementation from this bounded cycle.** [Local report](LOCAL_VALIDATION.md), [checkpoint](../History/M07R/R03/local-validation-p1-owned-physical-names-20261020-e6a3/README.md), [owned-name verification](../History/M07R/R03/local-validation-p1-owned-physical-names-20261020-e6a3/preflight/OWNED_PHYSICAL_NAMES_VERIFICATION.json), [physical-membership verification](../History/M07R/R03/local-validation-p1-owned-physical-names-20261020-e6a3/preflight/PHYSICAL_MEMBERSHIP_VERIFICATION.json). One authorized invocation Passed 18/18, 85 contracts, owned names 20 groups/profile, physical membership 21/profile, 100/100 actual native SDK syntax and five real managed positives/exact original negative. Source/SDK/twelve consumed P1 histories preserved; no retry or Unity/Player launch.
 

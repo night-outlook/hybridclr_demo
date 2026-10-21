@@ -1,0 +1,26 @@
+{
+  "result": "ManagedCompilerAndHistoricalPinsByteUnchanged",
+  "checks": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "diff",
+        "--exit-code",
+        "465c14e660b576836f544da2b410dcb8b9e6c05f",
+        "a9638eefd5398ff4397e7a6597e4e2b3e7572a70",
+        "--",
+        "Tools/AssemblyShadow/R03/build_api.py",
+        "Tools/AssemblyShadow/R03/source-pins.json"
+      ],
+      "start": "2026-10-21T02:30:38.676335+00:00",
+      "end": "2026-10-21T02:30:38.686763+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "newNativePython": "d5aec39ac14712449f7334f4052c04dca6fb29218d50a8ba9568f950438caa3a",
+  "newOuterPython": "365d86cedebfda1d2502adcb88c87435bbef2611da44e01537da5c8f93ef2b2a"
+}

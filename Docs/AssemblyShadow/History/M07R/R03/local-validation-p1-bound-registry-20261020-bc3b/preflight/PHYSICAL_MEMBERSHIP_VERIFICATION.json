@@ -1,0 +1,119 @@
+{
+  "result": "PassedWithinInactivePhysicalMembershipHostAndOfficialSDKSyntax",
+  "profiles": {
+    "sanitized": {
+      "caseGroups": [
+        "empty-registry",
+        "one-enumerated",
+        "candidate-active-enumerated",
+        "unrelated-physical-class-ignored",
+        "duplicate-enumeration-not-double-counted",
+        "hash-collision-addresses",
+        "unmatched-class-refused",
+        "partially-enumerated-refused",
+        "missing-witness-refused",
+        "wrong-observed-count-refused",
+        "saturated-revision-refused",
+        "admission-closed",
+        "duplicate-registry-identity",
+        "null-enumerator-class",
+        "enumeration-over-cap",
+        "revision-changes-after-iteration",
+        "state-changes-after-iteration",
+        "active-changes-after-iteration",
+        "witness-changes-after-iteration",
+        "consumed-scratch-refused",
+        "successful-scratch-reuse-refused"
+      ],
+      "result": "PassedWithinExplicitVmMocks"
+    },
+    "strict": {
+      "caseGroups": [
+        "empty-registry",
+        "one-enumerated",
+        "candidate-active-enumerated",
+        "unrelated-physical-class-ignored",
+        "duplicate-enumeration-not-double-counted",
+        "hash-collision-addresses",
+        "unmatched-class-refused",
+        "partially-enumerated-refused",
+        "missing-witness-refused",
+        "wrong-observed-count-refused",
+        "saturated-revision-refused",
+        "admission-closed",
+        "duplicate-registry-identity",
+        "null-enumerator-class",
+        "enumeration-over-cap",
+        "revision-changes-after-iteration",
+        "state-changes-after-iteration",
+        "active-changes-after-iteration",
+        "witness-changes-after-iteration",
+        "consumed-scratch-refused",
+        "successful-scratch-reuse-refused"
+      ],
+      "result": "PassedWithinExplicitVmMocks"
+    }
+  },
+  "groupsPerProfile": 21,
+  "sourceInputs": {
+    "libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 122585,
+      "gitBlob": "9088d17f6d3317242dd7f2863cbbd46daf2dd67b",
+      "sha256": "a81eec3a1bd80675a0fb8d9fb793ab909f6e0dfcdfb23533c640301f5e499f05"
+    },
+    "libil2cpp/vm/AssemblyShadow.h": {
+      "bytes": 11033,
+      "gitBlob": "b70651fe4fddfbfd6f0962314def12e6960b5913",
+      "sha256": "978b8a61625cdba96acd514893eca7070836a0ebd18d64545926404469a6a40b"
+    },
+    "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h": {
+      "bytes": 1774,
+      "gitBlob": "ce360fce0bbbc16ee12d8bdbb849d8c0b7726b34",
+      "sha256": "4dfe7294faa17fa69b217e85db0f7ce7fed8847af07c6742aa7486d3ca3ddf9e"
+    },
+    "libil2cpp/vm/AssemblyShadowExecutionRegistryPublisher.h": {
+      "bytes": 2361,
+      "gitBlob": "4d7e80346cf8b3a8c93ad95e025f00035629f141",
+      "sha256": "7db3ea584e332c92364ebee5b9c778e0c731c449783551a9adb4204cf1df8ff7"
+    },
+    "libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h": {
+      "bytes": 788,
+      "gitBlob": "46a313742295acaa52d5022f238fbcba4430c6df",
+      "sha256": "4d318426f4be784fe3eb6065ef47ed97539416f871fbe060f6c4ca6e8be41d5e"
+    },
+    "libil2cpp/vm/AssemblyShadowMetadataLifetime.h": {
+      "bytes": 4637,
+      "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd",
+      "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716"
+    },
+    "libil2cpp/vm/AssemblyShadowPhysicalMembership.h": {
+      "bytes": 7576,
+      "gitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3",
+      "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7"
+    },
+    "libil2cpp/vm/AssemblyShadowPhysicalMembershipSource.inl": {
+      "bytes": 3573,
+      "gitBlob": "4e18fa035c324a67959284efa90fa601c6ede0d9",
+      "sha256": "bd0ff612a27913c1424cc7627454ae8eb5101b3479eca2ba24e6097bb3197651"
+    },
+    "tools/r03/diagnostic_stream/physical_membership_fixture.cpp": {
+      "bytes": 12458,
+      "gitBlob": "95588fbf384cfecfe3c0bf170ea1d4c390846373",
+      "sha256": "38dd3b5ee04af805fa57bbf5f36a08a278e71e35f3da795cb9e67386ba1339b1"
+    },
+    "tools/r03/diagnostic_stream/run_physical_membership.py": {
+      "bytes": 12764,
+      "gitBlob": "febbfe3224d06692522c33f5a967e48a9fb94734",
+      "sha256": "b84539a278923ed48afd54ab9b48d7a6f687535baeb47f118b6c8fc1598bdedb"
+    }
+  },
+  "methodSha256": "bd0ff612a27913c1424cc7627454ae8eb5101b3479eca2ba24e6097bb3197651",
+  "fiveVersionCompileRunReceiptsVerified": true,
+  "membershipDoesNotAuthorizeDereference": true,
+  "metadataAndIteratorInputsMocked": true,
+  "metadataPointerLifetimeProven": false,
+  "coherentVmEpochProven": false,
+  "runtimeAcceptance": false,
+  "SDKConfigurations": 100,
+  "SDKUnits": 20
+}

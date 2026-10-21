@@ -1,0 +1,150 @@
+{
+  "result": "PassedWithinInactiveOwnedPhysicalNamesHostAndOfficialSDKSyntax",
+  "profiles": {
+    "sanitized": {
+      "caseGroups": [
+        "empty-physical-owned",
+        "one-physical-owned",
+        "two-roles-owned",
+        "duplicate-enumerated-owned-once",
+        "unrelated-malformed-class-not-dereferenced",
+        "null-namespace-copied-as-empty",
+        "owned-bytes-survive-vm-change",
+        "reverse-enumeration-role-binding",
+        "same-display-name-distinct-binding",
+        "hash-collision-binding",
+        "missing-physical-row-refused",
+        "bad-matched-image-refused",
+        "bad-matched-assembly-refused",
+        "bad-matched-assembly-name-refused",
+        "bad-matched-simple-name-refused",
+        "field-overlong-refused",
+        "owned-text-budget-refused",
+        "source-revision-changed-after-iteration",
+        "state-changed-after-iteration",
+        "active-changed-after-iteration",
+        "closed-admission-refused",
+        "unknown-callback-null-refused",
+        "binding-not-matched-refused",
+        "unobserved-binding-refused",
+        "invalid-slot-refused-and-scrubbed",
+        "invalid-role-refused-and-scrubbed",
+        "duplicate-registration-binding-refused-and-scrubbed",
+        "reused-owned-capture-refused"
+      ],
+      "result": "PassedWithinExplicitVmMocks"
+    },
+    "strict": {
+      "caseGroups": [
+        "empty-physical-owned",
+        "one-physical-owned",
+        "two-roles-owned",
+        "duplicate-enumerated-owned-once",
+        "unrelated-malformed-class-not-dereferenced",
+        "null-namespace-copied-as-empty",
+        "owned-bytes-survive-vm-change",
+        "reverse-enumeration-role-binding",
+        "same-display-name-distinct-binding",
+        "hash-collision-binding",
+        "missing-physical-row-refused",
+        "bad-matched-image-refused",
+        "bad-matched-assembly-refused",
+        "bad-matched-assembly-name-refused",
+        "bad-matched-simple-name-refused",
+        "field-overlong-refused",
+        "owned-text-budget-refused",
+        "source-revision-changed-after-iteration",
+        "state-changed-after-iteration",
+        "active-changed-after-iteration",
+        "closed-admission-refused",
+        "unknown-callback-null-refused",
+        "binding-not-matched-refused",
+        "unobserved-binding-refused",
+        "invalid-slot-refused-and-scrubbed",
+        "invalid-role-refused-and-scrubbed",
+        "duplicate-registration-binding-refused-and-scrubbed",
+        "reused-owned-capture-refused"
+      ],
+      "result": "PassedWithinExplicitVmMocks"
+    }
+  },
+  "groupsPerProfile": 28,
+  "sourceInputs": {
+    "libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 122585,
+      "gitBlob": "9088d17f6d3317242dd7f2863cbbd46daf2dd67b",
+      "sha256": "a81eec3a1bd80675a0fb8d9fb793ab909f6e0dfcdfb23533c640301f5e499f05"
+    },
+    "libil2cpp/vm/AssemblyShadow.h": {
+      "bytes": 11033,
+      "gitBlob": "b70651fe4fddfbfd6f0962314def12e6960b5913",
+      "sha256": "978b8a61625cdba96acd514893eca7070836a0ebd18d64545926404469a6a40b"
+    },
+    "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h": {
+      "bytes": 1774,
+      "gitBlob": "ce360fce0bbbc16ee12d8bdbb849d8c0b7726b34",
+      "sha256": "4dfe7294faa17fa69b217e85db0f7ce7fed8847af07c6742aa7486d3ca3ddf9e"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h": {
+      "bytes": 7805,
+      "gitBlob": "2b446fb57d97c86be11a81cbf8e253ad7b3ce307",
+      "sha256": "a9021fddbf34b02a4b5f5d9102524db098bce29b3ed53bd9f88fa2188d441b30"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl": {
+      "bytes": 5238,
+      "gitBlob": "409370115cc3123503aaf1ab46ab23e3e68b8073",
+      "sha256": "7578de559d9b88ef89defbcba30cc3ea41b4dc5dbd04d7b929dceb4e07d45766"
+    },
+    "libil2cpp/vm/AssemblyShadowPhysicalMembership.h": {
+      "bytes": 7576,
+      "gitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3",
+      "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7"
+    },
+    "tools/r03/diagnostic_stream/owned_physical_names_fixture.cpp": {
+      "bytes": 16490,
+      "gitBlob": "9a90af5e9582610b004ec7315330cefdcd708da3",
+      "sha256": "b1784c23ad93dd763749324189627854884fc06c24ea07c277abd752c027ddb1"
+    },
+    "tools/r03/diagnostic_stream/run_owned_physical_names.py": {
+      "bytes": 17077,
+      "gitBlob": "bd3e4ffe5d133cb3808dffd70ca4ecb74cfcd2b5",
+      "sha256": "d195de6b44e6db58119da231b790de5b54771ba22ec8a5a11fe9d6d0f008b5b7"
+    }
+  },
+  "methodSha256": "7578de559d9b88ef89defbcba30cc3ea41b4dc5dbd04d7b929dceb4e07d45766",
+  "headerSha256": "a9021fddbf34b02a4b5f5d9102524db098bce29b3ed53bd9f88fa2188d441b30",
+  "fiveVersionCompileRunReceiptsVerified": true,
+  "firstMatchOnlyBeforeMetadataRead": true,
+  "sourceStringMutationImmutabilityFixtureAsserted": true,
+  "nonnestedLocksAssertedUnderMocks": true,
+  "rowsMaximum": 1024,
+  "textBytesMaximum": 262144,
+  "fieldBytesMaximum": 4096,
+  "captureObjectBytesMaximum": 524288,
+  "originalCppApiAndPhysicalHeaderBlobsVerified": true,
+  "voidPhysicalEnumeratorApiPreserved": true,
+  "newPhysicalAndOwnedNamesFailStopContractIds": [
+    "p1_contract_suite_2.BatchFailureScheduling.test_owned_names_malformed_lifetime_marker_stops",
+    "p1_contract_suite_2.BatchFailureScheduling.test_owned_names_missing_lifetime_marker_stops",
+    "p1_contract_suite_2.BatchFailureScheduling.test_owned_names_missing_result_stops",
+    "p1_contract_suite_2.BatchFailureScheduling.test_owned_names_null_lifetime_marker_stops",
+    "p1_contract_suite_2.BatchFailureScheduling.test_owned_names_reported_lifetime_stops",
+    "p1_contract_suite_2.BatchFailureScheduling.test_physical_membership_missing_lifetime_marker_stops_batch",
+    "p1_contract_suite_2.BatchFailureScheduling.test_physical_membership_missing_result_stops_batch",
+    "p1_contract_suite_2.BatchFailureScheduling.test_physical_membership_null_lifetime_marker_stops_batch",
+    "p1_contract_suite_2.BatchFailureScheduling.test_physical_membership_reported_uncertainty_stops_batch",
+    "p1_contract_suite_2.BatchFailureScheduling.test_physical_membership_string_lifetime_marker_stops_batch"
+  ],
+  "numericNameBytesIndependentlyEmitted": false,
+  "rawEvidence": "Source-authenticated fixture assertions and complete PASS groups; no separately emitted per-case name JSON",
+  "metadataAndIteratorInputsMocked": true,
+  "ownedPhysicalNamesOnly": true,
+  "physicalClassPointerOriginProven": false,
+  "metadataPointerLifetimeProven": false,
+  "completeExecutionTypeKeys": false,
+  "coherentVmEpochProven": false,
+  "descendantQuiescenceProven": false,
+  "runtimeAcceptance": false,
+  "SDKConfigurations": 100,
+  "SDKUnits": 20
+}

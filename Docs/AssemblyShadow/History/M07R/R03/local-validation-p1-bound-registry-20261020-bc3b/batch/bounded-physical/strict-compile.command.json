@@ -1,0 +1,28 @@
+{
+  "name": "strict-compile",
+  "argv": [
+    "/usr/bin/clang++",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic",
+    "-pthread",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/bounded-physical/stubs",
+    "-O2",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/bounded-physical/mock-compiled.cpp",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.cpp",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/bounded-physical/strict-original.o",
+    "-o",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-BOUND-REGISTRY-20261020-bc3b/bounded-physical/strict.exe"
+  ],
+  "startUnix": 1792549934.7316558,
+  "finishUnix": 1792549935.608675,
+  "exit": 0,
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
