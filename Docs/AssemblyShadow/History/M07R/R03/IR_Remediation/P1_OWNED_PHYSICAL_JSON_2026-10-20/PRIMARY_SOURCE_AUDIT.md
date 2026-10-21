@@ -1,0 +1,22 @@
+# Primary source and evidence review — pure owned physical-name JSON
+
+**Scope:** Primary Implementation review of an inactive serializer, production-header tests, preflight and CI. It is **not** an independent design→plan→implementation→live-Player R03 full-stage review and does **not** certify a Human Review Gate.
+
+## Reviewed exact implementation boundaries
+
+- `il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h`: checked pure `Compose` over sealed input `Capture` and matching typed Receipt, fixed 2 MiB output, one-shot Record, all-row preflight, registry-slot uniqueness and Candidate/ActiveShadow partition, strict UTF-8 validation, bounded escaped shared Writer, irreversible typed error/zeroed partial output. Only the final completed result allows a data pointer. Constructor/output lifetime belongs to the caller; it is not a GC/RSS/latency proof.
+- Original `AssemblyShadowOwnedPhysicalNames.h`, `AssemblyShadow.cpp`, `AssemblyShadow.h`, normal diagnostics, class registry publisher and execution JSON getters are unchanged. No new VM iterator, metadata access or source lock is added. `R03P1ObservedPhysicalDisplayNames` is an explicitly noncanonical independent diagnostic record; physical display names are not a generic-aware `TypeKey`.
+- Native `owned_physical_json_fixture.cpp` and `run_owned_physical_json.py` compile production capture/json/writer headers, enforce exact 21 ordered strict+sanitized groups, byte-exact output, malformed/forged inputs and memory failure, real version/compile/run receipt results, before/after SHA/Git-blob preservation, and prohibited VM/file/heap operation source gates. Compiler/VM metadata are host-controlled; this is not Unity link or runtime proof.
+- Demo `run_p1_metadata_local_preflight.py` checks exact source-kind, integer schema, caller-verified compiled-source and two complete immutable 21-group inventories with explicit false VM/type/runtimescope fields. Positive producer success cannot substitute an incomplete inventory. `test_p1_command_failures.py` and `test_p1_managed_receipt.py` use adversarial receipt mocks inside the preexisting 85 regression leaves. Unknown lifetime fail-stop/NotRun and original completed known failure semantics remain.
+- Existing official native SDK syntax probe now instantiates the actual `Compose` function in the old owned-names TU; no new native TU or original runtime entry point is introduced. The unchanged 20×5 compiler matrix must qualify new header on installed Apple SDK during Local Validation.
+
+## Observed CI and historical failures
+
+- Native pure JSON [CI 39535415924](https://github.com/night-outlook/il2cpp_plus/actions/runs/39535415924) PASSED 3/3 macOS Clang, Linux Clang/GCC strict and ASan/UBSan host profiles. (This is host C++17 compilation, not official installed Unity SDK.)
+- Demo source-bound integrated [CI 39535996468](https://github.com/night-outlook/hybridclr_demo/actions/runs/39535996468) PASSED 2/2 macOS and Ubuntu 85-contract host runs at corrected exact pinned native source. Source CLI, managed receipt and focused failure contracts also PASSED on macOS/Ubuntu at initial demo source anchor.
+- The earlier integrated [CI 39535891360](https://github.com/night-outlook/hybridclr_demo/actions/runs/39535891360) failed before tests because its checkout still used native `e6a350eb...` without new files. The recorded FAIL was **not** a failure of JSON compiler/VM execution; it remains historical and was corrected only by pinning the present native source in the workflow.
+- Last Local `20261020-bc3b` remains consumed and immutable at its older exact tuple; no new official installed SDK execution has occurred yet for the JSON source.
+
+## Remaining findings / acceptance boundary
+
+No new finding detected within completed **host** source/CI scope. Official Apple SDK syntax, Local custody and final 19-child batch are **NotRun** until an authorized one-shot Local cycle. Generic-aware execution TypeKeys, physical class allocation/lifetime, coherent all-VM epoch/ABA, cctor/static state, complete nonempty legacy execution JSON, real VM allocation/GC/RSS/latency, Shutdown/lock and linked Player remain unproved. P1 Incomplete; P2 NotIntegrated; E0 Blocked/Unavailable; E1 BlockedByE0; full P3 Incomplete. No Human Review Gate. Original SNAP-01/N/M/K/I/E/R02 fingerprint FAIL, strict S custody Blocked and independent full-stage R03 FAIL/re-review NotRun remain unchanged. All product acceptance flags false; PureInterpreter disabled.

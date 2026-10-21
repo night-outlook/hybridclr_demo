@@ -1,0 +1,111 @@
+{
+  "kind": "R03P1InactiveOwnedPhysicalNamesJsonPrimarySourceEvidence",
+  "schemaVersion": 1,
+  "priorLocal": {
+    "cycle": "20261020-bc3b",
+    "result": "PassedSourceHostAndSDKOnly",
+    "sourceTuple": {
+      "demo": "a9638eefd5398ff4397e7a6597e4e2b3e7572a70",
+      "native": "bc3b7df43c5009fa4bc7f6d94e414ad9cd135f62",
+      "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de"
+    },
+    "components": 18,
+    "commandFailures": 85,
+    "bindingGroupsPerProfile": 28,
+    "managedPositive": 5,
+    "managedExpectedNegative": true,
+    "nativeSyntax": 100,
+    "consumed": true
+  },
+  "sourceCandidate": {
+    "demoCodeAnchor": "c50e9da5afbf5ee6e65966532ed60a8772c9a9f8",
+    "native": "d9cb2a63396e66e213ad0f30581f533457d2ae52",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de"
+  },
+  "implementation": {
+    "nativeNew": [
+      "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+      "tools/r03/diagnostic_stream/owned_physical_json_fixture.cpp",
+      "tools/r03/diagnostic_stream/run_owned_physical_json.py",
+      ".github/workflows/r03-p1-owned-physical-json.yml"
+    ],
+    "nativeExistingChanged": [],
+    "demoChanged": [
+      "Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py",
+      "Tools/AssemblyShadow/R03IR/test_p1_command_failures.py",
+      "Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py",
+      "Tools/AssemblyShadow/R03IR/test_p1_metadata_preflight.py",
+      "Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py",
+      "Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowOwnedPhysicalNamesSyntax.cpp",
+      ".github/workflows/r03-p1-integrated-command-failure-contracts.yml"
+    ],
+    "originalGettersUnchanged": true,
+    "ownedObjectBytesMax": 2097280,
+    "ownedJsonBytesMax": 2097152,
+    "canonicalExecutionTypeKeys": false,
+    "coherentVmEpochProven": false,
+    "physicalClassPointerOriginProven": false
+  },
+  "ci": {
+    "native": {
+      "runId": 39535415924,
+      "passedJobs": 3,
+      "totalJobs": 3,
+      "scope": "Actual production headers, controlled host C++17 strict/sanitized",
+      "caseGroupsPerProfile": 21
+    },
+    "demoIntegrated": {
+      "runId": 39535996468,
+      "passedJobs": 2,
+      "totalJobs": 2,
+      "expectedCommandFailureTests": 85,
+      "scope": "Mocked Git/SDK/VM and actual Python child contracts"
+    },
+    "demoManagedEarlierSource": {
+      "runId": 39535891271,
+      "passedJobs": 2,
+      "totalJobs": 2,
+      "scope": "Managed receipt/CLI host mocks prior to workflow pin-only successor"
+    },
+    "demoFailureEarlierSource": {
+      "runId": 39535891214,
+      "passedJobs": 2,
+      "totalJobs": 2,
+      "scope": "Direct controlled Python failure receipts prior to workflow pin-only successor"
+    },
+    "historicalMismatch": {
+      "runId": 39535891360,
+      "result": "FailedBeforeHostExecution_NativeSourcePinLackedNewFiles",
+      "preserved": true,
+      "correctedOnlyByPinnedWorkflowSource": true
+    }
+  },
+  "nextLocal": {
+    "result": "NotRun",
+    "componentCount": 19,
+    "commandFailureTests": 85,
+    "ownedBindingGroupsPerProfile": 28,
+    "ownedNonCanonicalJsonGroupsPerProfile": 21,
+    "officialManagedPositiveProducts": 5,
+    "officialManagedExpectedNegative": true,
+    "nativeSdkSyntaxConfigurations": 100,
+    "unityEditorLaunched": false,
+    "unityPlayerLaunched": false
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "historicalEvidenceReclassified": false
+}
