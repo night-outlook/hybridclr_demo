@@ -1,0 +1,224 @@
+{
+  "kind": "P1OwnedGeneralComposerActualHeadersHost",
+  "result": "PassedWithinOwnedHostScope",
+  "profiles": {
+    "strict": {
+      "result": "PassedWithinHostScope",
+      "cases": [
+        "byte-exact-general-owned-parity",
+        "composition-no-new-allocation",
+        "missing-source-fail-closed",
+        "incomplete-source-fail-closed",
+        "cross-reader-generation-mismatch",
+        "startup-source-bounds",
+        "invalid-borrowed-startup-refusal",
+        "complete-output-budget-refusal",
+        "invalid-utf8-refusal",
+        "single-owner-single-freeze",
+        "no-coherent-vm-epoch-or-player-claim"
+      ],
+      "allocationsAfterPrewarm": 0
+    },
+    "sanitized": {
+      "result": "PassedWithinHostScope",
+      "cases": [
+        "byte-exact-general-owned-parity",
+        "composition-no-new-allocation",
+        "missing-source-fail-closed",
+        "incomplete-source-fail-closed",
+        "cross-reader-generation-mismatch",
+        "startup-source-bounds",
+        "invalid-borrowed-startup-refusal",
+        "complete-output-budget-refusal",
+        "invalid-utf8-refusal",
+        "single-owner-single-freeze",
+        "no-coherent-vm-epoch-or-player-claim"
+      ],
+      "allocationsAfterPrewarm": 0
+    }
+  },
+  "sourceContract": {
+    "requiredProductionFragments": 20,
+    "caseNames": [
+      "byte-exact-general-owned-parity",
+      "composition-no-new-allocation",
+      "missing-source-fail-closed",
+      "incomplete-source-fail-closed",
+      "cross-reader-generation-mismatch",
+      "startup-source-bounds",
+      "invalid-borrowed-startup-refusal",
+      "complete-output-budget-refusal",
+      "invalid-utf8-refusal",
+      "single-owner-single-freeze",
+      "no-coherent-vm-epoch-or-player-claim"
+    ],
+    "onlyOwnedCompletedSourcesRead": true,
+    "noVmOrFileOperationsInComposer": true,
+    "crossEnumerationGenerationMismatchRejected": true,
+    "globalVmEpochProven": false
+  },
+  "sourceBefore": {
+    "libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h": {
+      "bytes": 10378,
+      "sha256": "876f83104d7ea81b043e1ae30ac83aa83c5e9e13f53a19ad0c032df52d693fa0",
+      "gitBlob": "bf3c19fab543c24134712ea08dc2cb78190f7f3a"
+    },
+    "libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h": {
+      "bytes": 15083,
+      "sha256": "bc8660655e19ee15c02caf21403ef90f5f87c95b0fa1dcc212a7ca7a61573e6e",
+      "gitBlob": "08856d4a610ed3fa519cee67bad8a307dd82a34b"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h": {
+      "bytes": 10793,
+      "sha256": "fe37931e27f1616bea8e08c134a2349567161bd8cd5c739c3954be349b9da3c8",
+      "gitBlob": "d2a6fb798de9a3599f6b6c63149515cb23ab3350"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h": {
+      "bytes": 6530,
+      "sha256": "b5b91b9480016493f1b26fcd78be96f9c1ff107b866950d7b08d999870ea785a",
+      "gitBlob": "fc3a569ea0f617b67b3867a804126e9583d86b72"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h": {
+      "bytes": 13880,
+      "sha256": "b77a46ffc4ba6e522fc8c34e0ac43283f502639a8ca4f6b9282afc097fa5c895",
+      "gitBlob": "b7ba5dffb2e3ecebe7406f598e97a1ab97251cdf"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h": {
+      "bytes": 5084,
+      "sha256": "0545c483230b7a1f6ea007ff28f000ec37a2f85444062c62eff74a048c5986c1",
+      "gitBlob": "4e82e7f3814b8ed021a24d235dcfbe79c4c2412a"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h": {
+      "bytes": 6620,
+      "sha256": "ae4c2a471c1879510849d4902694caa7308bc70f3804cb6b1d0fb2ac839615a8",
+      "gitBlob": "91f049cc7d81d5e6de95ec50884ed3d6b9b63163"
+    },
+    "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h": {
+      "bytes": 6070,
+      "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605",
+      "gitBlob": "9dee4c9ea6febe4a919d1c7eb8faf2ad00b8a8e5"
+    },
+    "libil2cpp/vm/AssemblyShadowDiagnostics.h": {
+      "bytes": 2990,
+      "sha256": "5017cadef623509190bd7b486c935b7b8ca462207f7d13760d2223216112f038",
+      "gitBlob": "f243ac8b42d31a59b6a1d5641ea101807383243b"
+    },
+    "libil2cpp/vm/AssemblyShadowDiagnostics.cpp": {
+      "bytes": 8176,
+      "sha256": "62f2d9b038ed8e4f3e352c06ad72355ae5d6e69e800e3a39647a70271d295902",
+      "gitBlob": "f51e6ca403fe12dec66ace96148f2da3bc17fc56"
+    },
+    "libil2cpp/vm/AssemblyShadowTypes.h": {
+      "bytes": 1825,
+      "sha256": "df149952bd8beefd0ee6580f337262f28614c43f7eb695554a3a284eca1a1257",
+      "gitBlob": "6d1379bc33300e4682468705942721d355481ca7"
+    },
+    "tools/r03/diagnostic_stream/bounded_general_composer_fixture.cpp": {
+      "bytes": 14378,
+      "sha256": "8a8c84056b1e5be5c18d7f23131fad8825774e14ce47734c1e6068877a7480d3",
+      "gitBlob": "4733d181cc1136ed3fb4784050f0298dbed50397"
+    },
+    "tools/r03/diagnostic_stream/allocation_probe.cpp": {
+      "bytes": 1427,
+      "sha256": "80428db4e93796feea1c6f9b7d64d17ecf005496518bf44c3a3d52440832988f",
+      "gitBlob": "7b58a198f86378b9b0daf3864799867d359a772d"
+    },
+    "tools/r03/diagnostic_stream/run_bounded_general_composer.py": {
+      "bytes": 9331,
+      "sha256": "fb1ba633df3bc86cf2e3696e56886199315e2d2565b6f9e47f46154abbc7fe3d",
+      "gitBlob": "59fd0b4360a4e3b1768c64c1a4d19de765fb1469"
+    }
+  },
+  "sourcePreserved": true,
+  "commands": [
+    {
+      "label": "strict-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/owned-general/stubs",
+        "-O2",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/bounded_general_composer_fixture.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/owned-general/strict.exe"
+      ],
+      "startUnix": 1792634730.069377,
+      "finishUnix": 1792634731.08127,
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "strict-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/owned-general/strict.exe"
+      ],
+      "startUnix": 1792634731.081415,
+      "finishUnix": 1792634731.484066,
+      "exit": 0,
+      "stdoutSha256": "e73e4c783ce98412a29c8da79cd2ca2933bf28158dfc485108337c87b9747876",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "sanitized-compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/owned-general/stubs",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/bounded_general_composer_fixture.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnostics.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/owned-general/sanitized.exe"
+      ],
+      "startUnix": 1792634731.484242,
+      "finishUnix": 1792634732.997565,
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "sanitized-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/owned-general/sanitized.exe"
+      ],
+      "startUnix": 1792634732.997715,
+      "finishUnix": 1792634733.4867141,
+      "exit": 0,
+      "stdoutSha256": "e73e4c783ce98412a29c8da79cd2ca2933bf28158dfc485108337c87b9747876",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "firstError": null,
+  "actualProductionHeadersCompiled": true,
+  "legacySerializerSameSourceCompiled": true,
+  "allVmEpochProven": false,
+  "realClassPointerProven": false,
+  "originalLiveGettersReplaced": false,
+  "vmAllocationGcRssProven": false,
+  "officialUnitySdkCompiled": false,
+  "realPlayerRun": false,
+  "runtimeAcceptance": false
+}

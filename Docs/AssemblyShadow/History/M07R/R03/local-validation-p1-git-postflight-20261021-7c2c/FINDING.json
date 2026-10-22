@@ -1,0 +1,41 @@
+{
+  "id": "IR-LOCAL-P1-GIT-MANIFEST-LIFETIME-01",
+  "status": "SourceConfirmed_NotFaultInjected",
+  "scope": "Unexercised Git-timeout path; no effect on actual 20-successful-probe outcome",
+  "sourcePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py",
+  "sourceCommit": "c5dde8493504cf69781fb0ab52123f525010a3aa",
+  "sourceSha256": "30edaf400ec95b614c62549ab69bc4d83386a023a46e5f375863019c600acc45",
+  "aggregateLifetimeSource": "unknown_lifetime=stopped is not None or git_probe.unknown_lifetime",
+  "aggregateLifetimeLine": 1006,
+  "manifestLifetimeExpression": "stopped is not None",
+  "manifestLifetimeLine": 1043,
+  "manifestSource": "{\"files\":manifest,\n            \"inventoryScope\":\"UnsealedObservedFiles\" if unknown_lifetime else \"CompletedBatchFiles\",\n            \"commandLifetimeUnverified\":stopped is not None}",
+  "sourceOnlyState": {
+    "stopped": null,
+    "gitProbeUnknownLifetime": true,
+    "aggregateCommandLifetimeUnverified": true,
+    "manifestCommandLifetimeUnverified": false,
+    "inventoryScope": "UnsealedObservedFiles"
+  },
+  "actualRunGitTimeoutCount": 0,
+  "actualRunAllTwentyCommandsPassed": true,
+  "fullBatchGitTimeoutFaultInjectionPerformed": false,
+  "existing85ControlledFailureTestsExecuted": true,
+  "additionalHostOrCompilerRun": false,
+  "prior82ddIsDifferentSourceAndNotAReproductionOfThisNewPath": true,
+  "recommendedPrimaryAction": "Derive manifest generic lifetime field from the same unknown_lifetime variable as aggregate, or explicitly distinguish native-only and Git lifetimes in schema; add an end-to-end timeout manifest assertion while retaining unsealed scope, stop policy and 120-second limit.",
+  "remainingUncertainty": "New Git timeout path was not executed by this Local batch; clarify whether generic manifest field was intentionally native-component-only.",
+  "runtimeAcceptance": false,
+  "actualBatchResult": "PassedSourceHostAndSDKOnly",
+  "actualBatchResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/RESULT.json",
+  "actualBatchResultSha256": "01a13963a59a9a8354e30380f08c392b8f6807b9b3edb94557bfaef0fcd81242",
+  "evidencePaths": [
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-GIT-POSTFLIGHT-20261021-7c2c/POSTFLIGHT_MANIFEST_SOURCE_FINDING.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-GIT-POSTFLIGHT-20261021-7c2c/GIT_POSTFLIGHT_VERIFICATION.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/RESULT.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/MANIFEST.json"
+  ],
+  "affectedScope": "Root lifetime metadata on a Git-only timeout; current successful 20-probe outcome unaffected",
+  "validationStillRequired": "Primary synthetic end-to-end Git-timeout assertion must join aggregate/diagnostics/unsealed manifest lifetime flags without timeout or guard relaxation. Any fresh Local execution requires a new handoff/root set.",
+  "remainingHistoricalFailure": "20261021-82dd remains immutable FailedOrIncomplete"
+}

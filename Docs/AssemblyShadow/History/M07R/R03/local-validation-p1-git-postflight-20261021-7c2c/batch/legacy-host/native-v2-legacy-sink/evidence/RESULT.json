@@ -1,0 +1,3614 @@
+{
+  "kind": "R03NativeDiagnosticsV2ComponentTest",
+  "result": "PassedWithinNativeComponentScope",
+  "tests": 32,
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-O2",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics/native_codec_driver.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634706.739878,
+      "elapsedSeconds": 0.3764939308166504,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0000.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "commands/0000.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-O2",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics/posix_sink_driver.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634707.116587,
+      "elapsedSeconds": 0.21323108673095703,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0001.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "commands/0001.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics/native_codec_driver.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634707.330067,
+      "elapsedSeconds": 0.5363321304321289,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0002.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "commands/0002.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics/posix_sink_driver.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634707.866634,
+      "elapsedSeconds": 0.32662296295166016,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0003.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "commands/0003.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "selftest"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634708.193901,
+      "elapsedSeconds": 0.4054851531982422,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0004.stdout",
+        "bytes": 120,
+        "sha256": "939b42664be126a64dccc8a794d58eae12c78c09cd1c48875ce14cb50d143321"
+      },
+      "stderr": {
+        "path": "commands/0004.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "selftest"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634708.600061,
+      "elapsedSeconds": 0.4796321392059326,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0005.stdout",
+        "bytes": 120,
+        "sha256": "939b42664be126a64dccc8a794d58eae12c78c09cd1c48875ce14cb50d143321"
+      },
+      "stderr": {
+        "path": "commands/0005.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-6"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.080381,
+      "elapsedSeconds": 0.004829883575439453,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0006.stdout",
+        "bytes": 65,
+        "sha256": "38acb15d02d5ac0f2a2789602e9df950c380d2799b4bdb59394e4eeabdd3a662"
+      },
+      "stderr": {
+        "path": "commands/0006.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-6"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.0854511,
+      "elapsedSeconds": 0.04165792465209961,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0007.stdout",
+        "bytes": 65,
+        "sha256": "38acb15d02d5ac0f2a2789602e9df950c380d2799b4bdb59394e4eeabdd3a662"
+      },
+      "stderr": {
+        "path": "commands/0007.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-8"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.127489,
+      "elapsedSeconds": 0.0043408870697021484,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0008.stdout",
+        "bytes": 65,
+        "sha256": "620a3df236da0af638c2a61c86951463731998f91dbb3ed629f47b9fe00ad118"
+      },
+      "stderr": {
+        "path": "commands/0008.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-8"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.1321049,
+      "elapsedSeconds": 0.04088711738586426,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0009.stdout",
+        "bytes": 65,
+        "sha256": "620a3df236da0af638c2a61c86951463731998f91dbb3ed629f47b9fe00ad118"
+      },
+      "stderr": {
+        "path": "commands/0009.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-10"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.173467,
+      "elapsedSeconds": 0.005031108856201172,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0010.stdout",
+        "bytes": 65,
+        "sha256": "f02e75580c6e52c030f626ef565e2a0d85095a762100af02724baa37f2556bf1"
+      },
+      "stderr": {
+        "path": "commands/0010.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-10"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.1787,
+      "elapsedSeconds": 0.0412139892578125,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0011.stdout",
+        "bytes": 65,
+        "sha256": "f02e75580c6e52c030f626ef565e2a0d85095a762100af02724baa37f2556bf1"
+      },
+      "stderr": {
+        "path": "commands/0011.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-12"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.2202911,
+      "elapsedSeconds": 0.0046079158782958984,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0012.stdout",
+        "bytes": 65,
+        "sha256": "c42af90279346dc000099799991a420e565d3ea5ba2bd3b942003da341dc0eaf"
+      },
+      "stderr": {
+        "path": "commands/0012.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-12"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.225129,
+      "elapsedSeconds": 0.041744232177734375,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0013.stdout",
+        "bytes": 65,
+        "sha256": "c42af90279346dc000099799991a420e565d3ea5ba2bd3b942003da341dc0eaf"
+      },
+      "stderr": {
+        "path": "commands/0013.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-14"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.267235,
+      "elapsedSeconds": 0.0044820308685302734,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0014.stdout",
+        "bytes": 65,
+        "sha256": "643a1114e2e7f9dc495ac9c6cc57fab262237c0c0d6f818e8becb6bdb0c267d2"
+      },
+      "stderr": {
+        "path": "commands/0014.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-14"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.2719162,
+      "elapsedSeconds": 0.0420527458190918,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0015.stdout",
+        "bytes": 65,
+        "sha256": "643a1114e2e7f9dc495ac9c6cc57fab262237c0c0d6f818e8becb6bdb0c267d2"
+      },
+      "stderr": {
+        "path": "commands/0015.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-16"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.3143208,
+      "elapsedSeconds": 0.0043182373046875,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0016.stdout",
+        "bytes": 65,
+        "sha256": "9fe6fc6673469c1ba7f4b6c0587771feba0fe49b09d35cf32817a66f8fc97805"
+      },
+      "stderr": {
+        "path": "commands/0016.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-16"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.318839,
+      "elapsedSeconds": 0.04065394401550293,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0017.stdout",
+        "bytes": 65,
+        "sha256": "9fe6fc6673469c1ba7f4b6c0587771feba0fe49b09d35cf32817a66f8fc97805"
+      },
+      "stderr": {
+        "path": "commands/0017.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-18"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.3598762,
+      "elapsedSeconds": 0.004631757736206055,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0018.stdout",
+        "bytes": 65,
+        "sha256": "dd3dda118d019f6c85c35737e64bae250a7c6f9dbbd89e504f6c265fadfe37e4"
+      },
+      "stderr": {
+        "path": "commands/0018.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-18"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.364754,
+      "elapsedSeconds": 0.0414121150970459,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0019.stdout",
+        "bytes": 65,
+        "sha256": "dd3dda118d019f6c85c35737e64bae250a7c6f9dbbd89e504f6c265fadfe37e4"
+      },
+      "stderr": {
+        "path": "commands/0019.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-20"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.4067452,
+      "elapsedSeconds": 0.010432958602905273,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0020.stdout",
+        "bytes": 65,
+        "sha256": "e743d164dcdc4a948968a20b4215277c9c9359ad7c45e3f15971f4128ebf19bc"
+      },
+      "stderr": {
+        "path": "commands/0020.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-20"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.4177291,
+      "elapsedSeconds": 0.06626677513122559,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0021.stdout",
+        "bytes": 65,
+        "sha256": "e743d164dcdc4a948968a20b4215277c9c9359ad7c45e3f15971f4128ebf19bc"
+      },
+      "stderr": {
+        "path": "commands/0021.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-22"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.484685,
+      "elapsedSeconds": 0.004340171813964844,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0022.stdout",
+        "bytes": 65,
+        "sha256": "7a7102aa768da9fd834522aa689010670d8ceba9f296c1c34a9779c183724e78"
+      },
+      "stderr": {
+        "path": "commands/0022.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "hash",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/hash-22"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.4892218,
+      "elapsedSeconds": 0.04142022132873535,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0023.stdout",
+        "bytes": 65,
+        "sha256": "7a7102aa768da9fd834522aa689010670d8ceba9f296c1c34a9779c183724e78"
+      },
+      "stderr": {
+        "path": "commands/0023.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "-",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/24/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/24/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.5312278,
+      "elapsedSeconds": 0.004313230514526367,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0024.stdout",
+        "bytes": 326,
+        "sha256": "543839ce7595c4b69b8b3ee82a2a63ec2ba56cc7ce09e6127b6160d921044ee2"
+      },
+      "stderr": {
+        "path": "commands/0024.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "-",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/25/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/25/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.5360398,
+      "elapsedSeconds": 0.0440521240234375,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0025.stdout",
+        "bytes": 326,
+        "sha256": "543839ce7595c4b69b8b3ee82a2a63ec2ba56cc7ce09e6127b6160d921044ee2"
+      },
+      "stderr": {
+        "path": "commands/0025.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/26/field14.utf8",
+        "-",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/26/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.580755,
+      "elapsedSeconds": 0.0045948028564453125,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0026.stdout",
+        "bytes": 326,
+        "sha256": "39e0ecc8e5f4e5b350838d1a391e9850a6877cd18509ef77e78a3c353dbb123f"
+      },
+      "stderr": {
+        "path": "commands/0026.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/27/field14.utf8",
+        "-",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/27/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.58583,
+      "elapsedSeconds": 0.04204106330871582,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0027.stdout",
+        "bytes": 326,
+        "sha256": "39e0ecc8e5f4e5b350838d1a391e9850a6877cd18509ef77e78a3c353dbb123f"
+      },
+      "stderr": {
+        "path": "commands/0027.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "-",
+        "-",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/28/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.628536,
+      "elapsedSeconds": 0.004312992095947266,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0028.stdout",
+        "bytes": 326,
+        "sha256": "e31dd06c9ee9abc0c1895b5deddfa163baaceb7a7c4b83abcc12087bd6b81ba4"
+      },
+      "stderr": {
+        "path": "commands/0028.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "-",
+        "-",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/29/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.633266,
+      "elapsedSeconds": 0.04193997383117676,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0029.stdout",
+        "bytes": 326,
+        "sha256": "e31dd06c9ee9abc0c1895b5deddfa163baaceb7a7c4b83abcc12087bd6b81ba4"
+      },
+      "stderr": {
+        "path": "commands/0029.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/30/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/30/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/30/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.675862,
+      "elapsedSeconds": 0.004745006561279297,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0030.stdout",
+        "bytes": 326,
+        "sha256": "be1fdd13bf3bb98c52a8f95fdb12e3d1c45e73ffd11e01955e69b91f4c21c61d"
+      },
+      "stderr": {
+        "path": "commands/0030.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/31/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/31/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/31/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.681083,
+      "elapsedSeconds": 0.04183793067932129,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0031.stdout",
+        "bytes": 326,
+        "sha256": "be1fdd13bf3bb98c52a8f95fdb12e3d1c45e73ffd11e01955e69b91f4c21c61d"
+      },
+      "stderr": {
+        "path": "commands/0031.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/32/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/32/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/32/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.7236228,
+      "elapsedSeconds": 0.004407167434692383,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0032.stdout",
+        "bytes": 327,
+        "sha256": "39fccde00566048dbd952ebb0f3a43b64a61c1831d501900a84b759d676dd009"
+      },
+      "stderr": {
+        "path": "commands/0032.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/33/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/33/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/33/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.7286038,
+      "elapsedSeconds": 0.04185223579406738,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0033.stdout",
+        "bytes": 327,
+        "sha256": "39fccde00566048dbd952ebb0f3a43b64a61c1831d501900a84b759d676dd009"
+      },
+      "stderr": {
+        "path": "commands/0033.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/34/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/34/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/34/diagnostics.v2",
+        "4093"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.7728488,
+      "elapsedSeconds": 0.014754056930541992,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0034.stdout",
+        "bytes": 339,
+        "sha256": "68e6793bdff68cac489a5ccf75a0178f42ac19c09c47b46414d7c8e154c90aa4"
+      },
+      "stderr": {
+        "path": "commands/0034.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/35/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/35/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/35/diagnostics.v2",
+        "4093"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.790139,
+      "elapsedSeconds": 0.07063794136047363,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0035.stdout",
+        "bytes": 339,
+        "sha256": "68e6793bdff68cac489a5ccf75a0178f42ac19c09c47b46414d7c8e154c90aa4"
+      },
+      "stderr": {
+        "path": "commands/0035.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/36/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/36/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/36/diagnostics.v2",
+        "1"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.863669,
+      "elapsedSeconds": 0.0069539546966552734,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0036.stdout",
+        "bytes": 337,
+        "sha256": "3258cdb0db1c7133007538e4bb6050a234f630f407bfbf83563739ec5b77a3da"
+      },
+      "stderr": {
+        "path": "commands/0036.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/37/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/37/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/37/diagnostics.v2",
+        "1"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.8715048,
+      "elapsedSeconds": 0.051145315170288086,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0037.stdout",
+        "bytes": 337,
+        "sha256": "3258cdb0db1c7133007538e4bb6050a234f630f407bfbf83563739ec5b77a3da"
+      },
+      "stderr": {
+        "path": "commands/0037.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/38/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/38/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/38/diagnostics.v2",
+        "2"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.923677,
+      "elapsedSeconds": 0.00510096549987793,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0038.stdout",
+        "bytes": 327,
+        "sha256": "aca52995cc845fe3c8236e383eb90158ca3e842ccce471e0b382cedaecd2024e"
+      },
+      "stderr": {
+        "path": "commands/0038.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/39/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/39/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/39/diagnostics.v2",
+        "2"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.929448,
+      "elapsedSeconds": 0.04428410530090332,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0039.stdout",
+        "bytes": 327,
+        "sha256": "aca52995cc845fe3c8236e383eb90158ca3e842ccce471e0b382cedaecd2024e"
+      },
+      "stderr": {
+        "path": "commands/0039.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/40/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/40/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/40/diagnostics.v2",
+        "65537"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.974782,
+      "elapsedSeconds": 0.005311012268066406,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0040.stdout",
+        "bytes": 326,
+        "sha256": "aa7129f77f2540895403dfabf34445556e57603a7ea0379e87fdedb83c0c34eb"
+      },
+      "stderr": {
+        "path": "commands/0040.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/41/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/41/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/41/diagnostics.v2",
+        "65537"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634709.9806452,
+      "elapsedSeconds": 0.044130802154541016,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0041.stdout",
+        "bytes": 326,
+        "sha256": "aa7129f77f2540895403dfabf34445556e57603a7ea0379e87fdedb83c0c34eb"
+      },
+      "stderr": {
+        "path": "commands/0041.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/42/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/42/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/42/diagnostics.v2",
+        "65537"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.02544,
+      "elapsedSeconds": 0.005517005920410156,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0042.stdout",
+        "bytes": 335,
+        "sha256": "72054fb7f8f64b254ba8b1dad73a0ffb23689f20663f08d15917d2335b2776bb"
+      },
+      "stderr": {
+        "path": "commands/0042.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/43/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/43/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/43/diagnostics.v2",
+        "65537"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.031703,
+      "elapsedSeconds": 0.04749298095703125,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0043.stdout",
+        "bytes": 335,
+        "sha256": "72054fb7f8f64b254ba8b1dad73a0ffb23689f20663f08d15917d2335b2776bb"
+      },
+      "stderr": {
+        "path": "commands/0043.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/44/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/44/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/44/diagnostics.v2",
+        "65537"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.080113,
+      "elapsedSeconds": 0.005259990692138672,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0044.stdout",
+        "bytes": 335,
+        "sha256": "7c67a4c8bfc315e9ea68b4d1350eb92be89c26658e2cd3ef5e6a11c22edb48ed"
+      },
+      "stderr": {
+        "path": "commands/0044.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/45/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/45/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/45/diagnostics.v2",
+        "65537"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.0860329,
+      "elapsedSeconds": 0.04631805419921875,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0045.stdout",
+        "bytes": 335,
+        "sha256": "7c67a4c8bfc315e9ea68b4d1350eb92be89c26658e2cd3ef5e6a11c22edb48ed"
+      },
+      "stderr": {
+        "path": "commands/0045.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/46/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/46/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/46/diagnostics.v2",
+        "65537"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.133218,
+      "elapsedSeconds": 0.005141019821166992,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0046.stdout",
+        "bytes": 335,
+        "sha256": "ee5ae09876592f4d15ee681acfb45af438202ce84471bf3841463de91b9b65f7"
+      },
+      "stderr": {
+        "path": "commands/0046.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/47/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/47/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/47/diagnostics.v2",
+        "65537"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.138996,
+      "elapsedSeconds": 0.046587228775024414,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0047.stdout",
+        "bytes": 335,
+        "sha256": "ee5ae09876592f4d15ee681acfb45af438202ce84471bf3841463de91b9b65f7"
+      },
+      "stderr": {
+        "path": "commands/0047.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/48/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/48/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/48/diagnostics.v2",
+        "65537"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.186811,
+      "elapsedSeconds": 0.007084846496582031,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0048.stdout",
+        "bytes": 337,
+        "sha256": "fb2362720ebca25b3b688197aa76332189b9573bf897d47da525d756105bbfc9"
+      },
+      "stderr": {
+        "path": "commands/0048.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/49/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/49/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/49/diagnostics.v2",
+        "65537"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.195503,
+      "elapsedSeconds": 0.05286216735839844,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0049.stdout",
+        "bytes": 337,
+        "sha256": "fb2362720ebca25b3b688197aa76332189b9573bf897d47da525d756105bbfc9"
+      },
+      "stderr": {
+        "path": "commands/0049.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/50/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/50/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/50/diagnostics.v2",
+        "65537"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.24988,
+      "elapsedSeconds": 0.007048845291137695,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0050.stdout",
+        "bytes": 337,
+        "sha256": "a56a94f75f4beb0e97e2346335da6ddec4db78ac77da8d15fcc3b9dca6f49001"
+      },
+      "stderr": {
+        "path": "commands/0050.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/51/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/51/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/51/diagnostics.v2",
+        "65537"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.257941,
+      "elapsedSeconds": 0.051335811614990234,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0051.stdout",
+        "bytes": 337,
+        "sha256": "a56a94f75f4beb0e97e2346335da6ddec4db78ac77da8d15fcc3b9dca6f49001"
+      },
+      "stderr": {
+        "path": "commands/0051.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/52/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/52/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/52/diagnostics.v2",
+        "65536"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.3171651,
+      "elapsedSeconds": 0.044316768646240234,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0052.stdout",
+        "bytes": 339,
+        "sha256": "2783334c752b8ab4be238b60ccb85f4986845d3aadaecc20b07f94161b0a084a"
+      },
+      "stderr": {
+        "path": "commands/0052.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/53/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/53/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/53/diagnostics.v2",
+        "65536"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.369227,
+      "elapsedSeconds": 0.15311598777770996,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0053.stdout",
+        "bytes": 339,
+        "sha256": "2783334c752b8ab4be238b60ccb85f4986845d3aadaecc20b07f94161b0a084a"
+      },
+      "stderr": {
+        "path": "commands/0053.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/54/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/54/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/54/diagnostics.v2",
+        "65536"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.531084,
+      "elapsedSeconds": 0.02219080924987793,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0054.stdout",
+        "bytes": 336,
+        "sha256": "2424d7de74e185a790de2ec02ae3e5e40dcf04f9b4df0e60442684e5eff94870"
+      },
+      "stderr": {
+        "path": "commands/0054.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/55/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/55/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/55/diagnostics.v2",
+        "65536"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.554923,
+      "elapsedSeconds": 0.1242380142211914,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0055.stdout",
+        "bytes": 336,
+        "sha256": "2424d7de74e185a790de2ec02ae3e5e40dcf04f9b4df0e60442684e5eff94870"
+      },
+      "stderr": {
+        "path": "commands/0055.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "258049",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/56/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/56/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/56/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.679847,
+      "elapsedSeconds": 0.0047609806060791016,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0056.stdout",
+        "bytes": 324,
+        "sha256": "46b49f2d085de5520667657c947017dc783072b0d61c36d9490a3cdf854639c2"
+      },
+      "stderr": {
+        "path": "commands/0056.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "258049",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/57/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/57/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/57/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.685023,
+      "elapsedSeconds": 0.042562007904052734,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0057.stdout",
+        "bytes": 324,
+        "sha256": "46b49f2d085de5520667657c947017dc783072b0d61c36d9490a3cdf854639c2"
+      },
+      "stderr": {
+        "path": "commands/0057.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/58/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/58/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/58/diagnostics.v2",
+        "1"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.728312,
+      "elapsedSeconds": 0.004514932632446289,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0058.stdout",
+        "bytes": 324,
+        "sha256": "9304ba86771bee66dd3ef2a62aa0aad3af83acbaab1464a80ef2d7733911505f"
+      },
+      "stderr": {
+        "path": "commands/0058.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/59/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/59/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/59/diagnostics.v2",
+        "1"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.733202,
+      "elapsedSeconds": 0.0429689884185791,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0059.stdout",
+        "bytes": 324,
+        "sha256": "9304ba86771bee66dd3ef2a62aa0aad3af83acbaab1464a80ef2d7733911505f"
+      },
+      "stderr": {
+        "path": "commands/0059.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/60/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/60/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/60/diagnostics.v2",
+        "1"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.776726,
+      "elapsedSeconds": 0.004901885986328125,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0060.stdout",
+        "bytes": 324,
+        "sha256": "176a0993bd9d20b3cb14af62b5d6b1ce0d9bdd4294bfc797446f3d26385ff529"
+      },
+      "stderr": {
+        "path": "commands/0060.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/61/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/61/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/61/diagnostics.v2",
+        "1"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.782088,
+      "elapsedSeconds": 0.042211055755615234,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0061.stdout",
+        "bytes": 324,
+        "sha256": "176a0993bd9d20b3cb14af62b5d6b1ce0d9bdd4294bfc797446f3d26385ff529"
+      },
+      "stderr": {
+        "path": "commands/0061.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/62/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/62/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/62/diagnostics.v2",
+        "1"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.824821,
+      "elapsedSeconds": 0.004494190216064453,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0062.stdout",
+        "bytes": 324,
+        "sha256": "176a0993bd9d20b3cb14af62b5d6b1ce0d9bdd4294bfc797446f3d26385ff529"
+      },
+      "stderr": {
+        "path": "commands/0062.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/63/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/63/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/63/diagnostics.v2",
+        "1"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.8297641,
+      "elapsedSeconds": 0.041757822036743164,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0063.stdout",
+        "bytes": 324,
+        "sha256": "176a0993bd9d20b3cb14af62b5d6b1ce0d9bdd4294bfc797446f3d26385ff529"
+      },
+      "stderr": {
+        "path": "commands/0063.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/64/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/64/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/64/diagnostics.v2",
+        "1"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.872092,
+      "elapsedSeconds": 0.004888057708740234,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0064.stdout",
+        "bytes": 324,
+        "sha256": "9304ba86771bee66dd3ef2a62aa0aad3af83acbaab1464a80ef2d7733911505f"
+      },
+      "stderr": {
+        "path": "commands/0064.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/65/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/65/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/65/diagnostics.v2",
+        "1"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.8774002,
+      "elapsedSeconds": 0.045865774154663086,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0065.stdout",
+        "bytes": 324,
+        "sha256": "9304ba86771bee66dd3ef2a62aa0aad3af83acbaab1464a80ef2d7733911505f"
+      },
+      "stderr": {
+        "path": "commands/0065.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/66/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/66/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/66/diagnostics.v2",
+        "1"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.923839,
+      "elapsedSeconds": 0.00510406494140625,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0066.stdout",
+        "bytes": 324,
+        "sha256": "b219dd47b8352b732a87a950edfd48478fca8d060021244fd66533b2be7c0764"
+      },
+      "stderr": {
+        "path": "commands/0066.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/67/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/67/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/67/diagnostics.v2",
+        "1"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.929593,
+      "elapsedSeconds": 0.044339895248413086,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0067.stdout",
+        "bytes": 324,
+        "sha256": "b219dd47b8352b732a87a950edfd48478fca8d060021244fd66533b2be7c0764"
+      },
+      "stderr": {
+        "path": "commands/0067.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/68/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/68/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/68/diagnostics.v2",
+        "1"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.974669,
+      "elapsedSeconds": 0.005137920379638672,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0068.stdout",
+        "bytes": 324,
+        "sha256": "9304ba86771bee66dd3ef2a62aa0aad3af83acbaab1464a80ef2d7733911505f"
+      },
+      "stderr": {
+        "path": "commands/0068.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/69/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/69/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/69/diagnostics.v2",
+        "1"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634710.980279,
+      "elapsedSeconds": 0.043020009994506836,
+      "exit": 2,
+      "expectedExit": 2,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0069.stdout",
+        "bytes": 324,
+        "sha256": "9304ba86771bee66dd3ef2a62aa0aad3af83acbaab1464a80ef2d7733911505f"
+      },
+      "stderr": {
+        "path": "commands/0069.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/70/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/70/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/70/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.024062,
+      "elapsedSeconds": 0.0057370662689208984,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0070.stdout",
+        "bytes": 335,
+        "sha256": "0d6e4f5d7b92fd13418456a8bf3381d91e5439e83b16543d9470219c1053d327"
+      },
+      "stderr": {
+        "path": "commands/0070.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/71/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/71/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/71/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.030466,
+      "elapsedSeconds": 0.04665708541870117,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0071.stdout",
+        "bytes": 335,
+        "sha256": "0d6e4f5d7b92fd13418456a8bf3381d91e5439e83b16543d9470219c1053d327"
+      },
+      "stderr": {
+        "path": "commands/0071.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/72/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/72/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/72/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.078295,
+      "elapsedSeconds": 0.00549006462097168,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0072.stdout",
+        "bytes": 326,
+        "sha256": "7c7dc3be25eab383a04efa2b22ffebadd21bff4ac3d8c63cc1bcfb780dae5df6"
+      },
+      "stderr": {
+        "path": "commands/0072.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/73/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/73/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/73/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.0842931,
+      "elapsedSeconds": 0.04471087455749512,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0073.stdout",
+        "bytes": 326,
+        "sha256": "7c7dc3be25eab383a04efa2b22ffebadd21bff4ac3d8c63cc1bcfb780dae5df6"
+      },
+      "stderr": {
+        "path": "commands/0073.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/74/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/74/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/74/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.129987,
+      "elapsedSeconds": 0.004907131195068359,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0074.stdout",
+        "bytes": 326,
+        "sha256": "7c7dc3be25eab383a04efa2b22ffebadd21bff4ac3d8c63cc1bcfb780dae5df6"
+      },
+      "stderr": {
+        "path": "commands/0074.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/75/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/75/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/75/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.1354618,
+      "elapsedSeconds": 0.044175148010253906,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0075.stdout",
+        "bytes": 326,
+        "sha256": "7c7dc3be25eab383a04efa2b22ffebadd21bff4ac3d8c63cc1bcfb780dae5df6"
+      },
+      "stderr": {
+        "path": "commands/0075.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/76/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/76/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/76/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.180518,
+      "elapsedSeconds": 0.0050411224365234375,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0076.stdout",
+        "bytes": 326,
+        "sha256": "7c7dc3be25eab383a04efa2b22ffebadd21bff4ac3d8c63cc1bcfb780dae5df6"
+      },
+      "stderr": {
+        "path": "commands/0076.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/77/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/77/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/77/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.1862578,
+      "elapsedSeconds": 0.04440021514892578,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0077.stdout",
+        "bytes": 326,
+        "sha256": "7c7dc3be25eab383a04efa2b22ffebadd21bff4ac3d8c63cc1bcfb780dae5df6"
+      },
+      "stderr": {
+        "path": "commands/0077.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/78/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/78/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/78/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.231423,
+      "elapsedSeconds": 0.004703044891357422,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0078.stdout",
+        "bytes": 326,
+        "sha256": "7c7dc3be25eab383a04efa2b22ffebadd21bff4ac3d8c63cc1bcfb780dae5df6"
+      },
+      "stderr": {
+        "path": "commands/0078.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/79/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/79/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/79/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.2366679,
+      "elapsedSeconds": 0.043723106384277344,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0079.stdout",
+        "bytes": 326,
+        "sha256": "7c7dc3be25eab383a04efa2b22ffebadd21bff4ac3d8c63cc1bcfb780dae5df6"
+      },
+      "stderr": {
+        "path": "commands/0079.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/80/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/80/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/80/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.2811022,
+      "elapsedSeconds": 0.004810810089111328,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0080.stdout",
+        "bytes": 326,
+        "sha256": "be1fdd13bf3bb98c52a8f95fdb12e3d1c45e73ffd11e01955e69b91f4c21c61d"
+      },
+      "stderr": {
+        "path": "commands/0080.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/81/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/81/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/81/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.286433,
+      "elapsedSeconds": 0.043786048889160156,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0081.stdout",
+        "bytes": 326,
+        "sha256": "be1fdd13bf3bb98c52a8f95fdb12e3d1c45e73ffd11e01955e69b91f4c21c61d"
+      },
+      "stderr": {
+        "path": "commands/0081.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/82/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/82/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/82/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.330945,
+      "elapsedSeconds": 0.004645824432373047,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0082.stdout",
+        "bytes": 327,
+        "sha256": "7f94f0a90f97ea4652ac6a6049163b35aefc92c3674f1ad55395adb9688c628c"
+      },
+      "stderr": {
+        "path": "commands/0082.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/83/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/83/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/83/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.336134,
+      "elapsedSeconds": 0.042996883392333984,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0083.stdout",
+        "bytes": 327,
+        "sha256": "7f94f0a90f97ea4652ac6a6049163b35aefc92c3674f1ad55395adb9688c628c"
+      },
+      "stderr": {
+        "path": "commands/0083.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/84/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/84/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/84/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.380073,
+      "elapsedSeconds": 0.004883766174316406,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0084.stdout",
+        "bytes": 327,
+        "sha256": "3cfee636f4725a309a596e10848333149441306908abbb5f8b80b9df00ec6fab"
+      },
+      "stderr": {
+        "path": "commands/0084.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/85/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/85/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/85/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.3855019,
+      "elapsedSeconds": 0.043398141860961914,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0085.stdout",
+        "bytes": 327,
+        "sha256": "3cfee636f4725a309a596e10848333149441306908abbb5f8b80b9df00ec6fab"
+      },
+      "stderr": {
+        "path": "commands/0085.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-strict",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/86/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/86/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/86/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.429646,
+      "elapsedSeconds": 0.0046880245208740234,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0086.stdout",
+        "bytes": 327,
+        "sha256": "9b2760c3c9b85a5d7d317d9341921e597138708cc94610a4be64c529ea1139ba"
+      },
+      "stderr": {
+        "path": "commands/0086.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/codec-sanitized",
+        "encode",
+        "f090b4bb39bbac7acad07a8a09088a9d92ad948eacdd58ced8191462fa96c98d",
+        "7c5ea8ebff714b7d021b5704b9a926549713e8b976a3cadbd969f454a70d783e",
+        "74",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/87/field14.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/87/field15.utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/87/diagnostics.v2",
+        "7"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.4348412,
+      "elapsedSeconds": 0.042569875717163086,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0087.stdout",
+        "bytes": 327,
+        "sha256": "9b2760c3c9b85a5d7d317d9341921e597138708cc94610a4be64c529ea1139ba"
+      },
+      "stderr": {
+        "path": "commands/0087.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "success",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-88"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.478194,
+      "elapsedSeconds": 0.38486790657043457,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0088.stdout",
+        "bytes": 135,
+        "sha256": "c55a1469404783c02333e1803c795ffeeda080820658303356d68f9aac8f3007"
+      },
+      "stderr": {
+        "path": "commands/0088.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "success",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-89"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634711.8645089,
+      "elapsedSeconds": 0.4544062614440918,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0089.stdout",
+        "bytes": 135,
+        "sha256": "c55a1469404783c02333e1803c795ffeeda080820658303356d68f9aac8f3007"
+      },
+      "stderr": {
+        "path": "commands/0089.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "occupied",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-90"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.319592,
+      "elapsedSeconds": 0.003251791000366211,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0090.stdout",
+        "bytes": 135,
+        "sha256": "2a261b63e88692367f837e582f96def879c3f1f8b3b72541d70a695e0b2f354c"
+      },
+      "stderr": {
+        "path": "commands/0090.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "occupied",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-91"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.3232481,
+      "elapsedSeconds": 0.0448458194732666,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0091.stdout",
+        "bytes": 135,
+        "sha256": "2a261b63e88692367f837e582f96def879c3f1f8b3b72541d70a695e0b2f354c"
+      },
+      "stderr": {
+        "path": "commands/0091.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "symlink",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-92"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.3687198,
+      "elapsedSeconds": 0.0027282238006591797,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0092.stdout",
+        "bytes": 135,
+        "sha256": "2a261b63e88692367f837e582f96def879c3f1f8b3b72541d70a695e0b2f354c"
+      },
+      "stderr": {
+        "path": "commands/0092.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "symlink",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-93"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.3720121,
+      "elapsedSeconds": 0.04120278358459473,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0093.stdout",
+        "bytes": 135,
+        "sha256": "2a261b63e88692367f837e582f96def879c3f1f8b3b72541d70a695e0b2f354c"
+      },
+      "stderr": {
+        "path": "commands/0093.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "group",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-94"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.413728,
+      "elapsedSeconds": 0.0026509761810302734,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0094.stdout",
+        "bytes": 134,
+        "sha256": "10e71be513cbca16994f6151d1ac2521c3d21dfed864c9eb071c250b6b86652c"
+      },
+      "stderr": {
+        "path": "commands/0094.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "group",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-95"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.416728,
+      "elapsedSeconds": 0.04021787643432617,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0095.stdout",
+        "bytes": 134,
+        "sha256": "10e71be513cbca16994f6151d1ac2521c3d21dfed864c9eb071c250b6b86652c"
+      },
+      "stderr": {
+        "path": "commands/0095.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "replaced",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-96"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.45744,
+      "elapsedSeconds": 0.002810955047607422,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0096.stdout",
+        "bytes": 134,
+        "sha256": "5ffd2f0092ae73f637992b46aba96737a240c175c7411bb75e6bf80f62e9ae78"
+      },
+      "stderr": {
+        "path": "commands/0096.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "replaced",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-97"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.4605272,
+      "elapsedSeconds": 0.041203975677490234,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0097.stdout",
+        "bytes": 134,
+        "sha256": "5ffd2f0092ae73f637992b46aba96737a240c175c7411bb75e6bf80f62e9ae78"
+      },
+      "stderr": {
+        "path": "commands/0097.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "hardlink",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-98"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.50227,
+      "elapsedSeconds": 0.0029039382934570312,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0098.stdout",
+        "bytes": 134,
+        "sha256": "5ffd2f0092ae73f637992b46aba96737a240c175c7411bb75e6bf80f62e9ae78"
+      },
+      "stderr": {
+        "path": "commands/0098.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "hardlink",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-99"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.50543,
+      "elapsedSeconds": 0.04176211357116699,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0099.stdout",
+        "bytes": 134,
+        "sha256": "5ffd2f0092ae73f637992b46aba96737a240c175c7411bb75e6bf80f62e9ae78"
+      },
+      "stderr": {
+        "path": "commands/0099.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "mode-changed",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-100"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.5475872,
+      "elapsedSeconds": 0.002681732177734375,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0100.stdout",
+        "bytes": 134,
+        "sha256": "5ffd2f0092ae73f637992b46aba96737a240c175c7411bb75e6bf80f62e9ae78"
+      },
+      "stderr": {
+        "path": "commands/0100.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "mode-changed",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-101"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.550516,
+      "elapsedSeconds": 0.040960073471069336,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0101.stdout",
+        "bytes": 134,
+        "sha256": "5ffd2f0092ae73f637992b46aba96737a240c175c7411bb75e6bf80f62e9ae78"
+      },
+      "stderr": {
+        "path": "commands/0101.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "deleted",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-102"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.591862,
+      "elapsedSeconds": 0.0028791427612304688,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0102.stdout",
+        "bytes": 133,
+        "sha256": "5dfdb7178313c3226277f13594bdc438e3d580335281e688419ff9b8e858a69d"
+      },
+      "stderr": {
+        "path": "commands/0102.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "deleted",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-103"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.595055,
+      "elapsedSeconds": 0.048941850662231445,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0103.stdout",
+        "bytes": 133,
+        "sha256": "5dfdb7178313c3226277f13594bdc438e3d580335281e688419ff9b8e858a69d"
+      },
+      "stderr": {
+        "path": "commands/0103.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "prepare-twice",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-104"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.6447182,
+      "elapsedSeconds": 0.007259845733642578,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0104.stdout",
+        "bytes": 135,
+        "sha256": "8062e905e079fd1bb8816a84404ab8ca93a9119b39b62f477b7b35f73a8effe8"
+      },
+      "stderr": {
+        "path": "commands/0104.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "prepare-twice",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-105"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.6523871,
+      "elapsedSeconds": 0.04177999496459961,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0105.stdout",
+        "bytes": 135,
+        "sha256": "8062e905e079fd1bb8816a84404ab8ca93a9119b39b62f477b7b35f73a8effe8"
+      },
+      "stderr": {
+        "path": "commands/0105.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "write-error",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-106"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.694719,
+      "elapsedSeconds": 0.00279998779296875,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0106.stdout",
+        "bytes": 134,
+        "sha256": "6572d83fea89e8ae15ffec100dd560a0d274ff44872a7f385ccc2c92aca88ca9"
+      },
+      "stderr": {
+        "path": "commands/0106.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "write-error",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-107"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.69778,
+      "elapsedSeconds": 0.04095911979675293,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0107.stdout",
+        "bytes": 134,
+        "sha256": "6572d83fea89e8ae15ffec100dd560a0d274ff44872a7f385ccc2c92aca88ca9"
+      },
+      "stderr": {
+        "path": "commands/0107.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "zero-write",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-108"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.739114,
+      "elapsedSeconds": 0.0028929710388183594,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0108.stdout",
+        "bytes": 133,
+        "sha256": "645a551878ecb242423963954fa51a3129c9eff58e8e2839dc250faa32fa4f2e"
+      },
+      "stderr": {
+        "path": "commands/0108.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "zero-write",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-109"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.742306,
+      "elapsedSeconds": 0.041336774826049805,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0109.stdout",
+        "bytes": 133,
+        "sha256": "645a551878ecb242423963954fa51a3129c9eff58e8e2839dc250faa32fa4f2e"
+      },
+      "stderr": {
+        "path": "commands/0109.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "repeated-eintr",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-110"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.78403,
+      "elapsedSeconds": 0.0026769638061523438,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0110.stdout",
+        "bytes": 133,
+        "sha256": "6861b748d6c376aac39f7912725368dc3f39b03fb1a7fd0fee47655ac593956a"
+      },
+      "stderr": {
+        "path": "commands/0110.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "repeated-eintr",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-111"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.7869911,
+      "elapsedSeconds": 0.040370941162109375,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0111.stdout",
+        "bytes": 133,
+        "sha256": "6861b748d6c376aac39f7912725368dc3f39b03fb1a7fd0fee47655ac593956a"
+      },
+      "stderr": {
+        "path": "commands/0111.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "file-sync-error",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-112"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.827771,
+      "elapsedSeconds": 0.0029311180114746094,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0112.stdout",
+        "bytes": 135,
+        "sha256": "bf4000b19b67c188d767d52445f4a8779740ab9c5536fb94c1627fef6ce4dc25"
+      },
+      "stderr": {
+        "path": "commands/0112.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "file-sync-error",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-113"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.830991,
+      "elapsedSeconds": 0.041056156158447266,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0113.stdout",
+        "bytes": 135,
+        "sha256": "bf4000b19b67c188d767d52445f4a8779740ab9c5536fb94c1627fef6ce4dc25"
+      },
+      "stderr": {
+        "path": "commands/0113.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "dir-sync-error",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-114"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.872423,
+      "elapsedSeconds": 0.0029489994049072266,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0114.stdout",
+        "bytes": 135,
+        "sha256": "9bcde15504f380290a24a6180180a8f3138ea04a6adb5b1d329e913cba9be1b6"
+      },
+      "stderr": {
+        "path": "commands/0114.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "dir-sync-error",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-115"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.875607,
+      "elapsedSeconds": 0.04127001762390137,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0115.stdout",
+        "bytes": 135,
+        "sha256": "9bcde15504f380290a24a6180180a8f3138ea04a6adb5b1d329e913cba9be1b6"
+      },
+      "stderr": {
+        "path": "commands/0115.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "close-error",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-116"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.917255,
+      "elapsedSeconds": 0.0028679370880126953,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0116.stdout",
+        "bytes": 135,
+        "sha256": "2f8344d522de08876bf02fad07a86bd32254204b868de667f7e946c27060d341"
+      },
+      "stderr": {
+        "path": "commands/0116.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "close-error",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-117"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.920397,
+      "elapsedSeconds": 0.04494118690490723,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0117.stdout",
+        "bytes": 135,
+        "sha256": "2f8344d522de08876bf02fad07a86bd32254204b868de667f7e946c27060d341"
+      },
+      "stderr": {
+        "path": "commands/0117.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "once-eintr",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-118"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.965846,
+      "elapsedSeconds": 0.002816915512084961,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0118.stdout",
+        "bytes": 135,
+        "sha256": "f8e1ccdad75f13a90a40747756215f104d9371845227e64424c2f8c018c4f242"
+      },
+      "stderr": {
+        "path": "commands/0118.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "once-eintr",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-119"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634712.9689448,
+      "elapsedSeconds": 0.04209423065185547,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0119.stdout",
+        "bytes": 135,
+        "sha256": "f8e1ccdad75f13a90a40747756215f104d9371845227e64424c2f8c018c4f242"
+      },
+      "stderr": {
+        "path": "commands/0119.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-strict",
+        "short-writes",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-120"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634713.0116081,
+      "elapsedSeconds": 0.003323793411254883,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0120.stdout",
+        "bytes": 137,
+        "sha256": "ff6c17a73dac96ef9186c2e6cea22829af5d48b4448e8692251402379cffe1ce"
+      },
+      "stderr": {
+        "path": "commands/0120.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/posix-sanitized",
+        "short-writes",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-121"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+      "startUnix": 1792634713.015179,
+      "elapsedSeconds": 0.041442155838012695,
+      "exit": 0,
+      "expectedExit": 0,
+      "sanitizerEnvironment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "stdout": {
+        "path": "commands/0121.stdout",
+        "bytes": 137,
+        "sha256": "ff6c17a73dac96ef9186c2e6cea22829af5d48b4448e8692251402379cffe1ce"
+      },
+      "stderr": {
+        "path": "commands/0121.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "sourceSha256": {
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/PosixDiagnosticFile.h": "77bf8dc040baa18a856539418487c9e0483055ab63cbec9b84bfd8490742bd69",
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_native_v2.py": "225fcce513a1c075622773afe786adf0f6c1453bbb157ac2bec3d242a5438774",
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/posix_sink_driver.cpp": "0f030b0371347b58d0887a1837279ef8903ee6f00d9b52c468781d0d6e121e22",
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedDiagnosticsV2.h": "01b5fa834d8b4d782faa40c01f262a1e80cd970a0c1425e317246b66665b4012",
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/native_codec_driver.cpp": "6d1665bf3589d55cb1bc3bbec82f770a32fee5d48e82e7eb5fc7050f5b0dd67c"
+  },
+  "referenceGitBlob": "0866b07f758a20284d2a5d5d933b2be577b20b50",
+  "platform": "darwin",
+  "leakDetection": "UnavailableInAppleRuntime",
+  "sanitizerEnvironment": {
+    "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+  },
+  "notUnity": true,
+  "actualProducerCaptureIntegrated": false,
+  "envelopeTransactionIntegrated": false,
+  "engineAdapterImplemented": false,
+  "runtimeAcceptance": false
+}

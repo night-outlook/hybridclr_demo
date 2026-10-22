@@ -1,0 +1,334 @@
+{
+  "UnityPlayerExecuted": false,
+  "actualProductionHeaderAndMethodCompiled": true,
+  "classPointerOriginProven": false,
+  "coherentVmEpochProven": false,
+  "commandLifetimeUnverified": false,
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "--version"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792634744.532068,
+      "interrupted": false,
+      "name": "compiler-version",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792634744.522918,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 159,
+      "stdoutSha256": "76a924f59997fb65051981eb13105e0a8c151f16cd9c3e45e0f7c27ecefdb839",
+      "timedOut": false
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/empty-live/host-only-includes",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/empty_live_fixture",
+        "-O2",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/empty_live_fixture/fixture.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/empty-live/strict.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792634744.858102,
+      "interrupted": false,
+      "name": "strict-compile",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792634744.5322042,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timedOut": false
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/empty-live/strict.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792634745.254177,
+      "interrupted": false,
+      "name": "strict-run",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792634744.858241,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 594,
+      "stdoutSha256": "c5dbb21c2d918413375671881f5d12754412da73fdcb8d60034daf5fcbeeaf69",
+      "timedOut": false
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/empty-live/host-only-includes",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/empty_live_fixture",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/empty_live_fixture/fixture.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/empty-live/sanitized.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792634745.802606,
+      "interrupted": false,
+      "name": "sanitized-compile",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792634745.254792,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timedOut": false
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/empty-live/sanitized.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792634746.272033,
+      "interrupted": false,
+      "name": "sanitized-run",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792634745.8027399,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 594,
+      "stdoutSha256": "c5dbb21c2d918413375671881f5d12754412da73fdcb8d60034daf5fcbeeaf69",
+      "timedOut": false
+    }
+  ],
+  "completeExecutionSource": false,
+  "descendantQuiescenceProven": false,
+  "firstError": null,
+  "kind": "R03P1EmptyExecutionLiveSourceHost",
+  "nativeVmInputsExplicitlyMocked": true,
+  "officialUnitySdkCompiled": false,
+  "originalProductionMethodSha256": "14b422a81986960c0de25ad0fe4214241cc9f7ea4e6ad9a724330dbd9230de4d",
+  "postflightError": null,
+  "profiles": {
+    "sanitized": {
+      "caseGroups": [
+        "level2-zero-class",
+        "level1-zero-class",
+        "level0-zero-class",
+        "reused-frozen-output",
+        "metadata-closed",
+        "nonempty-class-inventory",
+        "inconsistent-class-inventory",
+        "counter-first-failure",
+        "counter-second-failure",
+        "dropped-threads-refused",
+        "saturated-refused",
+        "dropped-class-rows-refused",
+        "state-changed-mid-source",
+        "class-added-mid-source",
+        "state-changed-during-format",
+        "counter-changed-during-format",
+        "generation-changed-during-format",
+        "class-added-during-format",
+        "begin-refusal",
+        "freeze-refusal"
+      ],
+      "result": "PassedWithinHostScope"
+    },
+    "strict": {
+      "caseGroups": [
+        "level2-zero-class",
+        "level1-zero-class",
+        "level0-zero-class",
+        "reused-frozen-output",
+        "metadata-closed",
+        "nonempty-class-inventory",
+        "inconsistent-class-inventory",
+        "counter-first-failure",
+        "counter-second-failure",
+        "dropped-threads-refused",
+        "saturated-refused",
+        "dropped-class-rows-refused",
+        "state-changed-mid-source",
+        "class-added-mid-source",
+        "state-changed-during-format",
+        "counter-changed-during-format",
+        "generation-changed-during-format",
+        "class-added-during-format",
+        "begin-refusal",
+        "freeze-refusal"
+      ],
+      "result": "PassedWithinHostScope"
+    }
+  },
+  "result": "PassedWithinInactiveZeroClassHostScope",
+  "runtimeAcceptance": false,
+  "schemaVersion": 1,
+  "sourceAfter": {
+    "libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 123146,
+      "gitBlob": "53d6e08c199df4702576289d1b32b4ca72682837",
+      "sha256": "31e0c39e51c83306933ee52de3f9855cc397836427608fcd135a76cf34dda036"
+    },
+    "libil2cpp/vm/AssemblyShadow.h": {
+      "bytes": 13350,
+      "gitBlob": "e5f61a11a617666343c4dd16f34a0abd0faeb7d8",
+      "sha256": "477bcb912325a0c0ab17add94f565213dde2baae98ff97f0d607f982892af943"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h": {
+      "bytes": 2599,
+      "gitBlob": "5b2afe1cfcf14570e64b8836ef4f995ee5e6db57",
+      "sha256": "d4f4d495fc0636fcdd41f1121a1aa71404e838e1dfedfc7a7a3d10d70777e734"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl": {
+      "bytes": 4563,
+      "gitBlob": "f465f0435edf17e99385f283ee36a75fdd46f7e9",
+      "sha256": "14b422a81986960c0de25ad0fe4214241cc9f7ea4e6ad9a724330dbd9230de4d"
+    },
+    "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h": {
+      "bytes": 9831,
+      "gitBlob": "eeb413f8c8c0f6c1658da68ddd404b9b478e6e70",
+      "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9"
+    },
+    "libil2cpp/vm/AssemblyShadowMetadataLifetime.h": {
+      "bytes": 4637,
+      "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd",
+      "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716"
+    },
+    "libil2cpp/vm/AssemblyShadowR02Snapshot.h": {
+      "bytes": 6769,
+      "gitBlob": "9f7266014b1514adfd0935948ff417375df274d8",
+      "sha256": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf"
+    },
+    "tools/r03/diagnostic_stream/empty_live_fixture/AssemblyShadowFrozenExecutionRecord.h": {
+      "bytes": 38,
+      "gitBlob": "6bfc4009e9b53d77856c628ae59a721d2c5a0a4b",
+      "sha256": "f0880e0829c8cadecff272c0dfd2bcbe8c5768a6863b6e6215307e40703f2f96"
+    },
+    "tools/r03/diagnostic_stream/empty_live_fixture/AssemblyShadowMetadataLifetime.h": {
+      "bytes": 38,
+      "gitBlob": "6bfc4009e9b53d77856c628ae59a721d2c5a0a4b",
+      "sha256": "f0880e0829c8cadecff272c0dfd2bcbe8c5768a6863b6e6215307e40703f2f96"
+    },
+    "tools/r03/diagnostic_stream/empty_live_fixture/MockRuntime.h": {
+      "bytes": 4439,
+      "gitBlob": "a7c4485a804efb0f65d60d542fb5aba34c43bcb0",
+      "sha256": "cf1a597d1d1130da7d0fcf8688891144d047a2201a658659de0e0839eae6c2fc"
+    },
+    "tools/r03/diagnostic_stream/empty_live_fixture/fixture.cpp": {
+      "bytes": 5108,
+      "gitBlob": "e8e73cf62edf30cddce706484714091554de9547",
+      "sha256": "a51a84385e644a4884f6f3b1592c7981ecdc369e992808e2cd9e6e80caa7d62c"
+    },
+    "tools/r03/diagnostic_stream/run_bounded_execution_empty_live.py": {
+      "bytes": 11918,
+      "gitBlob": "741b227e1c320f6a94f9fd9591edb8470ba6ce26",
+      "sha256": "64b0f16f5398c35bf2c0211bd2b8c1d6ed8bdef3b8dcb93f08d1d6cdb718f794"
+    }
+  },
+  "sourceBefore": {
+    "libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 123146,
+      "gitBlob": "53d6e08c199df4702576289d1b32b4ca72682837",
+      "sha256": "31e0c39e51c83306933ee52de3f9855cc397836427608fcd135a76cf34dda036"
+    },
+    "libil2cpp/vm/AssemblyShadow.h": {
+      "bytes": 13350,
+      "gitBlob": "e5f61a11a617666343c4dd16f34a0abd0faeb7d8",
+      "sha256": "477bcb912325a0c0ab17add94f565213dde2baae98ff97f0d607f982892af943"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h": {
+      "bytes": 2599,
+      "gitBlob": "5b2afe1cfcf14570e64b8836ef4f995ee5e6db57",
+      "sha256": "d4f4d495fc0636fcdd41f1121a1aa71404e838e1dfedfc7a7a3d10d70777e734"
+    },
+    "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl": {
+      "bytes": 4563,
+      "gitBlob": "f465f0435edf17e99385f283ee36a75fdd46f7e9",
+      "sha256": "14b422a81986960c0de25ad0fe4214241cc9f7ea4e6ad9a724330dbd9230de4d"
+    },
+    "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h": {
+      "bytes": 9831,
+      "gitBlob": "eeb413f8c8c0f6c1658da68ddd404b9b478e6e70",
+      "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9"
+    },
+    "libil2cpp/vm/AssemblyShadowMetadataLifetime.h": {
+      "bytes": 4637,
+      "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd",
+      "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716"
+    },
+    "libil2cpp/vm/AssemblyShadowR02Snapshot.h": {
+      "bytes": 6769,
+      "gitBlob": "9f7266014b1514adfd0935948ff417375df274d8",
+      "sha256": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf"
+    },
+    "tools/r03/diagnostic_stream/empty_live_fixture/AssemblyShadowFrozenExecutionRecord.h": {
+      "bytes": 38,
+      "gitBlob": "6bfc4009e9b53d77856c628ae59a721d2c5a0a4b",
+      "sha256": "f0880e0829c8cadecff272c0dfd2bcbe8c5768a6863b6e6215307e40703f2f96"
+    },
+    "tools/r03/diagnostic_stream/empty_live_fixture/AssemblyShadowMetadataLifetime.h": {
+      "bytes": 38,
+      "gitBlob": "6bfc4009e9b53d77856c628ae59a721d2c5a0a4b",
+      "sha256": "f0880e0829c8cadecff272c0dfd2bcbe8c5768a6863b6e6215307e40703f2f96"
+    },
+    "tools/r03/diagnostic_stream/empty_live_fixture/MockRuntime.h": {
+      "bytes": 4439,
+      "gitBlob": "a7c4485a804efb0f65d60d542fb5aba34c43bcb0",
+      "sha256": "cf1a597d1d1130da7d0fcf8688891144d047a2201a658659de0e0839eae6c2fc"
+    },
+    "tools/r03/diagnostic_stream/empty_live_fixture/fixture.cpp": {
+      "bytes": 5108,
+      "gitBlob": "e8e73cf62edf30cddce706484714091554de9547",
+      "sha256": "a51a84385e644a4884f6f3b1592c7981ecdc369e992808e2cd9e6e80caa7d62c"
+    },
+    "tools/r03/diagnostic_stream/run_bounded_execution_empty_live.py": {
+      "bytes": 11918,
+      "gitBlob": "741b227e1c320f6a94f9fd9591edb8470ba6ce26",
+      "sha256": "64b0f16f5398c35bf2c0211bd2b8c1d6ed8bdef3b8dcb93f08d1d6cdb718f794"
+    }
+  },
+  "sourcePreserved": true,
+  "successfulSourceCompileProfiles": [
+    "strict-compile",
+    "sanitized-compile"
+  ],
+  "zeroClassSubsetOnly": true
+}

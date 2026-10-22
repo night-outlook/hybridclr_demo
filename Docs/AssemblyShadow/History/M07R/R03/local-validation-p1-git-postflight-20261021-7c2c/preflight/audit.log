@@ -1,0 +1,149 @@
+{
+  "result": "PassedFactualEvidenceAudit",
+  "batchResult": "PassedSourceHostAndSDKOnly",
+  "outerStates": {
+    "Passed": 24
+  },
+  "rawResultSha256": "01a13963a59a9a8354e30380f08c392b8f6807b9b3edb94557bfaef0fcd81242",
+  "rawManifestSha256": "a3fd34ca105c69b6524f1dcc4d950d8af65fb2bfed496fc6c4d3be79d7b0e6fc",
+  "regularInventoryEntries": 4244,
+  "symlinksOmittedByOuterManifestButAuthenticatedByLegacyManifest": [
+    {
+      "path": "legacy-host/native-v2-legacy-sink/evidence/cases/posix-93/diagnostics.v2",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-93/target"
+    },
+    {
+      "path": "legacy-host/native-v2-legacy-sink/evidence/cases/posix-92/diagnostics.v2",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-legacy-sink/evidence/cases/posix-92/target"
+    },
+    {
+      "path": "legacy-host/native-v2-file-transaction/evidence/sanitized/case-0164/alias",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-file-transaction/evidence/sanitized/case-0164/transaction"
+    },
+    {
+      "path": "legacy-host/native-v2-file-transaction/evidence/strict/case-0071/alias",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/legacy-host/native-v2-file-transaction/evidence/strict/case-0071/transaction"
+    }
+  ],
+  "localizedCommandStreamReceiptsVerified": 515,
+  "sourcePreserved": true,
+  "rawPostflightError": null,
+  "rawFourRepositoriesAfter": [
+    {
+      "repository": "night-outlook/hybridclr_demo",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "c5dde8493504cf69781fb0ab52123f525010a3aa",
+      "remoteHead": "c5dde8493504cf69781fb0ab52123f525010a3aa",
+      "origin": "git@github.com:night-outlook/hybridclr_demo.git",
+      "clean": true
+    },
+    {
+      "repository": "night-outlook/hybridclr",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "remoteHead": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "origin": "git@github.com:night-outlook/hybridclr.git",
+      "clean": true
+    },
+    {
+      "repository": "night-outlook/hybridclr_unity",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "remoteHead": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "origin": "git@github.com:night-outlook/hybridclr_unity.git",
+      "clean": true
+    },
+    {
+      "repository": "night-outlook/il2cpp_plus",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "82ddcef9417e3d662fdd39916a92124b5c835094",
+      "remoteHead": "82ddcef9417e3d662fdd39916a92124b5c835094",
+      "origin": "git@github.com:night-outlook/il2cpp_plus.git",
+      "clean": true
+    }
+  ],
+  "independentSourceHashAuditPreserved": true,
+  "installedSdkPreserved": true,
+  "managed": {
+    "actualResult": "Passed",
+    "aggregateState": "Passed",
+    "exit": 0,
+    "obsoleteRootReceiptAbsent": true,
+    "innerResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/managed-sdk/build-api/results.json",
+    "innerResultSha256": "e67927bcd60a3511c60a0c79c73b0f65cc04e33b5fa94e3a9f10aa669755a82e",
+    "returnedBindingVerified": true,
+    "actualResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-POSTFLIGHT-20261021-7c2c/managed-sdk/build-api/results.json",
+    "actualResultSha256": "e67927bcd60a3511c60a0c79c73b0f65cc04e33b5fa94e3a9f10aa669755a82e",
+    "productCount": 5,
+    "inputCount": 428,
+    "expectedNegative": [
+      {
+        "id": "OriginalUnsignedCounts",
+        "exit": 1,
+        "CS0266Errors": 2
+      }
+    ],
+    "warnings": 68
+  },
+  "native": {
+    "actualResult": "Passed",
+    "passedConfigurations": 100,
+    "failedConfigurations": 0,
+    "notRunConfigurations": 0,
+    "distinctTranslationUnits": 20,
+    "profiles": [
+      "candidate",
+      "debug",
+      "diagnostics-off",
+      "feature-off",
+      "probe-off"
+    ],
+    "copiedSdkInputsVerified": 1924,
+    "candidateNativeSha": "82ddcef9417e3d662fdd39916a92124b5c835094",
+    "warnings": 742
+  },
+  "legacyGeneralProfiles": [
+    {
+      "name": "strict",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "sanitized",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "noNewCompilerErrors": true,
+  "aggregateVerdictPreserved": true,
+  "realUnityOrPlayerRun": false,
+  "runtimeAcceptance": false,
+  "newNontrivialFindings": [
+    "IR-LOCAL-P1-GIT-MANIFEST-LIFETIME-01"
+  ],
+  "priorFindingId": "IR-LOCAL-P1-EMPTY-LIVE-RECEIPT-01",
+  "priorFindingStatusUnchanged": "SourceConfirmed_NotFaultInjected",
+  "successorFixValidation": "FactualGitPostflightReceiptsWithPreservedAggregateVerdict",
+  "opaqueVerification": "OPAQUE_INVENTORY_VERIFICATION.json",
+  "registryRevisionVerification": "REGISTRY_REVISION_VERIFICATION.json",
+  "publisherVerification": "REGISTRY_PUBLISHER_VERIFICATION.json",
+  "ownedPhysicalNamesVerification": "OWNED_PHYSICAL_NAMES_VERIFICATION.json",
+  "physicalMembershipVerification": "PHYSICAL_MEMBERSHIP_VERIFICATION.json",
+  "boundRegistryVerification": "BOUND_REGISTRY_VERIFICATION.json",
+  "ownedPhysicalJsonVerification": "OWNED_PHYSICAL_JSON_VERIFICATION.json",
+  "liveOwnedPhysicalJsonVerification": "LIVE_OWNED_PHYSICAL_JSON_VERIFICATION.json",
+  "observedTypeShapeVerification": "OBSERVED_TYPE_SHAPE_VERIFICATION.json",
+  "liveTypeShapeCensusVerification": "LIVE_TYPE_SHAPE_CENSUS_VERIFICATION.json",
+  "observedTypeShapeJsonVerification": "OBSERVED_TYPE_SHAPE_JSON_VERIFICATION.json",
+  "vmShapeJsonVerification": "VM_SHAPE_JSON_VERIFICATION.json",
+  "gitPostflightVerification": "GIT_POSTFLIGHT_VERIFICATION.json",
+  "newManifestSourceFinding": "POSTFLIGHT_MANIFEST_SOURCE_FINDING.json"
+}
