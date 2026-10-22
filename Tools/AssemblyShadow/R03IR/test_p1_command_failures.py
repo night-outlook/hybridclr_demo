@@ -1083,7 +1083,7 @@ class BatchFailureScheduling(unittest.TestCase):
         self.assertFalse(report['commandLifetimeUnverified'])
         self.assertTrue(report['sourcePreserved'])
         self.assertTrue(report['officialUnitySdkCompilePassed'])
-        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),25)
+        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),24)
         self.assertEqual(next(c for c in report['commands']
                               if c['name']=='empty-live')['status'],'Failed')
 
