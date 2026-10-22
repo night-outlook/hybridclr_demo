@@ -806,6 +806,10 @@ class BatchFailureScheduling(unittest.TestCase):
         self.assertEqual(report['postflightGitDiagnostics']['completedRepositoryCount'],4)
         self.assertTrue(report['officialUnitySdkCompileAttempted']);self.assertTrue(report['officialUnitySdkCompilePassed'])
         self.assertEqual(manifest['inventoryScope'],'CompletedBatchFiles')
+        self.assertFalse(report['commandLifetimeUnverified'])
+        self.assertFalse(manifest['commandLifetimeUnverified'])
+        self.assertEqual(manifest['commandLifetimeUnverified'],
+                         report['commandLifetimeUnverified'])
 
     def verify_bounded_git_postflight_direct_command_receipts(self):
         mod=load()
@@ -888,6 +892,9 @@ class BatchFailureScheduling(unittest.TestCase):
         self.assertEqual(report['result'],'FailedOrIncomplete')
         self.assertFalse(report['officialUnitySdkCompileAttempted'])
         self.assertEqual(manifest['inventoryScope'],'UnsealedObservedFiles')
+        self.assertTrue(manifest['commandLifetimeUnverified'])
+        self.assertEqual(manifest['commandLifetimeUnverified'],
+                         report['commandLifetimeUnverified'])
         self.assertIn(target,report['stoppedAfter'])
         self.assertGreater(sum(c['status']=='NotRun' for c in report['commands']),0)
 
@@ -943,6 +950,15 @@ class BatchFailureScheduling(unittest.TestCase):
         self.assertIsNone(report['stoppedAfter'])
         self.assertTrue(report['officialUnitySdkCompilePassed'])
         self.assertEqual(manifest['inventoryScope'],'UnsealedObservedFiles')
+        # Synthetic END-TO-END Git-only timeout: all 24 child mocks pass and
+        # only the second final repository's real GitPostflightProbe times out.
+        # Compare separately serialized RESULT.json and MANIFEST.json, not
+        # just a local boolean/AST fragment. This assertion was missing and
+        # exposes IR-LOCAL-P1-GIT-MANIFEST-LIFETIME-01.
+        self.assertTrue(manifest['commandLifetimeUnverified'])
+        self.assertEqual(manifest['commandLifetimeUnverified'],
+                         report['commandLifetimeUnverified'])
+        self.assertTrue(report['postflightGitDiagnostics']['commandLifetimeUnverified'])
         self.assertIn('TimeoutExpired',report['postflightError'])
         self.assertEqual(report['postflightGitDiagnostics']['timedOutCommands'],1)
         self.assertEqual(report['postflightGitDiagnostics']['completedRepositoryCount'],1)
