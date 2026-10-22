@@ -1040,7 +1040,7 @@ def main()->None:
                    "sha256":hash_file(p)} for p in sorted(dest.rglob("*")) if p.is_file() and not p.is_symlink()]
         (dest/"MANIFEST.json").write_text(json.dumps({"files":manifest,
             "inventoryScope":"UnsealedObservedFiles" if unknown_lifetime else "CompletedBatchFiles",
-            "commandLifetimeUnverified":stopped is not None},indent=2)+"\n")
+            "commandLifetimeUnverified":unknown_lifetime},indent=2)+"\n")
     print(json.dumps({"result":summary["result"],
                       "cases":[(c["name"],c["status"]) for c in cases]},indent=2))
     if postflight_interrupted or any(c.get("interrupted") for c in cases):raise SystemExit(130)
