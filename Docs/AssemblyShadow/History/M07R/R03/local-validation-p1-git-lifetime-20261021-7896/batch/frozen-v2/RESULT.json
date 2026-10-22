@@ -1,0 +1,308 @@
+{
+  "kind": "R03P1FrozenExecutionNativeV2Interop",
+  "result": "PassedWithinInactiveHostScope",
+  "profiles": [
+    {
+      "profile": "strict",
+      "originalGeneralBytes": 300032,
+      "originalExecutionBytes": 331078,
+      "encodedBytes": 631720,
+      "sha256": "f1e193ee55e34bcf051f6835949c1889deeec019064fcfc9604fd1264891038e",
+      "strictWireReferenceByteParity": true,
+      "originalSemanticStatus": "Failed",
+      "completeCapturedClasses": 1024,
+      "overflowRejected": true,
+      "partialSinkRejected": true,
+      "invalidUtf8Rejected": true,
+      "combinedArtifactOverflowRejected": true
+    },
+    {
+      "profile": "sanitized",
+      "originalGeneralBytes": 300032,
+      "originalExecutionBytes": 331078,
+      "encodedBytes": 631720,
+      "sha256": "f1e193ee55e34bcf051f6835949c1889deeec019064fcfc9604fd1264891038e",
+      "strictWireReferenceByteParity": true,
+      "originalSemanticStatus": "Failed",
+      "completeCapturedClasses": 1024,
+      "overflowRejected": true,
+      "partialSinkRejected": true,
+      "invalidUtf8Rejected": true,
+      "combinedArtifactOverflowRejected": true
+    }
+  ],
+  "commandCount": 12,
+  "commands": [
+    {
+      "name": "compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-I/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2",
+        "-O2",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_v2_driver.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/strict/frozen-v2"
+      ],
+      "startedUnix": 1792636747.2311769,
+      "finishedUnix": 1792636747.687546,
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "driver",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/strict/frozen-v2",
+        "complete",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/strict/complete",
+        "76fc9d13c60e72e70a5c42e880d8edf2cd18b81a714514eaff26329162d3ed63",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3",
+        "99",
+        "300000",
+        "1024"
+      ],
+      "startedUnix": 1792636747.687732,
+      "finishedUnix": 1792636748.2768939,
+      "exit": 0,
+      "stdoutSha256": "706438b7cc3f378fd8c3f2d46e1652f40a65d8d1b79a4a005c45eed0905db94c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "driver",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/strict/frozen-v2",
+        "short",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/strict/short",
+        "76fc9d13c60e72e70a5c42e880d8edf2cd18b81a714514eaff26329162d3ed63",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3",
+        "99",
+        "300000",
+        "1024"
+      ],
+      "startedUnix": 1792636748.2857442,
+      "finishedUnix": 1792636748.293613,
+      "exit": 0,
+      "stdoutSha256": "a245d6115fa89fb2416406458a21e9e2b495d9c932ae7960b91ea3918d39c21f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "driver",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/strict/frozen-v2",
+        "invalid-utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/strict/invalid-utf8",
+        "76fc9d13c60e72e70a5c42e880d8edf2cd18b81a714514eaff26329162d3ed63",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3",
+        "99",
+        "300000",
+        "1024"
+      ],
+      "startedUnix": 1792636748.2939022,
+      "finishedUnix": 1792636748.3009658,
+      "exit": 0,
+      "stdoutSha256": "0593b9dff8f2ce3d1e40e6724fbb0797fc865a6279c702d782a285655dd3a0c4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "driver",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/strict/frozen-v2",
+        "oversized-total",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/strict/oversized-total",
+        "76fc9d13c60e72e70a5c42e880d8edf2cd18b81a714514eaff26329162d3ed63",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3",
+        "99",
+        "3800000",
+        "1024"
+      ],
+      "startedUnix": 1792636748.301238,
+      "finishedUnix": 1792636748.310242,
+      "exit": 0,
+      "stdoutSha256": "dd3ecf28d06c4eea783a713196149fd849e393a79780eece4168ec5ed696e992",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "driver",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/strict/frozen-v2",
+        "sink-fail",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/strict/sink-fail",
+        "76fc9d13c60e72e70a5c42e880d8edf2cd18b81a714514eaff26329162d3ed63",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3",
+        "99",
+        "300000",
+        "1024"
+      ],
+      "startedUnix": 1792636748.310499,
+      "finishedUnix": 1792636748.320163,
+      "exit": 0,
+      "stdoutSha256": "e293f647f1433eac35872c4e5f00e4707074b7e286db6865624833908b69415e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-I/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_v2_driver.cpp",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/allocation_probe.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/sanitized/frozen-v2"
+      ],
+      "startedUnix": 1792636748.3208299,
+      "finishedUnix": 1792636748.923148,
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "driver",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/sanitized/frozen-v2",
+        "complete",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/sanitized/complete",
+        "76fc9d13c60e72e70a5c42e880d8edf2cd18b81a714514eaff26329162d3ed63",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3",
+        "99",
+        "300000",
+        "1024"
+      ],
+      "startedUnix": 1792636748.923369,
+      "finishedUnix": 1792636749.4504719,
+      "exit": 0,
+      "stdoutSha256": "706438b7cc3f378fd8c3f2d46e1652f40a65d8d1b79a4a005c45eed0905db94c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "driver",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/sanitized/frozen-v2",
+        "short",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/sanitized/short",
+        "76fc9d13c60e72e70a5c42e880d8edf2cd18b81a714514eaff26329162d3ed63",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3",
+        "99",
+        "300000",
+        "1024"
+      ],
+      "startedUnix": 1792636749.456195,
+      "finishedUnix": 1792636749.519542,
+      "exit": 0,
+      "stdoutSha256": "a245d6115fa89fb2416406458a21e9e2b495d9c932ae7960b91ea3918d39c21f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "driver",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/sanitized/frozen-v2",
+        "invalid-utf8",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/sanitized/invalid-utf8",
+        "76fc9d13c60e72e70a5c42e880d8edf2cd18b81a714514eaff26329162d3ed63",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3",
+        "99",
+        "300000",
+        "1024"
+      ],
+      "startedUnix": 1792636749.519816,
+      "finishedUnix": 1792636749.579542,
+      "exit": 0,
+      "stdoutSha256": "0593b9dff8f2ce3d1e40e6724fbb0797fc865a6279c702d782a285655dd3a0c4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "driver",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/sanitized/frozen-v2",
+        "oversized-total",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/sanitized/oversized-total",
+        "76fc9d13c60e72e70a5c42e880d8edf2cd18b81a714514eaff26329162d3ed63",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3",
+        "99",
+        "3800000",
+        "1024"
+      ],
+      "startedUnix": 1792636749.579776,
+      "finishedUnix": 1792636749.6353889,
+      "exit": 0,
+      "stdoutSha256": "dd3ecf28d06c4eea783a713196149fd849e393a79780eece4168ec5ed696e992",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "driver",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/sanitized/frozen-v2",
+        "sink-fail",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/frozen-v2/sanitized/sink-fail",
+        "76fc9d13c60e72e70a5c42e880d8edf2cd18b81a714514eaff26329162d3ed63",
+        "9c668ba672f65fdc4368249f229c96d77f568ecd26ef35a23d2f8e398f2328d3",
+        "99",
+        "300000",
+        "1024"
+      ],
+      "startedUnix": 1792636749.635612,
+      "finishedUnix": 1792636749.692698,
+      "exit": 0,
+      "stdoutSha256": "e293f647f1433eac35872c4e5f00e4707074b7e286db6865624833908b69415e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "sourceBefore": {
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/diagnostic_stream.py": {
+      "sha256": "afc9d1f0fa5d9155c8d75faab4ec2c02bcc8ef8a4b3e02612834778bef113a38",
+      "gitBlob": "0866b07f758a20284d2a5d5d933b2be577b20b50"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/BoundedDiagnosticsV2.h": {
+      "sha256": "734e03a470e4562cd18551a84194eb82b391c8da8f4ef7f2c46abcef7fcc034d",
+      "gitBlob": "174766c40235216d8c954107dd5e026116a510fa"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/frozen_execution_v2_driver.cpp": {
+      "sha256": "1aa03efe5993e32483704f5b61ebb267d8c0d43c58bbac7d1a2d5f469a019fa5",
+      "gitBlob": "1b90bda366cbd65715523f75f14d8a1f027628db"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h": {
+      "sha256": "1ce04b4678d7f48e205162db6572199489d22612f53afc9bebb9b07866f7ecf4",
+      "gitBlob": "624a43c0f153456001288c904d9705ec59171aae"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h": {
+      "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605",
+      "gitBlob": "9dee4c9ea6febe4a919d1c7eb8faf2ad00b8a8e5"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionSerializer.h": {
+      "sha256": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef",
+      "gitBlob": "3a0e7b1cc25bdeb16d0f341b67715b3433f04689"
+    },
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/run_frozen_v2.py": {
+      "sha256": "3cd4c256ca26175f9ca13519415958f3c0163f824834664245a195ce6de5d92c",
+      "gitBlob": "c0fe8395938faf14f5d869677dbc8bd32ef58153"
+    }
+  },
+  "sourceUnchanged": true,
+  "firstError": null,
+  "actualUnity": false,
+  "realVmCaptureIntegrated": false,
+  "liveVmCoherenceProven": false,
+  "VMGcRssBoundProven": false,
+  "nativeCSharpPlayerIntegrated": false,
+  "semanticVerifierIntegrated": false,
+  "engineOwnerCapabilityProven": false,
+  "runtimeAcceptance": false
+}

@@ -1,0 +1,37 @@
+test_01_actual_native_negative_state_io_and_allocation_controls (__main__.NativeCodec.test_01_actual_native_negative_state_io_and_allocation_controls) ... ok
+test_02_sha256_vectors_and_block_edges (__main__.NativeCodec.test_02_sha256_vectors_and_block_edges) ... ok
+test_03_null_distinct_from_empty (__main__.NativeCodec.test_03_null_distinct_from_empty) ... ok
+test_04_empty_distinct_from_null (__main__.NativeCodec.test_04_empty_distinct_from_null) ... ok
+test_05_both_null (__main__.NativeCodec.test_05_both_null) ... ok
+test_06_empty_fields (__main__.NativeCodec.test_06_empty_fields) ... ok
+test_07_ordinary_json (__main__.NativeCodec.test_07_ordinary_json) ... ok
+test_08_both_fields_exceed_original_slot (__main__.NativeCodec.test_08_both_fields_exceed_original_slot) ... ok
+test_09_utf8_crosses_frame_and_append_boundary (__main__.NativeCodec.test_09_utf8_crosses_frame_and_append_boundary) ... ok
+test_10_binary_nul_preserved (__main__.NativeCodec.test_10_binary_nul_preserved) ... ok
+test_11_chunk_boundaries (__main__.NativeCodec.test_11_chunk_boundaries) ... ok
+test_12_complete_maximum_budget (__main__.NativeCodec.test_12_complete_maximum_budget) ... ok
+test_13_one_byte_above_budget_fails_before_emission (__main__.NativeCodec.test_13_one_byte_above_budget_fails_before_emission) ... ok
+test_14_inline_reservation_is_not_enlarged (__main__.NativeCodec.test_14_inline_reservation_is_not_enlarged) ... ok
+test_15_invalid_utf8_is_not_normalized (__main__.NativeCodec.test_15_invalid_utf8_is_not_normalized) ... ok
+test_16_changed_chunk_is_rejected (__main__.NativeCodec.test_16_changed_chunk_is_rejected) ... ok
+test_17_truncated_file_is_rejected (__main__.NativeCodec.test_17_truncated_file_is_rejected) ... ok
+test_18_trailing_file_bytes_are_rejected (__main__.NativeCodec.test_18_trailing_file_bytes_are_rejected) ... ok
+test_19_cross_process_replay_is_rejected (__main__.NativeCodec.test_19_cross_process_replay_is_rejected) ... ok
+test_20_inline_receipt_substitution_is_rejected (__main__.NativeCodec.test_20_inline_receipt_substitution_is_rejected) ... ok
+test_21_section_reordering_is_rejected (__main__.NativeCodec.test_21_section_reordering_is_rejected) ... ok
+test_22_complete_transport_does_not_promote_failed_semantics (__main__.NativeCodec.test_22_complete_transport_does_not_promote_failed_semantics) ... ok
+test_23_duplicate_json_keys_still_fail_semantic_input (__main__.NativeCodec.test_23_duplicate_json_keys_still_fail_semantic_input) ... ok
+test_24_nonfinite_json_is_not_accepted (__main__.NativeCodec.test_24_nonfinite_json_is_not_accepted) ... ok
+test_01_real_file_is_synced_and_retained (__main__.PosixSink.test_01_real_file_is_synced_and_retained) ... ok
+test_02_existing_file_is_preserved (__main__.PosixSink.test_02_existing_file_is_preserved) ... ok
+test_03_symlink_target_is_never_written (__main__.PosixSink.test_03_symlink_target_is_never_written) ... ok
+test_04_group_accessible_directory_refused (__main__.PosixSink.test_04_group_accessible_directory_refused) ... ok
+test_05_replacement_is_not_rebound (__main__.PosixSink.test_05_replacement_is_not_rebound) ... ok
+test_06_link_mode_and_name_changes_fail (__main__.PosixSink.test_06_link_mode_and_name_changes_fail) ... ok
+test_07_system_io_failures_do_not_return_descriptor (__main__.PosixSink.test_07_system_io_failures_do_not_return_descriptor) ... ok
+test_08_partial_writes_and_single_eintr_handled (__main__.PosixSink.test_08_partial_writes_and_single_eintr_handled) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 5.008s
+
+OK

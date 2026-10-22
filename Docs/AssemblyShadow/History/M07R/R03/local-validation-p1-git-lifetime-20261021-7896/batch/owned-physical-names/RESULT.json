@@ -1,0 +1,292 @@
+{
+  "UnityPlayerExecuted": false,
+  "actualProductionMethodSha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177",
+  "actualSourceCompiled": true,
+  "coherentVmEpochProven": false,
+  "commandLifetimeUnverified": false,
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "--version"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792636722.351733,
+      "name": "compiler-version",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792636722.338377,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 159,
+      "stdoutSha256": "76a924f59997fb65051981eb13105e0a8c151f16cd9c3e45e0f7c27ecefdb839"
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-O2",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/owned_physical_names_fixture.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/owned-physical-names/strict.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792636722.8501918,
+      "name": "strict-compile",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792636722.3519201,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/owned-physical-names/strict.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792636723.25018,
+      "name": "strict-run",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792636722.850332,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 1023,
+      "stdoutSha256": "1f914f4da6246a834c571d0707f2d98ea66752fdabb716c6204bf3bdf1afbd40"
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-pthread",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/owned_physical_names_fixture.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/owned-physical-names/sanitized.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792636724.1211982,
+      "name": "sanitized-compile",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792636723.25103,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/owned-physical-names/sanitized.exe"
+      ],
+      "commandLifetimeUnverified": false,
+      "exit": 0,
+      "finishedUnix": 1792636724.605002,
+      "name": "sanitized-run",
+      "outputCompleteness": "CompleteDirectChildStreams",
+      "startedUnix": 1792636724.1213582,
+      "status": "Passed",
+      "stderrAvailable": true,
+      "stderrCapturedBytes": 0,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutAvailable": true,
+      "stdoutCapturedBytes": 1023,
+      "stdoutSha256": "1f914f4da6246a834c571d0707f2d98ea66752fdabb716c6204bf3bdf1afbd40"
+    }
+  ],
+  "completeExecutionTypeKeys": false,
+  "firstError": null,
+  "kind": "R03P1InactiveOwnedObservedPhysicalNamesSourceHost",
+  "metadataAndIteratorInputsMocked": true,
+  "metadataPointerLifetimeProven": false,
+  "officialUnitySdkCompiled": false,
+  "ownedPhysicalNamesOnly": true,
+  "physicalClassPointerOriginProven": false,
+  "postflightError": null,
+  "profiles": {
+    "sanitized": {
+      "caseGroups": [
+        "empty-physical-owned",
+        "one-physical-owned",
+        "two-roles-owned",
+        "duplicate-enumerated-owned-once",
+        "unrelated-malformed-class-not-dereferenced",
+        "null-namespace-copied-as-empty",
+        "owned-bytes-survive-vm-change",
+        "reverse-enumeration-role-binding",
+        "same-display-name-distinct-binding",
+        "hash-collision-binding",
+        "missing-physical-row-refused",
+        "bad-matched-image-refused",
+        "bad-matched-assembly-refused",
+        "bad-matched-assembly-name-refused",
+        "bad-matched-simple-name-refused",
+        "field-overlong-refused",
+        "owned-text-budget-refused",
+        "source-revision-changed-after-iteration",
+        "state-changed-after-iteration",
+        "active-changed-after-iteration",
+        "closed-admission-refused",
+        "unknown-callback-null-refused",
+        "binding-not-matched-refused",
+        "unobserved-binding-refused",
+        "invalid-slot-refused-and-scrubbed",
+        "invalid-role-refused-and-scrubbed",
+        "duplicate-registration-binding-refused-and-scrubbed",
+        "reused-owned-capture-refused"
+      ],
+      "result": "PassedWithinExplicitVmMocks"
+    },
+    "strict": {
+      "caseGroups": [
+        "empty-physical-owned",
+        "one-physical-owned",
+        "two-roles-owned",
+        "duplicate-enumerated-owned-once",
+        "unrelated-malformed-class-not-dereferenced",
+        "null-namespace-copied-as-empty",
+        "owned-bytes-survive-vm-change",
+        "reverse-enumeration-role-binding",
+        "same-display-name-distinct-binding",
+        "hash-collision-binding",
+        "missing-physical-row-refused",
+        "bad-matched-image-refused",
+        "bad-matched-assembly-refused",
+        "bad-matched-assembly-name-refused",
+        "bad-matched-simple-name-refused",
+        "field-overlong-refused",
+        "owned-text-budget-refused",
+        "source-revision-changed-after-iteration",
+        "state-changed-after-iteration",
+        "active-changed-after-iteration",
+        "closed-admission-refused",
+        "unknown-callback-null-refused",
+        "binding-not-matched-refused",
+        "unobserved-binding-refused",
+        "invalid-slot-refused-and-scrubbed",
+        "invalid-role-refused-and-scrubbed",
+        "duplicate-registration-binding-refused-and-scrubbed",
+        "reused-owned-capture-refused"
+      ],
+      "result": "PassedWithinExplicitVmMocks"
+    }
+  },
+  "result": "PassedWithinInactiveOwnedPhysicalNamesHostScope",
+  "runtimeAcceptance": false,
+  "schemaVersion": 1,
+  "sourceAfter": {
+    "libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 123146,
+      "gitBlob": "53d6e08c199df4702576289d1b32b4ca72682837",
+      "sha256": "31e0c39e51c83306933ee52de3f9855cc397836427608fcd135a76cf34dda036"
+    },
+    "libil2cpp/vm/AssemblyShadow.h": {
+      "bytes": 13350,
+      "gitBlob": "e5f61a11a617666343c4dd16f34a0abd0faeb7d8",
+      "sha256": "477bcb912325a0c0ab17add94f565213dde2baae98ff97f0d607f982892af943"
+    },
+    "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h": {
+      "bytes": 1774,
+      "gitBlob": "ce360fce0bbbc16ee12d8bdbb849d8c0b7726b34",
+      "sha256": "4dfe7294faa17fa69b217e85db0f7ce7fed8847af07c6742aa7486d3ca3ddf9e"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h": {
+      "bytes": 8477,
+      "gitBlob": "da06714c197010343a021a4b1535887951f23cd1",
+      "sha256": "2f478332ac71c205b20045907b63bed7b482a8014fa644539ccd2c2ce8406a1d"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl": {
+      "bytes": 6697,
+      "gitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3",
+      "sha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177"
+    },
+    "libil2cpp/vm/AssemblyShadowPhysicalMembership.h": {
+      "bytes": 7576,
+      "gitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3",
+      "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7"
+    },
+    "tools/r03/diagnostic_stream/owned_physical_names_fixture.cpp": {
+      "bytes": 16893,
+      "gitBlob": "d7f3a2edd7bc4f82a3954cb16ba0fdecd0594f83",
+      "sha256": "08ae959317b9051c0a03b94c08bcc9794e6345de2c37dfe36af590fda0452297"
+    },
+    "tools/r03/diagnostic_stream/run_owned_physical_names.py": {
+      "bytes": 22013,
+      "gitBlob": "674228d94bb7dd1e8a23640fb86707b96ddc8ff9",
+      "sha256": "392e1bffaa4266a56382cd58d89b7381a487f508588dd639c00a73a55eb9a219"
+    }
+  },
+  "sourceBefore": {
+    "libil2cpp/vm/AssemblyShadow.cpp": {
+      "bytes": 123146,
+      "gitBlob": "53d6e08c199df4702576289d1b32b4ca72682837",
+      "sha256": "31e0c39e51c83306933ee52de3f9855cc397836427608fcd135a76cf34dda036"
+    },
+    "libil2cpp/vm/AssemblyShadow.h": {
+      "bytes": 13350,
+      "gitBlob": "e5f61a11a617666343c4dd16f34a0abd0faeb7d8",
+      "sha256": "477bcb912325a0c0ab17add94f565213dde2baae98ff97f0d607f982892af943"
+    },
+    "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h": {
+      "bytes": 1774,
+      "gitBlob": "ce360fce0bbbc16ee12d8bdbb849d8c0b7726b34",
+      "sha256": "4dfe7294faa17fa69b217e85db0f7ce7fed8847af07c6742aa7486d3ca3ddf9e"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h": {
+      "bytes": 8477,
+      "gitBlob": "da06714c197010343a021a4b1535887951f23cd1",
+      "sha256": "2f478332ac71c205b20045907b63bed7b482a8014fa644539ccd2c2ce8406a1d"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl": {
+      "bytes": 6697,
+      "gitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3",
+      "sha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177"
+    },
+    "libil2cpp/vm/AssemblyShadowPhysicalMembership.h": {
+      "bytes": 7576,
+      "gitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3",
+      "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7"
+    },
+    "tools/r03/diagnostic_stream/owned_physical_names_fixture.cpp": {
+      "bytes": 16893,
+      "gitBlob": "d7f3a2edd7bc4f82a3954cb16ba0fdecd0594f83",
+      "sha256": "08ae959317b9051c0a03b94c08bcc9794e6345de2c37dfe36af590fda0452297"
+    },
+    "tools/r03/diagnostic_stream/run_owned_physical_names.py": {
+      "bytes": 22013,
+      "gitBlob": "674228d94bb7dd1e8a23640fb86707b96ddc8ff9",
+      "sha256": "392e1bffaa4266a56382cd58d89b7381a487f508588dd639c00a73a55eb9a219"
+    }
+  },
+  "sourcePreserved": true
+}

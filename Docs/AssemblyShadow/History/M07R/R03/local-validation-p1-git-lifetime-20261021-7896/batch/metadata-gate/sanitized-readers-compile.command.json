@@ -1,0 +1,28 @@
+{
+  "label": "sanitized-readers-compile",
+  "argv": [
+    "/usr/bin/clang++",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic",
+    "-pthread",
+    "-O1",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/metadata-gate/actual-readers-mocked.cpp",
+    "-o",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-GIT-LIFETIME-20261021-7896/metadata-gate/sanitized-readers"
+  ],
+  "startUnix": 1792636688.8928761,
+  "finishUnix": 1792636689.268016,
+  "exit": 0,
+  "expectedExit": 0,
+  "timedOut": false,
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
