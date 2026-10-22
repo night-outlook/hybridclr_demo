@@ -1,6 +1,15 @@
-# Current R03 P1 status — root manifest lifetime consistency
+# R03 P1 current status — 7896 Local reconciliation
 
-## Last completed Local source/host/SDK authority: 7c2c PASS
+## Latest Local result: 7896 PASS and correction reconciliation
+
+**20261021-7896 — PASS / PassedSourceHostAndSDKOnly** at actual demo `a5c0a4272efc4eee000220f40b7ca769be277917`, native `82ddcef9417e3d662fdd39916a92124b5c835094`, unchanged hybridclr and hybridclr_unity. Exactly **24/24** Passed, original **85** tests, seven source inventory flags, managed 5 positives + exact negative, **100/100** native SDK syntax and **20/20** real Git final authority checks/four exact source heads. Independent audit Passed; all source/installed SDK/historical evidence preserved. Both actual `RESULT.json` and `MANIFEST.json` `commandLifetimeUnverified=false`, manifest `inventoryScope=CompletedBatchFiles`. No retry or Unity Editor/Test Runner/Player/product link. [Primary reconciliation](../History/M07R/R03/IR_Remediation/P1_GIT_MANIFEST_LIFETIME_2026-10-21/PRIMARY_RECONCILIATION_7896.md) and [Local checkpoint](../History/M07R/R03/local-validation-p1-git-lifetime-20261021-7896/README.md) contain exact evidence.
+
+The existing finding `IR-LOCAL-P1-GIT-MANIFEST-LIFETIME-01` remains originally `SourceConfirmed_NotFaultInjected`; its successor is `CorrectedAndRegressionValidatedWithinHostScope_NoRealTimeoutInjected`. Previous **7c2c PASS** and **82dd raw aggregate FAIL** remain unchanged. This manifest correction is **closed within its bounded scope**. The prior `WEB_TO_LOCAL.md` one-shot **has been consumed**, and no further Local run is authorized without a fresh Primary design/source-pinned handoff. Product acceptance flags remain false; P1/P2/E0/E1/full P3 are still incomplete or blocked.
+
+---
+
+
+## Historical preceding Local scope: 7c2c PASS
 
 `20261021-7c2c` **PASS / PassedSourceHostAndSDKOnly** on demo `c5dde8493504cf69781fb0ab52123f525010a3aa`, native `82ddcef9417e3d662fdd39916a92124b5c835094`, hybridclr `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de`. Actual **24/24** independent components, original **85** tests, seven source inventories, five official managed positive compiler products plus exact expected-negative, **100/100** installed Apple arm64 C++17 native syntax, **20/20 final Git postflight commands exit0**, four final verified repo heads, source/SDK/historical preservation audit Passed; no retries/Editor/Player/link/GC/RSS/Shutdown. Read [Local-owned validation](../Handoff/LOCAL_VALIDATION.md) then [return](../Handoff/RETURN_TO_WEB.md), [checkpoint](../History/M07R/R03/local-validation-p1-git-postflight-20261021-7c2c/README.md), [finding](../History/M07R/R03/local-validation-p1-git-postflight-20261021-7c2c/FINDING.json). Consumed evidence immutable.
 
@@ -16,7 +25,7 @@ RED test-only `b29b6385…` [integrated CI 39710461380](https://github.com/night
 
 Unchanged native ``il2cpp_plus@82ddcef9417e3d662fdd39916a92124b5c835094`, hybridclr `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` and hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de`. Existing 24/85/seven inventories/5+negative/100 SDK syntax requirements retained; historical `R03/source-pins.json` untouched.
 
-## Next Local Validation scope
+## Historical planned Local Validation (already consumed)
 
 Only **final pinned** [WEB_TO_LOCAL.md](../Handoff/WEB_TO_LOCAL.md) authorizes ONE fresh 24-component source/host/**actual installed Unity2022.3.62f2 SDK syntax-only** batch at four fresh unused disjoint raw/scratch/audit/checkpoint roots, after independent source/SDK/history/negative symlink and four canonical remote-head admission. Required 24/24 source-host statuses, original 85 tests, seven case inventories, five actual managed positive + original exact negative, 100 native actual syntax, final 20 real Git postflight receipts and four verified repos. On PASS require aggregate and root manifest lifetime **false**, `inventoryScope=CompletedBatchFiles`, all source/SDK/history preserved. Any real Git-only timeout remains raw **FAIL**, with aggregate/manifest lifetime **true** and unsealed inventory; no retry or later audit reclassification. Local writes factual reports/checkpoint only and stops.
 

@@ -1,5 +1,8 @@
 # Primary Implementation → Local Validation — ONE P1 Git-only root-manifest lifetime cycle
 
+> **STATUS — CONSUMED / ARCHIVAL, NOT AN AUTHORIZATION TO EXECUTE.** This one-shot handoff was executed at demo `a5c0a4272efc4eee000220f40b7ca769be277917` in Local cycle `20261021-7896`. The actual batch **PASS / PassedSourceHostAndSDKOnly**, 24/24 components, all 20 source Git commands, with source/SDK/history preserved. The four root names below are **consumed and must not be used again**. The original `7c2c` PASS and `82dd` FAIL remain unchanged. No new Local execution is authorized by this archival text. Read [Primary reconciliation](../History/M07R/R03/IR_Remediation/P1_GIT_MANIFEST_LIFETIME_2026-10-21/PRIMARY_RECONCILIATION_7896.md) and Local-owned reports before any future decision.
+
+
 **Authorizes exactly ONE NEW 24-component SOURCE/HOST + official installed Unity2022.3.62f2 SDK SYNTAX-ONLY Local batch** at the final fully verified four-repository source tuple below, after the Local agent independently admits all new roots and old evidence. Objective: confirm one-line `MANIFEST.json.commandLifetimeUnverified` consistency correction to `unknown_lifetime` and preserve original real Git authority results. A **synthetic** Git-only timeout regression passed in Primary host CI; Local does **not** deliberately cause a timeout. Never relabel a prior raw result or weaken source authority.
 
 **No Unity Editor, Test Runner, Player, native product linking, actual GC/RSS/Shutdown, original getter activation, protected SNAP-01, H2/X02/M08A or Human Review Gate is authorized.** Normal execution/V1/V2/managed/native production code is unchanged. P1 remains incomplete and all product/qualification approvals remain false.

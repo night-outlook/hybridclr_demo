@@ -1,6 +1,15 @@
 # HybridCLR Assembly Shadow
 
-## Current — R03 P1 Git postflight root-manifest lifetime repair
+## Latest authoritative Local: 20261021-7896 PASS (source/host/SDK syntax only)
+
+Local-owned [LOCAL_VALIDATION.md](Handoff/LOCAL_VALIDATION.md) and [RETURN_TO_WEB.md](Handoff/RETURN_TO_WEB.md) confirm **24/24 components Passed**, 85 original failure tests, seven source inventories, five real managed positives plus exact negative, **100/100** native SDK syntax commands and **20/20** Git postflight checks, with four exact repository heads verified and independent source/SDK/history preservation. The one-shot executed demo was `a5c0a4272efc4eee000220f40b7ca769be277917`, native `82ddcef9417e3d662fdd39916a92124b5c835094`. Both serialized lifetime flags are **false** and the inventory is `CompletedBatchFiles`. **PASS / PassedSourceHostAndSDKOnly**, no retry/Unity Editor/Player. Read [Primary reconciliation](History/M07R/R03/IR_Remediation/P1_GIT_MANIFEST_LIFETIME_2026-10-21/PRIMARY_RECONCILIATION_7896.md) and [raw checkpoint](History/M07R/R03/local-validation-p1-git-lifetime-20261021-7896/README.md).
+
+Finding `IR-LOCAL-P1-GIT-MANIFEST-LIFETIME-01` retains its original `SourceConfirmed_NotFaultInjected` status; successor correction `CorrectedAndRegressionValidatedWithinHostScope_NoRealTimeoutInjected` was verified with a separate mocked Git-only timeout test, **not a real Git timeout**. **7c2c PASS** and **82dd raw FAIL** remain separate, unchanged historical outcomes. **P1/runtime/R03 acceptance is not established.** This correction is **closed within source/host/SDK-syntax scope**. The previous [WEB_TO_LOCAL.md](Handoff/WEB_TO_LOCAL.md) is **consumed/archival; no new Local execution is authorized** by it.
+
+---
+
+
+## Historical snapshot — pre-7896 Primary handoff
 
 **Authoritative latest Local Validation:** `20261021-7c2c` [LOCAL_VALIDATION.md](Handoff/LOCAL_VALIDATION.md) FIRST, then [RETURN_TO_WEB.md](Handoff/RETURN_TO_WEB.md), [immutable checkpoint](History/M07R/R03/local-validation-p1-git-postflight-20261021-7c2c/README.md) and [finding](History/M07R/R03/local-validation-p1-git-postflight-20261021-7c2c/FINDING.json). Its exact *executed* tuple is demo `c5dde8493504cf69781fb0ab52123f525010a3aa`, native `82ddcef9417e3d662fdd39916a92124b5c835094`, hybridclr `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de`. **PASS / PassedSourceHostAndSDKOnly:** 24/24 independent components; 85 original tests; all seven source inventory flags; five actually compiled managed positives plus exact original negative; 100/100 original installed Unity2022.3.62f2 Apple arm64 C++17 SDK syntax; **20/20** final Git postflight commands exit0 and **all four** final repository heads independently verified; source/SDK/history audit Passed, **no batch retry**. No Unity Editor/Test Runner/Player, product native link, real GC/RSS, metadata Shutdown or complete P1/R03 runtime acceptance. `20261021-7c2c` raw/scratch/audit/checkpoint are consumed and immutable.
 
