@@ -1,0 +1,142 @@
+{
+  "kind": "R03P1GitManifestLifetimePrimaryEvidence",
+  "schemaVersion": 1,
+  "reviewedLocal": {
+    "cycle": "20261021-7c2c",
+    "result": "PassedSourceHostAndSDKOnly",
+    "consumed": true,
+    "sourceTuple": {
+      "hybridclr_demo": "c5dde8493504cf69781fb0ab52123f525010a3aa",
+      "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "il2cpp_plus": "82ddcef9417e3d662fdd39916a92124b5c835094"
+    },
+    "actualComponentsPassed": 24,
+    "originalFailureTestsPassed": 85,
+    "outerInventoryFlagsVerified": 7,
+    "managedActualPositiveProducts": 5,
+    "managedDistinctExpectedNegative": {
+      "id": "OriginalUnsignedCounts",
+      "exit": 1,
+      "CS0266Errors": 2,
+      "noDLL": true
+    },
+    "nativeOfficialSdkSyntaxConfigurationsPassed": 100,
+    "actualGitAuthorityDirectCommandsCompleted": 20,
+    "actualFourRepositoriesVerified": 4,
+    "independentPreservationAuditPassed": true,
+    "gitTimeouts": 0,
+    "coreBatchRetried": false,
+    "sourceSdkHistoryPreserved": true,
+    "UnityEditorExecuted": false,
+    "UnityPlayerExecuted": false,
+    "linkedProductRuntime": false
+  },
+  "finding": {
+    "id": "IR-LOCAL-P1-GIT-MANIFEST-LIFETIME-01",
+    "localStatus": "SourceConfirmed_NotFaultInjected",
+    "executedSourceSha": "c5dde8493504cf69781fb0ab52123f525010a3aa",
+    "rootManifestExpressionBefore": "stopped is not None",
+    "aggregateExpression": "unknown_lifetime",
+    "gitOnlyTimeoutWasExecutedByLocal": false
+  },
+  "olderConsumedFailure": {
+    "cycle": "20261021-82dd",
+    "aggregate": "FailedOrIncomplete",
+    "componentsPassed": 24,
+    "sourcePreserved": false,
+    "fourRepositoriesAfter": [],
+    "postflightGitTimeoutSeconds": 120,
+    "reclassified": false,
+    "coreBatchRetried": false
+  },
+  "primaryCode": {
+    "testOnlyRed": "b29b6385b428e1cb3fbc5684306f6a754d1f7664",
+    "fixedSourceAnchor": "789655f19bd54c8abdcda67946a1f8195193176c",
+    "changedPaths": [
+      "Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py",
+      "Tools/AssemblyShadow/R03IR/test_p1_command_failures.py"
+    ],
+    "rootManifestLifetimeAfter": "unknown_lifetime",
+    "rootInventoryScopeExpressionUnchanged": true,
+    "aggregateLifetimeExpressionUnchanged": true,
+    "testDiscoveryCountUnchanged": 85,
+    "syntheticScenario": {
+      "type": "mocked_git_only_postflight_timeout_in_real_Python_main",
+      "allMockComponentsPassed": 24,
+      "successfulFinalReposBeforeFault": 1,
+      "sourcePreserved": false,
+      "aggregateResult": "FailedOrIncomplete",
+      "aggregateCommandLifetimeUnverified": true,
+      "manifestCommandLifetimeUnverified": true,
+      "manifestInventoryScope": "UnsealedObservedFiles",
+      "physicallyExecutedExternalGit": false,
+      "physicallyExecutedUnitySdk": false,
+      "additionalTestIds": 0
+    },
+    "gitTimeoutSecondsUnchanged": 120,
+    "rerunOrFallbackIntroduced": false,
+    "nativeSourceChanged": false,
+    "originalSDKSourceChanged": false,
+    "originalPinFileChanged": false,
+    "actualGitTimeoutTested": false
+  },
+  "ci": {
+    "redIntegrated": {
+      "run": 39710461380,
+      "macos": "FailedAsExpected",
+      "ubuntu": "FailedAsExpected",
+      "firstFailure": "test_postflight_failure_cannot_turn_green manifest commandLifetimeUnverified false"
+    },
+    "redFocused": {
+      "run": 39710461363,
+      "macos": "FailedAsExpected",
+      "ubuntu": "FailedAsExpected"
+    },
+    "greenIntegrated": {
+      "run": 39710581913,
+      "macos": "Passed",
+      "ubuntu": "Passed",
+      "originalTests": 85
+    },
+    "greenFocused": {
+      "run": 39710581915,
+      "macos": "Passed",
+      "ubuntu": "Passed"
+    },
+    "greenManagedReceipt": {
+      "run": 39710581907,
+      "macos": "Passed",
+      "ubuntu": "Passed"
+    },
+    "scope": "Checked-in Python with mocked Git/SDK/VM sources, not an installed Unity SDK or real network timeout"
+  },
+  "nextLocal": {
+    "result": "NotRun",
+    "sourceHostSdkSyntaxOnly": true,
+    "componentCount": 24,
+    "originalFailureTests": 85,
+    "outerInventoryFlags": 7,
+    "managedActualPositiveProducts": 5,
+    "managedExactNegative": true,
+    "nativeActualSyntaxConfigs": 100,
+    "realFinalGitPostflightCommands": 20,
+    "newRootSuffix": "20261021-7896",
+    "priorRootsConsumed": true,
+    "unmodifiedHistoricalOutcomeRequired": true
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "fullP3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "historicalEvidenceReclassified": false
+}
