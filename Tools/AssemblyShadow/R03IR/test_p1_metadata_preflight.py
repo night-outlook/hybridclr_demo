@@ -54,6 +54,9 @@ class PreflightContracts(unittest.TestCase):
             "run_observed_type_shape_live.py",
             "run_observed_type_shape_json.py",
             "run_observed_type_shape_json_live.py",
+            "run_admitted_execution_diagnostics.py",
+            "admitted_execution_diagnostics_fixture.cpp",
+            "AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
             "observed_type_shape_json_live_fixture.cpp",
             "AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
             "observed_type_shape_json_fixture.cpp",
@@ -82,7 +85,7 @@ class PreflightContracts(unittest.TestCase):
         for name in required:
             with self.subTest(name=name):
                 self.assertIn(name,self.pre)
-        self.assertIn('len(cases)==24',self.pre)
+        self.assertIn('len(cases)==25',self.pre)
         self.assertIn('sourcePreserved',self.pre)
         self.assertIn('class GitPostflightProbe:',self.pre)
         self.assertIn('GIT_AUTHORITY_TIMEOUT_SECONDS=120',self.pre)
@@ -99,6 +102,7 @@ class PreflightContracts(unittest.TestCase):
         self.assertIn('expectedLiveTypeShapeCensusCaseGroupsPerProfile',self.pre)
         self.assertIn('expectedObservedTypeShapeJsonCaseGroupsPerProfile',self.pre)
         self.assertIn('expectedVmShapeJsonCaseGroupsPerProfile',self.pre)
+        self.assertIn('expectedAdmittedExecutionCaseGroupsPerProfile',self.pre)
         self.assertIn('historicalEvidenceReclassified":False',self.pre)
         self.assertIn('"UnityPlayerExecuted":False',self.pre)
 

@@ -85,5 +85,10 @@ using VmShapeJsonSignature=bool(*)(physical::Scratch&,owned::Capture&,
     shapeJson::Receipt&,size_t);
 VmShapeJsonSignature RequireInactiveVmShapeJsonSyntax() noexcept
 {return &AssemblyShadow::TryCaptureObservedTypeShapeJson;}
+// The admitted wrapper is INACTIVE and does not prove canonical physical
+// class identity or whole-VM epoch. Check only its actual SDK ABI signature.
+using AdmittedExecutionSignature=AssemblyShadowError(*)(std::string&);
+AdmittedExecutionSignature RequireInactiveExecutionMetadataAdmissionSyntax() noexcept
+{return &AssemblyShadow::TryGetExecutionDiagnosticsWithMetadataAdmission;}
 #endif
 }}} // namespaces

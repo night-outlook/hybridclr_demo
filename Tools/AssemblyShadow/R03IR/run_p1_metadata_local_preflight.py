@@ -168,6 +168,18 @@ EXPECTED_VM_SHAPE_JSON_GROUPS=(
     "stale-census-blocked-before-iterator",
 )
 
+EXPECTED_ADMITTED_EXECUTION_GROUPS=(
+    "closed-before-first-init",
+    "original-reader-opens-once",
+    "actual-old-getter-inside-reader",
+    "separate-output-owned-after-admission",
+    "original-error-code-propagated",
+    "original-exception-unwinds-reader",
+    "shutdown-blocked-until-reader-exits",
+    "shutdown-refuses-without-calling-getter",
+    "reopen-epoch-two-refuses-unproven-source",
+)
+
 def hash_file(path:Path)->str:
     h=hashlib.sha256()
     with path.open("rb") as f:
@@ -369,7 +381,8 @@ def read_component_result(output:Path, filename:str, require_lifetime_marker:boo
                           expected_type_shape_groups:tuple[str,...]|None=None,
                           expected_live_type_shape_groups:tuple[str,...]|None=None,
                           expected_shape_json_groups:tuple[str,...]|None=None,
-                          expected_vm_shape_json_groups:tuple[str,...]|None=None)->dict:
+                          expected_vm_shape_json_groups:tuple[str,...]|None=None,
+                          expected_admitted_execution_groups:tuple[str,...]|None=None)->dict:
     """Parse and hash the same canonical receipt bytes; do not follow decoys."""
     if Path(filename).name!=filename:
         raise ValueError("A direct component result filename is required")
@@ -717,6 +730,53 @@ def read_component_result(output:Path, filename:str, require_lifetime_marker:boo
                 or profile["newBridgeGroups"]!=list(expected_vm_shape_json_groups)):
                 raise ValueError("Inactive genuine VM shape JSON ordered source-host groups invalid: "+label)
         vm_shape_json_verified=True
+    admitted_execution_verified=False
+    if expected_admitted_execution_groups is not None and not unknown and (
+       record.get("result")=="PassedWithinInactiveMetadataAdmittedExecutionHostScope"):
+        if (record.get("kind")!="R03P1InactiveExecutionMetadataAdmissionActualSourceHost"
+            or type(record.get("schemaVersion")) is not int or record["schemaVersion"]!=1
+            or record.get("actualSourceCompiled") is not True
+            or record.get("sourcePreserved") is not True
+            or record.get("originalGetterNotActivated") is not True
+            or any(record.get(flag) is not False for flag in (
+                "canonicalExecutionTypeKeys","physicalPointerOriginProven",
+                "coherentVmEpochProven","fullExecutionV1SourceSafe",
+                "officialUnitySdkCompiled","UnityPlayerExecuted","runtimeAcceptance"))):
+            raise ValueError("Inactive admitted execution source identity/scope invalid")
+        proof=record.get("sourceContract")
+        if (not isinstance(proof,dict)
+            or proof.get("sourceKind")!="R03P1InactiveExecutionMetadataAdmissionActualSource"
+            or proof.get("actualProductionWrapperCompiled") is not True
+            or proof.get("actualGateCompiled") is not True
+            or proof.get("legacyGetterBodyUnchanged") is not True
+            or proof.get("wrapperOnlyCallsExistingGetter") is not True
+            or proof.get("failClosedOnReaderRejection") is not True
+            or proof.get("originalInitialEpochOnly") is not True
+            or proof.get("noVmFieldReadsInWrapper") is not True
+            or proof.get("cases")!=list(expected_admitted_execution_groups)
+            or any(proof.get(flag) is not False for flag in (
+                "canonicalExecutionTypeKeys","physicalPointerOriginProven",
+                "coherentVmEpochProven","fullExecutionV1SourceSafe",
+                "originalGetterEnabledByWrapper","UnityPlayerExecuted","runtimeAcceptance"))):
+            raise ValueError("Inactive admitted execution gate/source proof invalid")
+        previous=proof.get("precedingSourceAndLegacyFingerprintVerified")
+        if (not isinstance(previous,dict)
+            or previous.get("originalNativeCppAndApiFingerprintPreserved") is not True
+            or previous.get("threeActualVmSourceMethodsCompiled") is not True
+            or previous.get("sourceLocksReleasedBeforePureJson") is not True
+            or previous.get("newBridgeGroups")!=list(EXPECTED_VM_SHAPE_JSON_GROUPS)):
+            raise ValueError("Inactive admitted execution predecessor source fingerprint invalid")
+        profiles=record.get("profiles")
+        if not isinstance(profiles,dict) or set(profiles)!={"strict","sanitized"}:
+            raise ValueError("Inactive admitted execution strict/sanitized profiles missing")
+        for label in ("strict","sanitized"):
+            row=profiles[label]
+            if (not isinstance(row,dict) or
+                row.get("result")!="PassedWithinInactiveMetadataAdmittedExecutionHostScope"
+                or type(row.get("caseGroups")) is not list or
+                row["caseGroups"]!=list(expected_admitted_execution_groups)):
+                raise ValueError("Inactive admitted execution case inventory mismatch: "+label)
+        admitted_execution_verified=True
     return {"innerResult":record.get("result"),"innerResultPath":str(source),
             "innerResultSha256":hashlib.sha256(raw).hexdigest(),
             "commandLifetimeUnverified":unknown,
@@ -726,7 +786,8 @@ def read_component_result(output:Path, filename:str, require_lifetime_marker:boo
             "observedTypeShapeCaseInventoryVerified":shape_verified,
             "liveTypeShapeCensusCaseInventoryVerified":live_shape_verified,
             "observedTypeShapeJsonCaseInventoryVerified":json_shape_verified,
-            "vmShapeJsonSourceCaseInventoryVerified":vm_shape_json_verified}
+            "vmShapeJsonSourceCaseInventoryVerified":vm_shape_json_verified,
+            "admittedExecutionMetadataCaseInventoryVerified":admitted_execution_verified}
 
 
 def execute_component(dest:Path,name:str,argv:list,expected:str,
@@ -756,14 +817,15 @@ def execute_component(dest:Path,name:str,argv:list,expected:str,
             result.update(read_managed_result(output,stdout))
         else:
             result.update(read_component_result(
-                output,file,require_lifetime_marker=(name in ("empty-live","opaque-inventory","physical-membership","owned-physical-names","owned-physical-json","live-owned-physical-json","observed-type-shape","live-type-shape-census","observed-type-shape-json","vm-shape-json")),
+                output,file,require_lifetime_marker=(name in ("empty-live","opaque-inventory","physical-membership","owned-physical-names","owned-physical-json","live-owned-physical-json","observed-type-shape","live-type-shape-census","observed-type-shape-json","vm-shape-json","admitted-execution")),
                 expected_owned_binding_groups=EXPECTED_OWNED_BINDING_GROUPS if name=="owned-physical-names" else None,
                 expected_owned_json_groups=EXPECTED_OWNED_JSON_GROUPS if name=="owned-physical-json" else None,
                 expected_live_owned_json_groups=EXPECTED_LIVE_OWNED_JSON_GROUPS if name=="live-owned-physical-json" else None,
                 expected_type_shape_groups=EXPECTED_TYPE_SHAPE_GROUPS if name=="observed-type-shape" else None,
                 expected_live_type_shape_groups=EXPECTED_LIVE_TYPE_SHAPE_GROUPS if name=="live-type-shape-census" else None,
                 expected_shape_json_groups=EXPECTED_SHAPE_JSON_GROUPS if name=="observed-type-shape-json" else None,
-                expected_vm_shape_json_groups=EXPECTED_VM_SHAPE_JSON_GROUPS if name=="vm-shape-json" else None))
+                expected_vm_shape_json_groups=EXPECTED_VM_SHAPE_JSON_GROUPS if name=="vm-shape-json" else None,
+                expected_admitted_execution_groups=EXPECTED_ADMITTED_EXECUTION_GROUPS if name=="admitted-execution" else None))
         if result["commandLifetimeUnverified"]:
             result["stopBatchReason"]="ChildReportedUnverifiedCommandLifetime"
         elif proc.returncode==0 and result.get("innerResult")==expected:
@@ -778,7 +840,7 @@ def execute_component(dest:Path,name:str,argv:list,expected:str,
                       commandLifetimeUnverified=True,stopBatchReason="OuterCommandInterrupted")
     except Exception as error:
         result["exception"]=repr(error)
-        if returned and name in ("empty-live","opaque-inventory","physical-membership","owned-physical-names","owned-physical-json","live-owned-physical-json","observed-type-shape","live-type-shape-census","observed-type-shape-json","vm-shape-json"):
+        if returned and name in ("empty-live","opaque-inventory","physical-membership","owned-physical-names","owned-physical-json","live-owned-physical-json","observed-type-shape","live-type-shape-census","observed-type-shape-json","vm-shape-json","admitted-execution"):
             # A completed child without a valid lifetime receipt could have
             # timed out internally. Do not schedule more subprocess children.
             result.update(commandLifetimeUnverified=True,
@@ -869,6 +931,9 @@ def main()->None:
         native/"libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
         native/"libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
         native/"tools/r03/diagnostic_stream/run_observed_type_shape_json_live.py",
+        native/"libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+        native/"tools/r03/diagnostic_stream/run_admitted_execution_diagnostics.py",
+        native/"tools/r03/diagnostic_stream/admitted_execution_diagnostics_fixture.cpp",
         native/"tools/r03/diagnostic_stream/observed_type_shape_json_live_fixture.cpp",
         native/"tools/r03/diagnostic_stream/run_observed_type_shape_json.py",
         native/"tools/r03/diagnostic_stream/observed_type_shape_json_fixture.cpp",
@@ -966,6 +1031,7 @@ def main()->None:
             ("live-type-shape-census","run_observed_type_shape_live.py","PassedWithinInactiveLiveTypeShapeCensusHostScope"),
             ("observed-type-shape-json","run_observed_type_shape_json.py","PassedWithinOwnedTypeShapeJsonSourceHostScope"),
             ("vm-shape-json","run_observed_type_shape_json_live.py","PassedWithinInactiveVmShapeJsonHostScope"),
+            ("admitted-execution","run_admitted_execution_diagnostics.py","PassedWithinInactiveMetadataAdmittedExecutionHostScope"),
             ("bounded-status","run_bounded_transaction_status.py","PassedWithinHostScope"),
             ("bounded-inventory","run_bounded_transaction_inventory.py","PassedWithinHostScope"),
             ("frozen-v2","run_frozen_v2.py","PassedWithinInactiveHostScope"),
@@ -1005,12 +1071,12 @@ def main()->None:
         git_postflight=git_probe.summary(after)
         unknown_lifetime=stopped is not None or git_probe.unknown_lifetime
         success=(preserved and stopped is None and not unknown_lifetime
-                 and len(cases)==24 and all(c["status"]=="Passed" for c in cases))
+                 and len(cases)==25 and all(c["status"]=="Passed" for c in cases))
         statuses={c["name"]:c["status"] for c in cases}
         summary={"kind":"R03P1FailureAwareSourceSDKPreflight","schemaVersion":2,
           "stoppedAfter":stopped,"commandLifetimeUnverified":unknown_lifetime,
           "descendantQuiescenceProven":False,
-          "componentCount":24,"attemptedComponentCount":sum(c["commandInvoked"] for c in cases),
+          "componentCount":25,"attemptedComponentCount":sum(c["commandInvoked"] for c in cases),
           "result":"PassedSourceHostAndSDKOnly" if success else "FailedOrIncomplete",
           "fourRepositoriesBefore":before,"fourRepositoriesAfter":after,
           "sourceSha256":hashes,"sourcePreserved":preserved,
@@ -1031,6 +1097,7 @@ def main()->None:
           "expectedLiveTypeShapeCensusCaseGroupsPerProfile":len(EXPECTED_LIVE_TYPE_SHAPE_GROUPS),
           "expectedObservedTypeShapeJsonCaseGroupsPerProfile":len(EXPECTED_SHAPE_JSON_GROUPS),
           "expectedVmShapeJsonCaseGroupsPerProfile":len(EXPECTED_VM_SHAPE_JSON_GROUPS),
+          "expectedAdmittedExecutionCaseGroupsPerProfile":len(EXPECTED_ADMITTED_EXECUTION_GROUPS),
           "realUnityEditorLaunched":False,"UnityPlayerExecuted":False,
           "engineOwnerProven":False,"R03Accepted":False,"ReadyForHumanReviewGate":False,
           "historicalEvidenceReclassified":False}

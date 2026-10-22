@@ -501,6 +501,62 @@ class OwnedBindingInventoryContract(unittest.TestCase):
             self.assertFalse(check(uncertain)['vmShapeJsonSourceCaseInventoryVerified'])
 
 
+    def verify_admitted_execution_receipt_and_negative_mutations(self):
+        mod=load();expected=mod.EXPECTED_ADMITTED_EXECUTION_GROUPS
+        self.assertEqual(len(expected),9)
+        self.assertEqual(len(set(expected)),9)
+        with tempfile.TemporaryDirectory() as td:
+            out=Path(td).resolve();source=out/"RESULT.json"
+            def check(value):
+                source.write_text(json.dumps(value))
+                return mod.read_component_result(out,"RESULT.json",True,
+                    expected_admitted_execution_groups=expected)
+            original=make_admitted_execution_positive(mod)
+            original['commandLifetimeUnverified']=False
+            self.assertTrue(check(original)['admittedExecutionMetadataCaseInventoryVerified'])
+            cases=("missing-group","duplicate-group","wrong-kind","bool-schema",
+                "fake-typekey","fake-runtime","pretend-execution-v1-safe",
+                "metadata-gate-not-compiled","original-getter-changed",
+                "epoch-not-original","wrong-predecessor","missing-sanitized",
+                "profile-failure","source-not-preserved","wrapper-called-old-zero",
+                "wrapper-activated-getter","not-compiled")
+            for case in cases:
+                with self.subTest(case=case):
+                    bad=json.loads(json.dumps(original))
+                    if case=="missing-group":
+                        bad["profiles"]["strict"]["caseGroups"].pop()
+                    elif case=="duplicate-group":
+                        bad["profiles"]["strict"]["caseGroups"][-1]=expected[0]
+                    elif case=="wrong-kind":bad["kind"]="Other"
+                    elif case=="bool-schema":bad["schemaVersion"]=True
+                    elif case=="fake-typekey":bad["canonicalExecutionTypeKeys"]=True
+                    elif case=="fake-runtime":bad["runtimeAcceptance"]=True
+                    elif case=="pretend-execution-v1-safe":
+                        bad["sourceContract"]["fullExecutionV1SourceSafe"]=True
+                    elif case=="metadata-gate-not-compiled":
+                        bad["sourceContract"]["actualGateCompiled"]=False
+                    elif case=="original-getter-changed":
+                        bad["sourceContract"]["legacyGetterBodyUnchanged"]=False
+                    elif case=="epoch-not-original":
+                        bad["sourceContract"]["originalInitialEpochOnly"]=False
+                    elif case=="wrong-predecessor":
+                        bad["sourceContract"]["precedingSourceAndLegacyFingerprintVerified"]={}
+                    elif case=="missing-sanitized":bad["profiles"].pop("sanitized")
+                    elif case=="profile-failure":
+                        bad["profiles"]["strict"]["result"]="Failed"
+                    elif case=="source-not-preserved":bad["sourcePreserved"]=False
+                    elif case=="wrapper-called-old-zero":
+                        bad["sourceContract"]["wrapperOnlyCallsExistingGetter"]=False
+                    elif case=="wrapper-activated-getter":
+                        bad["sourceContract"]["originalGetterEnabledByWrapper"]=True
+                    elif case=="not-compiled":bad["actualSourceCompiled"]=False
+                    with self.assertRaisesRegex(ValueError,"Inactive admitted execution"):
+                        check(bad)
+            uncertain=json.loads(json.dumps(original))
+            uncertain["commandLifetimeUnverified"]=True
+            self.assertFalse(check(uncertain)['admittedExecutionMetadataCaseInventoryVerified'])
+
+
 def make_shape_json_positive(mod):
     names=list(mod.EXPECTED_OWNED_BINDING_GROUPS)
     shapes=list(mod.EXPECTED_TYPE_SHAPE_GROUPS)
@@ -571,6 +627,39 @@ def make_vm_shape_json_positive(mod):
             for mode in ('strict','sanitized')}
     }
 
+def make_admitted_execution_positive(mod):
+    prior=make_vm_shape_json_positive(mod)["sourceContract"]
+    roster=list(mod.EXPECTED_ADMITTED_EXECUTION_GROUPS)
+    return {
+       "kind":"R03P1InactiveExecutionMetadataAdmissionActualSourceHost",
+       "schemaVersion":1,
+       "result":"PassedWithinInactiveMetadataAdmittedExecutionHostScope",
+       "actualSourceCompiled":True,"sourcePreserved":True,
+       "originalGetterNotActivated":True,
+       "canonicalExecutionTypeKeys":False,
+       "physicalPointerOriginProven":False,
+       "coherentVmEpochProven":False,"fullExecutionV1SourceSafe":False,
+       "officialUnitySdkCompiled":False,"UnityPlayerExecuted":False,
+       "runtimeAcceptance":False,
+       "sourceContract":{
+          "sourceKind":"R03P1InactiveExecutionMetadataAdmissionActualSource",
+          "precedingSourceAndLegacyFingerprintVerified":prior,
+          "actualProductionWrapperCompiled":True,"actualGateCompiled":True,
+          "legacyGetterBodyUnchanged":True,
+          "wrapperOnlyCallsExistingGetter":True,
+          "failClosedOnReaderRejection":True,
+          "originalInitialEpochOnly":True,"noVmFieldReadsInWrapper":True,
+          "cases":roster,
+          "canonicalExecutionTypeKeys":False,
+          "physicalPointerOriginProven":False,
+          "coherentVmEpochProven":False,"fullExecutionV1SourceSafe":False,
+          "originalGetterEnabledByWrapper":False,
+          "UnityPlayerExecuted":False,"runtimeAcceptance":False},
+       "profiles":{name:{
+          "result":"PassedWithinInactiveMetadataAdmittedExecutionHostScope",
+          "caseGroups":roster} for name in ("strict","sanitized")}
+    }
+
 class BatchFailureScheduling(unittest.TestCase):
     def exercise(self,mode='passed',target='live-general'):
         with tempfile.TemporaryDirectory() as td:
@@ -626,6 +715,7 @@ class BatchFailureScheduling(unittest.TestCase):
                           'PassedWithinInactiveLiveTypeShapeCensusHostScope' if name=='live-type-shape-census' else
                           'PassedWithinOwnedTypeShapeJsonSourceHostScope' if name=='observed-type-shape-json' else
                           'PassedWithinInactiveVmShapeJsonHostScope' if name=='vm-shape-json' else
+                          'PassedWithinInactiveMetadataAdmittedExecutionHostScope' if name=='admitted-execution' else
                           'PassedWithinInactiveHostScope' if name=='frozen-v2' else 'PassedWithinHostScope')
                 data={'result':expected,'commandLifetimeUnverified':name==target and mode=='nested-timeout'}
                 if name=='owned-physical-names':
@@ -726,13 +816,16 @@ class BatchFailureScheduling(unittest.TestCase):
                 if name=='vm-shape-json':
                     # Preserve separately injected timeout/lifetime evidence.
                     data.update(make_vm_shape_json_positive(mod))
+                if name=='admitted-execution':
+                    # Host-only: never reset a deliberate uncertain lifetime.
+                    data.update(make_admitted_execution_positive(mod))
                 if name=='observed-type-shape-json':
                     positive=make_shape_json_positive(mod)
                     # Keep the independently injected timeout/lifetime state;
                     # a source-host positive mock must never erase this fault.
                     positive.pop('commandLifetimeUnverified')
                     data.update(positive)
-                if name in ('empty-live','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json','vm-shape-json') and name==target:
+                if name in ('empty-live','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json','vm-shape-json','admitted-execution') and name==target:
                     if mode=='missing-lifetime-marker':
                         data.pop('commandLifetimeUnverified')
                     if mode=='malformed-lifetime-marker':
@@ -744,7 +837,7 @@ class BatchFailureScheduling(unittest.TestCase):
                                 unityEditorRun=False,nativeExecution=False,runtimeAcceptance=False)
                     (out/'build-api').mkdir();file=out/'build-api/results.json'
                 else:file=out/('results.json' if name=='native-sdk' else 'RESULT.json')
-                if not (name in ('empty-live','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json','vm-shape-json') and name==target and mode=='missing-result'):
+                if not (name in ('empty-live','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json','vm-shape-json','admitted-execution') and name==target and mode=='missing-result'):
                     file.write_text(json.dumps(data))
                 if mode=='missing-result' and name==target:
                     # Ensure this failure injection remains an actual absent
@@ -764,8 +857,8 @@ class BatchFailureScheduling(unittest.TestCase):
                 except SystemExit as error:code=error.code
             report=json.loads((dest/'RESULT.json').read_bytes())
             manifest=json.loads((dest/'MANIFEST.json').read_bytes())
-            self.assertEqual(len(report['commands']),24)
-            self.assertEqual(report['componentCount'],24)
+            self.assertEqual(len(report['commands']),25)
+            self.assertEqual(report['componentCount'],25)
             self.assertEqual(report['attemptedComponentCount'],len(launched))
             self.assertEqual(report['expectedNativeSyntaxUnits'],100)
             self.assertEqual(report['expectedOwnedBindingCaseGroupsPerProfile'],28)
@@ -775,6 +868,7 @@ class BatchFailureScheduling(unittest.TestCase):
             self.assertEqual(report['expectedLiveTypeShapeCensusCaseGroupsPerProfile'],16)
             self.assertEqual(report['expectedObservedTypeShapeJsonCaseGroupsPerProfile'],16)
             self.assertEqual(report['expectedVmShapeJsonCaseGroupsPerProfile'],16)
+            self.assertEqual(report['expectedAdmittedExecutionCaseGroupsPerProfile'],9)
             self.assertFalse(report['R03Accepted']);self.assertFalse(report['UnityPlayerExecuted'])
             self.assertFalse(report['historicalEvidenceReclassified'])
             for row in report['commands']:
@@ -795,9 +889,10 @@ class BatchFailureScheduling(unittest.TestCase):
         OwnedBindingInventoryContract().verify_live_type_shape_census_receipt_and_fail_closed_mutations()
         OwnedBindingInventoryContract().verify_noncanonical_shape_json_receipts_and_mutations()
         OwnedBindingInventoryContract().verify_real_vm_shape_json_receipt_and_fail_closed_mutations()
+        OwnedBindingInventoryContract().verify_admitted_execution_receipt_and_negative_mutations()
         self.verify_bounded_git_postflight_direct_command_receipts()
         code,report,manifest,launched,checks=self.exercise()
-        self.assertEqual(code,0);self.assertEqual(len(launched),24);self.assertEqual(len(checks),8)
+        self.assertEqual(code,0);self.assertEqual(len(launched),25);self.assertEqual(len(checks),8)
         self.assertTrue(report['sourcePreserved']);self.assertIsNone(report['stoppedAfter'])
         # Git identity commands are intentionally mocked here; do not claim
         # host test values are real SSH/remote stream evidence.
@@ -887,7 +982,7 @@ class BatchFailureScheduling(unittest.TestCase):
     def assert_stopped(self,mode,target='live-general',code=1):
         actual,report,manifest,launched,checks=self.exercise(mode,target)
         self.assertEqual(actual,code);self.assertEqual(launched[-1],target)
-        self.assertLess(len(launched),24);self.assertEqual(len(checks),4)
+        self.assertLess(len(launched),25);self.assertEqual(len(checks),4)
         self.assertFalse(report['sourcePreserved']);self.assertTrue(report['commandLifetimeUnverified'])
         self.assertEqual(report['result'],'FailedOrIncomplete')
         self.assertFalse(report['officialUnitySdkCompileAttempted'])
@@ -905,24 +1000,24 @@ class BatchFailureScheduling(unittest.TestCase):
     def test_first_component_timeout_leaves_seventeen_notrun(self):self.assert_stopped('timeout','command-failures')
 
     def test_completed_nonzero_keeps_other_independent_checks(self):
-        for target in ('owned-execution','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json','vm-shape-json'):
+        for target in ('owned-execution','opaque-inventory','physical-membership','owned-physical-names','owned-physical-json','live-owned-physical-json','observed-type-shape','live-type-shape-census','observed-type-shape-json','vm-shape-json','admitted-execution'):
             with self.subTest(target=target):
                 code,report,manifest,launched,checks=self.exercise('nonzero',target)
-                self.assertEqual(code,1);self.assertEqual(len(launched),24);self.assertEqual(len(checks),8)
-                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),23)
+                self.assertEqual(code,1);self.assertEqual(len(launched),25);self.assertEqual(len(checks),8)
+                self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),24)
                 self.assertEqual(next(c for c in report['commands'] if c['name']==target)['status'],'Failed')
                 self.assertTrue(report['officialUnitySdkCompilePassed']);self.assertTrue(report['sourcePreserved'])
                 self.assertIsNone(report['stoppedAfter'])
 
     def test_known_launch_failure_is_retained_without_faking_an_exit(self):
         code,report,manifest,launched,checks=self.exercise('spawn-failed')
-        self.assertEqual(code,1);self.assertEqual(len(launched),24)
+        self.assertEqual(code,1);self.assertEqual(len(launched),25)
         record=next(c for c in report['commands'] if c['name']=='live-general')
         self.assertIsNone(record['exit']);self.assertIn('FileNotFoundError',record['exception'])
 
     def test_last_sdk_timeout_is_attempted_but_not_passed(self):
         code,report,manifest,launched,checks=self.exercise('timeout','native-sdk')
-        self.assertEqual(code,1);self.assertEqual(len(launched),24)
+        self.assertEqual(code,1);self.assertEqual(len(launched),25)
         self.assertTrue(report['officialUnitySdkCompileAttempted'])
         self.assertFalse(report['officialUnitySdkCompilePassed']);self.assertFalse(report['sourcePreserved'])
         self.assertTrue(report['commandLifetimeUnverified'])
@@ -940,10 +1035,10 @@ class BatchFailureScheduling(unittest.TestCase):
         # using one fake partial-output timeout, never a live SSH probe.
         code,report,manifest,launched,checks=self.exercise('postflight-git-timeout')
         self.assertEqual(code,1)
-        self.assertEqual(len(launched),24)
+        self.assertEqual(len(launched),25)
         self.assertEqual(len(report['fourRepositoriesAfter']),1)
-        self.assertEqual(report['componentCount'],24)
-        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),24)
+        self.assertEqual(report['componentCount'],25)
+        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),25)
         self.assertFalse(report['sourcePreserved'])
         self.assertTrue(report['commandLifetimeUnverified'])
         self.assertEqual(report['result'],'FailedOrIncomplete')
@@ -982,13 +1077,13 @@ class BatchFailureScheduling(unittest.TestCase):
     def test_known_nonzero_empty_live_continues_without_claiming_pass(self):
         code,report,manifest,launched,checks=self.exercise('nonzero','empty-live')
         self.assertEqual(code,1)
-        self.assertEqual(len(launched),24)
+        self.assertEqual(len(launched),25)
         self.assertEqual(len(checks),8)
         self.assertIsNone(report['stoppedAfter'])
         self.assertFalse(report['commandLifetimeUnverified'])
         self.assertTrue(report['sourcePreserved'])
         self.assertTrue(report['officialUnitySdkCompilePassed'])
-        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),23)
+        self.assertEqual(sum(c['status']=='Passed' for c in report['commands']),25)
         self.assertEqual(next(c for c in report['commands']
                               if c['name']=='empty-live')['status'],'Failed')
 
@@ -1066,5 +1161,10 @@ class BatchFailureScheduling(unittest.TestCase):
         self.assert_stopped('malformed-lifetime-marker','vm-shape-json')
         self.assert_stopped('null-lifetime-marker','vm-shape-json')
         self.assert_stopped('missing-result','vm-shape-json')
+        self.assert_stopped('nested-timeout','admitted-execution')
+        self.assert_stopped('missing-lifetime-marker','admitted-execution')
+        self.assert_stopped('malformed-lifetime-marker','admitted-execution')
+        self.assert_stopped('null-lifetime-marker','admitted-execution')
+        self.assert_stopped('missing-result','admitted-execution')
 
 if __name__=='__main__':unittest.main(verbosity=2)
