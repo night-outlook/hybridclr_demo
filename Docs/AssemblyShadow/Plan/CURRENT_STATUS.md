@@ -1,6 +1,19 @@
 # R03 P1 current status — 7896 Local reconciliation
 
-## Latest Local result: 7896 PASS and correction reconciliation
+## New Primary source candidate — inactive metadata-admitted execution diagnostics
+
+**Latest authoritative Local remains 20261021-7896 PASS / PassedSourceHostAndSDKOnly** at executed demo `a5c0a4272efc4eee000220f40b7ca769be277917` and native `82ddcef9417e3d662fdd39916a92124b5c835094`: 24/24 components, original 85 tests, seven source inventories, five real managed positives + original negative, 100/100 installed SDK native syntax, 20/20 actual Git postflight commands/four source heads, source/SDK/history independently preserved. No Player. Prior `7c2c` PASS and `82dd` aggregate FAIL remain separate and unchanged.
+
+Native candidate `il2cpp_plus@e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb`, demo tested code anchor `117cc6b1c2be8050cd2f433ef17db8b3c5138f93`: one INACTIVE `TryGetExecutionDiagnosticsWithMetadataAdmission(std::string&)` holds the initial-session metadata Reader across the unmodified original getter and fails closed on unavailable/old epoch; this does **not** establish class pointer provenance, original getter safety, whole VM coherence, canonical TypeKeys, complete execution V1, real GC/RSS or Runtime::Shutdown. New 25th component with nine strict/sanitized source-host groups and eighth outer inventory flag; all old tests/SDK inputs unchanged. Native focused CI `39735806552` PASS 3/3; corrected demo integrated/focused CI `39736751961`/`39736752238` PASS 2/2 each. **Current candidate installed official Unity SDK syntax NotRun** until the new Local batch.
+
+Read [Design](../History/M07R/R03/IR_Remediation/P1_ADMITTED_EXECUTION_2026-10-22/DESIGN.md), [Plan](../History/M07R/R03/IR_Remediation/P1_ADMITTED_EXECUTION_2026-10-22/PLAN.md), [Primary Source Audit](../History/M07R/R03/IR_Remediation/P1_ADMITTED_EXECUTION_2026-10-22/PRIMARY_SOURCE_AUDIT.md) and [new one-shot WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md). The previous `7896` handoff/roots are consumed and **not** reusable. Required new Local batch: **25/25**, original 85 tests, eight inventory flags, five genuine managed positives + exact negative, 100 official SDK native syntax, 20 Git commands and four full exact remote heads, clean source/SDK/history and no unknown process lifetime. Fresh roots/commands are exclusively in the new handoff. No real Player/runtime or later milestone authorization.
+
+**P1 Incomplete** (physical class allocator provenance/lifetime, generic-aware canonical TypeKeys, VM-coherent epoch, complete execution V1, original getter safe activation, process GC/RSS/latency, actual Shutdown); P2 NotIntegrated; E0 Blocked/Unavailable; E1 BlockedByE0; full P3 Incomplete. Original SNAP-01/N/M/K/I/E/R02 fingerprint FAIL, strict S custody Blocked, independent R03 full-stage FAIL/re-review NotRun remain; R03/H2/human approval all false and PureInterpreter disabled.
+
+---
+
+
+## Historical latest Local result prior to new native candidate: 7896 PASS
 
 **20261021-7896 — PASS / PassedSourceHostAndSDKOnly** at actual demo `a5c0a4272efc4eee000220f40b7ca769be277917`, native `82ddcef9417e3d662fdd39916a92124b5c835094`, unchanged hybridclr and hybridclr_unity. Exactly **24/24** Passed, original **85** tests, seven source inventory flags, managed 5 positives + exact negative, **100/100** native SDK syntax and **20/20** real Git final authority checks/four exact source heads. Independent audit Passed; all source/installed SDK/historical evidence preserved. Both actual `RESULT.json` and `MANIFEST.json` `commandLifetimeUnverified=false`, manifest `inventoryScope=CompletedBatchFiles`. No retry or Unity Editor/Test Runner/Player/product link. [Primary reconciliation](../History/M07R/R03/IR_Remediation/P1_GIT_MANIFEST_LIFETIME_2026-10-21/PRIMARY_RECONCILIATION_7896.md) and [Local checkpoint](../History/M07R/R03/local-validation-p1-git-lifetime-20261021-7896/README.md) contain exact evidence.
 

@@ -1,0 +1,25 @@
+# R03 P1 inactive admitted V1 execution diagnostic — one-cycle plan
+
+## Primary Implementation
+
+1. Reconcile `20261021-7896` Local-owned [LOCAL_VALIDATION](../../../../../Handoff/LOCAL_VALIDATION.md) FIRST, [RETURN_TO_WEB](../../../../../Handoff/RETURN_TO_WEB.md) second, exact original raw SDK/source/negative symlink evidence and all historical `7c2c` PASS / `82dd` FAIL outcomes. No consumed-root reuse or historical reclassification.
+2. Add ONLY `TryGetExecutionDiagnosticsWithMetadataAdmission(std::string& json)` to native `AssemblyShadow.h`/`AssemblyShadow.cpp` via new single-use `AssemblyShadowAdmittedExecutionDiagnosticsSource.inl`. Enclose the **unchanged** existing `GetExecutionDiagnosticsJson` in a default initial-epoch metadata Gate::Reader; refuse closed or later reopened epoch, clear stale JSON and return `InvalidState` before any original getter call. No new original getter behavior or managed/Player usage.
+3. Add a genuine .inl + real Gate host C++ fixture with **nine** strict/sanitized control groups (open/closed/exception/error/whole-call drain/reopen epoch) and source-bound runner with original CPP/API immutable fingerprint verification, before/after source blobs and five actual host compiler receipts. Mac Clang/Linux Clang/GCC focused CI. Preserve any first FAIL and fix its exact cause; never rebaseline historical source pins.
+4. Extend demo to 25th `admitted-execution` child, exact kind/expected host scope, nested source fingerprint proof and **eighth** inventory flag. Add positive and adversarial consumer/command-lifetime contracts **inside original 85 test IDs**. Include actual .inl runner/fixture in custody inputs and existing official SDK syntax probe function-pointer; keep **100=20×5** Apple native syntax calls, original 5 actual managed positive DLLs + `OriginalUnsignedCounts` compiler-negative exactly two CS0266/no DLL. Preserve 24 old inner/outer child statuses and all seven old inventory flags.
+5. Verify Mac/Linux integrated 85-test, focused failure, managed/source CLI CI, plus prior native focused and static source checks. Publish Design/Plan/Primary audit/evidence, README/CURRENT_STATUS and final exact **WEB_TO_LOCAL.md**. Verify four canonical remote heads, demo tested source anchor and Docs-only final publication. Do not report host-gate mock coverage as real Editor/Player, actual pointer-safe V1 or full P1 acceptance.
+
+## Exactly ONE Local Validation after independent admission
+
+Local independently authenticates four separate clean local+remote repositories on `codex/assembly-shadow-r01b-h1`, installed Unity2022.3.62f2 official SDK, original vendor compiler/bin/pkgs, all consumed P1 raw/scratch/audit/checkpoint and negative controls (notably `7896`), before creating any new roots. Require new raw/SDK scratch/independent audit/additive checkpoint root names **absent**, canonical and disjoint from repos, SDK and all old roots. On failed admission, Blocked/STOP, no batch attempt and no changed suffix.
+
+Run one source-bound `run_p1_metadata_local_preflight.py` batch against exact new demo and native candidate HEAD, no Unity Editor/Test Runner/Player:
+
+- **25/25** separately receipted children, original **85** controlled failure tests (5+14+44+10+12) and all previous source/legacy/membership/frozen-V1 cases;
+- previous source host counts 28/21/12/15/16/16/16 per strict/sanitized plus **nine NEW admitted-execution** groups per strict/sanitized, all **eight** independent outer inventory flags;
+- genuine managed **five positive products (428 original source inputs)** plus original distinct `OriginalUnsignedCounts` compiler-negative exit1 exactly two CS0266/no DLL, canonical nested source/receipt hashes;
+- genuine installed Apple arm64 C++17 **100/100 -fsyntax-only** commands from original **20** translation units × five feature/debug/profile modes, full original `AssemblyShadow.cpp` now including the inactive method and existing typed native method probe; no linked Player/Editor;
+- exact **20** genuine Git postflight direct commands (five × four repositories), original 120-second timeout/clean/source SHA/branch rules, four full matched final heads and source/SDK/historical evidence preserved; `RESULT` and `MANIFEST` lifetime fields both false on successful fully completed run.
+
+Unknown child/SSH lifetime ⇒ aggregate FailedOrIncomplete, partial bounded outputs and unsealed manifest, no extra process/unsafe postflight; completed nonzero stays Failed. A separate independent audit must join real compiler/stream/PID/timing/source byte/SDK hashes and original negative controls. One root set is consumed on PASS/FAIL/Blocked/interrupt. **No retry**, source/SDK/toolchain/SSH edits, original getter activation, real runtime owner callback, protected SNAP-01, H2/X02/M08A, Human Review Gate.
+
+Local writes and pushes **ONLY** factual `Handoff/LOCAL_VALIDATION.md`, `Handoff/RETURN_TO_WEB.md` and one new additive checkpoint, verifies remote HEADs and STOPS. Subsequent runtime/pointer-ownership/TypeKey/full V1 work returns to Primary. Historical negative/scope states unchanged.

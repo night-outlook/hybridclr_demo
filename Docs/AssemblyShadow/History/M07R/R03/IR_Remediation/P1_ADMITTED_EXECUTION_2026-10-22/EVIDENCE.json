@@ -1,0 +1,150 @@
+{
+  "kind": "R03P1InactiveMetadataAdmittedExecutionPrimaryEvidence",
+  "schemaVersion": 1,
+  "lastConsumedLocal": {
+    "cycle": "20261021-7896",
+    "result": "PassedSourceHostAndSDKOnly",
+    "executedSource": {
+      "hybridclr_demo": "a5c0a4272efc4eee000220f40b7ca769be277917",
+      "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "il2cpp_plus": "82ddcef9417e3d662fdd39916a92124b5c835094"
+    },
+    "components": 24,
+    "originalFailureTests": 85,
+    "sourceInventoryFlags": 7,
+    "managedPositiveProducts": 5,
+    "expectedNegative": {
+      "id": "OriginalUnsignedCounts",
+      "exit": 1,
+      "CS0266Errors": 2,
+      "noDll": true
+    },
+    "nativeSyntax": 100,
+    "realGitPostflightCommands": 20,
+    "finalReposVerified": 4,
+    "independentAudit": "PassedFactualEvidenceAudit",
+    "oneBatchNoRetry": true,
+    "unityEditorExecuted": false,
+    "playerExecuted": false
+  },
+  "candidateSource": {
+    "native": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
+    "demoCodeAnchor": "117cc6b1c2be8050cd2f433ef17db8b3c5138f93",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de"
+  },
+  "implementation": {
+    "wrapper": "AssemblyShadow::TryGetExecutionDiagnosticsWithMetadataAdmission",
+    "methodSource": "libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+    "legacyGetterBodyChanged": false,
+    "wrapperActivatedInProduction": false,
+    "sourceReaderInitialEpochOnly": true,
+    "readerCoversDelegateAndExceptionalExit": true,
+    "closedGateRefusesBeforeGetter": true,
+    "newNativeHostGroupsPerProfile": 9,
+    "newDemoComponent": "admitted-execution",
+    "newTotalComponents": 25,
+    "newOuterFlags": 8,
+    "originalTestIds": 85,
+    "oldNativeOfficialSdkSyntaxUnits": 100,
+    "canonicalExecutionTypeKeys": false,
+    "physicalClassPointerOriginProven": false,
+    "coherentVmEpochProven": false,
+    "fullExecutionV1Safe": false,
+    "runtimeAcceptance": false
+  },
+  "CI": {
+    "nativeInitialFingerprintFail": {
+      "run": 39735204197,
+      "result": "FailedSourceGateNewline",
+      "preserved": true
+    },
+    "nativeSecondaryVerifierFail": {
+      "run": 39735624217,
+      "result": "FailedTestVerifierMultilineSignature",
+      "preserved": true
+    },
+    "nativeFinal": {
+      "run": 39735806552,
+      "macosClang": "Passed",
+      "linuxClang": "Passed",
+      "linuxGcc": "Passed"
+    },
+    "preservedNameGate": {
+      "run": 39735624262,
+      "result": "Passed3Of3"
+    },
+    "preservedMembershipGate": {
+      "run": 39735624233,
+      "result": "Passed3Of3"
+    },
+    "preservedOpaqueGate": {
+      "run": 39735624261,
+      "result": "Passed3Of3"
+    },
+    "demoInitialIntegrated": {
+      "run": 39736625885,
+      "result": "FailedSyntheticKnownNonzeroCount",
+      "preserved": true
+    },
+    "demoInitialFocused": {
+      "run": 39736625864,
+      "result": "FailedSyntheticKnownNonzeroCount",
+      "preserved": true
+    },
+    "demoIntegratedFinal": {
+      "run": 39736751961,
+      "macos": "Passed",
+      "ubuntu": "Passed",
+      "originalTests": 85
+    },
+    "demoFocusedFinal": {
+      "run": 39736752238,
+      "macos": "Passed",
+      "ubuntu": "Passed"
+    },
+    "demoManagedPrior": {
+      "run": 39736625771,
+      "macos": "Passed",
+      "ubuntu": "Passed",
+      "laterChangeOnlySyntheticCount": true
+    }
+  },
+  "nextLocal": {
+    "status": "NotRun",
+    "components": 25,
+    "sourceHostAndOfficialSdkSyntaxOnly": true,
+    "originalFailureTests": 85,
+    "outerInventoryFlags": 8,
+    "newGroupsPerProfile": 9,
+    "managedPositiveProducts": 5,
+    "managedOriginalNegative": true,
+    "nativeOfficialSdkSyntax": 100,
+    "requiredRealGitCommands": 20,
+    "freshRootSuffix": "20261022-e1e5",
+    "noUnityEditorPlayer": true,
+    "noRetry": true
+  },
+  "historic": {
+    "cycle7c2c": "PassedSourceHostAndSDKOnly",
+    "cycle82dd": "FailedOrIncomplete",
+    "originalR02Fingerprint": "Fail",
+    "strictSCustody": "Blocked",
+    "independentFullStageR03": "Fail/ReReviewNotRun",
+    "reclassified": false
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "fullP3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  }
+}
