@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "kind": "P1LocalCollectorReconstructionPrimaryEvidence",
+  "status": "PrimarySourceAndSyntheticHostValidated_LocalBatchNotRun",
+  "sourcePins": {
+    "hybridclr_demoCodeAnchor": "117cc6b1c2be8050cd2f433ef17db8b3c5138f93",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+  },
+  "blockedLocal": {
+    "cycle": "20261022-e1e5",
+    "status": "PrerequisiteBlocked",
+    "componentsInvoked": 0,
+    "actualCoreBatch": "NotRun",
+    "frozenSourceFinding": "IR-LOCAL-P1-ADMITTED-PREFLIGHT-01",
+    "historicalFailedCollectorSha256": "73d3a7e1fd1ad9f0d87f584f3c90dab1a3da1000e37db07d5891064eaa850cdd"
+  },
+  "sourceChanges": [
+    {
+      "path": "Docs/AssemblyShadow/Handoff/Tools/prepare_p1_admitted_local.py",
+      "gitBlob": "cf2fdf39fe17df076d50dcc33ed72c757eaa3b26",
+      "sha256": "ddaa342817906dec659c4be062ea052cd8e12ed1ad2b538bcb283ae12a750db8"
+    },
+    {
+      "path": "Docs/AssemblyShadow/Handoff/Tools/test_prepare_p1_admitted_local.py",
+      "gitBlob": "58e6e0b9ff870d1ada20021ab36a82882d60b837",
+      "sha256": "94ee6e8d1ec1957598445fe3ce625a4c2af896b4b7e4020ecbbd48f480d52946"
+    }
+  ],
+  "checks": {
+    "syntheticPythonTestsPassed": 13,
+    "syntheticPythonTestsFailed": 0,
+    "pythonCompilePassed": true,
+    "nativeCurrentCppStripsTo82dd": true,
+    "nativeCurrentApiStripsTo82dd": true,
+    "currentAdmissionOccurrenceCpp": 1,
+    "currentAdmissionOccurrenceApi": 1,
+    "archivedHelperOriginalAnchors": [
+      "cpp_without_live",
+      "api"
+    ],
+    "archivedHelperTargetCounts": [
+      1,
+      1
+    ],
+    "realSdkCompilation": "NotRun",
+    "coreBatch": "NotRun",
+    "independentFullStageReview": "NotRun"
+  },
+  "historicalOutcomes": {
+    "lifetime7896": "PassedSourceHostAndSDKOnly",
+    "postflight7c2c": "PassedSourceHostAndSDKOnly",
+    "gitTimeout82dd": "FailedOrIncomplete",
+    "admittedE1e5": "PrerequisiteBlocked"
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete",
+    "R03Accepted": false,
+    "ReadyForHumanReviewGate": false,
+    "runtimeAcceptance": false,
+    "PureInterpreterEnabled": false
+  }
+}
