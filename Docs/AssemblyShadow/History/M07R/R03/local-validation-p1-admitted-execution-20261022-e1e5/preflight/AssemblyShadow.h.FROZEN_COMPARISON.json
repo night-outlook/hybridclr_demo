@@ -1,0 +1,7 @@
+{
+  "kind": "ReadOnlyFrozenByteComparison",
+  "originalGitBlob": "32956c2c4084951131b497c1201712a0d4fe11b3",
+  "originalSha256": "74b0e63cb5a007a7f6bd3fa45435d1700b6041427515138fafd003ed5ffc8498",
+  "diff": "--- immutable Git blob 32956c2c4084951131b497c1201712a0d4fe11b3\n+++ failed Local helper reconstruction\n@@ -62,6 +62,10 @@\n     static AssemblyShadowError GetDiagnosticsJson(std::string& json);\n     static AssemblyShadowError GetTypeResolutionInfo(const Il2CppType* type, std::string& json);\n     static AssemblyShadowError GetExecutionDiagnosticsJson(std::string& json);\n+    // P1 INACTIVE: initial metadata-lifetime reader encloses the unchanged\n+    // legacy getter. This does not prove class pointer origin, canonical\n+    // execution TypeKeys, coherent VM epoch or Player behavior.\n+    static AssemblyShadowError TryGetExecutionDiagnosticsWithMetadataAdmission(std::string& json);\n     // Icall exception boundary: seal a mutating operation that unwound through\n     // an unexpected failure. This path does not allocate or acquire VM locks.\n     static AssemblyShadowError ReportUnexpectedFailure();\n",
+  "sourceUnmodified": true
+}

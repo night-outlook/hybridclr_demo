@@ -1,0 +1,72 @@
+{
+  "id": "IR-LOCAL-P1-ADMITTED-PREFLIGHT-01",
+  "status": "LocalCollectorPrerequisiteBlocked",
+  "ownership": "Local-owned independent preflight helper; no product-source defect established",
+  "sourcePin": {
+    "hybridclr_demo": "19de9dd4d1040aeb2b72b4e3fe0f89b18df94696",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+  },
+  "failedCommand": [
+    "python3",
+    "-B",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-ADMITTED-EXECUTION-20261022-e1e5/run-once.py"
+  ],
+  "commandExit": 1,
+  "failedLine": 150,
+  "tracebackPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-ADMITTED-EXECUTION-20261022-e1e5/run-once.log",
+  "tracebackSha256": "c49be929f1ce3d95453a7003cad2c52d3f687ddada3ac52cf0f5f34ecee157b0",
+  "helperPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-ADMITTED-EXECUTION-20261022-e1e5/run-once.py",
+  "helperSha256": "73d3a7e1fd1ad9f0d87f584f3c90dab1a3da1000e37db07d5891064eaa850cdd",
+  "symptom": "Frozen original CPP reconstruction retains new published admitted include and fails exact Git-blob assertion before core launch.",
+  "rootCause": "Independent Local helper adapted later owned-name reconstruction but missed earlier opaque CPP/API reconstruction. Native published source gate already strips exact admitted_include/admitted_decl.",
+  "firstFailureObserved": "AssemblyShadow.cpp comparison against Git blob 53aecc2d113b20b6ff825d0aa4ca0f4372a7cce2",
+  "apiComparison": "Not reached by failed helper; independently compared read-only in this diagnosis",
+  "reproduction": [
+    {
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "originalGitBlob": "53aecc2d113b20b6ff825d0aa4ca0f4372a7cce2",
+      "originalSha256": "6021bce2939c45a7bd5b44a881c67a052eac1902b6b0eb30d8f620142344c5a9",
+      "unstrippedReconstructionSha256": "a3839cb8610bef23c3a043ed1f6cf2992b33923aa0130643fb9fa87e291e6d5b",
+      "omittedOnlyNewLiteral": "// P1 inactive reader around the original (unmodified) V1 getter.\n#include \"AssemblyShadowAdmittedExecutionDiagnosticsSource.inl\"\n\n",
+      "readOnlyResidualComparisonExactlyRestoresOriginal": true
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadow.h",
+      "originalGitBlob": "32956c2c4084951131b497c1201712a0d4fe11b3",
+      "originalSha256": "74b0e63cb5a007a7f6bd3fa45435d1700b6041427515138fafd003ed5ffc8498",
+      "unstrippedReconstructionSha256": "7f57c72bb3f40735600c2ee17929bc088de70f784dff3ca91b363ff5492ab63d",
+      "omittedOnlyNewLiteral": "    // P1 INACTIVE: initial metadata-lifetime reader encloses the unchanged\n    // legacy getter. This does not prove class pointer origin, canonical\n    // execution TypeKeys, coherent VM epoch or Player behavior.\n    static AssemblyShadowError TryGetExecutionDiagnosticsWithMetadataAdmission(std::string& json);\n",
+      "readOnlyResidualComparisonExactlyRestoresOriginal": true
+    }
+  ],
+  "currentSourceExactlyMatchesExpectedAdditiveDelta": [
+    {
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "currentSha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c",
+      "prior82ddSha256": "31e0c39e51c83306933ee52de3f9855cc397836427608fcd135a76cf34dda036",
+      "exactNewAdditiveBytes": "// P1 inactive reader around the original (unmodified) V1 getter.\n#include \"AssemblyShadowAdmittedExecutionDiagnosticsSource.inl\"\n\n",
+      "removingOnlyPublishedAdditionRestoresPrior82ddBytes": true
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadow.h",
+      "currentSha256": "55e572887d7ed89cc5d9cd57b3457df240357aa389474512442f3a5fea487e8f",
+      "prior82ddSha256": "477bcb912325a0c0ab17add94f565213dde2baae98ff97f0d607f982892af943",
+      "exactNewAdditiveBytes": "    // P1 INACTIVE: initial metadata-lifetime reader encloses the unchanged\n    // legacy getter. This does not prove class pointer origin, canonical\n    // execution TypeKeys, coherent VM epoch or Player behavior.\n    static AssemblyShadowError TryGetExecutionDiagnosticsWithMetadataAdmission(std::string& json);\n",
+      "removingOnlyPublishedAdditionRestoresPrior82ddBytes": true
+    }
+  ],
+  "coreInvocationCreated": false,
+  "coreProcessLaunched": false,
+  "actualTwentyGitBatchPostflightCommands": "NotRun",
+  "coreBatchResult": "NotRun",
+  "rootDisposition": "Consumed/stopped after prerequisite failure; no retry or new suffix",
+  "wrapperProcessStartAndPid": "Unavailable_NotRecordedBeforeInvocationStage",
+  "earliestRecordedPreflightTime": "2026-10-23T03:07:15.679246+00:00",
+  "failureLogMtimeUtc": "2026-10-23T03:07:21.990666+00:00",
+  "recommendedDirection": "Review this Local collector omission; ensure every frozen CPP/API comparison strips only source-authenticated exact additive wrapper bytes without rebaselining fingerprints. A new Primary handoff and unused roots are required before another core attempt.",
+  "runtimeAcceptance": false,
+  "compilerCompilationsByThisCycle": 0,
+  "compilerVersionQuery": "clang++ --version only; receipt clang.json; no translation unit compilation"
+}

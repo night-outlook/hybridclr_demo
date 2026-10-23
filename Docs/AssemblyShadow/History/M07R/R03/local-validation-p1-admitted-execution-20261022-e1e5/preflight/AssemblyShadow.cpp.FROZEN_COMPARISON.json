@@ -1,0 +1,7 @@
+{
+  "kind": "ReadOnlyFrozenByteComparison",
+  "originalGitBlob": "53aecc2d113b20b6ff825d0aa4ca0f4372a7cce2",
+  "originalSha256": "6021bce2939c45a7bd5b44a881c67a052eac1902b6b0eb30d8f620142344c5a9",
+  "diff": "--- immutable Git blob 53aecc2d113b20b6ff825d0aa4ca0f4372a7cce2\n+++ failed Local helper reconstruction\n@@ -1823,6 +1823,9 @@\n     return AssemblyShadowError::Success;\n }\n \n+// P1 inactive reader around the original (unmodified) V1 getter.\n+#include \"AssemblyShadowAdmittedExecutionDiagnosticsSource.inl\"\n+\n const Il2CppAssembly* AssemblyShadow::ResolveAssembly(const Il2CppAssembly* assembly)\n {\n     const ActiveSnapshot* active = s_active.load(std::memory_order_acquire);\n",
+  "sourceUnmodified": true
+}
