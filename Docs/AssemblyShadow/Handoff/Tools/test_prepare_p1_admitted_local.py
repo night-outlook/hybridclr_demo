@@ -102,7 +102,7 @@ class LocalCollectorRepairTests(unittest.TestCase):
 
     def test_pristine_root_fail_closed(self):
         with tempfile.TemporaryDirectory() as d:
-            parent = Path(d)
+            parent = Path(d).resolve(strict=True)
             pristine_root(parent / 'absent')
             with self.assertRaises(ValueError):
                 pristine_root(parent)
@@ -111,6 +111,36 @@ class LocalCollectorRepairTests(unittest.TestCase):
                 pristine_root(parent / 'symlink')
             with self.assertRaises(ValueError):
                 pristine_root(Path('relative-root'))
+
+
+    def test_inherited_tempdir_alias_is_rejected_before_canonicalization(self):
+        with tempfile.TemporaryDirectory() as d:
+            inherited = Path(d)
+            canonical = inherited.resolve(strict=True)
+            pristine_root(canonical / 'fresh-inherited')
+            # macOS normally presents /var/folders through /private/var.
+            # A host with no inherited alias still tests the accepted path.
+            if inherited != canonical:
+                with self.assertRaises(ValueError):
+                    pristine_root(inherited / 'fresh-inherited')
+            else:
+                self.assertEqual(inherited, canonical)
+
+    def test_aliased_parent_refused_even_with_absent_child(self):
+        with tempfile.TemporaryDirectory() as d:
+            parent = Path(d).resolve(strict=True)
+            physical = parent / 'physical-parent'
+            physical.mkdir()
+            alias = parent / 'aliased-parent'
+            alias.symlink_to(physical, target_is_directory=True)
+            candidate = alias / 'absent'
+            self.assertFalse(candidate.exists())
+            self.assertEqual(candidate.resolve(), physical / 'absent')
+            pristine_root(candidate.resolve())
+            with self.assertRaises(ValueError):
+                pristine_root(candidate)
+            with self.assertRaises(ValueError):
+                pristine_root(alias)
 
 
 if __name__ == '__main__':
