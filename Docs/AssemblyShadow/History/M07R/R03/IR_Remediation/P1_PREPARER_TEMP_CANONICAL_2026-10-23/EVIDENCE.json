@@ -1,0 +1,120 @@
+{
+  "kind": "R03P1PreparerTemporaryPathPrimaryEvidence",
+  "schemaVersion": 1,
+  "result": "PassedWithinPrimaryHostScope_LocalMacAndCoreNotRun",
+  "finding": "IR-LOCAL-P1-PREPARER-TEMP-01",
+  "baselineLocal": {
+    "sourceDemo": "7a098e45b41b98ee024ed0205b353aa2f132aae9",
+    "localPublication": "79532a96873889f1e1fc0307cdd513000ab037d2",
+    "cycle": "20261023-6c72",
+    "outcome": "PrerequisiteBlocked",
+    "testCount": 13,
+    "passed": 12,
+    "errors": 1,
+    "coreComponentsInvoked": 0,
+    "rootIdentifiersConsumed": true
+  },
+  "sourceBindings": [
+    {
+      "path": "Docs/AssemblyShadow/Handoff/Tools/prepare_p1_admitted_local.py",
+      "sha256": "ddaa342817906dec659c4be062ea052cd8e12ed1ad2b538bcb283ae12a750db8",
+      "blob": "cf2fdf39fe17df076d50dcc33ed72c757eaa3b26",
+      "changed": false
+    },
+    {
+      "path": "Docs/AssemblyShadow/Handoff/Tools/test_prepare_p1_admitted_local.py",
+      "sha256": "74ee21349d0bc8f8723d7528c89d83f0b1250e27c4f0dc0692087f0a1102ce01",
+      "blob": "d8838bf0788d41a306f900f70d8052cb2d409803",
+      "changed": true
+    },
+    {
+      "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/PRIMARY_ALIAS_HOST.py",
+      "sha256": "b48350a882fa1a120b13a636810fe3c5b77c477ee6dcede769e8708e95fcf3cb",
+      "blob": "5fb5eef9fdbc5c704fb1a4038716703f8a1046ab",
+      "changed": false,
+      "role": "Reproducible host-only simulation fixture"
+    }
+  ],
+  "primaryHost": {
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+    "python": "3.13.5",
+    "sourceMatchesGitBlob": true,
+    "astSyntax": "Passed",
+    "commands": [
+      {
+        "command": "python3 -B -m unittest -v test_prepare_p1_admitted_local",
+        "exit": 0,
+        "result": "PassedHostOnly",
+        "tests": 15,
+        "failures": 0,
+        "errors": 0,
+        "stdout": {
+          "path": "PRIMARY_BASELINE.stdout empty",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "PRIMARY_BASELINE.stderr.txt",
+          "bytes": 2255,
+          "sha256": "a2072d6635314c79704ac06223228624e155cb0620d8663ac21d8833de5a55e2"
+        }
+      },
+      {
+        "command": "python3 -B PRIMARY_ALIAS_HOST.py (executed as alias_host_test.py beside test module)",
+        "exit": 0,
+        "result": "PassedHostOnly_SyntheticAliasedTemp",
+        "tests": 15,
+        "failures": 0,
+        "errors": 0,
+        "simulatedAlias": "test-owned /var => /private/var",
+        "overrideOnly": "in-process Python tempfile.tempdir; no real TMPDIR/SDK/Unity environment altered",
+        "stdout": {
+          "path": "PRIMARY_ALIAS.stdout.txt",
+          "bytes": 52,
+          "sha256": "0c7916526365b914c3328211639e53f0082888e355e264cf74723faf2e785234"
+        },
+        "stderr": {
+          "path": "PRIMARY_ALIAS.stderr.txt",
+          "bytes": 2255,
+          "sha256": "6ba2abfeab4230c09a9cb4e852ba14a2d7dd217bba8818f984aa218033f8ee98"
+        }
+      }
+    ]
+  },
+  "changeScope": {
+    "originalTestLeavesPreserved": 13,
+    "additionalTestLeaves": 2,
+    "changedOriginalStatements": 1,
+    "rootGuardUnchanged": true,
+    "preparerUnchanged": true,
+    "nativeProductUnchanged": true,
+    "sourceAnchor": "117cc6b1c2be8050cd2f433ef17db8b3c5138f93",
+    "allNewChangesDocsOnly": true
+  },
+  "newLocalCycle": {
+    "label": "20261023-b7e3",
+    "freshRootLocalExistence": "NotVerified_MustIndependentlyAdmit",
+    "expectedPrerequisiteTests": 15,
+    "expectedCoreComponents": 25,
+    "originalContractTests": 85,
+    "caseInventories": 8,
+    "newAdmissionGroupsEachProfile": 9,
+    "managedPositiveProducts": 5,
+    "managedNegativeCases": 1,
+    "nativeOfficialSdkSyntaxCommands": 100,
+    "gitSourcePostflightCommands": 20,
+    "requiredIndependentAuditor": true,
+    "oneShotNoRetry": true
+  },
+  "acceptance": {
+    "realMacosHostSuite": "NotRun",
+    "installedUnity2022SDK": "NotRun",
+    "coreBatch": "NotRun",
+    "runtimeAcceptance": false,
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "PureInterpreterEnabled": false
+  }
+}
