@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1PrimarySourceBoundSuccessorAuditorAndPublishedEvidence",
+  "scope": "PrimaryImplementation-GitHubConnector-SourceAndPublishedReceiptOnly",
+  "localAuthority": {
+    "cycle": "20261023-b7e3",
+    "sourceDemo": "49c6b62d38d7668be10004ac1e5a030d74894f09",
+    "publicationDemo": "71b50a21bbef838be5ea068893dce4efec094eef",
+    "native": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "localOverallResult": "FAIL",
+    "rawCoreResult": "PassedSourceHostAndSDKOnly",
+    "rawComponentsPassed": 25,
+    "requiredAuditor": "FailedAtLine190",
+    "laterAuditorChecks": "NotRun"
+  },
+  "source": {
+    "archivedAuditorPath": "Docs/AssemblyShadow/History/M07R/R03/local-validation-p1-admitted-execution-20261023-b7e3/preflight/audit.py",
+    "archivedGitBlob": "0813c686df363a2f209d73c784c6fb0fac57b221",
+    "archivedSha256": "2b43453f00fd74c1692d55d3c10b7351df45a0a82d08cf551deb0282862848a0",
+    "archivedBytes": 176708,
+    "successorPath": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/audit_successor.py",
+    "successorGitBlob": "908358c1b302d31e3be434e36988c43e65b976cf",
+    "successorBytes": 176729,
+    "changedLines": [
+      190
+    ],
+    "deltaBytes": 21,
+    "oldExpectedCount": 24,
+    "newExpectedCount": 25,
+    "admittedPositionZeroBased": 19,
+    "originalLine189Count25Preserved": true,
+    "allLaterSourceBytesUnchanged": true,
+    "archivedAuditorNotEdited": true,
+    "originalAuditRetriggered": false,
+    "successorAuditExecuted": false
+  },
+  "publishedRawEvidence": {
+    "batchResultSha256": "f762d292d9601e620a83ecd79cc5e3c5ab85b0ea0a3813fbf472bd716eb1c7e6",
+    "batchManifestSha256": "4b286c29a7ef36ec4377642b6009804ad532b0ae3166c186866fe74f4246130e",
+    "batchManifestDeclaredEntries": 4269,
+    "rawDirectComponents": 25,
+    "original85Tests": 85,
+    "inventoryFlags": 8,
+    "admittedStrictCaseCount": 9,
+    "admittedSanitizedCaseCount": 9,
+    "managedPositiveCompilerCases": 5,
+    "originalExpectedNegativeCompilerCases": 1,
+    "managedCompilerInputCount": 428,
+    "nativeSyntaxCommands": 100,
+    "nativeCompilerVersionCommands": 1,
+    "gitPostflightDirectCommands": 20,
+    "gitRepositoryCount": 4,
+    "sourcePreserved": true,
+    "unknownLifetime": false,
+    "fullRequiredAuditPassed": false
+  },
+  "reportedExternalPreservation": {
+    "reportedBy": "Local-owned INDEPENDENT_PRESERVATION_AFTER.json",
+    "installedSdkFiles": 2405,
+    "installedSdkBytes": 316062203,
+    "consumedP1RawScratchAuditSets": 22,
+    "priorCheckpointSets": 24,
+    "negativeSymlinks": 88,
+    "otherConsumedBlockedRuns": [
+      "e1e5",
+      "6c72"
+    ],
+    "independentlyVerifiedAllExternalBytesByPrimary": false
+  },
+  "checksExecutedInPrimary": {
+    "method": "GitHubConnector JS direct source and JSON checks with exact mutated roster equality",
+    "count": 20,
+    "failed": 0,
+    "passed": 20,
+    "sourceOnly": true,
+    "fullAuditExecuted": false
+  },
+  "publishedHostTests": {
+    "rosterSuiteFile": "test_audit_successor_roster.py",
+    "rosterSuiteDiscovered": 16,
+    "evidenceSuiteFile": "test_published_raw_evidence.py",
+    "evidenceSuiteDiscovered": 10,
+    "ciWorkflow": ".github/workflows/r03-p1-audit-roster-source-contracts.yml",
+    "expectedMatrix": [
+      "macos-15",
+      "ubuntu-24.04"
+    ],
+    "statusAtPublication": "NotYetConfirmed_PendingCI",
+    "noSDKOrLocalRun": true
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "runtimeAcceptance": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "nextAction": "No Local work authorized. Await explicit human approval for a distinct isolated audit-only re-review of immutable b7e3 source/evidence. Never reuse/modify consumed roots or rerun core."
+}
