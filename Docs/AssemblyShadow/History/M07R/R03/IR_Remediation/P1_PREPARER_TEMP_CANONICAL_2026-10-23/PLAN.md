@@ -1,0 +1,19 @@
+# One-cycle plan — P1 preparer canonical temporary-path fix
+
+## Primary Implementation completed
+
+1. Bootstrap and verify four exact canonical GitHub repositories and remote heads. Read README -> Local-owned LOCAL_VALIDATION -> RETURN_TO_WEB; authenticate current 6c72 failure and e1e5 finding, never reclassify past evidence.
+2. Change exactly one preexisting test fixture line, keeping the original production `pristine_root()` guard intact. Add two isolated alias regressions (inherited real alias and deterministic fixture-owned symlink alias), preserving the other 12 original tests. No nontrivial Local work.
+3. Run 15-leaf full host Python suite using byte-identical GitHub-published code, then run the same 15 leaves under an in-process simulated macOS /var alias, preserving unchanged inherited OS TMPDIR for the real Local environment. Record source SHA256, Git blobs, output hashes, Python/platform, exact test count and status. Verify source AST/static tests.
+4. Publish DESIGN, PLAN, PRIMARY_SOURCE_AUDIT, EVIDENCE and authoritative current README/CURRENT_STATUS and WEB_TO_LOCAL; pin new Local roots. Verify Docs-only change after code anchor `117cc6b1c2be8050cd2f433ef17db8b3c5138f93`. Commit/push and verify full latest remote heads.
+
+## Exactly ONE next Local Validation after independent admission
+
+1. Read canonical docs; independently authenticate four clean local+remote HEADs; installed Unity2022.3.62f2 SDK, package and toolchain; all consumed P1 raw/scratch/audit/checkpoint evidence and 88 historical negative symlinks, including **new 6c72** blocked checkpoint and **old e1e5** blocked checkpoint. Independently verify all four specifically named new b7e3 root paths absent, canonical, disjoint; on any failure STOP.
+2. From checked-out pinned sources run **once**: `python3 -B Docs/AssemblyShadow/Handoff/Tools/test_prepare_p1_admitted_local.py`. Require **15/15 Passed**, including four original fail-closed path constraints, inherited /var alias and synthetic aliased directory; no TMPDIR overrides, bypasses, code edits or reruns.
+3. Run Primary's **unchanged** deterministic `prepare_p1_admitted_local.py` once with actual demo pushed SHA and fresh b7e3 roots. Require exact e1e5 42-file immutable manifest, historical helper SHA256 and binary native CPP/API current+82dd provenance, two exact early frozen-source repairs, and unchanged archived independent audit copied. PREPARATION.json status only PreparedNotExecuted.
+4. Run generated `run-once.py` **exactly once**, launching original source-host/installed official SDK syntax-only orchestrator. Require 25 independent components, 85 original test leaves, eight inventories, nine admitted strict+sanitized case groups, five actual managed positives and exact old negative, 100 official Apple arm64 native syntax commands and twenty final Git source-authority commands.
+5. Run copied independent `audit.py` once **only on known-complete scoped raw PASS**; verify all source/SDK/history, command streams, original negative controls, exact final Git heads and stopped-after/lifetime flags. On Failed/Blocked/unknown process lifetime, preserve raw evidence and STOP, no audit-as-promotion or retry.
+6. Independently preserve both old e1e5 and new 6c72 blocked checkpoints and original 7896/7c2c PASS, 82dd raw FAIL, plus consumed history and toolchain. Run provided non-core `--verify-after` once only if PREPARATION exists; otherwise document unavailable. Write factual LOCAL_VALIDATION and RETURN_TO_WEB and a single additive b7e3 checkpoint; commit/push only authorized factual Local paths, verify remote commits and STOP.
+
+No native implementation/API changes, all preexisting runtime/acceptance restrictions unchanged. The one b7e3 attempt is consumed even if the prerequisite itself fails; no local retries, new suffix or milestone advancement.
