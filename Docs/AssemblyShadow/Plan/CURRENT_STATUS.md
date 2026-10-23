@@ -1,3 +1,21 @@
+# R03 P1 — current Primary state: canonical temporary fixture correction, next Local b7e3
+
+## Latest Local authority and new bounded Primary implementation
+
+Latest `20261023-6c72` Local-owned outcome is **BLOCKED / PrerequisiteBlocked**, not a product or SDK failure: four source remotes, original SDK, 22 prior P1 evidence sets/negative controls, and four proposed roots passed admission. The published 13-test preparer regression prerequisite ran exactly once with **12 Passed, one ERROR**, after which the preparer, source-host core, and independent audit remained **NotRun** (0/25 components). Mac `/var` is an alias of `/private/var`; one expected-success fixture constructed under a noncanonical inherited directory was rightly rejected by unchanged `pristine_root`. The original six-character `6c72` identifiers were consumed even though three roots remained absent; no replay is allowed.
+
+Primary corrected only the test fixture `Path(d).resolve(strict=True)`; two new tests cover inherited alias and deterministic alias-parent rejection. Exact source blob `d8838bf0788d41a306f900f70d8052cb2d409803`. Production/root guard and deterministic `prepare_p1_admitted_local.py` remain at original blob `cf2fdf39fe17df076d50dcc33ed72c757eaa3b26`. Current full test discovery is 15. **Primary Linux 15/15 Passed; simulated macOS-style aliased-temp Linux 15/15 Passed.** Native Mac test and installed Unity2022.3.62f2 syntax-only Local cycle are still **NotRun**; no host mock evidence is promoted to runtime acceptance.
+
+Read current [Design](../History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/DESIGN.md), [Plan](../History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/PLAN.md), [Primary evidence](../History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/EVIDENCE.json), latest [LOCAL_VALIDATION](../Handoff/LOCAL_VALIDATION.md) and [RETURN_TO_WEB](../Handoff/RETURN_TO_WEB.md). **Only the updated WEB_TO_LOCAL.md authorizes new Local work.**
+
+**Next action:** one new `20261023-b7e3` source-pinned Local batch after four new absent/canonical/disjoint roots and all prior SDK/source/history admission. Run updated 15-leaf prerequisite once, then unchanged preparer once, generated core once (25 children, original 85, eight inventories, nine admitted strict+sanitized, five actual managed positives plus expected negative, 100 genuine native SDK syntax and twenty Git postflight commands), original independent audit on completed scope-PASS, separate blocked history after-preservation, factual Local publication and STOP. No retry, code edit, TMPDIR override, Unity Editor/Player or later milestone.
+
+**Historical and acceptance constraints:** `20261022-e1e5` and `20261023-6c72` stay distinct PrerequisiteBlocked, `20261021-7896` and `7c2c` remain PassedSourceHostAndSDKOnly, `82dd` raw FailedOrIncomplete. P1 Incomplete, P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, full P3 Incomplete; original SNAP-01/N/M/K/I/E/R02 fingerprint FAIL, strict S custody Blocked, independent full-stage R03 FAIL/re-review NotRun. All R03/H2/qualification/Human Review/runtime acceptance flags false and PureInterpreter disabled.
+
+---
+
+## Historical snapshots — not current instructions
+
 # R03 P1 — current state 2026-10-23: Local preflight correction awaiting fresh validation
 
 ## Authoritative latest Local / current Primary correction
