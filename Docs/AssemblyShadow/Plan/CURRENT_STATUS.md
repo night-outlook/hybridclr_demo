@@ -1,3 +1,21 @@
+# R03 P1 — current state 2026-10-23: Local preflight correction awaiting fresh validation
+
+## Authoritative latest Local / current Primary correction
+
+Latest Local-owned 20261022-e1e5 = **Blocked / PrerequisiteBlocked; core NotRun; 0/25 children invoked**. Independent helper omitted the admitted CPP/API additions from the *early* opaque frozen-byte source reconstruction, even though the later owned-name reconstruction already handled them. SDK/compiler only queried clang version; no new actual SDK translation units, Editor or Player. Local preserved original failure and documented exact restoration. Read LOCAL_VALIDATION.md and RETURN_TO_WEB.md first.
+
+Primary has committed a **Docs-only** bounded reconstruction generator and 13 synthetic host regression tests; the published native candidate remains il2cpp_plus e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb; original demo tested-code anchor remains 117cc6b1c2be8050cd2f433ef17db8b3c5138f93. The preparer authenticates pinned native source, blocked historical checkpoint (42 file hashes), four clean source repos, and four absent/disjoint new roots. It replaces exactly two missing removal expressions in the archived failed Local collector; the previously independent archived audit is copied unchanged. All prior frozen fingerprints and old evidence retain their original values.
+
+Current Primary source & synthetic-host status: **PassedWithinPrimarySourceAndSyntheticHostScope**; current official installed Apple Unity SDK syntax and 25-component Local batch: **NotRun**. Follow current [Design](../History/M07R/R03/IR_Remediation/P1_LOCAL_PREFLIGHT_RECONSTRUCTION_2026-10-23/DESIGN.md), [Plan](../History/M07R/R03/IR_Remediation/P1_LOCAL_PREFLIGHT_RECONSTRUCTION_2026-10-23/PLAN.md), [Audit](../History/M07R/R03/IR_Remediation/P1_LOCAL_PREFLIGHT_RECONSTRUCTION_2026-10-23/PRIMARY_SOURCE_AUDIT.md), and fresh [WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md). Do not reuse the consumed e1e5 helper/root or treat preflight correction as product acceptance.
+
+Next Local batch remains 25/25 host/source/official installed SDK syntax with original 85 tests, eight inventories, nine admitted cases per strict+sanitized profile, five actual managed positives + distinct original negative, 100 native syntax, 20 genuine final Git postflight, historical preservation and an independent audit. One attempt, fresh four-root set, STOP on any prerequisite or component failure, no retries.
+
+Historical separate source/host/SDK results: 20261021-7896 PASS, 20261021-7c2c PASS, 20261021-82dd raw FAIL. e1e5 is a distinct **PrerequisiteBlocked** run, not a PASS/FAIL product regression. P1 Incomplete; P2 NotIntegrated; E0 Blocked/Unavailable; E1 BlockedByE0; full P3 Incomplete. R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; runtimeAcceptance=false; PureInterpreter disabled. No H2/X02/M08A/SNAP-01/Human Review Gate.
+
+---
+
+## Earlier snapshots (historical, not current authority)
+
 # R03 P1 current status — 7896 Local reconciliation
 
 ## New Primary source candidate — inactive metadata-admitted execution diagnostics
