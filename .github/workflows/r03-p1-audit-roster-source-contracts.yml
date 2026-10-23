@@ -1,0 +1,32 @@
+name: R03 P1 independent auditor roster source-only contracts
+
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/**'
+      - '.github/workflows/r03-p1-audit-roster-source-contracts.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  roster-source-only:
+    name: Archived source and 25-roster tests (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Verify source identity, immutable raw roster and adversarial mutations
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/test_audit_successor_roster.py
+          echo 'Host-only source/record contracts completed; no independent Local auditor or Unity SDK executed.'
