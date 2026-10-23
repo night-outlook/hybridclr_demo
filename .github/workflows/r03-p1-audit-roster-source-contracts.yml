@@ -29,4 +29,5 @@ jobs:
         run: |
           set -euo pipefail
           python3 -B Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/test_audit_successor_roster.py
+          python3 -B Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/test_published_raw_evidence.py
           echo 'Host-only source/record contracts completed; no independent Local auditor or Unity SDK executed.'
