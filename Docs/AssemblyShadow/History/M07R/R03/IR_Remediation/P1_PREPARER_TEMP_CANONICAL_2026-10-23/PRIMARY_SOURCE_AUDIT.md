@@ -16,6 +16,12 @@ Precisely one preexisting test line was changed: `Path(d)` -> `Path(d).resolve(s
 
 Evidence payload `EVIDENCE.json` records actual Python/platform, source and raw stdout/stderr SHA256/byte counts and commands. These are **Primary host-only** proofs, not macOS installed Unity SDK evidence. The prior Local 6c72 blocked result remains unchanged.
 
+## Reproducible retained source and raw host receipts
+
+The exact Primary simulated-alias harness used in the Linux execution is published as [PRIMARY_ALIAS_HOST.py](PRIMARY_ALIAS_HOST.py); its Git blob `5fb5eef9fdbc5c704fb1a4038716703f8a1046ab` and SHA256 `b48350a882fa1a120b13a636810fe3c5b77c477ee6dcede769e8708e95fcf3cb` match the locally executed file. When run from another checkout, put `Docs/AssemblyShadow/Handoff/Tools` on `PYTHONPATH` so it imports the actual test module; it uses only a test-owned symlink/temp directory, not inherited actual Local `TMPDIR`.
+
+Original direct test streams are published without modification as [PRIMARY_BASELINE.stderr.txt](PRIMARY_BASELINE.stderr.txt), [PRIMARY_ALIAS.stderr.txt](PRIMARY_ALIAS.stderr.txt), and [PRIMARY_ALIAS.stdout.txt](PRIMARY_ALIAS.stdout.txt). The GitHub read-back Git blobs respectively equal `51b7a475326da6d7cd742fe4bc799d8c73f7f73c`, `3633a9686c1e7a810207c5aa8f1579efad295ff3`, and `4d5329f6a78c94ef9122f8b3b1153b56f8579cb6`, exactly matching the local original files. [EVIDENCE.json](EVIDENCE.json) contains the SHA256, byte count, argv, result and platform for each. Native macOS results remain NotRun.
+
 ## Remaining required gates
 
 The original 25-component runtime-source-host/installed official SDK syntax-only batch has not been launched at the current source tuple. Actual Mac prerequisite test, independent source provenance, compiled native SDK, 85 old tests, 8 inventories, 5 managed positives + exact negative, 100 native syntax, 20 Git postflight and historical preservation are pending. Human Review Gate is not authorized; all runtime/product acceptance flags remain false.
