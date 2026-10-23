@@ -1,0 +1,39 @@
+[
+  {
+    "argv": [
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-23T08:45:22.502026+00:00",
+    "end": "2026-10-23T08:45:29.543143+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_demo\n * branch                codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   050a08630..7a098e45b  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n"
+  },
+  {
+    "argv": [
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "7a098e45b41b98ee024ed0205b353aa2f132aae9"
+    ],
+    "start": "2026-10-23T08:45:29.543188+00:00",
+    "end": "2026-10-23T08:45:29.554059+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "merge",
+      "--ff-only",
+      "7a098e45b41b98ee024ed0205b353aa2f132aae9"
+    ],
+    "start": "2026-10-23T08:45:29.554080+00:00",
+    "end": "2026-10-23T08:45:29.865339+00:00",
+    "exit": 0,
+    "stdout": "Updating 050a08630..7a098e45b\nFast-forward\n .../Handoff/Tools/prepare_p1_admitted_local.py     | 268 +++++++++++++++++++++\n .../Tools/test_prepare_p1_admitted_local.py        | 117 +++++++++\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        | 144 ++++++-----\n .../DESIGN.md                                      |  27 +++\n .../EVIDENCE.json                                  |  68 ++++++\n .../PLAN.md                                        |  22 ++\n .../PRIMARY_SOURCE_AUDIT.md                        |  22 ++\n Docs/AssemblyShadow/Plan/CURRENT_STATUS.md         |  18 ++\n Docs/AssemblyShadow/README.md                      |  14 ++\n 9 files changed, 644 insertions(+), 56 deletions(-)\n create mode 100644 Docs/AssemblyShadow/Handoff/Tools/prepare_p1_admitted_local.py\n create mode 100644 Docs/AssemblyShadow/Handoff/Tools/test_prepare_p1_admitted_local.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_LOCAL_PREFLIGHT_RECONSTRUCTION_2026-10-23/DESIGN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_LOCAL_PREFLIGHT_RECONSTRUCTION_2026-10-23/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_LOCAL_PREFLIGHT_RECONSTRUCTION_2026-10-23/PLAN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_LOCAL_PREFLIGHT_RECONSTRUCTION_2026-10-23/PRIMARY_SOURCE_AUDIT.md\n",
+    "stderr": ""
+  }
+]

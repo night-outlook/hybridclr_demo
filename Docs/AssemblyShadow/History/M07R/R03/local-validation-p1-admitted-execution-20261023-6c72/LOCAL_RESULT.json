@@ -1,0 +1,195 @@
+{
+  "kind": "IndependentLocalPrerequisiteOutcome_NotCoreResult",
+  "result": "PrerequisiteBlocked",
+  "batchResult": "NotRun",
+  "findingId": "IR-LOCAL-P1-PREPARER-TEMP-01",
+  "sourcePins": {
+    "hybridclr_demo": "7a098e45b41b98ee024ed0205b353aa2f132aae9",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+  },
+  "rootAdmission": "PassedForEnumeratedBindings",
+  "preparerUnitTests": {
+    "status": "Failed",
+    "tests": 13,
+    "passed": 12,
+    "errors": 1,
+    "failures": 0,
+    "skipped": 0,
+    "receipt": {
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/Handoff/Tools/test_prepare_p1_admitted_local.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "start": "2026-10-23T08:48:29.064549+00:00",
+      "end": "2026-10-23T08:48:29.154075+00:00",
+      "pid": 97249,
+      "exit": 1,
+      "stdout": "/Users/ah/GitHub/hybridclr/r03-local-validation/6c72-preparer-tests.stdout.bin",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "/Users/ah/GitHub/hybridclr/r03-local-validation/6c72-preparer-tests.stderr.bin",
+      "stderrSha256": "22149df6b36440e8063b5bf38eeeff4c11b53dc296740e01baf037bd4ec5a663"
+    }
+  },
+  "preparerExecution": "NotRun",
+  "PREPARATION": "Unavailable_NotRun",
+  "coreExecution": "NotRun",
+  "components": [
+    {
+      "name": "command-failures",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "legacy-host",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "metadata-gate",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "bounded-class",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "bounded-physical",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "bounded-first-use",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "owned-general",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "live-general",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "owned-execution",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "empty-live",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "opaque-inventory",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "physical-membership",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "owned-physical-names",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "owned-physical-json",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "live-owned-physical-json",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "observed-type-shape",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "live-type-shape-census",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "observed-type-shape-json",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "vm-shape-json",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "admitted-execution",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "bounded-status",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "bounded-inventory",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "frozen-v2",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "managed-sdk",
+      "status": "NotRun",
+      "invoked": false
+    },
+    {
+      "name": "native-sdk",
+      "status": "NotRun",
+      "invoked": false
+    }
+  ],
+  "componentCount": 25,
+  "attemptedComponentCount": 0,
+  "original85FailureTests": "NotRun",
+  "allEightInventories": "NotRun",
+  "nineAdmissionCasesPerProfile": "NotRun",
+  "managedProductsAndNegative": "NotRun",
+  "native100Configurations": "NotRun",
+  "batch20GitCommands": "NotRun",
+  "independentAuditor": "NotRun",
+  "PrimaryVerifyAfter": "NotRun_NoPreparationReceipt",
+  "independentAfterPreservation": "Passed",
+  "newRootsStillAbsent": [
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-ADMITTED-EXECUTION-20261023-6c72",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-6c72",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-ADMITTED-EXECUTION-20261023-6c72",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-p1-admitted-execution-20261023-6c72"
+  ],
+  "newRootIdentifiersConsumed": true,
+  "compilerCompilations": 0,
+  "unityEditorAndPlayer": "NotRun",
+  "noRetry": true,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "ReadyForHumanReviewGate": false,
+  "fullLegacyRegressionAcceptance": false,
+  "runtimeAcceptance": false,
+  "nextState": "Primary Implementation"
+}

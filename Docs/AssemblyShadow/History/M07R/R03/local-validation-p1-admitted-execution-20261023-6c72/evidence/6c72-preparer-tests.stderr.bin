@@ -1,0 +1,16 @@
+............E
+======================================================================
+ERROR: test_pristine_root_fail_closed (__main__.LocalCollectorRepairTests.test_pristine_root_fail_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/Handoff/Tools/test_prepare_p1_admitted_local.py", line 106, in test_pristine_root_fail_closed
+    pristine_root(parent / 'absent')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/Handoff/Tools/prepare_p1_admitted_local.py", line 148, in pristine_root
+    raise ValueError("Root is non-absolute, already used, or not canonical: " + str(path))
+ValueError: Root is non-absolute, already used, or not canonical: /var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/tmpqsr57skb/absent
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.007s
+
+FAILED (errors=1)
