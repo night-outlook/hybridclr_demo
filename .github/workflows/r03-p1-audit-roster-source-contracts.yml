@@ -4,7 +4,9 @@ on:
   push:
     branches: ['codex/assembly-shadow-r01b-h1']
     paths:
-      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/**'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/audit_successor.py'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/test_audit_successor_roster.py'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/test_published_raw_evidence.py'
       - '.github/workflows/r03-p1-audit-roster-source-contracts.yml'
   workflow_dispatch:
 
