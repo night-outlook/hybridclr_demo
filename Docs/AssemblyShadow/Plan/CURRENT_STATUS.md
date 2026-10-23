@@ -1,3 +1,19 @@
+# R03 P1 — current source-bound successor audit state, no active Local run
+
+## Last authoritative Local cycle and Primary source remediation
+
+Latest factual Local `20261023-b7e3` is **FAIL / required independent auditor Failed**. The genuine source/host/official installed Unity2022.3.62f2 SDK syntax-only *raw* aggregate remains `PassedSourceHostAndSDKOnly` with 25/25 Passed, original85, eight inventories, admitted9+9, managed5 positive + original expected compiler-negative, native100 syntax and Git20. **Overall PASS is forbidden** because the consumed independent auditor's line190 expected exactly 24 old names despite line189 requiring 25, missing `admitted-execution` in its real slot. All subsequent full auditor checks are NotRun.
+
+Primary published additive `Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/audit_successor.py`: 176729 bytes, one change at line190 (+21 bytes), derived exactly from immutable 176708-byte archived b7e3 `preflight/audit.py` and observed raw25 order. Archived original Git blob `0813c686df363a2f209d73c784c6fb0fac57b221` and successor blob `908358c1b302d31e3be434e36988c43e65b976cf`. Original Local source/raw/audit logs/checkpoint unchanged. Primary executed **20/20 source/JSON bounded Connector checks**; [CI 39946839722](https://github.com/night-outlook/hybridclr_demo/actions/runs/39946839722) **PASS Mac/Linux**, each **16/16 roster and 10/10 published evidence tests**; no Unity compiler rerun and no full auditor execution. [Primary independent evidence review](../History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/PRIMARY_INDEPENDENT_EVIDENCE_REVIEW.md), [Design](../History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/DESIGN.md), [Plan](../History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/PLAN.md) and [machine evidence](../History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/EVIDENCE.json) are canonical.
+
+**Current pre-handoff decision:** `WEB_TO_LOCAL.md` now says **NO ACTIVE LOCAL EXECUTION HANDOFF**. Any further isolated *audit-only* Local evidence re-review requires **new explicit human approval and a new exact-source, read-only, immutable custody plan**. Do not rerun b7e3 source/SDK/core, alter consumed evidence, enable original or new native getter, or move to a later milestone. Full independent audit remains NotRun for the successor; old b7e3 independent audit remains Failed. Historical e1e5/6c72 Blocked, 7896/7c2c host+SDK scope PASS, 82dd raw FAIL retained without promotion.
+
+**Outstanding:** P1 Incomplete (canonical TypeKeys, physical class pointer origin/lifetime, whole VM coherent epoch, complete execution V1, real Player/GC/RSS/Shutdown and getter integration); P2 NotIntegrated; E0 Blocked/Unavailable; E1 BlockedByE0; P3 Incomplete; original SNAP-01/N/M/K/I/E/R02 fingerprint FAIL and full-stage independent R03 FAIL/re-review NotRun. All R03/H2/qualification/Human Review/runtime acceptance flags false, PureInterpreter disabled.
+
+---
+
+## Older records — archival, no execution authorization
+
 # R03 P1 — current Primary state: canonical temporary fixture correction, next Local b7e3
 
 ## Latest Local authority and new bounded Primary implementation
