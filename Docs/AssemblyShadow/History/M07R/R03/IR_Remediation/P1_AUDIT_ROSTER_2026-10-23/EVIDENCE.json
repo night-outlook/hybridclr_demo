@@ -87,8 +87,31 @@
       "macos-15",
       "ubuntu-24.04"
     ],
-    "statusAtPublication": "NotYetConfirmed_PendingCI",
-    "noSDKOrLocalRun": true
+    "statusAtPublication": "PassedSourceOnlyMacAndLinux_CI39946839722",
+    "noSDKOrLocalRun": true,
+    "workflowUrl": "https://github.com/night-outlook/hybridclr_demo/actions/runs/39946839722",
+    "testedCommit": "b1635f1b4ca08b304d2140258e621b6b382bcd6d",
+    "actualResults": [
+      {
+        "os": "macos-15",
+        "jobId": 120391456216,
+        "jobConclusion": "success",
+        "rosterTests": 16,
+        "rosterPassed": 16,
+        "evidenceTests": 10,
+        "evidencePassed": 10
+      },
+      {
+        "os": "ubuntu-24.04",
+        "jobId": 120391456493,
+        "jobConclusion": "success",
+        "rosterTests": 16,
+        "rosterPassed": 16,
+        "evidenceTests": 10,
+        "evidencePassed": 10
+      }
+    ],
+    "externalInstalledSDKCompilerRunsByCI": 0
   },
   "acceptance": {
     "P1": "Incomplete",
