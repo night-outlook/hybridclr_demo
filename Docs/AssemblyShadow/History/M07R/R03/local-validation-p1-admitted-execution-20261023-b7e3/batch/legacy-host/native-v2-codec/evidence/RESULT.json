@@ -1,0 +1,2840 @@
+{
+  "kind": "BoundedNativeV2Interop",
+  "results": [
+    {
+      "profile": "strict",
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "profile": "sanitized",
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "sources": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/BoundedDiagnosticsV2.h",
+      "bytes": 12252,
+      "gitBlob": "174766c40235216d8c954107dd5e026116a510fa",
+      "sha256": "734e03a470e4562cd18551a84194eb82b391c8da8f4ef7f2c46abcef7fcc034d"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/native_driver.cpp",
+      "bytes": 6699,
+      "gitBlob": "66d799bc6f21f9219d388c2b945a9eea388c1dae",
+      "sha256": "40a3a4d6f4c5de0ac434e87ad71e5e344bb417210ffbac8a4848e012e4a23e84"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/run_tests.py",
+      "bytes": 14192,
+      "gitBlob": "7ba066393f5b9a608155902ef600f6575f78f79d",
+      "sha256": "883ad0177da0aa2efe104d8b3dde34693d4e3bfcd139c9eaf3042536b7d095c1"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/diagnostic_stream.py",
+      "bytes": 9337,
+      "gitBlob": "0866b07f758a20284d2a5d5d933b2be577b20b50",
+      "sha256": "afc9d1f0fa5d9155c8d75faab4ec2c02bcc8ef8a4b3e02612834778bef113a38"
+    }
+  ],
+  "sourceUnchanged": true,
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/native_driver.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/compile",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0001.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0001.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0001.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0001",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0002.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0002.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0002.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0002",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0003.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0003.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0003.json",
+        "0",
+        "mutate",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0003",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0004.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0004.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0004.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0004",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0005.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0005.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0005.json",
+        "1",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0005",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0006.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0006.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0006.json",
+        "2",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0006",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0007.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0007.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0007.json",
+        "3",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0007",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0008.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0008.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0008.json",
+        "4",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0008",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0009.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0009.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0009.json",
+        "5",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0009",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0010.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0010.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0010.json",
+        "6",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0010",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0011.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0011.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0011.json",
+        "7",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0011",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0012.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0012.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0012.json",
+        "8",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0012",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0013.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0013.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0013.json",
+        "9",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0013",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0014.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0014.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0014.json",
+        "10",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0014",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0015.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0015.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0015.json",
+        "11",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0015",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0016.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0016.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0016.json",
+        "12",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0016",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0017.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0017.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0017.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0017",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0018.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0018.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0018.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0018",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0019.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0019.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0019.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0019",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0020.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0020.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0020.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0020",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0021.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0021.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0021.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0021",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0022.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0022.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0022.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0022",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0023.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0023.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0023.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0023",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0024.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0024.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0024.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0024",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0025.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0025.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0025.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0025",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0026.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0026.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0026.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0026",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0027.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0027.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0027.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0027",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0028.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0028.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0028.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0028",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0029.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0029.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0029.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0029",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0030.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0030.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0030.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0030",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0031.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0031.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0031.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0031",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0032.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0032.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0032.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0032",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0033.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0033.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0033.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0033",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0034.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0034.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0034.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0034",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "selftest"
+      ],
+      "exit": 0,
+      "stdoutSha256": "70a79c924a4d1ee24883d77c9dfa53936caf01edf629625bfc17a72294fc3bbb",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/selftest",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0035.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0035.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0035.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0035",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0036.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0036.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0036.json",
+        "0",
+        "direct",
+        "258049"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0036",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0037.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0037.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0037.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0037",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0038.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0038.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0038.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0038",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0039.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0039.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0039.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0039",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0040.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0040.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0040.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0040",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0041.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0041.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0041.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0041",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0042.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0042.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0042.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0042",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0043.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0043.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0043.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0043",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0044.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0044.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0044.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0044",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0045.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0045.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0045.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0045",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0046.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0046.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0046.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0046",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0047.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0047.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0047.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0047",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0048.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0048.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0048.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0048",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0049.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0049.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0049.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0049",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0050.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0050.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0050.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0050",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0051.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0051.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0051.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0051",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0052.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0052.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0052.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0052",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0053.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0053.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0053.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0053",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0054.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0054.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0054.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0054",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0055.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0055.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0055.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0055",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0056.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0056.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0056.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0056",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0057.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0057.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0057.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0057",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0058.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0058.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0058.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0058",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0059.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0059.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0059.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0059",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0060.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0060.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0060.json",
+        "0",
+        "reuse",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0060",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0061.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0061.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0061.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0061",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0062.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0062.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0062.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0062",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0063.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0063.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0063.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0063",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0064.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0064.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0064.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0064",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0065.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0065.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0065.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0065",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0066.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0066.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0066.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0066",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0067.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0067.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0067.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0067",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0068.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0068.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0068.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0068",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0069.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0069.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0069.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0069",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0070.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0070.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0070.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0070",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0071.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0071.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0071.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0071",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0072.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0072.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0072.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0072",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0073.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0073.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0073.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0073",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0074.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0074.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0074.json",
+        "0",
+        "alias-scratch",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0074",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0075.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0075.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0075.json",
+        "0",
+        "small-scratch",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0075",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0076.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0076.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0076.json",
+        "0",
+        "null-data",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0076",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0077.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0077.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0077.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0077",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0078.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0078.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0078.json",
+        "0",
+        "reenter",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0078",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0079.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0079.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0079.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0079",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0080.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0080.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/strict/case-0080.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "strict/case-0080",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/native_driver.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/compile",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0081.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0081.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0081.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0081",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0082.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0082.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0082.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0082",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0083.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0083.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0083.json",
+        "0",
+        "mutate",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0083",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0084.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0084.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0084.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0084",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0085.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0085.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0085.json",
+        "1",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0085",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0086.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0086.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0086.json",
+        "2",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0086",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0087.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0087.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0087.json",
+        "3",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0087",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0088.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0088.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0088.json",
+        "4",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0088",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0089.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0089.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0089.json",
+        "5",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0089",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0090.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0090.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0090.json",
+        "6",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0090",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0091.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0091.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0091.json",
+        "7",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0091",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0092.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0092.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0092.json",
+        "8",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0092",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0093.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0093.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0093.json",
+        "9",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0093",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0094.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0094.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0094.json",
+        "10",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0094",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0095.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0095.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0095.json",
+        "11",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0095",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0096.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0096.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0096.json",
+        "12",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0096",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0097.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0097.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0097.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0097",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0098.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0098.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0098.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0098",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0099.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0099.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0099.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0099",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0100.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0100.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0100.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0100",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0101.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0101.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0101.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0101",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0102.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0102.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0102.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0102",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0103.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0103.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0103.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0103",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0104.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0104.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0104.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0104",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0105.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0105.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0105.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0105",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0106.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0106.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0106.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0106",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0107.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0107.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0107.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0107",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0108.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0108.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0108.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0108",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0109.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0109.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0109.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0109",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0110.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0110.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0110.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0110",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0111.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0111.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0111.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0111",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0112.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0112.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0112.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0112",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0113.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0113.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0113.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0113",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0114.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0114.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0114.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0114",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "selftest"
+      ],
+      "exit": 0,
+      "stdoutSha256": "70a79c924a4d1ee24883d77c9dfa53936caf01edf629625bfc17a72294fc3bbb",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/selftest",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0115.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0115.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0115.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0115",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0116.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0116.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0116.json",
+        "0",
+        "direct",
+        "258049"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0116",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0117.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0117.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0117.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0117",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0118.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0118.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0118.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0118",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0119.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0119.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0119.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0119",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0120.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0120.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0120.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0120",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0121.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0121.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0121.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0121",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0122.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0122.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0122.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0122",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0123.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0123.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0123.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0123",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0124.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0124.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0124.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0124",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0125.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0125.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0125.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0125",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0126.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0126.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0126.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0126",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0127.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0127.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0127.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0127",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0128.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0128.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0128.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0128",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0129.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0129.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0129.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0129",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0130.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0130.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0130.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0130",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0131.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0131.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0131.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0131",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0132.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0132.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0132.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0132",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0133.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0133.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0133.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0133",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0134.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0134.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0134.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0134",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0135.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0135.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0135.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0135",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0136.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0136.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0136.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0136",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0137.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0137.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0137.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0137",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0138.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0138.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0138.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0138",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0139.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0139.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0139.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0139",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0140.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0140.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0140.json",
+        "0",
+        "reuse",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0140",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0141.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0141.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0141.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0141",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0142.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0142.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0142.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0142",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0143.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0143.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0143.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0143",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0144.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0144.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0144.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0144",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0145.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0145.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0145.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0145",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0146.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0146.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0146.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0146",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0147.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0147.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0147.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0147",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0148.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0148.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0148.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0148",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0149.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0149.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0149.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0149",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0150.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0150.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0150.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0150",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0151.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0151.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0151.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0151",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0152.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0152.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0152.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0152",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0153.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0153.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0153.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0153",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0154.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0154.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0154.json",
+        "0",
+        "alias-scratch",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0154",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0155.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0155.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0155.json",
+        "0",
+        "small-scratch",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0155",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0156.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0156.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0156.json",
+        "0",
+        "null-data",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0156",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0157.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0157.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0157.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0157",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0158.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0158.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0158.json",
+        "0",
+        "reenter",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0158",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0159.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0159.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0159.json",
+        "0",
+        "direct",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0159",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    },
+    {
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/native-driver",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0160.input",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0160.bin",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-codec/evidence/sanitized/case-0160.json",
+        "0",
+        "capture",
+        "110"
+      ],
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record": "sanitized/case-0160",
+      "asanOptions": "detect_leaks=0:abort_on_error=1",
+      "ubsanOptions": "halt_on_error=1:print_stacktrace=1"
+    }
+  ],
+  "actualUnity": false,
+  "productionIntegration": false,
+  "runtimeAcceptance": false,
+  "leakSanitizer": "UnavailableOnAppleRunner"
+}

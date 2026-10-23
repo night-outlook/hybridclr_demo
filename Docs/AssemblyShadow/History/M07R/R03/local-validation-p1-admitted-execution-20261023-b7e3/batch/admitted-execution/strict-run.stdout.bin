@@ -1,0 +1,10 @@
+PASS ADMITTED EXECUTION closed-before-first-init
+PASS ADMITTED EXECUTION original-reader-opens-once
+PASS ADMITTED EXECUTION actual-old-getter-inside-reader
+PASS ADMITTED EXECUTION separate-output-owned-after-admission
+PASS ADMITTED EXECUTION original-error-code-propagated
+PASS ADMITTED EXECUTION original-exception-unwinds-reader
+PASS ADMITTED EXECUTION shutdown-blocked-until-reader-exits
+PASS ADMITTED EXECUTION shutdown-refuses-without-calling-getter
+PASS ADMITTED EXECUTION reopen-epoch-two-refuses-unproven-source
+P1 INACTIVE EXECUTION METADATA ADMISSION HOST PASS

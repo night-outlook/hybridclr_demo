@@ -1,0 +1,76 @@
+PASS empty-physical-owned
+PASS one-physical-owned
+PASS two-roles-owned
+PASS duplicate-enumerated-owned-once
+PASS unrelated-malformed-class-not-dereferenced
+PASS null-namespace-copied-as-empty
+PASS owned-bytes-survive-vm-change
+PASS reverse-enumeration-role-binding
+PASS same-display-name-distinct-binding
+PASS hash-collision-binding
+PASS missing-physical-row-refused
+PASS bad-matched-image-refused
+PASS bad-matched-assembly-refused
+PASS bad-matched-assembly-name-refused
+PASS bad-matched-simple-name-refused
+PASS field-overlong-refused
+PASS owned-text-budget-refused
+PASS source-revision-changed-after-iteration
+PASS state-changed-after-iteration
+PASS active-changed-after-iteration
+PASS closed-admission-refused
+PASS unknown-callback-null-refused
+PASS binding-not-matched-refused
+PASS unobserved-binding-refused
+PASS invalid-slot-refused-and-scrubbed
+PASS invalid-role-refused-and-scrubbed
+PASS duplicate-registration-binding-refused-and-scrubbed
+PASS reused-owned-capture-refused
+PASS SHAPE zero-observed-shape-subset
+PASS SHAPE plain-reference-definition-candidate
+PASS SHAPE plain-value-definition-candidate
+PASS SHAPE missing-metadata-definition
+PASS SHAPE ranked-array-is-not-definition-candidate
+PASS SHAPE constructed-generic-is-not-definition-candidate
+PASS SHAPE generic-definition-is-not-plain-candidate
+PASS SHAPE nested-definition-is-not-plain-candidate
+PASS SHAPE unsupported-raw-type-code
+PASS SHAPE conflicting-flags-reject-conservatively
+PASS SHAPE mixed-candidate-active-witness-shapes
+PASS SHAPE manual-unobserved-raw-shape-refused
+PASS SHAPE missing-shape-source-receipt-refused
+PASS SHAPE reused-census-revokes-prior-success
+PASS SHAPE missing-physical-source-cannot-certify-shape
+PASS LIVE CENSUS empty-iterator-complete-only-subset
+PASS LIVE CENSUS firstmatched-plain-reference
+PASS LIVE CENSUS firstmatched-plain-value
+PASS LIVE CENSUS generic-definition-remains-uncertified
+PASS LIVE CENSUS constructed-generic-remains-uncertified
+PASS LIVE CENSUS nested-definition-remains-uncertified
+PASS LIVE CENSUS ranked-array-remains-uncertified
+PASS LIVE CENSUS missing-definition-handle-is-not-candidate
+PASS LIVE CENSUS unsupported-typecode-is-not-candidate
+PASS LIVE CENSUS conflicting-metadata-flags-conservative
+PASS LIVE CENSUS mixed-candidate-active-noncanonical-cohort
+PASS LIVE CENSUS unmatched-observed-class-refused
+PASS LIVE CENSUS invalid-physical-matched-name-refused
+PASS LIVE CENSUS revision-after-metadata-pass-refused
+PASS LIVE CENSUS stale-output-rejected-before-iterator
+PASS LIVE CENSUS reused-success-revoked-before-iterator
+PASS SHAPE JSON empty-census-exact-json
+PASS SHAPE JSON plain-reference-candidate-only
+PASS SHAPE JSON genuine-iterator-value-source-json
+PASS SHAPE JSON genuine-iterator-generic-excluded
+PASS SHAPE JSON genuine-mixed-role-shape-cohort
+PASS SHAPE JSON output-independent-after-source-mutation
+PASS SHAPE JSON incomplete-census-zero-output
+PASS SHAPE JSON forged-typekey-or-epoch-refused
+PASS SHAPE JSON inconsistent-role-count-refused
+PASS SHAPE JSON inconsistent-category-census-refused
+PASS SHAPE JSON unmatched-callback-category-refused
+PASS SHAPE JSON saturated-revision-refused
+PASS SHAPE JSON small-byte-budget-atomic-refusal
+PASS SHAPE JSON oversize-output-request-refused
+PASS SHAPE JSON reused-output-scrubs-earlier-success
+PASS SHAPE JSON failed-output-cannot-be-reused
+P1 OBSERVED TYPE SHAPE JSON HOST PASS

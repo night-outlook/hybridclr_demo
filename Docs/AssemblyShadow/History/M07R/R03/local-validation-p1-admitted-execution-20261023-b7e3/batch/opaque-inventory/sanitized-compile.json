@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/usr/bin/clang++",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic",
+    "-pthread",
+    "-iquote",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+    "-O1",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/opaque_inventory_fixture.cpp",
+    "-o",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/opaque-inventory/sanitized.exe"
+  ],
+  "commandLifetimeUnverified": false,
+  "exit": 0,
+  "finishedUnix": 1792747933.72404,
+  "name": "sanitized-compile",
+  "outputCompleteness": "CompleteDirectChildStreams",
+  "startedUnix": 1792747933.02721,
+  "status": "Passed",
+  "stderrAvailable": true,
+  "stderrCapturedBytes": 0,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutAvailable": true,
+  "stdoutCapturedBytes": 0,
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,41 @@
+from pathlib import Path
+import json,hashlib,ast,datetime,collections
+B=Path('/Users/ah/GitHub/hybridclr/r03-local-validation');P=B/'Preflight-R03-P1-ADMITTED-EXECUTION-20261023-b7e3';E=json.loads((P/'EXPECTED.json').read_text());O=Path(E['output'])
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+load=lambda p:json.loads(p.read_text())
+def save(n,r):q=P/n;assert not q.exists();q.write_text(json.dumps(r,indent=2)+'\n')
+r=load(O/'RESULT.json');m=load(O/'MANIFEST.json');prep=load(P/'PREPARATION.json');phase=load(P/'LOCAL_POSTPHASE_RESULT.json');a=load(P/'AUDITOR_COMMAND.json');pres=load(P/'INDEPENDENT_PRESERVATION_AFTER.json');v=load(P/'BLOCKED_HISTORY_AFTER.json')
+assert r['result']=='PassedSourceHostAndSDKOnly' and phase['unchangedAuditExit']==1 and a['exit']==1 and pres['result']==v['result']=='Preserved'
+assert sha(P/'audit.py')==prep['independentAuditSha256']=='2b43453f00fd74c1692d55d3c10b7351df45a0a82d08cf551deb0282862848a0'
+tree=ast.parse((P/'audit.py').read_text());node=next(n for n in tree.body if isinstance(n,ast.Assert) and n.lineno==190)
+expected=ast.literal_eval(node.test.comparators[0]);actual=[x['name'] for x in r['commands']]
+assert len(expected)==24 and len(actual)==25 and [x for x in actual if x!='admitted-execution']==expected and actual.count('admitted-execution')==1 and 'admitted-execution' not in expected
+for row in m['files']:p=O/row['path'];assert p.stat().st_size==row['size'] and sha(p)==row['sha256']
+assert len(r['commands'])==25 and all(c['exit']==0 and c['status']=='Passed' for c in r['commands'])
+flags=['ownedBindingCaseInventoryVerified','ownedPhysicalJsonCaseInventoryVerified','liveOwnedPhysicalJsonCaseInventoryVerified','observedTypeShapeCaseInventoryVerified','liveTypeShapeCensusCaseInventoryVerified','observedTypeShapeJsonCaseInventoryVerified','vmShapeJsonSourceCaseInventoryVerified','admittedExecutionMetadataCaseInventoryVerified']
+for flag in flags:assert sum(c.get(flag) is True for c in r['commands'])==1
+cf=load(O/'command-failures/RESULT.json');assert cf['testsRun']==cf['expectedTestCount']==len(set(cf['testIds']))==85 and 'Ran 85 tests' in (O/'command-failures/unittest.log').read_text() and (O/'command-failures/unittest.log').read_text().rstrip().endswith('OK')
+ad=load(O/'admitted-execution/RESULT.json');assert ad['actualSourceCompiled'] and len(ad['commands'])==5 and all(c['exit']==0 for c in ad['commands']) and set(ad['profiles'])=={'strict','sanitized'}
+for p in ad['profiles'].values():assert len(p['caseGroups'])==9
+native=load(O/'native-sdk/results.json');assert native['result']=='Passed' and len(native['translationUnits'])==100
+managed=load(O/'managed-sdk/build-api/results.json');products=[x['output'] for x in managed['packageAssemblies']]+[managed['completeHelper'],managed['terminalPlayerApi']['output']];assert len(products)==5 and len(managed['inputs'])==428
+for out in products:assert sha(Path(out['path']))==out['sha256']
+negative=[]
+for c in managed['commands']:
+ rec=load(Path(c['receipt']['path']));assert rec['exitCode']==c['expectedExit']
+ if c['expectedExit']:
+  root=Path(c['receipt']['path']).parent;txt=(root/'stdout.log').read_text()+(root/'stderr.log').read_text();assert txt.count('error CS0266:')==2 and not (root/'OriginalUnsignedCounts.dll').exists();negative.append(dict(id=c['id'],exit=rec['exitCode'],CS0266=2))
+assert len(negative)==1
+git=[]
+for p in sorted((O/'postflight-git').glob('*/*/RESULT.json')):
+ g=load(p);start=load(p.with_name('START.json'));assert g['exit']==0 and g['status']=='Completed' and g['timedOut'] is False and g['commandLifetimeUnverified'] is False and g['timeoutSeconds']==120 and g['argv']==start['argv']
+ for s in ['stdout','stderr']:assert sha(p.with_name(s+'.bin'))==g[s+'StoredSha256']
+ git.append(dict(path=str(p),sha256=sha(p),repository=g['repository'],argv=g['argv'],exit=g['exit'],elapsedSeconds=g['elapsedSeconds']))
+assert len(git)==20 and len({x['repository'] for x in git})==4 and len(r['fourRepositoriesAfter'])==4
+warnings={s:sum(p.read_text(errors='replace').count('warning:') for p in (O/s/'commands').glob('*/*.log')) for s in ['managed-sdk','native-sdk']}
+finding=dict(id='IR-LOCAL-P1-ADMITTED-AUDIT-ROSTER-01',status='ReproducedIndependentAuditorFailure',symptom='Raw 25-component batch PassedSourceHostAndSDKOnly but unchanged independent auditor exits1 at static 24-name roster assertion.',sourcePins=E['pins'],auditorPath=str(P/'audit.py'),auditorSha256=sha(P/'audit.py'),boundByPreparationSha256=prep['independentAuditSha256'],failedLine=190,sourceExpression=ast.get_source_segment((P/'audit.py').read_text(),node),expectedCount=24,expectedNames=expected,actualCount=25,actualNames=actual,onlyDifference='admitted-execution appears exactly once between vm-shape-json and bounded-status',reproductionCommand=a,rawResultPath=str(O/'RESULT.json'),rawResultSha256=sha(O/'RESULT.json'),rawManifestSha256=sha(O/'MANIFEST.json'),auditLogPath=str(P/'audit.log'),auditLogSha256=sha(P/'audit.log'),mostLikelyRootCause='Archived auditor was updated to require componentCount=25 at line189 and has later admitted-execution logic, but its exact ordered roster at line190 retains 24 names. The preparer intentionally copies those immutable bytes.',affectedScope='Required independent audit and complete Local validation disposition; no product/native/SDK compiler failure established',recommendedDirection='Update only the source-bound successor auditor exact ordered roster to include admitted-execution at its real position, retaining exact identities/order, all25 required components and existing assertions. Add 24-vs25 roster regression coverage via the published preparer/auditor derivation; never edit old archive or consumed audit. Reconcile all later stages on separately authorized exact-source evidence.',remainingUncertainty='All auditor statements after line190 are NotRun in this execution; further auditor/source-contract defects remain possible. Raw batch scope and genuine runtime safety remain limited.',validationRequired='Full independent source/SDK/receipt/inventory audit including admitted9+9 and all eight flags, complete Git receipt joins and historical preservation, under a new explicit handoff. Retain this original failed audit and raw PASS unchanged.',coreRetried=False,auditorRetried=False,auditorEdited=False,runtimeAcceptance=False)
+save('FINDING.json',finding)
+facts=dict(kind='FactualRawReceiptObservations_RequiredAuditStillFailed',result='RawPassed_IndependentAuditFailed_NotLocalPass',rawAggregate=r['result'],rawResultSha256=sha(O/'RESULT.json'),rawManifestSha256=sha(O/'MANIFEST.json'),outerCount=25,outerStates=dict(collections.Counter(c['status'] for c in r['commands'])),original85Tests=cf['testsRun'],inventoryFlags=flags,allEightOuterFlagsTrue=True,admittedProfiles=ad['profiles'],admittedSourceContract=ad['sourceContract'],managedPositiveCount=len(products),managedInputCount=len(managed['inputs']),expectedNegative=negative,nativeSyntaxCount=len(native['translationUnits']),actualGitCommands=git,actualGitCount=20,sourcePreservedRaw=r['sourcePreserved'],rootLifetimeParity=[r['commandLifetimeUnverified'],m['commandLifetimeUnverified']],manifestScope=m['inventoryScope'],warnings=warnings,sourceAndHistoryPreservation='PassedSeparately',completeRequiredIndependentAudit='FailedAtLine190',laterOriginalAuditStatements='NotRun',noRawResultReclassification=True)
+save('FACTUAL_RECEIPT_OBSERVATIONS.json',facts)
+save('LOCAL_RESULT.json',dict(kind='LocalValidationOutcome',result='FAIL',reason='RequiredIndependentAuditFailed',rawAggregate=r['result'],sourcePins=E['pins'],prerequisite15='Passed',preparation='PassedPreparedNotExecutedReceipt',core25='PassedSourceHostAndSDKOnly',independentAudit='FailedExit1_Line190',completeIndependentAudit='Incomplete',firstFinding=finding['id'],preparerVerifyAfter='Passed',e1e5And6c72IndependentPreservation='Passed',sourceAndSdkPreservation='Passed',noSourceSdkCompilerChanges=True,noRetries=True,UnityEditorAndPlayer='NotRun',R03Accepted=False,H2Passed=False,qualificationApproved=False,ReadyForHumanReviewGate=False,fullLegacyRegressionAcceptance=False,runtimeAcceptance=False,nextState='Primary Implementation'))
+print('Factual Local outcome FAIL; original raw PASS and audit exit1 preserved.')

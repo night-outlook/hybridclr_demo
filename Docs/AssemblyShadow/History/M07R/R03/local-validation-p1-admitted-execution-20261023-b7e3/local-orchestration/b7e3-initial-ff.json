@@ -1,0 +1,39 @@
+[
+  {
+    "argv": [
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-23T09:27:42.917417+00:00",
+    "end": "2026-10-23T09:27:47.233298+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_demo\n * branch                codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   79532a968..49c6b62d3  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n"
+  },
+  {
+    "argv": [
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "49c6b62d38d7668be10004ac1e5a030d74894f09"
+    ],
+    "start": "2026-10-23T09:27:47.233341+00:00",
+    "end": "2026-10-23T09:27:47.246128+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "merge",
+      "--ff-only",
+      "49c6b62d38d7668be10004ac1e5a030d74894f09"
+    ],
+    "start": "2026-10-23T09:27:47.246187+00:00",
+    "end": "2026-10-23T09:27:47.558301+00:00",
+    "exit": 0,
+    "stdout": "Updating 79532a968..49c6b62d3\nFast-forward\n .../Tools/test_prepare_p1_admitted_local.py        |  32 +++++-\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        |  70 ++++++------\n .../DESIGN.md                                      |  25 +++++\n .../EVIDENCE.json                                  | 120 +++++++++++++++++++++\n .../P1_PREPARER_TEMP_CANONICAL_2026-10-23/PLAN.md  |  19 ++++\n .../PRIMARY_ALIAS.stderr.txt                       |  20 ++++\n .../PRIMARY_ALIAS.stdout.txt                       |   1 +\n .../PRIMARY_ALIAS_HOST.py                          |  27 +++++\n .../PRIMARY_BASELINE.stderr.txt                    |  20 ++++\n .../PRIMARY_SOURCE_AUDIT.md                        |  27 +++++\n Docs/AssemblyShadow/Plan/CURRENT_STATUS.md         |  18 ++++\n Docs/AssemblyShadow/README.md                      |  14 +++\n 12 files changed, 361 insertions(+), 32 deletions(-)\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/DESIGN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/PLAN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/PRIMARY_ALIAS.stderr.txt\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/PRIMARY_ALIAS.stdout.txt\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/PRIMARY_ALIAS_HOST.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/PRIMARY_BASELINE.stderr.txt\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/PRIMARY_SOURCE_AUDIT.md\n",
+    "stderr": ""
+  }
+]
