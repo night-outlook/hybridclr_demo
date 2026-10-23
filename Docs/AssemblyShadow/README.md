@@ -1,5 +1,19 @@
 # HybridCLR Assembly Shadow
 
+## Current Primary Implementation — P1 admitted-execution Local collector correction (2026-10-23)
+
+**Latest authoritative Local Validation: 20261022-e1e5 is BLOCKED / PrerequisiteBlocked, core NotRun (0/25).** The independently written Local preflight helper omitted the exact newly admitted CPP/API literals in its *early opaque* frozen-source reconstruction. This is an evidence-collector prerequisite, not an observed production/native or official SDK failure. Read current [LOCAL_VALIDATION](Handoff/LOCAL_VALIDATION.md) FIRST, then [RETURN_TO_WEB](Handoff/RETURN_TO_WEB.md), and the immutable [blocked finding](History/M07R/R03/local-validation-p1-admitted-execution-20261022-e1e5/FINDING.json). The old e1e5 preflight/checkpoint is consumed and MUST NOT be resumed or altered.
+
+Primary has now committed a **source-authenticated deterministic corrected Local collector preparer**, with 13/13 local Python synthetic regression tests, dual native source-verifier and old 82dd exact CPP/API byte checks. The tool binds the entire blocked 42-file checkpoint manifest, repairs only two frozen-byte reconstruction expressions, and produces the unchanged previous independent audit.py on **one entirely new preflight root**. No native or demo product/runtime code changed, no prior test acceptance was promoted, and **new installed SDK / 25-component Local validation is NotRun**. See the [Design](History/M07R/R03/IR_Remediation/P1_LOCAL_PREFLIGHT_RECONSTRUCTION_2026-10-23/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/P1_LOCAL_PREFLIGHT_RECONSTRUCTION_2026-10-23/PLAN.md), [Primary audit](History/M07R/R03/IR_Remediation/P1_LOCAL_PREFLIGHT_RECONSTRUCTION_2026-10-23/PRIMARY_SOURCE_AUDIT.md), [Evidence](History/M07R/R03/IR_Remediation/P1_LOCAL_PREFLIGHT_RECONSTRUCTION_2026-10-23/EVIDENCE.json), and **final** [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md). Source and scripts under [Handoff/Tools](Handoff/Tools/prepare_p1_admitted_local.py).
+
+One new independently admitted Local run may verify **25/25** source/host/actual installed official SDK syntax-only components, original 85 test IDs, eight source inventories, nine strict+sanitized new groups, five real managed positive compiler products + expected negative, 100 native C++17 syntax commands, twenty Git source-authority commands, before/after evidence/SDK/history. **No retries; no Unity Editor/Player/native product link.**
+
+**Outstanding:** P1 Incomplete; P2 NotIntegrated; E0 Blocked/Unavailable; E1 BlockedByE0; full P3 Incomplete; historical SNAP-01/N/M/K/I/E/R02 fingerprint FAIL, strict S custody Blocked and independent full-stage R03 FAIL/re-review NotRun remain. R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; fullLegacyRegressionAcceptance=false; PureInterpreter disabled. Earlier 7896/7c2c PASS and 82dd raw FAIL are unchanged.
+
+---
+
+## Earlier status snapshots (historical; not current instructions)
+
 ## New Primary implementation — inactive metadata-admitted V1 getter (official installed SDK NotRun)
 
 **Latest consumed Local:** [20261021-7896](History/M07R/R03/local-validation-p1-git-lifetime-20261021-7896/README.md) **PASS / PassedSourceHostAndSDKOnly**, executed demo `a5c0a4272efc4eee000220f40b7ca769be277917`, native `82ddcef9417e3d662fdd39916a92124b5c835094`, unchanged other two. **24/24** components, original 85 tests, seven case inventories, five genuine managed positives + original exact expected-negative, **100/100** native official SDK syntax, **20/20** Git source-head checks, independently preserved SDK/source/history. The separate `7c2c` PASS and `82dd` raw aggregate **FAIL** remain unchanged. Read Local-owned [LOCAL_VALIDATION](Handoff/LOCAL_VALIDATION.md) FIRST, then [RETURN_TO_WEB](Handoff/RETURN_TO_WEB.md). No Unity Editor/TestRunner/Player/native product link, real GC/RSS/Shutdown.
