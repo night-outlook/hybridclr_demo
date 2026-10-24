@@ -78,12 +78,42 @@
     "ciWorkflow": ".github/workflows/r03-p1-historical-audit-helper-source-only.yml",
     "latestSourceCI": {
       "runId": 40076790889,
-      "statusAtPreparation": "InProgress_NotAccepted",
-      "sourceCommit": "1fbdb008c82f262c8b4aa56cc33a9d8b54994a92"
+      "status": "CompletedSuccess",
+      "conclusion": "success",
+      "sourceCommit": "1fbdb008c82f262c8b4aa56cc33a9d8b54994a92",
+      "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/40076790889",
+      "jobs": [
+        {
+          "os": "ubuntu-24.04",
+          "jobId": 120821744177,
+          "conclusion": "success",
+          "helperIdentityTests": "17/17",
+          "helperCustodyTests": "11/11",
+          "priorHostTests": "23/23",
+          "publishedB7e3CheckpointFilesChecked": 2506,
+          "originalRawEntries": 4269,
+          "publishedRawVerified": 2396,
+          "externalRawUnavailable": 1873,
+          "historicalGitSourceCommands": 20
+        },
+        {
+          "os": "macos-15",
+          "jobId": 120821744399,
+          "conclusion": "success",
+          "helperIdentityTests": "17/17",
+          "helperCustodyTests": "11/11",
+          "priorHostTests": "23/23",
+          "publishedB7e3CheckpointFilesChecked": 2506,
+          "originalRawEntries": 4269,
+          "publishedRawVerified": 2396,
+          "externalRawUnavailable": 1873,
+          "historicalGitSourceCommands": 20
+        }
+      ]
     },
     "historicalInitialCI": {
       "runId": 40076486968,
-      "outcome": "source-only test fixture FAIL for string repr quote style; independently recorded, not promoted",
+      "outcome": "CompletedFailure_SourceOnlyFixtureSingleVsDoubleQuoteLiteral; 17/17 identity suite PASS, custody 10/11 initial FAIL; fixed by Primary; original red CI retained",
       "fixCommit": "1fbdb008c82f262c8b4aa56cc33a9d8b54994a92"
     }
   },
@@ -97,7 +127,9 @@
     "historicalAudit": "NotRun",
     "originalB7e3CoreRerun": false,
     "originalC42aAuditRerun": false,
-    "oneShotRequired": true
+    "oneShotRequired": true,
+    "oneShotIdentityAuditNotYetExecuted": true,
+    "currentLocalResult": "NotRun"
   },
   "acceptance": {
     "P1": "Incomplete",
