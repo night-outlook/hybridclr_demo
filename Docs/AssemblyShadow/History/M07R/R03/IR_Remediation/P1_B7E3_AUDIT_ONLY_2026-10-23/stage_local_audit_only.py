@@ -192,6 +192,36 @@ def sdk_source_hashes(sdk: Path):
             "files": len(files), "bytes": bytes_count}
 
 
+def sdk_scratch_hashes(raw: Path, scratch: Path, expected_count: int = 1925):
+    """Independently bind the retained SDK scratch copy to the raw producer."""
+    if not scratch.is_dir() or scratch.is_symlink() or scratch.resolve() != scratch:
+        raise ValueError("Original SDK scratch root missing or noncanonical")
+    recorded = raw / "native-sdk/native-sdk-inputs.json"
+    manifest = json_read(recorded)
+    entries = manifest["files"]
+    if not isinstance(entries, list) or len(entries) != expected_count:
+        raise ValueError("Unexpected native SDK scratch manifest count")
+    seen = set()
+    checked = 0
+    for row in entries:
+        rel = row["path"]
+        file = path_beneath(scratch, rel)
+        if rel in seen:
+            raise ValueError("Duplicate SDK scratch input: " + rel)
+        seen.add(rel)
+        expected_sha = row["sha256"]
+        if (not isinstance(expected_sha, str) or len(expected_sha) != 64 or
+                not all(c in "0123456789abcdef" for c in expected_sha)):
+            raise ValueError("Malformed native SDK scratch SHA")
+        if not file.is_file() or file.is_symlink() or digest(file) != expected_sha:
+            raise ValueError("Native SDK scratch input changed: " + rel)
+        checked += 1
+    return {"nativeSdkInputsManifestSha256": digest(recorded),
+            "checkedScratchFiles": checked,
+            "checkedSource": "b7e3/native-sdk/native-sdk-inputs.json",
+            "sourceSdkOrCompilerReinvoked": False}
+
+
 def original_source_bindings(sdk: Path):
     inputs = json_read(sdk / "SOURCE_BINDINGS.json")
     checked = 0
@@ -218,9 +248,13 @@ def snapshot(checkpoint, preflight, output, workspace):
     preflight_files = consumed_input_hashes(checkpoint, preflight)
     raw = raw_manifest_hashes(output)
     sdk = sdk_source_hashes(preflight)
+    scratch = Path(expected["scratch"])
+    if scratch.resolve() != scratch or not scratch.is_absolute():
+        raise ValueError("Original SDK scratch path is noncanonical")
+    sdk_scratch = sdk_scratch_hashes(output, scratch)
     source = original_source_bindings(preflight)
     return {"preflightFiles": preflight_files, "raw": raw,
-            "sdk": sdk, "source": source,
+            "sdk": sdk, "sdkScratch": sdk_scratch, "source": source,
             "originalB7E3LocalState": "FAIL"}
 
 
@@ -236,6 +270,9 @@ def stage(args):
         raise ValueError("Audit stage overlaps original consumed evidence")
     if target in output.parents or output in target.parents:
         raise ValueError("Audit stage overlaps original raw evidence")
+    scratch_path = Path(json_read(preflight / "EXPECTED.json")["scratch"])
+    if target in scratch_path.parents or scratch_path in target.parents:
+        raise ValueError("Audit stage overlaps original SDK scratch evidence")
     if target in workspace.parents or workspace in target.parents:
         raise ValueError("Audit stage overlaps source repositories")
     if blob_id(source.read_bytes()) != HISTORICAL_AUDITOR_BLOB:
@@ -256,7 +293,8 @@ def stage(args):
                "historicalAuditorBlob": HISTORICAL_AUDITOR_BLOB,
                "originalAuditorSha256": ORIGINAL_AUDITOR_SHA,
                "stage": str(target), "originalPreflight": str(preflight),
-               "originalRaw": str(output), "originalSdkAnchor":
+               "originalRaw": str(output),
+               "originalSdkScratch": str(scratch_path), "originalSdkAnchor":
                json_read(preflight / "SDK_BEFORE.json")["anchor"],
                "initialSnapshot": before, "originalCoreRetried": False,
                "originalLocalResultPromoted": False,
@@ -270,7 +308,8 @@ def stage(args):
             "historicalSourceBlob": HISTORICAL_AUDITOR_BLOB,
             "originalFileCount": len(before["preflightFiles"]),
             "rawFiles": before["raw"]["regularFiles"],
-            "sdkFiles": before["sdk"]["files"]}
+            "sdkFiles": before["sdk"]["files"],
+            "sdkScratchFiles": before["sdkScratch"]["checkedScratchFiles"]}
 
 
 def verify_after(args):
@@ -294,6 +333,7 @@ def verify_after(args):
                "preflightCount": len(current["preflightFiles"]),
                "rawFiles": current["raw"]["regularFiles"],
                "sdkFiles": current["sdk"]["files"],
+               "sdkScratchFiles": current["sdkScratch"]["checkedScratchFiles"],
                "newSdkOrCoreRun": False}
     with (stage_path / "AUDIT_ONLY_AFTER.json").open("xb") as fh:
         fh.write((json.dumps(outcome, indent=2) + "\n").encode())
