@@ -103,7 +103,7 @@ class HelperStageAuditOnly(unittest.TestCase):
             self.assertIn(phrase, old)
             self.assertIn(phrase, new)
         self.assertIn("c42a_immutable_history(workspace)", new)
-        self.assertIn("HISTORICAL_AUDITOR_BLOB = " + repr(AUDIT_BLOB), new)
+        self.assertIn('HISTORICAL_AUDITOR_BLOB = "' + AUDIT_BLOB + '"', new)
         self.assertIn('source = HERE / "audit_historical_helper_successor.py"', new)
         self.assertNotIn('source = HERE / "audit_historical_only.py"', new)
         ast.parse(new)
