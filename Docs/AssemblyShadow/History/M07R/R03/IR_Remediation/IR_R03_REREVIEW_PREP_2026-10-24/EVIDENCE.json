@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03_IR_R03_01_02_SourceOnlyPrereview",
+  "overallResult": "PassedSourceOnlyPreflight_PendingRealPlayerAndIndependentReview",
+  "scope": "PrimaryHostSourceOnly_NotFullIndependentStageReview_NotR03Acceptance",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "originalIndependentFullStage": {
+    "date": "2026-10-08",
+    "verdict": "FAIL",
+    "findingIds": [
+      "IR-R03-02",
+      "IR-R03-01"
+    ],
+    "fixedReviewedDemo": "aee7975874a5ddf236ab9d00d5d682b470010f8f",
+    "fixedReviewedNative": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+    "ownerDecisions": {
+      "D1": "A",
+      "D2": "A"
+    }
+  },
+  "currentProductSourcePins": {
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+  },
+  "sourceArtifacts": [
+    {
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "repo": "il2cpp_plus",
+      "gitBlob": "57cf47f964a83973df8296955ccf856b105c595f"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowTerminalExecution.h",
+      "repo": "il2cpp_plus",
+      "gitBlob": "33258986c31b2e6ae3af17b8553030482a83aef7"
+    },
+    {
+      "path": "libil2cpp/vm/Runtime.cpp",
+      "repo": "il2cpp_plus",
+      "gitBlob": "96b914fbeb31c69d649e4076a802de0b6418daa8"
+    },
+    {
+      "path": "hybridclr/interpreter/Interpreter_Execute.cpp",
+      "repo": "hybridclr",
+      "gitBlob": "2dbdb7527afee7f2546e45f20e6ef93e1bca237a"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03/source-pins.json",
+      "repo": "hybridclr_demo",
+      "gitBlob": "9d72a237fb6ecd3efe3267ca89625aa49c61775d"
+    },
+    {
+      "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/review_readiness.py",
+      "repo": "hybridclr_demo",
+      "gitBlob": "db2d8649e111cafc038b7ee5070ef9b37123d353"
+    },
+    {
+      "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/test_review_readiness.py",
+      "repo": "hybridclr_demo",
+      "gitBlob": "e761ece24d6281afc7b9d4bb485ba3868365be68"
+    }
+  ],
+  "findings": {
+    "IR-R03-02": {
+      "status": "CurrentNativeSourceGuardPresent_ExactSourceMatchedPlayerNotRun",
+      "earlyTerminalDenied": true,
+      "terminalCheckBeforeSuccessfulReturn": true,
+      "preInvokeRuntimeGuard": true,
+      "interpreterEntryNestedDelegateVirtualGuardSourcePresent": true,
+      "boundedCtorScope": true,
+      "directAotToAotPathsAllInstrumented": false,
+      "actualCurrentSourcePlayerPostPoisonWitness": "NotRun",
+      "demoRunnerPin": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
+      "nativeCurrentPin": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
+      "runnerGate": "BlockedStaleRunnerNativePin",
+      "independentFullStageClosure": false
+    },
+    "IR-R03-01": {
+      "status": "OriginalSProvenanceCorrected_AwaitingIndependentRereview",
+      "originalSArchive": {
+        "sha256": "23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6",
+        "bytes": 587907380,
+        "transportParts": 9,
+        "archiveMembers": 15713,
+        "indexedFiles": 15712
+      },
+      "supersededPrimaryArchiveClaim": {
+        "sha256": "f4c2a120e3fdbb1fbc5a984e920ba0dbf34a3e1502c3ecea955769d70179054a7",
+        "bytes": 283728477,
+        "transportParts": 5,
+        "archiveMembers": 18160,
+        "status": "NotAuthorityForOriginalS"
+      },
+      "originalSProvenanceWorkflow": 37845000985,
+      "originalSProvenanceTests": 30,
+      "originalSCellsRebound": 90,
+      "independentR03FullStageRereview": "NotRun",
+      "generatedSourceOmissionsSemanticInspection": "NotCompleted"
+    }
+  },
+  "ci": {
+    "workflow": ".github/workflows/r03-ir-rereview-source-only.yml",
+    "finalRunId": 40086902503,
+    "finalUrl": "https://github.com/night-outlook/hybridclr_demo/actions/runs/40086902503",
+    "testedSourceCommit": "f1f6aec7fc4850ce52efffe4a21a7341fa951f9f",
+    "result": "success",
+    "jobs": [
+      {
+        "os": "macos-15",
+        "jobId": 120851589071,
+        "result": "success",
+        "pythonAdversarialTests": 20,
+        "passed": 20,
+        "nativeTerminalPolicyHeaderChecks": 69,
+        "scopedReport": "PassedSourceOnlyPreflight_PendingRealPlayerAndIndependentReview",
+        "playerGate": "BlockedStaleRunnerNativePin"
+      },
+      {
+        "os": "ubuntu-24.04",
+        "jobId": 120851589213,
+        "result": "success",
+        "pythonAdversarialTests": 20,
+        "passed": 20,
+        "nativeTerminalPolicyHeaderChecks": 69,
+        "scopedReport": "PassedSourceOnlyPreflight_PendingRealPlayerAndIndependentReview",
+        "playerGate": "BlockedStaleRunnerNativePin"
+      }
+    ],
+    "originalFailedAttempts": [
+      {
+        "runId": 40086592790,
+        "status": "failure",
+        "reason": "Test-only unittest CLI fixture arguments were not excluded"
+      },
+      {
+        "runId": 40086808626,
+        "status": "failure",
+        "reason": "Test-only source adversarial failures were untyped ValueError rather than ReviewReadinessError"
+      }
+    ],
+    "officialUnityManagedOrNativeCompilation": false,
+    "unityEditorOrPlayerExecuted": false,
+    "independentFullStageReviewer": false
+  },
+  "historicalEvidencePreserved": {
+    "S_90cells": "EvidenceReadyForPrimaryReview",
+    "b7e3": {
+      "raw": "PassedSourceHostAndSDKOnly",
+      "overallLocal": "FAIL"
+    },
+    "c42a": {
+      "isolatedAudit": "FailedOrIncomplete_StopIteration1031",
+      "overallLocal": "FAIL"
+    },
+    "f51d": {
+      "isolatedHistoricalAudit": "PassedHistoricalAuditOnly_UnchangedLocalFail",
+      "originalOutcomePromoted": false
+    },
+    "originalIndependentFullStageReview": "FAIL",
+    "sourceHistoryRewritten": false
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "runtimeAcceptance": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "nextAuthority": {
+    "activeLocalAssignment": false,
+    "writeProductCodeThisCycle": false,
+    "beginH2X02M08A": false,
+    "next": "Separate Primary-controlled coherent runner/native pin integration review, then explicitly authorized source-matched Player if appropriate; independent full R03 rerereview afterwards."
+  }
+}
