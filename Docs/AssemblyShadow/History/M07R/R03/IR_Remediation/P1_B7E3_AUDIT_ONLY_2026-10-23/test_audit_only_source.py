@@ -230,5 +230,62 @@ class AuditOnlySourceContracts(unittest.TestCase):
                 self.stager.consumed_input_hashes(checkpoint, historical)
 
 
+    def sdk_scratch_fixture(self, base):
+        raw = base / "raw"
+        scratch = base / "scratch"
+        (raw / "native-sdk").mkdir(parents=True)
+        scratch.mkdir()
+        paths = ("external/baselib/Include/Baselib.h",
+                 "libil2cpp/vm/AssemblyShadow.cpp",
+                 "libil2cpp/vm/AssemblyShadow.h")
+        entries = []
+        for i, path in enumerate(paths, 1):
+            file = scratch / path
+            file.parent.mkdir(parents=True, exist_ok=True)
+            data = f"immutable scratch {i}\n".encode()
+            file.write_bytes(data)
+            entries.append({"path": path, "sha256": hashlib.sha256(data).hexdigest()})
+        (raw / "native-sdk/native-sdk-inputs.json").write_text(
+            json.dumps({"files": entries, "vendorFilesUploaded": False}))
+        return raw, scratch
+
+    def test_17_source_pinned_sdk_scratch_fixture_passes(self):
+        with tempfile.TemporaryDirectory() as d:
+            raw, scratch = self.sdk_scratch_fixture(Path(d).resolve())
+            result = self.stager.sdk_scratch_hashes(raw, scratch, expected_count=3)
+            self.assertEqual(result["checkedScratchFiles"], 3)
+            self.assertFalse(result["sourceSdkOrCompilerReinvoked"])
+            self.assertEqual(result["checkedSource"],
+                             "b7e3/native-sdk/native-sdk-inputs.json")
+
+    def test_18_changed_sdk_scratch_source_fails_closed(self):
+        with tempfile.TemporaryDirectory() as d:
+            raw, scratch = self.sdk_scratch_fixture(Path(d).resolve())
+            (scratch / "libil2cpp/vm/AssemblyShadow.h").write_text("tampered")
+            with self.assertRaises(ValueError):
+                self.stager.sdk_scratch_hashes(raw, scratch, expected_count=3)
+
+    def test_19_duplicate_traversal_and_symlink_scratch_inputs_refused(self):
+        with tempfile.TemporaryDirectory() as d:
+            raw, scratch = self.sdk_scratch_fixture(Path(d).resolve())
+            receipt = raw / "native-sdk/native-sdk-inputs.json"
+            original = json.loads(receipt.read_text())
+            duplicates = {"files": original["files"] + [original["files"][0]]}
+            receipt.write_text(json.dumps(duplicates))
+            with self.assertRaises(ValueError):
+                self.stager.sdk_scratch_hashes(raw, scratch, expected_count=4)
+            traversal = {"files": [*original["files"][:2],
+                                   {**original["files"][2], "path": "../escape"}]}
+            receipt.write_text(json.dumps(traversal))
+            with self.assertRaises(ValueError):
+                self.stager.sdk_scratch_hashes(raw, scratch, expected_count=3)
+            receipt.write_text(json.dumps(original))
+            real = scratch / "libil2cpp/vm/AssemblyShadow.cpp"
+            real.unlink()
+            real.symlink_to(scratch / "libil2cpp/vm/AssemblyShadow.h")
+            with self.assertRaises(ValueError):
+                self.stager.sdk_scratch_hashes(raw, scratch, expected_count=3)
+
+
 if __name__ == "__main__":
     unittest.main()
