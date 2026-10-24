@@ -349,5 +349,75 @@ class AuditOnlySourceContracts(unittest.TestCase):
                 self.stager.snapshot = original
 
 
+    def import_one_shot_runner(self):
+        spec = importlib.util.spec_from_file_location(
+            "b7e3_audit_runner_host_contract", HERE / "run_local_audit_once.py")
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod
+
+    def make_dummy_audit_stage(self, root, script):
+        root.mkdir()
+        (root / "audit.py").write_text(script)
+        (root / "AUDIT_ONLY_STAGE.json").write_text(json.dumps({
+            "kind": "R03P1IsolatedHistoricalAuditStage",
+            "status": "StagedNotExecuted",
+            "originalLocalResultPromoted": False,
+            "originalCoreRetried": False,
+            "stage": str(root),
+        }))
+        return root
+
+    def test_22_test_owned_one_shot_python_audit_pass_and_refuse_retry(self):
+        # Run only a test-owned, tiny Python audit (not the full historic auditor,
+        # Unity, IL2CPP or SDK). Verify the real one-shot process/receipt machinery.
+        script = ('import json\nfrom pathlib import Path\n'
+                  "Path('EVIDENCE_AUDIT.json').write_text(json.dumps({"
+                  "'result':'PassedHistoricalEvidenceAuditOnly',"
+                  "'auditMode':'ReadOnlyIsolatedB7E3History',"
+                  "'originalB7E3LocalResult':'FAIL',"
+                  "'liveRemoteHeadCheck':'NotRun_TimeVariant',"
+                  "'productAcceptance':False}))\n")
+        with tempfile.TemporaryDirectory() as d:
+            stage = self.make_dummy_audit_stage(Path(d).resolve() / "stage", script)
+            runner = self.import_one_shot_runner()
+            original_pin = runner.SOURCE_BLOB
+            runner.SOURCE_BLOB = self.stager.blob_id(script.encode())
+            try:
+                self.assertEqual(runner.one_shot(stage, timeout_seconds=60), 0)
+                receipt = json.loads((stage / "AUDIT_ONLY_RUN_RECEIPT.json").read_text())
+                self.assertEqual(receipt["result"],
+                                 "PassedHistoricalAuditOnly_UnchangedLocalFail")
+                self.assertEqual(receipt["originalB7E3LocalResult"], "FAIL")
+                self.assertFalse(receipt["originalRawCoreRetried"])
+                self.assertEqual(receipt["exit"], 0)
+                self.assertEqual(receipt["stdoutSha256"],
+                                 hashlib.sha256((stage / "audit-only.stdout.bin").read_bytes()).hexdigest())
+                self.assertTrue((stage / "AUDIT_ONLY_INVOCATION.json").is_file())
+                with self.assertRaises(ValueError):
+                    runner.one_shot(stage, timeout_seconds=60)
+            finally:
+                runner.SOURCE_BLOB = original_pin
+
+    def test_23_test_owned_one_shot_python_audit_failure_remains_consumed(self):
+        script = "raise SystemExit(3)\n"
+        with tempfile.TemporaryDirectory() as d:
+            stage = self.make_dummy_audit_stage(Path(d).resolve() / "stage", script)
+            runner = self.import_one_shot_runner()
+            original_pin = runner.SOURCE_BLOB
+            runner.SOURCE_BLOB = self.stager.blob_id(script.encode())
+            try:
+                self.assertEqual(runner.one_shot(stage, timeout_seconds=60), 1)
+                receipt = json.loads((stage / "AUDIT_ONLY_RUN_RECEIPT.json").read_text())
+                self.assertEqual(receipt["result"], "FailedOrIncomplete")
+                self.assertEqual(receipt["exit"], 3)
+                self.assertEqual(receipt["originalB7E3LocalResult"], "FAIL")
+                self.assertFalse((stage / "EVIDENCE_AUDIT.json").exists())
+                with self.assertRaises(ValueError):
+                    runner.one_shot(stage, timeout_seconds=60)
+            finally:
+                runner.SOURCE_BLOB = original_pin
+
+
 if __name__ == "__main__":
     unittest.main()
