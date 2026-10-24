@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1B7E3IsolatedHistoricalAuditOnlyPrimaryEvidence",
+  "authority": "User requested continuation after explicit proposal for narrowly scoped audit-only re-review; no core/SDK/Player authorization",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "b7e3ExecutionPins": {
+    "hybridclr_demo": "49c6b62d38d7668be10004ac1e5a030d74894f09",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+  },
+  "unchangedHistoricalOutcomes": {
+    "b7e3Overall": "FAIL",
+    "b7e3Raw": "PassedSourceHostAndSDKOnly",
+    "b7e3OriginalAudit": "FailedLine190",
+    "b7e3UnreachedAfter190": "NotRun",
+    "e1e5": "PrerequisiteBlocked",
+    "sixC72": "PrerequisiteBlocked",
+    "sevenEightNineSix": "PassedSourceHostAndSDKOnly",
+    "sevenC2C": "PassedSourceHostAndSDKOnly",
+    "eightTwoDD": "FailedOrIncomplete"
+  },
+  "publishedSnapshotEvidence": {
+    "workflowRun": 40053309333,
+    "link": "https://github.com/night-outlook/hybridclr_demo/actions/runs/40053309333",
+    "macos15": "success",
+    "ubuntu2404": "success",
+    "sourceCommit": "8ebacbf41b746e966f8f6c0b4c7006b594f7622c",
+    "checkpointFilesSha256Verified": 2506,
+    "rawManifestDeclaredFiles": 4269,
+    "rawPublishedFilesVerified": 2396,
+    "rawExternalFilesUnavailable": 1873,
+    "originalRawManifestTotalBytes": 218978857,
+    "originalCoreComponents": 25,
+    "originalManagedCompilerCommands": 6,
+    "nativeSyntaxCompilerCommands": 100,
+    "nativeVersionCommands": 1,
+    "historicalGitAuthorityReceipts": 20,
+    "result": "PassedPublishedSnapshotScope_ExternalInputsUnavailable",
+    "externalSdkRawComplete": false,
+    "fullIndependentAuditorExecuted": false,
+    "originalB7e3LocalResultPromoted": false
+  },
+  "newSourceFiles": [
+    {
+      "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/verify_published_checkpoint.py",
+      "gitBlob": "27c4cf862e75e56109c36257628ab7cebe6d34f1"
+    },
+    {
+      "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/audit_historical_only.py",
+      "gitBlob": "c451e0cb7794e624eabb9029db0a35ba28d14592"
+    },
+    {
+      "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/stage_local_audit_only.py",
+      "gitBlob": "c712ebe392ae517953ff50e788f7e509102374b0"
+    },
+    {
+      "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/run_local_audit_once.py",
+      "gitBlob": "994a7f9f179b2cfa024b1d6b9ec8113d9a071d76"
+    },
+    {
+      "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/test_audit_only_source.py",
+      "gitBlob": "5b21037e1262eb10500b8ff9536c8b8d11b40956"
+    }
+  ],
+  "historicalAuditorProof": {
+    "source": "audit_successor.py at git blob 908358c1b302d31e3be434e36988c43e65b976cf",
+    "historicalOnlySourceBlob": "c451e0cb7794e624eabb9029db0a35ba28d14592",
+    "allOriginalChecksBeforeFinalGitAuthorityPreserved": true,
+    "originalFinalGitAuthority": "TimeVaryingLiveRemote",
+    "replacementFinalGitAuthority": "CapturedB7E3DirectGitReceiptsAndGIT_BEFORE",
+    "currentLiveRemoteEquivalenceRechecked": false,
+    "newHistoricalModeResult": "PassedHistoricalEvidenceAuditOnly",
+    "alreadyExecutedLocally": false
+  },
+  "pendingSourceOnlyCi": {
+    "workflow": "r03-p1-b7e3-published-audit-only.yml",
+    "sourceOnlyTestCount": 16,
+    "latestTriggeredSourceCommit": "5b21f2f3e594737adcab095796ae1af9331fbe1b",
+    "runId": 40053990573,
+    "statusAtPreparation": "InProgress_NotAcceptanceEvidence"
+  },
+  "plannedOneShotLocal": {
+    "auditOnlyRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/AuditOnly-R03-P1-ADMITTED-EXECUTION-20261023-c42a",
+    "factualCheckpoint": "Docs/AssemblyShadow/History/M07R/R03/local-audit-only-p1-20261023-c42a/",
+    "localExecution": "NotRun",
+    "originalRawSdkInputAdmission": "NotRun",
+    "oneShotNoRetry": true,
+    "sourceSdkProductCoreRerunAllowed": false,
+    "originalEvidenceWritable": false,
+    "originalB7e3AcceptancePromotionAllowed": false
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "runtimeAcceptance": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  }
+}
