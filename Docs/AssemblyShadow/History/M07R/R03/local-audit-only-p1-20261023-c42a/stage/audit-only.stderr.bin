@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/AuditOnly-R03-P1-ADMITTED-EXECUTION-20261023-c42a/audit.py", line 1031, in <module>
+    consumer_node=next(n for n in ast.walk(ast.parse(consumer_fixture)) if isinstance(n,ast.FunctionDef) and n.name=='verify_admitted_execution_receipt_and_fail_closed_mutations');cs=ast.get_source_segment(consumer_fixture,consumer_node)
+StopIteration

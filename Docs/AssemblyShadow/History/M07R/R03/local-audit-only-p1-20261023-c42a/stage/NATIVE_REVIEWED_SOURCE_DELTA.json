@@ -1,0 +1,40 @@
+{
+  "result": "ExactReviewedAdmissionNinePathDelta",
+  "base": "82ddcef9417e3d662fdd39916a92124b5c835094",
+  "candidate": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
+  "changes": [
+    "A\t.github/workflows/r03-p1-inactive-admitted-execution.yml",
+    "M\tlibil2cpp/vm/AssemblyShadow.cpp",
+    "M\tlibil2cpp/vm/AssemblyShadow.h",
+    "A\tlibil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+    "A\ttools/r03/diagnostic_stream/admitted_execution_diagnostics_fixture.cpp",
+    "A\ttools/r03/diagnostic_stream/run_admitted_execution_diagnostics.py",
+    "M\ttools/r03/diagnostic_stream/run_opaque_execution_inventory.py",
+    "M\ttools/r03/diagnostic_stream/run_owned_physical_names.py",
+    "M\ttools/r03/diagnostic_stream/run_physical_membership.py"
+  ],
+  "cppApiExactAdditiveRestoration": [
+    {
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "actualSha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c",
+      "exactRemovedLiterals": {
+        "admitted_include": "// P1 inactive reader around the original (unmodified) V1 getter.\n#include \"AssemblyShadowAdmittedExecutionDiagnosticsSource.inl\"\n\n",
+        "integrated_json_header": "#include \"AssemblyShadowObservedTypeShapeJson.h\"\n",
+        "integrated_json_include": "// P1 inactive genuine physical iterator to owned type-shape census JSON.\n#include \"AssemblyShadowObservedTypeShapeJsonLiveSource.inl\"\n"
+      },
+      "restoredCppApiByteIdenticalToC776": true
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadow.h",
+      "actualSha256": "55e572887d7ed89cc5d9cd57b3457df240357aa389474512442f3a5fea487e8f",
+      "exactRemovedLiterals": {
+        "admitted_decl": "    // P1 INACTIVE: initial metadata-lifetime reader encloses the unchanged\n    // legacy getter. This does not prove class pointer origin, canonical\n    // execution TypeKeys, coherent VM epoch or Player behavior.\n    static AssemblyShadowError TryGetExecutionDiagnosticsWithMetadataAdmission(std::string& json);\n",
+        "integrated_json_forward": "namespace assembly_shadow_observed_type_shape_json { class Record; struct Receipt; }\n",
+        "integrated_json_decl": "    // P1 INACTIVE: one-shot genuine matched class source -> owned primitive\n    // shape census -> noncanonical JSON, after all original VM locks exit.\n    // Caller prepares exclusive buffers while healthy. Not execution V1.\n    static bool TryCaptureObservedTypeShapeJson(\n        assembly_shadow_physical_membership::Scratch& membershipScratch,\n        assembly_shadow_owned_physical_names::Capture& names,\n        assembly_shadow_owned_physical_names::Receipt& namesReceipt,\n        assembly_shadow_observed_type_shape_census::Result& censusResult,\n        assembly_shadow_observed_type_shape_json::Record& jsonOutput,\n        assembly_shadow_observed_type_shape_json::Receipt& jsonReceipt,\n        size_t maximumBytes);\n"
+      },
+      "restoredCppApiByteIdenticalToC776": true
+    }
+  ],
+  "pureJsonHeaderUnchanged": true,
+  "historicalOriginalFingerprintBlobsStillVerified": true
+}

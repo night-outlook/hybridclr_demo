@@ -1,0 +1,39 @@
+[
+  {
+    "argv": [
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-24T07:32:04.123188+00:00",
+    "end": "2026-10-24T07:32:14.200627+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_demo\n * branch                codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   71b50a21b..26a4ea22a  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n"
+  },
+  {
+    "argv": [
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "26a4ea22aa0a11f1e86c8d2ac2aa4bd55a308a05"
+    ],
+    "start": "2026-10-24T07:32:14.200652+00:00",
+    "end": "2026-10-24T07:32:14.212425+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "merge",
+      "--ff-only",
+      "26a4ea22aa0a11f1e86c8d2ac2aa4bd55a308a05"
+    ],
+    "start": "2026-10-24T07:32:14.212449+00:00",
+    "end": "2026-10-24T07:32:14.763954+00:00",
+    "exit": 0,
+    "stdout": "Updating 71b50a21b..26a4ea22a\nFast-forward\n .../r03-p1-audit-roster-source-contracts.yml       |   35 +\n .../workflows/r03-p1-b7e3-published-audit-only.yml |   53 +\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        |  143 ++-\n .../P1_AUDIT_ROSTER_2026-10-23/DESIGN.md           |   27 +\n .../P1_AUDIT_ROSTER_2026-10-23/EVIDENCE.json       |  131 +++\n .../HISTORICAL_WEB_TO_LOCAL_B7E3.md                |  131 +++\n .../P1_AUDIT_ROSTER_2026-10-23/PLAN.md             |   15 +\n .../PRIMARY_INDEPENDENT_EVIDENCE_REVIEW.md         |   48 +\n .../P1_AUDIT_ROSTER_2026-10-23/audit_successor.py  | 1051 +++++++++++++++++++\n .../test_audit_successor_roster.py                 |  204 ++++\n .../test_published_raw_evidence.py                 |  197 ++++\n .../P1_B7E3_AUDIT_ONLY_2026-10-23/DESIGN.md        |   31 +\n .../P1_B7E3_AUDIT_ONLY_2026-10-23/EVIDENCE.json    |  162 +++\n .../P1_B7E3_AUDIT_ONLY_2026-10-23/PLAN.md          |   23 +\n .../PRIMARY_SOURCE_AUDIT.md                        |   43 +\n .../audit_historical_only.py                       | 1082 ++++++++++++++++++++\n .../run_local_audit_once.py                        |  157 +++\n .../stage_local_audit_only.py                      |  362 +++++++\n .../test_audit_only_source.py                      |  423 ++++++++\n .../verify_published_checkpoint.py                 |  458 +++++++++\n Docs/AssemblyShadow/Plan/CURRENT_STATUS.md         |   35 +\n Docs/AssemblyShadow/README.md                      |   32 +\n 22 files changed, 4759 insertions(+), 84 deletions(-)\n create mode 100644 .github/workflows/r03-p1-audit-roster-source-contracts.yml\n create mode 100644 .github/workflows/r03-p1-b7e3-published-audit-only.yml\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/DESIGN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/HISTORICAL_WEB_TO_LOCAL_B7E3.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/PLAN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/PRIMARY_INDEPENDENT_EVIDENCE_REVIEW.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/audit_successor.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/test_audit_successor_roster.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/test_published_raw_evidence.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/DESIGN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/PLAN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/PRIMARY_SOURCE_AUDIT.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/audit_historical_only.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/run_local_audit_once.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/stage_local_audit_only.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/test_audit_only_source.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/verify_published_checkpoint.py\n",
+    "stderr": ""
+  }
+]
