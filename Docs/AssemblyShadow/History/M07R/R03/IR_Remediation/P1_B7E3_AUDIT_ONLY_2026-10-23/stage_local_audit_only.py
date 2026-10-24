@@ -251,7 +251,8 @@ def verify_after(args):
     checkpoint = workspace / "hybridclr_demo" / CHECKPOINT
     before = json_read(stage_path / "AUDIT_ONLY_STAGE.json")
     assert before["kind"] == "R03P1IsolatedHistoricalAuditStage"
-    assert before["originalB7E3LocalState"] == "FAIL" if "originalB7E3LocalState" in before else True
+    if before["initialSnapshot"]["originalB7E3LocalState"] != "FAIL":
+        raise ValueError("Original b7e3 failure state was altered")
     assert blob_id((stage_path / "audit.py").read_bytes()) == HISTORICAL_AUDITOR_BLOB
     current = snapshot(checkpoint, preflight, raw, workspace)
     if current != before["initialSnapshot"]:
