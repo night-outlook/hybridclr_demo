@@ -1,3 +1,20 @@
+# R03 P1 current stage — source-bound c42a helper identity correction
+
+## Latest authoritative Local and Primary implementation (2026-10-24)
+
+Latest Local-owned **20261023-c42a = FAIL / FailedOrIncomplete historical audit-only**, a distinct attempt after original b7e3 raw `PassedSourceHostAndSDKOnly` 25/25 and original required full-auditor FAIL. Original c42a source/CI admission and isolated stage Passed; one actual bounded historical audit invoked, exited1 with **StopIteration at line1031**. Supplied and independent original raw (4269), installed SDK (2405), scratch (1925), preflight (104), prior checkpoints and negative controls after-preservation passed. `EVIDENCE_AUDIT.json`, new final admitted-execution verification and historical Git final joins remain **NotRun/Unavailable**; no original core/SDK compiler/Unity/Player rerun, no retry and all original FAIL statuses preserved.
+
+Original source-bound method at `Tools/AssemblyShadow/R03IR/test_p1_command_failures.py` SHA256 `637915585936544f2c001d936917959b1d53adf62a8e4f7d6b923ad316ed02de` is `verify_admitted_execution_receipt_and_negative_mutations` (definition line504, exactly one call from original85 leaf at line892). The c42a auditor incorrectly names `verify_admitted_execution_receipt_and_fail_closed_mutations` on lines1031/1032. Primary publishes complete successor with **only these two identifiers replaced**; Git blob `220aa2831458b37a81f66555f27d95349ec7013f`, all other source checks unchanged. New parallel stager binds immutable c42a published 197-file checkpoint, original c42a external failed-stage sources, and original b7e3 raw/SDK/scratch/preflight before and after, without overwriting consumed evidence. New runner retains one-shot source-audit-only behavior.
+
+Primary source-only tests: **17 new helper identity/mutation checks + 11 new synthetic c42a custody checks + 23 previous source/runner host checks** and the published SHA snapshot verifier. Initial CI attempt failed on a synthetic quote-style test fixture, preserved as genuine intermediate CI failure; corrected Mac/Linux source CI is [40076790889](https://github.com/night-outlook/hybridclr_demo/actions/runs/40076790889), status must be verified live before Local work. See [Design](../History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/DESIGN.md), [Plan](../History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/PLAN.md), [Primary audit](../History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/PRIMARY_SOURCE_AUDIT.md), [machine evidence](../History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/EVIDENCE.json) and [final WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md).
+
+Next narrow scope: one independently admitted **audit-only** `20261024-f51d` root with strict source/CI/old-root custody, one source-only prerequisite, single isolated staging, single source-pinned historical audit and independent original-evidence after-preservation, then factual Local report and STOP. No reuse/retry of b7e3/c42a, no core25/original85/SDK100/Editor/Player, no H2/X02/M08A/SNAP-01/Human Review Gate.
+
+Acceptance unchanged: P1 Incomplete (class pointer provenance/lifetime, canonical TypeKeys, coherent VM epoch, full execution V1/GC/Shutdown runtime), P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, P3 Incomplete; original independent full-stage R03 failures, 82dd raw FAIL, e1e5/6c72 Blocked and both b7e3/c42a overall FAIL preserved. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `runtimeAcceptance=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter disabled.
+
+---
+
+## Older status snapshots — archival, not current execution authority
 # R03 P1 — current Primary stage: isolated historical audit-only re-review
 
 ## Source status / mandatory stop
