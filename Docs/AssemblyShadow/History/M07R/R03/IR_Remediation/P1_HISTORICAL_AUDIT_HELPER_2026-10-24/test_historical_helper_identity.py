@@ -158,8 +158,10 @@ class HistoricalAdmittedHelperIdentity(unittest.TestCase):
         self.assertIn("assertRaisesRegex", scope["cs"])
 
     def test_09_wrong_legacy_name_fails_on_actual_consumer(self):
+        # Run original bad lines without passing through the corrected-name helper.
+        old_lines = self.original_text.splitlines()
         with self.assertRaises(StopIteration):
-            exec(compile(source_assertions(self.original_text).replace(REAL, OLD),
+            exec(compile(old_lines[1030] + "\n" + old_lines[1031] + "\n",
                          "<old-source-identity-only>", "exec"),
                  {"ast": ast, "consumer_fixture": self.consumer_text})
 
