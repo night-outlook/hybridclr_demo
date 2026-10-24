@@ -83,18 +83,44 @@ def consumed_input_hashes(checkpoint: Path, original_preflight: Path):
     manifest = checkpoint / "MANIFEST.sha256"
     rows = manifest.read_text().splitlines()
     matched = {}
+    copies = json_read(checkpoint / "COPY_BINDINGS.json")
+    encoded = {row["checkpoint"]: row for row in copies["encodedTextEvidence"]}
     for line in rows:
         hash_value, separator, path = line.partition("  ")
         if separator != "  " or len(hash_value) != 64:
             raise ValueError("Historical checkpoint manifest malformed")
         if not path.startswith("preflight/"):
             continue
-        path_beneath(checkpoint, path)
-        relative = path[len("preflight/"):]
-        file = path_beneath(original_preflight, relative)
-        if not file.is_file() or file.is_symlink() or digest(file) != hash_value:
-            raise ValueError("Consumed original preflight changed: " + relative)
-        matched[relative] = hash_value
+        archive_file = path_beneath(checkpoint, path)
+        if digest(archive_file) != hash_value:
+            raise ValueError("Published checkpoint preflight copy changed: " + path)
+        if path in encoded:
+            # Local published this original UTF-8 log in a lossless JSON wrapper.
+            # Verify BOTH the source bytes and the committed encoded copy.
+            row = encoded[path]
+            original = Path(row["source"])
+            relative = str(original.relative_to(original_preflight))
+            wrapped = json_read(archive_file)
+            data = wrapped["text"].encode("utf-8")
+            if (wrapped["kind"] != "ExactUtf8TextEvidenceEncoding" or
+                    wrapped["sourcePath"] != str(original) or
+                    wrapped["sourceSha256"] != row["decodedSha256"] or
+                    len(data) != row["decodedBytes"] or
+                    hashlib.sha256(data).hexdigest() != row["decodedSha256"]):
+                raise ValueError("Encoded Local preflight copy corrupted: " + path)
+            file = path_beneath(original_preflight, relative)
+            if not file.is_file() or file.is_symlink() or file.read_bytes() != data:
+                raise ValueError("Original decoded preflight log changed: " + relative)
+            verified_hash = row["decodedSha256"]
+        else:
+            relative = path[len("preflight/"):]
+            file = path_beneath(original_preflight, relative)
+            if not file.is_file() or file.is_symlink() or digest(file) != hash_value:
+                raise ValueError("Consumed original preflight changed: " + relative)
+            verified_hash = hash_value
+        if relative in matched:
+            raise ValueError("Duplicate preflight source binding: " + relative)
+        matched[relative] = verified_hash
     if len(matched) < 70:
         raise ValueError("Incomplete original preflight checkpoint bindings")
     # Extra consumed preflight files, if present, are not permitted to disappear
