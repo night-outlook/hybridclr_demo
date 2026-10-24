@@ -46,15 +46,21 @@ class AuditOnlySourceContracts(unittest.TestCase):
                      "dict": dict}
         exec(compile(ast.Module(body=[cls.authority], type_ignores=[]),
                      "<isolated-historical-authority-only>", "exec"), namespace)
-        cls.authority_fn = namespace["authority"]
+        cls.authority_fn = staticmethod(namespace["authority"])
 
     def test_01_exact_full_historical_audit_source_blob(self):
         self.assertEqual(self.stager.blob_id(self.historical), EXPECTED_SOURCE_BLOB)
 
     def test_02_all_auditor_checks_preceding_final_authority_unchanged(self):
         token = b"def authority(n):\n"
-        self.assertEqual(self.original.split(token, 1)[0],
-                         self.historical.split(token, 1)[0])
+        original_prefix = self.original.split(token, 1)[0]
+        historical_prefix = self.historical.split(token, 1)[0]
+        audit_only_comment = (
+            b"# AUDIT-ONLY successor: historical provenance, never claim a live remote HEAD\n"
+            b"# still equals a past execution SHA. The original twenty direct b7e3 Git\n"
+            b"# receipts were already independently joined and checked above.\n"
+        )
+        self.assertEqual(historical_prefix, original_prefix + audit_only_comment)
 
     def test_03_only_historical_authority_and_explicit_scope_result_modified(self):
         old_tail = self.original.split(b"audit=dict(", 1)[1]
