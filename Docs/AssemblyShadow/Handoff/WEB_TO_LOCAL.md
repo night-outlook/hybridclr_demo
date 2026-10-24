@@ -29,9 +29,9 @@ Branch for all four repositories: `codex/assembly-shadow-r01b-h1`. Four separate
 **Published Primary source pins (Git blobs):**
 - `audit_historical_only.py`: `c451e0cb7794e624eabb9029db0a35ba28d14592`
 - `verify_published_checkpoint.py`: `27c4cf862e75e56109c36257628ab7cebe6d34f1`
-- `stage_local_audit_only.py`: pin to exact blob in final Primary machine evidence, independently re-read before execution.
+- `stage_local_audit_only.py`: `c712ebe392ae517953ff50e788f7e509102374b0`.
 - `run_local_audit_once.py`: `994a7f9f179b2cfa024b1d6b9ec8113d9a071d76`
-- `test_audit_only_source.py`: pin to exact blob in final Primary machine evidence.
+- `test_audit_only_source.py`: `5b21037e1262eb10500b8ff9536c8b8d11b40956`.
 
 The old `audit_successor.py` source remains additive/untouched; the new historical-only variant keeps the corrected exact25 check and **all original inherited checks** prior to its final current-time Git authority block. Only the final time-variant authority is replaced with strict original captured event-time identity proof and an explicit distinct `PassedHistoricalEvidenceAuditOnly` (not original full Local/R03 acceptance). Never weaken the source assertions locally.
 
