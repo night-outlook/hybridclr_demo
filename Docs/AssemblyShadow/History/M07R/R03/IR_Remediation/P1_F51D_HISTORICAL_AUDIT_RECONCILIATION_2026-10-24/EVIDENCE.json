@@ -1,0 +1,144 @@
+{
+  "kind": "R03P1F51DPrimaryHistoricalAuditReconciliation",
+  "schemaVersion": 1,
+  "result": "ConfirmedCompletedHistoricalEvidenceAuditOnly_OriginalFailsAndRuntimeGatesUnchanged",
+  "sourceAuthority": {
+    "localPublicationDemo": "ac32d96939147f0309ddd8679e2d0fe8c9986592",
+    "f51dAuditExecutionDemo": "ea530e59eef38175738e517110c698ebd31bb07f",
+    "b7e3OriginalExecutionDemo": "49c6b62d38d7668be10004ac1e5a030d74894f09",
+    "c42aOriginalAuditExecutionDemo": "26a4ea22aa0a11f1e86c8d2ac2aa4bd55a308a05",
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+  },
+  "localFactualResult": {
+    "result": "PASS",
+    "scope": "PassedHistoricalAuditOnly_UnchangedLocalFail",
+    "auditorResult": "PassedHistoricalEvidenceAuditOnly",
+    "auditMode": "ReadOnlyIsolatedB7E3History",
+    "auditorExit": 0,
+    "auditorPid": 47743,
+    "auditorStartUtc": "2026-10-24T09:57:34.022803+00:00",
+    "auditorEndUtc": "2026-10-24T09:57:59.072348+00:00",
+    "oneShot": true,
+    "retries": 0,
+    "timedOut": false,
+    "unknownCommandLifetime": false,
+    "sourceOnlySuites": [
+      17,
+      11,
+      23
+    ],
+    "sourceOnlyTestsPassed": 51,
+    "outerComponents": 25,
+    "outerState": "PassedSourceHostAndSDKOnly",
+    "originalTestIdentities": 85,
+    "caseInventories": 8,
+    "admittedStrictGroups": 9,
+    "admittedSanitizedGroups": 9,
+    "managedPositiveProducts": 5,
+    "managedOriginalExpectedNegative": 1,
+    "nativeSyntaxReceipts": 100,
+    "capturedGitPostflightCommands": 20,
+    "localizedDirectChildCommandStreams": 515,
+    "newNontrivialFindings": [],
+    "unityPlayerExecuted": false,
+    "coreAndSdkCompilerRerun": false
+  },
+  "historicalOutcomes": {
+    "7896": "PassedSourceHostAndSDKOnly",
+    "7c2c": "PassedSourceHostAndSDKOnly",
+    "82dd": "FailedOrIncomplete",
+    "e1e5": "PrerequisiteBlocked",
+    "6c72": "PrerequisiteBlocked",
+    "b7e3": {
+      "raw": "PassedSourceHostAndSDKOnly",
+      "overallLocal": "FAIL",
+      "originalIndependentAuditor": "FailedLine190"
+    },
+    "c42a": {
+      "overallLocal": "FAIL",
+      "auditor": "FailedOrIncomplete_StopIteration1031"
+    },
+    "f51d": {
+      "scopedAudit": "PassedHistoricalAuditOnly_UnchangedLocalFail",
+      "originalOutcomesPromoted": false
+    }
+  },
+  "publishedEvidence": {
+    "f51dCheckpoint": "Docs/AssemblyShadow/History/M07R/R03/local-audit-only-p1-20261024-f51d",
+    "checkpointGitManifestBlob": "46c1ccba1cff8572f9e8530f9515e637e5f9d486",
+    "checkpointManifestRows": 206,
+    "uniqueManifestPaths": 206,
+    "publishedSelectedDirectSHA256Checks": {
+      "LOCAL_RESULT.json": "2c8288491e9ebd4f9e9cc80f3ceb9cd213d21d0bd549cdf5519109d492d94ac3",
+      "RECONCILIATION.json": "b4fdeb3b17205885a7314dbb4ead7ea8bc9bd1c7a0cd31db48c75e4540d1c57d",
+      "stage/EVIDENCE_AUDIT.json": "be25757926c031d28e7e95d31dfb325e0ebe08603f72755ff04b99b4dec3f021",
+      "stage/AUDIT_ONLY_RUN_RECEIPT.json": "7ef4cf7cc98d89ab84b18c098d7c4f33173f2fb50b040a569573a8b0db7ff56f",
+      "stage/AUDIT_ONLY_AFTER.json": "31a81a0d172318755bb18da4a0ad5b0a8f7bd5590c293eb00952c72973632681",
+      "stage/F51D_INDEPENDENT_AFTER.json": "90d7ff8723c74a10592ad33752529f5e9eeea1898b4c80f0f1acb32753351dc3",
+      "stage/GIT_HISTORICAL_AUTHORITY_AFTER.json": "0e9198af1e28aa3527e39e687e7efc76aa15cdda3ac3c76dca95dd1b026fd123"
+    },
+    "primaryPublishedDigestCheckMethod": "Pure-JavaScript SHA-256 recomputed from exact GitHub Connector UTF-8 bytes. Known SHA-256 test vectors ('', 'abc') matched. Compared each digest to f51d MANIFEST.sha256 by relative path.",
+    "primaryPublishedDigestChecksPassed": 7,
+    "primaryPublishedDigestChecksAttempted": 7,
+    "b7e3RawResultSha256": "f762d292d9601e620a83ecd79cc5e3c5ab85b0ea0a3813fbf472bd716eb1c7e6",
+    "b7e3RawManifestSha256": "4b286c29a7ef36ec4377642b6009804ad532b0ae3166c186866fe74f4246130e"
+  },
+  "localProvidedAndIndependentPreservation": {
+    "suppliedAfter": "Preserved",
+    "independentAfter": "Preserved",
+    "originalRawFiles": 4269,
+    "officialInstalledSdkFiles": 2405,
+    "originalSdkScratchFiles": 1925,
+    "originalPreflightFiles": 104,
+    "b7e3PublishedCheckpointFiles": 2506,
+    "c42aPublishedCheckpointFilesExcludingManifest": 197,
+    "c42aExternalStageFiles": 165,
+    "olderConsumedP1Sets": 22,
+    "originalCheckpointSets": 24,
+    "negativeSymlinks": 88,
+    "oldB7e3LocalFailPreserved": true,
+    "oldC42aFailPreserved": true,
+    "originalNativeSdkOrCoreRecompiled": false,
+    "verificationSource": "Local-owned f51d supplied and separately independent after reports; not rerun by Primary against external /Users/ah files."
+  },
+  "primaryIndependentReview": {
+    "verifiedAllFourGitHubRemoteHeadsAtLocalPublication": true,
+    "verifiedLastAuditSourceToLocalPublicationOneDocsOnlyCommit": true,
+    "verifiedOriginalB7e3AndC42aOutcomeGitBlobs": true,
+    "verifiedNewF51DResultAndReportFieldsDirectly": true,
+    "rehashedSevenSelectedManifestMembers": true,
+    "all206F51DFilesIndependentlyRehashed": false,
+    "allExternalInstalledSDKAndRawInputBytesDirectlyAccessedByPrimary": false,
+    "newUnityOrCompilerRunByPrimary": false
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "runtimeAcceptance": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false,
+    "physicalPointerOriginLifetimeProven": false,
+    "canonicalExecutionTypeKeysProven": false,
+    "coherentWholeVmEpochProven": false,
+    "fullExecutionV1SourceSafe": false,
+    "unityPlayerRuntimeShutdownGcRssVerified": false
+  },
+  "nextAuthority": {
+    "auditOnlyResult": "ClosedWithinHistoricalEvidenceScope",
+    "f51dRootsConsumed": true,
+    "createAdditionalLocalAuditCycle": false,
+    "beginH2X02M08A": false,
+    "HumanReviewGateAuthorized": false,
+    "nextWork": "Substantive P1 runtime/integration design and evidence gaps require a separate explicitly authorized Primary plan/Local Validation cycle."
+  }
+}
