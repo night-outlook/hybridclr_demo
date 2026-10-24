@@ -44,7 +44,7 @@
   "newSourceFiles": [
     {
       "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/verify_published_checkpoint.py",
-      "gitBlob": "27c4cf862e75e56109c36257628ab7cebe6d34f1"
+      "gitBlob": "f021e3d9ae292f4f109189618c9eee76d858b785"
     },
     {
       "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/audit_historical_only.py",
@@ -52,7 +52,7 @@
     },
     {
       "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/stage_local_audit_only.py",
-      "gitBlob": "c712ebe392ae517953ff50e788f7e509102374b0"
+      "gitBlob": "0749212187f7a3ec63df1efe6a887cf81bf2305c"
     },
     {
       "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/run_local_audit_once.py",
@@ -60,7 +60,7 @@
     },
     {
       "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/test_audit_only_source.py",
-      "gitBlob": "5b21037e1262eb10500b8ff9536c8b8d11b40956"
+      "gitBlob": "331473f7ebf7c5240a55e3f956ca88eeba7158b1"
     }
   ],
   "historicalAuditorProof": {
@@ -75,9 +75,9 @@
   },
   "pendingSourceOnlyCi": {
     "workflow": "r03-p1-b7e3-published-audit-only.yml",
-    "sourceOnlyTestCount": 16,
-    "latestTriggeredSourceCommit": "5b21f2f3e594737adcab095796ae1af9331fbe1b",
-    "runId": 40053990573,
+    "sourceOnlyTestCount": 21,
+    "latestTriggeredSourceCommit": "56eabf22a1c6f7502c7ee12b72d9ea5cc1d72df0",
+    "runId": 40071504463,
     "statusAtPreparation": "InProgress_NotAcceptanceEvidence"
   },
   "plannedOneShotLocal": {
@@ -88,7 +88,8 @@
     "oneShotNoRetry": true,
     "sourceSdkProductCoreRerunAllowed": false,
     "originalEvidenceWritable": false,
-    "originalB7e3AcceptancePromotionAllowed": false
+    "originalB7e3AcceptancePromotionAllowed": false,
+    "originalSdkScratchAdmission": "NotRun_1925FilesRequired"
   },
   "acceptance": {
     "P1": "Incomplete",
@@ -103,5 +104,20 @@
     "runtimeAcceptance": false,
     "fullLegacyRegressionAcceptance": false,
     "PureInterpreterEnabled": false
+  },
+  "additionalScratchCustody": {
+    "manifest": "Original b7e3 batch/native-sdk/native-sdk-inputs.json",
+    "declaredCount": 1925,
+    "verifiedOriginalScratchBytes": "NotRun_LocalRequired",
+    "stagePreAndPostHashGuard": true,
+    "symlinkAncestorRejection": true,
+    "syntheticTestsAdded": [
+      "valid-recorded-inputs",
+      "tampered-content",
+      "duplicate-or-traversal-or-leaf-symlink",
+      "aliased-parent",
+      "isolated-stage-and-after-synthetic-lifecycle"
+    ],
+    "scope": "Read only scratch copied from original b7e3 source, not a compiler rerun"
   }
 }
