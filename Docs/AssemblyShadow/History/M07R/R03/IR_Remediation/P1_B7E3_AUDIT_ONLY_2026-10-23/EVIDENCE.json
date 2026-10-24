@@ -60,7 +60,7 @@
     },
     {
       "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/test_audit_only_source.py",
-      "gitBlob": "331473f7ebf7c5240a55e3f956ca88eeba7158b1"
+      "gitBlob": "e126f088a0360cac9c61b85e1620bf3986d28b81"
     }
   ],
   "historicalAuditorProof": {
@@ -75,9 +75,9 @@
   },
   "pendingSourceOnlyCi": {
     "workflow": "r03-p1-b7e3-published-audit-only.yml",
-    "sourceOnlyTestCount": 21,
-    "latestTriggeredSourceCommit": "56eabf22a1c6f7502c7ee12b72d9ea5cc1d72df0",
-    "runId": 40071504463,
+    "sourceOnlyTestCount": 23,
+    "latestTriggeredSourceCommit": "63943cc914c19917ff356bab7303495ff09c8331",
+    "runId": 40072179278,
     "statusAtPreparation": "InProgress_NotAcceptanceEvidence"
   },
   "plannedOneShotLocal": {
@@ -119,5 +119,18 @@
       "isolated-stage-and-after-synthetic-lifecycle"
     ],
     "scope": "Read only scratch copied from original b7e3 source, not a compiler rerun"
+  },
+  "hostOnlySyntheticRegression": {
+    "testsDiscovered": 23,
+    "macLinuxAtCurrentSource": "Pending",
+    "testOnlyPythonAuditorChildren": 2,
+    "actualHistoricalAuditorInvoked": false,
+    "originalCoreOrUnitySdkInvoked": false,
+    "earlierFailedCi": {
+      "runId": 40071504463,
+      "conclusion": "failure",
+      "cause": "Test-owned isolated stage fixture lacked EXPECTED.json scratch locator",
+      "correctedTestCommit": "d5916e31500607be6e85e744d291fef9ee0b2327"
+    }
   }
 }
