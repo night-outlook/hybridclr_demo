@@ -1,106 +1,110 @@
-# Primary Implementation → Local Validation — ONE ISOLATED AUDIT-ONLY b7e3 EVIDENCE RE-REVIEW
+# Primary Implementation → Local Validation — ONE new f51d isolated historical audit-only cycle
 
-**Execution authority:** The user requested continuation after the previous Primary report offered only a narrowly scoped historical **audit-only** re-review. This document authorizes ONE fresh `20261023-c42a` **isolated historical evidence audit**, **NOT** another b7e3 core/Unity/SDK compiler run, and never Human Review Gate or a new milestone. If the current required published-snapshot/host-only source CI on both Mac and Linux is not demonstrably Passed at the final source SHA, stop before Local staging. Do not invent alternative suffixes or run partial/failed CI source.
+**NEW and EXCLUSIVE authority:** The prior `20261023-c42a` one-shot historical auditor was consumed and **FAILED**, StopIteration at line 1031, with no complete audit report. Original `20261023-b7e3` Local result also remains FAIL despite separate raw `PassedSourceHostAndSDKOnly` 25/25. This handoff supersedes the previous executable c42a handoff. It authorizes exactly **ONE** fresh, source-pinned **historical AUDIT-ONLY** `20261024-f51d` cycle after independent admission. It does **NOT** authorize a retry of c42a, another b7e3 core/test/SDK compiler/Unity/Player run, any production/source adaptation by Local, or any new project milestone.
 
-**Final source-only readiness evidence:** [GitHub Actions run 40072179278](https://github.com/night-outlook/hybridclr_demo/actions/runs/40072179278), source commit `63943cc914c19917ff356bab7303495ff09c8331`, completed **SUCCESS on macos-15 and ubuntu-24.04**. Each host ran **23/23** source/host-only tests (including two tiny test-owned Python auditor stubs testing pass/fail/no-retry) and the published snapshot audit: **2506 checkpoint file hashes, 2396 published raw files of original 4269, 1925 SDK scratch manifest identities, managed6, native100+version, and historical Git20**. It reports `PassedPublishedSnapshotScope_ExternalInputsUnavailable`; **1873 original external raw files and 2405 installed official SDK files are NOT independently verified in the web environment**. No Local, Unity Editor/Player, historical full auditor, SDK compiler or consumed core was executed by this CI. Earlier intermediate test-only failures remain historical; latest source-pinned job is green. This handoff authorizes only the new `c42a` **one-shot audit-only** scope. All executed b7e3 Local outcomes remain unchanged.
+## 1. Mandatory authoritative read order
 
-## 1. Read order and immutable historical authority
-
-Read exactly in this order:
 1. `night-outlook/hybridclr_demo/Docs/AssemblyShadow/README.md`.
-2. **Local-owned** `Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md` **FIRST**, then `Handoff/RETURN_TO_WEB.md`. Do not infer current status from an old prompt.
-3. Original frozen `History/M07R/R03/local-validation-p1-admitted-execution-20261023-b7e3/README.md`, `FINDING.json`, `LOCAL_RESULT.json`, `MANIFEST.sha256`, original `preflight/audit.py` and `AUDITOR_COMMAND.json`, raw `batch/RESULT.json`, `batch/MANIFEST.json`, `INDEPENDENT_PRESERVATION_AFTER.json`, all original raw/SDK/published receipts.
-4. [Audit-only Design](../History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/DESIGN.md), [one-cycle Plan](../History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/PLAN.md), [Primary source/audit boundary](../History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/PRIMARY_SOURCE_AUDIT.md), [machine evidence](../History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/EVIDENCE.json) and all source files in that new directory.
-5. This entire handoff, including all stop conditions, before creating or invoking any output.
+2. Local-owned `Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md` FIRST, followed by `Handoff/RETURN_TO_WEB.md`; latest Local must still say **c42a FAIL**.
+3. Immutable **c42a** checkpoint `History/M07R/R03/local-audit-only-p1-20261023-c42a/README.md`, `FINDING.json`, `LOCAL_RESULT.json`, `MANIFEST.sha256`, `stage/AUDIT_ONLY_RUN_RECEIPT.json`, `stage/AUDIT_ONLY_AFTER.json`, old `stage/audit.py` and retained logs, plus original **b7e3** raw/checkpoint/historical source receipts.
+4. Current source-bound [Design](../History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/DESIGN.md), [Plan](../History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/PLAN.md), [Primary Source Audit](../History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/PRIMARY_SOURCE_AUDIT.md), [machine evidence](../History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/EVIDENCE.json) and **all five** new scripts; read the ENTIRETY of this handoff.
 
-**Exact original b7e3 execution remains:** overall Local `FAIL`; raw `PassedSourceHostAndSDKOnly` 25/25; original required auditor exit1 at line190, full later checks NotRun. `e1e5`/`6c72` Blocked, `7896`/`7c2c` scoped Passed, `82dd` raw FailedOrIncomplete remain separate and immutable. Do not overwrite/reclassify any of them.
+**Do not execute old c42a, b7e3, e1e5, 6c72 or any superseded Local script from a consumed root.** Never treat earlier historical prompts or current source-only CI as an accepted full independent audit.
 
-## 2. Current source authority vs historical execution pins
+## 2. Canonical repositories, source revisions and source-only CI
 
-Branch for all four repositories: `codex/assembly-shadow-r01b-h1`. Four separate actual Local repositories under `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/`. Parent is NOT a Git repo. Confirm each GitHub origin resolves to the canonical `night-outlook/<repo>`, local branch/HEAD equals its **current** remote HEAD, and working tree is clean before any audit-only staging. Do not reset or overwrite unrelated changes.
+All four independent repositories use branch `codex/assembly-shadow-r01b-h1` and origin `night-outlook/<repo>`. The Local actual working copies are under `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/{hybridclr_demo,hybridclr,hybridclr_unity,il2cpp_plus}`; parent workspace is NOT a repository. Require exact clean local HEADs and current remote HEAD equality before creating any new root.
 
-| Repository | Required current pushed HEAD |
+| Repository | REQUIRED current pushed HEAD |
 | --- | --- |
-| `night-outlook/hybridclr_demo` | The **final complete 40-character remote HEAD** supplied in the accompanying Primary audit-only handoff prompt and independently verified with `git ls-remote`. It must contain this exact WEB_TO_LOCAL and no non-Docs/CI changes since original code anchor `117cc6b1c2be8050cd2f433ef17db8b3c5138f93`. |
+| `night-outlook/hybridclr_demo` | **Full 40-character latest remote HEAD from the accompanying Primary short prompt**, independently checked. This handoff MUST be contained in that HEAD and be the latest demo file-changing commit. No non-Docs/CI changes from tested-code anchor `117cc6b1c2be8050cd2f433ef17db8b3c5138f93`. |
 | `night-outlook/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
 | `night-outlook/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
 | `night-outlook/il2cpp_plus` | `e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb` |
 
-**Historical b7e3 executed demo SHA** `49c6b62d38d7668be10004ac1e5a030d74894f09` is NOT current remote HEAD and must **not** be treated as one. The original `EXPECTED.json` pins this old execution tuple. The original direct 20 Git postflight captured refs and `GIT_BEFORE.json` establish **event-time historical source authority**; the new audit-only source deliberately does **not** compare current live demo HEAD to an obsolete historical SHA or fabricate a new original `GIT_AFTER.json`. Original source bytes must still be independently validated via the retained SHA/manifest and Git objects.
+**Three different demo pins must never be conflated:** original b7e3 EXECUTED source = `49c6b62d38d7668be10004ac1e5a030d74894f09`; original c42a audit EXECUTED source = `26a4ea22aa0a11f1e86c8d2ac2aa4bd55a308a05`; latest Primary DOCS/CI code source = complete current remote HEAD from the short handoff prompt. Original b7e3 `EXPECTED.json` retains historical source, and the new historical auditor preserves **captured event-time Git receipts**, not false live-remote equality with old commits.
 
-**Published Primary source pins (Git blobs):**
-- `audit_historical_only.py`: `c451e0cb7794e624eabb9029db0a35ba28d14592`
-- `verify_published_checkpoint.py`: `f021e3d9ae292f4f109189618c9eee76d858b785`
-- `stage_local_audit_only.py`: `0749212187f7a3ec63df1efe6a887cf81bf2305c`.
-- `run_local_audit_once.py`: `994a7f9f179b2cfa024b1d6b9ec8113d9a071d76`
-- `test_audit_only_source.py`: `e126f088a0360cac9c61b85e1620bf3986d28b81`.
+**All new exact published Git source blobs:**
 
-The old `audit_successor.py` source remains additive/untouched; the new historical-only variant keeps the corrected exact25 check and **all original inherited checks** prior to its final current-time Git authority block. Only the final time-variant authority is replaced with strict original captured event-time identity proof and an explicit distinct `PassedHistoricalEvidenceAuditOnly` (not original full Local/R03 acceptance). Never weaken the source assertions locally.
+| File, relative to `Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/` | Required Git blob |
+| --- | --- |
+| `audit_historical_helper_successor.py` | `220aa2831458b37a81f66555f27d95349ec7013f` |
+| `stage_helper_successor.py` | `f0eabc9458de33c8da8b6b0434cc97753689fa92` |
+| `run_helper_audit_once.py` | `a4de8e6298c487bfa121242a6df7b80a62276dc3` |
+| `test_historical_helper_identity.py` | `25bc8e474d63714ec1182d48463f3d6923dfd892` |
+| `test_helper_audit_staging.py` | `2421ff68a62f7db816a8f95c150a7eebd3bc3757` |
 
-## 3. Original source/raw/SDK inputs and exactly ONE new isolated output
+**Real source-only CI gate:** [GitHub Actions 40076790889](https://github.com/night-outlook/hybridclr_demo/actions/runs/40076790889), source commit `1fbdb008c82f262c8b4aa56cc33a9d8b54994a92`, **Completed SUCCESS on ubuntu-24.04 and macos-15**, each **17/17 + 11/11 + 23/23 = 51/51** host-only tests. Also both passed the published checkpoint verifier: 2,506 published b7e3 checkpoint files hashed, 2,396/4,269 raw files published, 1,873 original external files unavailable on GitHub, 20 captured Git receipts. The earlier CI 40076486968 was a real test-only FAIL corrected by Primary; do not erase it. The successful CI was **not** a real historical auditor, original SDK compile or Local run.
 
-Read-only retained historical evidence paths, no modification or replay:
-- Workspace `W=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r`
-- Original raw `O=/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3`
-- Original SDK scratch `S=/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-ADMITTED-EXECUTION-20261023-b7e3`
-- Original preflight `P=/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-ADMITTED-EXECUTION-20261023-b7e3`
-- Original SDK (READ-ONLY and NEVER launch) `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`
-- All prior 22 consumed P1 raw/scratch/audit sets, 24 historical checkpoints, negative symlinks and the two distinct earlier blocked results remain unchanged.
+## 3. Original immutable evidence and fresh SINGLE-USE f51d roots
 
-**NEW single-use audit-only root:** `A=/Users/ah/GitHub/hybridclr/r03-local-validation/AuditOnly-R03-P1-ADMITTED-EXECUTION-20261023-c42a`
+All these paths are READ-ONLY original inputs, never output:
 
-**NEW single-use factual Git checkpoint path:** `Docs/AssemblyShadow/History/M07R/R03/local-audit-only-p1-20261023-c42a/`
+- `W=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r` (four separate repos).
+- `P=/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-ADMITTED-EXECUTION-20261023-b7e3` (original source-bound preflight, 104 retained files).
+- `O=/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3` (raw 4,269-file manifest, 25 components).
+- `S=/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-ADMITTED-EXECUTION-20261023-b7e3` (original 1,925 copied official native SDK inputs).
+- Original installed Unity2022.3.62f2 at `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity` (read-only; DO NOT start).
+- Consumed c42a external original stage: `/Users/ah/GitHub/hybridclr/r03-local-validation/AuditOnly-R03-P1-ADMITTED-EXECUTION-20261023-c42a` (failed one-shot, never retry/change).
+- Original 22 consumed P1 raw/scratch/audit sets, 24 original checkpoints, 88 prior negative symlinks and all b7e3/c42a/e1e5/6c72/82dd/7896/7c2c history remain immutable.
 
-Independently confirm BOTH new destinations **absent, canonical, not symlinks, pairwise disjoint**, and outside original raw/preflight/scratch/SDK and four repos before creating the audit stage. If either is present, cannot be verified, or has any old evidence association: **BLOCKED / STOP**. Never silently choose another suffix. The new stage root becomes consumed on PASS/FAIL/Blocked/interrupt.
+**NEW SINGLE-USE audit output root only:** `/Users/ah/GitHub/hybridclr/r03-local-validation/AuditOnly-R03-P1-ADMITTED-EXECUTION-20261024-f51d`
 
-## 4. One audit-only staging and ONE bounded historical audit invocation
+**NEW SINGLE-USE additive Git checkpoint:** `Docs/AssemblyShadow/History/M07R/R03/local-audit-only-p1-20261024-f51d/`
 
-Only after independent source, vendor SDK, all prior evidence and fresh-root admission, execute these exact provided Primary scripts from the current source-pinned demo checkout:
+Independently confirm BOTH are ABSENT, canonical/nonsymlink, disjoint from each other/all original roots/SDK/four repos, and have never been used, before any creation. GitHub did not contain the f51d checkpoint at Primary preparation; **Local filesystem existence remains unverified until independent admission**. If either is present, changed, or cannot be established unused, **BLOCKED/STOP**, no alternative suffix or silent retry.
+
+## 4. One complete audit-only Local cycle — exact scripts, no Local code changes
+
+Independently validate four current exact repos/branch/origin/clean HEADs, source pins, successful CI, raw/SDK/scratch/104-preflight evidence and the **entire 197-file original c42a checkpoint** before staging. Local may perform read-only hashing/admission. No other major implementation work is delegated to Local.
+
+After independent admission, execute the following source-only prerequisites and stager ONCE. The actual demo SHA MUST equal the explicit accompanying Primary short handoff SHA, not merely the then-live mutable branch. Run commands from a real Mac terminal, without rewriting `TMPDIR`, SDK/SSH settings, source files, manifests or histories:
 
 ~~~bash
 set -euo pipefail
 W=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r
 D="$W/hybridclr_demo"
 B=/Users/ah/GitHub/hybridclr/r03-local-validation
-T="$D/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23"
+T="$D/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24"
 P="$B/Preflight-R03-P1-ADMITTED-EXECUTION-20261023-b7e3"
 O="$B/R03-P1-ADMITTED-EXECUTION-20261023-b7e3"
-A="$B/AuditOnly-R03-P1-ADMITTED-EXECUTION-20261023-c42a"
+A="$B/AuditOnly-R03-P1-ADMITTED-EXECUTION-20261024-f51d"
 DEMO_SHA="$(git -C "$D" rev-parse HEAD)"
 test "$DEMO_SHA" = "$(git -C "$D" ls-remote origin refs/heads/codex/assembly-shadow-r01b-h1 | awk '{print $1}')"
 test "$DEMO_SHA" = "$(git -C "$D" log -1 --format=%H -- Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md)"
 git -C "$D" diff --exit-code 117cc6b1c2be8050cd2f433ef17db8b3c5138f93 "$DEMO_SHA" -- . ':(exclude)Docs/**' ':(exclude).github/workflows/**'
-# Prerequisite: 23 host-only tests, including two tiny test-owned Python audit subprocesses (no Local core/SDK/Unity).
-python3 -B "$T/test_audit_only_source.py"
-python3 -B "$T/stage_local_audit_only.py" \
+python3 -B "$T/test_historical_helper_identity.py"
+python3 -B "$T/test_helper_audit_staging.py"
+python3 -B "$D/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/test_audit_only_source.py"
+python3 -B "$T/stage_helper_successor.py" \
   --workspace "$W" --preflight "$P" --raw "$O" --stage "$A"
 ~~~
 
-The stage command independently rehashes all original 4269 raw manifest files, 2405 official installed SDK files, **all 1925 copied native SDK scratch inputs**, original source bindings and original preflight; authenticates the exact one lossless `run-once.log.utf8.json` source receipt and old failure. It creates only `A`, copying old preflight inputs to a **separate isolated tree** and staging a verified new audit-only `audit.py`; original `P/audit.py` remains byte-identical to its failed old SHA. It does **not** start a compiler, Unity or the audit itself.
+Require host source-only tests **17/17**, **11/11**, **23/23** separately, true unmodified source Git blobs, all original source/raw/SDK/scratch preadmission hashes, c42a checkpoint **197** files, and `AUDIT_ONLY_STAGE.json.status=StagedNotExecuted`, with `initialSnapshot.consumedC42A.publishedFilesVerified=197`, raw4269, sdk2405, scratch1925 and preserved original Local FAIL. The stager produces only A, retains original failed b7e3 `audit.py` as a separate staged input, installs the two-line-corrected auditor into A, and **does not run it**. Any error STOP without alternative suffix.
 
-If stage succeeds and `AUDIT_ONLY_STAGE.json` says `StagedNotExecuted` with `initialSnapshot.sdkScratch.checkedScratchFiles=1925` (and the preparer output reports `sdkScratchFiles=1925`), run **exactly one** isolated audit:
+Only after complete success of all prior gates, execute this **ONE** isolated audit invocation, retaining actual PID/exit and complete stdout/stderr. The invocation marker is written in A before execution:
 
 ~~~bash
-python3 -B "$T/run_local_audit_once.py" --stage "$A" --timeout-seconds 1800
+python3 -B "$T/run_helper_audit_once.py" --stage "$A" --timeout-seconds 1800
 ~~~
 
-It atomically creates an irreversible `AUDIT_ONLY_INVOCATION.json` before launching the historical auditor only in `A`. It captures full original stdout/stderr, PID, exit, duration and unknown lifetime into new-only files. **Never rerun this command**, including after an error or timeout, and never replace original b7e3 audit receipts.
-
-**After the single invocation, or after any known failed invocation if stage exists**, independently run the original-file preservation check once:
+**On zero OR nonzero exit once staged**, independently perform this non-auditor original-evidence preservation check ONCE (do not let a previous `set -e` skip it silently after a known failure):
 
 ~~~bash
-python3 -B "$T/stage_local_audit_only.py" \
+python3 -B "$T/stage_helper_successor.py" \
   --verify-after --workspace "$W" --preflight "$P" --raw "$O" --stage "$A"
 ~~~
 
-Require `AUDIT_ONLY_AFTER.json` exact original bytes preserved. Any failure/unknown command lifetime, new assertion failure or original source/SDK change ⇒ factual **FAIL or BLOCKED**, never retry, never promote the raw evidence. If staging itself failed before creating A, the after command is NotRun and separate non-invoking preservation remains Local's duty.
+This must independently verify the original 4,269 raw, 2,405 installed official SDK, 1,925 SDK scratch, 104 preflight, 197 published c42a checkpoint files and the three c42a original external stage evidence identities. If stage never created A, after-check is NotRun; report factual preadmission/blocked state and independently preserve existing source/SDK/history, not fictional after evidence.
 
-## 5. Evidence, permitted writes and mandatory STOP
+## 5. Factual result, permitted publication and STOP
 
-Accept `PassedHistoricalAuditOnly_UnchangedLocalFail` only when **all** are true: exact source-pinned staged historical audit exits0, new `EVIDENCE_AUDIT.json` explicitly reports `PassedHistoricalEvidenceAuditOnly`, `liveRemoteHeadCheck=NotRun_TimeVariant`, `originalB7E3LocalResult=FAIL`, no runtime/product acceptance; captured Git20/historical source bindings passed; new independent original evidence before/after hash checks passed; no historical files were modified. This is a **new limited audit-only PASS**, not a retrofit of b7e3 original Local FAIL and not R03/Human Review acceptance.
+A *new* scoped `PassedHistoricalAuditOnly_UnchangedLocalFail` is allowed **ONLY** if the actual bounded new runner exited0, generated new `EVIDENCE_AUDIT.json` with `PassedHistoricalEvidenceAuditOnly` and `auditMode='ReadOnlyIsolatedB7E3History'`, retained the original `originalB7E3LocalResult='FAIL'` and `liveRemoteHeadCheck='NotRun_TimeVariant'`, produced original required `ADMITTED_EXECUTION_VERIFICATION.json`, `GIT_HISTORICAL_AUTHORITY_AFTER.json` and all inherited source/negative/SDK/Git joins, and new independent before/after original evidence preservation Passed. It is **never** a reclassification of historical b7e3/c42a FAIL, never genuine Unity/Player runtime acceptance, and never an R03/Human Review PASS.
 
-Local may commit/push **ONLY** additive factual `Handoff/LOCAL_VALIDATION.md`, `Handoff/RETURN_TO_WEB.md` and **one new** `History/M07R/R03/local-audit-only-p1-20261023-c42a/` checkpoint. Preserve old Local report sections and original source/manifest/checkpoint bytes exactly. Include all actual argv/PID/time/exits, new isolated input binding/provenance, full new audit stdout/stderr and results, source/current remote pins, before/after file hashes, findings, missing/unavailable records, observed root status and historical outcomes. Verify remote pushed HEAD and **STOP regardless of success or failure**.
+On any error/timeout/unknown-lifetime/new source assertion fail, retain exactly the real stderr/partial files/PIDs/exit, mark new audit-only FAIL/Blocked and return to Primary without retry, alternate root, source edit or further project stage.
 
-**FORBIDDEN:** rerun original `run-once.py`, any original85/core25, Unity Editor/TestRunner/Player, original native100 SDK syntax compiler, any linked native product, replacing/fixing consumed `P/audit.py`, changing original test data, retrying a failed audit, unapproved source/SDK/snapshot edits, H2/X02/M08A, protected SNAP-01 or Human Review Gate. Primary owns nontrivial new corrections; Local may report factual defects only.
+Local Git publication is limited to append-only/factual `Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md`, `Handoff/RETURN_TO_WEB.md` and ONE new `Docs/AssemblyShadow/History/M07R/R03/local-audit-only-p1-20261024-f51d/` checkpoint. Preserve **every old Local report/findings/raw/checkpoint** byte-identically. Include exact current four 40-char source HEADs, historic b7e3/c42a pins, all source/CI checks, stage/audit/after receipts and logs, source/SDK/raw/scratch/full history custody, expected negatives, and original FAIL statuses. Commit, push, independently verify remote HEAD and **STOP regardless of result**.
 
-**Qualification remains closed:** P1 Incomplete, P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, full P3 Incomplete; `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `runtimeAcceptance=false`, `fullLegacyRegressionAcceptance=false`, PureInterpreter disabled.
+**Never** rerun original 25-component core, original 85 tests, original native100/managed SDK compiler operations, Unity Editor/TestRunner/Player, old c42a/b7e3 auditors, modify SDK, branch/commit history or original consumer source, change assertions, retry a failed audit, create new roots silently, begin H2/X02/M08A/protected SNAP-01 or Human Review Gate.
+
+**Acceptance remains closed:** P1 Incomplete, P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, P3 Incomplete. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `runtimeAcceptance=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter disabled.
