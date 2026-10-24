@@ -184,4 +184,4 @@ class ReviewReadinessTests(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(argv=[__file__])  # CLI fixture source paths belong to setUpClass, not unittest
