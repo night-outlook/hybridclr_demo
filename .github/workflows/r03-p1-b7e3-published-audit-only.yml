@@ -1,0 +1,48 @@
+name: R03 P1 b7e3 published checkpoint audit-only
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/verify_published_checkpoint.py'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/test_verify_published_checkpoint.py'
+      - '.github/workflows/r03-p1-b7e3-published-audit-only.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  published-snapshot:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Published-checkpoint integrity and historical receipt audit (NO local SDK access)
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/b7e3-published-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.os }}.json"
+          python3 -B Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/verify_published_checkpoint.py --output "$OUT"
+          test -s "$OUT"
+          python3 -B - "$OUT" <<'PY'
+          import json,sys
+          d=json.load(open(sys.argv[1]))
+          assert d['result']=='PassedPublishedSnapshotScope_ExternalInputsUnavailable'
+          assert d['completeFullIndependentAudit'] is False
+          assert d['originalLocalResultUnchanged']=='FAIL'
+          assert d['checkpoint']['checkpointFileCount']>=2500
+          assert d['rawManifestCoverage']['rawDeclaredCount']==4269
+          assert d['rawManifestCoverage']['unavailableExternalCount']>0
+          assert d['historicalGit']['historicalGitDirectReceiptsVerified']==20
+          print('AUDIT_ONLY_SCOPE_RETAINED: Published bytes checked; external SDK/raw not audited.')
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: b7e3-published-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/b7e3-published-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.os }}.json
+          if-no-files-found: warn
