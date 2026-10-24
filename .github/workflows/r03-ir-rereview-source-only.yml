@@ -1,0 +1,125 @@
+name: R03 IR-01/02 source and original S prereview
+
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/review_readiness.py'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/test_review_readiness.py'
+      - '.github/workflows/r03-ir-rereview-source-only.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-only:
+    name: Terminal source and original S identity (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    timeout-minutes: 25
+    steps:
+      - name: Checkout exact demo documentation and IR fixture code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/*
+            Docs/AssemblyShadow/History/M07R/R03/S_Reconciliation/*
+            Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/ORIGINAL_S_PROVENANCE_CORRECTION_2026-10-08.json
+            Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/FILE_TRANSPORT.json
+            Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/seal-receipt.json
+            Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/players/C04-old-AOT-guard/verification.json
+            Tools/AssemblyShadow/R03/source-pins.json
+            Tools/AssemblyShadow/R03IR/run_terminal_local.py
+            Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs
+      - name: Checkout exact native source, policy and host policy fixture
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb
+          path: external/il2cpp_plus
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            libil2cpp/vm/AssemblyShadow.cpp
+            libil2cpp/vm/AssemblyShadowTerminalExecution.h
+            libil2cpp/vm/Runtime.cpp
+            tools/r03/terminal_execution_tests.cpp
+      - name: Checkout exact HybridCLR interpreter guard source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+          path: external/hybridclr
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            hybridclr/interpreter/Interpreter_Execute.cpp
+      - name: Authenticate unchanged HybridCLR Unity package ref
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: external/hybridclr_unity
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            README.md
+      - name: Source-bound R03 IR-01/02 static admission report
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/r03-pre-review"
+          python3 -B 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/review_readiness.py' \
+            --demo "$PWD" --native "$PWD/external/il2cpp_plus" \
+            --hybridclr "$PWD/external/hybridclr" --package "$PWD/external/hybridclr_unity" \
+            --output "$RUNNER_TEMP/r03-pre-review/REPORT.json"
+      - name: Twenty adversarial source and provenance contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/test_review_readiness.py' \
+            --demo "$PWD" --native "$PWD/external/il2cpp_plus" \
+            --hybridclr "$PWD/external/hybridclr" --package "$PWD/external/hybridclr_unity"
+      - name: Compile and execute bounded native terminal policy header fixture only
+        shell: bash
+        run: |
+          set -euo pipefail
+          clang++ -std=c++17 -O0 -Wall -Wextra -Werror -pedantic -pthread \
+            -Iexternal/il2cpp_plus/libil2cpp \
+            external/il2cpp_plus/tools/r03/terminal_execution_tests.cpp \
+            -o "$RUNNER_TEMP/r03-pre-review/terminal_policy_test"
+          "$RUNNER_TEMP/r03-pre-review/terminal_policy_test" | tee "$RUNNER_TEMP/r03-pre-review/terminal_policy.json"
+          python3 -B - "$RUNNER_TEMP/r03-pre-review/terminal_policy.json" <<'PY'
+          import json, sys
+          d=json.load(open(sys.argv[1]))
+          assert d['result']=='Passed' and d['kind']=='R03TerminalExecutionPolicyHeaderTest'
+          assert type(d['checks']) is int and d['checks'] >= 60
+          assert d['unityRun'] is False and d['runtimeAcceptance'] is False
+          PY
+      - name: Require negative gate status and no acceptance claims
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B - "$RUNNER_TEMP/r03-pre-review/REPORT.json" <<'PY'
+          import json,sys
+          d=json.load(open(sys.argv[1]))
+          assert d['result']=='PassedSourceOnlyPreflight_PendingRealPlayerAndIndependentReview'
+          assert d['focusedPlayerWitness']['playerGate']=='BlockedStaleRunnerNativePin'
+          assert d['originalSProvenance']['IR_R03_01_Status']=='PartiallyRemediatedAwaitingIndependentRereview'
+          assert d['R03Accepted'] is False and d['H2Passed'] is False
+          assert d['newUnityOrPlayerOrSdkCompilation'] is False
+          PY
+      - name: Save scope-limited host evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r03-rereview-source-only-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-pre-review/
+          if-no-files-found: warn
+          retention-days: 7
