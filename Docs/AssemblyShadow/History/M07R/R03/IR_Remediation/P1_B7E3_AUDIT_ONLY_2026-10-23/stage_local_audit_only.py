@@ -22,6 +22,8 @@ EXECUTION_PINS = {
     "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
 }
 HISTORICAL_AUDITOR_BLOB = "c451e0cb7794e624eabb9029db0a35ba28d14592"
+RAW_RESULT_SHA256 = "f762d292d9601e620a83ecd79cc5e3c5ab85b0ea0a3813fbf472bd716eb1c7e6"
+RAW_MANIFEST_SHA256 = "4b286c29a7ef36ec4377642b6009804ad532b0ae3166c186866fe74f4246130e"
 ORIGINAL_AUDITOR_SHA = "2b43453f00fd74c1692d55d3c10b7351df45a0a82d08cf551deb0282862848a0"
 CHECKPOINT = ("Docs/AssemblyShadow/History/M07R/R03/"
               "local-validation-p1-admitted-execution-20261023-b7e3")
@@ -137,6 +139,8 @@ def consumed_input_hashes(checkpoint: Path, original_preflight: Path):
 
 
 def raw_manifest_hashes(raw: Path):
+    if digest(raw / "RESULT.json") != RAW_RESULT_SHA256 or digest(raw / "MANIFEST.json") != RAW_MANIFEST_SHA256:
+        raise ValueError("Consumed b7e3 raw RESULT or MANIFEST diverged from immutable GitHub publication")
     manifest = json_read(raw / "MANIFEST.json")
     seen = set()
     files = 0
