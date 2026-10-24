@@ -90,7 +90,7 @@ def source_body(source: str, signature: str) -> str:
     raise ReviewReadinessError("Unclosed C++ function: " + signature)
 
 
-def check_terminal_source(core: str, policy: str, runtime: str, interpreter: str):
+def _check_terminal_source(core: str, policy: str, runtime: str, interpreter: str):
     function = source_body(core, "bool AssemblyShadow::AssertMethodIsActive(")
     first = function.index("if (TerminalMethodDenied(method)) return false;")
     owners = function.index("PhysicalMethodAssembly(method)")
@@ -151,6 +151,17 @@ def check_terminal_source(core: str, policy: str, runtime: str, interpreter: str
         "allDirectAotToAotEntryCovered": False,
         "userCodeAfterPoisonGloballyProven": False,
     }
+
+
+
+def check_terminal_source(core: str, policy: str, runtime: str, interpreter: str):
+    """Typed, fail-closed source guard check including missing .index() anchors."""
+    try:
+        return _check_terminal_source(core, policy, runtime, interpreter)
+    except ValueError as exc:
+        raise ReviewReadinessError(
+            "Required terminal entry guard missing or malformed: " + str(exc)) from exc
+
 
 
 def check_player_fixture(player: str, runner: str, source_pins: dict):
