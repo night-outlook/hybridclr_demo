@@ -1,35 +1,103 @@
-# Primary Implementation → Local Validation — NO ACTIVE EXECUTION HANDOFF
+# Primary Implementation → Local Validation — ONE ISOLATED AUDIT-ONLY b7e3 EVIDENCE RE-REVIEW
 
-**Status: CLOSED / NO FURTHER LOCAL VALIDATION RUN IS AUTHORIZED.**
+**Execution authority:** The user requested continuation after the previous Primary report offered only a narrowly scoped historical **audit-only** re-review. This document authorizes ONE fresh `20261023-c42a` **isolated historical evidence audit**, **NOT** another b7e3 core/Unity/SDK compiler run, and never Human Review Gate or a new milestone. If the current required published-snapshot/host-only source CI on both Mac and Linux is not demonstrably Passed at the final source SHA, stop before Local staging. Do not invent alternative suffixes or run partial/failed CI source.
 
-The last authorized one-shot Local Validation `20261023-b7e3` has been **consumed**. Its full original source and factual evidence remain in `Docs/AssemblyShadow/History/M07R/R03/local-validation-p1-admitted-execution-20261023-b7e3/`, and the exact historical instruction that authorized that run is preserved [here](../History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/HISTORICAL_WEB_TO_LOCAL_B7E3.md) (original Git blob `e4c806426b627fd4469ff35c9e7c1493d2887c8c`). **That historic prompt is not executable again.** Do not reuse any consumed root identifiers, including b7e3, 6c72 or e1e5.
+## 1. Read order and immutable historical authority
 
-## Read-only current state — read this before interpreting prior prompts
+Read exactly in this order:
+1. `night-outlook/hybridclr_demo/Docs/AssemblyShadow/README.md`.
+2. **Local-owned** `Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md` **FIRST**, then `Handoff/RETURN_TO_WEB.md`. Do not infer current status from an old prompt.
+3. Original frozen `History/M07R/R03/local-validation-p1-admitted-execution-20261023-b7e3/README.md`, `FINDING.json`, `LOCAL_RESULT.json`, `MANIFEST.sha256`, original `preflight/audit.py` and `AUDITOR_COMMAND.json`, raw `batch/RESULT.json`, `batch/MANIFEST.json`, `INDEPENDENT_PRESERVATION_AFTER.json`, all original raw/SDK/published receipts.
+4. [Audit-only Design](../History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/DESIGN.md), [one-cycle Plan](../History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/PLAN.md), [Primary source/audit boundary](../History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/PRIMARY_SOURCE_AUDIT.md), [machine evidence](../History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/EVIDENCE.json) and all source files in that new directory.
+5. This entire handoff, including all stop conditions, before creating or invoking any output.
 
-Read [README](../README.md), then **Local-owned** [LOCAL_VALIDATION](LOCAL_VALIDATION.md) FIRST and [RETURN_TO_WEB](RETURN_TO_WEB.md), then [the original b7e3 failure](../History/M07R/R03/local-validation-p1-admitted-execution-20261023-b7e3/FINDING.json), [the current source-bound roster design](../History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/DESIGN.md), [Primary independent evidence review](../History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/PRIMARY_INDEPENDENT_EVIDENCE_REVIEW.md) and [machine evidence](../History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/EVIDENCE.json).
+**Exact original b7e3 execution remains:** overall Local `FAIL`; raw `PassedSourceHostAndSDKOnly` 25/25; original required auditor exit1 at line190, full later checks NotRun. `e1e5`/`6c72` Blocked, `7896`/`7c2c` scoped Passed, `82dd` raw FailedOrIncomplete remain separate and immutable. Do not overwrite/reclassify any of them.
 
-The **exact actually executed b7e3 source tuple** was:
+## 2. Current source authority vs historical execution pins
 
-| Canonical repository / checkout path | Branch | Immutable b7e3 execution commit |
-| --- | --- | --- |
-| night-outlook/hybridclr_demo — `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | `49c6b62d38d7668be10004ac1e5a030d74894f09` |
-| night-outlook/hybridclr — `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | same | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
-| night-outlook/hybridclr_unity — `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | same | `948c0e3b4f8891481301770115e8ba4945eea6de` |
-| night-outlook/il2cpp_plus — `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | same | `e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb` |
+Branch for all four repositories: `codex/assembly-shadow-r01b-h1`. Four separate actual Local repositories under `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/`. Parent is NOT a Git repo. Confirm each GitHub origin resolves to the canonical `night-outlook/<repo>`, local branch/HEAD equals its **current** remote HEAD, and working tree is clean before any audit-only staging. Do not reset or overwrite unrelated changes.
 
-**These are historical execution pins, NOT authorization to check out those revisions and run anything.** The current Primary code/docs HEAD in demo advances beyond the b7e3 executed SHA; it must never be misrepresented as tested with the old installed Unity SDK.
+| Repository | Required current pushed HEAD |
+| --- | --- |
+| `night-outlook/hybridclr_demo` | The **final complete 40-character remote HEAD** supplied in the accompanying Primary audit-only handoff prompt and independently verified with `git ls-remote`. It must contain this exact WEB_TO_LOCAL and no non-Docs/CI changes since original code anchor `117cc6b1c2be8050cd2f433ef17db8b3c5138f93`. |
+| `night-outlook/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `night-outlook/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| `night-outlook/il2cpp_plus` | `e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb` |
 
-## Exact outcome, no acceptance promotion
+**Historical b7e3 executed demo SHA** `49c6b62d38d7668be10004ac1e5a030d74894f09` is NOT current remote HEAD and must **not** be treated as one. The original `EXPECTED.json` pins this old execution tuple. The original direct 20 Git postflight captured refs and `GIT_BEFORE.json` establish **event-time historical source authority**; the new audit-only source deliberately does **not** compare current live demo HEAD to an obsolete historical SHA or fabricate a new original `GIT_AFTER.json`. Original source bytes must still be independently validated via the retained SHA/manifest and Git objects.
 
-- The original raw batch, executed ONCE, records `PassedSourceHostAndSDKOnly` and 25/25 Passed; original85 tests, eight inventories, nine strict+nine sanitized admitted cases, managed5 actual positives plus original expected negative, 100 actual Apple arm64 C++17 SDK syntax commands, and 20 genuine Git source-authority commands were recorded. `UnityPlayerExecuted=false`.
-- The unchanged, required independent Local auditor exited1 at line190: it required 25 in line189 but compared actual25 names against an obsolete **24-name** ordered literal. The overall published Local result is **FAIL** and all subsequent auditor checks are **NotRun**, regardless of raw PASS.
-- Primary published a separately source-pinned `audit_successor.py` with **exactly one +21-byte line190 correction**, plus hostile 25-roster source tests and bounded published-evidence checks. Original `b7e3/preflight/audit.py`, the raw result and all Local-owned findings remain untouched. The successor has **NOT** been executed as a full auditor; Python/CI source-only checks do not establish full Local evidence acceptance.
-- This project remains **P1 Incomplete; P2 NotIntegrated; E0 Blocked/Unavailable; E1 BlockedByE0; full P3 Incomplete**. Original SNAP-01/N/M/K/I/E/R02 strict/fingerprint/full-stage review restrictions remain. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `runtimeAcceptance=false`, `fullLegacyRegressionAcceptance=false`, PureInterpreter disabled.
+**Published Primary source pins (Git blobs):**
+- `audit_historical_only.py`: `c451e0cb7794e624eabb9029db0a35ba28d14592`
+- `verify_published_checkpoint.py`: `27c4cf862e75e56109c36257628ab7cebe6d34f1`
+- `stage_local_audit_only.py`: pin to exact blob in final Primary machine evidence, independently re-read before execution.
+- `run_local_audit_once.py`: `994a7f9f179b2cfa024b1d6b9ec8113d9a071d76`
+- `test_audit_only_source.py`: pin to exact blob in final Primary machine evidence.
 
-## No authorized commands and ownership
+The old `audit_successor.py` source remains additive/untouched; the new historical-only variant keeps the corrected exact25 check and **all original inherited checks** prior to its final current-time Git authority block. Only the final time-variant authority is replaced with strict original captured event-time identity proof and an explicit distinct `PassedHistoricalEvidenceAuditOnly` (not original full Local/R03 acceptance). Never weaken the source assertions locally.
 
-**Do not execute** a Local script, the revised auditor, original auditor, new host batch, SDK compiler, Unity Editor/Player, test runner, raw-evidence re-audit, symlink/snapshot operation or re-run of previously consumed artifacts. Do not amend the original evidence or create a fresh validation root on this document's authority.
+## 3. Original source/raw/SDK inputs and exactly ONE new isolated output
 
-The next step is **awaiting a separate explicit human authorization** for a narrowly defined independent **audit-only** review of the retained immutable b7e3 evidence. Its own future handoff must pin exact source, full historical artifacts, immutable external SDK/raw custody, new independent audit workspace, permitted *read-only* operations, independent before/after checks, risks, stop conditions and formal reviewer authority. No new Local core/sdk/compiler run is implied by that future option. Until authorization exists, the legitimate actions are read-only interpretation of already published GitHub documentation and Primary source-only tests, not Local execution.
+Read-only retained historical evidence paths, no modification or replay:
+- Workspace `W=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r`
+- Original raw `O=/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3`
+- Original SDK scratch `S=/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-ADMITTED-EXECUTION-20261023-b7e3`
+- Original preflight `P=/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-ADMITTED-EXECUTION-20261023-b7e3`
+- Original SDK (READ-ONLY and NEVER launch) `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`
+- All prior 22 consumed P1 raw/scratch/audit sets, 24 historical checkpoints, negative symlinks and the two distinct earlier blocked results remain unchanged.
 
-**State: Primary source correction published; full independent evidence re-audit NotRun; Local execution authorization NONE; Human Review Gate not ready.**
+**NEW single-use audit-only root:** `A=/Users/ah/GitHub/hybridclr/r03-local-validation/AuditOnly-R03-P1-ADMITTED-EXECUTION-20261023-c42a`
+
+**NEW single-use factual Git checkpoint path:** `Docs/AssemblyShadow/History/M07R/R03/local-audit-only-p1-20261023-c42a/`
+
+Independently confirm BOTH new destinations **absent, canonical, not symlinks, pairwise disjoint**, and outside original raw/preflight/scratch/SDK and four repos before creating the audit stage. If either is present, cannot be verified, or has any old evidence association: **BLOCKED / STOP**. Never silently choose another suffix. The new stage root becomes consumed on PASS/FAIL/Blocked/interrupt.
+
+## 4. One audit-only staging and ONE bounded historical audit invocation
+
+Only after independent source, vendor SDK, all prior evidence and fresh-root admission, execute these exact provided Primary scripts from the current source-pinned demo checkout:
+
+~~~bash
+set -euo pipefail
+W=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r
+D="$W/hybridclr_demo"
+B=/Users/ah/GitHub/hybridclr/r03-local-validation
+T="$D/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23"
+P="$B/Preflight-R03-P1-ADMITTED-EXECUTION-20261023-b7e3"
+O="$B/R03-P1-ADMITTED-EXECUTION-20261023-b7e3"
+A="$B/AuditOnly-R03-P1-ADMITTED-EXECUTION-20261023-c42a"
+DEMO_SHA="$(git -C "$D" rev-parse HEAD)"
+test "$DEMO_SHA" = "$(git -C "$D" ls-remote origin refs/heads/codex/assembly-shadow-r01b-h1 | awk '{print $1}')"
+test "$DEMO_SHA" = "$(git -C "$D" log -1 --format=%H -- Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md)"
+git -C "$D" diff --exit-code 117cc6b1c2be8050cd2f433ef17db8b3c5138f93 "$DEMO_SHA" -- . ':(exclude)Docs/**' ':(exclude).github/workflows/**'
+python3 -B "$T/test_audit_only_source.py"
+python3 -B "$T/stage_local_audit_only.py" \
+  --workspace "$W" --preflight "$P" --raw "$O" --stage "$A"
+~~~
+
+The stage command independently rehashes all original 4269 raw manifest files, 2405 official installed SDK files, original source bindings and original preflight; authenticates the exact one lossless `run-once.log.utf8.json` source receipt and old failure. It creates only `A`, copying old preflight inputs to a **separate isolated tree** and staging a verified new audit-only `audit.py`; original `P/audit.py` remains byte-identical to its failed old SHA. It does **not** start a compiler, Unity or the audit itself.
+
+If stage succeeds and `AUDIT_ONLY_STAGE.json` says `StagedNotExecuted`, run **exactly one** isolated audit:
+
+~~~bash
+python3 -B "$T/run_local_audit_once.py" --stage "$A" --timeout-seconds 1800
+~~~
+
+It atomically creates an irreversible `AUDIT_ONLY_INVOCATION.json` before launching the historical auditor only in `A`. It captures full original stdout/stderr, PID, exit, duration and unknown lifetime into new-only files. **Never rerun this command**, including after an error or timeout, and never replace original b7e3 audit receipts.
+
+**After the single invocation, or after any known failed invocation if stage exists**, independently run the original-file preservation check once:
+
+~~~bash
+python3 -B "$T/stage_local_audit_only.py" \
+  --verify-after --workspace "$W" --preflight "$P" --raw "$O" --stage "$A"
+~~~
+
+Require `AUDIT_ONLY_AFTER.json` exact original bytes preserved. Any failure/unknown command lifetime, new assertion failure or original source/SDK change ⇒ factual **FAIL or BLOCKED**, never retry, never promote the raw evidence. If staging itself failed before creating A, the after command is NotRun and separate non-invoking preservation remains Local's duty.
+
+## 5. Evidence, permitted writes and mandatory STOP
+
+Accept `PassedHistoricalAuditOnly_UnchangedLocalFail` only when **all** are true: exact source-pinned staged historical audit exits0, new `EVIDENCE_AUDIT.json` explicitly reports `PassedHistoricalEvidenceAuditOnly`, `liveRemoteHeadCheck=NotRun_TimeVariant`, `originalB7E3LocalResult=FAIL`, no runtime/product acceptance; captured Git20/historical source bindings passed; new independent original evidence before/after hash checks passed; no historical files were modified. This is a **new limited audit-only PASS**, not a retrofit of b7e3 original Local FAIL and not R03/Human Review acceptance.
+
+Local may commit/push **ONLY** additive factual `Handoff/LOCAL_VALIDATION.md`, `Handoff/RETURN_TO_WEB.md` and **one new** `History/M07R/R03/local-audit-only-p1-20261023-c42a/` checkpoint. Preserve old Local report sections and original source/manifest/checkpoint bytes exactly. Include all actual argv/PID/time/exits, new isolated input binding/provenance, full new audit stdout/stderr and results, source/current remote pins, before/after file hashes, findings, missing/unavailable records, observed root status and historical outcomes. Verify remote pushed HEAD and **STOP regardless of success or failure**.
+
+**FORBIDDEN:** rerun original `run-once.py`, any original85/core25, Unity Editor/TestRunner/Player, original native100 SDK syntax compiler, any linked native product, replacing/fixing consumed `P/audit.py`, changing original test data, retrying a failed audit, unapproved source/SDK/snapshot edits, H2/X02/M08A, protected SNAP-01 or Human Review Gate. Primary owns nontrivial new corrections; Local may report factual defects only.
+
+**Qualification remains closed:** P1 Incomplete, P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, full P3 Incomplete; `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `runtimeAcceptance=false`, `fullLegacyRegressionAcceptance=false`, PureInterpreter disabled.
