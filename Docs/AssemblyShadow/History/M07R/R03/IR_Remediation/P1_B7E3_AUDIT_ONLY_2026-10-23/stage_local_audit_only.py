@@ -213,8 +213,9 @@ def sdk_scratch_hashes(raw: Path, scratch: Path, expected_count: int = 1925):
         if (not isinstance(expected_sha, str) or len(expected_sha) != 64 or
                 not all(c in "0123456789abcdef" for c in expected_sha)):
             raise ValueError("Malformed native SDK scratch SHA")
-        if not file.is_file() or file.is_symlink() or digest(file) != expected_sha:
-            raise ValueError("Native SDK scratch input changed: " + rel)
+        if (not file.is_file() or file.is_symlink() or file.resolve() != file or
+                digest(file) != expected_sha):
+            raise ValueError("Native SDK scratch input changed or noncanonical: " + rel)
         checked += 1
     return {"nativeSdkInputsManifestSha256": digest(recorded),
             "checkedScratchFiles": checked,
