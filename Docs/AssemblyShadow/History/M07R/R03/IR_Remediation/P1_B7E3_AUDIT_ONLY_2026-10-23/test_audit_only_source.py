@@ -158,9 +158,7 @@ class AuditOnlySourceContracts(unittest.TestCase):
     def test_13_original_required_auditor_still_failed(self):
         report = json.loads((CHECKPOINT / "LOCAL_RESULT.json").read_text())
         self.assertEqual(report["result"], "FAIL")
-        self.assertEqual(report["firstFinding"], "IR-LOCAL-P1-ADMITTED-AUDIT-ROSTER-01"
-                         if isinstance(report["firstFinding"], str)
-                         else report["firstFinding"])
+        self.assertEqual(report["firstFinding"], "IR-LOCAL-P1-ADMITTED-AUDIT-ROSTER-01")
 
 
 if __name__ == "__main__":
