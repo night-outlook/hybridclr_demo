@@ -1,0 +1,63 @@
+name: R03 P1 historical admitted helper source-only contracts
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/audit_historical_helper_successor.py'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/stage_helper_successor.py'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/run_helper_audit_once.py'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/test_historical_helper_identity.py'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/test_helper_audit_staging.py'
+      - '.github/workflows/r03-p1-historical-audit-helper-source-only.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-helper-source-only:
+    name: Pinned helper and c42a custody (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Original-85 helper name and negative-mutation source contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/test_historical_helper_identity.py'
+      - name: Successor audit-only stager/runner and immutable c42a source contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/test_helper_audit_staging.py'
+      - name: Preserve prior 23 source-only one-shot and historical contract tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/test_audit_only_source.py'
+      - name: Reverify immutable published b7e3 SHA checkpoint and fail-only scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/historical-helper-source-only.json"
+          python3 -B 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/verify_published_checkpoint.py' --output "$OUT"
+          python3 -B - "$OUT" <<'PY'
+          import json,sys
+          d=json.load(open(sys.argv[1]))
+          assert d['result']=='PassedPublishedSnapshotScope_ExternalInputsUnavailable'
+          assert d['checkpoint']['checkpointFileCount']==2506
+          assert d['rawManifestCoverage']['rawDeclaredCount']==4269
+          assert d['rawManifestCoverage']['availablePublishedCount']==2396
+          assert d['rawManifestCoverage']['unavailableExternalCount']==1873
+          assert d['originalLocalResultUnchanged']=='FAIL'
+          assert d['completeFullIndependentAudit'] is False
+          assert d['historicalGit']['historicalGitDirectReceiptsVerified']==20
+          PY
+      - name: Scope note
+        shell: bash
+        run: echo 'Source-only tests; no historical Local auditor, external SDK compiler, core25, Editor, Player or original evidence modified.'
