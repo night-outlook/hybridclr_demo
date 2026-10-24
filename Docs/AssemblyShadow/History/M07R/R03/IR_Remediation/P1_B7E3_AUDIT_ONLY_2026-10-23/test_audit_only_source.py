@@ -287,5 +287,17 @@ class AuditOnlySourceContracts(unittest.TestCase):
                 self.stager.sdk_scratch_hashes(raw, scratch, expected_count=3)
 
 
+    def test_20_aliased_scratch_parent_refused_even_when_bytes_match(self):
+        with tempfile.TemporaryDirectory() as d:
+            raw, scratch = self.sdk_scratch_fixture(Path(d).resolve())
+            old = scratch / "libil2cpp/vm"
+            relocated = scratch / "relocated-vm"
+            old.rename(relocated)
+            old.symlink_to(relocated, target_is_directory=True)
+            self.assertTrue((old / "AssemblyShadow.cpp").is_file())
+            with self.assertRaises(ValueError):
+                self.stager.sdk_scratch_hashes(raw, scratch, expected_count=3)
+
+
 if __name__ == "__main__":
     unittest.main()
