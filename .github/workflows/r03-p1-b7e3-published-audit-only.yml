@@ -5,6 +5,10 @@ on:
     paths:
       - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/verify_published_checkpoint.py'
       - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/test_verify_published_checkpoint.py'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/audit_historical_only.py'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/stage_local_audit_only.py'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/run_local_audit_once.py'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/test_audit_only_source.py'
       - '.github/workflows/r03-p1-b7e3-published-audit-only.yml'
   workflow_dispatch:
 permissions:
@@ -25,6 +29,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python3 -B Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/test_audit_only_source.py
           OUT="$RUNNER_TEMP/b7e3-published-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.os }}.json"
           python3 -B Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/verify_published_checkpoint.py --output "$OUT"
           test -s "$OUT"
