@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03P1PrimaryHistoricalAuditHelperIdentity",
+  "scope": "Primary source repair and host-only regression, future isolated Local historical audit not yet run",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "authoritativeLocal": {
+    "publicationDemo": "3f25f4370733f4ca64b6ef5938e319c1bcb05589",
+    "c42a": {
+      "result": "FAIL",
+      "scopedAuditResult": "FailedOrIncomplete",
+      "firstFinding": "IR-LOCAL-P1-HISTORICAL-AUDIT-HELPER-01",
+      "firstFailureLine": 1031,
+      "exception": "StopIteration",
+      "auditExit": 1,
+      "originalAfter": "Preserved",
+      "originalStageFiles": 104,
+      "rawFiles": 4269,
+      "installedSDKFiles": 2405,
+      "scratchFiles": 1925,
+      "checkpointFiles": 197,
+      "originalAuditBlob": "c451e0cb7794e624eabb9029db0a35ba28d14592",
+      "originalAuditRetried": false
+    },
+    "b7e3": {
+      "overallLocal": "FAIL",
+      "rawAggregate": "PassedSourceHostAndSDKOnly",
+      "componentsPassed": 25,
+      "independentOriginalAuditor": "FailedLine190",
+      "originalSourceSha": "49c6b62d38d7668be10004ac1e5a030d74894f09"
+    }
+  },
+  "sourcePins": {
+    "hybridclr_demoHistoricalB7e3": "49c6b62d38d7668be10004ac1e5a030d74894f09",
+    "hybridclr_demoAuditExecutedC42a": "26a4ea22aa0a11f1e86c8d2ac2aa4bd55a308a05",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+  },
+  "fault": {
+    "expectedButMissing": "verify_admitted_execution_receipt_and_fail_closed_mutations",
+    "actualDefinedAndCalled": "verify_admitted_execution_receipt_and_negative_mutations",
+    "actualSourceFile": "Tools/AssemblyShadow/R03IR/test_p1_command_failures.py",
+    "actualSourceSha256": "637915585936544f2c001d936917959b1d53adf62a8e4f7d6b923ad316ed02de",
+    "definitionLine": 504,
+    "callerLine": 892,
+    "original85PublicTestLeaf": "p1_contract_suite_2.BatchFailureScheduling.test_all_eighteen_components_have_independent_success",
+    "negativeMutations": 17,
+    "sourceLineEdits": [
+      1031,
+      1032
+    ],
+    "auditorByteDelta": -6
+  },
+  "primaryArtifactBlobs": {
+    "audit_historical_helper_successor": "220aa2831458b37a81f66555f27d95349ec7013f",
+    "stage_helper_successor": "f0eabc9458de33c8da8b6b0434cc97753689fa92",
+    "run_helper_audit_once": "a4de8e6298c487bfa121242a6df7b80a62276dc3",
+    "test_historical_helper_identity": "25bc8e474d63714ec1182d48463f3d6923dfd892",
+    "test_helper_audit_staging": "2421ff68a62f7db816a8f95c150a7eebd3bc3757"
+  },
+  "newStagerHistoricalCustody": {
+    "c42aManifestGitBlob": "091d57e6234331ee1f5a8e1e3d5f1d9d229cf60b",
+    "c42aPublishedCheckpointFiles": 197,
+    "c42aOriginalExternalFileBindings": 3,
+    "b7e3Raw": 4269,
+    "installedSdk": 2405,
+    "sdkScratch": 1925,
+    "b7e3PreflightRecorded": 104,
+    "originalEvidenceWritesAllowed": false,
+    "sourceSdkCompilationAllowed": false
+  },
+  "sourceOnlyTests": {
+    "newHelperIdentity": 17,
+    "newCustody": 11,
+    "retainedSourceHost": 23,
+    "totalExpectedPerPlatform": 51,
+    "publishedB7e3ShaManifestCheck": true,
+    "ciWorkflow": ".github/workflows/r03-p1-historical-audit-helper-source-only.yml",
+    "latestSourceCI": {
+      "runId": 40076790889,
+      "statusAtPreparation": "InProgress_NotAccepted",
+      "sourceCommit": "1fbdb008c82f262c8b4aa56cc33a9d8b54994a92"
+    },
+    "historicalInitialCI": {
+      "runId": 40076486968,
+      "outcome": "source-only test fixture FAIL for string repr quote style; independently recorded, not promoted",
+      "fixCommit": "1fbdb008c82f262c8b4aa56cc33a9d8b54994a92"
+    }
+  },
+  "nextOneShotLocal": {
+    "cycle": "20261024-f51d",
+    "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/AuditOnly-R03-P1-ADMITTED-EXECUTION-20261024-f51d",
+    "checkpoint": "Docs/AssemblyShadow/History/M07R/R03/local-audit-only-p1-20261024-f51d/",
+    "rootExistenceLocally": "NotVerified_MustAdmit",
+    "checkpointExistsOnGitHub": false,
+    "stage": "NotRun",
+    "historicalAudit": "NotRun",
+    "originalB7e3CoreRerun": false,
+    "originalC42aAuditRerun": false,
+    "oneShotRequired": true
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "runtimeAcceptance": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  }
+}
