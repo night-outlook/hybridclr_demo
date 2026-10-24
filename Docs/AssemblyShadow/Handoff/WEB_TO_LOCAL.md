@@ -2,6 +2,8 @@
 
 **Execution authority:** The user requested continuation after the previous Primary report offered only a narrowly scoped historical **audit-only** re-review. This document authorizes ONE fresh `20261023-c42a` **isolated historical evidence audit**, **NOT** another b7e3 core/Unity/SDK compiler run, and never Human Review Gate or a new milestone. If the current required published-snapshot/host-only source CI on both Mac and Linux is not demonstrably Passed at the final source SHA, stop before Local staging. Do not invent alternative suffixes or run partial/failed CI source.
 
+**Final source-only readiness evidence:** [GitHub Actions run 40072179278](https://github.com/night-outlook/hybridclr_demo/actions/runs/40072179278), source commit `63943cc914c19917ff356bab7303495ff09c8331`, completed **SUCCESS on macos-15 and ubuntu-24.04**. Each host ran **23/23** source/host-only tests (including two tiny test-owned Python auditor stubs testing pass/fail/no-retry) and the published snapshot audit: **2506 checkpoint file hashes, 2396 published raw files of original 4269, 1925 SDK scratch manifest identities, managed6, native100+version, and historical Git20**. It reports `PassedPublishedSnapshotScope_ExternalInputsUnavailable`; **1873 original external raw files and 2405 installed official SDK files are NOT independently verified in the web environment**. No Local, Unity Editor/Player, historical full auditor, SDK compiler or consumed core was executed by this CI. Earlier intermediate test-only failures remain historical; latest source-pinned job is green. This handoff authorizes only the new `c42a` **one-shot audit-only** scope. All executed b7e3 Local outcomes remain unchanged.
+
 ## 1. Read order and immutable historical authority
 
 Read exactly in this order:
@@ -76,7 +78,7 @@ python3 -B "$T/stage_local_audit_only.py" \
 
 The stage command independently rehashes all original 4269 raw manifest files, 2405 official installed SDK files, **all 1925 copied native SDK scratch inputs**, original source bindings and original preflight; authenticates the exact one lossless `run-once.log.utf8.json` source receipt and old failure. It creates only `A`, copying old preflight inputs to a **separate isolated tree** and staging a verified new audit-only `audit.py`; original `P/audit.py` remains byte-identical to its failed old SHA. It does **not** start a compiler, Unity or the audit itself.
 
-If stage succeeds and `AUDIT_ONLY_STAGE.json` says `StagedNotExecuted` with `sdkScratchFiles=1925`, run **exactly one** isolated audit:
+If stage succeeds and `AUDIT_ONLY_STAGE.json` says `StagedNotExecuted` with `initialSnapshot.sdkScratch.checkedScratchFiles=1925` (and the preparer output reports `sdkScratchFiles=1925`), run **exactly one** isolated audit:
 
 ~~~bash
 python3 -B "$T/run_local_audit_once.py" --stage "$A" --timeout-seconds 1800
