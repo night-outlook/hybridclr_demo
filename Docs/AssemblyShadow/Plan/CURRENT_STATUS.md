@@ -1,3 +1,20 @@
+# R03 P1 — Latest stage: f51d historical-evidence audit CLOSED within scope
+
+## Current Primary reconciliation and evidence boundary (2026-10-24)
+
+The latest Local-owned one-shot `20261024-f51d` reported **`PASS / PassedHistoricalAuditOnly_UnchangedLocalFail`**. New historical auditor (source demo `ea530e59eef38175738e517110c698ebd31bb07f`) exited **0**, generated a complete source/host/previous official Unity SDK syntax-only historical evidence audit, verified originally captured Git20 and admitted-execution negative-mutation helper, without any fresh original core, Unity or managed/native compiler invocation. Source-only prerequisites 51/51; historical raw25, original85, strict/sanitized admitted9+9, 515 localized receipts; before/after SDK/raw/scratch/history preservation Passed.
+
+**Critical outcome preservation:** `b7e3` original overall Local **FAIL** (separate raw `PassedSourceHostAndSDKOnly` 25/25, original auditor FailedLine190) and `c42a` one-shot audit **FAIL** (StopIteration1031) remain immutable. `f51d` does not reclassify them. Old `7896`/`7c2c` scope PASS, `82dd` raw FAIL, `e1e5`/`6c72` prerequisite Blocked and original full-stage independent review restrictions remain.
+
+Primary independently verified the exact four repository GitHub heads at Local publication `hybridclr_demo@ac32d96939147f0309ddd8679e2d0fe8c9986592`, audited key f51d JSON receipts, original separate b7e3/c42a FAIL receipts, one Docs-only Local publication delta and seven SHA-256 matches against the f51d 206-entry checkpoint manifest. Local reports and its two after-preservation receipts cover original raw4269, installed official SDK2405, SDK scratch1925, preflight104, b7e3 checkpoint2506, c42a checkpoint197 and the historical consumed evidence sets; Primary has **not** directly rehashed the entire external `/Users/ah` SDK/raw histories. See [full Primary reconciliation](../History/M07R/R03/IR_Remediation/P1_F51D_HISTORICAL_AUDIT_RECONCILIATION_2026-10-24/PRIMARY_RECONCILIATION.md), [machine evidence](../History/M07R/R03/IR_Remediation/P1_F51D_HISTORICAL_AUDIT_RECONCILIATION_2026-10-24/EVIDENCE.json) and current Local-owned [LOCAL_VALIDATION](../Handoff/LOCAL_VALIDATION.md).
+
+**Engineering gaps remain OPEN**: P1 Incomplete (canonical execution TypeKeys, physical class pointer provenance/lifetime, coherent whole-VM epoch, original full execution V1, actual Player/GC/RSS/Shutdown and live getter integration); P2 NotIntegrated; E0 Blocked/Unavailable; E1 BlockedByE0; full P3 Incomplete. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `runtimeAcceptance=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter disabled. Existing SNAP-01/source-fingerprint/full-stage independent review gates remain unresolved.
+
+**Next authorized state: Primary Implementation holds**, with historical audit evidence reconciled and **no pending Local Validation run**. Consumed `f51d` [WEB_TO_LOCAL](../History/M07R/R03/IR_Remediation/P1_F51D_HISTORICAL_AUDIT_RECONCILIATION_2026-10-24/CONSUMED_WEB_TO_LOCAL_F51D.md) is historical only; current [WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md) is closed. Any new integration, runtime/Player testing or Human Review Gate requires its own explicit design, plan and authorization; do not begin H2/X02/M08A/protected SNAP-01.
+
+---
+
+## Earlier stage records — historical only
 # R03 P1 current stage — source-bound c42a helper identity correction
 
 ## Latest authoritative Local and Primary implementation (2026-10-24)
