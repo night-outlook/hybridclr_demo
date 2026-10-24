@@ -161,5 +161,68 @@ class AuditOnlySourceContracts(unittest.TestCase):
         self.assertEqual(report["firstFinding"], "IR-LOCAL-P1-ADMITTED-AUDIT-ROSTER-01")
 
 
+    def make_encoded_preflight_fixture(self, parent):
+        """Test the actual b7e3 lossless-run-once-log source-binding mode."""
+        checkpoint = parent / "checkpoint"
+        historical = parent / "original-preflight"
+        historical.mkdir()
+        checkpoint.mkdir()
+        lines = []
+        for i in range(70):
+            name = f"item-{i:02d}.json"
+            content = f"immutable-{i:02d}\n".encode()
+            (historical / name).write_bytes(content)
+            clone = checkpoint / "preflight" / name
+            clone.parent.mkdir(exist_ok=True)
+            clone.write_bytes(content)
+            lines.append(f"{hashlib.sha256(content).hexdigest()}  preflight/{name}")
+        raw = b"Original logged argv, stdout and warnings.\n"
+        (historical / "run-once.log").write_bytes(raw)
+        encoded = {
+            "kind": "ExactUtf8TextEvidenceEncoding",
+            "sourcePath": str(historical / "run-once.log"),
+            "sourceSha256": hashlib.sha256(raw).hexdigest(),
+            "bytes": len(raw),
+            "encoding": "UTF-8",
+            "text": raw.decode("utf-8"),
+        }
+        wrapped = (json.dumps(encoded, indent=2) + "\n").encode()
+        wrapper = checkpoint / "preflight" / "run-once.log.utf8.json"
+        wrapper.write_bytes(wrapped)
+        lines.append(f"{hashlib.sha256(wrapped).hexdigest()}  preflight/run-once.log.utf8.json")
+        bindings = {"encodedTextEvidence": [{
+            "source": str(historical / "run-once.log"),
+            "checkpoint": "preflight/run-once.log.utf8.json",
+            "decodedBytes": len(raw), "decodedSha256": hashlib.sha256(raw).hexdigest()
+        }]}
+        (checkpoint / "COPY_BINDINGS.json").write_text(json.dumps(bindings))
+        (checkpoint / "MANIFEST.sha256").write_text("\n".join(lines) + "\n")
+        return checkpoint, historical, wrapper
+
+    def test_14_source_bound_utf8_log_and_70_regular_inputs(self):
+        with tempfile.TemporaryDirectory() as temp:
+            checkpoint, historical, wrapper = self.make_encoded_preflight_fixture(Path(temp).resolve())
+            verified = self.stager.consumed_input_hashes(checkpoint, historical)
+            self.assertEqual(len(verified), 71)
+            self.assertIn("run-once.log", verified)
+            self.assertNotIn("run-once.log.utf8.json", verified)
+            self.assertEqual(verified["run-once.log"],
+                             hashlib.sha256((historical / "run-once.log").read_bytes()).hexdigest())
+
+    def test_15_mutated_original_decoded_log_refused(self):
+        with tempfile.TemporaryDirectory() as temp:
+            checkpoint, historical, wrapper = self.make_encoded_preflight_fixture(Path(temp).resolve())
+            (historical / "run-once.log").write_text("different raw bytes")
+            with self.assertRaises(ValueError):
+                self.stager.consumed_input_hashes(checkpoint, historical)
+
+    def test_16_mutated_published_utf8_wrapper_refused(self):
+        with tempfile.TemporaryDirectory() as temp:
+            checkpoint, historical, wrapper = self.make_encoded_preflight_fixture(Path(temp).resolve())
+            wrapper.write_text(wrapper.read_text() + " ")
+            with self.assertRaises(ValueError):
+                self.stager.consumed_input_hashes(checkpoint, historical)
+
+
 if __name__ == "__main__":
     unittest.main()
