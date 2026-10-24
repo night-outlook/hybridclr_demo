@@ -1,0 +1,28 @@
+{
+  "result": "OriginalCppAndApiBytesPreservedExceptExactOpaqueAdditions",
+  "originals": [
+    {
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "baseline": "48ee6468065a6b559f53719dc310d901d8181ab8",
+      "originalBlob": "53aecc2d113b20b6ff825d0aa4ca0f4372a7cce2",
+      "originalSha256": "6021bce2939c45a7bd5b44a881c67a052eac1902b6b0eb30d8f620142344c5a9",
+      "candidateSha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadow.h",
+      "baseline": "48ee6468065a6b559f53719dc310d901d8181ab8",
+      "originalBlob": "32956c2c4084951131b497c1201712a0d4fe11b3",
+      "originalSha256": "74b0e63cb5a007a7f6bd3fa45435d1700b6041427515138fafd003ed5ffc8498",
+      "candidateSha256": "55e572887d7ed89cc5d9cd57b3457df240357aa389474512442f3a5fea487e8f"
+    }
+  ],
+  "opaqueMethodSha256": "d27d0cdd391182a5b3c9a942bdc44bdf45418d1fb13c2c3e92df92e012ea1ea8",
+  "opaqueHeaderSha256": "1d29f8119e0cafa1168ef46ee17aebed465359ff5f47902165a97586a6aa6369",
+  "noDirectProductionCppCaller": true,
+  "revisionHeaderSha256": "4d318426f4be784fe3eb6065ef47ed97539416f871fbe060f6c4ca6e8be41d5e",
+  "removedOnlyExactOpaqueWitnessRevisionAndPublisherAdditions": true,
+  "publisherHeaderSha256": "7db3ea584e332c92364ebee5b9c778e0c731c449783551a9adb4204cf1df8ff7",
+  "witnessHeaderSha256": "4dfe7294faa17fa69b217e85db0f7ce7fed8847af07c6742aa7486d3ca3ddf9e",
+  "productionPublisherCall": "        ExecutionObservationLock lock;\n        // P1: use the same bounded publisher that strict/sanitized host tests\n        // compile. Witness, table slot, count and revision publish under this\n        // existing observation lock, with no extra metadata dereference.\n        const auto published=assembly_shadow_execution_publisher::Insert(\n            s_executionClasses,s_executionClassCount,kMaximumExecutionClasses,\n            s_executionRegistrationWitnesses,s_executionRegistryRevision,\n            klass,witnessedSource);\n        if(published==assembly_shadow_execution_publisher::Result::Existing ||\n           published==assembly_shadow_execution_publisher::Result::Inserted)\n        {\n            assembly_shadow_r02::ObservationMemo::Remember(klass);\n            return;\n        }\n        s_droppedClassObservations.fetch_add(1,std::memory_order_relaxed);\n",
+  "sourceGateSha256": "0f2e16815e9c79e16f9bb88cb488fd5ad998d7407c1b682ca0b75008f296fe5f"
+}

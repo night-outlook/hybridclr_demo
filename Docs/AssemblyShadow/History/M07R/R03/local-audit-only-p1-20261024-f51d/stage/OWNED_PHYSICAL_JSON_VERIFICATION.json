@@ -1,0 +1,157 @@
+{
+  "result": "PassedWithinOwnedPhysicalNamesJsonHostAndOfficialSDKSyntaxScope",
+  "groupsPerProfile": 21,
+  "producerAndOuterGroupOrderVerified": true,
+  "ownedPhysicalJsonCaseInventoryVerified": true,
+  "ownedBindingCaseInventoryVerified": true,
+  "sourceInputs": {
+    "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h": {
+      "bytes": 6070,
+      "gitBlob": "9dee4c9ea6febe4a919d1c7eb8faf2ad00b8a8e5",
+      "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605"
+    },
+    "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h": {
+      "bytes": 1774,
+      "gitBlob": "ce360fce0bbbc16ee12d8bdbb849d8c0b7726b34",
+      "sha256": "4dfe7294faa17fa69b217e85db0f7ce7fed8847af07c6742aa7486d3ca3ddf9e"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h": {
+      "bytes": 8477,
+      "gitBlob": "da06714c197010343a021a4b1535887951f23cd1",
+      "sha256": "2f478332ac71c205b20045907b63bed7b482a8014fa644539ccd2c2ce8406a1d"
+    },
+    "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h": {
+      "bytes": 10926,
+      "gitBlob": "35d4d000faa588cdd5147a0b2abdf00d566c0b06",
+      "sha256": "944d663e2d55e8ed07be3c62b1f6c7f7f6aee1bf0c34b9a464550b6817c5c15a"
+    },
+    "tools/r03/diagnostic_stream/owned_physical_json_fixture.cpp": {
+      "bytes": 12373,
+      "gitBlob": "8ced089219c1f0e8ccc79961a430b250dea5a7ee",
+      "sha256": "27ccc3895f198d2008aede69371aeeb2e378677ceab409b36f7ae2008a7ba233"
+    },
+    "tools/r03/diagnostic_stream/run_owned_physical_json.py": {
+      "bytes": 9919,
+      "gitBlob": "6499585160b338a16296467f539df9bf33dcdc36",
+      "sha256": "af0e47b0805fc727e6d7be5c52a87e917069d9c54117489910c1e098c33dd05d"
+    },
+    "tools/r03/diagnostic_stream/run_owned_physical_names.py": {
+      "bytes": 22894,
+      "gitBlob": "8cd888e44215d949c1a649413fd4629edb2ead46",
+      "sha256": "62c4f5942e57cf0e0c5cbd98d95b69619955ed7cf8df02861e538cc0ff3d5596"
+    }
+  },
+  "sourceContract": {
+    "actualFixtureCaseIds": [
+      "empty-owned-json",
+      "one-candidate-exact-json",
+      "reverse-source-order-and-partition",
+      "same-display-name-distinct-registered-slots",
+      "escaping-quotes-backslash-and-controls",
+      "valid-utf8-retained-unchanged",
+      "invalid-utf8-continuation-refused",
+      "overlong-and-surrogate-utf8-refused",
+      "empty-required-physical-assembly-refused",
+      "empty-required-simple-name-refused",
+      "invalid-source-capture-refused",
+      "missing-source-witness-flag-refused",
+      "mismatched-row-count-and-text-byte-receipts-refused",
+      "revision-and-saturated-revision-refused",
+      "forbidden-success-scope-refused",
+      "small-byte-budget-atomically-refused",
+      "output-limit-above-fixed-cap-refused",
+      "single-use-output-revokes-on-reuse",
+      "owned-json-survives-source-revoke",
+      "source-string-mutation-before-compose-independent",
+      "worst-case-escaped-text-under-fixed-budget"
+    ],
+    "immutableOwnedInputRequired": true,
+    "noVmMetadataOrFileOperations": true,
+    "nonCanonicalScopeOnly": true,
+    "sourceHeadersVerified": 4
+  },
+  "profiles": {
+    "sanitized": {
+      "caseGroups": [
+        "empty-owned-json",
+        "one-candidate-exact-json",
+        "reverse-source-order-and-partition",
+        "same-display-name-distinct-registered-slots",
+        "escaping-quotes-backslash-and-controls",
+        "valid-utf8-retained-unchanged",
+        "invalid-utf8-continuation-refused",
+        "overlong-and-surrogate-utf8-refused",
+        "empty-required-physical-assembly-refused",
+        "empty-required-simple-name-refused",
+        "invalid-source-capture-refused",
+        "missing-source-witness-flag-refused",
+        "mismatched-row-count-and-text-byte-receipts-refused",
+        "revision-and-saturated-revision-refused",
+        "forbidden-success-scope-refused",
+        "small-byte-budget-atomically-refused",
+        "output-limit-above-fixed-cap-refused",
+        "single-use-output-revokes-on-reuse",
+        "owned-json-survives-source-revoke",
+        "source-string-mutation-before-compose-independent",
+        "worst-case-escaped-text-under-fixed-budget"
+      ],
+      "result": "PassedWithinOwnedNonCanonicalJsonHostScope"
+    },
+    "strict": {
+      "caseGroups": [
+        "empty-owned-json",
+        "one-candidate-exact-json",
+        "reverse-source-order-and-partition",
+        "same-display-name-distinct-registered-slots",
+        "escaping-quotes-backslash-and-controls",
+        "valid-utf8-retained-unchanged",
+        "invalid-utf8-continuation-refused",
+        "overlong-and-surrogate-utf8-refused",
+        "empty-required-physical-assembly-refused",
+        "empty-required-simple-name-refused",
+        "invalid-source-capture-refused",
+        "missing-source-witness-flag-refused",
+        "mismatched-row-count-and-text-byte-receipts-refused",
+        "revision-and-saturated-revision-refused",
+        "forbidden-success-scope-refused",
+        "small-byte-budget-atomically-refused",
+        "output-limit-above-fixed-cap-refused",
+        "single-use-output-revokes-on-reuse",
+        "owned-json-survives-source-revoke",
+        "source-string-mutation-before-compose-independent",
+        "worst-case-escaped-text-under-fixed-budget"
+      ],
+      "result": "PassedWithinOwnedNonCanonicalJsonHostScope"
+    }
+  },
+  "fiveDirectVersionCompileRunReceiptsVerified": true,
+  "actualHeaderSha256": "944d663e2d55e8ed07be3c62b1f6c7f7f6aee1bf0c34b9a464550b6817c5c15a",
+  "fixtureSha256": "27ccc3895f198d2008aede69371aeeb2e378677ceab409b36f7ae2008a7ba233",
+  "outerReceiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/commands/owned-physical-json.json",
+  "outerReceiptSha256": "79ea4b354f1a75cd852a060d107af222b0ff90f6e8eb71defc4a579881e67048",
+  "producerResultSha256": "97900dce9f2118a193735abe3763e1b12109d2963631caa2f1131da5e8baba5f",
+  "expectedOneRowJsonSha256": "8b84e6b4de8bea1caa452bcbeb15331b615e93dc8b99f1fea461f1e37abb316c",
+  "expectedJsonIdentity": "SourceFixtureLiteral_NotRuntimeEmission",
+  "rawPerRowJsonSeparatelyEmitted": false,
+  "outputBytesMaximum": 2097152,
+  "objectBytesMaximum": 2097280,
+  "strictSourceReceiptCountsTextRevisionScopeVerified": true,
+  "typedFailureZeroOutputAndReuseChecks": true,
+  "utf8AndEscapingChecks": true,
+  "rolePartitionAndSlotSeparationChecks": true,
+  "outputIndependentAfterSourceRevokeAndOriginalStringMutationAsserted": true,
+  "worstCaseFixtureRows": 60,
+  "consumerAdversarialCases": 9,
+  "consumerHelperSha256": "accab74379b40649d8502db9d9c0bc3733e066c1e623e34265c7ce44de2d1120",
+  "consumerSubcasesWithinOriginal85Leaves": true,
+  "oldCppApiMembershipAndWriterPreservedExceptExactLiveBridgeAdditions_NameCaptureExtendedForShape": true,
+  "SDKConfigurations": 100,
+  "SDKTranslationUnits": 20,
+  "syntaxProbeSha256": "de55249a952bb3f749ba8f388d11fe58860119ddfa7e7403d026169a5a794729",
+  "canonicalExecutionTypeKeys": false,
+  "completeExecutionV1Json": false,
+  "physicalClassPointerOriginProven": false,
+  "coherentVmEpochProven": false,
+  "descendantQuiescenceProven": false,
+  "runtimeAcceptance": false
+}

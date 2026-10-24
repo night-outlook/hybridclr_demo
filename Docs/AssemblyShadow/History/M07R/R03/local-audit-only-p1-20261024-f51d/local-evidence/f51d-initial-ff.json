@@ -1,0 +1,39 @@
+[
+  {
+    "argv": [
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "start": "2026-10-24T09:52:58.215822+00:00",
+    "end": "2026-10-24T09:53:06.918363+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_demo\n * branch                codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   3f25f4370..ea530e59e  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n"
+  },
+  {
+    "argv": [
+      "merge-base",
+      "--is-ancestor",
+      "HEAD",
+      "ea530e59eef38175738e517110c698ebd31bb07f"
+    ],
+    "start": "2026-10-24T09:53:06.918406+00:00",
+    "end": "2026-10-24T09:53:06.930119+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "merge",
+      "--ff-only",
+      "ea530e59eef38175738e517110c698ebd31bb07f"
+    ],
+    "start": "2026-10-24T09:53:06.930161+00:00",
+    "end": "2026-10-24T09:53:07.266663+00:00",
+    "exit": 0,
+    "stdout": "Updating 3f25f4370..ea530e59e\nFast-forward\n .../r03-p1-historical-audit-helper-source-only.yml |   63 ++\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        |  112 +-\n .../DESIGN.md                                      |   36 +\n .../EVIDENCE.json                                  |  148 +++\n .../P1_HISTORICAL_AUDIT_HELPER_2026-10-24/PLAN.md  |   21 +\n .../PRIMARY_SOURCE_AUDIT.md                        |   32 +\n .../audit_historical_helper_successor.py           | 1082 ++++++++++++++++++++\n .../run_helper_audit_once.py                       |  157 +++\n .../stage_helper_successor.py                      |  421 ++++++++\n .../test_helper_audit_staging.py                   |  206 ++++\n .../test_historical_helper_identity.py             |  224 ++++\n Docs/AssemblyShadow/Plan/CURRENT_STATUS.md         |   17 +\n Docs/AssemblyShadow/README.md                      |   15 +\n 13 files changed, 2480 insertions(+), 54 deletions(-)\n create mode 100644 .github/workflows/r03-p1-historical-audit-helper-source-only.yml\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/DESIGN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/PLAN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/PRIMARY_SOURCE_AUDIT.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/audit_historical_helper_successor.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/run_helper_audit_once.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/stage_helper_successor.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/test_helper_audit_staging.py\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/test_historical_helper_identity.py\n",
+    "stderr": ""
+  }
+]

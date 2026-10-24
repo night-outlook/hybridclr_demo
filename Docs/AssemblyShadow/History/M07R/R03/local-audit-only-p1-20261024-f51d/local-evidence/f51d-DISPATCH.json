@@ -1,0 +1,139 @@
+{
+  "commands": [
+    {
+      "name": "identity-tests",
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/test_historical_helper_identity.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "start": "2026-10-24T09:57:31.001921+00:00",
+      "end": "2026-10-24T09:57:31.374777+00:00",
+      "pid": 47715,
+      "exit": 0,
+      "TMPDIR": "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/",
+      "CXX": null,
+      "stdout": "/Users/ah/GitHub/hybridclr/r03-local-validation/f51d-identity-tests.stdout.bin",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "/Users/ah/GitHub/hybridclr/r03-local-validation/f51d-identity-tests.stderr.bin",
+      "stderrSha256": "a758130acab30dcafbb5559ae4317daaf1753c84cdfe09e7a36e2b6c77b105d0"
+    },
+    {
+      "name": "staging-tests",
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/test_helper_audit_staging.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "start": "2026-10-24T09:57:31.375218+00:00",
+      "end": "2026-10-24T09:57:31.755033+00:00",
+      "pid": 47717,
+      "exit": 0,
+      "TMPDIR": "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/",
+      "CXX": null,
+      "stdout": "/Users/ah/GitHub/hybridclr/r03-local-validation/f51d-staging-tests.stdout.bin",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "/Users/ah/GitHub/hybridclr/r03-local-validation/f51d-staging-tests.stderr.bin",
+      "stderrSha256": "0cd0cdb9015ab629eea3c5ad199e09814b05d78a5d8709f76f836edb7aa574e0"
+    },
+    {
+      "name": "retained-tests",
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/test_audit_only_source.py"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "start": "2026-10-24T09:57:31.755497+00:00",
+      "end": "2026-10-24T09:57:32.007041+00:00",
+      "pid": 47724,
+      "exit": 0,
+      "TMPDIR": "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/",
+      "CXX": null,
+      "stdout": "/Users/ah/GitHub/hybridclr/r03-local-validation/f51d-retained-tests.stdout.bin",
+      "stdoutSha256": "01cff587b3d17848eb58dc1092ccdaed8fffb9dec0c802710754a98ba5a1b97e",
+      "stderr": "/Users/ah/GitHub/hybridclr/r03-local-validation/f51d-retained-tests.stderr.bin",
+      "stderrSha256": "e2ce60eb688d0b4d16559c568a696f7837bf6accfa564644a28cf79d286b2b4a"
+    },
+    {
+      "name": "stage",
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/stage_helper_successor.py",
+        "--workspace",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+        "--preflight",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-ADMITTED-EXECUTION-20261023-b7e3",
+        "--raw",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3",
+        "--stage",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/AuditOnly-R03-P1-ADMITTED-EXECUTION-20261024-f51d"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "start": "2026-10-24T09:57:32.007429+00:00",
+      "end": "2026-10-24T09:57:33.990276+00:00",
+      "pid": 47727,
+      "exit": 0,
+      "TMPDIR": "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/",
+      "CXX": null,
+      "stdout": "/Users/ah/GitHub/hybridclr/r03-local-validation/f51d-stage.stdout.bin",
+      "stdoutSha256": "0773e7ede8ff01af8a76b69bc8f7a6abf48a445c3c2dc49732f715e5c9b1e449",
+      "stderr": "/Users/ah/GitHub/hybridclr/r03-local-validation/f51d-stage.stderr.bin",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-audit",
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/run_helper_audit_once.py",
+        "--stage",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/AuditOnly-R03-P1-ADMITTED-EXECUTION-20261024-f51d",
+        "--timeout-seconds",
+        "1800"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "start": "2026-10-24T09:57:33.990858+00:00",
+      "end": "2026-10-24T09:57:59.077845+00:00",
+      "pid": 47735,
+      "exit": 0,
+      "TMPDIR": "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/",
+      "CXX": null,
+      "stdout": "/Users/ah/GitHub/hybridclr/r03-local-validation/f51d-historical-audit.stdout.bin",
+      "stdoutSha256": "7ef4cf7cc98d89ab84b18c098d7c4f33173f2fb50b040a569573a8b0db7ff56f",
+      "stderr": "/Users/ah/GitHub/hybridclr/r03-local-validation/f51d-historical-audit.stderr.bin",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "verify-after",
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/stage_helper_successor.py",
+        "--verify-after",
+        "--workspace",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+        "--preflight",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-ADMITTED-EXECUTION-20261023-b7e3",
+        "--raw",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3",
+        "--stage",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/AuditOnly-R03-P1-ADMITTED-EXECUTION-20261024-f51d"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "start": "2026-10-24T09:57:59.078298+00:00",
+      "end": "2026-10-24T09:58:00.503337+00:00",
+      "pid": 48051,
+      "exit": 0,
+      "TMPDIR": "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/",
+      "CXX": null,
+      "stdout": "/Users/ah/GitHub/hybridclr/r03-local-validation/f51d-verify-after.stdout.bin",
+      "stdoutSha256": "31a81a0d172318755bb18da4a0ad5b0a8f7bd5590c293eb00952c72973632681",
+      "stderr": "/Users/ah/GitHub/hybridclr/r03-local-validation/f51d-verify-after.stderr.bin",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

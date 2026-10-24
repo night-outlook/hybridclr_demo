@@ -1,0 +1,207 @@
+{
+  "result": "PassedSourceAndSourceMatchedCIReadiness",
+  "verifiedAt": "2026-10-24T09:56:53.503779+00:00",
+  "ciRun": 40076790889,
+  "ciHead": "1fbdb008c82f262c8b4aa56cc33a9d8b54994a92",
+  "currentDemo": "ea530e59eef38175738e517110c698ebd31bb07f",
+  "jobs": [
+    {
+      "id": 120821744177,
+      "name": "Pinned helper and c42a custody (ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 40076790889,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Original-85 helper name and negative-mutation source contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Successor audit-only stager/runner and immutable c42a source contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Preserve prior 23 source-only one-shot and historical contract tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Reverify immutable published b7e3 SHA checkpoint and fail-only scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Scope note",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 120821744399,
+      "name": "Pinned helper and c42a custody (macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 40076790889,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Original-85 helper name and negative-mutation source contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Successor audit-only stager/runner and immutable c42a source contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Preserve prior 23 source-only one-shot and historical contract tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Reverify immutable published b7e3 SHA checkpoint and fail-only scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Scope note",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    }
+  ],
+  "logs": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/f51d-CI-ubuntu.json",
+      "sha256": "fa869465ef2e559ce3f7f9e83a42d13d99a811bca6301f8bce6a0c1816770e25",
+      "tests": [
+        17,
+        11,
+        23
+      ]
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/f51d-CI-macos.json",
+      "sha256": "85a5c32efdec16f3efbb987ebc43202a6ed8e2e85234d3d59d6fe6473a61591d",
+      "tests": [
+        17,
+        11,
+        23
+      ]
+    }
+  ],
+  "sourceBindings": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/audit_historical_helper_successor.py",
+      "gitBlob": "220aa2831458b37a81f66555f27d95349ec7013f",
+      "sha256": "c6f7b4cab31c2902da064b6776cd93cd405d52b0980b6f13544bdfb0ea6f772a",
+      "ciSourceByteIdentical": true
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/stage_helper_successor.py",
+      "gitBlob": "f0eabc9458de33c8da8b6b0434cc97753689fa92",
+      "sha256": "8b152c42da281c7c6fffb924796a0f868e454468ec0f9586093303e2d04628ee",
+      "ciSourceByteIdentical": true
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/run_helper_audit_once.py",
+      "gitBlob": "a4de8e6298c487bfa121242a6df7b80a62276dc3",
+      "sha256": "538bb29c3403803dec267b5cb6ca7e8d4af6886967f06a6768aea517890ea524",
+      "ciSourceByteIdentical": true
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/test_historical_helper_identity.py",
+      "gitBlob": "25bc8e474d63714ec1182d48463f3d6923dfd892",
+      "sha256": "1bbad0e6af5470e703be48d92f5733b97f2a6e9fd33b42680612614a159b95f4",
+      "ciSourceByteIdentical": true
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/test_helper_audit_staging.py",
+      "gitBlob": "2421ff68a62f7db816a8f95c150a7eebd3bc3757",
+      "sha256": "3db57a602ab31532764a2ab4b0c37b90aa276bea2bbeace652c2eb84f6cb2dbb",
+      "ciSourceByteIdentical": true
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/.github/workflows/r03-p1-historical-audit-helper-source-only.yml",
+      "gitBlob": "b81f921a1121006a5ba01d5026a0e42982579105",
+      "sha256": "92dfff475cf4770c6090104be3a173e12d042a853ac6e14e1f193669d05c35d2",
+      "ciSourceByteIdentical": true
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/test_audit_only_source.py",
+      "gitBlob": "e126f088a0360cac9c61b85e1620bf3986d28b81",
+      "sha256": "4e029df887b524d798067cc4236e84ad909a5ba8b75ce18a6f5c7bccb2ca64e9",
+      "ciSourceByteIdentical": true
+    }
+  ],
+  "onlyChangedAuditorLines": [
+    1031,
+    1032
+  ],
+  "currentSourceOnlyCI": true,
+  "fullHistoricalAuditOrSdkCompile": false
+}

@@ -1,0 +1,382 @@
+{
+  "result": "PassedHistoricalEvidenceAuditOnly",
+  "auditMode": "ReadOnlyIsolatedB7E3History",
+  "originalB7E3LocalResult": "FAIL",
+  "liveRemoteHeadCheck": "NotRun_TimeVariant",
+  "productAcceptance": false,
+  "batchResult": "PassedSourceHostAndSDKOnly",
+  "outerStates": {
+    "Passed": 25
+  },
+  "rawResultSha256": "f762d292d9601e620a83ecd79cc5e3c5ab85b0ea0a3813fbf472bd716eb1c7e6",
+  "rawManifestSha256": "4b286c29a7ef36ec4377642b6009804ad532b0ae3166c186866fe74f4246130e",
+  "regularInventoryEntries": 4269,
+  "symlinksOmittedByOuterManifestButAuthenticatedByLegacyManifest": [
+    {
+      "path": "legacy-host/native-v2-legacy-sink/evidence/cases/posix-93/diagnostics.v2",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-legacy-sink/evidence/cases/posix-93/target"
+    },
+    {
+      "path": "legacy-host/native-v2-legacy-sink/evidence/cases/posix-92/diagnostics.v2",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-legacy-sink/evidence/cases/posix-92/target"
+    },
+    {
+      "path": "legacy-host/native-v2-file-transaction/evidence/sanitized/case-0164/alias",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-file-transaction/evidence/sanitized/case-0164/transaction"
+    },
+    {
+      "path": "legacy-host/native-v2-file-transaction/evidence/strict/case-0071/alias",
+      "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/legacy-host/native-v2-file-transaction/evidence/strict/case-0071/transaction"
+    }
+  ],
+  "localizedCommandStreamReceiptsVerified": 515,
+  "sourcePreserved": true,
+  "rawPostflightError": null,
+  "rawFourRepositoriesAfter": [
+    {
+      "repository": "night-outlook/hybridclr_demo",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "49c6b62d38d7668be10004ac1e5a030d74894f09",
+      "remoteHead": "49c6b62d38d7668be10004ac1e5a030d74894f09",
+      "origin": "git@github.com:night-outlook/hybridclr_demo.git",
+      "clean": true
+    },
+    {
+      "repository": "night-outlook/hybridclr",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "remoteHead": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "origin": "git@github.com:night-outlook/hybridclr.git",
+      "clean": true
+    },
+    {
+      "repository": "night-outlook/hybridclr_unity",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "remoteHead": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "origin": "git@github.com:night-outlook/hybridclr_unity.git",
+      "clean": true
+    },
+    {
+      "repository": "night-outlook/il2cpp_plus",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
+      "remoteHead": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
+      "origin": "git@github.com:night-outlook/il2cpp_plus.git",
+      "clean": true
+    }
+  ],
+  "independentSourceHashAuditPreserved": true,
+  "installedSdkPreserved": true,
+  "managed": {
+    "actualResult": "Passed",
+    "aggregateState": "Passed",
+    "exit": 0,
+    "obsoleteRootReceiptAbsent": true,
+    "innerResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/managed-sdk/build-api/results.json",
+    "innerResultSha256": "ddd26b40217b00d5a08ab8bfee2c3e1fd5f3ff1ad5c70680adb09322bb1fb32d",
+    "returnedBindingVerified": true,
+    "actualResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3/managed-sdk/build-api/results.json",
+    "actualResultSha256": "ddd26b40217b00d5a08ab8bfee2c3e1fd5f3ff1ad5c70680adb09322bb1fb32d",
+    "productCount": 5,
+    "inputCount": 428,
+    "expectedNegative": [
+      {
+        "id": "OriginalUnsignedCounts",
+        "exit": 1,
+        "CS0266Errors": 2
+      }
+    ],
+    "warnings": 68
+  },
+  "native": {
+    "actualResult": "Passed",
+    "passedConfigurations": 100,
+    "failedConfigurations": 0,
+    "notRunConfigurations": 0,
+    "distinctTranslationUnits": 20,
+    "profiles": [
+      "candidate",
+      "debug",
+      "diagnostics-off",
+      "feature-off",
+      "probe-off"
+    ],
+    "copiedSdkInputsVerified": 1925,
+    "candidateNativeSha": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
+    "warnings": 742
+  },
+  "hostSummaries": {
+    "metadata-gate": {
+      "result": "PassedWithinHostScope",
+      "profilesCompleted": [
+        "strict",
+        "sanitized"
+      ],
+      "sourcePreserved": true,
+      "firstError": null,
+      "sourceContract": {
+        "globalGateDefinitionOffset": 2668,
+        "openBeforeReady": true,
+        "closeBeforeTeardown": true,
+        "defaultReaderSourceEpoch": 1,
+        "assembliesReadGateBeforeSourceLock": true,
+        "classesReadGateBeforeSourceLock": true
+      },
+      "commandCount": 12
+    },
+    "bounded-class": {
+      "result": "PassedWithinHostScope",
+      "profilesCompleted": [
+        "strict",
+        "sanitized"
+      ],
+      "sourcePreserved": true,
+      "firstError": null,
+      "commandCount": 6
+    },
+    "bounded-physical": {
+      "result": "PassedWithinHostScope",
+      "profilesCompleted": [
+        "strict",
+        "sanitized"
+      ],
+      "sourcePreserved": true,
+      "firstError": null,
+      "commandCount": 6
+    },
+    "bounded-first-use": {
+      "result": "PassedWithinHostScope",
+      "profilesCompleted": [
+        "strict",
+        "sanitized"
+      ],
+      "sourcePreserved": true,
+      "firstError": null,
+      "commandCount": 4
+    },
+    "bounded-status": {
+      "result": "PassedWithinHostScope",
+      "profilesCompleted": [
+        "strict",
+        "sanitized"
+      ],
+      "sourceUnchanged": true,
+      "firstError": null,
+      "commandCount": 4
+    },
+    "bounded-inventory": {
+      "result": "PassedWithinHostScope",
+      "completedProfiles": [
+        "strict",
+        "sanitized"
+      ],
+      "sourcePreserved": true,
+      "firstFailure": null,
+      "commandCount": 4
+    },
+    "frozen-v2": {
+      "result": "PassedWithinInactiveHostScope",
+      "profiles": [
+        {
+          "profile": "strict",
+          "originalGeneralBytes": 300032,
+          "originalExecutionBytes": 331078,
+          "encodedBytes": 631720,
+          "sha256": "f1e193ee55e34bcf051f6835949c1889deeec019064fcfc9604fd1264891038e",
+          "strictWireReferenceByteParity": true,
+          "originalSemanticStatus": "Failed",
+          "completeCapturedClasses": 1024,
+          "overflowRejected": true,
+          "partialSinkRejected": true,
+          "invalidUtf8Rejected": true,
+          "combinedArtifactOverflowRejected": true
+        },
+        {
+          "profile": "sanitized",
+          "originalGeneralBytes": 300032,
+          "originalExecutionBytes": 331078,
+          "encodedBytes": 631720,
+          "sha256": "f1e193ee55e34bcf051f6835949c1889deeec019064fcfc9604fd1264891038e",
+          "strictWireReferenceByteParity": true,
+          "originalSemanticStatus": "Failed",
+          "completeCapturedClasses": 1024,
+          "overflowRejected": true,
+          "partialSinkRejected": true,
+          "invalidUtf8Rejected": true,
+          "combinedArtifactOverflowRejected": true
+        }
+      ],
+      "sourceUnchanged": true,
+      "firstError": null,
+      "commandCount": 12
+    },
+    "owned-general": {
+      "result": "PassedWithinOwnedHostScope",
+      "profiles": {
+        "strict": {
+          "result": "PassedWithinHostScope",
+          "cases": [
+            "byte-exact-general-owned-parity",
+            "composition-no-new-allocation",
+            "missing-source-fail-closed",
+            "incomplete-source-fail-closed",
+            "cross-reader-generation-mismatch",
+            "startup-source-bounds",
+            "invalid-borrowed-startup-refusal",
+            "complete-output-budget-refusal",
+            "invalid-utf8-refusal",
+            "single-owner-single-freeze",
+            "no-coherent-vm-epoch-or-player-claim"
+          ],
+          "allocationsAfterPrewarm": 0
+        },
+        "sanitized": {
+          "result": "PassedWithinHostScope",
+          "cases": [
+            "byte-exact-general-owned-parity",
+            "composition-no-new-allocation",
+            "missing-source-fail-closed",
+            "incomplete-source-fail-closed",
+            "cross-reader-generation-mismatch",
+            "startup-source-bounds",
+            "invalid-borrowed-startup-refusal",
+            "complete-output-budget-refusal",
+            "invalid-utf8-refusal",
+            "single-owner-single-freeze",
+            "no-coherent-vm-epoch-or-player-claim"
+          ],
+          "allocationsAfterPrewarm": 0
+        }
+      },
+      "sourcePreserved": true,
+      "firstError": null,
+      "sourceContract": {
+        "requiredProductionFragments": 20,
+        "caseNames": [
+          "byte-exact-general-owned-parity",
+          "composition-no-new-allocation",
+          "missing-source-fail-closed",
+          "incomplete-source-fail-closed",
+          "cross-reader-generation-mismatch",
+          "startup-source-bounds",
+          "invalid-borrowed-startup-refusal",
+          "complete-output-budget-refusal",
+          "invalid-utf8-refusal",
+          "single-owner-single-freeze",
+          "no-coherent-vm-epoch-or-player-claim"
+        ],
+        "onlyOwnedCompletedSourcesRead": true,
+        "noVmOrFileOperationsInComposer": true,
+        "crossEnumerationGenerationMismatchRejected": true,
+        "globalVmEpochProven": false
+      },
+      "commandCount": 4
+    },
+    "live-general": {
+      "result": "PassedWithinInactiveSourceHostScope",
+      "sourcePreserved": true,
+      "firstError": null,
+      "commandCount": 4
+    }
+  },
+  "legacyGeneralProfiles": [
+    {
+      "name": "strict",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "sanitized",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "legacyParityCases": [
+    {
+      "profile": "strict",
+      "variant": "n-large",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 331078,
+      "sha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+      "exactByteParity": true
+    },
+    {
+      "profile": "strict",
+      "variant": "empty",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 0,
+      "bytes": 327,
+      "sha256": "f77a59c273a6856ab85019922f8947eb3259833b93678f3d16aa5955045bbd75",
+      "exactByteParity": true
+    },
+    {
+      "profile": "strict",
+      "variant": "debug-class-flags",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 342307,
+      "sha256": "33d99dbb2c95cc9a90b333add09eb98bbe6815a4db2865f33c21d96dbc191669",
+      "exactByteParity": true
+    },
+    {
+      "profile": "sanitized",
+      "variant": "n-large",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 331078,
+      "sha256": "3d68d22ef23e09b677c06e44f44acac5042b819987719c6cc2937f830f05785a",
+      "exactByteParity": true
+    },
+    {
+      "profile": "sanitized",
+      "variant": "empty",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 0,
+      "bytes": 327,
+      "sha256": "f77a59c273a6856ab85019922f8947eb3259833b93678f3d16aa5955045bbd75",
+      "exactByteParity": true
+    },
+    {
+      "profile": "sanitized",
+      "variant": "debug-class-flags",
+      "producer": "Actual pinned original and current function bodies",
+      "mockClassCount": 1024,
+      "bytes": 342307,
+      "sha256": "33d99dbb2c95cc9a90b333add09eb98bbe6815a4db2865f33c21d96dbc191669",
+      "exactByteParity": true
+    }
+  ],
+  "noNewCompilerErrors": true,
+  "aggregateVerdictPreserved": true,
+  "realUnityOrPlayerRun": false,
+  "runtimeAcceptance": false,
+  "newNontrivialFindings": [],
+  "priorFindingId": "IR-LOCAL-P1-EMPTY-LIVE-RECEIPT-01",
+  "priorFindingStatusUnchanged": "SourceConfirmed_NotFaultInjected",
+  "successorFixValidation": "InactiveMetadataAdmissionWrapperSourceHostAndOfficialSDKSyntaxOnly",
+  "opaqueVerification": "OPAQUE_INVENTORY_VERIFICATION.json",
+  "registryRevisionVerification": "REGISTRY_REVISION_VERIFICATION.json",
+  "publisherVerification": "REGISTRY_PUBLISHER_VERIFICATION.json",
+  "ownedPhysicalNamesVerification": "OWNED_PHYSICAL_NAMES_VERIFICATION.json",
+  "physicalMembershipVerification": "PHYSICAL_MEMBERSHIP_VERIFICATION.json",
+  "boundRegistryVerification": "BOUND_REGISTRY_VERIFICATION.json",
+  "ownedPhysicalJsonVerification": "OWNED_PHYSICAL_JSON_VERIFICATION.json",
+  "liveOwnedPhysicalJsonVerification": "LIVE_OWNED_PHYSICAL_JSON_VERIFICATION.json",
+  "observedTypeShapeVerification": "OBSERVED_TYPE_SHAPE_VERIFICATION.json",
+  "liveTypeShapeCensusVerification": "LIVE_TYPE_SHAPE_CENSUS_VERIFICATION.json",
+  "observedTypeShapeJsonVerification": "OBSERVED_TYPE_SHAPE_JSON_VERIFICATION.json",
+  "vmShapeJsonVerification": "VM_SHAPE_JSON_VERIFICATION.json",
+  "gitPostflightVerification": "GIT_POSTFLIGHT_VERIFICATION.json",
+  "manifestLifetimeCorrectionVerification": "GIT_MANIFEST_LIFETIME_VERIFICATION.json",
+  "admittedExecutionVerification": "ADMITTED_EXECUTION_VERIFICATION.json"
+}

@@ -1,0 +1,45 @@
+{
+  "kind": "R03P1AdmittedLocalCollectorPreparation",
+  "result": "PreparedNotExecuted",
+  "historicalFailedCollectorSha256": "73d3a7e1fd1ad9f0d87f584f3c90dab1a3da1000e37db07d5891064eaa850cdd",
+  "correctedCollectorSha256": "06c76817c9bb200bec9ea94a6664a2944daa538279b7fa6614fa4b12f0738dc6",
+  "independentAuditSha256": "2b43453f00fd74c1692d55d3c10b7351df45a0a82d08cf551deb0282862848a0",
+  "repairScope": [
+    "opaque CPP admitted_include exact strip",
+    "opaque API admitted_decl exact strip"
+  ],
+  "historicalCheckpoint": {
+    "manifestSha256": "afff46a3f1c740c0605746bed4db0f82af0ed1a48abc441522e085514b2ddc53",
+    "filesVerified": 42,
+    "originalHelperSha256": "73d3a7e1fd1ad9f0d87f584f3c90dab1a3da1000e37db07d5891064eaa850cdd"
+  },
+  "nativeByteSourceProof": {
+    "libil2cpp/vm/AssemblyShadow.cpp": {
+      "currentSha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c",
+      "priorSha256": "31e0c39e51c83306933ee52de3f9855cc397836427608fcd135a76cf34dda036",
+      "literalSha256": "c6daec60beb27d224459835afe38fd36a608c18a26e5284f24b08757c2aac7b9",
+      "frozenBlob": "53aecc2d113b20b6ff825d0aa4ca0f4372a7cce2"
+    },
+    "libil2cpp/vm/AssemblyShadow.h": {
+      "currentSha256": "55e572887d7ed89cc5d9cd57b3457df240357aa389474512442f3a5fea487e8f",
+      "priorSha256": "477bcb912325a0c0ab17add94f565213dde2baae98ff97f0d607f982892af943",
+      "literalSha256": "75a63ceb619e74c25cd0130977870a423fc60d68067fd2aa36ae3eeb104a8d5f",
+      "frozenBlob": "32956c2c4084951131b497c1201712a0d4fe11b3"
+    }
+  },
+  "pins": {
+    "hybridclr_demo": "49c6b62d38d7668be10004ac1e5a030d74894f09",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+  },
+  "roots": [
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03-P1-ADMITTED-EXECUTION-20261023-b7e3",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03-P1-ADMITTED-EXECUTION-20261023-b7e3",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/Scratch-R03-P1-ADMITTED-EXECUTION-20261023-b7e3",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-p1-admitted-execution-20261023-b7e3"
+  ],
+  "coreInvoked": false,
+  "sdkCompiled": false,
+  "runtimeAcceptance": false
+}
