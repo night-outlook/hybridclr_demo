@@ -28,10 +28,10 @@ Branch for all four repositories: `codex/assembly-shadow-r01b-h1`. Four separate
 
 **Published Primary source pins (Git blobs):**
 - `audit_historical_only.py`: `c451e0cb7794e624eabb9029db0a35ba28d14592`
-- `verify_published_checkpoint.py`: `27c4cf862e75e56109c36257628ab7cebe6d34f1`
-- `stage_local_audit_only.py`: `c712ebe392ae517953ff50e788f7e509102374b0`.
+- `verify_published_checkpoint.py`: `f021e3d9ae292f4f109189618c9eee76d858b785`
+- `stage_local_audit_only.py`: `0749212187f7a3ec63df1efe6a887cf81bf2305c`.
 - `run_local_audit_once.py`: `994a7f9f179b2cfa024b1d6b9ec8113d9a071d76`
-- `test_audit_only_source.py`: `5b21037e1262eb10500b8ff9536c8b8d11b40956`.
+- `test_audit_only_source.py`: `e126f088a0360cac9c61b85e1620bf3986d28b81`.
 
 The old `audit_successor.py` source remains additive/untouched; the new historical-only variant keeps the corrected exact25 check and **all original inherited checks** prior to its final current-time Git authority block. Only the final time-variant authority is replaced with strict original captured event-time identity proof and an explicit distinct `PassedHistoricalEvidenceAuditOnly` (not original full Local/R03 acceptance). Never weaken the source assertions locally.
 
@@ -68,6 +68,7 @@ DEMO_SHA="$(git -C "$D" rev-parse HEAD)"
 test "$DEMO_SHA" = "$(git -C "$D" ls-remote origin refs/heads/codex/assembly-shadow-r01b-h1 | awk '{print $1}')"
 test "$DEMO_SHA" = "$(git -C "$D" log -1 --format=%H -- Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md)"
 git -C "$D" diff --exit-code 117cc6b1c2be8050cd2f433ef17db8b3c5138f93 "$DEMO_SHA" -- . ':(exclude)Docs/**' ':(exclude).github/workflows/**'
+# Prerequisite: 23 host-only tests, including two tiny test-owned Python audit subprocesses (no Local core/SDK/Unity).
 python3 -B "$T/test_audit_only_source.py"
 python3 -B "$T/stage_local_audit_only.py" \
   --workspace "$W" --preflight "$P" --raw "$O" --stage "$A"
@@ -75,7 +76,7 @@ python3 -B "$T/stage_local_audit_only.py" \
 
 The stage command independently rehashes all original 4269 raw manifest files, 2405 official installed SDK files, original source bindings and original preflight; authenticates the exact one lossless `run-once.log.utf8.json` source receipt and old failure. It creates only `A`, copying old preflight inputs to a **separate isolated tree** and staging a verified new audit-only `audit.py`; original `P/audit.py` remains byte-identical to its failed old SHA. It does **not** start a compiler, Unity or the audit itself.
 
-If stage succeeds and `AUDIT_ONLY_STAGE.json` says `StagedNotExecuted`, run **exactly one** isolated audit:
+If stage succeeds and `AUDIT_ONLY_STAGE.json` says `StagedNotExecuted` with `sdkScratchFiles=1925`, run **exactly one** isolated audit:
 
 ~~~bash
 python3 -B "$T/run_local_audit_once.py" --stage "$A" --timeout-seconds 1800
