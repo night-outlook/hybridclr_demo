@@ -1,3 +1,22 @@
+# R03 current Primary pre-review — IR-R03-01/02 source evidence, NO gate approval
+
+## Latest Primary action (2026-10-24)
+
+The previous Local `f51d` one-shot historical audit is **PASS only within `PassedHistoricalAuditOnly_UnchangedLocalFail` scope**. It does not reclassify b7e3 overall Local FAIL or c42a Local FAIL, or establish fresh current product/Player/runtime facts. The existing October 8 independent full-stage R03 review remains **FAIL**, not NotRun, due to High IR-R03-02 and IR-R03-01. Current activity is **Primary Implementation source/evidence pre-review**, not a separate reviewer decision or a new Local assignment.
+
+**IR-R03-02 (terminal method-entry)**: current `il2cpp_plus@e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb` source has terminal pre-method and pre-success checks, a narrowly constrained native diagnostic constructor scope, Runtime::Invoke/InvokeWithThrow and HybridCLR interpreter call-site guards. A strict Player fixture requiring actual pre/post-poison reflection/delegate/AOT canary and field side effects exists, BUT the current demo R03 native runner source-pins.json binds older `74dbdbea80d83923863303bd2b2c0a87f36541b1`; **current exact-source Player run remains NotRun and is blocked on runner/linked-input review**. Host-only native terminal policy tests do not substitute for Unity Player coverage.
+
+**IR-R03-01 (S archive identity)**: original S FILE_TRANSPORT/seal SHA256 `23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6`, 587907380 bytes, nine parts/15713 members, binds the original 90/90-cell source/evidence. Earlier inaccurate `f4c2a120e3fdbb1fbc5a984e920ba0dbf34a3e1502c3ecea955769d70179054a7` five-part identity was explicitly withdrawn; original-S provenance workflow 37845000985 passed bytes/ledger source checks but was not a separate independent reviewer. **IR-R03-01 remains PartiallyRemediatedAwaitingIndependentRereview**.
+
+**Verified new scope:** [CI 40086902503](https://github.com/night-outlook/hybridclr_demo/actions/runs/40086902503) SUCCESS on Ubuntu/macOS, 20/20 adversarial Python source/provenance checks and 69 native C++ terminal-policy header checks per host. Source result is `PassedSourceOnlyPreflight_PendingRealPlayerAndIndependentReview`; it expressly reports `BlockedStaleRunnerNativePin`. First two test-only failed attempts 40086592790/40086808626 remain distinct, not product failures. No native/product/managed source changed by Primary in this cycle.
+
+See [new source pre-review design](../History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/DESIGN.md), [plan](../History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/PLAN.md), [Primary source review](../History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/PRIMARY_REVIEW.md), [machine evidence](../History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/EVIDENCE.json), and the [not-yet-invoked independent reviewer request](../History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/INDEPENDENT_REREVIEW_REQUEST.md). No new Player/Local run has been authorized; [WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md) remains closed.
+
+**Unchanged phase/gates:** P1 Incomplete, P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, full P3 Incomplete; conservative NativeLayoutAdmissionV1 D1=A, pure Interpreter structural expansion deferred X02, D2=A observational-only performance. Full R03 independent FAIL remains until explicitly re-reviewed and its findings closed. R03Accepted/H2Passed/qualificationApproved/ReadyForHumanReviewGate/runtimeAcceptance/fullLegacyRegressionAcceptance false; PureInterpreter disabled. **Do not begin H2/X02/M08A/SNAP-01.**
+
+---
+
+## Earlier Primary and Local stages — historical record only
 # R03 P1 — Latest stage: f51d historical-evidence audit CLOSED within scope
 
 ## Current Primary reconciliation and evidence boundary (2026-10-24)
