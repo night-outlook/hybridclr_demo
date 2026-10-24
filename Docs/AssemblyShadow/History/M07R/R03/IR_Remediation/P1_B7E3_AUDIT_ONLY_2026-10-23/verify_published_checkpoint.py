@@ -272,6 +272,12 @@ def managed_command_evidence(root: Path):
 
 def native_command_evidence(root: Path):
     batch = root / "batch"
+    manifest_inputs = strict_json(batch / "native-sdk/native-sdk-inputs.json")
+    rows = manifest_inputs["files"]
+    assert len(rows) == 1925
+    names = [valid_rel(row["path"]) for row in rows]
+    assert len(set(names)) == 1925
+    assert all(SHA.fullmatch(row["sha256"]) for row in rows)
     r = strict_json(batch / "native-sdk/results.json")
     assert r["kind"] == "R03NativeRuntimePrerequisites"
     assert r["result"] == "Passed"
@@ -302,6 +308,8 @@ def native_command_evidence(root: Path):
     assert len(units) == 20 and set(units.values()) == {5}
     return {"nativeVersionCommands": 1, "nativeSyntaxCommands": 100,
             "distinctTU": 20, "profilesPerTU": 5,
+            "originalSdkScratchManifestFiles": len(rows),
+            "originalSdkScratchFilesRehashed": False,
             "compilerReexecutedByThisVerifier": False}
 
 
