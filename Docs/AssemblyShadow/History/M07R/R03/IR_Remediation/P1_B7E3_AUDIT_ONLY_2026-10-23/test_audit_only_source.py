@@ -312,6 +312,8 @@ class AuditOnlySourceContracts(unittest.TestCase):
             workspace.mkdir()
             preflight.mkdir()
             raw.mkdir()
+            (preflight / "EXPECTED.json").write_text(
+                json.dumps({"scratch": str(base / "retained-sdk-scratch")}))
             archived = b"archived failed audit remains original\n"
             (preflight / "audit.py").write_bytes(archived)
             (preflight / "SDK_BEFORE.json").write_text(
