@@ -1,3 +1,22 @@
+# R03 P1 — current Primary stage: isolated historical audit-only re-review
+
+## Source status / mandatory stop
+
+**Original authoritative Local `20261023-b7e3`: overall FAIL.** Its raw `PassedSourceHostAndSDKOnly` 25/25 source-host/official SDK syntax results do not satisfy its separate required independent auditor, which failed at line190 (24-name list vs actual25). The one-line corrected successor and its Mac/Linux 16+10 source-only tests are retained, not substitutes for completing the original audit. The original b7e3 failed audit and remaining assertions are immutable/NotRun.
+
+After the user's audit-only continuation, Primary authored a **new separate evidence-only audit path** under `Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/`:
+- **Published-snapshot audit PASS on Mac/Linux:** [CI 40053309333](https://github.com/night-outlook/hybridclr_demo/actions/runs/40053309333) independently hashes all 2506 published checkpoint files and verifies 2396 available raw-manifest records, 25 components, original85, admitted9+9, managed six command receipts, native100+version and captured historical Git20. Original raw manifest declares 4269, leaving **1873 external-unavailable raw files**; do not infer their correctness from GitHub.
+- **Source-bound historical auditor:** adds an explicit event-time final Git-source authority check using original `GIT_BEFORE.json` and captured Git postflight20 instead of impossible equality between current demo branch HEAD and the old b7e3 demo SHA. All other corrected-successor assertions are unchanged; output is labeled historical audit-only and original Local FAIL is preserved.
+- **One-shot Local staging and runner:** authenticate all original 4269 raw, 2405 official Unity SDK inputs, original source bindings and preflight, including lossless UTF-8 published original preflight log, before creating one isolated `c42a` root; copy original preflight read-only; run historical auditor once in that new root; rehash originals afterward; publish only a new audit-only report. No core/SDK/Editor/Player rerun and no historical-root edits.
+
+The current [WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md) authorizes **ONLY** the independent audit-only `20261023-c42a` scope after Mac/Linux source-only CI PASS and full Local source/raw/SDK root admission; no broader work. The Local agent must stop on any failure, no new suffix/retry or nontrivial fix.
+
+**Acceptance remains closed:** P1 Incomplete (type identity/pointer/epoch/full V1/runtime gaps), P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, P3 Incomplete. Historical `7896`/`7c2c` scope PASS, `82dd` raw FAIL, `e1e5`/`6c72` prerequisite Blocked, `b7e3` raw scope PASS vs overall independent audit FAIL, original SNAP-01/N/M/K/I/E/R02/strict S and full-stage R03 negatives all remain distinct. R03Accepted/H2Passed/qualificationApproved/ReadyForHumanReviewGate/runtimeAcceptance/fullLegacyRegressionAcceptance false; PureInterpreter disabled.
+
+---
+
+## Earlier snapshots (historical, not an instruction to rerun)
+
 # R03 P1 — current source-bound successor audit state, no active Local run
 
 ## Last authoritative Local cycle and Primary source remediation
