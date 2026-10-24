@@ -1,0 +1,23 @@
+# Audit-only continuation plan — no core/SDK/Player retry
+
+## Primary Implementation (current environment)
+
+1. Verify the four canonical remote HEADs via GitHub Connector; read README -> original Local-owned LOCAL_VALIDATION -> RETURN_TO_WEB and their immutable b7e3 source evidence first. Pin the original executed tuple separately from current Docs-only HEAD.
+2. Verify the original 24-name bug, exactly one +21-byte successor roster change, unchanged remainder of auditor, then inspect the later current-time Git authority check. Do not rewrite or rerun the original failed evidence.
+3. Create `verify_published_checkpoint.py` to hash all published checkpoint files and compare their raw-manifest coverage with 4269 declared originals; check exact25 identity/order, original85, admitted9+9, managed5+negative, native100+version, Git20 original direct streams, original historic preservation reports and original Local FAIL. All unavailable raw external files must be explicitly counted, not inferred Passed.
+4. Publish additive `audit_historical_only.py` with unchanged source assertions from the corrected successor except the **last** historical Git-authority adaptation and clearly distinct audit-only result labels. Preserve original live check source in the existing archived successor. Add adversarial read-only host tests for mutated original Git heads, duplicate/extra/ordered roster, stage canonical paths, source blob authenticity and one-shot barrier.
+5. Publish `stage_local_audit_only.py`, `run_local_audit_once.py`, Mac/Linux source-only CI, Design/Plan/source-audit/machine evidence and updated `WEB_TO_LOCAL.md` **authorizing only the new isolated audit-only cycle** if CI validations pass. Commit/push all work and verify remote HEAD and prior Local-owned Git blobs unchanged. No Unity/compiler/Local execution in Primary.
+
+## Exactly ONE future isolated Local audit-only cycle
+
+Under the newly published source-pinned WEB_TO_LOCAL, the Local Agent must:
+
+1. Independently authenticate all four current canonical clean remotes/commits, original executed b7e3 historical pins, original Git source blobs, official installed Unity2022.3.62f2 SDK, 4269 original raw files, old 95-file preflight and 2405 SDK file hashes, all 22 consumed historical P1 roots and original negative symlinks, plus original b7e3 `FAIL` and every earlier raw PASS/FAIL/Blocked state. Require the fresh `c42a` isolated audit root and future Git checkpoint path absent, nonsymlink, canonical and outside all source/raw/SDK consumed trees before creating either.
+2. Run the shipped **stager once** with exact original b7e3 `--preflight`, `--raw`, current source `--workspace` and new `--stage`. It checks every original external raw/SDK/source input and stages the unchanged original preflight copy plus the new historical-only source. `AUDIT_ONLY_STAGE.json` says `StagedNotExecuted`; no copied output is an execution verdict.
+3. Run **only** `run_local_audit_once.py --stage <fresh c42a root>` once. It invokes `audit.py` in the **staged copy**, which reads existing external raw/source/SDK files and writes only into the new stage. Strictly no subprocess invoking core runner, native/managed compiler, Unity/Player, or mutating any original evidence. If it fails, preserve raw stdout/stderr, partial audit outputs and exact assertion/line/command lifetime; STOP and return to Primary without retry.
+4. Run the shipped `stage_local_audit_only.py --verify-after` once to independently bind all original raw/SDK/source and preflight files again. If staging failed before creation, only independent non-invoking preservation applies. No evidence acceptance if originals changed.
+5. Publish factual LOCAL_VALIDATION and RETURN_TO_WEB **as a new audit-only result**, and one additive checkpoint `local-audit-only-p1-20261023-c42a`, including exact sources, staged pre/post manifests, all stdout/stderr/PID/times and required coverage matrix. Preserve the original b7e3 Local FAIL and consumed evidence unchanged. Commit/push only the allowed factual Local-owned paths and STOP regardless of result.
+
+**Mandatory stop:** no re-execution of b7e3 core25, original85, compiler100, Unity Editor/Player, no fresh general SDK test, no old-root reuse, no assertion removal, no arbitrary source adaptation by Local, no hidden retry/new suffix, no H2/X02/M08A/SNAP-01/Human Review Gate.
+
+A scoped `PassedHistoricalAuditOnly_UnchangedLocalFail` may be used **only** if the staged auditor actually exits0 with matching detailed output and both before/after original preservation checks Passed; this is not full historical original auditor PASS, runtime or R03 acceptance. Original Local `20261023-b7e3` stays FAIL.
