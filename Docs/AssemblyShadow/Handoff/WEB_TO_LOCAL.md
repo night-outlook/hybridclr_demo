@@ -74,7 +74,7 @@ python3 -B "$T/stage_local_audit_only.py" \
   --workspace "$W" --preflight "$P" --raw "$O" --stage "$A"
 ~~~
 
-The stage command independently rehashes all original 4269 raw manifest files, 2405 official installed SDK files, original source bindings and original preflight; authenticates the exact one lossless `run-once.log.utf8.json` source receipt and old failure. It creates only `A`, copying old preflight inputs to a **separate isolated tree** and staging a verified new audit-only `audit.py`; original `P/audit.py` remains byte-identical to its failed old SHA. It does **not** start a compiler, Unity or the audit itself.
+The stage command independently rehashes all original 4269 raw manifest files, 2405 official installed SDK files, **all 1925 copied native SDK scratch inputs**, original source bindings and original preflight; authenticates the exact one lossless `run-once.log.utf8.json` source receipt and old failure. It creates only `A`, copying old preflight inputs to a **separate isolated tree** and staging a verified new audit-only `audit.py`; original `P/audit.py` remains byte-identical to its failed old SHA. It does **not** start a compiler, Unity or the audit itself.
 
 If stage succeeds and `AUDIT_ONLY_STAGE.json` says `StagedNotExecuted` with `sdkScratchFiles=1925`, run **exactly one** isolated audit:
 
