@@ -71,7 +71,7 @@ class AuditOnlySourceContracts(unittest.TestCase):
         self.assertNotIn(b"PassedFactualEvidenceAudit", self.historical)
 
     def test_04_full_source_parses_and_output_labeled_nonacceptance(self):
-        self.assertEqual(len(self.historical_tree.body), len(self.original_tree.body))
+        self.assertGreater(len(self.historical_tree.body), len(self.original_tree.body))
         self.assertIn(b"originalLocalAcceptancePromoted=False", self.historical)
         self.assertIn(b"liveRemoteRechecked=False", self.historical)
 
