@@ -21,11 +21,11 @@
     "eightTwoDD": "FailedOrIncomplete"
   },
   "publishedSnapshotEvidence": {
-    "workflowRun": 40053309333,
-    "link": "https://github.com/night-outlook/hybridclr_demo/actions/runs/40053309333",
+    "workflowRun": 40072179278,
+    "link": "https://github.com/night-outlook/hybridclr_demo/actions/runs/40072179278",
     "macos15": "success",
     "ubuntu2404": "success",
-    "sourceCommit": "8ebacbf41b746e966f8f6c0b4c7006b594f7622c",
+    "sourceCommit": "63943cc914c19917ff356bab7303495ff09c8331",
     "checkpointFilesSha256Verified": 2506,
     "rawManifestDeclaredFiles": 4269,
     "rawPublishedFilesVerified": 2396,
@@ -39,7 +39,10 @@
     "result": "PassedPublishedSnapshotScope_ExternalInputsUnavailable",
     "externalSdkRawComplete": false,
     "fullIndependentAuditorExecuted": false,
-    "originalB7e3LocalResultPromoted": false
+    "originalB7e3LocalResultPromoted": false,
+    "previousBasicRun": 40053309333,
+    "originalSdkScratchManifestPathsChecked": 1925,
+    "originalSdkScratchFileBytesRechecked": false
   },
   "newSourceFiles": [
     {
@@ -72,13 +75,6 @@
     "currentLiveRemoteEquivalenceRechecked": false,
     "newHistoricalModeResult": "PassedHistoricalEvidenceAuditOnly",
     "alreadyExecutedLocally": false
-  },
-  "pendingSourceOnlyCi": {
-    "workflow": "r03-p1-b7e3-published-audit-only.yml",
-    "sourceOnlyTestCount": 23,
-    "latestTriggeredSourceCommit": "63943cc914c19917ff356bab7303495ff09c8331",
-    "runId": 40072179278,
-    "statusAtPreparation": "InProgress_NotAcceptanceEvidence"
   },
   "plannedOneShotLocal": {
     "auditOnlyRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/AuditOnly-R03-P1-ADMITTED-EXECUTION-20261023-c42a",
@@ -122,7 +118,7 @@
   },
   "hostOnlySyntheticRegression": {
     "testsDiscovered": 23,
-    "macLinuxAtCurrentSource": "Pending",
+    "macLinuxAtCurrentSource": "Passed23Of23BothHosts",
     "testOnlyPythonAuditorChildren": 2,
     "actualHistoricalAuditorInvoked": false,
     "originalCoreOrUnitySdkInvoked": false,
@@ -131,6 +127,36 @@
       "conclusion": "failure",
       "cause": "Test-owned isolated stage fixture lacked EXPECTED.json scratch locator",
       "correctedTestCommit": "d5916e31500607be6e85e744d291fef9ee0b2327"
-    }
+    },
+    "finalRunId": 40072179278,
+    "historicalFailPreserved": 40071504463
+  },
+  "sourceOnlyCi": {
+    "workflow": ".github/workflows/r03-p1-b7e3-published-audit-only.yml",
+    "runId": 40072179278,
+    "status": "CompletedSuccess",
+    "conclusion": "success",
+    "headSourceCommit": "63943cc914c19917ff356bab7303495ff09c8331",
+    "macLinux": [
+      {
+        "os": "macos-15",
+        "jobId": 120807804576,
+        "conclusion": "success",
+        "hostTestCases": 23,
+        "publishedCheckpointFilesChecked": 2506,
+        "rawPublishedVerified": 2396,
+        "rawMissingExternal": 1873
+      },
+      {
+        "os": "ubuntu-24.04",
+        "jobId": 120807804680,
+        "conclusion": "success",
+        "hostTestCases": 23,
+        "publishedCheckpointFilesChecked": 2506,
+        "rawPublishedVerified": 2396,
+        "rawMissingExternal": 1873
+      }
+    ],
+    "scope": "Host-only 23 unit tests includes 2 test-owned dummy Python audit subprocesses; no actual retained Local audit, Unity, IL2CPP or SDK compiler re-executed."
   }
 }
