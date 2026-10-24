@@ -299,5 +299,53 @@ class AuditOnlySourceContracts(unittest.TestCase):
                 self.stager.sdk_scratch_hashes(raw, scratch, expected_count=3)
 
 
+    def test_21_isolated_stage_and_after_preservation_synthetic_lifecycle(self):
+        # Integration of actual stager's COPY/write logic against tiny test-only
+        # roots; substitute only the expensive external 4269+2405+1925 snapshot.
+        from types import SimpleNamespace
+        with tempfile.TemporaryDirectory() as d:
+            base = Path(d).resolve()
+            workspace = base / "workspace"
+            preflight = base / "preflight"
+            raw = base / "raw"
+            target = base / "fresh-audit-only"
+            workspace.mkdir()
+            preflight.mkdir()
+            raw.mkdir()
+            archived = b"archived failed audit remains original\n"
+            (preflight / "audit.py").write_bytes(archived)
+            (preflight / "SDK_BEFORE.json").write_text(
+                json.dumps({"anchor": "/Applications/Unity/2022.3.62f2/Unity"}))
+            (preflight / "PREPARATION.json").write_text(
+                json.dumps({"result": "PreparedNotExecuted"}))
+            args = SimpleNamespace(workspace=str(workspace), preflight=str(preflight),
+                                   raw=str(raw), stage=str(target))
+            original = self.stager.snapshot
+            evidence = {"raw": {"regularFiles": 4269}, "sdk": {"files": 2405},
+                        "sdkScratch": {"checkedScratchFiles": 1925},
+                        "preflightFiles": {"audit.py": hashlib.sha256(archived).hexdigest()},
+                        "originalB7E3LocalState": "FAIL"}
+            self.stager.snapshot = lambda *_: copy.deepcopy(evidence)
+            try:
+                result = self.stager.stage(args)
+                self.assertEqual(result["result"], "StagedNotExecuted")
+                self.assertEqual(result["sdkScratchFiles"], 1925)
+                self.assertEqual((target / "ORIGINAL_B7E3_FAILED_AUDITOR.py").read_bytes(),
+                                 archived)
+                self.assertEqual((target / "audit.py").read_bytes(),
+                                 self.historical)
+                self.assertEqual((preflight / "audit.py").read_bytes(), archived)
+                self.assertFalse((target / "AUDIT_ONLY_INVOCATION.json").exists())
+                with self.assertRaises(ValueError):
+                    self.stager.stage(args)
+                after = self.stager.verify_after(args)
+                self.assertEqual(after["result"], "Preserved")
+                self.assertEqual(after["sdkScratchFiles"], 1925)
+                self.assertEqual((preflight / "audit.py").read_bytes(), archived)
+                self.assertTrue((target / "AUDIT_ONLY_AFTER.json").is_file())
+            finally:
+                self.stager.snapshot = original
+
+
 if __name__ == "__main__":
     unittest.main()
