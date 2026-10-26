@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "kind": "IRR0302CurrentNativePlayerOraclePrimarySourceOnlyEvidence",
+  "role": "PrimaryImplementation_NoIndependentStageVerdict",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "reviewDateBasis": "2026-10-26",
+  "sourcePins": {
+    "hybridclr_demo": "Current transport HEAD; no new product executable built",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
+    "legacyFocusedNative": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
+    "SExecutionDemo": "29bb3d4a39bf8a2f23be404f77535aaba3485bfc",
+    "f51dHistoricalAuditSourceDemo": "ea530e59eef38175738e517110c698ebd31bb07f"
+  },
+  "sourceGitBlobs": {
+    "Tools/AssemblyShadow/R03IR/run_terminal_local.py": "70b1a27f2dbbcad93f67e8caddcf7282ff3afd73",
+    "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs": "598feeec3231707091699d99fbf4428d50b52024",
+    "Tools/AssemblyShadow/R03IR/current_native_oracle_contracts.py": "7b87b599170a2a38bb58f344d18346f38297ba77",
+    ".github/workflows/r03-ir-current-native-oracle-source-only.yml": "a452f1cb368c45cbf7f0a2b0a2356d5bb1fe45af"
+  },
+  "ci": {
+    "runId": 40285861973,
+    "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/40285861973",
+    "workflow": "r03-ir-current-native-oracle-source-only.yml",
+    "headCommit": "8d537fcfb65db76a7d34044a847ad2c5d84fea52",
+    "status": "completed",
+    "conclusion": "success",
+    "platforms": [
+      {
+        "os": "macos-15",
+        "jobId": 121449229355,
+        "conclusion": "success",
+        "testsRun": 27,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "os": "ubuntu-24.04",
+        "jobId": 121449229645,
+        "conclusion": "success",
+        "testsRun": 27,
+        "failures": 0,
+        "errors": 0
+      }
+    ],
+    "oldSourceGate": {
+      "runId": 40264569824,
+      "conclusion": "success",
+      "sourceOnlyCasesPerHost": 20
+    },
+    "actualExternalSdkCompilerInvocations": 0,
+    "actualUnityPlayerInvocations": 0,
+    "oldRawEvidenceReusedAsRuntimeProof": false
+  },
+  "oracleCoverage": {
+    "actualFunctionsInvoked": [
+      "run_terminal_local.verify_ir",
+      "run_terminal_local.verify_engine"
+    ],
+    "positiveSyntheticStimuli": [
+      "baseline-owner",
+      "type-resolution",
+      "off",
+      "engine-unhandled"
+    ],
+    "originalPlannedPlayerCases": 5,
+    "casesRealPlayerObservedAtCurrentNative": 0,
+    "adversarialPolicies": [
+      "explicit reflection/delegate/AOT attempts required",
+      "no successful body entry",
+      "AOT canary unchanged after poison",
+      "bound native field unchanged and readable",
+      "original terminal error/recovery stable",
+      "typed failed state 9 and recovery disposition",
+      "native baseline guard exact values",
+      "Unity2022.3.62f2 OSXPlayer exact source/PID/run/case match",
+      "OFF unpoisoned two canary calls",
+      "real engine-unhandled sentinel and no managed logger side effect",
+      "no self-authorized runtime acceptance"
+    ],
+    "syntheticCaseCount": 27,
+    "realWorldScope": "Source-host oracle rejection contracts only"
+  },
+  "blockingFindings": {
+    "IR-R03-02": "CurrentSourceCorrected_OracleSourceHostPassed_CurrentSourceMatchedPlayerNotRun",
+    "IR-R03-01": "OriginalSProvenanceCorrected_IndependentFullStageSemanticReviewOutstanding",
+    "IndependentFullStage2026-10-08": "FAIL_NotReclassified"
+  },
+  "originalSProvenance": {
+    "canonicalArchiveSha256": "23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6",
+    "originalArchiveBytes": 587907380,
+    "originalArchiveParts": 9,
+    "originalArchiveMembers": 15713,
+    "withdrawnOtherArchiveSha256": "f4c2a120e3fdbb1fbc5a984e920ba0dbf34a3e1502c3ecea955769d70179054a7",
+    "correctionCiRunId": 37845000985,
+    "independentReviewerPassed": false,
+    "uninspectedOversizedGeneratedSourceMaterialOutstanding": true
+  },
+  "ownerDecisions": {
+    "D1": "A",
+    "D2": "A",
+    "pureInterpreterStructuralExpansion": "DeferredToX02",
+    "performance": "ObservationalOnly_FailedContaminatedWarmCertificatesRetained"
+  },
+  "currentState": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "ReadyForHumanReviewGate": false,
+    "runtimeAcceptance": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "nextAuthority": {
+    "newLocalRunAuthorized": false,
+    "independentFullStageReviewInvoked": false,
+    "HumanReviewGateInitiated": false,
+    "beginH2": false,
+    "beginM08A": false,
+    "beginX02": false,
+    "oldEvidenceModified": false
+  }
+}
