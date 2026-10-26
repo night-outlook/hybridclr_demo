@@ -1,5 +1,8 @@
 # R03 — remaining completion after focused batch H
 
+> **Current addendum (2026-10-26; read before historical status below):** S completed its original 90/90 source-matched Local matrix; a subsequent **independent R03 review was performed on 2026-10-08 and returned FAIL**, not "NotRun". High `IR-R03-02` remains open pending real current-native post-poison Player evidence and separate re-review; High `IR-R03-01` original S archive provenance has an additive byte correction but its independent source/build/process semantic audit remains open. The [2026-10-26 exact closure matrix](../../History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/R03_RC1_RC6_CLOSURE_MATRIX_2026-10-26.md) identifies the earliest missing obligations and the new bounded source-only oracle (27/27 Mac/Linux) and changed VM inventory (12/12 Mac/Linux). Historical statements in Sections 1–11 are retained for traceability and are not rewritten as current acceptance. D1=A defers out-of-V1 structural expansion to X02; D2=A keeps measurements observational. `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`; no fresh Local execution or later milestone is authorized.
+
+
 Status: **Historical RC1–RC6 decomposition, updated by owner D1=A / D2=A on 2026-10-08.** S completed the prescribed 90-cell Local matrix; independent full-stage review is still NotRun. The bounded normative amendment below controls R03 scope; this document is not permission to enter M08A.
 
 ## 1. Entry state and governing sources
