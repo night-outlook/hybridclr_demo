@@ -1,5 +1,8 @@
 # R03 · 布局准入、逻辑成员身份与跨版本图修复
 
+> **Current evidence status (2026-10-26):** The independent full-stage review was **actually performed on 2026-10-08 and returned FAIL** (High IR-R03-02 terminal-method entry after poison; High IR-R03-01 original-S archive identity). Therefore historical text below saying independent review "待/NotRun" describes the state **before that completed FAIL review**, not the current status. Original S 90/90 is retained. The [source/provenance re-review preparation](../../History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/PRIMARY_REVIEW.md) and [RC1–RC6 closure matrix](../../History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/R03_RC1_RC6_CLOSURE_MATRIX_2026-10-26.md) track both High findings without retroactive promotion. Current native e1e5 has source-level terminal fixes; source-only tests passed 20 source/pin + 27 Player-verifier oracle + 12 complete changed-VM-file identities per host, **but a source-matched current-native Unity Player witness has NotRun**. Original-S provenance was corrected within byte scope, not independently closed for full semantic source/build/Player/process evidence. Owner **D1=A/D2=A** and all existing conservative/admission/observational-only boundaries remain binding. `R03Accepted=false`, `ReadyForHumanReviewGate=false`; no H2/M08A/X02/Local execution authority is created.
+
+
 状态：**S 已完成规定的 Local 90/90 验证；R03 仍待独立完整审查。** 2026-10-08 业主明确选择 D1=A、D2=A：R03 限定于已有 NativeLayoutAdmissionV1 保守能力，开发性能数据仅作观察。PureInterpreter 结构扩展禁用；H2 尚未发起。
 
 前置：R01、R02。关联 findings：ASR-004, ASR-005, ASR-006。
