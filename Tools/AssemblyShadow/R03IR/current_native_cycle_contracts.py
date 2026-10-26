@@ -175,6 +175,17 @@ class CurrentNativeCycleContracts(unittest.TestCase):
         self.assertTrue(surviving["processGroupRemainedAtExit"])
         self.assertFalse(surviving["postCleanupGroupExists"])
         kill.assert_called_once()
+        with mock.patch.object(cycle, "group_exists", side_effect=[True, False]), \
+             mock.patch.object(cycle, "group_snapshot",
+                               side_effect=RuntimeError("diagnostic failed")), \
+             mock.patch.object(cycle.os, "killpg") as second_kill:
+            diagnostic_failure = cycle.run_step(
+                self.output, "diagnostic-should-not-prevent-cleanup",
+                [sys.executable, "-B", "-c", "pass"], 30)
+        self.assertEqual(diagnostic_failure["state"], "Failed")
+        self.assertTrue(diagnostic_failure["mayHaveExternalOwnedChildren"])
+        self.assertIn("diagnostic failed", diagnostic_failure["processDiagnosticError"])
+        second_kill.assert_called_once()
 
     def test_13_valid_synthetic_batch_receipt_remains_non_acceptance(self):
         result = self.read_batch(self.fake_result())

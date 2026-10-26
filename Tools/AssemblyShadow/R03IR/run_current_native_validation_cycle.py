@@ -241,7 +241,11 @@ def run_step(root: Path, name: str, argv: list[str], timeout: int) -> dict:
                     status["processGroupRemainedAtExit"] = remaining
                     if remaining:
                         status["mayHaveExternalOwnedChildren"] = True
-                        status["processGroupBeforeCleanup"] = group_snapshot(pgid)
+                        try:
+                            status["processGroupBeforeCleanup"] = group_snapshot(pgid)
+                        except Exception as diagnostic_error:
+                            # A broken diagnostic must not suppress owned cleanup.
+                            status["processDiagnosticError"] = repr(diagnostic_error)
                         if pgid <= 1 or pgid == os.getpgrp():
                             raise RuntimeError("Refusing to signal caller process group")
                         os.killpg(pgid, signal.SIGKILL)
