@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03IR02CurrentNativeCoherentSourceOnlyCandidate",
+  "result": "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation",
+  "owner": "PrimaryImplementation",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "currentSourcePins": {
+    "hybridclr_demo": "Source branch HEAD bound in final transport; source-only CI head 73386d39e1aeaef6175761c0f69c1f5f36dea631",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
+    "originalR03NativePin": "74dbdbea80d83923863303bd2b2c0a87f36541b1"
+  },
+  "previousIndependentStage": {
+    "date": "2026-10-08",
+    "verdict": "FAIL",
+    "findings": [
+      "IR-R03-02",
+      "IR-R03-01"
+    ],
+    "independentRereviewVerdict": "NotRun",
+    "currentOwnerDecisions": {
+      "D1": "A",
+      "D2": "A"
+    }
+  },
+  "nativeDrift": {
+    "from": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
+    "to": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
+    "aheadCommits": 147,
+    "changedPathsReturned": 125,
+    "provenEquivalentProductABI": false
+  },
+  "sourceFiles": [
+    {
+      "path": "Tools/AssemblyShadow/R03IR/current_native_candidate.json",
+      "gitBlob": "9b374b39211c8926ec92891672419f8e699fcc60"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/current_native_source_gate.py",
+      "gitBlob": "be86d3ec86f5bff68eab96435d37c71be2bcbfef"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/run_terminal_current.py",
+      "gitBlob": "b7732fbad1295a0486d7fb303948ac1bf54ec4e2"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/current_native_source_contracts.py",
+      "gitBlob": "a0e77ea9bf8143258cc459913d7081884498600f"
+    },
+    {
+      "path": ".github/workflows/r03-ir-current-native-source-only.yml",
+      "gitBlob": "70d94f652570a42c0ecc57829fef890fe556a2fa"
+    }
+  ],
+  "oldSourcePinsGitBlobPreserved": "9d72a237fb6ecd3efe3267ca89625aa49c61775d",
+  "sourceOnlyCi": {
+    "runId": 40264569824,
+    "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/40264569824",
+    "head": "73386d39e1aeaef6175761c0f69c1f5f36dea631",
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "os": "ubuntu-24.04",
+        "jobId": 121384007429,
+        "conclusion": "success",
+        "testsPassed": 20,
+        "testsRun": 20,
+        "sourceBlobsVerified": 10,
+        "result": "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation"
+      },
+      {
+        "os": "macos-15",
+        "jobId": 121384007834,
+        "conclusion": "success",
+        "testsPassed": 20,
+        "testsRun": 20,
+        "sourceBlobsVerified": 10,
+        "result": "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation"
+      }
+    ],
+    "originalHistoricTestDiscoveryProblem": {
+      "initialImpactedWorkflows": [
+        "R03 K terminal observation host contracts",
+        "R03 K source-bound contracts",
+        "R03 independent-review terminal host contracts"
+      ],
+      "cause": "New test_current_native_source_gate.py automatically discovered without required custom source paths",
+      "repair": "Rename to current_native_source_contracts.py (non-test_ prefix), remove test_-prefixed file, invoke exact filename only in candidate CI",
+      "historicTestsSkippedOrRelaxed": false,
+      "afterRemovalVerifiedExistingJobs": [
+        {
+          "runId": 40264545574,
+          "workflow": "R03 K terminal observation host contracts",
+          "status": "success"
+        },
+        {
+          "runId": 40264545571,
+          "workflow": "R03 K source-bound contracts",
+          "status": "success"
+        },
+        {
+          "runId": 40264545518,
+          "workflow": "R03 L factory and receipt contracts",
+          "status": "success"
+        }
+      ]
+    }
+  },
+  "candidateFocusedLocalScope": {
+    "plannedBuilds": 3,
+    "plannedFreshPlayers": 5,
+    "originalSFixtures": 15,
+    "specificProfiles": [
+      "candidate-release",
+      "candidate-debug",
+      "candidate-off"
+    ],
+    "playerCaseIds": [
+      "IR-R03-02-release-baseline",
+      "IR-R03-02-debug-baseline",
+      "IR-R03-02-release-type",
+      "IR-R03-02-off",
+      "IR-R03-02-release-engine"
+    ],
+    "sourceOnlyTests": 20,
+    "newUnityOrPlayerOrSdkCompilation": false,
+    "currentNativePlayerWitness": "NotRun",
+    "capturedGenericTerminalFailure": "NotRun",
+    "initializerTerminalFailure": "NotRun",
+    "independentStageRereview": "NotRun",
+    "localRunAuthorized": false
+  },
+  "originalEvidenceUnchanged": {
+    "S90Cells": "EvidenceReadyForPrimaryReview",
+    "b7e3": {
+      "raw": "PassedSourceHostAndSDKOnly",
+      "overallLocal": "FAIL"
+    },
+    "c42a": {
+      "overallLocal": "FAIL"
+    },
+    "f51d": "PassedHistoricalAuditOnly_UnchangedLocalFail",
+    "originalSArchiveProvenance": "PartiallyRemediatedAwaitingIndependentRereview",
+    "fullStageIndependentReview": "FAIL"
+  },
+  "acceptance": {
+    "P1": "Incomplete",
+    "P2": "NotIntegrated",
+    "E0": "Blocked/Unavailable",
+    "E1": "BlockedByE0",
+    "P3": "Incomplete",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false,
+    "qualificationApproved": false,
+    "runtimeAcceptance": false,
+    "fullLegacyRegressionAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "nextAuthority": {
+    "WEB_TO_LOCAL": "CLOSED",
+    "newLocalAssignment": false,
+    "newMilestoneAuthorized": false,
+    "next": "Review full native drift and propose explicit source-matched Player validation only after user authorization; conduct separate independent R03 re-review of IR-R03-01 and IR-R03-02."
+  }
+}
