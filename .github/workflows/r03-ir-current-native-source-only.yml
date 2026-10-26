@@ -6,7 +6,7 @@ on:
       - 'Tools/AssemblyShadow/R03IR/current_native_candidate.json'
       - 'Tools/AssemblyShadow/R03IR/current_native_source_gate.py'
       - 'Tools/AssemblyShadow/R03IR/run_terminal_current.py'
-      - 'Tools/AssemblyShadow/R03IR/test_current_native_source_gate.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_source_contracts.py'
       - '.github/workflows/r03-ir-current-native-source-only.yml'
   workflow_dispatch:
 permissions:
@@ -64,7 +64,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 -B Tools/AssemblyShadow/R03IR/test_current_native_source_gate.py \
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_source_contracts.py \
             --demo "$PWD" --native "$PWD/external/il2cpp_plus" \
             --hybridclr "$PWD/external/hybridclr" --package "$PWD/external/hybridclr_unity"
       - name: Authenticate exact ten source blobs and detached current checkouts
