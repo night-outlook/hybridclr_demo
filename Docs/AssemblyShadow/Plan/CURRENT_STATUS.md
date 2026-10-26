@@ -1,3 +1,11 @@
+# Current R03 Primary to Local cycle — source-host prepared, Local NotRun (2026-10-26)
+
+The exact one-use source-pinned R03 Local cycle is **ACTIVE ONLY** through the newly pushed Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md and the Primary-to-Local final full-demo-SHA handoff. It combines a newly reauthenticated nine-part original S archive/90-cell/59 historical process crosswalk, **fresh current-native e1e5** three-build/five-Player Unity 2022.3.62f2 macOS arm64 witness and 126 physical changed-VM installed byte comparisons. Actual Local execution is **NotRun**. [Mac/Linux CI 40317130046](https://github.com/night-outlook/hybridclr_demo/actions/runs/40317130046) verified 124 source/host-only tests per host, not a Unity/IL2CPP compiler or Player.
+
+The original independent Oct 8 full-stage R03 verdict remains **FAIL** (High IR-R03-01/02), original S historical Local 90/90 remains bounded, b7e3/c42a overall Local FAIL and f51d historical-only PASS remain distinct. D1=A conservative NativeLayoutAdmissionV1, structural expansion X02 deferred; D2=A observational performance and four contaminated Failed certificates. Primary must reconcile Local exact evidence, then require a **separately human-initiated independent full-stage R03 review** before any H2. R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, runtimeAcceptance=false, qualificationApproved=false, PureInterpreter disabled; P1 incomplete, P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, full P3 incomplete.
+
+---
+
 # R03 current Primary stage — e1e5 native coherent candidate source-only, Player NotRun
 
 ## IR-R03-02 source tuple repair and independent review entry (2026-10-25)

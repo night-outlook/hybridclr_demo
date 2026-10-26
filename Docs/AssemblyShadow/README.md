@@ -1,3 +1,13 @@
+# Current Primary handoff — one-use R03 current-native and original-S Local validation (2026-10-26)
+
+**ACTIVE ONCE only under canonical pushed WEB_TO_LOCAL.md and exact final demo remote SHA.** Primary has prepared additive one-use R03 source/host orchestration, physical 42 changed-VM-file × 3 installed-build-role parity checks, and 35 new adversarial coordinator/installed-source tests. See [Design](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_LOCAL_CYCLE_2026-10-26/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_LOCAL_CYCLE_2026-10-26/PLAN.md), [Primary source review](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_LOCAL_CYCLE_2026-10-26/PRIMARY_SOURCE_REVIEW.md), [machine source/CI evidence](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_LOCAL_CYCLE_2026-10-26/EVIDENCE.json) and the [canonical active WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md).
+
+[GitHub Actions 40317130046](https://github.com/night-outlook/hybridclr_demo/actions/runs/40317130046) passed Mac/Linux with **124 source/host-only tests per platform** (20 coordinator, 15 VM-install synthetic, 20 source, 27 verifier synthetic, 12 VM delta, 30 original S audit host). This does NOT reconstruct original S full archive, compile installed Unity SDK, or run a real Player. The original first Mac fixture FAIL is retained, corrected and verified. No historical product FAIL was promoted.
+
+**Next Local scope:** one fresh original-S nine-part archival/provenance/59-process crosswalk, current-native e1e5 three build roles/five real macOS arm64 Unity Player cases, and physical 126 source-installed byte comparisons; these remain NotRun. October 8 independent full-stage R03 **FAIL** and High IR-R03-01/02 remain unclosed. R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, qualificationApproved=false, runtimeAcceptance=false, PureInterpreter disabled. No H2/M08A/X02/protected SNAP-01.
+
+---
+
 # HybridCLR Assembly Shadow
 
 ## Latest Primary Implementation — current-native R03 source review and independent-gate preparation (2026-10-26)
