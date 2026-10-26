@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03IR02PinnedCurrentNativeVmDelta",
+  "description": "Exact 42 changed libil2cpp/vm files relative to prior focused terminal native 74db...; source identity only, not a compiler/install/live include graph.",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "baselineNativeCommit": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
+  "candidateNativeCommit": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
+  "comparison": {
+    "aheadBy": 147,
+    "behindBy": 0,
+    "totalFilesChanged": 125,
+    "vmFilesChanged": 42,
+    "diagnosticToolFilesChanged": 59,
+    "workflowFilesChanged": 24
+  },
+  "files": [
+    {
+      "path": "libil2cpp/vm/Assembly.cpp",
+      "gitBlob": "cb383d664ed02e138a9dd0cb42f2a64629146207",
+      "baselineDelta": "modified",
+      "diffChanges": 37
+    },
+    {
+      "path": "libil2cpp/vm/Assembly.h",
+      "gitBlob": "3e4bbb85c190bf0f9c43fee9e3fc3518c61ed457",
+      "baselineDelta": "modified",
+      "diffChanges": 7
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "gitBlob": "57cf47f964a83973df8296955ccf856b105c595f",
+      "baselineDelta": "modified",
+      "diffChanges": 338
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadow.h",
+      "gitBlob": "68e78fe6250e3bd1028641d9513eb7d14158e8da",
+      "baselineDelta": "modified",
+      "diffChanges": 97
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+      "gitBlob": "a615a839f5af8614c672a9bfb45be02d12b01a0e",
+      "baselineDelta": "added",
+      "diffChanges": 24
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+      "gitBlob": "5b2afe1cfcf14570e64b8836ef4f995ee5e6db57",
+      "baselineDelta": "added",
+      "diffChanges": 62
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+      "gitBlob": "f465f0435edf17e99385f283ee36a75fdd46f7e9",
+      "baselineDelta": "added",
+      "diffChanges": 95
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+      "gitBlob": "b7ba5dffb2e3ecebe7406f598e97a1ab97251cdf",
+      "baselineDelta": "added",
+      "diffChanges": 317
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+      "gitBlob": "bf3c19fab543c24134712ea08dc2cb78190f7f3a",
+      "baselineDelta": "added",
+      "diffChanges": 234
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+      "gitBlob": "b554eb36f6337c139a3f24beb168ab3f2b6e4343",
+      "baselineDelta": "added",
+      "diffChanges": 95
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+      "gitBlob": "def5d5b3533fe88e829e4863e1ba150b5f4d2e93",
+      "baselineDelta": "added",
+      "diffChanges": 136
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h",
+      "gitBlob": "91f049cc7d81d5e6de95ec50884ed3d6b9b63163",
+      "baselineDelta": "added",
+      "diffChanges": 167
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+      "gitBlob": "4e82e7f3814b8ed021a24d235dcfbe79c4c2412a",
+      "baselineDelta": "added",
+      "diffChanges": 132
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h",
+      "gitBlob": "d2a6fb798de9a3599f6b6c63149515cb23ab3350",
+      "baselineDelta": "added",
+      "diffChanges": 274
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h",
+      "gitBlob": "fc3a569ea0f617b67b3867a804126e9583d86b72",
+      "baselineDelta": "added",
+      "diffChanges": 154
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+      "gitBlob": "ce360fce0bbbc16ee12d8bdbb849d8c0b7726b34",
+      "baselineDelta": "added",
+      "diffChanges": 43
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowExecutionRegistryPublisher.h",
+      "gitBlob": "4d7e80346cf8b3a8c93ad95e025f00035629f141",
+      "baselineDelta": "added",
+      "diffChanges": 51
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h",
+      "gitBlob": "46a313742295acaa52d5022f238fbcba4430c6df",
+      "baselineDelta": "added",
+      "diffChanges": 23
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h",
+      "gitBlob": "624a43c0f153456001288c904d9705ec59171aae",
+      "baselineDelta": "added",
+      "diffChanges": 218
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+      "gitBlob": "eeb413f8c8c0f6c1658da68ddd404b9b478e6e70",
+      "baselineDelta": "added",
+      "diffChanges": 204
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+      "gitBlob": "08856d4a610ed3fa519cee67bad8a307dd82a34b",
+      "baselineDelta": "added",
+      "diffChanges": 348
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowFrozenR02Capture.h",
+      "gitBlob": "64ec2dc887106f12274febc74b4e155e140d70e5",
+      "baselineDelta": "added",
+      "diffChanges": 76
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+      "gitBlob": "ab136038a49a8e6614243677d19e20c6f3fde4c5",
+      "baselineDelta": "added",
+      "diffChanges": 57
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+      "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd",
+      "baselineDelta": "added",
+      "diffChanges": 110
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShape.h",
+      "gitBlob": "9625544a62c4907c73da251f4062dea0731758b7",
+      "baselineDelta": "added",
+      "diffChanges": 75
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+      "gitBlob": "23065b67456ee7d19c7019cf24900e66daaf28db",
+      "baselineDelta": "added",
+      "diffChanges": 121
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+      "gitBlob": "14b44ca96a1be6a0abc8629ecea1b7bade02eabe",
+      "baselineDelta": "added",
+      "diffChanges": 183
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+      "gitBlob": "f432aa3ea638a05b42618ca242be5bbc3e3e1e67",
+      "baselineDelta": "added",
+      "diffChanges": 53
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+      "gitBlob": "7778e2064cbba7fb5b16179746cbb7d272118fb6",
+      "baselineDelta": "added",
+      "diffChanges": 33
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+      "gitBlob": "a2ca61c35b0ba0e5f71a261b21647a36dfc0a9c4",
+      "baselineDelta": "added",
+      "diffChanges": 118
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+      "gitBlob": "372d12209417dcb9e119da6bda64deca79389a23",
+      "baselineDelta": "added",
+      "diffChanges": 64
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+      "gitBlob": "dff6f12dca1c4f89dec7151ced6b63febeb0769f",
+      "baselineDelta": "added",
+      "diffChanges": 45
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+      "gitBlob": "da06714c197010343a021a4b1535887951f23cd1",
+      "baselineDelta": "added",
+      "diffChanges": 182
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+      "gitBlob": "35d4d000faa588cdd5147a0b2abdf00d566c0b06",
+      "baselineDelta": "added",
+      "diffChanges": 233
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+      "gitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3",
+      "baselineDelta": "added",
+      "diffChanges": 121
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowPhysicalMembership.h",
+      "gitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3",
+      "baselineDelta": "added",
+      "diffChanges": 183
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowPhysicalMembershipSource.inl",
+      "gitBlob": "4e18fa035c324a67959284efa90fa601c6ede0d9",
+      "baselineDelta": "added",
+      "diffChanges": 65
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+      "gitBlob": "1c2a43384d03b0369a51b587fc5f5e445d5b58c8",
+      "baselineDelta": "modified",
+      "diffChanges": 5
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+      "gitBlob": "9f7266014b1514adfd0935948ff417375df274d8",
+      "baselineDelta": "added",
+      "diffChanges": 139
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowVisibility.cpp",
+      "gitBlob": "1469a44b51ce0adb8d0e98dffd0ac66a0d107aaa",
+      "baselineDelta": "modified",
+      "diffChanges": 59
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowVisibility.h",
+      "gitBlob": "0e94c3d478cb6c1cdd80fd84f684b91e680673bc",
+      "baselineDelta": "modified",
+      "diffChanges": 8
+    },
+    {
+      "path": "libil2cpp/vm/Runtime.cpp",
+      "gitBlob": "96b914fbeb31c69d649e4076a802de0b6418daa8",
+      "baselineDelta": "modified",
+      "diffChanges": 22
+    }
+  ],
+  "acceptance": {
+    "actualUnityPlayerRun": false,
+    "nativeCompilerReexecuted": false,
+    "allChangedVmFilesSemanticallyReviewed": false,
+    "allChangedVmFilesIncludedInPlayerBinary": false,
+    "IRR0302Closed": false,
+    "R03Accepted": false,
+    "ReadyForHumanReviewGate": false
+  }
+}

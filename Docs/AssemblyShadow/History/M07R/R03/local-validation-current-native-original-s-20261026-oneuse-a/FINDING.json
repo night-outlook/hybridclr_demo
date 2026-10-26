@@ -1,0 +1,31 @@
+{
+  "id": "IR-LOCAL-CURRENT-NATIVE-ORIGINAL-S-CAPACITY-01",
+  "status": "PrerequisiteBlocked_NotExecuted",
+  "symptom": "Available space fell below the mandatory 20 GiB after the new full original-S fc55 worktree was materialized. Coordinator and all ten stages were not launched.",
+  "reproduction": [
+    "Verify clean exact current source pins at /Users/ah/GitHub/hybridclr/assembly_shadow_h1r.",
+    "Confirm unused original-S destination /Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse and coordinator destination /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-A.",
+    "At the admitted before-worktree sample, available bytes were 55757221888 (51.93 GiB).",
+    "Execute once: git -C /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo worktree add --detach /Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+    "Immediately after worktree creation, available bytes were 21074190336, below 21474836480 mandatory bytes. Stop before coordinator admission/output creation."
+  ],
+  "evidence": {
+    "worktreeReceipt": "evidence/current-native-original-s-WORKTREE-20261026.json",
+    "capacityReceipt": "evidence/current-native-original-s-CAPACITY_BLOCKED-20261026.json",
+    "worktreeStdout": "evidence/current-native-original-s-worktree.stdout.log",
+    "worktreeStderr": "evidence/current-native-original-s-worktree.stderr.log.utf8.json"
+  },
+  "mostLikelyCause": "The required fully materialized historical source/evidence worktree substantially reduced shared-volume free space; no native or Player execution defect was observed. Free-space samples are dynamic and do not prove exclusive allocation by this command.",
+  "affectedScope": "Environment admission for the combined original-S plus current-native cycle. All archive/process/host/build/Player/parity stages remain NotRun.",
+  "recommendedPrimaryDirection": "Reconcile capacity for the combined prescribed layout, or publish explicit storage-aware authority for the already retained exact clean fc55 worktree. Require a new one-use handoff and fresh admission after any approved preparation; do not rerun this stopped attempt or discard protected history.",
+  "remainingUncertainty": "A later passive preservation sample rose to 21783199744 bytes (20.29 GiB) without Local cleanup. Cause and sustained headroom are unproven. It was recorded, not accepted as a retry/re-admission. The actual coordinator, archive audit and product results are unavailable.",
+  "validationStillRequired": "All ten coordinator stages, three fresh native builds, five actual Players, 126 installed VM comparisons and complete child/source/seal postflight remain required under new authority.",
+  "sourcePins": {
+    "hybridclr_demo": "9492a6f814db00dd715824b25650be199f93a483",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+  },
+  "coordinatorInvoked": false,
+  "sourceOrStoragePolicyModified": false
+}

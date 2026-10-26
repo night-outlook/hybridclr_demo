@@ -1,0 +1,104 @@
+{
+  "kind": "LocalCurrentNativeOriginalSPreflightOutcome",
+  "result": "BLOCKED",
+  "classification": "CapacityBlocked_CoordinatorNotRun",
+  "sourcePins": {
+    "hybridclr_demo": "9492a6f814db00dd715824b25650be199f93a483",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+  },
+  "sourceCheckResult": "PassedCleanExactSourceAndRemoteHeads",
+  "sourceBindingsVerified": 52,
+  "originalS": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+    "commit": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+    "state": "CreatedCleanAndPreserved",
+    "worktreeCommandReceipt": "evidence/current-native-original-s-WORKTREE-20261026.json"
+  },
+  "coordinatorInvocations": 0,
+  "coordinatorResult": "NotRun",
+  "plannedStages": 10,
+  "executedStages": 0,
+  "stages": {
+    "source-contracts": {
+      "state": "NotRun",
+      "reason": "Independent storage admission failed after the required original-S worktree preparation; coordinator not invoked"
+    },
+    "oracle-contracts": {
+      "state": "NotRun",
+      "reason": "Independent storage admission failed after the required original-S worktree preparation; coordinator not invoked"
+    },
+    "vm-delta-contracts": {
+      "state": "NotRun",
+      "reason": "Independent storage admission failed after the required original-S worktree preparation; coordinator not invoked"
+    },
+    "original-s-host-contracts": {
+      "state": "NotRun",
+      "reason": "Independent storage admission failed after the required original-S worktree preparation; coordinator not invoked"
+    },
+    "installed-source-host-contracts": {
+      "state": "NotRun",
+      "reason": "Independent storage admission failed after the required original-S worktree preparation; coordinator not invoked"
+    },
+    "original-s-audit": {
+      "state": "NotRun",
+      "reason": "Independent storage admission failed after the required original-S worktree preparation; coordinator not invoked"
+    },
+    "original-s-process-joins": {
+      "state": "NotRun",
+      "reason": "Independent storage admission failed after the required original-S worktree preparation; coordinator not invoked"
+    },
+    "native-host-diagnostics": {
+      "state": "NotRun",
+      "reason": "Independent storage admission failed after the required original-S worktree preparation; coordinator not invoked"
+    },
+    "current-native-players": {
+      "state": "NotRun",
+      "reason": "Independent storage admission failed after the required original-S worktree preparation; coordinator not invoked"
+    },
+    "native-installed-source-audit": {
+      "state": "NotRun",
+      "reason": "Independent storage admission failed after the required original-S worktree preparation; coordinator not invoked"
+    }
+  },
+  "plannedFreshBuilds": 3,
+  "actualFreshBuilds": 0,
+  "plannedFreshPlayers": 5,
+  "actualFreshPlayers": 0,
+  "UnityLaunches": 0,
+  "installedSourcePairsPlanned": 126,
+  "installedSourcePairsVerified": 0,
+  "storage": {
+    "kind": "CurrentNativeOriginalSCapacityAdmission",
+    "result": "Blocked",
+    "classification": "CapacityBlocked_CoordinatorNotRun",
+    "observedUtc": "2026-10-26T14:15:37.406440+00:00",
+    "thresholdGiB": 20,
+    "thresholdBytes": 21474836480,
+    "availableBytesAfterWorktree": 21783199744,
+    "freeBytesAtOriginalWorktreeCompletion": 21074190336,
+    "availableBytesBeforeWorktree": 55757221888,
+    "worktree": "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+    "worktreeCommit": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+    "worktreeClean": true,
+    "coordinatorInvocations": 0,
+    "batchRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-A",
+    "batchRootAbsent": true,
+    "thresholdWeakened": false,
+    "cleanupPerformed": false,
+    "retried": false
+  },
+  "historicalCheckpointPreservation": "Passed",
+  "installedSdkPreservation": "HistoricalBindingFreshlyRehashed_2405Files",
+  "originalSArchiveAndProcessAudit": "NotRun",
+  "productDefectObserved": false,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "ReadyForHumanReviewGate": false,
+  "runtimeAcceptance": false,
+  "pureInterpreterEnabled": false,
+  "retried": false,
+  "nextState": "Primary Implementation"
+}
