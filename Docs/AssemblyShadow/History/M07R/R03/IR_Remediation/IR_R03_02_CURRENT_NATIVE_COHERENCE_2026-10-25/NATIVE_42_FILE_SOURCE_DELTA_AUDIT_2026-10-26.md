@@ -21,7 +21,7 @@ Within the 42 native VM paths, **8 are modified** and **34 are added**. The modi
 | --- | --- | --- |
 | `Tools/AssemblyShadow/R03IR/current_native_vm_delta.json` | `83c1ed0ae5470b2267703f2aa529cefc2706425f` | Ordered exact 42-file path/status/source-Git-blob manifest from native GitHub comparison and current directory metadata |
 | `Tools/AssemblyShadow/R03IR/current_native_vm_delta_contracts.py` | `64cced754b0391a6efb36095081e5313f1b1a267` | 12 host-only contracts: actual current-native source Git blobs, exact ordered roster, exact source pin, rejects dropped/duplicate/forged/aliased/invalid entries and source/acceptance promotion |
-| `.github/workflows/r03-ir-current-native-vm-delta-source-only.yml` | Source blob read back at final publication | Fixed native `e1e5...` sparse checkout; Mac/Linux read-only source/hash tests, no compiler |
+| `.github/workflows/r03-ir-current-native-vm-delta-source-only.yml` | `e595fb99cf2943a22c2a97b410b8cc6da98d8826` | Fixed native `e1e5...` sparse checkout; Mac/Linux read-only source/hash tests, no compiler |
 
 The CI checks each file's actual checked-out **Git blob** against the committed 42-entry manifest. It validates the exact current `git rev-parse HEAD`, old/current commit distinction, complete ordered roster and fail-closed negative mutations. It does **not** simply check that filenames exist. The test suite is explicitly invoked; its filename does not begin with `test_` to avoid perturbing historical unittest discovery.
 
