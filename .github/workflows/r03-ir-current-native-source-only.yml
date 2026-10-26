@@ -1,0 +1,100 @@
+name: R03 IR-02 current-native coherent source gate
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - 'Tools/AssemblyShadow/R03IR/current_native_candidate.json'
+      - 'Tools/AssemblyShadow/R03IR/current_native_source_gate.py'
+      - 'Tools/AssemblyShadow/R03IR/run_terminal_current.py'
+      - 'Tools/AssemblyShadow/R03IR/test_current_native_source_gate.py'
+      - '.github/workflows/r03-ir-current-native-source-only.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-only:
+    name: Current native/IR source-only (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - name: Demo exact source-only runner/fixtures
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03
+            Tools/AssemblyShadow/R03IR
+      - name: Actual current native pin e1e5 (no compile)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb
+          path: external/il2cpp_plus
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            libil2cpp/vm/AssemblyShadow.cpp
+            libil2cpp/vm/AssemblyShadowTerminalExecution.h
+            libil2cpp/vm/Runtime.cpp
+      - name: Exact interpreter pin 4b27 (no compile)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+          path: external/hybridclr
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            hybridclr/interpreter/Interpreter_Execute.cpp
+      - name: Exact package pin 948c (no compilation)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: external/hybridclr_unity
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            README.md
+      - name: Twenty adversarial source and native-pin tests only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B Tools/AssemblyShadow/R03IR/test_current_native_source_gate.py \
+            --demo "$PWD" --native "$PWD/external/il2cpp_plus" \
+            --hybridclr "$PWD/external/hybridclr" --package "$PWD/external/hybridclr_unity"
+      - name: Authenticate exact ten source blobs and detached current checkouts
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/R03_IR_CURRENT_SOURCE_ONLY.json"
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_source_gate.py \
+            --demo "$PWD" --native "$PWD/external/il2cpp_plus" \
+            --hybridclr "$PWD/external/hybridclr" --package "$PWD/external/hybridclr_unity" \
+            --exact-checkout-heads --output "$OUT"
+          python3 -B - "$OUT" <<'PY'
+          import json,sys
+          data=json.load(open(sys.argv[1]))
+          assert data['result']=='PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation'
+          assert data['verifiedSourceFiles']==10
+          assert data['focusedPlayerCaseCount']==5 and data['candidateNativeBuildRoles']==3
+          assert data['currentSourceMatchedPlayerExecution']=='NotRun'
+          assert data['nextLocalAuthority']=='NotAuthorized'
+          assert data['runtimeAcceptance'] is False and data['R03Accepted'] is False
+          assert data['originalR03PinsRewritten'] is False
+          PY
+      - name: Explicit scope verdict
+        shell: bash
+        run: echo 'SOURCE-ONLY candidate. NO Unity/IL2CPP compile/Player, no Local assignment or H2 approval.'
+      - name: Retain source-only report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r03-current-native-source-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/R03_IR_CURRENT_SOURCE_ONLY.json
+          if-no-files-found: warn
+          retention-days: 7
