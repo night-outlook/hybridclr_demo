@@ -18,6 +18,7 @@ Add Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py. Functiona
 - Reuse audit_s_provenance.py plus audit_s_process_joins.py on full original S evidence once; never run a historical S Player. If archive audit fails, process joins are Blocked, current real Player can independently proceed after source gates, but combined result is ReturnRequired.
 - Reuse run_primary_host_preflight.py for additional bounded diagnostic-native/host scope. Do not equate a native C++ syntax compile with official Unity SDK installation/Player.
 - Recheck source and original S identities before/after delegating exactly once to run_terminal_current.py; retain all three role builds and five real Player case results. Validate the actual child LOCAL_BATCH_RESULT.json and seal, not only exit 0; require 3/3 and 5/5, exact tuple and all non-acceptance flags.
+- After a genuine successful five-Player result, run current_native_install_audit.py once: compare all 42 changed VM source blobs to three actual role-specific installed native trees, bind build-v2 before/after inventories and exact Release/Debug/OFF/config/source pins. Require 126 physical source/install byte pairs and explicitly mark generated C++ closure and binary linkage NotProven by that parity test.
 - Preserve one-use invocation marker, stdout/stderr, PID, exit/timeout and timestamp/hash per component; finish with explicit per-component status and coordinator-only manifest. A failure never mutates prior outputs and never turns historical FAIL to PASS. No automatic batch retry, no silent cleanup, no unbounded subprocess waits.
 
 ## P02 — Source and adversarial host tests (Primary)
@@ -31,7 +32,7 @@ Add current_native_cycle_contracts.py, invoked explicitly (not test_ discovery).
 - all component statuses necessary for final focused readiness, failure of even one to ReturnRequired;
 - strict macOS ARM64 actual-run gate, no source-discovery collision or original-history cleanup.
 
-CI: macos-15 and ubuntu-24.04 read-only workflow with exact native/interpreter/package source pins, run 20 coordinator contracts + existing 20 source gate + 27 synthetic real-verifier oracle + 12 changed VM files + original S host contracts. CI is not original S reconstruction, Unity compilation or actual Player.
+CI: macos-15 and ubuntu-24.04 read-only workflow with exact native/interpreter/package source pins, run 20 coordinator contracts + 15 new installed-native parity contracts + existing 20 source gate + 27 synthetic real-verifier oracle + 12 changed VM files + original S host contracts. CI is not original S reconstruction, Unity compilation or actual Player.
 
 Perform static source/diff review of code and workflow; if CI fails, make bounded Primary repairs and re-run. Do not change product/native C++, interpreter, package, historical R03IR Player source or evidence merely to make CI green.
 
@@ -48,7 +49,7 @@ Execution: one new coordinator invocation documented in WEB_TO_LOCAL, no retries
 
 Return:
 - new exact output root and coordinator RESULT.json plus COORDINATOR_MANIFEST.json;
-- all eight stage INVOCATION/RESULT/log receipts, original audit.json, process-joins.json, native host RESULT.json and current-native LOCAL_BATCH_RESULT.json and seal;
+- all ten stage INVOCATION/RESULT/log receipts, original audit.json, process-joins.json, native host RESULT.json, installed-native-vm-parity.json (42 x 3 if Passed) and current-native LOCAL_BATCH_RESULT.json and seal;
 - evidence manifest hash, representative raw receipts and failed/blocked logs, original S source/worktree after-clean status and four remote heads;
 - Local-owned LOCAL_VALIDATION.md with Passed/Failed/Blocked/NotRun/Unavailable and RETURN_TO_WEB.md for any nontrivial finding. Commit and push factual checkpoints. Do not edit production code, re-run consumed roots, invoke independent R03 review or H2 automatically.
 

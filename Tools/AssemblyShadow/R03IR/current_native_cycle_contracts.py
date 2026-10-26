@@ -63,7 +63,8 @@ class CurrentNativeCycleContracts(unittest.TestCase):
             "source-contracts", "oracle-contracts", "vm-delta-contracts",
             "original-s-host-contracts", "original-s-audit",
             "original-s-process-joins", "native-host-diagnostics",
-            "current-native-players")}
+            "current-native-players", "installed-source-host-contracts",
+            "native-installed-source-audit")}
 
     def test_01_constituent_source_pins_are_explicit(self):
         self.assertEqual(cycle.NATIVE, "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb")
@@ -197,7 +198,7 @@ class CurrentNativeCycleContracts(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     self.read_batch(rec)
 
-    def test_16_coordinator_summary_requires_all_eight_stages(self):
+    def test_16_coordinator_summary_requires_all_ten_stages(self):
         stages = self.all_passed()
         native = {"result": "PassedFiveFocusedCurrentNativePlayersOnly"}
         after = {"result": "PassedReadOnlySourceAdmission_NotBuildOrRuntime"}

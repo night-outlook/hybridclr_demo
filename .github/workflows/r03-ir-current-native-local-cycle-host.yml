@@ -5,6 +5,8 @@ on:
     paths:
       - 'Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_cycle_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_install_audit.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_install_contracts.py'
       - '.github/workflows/r03-ir-current-native-local-cycle-host.yml'
   workflow_dispatch:
 permissions:
@@ -56,12 +58,13 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             README.md
-      - name: Twenty one-use coordinator adversarial host tests
+      - name: One-use coordinator and installed VM parity adversarial host tests
         shell: bash
         run: |
           set -euo pipefail
           export PYTHONDONTWRITEBYTECODE=1
           python3 -B Tools/AssemblyShadow/R03IR/current_native_cycle_contracts.py
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_install_contracts.py
       - name: Existing 20 source, 27 real-oracle synthetic, 12 VM source and archive host suites
         shell: bash
         run: |

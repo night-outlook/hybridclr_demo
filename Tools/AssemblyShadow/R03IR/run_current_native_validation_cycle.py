@@ -250,6 +250,7 @@ def assess_summary(stages: dict, native: dict | None, after: dict | None) -> dic
         "source-contracts", "oracle-contracts", "vm-delta-contracts",
         "original-s-host-contracts", "original-s-audit", "original-s-process-joins",
         "native-host-diagnostics", "current-native-players",
+        "installed-source-host-contracts", "native-installed-source-audit",
     )
     completed = all(step_ok(stages.get(key, {})) for key in required)
     completed = completed and all(step_ok(row) for row in stages.values())
@@ -304,6 +305,8 @@ def main() -> int:
             "--native", native], 1200),
         ("original-s-host-contracts", [sys.executable, "-B",
             script / "test_audit_s_provenance.py"], 1200),
+        ("installed-source-host-contracts", [sys.executable, "-B",
+            script / "current_native_install_contracts.py"], 1200),
     ]
     stages: dict[str, dict] = {}
     after = None
@@ -357,9 +360,31 @@ def main() -> int:
             if step_ok(stages["current-native-players"]):
                 native_verdict = verify_current_batch(
                     root / "current-native/LOCAL_BATCH_RESULT.json", args.demo_commit)
+                parity_path = root / "installed-native-vm-parity.json"
+                stages["native-installed-source-audit"] = run_step(
+                    root, "native-installed-source-audit",
+                    [sys.executable, "-B", script / "current_native_install_audit.py",
+                     "--workspace", args.workspace,
+                     "--batch", root / "current-native",
+                     "--demo-commit", args.demo_commit,
+                     "--output", parity_path], 7200)
+                if step_ok(stages["native-installed-source-audit"]):
+                    report = json.loads(parity_path.read_text(encoding="utf-8"))
+                    if not (report.get("result") == "PassedInstalledSourceParityOnly" and
+                            report.get("verifiedBuildRoles") == 3 and
+                            report.get("installedVmSourcePairs") == 126 and
+                            report.get("R03Accepted") is False):
+                        stages["native-installed-source-audit"]["state"] = "Failed"
+                        stages["native-installed-source-audit"]["auditVerdictError"] = (
+                            "Three installed physical 42-file VM parity roles required")
+            else:
+                stages["native-installed-source-audit"] = {
+                    "state": "Blocked", "reason": "Genuine sealed current-native Player must pass first"}
         else:
             stages["current-native-players"] = {
                 "state": "Blocked", "reason": "At least one source/oracle/VM host contract failed"}
+            stages["native-installed-source-audit"] = {
+                "state": "Blocked", "reason": "No current Player source installation exists"}
     except BaseException as error:
         stages["coordinator-error"] = {"state": "Failed", "exception": repr(error)}
     finally:
