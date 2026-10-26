@@ -163,6 +163,18 @@ class CurrentNativeCycleContracts(unittest.TestCase):
         with self.assertRaises(FileExistsError):
             cycle.run_step(self.output, "tiny-failure", [sys.executable, "-B", "-c", "pass"], 30)
         self.assertTrue((self.output / "steps/tiny-failure/INVOCATION.json").is_file())
+        # Even exit-zero group leaders are rejected if owned children remain.
+        with mock.patch.object(cycle, "group_exists", side_effect=[True, False]), \
+             mock.patch.object(cycle, "group_snapshot", return_value={"owned": True}), \
+             mock.patch.object(cycle.os, "killpg") as kill:
+            surviving = cycle.run_step(self.output, "simulated-survivor",
+                 [sys.executable, "-B", "-c", "pass"], 30)
+        self.assertEqual(surviving["exitCode"], 0)
+        self.assertEqual(surviving["state"], "Failed")
+        self.assertTrue(surviving["mayHaveExternalOwnedChildren"])
+        self.assertTrue(surviving["processGroupRemainedAtExit"])
+        self.assertFalse(surviving["postCleanupGroupExists"])
+        kill.assert_called_once()
 
     def test_13_valid_synthetic_batch_receipt_remains_non_acceptance(self):
         result = self.read_batch(self.fake_result())

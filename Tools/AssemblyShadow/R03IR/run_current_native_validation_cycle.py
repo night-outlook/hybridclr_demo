@@ -26,6 +26,7 @@ sys.path.insert(0, str(HERE.parent / "R03"))
 import current_native_source_gate as source
 import current_native_vm_delta_contracts as delta
 from run_local import BRANCH, REPOS, identity
+from command_lifetime import group_exists, group_snapshot
 NATIVE = source.CURRENT["il2cpp_plus"]
 S_PUBLICATION = "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b"
 MIN_FREE_GIB = 20
@@ -231,12 +232,34 @@ def run_step(root: Path, name: str, argv: list[str], timeout: int) -> dict:
                 except BaseException as cleanup_error:
                     status["cleanupError"] = repr(cleanup_error)
         finally:
+            if process is not None:
+                # Owned descendants must not survive as silent successful evidence.
+                # A zero exit of the group leader alone is insufficient.
+                pgid = process.pid
+                try:
+                    remaining = group_exists(pgid)
+                    status["processGroupRemainedAtExit"] = remaining
+                    if remaining:
+                        status["mayHaveExternalOwnedChildren"] = True
+                        status["processGroupBeforeCleanup"] = group_snapshot(pgid)
+                        if pgid <= 1 or pgid == os.getpgrp():
+                            raise RuntimeError("Refusing to signal caller process group")
+                        os.killpg(pgid, signal.SIGKILL)
+                    status["postCleanupGroupExists"] = group_exists(pgid)
+                    if status["postCleanupGroupExists"]:
+                        status["mayHaveExternalOwnedChildren"] = True
+                except Exception as cleanup_error:
+                    status["cleanupError"] = repr(cleanup_error)
+                    status["mayHaveExternalOwnedChildren"] = True
             status["finishedUtc"] = utc()
     status["stdoutSha256"] = digest(step / "stdout.log")
     status["stderrSha256"] = digest(step / "stderr.log")
     status["state"] = "Passed" if (
         status["exitCode"] == 0 and not status["timedOut"] and
-        not status.get("exception") and not status.get("cleanupError")) else "Failed"
+        not status.get("exception") and not status.get("cleanupError") and
+        not status["mayHaveExternalOwnedChildren"] and
+        not status.get("processGroupRemainedAtExit") and
+        not status.get("postCleanupGroupExists")) else "Failed"
     written(step / "RESULT.json", status)
     return status
 
