@@ -1,0 +1,37 @@
+name: R03 IR-02 current-native Player oracle source-only
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - 'Tools/AssemblyShadow/R03IR/current_native_oracle_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/run_terminal_local.py'
+      - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs'
+      - '.github/workflows/r03-ir-current-native-oracle-source-only.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  oracle-host-only:
+    name: Exact Player oracle negative controls (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 8
+    steps:
+      - name: Checkout exact candidate oracle and original Player fixture
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03
+            Tools/AssemblyShadow/R03IR
+      - name: Execute real source verification oracle on synthetic receipts only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_oracle_contracts.py
+      - name: Deny product/runtime acceptance
+        shell: bash
+        run: echo 'Oracle host-only negative controls; no Unity, SDK compiler, new Player, historical Local execution, or R03 acceptance.'
