@@ -1,3 +1,23 @@
+# R03 current Primary stage — e1e5 native coherent candidate source-only, Player NotRun
+
+## IR-R03-02 source tuple repair and independent review entry (2026-10-25)
+
+**Existing independent full-stage review remains FAIL**, with High `IR-R03-02` and `IR-R03-01`. The f51d Local historical audit-only PASS is separate and does not change either finding or b7e3/c42a Local FAIL outcomes. D1=A conservative NativeLayoutAdmissionV1 and D2=A observational-only performance remain authoritative.
+
+**Primary source-only candidate:** historical `Tools/AssemblyShadow/R03/source-pins.json` still binds old native `74dbdbea80d83923863303bd2b2c0a87f36541b1` while current native runtime source is `e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb` (147 commits/125 changed paths ahead). A parallel candidate under `Tools/AssemblyShadow/R03IR` provides `current_native_candidate.json`, `current_native_source_gate.py`, `run_terminal_current.py` and `current_native_source_contracts.py`. Ten exact source files and the external three source HEADs are pinned; the current native choice is applied **in memory** to the original three-build/five-Player runner only after source verification and before any future build. Original historical pin/runner, native production code, S/Player/SDK receipts and all previously consumed evidence remain unchanged.
+
+**Mac/Linux source-only CI:** [run 40264569824](https://github.com/night-outlook/hybridclr_demo/actions/runs/40264569824) completed SUCCESS, **20/20 source and adversarial tests per platform**, ten original/current source blobs verified; output `PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation`. Initial test filename unintentionally joined broad historical `test_*.py` discovery and caused test-only red runs; Primary deleted that file, retained its 20 tests under explicit non-discovery name `current_native_source_contracts.py`, and reran old R03 K and L suites successfully without skips/altered oracles.
+
+See [Design](../History/M07R/R03/IR_Remediation/IR_R03_02_CURRENT_NATIVE_COHERENCE_2026-10-25/DESIGN.md), [Plan](../History/M07R/R03/IR_Remediation/IR_R03_02_CURRENT_NATIVE_COHERENCE_2026-10-25/PLAN.md), [Primary Source Review](../History/M07R/R03/IR_Remediation/IR_R03_02_CURRENT_NATIVE_COHERENCE_2026-10-25/PRIMARY_SOURCE_AUDIT.md), and [machine evidence](../History/M07R/R03/IR_Remediation/IR_R03_02_CURRENT_NATIVE_COHERENCE_2026-10-25/EVIDENCE.json). Existing October 24 [independent re-review request](../History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/INDEPENDENT_REREVIEW_REQUEST.md) is **unexecuted**; no independent re-review PASS has been issued.
+
+**Earliest substantive open runtime evidence:** the source-matched Unity2022.3.62f2 macOS arm64 Player check for terminal failure and later valid method entry, plus full native transitive installation/build source review. Although its original fixture already defines five concrete cases, **current-source Player/Unity/SDK compilations are NotRun**. IR-R03-01 original S source/build/process semantic re-review remains independently open. The historical S 90/90, b7e3 raw 25/25 scoped PASS/overall FAIL, c42a overall FAIL, f51d scoped historical audit-only PASS remain distinct.
+
+**`WEB_TO_LOCAL.md` remains CLOSED; no fresh Local cycle/root is authorized.** P1 Incomplete, P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, full P3 Incomplete. `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`, `qualificationApproved=false`, `runtimeAcceptance=false`, `fullLegacyRegressionAcceptance=false`, PureInterpreter disabled; no H2/M08A/X02/protected SNAP-01.
+
+---
+
+## Prior Primary and independent-review stages — archival, not authorization
+
 # R03 current Primary pre-review — IR-R03-01/02 source evidence, NO gate approval
 
 ## Latest Primary action (2026-10-24)
