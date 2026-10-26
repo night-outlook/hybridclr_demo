@@ -22,10 +22,8 @@ from current_native_source_gate import (
 class CurrentNativeSourceGateContracts(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        p = argparse.ArgumentParser()
-        for flag in ("demo", "native", "hybridclr", "package"):
-            p.add_argument("--" + flag, required=True)
-        cls.args, rest = p.parse_known_args()
+        if not hasattr(cls, "args"):
+            raise RuntimeError("Explicit --demo/--native/--hybridclr/--package required")
         cls.roots = {
             "hybridclr_demo": Path(cls.args.demo).resolve(),
             "il2cpp_plus": Path(cls.args.native).resolve(),
@@ -246,5 +244,5 @@ if __name__ == "__main__":
     for key in ("demo", "native", "hybridclr", "package"):
         parser.add_argument("--" + key, required=True)
     args = parser.parse_args()
-    unittest.main(argv=[sys.argv[0], "--demo", args.demo, "--native", args.native,
-                        "--hybridclr", args.hybridclr, "--package", args.package])
+    CurrentNativeSourceGateContracts.args = args
+    unittest.main(argv=[sys.argv[0]])
