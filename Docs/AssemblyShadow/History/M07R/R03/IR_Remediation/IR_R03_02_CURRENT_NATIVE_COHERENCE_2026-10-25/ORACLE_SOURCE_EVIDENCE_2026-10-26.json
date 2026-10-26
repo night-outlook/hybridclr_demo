@@ -125,5 +125,48 @@
     "beginM08A": false,
     "beginX02": false,
     "oldEvidenceModified": false
+  },
+  "nativeVmChangedSourceInventory": {
+    "kind": "R03IR02PinnedCurrentNativeVmDelta",
+    "oldNative": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
+    "newNative": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
+    "aheadCommits": 147,
+    "comparisonChangedPaths": 125,
+    "changedVMFiles": 42,
+    "vmModified": 8,
+    "vmAdded": 34,
+    "diagnosticToolsChanged": 59,
+    "workflowFilesChanged": 24,
+    "manifestPath": "Tools/AssemblyShadow/R03IR/current_native_vm_delta.json",
+    "manifestBlob": "83c1ed0ae5470b2267703f2aa529cefc2706425f",
+    "testPath": "Tools/AssemblyShadow/R03IR/current_native_vm_delta_contracts.py",
+    "testBlob": "64cced754b0391a6efb36095081e5313f1b1a267",
+    "workflowBlob": "e595fb99cf2943a22c2a97b410b8cc6da98d8826",
+    "ci": {
+      "runId": 40287146227,
+      "conclusion": "success",
+      "sourceCommit": "3a7e9a13f6668a132b3db54679f6a342d20e803c",
+      "platforms": [
+        {
+          "os": "macos-15",
+          "jobId": 121453386586,
+          "testsRun": 12,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "os": "ubuntu-24.04",
+          "jobId": 121453386960,
+          "testsRun": 12,
+          "failures": 0,
+          "errors": 0
+        }
+      ]
+    },
+    "sourceFilesByteAuthenticated": true,
+    "semanticNativeSourceReviewCompleted": false,
+    "transitiveNativeIncludesAndGeneratedBuildInputsProven": false,
+    "actualCompilerOrPlayerReexecuted": false,
+    "scope": "SOURCE ONLY"
   }
 }
