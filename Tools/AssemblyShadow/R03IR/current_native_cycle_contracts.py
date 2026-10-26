@@ -22,7 +22,8 @@ class CurrentNativeCycleContracts(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory(prefix="r03-ir-cycle-")
         self.addCleanup(self.tmp.cleanup)
-        self.base = Path(self.tmp.name)
+        # macOS /var is an alias for /private/var; tests use real paths.
+        self.base = Path(self.tmp.name).resolve(strict=True)
         self.workspace = self.base / "sources"
         self.workspace.mkdir()
         for name in cycle.REPOS:
