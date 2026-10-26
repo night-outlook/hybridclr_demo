@@ -1,0 +1,45 @@
+name: R03 IR-02 current-native VM delta source-only
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - 'Tools/AssemblyShadow/R03IR/current_native_vm_delta.json'
+      - 'Tools/AssemblyShadow/R03IR/current_native_vm_delta_contracts.py'
+      - '.github/workflows/r03-ir-current-native-vm-delta-source-only.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  vm-delta-source:
+    name: 42 changed native VM source SHA contracts (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    steps:
+      - name: Source-only contract tests at current demo GitHub revision
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR
+      - name: Native source at exact e1e5 revision (no compile)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb
+          path: external/il2cpp_plus
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            libil2cpp/vm
+      - name: 12 source-only positive and hostile 42-delta contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_vm_delta_contracts.py --native "$PWD/external/il2cpp_plus"
+      - name: Non-acceptance boundary
+        shell: bash
+        run: echo '42 SOURCE Git blobs only. No evidence these headers are linked into a Player. No Unity/compiler or R03 acceptance.'
