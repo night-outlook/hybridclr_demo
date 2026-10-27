@@ -233,6 +233,9 @@ def apply(workspace: Path, original: Path, demo_commit: str,
         included = git(original, "sparse-checkout", "list").stdout.decode().splitlines()
         require(included == [CHECKPOINT], "Actual sparse paths differ from contract")
         admission.registered_original(workspace, original)
+        post_sources = cycle.validate_sources(workspace, demo_commit)
+        require(post_sources["result"] == "PassedReadOnlySourceAdmission_NotBuildOrRuntime",
+                "Four authoritative source checkouts changed during sparse projection")
         require_clean(original)
         after_rows = checkpoint_identity(original)
         require(after_rows == rows, "Original S checkpoint metadata changed")
@@ -244,6 +247,7 @@ def apply(workspace: Path, original: Path, demo_commit: str,
                 "PassedPhysicalFileVsPinnedGitBlobs",
             "originalGitCommitChanged": False,
             "worktreeStillRegisteredAndClean": True,
+            "sourcePostflight": post_sources["result"],
             "activeSparsePaths": included, "checkpointFiles": len(rows),
             "checkpointLogicalBytes": CHECKPOINT_LOGICAL_BYTES,
             "beforeFreeBytes": pre["beforeCapacityBytes"],
