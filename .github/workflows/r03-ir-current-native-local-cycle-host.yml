@@ -7,6 +7,8 @@ on:
       - 'Tools/AssemblyShadow/R03IR/current_native_cycle_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_install_audit.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_install_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_environment_admission.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_environment_contracts.py'
       - '.github/workflows/r03-ir-current-native-local-cycle-host.yml'
   workflow_dispatch:
 permissions:
@@ -65,6 +67,12 @@ jobs:
           export PYTHONDONTWRITEBYTECODE=1
           python3 -B Tools/AssemblyShadow/R03IR/current_native_cycle_contracts.py
           python3 -B Tools/AssemblyShadow/R03IR/current_native_install_contracts.py
+      - name: Twenty-five retained-worktree capacity and net8 toolchain source-only tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_environment_contracts.py
       - name: Existing 20 source, 27 real-oracle synthetic, 12 VM source and archive host suites
         shell: bash
         run: |
