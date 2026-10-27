@@ -226,5 +226,24 @@ class SparseProjectionContracts(unittest.TestCase):
         self.assertIn('"Worktree is already sparse; never repeat', src)
 
 
+    def test_28_regular_index_allows_honest_source_projection(self):
+        with mock.patch.object(proj, "CHECKPOINT_FILES", 1):
+            self.assertGreaterEqual(proj.require_unhidden_index(self.repo), 3)
+
+    def test_29_assume_unchanged_hidden_tracked_data_rejected(self):
+        path = "unrelated/deep/old-history.txt"
+        self.g("update-index", "--assume-unchanged", path)
+        self.assertEqual(self.g("status", "--porcelain=v1"), b"")
+        with mock.patch.object(proj, "CHECKPOINT_FILES", 1):
+            with self.assertRaisesRegex(ValueError, "Hidden or abnormal"):
+                proj.require_unhidden_index(self.repo)
+
+    def test_30_preexisting_skip_worktree_entry_rejected(self):
+        self.g("update-index", "--skip-worktree", "unrelated/deep/old-history.txt")
+        with mock.patch.object(proj, "CHECKPOINT_FILES", 1):
+            with self.assertRaisesRegex(ValueError, "Hidden or abnormal"):
+                proj.require_unhidden_index(self.repo)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

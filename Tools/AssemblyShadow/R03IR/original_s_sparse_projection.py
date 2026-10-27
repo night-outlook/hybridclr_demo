@@ -71,6 +71,23 @@ def require_clean(repo: Path) -> None:
             "Submodule checkout requires separate custody review; sparse apply refused")
 
 
+
+def require_unhidden_index(repo: Path) -> int:
+    """Refuse assume-unchanged/skip-worktree flags before de-materialization."""
+    raw = git(repo, "ls-files", "-v", "-z", timeout=600).stdout
+    count = 0
+    for entry in raw.split(b"\x00"):
+        if not entry:
+            continue
+        require(entry.startswith(b"H "),
+                "Hidden or abnormal tracked index entry would risk unobserved data: " +
+                entry[:160].decode("utf-8", errors="replace"))
+        count += 1
+    require(count >= CHECKPOINT_FILES,
+            "Original worktree full index is implausibly small for fc55")
+    return count
+
+
 def sparse_enabled(repo: Path) -> bool:
     result = git(repo, "config", "--bool", "core.sparseCheckout", allow_failure=True)
     require(result.returncode in (0, 1), "Cannot read worktree sparse configuration")
@@ -152,6 +169,9 @@ def inspect(workspace: Path, original: Path, demo_commit: str,
             "Current four-source authority mismatch")
     require_clean(original)
     enabled = sparse_enabled(original)
+    # A clean status alone can miss deliberately hidden assume-unchanged files.
+    # Reject those before any clean tracked file outside the projection disappears.
+    full_index_files = require_unhidden_index(original) if not enabled else None
     rows = checkpoint_identity(original)
     physical = verify_materialized(original, rows) if check_bytes else {
         "result": "NotRun_InspectOnlyNoFullRehash"}
@@ -163,6 +183,7 @@ def inspect(workspace: Path, original: Path, demo_commit: str,
         "checkpointTree": CHECKPOINT_TREE, "checkpointFiles": len(rows),
         "checkpointLogicalBytes": sum(x["size"] for x in rows),
         "originalWorktreeSparseEnabled": enabled,
+        "preProjectionUnhiddenIndexFiles": full_index_files,
         "beforeCapacityBytes": free,
         "beforeCapacityGiB": round(free / 1024**3, 3),
         "physicalCheckpoint": physical, "currentSources": current["repositories"],
