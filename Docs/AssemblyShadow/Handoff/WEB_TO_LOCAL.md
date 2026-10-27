@@ -1,91 +1,86 @@
-# Primary Implementation -> Local Validation — ACTIVE R03 oneuse-C source-preserving capacity remediation
+# Primary Implementation -> Local Validation — ACTIVE ONE-USE R03 oneuse-D (current-native CLI startup repaired)
 
-**ONE bounded source-projection attempt plus, conditionally, ONE new combined coordinator invocation.** This supersedes and consumes all execution authority in earlier oneuse-A and oneuse-B handoffs. Their factual Local BLOCKED checkpoints remain immutable: coordinator 0 and all ten R03 stages NotRun. No standalone Unity build, original-S replay, H2/M08A/X02, Human Review Gate or product acceptance is authorized.
+**Authority:** one fresh source-pinned, full combined R03 Local evidence cycle (oneuse-D), ONLY after new read-only environment, source, toolchain, disk and ACTUAL standalone Python CLI import admission. This replaces and consumes all oneuse-A/B/C execution authorities. Previous outcomes remain immutable: A/B capacity BLOCKED before coordinator; C one real coordinator FAIL / ReturnRequired, 8 scoped Passed, 1 Failed CLI import, 1 Blocked installed parity. C original-S sparse-projection and evidence roots were used and must never be repeated. This is not a Human Review Gate or a new R03 independent PASS, H2, M08A, X02, SNAP-01, runtime acceptance or deployment.
 
-## 1. Exact four pushed source repositories
+## 1. Exact four-repository source authority
 
-Branch codex/assembly-shadow-r01b-h1. Verify clean owning checkout paths, full GitHub remote identity, submodules, live branch HEAD and absence of unrelated changes. The **full final pushed demo commit** is specified in the closing Primary-to-Local handoff prompt after this document is committed; that exact SHA is DEMO_COMMIT, not the older f2aa/e6e/f1b2 source anchors or original S fc55. Current Git file cannot embed its own eventual commit SHA.
+Branch for each: codex/assembly-shadow-r01b-h1. Verify owning checkout, origin, local clean tracked+untracked state, live remote HEAD, SHA and submodule/package mapping. The **actual full final pushed demo HEAD is supplied in the closing Primary-to-Local short prompt** after this document is committed (a Git file cannot contain its own future commit SHA); it is the only permitted DEMO_COMMIT, not source code-only 43fa, consumed C 2af4 or Local evidence publication fdf73.
 
-| Repository | Pin | Previously observed path |
+| Repository | Source pin | Prior Local path (must independently verify) |
 | --- | --- | --- |
-| night-outlook/hybridclr_demo | latest pushed demo full SHA from final Primary handoff | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo |
+| night-outlook/hybridclr_demo | exact full final pushed HEAD from closing prompt | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo |
 | night-outlook/hybridclr | 4b2774b066cfc6afd77a8c8aded6bda7ea574f55 | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr |
 | night-outlook/hybridclr_unity | 948c0e3b4f8891481301770115e8ba4945eea6de | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity |
 | night-outlook/il2cpp_plus | e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus |
 
+Historical native identities remain separate: original S actual native1cf87f8209790f9fb2ebec97487dc1990ccd56c5; historical focused runner R03/source-pins.json native74dbdbea80d83923863303bd2b2c0a87f36541b1; current candidate actual native e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb. NEVER overwrite original source-pins.json or claim old recorded S Players executed current native.
+
+## 2. Required reading and oneuse-C preservation
+
 Read first:
-1. Docs/AssemblyShadow/README.md and THIS WEB_TO_LOCAL.md.
-2. Local-owned Handoff/LOCAL_VALIDATION.md and RETURN_TO_WEB.md, especially oneuse-B (capacity BLOCKED, dotnet resolved), oneuse-A and their immutable checkpoint/raw evidence.
-3. Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_ORIGINAL_S_SPARSE_CAPACITY_2026-10-26/{DESIGN.md,PLAN.md,PRIMARY_SOURCE_AUDIT.md,EVIDENCE.json}, and archived consumed oneuse-B handoff.
-4. Earlier Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_LOCAL_CYCLE_2026-10-26 source/evidence design, canonical R03 stage/Human Review Gates, Oct 8 independent R03 FAIL/erratum and owner D1=A/D2=A.
+1. Docs/AssemblyShadow/README.md and THIS canonical Handoff/WEB_TO_LOCAL.md.
+2. Local-owned Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md and RETURN_TO_WEB.md (current oneuse-C at the top), plus immutable Docs/AssemblyShadow/History/M07R/R03/local-validation-current-native-original-s-20261026-oneuse-c/README.md, FINDING.json, LOCAL_RESULT.json, batch/RESULT.json, batch/steps/current-native-players/stderr.log, projection/RESULT.json and final independent preservation.
+3. Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_CLI_BOOTSTRAP_2026-10-26/{DESIGN.md,PLAN.md,PRIMARY_SOURCE_REVIEW.md,EVIDENCE.json} and archived consumed oneuse-C WEB_TO_LOCAL.
+4. Original stage R03 design and Human Review Gates, October 8 immutable independent full-stage FAIL + erratum, RC1–RC6 and owner decisions D1=A/D2=A, current coherent-native fixture manifest, source/VM inventories.
 
-## 2. Exact retained fc55 auxiliary worktree and permitted change
+**Historical bounded evidence:** oneuse-C single original-S fc55 sparse projection has ALREADY succeeded. It preserved exact original checkpoint tree2acdcc0ec3c0f15dea11f99bc9c5d6d0f431de79, all 16,978 materialized files and historical source objects/clean registration. It measured physical free capacity increasing from19.844 to46.334 GiB, which is an earlier observation, not guaranteed currently available. The coordinator previously ran once; read-only source/host/original S/process/native diagnostics eight stages scoped Passed; current-native-players failed before real fixture/Unity build because standalone R03IR/run_terminal_current.py imported sibling R03/run_local.py without sys.path bootstrap, native-install audit Blocked. Full original S nine-part archive, 90-cell ledger and 59 historical process joins Passed within archival/read-only scope in C; not full independent source/build/Player semantic PASS. **Do not rerun C or the sparse projection.**
 
-ORIGINAL_S is the already-retained canonical path:
+## 3. Fixed standalone CLI and new NO-WRITE source admission
+
+Primary has now inserted owning sibling R03 into the standalone wrapper's sys.path **before** its first run_local import, without altering old R03/hybridclr/source pins, C# fixtures, native oracles or the coordinator. 23 host contracts actually launch a fresh Python interpreter from foreign cwd with PYTHONPATH absent. The read-only current_native_environment_admission.py now performs this exact standalone wrapper --help subprocess automatically, without PYTHONPATH/PYTHONHOME assistance, records argc/cwd/exit/stdout/stderr hash and rejects import failures before any new batch root can be created. A green --help is **startup only**, not Unity compiler/Player proof.
+
+Read-only prerequisite checks on actual Mac:
+- Re-authenticate four exact current source/remote heads, ten candidate source blobs and all42 changed native VM source blobs, normal package sibling mapping and no unrelated changes or conflicting Unity/IL2CPP/Player processes in the isolated workspace.
+- Retain existing detached **sparse** original-S worktree at:
     /Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse
-
-It MUST remain a singly registered, clean detached Git worktree at original S source commit fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b with canonical night-outlook/hybridclr_demo remote. Do not recreate, move, delete, force/prune, reset or repack this worktree; do not modify committed Git objects or external historical Local output roots. The historic S actual execution source demo29bb/native1cf87f, old R03 native74db and current e1e5 remain separate.
-
-The **ONLY permitted source-environment mutation** is a one-time controlled Git sparse-checkout projection of this retained *auxiliary* clean fc55 worktree. It intentionally de-materializes unrelated clean TRACKED files outside the exact protected original-S checkpoint subtree from this worktree, while preserving original fc55 Git objects/history and the complete protected checkpoint byte-for-byte. Its lossless reversal would need sufficient future disk space and is NOT automatically authorized. No other history/cache/output deletion, Time Machine snapshot thinning, git gc, Git worktree removal, new full fc55 checkout, CLI installer, permanent PATH or resource/root purge is permitted.
-
-Protected subtree:
-    Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready
-
-Source Git tree SHA2acdcc0ec3c0f15dea11f99bc9c5d6d0f431de79: exactly 16,978 regular Git files, 3,882,340,952 bytes of logical committed content. This is not a promised physical reclaim. The script verifies every physical protected file against Git before AND after conversion. A prior whole-worktree free-space decrease (~32 GiB) is a measurement, not wholly attributed to the worktree.
-
-## 3. Phase A — bounded Git checkout projection (not a coordinator run)
-
-Set WORKSPACE=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r (or independently verified canonical actual source parent), ORIGINAL_S to retained fc55, DEMO_COMMIT to final closing handoff SHA. Verify no other agent/process is using or modifying the auxiliary original-S worktree. Confirm full Git registration/source pin and that it is currently a clean full checkout (not already sparse).
-
-First run STRICTLY READ-ONLY inspect (no output path and no files written):
-
-    PYTHONDONTWRITEBYTECODE=1 python3 -B "$WORKSPACE/hybridclr_demo/Tools/AssemblyShadow/R03IR/original_s_sparse_projection.py" --inspect --workspace "$WORKSPACE" --original-s "$ORIGINAL_S" --demo-commit "$DEMO_COMMIT"
-
-Require exit0, result PassedReadOnlyInspect_NotAnExecution, exact 16,978/3,882,340,952 and pinned tree SHA, originalWorktreeSparseEnabled=false and all four current sources verified. A failure is SourceProjectionPrerequisiteBlocked; no sparse conversion or Unity invocation. Retain actual stdout/error externally as raw Local environmental evidence.
-
-Select a NEW, absent, canonical external REMEDIATION_ROOT distinct from coordinator RUN_ROOT, current sources, original S and older evidence:
-    /Users/ah/GitHub/hybridclr/r03-local-validation/R03OriginalS-SparseProjection-20261026-oneuse-C
-
-Use it ONLY if currently absent and verified. If the intended path exists, STOP for Primary authorization; do not overwrite or pick retries. Then run EXACTLY ONCE:
-
-    PYTHONDONTWRITEBYTECODE=1 python3 -B "$WORKSPACE/hybridclr_demo/Tools/AssemblyShadow/R03IR/original_s_sparse_projection.py" --apply --workspace "$WORKSPACE" --original-s "$ORIGINAL_S" --demo-commit "$DEMO_COMMIT" --evidence "$REMEDIATION_ROOT"
-
-This command hashes all protected Git blobs (3.62 GiB logical data) before altering the checkout; writes INTENT; runs a single Git sparse-checkout set --cone --no-sparse-index for the one protected subtree; verifies all protected files again after; checks original fc55 registration, clean HEAD, exact sparse path and physical before/after free bytes. It produces REMEDIATION_ROOT/{INTENT.json,GIT_COMMAND.json,RESULT.json} with complete failure/raw status. Never manually repeat sparse conversion. If output indicates Failed/Incomplete, protected mismatch, remaining dirty Git state or incomplete receipt, STOP and return Primary with raw evidence. Do not automatically restore full checkout on a nearly full APFS container or launch the coordinator.
-
-On success require result PassedBoundedSourceProjection_RequiresFreshCapacityAdmission, all 16,978 physical Git identities verified and original worktree clean/registered. Record the actual APFS/container/mount free bytes and projection policy as new environment evidence. A successful source projection does NOT itself give R03 acceptance or authorize Player execution.
-
-## 4. Phase B — fresh storage and toolchain admission
-
-The prior oneuse-B read-only admission failed on 19.858/19.840 GiB < fixed 20 GiB. Its alternative /Volumes/Data shares APFS container disk3 and is NOT extra space. Previous trusted .NET SDK is now discovered at:
-    /Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet
-Source was SDK8.0.318, runtime8.0.21, osx-arm64; actually verify all three again and enable only this installed DotNetSdk directory on a process/session-local PATH for new toolchain commands. Unity Player itself must remain:
+  Require exact clean registered fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b with protected checkpoint materialized. Do NOT create a new full worktree, repeat sparse-checkout set, delete/prune/clean Git objects, restore full projection, move history or tamper oneuse-C receipts.
+- Recheck actual Unity **2022.3.62f2** Info.plist, executable arm64 and hash at:
     /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
-Verify genuine Unity 2022.3.62f2, lipo arm64, executable binary hash, clang++/lipo/python3/git and current source/pins. Do not install another .NET SDK or substitute the Unity6000 Editor/Player.
+  This is the ONLY Unity version used for actual builds and Players.
+- Recheck installed .NET SDK8.0.318 / Microsoft.NETCore.App8.0.21 arm64 binary path:
+    /Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet
+  Local may prepend only its existing installed DotNetSdk directory to **process/session-local PATH** for Python/host fixture commands, verifying real --list-sdks, --list-runtimes, --info and binary hash. Do NOT use Unity6000 as Player, install a new SDK, change global PATH, modify source/SDK or skip net8.0. Also require real python3, git, clang++ and lipo.
+- Fresh on the actual output parent: existing coordinator **hard >=20 GiB** unchanged, advisory **>=40 GiB** preferred for three complete native builds/five Players. oneuse-C 46.33 GiB was historical and must be remeasured; if below hard minimum STOP. If just above hard but materially below advisory, report risk and require explicit Primary go/no-go before consuming an expensive batch; do not assume source or alternate /Volumes/Data share means more physical space.
 
-Choose ONE fresh nonexistent oneuse-C output root disjoint from all previous A/B/source/projection/evidence roots. Suggested:
-    /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-C
-or a new independently mounted volume with actual separate free capacity. Do not create RUN_ROOT manually. Keep hard coordinator minimum MIN_FREE_GIB=20 unchanged. Due to three builds and five Players, **40 GiB post-projection is preferred as advisory** (not empirically proven consumption); if less than 40 GiB is free, do not autonomously begin expensive Player work on a marginal sample—publish fresh evidence and ask Primary for explicit go/no-go. Never infer that 20.01 GiB is sustainable.
+Choose a new absent physically canonical disjoint output root (oneuse-D) that has NEVER been used, not any earlier A/B/C root nor sparse-projection, source/history/old test root. Suggested if independently absent:
+    /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D
+Do not manually create RUN_ROOT. If existing, STOP and request new Primary authority rather than silently picking a suffix.
 
-Run the existing unchanged **READ-ONLY** admission, may be rechecked after safe environment preparation:
+## 4. Standalone admission before the one-use coordinator (NO Unity)
+
+Set:
+- WORKSPACE = independently authenticated four-repo parent.
+- ORIGINAL_S = retained clean sparse fc55 path above.
+- UNITY_EXE = confirmed Unity2022.3.62f2 arm64 executable above.
+- DEMO_COMMIT = final pushed full demo SHA from closing Primary prompt.
+- RUN_ROOT = verified ABSENT oneuse-D path outside all historical and source roots.
+
+Run the existing read-only admission (new code version):
 
     PYTHONDONTWRITEBYTECODE=1 python3 -B "$WORKSPACE/hybridclr_demo/Tools/AssemblyShadow/R03IR/current_native_environment_admission.py" --workspace "$WORKSPACE" --original-s "$ORIGINAL_S" --unity "$UNITY_EXE" --demo-commit "$DEMO_COMMIT" --output "$RUN_ROOT"
 
-Requires exit0 and PassedReadOnlyPrerequisites_NoCoordinatorOrUnityRun with actual 20-GiB minimum, source/remote/physical fc55 Git, dotnet SDK8/runtime8 and Unity2022.3 checks. Record source/volume/APFS snapshots before and after. Preflight does not produce or modify RUN_ROOT. If anything fails, STOP and return PrerequisiteBlocked (coordinator0, all ten NotRun); do not use old A/B roots or manually run partial source/Player stages.
+**Require exit0** and result PassedReadOnlyPrerequisites_NoCoordinatorOrUnityRun plus nested standaloneCurrentNativeCli.result=PassedFreshPythonProcessHelp_NoUnityOrRuntime with pythonPathProvided=false, argv for the actual wrapper --help, an external cwd, exit0 and no Player/output root. Verify source/remote/original fc55/toolchain/unity/capacity records independently. This preflight MAY be rechecked only for bounded environment prerequisites before any coordinator invocation; it creates no root and does not replay oneuse-C. Preserve exact stdout/stderr, command/exit, environment, available GiB and hash receipts OUTSIDE RUN_ROOT and all prior protected evidence.
 
-## 5. Phase C — ONE unchanged R03 ten-stage coordinator
+On failed bootstrap or any other prerequisite, **STOP with PrerequisiteBlocked**, coordinator D invocations=0, ten D stages NotRun. Do not fix via PYTHONPATH, editing Local source, manually copying run_local, or bypassing the source-pinned wrapper.
 
-ONLY if Phase A passed complete checkpoint preservation and Phase B passed source/toolchain/capacity admission with adequate headroom for the combined test, launch exactly ONCE:
+## 5. EXACTLY ONE fresh ten-stage coordinator
+
+ONLY after actual fresh read-only admission succeeds and capacity/toolchain/source are judged adequate:
 
     PYTHONDONTWRITEBYTECODE=1 python3 -B "$WORKSPACE/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py" --workspace "$WORKSPACE" --original-s "$ORIGINAL_S" --unity "$UNITY_EXE" --demo-commit "$DEMO_COMMIT" --output "$RUN_ROOT"
 
-This is the exact original combined ten-stage validation (no retuned acceptance, no additional old roots): 20 source tests, 27 synthetic verifier tests, 12 changed-VM tests, 30 original-S host tests, 15 installed-native synthetic, original-S nine-part byte/90-cell historical archive, 59 archived process joins, native-host diagnostics, three new current-native e1e5 build roles and five fresh Unity arm64 Player cases, 126 changed VM installed-source byte pairs. Require actual post-poison managed entry attempts, no business method body side effect, stable terminal cause/recovery, healthy OFF control, native engine sentinel, request/nonce/PID/build and installation/Player binary provenance.
+The existing combined coordinator will independently verify four owning Git remote/branch clean source inputs, 10 candidate source and42 native VM blob identities, macOS arm64 Unity and fixed 20-GiB min BEFORE creating new output. It runs ten original stages once: (1)20 source/pin, (2)27 verifier synthetic, (3)12 VM delta source, (4)30 original S host, (5)15 installed-native synthetic, (6)full original-S archived nine-part/15,713 members/90-cell re-authentication, (7)59 original archived process joins without historical Player replay, (8)native host diagnostic C++/codec/transaction, (9)three new current e1e5 build roles (ON release/debug, OFF release) and five genuine Unity2022.3 arm64 Players (release/debug baseline poison, release type poison, OFF negative, engine-unhandled), (10)42 changed physical native VM source files in all three installed trees=126 pairs.
 
-Never run oneuse-A/B, old S, b7e3/c42a/f51d, old R03 runner or any other source/Player batch. A used/partial C root is immediately consumed and cannot be retried. On failure preserve first error and all raw evidence. Even complete R03 focused evidence is at most FocusedEvidenceReadyForIndependentReview, NOT R03Accepted, runtimeAcceptance or an independent R03 PASS.
+Require real post-poison valid active reflection/delegate/AOT canary attempts, zero body/canary side effect, stable original terminal reason/recovery, positive pre-poison control, native engine unhandled sentinel, request/PID/nonce, exact source/SDK/build/linked Player source pairs, real raw logs and negative rejection evidence. A synthetic oracle PASS cannot replace actual Player. All ten stage outcomes and scoped failures remain distinct; a current-native focus PASS means at most FocusedEvidenceReadyForIndependentReview, never independent IR-R03-01/02 closure or product acceptance.
 
-## 6. Required Local return and stop
+No separate earlier historical S/C/audit/full Player replay, no repeat oneuse-A/B/C, no manual old runner commands, no second sparse projection and no automatic retry of any used oneuse-D root. If a step fails, preserve partial evidence and FIRST error; return to Primary without modifying production source or acceptance criteria.
 
-Publish new additive receipts for the exact one-use sparse conversion, including full INTENT/GIT_COMMAND/RESULT and after-projection 16,978-file physical preservation; APFS bytes/mount state before/after and source/remote reauthentication; exact SDK8 CLI and Unity2022 binary; fresh read-only coordinator admission raw. If coordinator runs, preserve ADMISSION/RESULT/COORDINATOR_MANIFEST, ten stages and raw stdout/stderr/exit/PIDs/child cleanup, actual original S audit/90 cells/59 archived processes, native host diagnostics, three native builds, five Player raw/verifiers and 126 installed source byte pairs, generated/link evidence and all signed/sealed custody. Distinguish Passed/Failed/Blocked/NotRun/Unavailable and material gaps.
+## 6. Required Local publication and stop
 
-Update Local-owned Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md and RETURN_TO_WEB.md, add a new provenance-bound checkpoint under Docs/AssemblyShadow/History/M07R/R03, commit/push and independently verify all four final remote heads. Preserve oneuse-A/B, original S Git object history, b7e3/c42a/f51d/S historical evidence. No Local nontrivial production-source changes or arbitrary cleanup. STOP after factual publication and return to Primary.
+If readmission fails, document exact PrerequisiteBlocked/no-new-root and all D stage NotRun with source, cwd, CLI hash, actual dotnet8/unity/capacity/remote observations. If coordinator starts, retain ADMISSION.json, RESULT.json, COORDINATOR_MANIFEST.json, ten stages INVOCATION/RESULT/stdout/stderr/exit/PIDs/group cleanup, original-S full archive/index/90 cells and59 archived process joins, native host tests, three actual native build and installed SDK provenance receipts, five Player launch/request/raw/log/verification/canary, installed-native-vm-parity.json if reached, original sparse fc55 postflight, before/after SHA manifests and all scoped negative/unavailable artifacts.
 
-Original Oct 8 independent full-stage R03 FAIL and High IR-R03-01/02 remain; D1=A conservative NativeLayoutAdmissionV1 / X02 deferred, D2=A observational performance and four contaminated Failed certificates unchanged. P1 incomplete; P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, full P3 incomplete; R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, qualificationApproved=false, runtimeAcceptance=false, PureInterpreter disabled. No H2/M08A/X02/SNAP-01/Human Review Gate without separate human initiation.
+Publish a NEW additive Local checkpoint under Docs/AssemblyShadow/History/M07R/R03; update **Local-owned** Handoff/LOCAL_VALIDATION.md and RETURN_TO_WEB.md with factual Passed/Failed/Blocked/NotRun/Unavailable and provenance. Commit/push and verify actual four repo remote heads, retain oneuse-A/B/C and all earlier b7e3/c42a/f51d/S original evidence. Do not make nontrivial source/architecture changes or initiate new milestone. STOP and return to Primary.
+
+## 7. Immutable acceptance and independent gate
+
+Original Oct 8 independent full-stage R03 **FAIL**, High IR-R03-01/02 still open; D1=A conservative NativeLayoutAdmissionV1 and X02 structural deferral, D2=A performance observational/four contaminated Failed certificates, historical S bounded 90/90, b7e3/c42a overall Local FAIL and f51d historical-audit-only PASS remain fixed. P1 incomplete, P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, full P3 incomplete; R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, qualificationApproved=false, runtimeAcceptance=false, PureInterpreter disabled. No automatic H2/M08A/X02/SNAP-01 or Human Review Gate.

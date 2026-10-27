@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03CurrentNativeCliBootstrapPrimaryEvidence",
+  "date": "2026-10-26",
+  "scope": "PrimarySourceAndMacLinuxFreshPythonProcessHostCI_ActualUnityPlayerNotRun",
+  "authoritativeLocal": {
+    "publishedDemoCommit": "fdf73ca907ace8d9470c888a02d0c3bedc25379b",
+    "actualOneuseCExecutionDemoCommit": "2af4f7af2eb00682ea924eb5b4c13c37380115ef",
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "localCheckpoint": "Docs/AssemblyShadow/History/M07R/R03/local-validation-current-native-original-s-20261026-oneuse-c",
+    "overall": "FAIL_ReturnRequired",
+    "stageCounts": {
+      "Passed": 8,
+      "Failed": 1,
+      "Blocked": 1
+    },
+    "trueFreshBuilds": 0,
+    "trueFreshPlayers": 0,
+    "physicalInstalledVmPairs": 0,
+    "failedStage": "current-native-players",
+    "firstFailure": "IR-LOCAL-CURRENT-NATIVE-CLI-IMPORT-01",
+    "traceback": "run_terminal_current.py:14 from run_local import Batch ... ModuleNotFoundError: No module named 'run_local'",
+    "originalSReadOnlyArchive": {
+      "result": "PassedHistoricalByteAndProcessScopeOnly",
+      "archiveSha256": "23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6",
+      "members": 15713,
+      "cells": 90,
+      "archivedProcessJoins": 59,
+      "independentFullSemanticReview": "NotPassed"
+    },
+    "projection": {
+      "result": "PassedBoundedSourceProjection_RequiresFreshCapacityAdmission",
+      "protectedFiles": 16978,
+      "freeBeforeBytes": 21307797504,
+      "freeAfterBytes": 49750827008,
+      "gitSourceUnchanged": true
+    }
+  },
+  "sources": {
+    "codeImplementationCommit": "43fa6108ca092f5583ea3f807266d5827d5f10c8",
+    "repo": "night-outlook/hybridclr_demo",
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "changedBlobs": {
+      "Tools/AssemblyShadow/R03IR/run_terminal_current.py": "35edc2268bc32c8a8df145d64d4c370b22fe324b",
+      "Tools/AssemblyShadow/R03IR/current_native_cli_contracts.py": "9a0f8f9517a7fadd535350c444a83963ac051fb3",
+      "Tools/AssemblyShadow/R03IR/current_native_environment_admission.py": "956519b3a98d16796c4eae5ccaecb0c1ad36098e",
+      "Tools/AssemblyShadow/R03IR/current_native_environment_contracts.py": "5b4fb743a9d7a9fcbdc5e58b9104ea4ee58846c1",
+      ".github/workflows/r03-ir-current-native-local-cycle-host.yml": "8ca5d42d47b2c59efaa40b5cda4ff5e3d48f3b01",
+      ".github/workflows/r03-ir-host.yml": "d92a3a8698790c2974750226dacd3cb3141e9d25"
+    },
+    "unchangedBlobs": {
+      "Tools/AssemblyShadow/R03/run_local.py": "9aef8093f98fb7f9b5dd395ba4e5c2ed0220276e",
+      "Tools/AssemblyShadow/R03IR/run_terminal_local.py": "70b1a27f2dbbcad93f67e8caddcf7282ff3afd73",
+      "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs": "598feeec3231707091699d99fbf4428d50b52024",
+      "Tools/AssemblyShadow/R03/source-pins.json": "9d72a237fb6ecd3efe3267ca89625aa49c61775d",
+      "Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py": "d03f0e754213bd7219028ccb0aad534b87e89b61"
+    },
+    "externalPins": {
+      "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+    },
+    "latestHostWorkflowCorrectionCommit": "99f79a65a953aec47403128013135d1645beb19b"
+  },
+  "ci": {
+    "runId": 40459012594,
+    "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/40459012594",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "os": "ubuntu-24.04",
+        "id": 122038940850,
+        "conclusion": "success"
+      },
+      {
+        "os": "macos-15",
+        "id": 122038941217,
+        "conclusion": "success"
+      }
+    ],
+    "testsPerHost": {
+      "coordinator": 20,
+      "installedVmSynthetic": 15,
+      "environmentAndCliAdmission": 27,
+      "actualFreshPythonChild": 23,
+      "sparseCustody": 31,
+      "currentSource": 20,
+      "syntheticVerifier": 27,
+      "vmDelta": 12,
+      "originalSHost": 30,
+      "total": 205
+    },
+    "relatedCompletedSuccessRuns": [
+      40459012688,
+      40459012560,
+      40459012784,
+      40459012623,
+      40460340694
+    ],
+    "realUnityBuildOrPlayerRun": false,
+    "originalSFullArchiveRun": false,
+    "acceptancePromoted": false,
+    "relatedHostWorkflow": {
+      "finalRun": 40460340694,
+      "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/40460340694",
+      "jobs": [
+        {
+          "os": "macos-14",
+          "id": 122043162893,
+          "conclusion": "success",
+          "tests": 156
+        },
+        {
+          "os": "ubuntu-24.04",
+          "id": 122043163193,
+          "conclusion": "success",
+          "tests": 156
+        }
+      ],
+      "priorRuns": [
+        {
+          "id": 40459012648,
+          "macOS": "Failed_NoSpaceAtFullCheckout",
+          "ubuntu": "success"
+        },
+        {
+          "id": 40460171308,
+          "macOS": "Failed_MissingR03StorageSourceInSparseInputs",
+          "ubuntu": "sourceTestIncomplete"
+        }
+      ],
+      "type": "HostOnlyPythonUnitTests_NotIndependentR03FullStageVerdict"
+    }
+  },
+  "nextLocal": {
+    "name": "oneuse-D",
+    "originalCConsumed": true,
+    "originalSparseFc55Retained": true,
+    "requireReadOnlyPreflightFreshChildNoPythonPath": true,
+    "minFreeGiB": 20,
+    "advisoryFreeGiB": 40,
+    "newNativeBuildRolesPlanned": 3,
+    "newPlayersPlanned": 5,
+    "installedChangedNativePairsPlanned": 126,
+    "actualExecution": "NotRun",
+    "independentR03FullStage": "FAIL_October8_Unchanged",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false,
+    "runtimeAcceptance": false,
+    "PureInterpreterEnabled": false
+  }
+}
