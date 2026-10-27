@@ -245,5 +245,27 @@ class SparseProjectionContracts(unittest.TestCase):
                 proj.require_unhidden_index(self.repo)
 
 
+    def test_31_linked_worktree_projection_does_not_change_main_checkout(self):
+        linked = self.root / "fc55-linked-test"
+        self.g("worktree", "add", "--detach", str(linked), "HEAD")
+        main_outside = self.repo / "unrelated/deep/old-history.txt"
+        linked_outside = linked / "unrelated/deep/old-history.txt"
+        self.assertTrue(main_outside.is_file() and linked_outside.is_file())
+        main_commit = self.g("rev-parse", "HEAD")
+        result = proj.sparse_command(linked, self.protected, timeout=60)
+        self.assertEqual(result["exitCode"], 0, result["stderr"])
+        self.assertTrue(main_outside.is_file())
+        self.assertFalse(linked_outside.exists())
+        self.assertEqual(self.g("rev-parse", "HEAD"), main_commit)
+        self.assertEqual(subprocess.check_output(
+            ["git", "-C", str(linked), "rev-parse", "HEAD"]).decode().strip(),
+            main_commit.decode())
+        proj.require_clean(self.repo)
+        proj.require_clean(linked)
+        self.assertEqual(proj.verify_materialized(linked, self.rows())["files"], 2)
+        self.assertFalse(proj.sparse_enabled(self.repo))
+        self.assertTrue(proj.sparse_enabled(linked))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
