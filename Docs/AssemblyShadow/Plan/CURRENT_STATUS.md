@@ -1,3 +1,15 @@
+# R03 Primary current stage — original S fc55 guarded sparse capacity remediation, Local oneuse-C conditional (2026-10-26)
+
+Authoritative Local oneuse-B = BLOCKED / PrerequisiteBlocked_Capacity, 19.858/19.840 GiB available versus unchanged 20 GiB floor. Coordinator zero, all ten stages NotRun; source and retained fc55 reauthenticated. Existing dotnet SDK8.0.318/runtime8.0.21 found in installed Unity6000 DotNetSdk (PATH process-only), not used to build or run Unity. Shared APFS disk3 /Volumes/Data is not independent capacity; no Local cleanup/remediation performed. oneuse-A prior capacity BLOCKED also immutable.
+
+Primary prepared a bounded oneuse-C remediation to selectively sparse-project the *same retained clean original-S fc55 worktree* around its exact 16,978-file / 3,882,340,952-byte committed checkpoint subtree, verifying every physical Git blob before/after and preserving Git objects/history. Only one explicit sparse command; no prunes/cache deletion/worktree recreation; no runtime threshold reduction. Source-only Mac/Linux CI tests now 180 per OS, not actual Mac space reclaimed. Source-preserved actual APFS space must be measured and a fresh oneuse-C read-only environment admission must pass with a new unused batch output root and usable dotnet8; actual combined Unity 3-build/5-Player and 126 pairs remain NotRun. New canonical [WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md) limits these operations.
+
+Original October 8 independent R03 FAIL and High IR-R03-01/02 persist, D1=A conservative V1 / X02 deferred, D2=A performance observational only, four contaminated Failed certificates retained. Historical original S bounded 90/90, b7e3/c42a overall Local FAIL and f51d scoped historical audit-only PASS unchanged. P1 incomplete, P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, P3 incomplete. R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, qualificationApproved=false, runtimeAcceptance=false; PureInterpreter disabled. No H2/M08A/X02/SNAP-01/Human Review Gate.
+
+---
+
+## Earlier status records — history only, not active authorization
+
 # R03 current status — oneuse-A capacity BLOCKED, Primary oneuse-B readmission ready (2026-10-26)
 
 Actual [oneuse-A Local evidence](../History/M07R/R03/local-validation-current-native-original-s-20261026-oneuse-a/README.md) establishes **BLOCKED, coordinator zero, ten stages NotRun, builds 0/3, Players 0/5 and installed VM 0/126**, not native implementation FAIL. Original S fc55 source worktree was created clean and retained. Post-worktree space was 19.63 GiB against fixed 20 GiB; a later passive 20.29 GiB is not admission. dotnet CLI absent on PATH; pinned fixture uses net8.0 and actual SDK/runtime remains unknown. Do not rerun oneuse-A or recreate fc55.

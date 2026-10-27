@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03PrimaryRetainedFc55SparseCapacitySourceEvidence",
+  "date": "2026-10-26",
+  "scope": "PrimarySourceHostOnly_NoActualMacWorktreeMutationOrPlayer",
+  "authoritativeStart": {
+    "demoLocalReturnCommit": "f2aa11372fbba4276f8c5624ab52cc56c27976bb",
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "externalPins": {
+      "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+    }
+  },
+  "local": {
+    "oneuseA": "BLOCKED_CoordinatorNotRun",
+    "oneuseB": "BLOCKED_PrerequisiteBlocked_Capacity",
+    "sourcePinsPassed": true,
+    "coordinatorInvocations": 0,
+    "stagesNotRun": 10,
+    "actualNativeBuilds": 0,
+    "actualPlayers": 0,
+    "installedVmSourcePairs": 0,
+    "oneuseBFreeBeforeBytes": 21322317824,
+    "oneuseBFreeAfterBytes": 21303300096,
+    "hardMinimumBytes": 21474836480,
+    "apfsContainer": "disk3",
+    "dotnetSdk": "8.0.318",
+    "dotnetRuntime": "8.0.21",
+    "dotnetRid": "osx-arm64",
+    "dotnetActivation": "ProcessOnlyPATH",
+    "toolchainBuild": "NotRun"
+  },
+  "originalS": {
+    "worktree": "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+    "commit": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+    "checkpoint": "Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready",
+    "treeSha": "2acdcc0ec3c0f15dea11f99bc9c5d6d0f431de79",
+    "blobCount": 16978,
+    "regularNonExecutable": 16958,
+    "regularExecutable": 20,
+    "totalLogicalBytes": 3882340952,
+    "physicalReclaimedBytes": "NotMeasured",
+    "historyOrOriginalArchiveRewritten": false,
+    "actualMacSparseProjection": "NotRun"
+  },
+  "source": {
+    "preDocCodeCommit": "ec5558f258e3056f0df2292dc781d071d1e301ca",
+    "files": {
+      "Tools/AssemblyShadow/R03IR/original_s_sparse_projection.py": "d34f16c46d0fcf4136e2e05c7e297ca694a3b763",
+      "Tools/AssemblyShadow/R03IR/original_s_sparse_contracts.py": "0e9582c5b8ffc50b83d06d6c5ee8a6d5b45b465c",
+      ".github/workflows/r03-ir-current-native-local-cycle-host.yml": "dd4c29d4d7e42aa8f350656c47a227c61ee588ce"
+    }
+  },
+  "ci": {
+    "passingRun": 40442802143,
+    "link": "https://github.com/night-outlook/hybridclr_demo/actions/runs/40442802143",
+    "jobs": [
+      {
+        "os": "macos-15",
+        "id": 121986872486,
+        "status": "success"
+      },
+      {
+        "os": "ubuntu-24.04",
+        "id": 121986872320,
+        "status": "success"
+      }
+    ],
+    "testsPerOS": {
+      "sparse": 31,
+      "coordinator": 20,
+      "installedVm": 15,
+      "environment": 25,
+      "currentSource": 20,
+      "verifierSynthetic": 27,
+      "vmDelta": 12,
+      "originalSHost": 30,
+      "total": 180
+    },
+    "previousFailRun": 40441691744,
+    "previousFailure": "HostOnlyGitLsTreePaddedSizeParser",
+    "failureCorrectedWithoutProductSourceChanges": true,
+    "unityPlayerCI": "NotRun",
+    "originalSFullArchiveCI": "NotRun",
+    "previousSuccessfulRun": 40442326797
+  },
+  "next": {
+    "projectionAllowedOnlyOnce": true,
+    "retainSameWorktree": true,
+    "gitHistoryDeletion": false,
+    "minDiskGiB": 20,
+    "advisoryPostProjectionGiB": 40,
+    "nextCoordinator": "oneuse-C_ConditionallyAfterFreshPassingReadmission",
+    "independentR03": "FAIL_October8_NotReplaced",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false,
+    "runtimeAcceptance": false,
+    "PureInterpreterEnabled": false
+  },
+  "sourcePostflightAdded": true,
+  "productionAppliedToRetainedMacOriginalS": false,
+  "sparseSourceIndexHideChecksAdded": true,
+  "linkedWorktreeIsolationTestAdded": true
+}
