@@ -1,0 +1,76 @@
+{
+  "id": "IR-LOCAL-CURRENT-NATIVE-CLI-IMPORT-01",
+  "status": "ReproducedOnce_ActualCoordinatorChildFailedBeforeBatchConstruction",
+  "symptom": "Traceback (most recent call last):\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_terminal_current.py\", line 14, in <module>\n    from run_local import Batch as OriginalBatch, require\nModuleNotFoundError: No module named 'run_local'\n",
+  "exactReproduction": [
+    "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+    "-B",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_terminal_current.py",
+    "--workspace",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+    "--output",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-C/current-native",
+    "--unity",
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+    "--demo-commit",
+    "2af4f7af2eb00682ea924eb5b4c13c37380115ef"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-C",
+  "run": {
+    "exitCode": 1,
+    "finishedUtc": "2026-10-27T03:29:03.977540+00:00",
+    "mayHaveExternalOwnedChildren": false,
+    "name": "current-native-players",
+    "postCleanupGroupExists": false,
+    "processGroupRemainedAtExit": false,
+    "processId": 15471,
+    "startedUtc": "2026-10-27T03:29:03.929976+00:00",
+    "state": "Failed",
+    "stderrSha256": "e4da639491446f3aea430aa545159f5457010192778c3282fe48b9cd1ad56c65",
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "timedOut": false
+  },
+  "evidencePaths": {
+    "invocation": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-C/steps/current-native-players/INVOCATION.json",
+    "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-C/steps/current-native-players/RESULT.json",
+    "stdout": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-C/steps/current-native-players/stdout.log",
+    "stderr": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-C/steps/current-native-players/stderr.log"
+  },
+  "sourceBindings": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_terminal_current.py",
+      "gitBlob": "b7732fbad1295a0486d7fb303948ac1bf54ec4e2",
+      "sha256": "cf64b8a02824730cb83e4d22808920f5b00c868953c7786f44c1c4b8256c68ce",
+      "bytes": 3687
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_terminal_local.py",
+      "gitBlob": "70b1a27f2dbbcad93f67e8caddcf7282ff3afd73",
+      "sha256": "a51f2cfe91aaddf66e1dbe14b2428e76e3ebc14d88ffa904c53d482573144ef3",
+      "bytes": 19670
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py",
+      "gitBlob": "d03f0e754213bd7219028ccb0aad534b87e89b61",
+      "sha256": "e6914f6897d694405af947f98105cd8f8198059a1067638a8500f446cb829d3e",
+      "bytes": 23679
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py",
+      "gitBlob": "9aef8093f98fb7f9b5dd395ba4e5c2ed0220276e",
+      "sha256": "ebbbf9139de5f6bff0075ef966ee6ed3f3070059eae3733052fbc5406bb360a6",
+      "bytes": 22506
+    }
+  ],
+  "mostLikelyRootCause": "run_terminal_current.py imports run_local at line14 before any adjacent R03 path bootstrap. The dependency physically exists under Tools/AssemblyShadow/R03/run_local.py, not R03IR. The coordinator prepends R03 to its own sys.path at line25, but launches a fresh Python interpreter at lines383-386; parent in-memory sys.path is not inherited by that interpreter. The inherited legacy runner has the required bootstrap at lines15-18, but is imported only after the failing line.",
+  "affectedScope": "Current-native wrapper standalone CLI startup. It fails before argument handling, CurrentNativeBatch construction, fixture staging, any Unity/build/Player launch or child seal. No native product behavior was exercised.",
+  "recommendedDirection": "Primary should publish an explicit adjacent-R03 import bootstrap or package-safe import arrangement before the first run_local import, without changing legacy runner/native pins/oracles. Add a real fresh-interpreter CLI startup regression from an external cwd with no assisting PYTHONPATH (e.g. --help, no Unity), not just source-text or in-process imports. Then issue new source-pinned one-use Local authority; do not rerun oneuse-C.",
+  "remainingUncertainty": "Later build/native/runtime and physical installation checks are NotRun; additional defects may surface after import repair. Original-S byte/process joins do not close independent full-stage semantic findings.",
+  "validationAfterFix": "Fresh-process CLI startup test and a newly authorized complete source-bound coordinator, including actual3 builds/5 Players/126 physical source pairs, all raw first-failure/canary/engine checks and postflight.",
+  "localSourceChanges": false,
+  "localRetry": false,
+  "currentNativeBatchRootExists": false,
+  "newBuilds": 0,
+  "newPlayers": 0,
+  "R03Accepted": false
+}

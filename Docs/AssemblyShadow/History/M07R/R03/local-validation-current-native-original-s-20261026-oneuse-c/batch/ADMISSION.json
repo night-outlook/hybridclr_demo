@@ -1,0 +1,163 @@
+{
+  "R03Accepted": false,
+  "host": {
+    "architecture": "arm64",
+    "freeBytesAtAdmission": 49755107328,
+    "host": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+    "minimumFreeGiB": 20,
+    "unityExecutable": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+    "unityExecutableSha256": "35721b35221875b2d170160f7fdd661afff7458b3386f029124f30e1ba2b862c",
+    "unityVersionValidatedByBuild": "NotRunAtPreflight"
+  },
+  "kind": "R03IRCurrentNativeLocalAdmission",
+  "originalS": {
+    "clean": true,
+    "commit": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+    "repository": "night-outlook/hybridclr_demo",
+    "role": "immutable-original-S-read-only"
+  },
+  "runtimeAcceptance": false,
+  "schemaVersion": 1,
+  "source": {
+    "R03Accepted": false,
+    "ReadyForHumanReviewGate": false,
+    "repositories": [
+      {
+        "branch": "codex/assembly-shadow-r01b-h1",
+        "commit": "2af4f7af2eb00682ea924eb5b4c13c37380115ef",
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "remoteHeadVerified": true,
+        "repository": "night-outlook/hybridclr_demo"
+      },
+      {
+        "branch": "codex/assembly-shadow-r01b-h1",
+        "commit": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+        "remoteHeadVerified": true,
+        "repository": "night-outlook/hybridclr"
+      },
+      {
+        "branch": "codex/assembly-shadow-r01b-h1",
+        "commit": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+        "remoteHeadVerified": true,
+        "repository": "night-outlook/hybridclr_unity"
+      },
+      {
+        "branch": "codex/assembly-shadow-r01b-h1",
+        "commit": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+        "remoteHeadVerified": true,
+        "repository": "night-outlook/il2cpp_plus"
+      }
+    ],
+    "result": "PassedReadOnlySourceAdmission_NotBuildOrRuntime",
+    "sourceGate": {
+      "H2Passed": false,
+      "R03Accepted": false,
+      "ReadyForHumanReviewGate": false,
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "candidateNativeBuildRoles": 3,
+      "checkoutHeads": {
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+      },
+      "currentCandidatePins": {
+        "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+      },
+      "currentSourceMatchedPlayerExecution": "NotRun",
+      "focusedPlayerCaseCount": 5,
+      "fullOriginalSIndependentReview": "NotPassed",
+      "historicalR03PinRemains": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
+      "kind": "R03IRCurrentNativeCoherentSourceOnlyGate",
+      "newBuildOrUnityPlayerRun": false,
+      "nextLocalAuthority": "NotAuthorized",
+      "originalR03PinsRewritten": false,
+      "originalSFixtureCount": 15,
+      "result": "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation",
+      "runtimeAcceptance": false,
+      "schemaVersion": 1,
+      "sourceFiles": [
+        {
+          "bytes": 309,
+          "gitBlob": "9d72a237fb6ecd3efe3267ca89625aa49c61775d",
+          "path": "Tools/AssemblyShadow/R03/source-pins.json",
+          "repository": "hybridclr_demo"
+        },
+        {
+          "bytes": 22506,
+          "gitBlob": "9aef8093f98fb7f9b5dd395ba4e5c2ed0220276e",
+          "path": "Tools/AssemblyShadow/R03/run_local.py",
+          "repository": "hybridclr_demo"
+        },
+        {
+          "bytes": 19670,
+          "gitBlob": "70b1a27f2dbbcad93f67e8caddcf7282ff3afd73",
+          "path": "Tools/AssemblyShadow/R03IR/run_terminal_local.py",
+          "repository": "hybridclr_demo"
+        },
+        {
+          "bytes": 25552,
+          "gitBlob": "598feeec3231707091699d99fbf4428d50b52024",
+          "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs",
+          "repository": "hybridclr_demo"
+        },
+        {
+          "bytes": 26352,
+          "gitBlob": "90eeccfa30e904955708d11530b99f179584de8c",
+          "path": "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs",
+          "repository": "hybridclr_demo"
+        },
+        {
+          "bytes": 36673,
+          "gitBlob": "2f13925190a1576738457d8d43f3646a4c7c095f",
+          "path": "Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp",
+          "repository": "hybridclr_demo"
+        },
+        {
+          "bytes": 123277,
+          "gitBlob": "57cf47f964a83973df8296955ccf856b105c595f",
+          "path": "libil2cpp/vm/AssemblyShadow.cpp",
+          "repository": "il2cpp_plus"
+        },
+        {
+          "bytes": 1178,
+          "gitBlob": "33258986c31b2e6ae3af17b8553030482a83aef7",
+          "path": "libil2cpp/vm/AssemblyShadowTerminalExecution.h",
+          "repository": "il2cpp_plus"
+        },
+        {
+          "bytes": 53983,
+          "gitBlob": "96b914fbeb31c69d649e4076a802de0b6418daa8",
+          "path": "libil2cpp/vm/Runtime.cpp",
+          "repository": "il2cpp_plus"
+        },
+        {
+          "bytes": 515991,
+          "gitBlob": "2dbdb7527afee7f2546e45f20e6ef93e1bca237a",
+          "path": "hybridclr/interpreter/Interpreter_Execute.cpp",
+          "repository": "hybridclr"
+        }
+      ],
+      "verifiedSourceFiles": 10
+    },
+    "vmDelta": {
+      "R03Accepted": false,
+      "added": 34,
+      "baseNativeCommit": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
+      "changedVmFileCount": 42,
+      "currentNativeCommit": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
+      "independentSemanticReview": "NotRun",
+      "linkedPlayerInputCoverage": "NotProven",
+      "modified": 8,
+      "officialUnitySdkCompilation": "NotRun",
+      "result": "PassedCurrentNativeVmSourceDeltaOnly",
+      "runtimeAcceptance": false
+    }
+  },
+  "timeUtc": "2026-10-27T03:27:30.855237+00:00"
+}

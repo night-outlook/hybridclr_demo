@@ -1,0 +1,459 @@
+{
+  "kind": "IndependentProtectedAndLinkedWorktreeProjectionVerification",
+  "result": "PassedReadOnlyPostProjectionPreservation",
+  "start": "2026-10-27T03:25:43.232328+00:00",
+  "end": "2026-10-27T03:25:50.608000+00:00",
+  "protectedFiles": 16978,
+  "protectedLogicalBytes": 3882340952,
+  "allProtectedSha256Unchanged": true,
+  "protectedBeforeReceiptSha256": "b06245f09bc814d50e93d95483b43bb684c4d750f40e8c219ac1355d04a80e56",
+  "fc55HeadTreeBlobsAvailable": 129417,
+  "sourceGitHistoryDeleted": false,
+  "oldCheckpointSetsPreserved": 5,
+  "linkedWorktrees": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+      "checks": [
+        {
+          "argv": [
+            "rev-parse",
+            "HEAD"
+          ],
+          "exit": 0,
+          "stdout": "c2d7334ee6fa0d2b20f73ed35970f16d97f92571\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all"
+          ],
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "config",
+            "--show-origin",
+            "--get-all",
+            "core.sparseCheckout"
+          ],
+          "exit": 1,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "ls-files",
+            "-v",
+            "-z"
+          ],
+          "exit": 0,
+          "stdoutSha256": "faeca4a3c0c7b036d14cb6c970d37d44c38837b7b0a6925c77ad97d39df90dc3",
+          "entries": 3646,
+          "stderr": ""
+        }
+      ],
+      "unrelatedLogicalIndexAndHEADPreserved": true
+    },
+    {
+      "path": "/Users/ah/.codex/worktrees/af52/hybridclr_demo",
+      "checks": [
+        {
+          "argv": [
+            "rev-parse",
+            "HEAD"
+          ],
+          "exit": 0,
+          "stdout": "73d95b4064ee23143e0722f6eae127fe61df6c9d\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all"
+          ],
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "config",
+            "--show-origin",
+            "--get-all",
+            "core.sparseCheckout"
+          ],
+          "exit": 1,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "ls-files",
+            "-v",
+            "-z"
+          ],
+          "exit": 0,
+          "stdoutSha256": "dca28b43209e732655a449d0459bb73c80500b1993a41aed5d483760574605c0",
+          "entries": 862,
+          "stderr": ""
+        }
+      ],
+      "unrelatedLogicalIndexAndHEADPreserved": true
+    },
+    {
+      "path": "/Users/ah/.codex/worktrees/c078/hybridclr_demo",
+      "checks": [
+        {
+          "argv": [
+            "rev-parse",
+            "HEAD"
+          ],
+          "exit": 0,
+          "stdout": "1bfa6195722c23e2fe1e678411bce36c9bbb81ac\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all"
+          ],
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "config",
+            "--show-origin",
+            "--get-all",
+            "core.sparseCheckout"
+          ],
+          "exit": 1,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "ls-files",
+            "-v",
+            "-z"
+          ],
+          "exit": 0,
+          "stdoutSha256": "048dd6673090dba23ab61dd0daebb9d6a97205879ade7187dc19ee727930464d",
+          "entries": 865,
+          "stderr": ""
+        }
+      ],
+      "unrelatedLogicalIndexAndHEADPreserved": true
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "checks": [
+        {
+          "argv": [
+            "rev-parse",
+            "HEAD"
+          ],
+          "exit": 0,
+          "stdout": "2af4f7af2eb00682ea924eb5b4c13c37380115ef\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all"
+          ],
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "config",
+            "--show-origin",
+            "--get-all",
+            "core.sparseCheckout"
+          ],
+          "exit": 1,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "ls-files",
+            "-v",
+            "-z"
+          ],
+          "exit": 0,
+          "stdoutSha256": "5f7e973a9e41570f5ddadeb14f3e66e4679d8f90d95a10cced26967e3de02968",
+          "entries": 193749,
+          "stderr": ""
+        }
+      ],
+      "unrelatedLogicalIndexAndHEADPreserved": true
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/reproduction_tooling",
+      "checks": [
+        {
+          "argv": [
+            "rev-parse",
+            "HEAD"
+          ],
+          "exit": 0,
+          "stdout": "ba8fee33753a5ebc215b7a98739e343d8e05572e\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all"
+          ],
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "config",
+            "--show-origin",
+            "--get-all",
+            "core.sparseCheckout"
+          ],
+          "exit": 1,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "ls-files",
+            "-v",
+            "-z"
+          ],
+          "exit": 0,
+          "stdoutSha256": "67b108ec4b8b087191fc37956b0719c8e8138a33c7b9649860ae7d10ddfcde4e",
+          "entries": 2093,
+          "stderr": ""
+        }
+      ],
+      "unrelatedLogicalIndexAndHEADPreserved": true
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+      "checks": [
+        {
+          "argv": [
+            "rev-parse",
+            "HEAD"
+          ],
+          "exit": 0,
+          "stdout": "88508b59b7c4ef8c5023cbbe655d43ebfcf5304c\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all"
+          ],
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "config",
+            "--show-origin",
+            "--get-all",
+            "core.sparseCheckout"
+          ],
+          "exit": 1,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "ls-files",
+            "-v",
+            "-z"
+          ],
+          "exit": 0,
+          "stdoutSha256": "64e5eb0d37d068d81cbe4a68fa9d1e712fe818e2d5b1f7b0227424b624f60c1f",
+          "entries": 1861,
+          "stderr": ""
+        }
+      ],
+      "unrelatedLogicalIndexAndHEADPreserved": true
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr_demo",
+      "checks": [
+        {
+          "argv": [
+            "rev-parse",
+            "HEAD"
+          ],
+          "exit": 0,
+          "stdout": "ba8fee33753a5ebc215b7a98739e343d8e05572e\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all"
+          ],
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "config",
+            "--show-origin",
+            "--get-all",
+            "core.sparseCheckout"
+          ],
+          "exit": 1,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "ls-files",
+            "-v",
+            "-z"
+          ],
+          "exit": 0,
+          "stdoutSha256": "67b108ec4b8b087191fc37956b0719c8e8138a33c7b9649860ae7d10ddfcde4e",
+          "entries": 2093,
+          "stderr": ""
+        }
+      ],
+      "unrelatedLogicalIndexAndHEADPreserved": true
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo",
+      "checks": [
+        {
+          "argv": [
+            "rev-parse",
+            "HEAD"
+          ],
+          "exit": 0,
+          "stdout": "21c689732cd8087f8ee8fdce4e52a8f2a655f722\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all"
+          ],
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "config",
+            "--show-origin",
+            "--get-all",
+            "core.sparseCheckout"
+          ],
+          "exit": 1,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "ls-files",
+            "-v",
+            "-z"
+          ],
+          "exit": 0,
+          "stdoutSha256": "8f3eca116c35d0ca2bde4e15b96fe1cc781713503bce570205dd82fc9ba18894",
+          "entries": 4294,
+          "stderr": ""
+        }
+      ],
+      "unrelatedLogicalIndexAndHEADPreserved": true
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+      "checks": [
+        {
+          "argv": [
+            "rev-parse",
+            "HEAD"
+          ],
+          "exit": 0,
+          "stdout": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all"
+          ],
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "config",
+            "--show-origin",
+            "--get-all",
+            "core.sparseCheckout"
+          ],
+          "exit": 0,
+          "stdout": "file:/Users/ah/GitHub/hybridclr/hybridclr_demo/.git/worktrees/OriginalS-20261026-fc55-oneuse/config.worktree\ttrue\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "ls-files",
+            "-v",
+            "-z"
+          ],
+          "exit": 0,
+          "stdoutSha256": "64b23b28b656efb822506947b0fa5ad9573b9399ce83c14e3888ecacae0b673b",
+          "entries": 129417,
+          "stderr": ""
+        }
+      ],
+      "unrelatedLogicalIndexAndHEADPreserved": false
+    }
+  ],
+  "unrelatedWorktreesPreserved": true,
+  "volumes": [
+    {
+      "path": "/System/Volumes/Data",
+      "device": "disk3s1",
+      "mount": "/System/Volumes/Data",
+      "container": "disk3",
+      "filesystem": "apfs"
+    },
+    {
+      "path": "/Volumes/Data",
+      "device": "disk3s5",
+      "mount": "/Volumes/Data",
+      "container": "disk3",
+      "filesystem": "apfs"
+    }
+  ],
+  "availableBytes": 49750278144,
+  "advisory40GiBAvailable": true,
+  "noProjectionRetry": true,
+  "coordinatorInvoked": false
+}
