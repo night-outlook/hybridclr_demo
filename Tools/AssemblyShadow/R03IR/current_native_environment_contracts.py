@@ -154,7 +154,9 @@ class R03RetainedOriginalReadmissionContracts(unittest.TestCase):
     def test_21_preflight_is_explicitly_non_execution(self):
         script = Path(gate.__file__).read_text(encoding="utf-8")
         self.assertNotIn("worktree add", script)
-        self.assertNotIn("run_terminal_current.py", script)
+        self.assertIn("run_terminal_current.py", script)
+        self.assertIn('"--help"', script)
+        self.assertNotIn("subprocess.Popen(", script)
         self.assertNotIn(".mkdir(", script)
         self.assertIn("runRootCreated", script)
         self.assertIn("coordinatorInvoked", script)
@@ -165,6 +167,8 @@ class R03RetainedOriginalReadmissionContracts(unittest.TestCase):
              mock.patch.object(gate.cycle, "validate_sources", return_value={"result": "Passed"}), \
              mock.patch.object(gate.cycle, "validate_machine", return_value={"result": "Passed"}), \
              mock.patch.object(gate, "verify_toolchain", return_value={"net8": True}), \
+             mock.patch.object(gate, "verify_standalone_current_cli", return_value={
+                 "result": "PassedFreshPythonProcessHelp_NoUnityOrRuntime"}), \
              mock.patch.object(gate, "sample_capacity", return_value={"result": "Passed"}):
             result = gate.inspect(self.workspace, self.original, self.unity,
                                   self.output, self.commit)
@@ -196,6 +200,36 @@ class R03RetainedOriginalReadmissionContracts(unittest.TestCase):
         result = gate.fixture_net8_source(current_demo.parent)
         self.assertEqual(result["targetFramework"], "net8.0")
         self.assertEqual(result["gitBlob"], gate.REQUIRED_CSPROJ_BLOB)
+
+
+    def test_26_import_failure_refuses_readmission_without_output(self):
+        with mock.patch.object(gate.cycle, "validate_destination"), \
+             mock.patch.object(gate, "registered_original", return_value={"result": "Passed"}), \
+             mock.patch.object(gate.cycle, "validate_sources", return_value={"result": "Passed"}), \
+             mock.patch.object(gate.cycle, "validate_machine", return_value={"result": "Passed"}), \
+             mock.patch.object(gate, "verify_toolchain", return_value={"net8": True}), \
+             mock.patch.object(gate, "verify_standalone_current_cli",
+                               side_effect=ValueError("standalone startup fail")):
+            with self.assertRaisesRegex(ValueError, "standalone startup fail"):
+                gate.inspect(self.workspace, self.original, self.unity,
+                             self.output, self.commit)
+        self.assertFalse(self.output.exists())
+
+    def test_27_readmission_receipt_names_the_actual_cli_probe(self):
+        with mock.patch.object(gate.cycle, "validate_destination"), \
+             mock.patch.object(gate, "registered_original", return_value={"result": "Passed"}), \
+             mock.patch.object(gate.cycle, "validate_sources", return_value={"result": "Passed"}), \
+             mock.patch.object(gate.cycle, "validate_machine", return_value={"result": "Passed"}), \
+             mock.patch.object(gate, "verify_toolchain", return_value={"net8": True}), \
+             mock.patch.object(gate, "verify_standalone_current_cli", return_value={
+                 "result": "PassedFreshPythonProcessHelp_NoUnityOrRuntime"}) as cli, \
+             mock.patch.object(gate, "sample_capacity", return_value={"result": "Passed"}):
+            result = gate.inspect(self.workspace, self.original, self.unity,
+                                  self.output, self.commit)
+        cli.assert_called_once_with(self.workspace, self.output)
+        self.assertEqual(result["standaloneCurrentNativeCli"]["result"],
+                         "PassedFreshPythonProcessHelp_NoUnityOrRuntime")
+        self.assertFalse(self.output.exists())
 
 
 if __name__ == "__main__":

@@ -9,6 +9,8 @@ on:
       - 'Tools/AssemblyShadow/R03IR/current_native_install_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_environment_admission.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_environment_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/run_terminal_current.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_cli_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/original_s_sparse_projection.py'
       - 'Tools/AssemblyShadow/R03IR/original_s_sparse_contracts.py'
       - '.github/workflows/r03-ir-current-native-local-cycle-host.yml'
@@ -75,6 +77,12 @@ jobs:
           set -euo pipefail
           export PYTHONDONTWRITEBYTECODE=1
           python3 -B Tools/AssemblyShadow/R03IR/current_native_environment_contracts.py
+      - name: Actual fresh Python CLI startup without PYTHONPATH or Unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_cli_contracts.py
       - name: Thirty-one temporary Git sparse source-custody regression tests
         shell: bash
         run: |

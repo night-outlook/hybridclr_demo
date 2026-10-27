@@ -10,6 +10,14 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 import re
+import sys
+
+# This file is launched in a NEW interpreter by the one-use coordinator.
+# The coordinator's in-memory sys.path cannot cross a process boundary.
+# Resolve the adjacent, owning R03 infrastructure BEFORE its first import.
+HERE = Path(__file__).resolve().parent
+R03 = HERE.parent / "R03"
+sys.path.insert(0, str(R03))
 
 from run_local import Batch as OriginalBatch, require
 from run_terminal_local import execute as run_existing_focused_batch

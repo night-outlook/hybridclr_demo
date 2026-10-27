@@ -8,6 +8,7 @@ A pass does not authorize a previously consumed Local cycle.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -143,6 +144,36 @@ def sample_capacity(output: Path, *, free_bytes: int | None = None) -> dict:
             "futureUnityDiskUseGuaranteed": False}
 
 
+def verify_standalone_current_cli(workspace: Path, output: Path) -> dict:
+    """Actual fresh interpreter, unassisted by PYTHONPATH; no batch or Unity."""
+    runner = (workspace / "hybridclr_demo/Tools/AssemblyShadow/R03IR/"
+              "run_terminal_current.py")
+    if not runner.is_file() or runner.is_symlink() or runner.resolve() != runner:
+        raise ValueError("Owning current-native standalone CLI file unavailable")
+    env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1",
+               PYTHONNOUSERSITE="1")
+    for key in ("PYTHONPATH", "PYTHONHOME", "PYTHONSTARTUP"):
+        env.pop(key, None)
+    argv = [sys.executable, "-B", str(runner), "--help"]
+    # The deliberately different cwd exposes accidental ambient import behavior.
+    proc = subprocess.run(
+        argv, cwd=str(output.parent), env=env,
+        capture_output=True, text=True, timeout=45, check=False)
+    require(proc.returncode == 0 and "--demo-commit" in proc.stdout and
+            "--workspace" in proc.stdout and "--output" in proc.stdout and
+            not proc.stderr, "Standalone current-native CLI import preflight "
+            "failed (no PYTHONPATH assistance), exit=" + str(proc.returncode) +
+            ", stderr=" + proc.stderr[-1200:])
+    return {"kind": "R03CurrentNativeStandaloneImportPreflight",
+            "result": "PassedFreshPythonProcessHelp_NoUnityOrRuntime",
+            "argv": argv, "cwd": str(output.parent), "exitCode": 0,
+            "pythonPathProvided": False, "sourceDirectory": str(runner.parent),
+            "stdoutSha256": hashlib.sha256(proc.stdout.encode()).hexdigest(),
+            "stderrSha256": hashlib.sha256(proc.stderr.encode()).hexdigest(),
+            "outputRootCreated": False, "unityOrPlayerLaunched": False,
+            "runtimeAcceptance": False}
+
+
 def inspect(workspace: Path, original: Path, unity: Path,
             output: Path, demo_commit: str) -> dict:
     # No directory, report, worktree or receipt is created.
@@ -151,11 +182,13 @@ def inspect(workspace: Path, original: Path, unity: Path,
     current = cycle.validate_sources(workspace, demo_commit)
     machine = cycle.validate_machine(unity, output)
     toolchain = verify_toolchain(workspace)
+    standalone_cli = verify_standalone_current_cli(workspace, output)
     capacity = sample_capacity(output)
     return {"schemaVersion": 1, "kind": "R03RetainedOriginalSReadOnlyReadmission",
             "result": "PassedReadOnlyPrerequisites_NoCoordinatorOrUnityRun",
             "retainedOriginal": retained, "currentSource": current,
-            "machine": machine, "toolchain": toolchain, "capacity": capacity,
+            "machine": machine, "toolchain": toolchain,
+            "standaloneCurrentNativeCli": standalone_cli, "capacity": capacity,
             "runRootCreated": False, "coordinatorInvoked": False,
             "archiveOrPlayerExecuted": False, "R03Accepted": False,
             "ReadyForHumanReviewGate": False, "runtimeAcceptance": False}
