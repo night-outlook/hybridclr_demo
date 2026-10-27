@@ -85,7 +85,8 @@ def checkpoint_rows(repo: Path, relative: str) -> list[dict]:
         if not record:
             continue
         attributes, rawpath = record.split(b"\t", 1)
-        parts = attributes.decode("ascii").split(" ")
+        # ls-tree -l pads size with spaces; tokenize arbitrary ASCII whitespace.
+        parts = attributes.decode("ascii").split()
         require(len(parts) == 4, "Malformed Git tree entry")
         mode, kind, oid, size = parts
         path = canonical_relative(rawpath.decode("utf-8"))
