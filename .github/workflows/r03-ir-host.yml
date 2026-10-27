@@ -19,6 +19,11 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
+          # This source-only job needs these scripts, not 195k historic artifacts.
+          # A full checkout exhausts macos-14 runner disk before any test starts.
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03
+            Tools/AssemblyShadow/R03IR
       - name: Compile Python syntax without modifying source tree
         shell: bash
         run: |
