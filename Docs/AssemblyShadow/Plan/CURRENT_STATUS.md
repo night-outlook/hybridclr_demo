@@ -1,3 +1,15 @@
+# R03 current status — oneuse-A capacity BLOCKED, Primary oneuse-B readmission ready (2026-10-26)
+
+Actual [oneuse-A Local evidence](../History/M07R/R03/local-validation-current-native-original-s-20261026-oneuse-a/README.md) establishes **BLOCKED, coordinator zero, ten stages NotRun, builds 0/3, Players 0/5 and installed VM 0/126**, not native implementation FAIL. Original S fc55 source worktree was created clean and retained. Post-worktree space was 19.63 GiB against fixed 20 GiB; a later passive 20.29 GiB is not admission. dotnet CLI absent on PATH; pinned fixture uses net8.0 and actual SDK/runtime remains unknown. Do not rerun oneuse-A or recreate fc55.
+
+Primary published a new no-write retained-worktree/toolchain/volume preflight and oneuse-B active [WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md). [Mac/Linux source-only CI 40438909487](https://github.com/night-outlook/hybridclr_demo/actions/runs/40438909487) passed 149 tests per host; Local toolchain, full S archive, actual Unity 2022.3.62f2 three-build/five-Player and 126 source-install pairs remain NotRun. Fresh oneuse-B requires exact final remote SHA, clean retained fc55 registration, actual PATH-visible dotnet SDK >=8 + net8 runtime, fresh new root and >=20 GiB hard floor; 30 GiB is advisory only.
+
+Independent Oct 8 full R03 verdict remains FAIL with High IR-R03-01/02; D1=A conservative V1, X02 deferred; D2=A performance observational and four contaminated Failed certificates; original S historical 90/90, b7e3/c42a overall Local FAIL, f51d historical-only PASS unchanged. R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, runtimeAcceptance=false, qualificationApproved=false; PureInterpreter disabled. P1 incomplete, P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, full P3 incomplete. No H2/M08A/X02/SNAP-01 or automatic Human Review Gate.
+
+---
+
+## Earlier status records — historical only; not active authorization
+
 # Current R03 Primary to Local cycle — source-host prepared, Local NotRun (2026-10-26)
 
 The exact one-use source-pinned R03 Local cycle is **ACTIVE ONLY** through the newly pushed Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md and the Primary-to-Local final full-demo-SHA handoff. It combines a newly reauthenticated nine-part original S archive/90-cell/59 historical process crosswalk, **fresh current-native e1e5** three-build/five-Player Unity 2022.3.62f2 macOS arm64 witness and 126 physical changed-VM installed byte comparisons. Actual Local execution is **NotRun**. [Mac/Linux CI 40317130046](https://github.com/night-outlook/hybridclr_demo/actions/runs/40317130046) verified 124 source/host-only tests per host, not a Unity/IL2CPP compiler or Player.

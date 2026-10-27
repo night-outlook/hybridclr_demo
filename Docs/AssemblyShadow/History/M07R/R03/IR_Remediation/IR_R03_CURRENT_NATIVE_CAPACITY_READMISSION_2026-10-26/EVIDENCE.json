@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03CurrentNativeCapacityReadmissionPrimaryEvidence",
+  "date": "2026-10-26",
+  "scope": "PrimaryReadOnlyToolchainStoragePreflightAndSourceHostCI_NotLocalOrUnity",
+  "priorLocalSource": {
+    "repository": "night-outlook/hybridclr_demo",
+    "commit": "542078a801463b29d234d4221800e6ec7fab27d4",
+    "checkpoint": "Docs/AssemblyShadow/History/M07R/R03/local-validation-current-native-original-s-20261026-oneuse-a",
+    "result": "BLOCKED",
+    "classification": "CapacityBlocked_CoordinatorNotRun",
+    "coordinatorInvocations": 0,
+    "stagesNotRun": 10,
+    "buildsExecuted": 0,
+    "playersExecuted": 0,
+    "installedSourcePairs": 0
+  },
+  "priorDisk": {
+    "beforeWorktreeBytes": 55757221888,
+    "immediateAfterWorktreeBytes": 21074190336,
+    "laterPassiveSampleBytes": 21783199744,
+    "minimumBytes": 21474836480,
+    "thresholdLowered": false,
+    "exclusiveAttributionProven": false
+  },
+  "retainedOriginalS": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+    "commit": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+    "lastObserved": "CreatedCleanAndPreserved",
+    "freshReauthentication": "RequiredBeforeNewCycle",
+    "allowReadOnlyReuse": true
+  },
+  "toolchain": {
+    "previousDotnetCommand": "dotnet --list-sdks",
+    "previousDotnetResult": "FileNotFoundError_NotFoundOnPATH",
+    "actualDotnetSDKInstallStatus": "Unknown_NotInspectedByPrimary",
+    "requiredTargetFramework": "net8.0",
+    "projectBlob": "6bd02a765a53d9fc1830d1026f2b02710172a092",
+    "requiredSdk": "sdk-major>=8",
+    "requiredRuntime": "Microsoft.NETCore.App 8.x",
+    "actualMacRuntimeProof": "NotRun"
+  },
+  "primarySource": {
+    "baseLocalPublication": "542078a801463b29d234d4221800e6ec7fab27d4",
+    "sourceHostCICommit": "1d79ef9cfb52a45a8c7465aa39b0c50b8cfb707f",
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "externalPins": {
+      "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+    },
+    "newBlobs": {
+      "environmentAdmission": "3414a38268dabbd51fcdf45470f27b59bc5ba764",
+      "environmentContracts": "569ba65a206c03f1ac5d95c23b1daf2ff9132563",
+      "workflow": "d8c1d6f7927716f89dba1880a90b2b0bb809361b"
+    }
+  },
+  "sourceHostCI": {
+    "runId": 40438909487,
+    "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/40438909487",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "platform": "macos-15",
+        "jobId": 121974214310,
+        "conclusion": "success"
+      },
+      {
+        "platform": "ubuntu-24.04",
+        "jobId": 121974214160,
+        "conclusion": "success"
+      }
+    ],
+    "testsPerPlatform": {
+      "existingCoordinator": 20,
+      "existingInstalledVmParity": 15,
+      "newEnvironmentReadmission": 25,
+      "existingCurrentNativeSource": 20,
+      "existingCurrentNativeOracleSynthetic": 27,
+      "existingVmDelta": 12,
+      "existingOriginalSHost": 30,
+      "total": 149
+    },
+    "actualDotnetOrUnityExecuted": false
+  },
+  "nextState": {
+    "newOneuseBRootRequired": true,
+    "worktreeRegenerationAllowed": false,
+    "minimumDiskGiB": 20,
+    "advisoryHeadroomGiB": 30,
+    "toolchainCheckMandatory": true,
+    "independentHumanR03ReviewNotStarted": true,
+    "actualLocalRun": "NotRun",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false,
+    "runtimeAcceptance": false,
+    "pureInterpreterEnabled": false
+  }
+}
