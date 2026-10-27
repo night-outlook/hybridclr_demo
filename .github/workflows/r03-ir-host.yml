@@ -24,6 +24,7 @@ jobs:
           sparse-checkout: |
             Tools/AssemblyShadow/R03
             Tools/AssemblyShadow/R03IR
+            Tools/AssemblyShadow/R03Storage
       - name: Compile Python syntax without modifying source tree
         shell: bash
         run: |
