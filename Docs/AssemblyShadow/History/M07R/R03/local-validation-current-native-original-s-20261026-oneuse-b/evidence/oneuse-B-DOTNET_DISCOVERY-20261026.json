@@ -1,0 +1,125 @@
+{
+  "kind": "ReadOnlyInstalledDotnetDiscovery",
+  "PATH": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/codex-path:/Users/ah/.local/bin:/opt/homebrew/opt/mongodb-community@4.2/bin:/Users/ah/.asdf/shims:/Users/ah/.asdf/shims:/Library/Frameworks/Python.framework/Versions/3.14/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/opt/homebrew/bin:/Users/ah/.codex/tmp/arg0-macos/codex-arg0jK6aPa:/Applications/ChatGPT.app/Contents/Resources/codex-cli/codex-path:/Users/ah/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ah/.unity/bin:/Users/ah/.local/bin:/opt/homebrew/opt/mongodb-community@4.2/bin:/Users/ah/.asdf/shims:/Library/Frameworks/Python.framework/Versions/3.14/bin:/Users/ah/Library/Application Support/JetBrains/Toolbox/scripts:/Users/ah/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources:/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS:/Users/ah/Library/Application Support/JetBrains/Toolbox/scripts",
+  "pathDotnet": null,
+  "candidates": [
+    {
+      "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/dotnet",
+      "sha256": "f67be57bba338b304ad4f6904a160c7f415627d9c15a9ccc0f2390b9d97b08be",
+      "commands": [
+        {
+          "argv": [
+            "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/dotnet",
+            "--list-sdks"
+          ],
+          "start": "2026-10-27T02:44:34.879318+00:00",
+          "end": "2026-10-27T02:44:34.897596+00:00",
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/dotnet",
+            "--list-runtimes"
+          ],
+          "start": "2026-10-27T02:44:34.897628+00:00",
+          "end": "2026-10-27T02:44:34.900944+00:00",
+          "exit": 0,
+          "stdout": "Microsoft.NETCore.App 6.0.21 [/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/shared/Microsoft.NETCore.App]\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/dotnet",
+            "--info"
+          ],
+          "start": "2026-10-27T02:44:34.900964+00:00",
+          "end": "2026-10-27T02:44:34.903631+00:00",
+          "exit": 0,
+          "stdout": "\nglobal.json file:\n  Not found\n\nHost:\n  Version:      6.0.21\n  Architecture: arm64\n  Commit:       e40b3abf1b\n\n.NET SDKs installed:\n  No SDKs were found.\n\n.NET runtimes installed:\n  Microsoft.NETCore.App 6.0.21 [/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/shared/Microsoft.NETCore.App]\n\nDownload .NET:\n  https://aka.ms/dotnet-download\n\nLearn about .NET Runtimes and SDKs:\n  https://aka.ms/dotnet/runtimes-sdk-info\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+      "sha256": "f0b00592390ff002b5a834296d935bf23a144116d579795e26f945bb13839d8f",
+      "commands": [
+        {
+          "argv": [
+            "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+            "--list-sdks"
+          ],
+          "start": "2026-10-27T02:44:34.904017+00:00",
+          "end": "2026-10-27T02:44:34.918962+00:00",
+          "exit": 0,
+          "stdout": "8.0.318 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/sdk]\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+            "--list-runtimes"
+          ],
+          "start": "2026-10-27T02:44:34.919010+00:00",
+          "end": "2026-10-27T02:44:34.922689+00:00",
+          "exit": 0,
+          "stdout": "Microsoft.AspNetCore.App 8.0.21 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/shared/Microsoft.AspNetCore.App]\nMicrosoft.NETCore.App 8.0.21 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/shared/Microsoft.NETCore.App]\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+            "--info"
+          ],
+          "start": "2026-10-27T02:44:34.922735+00:00",
+          "end": "2026-10-27T02:44:35.126200+00:00",
+          "exit": 0,
+          "stdout": ".NET SDK:\n Version:           8.0.318\n Commit:            e7c684c866\n Workload version:  8.0.300-manifests.c414f008\n MSBuild version:   17.10.46+aa888d321\n\nRuntime Environment:\n OS Name:     Mac OS X\n OS Version:  26.5\n OS Platform: Darwin\n RID:         osx-arm64\n Base Path:   /Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/sdk/8.0.318/\n\n.NET workloads installed:\nThere are no installed workloads to display.\n\nHost:\n  Version:      8.0.21\n  Architecture: arm64\n  Commit:       362ab6669d\n\n.NET SDKs installed:\n  8.0.318 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/sdk]\n\n.NET runtimes installed:\n  Microsoft.AspNetCore.App 8.0.21 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/shared/Microsoft.AspNetCore.App]\n  Microsoft.NETCore.App 8.0.21 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/shared/Microsoft.NETCore.App]\n\nOther architectures found:\n  None\n\nEnvironment variables:\n  Not set\n\nglobal.json file:\n  Not found\n\nLearn more:\n  https://aka.ms/dotnet/info\n\nDownload .NET:\n  https://aka.ms/dotnet/download\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "path": "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/NetCoreRuntime/dotnet",
+      "sha256": "55d07bcfa4fce15df551a16441eb7014dcda11208f56c1e3e4aff36d618f8cf3",
+      "commands": [
+        {
+          "argv": [
+            "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/NetCoreRuntime/dotnet",
+            "--list-sdks"
+          ],
+          "start": "2026-10-27T02:44:35.126697+00:00",
+          "end": "2026-10-27T02:44:35.135037+00:00",
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/NetCoreRuntime/dotnet",
+            "--list-runtimes"
+          ],
+          "start": "2026-10-27T02:44:35.135069+00:00",
+          "end": "2026-10-27T02:44:35.138286+00:00",
+          "exit": 0,
+          "stdout": "Microsoft.NETCore.App 8.0.21 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/NetCoreRuntime/shared/Microsoft.NETCore.App]\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/NetCoreRuntime/dotnet",
+            "--info"
+          ],
+          "start": "2026-10-27T02:44:35.138328+00:00",
+          "end": "2026-10-27T02:44:35.141266+00:00",
+          "exit": 0,
+          "stdout": "\nHost:\n  Version:      8.0.21\n  Architecture: arm64\n  Commit:       362ab6669d\n  RID:          osx-arm64\n\n.NET SDKs installed:\n  No SDKs were found.\n\n.NET runtimes installed:\n  Microsoft.NETCore.App 8.0.21 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/NetCoreRuntime/shared/Microsoft.NETCore.App]\n\nOther architectures found:\n  None\n\nEnvironment variables:\n  Not set\n\nglobal.json file:\n  Not found\n\nLearn more:\n  https://aka.ms/dotnet/info\n\nDownload .NET:\n  https://aka.ms/dotnet/download\n",
+          "stderr": ""
+        }
+      ]
+    }
+  ],
+  "noInstall": true
+}

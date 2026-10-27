@@ -1,0 +1,61 @@
+{
+  "id": "IR-LOCAL-CURRENT-NATIVE-ORIGINAL-S-CAPACITY-01",
+  "attempt": "oneuse-B",
+  "status": "StillPrerequisiteBlocked_ReadOnlyAdmissionRefused",
+  "symptom": "Insufficient available space for original archive and three fresh Players",
+  "reproduction": [
+    "python3",
+    "-B",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/current_native_environment_admission.py",
+    "--workspace",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+    "--original-s",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+    "--unity",
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+    "--demo-commit",
+    "277a733f17e4a4f489de89bb942f9a32478017f1",
+    "--output",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-B"
+  ],
+  "PID": 13141,
+  "start": "2026-10-27T02:45:12.237480+00:00",
+  "end": "2026-10-27T02:45:32.496994+00:00",
+  "exit": 2,
+  "stdoutSha256": "7a3166805be96b06b17f17570cc77b6e59f50d9decec55520b773e5ad7d842db",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "availableBefore": 21322317824,
+  "availableAfter": 21303300096,
+  "minimumBytes": 21474836480,
+  "diagnosticExcerpt": {
+    "coordinatorInvoked": false,
+    "kind": "R03RetainedOriginalSReadOnlyReadmission",
+    "newBatchRootCreated": false,
+    "reason": "Insufficient available space for original archive and three fresh Players",
+    "result": "BlockedBeforeCoordinator",
+    "runtimeAcceptance": false
+  },
+  "mostLikelyCause": "The proposed output remains on a nearly full APFS container. The alternative mounted Data volume shares disk3 and the same available capacity; it is not independent storage. Exclusive allocation attribution remains unproven.",
+  "affectedScope": "Admission only. No coordinator stage, source-host suite, archive audit, build or Player executed.",
+  "recommendedPrimaryDirection": "Provide verified adequate output capacity or separately authorize bounded environment remediation. Preserve retained fc55 and oneuse-A; do not lower the floor or automatically delete history/caches. Fresh readmission must pass before any coordinator dispatch.",
+  "toolchainProgress": "Discovered existing SDK8.0.318 and runtime8.0.21 under installed Unity6000.5.3f1 DotNetSdk; enabled only for admission subprocess. Actual Unity remains2022.3.62f2. No installation required.",
+  "remainingUncertainty": "Future Unity disk consumption and sustained capacity unproven. The shipped tool stopped in validate_machine before its toolchain function; real CLI inventories and fixture source were independently checked. All empirical product/runtime stages remain unvalidated.",
+  "validationStillRequired": [
+    "source-contracts",
+    "oracle-contracts",
+    "vm-delta-contracts",
+    "original-s-host-contracts",
+    "installed-source-host-contracts",
+    "original-s-audit",
+    "original-s-process-joins",
+    "native-host-diagnostics",
+    "current-native-players",
+    "native-installed-source-audit"
+  ],
+  "evidence": [
+    "evidence/oneuse-B-ENVIRONMENT_ADMISSION_COMMAND-20261026.json",
+    "evidence/oneuse-B-environment-admission.stdout.log",
+    "evidence/oneuse-B-DOTNET_DISCOVERY-20261026.json",
+    "evidence/oneuse-B-VOLUME_IDENTITY-20261026.json"
+  ]
+}

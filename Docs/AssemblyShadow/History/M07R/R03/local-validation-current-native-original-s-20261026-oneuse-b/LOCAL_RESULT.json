@@ -1,0 +1,104 @@
+{
+  "kind": "LocalOneuseBReadOnlyPrerequisiteOutcome",
+  "result": "BLOCKED",
+  "classification": "PrerequisiteBlocked_Capacity",
+  "sourcePins": {
+    "hybridclr_demo": "277a733f17e4a4f489de89bb942f9a32478017f1",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb"
+  },
+  "environmentAdmissionResult": {
+    "coordinatorInvoked": false,
+    "kind": "R03RetainedOriginalSReadOnlyReadmission",
+    "newBatchRootCreated": false,
+    "reason": "Insufficient available space for original archive and three fresh Players",
+    "result": "BlockedBeforeCoordinator",
+    "runtimeAcceptance": false
+  },
+  "environmentAdmissionExit": 2,
+  "coordinatorInvocations": 0,
+  "coordinatorOutputRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-B",
+  "coordinatorOutputRootCreated": false,
+  "originalSRetained": "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+  "originalSCommit": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+  "worktreesCreated": 0,
+  "stages": {
+    "source-contracts": {
+      "state": "NotRun",
+      "reason": "Read-only environment admission BlockedBeforeCoordinator: insufficient capacity"
+    },
+    "oracle-contracts": {
+      "state": "NotRun",
+      "reason": "Read-only environment admission BlockedBeforeCoordinator: insufficient capacity"
+    },
+    "vm-delta-contracts": {
+      "state": "NotRun",
+      "reason": "Read-only environment admission BlockedBeforeCoordinator: insufficient capacity"
+    },
+    "original-s-host-contracts": {
+      "state": "NotRun",
+      "reason": "Read-only environment admission BlockedBeforeCoordinator: insufficient capacity"
+    },
+    "installed-source-host-contracts": {
+      "state": "NotRun",
+      "reason": "Read-only environment admission BlockedBeforeCoordinator: insufficient capacity"
+    },
+    "original-s-audit": {
+      "state": "NotRun",
+      "reason": "Read-only environment admission BlockedBeforeCoordinator: insufficient capacity"
+    },
+    "original-s-process-joins": {
+      "state": "NotRun",
+      "reason": "Read-only environment admission BlockedBeforeCoordinator: insufficient capacity"
+    },
+    "native-host-diagnostics": {
+      "state": "NotRun",
+      "reason": "Read-only environment admission BlockedBeforeCoordinator: insufficient capacity"
+    },
+    "current-native-players": {
+      "state": "NotRun",
+      "reason": "Read-only environment admission BlockedBeforeCoordinator: insufficient capacity"
+    },
+    "native-installed-source-audit": {
+      "state": "NotRun",
+      "reason": "Read-only environment admission BlockedBeforeCoordinator: insufficient capacity"
+    }
+  },
+  "builds": 0,
+  "Players": 0,
+  "UnityLaunches": 0,
+  "installedSourcePairs": 0,
+  "dotnet": {
+    "state": "ResolvedByReadOnlyInstalledSDKDiscoveryAndProcessOnlyPATH",
+    "path": "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+    "binarySha256": "f0b00592390ff002b5a834296d935bf23a144116d579795e26f945bb13839d8f",
+    "sdk": "8.0.318",
+    "runtime": "Microsoft.NETCore.App 8.0.21",
+    "RID": "osx-arm64",
+    "fixtureTargetFramework": "net8.0",
+    "fixtureGitBlob": "6bd02a765a53d9fc1830d1026f2b02710172a092",
+    "buildOrFixtureExecution": "NotRun",
+    "shippedAdmissionToolchainSubcheck": "NotReached_AfterCapacityRefusal"
+  },
+  "capacity": {
+    "before": 21322317824,
+    "afterAdmission": 21303300096,
+    "afterPreservation": 21311229952,
+    "hardMinimum": 21474836480,
+    "thresholdLowered": false
+  },
+  "preservation": "Passed",
+  "oneuseAResultUnchanged": "BLOCKED",
+  "sourceOrToolchainInstallModified": false,
+  "persistentPATHChanged": false,
+  "readmissionRuns": 1,
+  "readmissionRetried": false,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "ReadyForHumanReviewGate": false,
+  "qualificationApproved": false,
+  "runtimeAcceptance": false,
+  "pureInterpreterEnabled": false,
+  "nextState": "Primary Implementation"
+}

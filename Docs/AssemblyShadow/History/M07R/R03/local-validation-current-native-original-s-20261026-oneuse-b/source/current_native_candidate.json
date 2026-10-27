@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03IRCurrentNativeSourceCandidate",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "purpose": "Source-only candidate for IR-R03-02 current native terminal method guard. NOT production qualification, NOT Player execution authority.",
+  "legacyR03NativePin": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
+  "candidateNativePin": "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb",
+  "hybridclrPin": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+  "hybridclrUnityPin": "948c0e3b4f8891481301770115e8ba4945eea6de",
+  "originalR03SourcePinsGitBlob": "9d72a237fb6ecd3efe3267ca89625aa49c61775d",
+  "files": [
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/source-pins.json",
+      "gitBlob": "9d72a237fb6ecd3efe3267ca89625aa49c61775d"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/run_local.py",
+      "gitBlob": "9aef8093f98fb7f9b5dd395ba4e5c2ed0220276e"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/run_terminal_local.py",
+      "gitBlob": "70b1a27f2dbbcad93f67e8caddcf7282ff3afd73"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs",
+      "gitBlob": "598feeec3231707091699d99fbf4428d50b52024"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs",
+      "gitBlob": "90eeccfa30e904955708d11530b99f179584de8c"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp",
+      "gitBlob": "2f13925190a1576738457d8d43f3646a4c7c095f"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "gitBlob": "57cf47f964a83973df8296955ccf856b105c595f"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTerminalExecution.h",
+      "gitBlob": "33258986c31b2e6ae3af17b8553030482a83aef7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Runtime.cpp",
+      "gitBlob": "96b914fbeb31c69d649e4076a802de0b6418daa8"
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/interpreter/Interpreter_Execute.cpp",
+      "gitBlob": "2dbdb7527afee7f2546e45f20e6ef93e1bca237a"
+    }
+  ],
+  "expectedFocusedPlayers": 5,
+  "expectedCandidateBuilds": 3,
+  "expectedOriginalSFixtureCount": 15,
+  "candidateRuntimeAcceptance": false,
+  "sourceOnlyValidationIsProductValidation": false,
+  "originalSResultReclassified": false,
+  "originalB7e3AndC42aFailReclassified": false,
+  "ownerGate": "No Local execution authorized; requires a new explicit source-pinned Local handoff."
+}
