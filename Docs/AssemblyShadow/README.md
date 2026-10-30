@@ -1,3 +1,11 @@
+# Current R03 Primary preparation — pinned pre-Local generator proof (2026-10-29)
+
+Before consuming the active oneuse-D Local root, verify **new real .NET 8.0 generator CI on both macOS and Ubuntu at the final demo commit**. The existing `r03-ir-fixture.yml` now runs on current-native integration/handoff changes, uses sparse exact source and pinned SDK 8.0.318, enforces the independent IR `Methods.dll` SHA/MVID, generates it in two fresh directories and rejects reuse, and runs 16 adversarial receipt checks. The read-only Local capacity advisory now matches **40 GiB**, with the fixed **20 GiB hard minimum** unchanged. See [Design](History/M07R/R03/IR_Remediation/IR_R03_PRELOCAL_GENERATOR_2026-10-29/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/IR_R03_PRELOCAL_GENERATOR_2026-10-29/PLAN.md), [Primary review](History/M07R/R03/IR_Remediation/IR_R03_PRELOCAL_GENERATOR_2026-10-29/PRIMARY_REVIEW.md) and [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md).
+
+These tests are *host-only* and do not prove actual Unity/IL2CPP, 3 current native builds, 5 Players or 126 installed source pairs. Original oneuse-C FAIL and oneuse-D conditional authority are unchanged. Both CI OS jobs and source/remote pins must be checked at the final handoff commit before Local execution. R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false; PureInterpreter disabled.
+
+---
+
 # Current R03 Primary response — oneuse-C CLI import failure repaired; oneuse-D conditional handoff (2026-10-26)
 
 **Authoritative latest Local oneuse-C = FAIL / ReturnRequired, NOT Player failure.** A single original-S fc55 sparse projection and fresh admission passed, 16,978 protected original-S files preserved; measured available space increased from 19.844 to 46.334 GiB. The coordinator ran ONCE, with **eight scoped Passes** (104 source/host tests, original S authentic nine-part archive/90-cell and 59 original archived process joins, native host diagnostics), **one Failed** current-native-players CLI startup at run_terminal_current.py:14 due to missing sibling run_local module, and **one Blocked** native installed-source audit. Actual current native 3 builds, 5 Unity2022.3 Players and 126 physical native source pairs remain NotRun. oneuse-C coordinator/sparse roots are now permanently consumed. Original oneuse-A/B capacity BLOCKED remain immutable.
