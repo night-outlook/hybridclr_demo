@@ -153,7 +153,13 @@ jobs:
             'historicalSBytesRebuiltForLocal':False,'historicalSArchiveAuthenticatedHere':False,
             'runtimeAcceptance':False}
           (root/'historical-differences.json').write_text(json.dumps(
-            comparison,indent=2)+'\\n')
+            comparison,indent=2)+'\n')
+          # Verify actual artifact bytes, not merely an in-memory JSON object.
+          artifact=(root/'historical-differences.json')
+          emitted=artifact.read_bytes()
+          assert emitted.endswith(b'\n') and not emitted.endswith(b'\\n')
+          assert json.loads(emitted)==comparison
+          assert len(json.loads(emitted)['differences'])==len(differences)
           target=json.loads((root/'ir/ir-target.json').read_text())
           data=(root/'ir/Methods.dll').read_bytes()
           assert target['kind']=='R03IRSideEffectFixture'
