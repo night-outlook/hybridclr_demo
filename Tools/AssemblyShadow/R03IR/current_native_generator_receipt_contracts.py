@@ -65,7 +65,7 @@ class GeneratorReceiptContracts(unittest.TestCase):
         self.assertIs(report["net8CompilationProvenByCaller"], False)
 
     def test_02_actual_binary_mutation_rejected(self):
-        (self.first / "Methods.dll").write_bytes(self.data + b"changed")
+        (self.first / "Methods.dll").write_bytes(b"X" + self.data[1:])
         with self.assertRaisesRegex(ValueError, "binary bytes"):
             self.verify()
 
