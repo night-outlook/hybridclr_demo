@@ -1,0 +1,53 @@
+{
+  "id": "IR-LOCAL-R03-CI-COMPARISON-JSON-01",
+  "status": "ReproducedOnBothSuccessfulOSArtifacts",
+  "symptom": "historical-differences.json from both CI artifacts is one JSON object followed by literal backslash+n, so strict json.loads raises Extra data.",
+  "sourceCommit": "b6076f8d85ba1ac56bfe15656842eb37115d1475",
+  "workflowPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/.github/workflows/r03-ir-fixture.yml",
+  "workflowGitBlob": "b900a1ae22fa6e39327252c3d8b2767945f04341",
+  "sourceExcerpt": [
+    {
+      "line": 153,
+      "text": "            'historicalSBytesRebuiltForLocal':False,'historicalSArchiveAuthenticatedHere':False,"
+    },
+    {
+      "line": 154,
+      "text": "            'runtimeAcceptance':False}"
+    },
+    {
+      "line": 155,
+      "text": "          (root/'historical-differences.json').write_text(json.dumps("
+    },
+    {
+      "line": 156,
+      "text": "            comparison,indent=2)+'\\\\n')"
+    }
+  ],
+  "artifactDiagnostics": [
+    {
+      "OS": "macos",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-D-CI-artifacts-20261029/macos/historical-differences.json",
+      "sha256": "08fb34ba078472bcb4ed2ae8161eac9b58d6d776f2f6feece107e304dc288849",
+      "strictJsonResult": "Failed_ExtraData",
+      "trailingBytesHex": "5c6e",
+      "parsedObjectComparedToValidCiStdout": true,
+      "rawModified": false
+    },
+    {
+      "OS": "ubuntu",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-D-CI-artifacts-20261029/ubuntu/historical-differences.json",
+      "sha256": "340fb1e6cd500a6c71f5fae25c03c9f23c5397e8c54dcc896e2f5f01424734e2",
+      "strictJsonResult": "Failed_ExtraData",
+      "trailingBytesHex": "5c6e",
+      "parsedObjectComparedToValidCiStdout": true,
+      "rawModified": false
+    }
+  ],
+  "reproduction": "Fetch artifacts12959577527 and12959726758 from run41015735234; parse historical-differences.json with json.loads; observe Extra data and terminal hex5c6e.",
+  "mostLikelyRootCause": "Workflow writes comparison JSON plus a doubly escaped newline literal. CI validates the in-memory comparison and prints valid JSON differences, but never strict-parses the emitted artifact.",
+  "scope": "CI historical comparison artifact serialization only; actual current-source compiler proofs, pinned IR repeatability, valid verified.json and valid full stdout comparison remain Passed. No historical S bytes were adopted or rewritten.",
+  "recommendedDirection": "Primary should write a real newline and add strict round-trip parsing of the emitted comparison artifact, preserving every difference and the independent original-S byte authority. Do not modify these downloaded artifacts.",
+  "remainingUncertainty": "Ordinary fixture inventories do not report MVID fields; observed SHA differences are explicit, ordinary MVID differences must not be inferred. Actual Local Player result is separate and pending.",
+  "blocksActualGeneratorProof": false,
+  "rawArtifactsModified": false
+}

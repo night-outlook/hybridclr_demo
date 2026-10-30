@@ -1,0 +1,465 @@
+{
+  "kind": "SourceMatchedActualGeneratorCIGate",
+  "run": 41015735234,
+  "source": "b6076f8d85ba1ac56bfe15656842eb37115d1475",
+  "result": "PassedBothOS_SourceAndHostOnly",
+  "reports": [
+    {
+      "os": "ubuntu",
+      "compatibility": {
+        "editorLayoutAdmission": "Passed",
+        "historicalSBlob": "0688bd2dad054bd59fcdd1564a050a398cfa14e7",
+        "irTargetSha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd",
+        "kind": "R03IRFixtureCompatibility",
+        "originalSByteDifferences": 15,
+        "originalTargetSha256": "15e98bb029113e646126839f88e0b4c78a25bc684256bfafd8a05ade54abee01",
+        "playerRun": false,
+        "preservesOriginalS": true,
+        "regeneratedOriginalFixtures": 15,
+        "regeneratedOriginalMatchesHistoricalSBySourceShapeOnly": true,
+        "regeneratedOriginalSBytesAdopted": false,
+        "regeneratedOriginalSHistoricalByteIdentity": false,
+        "result": "PassedSourceAndHostOnly",
+        "runtimeAcceptance": false,
+        "source": "b6076f8d85ba1ac56bfe15656842eb37115d1475"
+      },
+      "differences": [
+        {
+          "differences": {
+            "sha256": {
+              "current": "a0857871decb4c249738597bb35a9956c8dfa0b44e69430f4a2509270b1478ac",
+              "originalS": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6"
+            }
+          },
+          "path": "baseline/A.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "05d2f247d8c09d245bc1d301f2639d6c76c8ae5d27cb79f0ab7e404c2da88364",
+              "originalS": "7aa63a4c814eacecbb633b06d687b9a28f97fc73ddb577e73bb6444ac2669a2b"
+            }
+          },
+          "path": "baseline/B.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "06db26b7ad2d92705fb326d4f71ef4b45145a72d21804c25a99092179334d1b2",
+              "originalS": "3adcc44417c6f9c9f0a2a2c255b020746ff24c598dfef67e64f120dea4be13f8"
+            }
+          },
+          "path": "baseline/Layout.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "3b88aad2b005c8b241eb870ec2e462ba9c6083e27230365230c709e379f4ea83",
+              "originalS": "56af53c3165cc28144095b4aa08d2dfbaa5403da2a40c1137114f1e0e9cf3ce8"
+            }
+          },
+          "path": "baseline/Methods.dll"
+        },
+        {
+          "differences": {
+            "mvid": {
+              "current": "e00e9380-9b84-4011-8ae3-71a05eadbe46",
+              "originalS": "bdf34429-3668-4324-9ee1-3a53dd479b6e"
+            },
+            "sha256": {
+              "current": "4ff459f626dffdb3fce6e7a5cc32864335e782db33eaa3b33ad77a520dbac9c8",
+              "originalS": "7627f977735e56e029d1d823bea46d2362134bd9f01c3086cca9c1afd7c9096e"
+            }
+          },
+          "path": "baseline/R03Contract.dll"
+        },
+        {
+          "differences": {
+            "mvid": {
+              "current": "252a3c75-a150-409e-ab0e-b546fe5c3b2b",
+              "originalS": "4155879e-eebd-4957-8781-3b8ccd3bbf4c"
+            },
+            "sha256": {
+              "current": "4421b74e97644852d70144e39903958687d0902b83766991ac080c6cc64ac3b3",
+              "originalS": "736f525b05694a577dc2cc6b5d94d2ebe10954d53f51f71e87cc7c2d1297dd40"
+            }
+          },
+          "path": "interface/R03Contract.dll"
+        },
+        {
+          "differences": {
+            "mvid": {
+              "current": "a8173fb8-760a-44a8-8052-7a9d5b34bbc0",
+              "originalS": "912ee4e3-7f1c-492f-a07b-6cb0692ad807"
+            },
+            "sha256": {
+              "current": "dd08ca04a41e481f86b0d6c731e8afd65b37a3640df076a2900dece068cf3a0e",
+              "originalS": "d189a952e9973a729b18e9791b808dc650f793817a19d89ab0e6523b3e444d36"
+            }
+          },
+          "path": "primitive/R03Contract.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "d36b3d95dd49a0cea6aec21e6b063ec4bfd7594a062026386fede945d353b763",
+              "originalS": "76624b0cce75a1f282f6e7b8bebbd81192c3a6c2b698d9aedba4ab95cde6ee25"
+            }
+          },
+          "path": "private-reference/Layout.dll"
+        },
+        {
+          "differences": {
+            "mvid": {
+              "current": "f6677131-4183-4333-9837-c54388da06c5",
+              "originalS": "005ead2e-603d-40bc-9c5e-7db1a1040256"
+            },
+            "sha256": {
+              "current": "d2c3a6ca4fe4ee3176b52bc030615401626ee052447ebf8bcbb54a1e73be39f5",
+              "originalS": "69e3334c6d74dff9013a362c1caa3a0bc9bb5930ac1b11265b9ea7c09ff02602"
+            }
+          },
+          "path": "removal/R03Contract.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "422aaab4d2eea78531229b2de10a99c5e4e2a467cec67a71292968a9bac787cb",
+              "originalS": "c13b628d870be6d2ddab6f5dcd78a27f529f9e446488036cd2c1c889a9346f69"
+            }
+          },
+          "path": "reversal/A.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "a3d79a665642ec482d9a8a4c2357d4a7b72479ce8130d688dd8acf79e12728ce",
+              "originalS": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d"
+            }
+          },
+          "path": "reversal/B.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "a0857871decb4c249738597bb35a9956c8dfa0b44e69430f4a2509270b1478ac",
+              "originalS": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6"
+            }
+          },
+          "path": "true-cycle/A.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "a3d79a665642ec482d9a8a4c2357d4a7b72479ce8130d688dd8acf79e12728ce",
+              "originalS": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d"
+            }
+          },
+          "path": "true-cycle/B.dll"
+        },
+        {
+          "differences": {
+            "mvid": {
+              "current": "31487c5b-826a-49bb-94a7-b34cb3f3f437",
+              "originalS": "3d1c0c74-a36d-445f-890c-0a1c6a2cbf36"
+            },
+            "sha256": {
+              "current": "9ad143dcb6d930d5dd534bb91f8259035d40e9f06d489b60d80c14882d42bcac",
+              "originalS": "fa1f7473db2655adcb2a012c0cb29d1181cbae21bc19020abf14d4c39772825e"
+            }
+          },
+          "path": "value/R03Contract.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "15e98bb029113e646126839f88e0b4c78a25bc684256bfafd8a05ade54abee01",
+              "originalS": "c21598ce556646601cbbc55e80c0c4f42603d68ca8861d084b4b3fd748a4d144"
+            }
+          },
+          "path": "virtual-slot/Methods.dll"
+        }
+      ]
+    },
+    {
+      "os": "macos",
+      "compatibility": {
+        "editorLayoutAdmission": "Passed",
+        "historicalSBlob": "0688bd2dad054bd59fcdd1564a050a398cfa14e7",
+        "irTargetSha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd",
+        "kind": "R03IRFixtureCompatibility",
+        "originalSByteDifferences": 15,
+        "originalTargetSha256": "ee2913829034e9f560e8e9ba3a3e86145101e3f9ed5d6c18ad8d9c533d1135d6",
+        "playerRun": false,
+        "preservesOriginalS": true,
+        "regeneratedOriginalFixtures": 15,
+        "regeneratedOriginalMatchesHistoricalSBySourceShapeOnly": true,
+        "regeneratedOriginalSBytesAdopted": false,
+        "regeneratedOriginalSHistoricalByteIdentity": false,
+        "result": "PassedSourceAndHostOnly",
+        "runtimeAcceptance": false,
+        "source": "b6076f8d85ba1ac56bfe15656842eb37115d1475"
+      },
+      "differences": [
+        {
+          "differences": {
+            "sha256": {
+              "current": "1d5f5909c14bd0297dee3e38a45c543516841c3cec0fdf0fd7bbc5a2250d2ab9",
+              "originalS": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6"
+            }
+          },
+          "path": "baseline/A.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "19f0158546bc72f1c013b863a933be62efdbb99760a3085165641cda9891c7d7",
+              "originalS": "7aa63a4c814eacecbb633b06d687b9a28f97fc73ddb577e73bb6444ac2669a2b"
+            }
+          },
+          "path": "baseline/B.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "0cccb7c84e53c3278f649fbfabde13acf5144befb51e9c2faea9dcc9bbf57548",
+              "originalS": "3adcc44417c6f9c9f0a2a2c255b020746ff24c598dfef67e64f120dea4be13f8"
+            }
+          },
+          "path": "baseline/Layout.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "b6b9828c6252a075a050351588e3c45e070db2f16320867d635c5a50d73e375c",
+              "originalS": "56af53c3165cc28144095b4aa08d2dfbaa5403da2a40c1137114f1e0e9cf3ce8"
+            }
+          },
+          "path": "baseline/Methods.dll"
+        },
+        {
+          "differences": {
+            "mvid": {
+              "current": "5789d5ac-4eab-4902-acc0-9469ccfc054a",
+              "originalS": "bdf34429-3668-4324-9ee1-3a53dd479b6e"
+            },
+            "sha256": {
+              "current": "de139d65cd2218e98f6c77b19b3c09316cec570a62771c2cb98bdd998c6f013a",
+              "originalS": "7627f977735e56e029d1d823bea46d2362134bd9f01c3086cca9c1afd7c9096e"
+            }
+          },
+          "path": "baseline/R03Contract.dll"
+        },
+        {
+          "differences": {
+            "mvid": {
+              "current": "db263476-8b3b-4886-aeb0-357f6ef29701",
+              "originalS": "4155879e-eebd-4957-8781-3b8ccd3bbf4c"
+            },
+            "sha256": {
+              "current": "55b6a545dd964f0c203bc7d3296fb8b3a283c4d5b0a9b6a747497e118d03a7a0",
+              "originalS": "736f525b05694a577dc2cc6b5d94d2ebe10954d53f51f71e87cc7c2d1297dd40"
+            }
+          },
+          "path": "interface/R03Contract.dll"
+        },
+        {
+          "differences": {
+            "mvid": {
+              "current": "0a7ad607-88aa-48bb-9762-c6d9636bf565",
+              "originalS": "912ee4e3-7f1c-492f-a07b-6cb0692ad807"
+            },
+            "sha256": {
+              "current": "35811d295210b872e2ba355528d2d5bc36be21376500d5435326044d0cee7def",
+              "originalS": "d189a952e9973a729b18e9791b808dc650f793817a19d89ab0e6523b3e444d36"
+            }
+          },
+          "path": "primitive/R03Contract.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "e77ea4f3b4995fe8f3585b921488487637c049a477edf1ede8087834f1fb350b",
+              "originalS": "76624b0cce75a1f282f6e7b8bebbd81192c3a6c2b698d9aedba4ab95cde6ee25"
+            }
+          },
+          "path": "private-reference/Layout.dll"
+        },
+        {
+          "differences": {
+            "mvid": {
+              "current": "2ca94c72-420c-4670-9c43-6eaa531247c0",
+              "originalS": "005ead2e-603d-40bc-9c5e-7db1a1040256"
+            },
+            "sha256": {
+              "current": "f72735460ec5aece13fba5da4c52fd539c8972448a423aacc8305905eb1e0034",
+              "originalS": "69e3334c6d74dff9013a362c1caa3a0bc9bb5930ac1b11265b9ea7c09ff02602"
+            }
+          },
+          "path": "removal/R03Contract.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "5f28859df908a09e3392a89508c02177e0576358af97204dcfea483d76c9d353",
+              "originalS": "c13b628d870be6d2ddab6f5dcd78a27f529f9e446488036cd2c1c889a9346f69"
+            }
+          },
+          "path": "reversal/A.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "9462de80505b2ac35052b4161c1d885f939039c21f759401e4a48a66a5a13c52",
+              "originalS": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d"
+            }
+          },
+          "path": "reversal/B.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "1d5f5909c14bd0297dee3e38a45c543516841c3cec0fdf0fd7bbc5a2250d2ab9",
+              "originalS": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6"
+            }
+          },
+          "path": "true-cycle/A.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "9462de80505b2ac35052b4161c1d885f939039c21f759401e4a48a66a5a13c52",
+              "originalS": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d"
+            }
+          },
+          "path": "true-cycle/B.dll"
+        },
+        {
+          "differences": {
+            "mvid": {
+              "current": "52f5efc0-fe6c-4110-b185-bed7c0bdaf61",
+              "originalS": "3d1c0c74-a36d-445f-890c-0a1c6a2cbf36"
+            },
+            "sha256": {
+              "current": "d95f826bd6e7b31a7d495a883fd7c695ff53e8ee1dc1a54ca11fa17286da528d",
+              "originalS": "fa1f7473db2655adcb2a012c0cb29d1181cbae21bc19020abf14d4c39772825e"
+            }
+          },
+          "path": "value/R03Contract.dll"
+        },
+        {
+          "differences": {
+            "sha256": {
+              "current": "ee2913829034e9f560e8e9ba3a3e86145101e3f9ed5d6c18ad8d9c533d1135d6",
+              "originalS": "c21598ce556646601cbbc55e80c0c4f42603d68ca8861d084b4b3fd748a4d144"
+            }
+          },
+          "path": "virtual-slot/Methods.dll"
+        }
+      ]
+    }
+  ],
+  "originalSRegeneratedBytesAdopted": false,
+  "ordinaryMvidNote": "Only fields actually present in the workflow comparison are recorded; SHA differences are explicit. No unreported MVID differences inferred.",
+  "artifactProof": [
+    {
+      "OS": "macos",
+      "compatibility": {
+        "kind": "R03IRFixtureCompatibility",
+        "result": "PassedSourceAndHostOnly",
+        "source": "b6076f8d85ba1ac56bfe15656842eb37115d1475",
+        "historicalSBlob": "0688bd2dad054bd59fcdd1564a050a398cfa14e7",
+        "regeneratedOriginalFixtures": 15,
+        "regeneratedOriginalMatchesHistoricalSBySourceShapeOnly": true,
+        "regeneratedOriginalSBytesAdopted": false,
+        "regeneratedOriginalSHistoricalByteIdentity": false,
+        "originalSByteDifferences": 15,
+        "irTargetSha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd",
+        "originalTargetSha256": "ee2913829034e9f560e8e9ba3a3e86145101e3f9ed5d6c18ad8d9c533d1135d6",
+        "editorLayoutAdmission": "Passed",
+        "runtimeAcceptance": false,
+        "playerRun": false,
+        "preservesOriginalS": true
+      },
+      "pinnedVerdict": {
+        "R03Accepted": false,
+        "ReadyForHumanReviewGate": false,
+        "first": {
+          "bytes": 2048,
+          "mvid": "597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff",
+          "receiptSha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+          "sha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd"
+        },
+        "historicalOriginalSIndependentlyAccepted": false,
+        "kind": "R03IRGeneratorPreLocalHostProof",
+        "net8CompilationProvenByCaller": false,
+        "originalRegeneratedFixtureCount": 15,
+        "originalVirtualSlotSha256": "ee2913829034e9f560e8e9ba3a3e86145101e3f9ed5d6c18ad8d9c533d1135d6",
+        "repeat": {
+          "bytes": 2048,
+          "mvid": "597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff",
+          "receiptSha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+          "sha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd"
+        },
+        "result": "PassedPinnedFreshGeneratorBytesAndRepeatability_HostOnly",
+        "runtimeAcceptance": false,
+        "schemaVersion": 1,
+        "unityOrPlayerExecuted": false
+      },
+      "comparisonSource": "Matching valid CI stdout JSON; downloaded artifact preserved malformed",
+      "duplicateExit": 134,
+      "downloadReceiptSha256": "3ebc4bd7d1c246111e87a2b7d526a60089f17d8a7e543f851138778b78999c48"
+    },
+    {
+      "OS": "ubuntu",
+      "compatibility": {
+        "kind": "R03IRFixtureCompatibility",
+        "result": "PassedSourceAndHostOnly",
+        "source": "b6076f8d85ba1ac56bfe15656842eb37115d1475",
+        "historicalSBlob": "0688bd2dad054bd59fcdd1564a050a398cfa14e7",
+        "regeneratedOriginalFixtures": 15,
+        "regeneratedOriginalMatchesHistoricalSBySourceShapeOnly": true,
+        "regeneratedOriginalSBytesAdopted": false,
+        "regeneratedOriginalSHistoricalByteIdentity": false,
+        "originalSByteDifferences": 15,
+        "irTargetSha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd",
+        "originalTargetSha256": "15e98bb029113e646126839f88e0b4c78a25bc684256bfafd8a05ade54abee01",
+        "editorLayoutAdmission": "Passed",
+        "runtimeAcceptance": false,
+        "playerRun": false,
+        "preservesOriginalS": true
+      },
+      "pinnedVerdict": {
+        "R03Accepted": false,
+        "ReadyForHumanReviewGate": false,
+        "first": {
+          "bytes": 2048,
+          "mvid": "597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff",
+          "receiptSha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+          "sha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd"
+        },
+        "historicalOriginalSIndependentlyAccepted": false,
+        "kind": "R03IRGeneratorPreLocalHostProof",
+        "net8CompilationProvenByCaller": false,
+        "originalRegeneratedFixtureCount": 15,
+        "originalVirtualSlotSha256": "15e98bb029113e646126839f88e0b4c78a25bc684256bfafd8a05ade54abee01",
+        "repeat": {
+          "bytes": 2048,
+          "mvid": "597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff",
+          "receiptSha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+          "sha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd"
+        },
+        "result": "PassedPinnedFreshGeneratorBytesAndRepeatability_HostOnly",
+        "runtimeAcceptance": false,
+        "schemaVersion": 1,
+        "unityOrPlayerExecuted": false
+      },
+      "comparisonSource": "Matching valid CI stdout JSON; downloaded artifact preserved malformed",
+      "duplicateExit": 134,
+      "downloadReceiptSha256": "cc7e6eb4fa41c11d56d92c981d0175be7753dbf2b749e5e5d67f025c3a2784a7"
+    }
+  ],
+  "actualGeneratorGatePassed": true,
+  "comparisonArtifactSerialization": "Failed_TrailingLiteralBackslashN_BothOS",
+  "independentGateBasis": "Both OS jobs at exact source, actual compiler logs, valid pinned IR verdict and complete valid stdout structural/SHA comparison; malformed artifact is not accepted as valid JSON."
+}

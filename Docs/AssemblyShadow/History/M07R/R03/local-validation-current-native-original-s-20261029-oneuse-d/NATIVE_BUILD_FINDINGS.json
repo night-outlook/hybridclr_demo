@@ -1,0 +1,459 @@
+{
+  "kind": "IndependentActualUnityCompilerFailureAnalysis",
+  "time": "2026-10-30T07:16:09.700615+00:00",
+  "id": "IR-LOCAL-R03-UNITY-CXX11-01",
+  "secondaryId": "IR-LOCAL-R03-BUILD-FAILED-INVENTORY-01",
+  "result": "FailedActualNativeBuilds_PlayersBlocked",
+  "scope": "Read-only analysis of the single authorized D execution; no compilation or build replay",
+  "roles": [
+    {
+      "role": "candidate-release",
+      "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/builds/candidate-release/Editor.log",
+      "logSha256": "4c1c143dd14a6a8cf0861cd8d271ef1839f0a4a7885ab22cc75e494993ad6d35",
+      "firstCompilerError": {
+        "line": 22836,
+        "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h:52:56: error: exception specifications are not allowed in type aliases"
+      },
+      "compilerErrorCount": 42,
+      "uniqueCompilerErrors": [
+        {
+          "line": 27928,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h:52:56: error: exception specifications are not allowed in type aliases"
+        },
+        {
+          "line": 27934,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:116:25: error: no matching constructor for initialization of 'frozen::Transaction'"
+        },
+        {
+          "line": 27955,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:161:32: error: no matching constructor for initialization of 'const AssemblyRow &'"
+        },
+        {
+          "line": 27975,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:173:29: error: no matching constructor for initialization of 'const EventRow &'"
+        },
+        {
+          "line": 27993,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:185:35: error: no matching constructor for initialization of 'const UseRow &'"
+        },
+        {
+          "line": 28011,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:201:40: error: no matching constructor for initialization of 'const OrdinaryAssemblyRow &'"
+        },
+        {
+          "line": 28027,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:211:37: error: no matching constructor for initialization of 'const OrdinaryClassRow &'"
+        },
+        {
+          "line": 28049,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:180:54: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 28062,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:181:31: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 28075,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:182:38: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 28088,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:196:24: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 28101,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:197:40: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 28114,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:200:16: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 28127,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h:26:21: error: no viable overloaded '='"
+        },
+        {
+          "line": 28138,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h:139:33: error: no viable overloaded '='"
+        },
+        {
+          "line": 28147,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h:140:22: error: no viable overloaded '='"
+        },
+        {
+          "line": 28156,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h:141:23: error: no viable overloaded '='"
+        },
+        {
+          "line": 28167,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl:113:17: error: no viable overloaded '='"
+        },
+        {
+          "line": 28182,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl:72:22: error: no matching constructor for initialization of 'const Identity &'"
+        }
+      ],
+      "firstActualCompilerCommand": {
+        "line": 22829,
+        "text": "\"/Library/Developer/CommandLineTools/usr/bin/clang++\" -std=c++11 -Wswitch -Wno-trigraphs -Wno-tautological-compare -Wno-invalid-offsetof -Wno-implicitly-unsigned-literal -Wno-integer-overflow -Wno-shift-negative-value -Wno-unknown-attributes -Wno-implicit-function-declaration -Wno-null-conversion -Wno-missing-declarations -Wno-unused-value -Wno-pragma-once-outside-header -fvisibility=hidden -isysroot \"/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk\" -fexceptions -frtti -g -O3 -fno-strict-overflow -ffunction-sections -fdata-sections -fmessage-length=0 -pipe -D_GLIBCXX_USE_CXX11_ABI=0 -DBASELIB_INLINE_NAMESPACE=il2cpp_baselib -DIL2CPP_MONO_DEBUGGER_DISABLED -DRUNTIME_IL2CPP -DTARGET_ARM64 -DIL2CPP_ENABLE_WRITE_BARRIERS=1 -DIL2CPP_INCREMENTAL_TIME_SLICE=3 -DGC_NOT_DLL -DIL2CPP_DEFAULT_DATA_DIR_PATH=Data -DNDEBUG -I\".\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/bdwgc/include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/pch\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/os/ClassLibraryPAL/brotli/include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Platforms/OSX/Include\" -o \"Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/i718x19l6urk.o\" -fcolor-diagnostics -stdlib=libc++ -arch arm64 -mmacosx-version-min=11.0 -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 -DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=2 -DHYBRIDCLR_R03_RUNTIME_PROBE=1 -c -x c++ \"Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/q2q9r6lop7nh2.lump.cpp\""
+      },
+      "actualLanguageStandards": [
+        "c++11"
+      ],
+      "sourceBindings": [
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+          "sha256": "14b422a81986960c0de25ad0fe4214241cc9f7ea4e6ad9a724330dbd9230de4d"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+          "sha256": "876f83104d7ea81b043e1ae30ac83aa83c5e9e13f53a19ad0c032df52d693fa0"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+          "sha256": "232bd739bc6a54e8047118fbba8eb301a58f67e869ca8ce974902c8c382244a8"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+          "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+          "sha256": "4dfe7294faa17fa69b217e85db0f7ce7fed8847af07c6742aa7486d3ca3ddf9e"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+          "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+          "sha256": "2f478332ac71c205b20045907b63bed7b482a8014fa644539ccd2c2ce8406a1d"
+        }
+      ],
+      "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/builds/candidate-release/build-receipt.json",
+      "receiptSha256": "1bc22ea5c4d4b1ef83e84183a3be96fecb8cd24e7c29cc45d2ce3a1548395f3a",
+      "buildResult": "Failed",
+      "buildErrors": 3,
+      "buildWarnings": 1,
+      "exception": "System.IO.DirectoryNotFoundException: Could not find a part of the path '/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/builds/candidate-release/R03Isolated.app'.\n  at System.IO.Enumeration.FileSystemEnumerator`1[TResult].CreateDirectoryHandle (System.String path, System.Boolean ignoreNotFound) [0x00032] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Enumeration.FileSystemEnumerator`1[TResult]..ctor (System.String directory, System.IO.EnumerationOptions options) [0x00048] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Enumeration.FileSystemEnumerable`1+DelegateEnumerator[TResult]..ctor (System.IO.Enumeration.FileSystemEnumerable`1[TResult] enumerable) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Enumeration.FileSystemEnumerable`1[TResult]..ctor (System.String directory, System.IO.Enumeration.FileSystemEnumerable`1+FindTransform[TResult] transform, System.IO.EnumerationOptions options) [0x00042] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles (System.String directory, System.String expression, System.IO.EnumerationOptions options) [0x00014] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Directory.InternalEnumeratePaths (System.String path, System.String searchPattern, System.IO.SearchTarget searchTarget, System.IO.EnumerationOptions options) [0x0003c] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Directory.GetFiles (System.String path, System.String searchPattern, System.IO.EnumerationOptions enumerationOptions) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Directory.GetFiles (System.String path, System.String searchPattern, System.IO.SearchOption searchOption) [0x00008] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at AssemblyShadow.R03.Editor.R03Build.Inventory (System.String root) [0x0001e] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/Assets/Editor/R03Build.cs:192 \n  at AssemblyShadow.R03.Editor.R03Build.Build () [0x002fc] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/Assets/Editor/R03Build.cs:124 ",
+      "appExists": false,
+      "inventoryExceptionLines": [
+        {
+          "line": 28242,
+          "text": "DirectoryNotFoundException: Could not find a part of the path '/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/builds/candidate-release/R03Isolated.app'."
+        },
+        {
+          "line": 28251,
+          "text": "  at AssemblyShadow.R03.Editor.R03Build.Inventory (System.String root) [0x0001e] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-release/Assets/Editor/R03Build.cs:192 "
+        }
+      ]
+    },
+    {
+      "role": "candidate-debug",
+      "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/builds/candidate-debug/Editor.log",
+      "logSha256": "e56bc260c04157f8f9c65422136d8c9c3db8efb866652715072e844cf283301f",
+      "firstCompilerError": {
+        "line": 23627,
+        "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h:52:56: error: exception specifications are not allowed in type aliases"
+      },
+      "compilerErrorCount": 42,
+      "uniqueCompilerErrors": [
+        {
+          "line": 28709,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h:52:56: error: exception specifications are not allowed in type aliases"
+        },
+        {
+          "line": 28715,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:116:25: error: no matching constructor for initialization of 'frozen::Transaction'"
+        },
+        {
+          "line": 28736,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:161:32: error: no matching constructor for initialization of 'const AssemblyRow &'"
+        },
+        {
+          "line": 28756,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:173:29: error: no matching constructor for initialization of 'const EventRow &'"
+        },
+        {
+          "line": 28774,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:185:35: error: no matching constructor for initialization of 'const UseRow &'"
+        },
+        {
+          "line": 28792,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:201:40: error: no matching constructor for initialization of 'const OrdinaryAssemblyRow &'"
+        },
+        {
+          "line": 28808,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:211:37: error: no matching constructor for initialization of 'const OrdinaryClassRow &'"
+        },
+        {
+          "line": 28830,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:180:54: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 28843,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:181:31: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 28856,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:182:38: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 28869,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:196:24: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 28882,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:197:40: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 28895,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:200:16: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 28908,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h:26:21: error: no viable overloaded '='"
+        },
+        {
+          "line": 28919,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h:139:33: error: no viable overloaded '='"
+        },
+        {
+          "line": 28928,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h:140:22: error: no viable overloaded '='"
+        },
+        {
+          "line": 28937,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h:141:23: error: no viable overloaded '='"
+        },
+        {
+          "line": 28948,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl:113:17: error: no viable overloaded '='"
+        },
+        {
+          "line": 28963,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl:72:22: error: no matching constructor for initialization of 'const Identity &'"
+        }
+      ],
+      "firstActualCompilerCommand": {
+        "line": 23620,
+        "text": "\"/Library/Developer/CommandLineTools/usr/bin/clang++\" -std=c++11 -Wswitch -Wno-trigraphs -Wno-tautological-compare -Wno-invalid-offsetof -Wno-implicitly-unsigned-literal -Wno-integer-overflow -Wno-shift-negative-value -Wno-unknown-attributes -Wno-implicit-function-declaration -Wno-null-conversion -Wno-missing-declarations -Wno-unused-value -Wno-pragma-once-outside-header -fvisibility=hidden -isysroot \"/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk\" -fexceptions -frtti -g -O0 -fno-strict-overflow -ffunction-sections -fdata-sections -fmessage-length=0 -pipe -D_GLIBCXX_USE_CXX11_ABI=0 -DBASELIB_INLINE_NAMESPACE=il2cpp_baselib -DIL2CPP_MONO_DEBUGGER_DISABLED -DRUNTIME_IL2CPP -DTARGET_ARM64 -DIL2CPP_ENABLE_WRITE_BARRIERS=1 -DIL2CPP_INCREMENTAL_TIME_SLICE=3 -DGC_NOT_DLL -DIL2CPP_DEFAULT_DATA_DIR_PATH=Data -DIL2CPP_DEBUG=1 -D_DEBUG -I\".\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/bdwgc/include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/pch\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/os/ClassLibraryPAL/brotli/include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Platforms/OSX/Include\" -o \"Library/Bee/artifacts/MacStandalonePlayerBuildProgram/obiza/5ffsn1jy1tsr.o\" -fcolor-diagnostics -stdlib=libc++ -arch arm64 -mmacosx-version-min=11.0 -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 -DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=2 -DHYBRIDCLR_R03_RUNTIME_PROBE=1 -c -x c++ \"Library/Bee/artifacts/MacStandalonePlayerBuildProgram/obiza/yjwkbxdbtrx22.lump.cpp\""
+      },
+      "actualLanguageStandards": [
+        "c++11"
+      ],
+      "sourceBindings": [
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+          "sha256": "14b422a81986960c0de25ad0fe4214241cc9f7ea4e6ad9a724330dbd9230de4d"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+          "sha256": "876f83104d7ea81b043e1ae30ac83aa83c5e9e13f53a19ad0c032df52d693fa0"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+          "sha256": "232bd739bc6a54e8047118fbba8eb301a58f67e869ca8ce974902c8c382244a8"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+          "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+          "sha256": "4dfe7294faa17fa69b217e85db0f7ce7fed8847af07c6742aa7486d3ca3ddf9e"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+          "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+          "sha256": "2f478332ac71c205b20045907b63bed7b482a8014fa644539ccd2c2ce8406a1d"
+        }
+      ],
+      "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/builds/candidate-debug/build-receipt.json",
+      "receiptSha256": "fe9888973321e65809a430e7e29c4a8f4e596c5f07e50da5320aebed7d7d2f4d",
+      "buildResult": "Failed",
+      "buildErrors": 3,
+      "buildWarnings": 1,
+      "exception": "System.IO.DirectoryNotFoundException: Could not find a part of the path '/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/builds/candidate-debug/R03Isolated.app'.\n  at System.IO.Enumeration.FileSystemEnumerator`1[TResult].CreateDirectoryHandle (System.String path, System.Boolean ignoreNotFound) [0x00032] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Enumeration.FileSystemEnumerator`1[TResult]..ctor (System.String directory, System.IO.EnumerationOptions options) [0x00048] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Enumeration.FileSystemEnumerable`1+DelegateEnumerator[TResult]..ctor (System.IO.Enumeration.FileSystemEnumerable`1[TResult] enumerable) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Enumeration.FileSystemEnumerable`1[TResult]..ctor (System.String directory, System.IO.Enumeration.FileSystemEnumerable`1+FindTransform[TResult] transform, System.IO.EnumerationOptions options) [0x00042] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles (System.String directory, System.String expression, System.IO.EnumerationOptions options) [0x00014] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Directory.InternalEnumeratePaths (System.String path, System.String searchPattern, System.IO.SearchTarget searchTarget, System.IO.EnumerationOptions options) [0x0003c] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Directory.GetFiles (System.String path, System.String searchPattern, System.IO.EnumerationOptions enumerationOptions) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Directory.GetFiles (System.String path, System.String searchPattern, System.IO.SearchOption searchOption) [0x00008] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at AssemblyShadow.R03.Editor.R03Build.Inventory (System.String root) [0x0001e] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/Assets/Editor/R03Build.cs:192 \n  at AssemblyShadow.R03.Editor.R03Build.Build () [0x002fc] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/Assets/Editor/R03Build.cs:124 ",
+      "appExists": false,
+      "inventoryExceptionLines": [
+        {
+          "line": 29022,
+          "text": "DirectoryNotFoundException: Could not find a part of the path '/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/builds/candidate-debug/R03Isolated.app'."
+        },
+        {
+          "line": 29031,
+          "text": "  at AssemblyShadow.R03.Editor.R03Build.Inventory (System.String root) [0x0001e] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-debug/Assets/Editor/R03Build.cs:192 "
+        }
+      ]
+    },
+    {
+      "role": "candidate-off",
+      "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/builds/candidate-off/Editor.log",
+      "logSha256": "6ac72e543e9b2dfb97bc758c3875a122b614b7433b8c748fd9a19d15e4c414f3",
+      "firstCompilerError": {
+        "line": 23528,
+        "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h:52:56: error: exception specifications are not allowed in type aliases"
+      },
+      "compilerErrorCount": 38,
+      "uniqueCompilerErrors": [
+        {
+          "line": 28743,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h:52:56: error: exception specifications are not allowed in type aliases"
+        },
+        {
+          "line": 27702,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:116:25: error: no matching constructor for initialization of 'frozen::Transaction'"
+        },
+        {
+          "line": 27723,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:161:32: error: no matching constructor for initialization of 'const AssemblyRow &'"
+        },
+        {
+          "line": 27743,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:173:29: error: no matching constructor for initialization of 'const EventRow &'"
+        },
+        {
+          "line": 27761,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:185:35: error: no matching constructor for initialization of 'const UseRow &'"
+        },
+        {
+          "line": 27779,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:201:40: error: no matching constructor for initialization of 'const OrdinaryAssemblyRow &'"
+        },
+        {
+          "line": 27795,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h:211:37: error: no matching constructor for initialization of 'const OrdinaryClassRow &'"
+        },
+        {
+          "line": 27817,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:180:54: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 27830,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:181:31: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 27843,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:182:38: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 27856,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:196:24: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 27869,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:197:40: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 27882,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h:200:16: error: no matching constructor for initialization of 'diagnostic::WriteResult'"
+        },
+        {
+          "line": 27895,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h:26:21: error: no viable overloaded '='"
+        },
+        {
+          "line": 27906,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h:139:33: error: no viable overloaded '='"
+        },
+        {
+          "line": 27915,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h:140:22: error: no viable overloaded '='"
+        },
+        {
+          "line": 27924,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h:141:23: error: no viable overloaded '='"
+        }
+      ],
+      "firstActualCompilerCommand": {
+        "line": 23521,
+        "text": "\"/Library/Developer/CommandLineTools/usr/bin/clang++\" -std=c++11 -Wswitch -Wno-trigraphs -Wno-tautological-compare -Wno-invalid-offsetof -Wno-implicitly-unsigned-literal -Wno-integer-overflow -Wno-shift-negative-value -Wno-unknown-attributes -Wno-implicit-function-declaration -Wno-null-conversion -Wno-missing-declarations -Wno-unused-value -Wno-pragma-once-outside-header -fvisibility=hidden -isysroot \"/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk\" -fexceptions -frtti -g -O3 -fno-strict-overflow -ffunction-sections -fdata-sections -fmessage-length=0 -pipe -D_GLIBCXX_USE_CXX11_ABI=0 -DBASELIB_INLINE_NAMESPACE=il2cpp_baselib -DIL2CPP_MONO_DEBUGGER_DISABLED -DRUNTIME_IL2CPP -DTARGET_ARM64 -DIL2CPP_ENABLE_WRITE_BARRIERS=1 -DIL2CPP_INCREMENTAL_TIME_SLICE=3 -DGC_NOT_DLL -DIL2CPP_DEFAULT_DATA_DIR_PATH=Data -DNDEBUG -I\".\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/bdwgc/include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/pch\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/os/ClassLibraryPAL/brotli/include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Platforms/OSX/Include\" -o \"Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/isyp5ps9o57h.o\" -fcolor-diagnostics -stdlib=libc++ -arch arm64 -mmacosx-version-min=11.0 -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=0 -DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=0 -DHYBRIDCLR_R03_RUNTIME_PROBE=1 -c -x c++ \"Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/mp9tifkdptzg2.lump.cpp\""
+      },
+      "actualLanguageStandards": [
+        "c++11"
+      ],
+      "sourceBindings": [
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+          "sha256": "876f83104d7ea81b043e1ae30ac83aa83c5e9e13f53a19ad0c032df52d693fa0"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+          "sha256": "38f78fff7327e04b13a35cab21636fdb1dd1f8d27f46378fe30b62c644b5e605"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+          "sha256": "4dfe7294faa17fa69b217e85db0f7ce7fed8847af07c6742aa7486d3ca3ddf9e"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+          "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9"
+        },
+        {
+          "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+          "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+          "sha256": "2f478332ac71c205b20045907b63bed7b482a8014fa644539ccd2c2ce8406a1d"
+        }
+      ],
+      "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/builds/candidate-off/build-receipt.json",
+      "receiptSha256": "6914eacd26c6002b94d8b8571cf3a46902606bdd7b3eeae47e9afcbd6667b28c",
+      "buildResult": "Failed",
+      "buildErrors": 3,
+      "buildWarnings": 1,
+      "exception": "System.IO.DirectoryNotFoundException: Could not find a part of the path '/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/builds/candidate-off/R03Isolated.app'.\n  at System.IO.Enumeration.FileSystemEnumerator`1[TResult].CreateDirectoryHandle (System.String path, System.Boolean ignoreNotFound) [0x00032] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Enumeration.FileSystemEnumerator`1[TResult]..ctor (System.String directory, System.IO.EnumerationOptions options) [0x00048] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Enumeration.FileSystemEnumerable`1+DelegateEnumerator[TResult]..ctor (System.IO.Enumeration.FileSystemEnumerable`1[TResult] enumerable) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Enumeration.FileSystemEnumerable`1[TResult]..ctor (System.String directory, System.IO.Enumeration.FileSystemEnumerable`1+FindTransform[TResult] transform, System.IO.EnumerationOptions options) [0x00042] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles (System.String directory, System.String expression, System.IO.EnumerationOptions options) [0x00014] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Directory.InternalEnumeratePaths (System.String path, System.String searchPattern, System.IO.SearchTarget searchTarget, System.IO.EnumerationOptions options) [0x0003c] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Directory.GetFiles (System.String path, System.String searchPattern, System.IO.EnumerationOptions enumerationOptions) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Directory.GetFiles (System.String path, System.String searchPattern, System.IO.SearchOption searchOption) [0x00008] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at AssemblyShadow.R03.Editor.R03Build.Inventory (System.String root) [0x0001e] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/Assets/Editor/R03Build.cs:192 \n  at AssemblyShadow.R03.Editor.R03Build.Build () [0x002fc] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/Assets/Editor/R03Build.cs:124 ",
+      "appExists": false,
+      "inventoryExceptionLines": [
+        {
+          "line": 28844,
+          "text": "DirectoryNotFoundException: Could not find a part of the path '/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/builds/candidate-off/R03Isolated.app'."
+        },
+        {
+          "line": 28853,
+          "text": "  at AssemblyShadow.R03.Editor.R03Build.Inventory (System.String root) [0x0001e] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D/current-native/projects/candidate-off/Assets/Editor/R03Build.cs:192 "
+        }
+      ]
+    }
+  ],
+  "sourceBindings": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/native_validation.py",
+      "sha256": "2ea5d8b166d8e135dee5c9ea2dac49840e7c7188799caf3d81639e27a94e4e97"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs",
+      "sha256": "94fce53aacec2818631c540baa38cebfa6ce5ace1b539a62d42977210f156c06"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp",
+      "sha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c"
+    }
+  ],
+  "diagnosis": "Actual Unity BuildPipeline uses -std=c++11; current diagnostic headers require newer language constructs; shipped native_validation.py syntax checks use -std=c++17. Unconditional includes in AssemblyShadow.cpp expose inactive diagnostic headers in ON and OFF roles.",
+  "primaryDirection": "Make current native sources compile under the supported actual Unity toolchain language standard, preserving guards. Add source-matched actual-standard compilation coverage. Separately preserve failed BuildReport result before attempting absent app inventory.",
+  "uncertainty": "Additional compiler/linker/runtime failures after the current blockers remain unknown.",
+  "full126InstalledPairAcceptance": false,
+  "localSourceChanges": false,
+  "retry": false
+}

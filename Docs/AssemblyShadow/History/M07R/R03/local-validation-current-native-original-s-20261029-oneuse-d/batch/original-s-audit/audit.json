@@ -1,0 +1,110 @@
+{
+  "archiveMembers": 15713,
+  "auditScriptSha256": "ecc5aad001b248ecc649bcfac60b8a5fe53050dcf9a9cd7aa54bad6ea53b48a8",
+  "c04FieldObservations": {
+    "players/C04-old-AOT-guard/raw.json": {
+      "fields": {
+        "newMethodInvocationAttempted": {
+          "state": "NotRecorded"
+        },
+        "newMethodInvocationSucceeded": {
+          "state": "NotRecorded"
+        }
+      },
+      "scope": "TopLevelJSONFields",
+      "sha256": "412fe982b302aff32b727f40a55d88ef5313aff14002442357d06402b95a60b5"
+    },
+    "players/C04-old-AOT-guard/verification.json": {
+      "fields": {
+        "newMethodInvocationAttempted": {
+          "state": "NotRecorded"
+        },
+        "newMethodInvocationSucceeded": {
+          "state": "NotRecorded"
+        }
+      },
+      "scope": "TopLevelJSONFields",
+      "sha256": "e8219e4d7a9ea272158ba098de4d0985da44ae92940b9c11e82f4c6ff81367a3"
+    }
+  },
+  "cells": 90,
+  "checkpointFiles": 16978,
+  "checksCompleted": [
+    "ExactGitBlobsAndCheckpointManifest",
+    "OrderedTransportAndPinnedOriginals",
+    "ExactArchiveMemberBytesAndMembership",
+    "TypedFinalizerAndNinetyLedgerCellJoins",
+    "ArchivedP05IntegrationAndC04ReceiptJoins",
+    "ExportsCompleteAndOriginalCheckoutStillClean"
+  ],
+  "executedRepositories": {
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_demo": "29bb3d4a39bf8a2f23be404f77535aaba3485bfc",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+  },
+  "executionCommit": "29bb3d4a39bf8a2f23be404f77535aaba3485bfc",
+  "fullSourceBuildProcessSemanticAudit": false,
+  "historicalInputsModified": false,
+  "independentReviewer": false,
+  "indexedFiles": 15712,
+  "inputCommit": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+  "integrationSha256": "ace3d35b5030eebab2a520f605ba8c2f301f2e1e7cd16b3119fb93b876f29c73",
+  "kind": "IRR03OriginalSProvenanceAudit",
+  "liveFilesystemCustodyReexecuted": false,
+  "manifestFiles": 16977,
+  "originalArtifacts": {
+    "BATCH_EXECUTION.json": {
+      "sha256": "241144d39b1cfa47be3dcd4f67a3e40f7608ab58d605117c81fcccea8c68a427",
+      "size": 118529310
+    },
+    "LOCAL_BATCH_RESULT.json": {
+      "sha256": "2e09d46c800d7721eb14a6d7a31ba1d89327d1126ff7f7be35dd889bdbdf3096",
+      "size": 118529710
+    },
+    "evidence-index.json": {
+      "sha256": "0685d23a40b581cc7d22abc543c7d9067e808a0f25fa0b3f2aea32966b22bd70",
+      "size": 4266164
+    },
+    "evidence.tar.gz": {
+      "sha256": "23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6",
+      "size": 587907380
+    },
+    "seal-receipt.json": {
+      "sha256": "d382557e62c3e897070305daeedb452a2ab0d3f409af42e58be8fd8f03109dcf",
+      "size": 256
+    }
+  },
+  "originalResult": "EvidenceReadyForPrimaryReview",
+  "p05RecoverySha256": "e16d8ff0fa745e2b6249bbe69d2b7c0f5034f2990d9246171c012fd9d8fa5ce8",
+  "result": "Passed",
+  "runtimeAcceptance": false,
+  "schemaVersion": 2,
+  "transports": [
+    {
+      "parts": 2,
+      "path": "batch/BATCH_EXECUTION.json",
+      "sha256": "241144d39b1cfa47be3dcd4f67a3e40f7608ab58d605117c81fcccea8c68a427",
+      "size": 118529310
+    },
+    {
+      "parts": 2,
+      "path": "batch/LOCAL_BATCH_RESULT.json",
+      "sha256": "2e09d46c800d7721eb14a6d7a31ba1d89327d1126ff7f7be35dd889bdbdf3096",
+      "size": 118529710
+    },
+    {
+      "parts": 9,
+      "path": "batch/evidence.tar.gz",
+      "sha256": "23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6",
+      "size": 587907380
+    },
+    {
+      "parts": 2,
+      "path": "preflight/operations/storage-executing/stdout.log",
+      "sha256": "8924cef24cd227c8a206ab65e2b9595fe1972232cbb3039ac0daa1dcb32d5ed3",
+      "size": 114974525
+    }
+  ],
+  "unityRun": false
+}

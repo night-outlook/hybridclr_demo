@@ -1,0 +1,14 @@
+{
+  "childSeal": "Passed bounded failure evidence only; not runtime/build acceptance",
+  "coordinatorManifest": "Coordinator command receipts only, excludes separately sealed child artifacts",
+  "originalSAuditCopiedManifest": "Exact original input manifest; relative paths resolve at retained fc55 checkpoint subtree, not the new audit output",
+  "fullRawInventory": "All 44976 regular files plus four symlinks including live Unity cache/SDK/project state; not all duplicated in Git",
+  "publishedEvidence": "Complete indexed child evidence and 1.2MB sealed archive, actual Editor logs, command streams, host/audit receipts, source snapshots and CI artifacts. Large historical reconstructed archive and native executables remain externally hash-bound.",
+  "malformedCIComparisonArtifact": "Original bytes preserved losslessly in .utf8.json envelope and original artifact.zip; no raw artifact normalization",
+  "jsonNegativeControls": "Invalid original payload bytes also preserved losslessly, not reclassified",
+  "originalSArchiveAndProcessJoins": "Read-only historical audit only; no independent semantic closure",
+  "installedNativeParity": "Blocked; limited implicated-header hash comparisons do not certify all126pairs",
+  "UnityBuildAttempts": 3,
+  "PlayersExecuted": 0,
+  "allAcceptanceFlagsFalse": true
+}

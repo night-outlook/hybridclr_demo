@@ -1,0 +1,25 @@
+{
+  "kind": "MalformedCiComparisonArtifactDiagnostic",
+  "issues": [
+    {
+      "OS": "macos",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-D-CI-artifacts-20261029/macos/historical-differences.json",
+      "sha256": "08fb34ba078472bcb4ed2ae8161eac9b58d6d776f2f6feece107e304dc288849",
+      "strictJsonResult": "Failed_ExtraData",
+      "trailingBytesHex": "5c6e",
+      "parsedObjectComparedToValidCiStdout": true,
+      "rawModified": false
+    },
+    {
+      "OS": "ubuntu",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-D-CI-artifacts-20261029/ubuntu/historical-differences.json",
+      "sha256": "340fb1e6cd500a6c71f5fae25c03c9f23c5397e8c54dcc896e2f5f01424734e2",
+      "strictJsonResult": "Failed_ExtraData",
+      "trailingBytesHex": "5c6e",
+      "parsedObjectComparedToValidCiStdout": true,
+      "rawModified": false
+    }
+  ],
+  "scope": "CI artifact serialization only; actual generator/IR/structural log proof independently valid",
+  "originalArtifactsModified": false
+}
