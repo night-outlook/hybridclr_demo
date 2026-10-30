@@ -74,6 +74,9 @@ def verify_role(workspace: Path, batch: Path, demo_commit: str,
     check(type(receipt) is dict and receipt.get("kind") == "R03IsolatedPlayerBuild"
           and receipt.get("schemaVersion") == 2 and receipt.get("result") == "Passed"
           and receipt.get("errors") == 0, "Actual successful R03 build-v2 required: " + name)
+    check(receipt.get("buildPipelineResult") == "Succeeded" and
+          receipt.get("playerInventoryStatus") == "PresentAndInventoried",
+          "Successful Unity BuildReport and real Player inventory required: " + name)
     check(config["featureEnabled"] is role[1] and receipt["featureEnabled"] is role[1]
           and receipt["cppConfiguration"] == config["cppConfiguration"] == role[0]
           and receipt["diagnosticsLevel"] == config["diagnosticsLevel"] == role[2],
