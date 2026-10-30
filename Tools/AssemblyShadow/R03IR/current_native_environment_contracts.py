@@ -232,5 +232,18 @@ class R03RetainedOriginalReadmissionContracts(unittest.TestCase):
         self.assertFalse(self.output.exists())
 
 
+    def test_28_thirty_to_forty_gib_is_an_advisory_risk(self):
+        result = gate.sample_capacity(self.output, free_bytes=35 * 1024**3)
+        self.assertEqual(result["advisoryHeadroomGiB"], 40)
+        self.assertEqual(result["hardMinimumGiB"], 20)
+        self.assertTrue(result["belowAdvisory"])
+        self.assertFalse(result["thresholdLowered"])
+
+    def test_29_exact_forty_gib_clears_advisory_not_acceptance(self):
+        result = gate.sample_capacity(self.output, free_bytes=40 * 1024**3)
+        self.assertFalse(result["belowAdvisory"])
+        self.assertFalse(result["futureUnityDiskUseGuaranteed"])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
