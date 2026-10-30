@@ -6,6 +6,14 @@ on:
       - '.github/workflows/r03-ir-fixture.yml'
       - 'Tools/AssemblyShadow/R03/PlayerFixtures/Program.cs'
       - 'Tools/AssemblyShadow/R03/Fixtures/EvolutionFixtureCorpus.cs'
+      - 'Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj'
+      - 'Tools/AssemblyShadow/R03IR/current_native_generator_receipt.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_generator_receipt_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/run_terminal_local.py'
+      - 'Tools/AssemblyShadow/R03IR/run_terminal_current.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_environment_admission.py'
+      - 'Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py'
+      - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
 permissions:
   contents: read
 jobs:
@@ -21,6 +29,14 @@ jobs:
         with:
           path: hybridclr_demo
           persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03/PlayerFixtures
+            Tools/AssemblyShadow/R03/Fixtures/EvolutionFixtureCorpus.cs
+            Tools/AssemblyShadow/R03/HostTests/EnvironmentBoundaries.cs
+            Tools/AssemblyShadow/R03/source-pins.json
+            Tools/AssemblyShadow/R03IR/current_native_generator_receipt.py
+            Tools/AssemblyShadow/R03IR/current_native_generator_receipt_contracts.py
       - name: Exact required HybridCLR Unity revision
         id: package
         shell: python
@@ -36,6 +52,23 @@ jobs:
           ref: ${{ steps.package.outputs.sha }}
           path: hybridclr_unity
           persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            Plugins/dnlib.dll
+            Editor/AssemblyShadow/Model/ShadowConfiguration.cs
+            Editor/AssemblyShadow/Metadata/AssemblyIdentityUtil.cs
+            Editor/AssemblyShadow/Metadata/EvolutionSignature.cs
+            Editor/AssemblyShadow/Metadata/LogicalMethodIdentity.cs
+            Editor/AssemblyShadow/Metadata/NativeLayoutAdmissionValidator.cs
+            Editor/AssemblyShadow/Metadata/NativeLayoutIdentityContext.cs
+            Editor/AssemblyShadow/Hashing/CanonicalSignatureWriter.cs
+            Tests/Editor/AssemblyShadow/R03EvolutionContractCases.cs
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+        with:
+          dotnet-version: '8.0.318'
+      - name: Sixteen adversarial generator receipt tests (synthetic, no Unity)
+        shell: bash
+        run: python3 -B hybridclr_demo/Tools/AssemblyShadow/R03IR/current_native_generator_receipt_contracts.py
       - name: Build exact new IR fixture generator
         shell: bash
         run: |
@@ -46,6 +79,7 @@ jobs:
             -p:PackageRoot="$GITHUB_WORKSPACE/hybridclr_unity" \
             -p:BaseIntermediateOutputPath="$RUNNER_TEMP/r03-ir-fixture/obj/" \
             -p:OutputPath="$RUNNER_TEMP/r03-ir-fixture/bin/" \
+            --disable-build-servers -p:UseSharedCompilation=false -nodeReuse:false \
             2>&1 | tee "$RUNNER_TEMP/r03-ir-fixture/build.log"
       - name: Generate original 15 and new IR target in separate fresh roots
         shell: bash
@@ -55,6 +89,26 @@ jobs:
             --output "$RUNNER_TEMP/r03-ir-fixture/original" > "$RUNNER_TEMP/r03-ir-fixture/original.stdout.json"
           dotnet "$RUNNER_TEMP/r03-ir-fixture/bin/PlayerFixtures.dll" \
             --ir-target "$RUNNER_TEMP/r03-ir-fixture/ir" > "$RUNNER_TEMP/r03-ir-fixture/ir.stdout.json"
+          dotnet "$RUNNER_TEMP/r03-ir-fixture/bin/PlayerFixtures.dll" \
+            --ir-target "$RUNNER_TEMP/r03-ir-fixture/ir-repeat" > "$RUNNER_TEMP/r03-ir-fixture/ir-repeat.stdout.json"
+          set +e
+          dotnet "$RUNNER_TEMP/r03-ir-fixture/bin/PlayerFixtures.dll" \
+            --ir-target "$RUNNER_TEMP/r03-ir-fixture/ir" \
+            > "$RUNNER_TEMP/r03-ir-fixture/duplicate.stdout.log" \
+            2> "$RUNNER_TEMP/r03-ir-fixture/duplicate.stderr.log"
+          duplicate_exit=$?
+          set -e
+          echo "$duplicate_exit" > "$RUNNER_TEMP/r03-ir-fixture/duplicate.exit"
+          test "$duplicate_exit" -ne 0
+      - name: Bind pinned IR bytes, MVID and independently repeated generator output
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03IR/current_native_generator_receipt.py \
+            --original "$RUNNER_TEMP/r03-ir-fixture/original/inventory.json" \
+            --first "$RUNNER_TEMP/r03-ir-fixture/ir" \
+            --repeat "$RUNNER_TEMP/r03-ir-fixture/ir-repeat" \
+            > "$RUNNER_TEMP/r03-ir-fixture/pinned-target-verdict.json"
       - name: Bind exact historical S fixture inventory and byte hashes
         shell: bash
         run: |
@@ -91,6 +145,12 @@ jobs:
           target=json.loads((root/'ir/ir-target.json').read_text())
           data=(root/'ir/Methods.dll').read_bytes()
           assert target['kind']=='R03IRSideEffectFixture'
+          strict=json.loads((root/'pinned-target-verdict.json').read_text())
+          assert strict['result']=='PassedPinnedFreshGeneratorBytesAndRepeatability_HostOnly'
+          assert strict['first']['sha256']=='8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd'
+          assert strict['first']['mvid']=='597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff'
+          assert strict['first']==strict['repeat']
+          assert strict['R03Accepted'] is False
           assert target['layoutEditorAdmission']=='Passed'
           assert target['sideEffectInstructionsVerified'] is True
           assert target['originalSFixtureUnchanged'] is True
@@ -118,6 +178,10 @@ jobs:
             ${{ runner.temp }}/r03-ir-fixture/original/inventory.json
             ${{ runner.temp }}/r03-ir-fixture/ir/ir-target.json
             ${{ runner.temp }}/r03-ir-fixture/verified.json
+            ${{ runner.temp }}/r03-ir-fixture/pinned-target-verdict.json
+            ${{ runner.temp }}/r03-ir-fixture/ir-repeat/ir-target.json
+            ${{ runner.temp }}/r03-ir-fixture/duplicate.exit
+            ${{ runner.temp }}/r03-ir-fixture/duplicate.stderr.log
             ${{ runner.temp }}/r03-ir-fixture/historical-differences.json
           retention-days: 14
           if-no-files-found: warn
