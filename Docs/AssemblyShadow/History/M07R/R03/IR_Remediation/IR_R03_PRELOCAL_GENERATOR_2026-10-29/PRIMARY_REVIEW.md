@@ -8,6 +8,7 @@ Latest authoritative Local oneuse-C = FAIL / ReturnRequired at standalone CLI im
 
 ## Findings and corrections
 
+- **False historical byte-equivalence invariant (confirmed in actual new CI):** Fresh generation of all 15 original-mode DLLs on both Linux and macOS produced differing SHA/MVID values relative to immutable original S. The legacy fixture workflow incorrectly asserted bitwise equality. Corrected to enforce independent historical inventory blob integrity, 15 exact paths, assembly identities, references and sizes; record all divergences without reclassifying original S or adopting regenerated DLLs. Authentic original-S bytes remain supplied only by `ir_original_fixtures.stage_immutable_original_s` and the retained fc55 checkpoint.
 - **Pre-Local host evidence gap:** The original real net8 generator workflow ran only on generator Program/Corpus edits, not active current-native dispatch/handoff changes; its test asserted self-reported hash/MVID rather than independent fixed expected values and repeat generation. New source verifier, actual repeat/duplicate-root controls and CI trigger address this.
 - **Mac CI disk risk:** The original full repo/package checkouts unnecessarily materialize large history. Sparse checkouts are limited to project and pinned compiler inputs; actual `csproj` input paths are not changed.
 - **Admission document/code mismatch:** Code advised 30 GiB while active WEB_TO_LOCAL prefers 40 GiB. Changed advisory only; no min-floor weakening.
