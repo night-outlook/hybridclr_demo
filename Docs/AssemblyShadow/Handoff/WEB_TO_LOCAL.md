@@ -46,6 +46,16 @@ Choose a new absent physically canonical disjoint output root (oneuse-D) that ha
     /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D
 Do not manually create RUN_ROOT. If existing, STOP and request new Primary authority rather than silently picking a suffix.
 
+## 3A. Source-pinned net8 generator proof — REQUIRED before oneuse-D
+
+Primary has hardened the EXISTING `.github/workflows/r03-ir-fixture.yml` rather than adding another Local execution. It now recompiles the actual `Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj` using pinned .NET SDK8.0.318 on **macOS and Ubuntu** at the final pushed demo source SHA, from sparse checked-out exact project/package inputs. It runs original 15-file compatibility comparison against the pinned S historic Git blob, builds two independently generated fresh IR targets, rejects duplicate-root reuse, enforces `Methods.dll` SHA256 `8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd` and MVID `597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff`, and runs 16 adversarial host receipt tests. All CI roots are separate from the Local original S and oneuse-D output.
+
+**Dispatch prerequisite:** At the final pushed demo HEAD specified in the closing Primary handoff prompt, confirm this workflow has **Passed both OS jobs**; preserve the exact run URL/ID, commit, both job conclusions, real `dotnet build` logs, pinned-target verdict and original-S 15-file comparison. A pending, Failed, cancelled, missing or older-commit result is **NOT** an authorization to spend oneuse-D; stop and return to Primary for a new go/no-go. A synthetic test PASS, a successful CI generator, and an original-S comparison are host/tooling evidence ONLY, not full original archival independent acceptance or actual Unity/native Player runtime.
+
+The Local read-only admission now records `capacity.advisoryHeadroomGiB=40` (not 30), `hardMinimumGiB=20`, and `belowAdvisory`. Between 20 and 40 GiB is an admitted-but-risky capacity state and requires explicit Primary go/no-go before the expensive one-use coordinator; below 20 GiB remains blocked. Do not modify any existing oneuse-A/B/C output, original S sparse projection or source/history to meet the advisory.
+
+No new Local preparatory builds or generator regeneration are required: the existing oneuse-D coordinator itself must run the actual generator once as part of its current-native Player stage. Its ten stages and all original IR positive/negative/engine/physical parity acceptance checks remain unchanged.
+
 ## 4. Standalone admission before the one-use coordinator (NO Unity)
 
 Set:
