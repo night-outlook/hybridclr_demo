@@ -5,6 +5,8 @@ on:
     paths:
       - 'Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_cycle_contracts.py'
+      - 'Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs'
+      - 'Tools/AssemblyShadow/R03IR/current_native_build_failure_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_install_audit.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_install_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_environment_admission.py'
@@ -64,6 +66,11 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             README.md
+      - name: Failed BuildReport source ordering (8 negative source contracts)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_build_failure_contracts.py
       - name: One-use coordinator and installed VM parity adversarial host tests
         shell: bash
         run: |
