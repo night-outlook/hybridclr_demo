@@ -22,7 +22,7 @@ import current_native_source_gate as source
 import run_current_native_validation_cycle as cycle
 
 REQUIRED_CSPROJ_BLOB = "6bd02a765a53d9fc1830d1026f2b02710172a092"
-ADVISORY_HEADROOM_GIB = 30
+ADVISORY_HEADROOM_GIB = 40
 
 
 def require(ok: bool, why: str):
