@@ -15,7 +15,7 @@ All four must own the branch `codex/assembly-shadow-r01b-h1`, be clean (tracked 
 
 **Critical different native identities:** historical R03 focused runner `74dbdbea80d83923863303bd2b2c0a87f36541b1`; original S executed native `1cf87f8209790f9fb2ebec97487dc1990ccd56c5`; failed oneuse-D current native `e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb`; **new repaired oneuse-E** native `6510aed7cab67e9fc70b13ae22a115ad9819193b`. Do not rewrite the original `Tools/AssemblyShadow/R03/source-pins.json` or reuse any old installed source/Player binary to represent E.
 
-**New mandatory physical inventory:** the current corrected candidate differs from the 74db baseline at **43** `libil2cpp/vm` files (9 modified, 34 added), including `AssemblyShadowDiagnosticWriter.h`, which was absent from the old 42-file roster. The updated signed Git-blob manifest `Tools/AssemblyShadow/R03IR/current_native_vm_delta.json` and source tests admit all 43. Three real installed build roles must supply **129 source-to-installed-file pairs**; the old 42/126 is D-only historical and may not pass E.
+**New mandatory physical inventory:** the current corrected candidate differs from the 74db baseline at **43** `libil2cpp/vm` files (9 modified, 34 added), including `AssemblyShadowDiagnosticWriter.h`, which was absent from the old 42-file roster. The updated Git-blob-pinned manifest `Tools/AssemblyShadow/R03IR/current_native_vm_delta.json` and source tests admit all 43. Three real installed build roles must supply **129 source-to-installed-file pairs**; the old 42/126 is D-only historical and may not pass E.
 
 ## 2. Read order, project scope and preserved evidence
 
