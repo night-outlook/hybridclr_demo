@@ -67,7 +67,7 @@ class CurrentNativeCycleContracts(unittest.TestCase):
             "native-installed-source-audit")}
 
     def test_01_constituent_source_pins_are_explicit(self):
-        self.assertEqual(cycle.NATIVE, "6510aed7cab67e9fc70b13ae22a115ad9819193b")
+        self.assertEqual(cycle.NATIVE, "ca0aab8e0abcbcb60a1532223d9e1bdb0aea86c4")
         self.assertEqual(cycle.S_PUBLICATION,
                          "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b")
         self.assertEqual(len(cycle.EXPECTED_BUILD_ROLES), 3)
