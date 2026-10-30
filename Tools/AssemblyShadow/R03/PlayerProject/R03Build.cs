@@ -57,6 +57,10 @@ namespace AssemblyShadow.R03.Editor
         public FileHash[] installedAfter;
         public FileHash[] playerFiles;
         public FileHash[] linkedDlls;
+        // Additive v2 failure diagnostics. A failed BuildReport must not be
+        // overwritten by a DirectoryNotFoundException from an absent .app.
+        public string buildPipelineResult;
+        public string playerInventoryStatus;
         public string exception;
         public string beeObservationStatus, beeObservationPath, beeObservationSha256;
         public bool runtimeAcceptance = false;
@@ -115,17 +119,40 @@ namespace AssemblyShadow.R03.Editor
                     target = BuildTarget.StandaloneOSX, targetGroup = BuildTargetGroup.Standalone,
                     options = BuildOptions.Development | BuildOptions.DetailedBuildReport,
                 });
-                receipt.errors = report.summary.totalErrors; receipt.warnings = report.summary.totalWarnings;
+                // Capture the actual BuildReport outcome *before* inspecting
+                // optional .app output. Failed native compilation commonly
+                // leaves no .app, and must remain the primary recorded failure.
+                receipt.errors = report.summary.totalErrors;
+                receipt.warnings = report.summary.totalWarnings;
+                receipt.buildPipelineResult = report.summary.result.ToString();
+                if (report.summary.result != BuildResult.Succeeded || report.summary.totalErrors != 0)
+                {
+                    receipt.playerFiles = new FileHash[0];
+                    receipt.linkedDlls = new FileHash[0];
+                    receipt.playerInventoryStatus = Directory.Exists(config.outputPath)
+                        ? "SkippedBecauseBuildFailed" : "UnavailableNoAppBuildFailed";
+                    throw new BuildFailedException("Actual IL2CPP native BuildPipeline failed: result=" +
+                        receipt.buildPipelineResult + ", errors=" + receipt.errors +
+                        ", warnings=" + receipt.warnings + ". See the retained Editor.log and Bee observation.");
+                }
+
                 receipt.installedAfter = Inventory(native);
                 VerifyCore(receipt.installedBefore, receipt.installedAfter);
                 if (ShadowHash.File(installReceipt) != receipt.installReceiptSha256 || ShadowHash.File(probe) != config.overlaySha256)
                     throw new BuildFailedException("The source installation receipt or test overlay changed during build.");
                 receipt.nonGeneratedCorePreserved = true;
+                if (!Directory.Exists(config.outputPath))
+                {
+                    receipt.playerInventoryStatus = "UnavailableNoAppDespiteSuccessfulReport";
+                    throw new BuildFailedException("BuildReport succeeded but no Player output directory exists.");
+                }
                 receipt.playerFiles = Inventory(config.outputPath);
+                receipt.playerInventoryStatus = receipt.playerFiles.Length > 0
+                    ? "PresentAndInventoried" : "EmptyDespiteSuccessfulReport";
+                if (receipt.playerFiles.Length == 0)
+                    throw new BuildFailedException("BuildReport succeeded but Player output inventory is empty.");
                 string linked = SettingsUtil.GetAssembliesPostIl2CppStripDir(BuildTarget.StandaloneOSX);
                 receipt.linkedDlls = Directory.Exists(linked) ? Inventory(linked) : new FileHash[0];
-                if (report.summary.result != BuildResult.Succeeded || report.summary.totalErrors != 0 || receipt.playerFiles.Length == 0)
-                    throw new BuildFailedException("Actual IL2CPP Player build did not succeed.");
                 receipt.result = "Passed";
             }
             catch (Exception error) { receipt.exception = error.ToString(); throw; }
