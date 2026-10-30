@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Read-only source-to-installed-native VM parity after three real R03 builds.
 
-Verifies exactly the 42 changed source VM file bytes in every installed Unity
+Verifies exactly the 43 changed source VM file bytes in every installed Unity
 native tree, plus the actual R03 build/source tuple. This is NOT proof every
 file was compiled, linked or executed, and is NOT R03 product acceptance.
 """
@@ -104,7 +104,7 @@ def verify_role(workspace: Path, batch: Path, demo_commit: str,
     after = inventory_entries(receipt["installedAfter"])
     rows = vm_installed_parity(workspace / "il2cpp_plus", installed,
                                manifest["files"], before, after)
-    check(len(rows) == 42, "Forty-two changed VM files per role required")
+    check(len(rows) == 43, "Forty-three changed VM files per role required")
     return {"role": name, "result": "PassedPhysicalInstalledCurrentNativeSourceParity",
             "buildReceiptSha256": sha(receipt_path),
             "projectSourcePinsSha256": sha(project / "ProjectSettings/AssemblyShadowSourcePins.json"),
@@ -127,7 +127,7 @@ def audit(workspace: Path, batch: Path, demo_commit: str, output: Path) -> dict:
     source_native = canonical_path(workspace / "il2cpp_plus", directory=True)
     manifest = loads(delta.MANIFEST.read_text(encoding="utf-8"))
     source_result = delta.validate(manifest, source_native)
-    check(source_result["changedVmFileCount"] == 42, "Source VM inventory not admitted")
+    check(source_result["changedVmFileCount"] == 43, "Source VM inventory not admitted")
     batch_result = loads((batch / "LOCAL_BATCH_RESULT.json").read_text(encoding="utf-8"))
     check(batch_result.get("result") == "FocusedEvidenceReadyForPrimaryReview" and
           batch_result.get("sealStatus") == "Passed" and
@@ -142,7 +142,7 @@ def audit(workspace: Path, batch: Path, demo_commit: str, output: Path) -> dict:
               "historicalNative": delta.LEGACY_NATIVE,
               "currentNative": delta.CURRENT_NATIVE,
               "roles": checks, "verifiedBuildRoles": len(checks),
-              "changedVmFilesPerRole": 42,
+              "changedVmFilesPerRole": 43,
               "installedVmSourcePairs": sum(len(x["sources"]) for x in checks),
               "fullNativeIncludeClosure": "NotProven",
               "generatedCppBinaryLinkage": "NotProven",

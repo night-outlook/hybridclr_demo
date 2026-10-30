@@ -67,7 +67,7 @@ class CurrentNativeCycleContracts(unittest.TestCase):
             "native-installed-source-audit")}
 
     def test_01_constituent_source_pins_are_explicit(self):
-        self.assertEqual(cycle.NATIVE, "e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb")
+        self.assertEqual(cycle.NATIVE, "6510aed7cab67e9fc70b13ae22a115ad9819193b")
         self.assertEqual(cycle.S_PUBLICATION,
                          "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b")
         self.assertEqual(len(cycle.EXPECTED_BUILD_ROLES), 3)
@@ -118,14 +118,14 @@ class CurrentNativeCycleContracts(unittest.TestCase):
                 cycle.validate_sources(self.workspace, "a" * 40)
         self.assertFalse(self.output.exists())
 
-    def test_09_42_vm_files_required_before_output(self):
+    def test_09_43_vm_files_required_before_output(self):
         with mock.patch.object(cycle, "identity", return_value={"remoteHeadVerified": True}), \
              mock.patch.object(cycle.source, "verify_source_roots", return_value={
                  "result": "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation",
                  "verifiedSourceFiles": 10}), \
              mock.patch.object(cycle.delta, "validate", return_value={
                  "result": "PassedCurrentNativeVmSourceDeltaOnly",
-                 "changedVmFileCount": 41}):
+                 "changedVmFileCount": 42}):
             with self.assertRaises(ValueError):
                 cycle.validate_sources(self.workspace, "a" * 40)
         self.assertFalse(self.output.exists())
@@ -137,7 +137,7 @@ class CurrentNativeCycleContracts(unittest.TestCase):
                  "verifiedSourceFiles": 10}), \
              mock.patch.object(cycle.delta, "validate", return_value={
                  "result": "PassedCurrentNativeVmSourceDeltaOnly",
-                 "changedVmFileCount": 42}):
+                 "changedVmFileCount": 43}):
             result = cycle.validate_sources(self.workspace, "a"*40)
         self.assertEqual(result["result"], "PassedReadOnlySourceAdmission_NotBuildOrRuntime")
         self.assertIs(result["R03Accepted"], False)

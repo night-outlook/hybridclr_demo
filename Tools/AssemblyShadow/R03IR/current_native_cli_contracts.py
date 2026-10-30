@@ -32,7 +32,7 @@ BLOB_PINS = {
         "598feeec3231707091699d99fbf4428d50b52024",
     "Tools/AssemblyShadow/R03/source-pins.json": "9d72a237fb6ecd3efe3267ca89625aa49c61775d",
     "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs":
-        "90eeccfa30e904955708d11530b99f179584de8c",
+        "b993703d918090733a659bd7c3ac883cd5d753e1",
     "Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py":
         "d03f0e754213bd7219028ccb0aad534b87e89b61",
 }
