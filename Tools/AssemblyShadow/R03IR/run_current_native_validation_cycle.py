@@ -131,7 +131,7 @@ def validate_sources(workspace: Path, demo_commit: str) -> dict:
     config = json.loads(delta.MANIFEST.read_text(encoding="utf-8"))
     vm = delta.validate(config, roots["il2cpp_plus"], check_native_commit=True)
     require(vm["result"] == "PassedCurrentNativeVmSourceDeltaOnly" and
-            vm["changedVmFileCount"] == 43, "Forty-three-file source inventory not passed")
+            vm["changedVmFileCount"] == 45, "Forty-five-file source inventory not passed")
     return {"result": "PassedReadOnlySourceAdmission_NotBuildOrRuntime",
             "repositories": repositories, "sourceGate": checked, "vmDelta": vm,
             "R03Accepted": False, "ReadyForHumanReviewGate": False}
@@ -376,7 +376,7 @@ def main() -> int:
              "--expected-native", NATIVE,
              "--output", root / "native-host-diagnostics"], 7200)
         if all(step_ok(stages[name]) for name, _, _ in tests):
-            # Repeat source, branch, clean, live remote and 43 VM byte checks after
+            # Repeat source, branch, clean, live remote and 45 VM byte checks after
             # independent host/archive commands and immediately before actual Unity.
             validate_sources(args.workspace, args.demo_commit)
             stages["current-native-players"] = run_step(
@@ -403,7 +403,7 @@ def main() -> int:
                             report.get("R03Accepted") is False):
                         stages["native-installed-source-audit"]["state"] = "Failed"
                         stages["native-installed-source-audit"]["auditVerdictError"] = (
-                            "Three installed physical 43-file VM parity roles required")
+                            "Three installed physical 45-file VM parity roles required")
             else:
                 stages["native-installed-source-audit"] = {
                     "state": "Blocked", "reason": "Genuine sealed current-native Player must pass first"}
