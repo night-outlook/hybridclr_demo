@@ -18,7 +18,7 @@ from run_terminal_local import verify_ir, verify_engine
 from batch_contract import ContractError
 
 HERE = Path(__file__).resolve().parent
-PINNED_ORACLE_BLOB = "74f99b5449054feeacd626763708db5ee0b5b9cd"
+PINNED_ORACLE_BLOB = "dd7b57dcf9d42010e4c9ae44177ecf710236693f"
 PINNED_PLAYER_BLOB = "598feeec3231707091699d99fbf4428d50b52024"
 CASE_IDS = {
     "baseline-owner": "IR-R03-02-release-baseline",
