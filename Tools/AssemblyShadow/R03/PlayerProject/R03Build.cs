@@ -146,13 +146,19 @@ namespace AssemblyShadow.R03.Editor
                     receipt.playerInventoryStatus = "UnavailableNoAppDespiteSuccessfulReport";
                     throw new BuildFailedException("BuildReport succeeded but no Player output directory exists.");
                 }
+                // A failed BuildPipeline may leave no app. Retain the actual
+                // compiler/BuildReport failure instead of masking it with Inventory().
+                if (report.summary.result != BuildResult.Succeeded || report.summary.totalErrors != 0)
+                    throw new BuildFailedException("Actual IL2CPP Player build failed: " +
+                        report.summary.result + "; errors=" + report.summary.totalErrors +
+                        "; warnings=" + report.summary.totalWarnings);
+                if (!Directory.Exists(config.outputPath))
+                    throw new BuildFailedException("Succeeded BuildReport did not create a Player app.");
                 receipt.playerFiles = Inventory(config.outputPath);
-                receipt.playerInventoryStatus = receipt.playerFiles.Length > 0
-                    ? "PresentAndInventoried" : "EmptyDespiteSuccessfulReport";
-                if (receipt.playerFiles.Length == 0)
-                    throw new BuildFailedException("BuildReport succeeded but Player output inventory is empty.");
                 string linked = SettingsUtil.GetAssembliesPostIl2CppStripDir(BuildTarget.StandaloneOSX);
                 receipt.linkedDlls = Directory.Exists(linked) ? Inventory(linked) : new FileHash[0];
+                if (receipt.playerFiles.Length == 0)
+                    throw new BuildFailedException("Succeeded BuildReport contains no Player files.");
                 receipt.result = "Passed";
             }
             catch (Exception error) { receipt.exception = error.ToString(); throw; }
