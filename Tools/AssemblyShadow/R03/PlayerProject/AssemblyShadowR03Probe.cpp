@@ -413,10 +413,17 @@ extern "C" IL2CPP_EXPORT int32_t R03_IR_ProbeTerminalReporting()
 #include <fcntl.h>
 #include <cerrno>
 #include <unistd.h>
+#include <limits.h>
 #include "gc/GCHandle.h"
 #include "gc/GarbageCollector.h"
 namespace r03_ir_snapshot {
 constexpr size_t TextLimit = 262144;
+// Complete general diagnostic JSON is never clipped or admitted as an
+// oversized field. A separate already-opened sidecar can hold <=3.75 MiB,
+// while field 14 retains the unchanged 256 KiB transport limit.
+constexpr size_t GeneralLimit = 3932160;
+constexpr const char* GeneralSuffix = ".general.json";
+constexpr const char* GeneralDescriptor = "R03FullGeneralSidecarV1:";
 constexpr const char* IntNames[] = {"initialState","poisonedState","finalState","nativeStimulusReturn","preActiveReflection","preActiveDelegate","preCanaryCount","finalCanaryCount","preShadowField","finalShadowField","nativePhase","failurePhase","terminalReportingProbeMask","reserveGcProbeMask","shadowFieldReadable","prePositive","activeReflectionAttempted","activeReflectionSucceeded","activeDelegateAttempted","activeDelegateSucceeded","aotReflectionAttempted","aotReflectionSucceeded","recoveryStable","fixedDiagnosticsReadable","acceptance"};
 constexpr const char* TextNames[] = {"result","runId","caseId","requestSha256","stimulus","unityVersion","platform","error","nativeGuardJson","activeReflectionException","activeDelegateException","aotReflectionException","firstRecovery","finalRecovery","finalDiagnostics","finalExecutionDiagnostics"};
 constexpr int IntCount = 25;
@@ -424,6 +431,11 @@ constexpr int FirstBool = 14;
 constexpr int TextCount = 16;
 static std::atomic<int> state{0}; // 0 unused,1 open,2 sealed,3 sealing,-1 failed
 static FILE* stream = nullptr;
+static int generalFd = -1;
+static char generalPath[PATH_MAX] = {};
+static bool generalUsed = false;
+static size_t generalBytes = 0;
+static uint32_t generalCrc = 0;
 static int32_t ints[IntCount] = {};
 static bool haveInt[IntCount] = {}, haveText[TextCount] = {}, nullText[TextCount] = {};
 static char texts[TextCount][TextLimit + 1] = {};
@@ -454,6 +466,45 @@ struct WriterCall
     WriterCall() noexcept : owns(!writerBusy.test_and_set(std::memory_order_acquire)) {}
     ~WriterCall() { if (owns) writerBusy.clear(std::memory_order_release); }
 };
+static uint32_t Checksum32(const char* text, size_t length) noexcept
+{
+    // CRC32 of the COMPLETE already-bounded native input, independently
+    // checked by the host along with its SHA256 and parsed schema.
+    uint32_t crc = 0xffffffffu;
+    for (size_t i = 0; i < length; ++i)
+    {
+        crc ^= static_cast<unsigned char>(text[i]);
+        for (unsigned bit = 0; bit < 8; ++bit)
+            crc = (crc >> 1) ^ (0xedb88320u & (0u - (crc & 1u)));
+    }
+    return ~crc;
+}
+static bool WriteCompleteGeneral(const char* input, size_t n) noexcept
+{
+    if (generalFd < 0 || generalUsed || !input || !n ||
+        n > GeneralLimit || input[0] != '{' || input[n - 1] != '}')
+        return false;
+    // No managed callback, allocator, open or source-field modification after
+    // the terminal state. Short OS writes are completed or fail closed.
+    size_t offset = 0;
+    while (offset < n)
+    {
+        const ssize_t step = ::write(generalFd, input + offset, n - offset);
+        if (step < 0 && errno == EINTR) continue;
+        if (step <= 0) return false;
+        offset += static_cast<size_t>(step);
+    }
+    if (::fsync(generalFd) != 0 || ::close(generalFd) != 0)
+    {
+        generalFd = -1;
+        return false;
+    }
+    generalFd = -1;
+    generalCrc = Checksum32(input, n);
+    generalBytes = n;
+    generalUsed = true;
+    return true;
+}
 static void Quote(FILE* f, const char* text)
 {
     if (!text) { std::fputs("null", f); return; }
@@ -475,6 +526,12 @@ extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportOpen(const char* path)
     int expected = 0;
     if (!state.compare_exchange_strong(expected, 1)) return Reject("open", -1, 2);
     if (!path || path[0] != '/') return Reject("open", -1, 3);
+    const size_t pathLen = ::strnlen(path, sizeof(generalPath));
+    const size_t suffixLen = std::strlen(GeneralSuffix);
+    if (pathLen == sizeof(generalPath) || pathLen + suffixLen + 1 > sizeof(generalPath))
+        return Reject("general-path", -1, 17, pathLen);
+    std::memcpy(generalPath, path, pathLen);
+    std::memcpy(generalPath + pathLen, GeneralSuffix, suffixLen + 1);
     errno = 0;
     int fd = ::open(path, O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW, 0600);
     if (fd < 0) return Reject("open", -1, 4, 0, errno);
@@ -486,6 +543,11 @@ extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportOpen(const char* path)
         ::close(fd);
         return Reject("fdopen", -1, 5, 0, saved);
     }
+    // All potential report destinations are preopened while healthy and are
+    // exclusive. No path construction or file open is allowed after poison.
+    errno = 0;
+    generalFd = ::open(generalPath, O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW, 0600);
+    if (generalFd < 0) return Reject("general-open", -1, 18, 0, errno);
     return 1;
 }
 extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportInt(int32_t field, int32_t value)
@@ -509,9 +571,29 @@ extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportText(int32_t field, const char* va
     if (state.load(std::memory_order_acquire) != 1) return Reject("text", field, 2);
     if (field < 0 || field >= TextCount) return Reject("text", field, 6);
     if (haveText[field]) return Reject("text", field, 7);
-    const size_t n = value ? ::strnlen(value, TextLimit + 1) : 0;
-    if (n > TextLimit) return Reject("text", field, 9, n);
-    if (value) std::memcpy(texts[field], value, n + 1);
+    size_t n = value ? ::strnlen(value, TextLimit + 1) : 0;
+    if (n > TextLimit && field == 14)
+    {
+        // 262145 in the previous E log was only a lower-bound sentinel.
+        // Inspect the complete source up to the predeclared general budget;
+        // reject all larger/invalid inputs, NEVER accept truncated bytes.
+        n = ::strnlen(value, GeneralLimit + 1);
+        if (n > GeneralLimit) return Reject("general-over-limit", field, 9, n);
+        if (!WriteCompleteGeneral(value, n))
+            return Reject("general-write", field, 19, n, errno);
+        const int count = std::snprintf(texts[field], TextLimit + 1,
+            "%s%zu:%08x", GeneralDescriptor, n, generalCrc);
+        if (count <= 0 || static_cast<size_t>(count) > TextLimit)
+            return Reject("general-descriptor", field, 20, n);
+        std::fprintf(stderr, "[R03FullGeneralSidecar] version=1 pid=%d bytes=%zu crc32=%08x\n",
+            static_cast<int>(::getpid()), generalBytes, generalCrc);
+        std::fflush(stderr);
+    }
+    else
+    {
+        if (n > TextLimit) return Reject("text", field, 9, n);
+        if (value) std::memcpy(texts[field], value, n + 1);
+    }
     nullText[field] = value == nullptr; haveText[field] = true;
     textMask.fetch_or(uint32_t(1) << field, std::memory_order_release);
     return state.load(std::memory_order_acquire) == 1 ? 1 : -1;
@@ -523,6 +605,19 @@ extern "C" IL2CPP_EXPORT int32_t R03_IR_ReportSeal()
     if (!call.owns) return Reject("seal", -1, 1);
     if (state.load(std::memory_order_acquire) != 1) return Reject("seal", -1, 2);
     if (!stream) return Reject("seal", -1, 10);
+    // The unused preopened sidecar is never kept as a phantom diagnostic
+    // file. Failure to close/remove it invalidates the entire snapshot.
+    if (!generalUsed)
+    {
+        if (generalFd < 0) return Reject("general-fd", -1, 21);
+        errno = 0;
+        if (::close(generalFd) != 0) return Reject("general-close", -1, 22, 0, errno);
+        generalFd = -1;
+        errno = 0;
+        if (::unlink(generalPath) != 0) return Reject("general-unlink", -1, 23, 0, errno);
+    }
+    else if (generalFd != -1 || generalBytes <= TextLimit || generalBytes > GeneralLimit)
+        return Reject("general-invalid", -1, 24, generalBytes);
     for (int i = 0; i < IntCount; ++i)
         if (!haveInt[i]) return Reject("missing-int", i, 11);
     for (int i = 0; i < TextCount; ++i)
