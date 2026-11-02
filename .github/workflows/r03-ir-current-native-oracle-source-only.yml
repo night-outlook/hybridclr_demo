@@ -7,6 +7,7 @@ on:
       - 'Tools/AssemblyShadow/R03IR/run_terminal_local.py'
       - 'Tools/AssemblyShadow/R03IR/complete_general_diagnostic.py'
       - 'Tools/AssemblyShadow/R03IR/complete_general_diagnostic_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/snapshot_general_transport_contracts.py'
       - 'Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp'
       - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs'
       - '.github/workflows/r03-ir-current-native-oracle-source-only.yml'
@@ -35,6 +36,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 -B Tools/AssemblyShadow/R03IR/complete_general_diagnostic_contracts.py
+          python3 -B Tools/AssemblyShadow/R03IR/snapshot_general_transport_contracts.py
           python3 -B Tools/AssemblyShadow/R03IR/current_native_oracle_contracts.py
       - name: Deny product/runtime acceptance
         shell: bash
