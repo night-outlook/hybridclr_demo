@@ -1,0 +1,527 @@
+{
+  "kind": "OneuseFExactFinalSourceCIAdmission",
+  "time": "2026-11-02T13:40:09.399480+00:00",
+  "result": "Blocked_MissingMandatoryExactFinalCommitCI",
+  "findingId": "IR-LOCAL-R03-ONEUSE-F-CI-AUTHORITY-01",
+  "governingSource": "9db3927a9cc899fbe73948e0ff9c586f96efde6d",
+  "criticalRun": 41433978929,
+  "criticalRunBothOs": "Passed",
+  "criticalJobs": [
+    {
+      "job": 125239166050,
+      "name": "Preflight/oracle/VM/dispatch tests (ubuntu-24.04)",
+      "state": "PassedHostOnly_ExactSource",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-F-CI_LOG-125239166050.json",
+      "logSha256": "cb9d4c215ee3a0c081bc0280b7a4068b418bf5b8fa04c28aabf182dae124eb3f"
+    },
+    {
+      "job": 125239166364,
+      "name": "Preflight/oracle/VM/dispatch tests (macos-15)",
+      "state": "PassedHostOnly_ExactSource",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-F-CI_LOG-125239166364.json",
+      "logSha256": "1d329eccce65826603d5a807a72cae283ef74eb930ad3fbb2267fb94924ed05b"
+    }
+  ],
+  "requiredWorkflowCount": 9,
+  "exactCommitWorkflowRunCount": 1,
+  "requiredWorkflowCoverage": [
+    {
+      "workflow": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/.github/workflows/r03-ir-current-native-local-cycle-host.yml",
+      "workflowSha256": "261dc4a04235dd85c49150f3789a3a3e2812f2658268fcf53b90c72f5bc558d3",
+      "workflowGitBlob": "5a5a8e6470fb49e89851d3c8182db298f20ca6fb",
+      "state": "PassedHostOnly_ExactSource",
+      "exactRunIds": [
+        41433978929
+      ],
+      "nearestObservedRun": {
+        "id": 41433978929,
+        "source": "9db3927a9cc899fbe73948e0ff9c586f96efde6d",
+        "conclusion": "success",
+        "acceptedAsFinalCommitProof": false
+      }
+    },
+    {
+      "workflow": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/.github/workflows/r03-ir-current-native-source-only.yml",
+      "workflowSha256": "6a78c0ff63419be4b453a3343462befb996abe82df2f430d6501ad20e606ae1f",
+      "workflowGitBlob": "0c4371cd4cee0b738615128fd1d08e1fdd10d58a",
+      "state": "Unavailable_ExactFinalCommitRunNotFound",
+      "exactRunIds": [],
+      "nearestObservedRun": {
+        "id": 41433659140,
+        "source": "1a16e53fb17d6f122cc327a14be2c0b59f8e1cf4",
+        "conclusion": "success",
+        "acceptedAsFinalCommitProof": false
+      }
+    },
+    {
+      "workflow": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/.github/workflows/r03-ir-current-native-vm-delta-source-only.yml",
+      "workflowSha256": "bc5616f5c6e7b5e0b56f1d07abbe01565c4ff74842e917b6dd86034f1619fb9e",
+      "workflowGitBlob": "69775213b234480c5c547689f1668207a89d3164",
+      "state": "Unavailable_ExactFinalCommitRunNotFound",
+      "exactRunIds": [],
+      "nearestObservedRun": {
+        "id": 41433765755,
+        "source": "5470aad41ae04cd0f116cdf10d27a72b72af2873",
+        "conclusion": "success",
+        "acceptedAsFinalCommitProof": false
+      }
+    },
+    {
+      "workflow": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/.github/workflows/r03-ir-current-native-oracle-source-only.yml",
+      "workflowSha256": "5efd3639abb35682cad2919590226146964cf3a15e6115836e6b1df16ca124d4",
+      "workflowGitBlob": "9af9e08ab21c783821213aecd85d1b2385dfcc00",
+      "state": "Unavailable_ExactFinalCommitRunNotFound",
+      "exactRunIds": [],
+      "nearestObservedRun": null
+    },
+    {
+      "workflow": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/.github/workflows/r03-ir-fixture.yml",
+      "workflowSha256": "ae5fcc78666527ed53dba0268a8aa975da934b6083276e6274baf68671edfc04",
+      "workflowGitBlob": "6c386a2021c363d333eaa9847c8d8a77798297e4",
+      "state": "Unavailable_ExactFinalCommitRunNotFound",
+      "exactRunIds": [],
+      "nearestObservedRun": {
+        "id": 41433659211,
+        "source": "1a16e53fb17d6f122cc327a14be2c0b59f8e1cf4",
+        "conclusion": "success",
+        "acceptedAsFinalCommitProof": false
+      }
+    },
+    {
+      "workflow": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/.github/workflows/r03-ir-host.yml",
+      "workflowSha256": "610b3b80c3bd69f4fd99d4483c3825fd2c894bb0d3e17032c2edcf09b61c141b",
+      "workflowGitBlob": "d92a3a8698790c2974750226dacd3cb3141e9d25",
+      "state": "Unavailable_ExactFinalCommitRunNotFound",
+      "exactRunIds": [],
+      "nearestObservedRun": {
+        "id": 41433765881,
+        "source": "5470aad41ae04cd0f116cdf10d27a72b72af2873",
+        "conclusion": "success",
+        "acceptedAsFinalCommitProof": false
+      }
+    },
+    {
+      "workflow": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/.github/workflows/r03-k-host-contracts.yml",
+      "workflowSha256": "40bf421b1cc66119649f90e816402adda44b6c61f93c0f5c312cd3b3f1f9b260",
+      "workflowGitBlob": "5bb3e204b64d0f0e0c88c70a61708b370373d32f",
+      "state": "Unavailable_ExactFinalCommitRunNotFound",
+      "exactRunIds": [],
+      "nearestObservedRun": {
+        "id": 41433765825,
+        "source": "5470aad41ae04cd0f116cdf10d27a72b72af2873",
+        "conclusion": "success",
+        "acceptedAsFinalCommitProof": false
+      }
+    },
+    {
+      "workflow": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/.github/workflows/r03-k-sourcecheck.yml",
+      "workflowSha256": "432377017a8f249ea250ac1734db28d4e26bace27b008be8cce8d5e7575e1e86",
+      "workflowGitBlob": "1105e11662748989a2e13dc219a19be595d4b165",
+      "state": "Unavailable_ExactFinalCommitRunNotFound",
+      "exactRunIds": [],
+      "nearestObservedRun": {
+        "id": 41433765862,
+        "source": "5470aad41ae04cd0f116cdf10d27a72b72af2873",
+        "conclusion": "success",
+        "acceptedAsFinalCommitProof": false
+      }
+    },
+    {
+      "workflow": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/.github/workflows/r03-l-contracts.yml",
+      "workflowSha256": "e39884bbd036ecf3a1abdaa92393218146ae6b5ca1f461a6c5ecb170d01afc53",
+      "workflowGitBlob": "b3d5229414dad5f0c062ab1db1c4e066429b38ab",
+      "state": "Unavailable_ExactFinalCommitRunNotFound",
+      "exactRunIds": [],
+      "nearestObservedRun": {
+        "id": 41433765823,
+        "source": "5470aad41ae04cd0f116cdf10d27a72b72af2873",
+        "conclusion": "success",
+        "acceptedAsFinalCommitProof": false
+      }
+    }
+  ],
+  "sourceBindings": [
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/source-pins.json",
+      "gitBlob": "9d72a237fb6ecd3efe3267ca89625aa49c61775d",
+      "sha256": "8f80fa7e382b77838a55d613031f272c4f6eb8245f780117da5abd8284b2633c"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/run_local.py",
+      "gitBlob": "9aef8093f98fb7f9b5dd395ba4e5c2ed0220276e",
+      "sha256": "ebbbf9139de5f6bff0075ef966ee6ed3f3070059eae3733052fbc5406bb360a6"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/run_terminal_local.py",
+      "gitBlob": "dd7b57dcf9d42010e4c9ae44177ecf710236693f",
+      "sha256": "be25644b33de9c55157e3e0ff1e8330e8ae5e4ede5873f938301dab9bdc77165"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs",
+      "gitBlob": "598feeec3231707091699d99fbf4428d50b52024",
+      "sha256": "0c16bcaad8bb2ceb5568ab3b4bb5147f258da884b05b249b8c174952bc36350d"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs",
+      "gitBlob": "b993703d918090733a659bd7c3ac883cd5d753e1",
+      "sha256": "05b5f21e91b18f04da07fc10eca053b64e68d7d8fc838b1a006bebd3b740e52f"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp",
+      "gitBlob": "7a5dd88748dd98a387130c046b47790b80752cf9",
+      "sha256": "3c9290dcf231306a771a4b8a26f03112add1aeb7c0b44ff0e7a01330e47f4387"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "gitBlob": "57cf47f964a83973df8296955ccf856b105c595f",
+      "sha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTerminalExecution.h",
+      "gitBlob": "33258986c31b2e6ae3af17b8553030482a83aef7",
+      "sha256": "3ff7e1f149090c9869844de9059cc6829bdbf104d93bba5f13dcd09e4f4a08ce"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Runtime.cpp",
+      "gitBlob": "96b914fbeb31c69d649e4076a802de0b6418daa8",
+      "sha256": "f88e1c2165ccc5f723c40b71b6e85912f1be45fe12193106f4f022c250b1e454"
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/interpreter/Interpreter_Execute.cpp",
+      "gitBlob": "2dbdb7527afee7f2546e45f20e6ef93e1bca237a",
+      "sha256": "a784afb4ead165e8a0be6c3b6bf8aff7893734ebb458cd60ccf9ed7a61f575e6"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Assembly.cpp",
+      "gitBlob": "cb383d664ed02e138a9dd0cb42f2a64629146207",
+      "sha256": "0c46232f94b6e7afc2b5277d287618d8405a3f19784781ae800dda19ba8c4431"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Assembly.h",
+      "gitBlob": "3e4bbb85c190bf0f9c43fee9e3fc3518c61ed457",
+      "sha256": "74b9615a04bdf59df8da62948fd6dad2a2a10e8a8eda0cbf369635ab981e9181"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "gitBlob": "57cf47f964a83973df8296955ccf856b105c595f",
+      "sha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadow.h",
+      "gitBlob": "68e78fe6250e3bd1028641d9513eb7d14158e8da",
+      "sha256": "55e572887d7ed89cc5d9cd57b3457df240357aa389474512442f3a5fea487e8f"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+      "gitBlob": "a615a839f5af8614c672a9bfb45be02d12b01a0e",
+      "sha256": "9b309fa25aadfb983787540e7d0b65d01e3aaf7a2fad5b7e67cfa737ef1c8d99"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+      "gitBlob": "5b2afe1cfcf14570e64b8836ef4f995ee5e6db57",
+      "sha256": "d4f4d495fc0636fcdd41f1121a1aa71404e838e1dfedfc7a7a3d10d70777e734"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+      "gitBlob": "94bcd4e12e553c2f28c727d9c74bc2feb0b22e8c",
+      "sha256": "6e53d15eab13a4a0169884a4d032af14a30352f111de166515b9d940362044ef"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+      "gitBlob": "b7ba5dffb2e3ecebe7406f598e97a1ab97251cdf",
+      "sha256": "b77a46ffc4ba6e522fc8c34e0ac43283f502639a8ca4f6b9282afc097fa5c895"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+      "gitBlob": "9e63e46a429c07f0b5adaf529b48f455ce1328fc",
+      "sha256": "2550f78b66def91a2f0851c8edf2a24f3beb1887b595f2ac45b246aa5a125ade"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+      "gitBlob": "b554eb36f6337c139a3f24beb168ab3f2b6e4343",
+      "sha256": "1dc1a731f75a773494edf669965a7034d1fa908c2201401a3eb2238228e1b7f5"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+      "gitBlob": "a85a6ec310b85e96dfe199c6d773407cf47779b3",
+      "sha256": "2be24d11ff97527706c4125699c7d04dc060e5f38ea9eac931d17ef97a7dbca0"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h",
+      "gitBlob": "91f049cc7d81d5e6de95ec50884ed3d6b9b63163",
+      "sha256": "ae4c2a471c1879510849d4902694caa7308bc70f3804cb6b1d0fb2ac839615a8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+      "gitBlob": "4e82e7f3814b8ed021a24d235dcfbe79c4c2412a",
+      "sha256": "0545c483230b7a1f6ea007ff28f000ec37a2f85444062c62eff74a048c5986c1"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h",
+      "gitBlob": "d2a6fb798de9a3599f6b6c63149515cb23ab3350",
+      "sha256": "fe37931e27f1616bea8e08c134a2349567161bd8cd5c739c3954be349b9da3c8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h",
+      "gitBlob": "fc3a569ea0f617b67b3867a804126e9583d86b72",
+      "sha256": "b5b91b9480016493f1b26fcd78be96f9c1ff107b866950d7b08d999870ea785a"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+      "gitBlob": "edef7c2f37978e65c02a8d2008886c6c4af8ae20",
+      "sha256": "03f1c76f84e79de38ddc708130cf4a95c736e3abab0e0e4266a84ba7cad2684f"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
+      "gitBlob": "887eb1398a3b9c4ed06c23b4f9913b4ba3d2a0f5",
+      "sha256": "f30252461b1ab5b8bf4007fdbac461d84848b3a14a6e5e40f5bea09599207e88"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+      "gitBlob": "6f14ca874f77592d845ce0563afaff2eb7573a90",
+      "sha256": "67afc44c92255d76d7c8d29a95b634d53a648be637fe4112c4566659f1f95cc8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowExecutionRegistryPublisher.h",
+      "gitBlob": "4d7e80346cf8b3a8c93ad95e025f00035629f141",
+      "sha256": "7db3ea584e332c92364ebee5b9c778e0c731c449783551a9adb4204cf1df8ff7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h",
+      "gitBlob": "46a313742295acaa52d5022f238fbcba4430c6df",
+      "sha256": "4d318426f4be784fe3eb6065ef47ed97539416f871fbe060f6c4ca6e8be41d5e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h",
+      "gitBlob": "624a43c0f153456001288c904d9705ec59171aae",
+      "sha256": "1ce04b4678d7f48e205162db6572199489d22612f53afc9bebb9b07866f7ecf4"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+      "gitBlob": "eeb413f8c8c0f6c1658da68ddd404b9b478e6e70",
+      "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+      "gitBlob": "08856d4a610ed3fa519cee67bad8a307dd82a34b",
+      "sha256": "bc8660655e19ee15c02caf21403ef90f5f87c95b0fa1dcc212a7ca7a61573e6e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenR02Capture.h",
+      "gitBlob": "64ec2dc887106f12274febc74b4e155e140d70e5",
+      "sha256": "6014613e62b570c0f93f7317831e14645600f87e9d32a9e87d2902e19991dbad"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+      "gitBlob": "ab136038a49a8e6614243677d19e20c6f3fde4c5",
+      "sha256": "c383afe1ba28b3c88f00abcea4ff469d40e3557bdff0303368d6a31ded1ed378"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+      "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd",
+      "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShape.h",
+      "gitBlob": "9625544a62c4907c73da251f4062dea0731758b7",
+      "sha256": "c2dd2249c945a89ddc8ac2e712d0b56f5cde3e4dc474a364a4fd6f1b471c3a89"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+      "gitBlob": "23065b67456ee7d19c7019cf24900e66daaf28db",
+      "sha256": "83f2d79c4c7d6480267c1cb18392af914dcc7b2513f9a7b003131ecd1ddd9d14"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+      "gitBlob": "14b44ca96a1be6a0abc8629ecea1b7bade02eabe",
+      "sha256": "6eb08c239c34eb55a8f7e2f1fc1ca84244fc501131c7564d328018d7f0d756e3"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+      "gitBlob": "f432aa3ea638a05b42618ca242be5bbc3e3e1e67",
+      "sha256": "622601ccd395ed41edb512d0da12fe35a645b822f3e14e2994b8413cce00eaf9"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+      "gitBlob": "7778e2064cbba7fb5b16179746cbb7d272118fb6",
+      "sha256": "0472835c03165278579dc3b332f6ef74eea22fb0d527a337bdb157beb14a79d7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+      "gitBlob": "a2ca61c35b0ba0e5f71a261b21647a36dfc0a9c4",
+      "sha256": "1d29f8119e0cafa1168ef46ee17aebed465359ff5f47902165a97586a6aa6369"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+      "gitBlob": "372d12209417dcb9e119da6bda64deca79389a23",
+      "sha256": "d27d0cdd391182a5b3c9a942bdc44bdf45418d1fb13c2c3e92df92e012ea1ea8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+      "gitBlob": "dff6f12dca1c4f89dec7151ced6b63febeb0769f",
+      "sha256": "865a36b154965f0ae69bc788f6ba21fc6a841d546a34215a6448112110bb6604"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+      "gitBlob": "f722a34cacda9fa35f226e8b11f4800d3fd42c72",
+      "sha256": "216a8ec0365bd134ac0849d5fec2d709c24e5b3927c66c17360792eea836d5df"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+      "gitBlob": "35d4d000faa588cdd5147a0b2abdf00d566c0b06",
+      "sha256": "944d663e2d55e8ed07be3c62b1f6c7f7f6aee1bf0c34b9a464550b6817c5c15a"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+      "gitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3",
+      "sha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowPhysicalMembership.h",
+      "gitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3",
+      "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowPhysicalMembershipSource.inl",
+      "gitBlob": "4e18fa035c324a67959284efa90fa601c6ede0d9",
+      "sha256": "bd0ff612a27913c1424cc7627454ae8eb5101b3479eca2ba24e6097bb3197651"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+      "gitBlob": "1c2a43384d03b0369a51b587fc5f5e445d5b58c8",
+      "sha256": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+      "gitBlob": "9f7266014b1514adfd0935948ff417375df274d8",
+      "sha256": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+      "gitBlob": "fd1ec63d6569f61d3642599cbbb5a2c647fef9be",
+      "sha256": "dd6cb3026bb78fb7925cef45e7c8f6ca1c157fee57e2e18bef1e4bab49845883"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowVisibility.cpp",
+      "gitBlob": "1469a44b51ce0adb8d0e98dffd0ac66a0d107aaa",
+      "sha256": "4bae387bdd6917da03a74e4539207a1da54e0f071b607b46e499d9c170df8bb6"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowVisibility.h",
+      "gitBlob": "0e94c3d478cb6c1cdd80fd84f684b91e680673bc",
+      "sha256": "e8a276f6ff474986fe769122df08d039b4c4544258aa29e6cac2ca1f5572bf7c"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Runtime.cpp",
+      "gitBlob": "96b914fbeb31c69d649e4076a802de0b6418daa8",
+      "sha256": "f88e1c2165ccc5f723c40b71b6e85912f1be45fe12193106f4f022c250b1e454"
+    }
+  ],
+  "actualNativeSource": "2c899ece8cf241887b14040bab0a73d7c854d2bf",
+  "nativeReporterSources": [
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
+      "gitBlob": "887eb1398a3b9c4ed06c23b4f9913b4ba3d2a0f5",
+      "sha256": "f30252461b1ab5b8bf4007fdbac461d84848b3a14a6e5e40f5bea09599207e88"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+      "gitBlob": "fd1ec63d6569f61d3642599cbbb5a2c647fef9be",
+      "sha256": "dd6cb3026bb78fb7925cef45e7c8f6ca1c157fee57e2e18bef1e4bab49845883"
+    }
+  ],
+  "nativeOtherCI": "Two exact-native terminal/reporting workflow runs succeeded at metadata level; no missing demo workflow or actual Unity result substituted",
+  "rule": "WEB_TO_LOCAL.md section3 requires successful mandatory jobs at exact final demo commit and STOP for unavailable/mismatched required CI. F does not grant E-style source-equivalence substitution.",
+  "macAdmission": "NotRun_BlockedByCI",
+  "standaloneCli": "NotRun_BlockedByCI",
+  "localHostTests": "NotRun_BlockedByCI",
+  "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-F",
+  "rootAbsent": true,
+  "coordinatorInvocations": 0,
+  "newUnityBuilds": 0,
+  "newPlayers": 0,
+  "sidecarRuntime": "NotRun",
+  "engineQuitRuntime": "NotRun",
+  "installed135PairAudit": "NotRun",
+  "batchSeal": "Unavailable_NotConstructed",
+  "capacityDiagnostic": {
+    "kind": "ReadOnlyCapacityDiagnostic_NotPrescribedMacAdmission",
+    "time": "2026-11-02T13:40:09.399179+00:00",
+    "outputParent": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+    "freeBytes": 42437967872,
+    "freeGiB": 39.5234375,
+    "hardMinimumGiB": 20,
+    "advisoryGiB": 40,
+    "belowHard": false,
+    "belowAdvisory": true,
+    "primaryGoNoGoAvailable": false,
+    "thresholdChanged": false,
+    "cleanupPerformed": false,
+    "coordinatorInvoked": false
+  },
+  "sourceChangesByLocal": false,
+  "nextState": "Primary Implementation",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "ReadyForHumanReviewGate": false,
+  "qualificationApproved": false,
+  "runtimeAcceptance": false,
+  "pureInterpreterEnabled": false
+}

@@ -1,0 +1,32 @@
+{
+  "id": "IR-LOCAL-R03-ONEUSE-F-CI-AUTHORITY-01",
+  "status": "Blocked",
+  "symptom": "Exact final demo source9db3927a has only combined-host run41433978929; eight mandatory workflows have no run at that source.",
+  "source": "9db3927a9cc899fbe73948e0ff9c586f96efde6d",
+  "reproduction": [
+    "GET https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs?head_sha=9db3927a9cc899fbe73948e0ff9c586f96efde6d&per_page=30 returns total_count1.",
+    "Compare the sole run path with WEB_TO_LOCAL.md section3 required workflow list.",
+    "GET run41433978929/jobs confirms both Ubuntu/macOS jobs completed success; missing runs remain Unavailable, not failed tests."
+  ],
+  "evidence": [
+    "local-evidence/oneuse-F-CI_EXACT_DEMO_RUNS.json",
+    "local-evidence/oneuse-F-CI_CRITICAL_JOBS.json",
+    "local-evidence/oneuse-F-CI_GATE.json",
+    "source/hybridclr_demo/Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md"
+  ],
+  "missingWorkflows": [
+    "r03-ir-current-native-source-only.yml",
+    "r03-ir-current-native-vm-delta-source-only.yml",
+    "r03-ir-current-native-oracle-source-only.yml",
+    "r03-ir-fixture.yml",
+    "r03-ir-host.yml",
+    "r03-k-host-contracts.yml",
+    "r03-k-sourcecheck.yml",
+    "r03-l-contracts.yml"
+  ],
+  "mostLikelyRootCause": "Final commit triggers only the combined host workflow while other required successes are attached to ancestors. F requires exact final source; unlike E, it does not explicitly authorize source-equivalent substitution.",
+  "affectedScope": "All F Local host, original-S archive replay, Unity builds, Player/sidecar/engine runtime, installed parity and sealing remain NotRun.",
+  "recommendedDirection": "Primary must supply all mandatory successful jobs at the governing final source pin, or explicitly publish a reviewed source-equivalence admission policy with exact input bindings. Independently resolve fresh below-advisory capacity via explicit go/no-go if it persists, then issue a fresh source-pinned Local handoff; do not replay E.",
+  "remainingUncertainty": "CI metadata reflects observation time. Ancestor tests may be equivalent but that was not established or accepted under this exact-commit gate; actual F runtime remains unvalidated.",
+  "validationAfterDisposition": "Recheck all four exact remotes, complete CI authority and fresh unused-root/toolchain/space/CLI admission before any single authorized coordinator."
+}

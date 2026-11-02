@@ -1,0 +1,95 @@
+{
+  "kind": "LocalOneuseFPrerequisiteDisposition_NotRuntimeResult",
+  "result": "BLOCKED",
+  "classification": "PrerequisiteBlocked_RequiredExactFinalCommitCIUnavailable",
+  "sourcePins": {
+    "hybridclr_demo": "9db3927a9cc899fbe73948e0ff9c586f96efde6d",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "2c899ece8cf241887b14040bab0a73d7c854d2bf"
+  },
+  "observedUtc": "2026-11-02T13:40:09.399480+00:00",
+  "observedLocal": "2026-11-02T05:40:09.399480-08:00",
+  "criticalRun": 41433978929,
+  "criticalJobsPassed": 2,
+  "requiredDemoWorkflows": 9,
+  "exactFinalCommitWorkflowsPassed": 1,
+  "missingExactFinalCommitWorkflows": 8,
+  "coordinatorInvocations": 0,
+  "plannedCoordinatorStages": {
+    "source-contracts": {
+      "state": "NotRun",
+      "reason": "Mandatory exact-final-commit CI gate unavailable; coordinator never invoked"
+    },
+    "oracle-contracts": {
+      "state": "NotRun",
+      "reason": "Mandatory exact-final-commit CI gate unavailable; coordinator never invoked"
+    },
+    "vm-delta-contracts": {
+      "state": "NotRun",
+      "reason": "Mandatory exact-final-commit CI gate unavailable; coordinator never invoked"
+    },
+    "original-s-host-contracts": {
+      "state": "NotRun",
+      "reason": "Mandatory exact-final-commit CI gate unavailable; coordinator never invoked"
+    },
+    "installed-source-host-contracts": {
+      "state": "NotRun",
+      "reason": "Mandatory exact-final-commit CI gate unavailable; coordinator never invoked"
+    },
+    "original-s-audit": {
+      "state": "NotRun",
+      "reason": "Mandatory exact-final-commit CI gate unavailable; coordinator never invoked"
+    },
+    "original-s-process-joins": {
+      "state": "NotRun",
+      "reason": "Mandatory exact-final-commit CI gate unavailable; coordinator never invoked"
+    },
+    "native-host-diagnostics": {
+      "state": "NotRun",
+      "reason": "Mandatory exact-final-commit CI gate unavailable; coordinator never invoked"
+    },
+    "current-native-players": {
+      "state": "NotRun",
+      "reason": "Mandatory exact-final-commit CI gate unavailable; coordinator never invoked"
+    },
+    "native-installed-source-audit": {
+      "state": "NotRun",
+      "reason": "Mandatory exact-final-commit CI gate unavailable; coordinator never invoked"
+    }
+  },
+  "sourceBindingsMatched": 55,
+  "nativeVmSourcePaths": 45,
+  "actualMacAdmission": "NotRun_CIBlocked",
+  "actualStandaloneCli": "NotRun_CIBlocked",
+  "freshLocalHostTests": "NotRun_CIBlocked",
+  "newUnityBuilds": 0,
+  "newPlayers": 0,
+  "diagnosticSidecarRuntime": "NotRun",
+  "engineOwnerQuitRuntime": "NotRun",
+  "installed135PairAudit": "NotRun",
+  "batchSeal": "Unavailable_NotConstructed",
+  "reservedRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-F",
+  "reservedRootAbsent": true,
+  "capacityDiagnosticFreeBytes": 42437967872,
+  "capacityDiagnosticFreeGiB": 39.5234375,
+  "capacityBelow40Advisory": true,
+  "capacityBelow20Hard": false,
+  "capacityGoNoGo": "PrimaryDecisionRequiredIfBelowAdvisoryAtFutureAdmission",
+  "preservation": "PassedScopedBeforeAndAfter",
+  "historicalCheckpointsPreserved": 8,
+  "originalSFilesPreserved": 16978,
+  "DLiveFilesPreserved": 44976,
+  "ELiveFilesPreserved": 46603,
+  "installedSdkInputsPreserved": 2405,
+  "EHistoricalRuntimeResult": "FAIL_Unchanged",
+  "sourceOrTestsChangedByLocal": false,
+  "batchRetry": false,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "ReadyForHumanReviewGate": false,
+  "runtimeAcceptance": false,
+  "pureInterpreterEnabled": false,
+  "nextState": "Primary Implementation"
+}
