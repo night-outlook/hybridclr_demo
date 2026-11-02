@@ -1,3 +1,15 @@
+# Current Primary response — oneuse-F CI BLOCKED; exact-source oneuse-G preparation (2026-11-02)
+
+**Latest Local F remains BLOCKED / NotRun**, not a new product/runtime failure: at governing demo `9db3927a9cc899fbe73948e0ff9c586f96efde6d` only the combined host had both OS jobs PASS; eight required workflows had no matching exact-commit run. F coordinator0, Unity0, Players0; its root remained absent. E FAIL and all A–F prior checkpoints stay immutable.
+
+**Primary CI remediation:** all nine mandatory workflows now include `Handoff/WEB_TO_LOCAL.md` in `push.paths`; a new `current_native_handoff_ci_contracts.py` independently checks all nine and six positive/negative trigger cases from the actual checked-out files. A final handoff-only change must trigger nine **fresh runs at identical final demo SHA**; their actual two-OS success must still be verified before any Local execution. Ancestor/source-equivalent CI is not silently accepted. See [Design](Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_F_CI_CAPACITY_2026-11-02/DESIGN.md), [Plan](Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_F_CI_CAPACITY_2026-11-02/PLAN.md), [Primary review and capacity decision](Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_F_CI_CAPACITY_2026-11-02/PRIMARY_REVIEW.md), and [new G handoff](Handoff/WEB_TO_LOCAL.md).
+
+**Primary one-use capacity decision:** F's previously measured 39.5234375 GiB was below advisory40 but above hard20. A narrow **conditional GO** for G is granted only with a new source-pinned read-only Mac admission **and second immediate pre-coordinator sample both at least 39.0 GiB** on the actual output parent, all source/CI checks green. Below39.0 = NO-GO, no root creation; hard20/advisory40 unchanged. E's prior ~2.966-GiB disk reduction is only historical capacity evidence, not guaranteed G usage. No cleanup or APFS volume workaround.
+
+No Unity or Player validation is implied by this CI repair. The independent R03 FAIL/High IR-R03-01/02 remains open; R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, runtimeAcceptance=false; PureInterpreter disabled. No H2/M08A/X02/SNAP-01/Human Review Gate.
+
+---
+
 # Current R03 Primary response — oneuse-E FAIL, F conditional source/host handoff (2026-11-02)
 
 **Actual oneuse-E is consumed/FAIL:** three native Unity2022.3 C++11 builds Passed; OFF Player Passed; three ON Players failed their original bounded field14 snapshot (empty raw, exit2), and one genuine engine observer recorded **51211** terminal reports in500ms (bound64, exit71). The official installed parity stage remains Blocked, despite independent scoped 129 source-to-installed byte comparisons. No prior A–E result changed.
