@@ -240,7 +240,34 @@ def player(batch, case):
     cmd = [str(state['executable']), '-batchmode', '-nographics',
            '-r03IrRequest', root / 'request.json', '-r03IrOutput', root / 'raw.json',
            '-r03IrRunId', nonce, '-logFile', root / 'Player.log']
-    launch = batch.command(cmd, 180)
+    try:
+        launch = batch.command(cmd, 180)
+    except Exception as exc:
+        # Preserve diagnostic facts for command failures without falsely
+        # calling verify_ir/verify_engine on empty or incomplete raw bytes.
+        raw_file = root / 'raw.json'
+        general_file = root / 'raw.json.general.json'
+        safe_raw = raw_file.is_file() and not raw_file.is_symlink()
+        safe_general = general_file.is_file() and not general_file.is_symlink()
+        write(root / 'verification.json', {
+            'kind': 'R03IRFailedPlayerCommandReceiptV1',
+            'result': 'Failed',
+            'semanticVerifierStatus': 'NotRun_CommandFailed',
+            'error': str(exc),
+            'caseId': case['id'],
+            'stimulus': case['stimulus'],
+            'runId': nonce,
+            'requestSha256': sha(root / 'request.json'),
+            'rawExists': safe_raw,
+            'rawBytes': raw_file.stat().st_size if safe_raw else None,
+            'rawSha256': sha(raw_file) if safe_raw else None,
+            'fullGeneralSidecarExists': safe_general,
+            'fullGeneralSidecarBytes': general_file.stat().st_size if safe_general else None,
+            'fullGeneralSidecarSha256': sha(general_file) if safe_general else None,
+            'R03Accepted': False,
+            'runtimeAcceptance': False,
+        })
+        raise
     require((root / 'raw.json').is_file(), 'Fresh Player raw evidence must exist')
     raw = loads((root / 'raw.json').read_text())
     bind = {'requestSha256': sha(root / 'request.json'), 'rawSha256': sha(root / 'raw.json'),
