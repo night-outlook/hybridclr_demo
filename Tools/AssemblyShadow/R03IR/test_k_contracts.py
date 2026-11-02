@@ -12,8 +12,10 @@ class EngineContracts(unittest.TestCase):
             'result':'ObservedNotAccepted','runId':'a'*32,'caseId':'engine','processId':321,
             'timedOut':False,'initialState':6,'finalState':9,'preManagedLoggerCalls':1,
             'finalManagedLoggerCalls':1,'completedReports':1,'observationMilliseconds':500,
-            'recovery':{'published':True,'stateCode':9,'terminalFailureCode':13,'disposition':'RestartRequired'}}
+            'recovery':{'published':True,'stateCode':9,'terminalFailureCode':13,'disposition':'RestartRequired'},
+            'ownerQuitRequested':True,'ownerQuitNativeCalls':1}
         self.log='[R03ReserveGcProbe] mask=31 collectionsBefore=0 collectionsAfter=1\n[AssemblyShadowTerminalReport] sequence=1 state=9 message="R03_ENGINE_UNHANDLED_'+('a'*32)+'" managedHandlerExecuted=false\n'
+        self.log+='[R03EngineOwnerQuit] source=UnityNativeIcall once=1 sentinelMatched=true\\n'
     def check(self):return verify_engine(self.raw,self.request,self.launch,self.log)
     def test_positive_shape(self):self.assertEqual(self.check()['result'],'Passed')
     def test_reject_direct_probe_without_sentinel(self):
