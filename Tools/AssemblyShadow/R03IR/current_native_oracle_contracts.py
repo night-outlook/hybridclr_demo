@@ -18,7 +18,7 @@ from run_terminal_local import verify_ir, verify_engine
 from batch_contract import ContractError
 
 HERE = Path(__file__).resolve().parent
-PINNED_ORACLE_BLOB = "70b1a27f2dbbcad93f67e8caddcf7282ff3afd73"
+PINNED_ORACLE_BLOB = "8bf2ca558aaa964ddd3a5fb621158d3eae37078d"
 PINNED_PLAYER_BLOB = "598feeec3231707091699d99fbf4428d50b52024"
 CASE_IDS = {
     "baseline-owner": "IR-R03-02-release-baseline",
@@ -65,6 +65,14 @@ def ir_raw(stimulus: str) -> dict:
     else:
         code = 21 if stimulus == "baseline-owner" else 13
         first = strict_recovery(code)
+        raw["finalDiagnostics"] = json.dumps({
+            "schemaVersion": 1, "enabled": True, "state": "FailedAfterCommit",
+            "stateCode": 9, "generation": 2,
+            "enumerationGeneration": 2, "classEnumerationGeneration": 2,
+            "startupCandidateNames": [], "closureLoadOrder": [],
+            "stableAotNames": [], "commitOrder": [], "assemblies": [],
+            "events": [], "baselineUses": [], "ordinaryAssemblies": [],
+            "ordinaryClasses": []}, separators=(",", ":"))
         raw.update({"reserveGcProbeMask": 31, "initialState": 6,
                     "poisonedState": 9, "finalState": 9, "prePositive": True,
                     "preActiveReflection": 42, "preActiveDelegate": 42,
