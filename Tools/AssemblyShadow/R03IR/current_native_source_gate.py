@@ -21,14 +21,14 @@ OLD_NATIVE = "74dbdbea80d83923863303bd2b2c0a87f36541b1"
 CURRENT = {
     "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
     "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
-    "il2cpp_plus": "ca0aab8e0abcbcb60a1532223d9e1bdb0aea86c4",
+    "il2cpp_plus": "ecb9f010f84915b6fa0924dfd66174f812c52fc0",
 }
 # Each source blob was directly fetched at the fixed repository commit.
 # A config edit cannot weaken the required source file inventory or hashes.
 FILES = {
     ("hybridclr_demo", "Tools/AssemblyShadow/R03/source-pins.json"): "9d72a237fb6ecd3efe3267ca89625aa49c61775d",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03/run_local.py"): "9aef8093f98fb7f9b5dd395ba4e5c2ed0220276e",
-    ("hybridclr_demo", "Tools/AssemblyShadow/R03IR/run_terminal_local.py"): "8bf2ca558aaa964ddd3a5fb621158d3eae37078d",
+    ("hybridclr_demo", "Tools/AssemblyShadow/R03IR/run_terminal_local.py"): "74f99b5449054feeacd626763708db5ee0b5b9cd",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs"): "598feeec3231707091699d99fbf4428d50b52024",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs"): "b993703d918090733a659bd7c3ac883cd5d753e1",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp"): "7a5dd88748dd98a387130c046b47790b80752cf9",
