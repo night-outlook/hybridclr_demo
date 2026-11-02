@@ -1,0 +1,102 @@
+{
+  "expected": {
+    "hybridclr_demo": "c726ed74654a921c8f51d65189dcf6a6e63d0803",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "ca0aab8e0abcbcb60a1532223d9e1bdb0aea86c4"
+  },
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "fetch",
+        "origin",
+        "refs/heads/codex/assembly-shadow-r01b-h1"
+      ],
+      "start": "2026-11-02T08:20:58.370525+00:00",
+      "end": "2026-11-02T08:21:03.010153+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "From github.com:night-outlook/hybridclr_demo\n * branch                codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   e171676ac..c726ed746  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "merge-base",
+        "--is-ancestor",
+        "HEAD",
+        "c726ed74654a921c8f51d65189dcf6a6e63d0803"
+      ],
+      "start": "2026-11-02T08:21:03.010515+00:00",
+      "end": "2026-11-02T08:21:03.021603+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "merge",
+        "--ff-only",
+        "c726ed74654a921c8f51d65189dcf6a6e63d0803"
+      ],
+      "start": "2026-11-02T08:21:03.021891+00:00",
+      "end": "2026-11-02T08:21:03.345170+00:00",
+      "exit": 0,
+      "stdout": "Updating e171676ac..c726ed746\nFast-forward\n .../r03-ir-current-native-local-cycle-host.yml     |  10 +-\n .../r03-ir-current-native-source-only.yml          |   3 +-\n .../r03-ir-current-native-vm-delta-source-only.yml |   9 +-\n .github/workflows/r03-ir-fixture.yml               |   8 +-\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        | 122 ++++++++++-----------\n .../DESIGN.md                                      |  21 ++++\n .../PLAN.md                                        |  12 ++\n .../PRIMARY_SOURCE_REVIEW.md                       |  18 +++\n Docs/AssemblyShadow/README.md                      |  10 ++\n Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs |  33 +++++-\n .../current_native_build_failure_contracts.py      | 110 +++++++++++++++++++\n .../R03IR/current_native_candidate.json            |   4 +-\n .../R03IR/current_native_cli_contracts.py          |   4 +-\n .../R03IR/current_native_cycle_contracts.py        |   8 +-\n .../R03IR/current_native_install_audit.py          |  11 +-\n .../R03IR/current_native_install_contracts.py      |   4 +-\n .../R03IR/current_native_source_gate.py            |   4 +-\n .../R03IR/current_native_vm_delta.json             |  40 ++++---\n .../R03IR/current_native_vm_delta_contracts.py     |  31 +++---\n .../R03IR/run_current_native_validation_cycle.py   |   8 +-\n Tools/AssemblyShadow/R03IR/test_k_contracts.py     |   7 +-\n 21 files changed, 350 insertions(+), 127 deletions(-)\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_D_CXX11_REPAIR_2026-10-30/DESIGN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_D_CXX11_REPAIR_2026-10-30/PLAN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_D_CXX11_REPAIR_2026-10-30/PRIMARY_SOURCE_REVIEW.md\n create mode 100644 Tools/AssemblyShadow/R03IR/current_native_build_failure_contracts.py\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+        "fetch",
+        "origin",
+        "refs/heads/codex/assembly-shadow-r01b-h1"
+      ],
+      "start": "2026-11-02T08:21:04.390135+00:00",
+      "end": "2026-11-02T08:21:08.961738+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "From github.com:night-outlook/il2cpp_plus\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   e1e5be6..ca0aab8  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+        "merge-base",
+        "--is-ancestor",
+        "HEAD",
+        "ca0aab8e0abcbcb60a1532223d9e1bdb0aea86c4"
+      ],
+      "start": "2026-11-02T08:21:08.962225+00:00",
+      "end": "2026-11-02T08:21:08.974934+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+        "merge",
+        "--ff-only",
+        "ca0aab8e0abcbcb60a1532223d9e1bdb0aea86c4"
+      ],
+      "start": "2026-11-02T08:21:08.975233+00:00",
+      "end": "2026-11-02T08:21:09.007932+00:00",
+      "exit": 0,
+      "stdout": "Updating e1e5be6..ca0aab8\nFast-forward\n .github/workflows/r03-cxx11-unity-compat-host.yml  | 91 ++++++++++++++++++++++\n ...semblyShadowBoundedExecutionEmptyLiveSource.inl | 10 ++-\n .../vm/AssemblyShadowBoundedGeneralComposer.h      | 64 +++++++++++----\n .../vm/AssemblyShadowBoundedGeneralLiveSource.inl  |  8 +-\n libil2cpp/vm/AssemblyShadowDiagnosticWriter.h      | 10 ++-\n .../AssemblyShadowExecutionRegistrationWitness.h   |  4 +-\n libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h    | 11 ++-\n .../bounded_general_live_fixture.cpp               |  9 ++-\n .../current_execution_producer.py                  |  2 +-\n .../cxx11_unity_compat_fixture.cpp                 | 49 ++++++++++++\n .../run_bounded_execution_empty_live.py            |  2 +-\n 11 files changed, 228 insertions(+), 32 deletions(-)\n create mode 100644 .github/workflows/r03-cxx11-unity-compat-host.yml\n create mode 100644 tools/r03/diagnostic_stream/cxx11_unity_compat_fixture.cpp\n",
+      "stderr": ""
+    }
+  ]
+}

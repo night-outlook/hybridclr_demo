@@ -1,0 +1,2516 @@
+{
+  "kind": "IndependentOneuseESourceBoundCIGate",
+  "time": "2026-11-02T08:25:40.017410+00:00",
+  "result": "PassedRequiredSourceEquivalentCI_HostOnly",
+  "actualGeneratorGatePassed": true,
+  "demoFinalSource": "c726ed74654a921c8f51d65189dcf6a6e63d0803",
+  "demoExecutedCI": "d802632594321f431716e636ad41c68d1f667c7c",
+  "demoDelta": [
+    "Docs/AssemblyShadow/README.md",
+    "Tools/AssemblyShadow/R03IR/test_k_contracts.py"
+  ],
+  "equivalenceLimit": "README status and test_k_contracts.py only; test_k is not imported or discovered by any of the four required workflows. Final commit K/L/terminal CI successes separately available. No changed required workflow/tooling input is substituted.",
+  "nativeFinalSource": "ca0aab8e0abcbcb60a1532223d9e1bdb0aea86c4",
+  "nativeExecutedCI": "6510aed7cab67e9fc70b13ae22a115ad9819193b",
+  "nativeDelta": [
+    "tools/r03/diagnostic_stream/current_execution_producer.py",
+    "tools/r03/diagnostic_stream/run_bounded_execution_empty_live.py"
+  ],
+  "nativeEquivalenceLimit": "Two unrelated host tools differ; every production VM file, C++11 workflow and its fixture inputs are byte-identical. Not a new native Player or SDK compile.",
+  "sourceInputBindings": [
+    {
+      "repository": "hybridclr_demo",
+      "path": ".github/workflows/r03-ir-current-native-local-cycle-host.yml",
+      "gitBlob": "43b75f0c557ef6bc2cc1c331b57fc4a78a59c913",
+      "sha256": "a9eccaa342e13be37808cb43c312c30af192dc16cdce354d0faef1550842c385"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": ".github/workflows/r03-ir-current-native-source-only.yml",
+      "gitBlob": "80548dc862e37594b63e6755a74311ddc8b4dd28",
+      "sha256": "3659f1d77f079d723e719195fd8c58312f351eb7dc612b2bdff6a8e4df51342b"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": ".github/workflows/r03-ir-current-native-vm-delta-source-only.yml",
+      "gitBlob": "79336baaf9d190eabd7d2ef9f7f0a3195036c960",
+      "sha256": "4168a43df08e82981835e7b1c3a9fe3abdad2c3f6b27f696e07e772195898bf6"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": ".github/workflows/r03-ir-fixture.yml",
+      "gitBlob": "6c386a2021c363d333eaa9847c8d8a77798297e4",
+      "sha256": "ae5fcc78666527ed53dba0268a8aa975da934b6083276e6274baf68671edfc04"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/AdmissionTests/AdmissionTests.csproj",
+      "gitBlob": "667c8f0883d396a98514ababbc5e7d6a18e21e94",
+      "sha256": "6b16efc73e7f0425d7eb116fa90dca3b33788f22c67fbed0beb827bad43b4c7a"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/AdmissionTests/Program.cs",
+      "gitBlob": "4f125bf8e1de8ea4a5dca7f0c718877e3ab31f66",
+      "sha256": "a13efefc28b3db487f50548eb931dc5f0159bd6c29630e38c393de8a6637e0d2"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/FixtureAudit/FixtureAudit.csproj",
+      "gitBlob": "57b13cc72ea8f2984c95b9b588ab01634b45492a",
+      "sha256": "66b487b238886fdde5330830212b04fe3c0d9b439d8cc72ada08d1f0a125f022"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/FixtureAudit/Program.cs",
+      "gitBlob": "d52533a2eb89ddd7559f93efc81bce564d71fe14",
+      "sha256": "05d8276b03b60751b3d60d868eefbee4389cc60364c651168dc4a53a976a1222"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/Fixtures/EvolutionFixtureCorpus.cs",
+      "gitBlob": "c1ce312da03e1c615a63b79ab738d8f84c283007",
+      "sha256": "43f329e7d3f34607861d9f3b5e3404b9c97749e3b9db10688a4290b1dec8425a"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/HostTests/EnvironmentBoundaries.cs",
+      "gitBlob": "b505c060e995b89d37014e3346f5f5e804fe75ec",
+      "sha256": "8bc0d3de3af31ebdcf1d5103ac51ff36cb1fbfd550d2d1ceba32bc3dd76ab54e"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/HostTests/HostTests.csproj",
+      "gitBlob": "b24276ef4dfb6861ed0dc937979838f153134962",
+      "sha256": "ab0bd362e33e55011a18e7876231f95adabee28f37fcb37b762e4d41ef3d7c90"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/HostTests/Program.cs",
+      "gitBlob": "96c7f90b6a3594c4e892ef7dfddb958f001fa352",
+      "sha256": "5be597260d5f2bd1c5d229e9fbd29fe884017a0b4c367fe3fb365ef22bd47130"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj",
+      "gitBlob": "863a506f8910aa8c3d627519d71670fd4b4dee82",
+      "sha256": "7f035218fd6180cf92854cc63e434d5e22744abfe974e191bd5d0de23a16c6b8"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerApiCompile/UnityEditorNamespace.cs",
+      "gitBlob": "ac521490b7e5f6dd10d96d893554e54ba3b41391",
+      "sha256": "b447a9df5c70f2d96b2ed8b1cc5db209eae30416295c1e76195880d28cbd689b"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerApiCompile/UnityEnvironment.cs",
+      "gitBlob": "8e954636617f2f582c3f49809e909c695c046f15",
+      "sha256": "6851e6cb6b7679db7235654d79274cd7d4743cd25fba742b5dec0cf36d4b072c"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj",
+      "gitBlob": "6bd02a765a53d9fc1830d1026f2b02710172a092",
+      "sha256": "de8532d5b67d99ae55526e6d2286a833ad8a9569e97933eccf3267422bd70869"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerFixtures/Program.cs",
+      "gitBlob": "7f3c082dc6429ebce7fd0ae6472d886319404373",
+      "sha256": "e1ddef0e4eaea6a06aae86a2bd1264b88dd2a40e9b0c98210c097861fff2adca"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp",
+      "gitBlob": "2f13925190a1576738457d8d43f3646a4c7c095f",
+      "sha256": "c3213713a57f76bbd79460f98851a00490b2e9f76cc62b53bda4467c684b6fd5"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs",
+      "gitBlob": "b993703d918090733a659bd7c3ac883cd5d753e1",
+      "sha256": "05b5f21e91b18f04da07fc10eca053b64e68d7d8fc838b1a006bebd3b740e52f"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerProject/R03Player.cs",
+      "gitBlob": "7de584b682c9582a4bf58a776b7634f63d13bc28",
+      "sha256": "50084f29f61cfc8a0284b4d9f9dc04c6f5063354a2389f4a0491938c09164847"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/batch_contract.py",
+      "gitBlob": "bc4587a037b37b17984fb34a67e87d8b9b68a0ed",
+      "sha256": "c5789db472c8c08a73a8c1ca67205e46537724051ad803e53d510cc9ad1d7a33"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/batch_evidence.py",
+      "gitBlob": "fe8770192ba8706b17b6aaaeb4d924b3a5b903d1",
+      "sha256": "5ba51d25c4f3296681c1f7bb7139abe6e523b85e18968c14ef1f9323d01aed4b"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/build_api.py",
+      "gitBlob": "bdbf4c78e0bd1993a0a03c56ee8332a2cb22aa86",
+      "sha256": "c700bf3eff66ad4a249af9e59a6e3cbd0a4bcd6130787442335453acbda87c6d"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/build_provenance.py",
+      "gitBlob": "4a9ba7240ded6ad81bcc29ada489ed26cbc2ae50",
+      "sha256": "65e1208508b232bd5ccedc0004e5c6f853055b1a2401a71ae17a56dfe04f9ed9"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/command_lifetime.py",
+      "gitBlob": "4f1b008d960dcd8e473e77bee80125f5a14377e1",
+      "sha256": "8b7da1419785304a8c58370b0afb8b56ce78bd8a297b8b12387b44193d51530a"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/editor_scope.py",
+      "gitBlob": "4c1887d2d1aa276055a53dfb028f061a0f6b1e99",
+      "sha256": "86dc1e32388821c901000bb93798b38cb8b773f718de262ee490e5bd5898bbb1"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/git_diagnostics.py",
+      "gitBlob": "cf6ffc13df4349bac603f53555a98e2e281a6ef2",
+      "sha256": "a8de456eb712aadafa9f7c732cd9f19a0742a04bd8a4a4f0106cfab77c595c6b"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/input_validation.py",
+      "gitBlob": "d2da7cf9e629b635669ba154b8b2db92cdae0528",
+      "sha256": "826e36428de08e09a57f13b51e599e66497a5a6c47c9bea8eb14b9463d5910fb"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/native_validation.py",
+      "gitBlob": "09a24e7dc202b24a79d0dfe719f5cf19ee14cd93",
+      "sha256": "2ea5d8b166d8e135dee5c9ea2dac49840e7c7188799caf3d81639e27a94e4e97"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/player-cases.json",
+      "gitBlob": "84514ea711b6f585e2bd28176f2cb11c59215229",
+      "sha256": "0b42d543eb0fd7e496639d59f9ef3a1afc0e114eef97720d5fd1c5aa14f728e7"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/rejection_contract.py",
+      "gitBlob": "d0da81043744ac6ef0d9a2eac28573466452c3b5",
+      "sha256": "d12700fc4e1987cb4739032e1688cffd0ca3c73e499b7617c074aefa702a2a94"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/run_host_inputs.py",
+      "gitBlob": "a8a96b2103b2ce5fde36a49a2a209515de82bf0c",
+      "sha256": "355a4ef12f43776b1095c3aefd6866ab2294d348963410a368619b8e79512673"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/run_host_lifetime.py",
+      "gitBlob": "7990e7582856f299b823ff0b799d127e09b4a50e",
+      "sha256": "d237d756f3c7b46e3934c2dc7188fd7fba3bba12fa7f07d476c884225c42d546"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/run_host_provenance.py",
+      "gitBlob": "8f7e14a05f12a847b086dd588800bc029c341e25",
+      "sha256": "cae468a19cc6b689517712414b9a7499a9abdcfa4d2f2adec494c065f9b60141"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/run_local.py",
+      "gitBlob": "9aef8093f98fb7f9b5dd395ba4e5c2ed0220276e",
+      "sha256": "ebbbf9139de5f6bff0075ef966ee6ed3f3070059eae3733052fbc5406bb360a6"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/run_native_compile.py",
+      "gitBlob": "de490181a475631889a1519b58a2b4047fd8f087",
+      "sha256": "7d8e95011015ce3f9ffe034be2f7ce143c1e4953f063eb6ca5dad4e559b86218"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/runtime_contract.py",
+      "gitBlob": "8fe3d9896afddec35d2ab670a29c8b2ec2cde535",
+      "sha256": "2a994cdfa2e87fa7bf4d893d682939b1c5d5340f486e92bebbd322c0daa290c9"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/source-pins.json",
+      "gitBlob": "9d72a237fb6ecd3efe3267ca89625aa49c61775d",
+      "sha256": "8f80fa7e382b77838a55d613031f272c4f6eb8245f780117da5abd8284b2633c"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/test_batch_contract.py",
+      "gitBlob": "dc58b0ab95e1f3f5b595abfbbd04e100a41047e1",
+      "sha256": "542322a4b0beb95ec8527a934920e237384ca4939122113ad5157370d933f954"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/test_build_api.py",
+      "gitBlob": "554cf07faaf62c89ff9eeadeede320c5617a494c",
+      "sha256": "df9069ef24708251135b1a479eb3735321b6acab1644c0c844c00bd35591e173"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/test_build_provenance.py",
+      "gitBlob": "6a3c4aa8974c36cb787485a2a7a5b968415404a4",
+      "sha256": "c4b5946ae2a9419ed81c96d50c740b57473f7130da1b3d761b3332d455a06e7f"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/test_command_lifetime.py",
+      "gitBlob": "345d7ed2276d32ff716e5a78a72c96858c7893ba",
+      "sha256": "b975563f06cc42492aed552c6c3c7834afc9ffe297c171ba2b2fd7a271096f37"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/test_editor_scope.py",
+      "gitBlob": "24a0d26533b631ebc53da42aaa9dd55e39550b6c",
+      "sha256": "b1e23a50df211c2666f82b0dff7c33e8b70cc1bbf74919ef5d9ab7f63acfc8fc"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/test_input_validation.py",
+      "gitBlob": "d30592751ad0d37855668cfd6582aef15d00c884",
+      "sha256": "8b1ec85b175b6fd0172c02cbae4c1e4d3dbd210f87585a318f1be12a014ce7b3"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/test_native_validation_scratch.py",
+      "gitBlob": "5e58c14b5147ee591dda34d802f78b98d36cbaf7",
+      "sha256": "dfbef375899856b3026584b81524228b53d458de7c0e85e7183f5a0249f05de2"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/test_producer_control.py",
+      "gitBlob": "e5c179f3f295e8405811dfa5057d157486e18254",
+      "sha256": "374d529a10628884307c0df9fa179d0316bbccbf4fe6afb2b6c123cd37baec24"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/test_rejection_contract.py",
+      "gitBlob": "d17cfd060f65910790b0854bb95a3fa2bf2ca951",
+      "sha256": "62e621248caf9f1326da210fbc3c52d39024465bcf2acc5b6772160fbf03b148"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/test_runtime_contract.py",
+      "gitBlob": "283a687e4c420956d9eea9686b1f4311c5a09560",
+      "sha256": "1ebd0947376a5f9693f76855dc316e6ccdee305b6ab75f0289098a149386fc88"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/unity_command.py",
+      "gitBlob": "0659a8afb8489dcd95627dd6774fba96ba5cf7e1",
+      "sha256": "96aba325c2f5ded34023a195c08c1e948326bc6e6b62e8ab98f130e273eaa355"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/BoundedDiagnosticsV2/source/BoundedDiagnosticsV2.h",
+      "gitBlob": "b5da7ee599038337ab704aa547416c5864812974",
+      "sha256": "4898bce0270969ad62da7371317cb047008536d63a6c4d1f869627f988b620c1"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/BoundedDiagnosticsV2/source/NativeArtifactTransaction.h",
+      "gitBlob": "f714d0ac81511128f824fb405a39ae019d6c0aab",
+      "sha256": "e8f609a5606d849d951f7f827bc82865da3b5ad86314822162e0285ece7e0863"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/BoundedDiagnosticsV2/source/read_transaction.py",
+      "gitBlob": "f015152d30d332d662b78ce77c80149e12beb525",
+      "sha256": "0ae97d4ad33ce3d49144fe7a7e4d4603f9f69fc65fbf6c9cef87549dc53c30f4"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/BoundedDiagnosticsV2/tests/native_transport_harness.cpp",
+      "gitBlob": "147e497d44942973cb7bbfb62da46ee5ff520fd5",
+      "sha256": "7c1f243f11f36b6b98ee9441a6ecdc5409bea0e7744b92b112dd8d87296300ea"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/BoundedDiagnosticsV2/tests/test_native_transport.py",
+      "gitBlob": "552d28bab2a3817943ce542145ec9323719460fe",
+      "sha256": "d242675ffedd35a77e72b6c11a63c1f2364c50cb01977923b8bc8c5ec6c2b4dd"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedDiagnosticsV2.h",
+      "gitBlob": "79ace000f64285c910f43b4355a1a131c931de76",
+      "sha256": "01b5fa834d8b4d782faa40c01f262a1e80cd970a0c1425e317246b66665b4012"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/PosixDiagnosticFile.h",
+      "gitBlob": "ad8bca941d4730533daf89c7ad6fc0e721fd863e",
+      "sha256": "77bf8dc040baa18a856539418487c9e0483055ab63cbec9b84bfd8490742bd69"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/native_codec_driver.cpp",
+      "gitBlob": "d8a9eeaa6e239844d858ceb15e0c4e9f69350f05",
+      "sha256": "6d1665bf3589d55cb1bc3bbec82f770a32fee5d48e82e7eb5fc7050f5b0dd67c"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/posix_sink_driver.cpp",
+      "gitBlob": "858d55d31b7adef497c471e9398e56de5b637200",
+      "sha256": "0f030b0371347b58d0887a1837279ef8903ee6f00d9b52c468781d0d6e121e22"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_native_v2.py",
+      "gitBlob": "f7d7c11b9cc2c31685c72b1dc5f7f42def3df268",
+      "sha256": "225fcce513a1c075622773afe786adf0f6c1453bbb157ac2bec3d242a5438774"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowExecutionComposeSyntax.cpp",
+      "gitBlob": "d35ac79f01d738233277d41adca8571a5f0d54db",
+      "sha256": "c42a29e47f5f0780371382ed82de3438c6a674837e7cab3aef593109847b0af3"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowExecutionEmptyLiveSyntax.cpp",
+      "gitBlob": "7feb4feaf5273e4780f489ca495a07b802e8e291",
+      "sha256": "a15e3aa95be5bcc69f94a2d729ab632e150855ec592691dbec3c9b4679c47c7e"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowGeneralComposeSyntax.cpp",
+      "gitBlob": "f5582ecc786f42f1cbc8bc0e530bba6cad268a39",
+      "sha256": "99147a7a13c63765e8e335c660978a2b8c293424c8dfe17cee8f6c0bcfc370c4"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowOpaqueInventorySyntax.cpp",
+      "gitBlob": "9b6a30beb05ed827f6b4c13605b8c9993bb37999",
+      "sha256": "4118b04279af6ceda5ada9603b20bea8abcbd8b359c2e5ac9516abf65ec9a998"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowOwnedPhysicalNamesSyntax.cpp",
+      "gitBlob": "47b3b382558af3232ae46ed5dffe3e6857e3a3b2",
+      "sha256": "de55249a952bb3f749ba8f388d11fe58860119ddfa7e7403d026169a5a794729"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/AssemblyShadowPhysicalMembershipSyntax.cpp",
+      "gitBlob": "6d4b72576df8e3c0be3f3c137dd758ff260f5594",
+      "sha256": "4f791b3e88d774c89fef1236e83bd7367a55aaa746dd228861abe424578fedca"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs",
+      "gitBlob": "598feeec3231707091699d99fbf4428d50b52024",
+      "sha256": "0c16bcaad8bb2ceb5568ab3b4bb5147f258da884b05b249b8c174952bc36350d"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/audit_s_process_joins.py",
+      "gitBlob": "d1781da452ab19eb9b42f3427cfe34a4a3db6e4d",
+      "sha256": "4af531427cfc7880d178c8e389804583f03cf46c4d078c1b16a80f23a468e271"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/audit_s_provenance.py",
+      "gitBlob": "fc9a218213abc7afd3a0fedd9dbfeba3536b8627",
+      "sha256": "ecc5aad001b248ecc649bcfac60b8a5fe53050dcf9a9cd7aa54bad6ea53b48a8"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/bee_observation.py",
+      "gitBlob": "3fa44d89b1291b7ca1e6900ba64c5a9c2e08e7f5",
+      "sha256": "d4110fe2b36b19cc25f8715d1c6f85ccdf3ca62f5c109b878b38d1668f20d55c"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/bounded_v2/BoundedDiagnosticsV2.h",
+      "gitBlob": "174766c40235216d8c954107dd5e026116a510fa",
+      "sha256": "734e03a470e4562cd18551a84194eb82b391c8da8f4ef7f2c46abcef7fcc034d"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/bounded_v2/PosixDiagnosticTransaction.h",
+      "gitBlob": "4352a9c0282984898f13b36a3a8eed679e3911e0",
+      "sha256": "ea6ad39e3572eeb456813e72faf10c984bec35bb517dd55b74df490d36e0a046"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/bounded_v2/README.md",
+      "gitBlob": "fb3db58610759015b031116f0d27ec4bfa8a70e7",
+      "sha256": "cd3f3f5465a9b5a35439de6874e1ba48f28f31f88acf592731e89eb01e3aa146"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/bounded_v2/native_driver.cpp",
+      "gitBlob": "66d799bc6f21f9219d388c2b945a9eea388c1dae",
+      "sha256": "40a3a4d6f4c5de0ac434e87ad71e5e344bb417210ffbac8a4848e012e4a23e84"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/bounded_v2/run_tests.py",
+      "gitBlob": "7ba066393f5b9a608155902ef600f6575f78f79d",
+      "sha256": "883ad0177da0aa2efe104d8b3dde34693d4e3bfcd139c9eaf3042536b7d095c1"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/bounded_v2/run_transaction_tests.py",
+      "gitBlob": "50f5c25e3d8422b079c9e7ac4fd75e0754066c56",
+      "sha256": "b827467d335043c0ed166f8843a2d8d9ec3c1c593d56edcc0ef5469d22cd97d3"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/bounded_v2/transaction_driver.cpp",
+      "gitBlob": "2e6019435c2eaf725eb6fea5526f7a477e23f2c3",
+      "sha256": "d13b74d35883ba6d111fb3273828d382fd1cd6619f9d46430ed800d4605bc5b5"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/bounded_v2/transaction_reader.py",
+      "gitBlob": "e41a2d657cb94d9ddacf6e77ac830bb18e1a4f6d",
+      "sha256": "c135d966b0821c96cb264987fddaba12b49cbfb8826e88e7b962314923f9ddb3"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_build_failure_contracts.py",
+      "gitBlob": "ea88ec0eb279b7b104c470b562b30e2d45383601",
+      "sha256": "5da0500253829e2104d8d41aaf48785a7548a584f2dd8409d7c6475d8e35772f"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_candidate.json",
+      "gitBlob": "de837ad286716a9cd41a082e342f9eedab62de92",
+      "sha256": "7c135468de55bd6374b596b9066ea137e74308ccdbe9408d870333f7ac812338"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_cli_contracts.py",
+      "gitBlob": "ec6639be9c71c271ba80b3a5ff5009c46d45ae2e",
+      "sha256": "459a31c960a1ac4e7be45e1f13c93e260da2efd32661abb34637035b8d8eb4ce"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_cycle_contracts.py",
+      "gitBlob": "d3312dd131d9c83712104e8849fc0f09e2dd3514",
+      "sha256": "c264132262297530b7eb38bebb9f08bcb650bf8d98e42d73a4a8e40f9f6f40ee"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_environment_admission.py",
+      "gitBlob": "e587db0bad5f4870935cdee40df6e7a4c09b904d",
+      "sha256": "31869aef2a586ffadae9b3ee39779ebd676983547e49d998fe022f5656a431f9"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_environment_contracts.py",
+      "gitBlob": "c5b03f5f0f93d0c1dc92033292e9fa78b7ebd196",
+      "sha256": "7a459ba1e8f01961bf6677497309117ec944dd27ec9679a8ba8ab8439ce2f32f"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_generator_receipt.py",
+      "gitBlob": "50aa188f5442980b9915c8dd6681cb3e5d451d01",
+      "sha256": "a67f28b139da2b6c967e85fa68b6b6852062b082f39c9906385c6fc08042184c"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_generator_receipt_contracts.py",
+      "gitBlob": "3f9af4cfcffd6f57a0ee860f7a1db3b606c3e81e",
+      "sha256": "6db57a580ad4a58af7d52219795fbd1bf8bbae9a8a0eb15764e5894fd4a21070"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_install_audit.py",
+      "gitBlob": "f77b92ae251fd0f0dcfbdb18985fec7f9b8fb4c9",
+      "sha256": "57db5cf7fcd8ce42a6a7628c314cb9b8d2a4a25686fa8309a62dfb4adefb41b4"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_install_contracts.py",
+      "gitBlob": "f3c33582259bf5bda72584990b42d8c68500b18b",
+      "sha256": "b2682a10e9b449dd4a2c57954acd144fe38c9eed3ca2c9f8c2ee09020892b449"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_oracle_contracts.py",
+      "gitBlob": "7b87b599170a2a38bb58f344d18346f38297ba77",
+      "sha256": "3b78ac73726c0531cd0f051e64d5b7bd5c858a652b173578eaab1984bed6c504"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_source_contracts.py",
+      "gitBlob": "a0e77ea9bf8143258cc459913d7081884498600f",
+      "sha256": "187034a539a260c8f6e8f588b6e991663468cbb71ed390ddb170636a309f8c93"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_source_gate.py",
+      "gitBlob": "344bba18a1530de6fe51f68a7fb9be801a149402",
+      "sha256": "a1fc8b8a3e5dd9585d6f6042bb7b499e87f8a67bfa1cbbb5b3219a17cb5c71e8"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_vm_delta.json",
+      "gitBlob": "e0b6ba24125a549b6f53fe77f697b680824618e2",
+      "sha256": "85f2b0a334d9b8229ea220e558ac2c6bc03643610942e29bcd258b3090466867"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_vm_delta_contracts.py",
+      "gitBlob": "e4f7a2a92b0ee91e683d78d72312964d0ff0ea76",
+      "sha256": "e0a7bec6522ebc171f04bdbbb6ce22a5c4b450a5787a316e6d21b4a20b04ff1b"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/ir_original_fixtures.py",
+      "gitBlob": "b55c6e3bc7a6d4891c5a4ea86cf0876ffbe48681",
+      "sha256": "37788143b8b28da31f9985138d21e8b67a505bfa8659d254d8c807b8a16c7074"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/original_s_sparse_contracts.py",
+      "gitBlob": "0e9582c5b8ffc50b83d06d6c5ee8a6d5b45b465c",
+      "sha256": "dbb612b78d7207435eda2ba66e885dbc4b40fa0b9e45f452b5606bd06969142d"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/original_s_sparse_projection.py",
+      "gitBlob": "d34f16c46d0fcf4136e2e05c7e297ca694a3b763",
+      "sha256": "fc5509139715d9acac0ed212562eb7a11793b1a10680bed21beca7078fd748c4"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py",
+      "gitBlob": "4743dbc396453e5211542e02c19bf5f3bc10a1b9",
+      "sha256": "1d1b0d4ca81218206c08c60101fe2d4dad01f6c396596b13c07d5b43658d8578"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/run_p1_command_failure_tests.py",
+      "gitBlob": "2837a0994416c0a874f258606a7ef2d9f53bdf36",
+      "sha256": "8538461e5b48ba9ecf0463cde6702ddada9d76b3ce26fdfcdfc1802df8f67251"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/run_p1_metadata_local_preflight.py",
+      "gitBlob": "39b3bc87ebe351fc77e4120516a6902d51f30fd8",
+      "sha256": "2b5aa31576e2555aecbb98d7570d849018fc0fd2cdb700e22275eec2bb9d380f"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py",
+      "gitBlob": "2d51be157b94a47ac19d1061d0066c1f98dbc177",
+      "sha256": "06629ef3170b49b5407af25d0aaa23f2c9b8fb7da58b9a55f1f7f90ffe59bdd9"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/run_terminal_current.py",
+      "gitBlob": "35edc2268bc32c8a8df145d64d4c370b22fe324b",
+      "sha256": "37f6f5181c52689f7dba8e01ebfec8b49bdbeebd31ec00642226850b9447a13a"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/run_terminal_local.py",
+      "gitBlob": "70b1a27f2dbbcad93f67e8caddcf7282ff3afd73",
+      "sha256": "a51f2cfe91aaddf66e1dbe14b2428e76e3ebc14d88ffa904c53d482573144ef3"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/run_terminal_storage_checked.py",
+      "gitBlob": "3b1133131675b4efb4a48028117fe1607489e12a",
+      "sha256": "43b548733721a44749e3c1fe192702f23dc92c954e235e10eeff61c1677fab88"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/test_audit_s_process_joins.py",
+      "gitBlob": "43e99e8e9d2a58d1b7d1ae6b4b4897264ac2e3fa",
+      "sha256": "492809756232b0abd16a5797398fe05d5da0dce774101e86cad1e22bf70752c1"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/test_audit_s_provenance.py",
+      "gitBlob": "3fdbd852116ef1892a0ddd9f2de6a237199ad7ca",
+      "sha256": "d44ee638441d14c7bbb78ba276ab377f87d847a8e3757e4cf467f84b2e044526"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/test_factory_observation.py",
+      "gitBlob": "eca88cfa6a0b68b376425c6f5a0cfa8804c1ac48",
+      "sha256": "cb00ad8c4884c71c1c1138222e410b61dd71f0066002c1d5ab6d31dfe84048a7"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/test_factory_receipt_binding.py",
+      "gitBlob": "a24fdeeb09ad962a6ac0d184073256c7589c55b1",
+      "sha256": "6b1fb34600913515d4b4b4f7065b841470c6d606e8319614171ef10d714a9fd3"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/test_ir_original_fixtures.py",
+      "gitBlob": "ff2c14f2df3d7f6fc3cf7399cf73e37579317608",
+      "sha256": "fe316cd6e8f9e6e673ccbd567647a4d49f23b4d520e2148d68a02878a0399456"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/test_n_guarded_receipts.py",
+      "gitBlob": "e1e3604208fc7050f233c991d359f6257a318e51",
+      "sha256": "26c3ab79a5dfa7f1a36ad84483157895d0307f465c4113452c87648f26025174"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/test_native_snapshot.py",
+      "gitBlob": "e13eff7b806f9123a7be814fd941bb9a5171bc39",
+      "sha256": "846a82f5de05be1740c7d0bd7241c79c6df257aa64a9ffc88324d51eaced90bb"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/test_p1_command_failures.py",
+      "gitBlob": "3720e4b80068210221286dc0a46562eb76d14c10",
+      "sha256": "637915585936544f2c001d936917959b1d53adf62a8e4f7d6b923ad316ed02de"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/test_p1_managed_receipt.py",
+      "gitBlob": "ea1f732bef9cc0444c21fe298409cb65114e70bd",
+      "sha256": "bbb2ee4364eeea89a9aa0cb9f5d68e4aa4681364690e808b0d9e6c9fbefcd75b"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/test_p1_metadata_preflight.py",
+      "gitBlob": "38691c325dd25844a2a5ae99fea8ada40d5d6777",
+      "sha256": "96f7735ed59f660031f54f151a0abc5e7df8584b6c920a5374263492e9cd9db2"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/test_terminal_contract.py",
+      "gitBlob": "d4f9538773539bf1cf2f9c23f634aeb47d346aab",
+      "sha256": "82f5599e53d29dd154da1caf5973106fba58d41cea9e9b903bcb988f93a7a7bd"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/test_terminal_storage_checked.py",
+      "gitBlob": "81903df0bb46dd5066431b241ca927caa3be8aea",
+      "sha256": "a643337182016da9a24ae14e4ae318eaddc687af469e3b8fdb8b0c62f276050e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": ".github/workflows/r03-cxx11-unity-compat-host.yml",
+      "gitBlob": "166ef76299918bb9d87a7bab0df79928e184df4b",
+      "sha256": "04d1131668aff58716af01f56d02782aa691cf929b59a215032eff0a7477fa4d"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/ActivationFactoryBase.h",
+      "gitBlob": "7a24b5ce84a17eb2f3db48efe35abd31923956ee",
+      "sha256": "12365d4f06308804508e5fbfe41e74b74529d488c7dbda9bcb857d7796033237"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AndroidRuntime.cpp",
+      "gitBlob": "4726c35d634a30d75e4ad4b7c8c142a125bbf1de",
+      "sha256": "aea5de5f090f7b2a5f75ad4879dcb726ad4c2d4b99ba55a059c09a45fe76d7ec"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AndroidRuntime.h",
+      "gitBlob": "1c6124fcaa91ac656cd3bae5df7898a392aec1a1",
+      "sha256": "45caeae803feb4c4ce168b52fad9344865e18fff1065148e533e886298c3bc56"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Array.cpp",
+      "gitBlob": "19fa35c414c44fcfa10a566f1ac5fdf532a70734",
+      "sha256": "94ae497109c1c859b26c8aa4a8e041bb2d98ebcf907c31a641354a0fe7d19ea3"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Array.h",
+      "gitBlob": "c291f16f353589633c00c270786c9b561f4f9be1",
+      "sha256": "784ee728da86d7cfbb7e39b848d5dbfe59ec689249c3e059707b02c97bd46aa2"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Assembly.cpp",
+      "gitBlob": "cb383d664ed02e138a9dd0cb42f2a64629146207",
+      "sha256": "0c46232f94b6e7afc2b5277d287618d8405a3f19784781ae800dda19ba8c4431"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Assembly.h",
+      "gitBlob": "3e4bbb85c190bf0f9c43fee9e3fc3518c61ed457",
+      "sha256": "74b9615a04bdf59df8da62948fd6dad2a2a10e8a8eda0cbf369635ab981e9181"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyName.cpp",
+      "gitBlob": "45810b900e58a66894dcf1b2c1213174417045d2",
+      "sha256": "af1ab84771371930b4992587d6ca52db669aafda8d419c826ade37ca2dd7019d"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyName.h",
+      "gitBlob": "11636f25841df97292bfae362df0ccdd2fb2c81c",
+      "sha256": "e5d7daee5960f8fa8289cceef5c5c4e3e0767465c004998a12bbe1644ce76068"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "gitBlob": "57cf47f964a83973df8296955ccf856b105c595f",
+      "sha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadow.h",
+      "gitBlob": "68e78fe6250e3bd1028641d9513eb7d14158e8da",
+      "sha256": "55e572887d7ed89cc5d9cd57b3457df240357aa389474512442f3a5fea487e8f"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowAdmissionCache.h",
+      "gitBlob": "945a6b38e1b8b664f3ea69dd82f75d659e093d4d",
+      "sha256": "174b8917ad528721fde347ab3f11f067ea42d02bc30e02b56cde0f041930c767"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+      "gitBlob": "a615a839f5af8614c672a9bfb45be02d12b01a0e",
+      "sha256": "9b309fa25aadfb983787540e7d0b65d01e3aaf7a2fad5b7e67cfa737ef1c8d99"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowAllocationProof.h",
+      "gitBlob": "d53edfcfa4c1f7c390819666731a9ff3c0ddf7a5",
+      "sha256": "a904f264442786e87a9e20e2b48029e8e5fa8582342bb42ac492a485e26cbb78"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+      "gitBlob": "5b2afe1cfcf14570e64b8836ef4f995ee5e6db57",
+      "sha256": "d4f4d495fc0636fcdd41f1121a1aa71404e838e1dfedfc7a7a3d10d70777e734"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+      "gitBlob": "94bcd4e12e553c2f28c727d9c74bc2feb0b22e8c",
+      "sha256": "6e53d15eab13a4a0169884a4d032af14a30352f111de166515b9d940362044ef"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+      "gitBlob": "b7ba5dffb2e3ecebe7406f598e97a1ab97251cdf",
+      "sha256": "b77a46ffc4ba6e522fc8c34e0ac43283f502639a8ca4f6b9282afc097fa5c895"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+      "gitBlob": "9e63e46a429c07f0b5adaf529b48f455ce1328fc",
+      "sha256": "2550f78b66def91a2f0851c8edf2a24f3beb1887b595f2ac45b246aa5a125ade"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+      "gitBlob": "b554eb36f6337c139a3f24beb168ab3f2b6e4343",
+      "sha256": "1dc1a731f75a773494edf669965a7034d1fa908c2201401a3eb2238228e1b7f5"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+      "gitBlob": "a85a6ec310b85e96dfe199c6d773407cf47779b3",
+      "sha256": "2be24d11ff97527706c4125699c7d04dc060e5f38ea9eac931d17ef97a7dbca0"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h",
+      "gitBlob": "91f049cc7d81d5e6de95ec50884ed3d6b9b63163",
+      "sha256": "ae4c2a471c1879510849d4902694caa7308bc70f3804cb6b1d0fb2ac839615a8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+      "gitBlob": "4e82e7f3814b8ed021a24d235dcfbe79c4c2412a",
+      "sha256": "0545c483230b7a1f6ea007ff28f000ec37a2f85444062c62eff74a048c5986c1"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h",
+      "gitBlob": "d2a6fb798de9a3599f6b6c63149515cb23ab3350",
+      "sha256": "fe37931e27f1616bea8e08c134a2349567161bd8cd5c739c3954be349b9da3c8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h",
+      "gitBlob": "fc3a569ea0f617b67b3867a804126e9583d86b72",
+      "sha256": "b5b91b9480016493f1b26fcd78be96f9c1ff107b866950d7b08d999870ea785a"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+      "gitBlob": "edef7c2f37978e65c02a8d2008886c6c4af8ae20",
+      "sha256": "03f1c76f84e79de38ddc708130cf4a95c736e3abab0e0e4266a84ba7cad2684f"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowDiagnostics.cpp",
+      "gitBlob": "f51e6ca403fe12dec66ace96148f2da3bc17fc56",
+      "sha256": "62f2d9b038ed8e4f3e352c06ad72355ae5d6e69e800e3a39647a70271d295902"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowDiagnostics.h",
+      "gitBlob": "f243ac8b42d31a59b6a1d5641ea101807383243b",
+      "sha256": "5017cadef623509190bd7b486c935b7b8ca462207f7d13760d2223216112f038"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowDiagnosticsProfile.h",
+      "gitBlob": "f81f76b255490bc8cf5c99e8706a901d68c21795",
+      "sha256": "9c3833d1654b23a26cfd5567fee1bacf057887a2bc3afc1e50cbfa31c2cdea3e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
+      "gitBlob": "9a698c72bc57fa635f3cf7d657f7a1c5184e3c45",
+      "sha256": "fe8554713cefbb800811b2793aa835abc2eb74f5fc4241f6ccf9c922799845bd"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+      "gitBlob": "6f14ca874f77592d845ce0563afaff2eb7573a90",
+      "sha256": "67afc44c92255d76d7c8d29a95b634d53a648be637fe4112c4566659f1f95cc8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowExecutionRegistryPublisher.h",
+      "gitBlob": "4d7e80346cf8b3a8c93ad95e025f00035629f141",
+      "sha256": "7db3ea584e332c92364ebee5b9c778e0c731c449783551a9adb4204cf1df8ff7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h",
+      "gitBlob": "46a313742295acaa52d5022f238fbcba4430c6df",
+      "sha256": "4d318426f4be784fe3eb6065ef47ed97539416f871fbe060f6c4ca6e8be41d5e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowExecutionSerializer.h",
+      "gitBlob": "3a0e7b1cc25bdeb16d0f341b67715b3433f04689",
+      "sha256": "30c78cf0ac30f7f1e59f573b950f594ac2379afaa372f544b9fdcaa26cc608ef"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFinalizerProbe.h",
+      "gitBlob": "b78cbd7d8985a9fb7a1ea71299bd8e555af2c11d",
+      "sha256": "86dbd48b57a3fa67ec54e1617aba2fd42b7ea59d25ca0d7fb4780fa5202d397e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFixedBoolean.h",
+      "gitBlob": "7b33c34e5865a65dc8d830f67661a9e94a539868",
+      "sha256": "534fdfb41b41daf11a25635c6e469f1580112ed19787a76a8f41ebdd89679f39"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h",
+      "gitBlob": "624a43c0f153456001288c904d9705ec59171aae",
+      "sha256": "1ce04b4678d7f48e205162db6572199489d22612f53afc9bebb9b07866f7ecf4"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+      "gitBlob": "eeb413f8c8c0f6c1658da68ddd404b9b478e6e70",
+      "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+      "gitBlob": "08856d4a610ed3fa519cee67bad8a307dd82a34b",
+      "sha256": "bc8660655e19ee15c02caf21403ef90f5f87c95b0fa1dcc212a7ca7a61573e6e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenR02Capture.h",
+      "gitBlob": "64ec2dc887106f12274febc74b4e155e140d70e5",
+      "sha256": "6014613e62b570c0f93f7317831e14645600f87e9d32a9e87d2902e19991dbad"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+      "gitBlob": "ab136038a49a8e6614243677d19e20c6f3fde4c5",
+      "sha256": "c383afe1ba28b3c88f00abcea4ff469d40e3557bdff0303368d6a31ded1ed378"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowLayoutReadiness.h",
+      "gitBlob": "5a7a44b3ab02798bf8253124a9b7891fa6eb8cd1",
+      "sha256": "2b7dd79619a450697ca72951abbd3b3068557f833c886cec622b99ee1932e9da"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowLogicalMethod.h",
+      "gitBlob": "a0d0610daebc592363d070e5ed333b59e10d27d8",
+      "sha256": "c1681487f51db527ecb82fb3179de82df5f7558400fb059fcb63b338348ba3c1"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+      "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd",
+      "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowName.h",
+      "gitBlob": "dc2604bc7ae73236b39185de3121aded08ba7e79",
+      "sha256": "1e71c6a442b93eeffc8cf78ccbf5b29f73766b881760394729dd3d3a008afc38"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservationCounters.h",
+      "gitBlob": "81689acfe806980b397a0b92d13ed8ade389e115",
+      "sha256": "4ce6a868fc7c50361924ed0b9523a18a163719509f4c1879f3e72c03b7506575"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservationMemo.h",
+      "gitBlob": "689a0710fa78766440b32edf40e3dc06f99b2ef5",
+      "sha256": "d26695e7f01ee7e6b2d4845900ba20324882ae366587d9be215b72627b15cb82"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShape.h",
+      "gitBlob": "9625544a62c4907c73da251f4062dea0731758b7",
+      "sha256": "c2dd2249c945a89ddc8ac2e712d0b56f5cde3e4dc474a364a4fd6f1b471c3a89"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+      "gitBlob": "23065b67456ee7d19c7019cf24900e66daaf28db",
+      "sha256": "83f2d79c4c7d6480267c1cb18392af914dcc7b2513f9a7b003131ecd1ddd9d14"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+      "gitBlob": "14b44ca96a1be6a0abc8629ecea1b7bade02eabe",
+      "sha256": "6eb08c239c34eb55a8f7e2f1fc1ca84244fc501131c7564d328018d7f0d756e3"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+      "gitBlob": "f432aa3ea638a05b42618ca242be5bbc3e3e1e67",
+      "sha256": "622601ccd395ed41edb512d0da12fe35a645b822f3e14e2994b8413cce00eaf9"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+      "gitBlob": "7778e2064cbba7fb5b16179746cbb7d272118fb6",
+      "sha256": "0472835c03165278579dc3b332f6ef74eea22fb0d527a337bdb157beb14a79d7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+      "gitBlob": "a2ca61c35b0ba0e5f71a261b21647a36dfc0a9c4",
+      "sha256": "1d29f8119e0cafa1168ef46ee17aebed465359ff5f47902165a97586a6aa6369"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+      "gitBlob": "372d12209417dcb9e119da6bda64deca79389a23",
+      "sha256": "d27d0cdd391182a5b3c9a942bdc44bdf45418d1fb13c2c3e92df92e012ea1ea8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+      "gitBlob": "dff6f12dca1c4f89dec7151ced6b63febeb0769f",
+      "sha256": "865a36b154965f0ae69bc788f6ba21fc6a841d546a34215a6448112110bb6604"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+      "gitBlob": "f722a34cacda9fa35f226e8b11f4800d3fd42c72",
+      "sha256": "216a8ec0365bd134ac0849d5fec2d709c24e5b3927c66c17360792eea836d5df"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+      "gitBlob": "35d4d000faa588cdd5147a0b2abdf00d566c0b06",
+      "sha256": "944d663e2d55e8ed07be3c62b1f6c7f7f6aee1bf0c34b9a464550b6817c5c15a"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+      "gitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3",
+      "sha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowPhysicalMembership.h",
+      "gitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3",
+      "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowPhysicalMembershipSource.inl",
+      "gitBlob": "4e18fa035c324a67959284efa90fa601c6ede0d9",
+      "sha256": "bd0ff612a27913c1424cc7627454ae8eb5101b3479eca2ba24e6097bb3197651"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowProbeTypeSnapshot.h",
+      "gitBlob": "1f301112a6524114c0501094e3c6b68694546daa",
+      "sha256": "718975ddacce33494936ac6279bb55bac1d04d30761ed5aaaa3d0d6315d64399"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowProducerFence.h",
+      "gitBlob": "db57d3f85b8a204a1b1ee75dad66ecbe726a6cfa",
+      "sha256": "267004c4a4cf493103c474ba92766ec25b9351bea92c321f93921158bd608480"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+      "gitBlob": "1c2a43384d03b0369a51b587fc5f5e445d5b58c8",
+      "sha256": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+      "gitBlob": "9f7266014b1514adfd0935948ff417375df274d8",
+      "sha256": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowRecovery.h",
+      "gitBlob": "2c209c65c23577344bd2baaa365f35fb19e2b7bc",
+      "sha256": "02165a37ec40d2503f92087e86b0da0ec749ae47efbab18ca0c6c38b072473c6"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowRuntimeProbe.cpp",
+      "gitBlob": "2c683f9d2fe036ae07b2b4571606c8c9bf2e8c61",
+      "sha256": "412da6f6acaa14a8c2e1a83ec33b05da01e789aefe27dfa645cfe557dd8b2a4c"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowRuntimeProbe.h",
+      "gitBlob": "1b42b1763fee44647b7de8eac97162ba4e25eaff",
+      "sha256": "79dfe6fbdd3227e0f05a1f000e9d17d2ef345d8d1df72615d84fe698aba734db"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowStartup.cpp",
+      "gitBlob": "6f82a9d03d02f132e108711fa61d3e4308783b37",
+      "sha256": "ec0a60602aa1a345cc3bc89892278e12241b7ecaa48f0c26315f65d433e36d38"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowStartup.h",
+      "gitBlob": "8c4e20f4f54a25c6e3356b85d4a96a48421d9c8a",
+      "sha256": "3ab04a34c1a4a65f3167c58a8396211435ff3228ad7622dc201ebd122ab5c548"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowStartupGate.h",
+      "gitBlob": "68fc90f7f8a4ea0ab337d7e75b75e07a5412997d",
+      "sha256": "1fd6dda1f7b10e88968a1d21ee5db357bdfbe54da89e724e7d996dac43181ed8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTerminalExecution.h",
+      "gitBlob": "33258986c31b2e6ae3af17b8553030482a83aef7",
+      "sha256": "3ff7e1f149090c9869844de9059cc6829bdbf104d93bba5f13dcd09e4f4a08ce"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTerminalRejection.h",
+      "gitBlob": "32ee53f7a29e8784dccdbffef692f0c8c6f001a0",
+      "sha256": "7f61cbf93e9958a93987d7cdc792d5d1137e1b28057e07cd0122c9c661985221"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+      "gitBlob": "665759448acc3b552a470e56115ea7185b232a77",
+      "sha256": "6d33d1944d9e7cf48a6fbe53010d679edb8b60ff5d1475f4a19df4e947e4554e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTypeKey.cpp",
+      "gitBlob": "6b23b4bad66e9a8f36c68717ef82626351018624",
+      "sha256": "3a0df0727e57946eb6c9d8d65f6fcc5d350ddf55d760dabc906a5705307685f4"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTypeKey.h",
+      "gitBlob": "306ef080f762903e9b7c732adcf19f9154633c71",
+      "sha256": "6661404a6298516df4559c82897a7ecae3638a1b1ee4007ca06b6748d821d1d9"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTypeResolver.cpp",
+      "gitBlob": "9e60796f3080250033cfc47e740f20eb4db6f3ce",
+      "sha256": "825755a0379df3f83b6e7386adabc68538ac8c7b83912c2d4596812bd479284f"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTypeResolver.h",
+      "gitBlob": "b852216f02b53ee908eee773074f25ea6eede6b6",
+      "sha256": "eb6e24fc3f7068b1137e0891d4d87819cc484b74ac717cddc0f3d38b50fa42cf"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTypes.h",
+      "gitBlob": "6d1379bc33300e4682468705942721d355481ca7",
+      "sha256": "df149952bd8beefd0ee6580f337262f28614c43f7eb695554a3a284eca1a1257"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowVisibility.cpp",
+      "gitBlob": "1469a44b51ce0adb8d0e98dffd0ac66a0d107aaa",
+      "sha256": "4bae387bdd6917da03a74e4539207a1da54e0f071b607b46e499d9c170df8bb6"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowVisibility.h",
+      "gitBlob": "0e94c3d478cb6c1cdd80fd84f684b91e680673bc",
+      "sha256": "e8a276f6ff474986fe769122df08d039b4c4544258aa29e6cac2ca1f5572bf7c"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/CCW.cpp",
+      "gitBlob": "331f57dfa9c25df515fc4bce42dd0a532d6ad00c",
+      "sha256": "0899300bc570b07d0ada6a5fadd6642dced37265f8893cb12bf88a78c4a07404"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/CCW.h",
+      "gitBlob": "27ce00a6ce513eec8b9c1ea8007c2603b9fc6f4f",
+      "sha256": "320b9ea4942c64c414837b5687109ca612fc6fe353c2a728d18f41cee1e86a40"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/CCWBase.cpp",
+      "gitBlob": "7f00d0ed133beb87e9d1ff48bc5eaace0dd68414",
+      "sha256": "66b97ad53d2585514f19f4cbc22a278cba21d28811fdb8f3dac616e09750d2fc"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/CCWBase.h",
+      "gitBlob": "af0d3c97ebddd6cec9ebe07aa28ddb3350ff2275",
+      "sha256": "973c44aa6857c3f7a59b2dfbe4cf88011a2184a2c7c6a3d7f1affc29fa1a2896"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/COM.cpp",
+      "gitBlob": "28e0d0f20ebbe7ecd1fa7cae01e2eca55f2c8802",
+      "sha256": "9b8e15ed3ca4fc303efcc82474605a57683df7d4e73544163c430848bd59daba"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/COM.h",
+      "gitBlob": "959d58d055fab629f4cdcecbfc0b256f1879b11d",
+      "sha256": "1cb99e0d8f255ddd72285cd131e6ea41251aa925f50595aaf66814a09da50266"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/COMEntryPoints.cpp",
+      "gitBlob": "a8d540596b6500e771d6fa1b63c4d61cea593d14",
+      "sha256": "9376fe7f2cc48dbeb3aeaf14cec400f5baa9c41491e43eb6cae9e36466940b92"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/COMEntryPoints.h",
+      "gitBlob": "86de1ad9539047a987bf2fadecd7b0ddf0b27a1e",
+      "sha256": "c77a43f450e0406cdba498cad8d5af9f83e6609fe3e628b572421f2156015f3b"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/CachedCCWBase.h",
+      "gitBlob": "365d861ae65fde0ea5c5384ef57bc070d089aa36",
+      "sha256": "239cfafefdc5a5e073e272cff6ac0dc42c55faeea9c88c437a210bc20bb5bcca"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Class.cpp",
+      "gitBlob": "6c4b8c6a989181264abda7a28a4fd34db5a3ea8d",
+      "sha256": "d618543bf924a76b18e9e5ad5303b262d5f2757501e6da80066acd27234f184b"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Class.h",
+      "gitBlob": "d4d1253c90f77905aa38ae3341d7c367c5f0fec8",
+      "sha256": "e65569fa3c2c2a53e42bc56b9d48053d86df996542403355cf308f90244729d1"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/ClassInlines.cpp",
+      "gitBlob": "879929aac9a7eb61238fd432ad65f76d9af7db7b",
+      "sha256": "72f4a26433fb21ed62abbbf83e810606b259d7797d189426b5b41bd0282699e7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/ClassInlines.h",
+      "gitBlob": "ab279221367da53f00dc4671146574485ffa965d",
+      "sha256": "fac2c6b04451ee08f364b1989d06e5f73a20d93bf4dc6a000c7ffc2be7bce018"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/ClassLibraryPAL.cpp",
+      "gitBlob": "e7eb42b3d391a0c4180d63102ef328c80dce47af",
+      "sha256": "e207cc5dc6fa4fddbd4ec856c7b46e3514ea0a39bcaec4348a6bc0139f203115"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/ClassLibraryPAL.h",
+      "gitBlob": "253c1c1fb2bbe12a90185a2fa5939f24a2b1fe15",
+      "sha256": "8ef07fc2747f25f130bd8300f225820b551baf77f40b0371fc485d3eb638731b"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/ComObjectBase.cpp",
+      "gitBlob": "53a4507e464ed51ae4c8e836307df600d8cb2650",
+      "sha256": "40620d9422f3e853a2c4007b6eca7156c0b2b4c03451728bc3633fb62f68e8ee"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/ComObjectBase.h",
+      "gitBlob": "8589e0204f030586b1b733c103dc16e5e8493487",
+      "sha256": "ae6483aeda2a3794c6011d9d7eb4769e8fd5e8c67a5a5a63d3583319071b87f6"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Domain.cpp",
+      "gitBlob": "df85ec948fb6701c394197f30534b849ccb6d854",
+      "sha256": "49fa687b2415cbbbbe9bb47d0ca7f988f38600407172f30b31b6c596cc88f4eb"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Domain.h",
+      "gitBlob": "0516cbec2def984b8c994f1bd0e7f920b0b2dd2c",
+      "sha256": "c12c9789b6fb6f00a1c0a528118c32e55d4647986121386c571005145328d680"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Enum.cpp",
+      "gitBlob": "d90f31f08a1a67bbecb29d84a984c9f3053f2f6b",
+      "sha256": "99657cc1cedb11534aeeb3790c45dc4b74596de7e5c8ed78a01eacd22753cf49"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Enum.h",
+      "gitBlob": "e77585f05138e538db722e18a844a2e7891b2b59",
+      "sha256": "1105443e1761a4dadea2b03b66d855eb4640e6790155cd635b54ba2f1daf6525"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Event.cpp",
+      "gitBlob": "80f8cab62e4b562ced419c150db243935338fa0d",
+      "sha256": "1c2ea97c5b149a97986f30950583cd8b79f24ced72ac7b057a7d3483c0847172"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Event.h",
+      "gitBlob": "0090bb90c694b4deccbb44fbc622dbca31303303",
+      "sha256": "8d46ef86f754eef9bfc4c4275b698a29a905af8efa185f87fac62f367dc067b2"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Exception.cpp",
+      "gitBlob": "67381ab5bf85efd99830d56ba46f6a2b11bbd537",
+      "sha256": "4d1d995da190513fcb49d83fa9a37a1cb8345af9aa32430ac4f20ad86c161bc0"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Exception.h",
+      "gitBlob": "ee74f01a5cd3ef2589223e31ec77e9c4aee80a2c",
+      "sha256": "039a00f40c38f8a40b784581675c872443d286ca801162b2d94c68bb2555cd48"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Field.cpp",
+      "gitBlob": "aacbb3995a4e845ef993e45d2ba559ad87fed836",
+      "sha256": "acf8e29d073bbc25d9cdd16a6051a2af394d99d5a58c4e7984dafdae306a7ed5"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Field.h",
+      "gitBlob": "05c10acdd392d4a8f3850ca364d4c3e52ca44df2",
+      "sha256": "24827f14d99aec185a6fc00c14cd8c5342cc01c56d4ce1049039e91c01fb9589"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/GenericClass.cpp",
+      "gitBlob": "c152936d94c5fb76f29f5897d16e83fcf89ac4d0",
+      "sha256": "ed7c59632706087ea9349c25c002471010570b769dd39278adc170d584e73730"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/GenericClass.h",
+      "gitBlob": "57233f1f57ced38d0d0ae6a3d8ccfb6d10aede22",
+      "sha256": "2cf9f69d9cbf88aa1bd043461dfc4093961933ba3d28b54cfb5a1f5ca4bbdf94"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/GenericContainer.cpp",
+      "gitBlob": "0e1dd6e0c4ea5bc2424ae2cd464ab5618c17c524",
+      "sha256": "11cbafbb6ab240dfb9fe78f2defaa9eacf324bc4374624b7ca67fcf71d46840e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/GenericContainer.h",
+      "gitBlob": "c97a5a71d1a2f93b4e46f1424f547c12b88a3382",
+      "sha256": "44a5be7e566172b85452e8744dcfd17f08661159e364d51b66e50f1cfbde416d"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/GlobalMetadata.cpp",
+      "gitBlob": "90a9da38496b316becc3c771be0cd29f8bbf7e7b",
+      "sha256": "a2012ab491d3838e08f043529348e3f69b7a04b5bcf020192703f07cc6c60c7e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/GlobalMetadata.h",
+      "gitBlob": "426af4f3c43a2b7ec1c6edf3ec297e6b9e7968a7",
+      "sha256": "c3ab6e02660879c488ff44db49b0b21cdf24e18e990b1a5847106774d6f4a9b2"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/GlobalMetadataFileInternals.h",
+      "gitBlob": "c36d15775854889c6ee3447956c4138c604577c6",
+      "sha256": "78e48e0328b75ee839ae5532ccef00d41334385c3ec905bde338ff4cf3967a13"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Il2CppHStringReference.cpp",
+      "gitBlob": "4596f0bde187309335be74ab92e88a50d25da379",
+      "sha256": "f78476fc9d36c3028e5050db38313eeb10c8a640a5283c8a5f25aa1e3100cbdf"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Il2CppHStringReference.h",
+      "gitBlob": "f7b5bb5b143fca0c48feceb6d33d01376120875f",
+      "sha256": "8e31337955a7d4097b66263bd48de7b4a30f5f536e886f594af5dac94f9c0bb7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Image.cpp",
+      "gitBlob": "cc7060b6a09468d81b86d47fd6d1bf0f9e50ee1b",
+      "sha256": "7dd6d6e8f8ab136d73e0c7bc4db84466e15d2d4586f1ae4ab1aed7ae101340f4"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Image.h",
+      "gitBlob": "1908aaf52571994f2c44fc7319bb2306a425b900",
+      "sha256": "8b64057260779b58a054039a2e0cfb1d7f38db991712fe6d69b8bf45874bdc33"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/InternalCalls.cpp",
+      "gitBlob": "a6f3feeffa594efb2055bec9fe48b99995befe69",
+      "sha256": "961e98965e0bde8ab0a91bc805840f76af507fd84217a1a1537a3032729d6b46"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/InternalCalls.h",
+      "gitBlob": "4f9fe221e8cc13d0360ed8fefe0e6342958e9c62",
+      "sha256": "f5a547cc894f2bacaa5106b569289b88196b07d3d7f685bc23e36da3ca88d64d"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/LastError.cpp",
+      "gitBlob": "6eb3a5ccfe05acca2aaf4160709f408968b1ec73",
+      "sha256": "3a4372f9d71e8e05d2975b22e6967537a5141fa313d2823dd70e3759daffc181"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/LastError.h",
+      "gitBlob": "1daeacc66ebb0758bdf09ef361f0f6d478541c60",
+      "sha256": "b3f9b2e9f272c7d442ad04d3e1039f2736947634bdd4febb2ec16aa27f3d378c"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Liveness.cpp",
+      "gitBlob": "52e36a62589b49535c6c5f1727b416daf5356822",
+      "sha256": "4b6083d2958118378545494416e25fe03692cc811ac992815e9049a23e850136"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Liveness.h",
+      "gitBlob": "61255f7f514a10aaa07d11831c5b8c31d5f19384",
+      "sha256": "25de5a91e0c1911f496d7517ba5e31a6cc4e210cebef970d1efe1a8cf847c5ed"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/MarshalAlloc.cpp",
+      "gitBlob": "7439d6da6068c9f1ca740b679bb83f05da8a7e6f",
+      "sha256": "c685f0f9994b0db2d66547dca83988a3f18121d5ea11dcdbd28e2499bd38f426"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/MarshalAlloc.h",
+      "gitBlob": "dd80fde1b46546e3167869594602122e7b66c1ee",
+      "sha256": "c1215dd070bdd457c766c92fda395e3a9ce70aaa344c78f5538fc894d4360113"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/MemoryInformation.cpp",
+      "gitBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6",
+      "sha256": "d931cb385852c7b4aa56bb447bcf87ca991d7a51136bd16a16a180c041828248"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/MemoryInformation.h",
+      "gitBlob": "0bb33b091f8404b17797ba59a408231e47f95639",
+      "sha256": "39832c257466fe26617fb6f3450b1f85c749f0828b8f6503a7c23efeb783ce40"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/MetadataAlloc.cpp",
+      "gitBlob": "d7b15f1b4e3f1e43128816a84fb09c5b1197aeb6",
+      "sha256": "6b8c8f725b129b7969114d03aeec3c11d7937d0a6efe10d08782dcc89b436022"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/MetadataAlloc.h",
+      "gitBlob": "ef570aed6b108a8027d2af0ac530928ca1ec9edd",
+      "sha256": "4122bb41b0f26b0cf00651fc8b2ac61ca3eee7f13c2a55a2578696b8b06b045a"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/MetadataCache.cpp",
+      "gitBlob": "b9a9881c6e6a551c19069446a9be61c21f4c8584",
+      "sha256": "519d8df12fe38253ef63c2cdc3dcb6daf1547924377aefe7aed403d207250c35"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/MetadataCache.h",
+      "gitBlob": "2e0c80c82cfbc2a13e04589fe4bc2a85336c0a97",
+      "sha256": "aacb84830bf69e85712e0f87ace2ac50e9afbbfa05755d7fb1a330bf23c0c661"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/MetadataLoader.cpp",
+      "gitBlob": "e25a7810bb4b9d9101ced2981f3360b997579b92",
+      "sha256": "39402f1c6d4c7f6e4be5f5b47c1b55223d251da0f189612a9301a597ff35ec98"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/MetadataLoader.h",
+      "gitBlob": "dd760663b02901b8866630ed7b26d6340668d02e",
+      "sha256": "e221ef99bf6480d1e3e260c01986ff1ec1a988e0d217c396e913f4712aa26526"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/MetadataLock.h",
+      "gitBlob": "1fa1cf7f8cffcf806b435f878ccf4b332d7eb211",
+      "sha256": "15c28fd58ecd2f309f696efd2f051468f552502a984ec100849da48c0b91e037"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Method.cpp",
+      "gitBlob": "33987431f46a2fa7d7f62019074fd86999d89e25",
+      "sha256": "a2b51e8d3c3242d231ea594fdfde2d14a3680bf5f013fb4c0a5d2d86755984aa"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Method.h",
+      "gitBlob": "e4c3aba3ee6135b55aa43029377af23e13d610da",
+      "sha256": "7a62c950bc334c16b73603e49ed650443ec0a00e3b3fa7971e48f5cd4fdd257c"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Module.cpp",
+      "gitBlob": "d87a854b6c4d41f0b0cee5ca72ec885e8aaa2b4d",
+      "sha256": "a174cfe4d36a3f469cdb3d5b68739b4fbf0c39323dfd01954b9ff16dd7600448"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Module.h",
+      "gitBlob": "080c8054bf14f0690a02cf1aaa53ec0feb338cf6",
+      "sha256": "7b5135009257f260aaff1455111d049b8715732d24ee589b318c5a2607f27a65"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Monitor.cpp",
+      "gitBlob": "7ccf892e8a04120e59adb45fbcc933bf50834472",
+      "sha256": "d0a0d303ad7c53e18566efda4eb12b5282c9348dc4d9914a7a57316001fcc297"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Monitor.h",
+      "gitBlob": "0468a9cc76bc58cf7b8cf8d11b8d4b49fd898408",
+      "sha256": "b6b1f68dc6f098ccc51bba6698b80a928c829f2598a38c8022a0d4ca25fd41c1"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/NonCachedCCWBase.h",
+      "gitBlob": "866465980463cb076c542b7faccce8563efe5d8a",
+      "sha256": "d71c6c9c699e2098d48a6b023a64a972519be3e2b5a2e6abfb18eb42f2d53231"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Object.cpp",
+      "gitBlob": "0f380851eebb09cce92e1c31a4eac1d489a7128a",
+      "sha256": "f8cdb18b4e4f139fa9d58e68204ad9b0fa0999f782d4870ad6a56e8f4ab5bb15"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Object.h",
+      "gitBlob": "6c4aa7430165f37807798e1fe240dd8477a50d2e",
+      "sha256": "4da6b40d5f9619d579b34acb80dce83ca11d3d6d1588f881581eec241ea230da"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Parameter.cpp",
+      "gitBlob": "b9f72ae2494400e34f76c6c02868782a4b04caa9",
+      "sha256": "dcf2e7c83c0a6f3409bb837bcb6a368c34d2225fcf10d1c75a34caeca168e67c"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Parameter.h",
+      "gitBlob": "3fa42c05983a3f697d6122fb26a76dfb0ed64e9f",
+      "sha256": "c1671fdc61a928fac5e5ae5b90598773459bfd3e12ad02c79f17bf558dab594e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Path.cpp",
+      "gitBlob": "e8eab2c619acf594ad4f268ef22b4fdb50c1c3fb",
+      "sha256": "c9350415c120127666537cdd2348c3036d02351077dc5ec05528daa47df0e06b"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Path.h",
+      "gitBlob": "fbfea54630109c4a5b4a8f6473ca0644f2e91bfc",
+      "sha256": "3bc09c1b2759498d815a68836391823300139b6a9e8306d4a23388812382a64e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/PlatformInvoke.cpp",
+      "gitBlob": "eef0980afffa18291607d223d27dc8e3d1c98a77",
+      "sha256": "ba866aae1a70585e6f6b83bae984597090271d07872853de87668a9412543901"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/PlatformInvoke.h",
+      "gitBlob": "f877bca1a4066960737ebb1e5c68eaf2d8c76e70",
+      "sha256": "d0139208858a9d39fd68189696ebdcbb7d732a439f5a4f4fe8245ec851b4152c"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Profiler.cpp",
+      "gitBlob": "2fc6ab9321d4390560f0496e8d09463f3b30eeca",
+      "sha256": "7f4a73bc107d0ab6cdb3d5ed0247f108d15d7ab1df386f6ad6a6417d5297f194"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Profiler.h",
+      "gitBlob": "3d749ab24a7752df9cece3980758122955132255",
+      "sha256": "1eb5b07e845208c55ccf0c270680895b69f6408e10d26433a6090f8484ebc8ae"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Property.cpp",
+      "gitBlob": "8bfe854e4b6e3f285a3d6ebc83f0baf3db84128e",
+      "sha256": "9e98cfbd59c34bf5938dcbbf8ba13047fccf2eb60b9d08d7285631fc45ffd4b4"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Property.h",
+      "gitBlob": "34ca2815961b4e7590fcd71ca7ecb48d93bc7ff1",
+      "sha256": "cb158b31f5f4c987d17b4537792dc6d9eb190ed2fcd35cd54e3069a60eea5474"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/RCW.cpp",
+      "gitBlob": "402c15589c8d64cb186daddaac8ab3293f325eb3",
+      "sha256": "d292efdf5886f95ed198094b666cbee46e397060c8d540ff7bb7ce46bc3e6b86"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/RCW.h",
+      "gitBlob": "8d9c9be97efbe758d60f5677e6d2a41d07a6b485",
+      "sha256": "6c0be9cc9892a2cd5c3afde6f65126db19562923a384157c8933da50b98959c0"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Random.cpp",
+      "gitBlob": "ca72c03070f6d59786319cb9bf300f2c7a5b8a99",
+      "sha256": "846fc8ac4c041e271697aea4b51f30cc3fae3f1d0a1719db19f742c933b2b87b"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Random.h",
+      "gitBlob": "2f4788073a1cbee4737827a506b0613a2e2e1665",
+      "sha256": "25e060b062c7c5cec9b5592061d831e0e0733408140600d4e5fbae628f5bb6bd"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Reflection.cpp",
+      "gitBlob": "b3bb24b448f263a172edfb7bf3e402fd417d0e1c",
+      "sha256": "7b6f27e1c21abca47be747665a95a13eb5bbd72e3c63d9a496aaff3d31428dc6"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Reflection.h",
+      "gitBlob": "0f101b95a2e9107c457ce6225a095e2f5749c2be",
+      "sha256": "e83b0a82da83d386272802923185949629757c11592c1ca852f7f379074f87b5"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Runtime.cpp",
+      "gitBlob": "96b914fbeb31c69d649e4076a802de0b6418daa8",
+      "sha256": "f88e1c2165ccc5f723c40b71b6e85912f1be45fe12193106f4f022c250b1e454"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Runtime.h",
+      "gitBlob": "edfe387701f59918dfcc25e54bf6ab7554d293ac",
+      "sha256": "3fcc727340955108797c12e31ee935359a9eccee54bbc9bc0a50debc55e81220"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/ScopedThreadAttacher.cpp",
+      "gitBlob": "74c4a1774730036027d9dbb38f81b843cd5da6b3",
+      "sha256": "51144e8d20fb4079a0c8ce6ee03bce0b5ea50d2b769a88f77ca031899df013ec"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/ScopedThreadAttacher.h",
+      "gitBlob": "d5714c1c82fb5bed480d119fa9f6c6593a537185",
+      "sha256": "d4828e7a5c0c4a453798e271a317d8a0742a853dc89210037b39396a7fece0a0"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/StackTrace.cpp",
+      "gitBlob": "8758e300dc3ab9e4ac6c94aaaf24d3c155865928",
+      "sha256": "a16eecb0d3d69654467eb16b24d45da8e3d6f65fc3ce990dacea3d54f7228200"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/StackTrace.h",
+      "gitBlob": "e45a67bff2f0fcdacc40158b66fa65065d14012e",
+      "sha256": "b711c30573e1a415ecaefc12c4db64d823bdf7694a1de186354df0a12edfde52"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/String.cpp",
+      "gitBlob": "80139b666c798305f41486c5c70c1a41854139c4",
+      "sha256": "0662d5013ee4f9adacc75a8afa19c0f392693daf1dbb8a84767a833279a5b62a"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/String.h",
+      "gitBlob": "aaf8f91d815fce6172e75a9d95c021eb7e8d03e5",
+      "sha256": "a6a79ec4e6b9af3efc907af65787b9430ad9f30ef602fcbb767a9d9c4229312d"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Thread.cpp",
+      "gitBlob": "b02c1c8121b64084d1a12e0acaaf1947ae7e015c",
+      "sha256": "bc015b807e9fe918b11bd9d501b380d1fd25a6c0968cc77a677c61f3eb747819"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Thread.h",
+      "gitBlob": "63b596b42d84d40618a92a5c973ecdf595e03c75",
+      "sha256": "b84999681c2bae0958fdca884917b1378a3396278bf0086491b8d45d33ed019b"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/ThreadPoolMs.cpp",
+      "gitBlob": "2cdef76d652613d6f24e8b1e8eba28b15703c80d",
+      "sha256": "3a306898acd6c338e9d6b0a8495d56c6a7e18b0d4916f7179311de57cb413364"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/ThreadPoolMs.h",
+      "gitBlob": "47a7b248cc8785fc064a4498a78dc6d73298be4e",
+      "sha256": "4ed0c0789a218c54267b02455a4956f3eecf93a0c219930779fde1b0f8e97fc9"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Type.cpp",
+      "gitBlob": "efb986c0846d8bde29ceb3bead46006abf7841b0",
+      "sha256": "9fda4734f73693467f0bf6b77a1396421059f3d121970fef75c62b3a175fe2b8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Type.h",
+      "gitBlob": "c4837888a0c97effcfa515ed00d60e9abe3fc162",
+      "sha256": "439bbae11d43c41cd76110f6b4611a9525f98b2ff0196ee02125794dcc6e69f7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/VisualizerHelpers.cpp",
+      "gitBlob": "ca6623437ff0acc419cc8e2ee72ba8b7d3f8db30",
+      "sha256": "16d81a4bea58812eed3533fa6fc0bc747bf67136a04b2c5ca4f46d0b2409b6f9"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/WaitHandle.cpp",
+      "gitBlob": "8ff86acc6af845e989606911d2e75908fc7425d1",
+      "sha256": "5251a0e41aa927c17f4a1ca53df3b2dca03cced4851cc986e5f8125b3c2a52b1"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/WaitHandle.h",
+      "gitBlob": "b9a54c798575f3138744205968bc31b602a2709c",
+      "sha256": "672a2b2eacc9a4a05f5cd89801bb65d1ececada3806af1b04d42ecbed0059671"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/WeakReference.cpp",
+      "gitBlob": "915e73ceaa075f4c4d7901903c568c3840d2fe84",
+      "sha256": "fd54fef40dd26dfc6a732557be2233acd0795f73cf874e415a571810fbff0da0"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/WeakReference.h",
+      "gitBlob": "3fb165fe489260bd0115332c8053c81d0fa08a19",
+      "sha256": "455c289280a4d2b248ecc8a5d91f86db9ad04c0cbddafa7f69d5ed512c998fd4"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/WindowsRuntime.cpp",
+      "gitBlob": "d8647ccabc22154bd62eb287589c296c0a35e45f",
+      "sha256": "b59de705bef5ad3e9b29bc467ae4565eb312588902323a1fbb13ccba7919e0a5"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/WindowsRuntime.h",
+      "gitBlob": "32142b36fc81e1759b3c66a6d818f723cd0f85c0",
+      "sha256": "ede37de32ef9f049adb04edd9111baf2607cfca46b2edc4a179cb498908e04fc"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "tools/r03/diagnostic_stream/bounded_general_composer_fixture.cpp",
+      "gitBlob": "4733d181cc1136ed3fb4784050f0298dbed50397",
+      "sha256": "8a8c84056b1e5be5c18d7f23131fad8825774e14ce47734c1e6068877a7480d3"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "tools/r03/diagnostic_stream/bounded_general_live_fixture.cpp",
+      "gitBlob": "ad919ec0ab53baca381b4f965d0d1f51ac6bb8a9",
+      "sha256": "36ea04da1cf9c543425e4c2c0124b7a1840ebb36984e42c1ae4a3668aeeb03a7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "tools/r03/diagnostic_stream/cxx11_unity_compat_fixture.cpp",
+      "gitBlob": "9ad06a5fac43f620268895a9ada91263ae27d20e",
+      "sha256": "8ef121ef617140bb88bf7e53bfa89bbd2d204bc7b17d17b2ce83fde6a534ccef"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "tools/r03/diagnostic_stream/empty_live_fixture/AssemblyShadowFrozenExecutionRecord.h",
+      "gitBlob": "6bfc4009e9b53d77856c628ae59a721d2c5a0a4b",
+      "sha256": "f0880e0829c8cadecff272c0dfd2bcbe8c5768a6863b6e6215307e40703f2f96"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "tools/r03/diagnostic_stream/empty_live_fixture/AssemblyShadowMetadataLifetime.h",
+      "gitBlob": "6bfc4009e9b53d77856c628ae59a721d2c5a0a4b",
+      "sha256": "f0880e0829c8cadecff272c0dfd2bcbe8c5768a6863b6e6215307e40703f2f96"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "tools/r03/diagnostic_stream/empty_live_fixture/MockRuntime.h",
+      "gitBlob": "a7c4485a804efb0f65d60d542fb5aba34c43bcb0",
+      "sha256": "cf1a597d1d1130da7d0fcf8688891144d047a2201a658659de0e0839eae6c2fc"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "tools/r03/diagnostic_stream/empty_live_fixture/fixture.cpp",
+      "gitBlob": "e8e73cf62edf30cddce706484714091554de9547",
+      "sha256": "a51a84385e644a4884f6f3b1592c7981ecdc369e992808e2cd9e6e80caa7d62c"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "tools/r03/diagnostic_stream/owned_physical_names_fixture.cpp",
+      "gitBlob": "d7f3a2edd7bc4f82a3954cb16ba0fdecd0594f83",
+      "sha256": "08ae959317b9051c0a03b94c08bcc9794e6345de2c37dfe36af590fda0452297"
+    }
+  ],
+  "jobs": [
+    {
+      "run": 41043686073,
+      "repo": "night-outlook/il2cpp_plus",
+      "job": 124022396866,
+      "name": "cxx11-compat (ubuntu-24.04, g++)",
+      "conclusion": "success",
+      "executedCommit": "6510aed7cab67e9fc70b13ae22a115ad9819193b",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-E-CI_LOG-124022396866.json",
+      "logSha256": "a7819e593de70fda74bf1b211afedbe4bb51ed63285ad1505910b491c329257e",
+      "testCounts": []
+    },
+    {
+      "run": 41043686073,
+      "repo": "night-outlook/il2cpp_plus",
+      "job": 124022397060,
+      "name": "cxx11-compat (macos-15, clang++)",
+      "conclusion": "success",
+      "executedCommit": "6510aed7cab67e9fc70b13ae22a115ad9819193b",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-E-CI_LOG-124022397060.json",
+      "logSha256": "babc4ca32cb21829f2569f4ac923014f65f7f73b23fd5679e9cbb76c26808e0e",
+      "testCounts": []
+    },
+    {
+      "run": 41043686073,
+      "repo": "night-outlook/il2cpp_plus",
+      "job": 124022397209,
+      "name": "cxx11-compat (ubuntu-24.04, clang++)",
+      "conclusion": "success",
+      "executedCommit": "6510aed7cab67e9fc70b13ae22a115ad9819193b",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-E-CI_LOG-124022397209.json",
+      "logSha256": "654c818b57f03f79e19e25a2fca02e68e6cba93c83b455f6d044bb8bb9073365",
+      "testCounts": []
+    },
+    {
+      "run": 41401796082,
+      "repo": "night-outlook/hybridclr_demo",
+      "job": 125135007474,
+      "name": "43 changed native VM source SHA contracts (ubuntu-24.04)",
+      "conclusion": "success",
+      "executedCommit": "d802632594321f431716e636ad41c68d1f667c7c",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-E-CI_LOG-125135007474.json",
+      "logSha256": "07278f38de67da368efc23aef28b2f95a57589657c6a5713a84556f238552bdc",
+      "testCounts": [
+        12
+      ]
+    },
+    {
+      "run": 41401796082,
+      "repo": "night-outlook/hybridclr_demo",
+      "job": 125135007849,
+      "name": "43 changed native VM source SHA contracts (macos-15)",
+      "conclusion": "success",
+      "executedCommit": "d802632594321f431716e636ad41c68d1f667c7c",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-E-CI_LOG-125135007849.json",
+      "logSha256": "3e60036ad063271b22cae5918900c9ce770614d92ccf22e5a03b5e42ca3ac57f",
+      "testCounts": [
+        12
+      ]
+    },
+    {
+      "run": 41401796096,
+      "repo": "night-outlook/hybridclr_demo",
+      "job": 125135007281,
+      "name": "Current native/IR source-only (ubuntu-24.04)",
+      "conclusion": "success",
+      "executedCommit": "d802632594321f431716e636ad41c68d1f667c7c",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-E-CI_LOG-125135007281.json",
+      "logSha256": "dd41495248ef7be46eb63f2aefebb4d767c69c99dde6674a56999635b0d76f9b",
+      "testCounts": [
+        20
+      ]
+    },
+    {
+      "run": 41401796096,
+      "repo": "night-outlook/hybridclr_demo",
+      "job": 125135007541,
+      "name": "Current native/IR source-only (macos-15)",
+      "conclusion": "success",
+      "executedCommit": "d802632594321f431716e636ad41c68d1f667c7c",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-E-CI_LOG-125135007541.json",
+      "logSha256": "c9e2779f654ea35a2bf50b35b700c121c736eb585f480126d1b2a429c6d1f14b",
+      "testCounts": [
+        20
+      ]
+    },
+    {
+      "run": 41401796097,
+      "repo": "night-outlook/hybridclr_demo",
+      "job": 125135007394,
+      "name": "Preflight/oracle/VM/dispatch tests (ubuntu-24.04)",
+      "conclusion": "success",
+      "executedCommit": "d802632594321f431716e636ad41c68d1f667c7c",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-E-CI_LOG-125135007394.json",
+      "logSha256": "bf14b9fb5a0abd80c2e365466dfbe3a1798e3a2481337e1547696a18717f37d9",
+      "testCounts": [
+        8,
+        20,
+        15,
+        29,
+        23,
+        31,
+        20,
+        27,
+        12,
+        30
+      ]
+    },
+    {
+      "run": 41401796097,
+      "repo": "night-outlook/hybridclr_demo",
+      "job": 125135007677,
+      "name": "Preflight/oracle/VM/dispatch tests (macos-15)",
+      "conclusion": "success",
+      "executedCommit": "d802632594321f431716e636ad41c68d1f667c7c",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-E-CI_LOG-125135007677.json",
+      "logSha256": "e5b01a96dd300997238fcbbd8623f3695e8f5efee5579a149cb3e7c31dd90030",
+      "testCounts": [
+        8,
+        20,
+        15,
+        29,
+        23,
+        31,
+        20,
+        27,
+        12,
+        30
+      ]
+    },
+    {
+      "run": 41401796170,
+      "repo": "night-outlook/hybridclr_demo",
+      "job": 125135007651,
+      "name": "original-and-ir (macos-14)",
+      "conclusion": "success",
+      "executedCommit": "d802632594321f431716e636ad41c68d1f667c7c",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-E-CI_LOG-125135007651.json",
+      "logSha256": "402396d501024f6a56551a4c2024a42fc79d5f9cd6897917128cc4756710b95d",
+      "testCounts": [
+        16
+      ]
+    },
+    {
+      "run": 41401796170,
+      "repo": "night-outlook/hybridclr_demo",
+      "job": 125135008061,
+      "name": "original-and-ir (ubuntu-24.04)",
+      "conclusion": "success",
+      "executedCommit": "d802632594321f431716e636ad41c68d1f667c7c",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-E-CI_LOG-125135008061.json",
+      "logSha256": "e86fa3a80424b1bb11e9a9d0e7ccec3cfa38f48385fffe8582d61f963b8d6a51",
+      "testCounts": [
+        16
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "os": "macos",
+      "receipt": {
+        "artifactId": 13120939483,
+        "runId": 41401796170,
+        "source": "d802632594321f431716e636ad41c68d1f667c7c",
+        "zipSha256": "f25168cd0fef632eed1b3ee83970fc3ec132139251be7ca3ceaea58e59fade36",
+        "transport": "Connector short-lived artifact URL, curl normal TLS verification; URL intentionally not persisted",
+        "strictComparisonJsonParsed": true,
+        "trailingRealLf": true,
+        "files": [
+          {
+            "path": "artifact.zip",
+            "sha256": "f25168cd0fef632eed1b3ee83970fc3ec132139251be7ca3ceaea58e59fade36",
+            "bytes": 6242
+          },
+          {
+            "path": "build.log",
+            "sha256": "565d487c34f87fb80f68cb4a2d24505ac8263fa3342b524dc7341bf9a0da9ac5",
+            "bytes": 345
+          },
+          {
+            "path": "duplicate.exit",
+            "sha256": "e726b440cc164001999e718b51780d80314709efe06e7857282377be9111127b",
+            "bytes": 4
+          },
+          {
+            "path": "duplicate.stderr.log",
+            "sha256": "0b3dc996cd36d9e7f371059951904a976856398f907fed216fe4f0fa0d15572f",
+            "bytes": 406
+          },
+          {
+            "path": "historical-differences.json",
+            "sha256": "bed8d4b206cbce2ba39302e9b175e51c2d986d149b276a7c80626546cdc66216",
+            "bytes": 5555
+          },
+          {
+            "path": "ir/ir-target.json",
+            "sha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+            "bytes": 581
+          },
+          {
+            "path": "ir-repeat/ir-target.json",
+            "sha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+            "bytes": 581
+          },
+          {
+            "path": "original/inventory.json",
+            "sha256": "c95a29c5a8b3fb1f04ea950f98526ba0bcd6054cc09c62f589ad32550791f185",
+            "bytes": 4610
+          },
+          {
+            "path": "pinned-target-verdict.json",
+            "sha256": "51be11142e8ff80bfa3e727d56fa2f881b56db8a3bb6e1eb25759d869f9c9815",
+            "bytes": 1020
+          },
+          {
+            "path": "verified.json",
+            "sha256": "59c143edc1b0ce6e7dd02e067212e5ea03e43bbaeda472cd8932c075a5d9a7a2",
+            "bytes": 740
+          }
+        ]
+      },
+      "comparison": {
+        "result": "PassedStructuralComparison_BinaryIdentityNotClaimed",
+        "originalSInventoryGitBlob": "0688bd2dad054bd59fcdd1564a050a398cfa14e7",
+        "generatedOriginalCount": 15,
+        "matchedPathAssemblyRefsAndSize": 15,
+        "differentByteOrMvidCount": 15,
+        "differences": [
+          {
+            "path": "baseline/A.dll",
+            "differences": {
+              "sha256": {
+                "current": "567a430372f8e7fd686959add78f3a499eb5d81978f6cbe88e1d23a316be09f5",
+                "originalS": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6"
+              }
+            }
+          },
+          {
+            "path": "baseline/B.dll",
+            "differences": {
+              "sha256": {
+                "current": "7106764517f15631ebba5d062184666a3dff18e8e3111426e6c68d00d0d8860f",
+                "originalS": "7aa63a4c814eacecbb633b06d687b9a28f97fc73ddb577e73bb6444ac2669a2b"
+              }
+            }
+          },
+          {
+            "path": "baseline/Layout.dll",
+            "differences": {
+              "sha256": {
+                "current": "711972c6992a29d3589325b00c84a8a475029f86fa2eed8418e5f786d601c38f",
+                "originalS": "3adcc44417c6f9c9f0a2a2c255b020746ff24c598dfef67e64f120dea4be13f8"
+              }
+            }
+          },
+          {
+            "path": "baseline/Methods.dll",
+            "differences": {
+              "sha256": {
+                "current": "f965c540688c7ed430d08e3fab2c64d072382eb49a3c8b9d8b138dcc6ea433de",
+                "originalS": "56af53c3165cc28144095b4aa08d2dfbaa5403da2a40c1137114f1e0e9cf3ce8"
+              }
+            }
+          },
+          {
+            "path": "baseline/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "4b0174cd-99dc-4565-83a8-255260ce62d3",
+                "originalS": "bdf34429-3668-4324-9ee1-3a53dd479b6e"
+              },
+              "sha256": {
+                "current": "a41124e79024b74485aea36305da5e433b81caf371643377e0ebda8ad9f53160",
+                "originalS": "7627f977735e56e029d1d823bea46d2362134bd9f01c3086cca9c1afd7c9096e"
+              }
+            }
+          },
+          {
+            "path": "interface/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "cf5d0238-30ca-40db-ab6d-76bed4d0fdb6",
+                "originalS": "4155879e-eebd-4957-8781-3b8ccd3bbf4c"
+              },
+              "sha256": {
+                "current": "8cc93e93a408f04d427ff3ae87fb4b51bf3b1b461af6cadcc6cdc8fdcd8a1220",
+                "originalS": "736f525b05694a577dc2cc6b5d94d2ebe10954d53f51f71e87cc7c2d1297dd40"
+              }
+            }
+          },
+          {
+            "path": "primitive/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "3671af0a-9b61-400d-a60b-e29422c3cd20",
+                "originalS": "912ee4e3-7f1c-492f-a07b-6cb0692ad807"
+              },
+              "sha256": {
+                "current": "ad2f4bf7f1a5e226723588f9ad47b6a340d07cbc2ad0ccf90e20a88f25784ec5",
+                "originalS": "d189a952e9973a729b18e9791b808dc650f793817a19d89ab0e6523b3e444d36"
+              }
+            }
+          },
+          {
+            "path": "private-reference/Layout.dll",
+            "differences": {
+              "sha256": {
+                "current": "0ea12356da4452ab38065fe42606623751621b2c85d8d580bb851e1eba21e073",
+                "originalS": "76624b0cce75a1f282f6e7b8bebbd81192c3a6c2b698d9aedba4ab95cde6ee25"
+              }
+            }
+          },
+          {
+            "path": "removal/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "4131e35b-4067-4265-b0a3-c84783cf8d2c",
+                "originalS": "005ead2e-603d-40bc-9c5e-7db1a1040256"
+              },
+              "sha256": {
+                "current": "96c87a8f596c267fc33ac2df9e4b14da49146bc21382d1b871dc0f0498112486",
+                "originalS": "69e3334c6d74dff9013a362c1caa3a0bc9bb5930ac1b11265b9ea7c09ff02602"
+              }
+            }
+          },
+          {
+            "path": "reversal/A.dll",
+            "differences": {
+              "sha256": {
+                "current": "f8f289887ce7505c53b19524e490c0ff17721d500e3e780b586526c38bc818f1",
+                "originalS": "c13b628d870be6d2ddab6f5dcd78a27f529f9e446488036cd2c1c889a9346f69"
+              }
+            }
+          },
+          {
+            "path": "reversal/B.dll",
+            "differences": {
+              "sha256": {
+                "current": "fb50f10ae5d1f8a16ef981f8ff9df57cad148010eda6ff07e24396c4b9e35ee7",
+                "originalS": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d"
+              }
+            }
+          },
+          {
+            "path": "true-cycle/A.dll",
+            "differences": {
+              "sha256": {
+                "current": "567a430372f8e7fd686959add78f3a499eb5d81978f6cbe88e1d23a316be09f5",
+                "originalS": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6"
+              }
+            }
+          },
+          {
+            "path": "true-cycle/B.dll",
+            "differences": {
+              "sha256": {
+                "current": "fb50f10ae5d1f8a16ef981f8ff9df57cad148010eda6ff07e24396c4b9e35ee7",
+                "originalS": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d"
+              }
+            }
+          },
+          {
+            "path": "value/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "9225d1d1-697f-4624-b108-6c149c61da29",
+                "originalS": "3d1c0c74-a36d-445f-890c-0a1c6a2cbf36"
+              },
+              "sha256": {
+                "current": "397d9813e0866badd21a357466625a350c34fe07c2676d266e0cd98b8df9ca18",
+                "originalS": "fa1f7473db2655adcb2a012c0cb29d1181cbae21bc19020abf14d4c39772825e"
+              }
+            }
+          },
+          {
+            "path": "virtual-slot/Methods.dll",
+            "differences": {
+              "sha256": {
+                "current": "9c3b78992ca770e3ce812758a4c0d6dd8fa2ee49a8ad67f732e304426d9112fc",
+                "originalS": "c21598ce556646601cbbc55e80c0c4f42603d68ca8861d084b4b3fd748a4d144"
+              }
+            }
+          }
+        ],
+        "historicalSBytesReplaced": false,
+        "historicalSBytesRebuiltForLocal": false,
+        "historicalSArchiveAuthenticatedHere": false,
+        "runtimeAcceptance": false
+      },
+      "strictIrProof": {
+        "R03Accepted": false,
+        "ReadyForHumanReviewGate": false,
+        "first": {
+          "bytes": 2048,
+          "mvid": "597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff",
+          "receiptSha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+          "sha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd"
+        },
+        "historicalOriginalSIndependentlyAccepted": false,
+        "kind": "R03IRGeneratorPreLocalHostProof",
+        "net8CompilationProvenByCaller": false,
+        "originalRegeneratedFixtureCount": 15,
+        "originalVirtualSlotSha256": "9c3b78992ca770e3ce812758a4c0d6dd8fa2ee49a8ad67f732e304426d9112fc",
+        "repeat": {
+          "bytes": 2048,
+          "mvid": "597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff",
+          "receiptSha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+          "sha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd"
+        },
+        "result": "PassedPinnedFreshGeneratorBytesAndRepeatability_HostOnly",
+        "runtimeAcceptance": false,
+        "schemaVersion": 1,
+        "unityOrPlayerExecuted": false
+      }
+    },
+    {
+      "os": "ubuntu",
+      "receipt": {
+        "artifactId": 13121941328,
+        "runId": 41401796170,
+        "source": "d802632594321f431716e636ad41c68d1f667c7c",
+        "zipSha256": "34208c260f9253457ec5916d75478d837c4d00641c4f1335b977273e2942c5df",
+        "transport": "Connector short-lived artifact URL, curl normal TLS verification; URL intentionally not persisted",
+        "strictComparisonJsonParsed": true,
+        "trailingRealLf": true,
+        "files": [
+          {
+            "path": "artifact.zip",
+            "sha256": "34208c260f9253457ec5916d75478d837c4d00641c4f1335b977273e2942c5df",
+            "bytes": 6228
+          },
+          {
+            "path": "build.log",
+            "sha256": "a70f9773bc9e28cab47de5f1c4ee6dc389f51d72b487b853a3e26038c11e3c1d",
+            "bytes": 343
+          },
+          {
+            "path": "duplicate.exit",
+            "sha256": "e726b440cc164001999e718b51780d80314709efe06e7857282377be9111127b",
+            "bytes": 4
+          },
+          {
+            "path": "duplicate.stderr.log",
+            "sha256": "dc7f9824b861027ea7b8f894b3e5297d84c0d9d8438a969f78a6d09707ba403b",
+            "bytes": 404
+          },
+          {
+            "path": "historical-differences.json",
+            "sha256": "ed0254d5426d5c79ed721a20f00ac1770484701ef42af871c79a3c7bb07e56f0",
+            "bytes": 5555
+          },
+          {
+            "path": "ir/ir-target.json",
+            "sha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+            "bytes": 581
+          },
+          {
+            "path": "ir-repeat/ir-target.json",
+            "sha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+            "bytes": 581
+          },
+          {
+            "path": "original/inventory.json",
+            "sha256": "52d1eb7080003bf8f98d17c793290c6352e93c3789035c8b7bb2f51c098f7445",
+            "bytes": 4610
+          },
+          {
+            "path": "pinned-target-verdict.json",
+            "sha256": "5e15def55a8704aa5e394a0524d5c90d7a6098bd2c21af9617cb7b918450122e",
+            "bytes": 1020
+          },
+          {
+            "path": "verified.json",
+            "sha256": "937ac15619244f0f3b2eb86e039a6e8af1e00f56603d605364bc707ed410d618",
+            "bytes": 740
+          }
+        ]
+      },
+      "comparison": {
+        "result": "PassedStructuralComparison_BinaryIdentityNotClaimed",
+        "originalSInventoryGitBlob": "0688bd2dad054bd59fcdd1564a050a398cfa14e7",
+        "generatedOriginalCount": 15,
+        "matchedPathAssemblyRefsAndSize": 15,
+        "differentByteOrMvidCount": 15,
+        "differences": [
+          {
+            "path": "baseline/A.dll",
+            "differences": {
+              "sha256": {
+                "current": "b82c92d53e564feac760d82fb00c3c424b78df8ddc389ef2684677836ecb23d3",
+                "originalS": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6"
+              }
+            }
+          },
+          {
+            "path": "baseline/B.dll",
+            "differences": {
+              "sha256": {
+                "current": "34fed5dc2a66ee09d5a6dc1866f91e3829810ef19fa931481041e66b03efd851",
+                "originalS": "7aa63a4c814eacecbb633b06d687b9a28f97fc73ddb577e73bb6444ac2669a2b"
+              }
+            }
+          },
+          {
+            "path": "baseline/Layout.dll",
+            "differences": {
+              "sha256": {
+                "current": "5c52f57ed7e25fdc6cbffb50dcb4807528c48ee76f677d6f2e1796186e31d3a4",
+                "originalS": "3adcc44417c6f9c9f0a2a2c255b020746ff24c598dfef67e64f120dea4be13f8"
+              }
+            }
+          },
+          {
+            "path": "baseline/Methods.dll",
+            "differences": {
+              "sha256": {
+                "current": "c1e2dc1678fd33494f589881dec54e1d58c10c4123fcab7609bd0f317f1b8994",
+                "originalS": "56af53c3165cc28144095b4aa08d2dfbaa5403da2a40c1137114f1e0e9cf3ce8"
+              }
+            }
+          },
+          {
+            "path": "baseline/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "79ae7894-d015-46da-8539-e80c7f9eaead",
+                "originalS": "bdf34429-3668-4324-9ee1-3a53dd479b6e"
+              },
+              "sha256": {
+                "current": "3036d1b1fb38647061017c26edea3ca36e08742fad0a09d63fc5ca7e91dc64fa",
+                "originalS": "7627f977735e56e029d1d823bea46d2362134bd9f01c3086cca9c1afd7c9096e"
+              }
+            }
+          },
+          {
+            "path": "interface/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "b1e0f971-4896-4a04-8629-14a53e1c7cba",
+                "originalS": "4155879e-eebd-4957-8781-3b8ccd3bbf4c"
+              },
+              "sha256": {
+                "current": "c5e10eaee489bdea04f23222bfdf6477392693f5b808d3d90fad521b89bc9120",
+                "originalS": "736f525b05694a577dc2cc6b5d94d2ebe10954d53f51f71e87cc7c2d1297dd40"
+              }
+            }
+          },
+          {
+            "path": "primitive/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "028e5d48-2dfe-4411-b0a3-032213e98444",
+                "originalS": "912ee4e3-7f1c-492f-a07b-6cb0692ad807"
+              },
+              "sha256": {
+                "current": "7ac630f46f450e121dc2c2738e28af58e9dfe168fc609e33b80a2aa5d50eaffd",
+                "originalS": "d189a952e9973a729b18e9791b808dc650f793817a19d89ab0e6523b3e444d36"
+              }
+            }
+          },
+          {
+            "path": "private-reference/Layout.dll",
+            "differences": {
+              "sha256": {
+                "current": "33b7010e1329c009195002740835bd1b859c2d6649a895cd55044cb05482e83f",
+                "originalS": "76624b0cce75a1f282f6e7b8bebbd81192c3a6c2b698d9aedba4ab95cde6ee25"
+              }
+            }
+          },
+          {
+            "path": "removal/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "ea8e3f2f-8ccd-4d4b-ad07-be92651f0c3a",
+                "originalS": "005ead2e-603d-40bc-9c5e-7db1a1040256"
+              },
+              "sha256": {
+                "current": "6774998d645aed0a87d0fc431438cb509fbe8410ba706907e25e089821ec6f5f",
+                "originalS": "69e3334c6d74dff9013a362c1caa3a0bc9bb5930ac1b11265b9ea7c09ff02602"
+              }
+            }
+          },
+          {
+            "path": "reversal/A.dll",
+            "differences": {
+              "sha256": {
+                "current": "e1e2e2823ceaaf9a91ec2e0c4d0a22bdff0bc9d02f72a03068b2b2b69dbc8f07",
+                "originalS": "c13b628d870be6d2ddab6f5dcd78a27f529f9e446488036cd2c1c889a9346f69"
+              }
+            }
+          },
+          {
+            "path": "reversal/B.dll",
+            "differences": {
+              "sha256": {
+                "current": "c4c203fbe2840427e2f5c7f5c8157e5a682682ebfe5aef729c5c9c3929eab3e3",
+                "originalS": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d"
+              }
+            }
+          },
+          {
+            "path": "true-cycle/A.dll",
+            "differences": {
+              "sha256": {
+                "current": "b82c92d53e564feac760d82fb00c3c424b78df8ddc389ef2684677836ecb23d3",
+                "originalS": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6"
+              }
+            }
+          },
+          {
+            "path": "true-cycle/B.dll",
+            "differences": {
+              "sha256": {
+                "current": "c4c203fbe2840427e2f5c7f5c8157e5a682682ebfe5aef729c5c9c3929eab3e3",
+                "originalS": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d"
+              }
+            }
+          },
+          {
+            "path": "value/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "38b99d1f-7bdd-4e8d-a335-6a26dac82ac7",
+                "originalS": "3d1c0c74-a36d-445f-890c-0a1c6a2cbf36"
+              },
+              "sha256": {
+                "current": "6f1c98a4c5688effbc4a9d8dcdbfe3fa553d9292c8c6425dc709e94cbfede810",
+                "originalS": "fa1f7473db2655adcb2a012c0cb29d1181cbae21bc19020abf14d4c39772825e"
+              }
+            }
+          },
+          {
+            "path": "virtual-slot/Methods.dll",
+            "differences": {
+              "sha256": {
+                "current": "64615f410cfa76f56a475e0c6bff448e1eaf5f161a43dbb1b2380225da50a03b",
+                "originalS": "c21598ce556646601cbbc55e80c0c4f42603d68ca8861d084b4b3fd748a4d144"
+              }
+            }
+          }
+        ],
+        "historicalSBytesReplaced": false,
+        "historicalSBytesRebuiltForLocal": false,
+        "historicalSArchiveAuthenticatedHere": false,
+        "runtimeAcceptance": false
+      },
+      "strictIrProof": {
+        "R03Accepted": false,
+        "ReadyForHumanReviewGate": false,
+        "first": {
+          "bytes": 2048,
+          "mvid": "597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff",
+          "receiptSha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+          "sha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd"
+        },
+        "historicalOriginalSIndependentlyAccepted": false,
+        "kind": "R03IRGeneratorPreLocalHostProof",
+        "net8CompilationProvenByCaller": false,
+        "originalRegeneratedFixtureCount": 15,
+        "originalVirtualSlotSha256": "64615f410cfa76f56a475e0c6bff448e1eaf5f161a43dbb1b2380225da50a03b",
+        "repeat": {
+          "bytes": 2048,
+          "mvid": "597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff",
+          "receiptSha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+          "sha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd"
+        },
+        "result": "PassedPinnedFreshGeneratorBytesAndRepeatability_HostOnly",
+        "runtimeAcceptance": false,
+        "schemaVersion": 1,
+        "unityOrPlayerExecuted": false
+      }
+    }
+  ],
+  "ordinaryMvidNote": "Ordinary comparison inventory lacks MVID fields; SHA differences recorded, no unreported MVID inferred",
+  "historicalSBytesAdopted": false,
+  "runtimeAcceptance": false
+}

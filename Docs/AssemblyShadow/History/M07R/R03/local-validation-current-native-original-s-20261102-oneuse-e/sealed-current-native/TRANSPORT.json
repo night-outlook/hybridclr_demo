@@ -1,0 +1,59 @@
+{
+  "kind": "ExactOriginalFocusedSealArchiveTransport",
+  "sourcePath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261030-oneuse-E/current-native/evidence.tar.gz",
+  "sourceSha256": "f40ae8069b7d6c11eee1824d604babfd1f56f86f1d236217c5e31bb7fc69ab14",
+  "bytes": 123431692,
+  "parts": [
+    {
+      "path": "sealed-current-native/evidence.tar.gz.part0000",
+      "offset": 0,
+      "bytes": 16777216,
+      "sha256": "93f5cbbc1a1de86826c458ab150e7674e89eb0bbe59068b6ce404b6403cba8d9"
+    },
+    {
+      "path": "sealed-current-native/evidence.tar.gz.part0001",
+      "offset": 16777216,
+      "bytes": 16777216,
+      "sha256": "336db012142be2f7f61d52b1f28119e0cbc08398b52c976148f668f64597adc9"
+    },
+    {
+      "path": "sealed-current-native/evidence.tar.gz.part0002",
+      "offset": 33554432,
+      "bytes": 16777216,
+      "sha256": "c670505db3552147c413b0fbff51109c0987102d879b99db7acf341f76207421"
+    },
+    {
+      "path": "sealed-current-native/evidence.tar.gz.part0003",
+      "offset": 50331648,
+      "bytes": 16777216,
+      "sha256": "e03930a3c00c4113c4ac1aa27a6ed8836459a6f3beb02921c523df66294e186c"
+    },
+    {
+      "path": "sealed-current-native/evidence.tar.gz.part0004",
+      "offset": 67108864,
+      "bytes": 16777216,
+      "sha256": "e3bedb9375ee01b537a01aeadceb885a6390f47bf9bc7ac2b81e63554ecc9db2"
+    },
+    {
+      "path": "sealed-current-native/evidence.tar.gz.part0005",
+      "offset": 83886080,
+      "bytes": 16777216,
+      "sha256": "734b36ee80f6d187a536cd5b323555fe3c2f3aaab5dd47b5344f73e034baca22"
+    },
+    {
+      "path": "sealed-current-native/evidence.tar.gz.part0006",
+      "offset": 100663296,
+      "bytes": 16777216,
+      "sha256": "95abe4d743675239a9033f9dcab85a45fd21d7142850d4f3015e6d2e6c5bea6d"
+    },
+    {
+      "path": "sealed-current-native/evidence.tar.gz.part0007",
+      "offset": 117440512,
+      "bytes": 5991180,
+      "sha256": "f04c5cde98d5133031b6e9e3af2db509d7ff336df7e1758498da4d912bcfeceb"
+    }
+  ],
+  "reconstruction": "Concatenate part files in listed order; SHA256 must match sourceSha256. This only transports the original tar.gz; it does not reseal or change the semantic result.",
+  "semanticResult": "ReturnRequired",
+  "runtimeAcceptance": false
+}
