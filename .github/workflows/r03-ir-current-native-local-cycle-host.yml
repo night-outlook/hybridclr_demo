@@ -15,6 +15,7 @@ on:
       - 'Tools/AssemblyShadow/R03IR/complete_general_diagnostic.py'
       - 'Tools/AssemblyShadow/R03IR/complete_general_diagnostic_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/snapshot_general_transport_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/engine_owner_quit_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/run_terminal_local.py'
       - 'Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp'
       - 'Tools/AssemblyShadow/R03IR/current_native_cli_contracts.py'
@@ -112,6 +113,7 @@ jobs:
             --hybridclr "$PWD/external/hybridclr" --package "$PWD/external/hybridclr_unity"
           python3 -B Tools/AssemblyShadow/R03IR/complete_general_diagnostic_contracts.py
           python3 -B Tools/AssemblyShadow/R03IR/snapshot_general_transport_contracts.py
+          python3 -B Tools/AssemblyShadow/R03IR/engine_owner_quit_contracts.py --native "$PWD/external/il2cpp_plus"
           python3 -B Tools/AssemblyShadow/R03IR/current_native_oracle_contracts.py
           python3 -B Tools/AssemblyShadow/R03IR/current_native_vm_delta_contracts.py \
             --native "$PWD/external/il2cpp_plus"
