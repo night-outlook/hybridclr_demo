@@ -11,7 +11,7 @@ All four checkouts must be clean, canonical `night-outlook` origins, at branch `
 | night-outlook/hybridclr_demo | latest final pushed HEAD from closing handoff; `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` |
 | night-outlook/hybridclr | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`; `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` |
 | night-outlook/hybridclr_unity | `948c0e3b4f8891481301770115e8ba4945eea6de`; `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` |
-| night-outlook/il2cpp_plus | `ecb9f010f84915b6fa0924dfd66174f812c52fc0`; `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` |
+| night-outlook/il2cpp_plus | `2c899ece8cf241887b14040bab0a73d7c854d2bf`; `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` |
 
 Historical S native `1cf87f8209790f9fb2ebec97487dc1990ccd56c5`, historical R03 `74dbdbea80d83923863303bd2b2c0a87f36541b1`, D native `e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb`, E native `ca0aab8e0abcbcb60a1532223d9e1bdb0aea86c4`, and current F native **must never be conflated**. The original `R03/source-pins.json` is immutable. The new source manifest contains **45 changed native VM paths**; three installed source trees must supply **135** byte-equal source pairs, including the two newer native engine reporter files.
 

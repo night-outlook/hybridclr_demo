@@ -20,7 +20,7 @@ HERE = Path(__file__).resolve().parent
 MANIFEST = HERE / "current_native_vm_delta.json"
 MANIFEST_BLOB = "f5bd0008c8c944ec88e2182871da2070f288c7fa"
 LEGACY_NATIVE = "74dbdbea80d83923863303bd2b2c0a87f36541b1"
-CURRENT_NATIVE = "ecb9f010f84915b6fa0924dfd66174f812c52fc0"
+CURRENT_NATIVE = "2c899ece8cf241887b14040bab0a73d7c854d2bf"
 EXPECTED_VM_NAMES = (
     "Assembly.cpp",
     "Assembly.h",
