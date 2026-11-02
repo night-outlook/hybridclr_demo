@@ -21,6 +21,7 @@ from batch_evidence import finalize, write
 from command_lifetime import build_arguments
 from ir_original_fixtures import stage_immutable_original_s, S_PUBLICATION, S_INVENTORY_BLOB
 from bee_observation import verify_observation
+from complete_general_diagnostic import verify as verify_complete_general
 
 # Exact deterministic IR-only target observed identically on macOS and Linux.
 # This is not any historical S byte or proof of Player runtime behavior.
@@ -115,7 +116,7 @@ def exact_int(value, expected):
     return type(value) is int and value == expected
 
 
-def verify_ir(raw, request, launch, build_sha):
+def verify_ir(raw, request, launch, build_sha, *, raw_path=None):
     require(raw.get('reportTransport') == 'NativePreopenedSnapshotV1', 'Native snapshot transport required')
     require(type(raw) is dict and raw.get('schemaVersion') == 1 and
             raw.get('kind') == 'R03IRPostPoisonEntryV1' and raw.get('acceptance') is False,
@@ -167,8 +168,15 @@ def verify_ir(raw, request, launch, build_sha):
         else:
             require(exact_int(recovery['terminalFailureCode'], 13) and exact_int(raw.get('nativeStimulusReturn'), 1),
                     'Production type-resolution failure boundary was exercised')
+    general_proof = None
+    if request['stimulus'] != 'off':
+        # Exact full source bytes, never a clipped field, truncated JSON or
+        # synthetic prefix. Distinguish transport fidelity from global VM
+        # capture coherence; the latter remains a separate R03 obligation.
+        general_proof = verify_complete_general(raw.get('finalDiagnostics'), raw_path)
     return {'kind': 'R03IRVerifiedPostPoisonPlayer', 'result': 'Passed',
             'caseId': request['caseId'], 'stimulus': request['stimulus'],
+            'completeGeneralDiagnostic': general_proof,
             'buildReceiptSha256': build_sha, 'runtimeAcceptance': False,
             'R03Accepted': False, 'H2Passed': False}
 
@@ -237,7 +245,7 @@ def player(batch, case):
         require(raw.get('requestSha256') == bind['requestSha256'], 'Raw/launch request digest')
         verdict = (verify_engine(raw, request, launch, (root / 'Player.log').read_text())
                    if case['stimulus'] == 'engine-unhandled' else
-                   verify_ir(raw, request, launch, bind['buildReceiptSha256']))
+                   verify_ir(raw, request, launch, bind['buildReceiptSha256'], raw_path=root / 'raw.json'))
     except Exception as error:
         write(root / 'verification.json', dict(bind, result='Failed', error=str(error)))
         raise
