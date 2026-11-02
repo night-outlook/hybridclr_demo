@@ -76,7 +76,12 @@ class BeeReceiptOutcomeContracts(unittest.TestCase):
         self.assertNotIn('receipt.beeObservationStatus = "RecordedForAnalysis";',source)
         # A diagnostic being absent never changes strict Unity BuildReport gating.
         self.assertIn('report.summary.totalErrors != 0',source)
-        self.assertIn('throw new BuildFailedException("Actual IL2CPP Player build did not succeed.")',source)
+        self.assertIn('receipt.buildPipelineResult = report.summary.result.ToString();',source)
+        self.assertIn('if (report.summary.result != BuildResult.Succeeded || report.summary.totalErrors != 0)',source)
+        self.assertIn('receipt.playerFiles = new FileHash[0];',source)
+        self.assertIn('throw new BuildFailedException("Actual IL2CPP native BuildPipeline failed:',source)
+        self.assertLess(source.index('receipt.buildPipelineResult = report.summary.result.ToString();'),
+                        source.index('receipt.playerFiles = Inventory(config.outputPath);'))
 
 
 class BeeContracts(unittest.TestCase):
