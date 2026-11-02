@@ -12,6 +12,10 @@ on:
       - 'Tools/AssemblyShadow/R03IR/current_native_environment_admission.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_environment_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/run_terminal_current.py'
+      - 'Tools/AssemblyShadow/R03IR/complete_general_diagnostic.py'
+      - 'Tools/AssemblyShadow/R03IR/complete_general_diagnostic_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/run_terminal_local.py'
+      - 'Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp'
       - 'Tools/AssemblyShadow/R03IR/current_native_cli_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/original_s_sparse_projection.py'
       - 'Tools/AssemblyShadow/R03IR/original_s_sparse_contracts.py'
@@ -105,6 +109,7 @@ jobs:
           python3 -B Tools/AssemblyShadow/R03IR/current_native_source_contracts.py \
             --demo "$PWD" --native "$PWD/external/il2cpp_plus" \
             --hybridclr "$PWD/external/hybridclr" --package "$PWD/external/hybridclr_unity"
+          python3 -B Tools/AssemblyShadow/R03IR/complete_general_diagnostic_contracts.py
           python3 -B Tools/AssemblyShadow/R03IR/current_native_oracle_contracts.py
           python3 -B Tools/AssemblyShadow/R03IR/current_native_vm_delta_contracts.py \
             --native "$PWD/external/il2cpp_plus"
