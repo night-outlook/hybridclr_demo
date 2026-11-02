@@ -34,7 +34,17 @@ class TerminalReceiptContractTests(unittest.TestCase):
             'recoveryStable': True, 'fixedDiagnosticsReadable': True,
             'nativeStimulusReturn': 1, 'terminalReportingProbeMask': 15,
             'nativeGuardJson': json.dumps({'available':True, 'activeGuard':1,'baselineGuard':0,
-                                           'caughtOldGuard':1,'stateCode':9})}
+                                           'caughtOldGuard':1,'stateCode':9}),
+            # Host-only source-shape fixture, not a claim that Unity captured a
+            # coherent whole-VM epoch or actually executed a Player.
+            'finalDiagnostics': json.dumps({
+                'schemaVersion':1,'enabled':True,'state':'FailedAfterCommit',
+                'stateCode':9,'generation':1,'enumerationGeneration':1,
+                'classEnumerationGeneration':1,
+                'startupCandidateNames':[],'closureLoadOrder':[],
+                'stableAotNames':[],'commitOrder':[],'assemblies':[],
+                'events':[],'baselineUses':[],'ordinaryAssemblies':[],
+                'ordinaryClasses':[]}, separators=(',', ':'))}
 
     def verify(self):
         return verify_ir(self.raw, self.request, self.launch, self.build_sha)
