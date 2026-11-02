@@ -399,7 +399,7 @@ def main() -> int:
                     report = json.loads(parity_path.read_text(encoding="utf-8"))
                     if not (report.get("result") == "PassedInstalledSourceParityOnly" and
                             report.get("verifiedBuildRoles") == 3 and
-                            report.get("installedVmSourcePairs") == 129 and
+                            report.get("installedVmSourcePairs") == 135 and
                             report.get("R03Accepted") is False):
                         stages["native-installed-source-audit"]["state"] = "Failed"
                         stages["native-installed-source-audit"]["auditVerdictError"] = (
