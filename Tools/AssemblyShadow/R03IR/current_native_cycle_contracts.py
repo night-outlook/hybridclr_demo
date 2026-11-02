@@ -67,7 +67,7 @@ class CurrentNativeCycleContracts(unittest.TestCase):
             "native-installed-source-audit")}
 
     def test_01_constituent_source_pins_are_explicit(self):
-        self.assertEqual(cycle.NATIVE, "ca0aab8e0abcbcb60a1532223d9e1bdb0aea86c4")
+        self.assertEqual(cycle.NATIVE, "ecb9f010f84915b6fa0924dfd66174f812c52fc0")
         self.assertEqual(cycle.S_PUBLICATION,
                          "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b")
         self.assertEqual(len(cycle.EXPECTED_BUILD_ROLES), 3)
@@ -118,7 +118,7 @@ class CurrentNativeCycleContracts(unittest.TestCase):
                 cycle.validate_sources(self.workspace, "a" * 40)
         self.assertFalse(self.output.exists())
 
-    def test_09_43_vm_files_required_before_output(self):
+    def test_09_45_vm_files_required_before_output(self):
         with mock.patch.object(cycle, "identity", return_value={"remoteHeadVerified": True}), \
              mock.patch.object(cycle.source, "verify_source_roots", return_value={
                  "result": "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation",
@@ -137,7 +137,7 @@ class CurrentNativeCycleContracts(unittest.TestCase):
                  "verifiedSourceFiles": 10}), \
              mock.patch.object(cycle.delta, "validate", return_value={
                  "result": "PassedCurrentNativeVmSourceDeltaOnly",
-                 "changedVmFileCount": 43}):
+                 "changedVmFileCount": 45}):
             result = cycle.validate_sources(self.workspace, "a"*40)
         self.assertEqual(result["result"], "PassedReadOnlySourceAdmission_NotBuildOrRuntime")
         self.assertIs(result["R03Accepted"], False)
