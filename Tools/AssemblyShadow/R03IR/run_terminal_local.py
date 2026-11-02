@@ -199,6 +199,9 @@ def verify_engine(raw, request, launch, log):
             'Healthy logger control and terminal no-body condition')
     require(type(raw.get('completedReports')) is int and 1 <= raw['completedReports'] <= 64 and
             exact_int(raw.get('observationMilliseconds'), 500), 'Bounded native completion')
+    require(raw.get('ownerQuitRequested') is True and
+            exact_int(raw.get('ownerQuitNativeCalls'), 1),
+            'Single native Unity owner quit request required, not a managed callback')
     recovery = raw.get('recovery')
     require(type(recovery) is dict and recovery.get('published') is True and
             exact_int(recovery.get('stateCode'), 9) and exact_int(recovery.get('terminalFailureCode'), 13) and
@@ -207,6 +210,8 @@ def verify_engine(raw, request, launch, log):
     require(re.search(r'\[AssemblyShadowTerminalReport\] sequence=\d+ state=9 message="' +
                       re.escape(sentinel) + r'" managedHandlerExecuted=false', log) is not None,
             'Actual uncaught sentinel must reach native Unity reporter')
+    require('[R03EngineOwnerQuit] source=UnityNativeIcall once=1 sentinelMatched=true' in log,
+            'Exact engine sentinel must trigger a single actual native owner quit request')
     require('[R03ReserveGcProbe] mask=31 ' in log, 'Real reserve/GC prerequisite in this process')
     require('fatal=' not in log, 'No native fatal path accepted')
     return {'result':'Passed','scope':'One bounded engine-originated unhandled sentinel; not full R03',
