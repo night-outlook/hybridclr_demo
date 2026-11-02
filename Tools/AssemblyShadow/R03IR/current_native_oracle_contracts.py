@@ -18,7 +18,7 @@ from run_terminal_local import verify_ir, verify_engine
 from batch_contract import ContractError
 
 HERE = Path(__file__).resolve().parent
-PINNED_ORACLE_BLOB = "8bf2ca558aaa964ddd3a5fb621158d3eae37078d"
+PINNED_ORACLE_BLOB = "74f99b5449054feeacd626763708db5ee0b5b9cd"
 PINNED_PLAYER_BLOB = "598feeec3231707091699d99fbf4428d50b52024"
 CASE_IDS = {
     "baseline-owner": "IR-R03-02-release-baseline",
@@ -102,6 +102,7 @@ def engine_raw():
             "initialState": 6, "finalState": 9,
             "preManagedLoggerCalls": 1, "finalManagedLoggerCalls": 1,
             "completedReports": 1, "observationMilliseconds": 500,
+            "ownerQuitRequested": True, "ownerQuitNativeCalls": 1,
             "recovery": {"published": True, "stateCode": 9,
                          "terminalFailureCode": 13,
                          "disposition": "RestartRequired"}}
@@ -113,6 +114,7 @@ def engine_log():
         '[AssemblyShadowTerminalReport] sequence=1 state=9 message="'
         'R03_ENGINE_UNHANDLED_' + run_id +
         '" managedHandlerExecuted=false\n'
+        '[R03EngineOwnerQuit] source=UnityNativeIcall once=1 sentinelMatched=true\n'
         '[R03ReserveGcProbe] mask=31 source=actual-test\n'
     )
 
@@ -282,6 +284,16 @@ class CurrentNativeOracleContracts(unittest.TestCase):
                          ("observationMilliseconds", 0), ("timedOut", True)):
             with self.subTest(field=k, value=value):
                 self.reject_engine(lambda r, key=k, v=value: r.__setitem__(key, v))
+
+    def test_28_engine_owner_quit_not_a_counter_substitute(self):
+        self.reject_engine(lambda r: r.__setitem__("ownerQuitRequested", False))
+        self.reject_engine(lambda r: r.__setitem__("ownerQuitNativeCalls", 0))
+        self.reject_engine(lambda r: r.__setitem__("ownerQuitNativeCalls", 2))
+
+    def test_29_engine_owner_quit_log_must_be_exact(self):
+        with self.assertRaises(ContractError):
+            self.check_engine(log=engine_log().replace(
+                "source=UnityNativeIcall once=1", "source=InjectedManagedQuit once=1"))
 
     def test_25_engine_terminal_source_and_recovery_still_matters(self):
         self.reject_engine(lambda r: r["recovery"].__setitem__("stateCode", 6))
