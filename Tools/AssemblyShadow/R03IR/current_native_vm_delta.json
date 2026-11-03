@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "kind": "R03IR02PinnedCurrentNativeVmDelta",
-  "description": "Exact 45 changed libil2cpp/vm paths vs historical 74db, including R03 test-only engine reporter native-owner request and C++11 corrections. This is source identity, not official installed SDK/linked/Player acceptance.",
+  "description": "Exact 45 changed libil2cpp/vm paths versus immutable historical 74db. Current native includes R03 H engine OFF-header and normal-exit witness corrections. Source identity only, not installed/linked/Player acceptance.",
   "branch": "codex/assembly-shadow-r01b-h1",
   "baselineNativeCommit": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
-  "candidateNativeCommit": "2c899ece8cf241887b14040bab0a73d7c854d2bf",
+  "candidateNativeCommit": "0e1837a69724f6280400738366f22e8079f94ebb",
   "comparison": {
-    "aheadBy": 162,
+    "aheadBy": 164,
     "behindBy": 0,
     "totalFilesChanged": 131,
     "vmFilesChanged": 45,
@@ -112,9 +112,9 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
-      "gitBlob": "887eb1398a3b9c4ed06c23b4f9913b4ba3d2a0f5",
+      "gitBlob": "e3074338e80a0fe127537692549ecdcbaadf1c03",
       "baselineDelta": "modified",
-      "diffChanges": 62
+      "diffChanges": 229
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
