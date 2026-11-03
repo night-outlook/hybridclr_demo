@@ -69,6 +69,7 @@ inline std::atomic<uint64_t>& CompletedCounter() {
     return count;
 }
 }}}
+#endif // HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
 """,
     "vm/InternalCalls.h": r"""
 #pragma once

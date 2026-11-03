@@ -81,7 +81,7 @@ jobs:
           import json,sys
           data=json.load(open(sys.argv[1]))
           assert data['result']=='PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation'
-          assert data['verifiedSourceFiles']==10
+          assert data['verifiedSourceFiles']==11
           assert data['focusedPlayerCaseCount']==5 and data['candidateNativeBuildRoles']==3
           assert data['currentSourceMatchedPlayerExecution']=='NotRun'
           assert data['nextLocalAuthority']=='NotAuthorized'
