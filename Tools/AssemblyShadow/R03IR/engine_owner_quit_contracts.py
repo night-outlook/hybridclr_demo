@@ -162,7 +162,8 @@ class OwnerQuitHostContracts(unittest.TestCase):
         ):
             if token not in cls.source:
                 raise AssertionError("Required real native owner source missing: " + token)
-        if "std::_Exit(0)" in cls.source or "std::_Exit(valid" in cls.source:
+        active = "\n".join(line.split("//", 1)[0] for line in cls.source.splitlines())
+        if "std::_Exit(0)" in active or "std::_Exit(valid" in active:
             raise AssertionError("Native watchdog must never synthesize success")
         for token in ("CompletedCounter().fetch_add(1", "::R03_IR_OnNativeEngineReportCompleted("):
             if token not in cls.header:
