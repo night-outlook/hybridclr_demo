@@ -15,6 +15,7 @@ class EngineContracts(unittest.TestCase):
             'observationLimitMilliseconds':500,'observationElapsedMilliseconds':20,
             'normalExitHookObserved':True,'witnessExitMode':'NativeAtexit',
             'ownerQuitRequested':True,'ownerQuitNativeCalls':1,'ownerQuitReturned':False,
+            'ownerWantsToQuitNativeResponses':1,'ownerApplicationQuitNativeNotifications':1,
             'recovery':{'published':True,'stateCode':9,'terminalFailureCode':13,'disposition':'RestartRequired'}}
         self.log=(
             '[AssemblyShadowPhase] phase=75 state=6 generation=1\n'
@@ -22,6 +23,8 @@ class EngineContracts(unittest.TestCase):
             '[AssemblyShadowTerminalReport] sequence=1 state=9 message="R03_ENGINE_UNHANDLED_'
             + ('a'*32) + '" managedHandlerExecuted=false\n'
             '[R03EngineOwnerQuit] source=UnityNativeIcall once=1 sentinelMatched=true\n'
+            '[R03EngineOwnerDecision] method=Internal_ApplicationWantsToQuit response=true managedBodyExecuted=false\n'
+            '[R03EngineOwnerDecision] method=Internal_ApplicationQuit response=void managedBodyExecuted=false\n'
             '[R03EngineOwnerExit] nativeAtexit=true rawFlushed=true\n'
         )
     def check(self):return verify_engine(self.raw,self.request,self.launch,self.log)
@@ -35,6 +38,16 @@ class EngineContracts(unittest.TestCase):
     def test_reject_wrong_process(self):
         self.raw['processId']+=1
         with self.assertRaises(ContractError):self.check()
+    def test_native_quit_owner_decision_is_required(self):
+        self.raw['ownerWantsToQuitNativeResponses']=0
+        with self.assertRaises(ContractError):self.check()
+        self.raw['ownerWantsToQuitNativeResponses']=1
+        self.raw['ownerApplicationQuitNativeNotifications']=0
+        with self.assertRaises(ContractError):self.check()
+        self.raw['ownerApplicationQuitNativeNotifications']=1
+        self.log=self.log.replace('managedBodyExecuted=false','managedBodyExecuted=true',1)
+        with self.assertRaises(ContractError):self.check()
+
     def test_reject_missing_gc_proof(self):
         self.log=self.log.replace('mask=31','mask=27')
         with self.assertRaises(ContractError):self.check()
