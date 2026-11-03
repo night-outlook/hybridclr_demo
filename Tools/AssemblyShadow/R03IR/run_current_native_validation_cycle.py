@@ -154,34 +154,63 @@ def validate_machine(unity: Path, output: Path) -> dict:
             "unityVersionValidatedByBuild": "NotRunAtPreflight"}
 
 
+EXPECTED_CHILD_CELLS = (
+    "entry-authority", "real-dll-fixtures", "ir-generator-build",
+    "ir-side-effect-fixture",
+    "prepare-candidate-release", "build-candidate-release",
+    "observe-candidate-release",
+    "prepare-candidate-debug", "build-candidate-debug",
+    "observe-candidate-debug",
+    "prepare-candidate-off", "build-candidate-off",
+    "observe-candidate-off",
+    *EXPECTED_PLAYERS,
+)
+
+
 def verify_current_batch(result_path: Path, demo_commit: str) -> dict:
+    """Verify the producer's complete source-bound, sealed positive child result.
+
+    I retained schema/phase/branch/nonacceptance fields in 'repositories';
+    replacing them with a reduced four-pin map would repeat the I failure.
+    """
     require(result_path.is_file() and not result_path.is_symlink(),
             "Missing actual native Local batch final receipt")
-    result = json.loads(result_path.read_text(encoding="utf-8"))
-    expected = {"hybridclr_demo": demo_commit, **source.CURRENT}
-    require(result.get("repositories") == expected,
-            "Fresh Player batch source tuple mismatch")
+    result = json.loads(result_path.read_bytes(), object_pairs_hook=source.strict_object)
+    require(type(result) is dict and
+            type(result.get("schemaVersion")) is int and result["schemaVersion"] == 1 and
+            result.get("kind") == "R03IRFocusedTerminalLocalBatch",
+            "Actual typed native batch schema and kind required")
+    source.verify_batch_repository_record(result.get("repositories"), demo_commit)
     require(result.get("result") == "FocusedEvidenceReadyForPrimaryReview" and
             result.get("sealStatus") == "Passed", "Fresh Player batch or seal did not pass")
-    require(result.get("plannedFreshBuilds") == 3 and
-            result.get("verifiedFreshBuilds") == 3 and
-            result.get("plannedFreshPlayers") == 5 and
-            result.get("verifiedFreshPlayers") == 5 and
-            result.get("recordedFreshPlayerRawFiles") == 5,
-            "Three genuine build roles and five fresh Player cases required")
-    ids = {c.get("id"): c.get("result") for c in result.get("cells", [])}
-    require(all(ids.get("build-" + role) == "Passed" for role in EXPECTED_BUILD_ROLES) and
-            all(ids.get(case) == "Passed" for case in EXPECTED_PLAYERS),
-            "Exact per-role and per-Player case results required")
+    for field, expected in (
+        ("plannedFreshBuilds", 3), ("verifiedFreshBuilds", 3),
+        ("plannedFreshPlayers", 5), ("verifiedFreshPlayers", 5),
+        ("recordedFreshPlayerRawFiles", 5),
+    ):
+        require(type(result.get(field)) is int and result[field] == expected,
+                "Exact real build/Player count required: " + field)
+    cells = result.get("cells")
+    require(type(cells) is list and len(cells) == len(EXPECTED_CHILD_CELLS),
+            "Exactly eighteen real native execution cells required")
+    require(all(type(c) is dict and type(c.get("id")) is str and
+                c.get("result") == "Passed" for c in cells),
+            "Each of eighteen child cells must actually pass")
+    ids = [c["id"] for c in cells]
+    require(len(set(ids)) == len(ids) and set(ids) == set(EXPECTED_CHILD_CELLS),
+            "Exact nonduplicate native execution cell roster required")
+    authority_hash = result.get("originalSFixtureAuthoritySha256")
     require(result.get("originalSFixtureAuthority") == "AuthenticatedOriginalCommit" and
-            bool(result.get("originalSFixtureAuthoritySha256")) and
+            type(authority_hash) is str and
+            re.fullmatch(r"[0-9a-f]{64}", authority_hash) is not None and
             result.get("R03Accepted") is False and result.get("H2Passed") is False and
             result.get("fullLegacyRegressionAcceptance") is False and
             result.get("qualificationApproved") is False and
             result.get("pureInterpreterExpansionEnabled") is False,
             "No missing original fixture or simulated stage-acceptance claim")
     return {"result": "PassedFiveFocusedCurrentNativePlayersOnly",
-            "builds": 3, "players": 5,
+            "builds": 3, "players": 5, "validatedCells": 18,
+            "completeProducerRepositoryRecord": True,
             "localBatchResultSha256": digest(result_path),
             "IRR0301IndependentlyClosed": False,
             "IRR0302IndependentlyClosed": False, "R03Accepted": False}
