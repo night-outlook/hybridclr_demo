@@ -118,6 +118,49 @@ def verify_role(workspace: Path, batch: Path, demo_commit: str,
             "runtimeAcceptance": False, "R03Accepted": False}
 
 
+def admit_sealed_three_builds(batch_result: dict, demo_commit: str) -> dict:
+    """Independent build-parity admission, NOT Player/semantic acceptance.
+
+    A failed engine Player cannot erase three actual successful Unity build
+    receipts. The audit still verifies all three receipts/source inventories;
+    this preliminary gate only admits sealed, exact-source and all-build-PASS
+    batches. Never promote ReturnRequired to any runtime or Player success.
+    """
+    check(type(batch_result) is dict and
+          batch_result.get("result") in ("FocusedEvidenceReadyForPrimaryReview", "ReturnRequired") and
+          batch_result.get("sealStatus") == "Passed" and
+          batch_result.get("R03Accepted") is False and
+          batch_result.get("H2Passed") is False,
+          "Sealed non-acceptance original Player batch required")
+    expected = {
+        "schemaVersion": 1, "phase": "candidate", "branch": candidate.BRANCH,
+        "hybridclr_demo": demo_commit, **candidate.CURRENT,
+        "runtimeAcceptance": False,
+    }
+    check(batch_result.get("repositories") == expected,
+          "Complete exact repository tuple including original metadata required")
+    check(type(batch_result.get("plannedFreshBuilds")) is int and
+          batch_result["plannedFreshBuilds"] == 3 and
+          type(batch_result.get("verifiedFreshBuilds")) is int and
+          batch_result["verifiedFreshBuilds"] == 3,
+          "Three actual successful fresh native build cells required")
+    cells = batch_result.get("cells")
+    check(type(cells) is list, "Actual native build cells required")
+    builds = [cell for cell in cells
+              if type(cell) is dict and
+              isinstance(cell.get("id"), str) and cell["id"].startswith("build-")]
+    check(len(builds) == len(ROLES) and
+          {cell["id"] for cell in builds} == {"build-" + name for name in ROLES} and
+          all(cell.get("result") == "Passed" for cell in builds),
+          "Exactly three unique source-pinned successful Unity build cells required")
+    return {
+        "siblingPlayerBatchResult": batch_result["result"],
+        "siblingPlayerSemanticsAccepted":
+            batch_result["result"] == "FocusedEvidenceReadyForPrimaryReview",
+        "originalPlayerResultsRetained": True, "runtimeAcceptance": False,
+    }
+
+
 def audit(workspace: Path, batch: Path, demo_commit: str, output: Path) -> dict:
     check(re.fullmatch("[0-9a-f]{40}", demo_commit) is not None,
           "Exact demo handoff commit required")
@@ -132,11 +175,7 @@ def audit(workspace: Path, batch: Path, demo_commit: str, output: Path) -> dict:
     source_result = delta.validate(manifest, source_native)
     check(source_result["changedVmFileCount"] == 45, "Source VM inventory not admitted")
     batch_result = loads((batch / "LOCAL_BATCH_RESULT.json").read_text(encoding="utf-8"))
-    check(batch_result.get("result") == "FocusedEvidenceReadyForPrimaryReview" and
-          batch_result.get("sealStatus") == "Passed" and
-          batch_result.get("repositories") ==
-          {"hybridclr_demo": demo_commit, **candidate.CURRENT},
-          "Current native batch must be sealed and source matched before parity audit")
+    batch_admission = admit_sealed_three_builds(batch_result, demo_commit)
     checks = [verify_role(workspace, batch, demo_commit, manifest, role)
               for role in ROLES]
     report = {"schemaVersion": 1, "kind": "R03IRCurrentNativeInstalledVmSourceParity",
@@ -150,6 +189,8 @@ def audit(workspace: Path, batch: Path, demo_commit: str, output: Path) -> dict:
               "fullNativeIncludeClosure": "NotProven",
               "generatedCppBinaryLinkage": "NotProven",
               "currentUnityPlayerExecution": "ReferencedSealedSiblingEvidence_NotExecutedHere",
+              "siblingPlayerBatchResult": batch_admission["siblingPlayerBatchResult"],
+              "siblingPlayerSemanticsAccepted": batch_admission["siblingPlayerSemanticsAccepted"],
               "independentReview": "NotRun",
               "runtimeAcceptance": False, "R03Accepted": False,
               "ReadyForHumanReviewGate": False}

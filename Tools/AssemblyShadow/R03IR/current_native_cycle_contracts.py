@@ -266,6 +266,24 @@ class CurrentNativeCycleContracts(unittest.TestCase):
         self.assertFalse(Path(__file__).name.startswith("test_"))
         self.assertEqual(cycle.S_PUBLICATION, cycle.S_PUBLICATION.lower())
 
+    def test_21_installed_parity_independent_of_failed_player_semantics(self):
+        source_text = Path(cycle.__file__).read_text(encoding="utf-8")
+        self.assertIn("installed.admit_sealed_three_builds(batch_receipt, args.demo_commit)",
+                      source_text)
+        self.assertIn('"Exact sealed three successful native builds absent"', source_text)
+        self.assertIn('"siblingPlayerSemanticsAccepted"', source_text)
+        self.assertIn('stages["current-native-players"]["state"] = "Failed"',
+                      source_text)
+        self.assertIn("verify_current_batch(", source_text)
+        self.assertLess(source_text.index("installed.admit_sealed_three_builds("),
+                        source_text.index('stages["native-installed-source-audit"] = run_step('))
+        stages = self.all_passed()
+        stages["current-native-players"] = {"state": "Failed"}
+        self.assertEqual(cycle.assess_summary(stages, None,
+            {"result": "PassedReadOnlySourceAdmission_NotBuildOrRuntime"})["result"],
+            "ReturnRequired")
+
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -133,6 +133,48 @@ class InstalledNativeAuditContracts(unittest.TestCase):
         self.assertIs(audit.ROLES["candidate-off"][1], False)
         self.assertIs(audit.ROLES["candidate-debug"][1], True)
 
+    @staticmethod
+    def sealed_batch(result="ReturnRequired"):
+        return {
+            "result": result, "sealStatus": "Passed", "R03Accepted": False,
+            "H2Passed": False, "plannedFreshBuilds": 3, "verifiedFreshBuilds": 3,
+            "repositories": {
+                "schemaVersion": 1, "phase": "candidate", "branch": audit.candidate.BRANCH,
+                "hybridclr_demo": "a" * 40, **audit.candidate.CURRENT,
+                "runtimeAcceptance": False,
+            },
+            "cells": [
+                {"id": "build-" + role, "result": "Passed"}
+                for role in audit.ROLES
+            ] + [{"id": "IR-R03-02-release-engine", "result": "Failed"}],
+        }
+
+    def test_16_failed_player_with_three_sealed_builds_can_be_parity_audited(self):
+        admission = audit.admit_sealed_three_builds(self.sealed_batch(), "a" * 40)
+        self.assertEqual(admission["siblingPlayerBatchResult"], "ReturnRequired")
+        self.assertFalse(admission["siblingPlayerSemanticsAccepted"])
+        self.assertFalse(admission["runtimeAcceptance"])
+        good = audit.admit_sealed_three_builds(
+            self.sealed_batch("FocusedEvidenceReadyForPrimaryReview"), "a" * 40)
+        self.assertTrue(good["siblingPlayerSemanticsAccepted"])
+
+    def test_17_incomplete_or_unsealed_build_receipts_never_get_parity(self):
+        for label, mutate in (
+            ("missing seal", lambda r: r.update(sealStatus="Failed")),
+            ("forged source", lambda r: r["repositories"].update(il2cpp_plus="b"*40)),
+            ("wrong branch", lambda r: r["repositories"].update(branch="main")),
+            ("runtime claimed", lambda r: r.update(R03Accepted=True)),
+            ("no successful builds", lambda r: r.update(verifiedFreshBuilds=2)),
+            ("duplicate role", lambda r: r["cells"].append({"id":"build-candidate-off","result":"Passed"})),
+            ("failed OFF build", lambda r: r["cells"][2].update(result="Failed")),
+            ("unsealed arbitrary result", lambda r: r.update(result="InventedPassed")),
+        ):
+            with self.subTest(label=label):
+                receipt = self.sealed_batch()
+                mutate(receipt)
+                with self.assertRaises(ValueError):
+                    audit.admit_sealed_three_builds(receipt, "a"*40)
+
     def test_15_current_source_identity_is_versioned(self):
         self.assertEqual(audit.delta.CURRENT_NATIVE,
                          "41764ae1eeefb33b05966e7f7676e52aae39c340")

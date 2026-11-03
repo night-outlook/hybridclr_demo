@@ -25,6 +25,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / "R03"))
 import current_native_source_gate as source
 import current_native_vm_delta_contracts as delta
+import current_native_install_audit as installed
 from run_local import BRANCH, REPOS, identity
 from command_lifetime import group_exists, group_snapshot
 NATIVE = source.CURRENT["il2cpp_plus"]
@@ -385,9 +386,32 @@ def main() -> int:
                  "--workspace", args.workspace, "--output", root / "current-native",
                  "--unity", args.unity, "--demo-commit", args.demo_commit], 25200)
             if step_ok(stages["current-native-players"]):
-                native_verdict = verify_current_batch(
-                    root / "current-native/LOCAL_BATCH_RESULT.json", args.demo_commit)
-                parity_path = root / "installed-native-vm-parity.json"
+                try:
+                    native_verdict = verify_current_batch(
+                        root / "current-native/LOCAL_BATCH_RESULT.json", args.demo_commit)
+                except Exception as error:
+                    # A corrupted or invalid success receipt remains Failed.
+                    # Read-only installed byte identity is independently audited
+                    # only if its strict three-build admission can still pass.
+                    stages["current-native-players"]["state"] = "Failed"
+                    stages["current-native-players"]["batchVerdictError"] = str(error)
+            parity_path = root / "installed-native-vm-parity.json"
+            try:
+                receipt_path = root / "current-native/LOCAL_BATCH_RESULT.json"
+                require(receipt_path.is_file() and not receipt_path.is_symlink(),
+                        "No sealed native batch exists for build-only parity")
+                batch_receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+                installed.admit_sealed_three_builds(batch_receipt, args.demo_commit)
+            except Exception as error:
+                stages["native-installed-source-audit"] = {
+                    "state": "Blocked",
+                    "reason": "Exact sealed three successful native builds absent",
+                    "admissionError": str(error),
+                }
+            else:
+                # This stage checks bytes from three successful *builds*, not
+                # Player semantics. It may report scoped source parity Passed
+                # while current-native-players correctly remains Failed.
                 stages["native-installed-source-audit"] = run_step(
                     root, "native-installed-source-audit",
                     [sys.executable, "-B", script / "current_native_install_audit.py",
@@ -400,13 +424,15 @@ def main() -> int:
                     if not (report.get("result") == "PassedInstalledSourceParityOnly" and
                             report.get("verifiedBuildRoles") == 3 and
                             report.get("installedVmSourcePairs") == 135 and
-                            report.get("R03Accepted") is False):
+                            report.get("R03Accepted") is False and
+                            report.get("siblingPlayerBatchResult") ==
+                                batch_receipt.get("result") and
+                            report.get("siblingPlayerSemanticsAccepted") is
+                                (batch_receipt.get("result") ==
+                                 "FocusedEvidenceReadyForPrimaryReview")):
                         stages["native-installed-source-audit"]["state"] = "Failed"
                         stages["native-installed-source-audit"]["auditVerdictError"] = (
-                            "Three installed physical 45-file VM parity roles required")
-            else:
-                stages["native-installed-source-audit"] = {
-                    "state": "Blocked", "reason": "Genuine sealed current-native Player must pass first"}
+                            "Three real-build source pairs and original Player result required")
         else:
             stages["current-native-players"] = {
                 "state": "Blocked", "reason": "At least one source/oracle/VM host contract failed"}

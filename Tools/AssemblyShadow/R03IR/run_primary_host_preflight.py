@@ -76,7 +76,12 @@ def source_hashes(demo: Path, native: Path) -> dict:
              demo / "Tools/AssemblyShadow/R03IR/bounded_v2/BoundedDiagnosticsV2.h",
              demo / "Tools/AssemblyShadow/R03IR/bounded_v2/PosixDiagnosticTransaction.h",
              demo / "Tools/AssemblyShadow/R03IR/bounded_v2/transaction_reader.py",
-             demo / "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs"]
+             demo / "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs",
+             demo / "Tools/AssemblyShadow/R03IR/engine_owner_quit_contracts.py",
+             demo / "Tools/AssemblyShadow/R03IR/native_owner_decision_contracts.py",
+             native / "libil2cpp/vm/Runtime.cpp",
+             native / "libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+             native / "libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp"]
     return {str(p): {"bytes": p.stat().st_size, "sha256": sha(p.read_bytes())} for p in paths}
 
 
@@ -149,6 +154,10 @@ def main():
                 "--repository", str(demo), "--output", str(dest / "native-v2-file-transaction" / "evidence")]),
             ("native-v2-legacy-sink", [python, "-B", str(demo / "Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_native_v2.py"),
                 "--output", str(dest / "native-v2-legacy-sink" / "evidence")]),
+            ("native-owner-quit-full-source", [python, "-B", str(demo / "Tools/AssemblyShadow/R03IR/engine_owner_quit_contracts.py"),
+                "--native", str(native)]),
+            ("native-owner-quit-method-classifier", [python, "-B", str(demo / "Tools/AssemblyShadow/R03IR/native_owner_decision_contracts.py"),
+                "--native", str(native)]),
         )
         # Independent host suites continue after a single component failure.
         for name, argv in tests:
