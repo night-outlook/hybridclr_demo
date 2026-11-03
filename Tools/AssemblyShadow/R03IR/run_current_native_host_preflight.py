@@ -177,7 +177,9 @@ def verify_current_host_report(result: dict, demo_commit: str,
 
 
 def inputs(workspace: Path, demo_commit: str, native_commit: str) -> dict:
-    require(type(workspace) is Path and workspace.is_absolute() and
+    # Path(...) returns PosixPath/WindowsPath; exact type equality rejects every
+    # genuine argparse(type=Path) input on macOS/Linux/Windows.
+    require(isinstance(workspace, Path) and workspace.is_absolute() and
             workspace.is_dir() and not workspace.is_symlink() and
             workspace.resolve(strict=True) == workspace, "Canonical absolute workspace required")
     require(native_commit == source.CURRENT["il2cpp_plus"],
@@ -221,6 +223,8 @@ def main() -> int:
     p.add_argument("--expected-demo", required=True)
     p.add_argument("--expected-native", required=True)
     p.add_argument("--output", type=Path, required=True)
+    p.add_argument("--read-only-admission", action="store_true",
+                   help="Validate real source/CLI inputs and absent output only; no host commands, root or Unity")
     args = p.parse_args()
     if not __debug__:
         raise ValueError("Python -O is prohibited")
@@ -233,6 +237,22 @@ def main() -> int:
         repo = args.workspace / name
         require(output not in repo.parents and repo not in output.parents and
                 output != repo, "Host evidence cannot overlap any source repository")
+    if args.read_only_admission:
+        # Real fresh-process CLI path from CI and Local, not mock-level evidence
+        # and never acceptance or an execution-authority replacement.
+        print(json.dumps({
+            "schemaVersion": 1,
+            "kind": "R03IRCurrentNativeHostReadOnlyAdmission",
+            "result": "PassedReadOnlyNativeHostInputs_NoComponentsOrUnity",
+            "expectedDemo": args.expected_demo,
+            "expectedNative": args.expected_native,
+            "sourceGateVerified": report["result"],
+            "nativeHostComponentsExecuted": 0,
+            "UnityOrPlayerLaunched": False,
+            "outputRootCreated": False,
+            "runtimeAcceptance": False, "R03Accepted": False,
+        }, sort_keys=True), flush=True)
+        return 0
     original = source_fingerprints(args.workspace)
     # Existing historical helper independently verifies live branch/remotes
     # before writing its own legacy evidence; this wrapper owns only new state.

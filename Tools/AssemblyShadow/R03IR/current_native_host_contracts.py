@@ -8,9 +8,13 @@ rules. Source/host CI also compiles and executes the two actual C++11 suites.
 from __future__ import annotations
 
 import copy
+import os
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
+from unittest import mock
 
 import current_native_source_gate as source
 import run_current_native_host_preflight as host
@@ -172,6 +176,116 @@ class CurrentNativeHostContracts(unittest.TestCase):
                        "engine_owner_quit_contracts.py"):
             self.assertIn("python3 -B Tools/AssemblyShadow/R03IR/" + script, workflow)
         self.assertIn("Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md", workflow)
+
+
+    def test_09_canonical_concrete_argparse_posixpath_is_admitted(self):
+        # Regression for actual oneuse-J: argparse(type=Path) returns PosixPath,
+        # not an instance whose exact type is the Path factory class itself.
+        with tempfile.TemporaryDirectory(prefix="r03-j-path-positive-") as tmp:
+            root = Path(tmp).resolve(strict=True)
+            workspace = root / "workspace"
+            workspace.mkdir()
+            for name in ("hybridclr_demo", "hybridclr", "hybridclr_unity", "il2cpp_plus"):
+                (workspace / name).mkdir()
+            self.assertIsInstance(workspace, Path)
+            self.assertIsNot(type(workspace), Path)
+            expected = {
+                "verifiedSourceFiles": 11,
+                "result": "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation",
+            }
+            with mock.patch.object(host.source, "verify_source_roots", return_value=expected) as sources, \
+                 mock.patch.object(host.source, "git_head", return_value=DEMO), \
+                 mock.patch.object(host.historical, "verify_repo",
+                                   return_value={"clean": True}) as remotes:
+                self.assertIs(host.inputs(workspace, DEMO,
+                    source.CURRENT["il2cpp_plus"]), expected)
+                self.assertEqual(sources.call_count, 1)
+                self.assertEqual(remotes.call_count, 4)
+                self.assertFalse((root / "fresh-evidence").exists())
+
+                for bad in (str(workspace), Path("relative/workspace"),
+                            root / "nonexistent", root / "not-a-directory"):
+                    with self.subTest(bad=bad), self.assertRaises(ValueError):
+                        host.inputs(bad, DEMO, source.CURRENT["il2cpp_plus"])
+                invalid_file = root / "file"
+                invalid_file.write_text("not a directory")
+                with self.assertRaises(ValueError):
+                    host.inputs(invalid_file, DEMO, source.CURRENT["il2cpp_plus"])
+                alias = root / "alias"
+                alias.symlink_to(workspace, target_is_directory=True)
+                with self.assertRaises(ValueError):
+                    host.inputs(alias, DEMO, source.CURRENT["il2cpp_plus"])
+                indirect = root / "linked-parent"
+                indirect.symlink_to(root, target_is_directory=True)
+                with self.assertRaises(ValueError):
+                    host.inputs(indirect / "workspace", DEMO,
+                                source.CURRENT["il2cpp_plus"])
+                with self.assertRaises(ValueError):
+                    host.inputs(workspace / ".." / "workspace", DEMO,
+                                source.CURRENT["il2cpp_plus"])
+                with self.assertRaises(ValueError):
+                    host.inputs(workspace, DEMO, "0" * 40)
+                self.assertEqual(sources.call_count, 1)
+                self.assertEqual(remotes.call_count, 4)
+
+    def test_10_real_cli_fresh_process_parses_path_without_assisted_environment(self):
+        # End-to-end interpreter/argparse startup, intentionally with an
+        # INVALID relative workspace to prove pre-write refusal. The POSITIVE
+        # real four-repo admission and all ten commands are exercised by the
+        # combined macOS/Ubuntu workflow's additional current-source job.
+        with tempfile.TemporaryDirectory(prefix="r03-j-cli-") as tmp:
+            root = Path(tmp).resolve(strict=True)
+            output = root / "never-created"
+            command = [sys.executable, "-B", str(host.HERE /
+                        "run_current_native_host_preflight.py"),
+                       "--workspace", "relative/workspace",
+                       "--expected-demo", DEMO,
+                       "--expected-native", source.CURRENT["il2cpp_plus"],
+                       "--output", str(output), "--read-only-admission"]
+            env = dict(os.environ)
+            env.pop("PYTHONPATH", None)
+            env.pop("PYTHONHOME", None)
+            env["PYTHONDONTWRITEBYTECODE"] = "1"
+            failed = subprocess.run(command, cwd=root, env=env, capture_output=True,
+                                    text=True, timeout=30)
+            self.assertNotEqual(failed.returncode, 0, failed.stdout)
+            self.assertIn("Canonical absolute workspace required", failed.stderr)
+            self.assertFalse(output.exists())
+            helped = subprocess.run([sys.executable, "-B",
+                    str(host.HERE / "run_current_native_host_preflight.py"), "--help"],
+                cwd=root, env=env, capture_output=True, text=True, timeout=30)
+            self.assertEqual(helped.returncode, 0, helped.stderr)
+            self.assertIn("--read-only-admission", helped.stdout)
+            self.assertFalse(output.exists())
+
+    def test_11_no_current_admission_can_claim_component_runtime_pass(self):
+        script = (host.HERE / "run_current_native_host_preflight.py").read_text()
+        self.assertIn('"PassedReadOnlyNativeHostInputs_NoComponentsOrUnity"', script)
+        self.assertIn('"nativeHostComponentsExecuted": 0', script)
+        self.assertIn('"outputRootCreated": False', script)
+        self.assertIn('if args.read_only_admission:', script)
+        self.assertLess(script.index('if args.read_only_admission:'),
+                        script.index('output.mkdir(mode=0o700)'))
+        self.assertIn('isinstance(workspace, Path)', script)
+        self.assertNotIn('type(workspace) is Path', script)
+
+    def test_12_current_workflow_runs_actual_real_cli_input_and_full_host(self):
+        root = Path(__file__).resolve().parents[3]
+        text = (root / ".github/workflows/r03-ir-current-native-local-cycle-host.yml").read_text()
+        for needle in ("Real four-repo native-host CLI admission",
+                       "Run complete current 8+2 native-host CLI",
+                       "--read-only-admission",
+                       "PassedReadOnlyNativeHostInputs_NoComponentsOrUnity",
+                       "PassedHostOnlyTenComponents",
+                       "native-owner-method-classifier",
+                       "native-owner-full-tu",
+                       "admission/hybridclr_demo",
+                       "admission/hybridclr",
+                       "admission/hybridclr_unity",
+                       "admission/il2cpp_plus"):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, text)
+
 
 
 if __name__ == "__main__":
