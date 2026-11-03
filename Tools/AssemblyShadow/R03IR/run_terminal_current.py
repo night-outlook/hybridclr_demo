@@ -30,7 +30,7 @@ class CurrentNativeBatch(OriginalBatch):
     def __init__(self, workspace, output, unity, demo_commit):
         source_workspace = Path(workspace).resolve()
         # Source validation occurs BEFORE the base collector creates its output.
-        # No config/JSON controls are allowed to skip these ten actual file digests.
+        # No config/JSON controls are allowed to skip these eleven actual file digests.
         report = verify_source_roots({
             "hybridclr_demo": source_workspace / "hybridclr_demo",
             "hybridclr": source_workspace / "hybridclr",
