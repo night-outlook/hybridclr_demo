@@ -90,6 +90,14 @@ namespace AssemblyShadow.R03.IR
             R03_IR_TracePhase(phase); // Native stderr checkpoint, not Unity logging.
         }
 
+        // Called once by R03EngineFrameDispatcher.Update: failure occurs while
+        // a real Unity frame callback is already on the managed stack.
+        internal static int ForceEngineFailureOnFrame()
+        {
+            R03_IR_TracePhase(75);
+            return R03_IR_ForceTypeFailure();
+        }
+
         private static int s_canary;
         private static string s_failedRequirement;
         [Preserve]
@@ -190,13 +198,18 @@ namespace AssemblyShadow.R03.IR
                 Require(report.reserveGcProbeMask == 31, "Physical pinned Boolean must survive real healthy GC");
                 if (engineCase)
                 {
+                    // BeforeSceneLoad is too early to establish that Unity's
+                    // native Quit request can terminate an active Player loop.
+                    // Install a single first-frame callback while still healthy.
+                    var owner = new GameObject("R03IR-EngineFrameDispatcher");
+                    UnityEngine.Object.DontDestroyOnLoad(owner);
+                    var frame = owner.AddComponent<R03EngineFrameDispatcher>();
+                    Require(frame != null, "Real Unity first-frame dispatcher required");
+                    frame.Arm(engineSentinel);
                     Require(R03_IR_ArmEngineWitness(outputPath, request.runId, request.caseId,
                         report.requestSha256) == 1, "Exclusive engine witness arm");
                     engineArmed = true;
-                    // Prescribed production failure, followed by an uncaught,
-                    // preallocated sentinel. No direct report probe is invoked.
-                    R03_IR_ForceTypeFailure();
-                    throw engineSentinel;
+                    return;
                 }
 
                 // True positive control: the same already-resolved active method,
