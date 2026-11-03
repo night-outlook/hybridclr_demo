@@ -21,7 +21,7 @@ OLD_NATIVE = "74dbdbea80d83923863303bd2b2c0a87f36541b1"
 CURRENT = {
     "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
     "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
-    "il2cpp_plus": "0e1837a69724f6280400738366f22e8079f94ebb",
+    "il2cpp_plus": "cdd3f7bc671880052e4f55ae4c1cd75b99a603e1",
 }
 # Each source blob was directly fetched at the fixed repository commit.
 # A config edit cannot weaken the required source file inventory or hashes.
