@@ -192,14 +192,17 @@ def verify_ir(raw, request, launch, build_sha, *, raw_path=None):
 
 
 def verify_engine(raw, request, launch, log):
-    """Native observer after a genuine uncaught Unity startup callback.
+    """A genuine Unity-frame sentinel followed by a native normal-exit hook.
 
-    The sentinel match is mandatory: generic terminal reports or a direct
-    Runtime::Invoke probe cannot substitute for this engine-originated case.
+    A one-shot Application.Quit icall is insufficient evidence of shutdown.
+    The previous watchdog called std::_Exit(0), so even a positive count could
+    falsely pass. V2 permits only an observed native atexit result: the
+    failure-only watchdog must return a nonzero process exit and may not pass.
+    This still does not prove full Unity subsystem teardown or VM epoch.
     """
-    require(type(raw) is dict and raw.get('schemaVersion') == 1 and
-            raw.get('kind') == 'R03IREngineReportingV1' and raw.get('runtimeAcceptance') is False,
-            'Native engine witness schema')
+    require(type(raw) is dict and raw.get('schemaVersion') == 2 and
+            raw.get('kind') == 'R03IREngineReportingV2' and raw.get('runtimeAcceptance') is False,
+            'Native engine normal-exit witness schema v2')
     require(raw.get('runId') == request['runId'] and raw.get('caseId') == request['caseId'] and
             type(raw.get('processId')) is int and raw['processId'] == launch['pid'],
             'Exact engine witness process/request')
@@ -208,24 +211,36 @@ def verify_engine(raw, request, launch, log):
             exact_int(raw.get('preManagedLoggerCalls'), 1) and exact_int(raw.get('finalManagedLoggerCalls'), 1),
             'Healthy logger control and terminal no-body condition')
     require(type(raw.get('completedReports')) is int and 1 <= raw['completedReports'] <= 64 and
-            exact_int(raw.get('observationMilliseconds'), 500), 'Bounded native completion')
+            exact_int(raw.get('observationLimitMilliseconds'), 500) and
+            type(raw.get('observationElapsedMilliseconds')) is int and
+            0 <= raw['observationElapsedMilliseconds'] <= 500,
+            'Original real-report count and maximum 500ms native completion window')
     require(raw.get('ownerQuitRequested') is True and
-            exact_int(raw.get('ownerQuitNativeCalls'), 1),
-            'Single native Unity owner quit request required, not a managed callback')
+            exact_int(raw.get('ownerQuitNativeCalls'), 1) and
+            type(raw.get('ownerQuitReturned')) is bool,
+            'Single native Unity owner request with independently typed return signal')
+    require(raw.get('normalExitHookObserved') is True and
+            raw.get('witnessExitMode') == 'NativeAtexit',
+            'A watchdog-forced process exit can never pass as normal Unity shutdown')
     recovery = raw.get('recovery')
     require(type(recovery) is dict and recovery.get('published') is True and
             exact_int(recovery.get('stateCode'), 9) and exact_int(recovery.get('terminalFailureCode'), 13) and
-            recovery.get('disposition') == 'RestartRequired', 'Authentic type failure retained')
+            recovery.get('disposition') == 'RestartRequired', 'Authentic first type failure retained')
     sentinel = 'R03_ENGINE_UNHANDLED_' + request['runId']
     require(re.search(r'\[AssemblyShadowTerminalReport\] sequence=\d+ state=9 message="' +
                       re.escape(sentinel) + r'" managedHandlerExecuted=false', log) is not None,
-            'Actual uncaught sentinel must reach native Unity reporter')
+            'Actual unhandled sentinel must reach native Unity reporter')
+    require('[AssemblyShadowPhase] phase=75 state=6' in log,
+            'The native failure must originate from the already-running Unity frame callback')
     require('[R03EngineOwnerQuit] source=UnityNativeIcall once=1 sentinelMatched=true' in log,
-            'Exact engine sentinel must trigger a single actual native owner quit request')
+            'Exact sentinel must trigger one actual native quit request')
+    require('[R03EngineOwnerExit] nativeAtexit=true rawFlushed=true' in log,
+            'Process normal-exit callback and durable raw flush must be independently visible')
     require('[R03ReserveGcProbe] mask=31 ' in log, 'Real reserve/GC prerequisite in this process')
     require('fatal=' not in log, 'No native fatal path accepted')
-    return {'result':'Passed','scope':'One bounded engine-originated unhandled sentinel; not full R03',
-            'freshPlayer':True,'runtimeAcceptance':False}
+    return {'result': 'Passed',
+            'scope': 'One frame-originated unhandled sentinel and normal process exit; not full R03',
+            'freshPlayer': True, 'runtimeAcceptance': False}
 
 
 def player(batch, case):
