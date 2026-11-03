@@ -155,6 +155,9 @@ class CurrentNativeHostContracts(unittest.TestCase):
         src = Path(host.__file__).read_text(encoding="utf-8")
         self.assertIn('output / "historical-eight"', src)
         self.assertIn('source.git_blob(LEGACY_HELPER.read_bytes())', src)
+        self.assertIn('historical.verify_repo(workspace, name, expected)', src)
+        self.assertLess(src.index('historical.verify_repo(workspace, name, expected)'),
+                        src.index('output.mkdir(mode=0o700)'))
         self.assertIn('output.mkdir(mode=0o700)', src)
         self.assertIn('result["result"] = "FailedOrIncomplete"', src)
         self.assertIn('"expectedComponentCount": 10', src)

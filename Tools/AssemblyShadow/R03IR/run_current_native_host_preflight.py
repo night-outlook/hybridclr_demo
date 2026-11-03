@@ -17,6 +17,7 @@ import re
 import sys
 
 import current_native_source_gate as source
+import run_primary_host_preflight as historical
 
 HERE = Path(__file__).resolve().parent
 BRANCH = source.BRANCH
@@ -189,7 +190,13 @@ def inputs(workspace: Path, demo_commit: str, native_commit: str) -> dict:
             "Pinned eleven-source gate required before Local host")
     require(source.git_head(roots["hybridclr_demo"]) == demo_commit,
             "Current demo commit differs before Local host")
+    # The outer coordinator already checks all four remotes, but the current
+    # host wrapper must independently enforce the same gate BEFORE it creates
+    # any output root. Keep the original historical validator intact.
+    for name, expected in expected_heads(demo_commit).items():
+        historical.verify_repo(workspace, name, expected)
     require(LEGACY_HELPER.is_file() and not LEGACY_HELPER.is_symlink() and
+            LEGACY_HELPER.resolve(strict=True) == LEGACY_HELPER and
             source.git_blob(LEGACY_HELPER.read_bytes()) == LEGACY_HELPER_BLOB,
             "Historical eight-suite helper must remain byte-unchanged")
     for _, filename, _ in OWNER_SUITES:
