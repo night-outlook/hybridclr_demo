@@ -18,9 +18,9 @@ import unittest
 
 HERE = Path(__file__).resolve().parent
 MANIFEST = HERE / "current_native_vm_delta.json"
-MANIFEST_BLOB = "b7840afc4e1b475e2d6814adcb0963a25a91a553"
+MANIFEST_BLOB = "c022eff82c1f3678820dc87299c0d8814bf6c660"
 LEGACY_NATIVE = "74dbdbea80d83923863303bd2b2c0a87f36541b1"
-CURRENT_NATIVE = "cdd3f7bc671880052e4f55ae4c1cd75b99a603e1"
+CURRENT_NATIVE = "41764ae1eeefb33b05966e7f7676e52aae39c340"
 EXPECTED_VM_NAMES = (
     "Assembly.cpp",
     "Assembly.h",
@@ -118,7 +118,7 @@ def validate(cfg: dict, root: Path, *, check_native_commit: bool = True) -> dict
     require(tuple(row["path"].replace("libil2cpp/vm/", "") for row in cfg["files"])
             == EXPECTED_VM_NAMES, "Ordered, complete canonical VM delta path identity")
     compare = cfg["comparison"]
-    require(compare == {"aheadBy":165, "behindBy":0, "totalFilesChanged":131,
+    require(compare == {"aheadBy":168, "behindBy":0, "totalFilesChanged":131,
                         "vmFilesChanged":45, "diagnosticToolFilesChanged":61,
                         "workflowFilesChanged":25}, "Fixed Git history delta cardinality")
     require(cfg["acceptance"] == {"actualUnityPlayerRun":False,
@@ -235,7 +235,7 @@ class CurrentVmDeltaTests(unittest.TestCase):
         for name, pin in (
             ("AssemblyShadow.cpp", "57cf47f964a83973df8296955ccf856b105c595f"),
             ("AssemblyShadow.h", "68e78fe6250e3bd1028641d9513eb7d14158e8da"),
-            ("Runtime.cpp", "96b914fbeb31c69d649e4076a802de0b6418daa8"),
+            ("Runtime.cpp", "1b176ee5fd3e2127a0237877e5c9c32bc53058b3"),
         ):
             with self.subTest(name=name):
                 self.assertEqual(by_name["libil2cpp/vm/" + name], pin)

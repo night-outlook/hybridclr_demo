@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "kind": "R03IR02PinnedCurrentNativeVmDelta",
-  "description": "Exact 45 changed libil2cpp/vm paths versus immutable historical 74db. Current native includes R03 H engine OFF-header and normal-exit witness corrections. Source identity only, not installed/linked/Player acceptance.",
+  "description": "Exact 45 changed native VM files relative to immutable historical R03 74db. I adds test-only owner quit decision/notification with immutable native recovery; physical installed parity is a separate Local question.",
   "branch": "codex/assembly-shadow-r01b-h1",
   "baselineNativeCommit": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
-  "candidateNativeCommit": "cdd3f7bc671880052e4f55ae4c1cd75b99a603e1",
+  "candidateNativeCommit": "41764ae1eeefb33b05966e7f7676e52aae39c340",
   "comparison": {
-    "aheadBy": 165,
+    "aheadBy": 168,
     "behindBy": 0,
     "totalFilesChanged": 131,
     "vmFilesChanged": 45,
@@ -112,9 +112,9 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
-      "gitBlob": "710cb25da2437df68f4f4a6375a81faabcca7b1e",
+      "gitBlob": "f3244a4852f6fc3a46ca61a6efd36945e1318246",
       "baselineDelta": "modified",
-      "diffChanges": 229
+      "diffChanges": 272
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
@@ -262,9 +262,9 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowTerminalReporting.h",
-      "gitBlob": "fd1ec63d6569f61d3642599cbbb5a2c647fef9be",
+      "gitBlob": "d76c0df677762509bc26e3d341f07b595f2af4bf",
       "baselineDelta": "modified",
-      "diffChanges": 13
+      "diffChanges": 70
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowVisibility.cpp",
@@ -280,9 +280,9 @@
     },
     {
       "path": "libil2cpp/vm/Runtime.cpp",
-      "gitBlob": "96b914fbeb31c69d649e4076a802de0b6418daa8",
+      "gitBlob": "1b176ee5fd3e2127a0237877e5c9c32bc53058b3",
       "baselineDelta": "modified",
-      "diffChanges": 22
+      "diffChanges": 29
     }
   ],
   "acceptance": {

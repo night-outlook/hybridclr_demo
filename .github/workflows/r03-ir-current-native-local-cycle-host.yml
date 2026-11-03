@@ -21,6 +21,7 @@ on:
       - 'Tools/AssemblyShadow/R03IR/complete_general_diagnostic_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/snapshot_general_transport_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/engine_owner_quit_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/native_owner_decision_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/failed_player_receipt_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/run_terminal_local.py'
       - 'Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp'
@@ -50,11 +51,11 @@ jobs:
             Tools/AssemblyShadow/R03
             Tools/AssemblyShadow/R03IR
             .github/workflows
-      - name: Current native VM H (source only)
+      - name: Current native VM I (source only)
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/il2cpp_plus
-          ref: cdd3f7bc671880052e4f55ae4c1cd75b99a603e1
+          ref: 41764ae1eeefb33b05966e7f7676e52aae39c340
           path: external/il2cpp_plus
           persist-credentials: false
           sparse-checkout-cone-mode: false
@@ -126,6 +127,7 @@ jobs:
           python3 -B Tools/AssemblyShadow/R03IR/complete_general_diagnostic_contracts.py
           python3 -B Tools/AssemblyShadow/R03IR/snapshot_general_transport_contracts.py
           python3 -B Tools/AssemblyShadow/R03IR/engine_owner_quit_contracts.py --native "$PWD/external/il2cpp_plus"
+          python3 -B Tools/AssemblyShadow/R03IR/native_owner_decision_contracts.py --native "$PWD/external/il2cpp_plus"
           python3 -B Tools/AssemblyShadow/R03IR/failed_player_receipt_contracts.py
           python3 -B Tools/AssemblyShadow/R03IR/current_native_oracle_contracts.py
           python3 -B Tools/AssemblyShadow/R03IR/current_native_vm_delta_contracts.py \

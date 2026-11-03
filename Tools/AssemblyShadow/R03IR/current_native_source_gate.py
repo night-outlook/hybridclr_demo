@@ -21,21 +21,21 @@ OLD_NATIVE = "74dbdbea80d83923863303bd2b2c0a87f36541b1"
 CURRENT = {
     "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
     "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
-    "il2cpp_plus": "cdd3f7bc671880052e4f55ae4c1cd75b99a603e1",
+    "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340",
 }
 # Each source blob was directly fetched at the fixed repository commit.
 # A config edit cannot weaken the required source file inventory or hashes.
 FILES = {
     ("hybridclr_demo", "Tools/AssemblyShadow/R03/source-pins.json"): "9d72a237fb6ecd3efe3267ca89625aa49c61775d",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03/run_local.py"): "9aef8093f98fb7f9b5dd395ba4e5c2ed0220276e",
-    ("hybridclr_demo", "Tools/AssemblyShadow/R03IR/run_terminal_local.py"): "09e601ed3b7b90caaea96e82dc8063d454eee935",
+    ("hybridclr_demo", "Tools/AssemblyShadow/R03IR/run_terminal_local.py"): "66766406969bbfc3458f49b865fd80dc1ddc0680",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs"): "e2f650ad95b290620aa52949b43a1866272ac6bf",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03IR/PlayerProject/R03EngineFrameDispatcher.cs"): "47a3e095480de2ec657e7e5acc453a5a76002a18",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs"): "b993703d918090733a659bd7c3ac883cd5d753e1",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp"): "7a5dd88748dd98a387130c046b47790b80752cf9",
     ("il2cpp_plus", "libil2cpp/vm/AssemblyShadow.cpp"): "57cf47f964a83973df8296955ccf856b105c595f",
     ("il2cpp_plus", "libil2cpp/vm/AssemblyShadowTerminalExecution.h"): "33258986c31b2e6ae3af17b8553030482a83aef7",
-    ("il2cpp_plus", "libil2cpp/vm/Runtime.cpp"): "96b914fbeb31c69d649e4076a802de0b6418daa8",
+    ("il2cpp_plus", "libil2cpp/vm/Runtime.cpp"): "1b176ee5fd3e2127a0237877e5c9c32bc53058b3",
     ("hybridclr", "hybridclr/interpreter/Interpreter_Execute.cpp"): "2dbdb7527afee7f2546e45f20e6ef93e1bca237a",
 }
 HEX40 = re.compile(r"^[0-9a-f]{40}$")
