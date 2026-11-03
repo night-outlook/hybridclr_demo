@@ -135,7 +135,7 @@ class InstalledNativeAuditContracts(unittest.TestCase):
 
     def test_15_current_source_identity_is_versioned(self):
         self.assertEqual(audit.delta.CURRENT_NATIVE,
-                         "0e1837a69724f6280400738366f22e8079f94ebb")
+                         "cdd3f7bc671880052e4f55ae4c1cd75b99a603e1")
         self.assertEqual(len(audit.delta.EXPECTED_VM_NAMES), 45)
         self.assertEqual(audit.delta.LEGACY_NATIVE,
                          "74dbdbea80d83923863303bd2b2c0a87f36541b1")
