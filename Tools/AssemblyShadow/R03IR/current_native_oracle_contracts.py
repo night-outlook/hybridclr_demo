@@ -18,7 +18,7 @@ from run_terminal_local import verify_ir, verify_engine
 from batch_contract import ContractError
 
 HERE = Path(__file__).resolve().parent
-PINNED_ORACLE_BLOB = "09e601ed3b7b90caaea96e82dc8063d454eee935"
+PINNED_ORACLE_BLOB = "66766406969bbfc3458f49b865fd80dc1ddc0680"
 PINNED_PLAYER_BLOB = "e2f650ad95b290620aa52949b43a1866272ac6bf"
 PINNED_FRAME_BLOB = "47a3e095480de2ec657e7e5acc453a5a76002a18"
 CASE_IDS = {
@@ -106,6 +106,8 @@ def engine_raw():
             "observationLimitMilliseconds": 500,
             "observationElapsedMilliseconds": 20,
             "ownerQuitRequested": True, "ownerQuitNativeCalls": 1,
+            "ownerWantsToQuitNativeResponses": 1,
+            "ownerApplicationQuitNativeNotifications": 1,
             "ownerQuitReturned": True, "normalExitHookObserved": True,
             "witnessExitMode": "NativeAtexit",
             "recovery": {"published": True, "stateCode": 9,
@@ -121,6 +123,8 @@ def engine_log():
         'R03_ENGINE_UNHANDLED_' + run_id +
         '" managedHandlerExecuted=false\n'
         '[R03EngineOwnerQuit] source=UnityNativeIcall once=1 sentinelMatched=true\n'
+        '[R03EngineOwnerDecision] method=Internal_ApplicationWantsToQuit response=true managedBodyExecuted=false\n'
+        '[R03EngineOwnerDecision] method=Internal_ApplicationQuit response=void managedBodyExecuted=false\n'
         '[R03EngineOwnerExit] nativeAtexit=true rawFlushed=true\n'
         '[R03ReserveGcProbe] mask=31 source=actual-test\n'
     )
@@ -359,6 +363,17 @@ class CurrentNativeOracleContracts(unittest.TestCase):
                        "[AssemblyShadowPhase] phase=75 state=6"):
             with self.assertRaises(ContractError):
                 self.check_engine(log=engine_log().replace(marker, ""))
+
+    def test_32_only_exact_native_quit_decision_receipts_pass(self):
+        for field in ("ownerWantsToQuitNativeResponses",
+                      "ownerApplicationQuitNativeNotifications"):
+            for invalid in (None, False, 0, 2):
+                with self.subTest(field=field, invalid=invalid):
+                    self.reject_engine(lambda r, f=field, v=invalid: r.__setitem__(f, v))
+        for line in ("[R03EngineOwnerDecision] method=Internal_ApplicationWantsToQuit response=true managedBodyExecuted=false",
+                     "[R03EngineOwnerDecision] method=Internal_ApplicationQuit response=void managedBodyExecuted=false"):
+            with self.assertRaises(ContractError):
+                self.check_engine(log=engine_log().replace(line, ""))
 
     def test_31_engine_process_must_exit_with_native_provenance(self):
         self.assertEqual(self.check_engine()["scope"],
