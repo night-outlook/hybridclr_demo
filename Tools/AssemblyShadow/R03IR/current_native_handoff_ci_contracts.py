@@ -84,8 +84,14 @@ def native_checkout_ref(name: str, content: str) -> str:
             if len(refs) != 1:
                 raise ValueError("Ambiguous native checkout ref: " + name)
             matched.extend(refs)
-    if len(matched) != 1 or not re.fullmatch(r"[0-9a-f]{40}", matched[0]):
-        raise ValueError("Missing or ambiguous literal native checkout ref: " + name)
+    # The combined workflow now makes TWO real native checkouts: original
+    # source/host oracle and a second Local-layout checkout used by genuine
+    # argparse(Path) admission. Both must use the exact SAME immutable SHA.
+    expected_count = 2 if name == NATIVE_CI_WORKFLOWS[0] else 1
+    if (len(matched) != expected_count or
+        any(re.fullmatch(r"[0-9a-f]{40}", value) is None for value in matched) or
+        len(set(matched)) != 1):
+        raise ValueError("Missing, stale or ambiguous native checkout ref: " + name)
     return matched[0]
 
 class TriggerContracts(unittest.TestCase):
@@ -98,8 +104,16 @@ class TriggerContracts(unittest.TestCase):
             with self.subTest(name=name):
                 self.assertEqual(native_checkout_ref(name, raw), expected)
                 changed = raw.replace("ref: " + expected, "ref: " + "0"*40, 1)
-                with self.assertRaises(AssertionError):
+                with self.assertRaises((AssertionError, ValueError)):
                     self.assertEqual(native_checkout_ref(name, changed), expected)
+                if name == NATIVE_CI_WORKFLOWS[0]:
+                    # A correct first ref must not hide a stale second checkout.
+                    index = raw.rfind("ref: " + expected)
+                    self.assertGreater(index, raw.find("ref: " + expected))
+                    stale_second = (raw[:index] + raw[index:].replace(
+                        "ref: " + expected, "ref: " + "0"*40, 1))
+                    with self.assertRaises(ValueError):
+                        native_checkout_ref(name, stale_second)
 
     def test_exact_roster_and_all_real_workflows(self):
         self.assertEqual(len(WORKFLOWS), len(set(WORKFLOWS)))

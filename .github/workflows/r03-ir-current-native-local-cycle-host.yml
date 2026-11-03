@@ -101,7 +101,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/il2cpp_plus
-          ref: codex/assembly-shadow-r01b-h1
+          ref: 41764ae1eeefb33b05966e7f7676e52aae39c340
           path: admission/il2cpp_plus
           persist-credentials: false
           sparse-checkout: |
@@ -135,6 +135,9 @@ jobs:
           unset PYTHONPATH || true
           unset PYTHONHOME || true
           real_root="$GITHUB_WORKSPACE/admission"
+          # The exact immutable native SHA checkout is detached; reattach only
+          # to the canonical local feature-branch name for live remote checks.
+          git -C "$real_root/il2cpp_plus" checkout -B codex/assembly-shadow-r01b-h1 HEAD
           test -d "$real_root/hybridclr_demo/.git"
           test -d "$real_root/il2cpp_plus/.git"
           test -d "$real_root/hybridclr" && test -d "$real_root/hybridclr_unity"
