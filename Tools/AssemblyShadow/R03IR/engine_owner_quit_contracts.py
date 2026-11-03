@@ -101,12 +101,20 @@ extern "C" int32_t R03_IR_ArmEngineWitness(
     const char*, const char*, const char*, const char*);
 extern "C" void R03_IR_EngineLoggerCalled();
 extern "C" void R03_IR_OnNativeEngineReportCompleted(const Il2CppException*);
+extern "C" int32_t R03_IR_NativeOwnerDecisionPending() noexcept;
+extern "C" void R03_IR_NativeOwnerDecisionObserved(int32_t kind) noexcept;
 
 static bool s_naturalQuit = false;
 extern "C" void R03MockUnityQuit(int32_t code)
 {
     if (code != 0) std::_Exit(80);
-    if (s_naturalQuit) std::exit(0); // C runtime atexit, not watchdog.
+    if (R03_IR_NativeOwnerDecisionPending() != 1) std::_Exit(81);
+    R03_IR_NativeOwnerDecisionObserved(1); // Simulated Unity WantsToQuit callback.
+    if (s_naturalQuit)
+    {
+        R03_IR_NativeOwnerDecisionObserved(2); // Simulated native Quit notification.
+        std::exit(0); // C runtime atexit, not watchdog.
+    }
 }
 
 int main(int argc, char** argv)
@@ -160,6 +168,8 @@ class OwnerQuitHostContracts(unittest.TestCase):
             's_ownerQuitReturned.store(true',
             'normalExitHookObserved',
             's_firstSentinelNs.store(NowNs()',
+            's_ownerWantsToQuitNativeResponses.fetch_add(1',
+            's_ownerApplicationQuitNativeNotifications.fetch_add(1',
         ):
             if token not in cls.source:
                 raise AssertionError("Required real native owner source missing: " + token)
@@ -231,6 +241,8 @@ class OwnerQuitHostContracts(unittest.TestCase):
             self.assertFalse(receipt["timedOut"])
             self.assertEqual(receipt["completedReports"], 1)
             self.assertEqual(receipt["ownerQuitNativeCalls"], 1)
+            self.assertEqual(receipt["ownerWantsToQuitNativeResponses"], 1)
+            self.assertEqual(receipt["ownerApplicationQuitNativeNotifications"], 1)
             self.assertLessEqual(receipt["observationElapsedMilliseconds"], 500)
             self.assertEqual(receipt["finalState"], 9)
             self.assertEqual(receipt["recovery"]["terminalFailureCode"], 13)
@@ -253,6 +265,8 @@ class OwnerQuitHostContracts(unittest.TestCase):
             self.assertTrue(receipt["timedOut"])
             self.assertEqual(receipt["completedReports"], 1)
             self.assertEqual(receipt["ownerQuitNativeCalls"], 1)
+            self.assertEqual(receipt["ownerWantsToQuitNativeResponses"], 1)
+            self.assertEqual(receipt["ownerApplicationQuitNativeNotifications"], 0)
             self.assertNotIn("[R03EngineOwnerExit]", run.stderr)
 
 
