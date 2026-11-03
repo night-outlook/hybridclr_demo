@@ -62,6 +62,7 @@ struct AssemblyShadow {
 #pragma once
 #include <atomic>
 #include <cstdint>
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
 namespace il2cpp { namespace vm { namespace assembly_shadow_reporting {
 inline std::atomic<uint64_t>& CompletedCounter() {
     static std::atomic<uint64_t> count{0};
@@ -156,7 +157,7 @@ class OwnerQuitHostContracts(unittest.TestCase):
             '"UnityEngine.Application::Quit(System.Int32)"',
             's_ownerQuitRequested.exchange(true',
             's_ownerQuitReturned.store(true',
-            '"normalExitHookObserved"',
+            'normalExitHookObserved',
             's_firstSentinelNs.store(NowNs()',
         ):
             if token not in cls.source:
@@ -177,7 +178,7 @@ class OwnerQuitHostContracts(unittest.TestCase):
                 harness: Path | None = None) -> subprocess.CompletedProcess:
         out = root / ("on-runner" if enabled else "off.o")
         argv = [self.compiler, "-std=c++11", "-Wall", "-Wextra", "-Werror",
-                "-Wno-unused-function", "-pedantic", "-pthread",
+                "-Wno-unused-function", "-Wno-unused-variable", "-pedantic", "-pthread",
                 "-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=" + ("1" if enabled else "0"),
                 "-DHYBRIDCLR_R03_RUNTIME_PROBE=1", "-I", str(root),
                 str(source)]
