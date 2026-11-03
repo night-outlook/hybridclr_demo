@@ -1,0 +1,1021 @@
+{
+  "R03Accepted": false,
+  "ReadyForHumanReviewGate": false,
+  "changedVmFilesPerRole": 45,
+  "currentNative": "41764ae1eeefb33b05966e7f7676e52aae39c340",
+  "currentUnityPlayerExecution": "ReferencedSealedSiblingEvidence_NotExecutedHere",
+  "fullNativeIncludeClosure": "NotProven",
+  "generatedCppBinaryLinkage": "NotProven",
+  "historicalNative": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
+  "independentReview": "NotRun",
+  "installedVmSourcePairs": 135,
+  "kind": "R03IRCurrentNativeInstalledVmSourceParity",
+  "repositories": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_demo": "c707141204265a8111f1f5928515fc8cf28abfee",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340",
+    "phase": "candidate",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1
+  },
+  "result": "PassedInstalledSourceParityOnly",
+  "roles": [
+    {
+      "R03Accepted": false,
+      "buildReceiptSha256": "814aec1a8b60e343fbd87078a66f59acf8519ac2b2e294e0ada772104f35e1e2",
+      "changedVmFiles": 45,
+      "generatedCppFullInclusion": "NotProvenBySourceParity",
+      "installedFileBytes": 455310,
+      "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+      "linkedPlayerInclusion": "NotProvenBySourceParity",
+      "projectSourcePinsSha256": "6a1f16848a8abdb977a60c6625a8a90dfc4e3350dd17c5b7c5edfdeacff5c814",
+      "result": "PassedPhysicalInstalledCurrentNativeSourceParity",
+      "role": "candidate-release",
+      "runtimeAcceptance": false,
+      "sources": [
+        {
+          "installed": "vm/Assembly.cpp",
+          "sha256": "0c46232f94b6e7afc2b5277d287618d8405a3f19784781ae800dda19ba8c4431",
+          "size": 12099,
+          "source": "libil2cpp/vm/Assembly.cpp",
+          "sourceGitBlob": "cb383d664ed02e138a9dd0cb42f2a64629146207"
+        },
+        {
+          "installed": "vm/Assembly.h",
+          "sha256": "74b9615a04bdf59df8da62948fd6dad2a2a10e8a8eda0cbf369635ab981e9181",
+          "size": 3012,
+          "source": "libil2cpp/vm/Assembly.h",
+          "sourceGitBlob": "3e4bbb85c190bf0f9c43fee9e3fc3518c61ed457"
+        },
+        {
+          "installed": "vm/AssemblyShadow.cpp",
+          "sha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c",
+          "size": 123277,
+          "source": "libil2cpp/vm/AssemblyShadow.cpp",
+          "sourceGitBlob": "57cf47f964a83973df8296955ccf856b105c595f"
+        },
+        {
+          "installed": "vm/AssemblyShadow.h",
+          "sha256": "55e572887d7ed89cc5d9cd57b3457df240357aa389474512442f3a5fea487e8f",
+          "size": 13664,
+          "source": "libil2cpp/vm/AssemblyShadow.h",
+          "sourceGitBlob": "68e78fe6250e3bd1028641d9513eb7d14158e8da"
+        },
+        {
+          "installed": "vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+          "sha256": "9b309fa25aadfb983787540e7d0b65d01e3aaf7a2fad5b7e67cfa737ef1c8d99",
+          "size": 1372,
+          "source": "libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+          "sourceGitBlob": "a615a839f5af8614c672a9bfb45be02d12b01a0e"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+          "sha256": "d4f4d495fc0636fcdd41f1121a1aa71404e838e1dfedfc7a7a3d10d70777e734",
+          "size": 2599,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+          "sourceGitBlob": "5b2afe1cfcf14570e64b8836ef4f995ee5e6db57"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+          "sha256": "6e53d15eab13a4a0169884a4d032af14a30352f111de166515b9d940362044ef",
+          "size": 4608,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+          "sourceGitBlob": "94bcd4e12e553c2f28c727d9c74bc2feb0b22e8c"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedFirstUseCapture.h",
+          "sha256": "b77a46ffc4ba6e522fc8c34e0ac43283f502639a8ca4f6b9282afc097fa5c895",
+          "size": 13880,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+          "sourceGitBlob": "b7ba5dffb2e3ecebe7406f598e97a1ab97251cdf"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedGeneralComposer.h",
+          "sha256": "2550f78b66def91a2f0851c8edf2a24f3beb1887b595f2ac45b246aa5a125ade",
+          "size": 11494,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+          "sourceGitBlob": "9e63e46a429c07f0b5adaf529b48f455ce1328fc"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedGeneralLive.h",
+          "sha256": "1dc1a731f75a773494edf669965a7034d1fa908c2201401a3eb2238228e1b7f5",
+          "size": 3469,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+          "sourceGitBlob": "b554eb36f6337c139a3f24beb168ab3f2b6e4343"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+          "sha256": "2be24d11ff97527706c4125699c7d04dc060e5f38ea9eac931d17ef97a7dbca0",
+          "size": 7249,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+          "sourceGitBlob": "a85a6ec310b85e96dfe199c6d773407cf47779b3"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedOrdinaryClasses.h",
+          "sha256": "ae4c2a471c1879510849d4902694caa7308bc70f3804cb6b1d0fb2ac839615a8",
+          "size": 6620,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h",
+          "sourceGitBlob": "91f049cc7d81d5e6de95ec50884ed3d6b9b63163"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+          "sha256": "0545c483230b7a1f6ea007ff28f000ec37a2f85444062c62eff74a048c5986c1",
+          "size": 5084,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+          "sourceGitBlob": "4e82e7f3814b8ed021a24d235dcfbe79c4c2412a"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedTransactionInventory.h",
+          "sha256": "fe37931e27f1616bea8e08c134a2349567161bd8cd5c739c3954be349b9da3c8",
+          "size": 10793,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h",
+          "sourceGitBlob": "d2a6fb798de9a3599f6b6c63149515cb23ab3350"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedTransactionStatus.h",
+          "sha256": "b5b91b9480016493f1b26fcd78be96f9c1ff107b866950d7b08d999870ea785a",
+          "size": 6530,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h",
+          "sourceGitBlob": "fc3a569ea0f617b67b3867a804126e9583d86b72"
+        },
+        {
+          "installed": "vm/AssemblyShadowDiagnosticWriter.h",
+          "sha256": "03f1c76f84e79de38ddc708130cf4a95c736e3abab0e0e4266a84ba7cad2684f",
+          "size": 6600,
+          "source": "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+          "sourceGitBlob": "edef7c2f37978e65c02a8d2008886c6c4af8ae20"
+        },
+        {
+          "installed": "vm/AssemblyShadowEngineReportingProbe.cpp",
+          "sha256": "8e0b0ce0f221c76a75e91a84250f37890b6444818283f1c2c10ddd49a184f401",
+          "size": 13981,
+          "source": "libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
+          "sourceGitBlob": "f3244a4852f6fc3a46ca61a6efd36945e1318246"
+        },
+        {
+          "installed": "vm/AssemblyShadowExecutionRegistrationWitness.h",
+          "sha256": "67afc44c92255d76d7c8d29a95b634d53a648be637fe4112c4566659f1f95cc8",
+          "size": 1892,
+          "source": "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+          "sourceGitBlob": "6f14ca874f77592d845ce0563afaff2eb7573a90"
+        },
+        {
+          "installed": "vm/AssemblyShadowExecutionRegistryPublisher.h",
+          "sha256": "7db3ea584e332c92364ebee5b9c778e0c731c449783551a9adb4204cf1df8ff7",
+          "size": 2361,
+          "source": "libil2cpp/vm/AssemblyShadowExecutionRegistryPublisher.h",
+          "sourceGitBlob": "4d7e80346cf8b3a8c93ad95e025f00035629f141"
+        },
+        {
+          "installed": "vm/AssemblyShadowExecutionRegistryRevision.h",
+          "sha256": "4d318426f4be784fe3eb6065ef47ed97539416f871fbe060f6c4ca6e8be41d5e",
+          "size": 788,
+          "source": "libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h",
+          "sourceGitBlob": "46a313742295acaa52d5022f238fbcba4430c6df"
+        },
+        {
+          "installed": "vm/AssemblyShadowFrozenExecutionCapture.h",
+          "sha256": "1ce04b4678d7f48e205162db6572199489d22612f53afc9bebb9b07866f7ecf4",
+          "size": 9413,
+          "source": "libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h",
+          "sourceGitBlob": "624a43c0f153456001288c904d9705ec59171aae"
+        },
+        {
+          "installed": "vm/AssemblyShadowFrozenExecutionRecord.h",
+          "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9",
+          "size": 9831,
+          "source": "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+          "sourceGitBlob": "eeb413f8c8c0f6c1658da68ddd404b9b478e6e70"
+        },
+        {
+          "installed": "vm/AssemblyShadowFrozenGeneralCapture.h",
+          "sha256": "bc8660655e19ee15c02caf21403ef90f5f87c95b0fa1dcc212a7ca7a61573e6e",
+          "size": 15083,
+          "source": "libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+          "sourceGitBlob": "08856d4a610ed3fa519cee67bad8a307dd82a34b"
+        },
+        {
+          "installed": "vm/AssemblyShadowFrozenR02Capture.h",
+          "sha256": "6014613e62b570c0f93f7317831e14645600f87e9d32a9e87d2902e19991dbad",
+          "size": 2995,
+          "source": "libil2cpp/vm/AssemblyShadowFrozenR02Capture.h",
+          "sourceGitBlob": "64ec2dc887106f12274febc74b4e155e140d70e5"
+        },
+        {
+          "installed": "vm/AssemblyShadowFrozenR02Serializer.h",
+          "sha256": "c383afe1ba28b3c88f00abcea4ff469d40e3557bdff0303368d6a31ded1ed378",
+          "size": 3217,
+          "source": "libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+          "sourceGitBlob": "ab136038a49a8e6614243677d19e20c6f3fde4c5"
+        },
+        {
+          "installed": "vm/AssemblyShadowMetadataLifetime.h",
+          "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716",
+          "size": 4637,
+          "source": "libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+          "sourceGitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd"
+        },
+        {
+          "installed": "vm/AssemblyShadowObservedTypeShape.h",
+          "sha256": "c2dd2249c945a89ddc8ac2e712d0b56f5cde3e4dc474a364a4fd6f1b471c3a89",
+          "size": 3138,
+          "source": "libil2cpp/vm/AssemblyShadowObservedTypeShape.h",
+          "sourceGitBlob": "9625544a62c4907c73da251f4062dea0731758b7"
+        },
+        {
+          "installed": "vm/AssemblyShadowObservedTypeShapeCensus.h",
+          "sha256": "83f2d79c4c7d6480267c1cb18392af914dcc7b2513f9a7b003131ecd1ddd9d14",
+          "size": 5684,
+          "source": "libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+          "sourceGitBlob": "23065b67456ee7d19c7019cf24900e66daaf28db"
+        },
+        {
+          "installed": "vm/AssemblyShadowObservedTypeShapeJson.h",
+          "sha256": "6eb08c239c34eb55a8f7e2f1fc1ca84244fc501131c7564d328018d7f0d756e3",
+          "size": 8022,
+          "source": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+          "sourceGitBlob": "14b44ca96a1be6a0abc8629ecea1b7bade02eabe"
+        },
+        {
+          "installed": "vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+          "sha256": "622601ccd395ed41edb512d0da12fe35a645b822f3e14e2994b8413cce00eaf9",
+          "size": 2818,
+          "source": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+          "sourceGitBlob": "f432aa3ea638a05b42618ca242be5bbc3e3e1e67"
+        },
+        {
+          "installed": "vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+          "sha256": "0472835c03165278579dc3b332f6ef74eea22fb0d527a337bdb157beb14a79d7",
+          "size": 1886,
+          "source": "libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+          "sourceGitBlob": "7778e2064cbba7fb5b16179746cbb7d272118fb6"
+        },
+        {
+          "installed": "vm/AssemblyShadowOpaqueExecutionInventory.h",
+          "sha256": "1d29f8119e0cafa1168ef46ee17aebed465359ff5f47902165a97586a6aa6369",
+          "size": 5074,
+          "source": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+          "sourceGitBlob": "a2ca61c35b0ba0e5f71a261b21647a36dfc0a9c4"
+        },
+        {
+          "installed": "vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+          "sha256": "d27d0cdd391182a5b3c9a942bdc44bdf45418d1fb13c2c3e92df92e012ea1ea8",
+          "size": 3619,
+          "source": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+          "sourceGitBlob": "372d12209417dcb9e119da6bda64deca79389a23"
+        },
+        {
+          "installed": "vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+          "sha256": "865a36b154965f0ae69bc788f6ba21fc6a841d546a34215a6448112110bb6604",
+          "size": 2332,
+          "source": "libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+          "sourceGitBlob": "dff6f12dca1c4f89dec7151ced6b63febeb0769f"
+        },
+        {
+          "installed": "vm/AssemblyShadowOwnedPhysicalNames.h",
+          "sha256": "216a8ec0365bd134ac0849d5fec2d709c24e5b3927c66c17360792eea836d5df",
+          "size": 8740,
+          "source": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+          "sourceGitBlob": "f722a34cacda9fa35f226e8b11f4800d3fd42c72"
+        },
+        {
+          "installed": "vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+          "sha256": "944d663e2d55e8ed07be3c62b1f6c7f7f6aee1bf0c34b9a464550b6817c5c15a",
+          "size": 10926,
+          "source": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+          "sourceGitBlob": "35d4d000faa588cdd5147a0b2abdf00d566c0b06"
+        },
+        {
+          "installed": "vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+          "sha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177",
+          "size": 6697,
+          "source": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+          "sourceGitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3"
+        },
+        {
+          "installed": "vm/AssemblyShadowPhysicalMembership.h",
+          "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7",
+          "size": 7576,
+          "source": "libil2cpp/vm/AssemblyShadowPhysicalMembership.h",
+          "sourceGitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3"
+        },
+        {
+          "installed": "vm/AssemblyShadowPhysicalMembershipSource.inl",
+          "sha256": "bd0ff612a27913c1424cc7627454ae8eb5101b3479eca2ba24e6097bb3197651",
+          "size": 3573,
+          "source": "libil2cpp/vm/AssemblyShadowPhysicalMembershipSource.inl",
+          "sourceGitBlob": "4e18fa035c324a67959284efa90fa601c6ede0d9"
+        },
+        {
+          "installed": "vm/AssemblyShadowR02Diagnostics.h",
+          "sha256": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba",
+          "size": 3318,
+          "source": "libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+          "sourceGitBlob": "1c2a43384d03b0369a51b587fc5f5e445d5b58c8"
+        },
+        {
+          "installed": "vm/AssemblyShadowR02Snapshot.h",
+          "sha256": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf",
+          "size": 6769,
+          "source": "libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+          "sourceGitBlob": "9f7266014b1514adfd0935948ff417375df274d8"
+        },
+        {
+          "installed": "vm/AssemblyShadowTerminalReporting.h",
+          "sha256": "68bbe93136cc6abf6228519cc52e4d270ae1872d75336f7d8e4216b3802b0837",
+          "size": 10861,
+          "source": "libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+          "sourceGitBlob": "d76c0df677762509bc26e3d341f07b595f2af4bf"
+        },
+        {
+          "installed": "vm/AssemblyShadowVisibility.cpp",
+          "sha256": "4bae387bdd6917da03a74e4539207a1da54e0f071b607b46e499d9c170df8bb6",
+          "size": 11520,
+          "source": "libil2cpp/vm/AssemblyShadowVisibility.cpp",
+          "sourceGitBlob": "1469a44b51ce0adb8d0e98dffd0ac66a0d107aaa"
+        },
+        {
+          "installed": "vm/AssemblyShadowVisibility.h",
+          "sha256": "e8a276f6ff474986fe769122df08d039b4c4544258aa29e6cac2ca1f5572bf7c",
+          "size": 1823,
+          "source": "libil2cpp/vm/AssemblyShadowVisibility.h",
+          "sourceGitBlob": "0e94c3d478cb6c1cdd80fd84f684b91e680673bc"
+        },
+        {
+          "installed": "vm/Runtime.cpp",
+          "sha256": "85edcf180cc66233d555075f40364d383e27239237ef196dc7bdf631f3550da1",
+          "size": 54386,
+          "source": "libil2cpp/vm/Runtime.cpp",
+          "sourceGitBlob": "1b176ee5fd3e2127a0237877e5c9c32bc53058b3"
+        }
+      ]
+    },
+    {
+      "R03Accepted": false,
+      "buildReceiptSha256": "5542f92a67b3f06d7da3b449e2bf5860eb61f6ae89bb585c1036a2cd2ea9060b",
+      "changedVmFiles": 45,
+      "generatedCppFullInclusion": "NotProvenBySourceParity",
+      "installedFileBytes": 455310,
+      "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+      "linkedPlayerInclusion": "NotProvenBySourceParity",
+      "projectSourcePinsSha256": "6a1f16848a8abdb977a60c6625a8a90dfc4e3350dd17c5b7c5edfdeacff5c814",
+      "result": "PassedPhysicalInstalledCurrentNativeSourceParity",
+      "role": "candidate-debug",
+      "runtimeAcceptance": false,
+      "sources": [
+        {
+          "installed": "vm/Assembly.cpp",
+          "sha256": "0c46232f94b6e7afc2b5277d287618d8405a3f19784781ae800dda19ba8c4431",
+          "size": 12099,
+          "source": "libil2cpp/vm/Assembly.cpp",
+          "sourceGitBlob": "cb383d664ed02e138a9dd0cb42f2a64629146207"
+        },
+        {
+          "installed": "vm/Assembly.h",
+          "sha256": "74b9615a04bdf59df8da62948fd6dad2a2a10e8a8eda0cbf369635ab981e9181",
+          "size": 3012,
+          "source": "libil2cpp/vm/Assembly.h",
+          "sourceGitBlob": "3e4bbb85c190bf0f9c43fee9e3fc3518c61ed457"
+        },
+        {
+          "installed": "vm/AssemblyShadow.cpp",
+          "sha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c",
+          "size": 123277,
+          "source": "libil2cpp/vm/AssemblyShadow.cpp",
+          "sourceGitBlob": "57cf47f964a83973df8296955ccf856b105c595f"
+        },
+        {
+          "installed": "vm/AssemblyShadow.h",
+          "sha256": "55e572887d7ed89cc5d9cd57b3457df240357aa389474512442f3a5fea487e8f",
+          "size": 13664,
+          "source": "libil2cpp/vm/AssemblyShadow.h",
+          "sourceGitBlob": "68e78fe6250e3bd1028641d9513eb7d14158e8da"
+        },
+        {
+          "installed": "vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+          "sha256": "9b309fa25aadfb983787540e7d0b65d01e3aaf7a2fad5b7e67cfa737ef1c8d99",
+          "size": 1372,
+          "source": "libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+          "sourceGitBlob": "a615a839f5af8614c672a9bfb45be02d12b01a0e"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+          "sha256": "d4f4d495fc0636fcdd41f1121a1aa71404e838e1dfedfc7a7a3d10d70777e734",
+          "size": 2599,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+          "sourceGitBlob": "5b2afe1cfcf14570e64b8836ef4f995ee5e6db57"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+          "sha256": "6e53d15eab13a4a0169884a4d032af14a30352f111de166515b9d940362044ef",
+          "size": 4608,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+          "sourceGitBlob": "94bcd4e12e553c2f28c727d9c74bc2feb0b22e8c"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedFirstUseCapture.h",
+          "sha256": "b77a46ffc4ba6e522fc8c34e0ac43283f502639a8ca4f6b9282afc097fa5c895",
+          "size": 13880,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+          "sourceGitBlob": "b7ba5dffb2e3ecebe7406f598e97a1ab97251cdf"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedGeneralComposer.h",
+          "sha256": "2550f78b66def91a2f0851c8edf2a24f3beb1887b595f2ac45b246aa5a125ade",
+          "size": 11494,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+          "sourceGitBlob": "9e63e46a429c07f0b5adaf529b48f455ce1328fc"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedGeneralLive.h",
+          "sha256": "1dc1a731f75a773494edf669965a7034d1fa908c2201401a3eb2238228e1b7f5",
+          "size": 3469,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+          "sourceGitBlob": "b554eb36f6337c139a3f24beb168ab3f2b6e4343"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+          "sha256": "2be24d11ff97527706c4125699c7d04dc060e5f38ea9eac931d17ef97a7dbca0",
+          "size": 7249,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+          "sourceGitBlob": "a85a6ec310b85e96dfe199c6d773407cf47779b3"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedOrdinaryClasses.h",
+          "sha256": "ae4c2a471c1879510849d4902694caa7308bc70f3804cb6b1d0fb2ac839615a8",
+          "size": 6620,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h",
+          "sourceGitBlob": "91f049cc7d81d5e6de95ec50884ed3d6b9b63163"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+          "sha256": "0545c483230b7a1f6ea007ff28f000ec37a2f85444062c62eff74a048c5986c1",
+          "size": 5084,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+          "sourceGitBlob": "4e82e7f3814b8ed021a24d235dcfbe79c4c2412a"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedTransactionInventory.h",
+          "sha256": "fe37931e27f1616bea8e08c134a2349567161bd8cd5c739c3954be349b9da3c8",
+          "size": 10793,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h",
+          "sourceGitBlob": "d2a6fb798de9a3599f6b6c63149515cb23ab3350"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedTransactionStatus.h",
+          "sha256": "b5b91b9480016493f1b26fcd78be96f9c1ff107b866950d7b08d999870ea785a",
+          "size": 6530,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h",
+          "sourceGitBlob": "fc3a569ea0f617b67b3867a804126e9583d86b72"
+        },
+        {
+          "installed": "vm/AssemblyShadowDiagnosticWriter.h",
+          "sha256": "03f1c76f84e79de38ddc708130cf4a95c736e3abab0e0e4266a84ba7cad2684f",
+          "size": 6600,
+          "source": "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+          "sourceGitBlob": "edef7c2f37978e65c02a8d2008886c6c4af8ae20"
+        },
+        {
+          "installed": "vm/AssemblyShadowEngineReportingProbe.cpp",
+          "sha256": "8e0b0ce0f221c76a75e91a84250f37890b6444818283f1c2c10ddd49a184f401",
+          "size": 13981,
+          "source": "libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
+          "sourceGitBlob": "f3244a4852f6fc3a46ca61a6efd36945e1318246"
+        },
+        {
+          "installed": "vm/AssemblyShadowExecutionRegistrationWitness.h",
+          "sha256": "67afc44c92255d76d7c8d29a95b634d53a648be637fe4112c4566659f1f95cc8",
+          "size": 1892,
+          "source": "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+          "sourceGitBlob": "6f14ca874f77592d845ce0563afaff2eb7573a90"
+        },
+        {
+          "installed": "vm/AssemblyShadowExecutionRegistryPublisher.h",
+          "sha256": "7db3ea584e332c92364ebee5b9c778e0c731c449783551a9adb4204cf1df8ff7",
+          "size": 2361,
+          "source": "libil2cpp/vm/AssemblyShadowExecutionRegistryPublisher.h",
+          "sourceGitBlob": "4d7e80346cf8b3a8c93ad95e025f00035629f141"
+        },
+        {
+          "installed": "vm/AssemblyShadowExecutionRegistryRevision.h",
+          "sha256": "4d318426f4be784fe3eb6065ef47ed97539416f871fbe060f6c4ca6e8be41d5e",
+          "size": 788,
+          "source": "libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h",
+          "sourceGitBlob": "46a313742295acaa52d5022f238fbcba4430c6df"
+        },
+        {
+          "installed": "vm/AssemblyShadowFrozenExecutionCapture.h",
+          "sha256": "1ce04b4678d7f48e205162db6572199489d22612f53afc9bebb9b07866f7ecf4",
+          "size": 9413,
+          "source": "libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h",
+          "sourceGitBlob": "624a43c0f153456001288c904d9705ec59171aae"
+        },
+        {
+          "installed": "vm/AssemblyShadowFrozenExecutionRecord.h",
+          "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9",
+          "size": 9831,
+          "source": "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+          "sourceGitBlob": "eeb413f8c8c0f6c1658da68ddd404b9b478e6e70"
+        },
+        {
+          "installed": "vm/AssemblyShadowFrozenGeneralCapture.h",
+          "sha256": "bc8660655e19ee15c02caf21403ef90f5f87c95b0fa1dcc212a7ca7a61573e6e",
+          "size": 15083,
+          "source": "libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+          "sourceGitBlob": "08856d4a610ed3fa519cee67bad8a307dd82a34b"
+        },
+        {
+          "installed": "vm/AssemblyShadowFrozenR02Capture.h",
+          "sha256": "6014613e62b570c0f93f7317831e14645600f87e9d32a9e87d2902e19991dbad",
+          "size": 2995,
+          "source": "libil2cpp/vm/AssemblyShadowFrozenR02Capture.h",
+          "sourceGitBlob": "64ec2dc887106f12274febc74b4e155e140d70e5"
+        },
+        {
+          "installed": "vm/AssemblyShadowFrozenR02Serializer.h",
+          "sha256": "c383afe1ba28b3c88f00abcea4ff469d40e3557bdff0303368d6a31ded1ed378",
+          "size": 3217,
+          "source": "libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+          "sourceGitBlob": "ab136038a49a8e6614243677d19e20c6f3fde4c5"
+        },
+        {
+          "installed": "vm/AssemblyShadowMetadataLifetime.h",
+          "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716",
+          "size": 4637,
+          "source": "libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+          "sourceGitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd"
+        },
+        {
+          "installed": "vm/AssemblyShadowObservedTypeShape.h",
+          "sha256": "c2dd2249c945a89ddc8ac2e712d0b56f5cde3e4dc474a364a4fd6f1b471c3a89",
+          "size": 3138,
+          "source": "libil2cpp/vm/AssemblyShadowObservedTypeShape.h",
+          "sourceGitBlob": "9625544a62c4907c73da251f4062dea0731758b7"
+        },
+        {
+          "installed": "vm/AssemblyShadowObservedTypeShapeCensus.h",
+          "sha256": "83f2d79c4c7d6480267c1cb18392af914dcc7b2513f9a7b003131ecd1ddd9d14",
+          "size": 5684,
+          "source": "libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+          "sourceGitBlob": "23065b67456ee7d19c7019cf24900e66daaf28db"
+        },
+        {
+          "installed": "vm/AssemblyShadowObservedTypeShapeJson.h",
+          "sha256": "6eb08c239c34eb55a8f7e2f1fc1ca84244fc501131c7564d328018d7f0d756e3",
+          "size": 8022,
+          "source": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+          "sourceGitBlob": "14b44ca96a1be6a0abc8629ecea1b7bade02eabe"
+        },
+        {
+          "installed": "vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+          "sha256": "622601ccd395ed41edb512d0da12fe35a645b822f3e14e2994b8413cce00eaf9",
+          "size": 2818,
+          "source": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+          "sourceGitBlob": "f432aa3ea638a05b42618ca242be5bbc3e3e1e67"
+        },
+        {
+          "installed": "vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+          "sha256": "0472835c03165278579dc3b332f6ef74eea22fb0d527a337bdb157beb14a79d7",
+          "size": 1886,
+          "source": "libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+          "sourceGitBlob": "7778e2064cbba7fb5b16179746cbb7d272118fb6"
+        },
+        {
+          "installed": "vm/AssemblyShadowOpaqueExecutionInventory.h",
+          "sha256": "1d29f8119e0cafa1168ef46ee17aebed465359ff5f47902165a97586a6aa6369",
+          "size": 5074,
+          "source": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+          "sourceGitBlob": "a2ca61c35b0ba0e5f71a261b21647a36dfc0a9c4"
+        },
+        {
+          "installed": "vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+          "sha256": "d27d0cdd391182a5b3c9a942bdc44bdf45418d1fb13c2c3e92df92e012ea1ea8",
+          "size": 3619,
+          "source": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+          "sourceGitBlob": "372d12209417dcb9e119da6bda64deca79389a23"
+        },
+        {
+          "installed": "vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+          "sha256": "865a36b154965f0ae69bc788f6ba21fc6a841d546a34215a6448112110bb6604",
+          "size": 2332,
+          "source": "libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+          "sourceGitBlob": "dff6f12dca1c4f89dec7151ced6b63febeb0769f"
+        },
+        {
+          "installed": "vm/AssemblyShadowOwnedPhysicalNames.h",
+          "sha256": "216a8ec0365bd134ac0849d5fec2d709c24e5b3927c66c17360792eea836d5df",
+          "size": 8740,
+          "source": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+          "sourceGitBlob": "f722a34cacda9fa35f226e8b11f4800d3fd42c72"
+        },
+        {
+          "installed": "vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+          "sha256": "944d663e2d55e8ed07be3c62b1f6c7f7f6aee1bf0c34b9a464550b6817c5c15a",
+          "size": 10926,
+          "source": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+          "sourceGitBlob": "35d4d000faa588cdd5147a0b2abdf00d566c0b06"
+        },
+        {
+          "installed": "vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+          "sha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177",
+          "size": 6697,
+          "source": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+          "sourceGitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3"
+        },
+        {
+          "installed": "vm/AssemblyShadowPhysicalMembership.h",
+          "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7",
+          "size": 7576,
+          "source": "libil2cpp/vm/AssemblyShadowPhysicalMembership.h",
+          "sourceGitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3"
+        },
+        {
+          "installed": "vm/AssemblyShadowPhysicalMembershipSource.inl",
+          "sha256": "bd0ff612a27913c1424cc7627454ae8eb5101b3479eca2ba24e6097bb3197651",
+          "size": 3573,
+          "source": "libil2cpp/vm/AssemblyShadowPhysicalMembershipSource.inl",
+          "sourceGitBlob": "4e18fa035c324a67959284efa90fa601c6ede0d9"
+        },
+        {
+          "installed": "vm/AssemblyShadowR02Diagnostics.h",
+          "sha256": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba",
+          "size": 3318,
+          "source": "libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+          "sourceGitBlob": "1c2a43384d03b0369a51b587fc5f5e445d5b58c8"
+        },
+        {
+          "installed": "vm/AssemblyShadowR02Snapshot.h",
+          "sha256": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf",
+          "size": 6769,
+          "source": "libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+          "sourceGitBlob": "9f7266014b1514adfd0935948ff417375df274d8"
+        },
+        {
+          "installed": "vm/AssemblyShadowTerminalReporting.h",
+          "sha256": "68bbe93136cc6abf6228519cc52e4d270ae1872d75336f7d8e4216b3802b0837",
+          "size": 10861,
+          "source": "libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+          "sourceGitBlob": "d76c0df677762509bc26e3d341f07b595f2af4bf"
+        },
+        {
+          "installed": "vm/AssemblyShadowVisibility.cpp",
+          "sha256": "4bae387bdd6917da03a74e4539207a1da54e0f071b607b46e499d9c170df8bb6",
+          "size": 11520,
+          "source": "libil2cpp/vm/AssemblyShadowVisibility.cpp",
+          "sourceGitBlob": "1469a44b51ce0adb8d0e98dffd0ac66a0d107aaa"
+        },
+        {
+          "installed": "vm/AssemblyShadowVisibility.h",
+          "sha256": "e8a276f6ff474986fe769122df08d039b4c4544258aa29e6cac2ca1f5572bf7c",
+          "size": 1823,
+          "source": "libil2cpp/vm/AssemblyShadowVisibility.h",
+          "sourceGitBlob": "0e94c3d478cb6c1cdd80fd84f684b91e680673bc"
+        },
+        {
+          "installed": "vm/Runtime.cpp",
+          "sha256": "85edcf180cc66233d555075f40364d383e27239237ef196dc7bdf631f3550da1",
+          "size": 54386,
+          "source": "libil2cpp/vm/Runtime.cpp",
+          "sourceGitBlob": "1b176ee5fd3e2127a0237877e5c9c32bc53058b3"
+        }
+      ]
+    },
+    {
+      "R03Accepted": false,
+      "buildReceiptSha256": "9976eb10b3e24480775c688f8012adcbaca5fa283d8d3490e3242906842b8cd9",
+      "changedVmFiles": 45,
+      "generatedCppFullInclusion": "NotProvenBySourceParity",
+      "installedFileBytes": 455310,
+      "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+      "linkedPlayerInclusion": "NotProvenBySourceParity",
+      "projectSourcePinsSha256": "6a1f16848a8abdb977a60c6625a8a90dfc4e3350dd17c5b7c5edfdeacff5c814",
+      "result": "PassedPhysicalInstalledCurrentNativeSourceParity",
+      "role": "candidate-off",
+      "runtimeAcceptance": false,
+      "sources": [
+        {
+          "installed": "vm/Assembly.cpp",
+          "sha256": "0c46232f94b6e7afc2b5277d287618d8405a3f19784781ae800dda19ba8c4431",
+          "size": 12099,
+          "source": "libil2cpp/vm/Assembly.cpp",
+          "sourceGitBlob": "cb383d664ed02e138a9dd0cb42f2a64629146207"
+        },
+        {
+          "installed": "vm/Assembly.h",
+          "sha256": "74b9615a04bdf59df8da62948fd6dad2a2a10e8a8eda0cbf369635ab981e9181",
+          "size": 3012,
+          "source": "libil2cpp/vm/Assembly.h",
+          "sourceGitBlob": "3e4bbb85c190bf0f9c43fee9e3fc3518c61ed457"
+        },
+        {
+          "installed": "vm/AssemblyShadow.cpp",
+          "sha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c",
+          "size": 123277,
+          "source": "libil2cpp/vm/AssemblyShadow.cpp",
+          "sourceGitBlob": "57cf47f964a83973df8296955ccf856b105c595f"
+        },
+        {
+          "installed": "vm/AssemblyShadow.h",
+          "sha256": "55e572887d7ed89cc5d9cd57b3457df240357aa389474512442f3a5fea487e8f",
+          "size": 13664,
+          "source": "libil2cpp/vm/AssemblyShadow.h",
+          "sourceGitBlob": "68e78fe6250e3bd1028641d9513eb7d14158e8da"
+        },
+        {
+          "installed": "vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+          "sha256": "9b309fa25aadfb983787540e7d0b65d01e3aaf7a2fad5b7e67cfa737ef1c8d99",
+          "size": 1372,
+          "source": "libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+          "sourceGitBlob": "a615a839f5af8614c672a9bfb45be02d12b01a0e"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+          "sha256": "d4f4d495fc0636fcdd41f1121a1aa71404e838e1dfedfc7a7a3d10d70777e734",
+          "size": 2599,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+          "sourceGitBlob": "5b2afe1cfcf14570e64b8836ef4f995ee5e6db57"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+          "sha256": "6e53d15eab13a4a0169884a4d032af14a30352f111de166515b9d940362044ef",
+          "size": 4608,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+          "sourceGitBlob": "94bcd4e12e553c2f28c727d9c74bc2feb0b22e8c"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedFirstUseCapture.h",
+          "sha256": "b77a46ffc4ba6e522fc8c34e0ac43283f502639a8ca4f6b9282afc097fa5c895",
+          "size": 13880,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+          "sourceGitBlob": "b7ba5dffb2e3ecebe7406f598e97a1ab97251cdf"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedGeneralComposer.h",
+          "sha256": "2550f78b66def91a2f0851c8edf2a24f3beb1887b595f2ac45b246aa5a125ade",
+          "size": 11494,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+          "sourceGitBlob": "9e63e46a429c07f0b5adaf529b48f455ce1328fc"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedGeneralLive.h",
+          "sha256": "1dc1a731f75a773494edf669965a7034d1fa908c2201401a3eb2238228e1b7f5",
+          "size": 3469,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+          "sourceGitBlob": "b554eb36f6337c139a3f24beb168ab3f2b6e4343"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+          "sha256": "2be24d11ff97527706c4125699c7d04dc060e5f38ea9eac931d17ef97a7dbca0",
+          "size": 7249,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+          "sourceGitBlob": "a85a6ec310b85e96dfe199c6d773407cf47779b3"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedOrdinaryClasses.h",
+          "sha256": "ae4c2a471c1879510849d4902694caa7308bc70f3804cb6b1d0fb2ac839615a8",
+          "size": 6620,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h",
+          "sourceGitBlob": "91f049cc7d81d5e6de95ec50884ed3d6b9b63163"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+          "sha256": "0545c483230b7a1f6ea007ff28f000ec37a2f85444062c62eff74a048c5986c1",
+          "size": 5084,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+          "sourceGitBlob": "4e82e7f3814b8ed021a24d235dcfbe79c4c2412a"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedTransactionInventory.h",
+          "sha256": "fe37931e27f1616bea8e08c134a2349567161bd8cd5c739c3954be349b9da3c8",
+          "size": 10793,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h",
+          "sourceGitBlob": "d2a6fb798de9a3599f6b6c63149515cb23ab3350"
+        },
+        {
+          "installed": "vm/AssemblyShadowBoundedTransactionStatus.h",
+          "sha256": "b5b91b9480016493f1b26fcd78be96f9c1ff107b866950d7b08d999870ea785a",
+          "size": 6530,
+          "source": "libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h",
+          "sourceGitBlob": "fc3a569ea0f617b67b3867a804126e9583d86b72"
+        },
+        {
+          "installed": "vm/AssemblyShadowDiagnosticWriter.h",
+          "sha256": "03f1c76f84e79de38ddc708130cf4a95c736e3abab0e0e4266a84ba7cad2684f",
+          "size": 6600,
+          "source": "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+          "sourceGitBlob": "edef7c2f37978e65c02a8d2008886c6c4af8ae20"
+        },
+        {
+          "installed": "vm/AssemblyShadowEngineReportingProbe.cpp",
+          "sha256": "8e0b0ce0f221c76a75e91a84250f37890b6444818283f1c2c10ddd49a184f401",
+          "size": 13981,
+          "source": "libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
+          "sourceGitBlob": "f3244a4852f6fc3a46ca61a6efd36945e1318246"
+        },
+        {
+          "installed": "vm/AssemblyShadowExecutionRegistrationWitness.h",
+          "sha256": "67afc44c92255d76d7c8d29a95b634d53a648be637fe4112c4566659f1f95cc8",
+          "size": 1892,
+          "source": "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+          "sourceGitBlob": "6f14ca874f77592d845ce0563afaff2eb7573a90"
+        },
+        {
+          "installed": "vm/AssemblyShadowExecutionRegistryPublisher.h",
+          "sha256": "7db3ea584e332c92364ebee5b9c778e0c731c449783551a9adb4204cf1df8ff7",
+          "size": 2361,
+          "source": "libil2cpp/vm/AssemblyShadowExecutionRegistryPublisher.h",
+          "sourceGitBlob": "4d7e80346cf8b3a8c93ad95e025f00035629f141"
+        },
+        {
+          "installed": "vm/AssemblyShadowExecutionRegistryRevision.h",
+          "sha256": "4d318426f4be784fe3eb6065ef47ed97539416f871fbe060f6c4ca6e8be41d5e",
+          "size": 788,
+          "source": "libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h",
+          "sourceGitBlob": "46a313742295acaa52d5022f238fbcba4430c6df"
+        },
+        {
+          "installed": "vm/AssemblyShadowFrozenExecutionCapture.h",
+          "sha256": "1ce04b4678d7f48e205162db6572199489d22612f53afc9bebb9b07866f7ecf4",
+          "size": 9413,
+          "source": "libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h",
+          "sourceGitBlob": "624a43c0f153456001288c904d9705ec59171aae"
+        },
+        {
+          "installed": "vm/AssemblyShadowFrozenExecutionRecord.h",
+          "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9",
+          "size": 9831,
+          "source": "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+          "sourceGitBlob": "eeb413f8c8c0f6c1658da68ddd404b9b478e6e70"
+        },
+        {
+          "installed": "vm/AssemblyShadowFrozenGeneralCapture.h",
+          "sha256": "bc8660655e19ee15c02caf21403ef90f5f87c95b0fa1dcc212a7ca7a61573e6e",
+          "size": 15083,
+          "source": "libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+          "sourceGitBlob": "08856d4a610ed3fa519cee67bad8a307dd82a34b"
+        },
+        {
+          "installed": "vm/AssemblyShadowFrozenR02Capture.h",
+          "sha256": "6014613e62b570c0f93f7317831e14645600f87e9d32a9e87d2902e19991dbad",
+          "size": 2995,
+          "source": "libil2cpp/vm/AssemblyShadowFrozenR02Capture.h",
+          "sourceGitBlob": "64ec2dc887106f12274febc74b4e155e140d70e5"
+        },
+        {
+          "installed": "vm/AssemblyShadowFrozenR02Serializer.h",
+          "sha256": "c383afe1ba28b3c88f00abcea4ff469d40e3557bdff0303368d6a31ded1ed378",
+          "size": 3217,
+          "source": "libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+          "sourceGitBlob": "ab136038a49a8e6614243677d19e20c6f3fde4c5"
+        },
+        {
+          "installed": "vm/AssemblyShadowMetadataLifetime.h",
+          "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716",
+          "size": 4637,
+          "source": "libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+          "sourceGitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd"
+        },
+        {
+          "installed": "vm/AssemblyShadowObservedTypeShape.h",
+          "sha256": "c2dd2249c945a89ddc8ac2e712d0b56f5cde3e4dc474a364a4fd6f1b471c3a89",
+          "size": 3138,
+          "source": "libil2cpp/vm/AssemblyShadowObservedTypeShape.h",
+          "sourceGitBlob": "9625544a62c4907c73da251f4062dea0731758b7"
+        },
+        {
+          "installed": "vm/AssemblyShadowObservedTypeShapeCensus.h",
+          "sha256": "83f2d79c4c7d6480267c1cb18392af914dcc7b2513f9a7b003131ecd1ddd9d14",
+          "size": 5684,
+          "source": "libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+          "sourceGitBlob": "23065b67456ee7d19c7019cf24900e66daaf28db"
+        },
+        {
+          "installed": "vm/AssemblyShadowObservedTypeShapeJson.h",
+          "sha256": "6eb08c239c34eb55a8f7e2f1fc1ca84244fc501131c7564d328018d7f0d756e3",
+          "size": 8022,
+          "source": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+          "sourceGitBlob": "14b44ca96a1be6a0abc8629ecea1b7bade02eabe"
+        },
+        {
+          "installed": "vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+          "sha256": "622601ccd395ed41edb512d0da12fe35a645b822f3e14e2994b8413cce00eaf9",
+          "size": 2818,
+          "source": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+          "sourceGitBlob": "f432aa3ea638a05b42618ca242be5bbc3e3e1e67"
+        },
+        {
+          "installed": "vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+          "sha256": "0472835c03165278579dc3b332f6ef74eea22fb0d527a337bdb157beb14a79d7",
+          "size": 1886,
+          "source": "libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+          "sourceGitBlob": "7778e2064cbba7fb5b16179746cbb7d272118fb6"
+        },
+        {
+          "installed": "vm/AssemblyShadowOpaqueExecutionInventory.h",
+          "sha256": "1d29f8119e0cafa1168ef46ee17aebed465359ff5f47902165a97586a6aa6369",
+          "size": 5074,
+          "source": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+          "sourceGitBlob": "a2ca61c35b0ba0e5f71a261b21647a36dfc0a9c4"
+        },
+        {
+          "installed": "vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+          "sha256": "d27d0cdd391182a5b3c9a942bdc44bdf45418d1fb13c2c3e92df92e012ea1ea8",
+          "size": 3619,
+          "source": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+          "sourceGitBlob": "372d12209417dcb9e119da6bda64deca79389a23"
+        },
+        {
+          "installed": "vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+          "sha256": "865a36b154965f0ae69bc788f6ba21fc6a841d546a34215a6448112110bb6604",
+          "size": 2332,
+          "source": "libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+          "sourceGitBlob": "dff6f12dca1c4f89dec7151ced6b63febeb0769f"
+        },
+        {
+          "installed": "vm/AssemblyShadowOwnedPhysicalNames.h",
+          "sha256": "216a8ec0365bd134ac0849d5fec2d709c24e5b3927c66c17360792eea836d5df",
+          "size": 8740,
+          "source": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+          "sourceGitBlob": "f722a34cacda9fa35f226e8b11f4800d3fd42c72"
+        },
+        {
+          "installed": "vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+          "sha256": "944d663e2d55e8ed07be3c62b1f6c7f7f6aee1bf0c34b9a464550b6817c5c15a",
+          "size": 10926,
+          "source": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+          "sourceGitBlob": "35d4d000faa588cdd5147a0b2abdf00d566c0b06"
+        },
+        {
+          "installed": "vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+          "sha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177",
+          "size": 6697,
+          "source": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+          "sourceGitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3"
+        },
+        {
+          "installed": "vm/AssemblyShadowPhysicalMembership.h",
+          "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7",
+          "size": 7576,
+          "source": "libil2cpp/vm/AssemblyShadowPhysicalMembership.h",
+          "sourceGitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3"
+        },
+        {
+          "installed": "vm/AssemblyShadowPhysicalMembershipSource.inl",
+          "sha256": "bd0ff612a27913c1424cc7627454ae8eb5101b3479eca2ba24e6097bb3197651",
+          "size": 3573,
+          "source": "libil2cpp/vm/AssemblyShadowPhysicalMembershipSource.inl",
+          "sourceGitBlob": "4e18fa035c324a67959284efa90fa601c6ede0d9"
+        },
+        {
+          "installed": "vm/AssemblyShadowR02Diagnostics.h",
+          "sha256": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba",
+          "size": 3318,
+          "source": "libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+          "sourceGitBlob": "1c2a43384d03b0369a51b587fc5f5e445d5b58c8"
+        },
+        {
+          "installed": "vm/AssemblyShadowR02Snapshot.h",
+          "sha256": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf",
+          "size": 6769,
+          "source": "libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+          "sourceGitBlob": "9f7266014b1514adfd0935948ff417375df274d8"
+        },
+        {
+          "installed": "vm/AssemblyShadowTerminalReporting.h",
+          "sha256": "68bbe93136cc6abf6228519cc52e4d270ae1872d75336f7d8e4216b3802b0837",
+          "size": 10861,
+          "source": "libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+          "sourceGitBlob": "d76c0df677762509bc26e3d341f07b595f2af4bf"
+        },
+        {
+          "installed": "vm/AssemblyShadowVisibility.cpp",
+          "sha256": "4bae387bdd6917da03a74e4539207a1da54e0f071b607b46e499d9c170df8bb6",
+          "size": 11520,
+          "source": "libil2cpp/vm/AssemblyShadowVisibility.cpp",
+          "sourceGitBlob": "1469a44b51ce0adb8d0e98dffd0ac66a0d107aaa"
+        },
+        {
+          "installed": "vm/AssemblyShadowVisibility.h",
+          "sha256": "e8a276f6ff474986fe769122df08d039b4c4544258aa29e6cac2ca1f5572bf7c",
+          "size": 1823,
+          "source": "libil2cpp/vm/AssemblyShadowVisibility.h",
+          "sourceGitBlob": "0e94c3d478cb6c1cdd80fd84f684b91e680673bc"
+        },
+        {
+          "installed": "vm/Runtime.cpp",
+          "sha256": "85edcf180cc66233d555075f40364d383e27239237ef196dc7bdf631f3550da1",
+          "size": 54386,
+          "source": "libil2cpp/vm/Runtime.cpp",
+          "sourceGitBlob": "1b176ee5fd3e2127a0237877e5c9c32bc53058b3"
+        }
+      ]
+    }
+  ],
+  "runtimeAcceptance": false,
+  "schemaVersion": 1,
+  "siblingPlayerBatchResult": "FocusedEvidenceReadyForPrimaryReview",
+  "siblingPlayerSemanticsAccepted": true,
+  "verifiedBuildRoles": 3
+}

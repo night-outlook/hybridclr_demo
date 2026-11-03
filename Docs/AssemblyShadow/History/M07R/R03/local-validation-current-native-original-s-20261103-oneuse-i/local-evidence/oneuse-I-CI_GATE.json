@@ -1,0 +1,1181 @@
+{
+  "kind": "IndependentOneuseIExactSourceCIGate",
+  "time": "2026-11-03T08:51:50.550565+00:00",
+  "result": "PassedNineExactPushWorkflows_EighteenJobs_HostOnly",
+  "actualGeneratorGatePassed": true,
+  "head": "c707141204265a8111f1f5928515fc8cf28abfee",
+  "native": "41764ae1eeefb33b05966e7f7676e52aae39c340",
+  "requiredWorkflows": [
+    {
+      "run": 41605016272,
+      "head": "c707141204265a8111f1f5928515fc8cf28abfee",
+      "event": "push",
+      "path": ".github/workflows/r03-ir-current-native-local-cycle-host.yml",
+      "conclusion": "success",
+      "workflowSha256": "7990f23d5f486e56f1ae1e8792fe2d4fbcf83fae4b60c7058d6584f533a8ac45",
+      "jobs": [
+        {
+          "id": 125812568945,
+          "name": "Preflight/oracle/VM/dispatch tests (macos-15)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812568945.json",
+          "sha256": "eb4d3f7174cc0cf07ab8bb8791fbadc3c27cc826b32e0332a6263926db4de464",
+          "testCountSummaries": [
+            7,
+            8,
+            21,
+            17,
+            29,
+            23,
+            31,
+            20,
+            16,
+            3,
+            3,
+            2,
+            2,
+            32,
+            12,
+            30
+          ]
+        },
+        {
+          "id": 125812569285,
+          "name": "Preflight/oracle/VM/dispatch tests (ubuntu-24.04)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812569285.json",
+          "sha256": "a66cb0363d8a416fdf19fe011fb1e3983d599aa5cb9217f4c40d0dc491aec302",
+          "testCountSummaries": [
+            7,
+            8,
+            21,
+            17,
+            29,
+            23,
+            31,
+            20,
+            16,
+            3,
+            3,
+            2,
+            2,
+            32,
+            12,
+            30
+          ]
+        }
+      ]
+    },
+    {
+      "run": 41605016191,
+      "head": "c707141204265a8111f1f5928515fc8cf28abfee",
+      "event": "push",
+      "path": ".github/workflows/r03-ir-current-native-source-only.yml",
+      "conclusion": "success",
+      "workflowSha256": "1ee8480c77aaf127a172fe86b0d1d648f1cb50e51897e1ba11e3bb92bf4b1b24",
+      "jobs": [
+        {
+          "id": 125812568531,
+          "name": "Current native/IR source-only (macos-15)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812568531.json",
+          "sha256": "eec84dca4b2326325b1c0c3dbe2047a3e48eb40a36ed3ab9e5f52718bfcb22e0",
+          "testCountSummaries": [
+            20
+          ]
+        },
+        {
+          "id": 125812568779,
+          "name": "Current native/IR source-only (ubuntu-24.04)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812568779.json",
+          "sha256": "af33102ace6f3ce3794fe1111a1f8a1205e214b57819cc1e41ed137eec7677e5",
+          "testCountSummaries": [
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "run": 41605016028,
+      "head": "c707141204265a8111f1f5928515fc8cf28abfee",
+      "event": "push",
+      "path": ".github/workflows/r03-ir-current-native-vm-delta-source-only.yml",
+      "conclusion": "success",
+      "workflowSha256": "e9995f337290fb929276c992c4d8567a5d5970dfe23d109db71fea7a98f903ec",
+      "jobs": [
+        {
+          "id": 125812567603,
+          "name": "45 changed native VM source SHA contracts (macos-15)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812567603.json",
+          "sha256": "9ed8bb4c0e2c8bc96dde9e85b3cdcda27c25609e139eec7301021f2551c60e36",
+          "testCountSummaries": [
+            12
+          ]
+        },
+        {
+          "id": 125812567859,
+          "name": "45 changed native VM source SHA contracts (ubuntu-24.04)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812567859.json",
+          "sha256": "62ba69723270794667fb2f6554a0757af908e62dda18c92c2cf3ad2af31bd91d",
+          "testCountSummaries": [
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "run": 41605016127,
+      "head": "c707141204265a8111f1f5928515fc8cf28abfee",
+      "event": "push",
+      "path": ".github/workflows/r03-ir-current-native-oracle-source-only.yml",
+      "conclusion": "success",
+      "workflowSha256": "5c33b292a711835b2de25a6ffb70e6b1bb4adcaebdf3587821157f8b23b967c8",
+      "jobs": [
+        {
+          "id": 125812568006,
+          "name": "Exact Player oracle negative controls (ubuntu-24.04)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812568006.json",
+          "sha256": "ba9801eb90e9f3689610c5f795c5b1ad846587860b4b566f8ff8c5a248e78e67",
+          "testCountSummaries": [
+            16,
+            3,
+            32
+          ]
+        },
+        {
+          "id": 125812568342,
+          "name": "Exact Player oracle negative controls (macos-15)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812568342.json",
+          "sha256": "9f01e1db8a4c3818be82566cbf22f67391c231a8b63ef5a27c3e1321b54d7f5f",
+          "testCountSummaries": [
+            16,
+            3,
+            32
+          ]
+        }
+      ]
+    },
+    {
+      "run": 41605016372,
+      "head": "c707141204265a8111f1f5928515fc8cf28abfee",
+      "event": "push",
+      "path": ".github/workflows/r03-ir-fixture.yml",
+      "conclusion": "success",
+      "workflowSha256": "ae5fcc78666527ed53dba0268a8aa975da934b6083276e6274baf68671edfc04",
+      "jobs": [
+        {
+          "id": 125812569066,
+          "name": "original-and-ir (ubuntu-24.04)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812569066.json",
+          "sha256": "15bccfdd5c5c6f966ae36ea51afe94134e8f508154935c8298f49b5fb4fefd90",
+          "testCountSummaries": [
+            16
+          ]
+        },
+        {
+          "id": 125812569409,
+          "name": "original-and-ir (macos-14)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812569409.json",
+          "sha256": "a91816ce452ba3a0a1c474bbb72f70ea7a4b2eb1c48a7472973ff4fcd5187384",
+          "testCountSummaries": [
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "run": 41605016094,
+      "head": "c707141204265a8111f1f5928515fc8cf28abfee",
+      "event": "push",
+      "path": ".github/workflows/r03-ir-host.yml",
+      "conclusion": "success",
+      "workflowSha256": "13930719cadf1c17e80c74a62d09da863657d148de9b7fb1e6de1d9e071015ac",
+      "jobs": [
+        {
+          "id": 125812567936,
+          "name": "python-contracts (ubuntu-24.04)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812567936.json",
+          "sha256": "94de1da30b98076d8666fee5cec10636999e7608c49d4bd7d23385cda3ea0710",
+          "testCountSummaries": [
+            157
+          ]
+        },
+        {
+          "id": 125812568606,
+          "name": "python-contracts (macos-14)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812568606.json",
+          "sha256": "bdabddc716b4b61056ba7fbe1b118a44a203c5d8c428f70e61536d4967841024",
+          "testCountSummaries": [
+            157
+          ]
+        }
+      ]
+    },
+    {
+      "run": 41605016010,
+      "head": "c707141204265a8111f1f5928515fc8cf28abfee",
+      "event": "push",
+      "path": ".github/workflows/r03-k-host-contracts.yml",
+      "conclusion": "success",
+      "workflowSha256": "acb86fddac6a44e3df910646a3c240d34182fe24b93f6fe884481c8bdb795435",
+      "jobs": [
+        {
+          "id": 125812567626,
+          "name": "host-contracts (ubuntu-24.04)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812567626.json",
+          "sha256": "0c4949567c71d6abc06f5b655d168b3b4a07d27d0bd4fbd0e53327a00396311a",
+          "testCountSummaries": [
+            157
+          ]
+        },
+        {
+          "id": 125812567860,
+          "name": "host-contracts (macos-14)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812567860.json",
+          "sha256": "1a23a2821c14892b732edc1b5f9559c18d172050b21c0d686339befbf5730ed1",
+          "testCountSummaries": [
+            157
+          ]
+        }
+      ]
+    },
+    {
+      "run": 41605016344,
+      "head": "c707141204265a8111f1f5928515fc8cf28abfee",
+      "event": "push",
+      "path": ".github/workflows/r03-k-sourcecheck.yml",
+      "conclusion": "success",
+      "workflowSha256": "f940675f81da4adfe27504bd699e604b250fbc59bd2693d35fabe8d677ca0e0d",
+      "jobs": [
+        {
+          "id": 125812568707,
+          "name": "host (ubuntu-24.04)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812568707.json",
+          "sha256": "5afe82abffcb8fb4cb49d6a523775a9cdb3016d17d626bf5cb9960b7c7f5a12a",
+          "testCountSummaries": [
+            157,
+            1
+          ]
+        },
+        {
+          "id": 125812569015,
+          "name": "host (macos-14)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812569015.json",
+          "sha256": "3f4cd9a330d5b855aec815da7f983b8cc3322b8a8a30c1654437d69786dd98f0",
+          "testCountSummaries": [
+            157,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "run": 41605016059,
+      "head": "c707141204265a8111f1f5928515fc8cf28abfee",
+      "event": "push",
+      "path": ".github/workflows/r03-l-contracts.yml",
+      "conclusion": "success",
+      "workflowSha256": "75043e3766013710bda85ae11305b664407fd2d507a24282210a9444359cf52f",
+      "jobs": [
+        {
+          "id": 125812567777,
+          "name": "contracts (ubuntu-24.04)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812567777.json",
+          "sha256": "1d12f6462bb9a2eb9340c283dcc1e2371139b88961ca978c13a21db4f95370af",
+          "testCountSummaries": [
+            157
+          ]
+        },
+        {
+          "id": 125812568217,
+          "name": "contracts (macos-14)",
+          "conclusion": "success",
+          "log": "/Users/ah/GitHub/hybridclr/r03-local-validation/oneuse-I-CI_LOG-125812568217.json",
+          "sha256": "f7982cb5a2357e67cbfdaacbecbab4d000518f6a6068a117cdb7e921917e10d8",
+          "testCountSummaries": [
+            157
+          ]
+        }
+      ]
+    }
+  ],
+  "requiredWorkflowCount": 9,
+  "requiredJobsPassed": 18,
+  "sourceBindings": [
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/source-pins.json",
+      "gitBlob": "9d72a237fb6ecd3efe3267ca89625aa49c61775d",
+      "sha256": "8f80fa7e382b77838a55d613031f272c4f6eb8245f780117da5abd8284b2633c"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/run_local.py",
+      "gitBlob": "9aef8093f98fb7f9b5dd395ba4e5c2ed0220276e",
+      "sha256": "ebbbf9139de5f6bff0075ef966ee6ed3f3070059eae3733052fbc5406bb360a6"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/run_terminal_local.py",
+      "gitBlob": "66766406969bbfc3458f49b865fd80dc1ddc0680",
+      "sha256": "638edd9a9fab120ca0cf9ae5aef69b17229962bcb672a3932f30d8881ebb4b6e"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs",
+      "gitBlob": "e2f650ad95b290620aa52949b43a1866272ac6bf",
+      "sha256": "948c5f6f853525daa1e45cfb3200333a1bbecb62fd5a7552b43928029d0e5600"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03EngineFrameDispatcher.cs",
+      "gitBlob": "47a3e095480de2ec657e7e5acc453a5a76002a18",
+      "sha256": "5cb22fb7764115b8264d99026e920c6f2d79d3329846267f0112e83c1dafbc22"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs",
+      "gitBlob": "b993703d918090733a659bd7c3ac883cd5d753e1",
+      "sha256": "05b5f21e91b18f04da07fc10eca053b64e68d7d8fc838b1a006bebd3b740e52f"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp",
+      "gitBlob": "7a5dd88748dd98a387130c046b47790b80752cf9",
+      "sha256": "3c9290dcf231306a771a4b8a26f03112add1aeb7c0b44ff0e7a01330e47f4387"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "gitBlob": "57cf47f964a83973df8296955ccf856b105c595f",
+      "sha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTerminalExecution.h",
+      "gitBlob": "33258986c31b2e6ae3af17b8553030482a83aef7",
+      "sha256": "3ff7e1f149090c9869844de9059cc6829bdbf104d93bba5f13dcd09e4f4a08ce"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Runtime.cpp",
+      "gitBlob": "1b176ee5fd3e2127a0237877e5c9c32bc53058b3",
+      "sha256": "85edcf180cc66233d555075f40364d383e27239237ef196dc7bdf631f3550da1"
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/interpreter/Interpreter_Execute.cpp",
+      "gitBlob": "2dbdb7527afee7f2546e45f20e6ef93e1bca237a",
+      "sha256": "a784afb4ead165e8a0be6c3b6bf8aff7893734ebb458cd60ccf9ed7a61f575e6"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Assembly.cpp",
+      "gitBlob": "cb383d664ed02e138a9dd0cb42f2a64629146207",
+      "sha256": "0c46232f94b6e7afc2b5277d287618d8405a3f19784781ae800dda19ba8c4431"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Assembly.h",
+      "gitBlob": "3e4bbb85c190bf0f9c43fee9e3fc3518c61ed457",
+      "sha256": "74b9615a04bdf59df8da62948fd6dad2a2a10e8a8eda0cbf369635ab981e9181"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "gitBlob": "57cf47f964a83973df8296955ccf856b105c595f",
+      "sha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadow.h",
+      "gitBlob": "68e78fe6250e3bd1028641d9513eb7d14158e8da",
+      "sha256": "55e572887d7ed89cc5d9cd57b3457df240357aa389474512442f3a5fea487e8f"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+      "gitBlob": "a615a839f5af8614c672a9bfb45be02d12b01a0e",
+      "sha256": "9b309fa25aadfb983787540e7d0b65d01e3aaf7a2fad5b7e67cfa737ef1c8d99"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+      "gitBlob": "5b2afe1cfcf14570e64b8836ef4f995ee5e6db57",
+      "sha256": "d4f4d495fc0636fcdd41f1121a1aa71404e838e1dfedfc7a7a3d10d70777e734"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+      "gitBlob": "94bcd4e12e553c2f28c727d9c74bc2feb0b22e8c",
+      "sha256": "6e53d15eab13a4a0169884a4d032af14a30352f111de166515b9d940362044ef"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+      "gitBlob": "b7ba5dffb2e3ecebe7406f598e97a1ab97251cdf",
+      "sha256": "b77a46ffc4ba6e522fc8c34e0ac43283f502639a8ca4f6b9282afc097fa5c895"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+      "gitBlob": "9e63e46a429c07f0b5adaf529b48f455ce1328fc",
+      "sha256": "2550f78b66def91a2f0851c8edf2a24f3beb1887b595f2ac45b246aa5a125ade"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+      "gitBlob": "b554eb36f6337c139a3f24beb168ab3f2b6e4343",
+      "sha256": "1dc1a731f75a773494edf669965a7034d1fa908c2201401a3eb2238228e1b7f5"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+      "gitBlob": "a85a6ec310b85e96dfe199c6d773407cf47779b3",
+      "sha256": "2be24d11ff97527706c4125699c7d04dc060e5f38ea9eac931d17ef97a7dbca0"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h",
+      "gitBlob": "91f049cc7d81d5e6de95ec50884ed3d6b9b63163",
+      "sha256": "ae4c2a471c1879510849d4902694caa7308bc70f3804cb6b1d0fb2ac839615a8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+      "gitBlob": "4e82e7f3814b8ed021a24d235dcfbe79c4c2412a",
+      "sha256": "0545c483230b7a1f6ea007ff28f000ec37a2f85444062c62eff74a048c5986c1"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h",
+      "gitBlob": "d2a6fb798de9a3599f6b6c63149515cb23ab3350",
+      "sha256": "fe37931e27f1616bea8e08c134a2349567161bd8cd5c739c3954be349b9da3c8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h",
+      "gitBlob": "fc3a569ea0f617b67b3867a804126e9583d86b72",
+      "sha256": "b5b91b9480016493f1b26fcd78be96f9c1ff107b866950d7b08d999870ea785a"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+      "gitBlob": "edef7c2f37978e65c02a8d2008886c6c4af8ae20",
+      "sha256": "03f1c76f84e79de38ddc708130cf4a95c736e3abab0e0e4266a84ba7cad2684f"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
+      "gitBlob": "f3244a4852f6fc3a46ca61a6efd36945e1318246",
+      "sha256": "8e0b0ce0f221c76a75e91a84250f37890b6444818283f1c2c10ddd49a184f401"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+      "gitBlob": "6f14ca874f77592d845ce0563afaff2eb7573a90",
+      "sha256": "67afc44c92255d76d7c8d29a95b634d53a648be637fe4112c4566659f1f95cc8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowExecutionRegistryPublisher.h",
+      "gitBlob": "4d7e80346cf8b3a8c93ad95e025f00035629f141",
+      "sha256": "7db3ea584e332c92364ebee5b9c778e0c731c449783551a9adb4204cf1df8ff7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h",
+      "gitBlob": "46a313742295acaa52d5022f238fbcba4430c6df",
+      "sha256": "4d318426f4be784fe3eb6065ef47ed97539416f871fbe060f6c4ca6e8be41d5e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h",
+      "gitBlob": "624a43c0f153456001288c904d9705ec59171aae",
+      "sha256": "1ce04b4678d7f48e205162db6572199489d22612f53afc9bebb9b07866f7ecf4"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+      "gitBlob": "eeb413f8c8c0f6c1658da68ddd404b9b478e6e70",
+      "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+      "gitBlob": "08856d4a610ed3fa519cee67bad8a307dd82a34b",
+      "sha256": "bc8660655e19ee15c02caf21403ef90f5f87c95b0fa1dcc212a7ca7a61573e6e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenR02Capture.h",
+      "gitBlob": "64ec2dc887106f12274febc74b4e155e140d70e5",
+      "sha256": "6014613e62b570c0f93f7317831e14645600f87e9d32a9e87d2902e19991dbad"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+      "gitBlob": "ab136038a49a8e6614243677d19e20c6f3fde4c5",
+      "sha256": "c383afe1ba28b3c88f00abcea4ff469d40e3557bdff0303368d6a31ded1ed378"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+      "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd",
+      "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShape.h",
+      "gitBlob": "9625544a62c4907c73da251f4062dea0731758b7",
+      "sha256": "c2dd2249c945a89ddc8ac2e712d0b56f5cde3e4dc474a364a4fd6f1b471c3a89"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+      "gitBlob": "23065b67456ee7d19c7019cf24900e66daaf28db",
+      "sha256": "83f2d79c4c7d6480267c1cb18392af914dcc7b2513f9a7b003131ecd1ddd9d14"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+      "gitBlob": "14b44ca96a1be6a0abc8629ecea1b7bade02eabe",
+      "sha256": "6eb08c239c34eb55a8f7e2f1fc1ca84244fc501131c7564d328018d7f0d756e3"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+      "gitBlob": "f432aa3ea638a05b42618ca242be5bbc3e3e1e67",
+      "sha256": "622601ccd395ed41edb512d0da12fe35a645b822f3e14e2994b8413cce00eaf9"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+      "gitBlob": "7778e2064cbba7fb5b16179746cbb7d272118fb6",
+      "sha256": "0472835c03165278579dc3b332f6ef74eea22fb0d527a337bdb157beb14a79d7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+      "gitBlob": "a2ca61c35b0ba0e5f71a261b21647a36dfc0a9c4",
+      "sha256": "1d29f8119e0cafa1168ef46ee17aebed465359ff5f47902165a97586a6aa6369"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+      "gitBlob": "372d12209417dcb9e119da6bda64deca79389a23",
+      "sha256": "d27d0cdd391182a5b3c9a942bdc44bdf45418d1fb13c2c3e92df92e012ea1ea8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+      "gitBlob": "dff6f12dca1c4f89dec7151ced6b63febeb0769f",
+      "sha256": "865a36b154965f0ae69bc788f6ba21fc6a841d546a34215a6448112110bb6604"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+      "gitBlob": "f722a34cacda9fa35f226e8b11f4800d3fd42c72",
+      "sha256": "216a8ec0365bd134ac0849d5fec2d709c24e5b3927c66c17360792eea836d5df"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+      "gitBlob": "35d4d000faa588cdd5147a0b2abdf00d566c0b06",
+      "sha256": "944d663e2d55e8ed07be3c62b1f6c7f7f6aee1bf0c34b9a464550b6817c5c15a"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+      "gitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3",
+      "sha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowPhysicalMembership.h",
+      "gitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3",
+      "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowPhysicalMembershipSource.inl",
+      "gitBlob": "4e18fa035c324a67959284efa90fa601c6ede0d9",
+      "sha256": "bd0ff612a27913c1424cc7627454ae8eb5101b3479eca2ba24e6097bb3197651"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+      "gitBlob": "1c2a43384d03b0369a51b587fc5f5e445d5b58c8",
+      "sha256": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+      "gitBlob": "9f7266014b1514adfd0935948ff417375df274d8",
+      "sha256": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+      "gitBlob": "d76c0df677762509bc26e3d341f07b595f2af4bf",
+      "sha256": "68bbe93136cc6abf6228519cc52e4d270ae1872d75336f7d8e4216b3802b0837"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowVisibility.cpp",
+      "gitBlob": "1469a44b51ce0adb8d0e98dffd0ac66a0d107aaa",
+      "sha256": "4bae387bdd6917da03a74e4539207a1da54e0f071b607b46e499d9c170df8bb6"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowVisibility.h",
+      "gitBlob": "0e94c3d478cb6c1cdd80fd84f684b91e680673bc",
+      "sha256": "e8a276f6ff474986fe769122df08d039b4c4544258aa29e6cac2ca1f5572bf7c"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Runtime.cpp",
+      "gitBlob": "1b176ee5fd3e2127a0237877e5c9c32bc53058b3",
+      "sha256": "85edcf180cc66233d555075f40364d383e27239237ef196dc7bdf631f3550da1"
+    }
+  ],
+  "artifactProof": [
+    {
+      "os": "macos",
+      "receipt": {
+        "artifactId": 13216765328,
+        "run": 41605016372,
+        "source": "c707141204265a8111f1f5928515fc8cf28abfee",
+        "zipSha256": "e7c3a69def76c6a4fe54723f5a307c73189935278e0ab9c79506d871832222f1",
+        "transport": "Connector artifact download reference; curl default TLS; temporary URL not persisted",
+        "strictJsonParsed": true,
+        "files": [
+          {
+            "path": "verified.json",
+            "bytes": 740,
+            "sha256": "54f5535b0c5a0a4b076fb43312dca4587ac0ad611206bbfe8e96bebf57e2a83f"
+          },
+          {
+            "path": "duplicate.stderr.log",
+            "bytes": 406,
+            "sha256": "0b3dc996cd36d9e7f371059951904a976856398f907fed216fe4f0fa0d15572f"
+          },
+          {
+            "path": "artifact.zip",
+            "bytes": 6245,
+            "sha256": "e7c3a69def76c6a4fe54723f5a307c73189935278e0ab9c79506d871832222f1"
+          },
+          {
+            "path": "historical-differences.json",
+            "bytes": 5555,
+            "sha256": "338d638a734e7b949da0db7978d5cf5225e19f65698aec2215664dd27ec40f5a"
+          },
+          {
+            "path": "pinned-target-verdict.json",
+            "bytes": 1020,
+            "sha256": "2578a4fb8709931bc02d0c83b4814e233da00b5b0311dfdb3d7b084c3a42ba66"
+          },
+          {
+            "path": "duplicate.exit",
+            "bytes": 4,
+            "sha256": "e726b440cc164001999e718b51780d80314709efe06e7857282377be9111127b"
+          },
+          {
+            "path": "build.log",
+            "bytes": 345,
+            "sha256": "dced8c21a836a711f56518835293134889920743082c29a75be4f5433b317730"
+          },
+          {
+            "path": "original/inventory.json",
+            "bytes": 4610,
+            "sha256": "519ccf5e9e0fb1d59eb1ffd2b17531707ec3a6aa54c47d1f1d9193c69b10891f"
+          },
+          {
+            "path": "ir/ir-target.json",
+            "bytes": 581,
+            "sha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c"
+          },
+          {
+            "path": "ir-repeat/ir-target.json",
+            "bytes": 581,
+            "sha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c"
+          }
+        ]
+      },
+      "comparison": {
+        "result": "PassedStructuralComparison_BinaryIdentityNotClaimed",
+        "originalSInventoryGitBlob": "0688bd2dad054bd59fcdd1564a050a398cfa14e7",
+        "generatedOriginalCount": 15,
+        "matchedPathAssemblyRefsAndSize": 15,
+        "differentByteOrMvidCount": 15,
+        "differences": [
+          {
+            "path": "baseline/A.dll",
+            "differences": {
+              "sha256": {
+                "current": "9739c2c816769a98af70334410c9ffe891e325d44c95053459e1687bfa96b1c3",
+                "originalS": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6"
+              }
+            }
+          },
+          {
+            "path": "baseline/B.dll",
+            "differences": {
+              "sha256": {
+                "current": "099a099aeaf496eeced3c86aab9823ed61e32c500a999d3f0e4e8d69ae797776",
+                "originalS": "7aa63a4c814eacecbb633b06d687b9a28f97fc73ddb577e73bb6444ac2669a2b"
+              }
+            }
+          },
+          {
+            "path": "baseline/Layout.dll",
+            "differences": {
+              "sha256": {
+                "current": "ea359d314d9be74daeffc68c15d319cfc447187fac1c527d37f7913f330b30f7",
+                "originalS": "3adcc44417c6f9c9f0a2a2c255b020746ff24c598dfef67e64f120dea4be13f8"
+              }
+            }
+          },
+          {
+            "path": "baseline/Methods.dll",
+            "differences": {
+              "sha256": {
+                "current": "1fa0fa7d14133f70236d588b8b7f52865cf8a91eda19edb8323f598b20c6d9dd",
+                "originalS": "56af53c3165cc28144095b4aa08d2dfbaa5403da2a40c1137114f1e0e9cf3ce8"
+              }
+            }
+          },
+          {
+            "path": "baseline/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "7303e267-760d-4e82-b595-ab0815f3bd4d",
+                "originalS": "bdf34429-3668-4324-9ee1-3a53dd479b6e"
+              },
+              "sha256": {
+                "current": "1ad28ea407c9595ba219b94172308259ae09d9cee278f78c33f3105d0bd734c3",
+                "originalS": "7627f977735e56e029d1d823bea46d2362134bd9f01c3086cca9c1afd7c9096e"
+              }
+            }
+          },
+          {
+            "path": "interface/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "961e982d-e597-4f91-8b9c-2213a4ccf357",
+                "originalS": "4155879e-eebd-4957-8781-3b8ccd3bbf4c"
+              },
+              "sha256": {
+                "current": "45929782988a4c1a46b955b720391bdae48d0b2273f98666f8fb27b20b5ded81",
+                "originalS": "736f525b05694a577dc2cc6b5d94d2ebe10954d53f51f71e87cc7c2d1297dd40"
+              }
+            }
+          },
+          {
+            "path": "primitive/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "1beb73cd-7c25-4ccf-a381-b95aac43d93b",
+                "originalS": "912ee4e3-7f1c-492f-a07b-6cb0692ad807"
+              },
+              "sha256": {
+                "current": "89c0723729a5e7f015b31525ae089cf55fe622da67543b5c41e439a606e6c4f6",
+                "originalS": "d189a952e9973a729b18e9791b808dc650f793817a19d89ab0e6523b3e444d36"
+              }
+            }
+          },
+          {
+            "path": "private-reference/Layout.dll",
+            "differences": {
+              "sha256": {
+                "current": "428a4012d1f0b609084e92bfb062ad3cdedcc6a5b167b99acb22206287900067",
+                "originalS": "76624b0cce75a1f282f6e7b8bebbd81192c3a6c2b698d9aedba4ab95cde6ee25"
+              }
+            }
+          },
+          {
+            "path": "removal/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "b2625259-3af5-4568-ba70-8eb257097858",
+                "originalS": "005ead2e-603d-40bc-9c5e-7db1a1040256"
+              },
+              "sha256": {
+                "current": "bf0d5220bbbb3ec6c0311dc8911e44f0068d60b1a75d28255a8b665367a8783d",
+                "originalS": "69e3334c6d74dff9013a362c1caa3a0bc9bb5930ac1b11265b9ea7c09ff02602"
+              }
+            }
+          },
+          {
+            "path": "reversal/A.dll",
+            "differences": {
+              "sha256": {
+                "current": "6f5964e6f77dfd68b34471e070aed5803d50a05c8c7b24b8a2ffeaee192dfb12",
+                "originalS": "c13b628d870be6d2ddab6f5dcd78a27f529f9e446488036cd2c1c889a9346f69"
+              }
+            }
+          },
+          {
+            "path": "reversal/B.dll",
+            "differences": {
+              "sha256": {
+                "current": "f8a997686954a1a6a8117e7781f1030fd9d5478cb6fc7dbfeee6c9ff91b361cd",
+                "originalS": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d"
+              }
+            }
+          },
+          {
+            "path": "true-cycle/A.dll",
+            "differences": {
+              "sha256": {
+                "current": "9739c2c816769a98af70334410c9ffe891e325d44c95053459e1687bfa96b1c3",
+                "originalS": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6"
+              }
+            }
+          },
+          {
+            "path": "true-cycle/B.dll",
+            "differences": {
+              "sha256": {
+                "current": "f8a997686954a1a6a8117e7781f1030fd9d5478cb6fc7dbfeee6c9ff91b361cd",
+                "originalS": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d"
+              }
+            }
+          },
+          {
+            "path": "value/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "67095d68-996e-47dc-9791-b12a1aa6c5b0",
+                "originalS": "3d1c0c74-a36d-445f-890c-0a1c6a2cbf36"
+              },
+              "sha256": {
+                "current": "9d1022cf23b06c7f43390f86a6439ece72d19c4799a9aa9cd90e734b94ec112d",
+                "originalS": "fa1f7473db2655adcb2a012c0cb29d1181cbae21bc19020abf14d4c39772825e"
+              }
+            }
+          },
+          {
+            "path": "virtual-slot/Methods.dll",
+            "differences": {
+              "sha256": {
+                "current": "bf0d38f4c54de24956d179ef2424028e7aab5f6f4f133e47ed70f018148d5a63",
+                "originalS": "c21598ce556646601cbbc55e80c0c4f42603d68ca8861d084b4b3fd748a4d144"
+              }
+            }
+          }
+        ],
+        "historicalSBytesReplaced": false,
+        "historicalSBytesRebuiltForLocal": false,
+        "historicalSArchiveAuthenticatedHere": false,
+        "runtimeAcceptance": false
+      },
+      "strictIr": {
+        "R03Accepted": false,
+        "ReadyForHumanReviewGate": false,
+        "first": {
+          "bytes": 2048,
+          "mvid": "597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff",
+          "receiptSha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+          "sha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd"
+        },
+        "historicalOriginalSIndependentlyAccepted": false,
+        "kind": "R03IRGeneratorPreLocalHostProof",
+        "net8CompilationProvenByCaller": false,
+        "originalRegeneratedFixtureCount": 15,
+        "originalVirtualSlotSha256": "bf0d38f4c54de24956d179ef2424028e7aab5f6f4f133e47ed70f018148d5a63",
+        "repeat": {
+          "bytes": 2048,
+          "mvid": "597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff",
+          "receiptSha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+          "sha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd"
+        },
+        "result": "PassedPinnedFreshGeneratorBytesAndRepeatability_HostOnly",
+        "runtimeAcceptance": false,
+        "schemaVersion": 1,
+        "unityOrPlayerExecuted": false
+      }
+    },
+    {
+      "os": "ubuntu",
+      "receipt": {
+        "artifactId": 13216670671,
+        "run": 41605016372,
+        "source": "c707141204265a8111f1f5928515fc8cf28abfee",
+        "zipSha256": "25899779f6ebc2ae76d38739d8de4576dcf81a4fb51db7db7e9371cb8ac6f2d6",
+        "transport": "Connector artifact download reference; curl default TLS; temporary URL not persisted",
+        "strictJsonParsed": true,
+        "files": [
+          {
+            "path": "verified.json",
+            "bytes": 740,
+            "sha256": "f2c1064aa57f16195328114134c57c15bc4bbb16a50da02705e5a0ea1646cf3a"
+          },
+          {
+            "path": "duplicate.stderr.log",
+            "bytes": 404,
+            "sha256": "dc7f9824b861027ea7b8f894b3e5297d84c0d9d8438a969f78a6d09707ba403b"
+          },
+          {
+            "path": "artifact.zip",
+            "bytes": 6243,
+            "sha256": "25899779f6ebc2ae76d38739d8de4576dcf81a4fb51db7db7e9371cb8ac6f2d6"
+          },
+          {
+            "path": "historical-differences.json",
+            "bytes": 5555,
+            "sha256": "c16e8aa132c6720717d2644159ef9674498a2ea11a6a8d323470ec07d580f3a6"
+          },
+          {
+            "path": "pinned-target-verdict.json",
+            "bytes": 1020,
+            "sha256": "69777a762a59be0a247960274a9048f13542608e2eae918deb9bff945e771175"
+          },
+          {
+            "path": "duplicate.exit",
+            "bytes": 4,
+            "sha256": "e726b440cc164001999e718b51780d80314709efe06e7857282377be9111127b"
+          },
+          {
+            "path": "build.log",
+            "bytes": 343,
+            "sha256": "304e3ab766f1c97496036355bc20b5a356e475036627bbd14501d6c358f3aa85"
+          },
+          {
+            "path": "original/inventory.json",
+            "bytes": 4610,
+            "sha256": "1654d7305e41b749c068718a961cf0846ade1e0c35a41f136ea8925f1a6058da"
+          },
+          {
+            "path": "ir/ir-target.json",
+            "bytes": 581,
+            "sha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c"
+          },
+          {
+            "path": "ir-repeat/ir-target.json",
+            "bytes": 581,
+            "sha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c"
+          }
+        ]
+      },
+      "comparison": {
+        "result": "PassedStructuralComparison_BinaryIdentityNotClaimed",
+        "originalSInventoryGitBlob": "0688bd2dad054bd59fcdd1564a050a398cfa14e7",
+        "generatedOriginalCount": 15,
+        "matchedPathAssemblyRefsAndSize": 15,
+        "differentByteOrMvidCount": 15,
+        "differences": [
+          {
+            "path": "baseline/A.dll",
+            "differences": {
+              "sha256": {
+                "current": "5417b0a482e13e049378880a58f644f275f9ff07d6bff9879062f5e056b889cb",
+                "originalS": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6"
+              }
+            }
+          },
+          {
+            "path": "baseline/B.dll",
+            "differences": {
+              "sha256": {
+                "current": "40aa9bb5a8ea43b16e58800fadbf9f5654c973a77a8fa73bfd75ccdf624ca666",
+                "originalS": "7aa63a4c814eacecbb633b06d687b9a28f97fc73ddb577e73bb6444ac2669a2b"
+              }
+            }
+          },
+          {
+            "path": "baseline/Layout.dll",
+            "differences": {
+              "sha256": {
+                "current": "8648f68a0a0f0cf48d777e4465e91185573917032439d016f5527907ea242ad7",
+                "originalS": "3adcc44417c6f9c9f0a2a2c255b020746ff24c598dfef67e64f120dea4be13f8"
+              }
+            }
+          },
+          {
+            "path": "baseline/Methods.dll",
+            "differences": {
+              "sha256": {
+                "current": "ada22bfd830a5b8aa4a37668f351a61fc69eec6100de86da838c9041b56a453a",
+                "originalS": "56af53c3165cc28144095b4aa08d2dfbaa5403da2a40c1137114f1e0e9cf3ce8"
+              }
+            }
+          },
+          {
+            "path": "baseline/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "30f17598-22b2-4144-bcce-b5dede2635e2",
+                "originalS": "bdf34429-3668-4324-9ee1-3a53dd479b6e"
+              },
+              "sha256": {
+                "current": "2124798204e8f9a71148ed324fd680338fc421c1e144ce1d646092b2bdf70c37",
+                "originalS": "7627f977735e56e029d1d823bea46d2362134bd9f01c3086cca9c1afd7c9096e"
+              }
+            }
+          },
+          {
+            "path": "interface/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "6269edb1-f406-455f-9899-67dfc181b384",
+                "originalS": "4155879e-eebd-4957-8781-3b8ccd3bbf4c"
+              },
+              "sha256": {
+                "current": "ec9e29050c2164ca22f73c5564fee8b33725c11ce22ef68d9f68264322a20005",
+                "originalS": "736f525b05694a577dc2cc6b5d94d2ebe10954d53f51f71e87cc7c2d1297dd40"
+              }
+            }
+          },
+          {
+            "path": "primitive/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "6d353327-c0a2-47c0-8cb9-8a7a0982afc8",
+                "originalS": "912ee4e3-7f1c-492f-a07b-6cb0692ad807"
+              },
+              "sha256": {
+                "current": "4688ccbf972a65b347ca3363d748e1f17b54c36cc9de130fc3fa1c553bd25594",
+                "originalS": "d189a952e9973a729b18e9791b808dc650f793817a19d89ab0e6523b3e444d36"
+              }
+            }
+          },
+          {
+            "path": "private-reference/Layout.dll",
+            "differences": {
+              "sha256": {
+                "current": "b813a4f60d512d82b530b46513fd84e618c4cde0f21056f108f2956b1a893ee7",
+                "originalS": "76624b0cce75a1f282f6e7b8bebbd81192c3a6c2b698d9aedba4ab95cde6ee25"
+              }
+            }
+          },
+          {
+            "path": "removal/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "55ddcb21-d830-43f6-9109-3c3bbcd490df",
+                "originalS": "005ead2e-603d-40bc-9c5e-7db1a1040256"
+              },
+              "sha256": {
+                "current": "dbb7f8e60c26d6a9d7245d3654e400f375b5b362ce34222869ea42417c645dc5",
+                "originalS": "69e3334c6d74dff9013a362c1caa3a0bc9bb5930ac1b11265b9ea7c09ff02602"
+              }
+            }
+          },
+          {
+            "path": "reversal/A.dll",
+            "differences": {
+              "sha256": {
+                "current": "6af3ace2bb9d7b178c1d5ae3b1d3c3760d25c5bfd5cc2482715df1e82213a396",
+                "originalS": "c13b628d870be6d2ddab6f5dcd78a27f529f9e446488036cd2c1c889a9346f69"
+              }
+            }
+          },
+          {
+            "path": "reversal/B.dll",
+            "differences": {
+              "sha256": {
+                "current": "101b4a6fd628e20dcc8a80e4e79af88a1710d9f59be39a7aadc5583ca80227d2",
+                "originalS": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d"
+              }
+            }
+          },
+          {
+            "path": "true-cycle/A.dll",
+            "differences": {
+              "sha256": {
+                "current": "5417b0a482e13e049378880a58f644f275f9ff07d6bff9879062f5e056b889cb",
+                "originalS": "db2863edd481b49e007bf18d4a1a880445c5fb7ee13ea461b84fa0d5e27b8dd6"
+              }
+            }
+          },
+          {
+            "path": "true-cycle/B.dll",
+            "differences": {
+              "sha256": {
+                "current": "101b4a6fd628e20dcc8a80e4e79af88a1710d9f59be39a7aadc5583ca80227d2",
+                "originalS": "b915e9b3dadb3fe9003fa2d5da760691e129c3fa0c9a1a784c1316de72dc980d"
+              }
+            }
+          },
+          {
+            "path": "value/R03Contract.dll",
+            "differences": {
+              "mvid": {
+                "current": "cc14182f-00d0-4ad6-8e4b-93bf29747ca8",
+                "originalS": "3d1c0c74-a36d-445f-890c-0a1c6a2cbf36"
+              },
+              "sha256": {
+                "current": "935cddfc93d60ab1c4186f32c527b44c3d98655fb6128af2fb9b717691f89a82",
+                "originalS": "fa1f7473db2655adcb2a012c0cb29d1181cbae21bc19020abf14d4c39772825e"
+              }
+            }
+          },
+          {
+            "path": "virtual-slot/Methods.dll",
+            "differences": {
+              "sha256": {
+                "current": "c5deae37b84e5146427d71dfcf8aea9680e0389a6563bfa35000a2fd390d900e",
+                "originalS": "c21598ce556646601cbbc55e80c0c4f42603d68ca8861d084b4b3fd748a4d144"
+              }
+            }
+          }
+        ],
+        "historicalSBytesReplaced": false,
+        "historicalSBytesRebuiltForLocal": false,
+        "historicalSArchiveAuthenticatedHere": false,
+        "runtimeAcceptance": false
+      },
+      "strictIr": {
+        "R03Accepted": false,
+        "ReadyForHumanReviewGate": false,
+        "first": {
+          "bytes": 2048,
+          "mvid": "597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff",
+          "receiptSha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+          "sha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd"
+        },
+        "historicalOriginalSIndependentlyAccepted": false,
+        "kind": "R03IRGeneratorPreLocalHostProof",
+        "net8CompilationProvenByCaller": false,
+        "originalRegeneratedFixtureCount": 15,
+        "originalVirtualSlotSha256": "c5deae37b84e5146427d71dfcf8aea9680e0389a6563bfa35000a2fd390d900e",
+        "repeat": {
+          "bytes": 2048,
+          "mvid": "597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff",
+          "receiptSha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+          "sha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd"
+        },
+        "result": "PassedPinnedFreshGeneratorBytesAndRepeatability_HostOnly",
+        "runtimeAcceptance": false,
+        "schemaVersion": 1,
+        "unityOrPlayerExecuted": false
+      }
+    }
+  ],
+  "supplementalCancelledRuns": [
+    {
+      "id": 41605016061,
+      "path": ".github/workflows/h1-bee-primary.yml",
+      "conclusion": null,
+      "mandatory": false
+    }
+  ],
+  "ordinaryMvidNote": "Only recorded SHA differences accepted; ordinary inventories omit MVID fields",
+  "originalSRegeneratedBytesAdopted": false,
+  "runtimeAcceptance": false
+}

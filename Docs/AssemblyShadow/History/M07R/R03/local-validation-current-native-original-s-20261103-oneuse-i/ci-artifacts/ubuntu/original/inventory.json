@@ -1,0 +1,163 @@
+{
+  "kind": "R03PlayerFixtureInventory",
+  "schemaVersion": 1,
+  "files": [
+    {
+      "path": "baseline/A.dll",
+      "assembly": "A",
+      "mvid": "87d8b6bb-8c11-29e6-8ef2-dd9f2d044eeb",
+      "size": 2048,
+      "sha256": "5417b0a482e13e049378880a58f644f275f9ff07d6bff9879062f5e056b889cb",
+      "references": [
+        "B",
+        "mscorlib"
+      ]
+    },
+    {
+      "path": "baseline/B.dll",
+      "assembly": "B",
+      "mvid": "ef87710c-ebde-ecbc-c144-b138529e67d9",
+      "size": 2048,
+      "sha256": "40aa9bb5a8ea43b16e58800fadbf9f5654c973a77a8fa73bfd75ccdf624ca666",
+      "references": [
+        "mscorlib"
+      ]
+    },
+    {
+      "path": "baseline/Layout.dll",
+      "assembly": "Layout",
+      "mvid": "bc86caee-ae2b-8389-74c1-3619daf288c1",
+      "size": 2048,
+      "sha256": "8648f68a0a0f0cf48d777e4465e91185573917032439d016f5527907ea242ad7",
+      "references": [
+        "mscorlib"
+      ]
+    },
+    {
+      "path": "baseline/Methods.dll",
+      "assembly": "Methods",
+      "mvid": "4773fc19-55e6-0b61-bd26-4e01952444ca",
+      "size": 2048,
+      "sha256": "ada22bfd830a5b8aa4a37668f351a61fc69eec6100de86da838c9041b56a453a",
+      "references": [
+        "mscorlib"
+      ]
+    },
+    {
+      "path": "baseline/R03Contract.dll",
+      "assembly": "R03Contract",
+      "mvid": "30f17598-22b2-4144-bcce-b5dede2635e2",
+      "size": 2048,
+      "sha256": "2124798204e8f9a71148ed324fd680338fc421c1e144ce1d646092b2bdf70c37",
+      "references": [
+        "mscorlib"
+      ]
+    },
+    {
+      "path": "interface/R03Contract.dll",
+      "assembly": "R03Contract",
+      "mvid": "6269edb1-f406-455f-9899-67dfc181b384",
+      "size": 2048,
+      "sha256": "ec9e29050c2164ca22f73c5564fee8b33725c11ce22ef68d9f68264322a20005",
+      "references": [
+        "mscorlib"
+      ]
+    },
+    {
+      "path": "primitive/R03Contract.dll",
+      "assembly": "R03Contract",
+      "mvid": "6d353327-c0a2-47c0-8cb9-8a7a0982afc8",
+      "size": 2048,
+      "sha256": "4688ccbf972a65b347ca3363d748e1f17b54c36cc9de130fc3fa1c553bd25594",
+      "references": [
+        "mscorlib"
+      ]
+    },
+    {
+      "path": "private-reference/Layout.dll",
+      "assembly": "Layout",
+      "mvid": "085a53c7-db35-76e2-ea07-b253547d2a9d",
+      "size": 2048,
+      "sha256": "b813a4f60d512d82b530b46513fd84e618c4cde0f21056f108f2956b1a893ee7",
+      "references": [
+        "mscorlib"
+      ]
+    },
+    {
+      "path": "removal/R03Contract.dll",
+      "assembly": "R03Contract",
+      "mvid": "55ddcb21-d830-43f6-9109-3c3bbcd490df",
+      "size": 2048,
+      "sha256": "dbb7f8e60c26d6a9d7245d3654e400f375b5b362ce34222869ea42417c645dc5",
+      "references": [
+        "mscorlib"
+      ]
+    },
+    {
+      "path": "reversal/A.dll",
+      "assembly": "A",
+      "mvid": "2d98f71c-a7ee-a098-52cb-345f0d83c61a",
+      "size": 2048,
+      "sha256": "6af3ace2bb9d7b178c1d5ae3b1d3c3760d25c5bfd5cc2482715df1e82213a396",
+      "references": [
+        "mscorlib"
+      ]
+    },
+    {
+      "path": "reversal/B.dll",
+      "assembly": "B",
+      "mvid": "9f473e67-33fe-49a2-a6f5-f06f86943a17",
+      "size": 2048,
+      "sha256": "101b4a6fd628e20dcc8a80e4e79af88a1710d9f59be39a7aadc5583ca80227d2",
+      "references": [
+        "A",
+        "mscorlib"
+      ]
+    },
+    {
+      "path": "true-cycle/A.dll",
+      "assembly": "A",
+      "mvid": "87d8b6bb-8c11-29e6-8ef2-dd9f2d044eeb",
+      "size": 2048,
+      "sha256": "5417b0a482e13e049378880a58f644f275f9ff07d6bff9879062f5e056b889cb",
+      "references": [
+        "B",
+        "mscorlib"
+      ]
+    },
+    {
+      "path": "true-cycle/B.dll",
+      "assembly": "B",
+      "mvid": "9f473e67-33fe-49a2-a6f5-f06f86943a17",
+      "size": 2048,
+      "sha256": "101b4a6fd628e20dcc8a80e4e79af88a1710d9f59be39a7aadc5583ca80227d2",
+      "references": [
+        "A",
+        "mscorlib"
+      ]
+    },
+    {
+      "path": "value/R03Contract.dll",
+      "assembly": "R03Contract",
+      "mvid": "cc14182f-00d0-4ad6-8e4b-93bf29747ca8",
+      "size": 2048,
+      "sha256": "935cddfc93d60ab1c4186f32c527b44c3d98655fb6128af2fb9b717691f89a82",
+      "references": [
+        "mscorlib"
+      ]
+    },
+    {
+      "path": "virtual-slot/Methods.dll",
+      "assembly": "Methods",
+      "mvid": "2c609497-865f-93ff-1446-a9220d5740ae",
+      "size": 2048,
+      "sha256": "c5deae37b84e5146427d71dfcf8aea9680e0389a6563bfa35000a2fd390d900e",
+      "references": [
+        "mscorlib"
+      ]
+    }
+  ],
+  "note": "Reversal uses static reference fields; original host counterexamples are retained separately. Native execution is NotRun.",
+  "nativeExecution": false,
+  "runtimeAcceptance": false
+}

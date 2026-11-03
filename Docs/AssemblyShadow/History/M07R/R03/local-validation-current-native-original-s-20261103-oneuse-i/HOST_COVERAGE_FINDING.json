@@ -1,0 +1,212 @@
+{
+  "id": "IR-LOCAL-R03-ONEUSE-I-HOST-COVERAGE-02",
+  "kind": "ReadOnlyActualLocalHostRosterAudit",
+  "time": "2026-11-03T09:05:21.496205+00:00",
+  "symptom": "I plan/design advertise10 native host components including both owner suites; actual Local helper executed8 legacy commands and neither owner suite.",
+  "sourceDemo": "c707141204265a8111f1f5928515fc8cf28abfee",
+  "actualLocalHostResult": "PassedHostOnly_EightRecordedCommandsOnly",
+  "actualCommands": [
+    {
+      "name": "native-general-stream",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/native-general-stream",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/run_tests.py",
+        "--native",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+        "--demo",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/native-general-stream/evidence"
+      ],
+      "cwd": null,
+      "startedUnix": 1793696089.0042481,
+      "finishedUnix": 1793696108.080674,
+      "exit": 0,
+      "stdoutSha256": "ad139486358d24ef90ab5868abbb2bd420ceee7007d206ec509b85fba49adbf3",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "innerGeneralAndProducerVerified": true
+    },
+    {
+      "name": "native-v2-codec",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/native-v2-codec",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/run_tests.py",
+        "--repository",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/native-v2-codec/evidence"
+      ],
+      "cwd": null,
+      "startedUnix": 1793696108.081611,
+      "finishedUnix": 1793696115.122336,
+      "exit": 0,
+      "stdoutSha256": "f7da19b5dd51c987ca092d453ec7bc7a1887a838d33e039e9e6873139de0070e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "native-v2-file-transaction",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/native-v2-file-transaction",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/run_transaction_tests.py",
+        "--repository",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/native-v2-file-transaction/evidence"
+      ],
+      "cwd": null,
+      "startedUnix": 1793696115.1228218,
+      "finishedUnix": 1793696123.142835,
+      "exit": 0,
+      "stdoutSha256": "40a67d47acbe17bb9df6b054a6e1839fe2e64e455447b7ea957e5b3a3aac8d0d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "native-v2-legacy-sink",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/native-v2-legacy-sink",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_native_v2.py",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/native-v2-legacy-sink/evidence"
+      ],
+      "cwd": null,
+      "startedUnix": 1793696123.143269,
+      "finishedUnix": 1793696129.591454,
+      "exit": 0,
+      "stdoutSha256": "55cc89ddda17f66d84b679ec86d8cffc645170d5ffb35391de22fbc752dc7969",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "execution-serializer-strict",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/execution-serializer-strict",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-O2",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/execution_serializer_tests.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/execution-serializer-strict/test"
+      ],
+      "cwd": null,
+      "startedUnix": 1793696129.592043,
+      "finishedUnix": 1793696129.869618,
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "execution-serializer-strict-run",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/execution-serializer-strict-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/execution-serializer-strict/test"
+      ],
+      "cwd": null,
+      "startedUnix": 1793696129.8699698,
+      "finishedUnix": 1793696130.286078,
+      "exit": 0,
+      "stdoutSha256": "7b1671bb97a427ef5627d39455fce17f6bc5bb2643be369ab0a187a4cffff209",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "execution-serializer-sanitized",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/execution-serializer-sanitized",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/tools/r03/diagnostic_stream/execution_serializer_tests.cpp",
+        "-o",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/execution-serializer-sanitized/test"
+      ],
+      "cwd": null,
+      "startedUnix": 1793696130.287574,
+      "finishedUnix": 1793696130.6736152,
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "execution-serializer-sanitized-run",
+      "status": "Passed",
+      "resultRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/execution-serializer-sanitized-run",
+      "argv": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/execution-serializer-sanitized/test"
+      ],
+      "cwd": null,
+      "startedUnix": 1793696130.6740081,
+      "finishedUnix": 1793696131.147327,
+      "exit": 0,
+      "stdoutSha256": "7b1671bb97a427ef5627d39455fce17f6bc5bb2643be369ab0a187a4cffff209",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "actualResultPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I/native-host-diagnostics/RESULT.json",
+  "actualResultSha256": "0584f177d7d71e6cb764feed998483931391cd5a091636c9f3b757a50db205d3",
+  "helperPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py",
+  "helperSha256": "06629ef3170b49b5407af25d0aaa23f2c9b8fb7da58b9a55f1f7f90ffe59bdd9",
+  "plannedSourcePaths": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_H_ENGINE_OWNER_2026-11-03/PLAN.md",
+      "sha256": "1e27c13001a5b090715fb384c377a7a90d036ad93923842cd459ff3854a22f82"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_H_ENGINE_OWNER_2026-11-03/DESIGN.md",
+      "sha256": "dcc6587ae5c5614667a93100784561dccc8c77a5862adde29ed7d22a8e6c8d90"
+    }
+  ],
+  "missingLocalSuites": [
+    {
+      "script": "native_owner_decision_contracts.py",
+      "freshLocalHostStatus": "NotRun",
+      "exactSourceTwoOsCI": "Passed_SeparateEvidence"
+    },
+    {
+      "script": "engine_owner_quit_contracts.py",
+      "freshLocalHostStatus": "NotRun",
+      "exactSourceTwoOsCI": "Passed_SeparateEvidence"
+    }
+  ],
+  "evidenceExcerpts": [
+    "PLAN P6: OriginalS/source-host and10 native host diagnostics components.",
+    "DESIGN section4: one-use Local coordinator additionally performs both exact native-owner tests within native host diagnostics.",
+    "Actual coordinator launches run_primary_host_preflight.py; that restored historical helper has8 commands and no invocation of either new owner suite."
+  ],
+  "reproduction": "Read prescribed I coordinator steps/native-host-diagnostics/INVOCATION.json and native-host-diagnostics/RESULT.json, compare commands and current source helper to the pinned I PLAN/DESIGN. No rerun is needed or authorized.",
+  "mostLikelyRootCause": "Primary restored the historical helper byte-for-byte to preserve its old authority, while design/plan still describe the intended extended10-component Local coverage. The current coordinator continues to call only that restored helper.",
+  "affectedScope": "Missing fresh Local C++11 owner classifier/negative and full owner TU mock controls. Both passed authenticated exact-source CI, and actual new Unity builds/five Players passed, but neither substitutes for the advertised fresh Local host controls.",
+  "recommendedDirection": "Primary should wire the two suites into an appropriate current-source Local host stage without altering the historical helper contract, require exact expected roster/receipts before Unity, add missing-component/fail-stop host tests, and align the handoff documentation with actual dispatch.",
+  "remainingUncertainty": "No new Local negative-suite result exists for these two scripts. No post-hoc compiler run or retrospective gate success was manufactured.",
+  "validationStillRequired": "Under new source-bound authority, fresh actual Local receipts for both owner suites, full roster and fail-stop checks; preserve consumed I and all prior outcomes.",
+  "sourceChanges": false,
+  "extraCommandsExecuted": false,
+  "scopeCorrection": "Earlier chat wording describing these new controls as locally passed was inaccurate; exact-source CI Passed and fresh Local NotRun are distinct."
+}

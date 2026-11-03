@@ -1,0 +1,41 @@
+{
+  "kind": "ReadOnlyOriginalOneuseICoordinatorConsumerDiagnosis",
+  "time": "2026-11-03T09:01:24.945885+00:00",
+  "originalChildResultSha256": "a2a4fc891f26151ff1e0822214e0625fe409a7be3cf7c95b1e941838f3363224",
+  "originalCoordinatorResultSha256": "9fbe4b7989bc2e40fcfc905aecfb47234eda78719710fd45fbb4e0efb63458a9",
+  "consumerSourcePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py",
+  "consumerSourceSha256": "e03b667d39ffecc3fe4cb17c21cad518898a6c1669d81eef597e210aab77fbb0",
+  "consumerExpectedReducedMap": {
+    "hybridclr_demo": "c707141204265a8111f1f5928515fc8cf28abfee",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340"
+  },
+  "actualProducedRecord": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_demo": "c707141204265a8111f1f5928515fc8cf28abfee",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340",
+    "phase": "candidate",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1
+  },
+  "allFourPinValuesMatch": true,
+  "additionalRequiredMetadata": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "phase": "candidate",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1
+  },
+  "exactDictionaryEquality": false,
+  "originalError": "Fresh Player batch source tuple mismatch",
+  "originalStepProcessExit": 0,
+  "originalStepProcessState": "Passed",
+  "coordinatorSemanticStageState": "Failed",
+  "originalAggregateResult": "ReturnRequired",
+  "nativeFocusedVerification": null,
+  "explanation": "Static comparison and inspection of retained source/receipts only; no product validator, compiler, Player or coordinator rerun",
+  "sourceModified": false,
+  "consumedEvidenceModified": false
+}

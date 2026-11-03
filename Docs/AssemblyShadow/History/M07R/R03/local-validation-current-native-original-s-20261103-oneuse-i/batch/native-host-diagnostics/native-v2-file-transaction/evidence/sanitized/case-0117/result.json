@@ -1,0 +1,64 @@
+{
+  "prepared": false,
+  "encoded": false,
+  "artifactSealed": false,
+  "committed": false,
+  "error": 4,
+  "operation": "directory-open",
+  "errno": 5,
+  "operatorNewCalls": 0,
+  "transactionBytes": 19136,
+  "receipt": {
+    "kind": "R03PosixDiagnosticTransactionV2",
+    "complete": false,
+    "syncPolicy": "F_FULLFSYNC-files+fsync-directory",
+    "root": {
+      "device": 0,
+      "inode": 0,
+      "owner": 0,
+      "mode": 0,
+      "bytes": 0,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "artifact": {
+      "device": 0,
+      "inode": 0,
+      "owner": 0,
+      "mode": 0,
+      "bytes": 0,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "envelope": {
+      "device": 0,
+      "inode": 0,
+      "owner": 0,
+      "mode": 0,
+      "bytes": 0,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "events": [
+    "root-open",
+    "fstat",
+    "directory-open",
+    "fstat",
+    "directory-open",
+    "fstat",
+    "directory-open",
+    "fstat",
+    "directory-open",
+    "fstat",
+    "directory-open",
+    "fstat",
+    "directory-open",
+    "close",
+    "close",
+    "close",
+    "close",
+    "close",
+    "close"
+  ],
+  "openDescriptors": 0,
+  "duplicateClose": false,
+  "allCloseOnExec": true
+}
