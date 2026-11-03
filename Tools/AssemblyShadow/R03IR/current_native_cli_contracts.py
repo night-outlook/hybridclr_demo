@@ -27,9 +27,11 @@ DEMO = HERE.parents[2]
 R03 = HERE.parent / "R03"
 BLOB_PINS = {
     "Tools/AssemblyShadow/R03/run_local.py": "9aef8093f98fb7f9b5dd395ba4e5c2ed0220276e",
-    "Tools/AssemblyShadow/R03IR/run_terminal_local.py": "dd7b57dcf9d42010e4c9ae44177ecf710236693f",
+    "Tools/AssemblyShadow/R03IR/run_terminal_local.py": "09e601ed3b7b90caaea96e82dc8063d454eee935",
     "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs":
-        "598feeec3231707091699d99fbf4428d50b52024",
+        "e2f650ad95b290620aa52949b43a1866272ac6bf",
+    "Tools/AssemblyShadow/R03IR/PlayerProject/R03EngineFrameDispatcher.cs":
+        "47a3e095480de2ec657e7e5acc453a5a76002a18",
     "Tools/AssemblyShadow/R03/source-pins.json": "9d72a237fb6ecd3efe3267ca89625aa49c61775d",
     "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs":
         "b993703d918090733a659bd7c3ac883cd5d753e1",
