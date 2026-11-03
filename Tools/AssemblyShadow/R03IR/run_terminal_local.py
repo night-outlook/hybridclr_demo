@@ -219,6 +219,9 @@ def verify_engine(raw, request, launch, log):
             exact_int(raw.get('ownerQuitNativeCalls'), 1) and
             type(raw.get('ownerQuitReturned')) is bool,
             'Single native Unity owner request with independently typed return signal')
+    require(exact_int(raw.get('ownerWantsToQuitNativeResponses'), 1) and
+            exact_int(raw.get('ownerApplicationQuitNativeNotifications'), 1),
+            'Exact native-only Unity wants-to-quit and quit notification required')
     require(raw.get('normalExitHookObserved') is True and
             raw.get('witnessExitMode') == 'NativeAtexit',
             'A watchdog-forced process exit can never pass as normal Unity shutdown')
@@ -234,6 +237,9 @@ def verify_engine(raw, request, launch, log):
             'The native failure must originate from the already-running Unity frame callback')
     require('[R03EngineOwnerQuit] source=UnityNativeIcall once=1 sentinelMatched=true' in log,
             'Exact sentinel must trigger one actual native quit request')
+    require('[R03EngineOwnerDecision] method=Internal_ApplicationWantsToQuit response=true managedBodyExecuted=false' in log and
+            '[R03EngineOwnerDecision] method=Internal_ApplicationQuit response=void managedBodyExecuted=false' in log,
+            'Authentic two native-only owner lifecycle decisions; no managed subscribers')
     require('[R03EngineOwnerExit] nativeAtexit=true rawFlushed=true' in log,
             'Process normal-exit callback and durable raw flush must be independently visible')
     require('[R03ReserveGcProbe] mask=31 ' in log, 'Real reserve/GC prerequisite in this process')
