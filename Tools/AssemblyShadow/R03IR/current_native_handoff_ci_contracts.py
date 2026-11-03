@@ -64,7 +64,43 @@ def inspect_checkout(root: Path = ROOT) -> list[dict]:
         rows.append(inspect_workflow(name, path.read_text(encoding="utf-8")))
     return rows
 
+NATIVE_CI_WORKFLOWS = (
+    "r03-ir-current-native-local-cycle-host.yml",
+    "r03-ir-current-native-source-only.yml",
+    "r03-ir-current-native-vm-delta-source-only.yml",
+)
+
+def native_checkout_ref(name: str, content: str) -> str:
+    if name not in NATIVE_CI_WORKFLOWS:
+        raise ValueError("Unknown native workflow")
+    # A false pin in a comment cannot satisfy the actual actions/checkout
+    # with.ref at its checked-out native repository.
+    lines = content.splitlines()
+    matched = []
+    for i, line in enumerate(lines):
+        if line.strip() == "repository: night-outlook/il2cpp_plus":
+            block = lines[i+1:i+8]
+            refs = [x.strip()[5:].strip() for x in block if x.strip().startswith("ref: ")]
+            if len(refs) != 1:
+                raise ValueError("Ambiguous native checkout ref: " + name)
+            matched.extend(refs)
+    if len(matched) != 1 or not re.fullmatch(r"[0-9a-f]{40}", matched[0]):
+        raise ValueError("Missing or ambiguous literal native checkout ref: " + name)
+    return matched[0]
+
 class TriggerContracts(unittest.TestCase):
+    def test_actual_native_checkout_refs_match_candidate_source(self):
+        from current_native_source_gate import CURRENT
+        expected = CURRENT["il2cpp_plus"]
+        self.assertEqual(len(NATIVE_CI_WORKFLOWS), 3)
+        for name in NATIVE_CI_WORKFLOWS:
+            raw = (ROOT / ".github" / "workflows" / name).read_text()
+            with self.subTest(name=name):
+                self.assertEqual(native_checkout_ref(name, raw), expected)
+                changed = raw.replace("ref: " + expected, "ref: " + "0"*40, 1)
+                with self.assertRaises(AssertionError):
+                    self.assertEqual(native_checkout_ref(name, changed), expected)
+
     def test_exact_roster_and_all_real_workflows(self):
         self.assertEqual(len(WORKFLOWS), len(set(WORKFLOWS)))
         self.assertEqual(len(inspect_checkout()), 9)

@@ -8,14 +8,22 @@ class EngineContracts(unittest.TestCase):
     def setUp(self):
         self.request={'runId':'a'*32,'caseId':'engine','stimulus':'engine-unhandled'}
         self.launch={'pid':321}
-        self.raw={'schemaVersion':1,'kind':'R03IREngineReportingV1','runtimeAcceptance':False,
+        self.raw={'schemaVersion':2,'kind':'R03IREngineReportingV2','runtimeAcceptance':False,
             'result':'ObservedNotAccepted','runId':'a'*32,'caseId':'engine','processId':321,
             'timedOut':False,'initialState':6,'finalState':9,'preManagedLoggerCalls':1,
-            'finalManagedLoggerCalls':1,'completedReports':1,'observationMilliseconds':500,
-            'recovery':{'published':True,'stateCode':9,'terminalFailureCode':13,'disposition':'RestartRequired'},
-            'ownerQuitRequested':True,'ownerQuitNativeCalls':1}
-        self.log='[R03ReserveGcProbe] mask=31 collectionsBefore=0 collectionsAfter=1\n[AssemblyShadowTerminalReport] sequence=1 state=9 message="R03_ENGINE_UNHANDLED_'+('a'*32)+'" managedHandlerExecuted=false\n'
-        self.log+='[R03EngineOwnerQuit] source=UnityNativeIcall once=1 sentinelMatched=true\\n'
+            'finalManagedLoggerCalls':1,'completedReports':1,
+            'observationLimitMilliseconds':500,'observationElapsedMilliseconds':20,
+            'normalExitHookObserved':True,'witnessExitMode':'NativeAtexit',
+            'ownerQuitRequested':True,'ownerQuitNativeCalls':1,'ownerQuitReturned':False,
+            'recovery':{'published':True,'stateCode':9,'terminalFailureCode':13,'disposition':'RestartRequired'}}
+        self.log=(
+            '[AssemblyShadowPhase] phase=75 state=6 generation=1\n'
+            '[R03ReserveGcProbe] mask=31 collectionsBefore=0 collectionsAfter=1\n'
+            '[AssemblyShadowTerminalReport] sequence=1 state=9 message="R03_ENGINE_UNHANDLED_'
+            + ('a'*32) + '" managedHandlerExecuted=false\n'
+            '[R03EngineOwnerQuit] source=UnityNativeIcall once=1 sentinelMatched=true\n'
+            '[R03EngineOwnerExit] nativeAtexit=true rawFlushed=true\n'
+        )
     def check(self):return verify_engine(self.raw,self.request,self.launch,self.log)
     def test_positive_shape(self):self.assertEqual(self.check()['result'],'Passed')
     def test_reject_direct_probe_without_sentinel(self):

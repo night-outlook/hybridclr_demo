@@ -1,3 +1,9 @@
+# Primary H source/CI correction — first candidate CI FAIL (2026-11-03 UTC)
+
+The prior pushed H source `953e8e5e4a7f5a4fd7ea0851726b2be1496c37b0` ran exact-source CI and was **NOT eligible for Local H**: the coordinator still expected ten source files, the K synthetic engine witness was V1 instead of V2, and three mandatory workflows still checked out the consumed G native revision. Primary has prepared corrections, including a new actual-workflow checkout-ref gate and source-pinned K fixture. See the latest [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) for the **final** pushed demo SHA and nine fresh two-OS successful workflow requirements. Earlier CI failures remain visible. All A–G Local evidence and R03 acceptance flags are unchanged. Do not execute H from the earlier SHA.
+
+---
+
 # Current Primary response — oneuse-G FAIL remediated in source; conditional oneuse-H (2026-11-03 UTC)
 
 **Latest Local G is FAIL / ReturnRequired**, not acceptance: two ON actual Unity2022.3.62f2 C++11 builds and three ON post-poison complete sidecar Players Passed; OFF C++11 build failed on incomplete exception/string types; engine observer recorded 51,865 reports in500ms despite a single native owner quit request, exited71; OFF Player/official 135-pair audit Blocked. G is consumed and immutable. F remains BLOCKED and E remains FAIL.

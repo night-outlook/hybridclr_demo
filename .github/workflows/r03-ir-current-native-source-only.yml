@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/il2cpp_plus
-          ref: 2c899ece8cf241887b14040bab0a73d7c854d2bf
+          ref: cdd3f7bc671880052e4f55ae4c1cd75b99a603e1
           path: external/il2cpp_plus
           persist-credentials: false
           sparse-checkout-cone-mode: false
@@ -68,7 +68,7 @@ jobs:
           python3 -B Tools/AssemblyShadow/R03IR/current_native_source_contracts.py \
             --demo "$PWD" --native "$PWD/external/il2cpp_plus" \
             --hybridclr "$PWD/external/hybridclr" --package "$PWD/external/hybridclr_unity"
-      - name: Authenticate exact ten source blobs and detached current checkouts
+      - name: Authenticate exact eleven source blobs and detached current checkouts
         shell: bash
         run: |
           set -euo pipefail

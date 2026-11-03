@@ -12,7 +12,7 @@ permissions:
   contents: read
 jobs:
   vm-delta-source:
-    name: 43 changed native VM source SHA contracts (${{ matrix.os }})
+    name: 45 changed native VM source SHA contracts (${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
@@ -26,17 +26,17 @@ jobs:
           persist-credentials: false
           sparse-checkout: |
             Tools/AssemblyShadow/R03IR
-      - name: Native source at exact e1e5 revision (no compile)
+      - name: Native source at exact H revision (no compile)
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/il2cpp_plus
-          ref: 2c899ece8cf241887b14040bab0a73d7c854d2bf
+          ref: cdd3f7bc671880052e4f55ae4c1cd75b99a603e1
           path: external/il2cpp_plus
           persist-credentials: false
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             libil2cpp/vm
-      - name: 12 source-only positive and hostile 43-delta contracts
+      - name: 12 source-only positive and hostile 45-delta contracts
         shell: bash
         run: |
           set -euo pipefail

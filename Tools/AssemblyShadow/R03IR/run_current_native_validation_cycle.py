@@ -127,7 +127,7 @@ def validate_sources(workspace: Path, demo_commit: str) -> dict:
                              else source.CURRENT[name]) for name in REPOS]
     checked = source.verify_source_roots(roots, require_checkout_heads=True)
     require(checked["result"] == "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation" and
-            checked["verifiedSourceFiles"] == 10, "Ten-file source proof not passed")
+            checked["verifiedSourceFiles"] == 11, "Eleven-file source proof not passed")
     config = json.loads(delta.MANIFEST.read_text(encoding="utf-8"))
     vm = delta.validate(config, roots["il2cpp_plus"], check_native_commit=True)
     require(vm["result"] == "PassedCurrentNativeVmSourceDeltaOnly" and
