@@ -1,0 +1,41 @@
+{
+  "kind": "ExactOriginalFocusedSealArchiveTransport",
+  "sourcePath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/evidence.tar.gz",
+  "sourceSha256": "cbbd006fe1e6781c687f96fea7826e5023feb638ca6381cd61c76ee36db2160d",
+  "bytes": 83800670,
+  "parts": [
+    {
+      "path": "sealed-current-native/evidence.tar.gz.part0000",
+      "offset": 0,
+      "bytes": 16777216,
+      "sha256": "7885ccaa945e50916742ffe2654e464243fd990928c5a350f1163a340bc92146"
+    },
+    {
+      "path": "sealed-current-native/evidence.tar.gz.part0001",
+      "offset": 16777216,
+      "bytes": 16777216,
+      "sha256": "dc7517acb856bb799ad1a234fd53d9ebf38d2b4a86bf956d1b402ab6eadebeec"
+    },
+    {
+      "path": "sealed-current-native/evidence.tar.gz.part0002",
+      "offset": 33554432,
+      "bytes": 16777216,
+      "sha256": "b1b3da342ba9698b314700b532a9e76d6705baadce3bb0c4d55eb6f04fe96023"
+    },
+    {
+      "path": "sealed-current-native/evidence.tar.gz.part0003",
+      "offset": 50331648,
+      "bytes": 16777216,
+      "sha256": "e32488c20dd20247a5d2c617d6ceb92a330c9302ca6bda63ed081a55452f1d8d"
+    },
+    {
+      "path": "sealed-current-native/evidence.tar.gz.part0004",
+      "offset": 67108864,
+      "bytes": 16691806,
+      "sha256": "a873461ca2229a06fbee8ea8e4586dedcab4407e77d7bc6f8a10d7793c5c820d"
+    }
+  ],
+  "reconstruction": "Concatenate part files in listed order; SHA256 must match sourceSha256. This only transports the original tar.gz; it does not reseal or change the semantic result.",
+  "semanticResult": "ReturnRequired",
+  "runtimeAcceptance": false
+}

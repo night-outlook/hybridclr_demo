@@ -1,0 +1,49 @@
+{
+  "dependencies": [
+    "build-candidate-release"
+  ],
+  "evidence": {
+    "H2Passed": false,
+    "R03Accepted": false,
+    "argv": [
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+      "-batchmode",
+      "-nographics",
+      "-r03IrRequest",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-type/request.json",
+      "-r03IrOutput",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-type/raw.json",
+      "-r03IrRunId",
+      "03104729978543ccb4bbf69f65604ee0",
+      "-logFile",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-type/Player.log"
+    ],
+    "buildReceiptSha256": "4ec7ca7e46411dc107d8cad97d5ff4de85fa1c34c1a952b5fe7a7134c4785a42",
+    "caseId": "IR-R03-02-release-type",
+    "completeGeneralDiagnostic": {
+      "R03Accepted": false,
+      "bytes": 540759,
+      "classEnumerationGeneration": 1,
+      "coherentVmEpochProven": false,
+      "enumerationGeneration": 1,
+      "kind": "R03CompleteBoundedGeneralDiagnosticsV1",
+      "ordinaryAssemblyCount": 46,
+      "ordinaryClassCount": 3352,
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-type/raw.json.general.json",
+      "result": "PassedCompleteByteBoundAndSchema_WithoutGlobalEpochProof",
+      "runtimeAcceptance": false,
+      "sha256": "416fd1a35aeb13cdb03ac9ea7d6062217e6cab7a8cbd9d276f1637604f5ce3cc",
+      "transport": "FullPreopenedSidecar"
+    },
+    "kind": "R03IRVerifiedPostPoisonPlayer",
+    "launchPid": 74946,
+    "rawSha256": "7f4547bcb028d7d946f6fbe38eb79d411a260f5b7f6dc0d5c1bdb6582b9415e6",
+    "requestSha256": "c2d30435d6da30812fd00c8ef8af61a5a347bd7cd0cc2eb7e1d1b325e4354614",
+    "result": "Passed",
+    "runId": "03104729978543ccb4bbf69f65604ee0",
+    "runtimeAcceptance": false,
+    "stimulus": "type-resolution"
+  },
+  "id": "IR-R03-02-release-type",
+  "result": "Passed"
+}

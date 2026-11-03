@@ -1,0 +1,1951 @@
+{
+  "kind": "IndependentOneuseGActualBuildSidecarAndEngineAnalysis",
+  "time": "2026-11-03T02:20:07.247674+00:00",
+  "result": "FAIL",
+  "builds": [
+    {
+      "role": "candidate-release",
+      "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/builds/candidate-release/build-receipt.json",
+      "receiptSha256": "4ec7ca7e46411dc107d8cad97d5ff4de85fa1c34c1a952b5fe7a7134c4785a42",
+      "result": "Passed",
+      "buildPipelineResult": "Succeeded",
+      "playerInventoryStatus": "PresentAndInventoried",
+      "errors": 0,
+      "warnings": 1,
+      "exception": "",
+      "nonGeneratedCorePreserved": true,
+      "appExists": true,
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/builds/candidate-release/Editor.log",
+      "logSha256": "a0aed345cfa097382897a0a9b19bfc71e959d22524120026c2100cf1cbdf7620",
+      "compilerErrors": [],
+      "firstCompilerError": null,
+      "buildGraphBindings": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/Library/Bee/Player7f73f0d6.dag.json",
+          "sha256": "f958380b259bfb6f3b4473dbbb3e6e2b4e2c3f9459c3cc6b75ec61a2ea595452"
+        }
+      ],
+      "firstRetainedBeeCompilerAction": {
+        "node": 188,
+        "action": "\"/Library/Developer/CommandLineTools/usr/bin/clang++\" -std=c++11 -Wswitch -Wno-trigraphs -Wno-tautological-compare -Wno-invalid-offsetof -Wno-implicitly-unsigned-literal -Wno-integer-overflow -Wno-shift-negative-value -Wno-unknown-attributes -Wno-implicit-function-declaration -Wno-null-conversion -Wno-missing-declarations -Wno-unused-value -Wno-pragma-once-outside-header -fvisibility=hidden -isysroot \"/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk\" -fexceptions -frtti -g -O3 -fno-strict-overflow -ffunction-sections -fdata-sections -fmessage-length=0 -pipe -D_GLIBCXX_USE_CXX11_ABI=0 -DBASELIB_INLINE_NAMESPACE=il2cpp_baselib -DIL2CPP_MONO_DEBUGGER_DISABLED -DRUNTIME_IL2CPP -DTARGET_ARM64 -DIL2CPP_ENABLE_WRITE_BARRIERS=1 -DIL2CPP_INCREMENTAL_TIME_SLICE=3 -DGC_NOT_DLL -DIL2CPP_DEFAULT_DATA_DIR_PATH=Data -DNDEBUG -I\".\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/bdwgc/include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/pch\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/os/ClassLibraryPAL/brotli/include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Platforms/OSX/Include\" -o \"Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/q483vz9pm5uv.o\" -fcolor-diagnostics -stdlib=libc++ -arch arm64 -mmacosx-version-min=11.0 -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 -DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=2 -DHYBRIDCLR_R03_RUNTIME_PROBE=1 -c -x c++ \"Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/wlbdk0id73j20.lump.cpp\""
+      },
+      "retainedBeeCompilerActions": 185
+    },
+    {
+      "role": "candidate-debug",
+      "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/builds/candidate-debug/build-receipt.json",
+      "receiptSha256": "87b0fa8290b564b0cee965cc23459b6f10a38a62074e869e784fb96028b3ea99",
+      "result": "Passed",
+      "buildPipelineResult": "Succeeded",
+      "playerInventoryStatus": "PresentAndInventoried",
+      "errors": 0,
+      "warnings": 1,
+      "exception": "",
+      "nonGeneratedCorePreserved": true,
+      "appExists": true,
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/builds/candidate-debug/Editor.log",
+      "logSha256": "c3fbe55be2be79a75648a1930775e9e05aa5a59542fb9dc324b2bb0ecb64d26b",
+      "compilerErrors": [],
+      "firstCompilerError": null,
+      "buildGraphBindings": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/Library/Bee/Player9a32fc7c.dag.json",
+          "sha256": "cb208368467a57fed14862bf028f07619f571746840cfa51bb7266e20e82f4a2"
+        }
+      ],
+      "firstRetainedBeeCompilerAction": {
+        "node": 188,
+        "action": "\"/Library/Developer/CommandLineTools/usr/bin/clang++\" -std=c++11 -Wswitch -Wno-trigraphs -Wno-tautological-compare -Wno-invalid-offsetof -Wno-implicitly-unsigned-literal -Wno-integer-overflow -Wno-shift-negative-value -Wno-unknown-attributes -Wno-implicit-function-declaration -Wno-null-conversion -Wno-missing-declarations -Wno-unused-value -Wno-pragma-once-outside-header -fvisibility=hidden -isysroot \"/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk\" -fexceptions -frtti -g -O0 -fno-strict-overflow -ffunction-sections -fdata-sections -fmessage-length=0 -pipe -D_GLIBCXX_USE_CXX11_ABI=0 -DBASELIB_INLINE_NAMESPACE=il2cpp_baselib -DIL2CPP_MONO_DEBUGGER_DISABLED -DRUNTIME_IL2CPP -DTARGET_ARM64 -DIL2CPP_ENABLE_WRITE_BARRIERS=1 -DIL2CPP_INCREMENTAL_TIME_SLICE=3 -DGC_NOT_DLL -DIL2CPP_DEFAULT_DATA_DIR_PATH=Data -DIL2CPP_DEBUG=1 -D_DEBUG -I\".\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/bdwgc/include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/pch\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/os/ClassLibraryPAL/brotli/include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Platforms/OSX/Include\" -o \"Library/Bee/artifacts/MacStandalonePlayerBuildProgram/obiza/iziarqh5dtue.o\" -fcolor-diagnostics -stdlib=libc++ -arch arm64 -mmacosx-version-min=11.0 -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 -DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=2 -DHYBRIDCLR_R03_RUNTIME_PROBE=1 -c -x c++ \"Library/Bee/artifacts/MacStandalonePlayerBuildProgram/obiza/8v0emcl9d5ct0.lump.cpp\""
+      },
+      "retainedBeeCompilerActions": 185
+    },
+    {
+      "role": "candidate-off",
+      "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/builds/candidate-off/build-receipt.json",
+      "receiptSha256": "e6e70c544d0da2bd5183c05f721ce13b95d7e9008c2f1ff9fd1f326bb2fcbe96",
+      "result": "Failed",
+      "buildPipelineResult": "Failed",
+      "playerInventoryStatus": "UnavailableNoAppBuildFailed",
+      "errors": 1,
+      "warnings": 1,
+      "exception": "UnityEditor.Build.BuildFailedException: Actual IL2CPP native BuildPipeline failed: result=Failed, errors=1, warnings=1. See the retained Editor.log and Bee observation.\n  at AssemblyShadow.R03.Editor.R03Build.Build () [0x00328] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/Assets/Editor/R03Build.cs:134 ",
+      "nonGeneratedCorePreserved": false,
+      "appExists": false,
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/builds/candidate-off/Editor.log",
+      "logSha256": "0470dca43d7391bdd3f407d7400e494e875aeb4843671fa8019ff5092cb1bf18",
+      "compilerErrors": [
+        {
+          "line": 25111,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:53:25: error: member access into incomplete type 'const Il2CppException'"
+        },
+        {
+          "line": 25118,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:55:40: error: member access into incomplete type 'const Il2CppException'"
+        },
+        {
+          "line": 25125,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:57:16: error: member access into incomplete type 'const Il2CppString'"
+        },
+        {
+          "line": 25132,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:59:42: error: member access into incomplete type 'const Il2CppString'"
+        },
+        {
+          "line": 25930,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:53:25: error: member access into incomplete type 'const Il2CppException'"
+        },
+        {
+          "line": 25937,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:55:40: error: member access into incomplete type 'const Il2CppException'"
+        },
+        {
+          "line": 25944,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:57:16: error: member access into incomplete type 'const Il2CppString'"
+        },
+        {
+          "line": 25951,
+          "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:59:42: error: member access into incomplete type 'const Il2CppString'"
+        }
+      ],
+      "firstCompilerError": {
+        "line": 25111,
+        "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:53:25: error: member access into incomplete type 'const Il2CppException'"
+      },
+      "buildGraphBindings": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/Library/Bee/Player3b8e574a.dag.json",
+          "sha256": "191f4444be97021c8a092f50de7a9565dccdaaf903fe516181b08985cc410d47"
+        }
+      ],
+      "firstRetainedBeeCompilerAction": {
+        "node": 188,
+        "action": "\"/Library/Developer/CommandLineTools/usr/bin/clang++\" -std=c++11 -Wswitch -Wno-trigraphs -Wno-tautological-compare -Wno-invalid-offsetof -Wno-implicitly-unsigned-literal -Wno-integer-overflow -Wno-shift-negative-value -Wno-unknown-attributes -Wno-implicit-function-declaration -Wno-null-conversion -Wno-missing-declarations -Wno-unused-value -Wno-pragma-once-outside-header -fvisibility=hidden -isysroot \"/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk\" -fexceptions -frtti -g -O3 -fno-strict-overflow -ffunction-sections -fdata-sections -fmessage-length=0 -pipe -D_GLIBCXX_USE_CXX11_ABI=0 -DBASELIB_INLINE_NAMESPACE=il2cpp_baselib -DIL2CPP_MONO_DEBUGGER_DISABLED -DRUNTIME_IL2CPP -DTARGET_ARM64 -DIL2CPP_ENABLE_WRITE_BARRIERS=1 -DIL2CPP_INCREMENTAL_TIME_SLICE=3 -DGC_NOT_DLL -DIL2CPP_DEFAULT_DATA_DIR_PATH=Data -DNDEBUG -I\".\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/bdwgc/include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/pch\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/os/ClassLibraryPAL/brotli/include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Platforms/OSX/Include\" -o \"Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/lhfylnn33kqc.o\" -fcolor-diagnostics -stdlib=libc++ -arch arm64 -mmacosx-version-min=11.0 -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=0 -DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=0 -DHYBRIDCLR_R03_RUNTIME_PROBE=1 -c -x c++ \"Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/scqjcnbub5g70.lump.cpp\""
+      },
+      "retainedBeeCompilerActions": 185
+    }
+  ],
+  "players": [
+    {
+      "case": "IR-R03-02-release-baseline",
+      "role": "candidate-release",
+      "pid": 74931,
+      "runId": "73e65ebb9d0f470695438c1ca0cc5a2e",
+      "exitCode": 0,
+      "startedUtcEpoch": 1793672136.224579,
+      "endedUtcEpoch": 1793672137.3068109,
+      "requestPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-baseline/request.json",
+      "requestSha256": "10d69993c0334b9f9f8e609acb37e78ec5a1949f4e1e1b580f5b86d68b433aab",
+      "commandPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/commands/0006/command.json",
+      "commandSha256": "adfbfee5fff0a628739660f3d39bc19435db1848a44c760765697292baa6155e",
+      "buildReceiptSha256": "4ec7ca7e46411dc107d8cad97d5ff4de85fa1c34c1a952b5fe7a7134c4785a42",
+      "rawPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-baseline/raw.json",
+      "rawBytes": 4675,
+      "rawSha256": "15f598db0ec9d2ba0810eb172bd77f81cc98b8ae9054ebe3d176f1e53908b685",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-baseline/Player.log",
+      "logSha256": "57947561cd372ab400e1ccf40cd8a9d2cdb2ea4e9c33efa219137a46923f027b",
+      "originalVerification": {
+        "H2Passed": false,
+        "R03Accepted": false,
+        "argv": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "-batchmode",
+          "-nographics",
+          "-r03IrRequest",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-baseline/request.json",
+          "-r03IrOutput",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-baseline/raw.json",
+          "-r03IrRunId",
+          "73e65ebb9d0f470695438c1ca0cc5a2e",
+          "-logFile",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-baseline/Player.log"
+        ],
+        "buildReceiptSha256": "4ec7ca7e46411dc107d8cad97d5ff4de85fa1c34c1a952b5fe7a7134c4785a42",
+        "caseId": "IR-R03-02-release-baseline",
+        "completeGeneralDiagnostic": {
+          "R03Accepted": false,
+          "bytes": 540959,
+          "classEnumerationGeneration": 1,
+          "coherentVmEpochProven": false,
+          "enumerationGeneration": 1,
+          "kind": "R03CompleteBoundedGeneralDiagnosticsV1",
+          "ordinaryAssemblyCount": 46,
+          "ordinaryClassCount": 3352,
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-baseline/raw.json.general.json",
+          "result": "PassedCompleteByteBoundAndSchema_WithoutGlobalEpochProof",
+          "runtimeAcceptance": false,
+          "sha256": "8aebf81a2700c2f5b0f0064767c0dcc621ee18748ba92123f7a715628f81b454",
+          "transport": "FullPreopenedSidecar"
+        },
+        "kind": "R03IRVerifiedPostPoisonPlayer",
+        "launchPid": 74931,
+        "rawSha256": "15f598db0ec9d2ba0810eb172bd77f81cc98b8ae9054ebe3d176f1e53908b685",
+        "requestSha256": "10d69993c0334b9f9f8e609acb37e78ec5a1949f4e1e1b580f5b86d68b433aab",
+        "result": "Passed",
+        "runId": "73e65ebb9d0f470695438c1ca0cc5a2e",
+        "runtimeAcceptance": false,
+        "stimulus": "baseline-owner"
+      },
+      "requestRunPidHashJoin": "Passed",
+      "parsedRaw": {
+        "schemaVersion": 1,
+        "kind": "R03IRPostPoisonEntryV1",
+        "reportTransport": "NativePreopenedSnapshotV1",
+        "processId": 74931,
+        "initialState": 6,
+        "poisonedState": 9,
+        "finalState": 9,
+        "nativeStimulusReturn": 1,
+        "preActiveReflection": 42,
+        "preActiveDelegate": 42,
+        "preCanaryCount": 1,
+        "finalCanaryCount": 1,
+        "preShadowField": 2,
+        "finalShadowField": 2,
+        "nativePhase": 910,
+        "failurePhase": 0,
+        "terminalReportingProbeMask": 15,
+        "reserveGcProbeMask": 31,
+        "shadowFieldReadable": true,
+        "prePositive": true,
+        "activeReflectionAttempted": true,
+        "activeReflectionSucceeded": false,
+        "activeDelegateAttempted": true,
+        "activeDelegateSucceeded": false,
+        "aotReflectionAttempted": true,
+        "aotReflectionSucceeded": false,
+        "recoveryStable": true,
+        "fixedDiagnosticsReadable": true,
+        "acceptance": false,
+        "result": "Passed",
+        "runId": "73e65ebb9d0f470695438c1ca0cc5a2e",
+        "caseId": "IR-R03-02-release-baseline",
+        "requestSha256": "10d69993c0334b9f9f8e609acb37e78ec5a1949f4e1e1b580f5b86d68b433aab",
+        "stimulus": "baseline-owner",
+        "unityVersion": "2022.3.62f2",
+        "platform": "OSXPlayer",
+        "error": null,
+        "nativeGuardJson": "{\"schemaVersion\":1,\"available\":true,\"mappingCode\":0,\"mappingDetail\":\"\",\"baselineToken\":100663298,\"baselineSlot\":4,\"activeToken\":100663299,\"activeSlot\":5,\"differentPhysicalMethods\":true,\"activeOwner\":true,\"cacheIdentityStable\":true,\"baselineCctorBefore\":0,\"baselineCctorAfter\":0,\"activeGuard\":1,\"baselineGuard\":0,\"stateCode\":9,\"activeGeneration\":1,\"caughtOldGuard\":1}",
+        "activeReflectionException": "ManagedExceptionCaught",
+        "activeDelegateException": "ManagedExceptionCaught",
+        "aotReflectionException": "ManagedExceptionCaught",
+        "firstRecovery": "{\"schemaVersion\":1,\"enabled\":true,\"capabilityVersion\":1,\"stateCode\":9,\"state\":\"FailedAfterCommit\",\"published\":true,\"abortAllowed\":false,\"dispositionCode\":0,\"disposition\":\"RestartRequired\",\"terminalFailureCode\":21,\"reason\":\"ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline\",\"retainedBytes\":2048,\"baselineEligibilityRequiresStartupValidation\":true}",
+        "finalRecovery": "{\"schemaVersion\":1,\"enabled\":true,\"capabilityVersion\":1,\"stateCode\":9,\"state\":\"FailedAfterCommit\",\"published\":true,\"abortAllowed\":false,\"dispositionCode\":0,\"disposition\":\"RestartRequired\",\"terminalFailureCode\":21,\"reason\":\"ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline\",\"retainedBytes\":2048,\"baselineEligibilityRequiresStartupValidation\":true}",
+        "finalDiagnostics": "R03FullGeneralSidecarV1:540959:9c356a19",
+        "finalExecutionDiagnostics": "{\"schemaVersion\":1,\"enabled\":true,\"stateCode\":9,\"state\":\"FailedAfterCommit\",\"generation\":1,\"methodChecks\":753,\"shadowMethodChecks\":11,\"rejectedBaselineMethods\":1,\"baselineClassCctorStarted\":0,\"shadowClassCctorStarted\":0,\"interpreterTransformations\":2,\"shadowInterpreterTransformations\":2,\"droppedClassObservations\":0,\"classes\":[{\"logicalAssembly\":\"Methods\",\"typeKey\":\"type(7:methods/3:R03/4:Node@0)\",\"executionModeCode\":1,\"executionMode\":\"InterpreterShadow\",\"physicalImageKind\":\"Aot\",\"isActive\":false,\"cctorStarted\":false,\"cctorFinished\":true,\"hasInitializationException\":false,\"staticStoragePointer\":\"\",\"pointerDetailsAvailable\":false,\"staticStorageAvailable\":false},{\"logicalAssembly\":\"Methods\",\"typeKey\":\"type(7:methods/3:R03/4:Node@0)\",\"executionModeCode\":1,\"executionMode\":\"InterpreterShadow\",\"physicalImageKind\":\"Interpreter\",\"isActive\":true,\"cctorStarted\":false,\"cctorFinished\":true,\"hasInitializationException\":false,\"staticStoragePointer\":\"\",\"pointerDetailsAvailable\":false,\"staticStorageAvailable\":false}],\"r02\":{\"schemaVersion\":1,\"diagnosticsLevel\":2,\"definitionSearches\":2,\"definitionRowsScanned\":4,\"admissionCacheHits\":21,\"admissionCacheMisses\":23,\"admissionProofAttempts\":23,\"admissionProofRejections\":0,\"admissionEntries\":23,\"admissionRetainedBytes\":1864,\"admissionUnready\":0,\"baselineStateChecks\":1,\"fieldWorkspaceBuilds\":4,\"interfaceWorkspaceBuilds\":6,\"layoutCheckCalls\":1,\"counterpartCacheHits\":0,\"counterpartCacheMisses\":1,\"counterpartEntries\":1,\"absentCounterpartEntries\":0,\"cacheFixedBytes\":16384,\"counterpartRetainedBytes\":48,\"genericContextChecks\":215,\"observationLockContentions\":0,\"observationMemoHits\":12,\"observationMemoTlsBytesPerThread\":512,\"counterStorageBytes\":41024,\"counterThreadCapacity\":128,\"droppedCounterThreads\":0,\"counterSaturated\":false,\"counterCoverage\":\"BoundedComplete\",\"classesCoverage\":\"BoundedComplete\",\"memoryAccountingAvailable\":true,\"memoryAccountingScope\":\"R02StructuresExcludingAllocatorOverhead\"}}"
+      },
+      "firstFailures": [
+        {
+          "line": 44,
+          "text": "[AssemblyShadowFirstFailure] code=21 detail=ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline truncated=0"
+        }
+      ],
+      "ownerQuitLogs": [],
+      "engineSentinelLogs": [],
+      "denialLogs": [
+        {
+          "line": 45,
+          "text": "[R03TerminalDenied] ordinal=1 site=R03IR:CaughtBaselineOwner namespace=R03 type=Node method=Keep ptr=0x121090f50"
+        },
+        {
+          "line": 50,
+          "text": "[R03TerminalDenied] ordinal=2 site=Runtime::Invoke namespace=UnityEngine type=Debug method=IsLoggingEnabled ptr=0x120b9e2f0"
+        },
+        {
+          "line": 53,
+          "text": "[R03TerminalDenied] ordinal=3 site=codegen.virtual namespace=System.Reflection type=RuntimeMethodInfo method=Invoke ptr=0x121024088"
+        },
+        {
+          "line": 56,
+          "text": "[R03TerminalDenied] ordinal=4 site=Generated.NativeToManaged namespace=R03 type=Node method=Keep ptr=0x1210868d0"
+        },
+        {
+          "line": 59,
+          "text": "[R03TerminalDenied] ordinal=5 site=codegen.virtual namespace=System.Reflection type=RuntimeMethodInfo method=Invoke ptr=0x121024088"
+        }
+      ],
+      "independentCompleteGeneral": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-baseline/raw.json.general.json",
+        "bytes": 540959,
+        "sha256": "8aebf81a2700c2f5b0f0064767c0dcc621ee18748ba92123f7a715628f81b454",
+        "crc32": "9c356a19",
+        "requiredArraysVerified": [
+          "startupCandidateNames",
+          "closureLoadOrder",
+          "stableAotNames",
+          "commitOrder",
+          "assemblies",
+          "events",
+          "baselineUses",
+          "ordinaryAssemblies",
+          "ordinaryClasses"
+        ],
+        "ordinaryClassCount": 3352,
+        "ordinaryAssemblyCount": 46,
+        "generation": 1,
+        "enumerationGeneration": 1,
+        "classEnumerationGeneration": 1,
+        "completeByteAndSchemaAudit": "Passed",
+        "coherentVmEpochProven": false
+      }
+    },
+    {
+      "case": "IR-R03-02-debug-baseline",
+      "role": "candidate-debug",
+      "pid": 74942,
+      "runId": "bc487ab140cb49cea53e9c4b806b3a8e",
+      "exitCode": 0,
+      "startedUtcEpoch": 1793672137.5545652,
+      "endedUtcEpoch": 1793672138.669843,
+      "requestPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-debug-baseline/request.json",
+      "requestSha256": "a0c5447414961edd028264fdfb19421706b6dfa000e0fce60014ddd5318fdea0",
+      "commandPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/commands/0007/command.json",
+      "commandSha256": "acfa5c16b92490e08f07267edb49a59daab37d8f8d6f56fde410e65dddc5ab53",
+      "buildReceiptSha256": "87b0fa8290b564b0cee965cc23459b6f10a38a62074e869e784fb96028b3ea99",
+      "rawPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-debug-baseline/raw.json",
+      "rawBytes": 4671,
+      "rawSha256": "48c9b52ca19b05a80d1f9823c7c09f41033eb3ebb1afc2a840a55e13cafa6123",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-debug-baseline/Player.log",
+      "logSha256": "aae38e979efde70ad8c557fad6a46ecec647c6423fba9dc8c664395b589f2362",
+      "originalVerification": {
+        "H2Passed": false,
+        "R03Accepted": false,
+        "argv": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/builds/candidate-debug/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "-batchmode",
+          "-nographics",
+          "-r03IrRequest",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-debug-baseline/request.json",
+          "-r03IrOutput",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-debug-baseline/raw.json",
+          "-r03IrRunId",
+          "bc487ab140cb49cea53e9c4b806b3a8e",
+          "-logFile",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-debug-baseline/Player.log"
+        ],
+        "buildReceiptSha256": "87b0fa8290b564b0cee965cc23459b6f10a38a62074e869e784fb96028b3ea99",
+        "caseId": "IR-R03-02-debug-baseline",
+        "completeGeneralDiagnostic": {
+          "R03Accepted": false,
+          "bytes": 540382,
+          "classEnumerationGeneration": 1,
+          "coherentVmEpochProven": false,
+          "enumerationGeneration": 1,
+          "kind": "R03CompleteBoundedGeneralDiagnosticsV1",
+          "ordinaryAssemblyCount": 46,
+          "ordinaryClassCount": 3348,
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-debug-baseline/raw.json.general.json",
+          "result": "PassedCompleteByteBoundAndSchema_WithoutGlobalEpochProof",
+          "runtimeAcceptance": false,
+          "sha256": "ded3ee52a2fb035a6571d49533e6a7d838fd423671b53b82f7aaab8b7b010758",
+          "transport": "FullPreopenedSidecar"
+        },
+        "kind": "R03IRVerifiedPostPoisonPlayer",
+        "launchPid": 74942,
+        "rawSha256": "48c9b52ca19b05a80d1f9823c7c09f41033eb3ebb1afc2a840a55e13cafa6123",
+        "requestSha256": "a0c5447414961edd028264fdfb19421706b6dfa000e0fce60014ddd5318fdea0",
+        "result": "Passed",
+        "runId": "bc487ab140cb49cea53e9c4b806b3a8e",
+        "runtimeAcceptance": false,
+        "stimulus": "baseline-owner"
+      },
+      "requestRunPidHashJoin": "Passed",
+      "parsedRaw": {
+        "schemaVersion": 1,
+        "kind": "R03IRPostPoisonEntryV1",
+        "reportTransport": "NativePreopenedSnapshotV1",
+        "processId": 74942,
+        "initialState": 6,
+        "poisonedState": 9,
+        "finalState": 9,
+        "nativeStimulusReturn": 1,
+        "preActiveReflection": 42,
+        "preActiveDelegate": 42,
+        "preCanaryCount": 1,
+        "finalCanaryCount": 1,
+        "preShadowField": 2,
+        "finalShadowField": 2,
+        "nativePhase": 910,
+        "failurePhase": 0,
+        "terminalReportingProbeMask": 15,
+        "reserveGcProbeMask": 31,
+        "shadowFieldReadable": true,
+        "prePositive": true,
+        "activeReflectionAttempted": true,
+        "activeReflectionSucceeded": false,
+        "activeDelegateAttempted": true,
+        "activeDelegateSucceeded": false,
+        "aotReflectionAttempted": true,
+        "aotReflectionSucceeded": false,
+        "recoveryStable": true,
+        "fixedDiagnosticsReadable": true,
+        "acceptance": false,
+        "result": "Passed",
+        "runId": "bc487ab140cb49cea53e9c4b806b3a8e",
+        "caseId": "IR-R03-02-debug-baseline",
+        "requestSha256": "a0c5447414961edd028264fdfb19421706b6dfa000e0fce60014ddd5318fdea0",
+        "stimulus": "baseline-owner",
+        "unityVersion": "2022.3.62f2",
+        "platform": "OSXPlayer",
+        "error": null,
+        "nativeGuardJson": "{\"schemaVersion\":1,\"available\":true,\"mappingCode\":0,\"mappingDetail\":\"\",\"baselineToken\":100663298,\"baselineSlot\":4,\"activeToken\":100663299,\"activeSlot\":5,\"differentPhysicalMethods\":true,\"activeOwner\":true,\"cacheIdentityStable\":true,\"baselineCctorBefore\":0,\"baselineCctorAfter\":0,\"activeGuard\":1,\"baselineGuard\":0,\"stateCode\":9,\"activeGeneration\":1,\"caughtOldGuard\":1}",
+        "activeReflectionException": "ManagedExceptionCaught",
+        "activeDelegateException": "ManagedExceptionCaught",
+        "aotReflectionException": "ManagedExceptionCaught",
+        "firstRecovery": "{\"schemaVersion\":1,\"enabled\":true,\"capabilityVersion\":1,\"stateCode\":9,\"state\":\"FailedAfterCommit\",\"published\":true,\"abortAllowed\":false,\"dispositionCode\":0,\"disposition\":\"RestartRequired\",\"terminalFailureCode\":21,\"reason\":\"ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline\",\"retainedBytes\":2048,\"baselineEligibilityRequiresStartupValidation\":true}",
+        "finalRecovery": "{\"schemaVersion\":1,\"enabled\":true,\"capabilityVersion\":1,\"stateCode\":9,\"state\":\"FailedAfterCommit\",\"published\":true,\"abortAllowed\":false,\"dispositionCode\":0,\"disposition\":\"RestartRequired\",\"terminalFailureCode\":21,\"reason\":\"ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline\",\"retainedBytes\":2048,\"baselineEligibilityRequiresStartupValidation\":true}",
+        "finalDiagnostics": "R03FullGeneralSidecarV1:540382:97a91c4a",
+        "finalExecutionDiagnostics": "{\"schemaVersion\":1,\"enabled\":true,\"stateCode\":9,\"state\":\"FailedAfterCommit\",\"generation\":1,\"methodChecks\":750,\"shadowMethodChecks\":11,\"rejectedBaselineMethods\":1,\"baselineClassCctorStarted\":0,\"shadowClassCctorStarted\":0,\"interpreterTransformations\":2,\"shadowInterpreterTransformations\":2,\"droppedClassObservations\":0,\"classes\":[{\"logicalAssembly\":\"Methods\",\"typeKey\":\"type(7:methods/3:R03/4:Node@0)\",\"executionModeCode\":1,\"executionMode\":\"InterpreterShadow\",\"physicalImageKind\":\"Aot\",\"isActive\":false,\"cctorStarted\":false,\"cctorFinished\":true,\"hasInitializationException\":false,\"staticStoragePointer\":\"\",\"pointerDetailsAvailable\":true,\"staticStorageAvailable\":false},{\"logicalAssembly\":\"Methods\",\"typeKey\":\"type(7:methods/3:R03/4:Node@0)\",\"executionModeCode\":1,\"executionMode\":\"InterpreterShadow\",\"physicalImageKind\":\"Interpreter\",\"isActive\":true,\"cctorStarted\":false,\"cctorFinished\":true,\"hasInitializationException\":false,\"staticStoragePointer\":\"\",\"pointerDetailsAvailable\":true,\"staticStorageAvailable\":false}],\"r02\":{\"schemaVersion\":1,\"diagnosticsLevel\":2,\"definitionSearches\":2,\"definitionRowsScanned\":4,\"admissionCacheHits\":21,\"admissionCacheMisses\":23,\"admissionProofAttempts\":23,\"admissionProofRejections\":0,\"admissionEntries\":23,\"admissionRetainedBytes\":1864,\"admissionUnready\":0,\"baselineStateChecks\":1,\"fieldWorkspaceBuilds\":4,\"interfaceWorkspaceBuilds\":6,\"layoutCheckCalls\":1,\"counterpartCacheHits\":0,\"counterpartCacheMisses\":1,\"counterpartEntries\":1,\"absentCounterpartEntries\":0,\"cacheFixedBytes\":16384,\"counterpartRetainedBytes\":48,\"genericContextChecks\":215,\"observationLockContentions\":0,\"observationMemoHits\":12,\"observationMemoTlsBytesPerThread\":512,\"counterStorageBytes\":41024,\"counterThreadCapacity\":128,\"droppedCounterThreads\":0,\"counterSaturated\":false,\"counterCoverage\":\"BoundedComplete\",\"classesCoverage\":\"BoundedComplete\",\"memoryAccountingAvailable\":true,\"memoryAccountingScope\":\"R02StructuresExcludingAllocatorOverhead\"}}"
+      },
+      "firstFailures": [
+        {
+          "line": 44,
+          "text": "[AssemblyShadowFirstFailure] code=21 detail=ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline truncated=0"
+        }
+      ],
+      "ownerQuitLogs": [],
+      "engineSentinelLogs": [],
+      "denialLogs": [
+        {
+          "line": 45,
+          "text": "[R03TerminalDenied] ordinal=1 site=R03IR:CaughtBaselineOwner namespace=R03 type=Node method=Keep ptr=0x11fad3d50"
+        },
+        {
+          "line": 50,
+          "text": "[R03TerminalDenied] ordinal=2 site=Runtime::Invoke namespace=UnityEngine type=Debug method=IsLoggingEnabled ptr=0x11f5df008"
+        },
+        {
+          "line": 53,
+          "text": "[R03TerminalDenied] ordinal=3 site=codegen.virtual namespace=System.Reflection type=RuntimeMethodInfo method=Invoke ptr=0x11fa65f28"
+        },
+        {
+          "line": 56,
+          "text": "[R03TerminalDenied] ordinal=4 site=Generated.NativeToManaged namespace=R03 type=Node method=Keep ptr=0x11fac96d0"
+        },
+        {
+          "line": 59,
+          "text": "[R03TerminalDenied] ordinal=5 site=codegen.virtual namespace=System.Reflection type=RuntimeMethodInfo method=Invoke ptr=0x11fa65f28"
+        }
+      ],
+      "independentCompleteGeneral": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-debug-baseline/raw.json.general.json",
+        "bytes": 540382,
+        "sha256": "ded3ee52a2fb035a6571d49533e6a7d838fd423671b53b82f7aaab8b7b010758",
+        "crc32": "97a91c4a",
+        "requiredArraysVerified": [
+          "startupCandidateNames",
+          "closureLoadOrder",
+          "stableAotNames",
+          "commitOrder",
+          "assemblies",
+          "events",
+          "baselineUses",
+          "ordinaryAssemblies",
+          "ordinaryClasses"
+        ],
+        "ordinaryClassCount": 3348,
+        "ordinaryAssemblyCount": 46,
+        "generation": 1,
+        "enumerationGeneration": 1,
+        "classEnumerationGeneration": 1,
+        "completeByteAndSchemaAudit": "Passed",
+        "coherentVmEpochProven": false
+      }
+    },
+    {
+      "case": "IR-R03-02-release-type",
+      "role": "candidate-release",
+      "pid": 74946,
+      "runId": "03104729978543ccb4bbf69f65604ee0",
+      "exitCode": 0,
+      "startedUtcEpoch": 1793672138.8373601,
+      "endedUtcEpoch": 1793672138.9826272,
+      "requestPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-type/request.json",
+      "requestSha256": "c2d30435d6da30812fd00c8ef8af61a5a347bd7cd0cc2eb7e1d1b325e4354614",
+      "commandPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/commands/0008/command.json",
+      "commandSha256": "3912b5928e7d1803bff5decff450ece7fe3205bde98a30295968cd0c75efee25",
+      "buildReceiptSha256": "4ec7ca7e46411dc107d8cad97d5ff4de85fa1c34c1a952b5fe7a7134c4785a42",
+      "rawPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-type/raw.json",
+      "rawBytes": 3826,
+      "rawSha256": "7f4547bcb028d7d946f6fbe38eb79d411a260f5b7f6dc0d5c1bdb6582b9415e6",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-type/Player.log",
+      "logSha256": "dfb3b513fe782b78661e9092fcc0470d6231a5f507d0add21547259a2e158099",
+      "originalVerification": {
+        "H2Passed": false,
+        "R03Accepted": false,
+        "argv": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "-batchmode",
+          "-nographics",
+          "-r03IrRequest",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-type/request.json",
+          "-r03IrOutput",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-type/raw.json",
+          "-r03IrRunId",
+          "03104729978543ccb4bbf69f65604ee0",
+          "-logFile",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-type/Player.log"
+        ],
+        "buildReceiptSha256": "4ec7ca7e46411dc107d8cad97d5ff4de85fa1c34c1a952b5fe7a7134c4785a42",
+        "caseId": "IR-R03-02-release-type",
+        "completeGeneralDiagnostic": {
+          "R03Accepted": false,
+          "bytes": 540759,
+          "classEnumerationGeneration": 1,
+          "coherentVmEpochProven": false,
+          "enumerationGeneration": 1,
+          "kind": "R03CompleteBoundedGeneralDiagnosticsV1",
+          "ordinaryAssemblyCount": 46,
+          "ordinaryClassCount": 3352,
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-type/raw.json.general.json",
+          "result": "PassedCompleteByteBoundAndSchema_WithoutGlobalEpochProof",
+          "runtimeAcceptance": false,
+          "sha256": "416fd1a35aeb13cdb03ac9ea7d6062217e6cab7a8cbd9d276f1637604f5ce3cc",
+          "transport": "FullPreopenedSidecar"
+        },
+        "kind": "R03IRVerifiedPostPoisonPlayer",
+        "launchPid": 74946,
+        "rawSha256": "7f4547bcb028d7d946f6fbe38eb79d411a260f5b7f6dc0d5c1bdb6582b9415e6",
+        "requestSha256": "c2d30435d6da30812fd00c8ef8af61a5a347bd7cd0cc2eb7e1d1b325e4354614",
+        "result": "Passed",
+        "runId": "03104729978543ccb4bbf69f65604ee0",
+        "runtimeAcceptance": false,
+        "stimulus": "type-resolution"
+      },
+      "requestRunPidHashJoin": "Passed",
+      "parsedRaw": {
+        "schemaVersion": 1,
+        "kind": "R03IRPostPoisonEntryV1",
+        "reportTransport": "NativePreopenedSnapshotV1",
+        "processId": 74946,
+        "initialState": 6,
+        "poisonedState": 9,
+        "finalState": 9,
+        "nativeStimulusReturn": 1,
+        "preActiveReflection": 42,
+        "preActiveDelegate": 42,
+        "preCanaryCount": 1,
+        "finalCanaryCount": 1,
+        "preShadowField": 2,
+        "finalShadowField": 2,
+        "nativePhase": 910,
+        "failurePhase": 0,
+        "terminalReportingProbeMask": 15,
+        "reserveGcProbeMask": 31,
+        "shadowFieldReadable": true,
+        "prePositive": true,
+        "activeReflectionAttempted": true,
+        "activeReflectionSucceeded": false,
+        "activeDelegateAttempted": true,
+        "activeDelegateSucceeded": false,
+        "aotReflectionAttempted": true,
+        "aotReflectionSucceeded": false,
+        "recoveryStable": true,
+        "fixedDiagnosticsReadable": true,
+        "acceptance": false,
+        "result": "Passed",
+        "runId": "03104729978543ccb4bbf69f65604ee0",
+        "caseId": "IR-R03-02-release-type",
+        "requestSha256": "c2d30435d6da30812fd00c8ef8af61a5a347bd7cd0cc2eb7e1d1b325e4354614",
+        "stimulus": "type-resolution",
+        "unityVersion": "2022.3.62f2",
+        "platform": "OSXPlayer",
+        "error": null,
+        "nativeGuardJson": null,
+        "activeReflectionException": "ManagedExceptionCaught",
+        "activeDelegateException": "ManagedExceptionCaught",
+        "aotReflectionException": "ManagedExceptionCaught",
+        "firstRecovery": "{\"schemaVersion\":1,\"enabled\":true,\"capabilityVersion\":1,\"stateCode\":9,\"state\":\"FailedAfterCommit\",\"published\":true,\"abortAllowed\":false,\"dispositionCode\":0,\"disposition\":\"RestartRequired\",\"terminalFailureCode\":13,\"reason\":\"R03IR synthetic type-resolution failure (test-only stimulus)\",\"retainedBytes\":2048,\"baselineEligibilityRequiresStartupValidation\":true}",
+        "finalRecovery": "{\"schemaVersion\":1,\"enabled\":true,\"capabilityVersion\":1,\"stateCode\":9,\"state\":\"FailedAfterCommit\",\"published\":true,\"abortAllowed\":false,\"dispositionCode\":0,\"disposition\":\"RestartRequired\",\"terminalFailureCode\":13,\"reason\":\"R03IR synthetic type-resolution failure (test-only stimulus)\",\"retainedBytes\":2048,\"baselineEligibilityRequiresStartupValidation\":true}",
+        "finalDiagnostics": "R03FullGeneralSidecarV1:540759:84473fbc",
+        "finalExecutionDiagnostics": "{\"schemaVersion\":1,\"enabled\":true,\"stateCode\":9,\"state\":\"FailedAfterCommit\",\"generation\":1,\"methodChecks\":750,\"shadowMethodChecks\":10,\"rejectedBaselineMethods\":0,\"baselineClassCctorStarted\":0,\"shadowClassCctorStarted\":0,\"interpreterTransformations\":2,\"shadowInterpreterTransformations\":2,\"droppedClassObservations\":0,\"classes\":[{\"logicalAssembly\":\"Methods\",\"typeKey\":\"type(7:methods/3:R03/4:Node@0)\",\"executionModeCode\":1,\"executionMode\":\"InterpreterShadow\",\"physicalImageKind\":\"Interpreter\",\"isActive\":true,\"cctorStarted\":false,\"cctorFinished\":true,\"hasInitializationException\":false,\"staticStoragePointer\":\"\",\"pointerDetailsAvailable\":false,\"staticStorageAvailable\":false}],\"r02\":{\"schemaVersion\":1,\"diagnosticsLevel\":2,\"definitionSearches\":1,\"definitionRowsScanned\":2,\"admissionCacheHits\":21,\"admissionCacheMisses\":23,\"admissionProofAttempts\":23,\"admissionProofRejections\":0,\"admissionEntries\":23,\"admissionRetainedBytes\":1864,\"admissionUnready\":0,\"baselineStateChecks\":1,\"fieldWorkspaceBuilds\":4,\"interfaceWorkspaceBuilds\":6,\"layoutCheckCalls\":1,\"counterpartCacheHits\":0,\"counterpartCacheMisses\":1,\"counterpartEntries\":1,\"absentCounterpartEntries\":0,\"cacheFixedBytes\":16384,\"counterpartRetainedBytes\":48,\"genericContextChecks\":215,\"observationLockContentions\":0,\"observationMemoHits\":11,\"observationMemoTlsBytesPerThread\":512,\"counterStorageBytes\":41024,\"counterThreadCapacity\":128,\"droppedCounterThreads\":0,\"counterSaturated\":false,\"counterCoverage\":\"BoundedComplete\",\"classesCoverage\":\"BoundedComplete\",\"memoryAccountingAvailable\":true,\"memoryAccountingScope\":\"R02StructuresExcludingAllocatorOverhead\"}}"
+      },
+      "firstFailures": [
+        {
+          "line": 44,
+          "text": "[AssemblyShadowFirstFailure] code=13 detail=R03IR synthetic type-resolution failure (test-only stimulus) truncated=0"
+        }
+      ],
+      "ownerQuitLogs": [],
+      "engineSentinelLogs": [],
+      "denialLogs": [
+        {
+          "line": 49,
+          "text": "[R03TerminalDenied] ordinal=1 site=Runtime::Invoke namespace=UnityEngine type=Debug method=IsLoggingEnabled ptr=0x120a9e2f0"
+        },
+        {
+          "line": 52,
+          "text": "[R03TerminalDenied] ordinal=2 site=codegen.virtual namespace=System.Reflection type=RuntimeMethodInfo method=Invoke ptr=0x120f24088"
+        },
+        {
+          "line": 55,
+          "text": "[R03TerminalDenied] ordinal=3 site=Generated.NativeToManaged namespace=R03 type=Node method=Keep ptr=0x120f868d0"
+        },
+        {
+          "line": 58,
+          "text": "[R03TerminalDenied] ordinal=4 site=codegen.virtual namespace=System.Reflection type=RuntimeMethodInfo method=Invoke ptr=0x120f24088"
+        }
+      ],
+      "independentCompleteGeneral": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-type/raw.json.general.json",
+        "bytes": 540759,
+        "sha256": "416fd1a35aeb13cdb03ac9ea7d6062217e6cab7a8cbd9d276f1637604f5ce3cc",
+        "crc32": "84473fbc",
+        "requiredArraysVerified": [
+          "startupCandidateNames",
+          "closureLoadOrder",
+          "stableAotNames",
+          "commitOrder",
+          "assemblies",
+          "events",
+          "baselineUses",
+          "ordinaryAssemblies",
+          "ordinaryClasses"
+        ],
+        "ordinaryClassCount": 3352,
+        "ordinaryAssemblyCount": 46,
+        "generation": 1,
+        "enumerationGeneration": 1,
+        "classEnumerationGeneration": 1,
+        "completeByteAndSchemaAudit": "Passed",
+        "coherentVmEpochProven": false
+      }
+    },
+    {
+      "case": "IR-R03-02-release-engine",
+      "role": "candidate-release",
+      "pid": 74949,
+      "runId": "1d88b30abdf54ce6968832c07228dd67",
+      "exitCode": 71,
+      "startedUtcEpoch": 1793672139.1554592,
+      "endedUtcEpoch": 1793672139.800674,
+      "requestPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-engine/request.json",
+      "requestSha256": "0c11ecdf773f6d622f97b22d46456fe65b7bd2adc4eaf24fb3aa67b552cb9d3e",
+      "commandPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/commands/0009/command.json",
+      "commandSha256": "f8dd2aee82538e66f466572e9fdc37f40cdac1dbd6b3f7864214640a1d7d7f97",
+      "buildReceiptSha256": "4ec7ca7e46411dc107d8cad97d5ff4de85fa1c34c1a952b5fe7a7134c4785a42",
+      "rawPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-engine/raw.json",
+      "rawBytes": 868,
+      "rawSha256": "c72601c16b1750e2a610626a356dbddcb87895a7852f76a5dc3534bc6fc05a33",
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/players/IR-R03-02-release-engine/Player.log",
+      "logSha256": "ddc5aa5a4130c111931273037ccecbb6c4c8784a3f8bfe5bfcae2664bd5a02f8",
+      "originalVerification": {
+        "R03Accepted": false,
+        "caseId": "IR-R03-02-release-engine",
+        "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/commands/0009/command.json",
+        "fullGeneralSidecarBytes": null,
+        "fullGeneralSidecarExists": false,
+        "fullGeneralSidecarSha256": null,
+        "kind": "R03IRFailedPlayerCommandReceiptV1",
+        "rawBytes": 868,
+        "rawExists": true,
+        "rawSha256": "c72601c16b1750e2a610626a356dbddcb87895a7852f76a5dc3534bc6fc05a33",
+        "requestSha256": "0c11ecdf773f6d622f97b22d46456fe65b7bd2adc4eaf24fb3aa67b552cb9d3e",
+        "result": "Failed",
+        "runId": "1d88b30abdf54ce6968832c07228dd67",
+        "runtimeAcceptance": false,
+        "semanticVerifierStatus": "NotRun_CommandFailed",
+        "stimulus": "engine-unhandled"
+      },
+      "requestRunPidHashJoin": "Passed",
+      "parsedRaw": {
+        "schemaVersion": 1,
+        "kind": "R03IREngineReportingV1",
+        "result": "ObservedNotAccepted",
+        "runId": "1d88b30abdf54ce6968832c07228dd67",
+        "caseId": "IR-R03-02-release-engine",
+        "requestSha256": "0c11ecdf773f6d622f97b22d46456fe65b7bd2adc4eaf24fb3aa67b552cb9d3e",
+        "processId": 74949,
+        "initialState": 6,
+        "finalState": 9,
+        "completedReports": 51865,
+        "ownerQuitRequested": true,
+        "ownerQuitNativeCalls": 1,
+        "preManagedLoggerCalls": 1,
+        "finalManagedLoggerCalls": 1,
+        "timedOut": false,
+        "observationMilliseconds": 500,
+        "recovery": {
+          "schemaVersion": 1,
+          "enabled": true,
+          "capabilityVersion": 1,
+          "stateCode": 9,
+          "state": "FailedAfterCommit",
+          "published": true,
+          "abortAllowed": false,
+          "dispositionCode": 0,
+          "disposition": "RestartRequired",
+          "terminalFailureCode": 13,
+          "reason": "R03IR synthetic type-resolution failure (test-only stimulus)",
+          "retainedBytes": 2048,
+          "baselineEligibilityRequiresStartupValidation": true
+        },
+        "runtimeAcceptance": false
+      },
+      "firstFailures": [
+        {
+          "line": 33,
+          "text": "[AssemblyShadowFirstFailure] code=13 detail=R03IR synthetic type-resolution failure (test-only stimulus) truncated=0"
+        }
+      ],
+      "ownerQuitLogs": [
+        {
+          "line": 36,
+          "text": "[R03EngineOwnerQuit] source=UnityNativeIcall once=1 sentinelMatched=true"
+        }
+      ],
+      "engineSentinelLogs": [
+        {
+          "line": 35,
+          "text": "[AssemblyShadowTerminalReport] sequence=1 state=9 message=\"R03_ENGINE_UNHANDLED_1d88b30abdf54ce6968832c07228dd67\" managedHandlerExecuted=false"
+        }
+      ],
+      "denialLogs": [
+        {
+          "line": 37,
+          "text": "[R03TerminalDenied] ordinal=1 site=Runtime::Invoke namespace=UnityEngine type=LightProbes method=Internal_CallLightProbesUpdatedFunction ptr=0x12069f3f8"
+        },
+        {
+          "line": 40,
+          "text": "[R03TerminalDenied] ordinal=2 site=Runtime::Invoke namespace=System type=Gen2GcCallback method=Finalize ptr=0x120b72028"
+        },
+        {
+          "line": 43,
+          "text": "[R03TerminalDenied] ordinal=3 site=Runtime::Invoke namespace=UnityEngine.SceneManagement type=SceneManager method=Internal_ActiveSceneChanged ptr=0x1206a3778"
+        },
+        {
+          "line": 46,
+          "text": "[R03TerminalDenied] ordinal=4 site=Runtime::Invoke namespace=UnityEngine type=ReflectionProbe method=CallSetDefaultReflection ptr=0x1206a20e0"
+        },
+        {
+          "line": 49,
+          "text": "[R03TerminalDenied] ordinal=5 site=Runtime::Invoke namespace=UnityEngine.SceneManagement type=SceneManager method=Internal_SceneLoaded ptr=0x1206a3698"
+        },
+        {
+          "line": 52,
+          "text": "[R03TerminalDenied] ordinal=6 site=Runtime::Invoke namespace=UnityEngine type=Application method=InvokeFocusChanged ptr=0x1180c5280"
+        },
+        {
+          "line": 55,
+          "text": "[R03TerminalDenied] ordinal=7 site=Runtime::Invoke namespace=UnityEngine.Rendering type=OnDemandRendering method=GetRenderFrameInterval ptr=0x1206a22f8"
+        },
+        {
+          "line": 58,
+          "text": "[R03TerminalDenied] ordinal=8 site=Runtime::Invoke namespace=UnityEngineInternal.Input type=NativeInputSystem method=ShouldRunUpdate ptr=0x1207fb810"
+        },
+        {
+          "line": 61,
+          "text": "[R03TerminalDenied] ordinal=9 site=Runtime::Invoke namespace=UnityEngineInternal.Input type=NativeInputSystem method=ShouldRunUpdate ptr=0x1207fb810"
+        },
+        {
+          "line": 64,
+          "text": "[R03TerminalDenied] ordinal=10 site=Runtime::Invoke namespace=UnityEngine type=SendMouseEvents method=DoSendMouseEvents ptr=0x1206ad130"
+        },
+        {
+          "line": 67,
+          "text": "[R03TerminalDenied] ordinal=11 site=Runtime::Invoke namespace=UnityEngine.AI type=NavMesh method=Internal_CallOnNavMeshPreUpdate ptr=0x12075dc48"
+        },
+        {
+          "line": 70,
+          "text": "[R03TerminalDenied] ordinal=12 site=Runtime::Invoke namespace=UnityEngine type=UnitySynchronizationContext method=ExecuteTasks ptr=0x1206a43d8"
+        },
+        {
+          "line": 79,
+          "text": "[R03TerminalDenied] ordinal=16 site=Runtime::Invoke namespace=UnityEngine type=Canvas method=SendWillRenderCanvases ptr=0x120795030"
+        },
+        {
+          "line": 112,
+          "text": "[R03TerminalDenied] ordinal=32 site=Runtime::Invoke namespace=UnityEngine type=SendMouseEvents method=DoSendMouseEvents ptr=0x1206ad130"
+        },
+        {
+          "line": 114,
+          "text": "[R03TerminalDenied] ordinal=64 site=Runtime::Invoke namespace=UnityEngine type=UnitySynchronizationContext method=ExecuteTasks ptr=0x1206a43d8"
+        },
+        {
+          "line": 115,
+          "text": "[R03TerminalDenied] ordinal=128 site=Runtime::Invoke namespace=UnityEngine type=Canvas method=SendWillRenderCanvases ptr=0x120795030"
+        },
+        {
+          "line": 116,
+          "text": "[R03TerminalDenied] ordinal=256 site=Runtime::Invoke namespace=UnityEngine type=Application method=InvokeOnBeforeRender ptr=0x1180c5210"
+        },
+        {
+          "line": 117,
+          "text": "[R03TerminalDenied] ordinal=512 site=Runtime::Invoke namespace=UnityEngine type=SendMouseEvents method=DoSendMouseEvents ptr=0x1206ad130"
+        },
+        {
+          "line": 118,
+          "text": "[R03TerminalDenied] ordinal=1024 site=Runtime::Invoke namespace=UnityEngine type=UnitySynchronizationContext method=ExecuteTasks ptr=0x1206a43d8"
+        },
+        {
+          "line": 119,
+          "text": "[R03TerminalDenied] ordinal=2048 site=Runtime::Invoke namespace=UnityEngine type=Canvas method=SendPreWillRenderCanvases ptr=0x120794fc0"
+        },
+        {
+          "line": 120,
+          "text": "[R03TerminalDenied] ordinal=4096 site=Runtime::Invoke namespace=UnityEngine type=UnitySynchronizationContext method=ExecuteTasks ptr=0x1206a43d8"
+        },
+        {
+          "line": 121,
+          "text": "[R03TerminalDenied] ordinal=8192 site=Runtime::Invoke namespace=UnityEngine type=Canvas method=SendWillRenderCanvases ptr=0x120795030"
+        },
+        {
+          "line": 122,
+          "text": "[R03TerminalDenied] ordinal=16384 site=Runtime::Invoke namespace=UnityEngine type=Application method=InvokeOnBeforeRender ptr=0x1180c5210"
+        },
+        {
+          "line": 123,
+          "text": "[R03TerminalDenied] ordinal=32768 site=Runtime::Invoke namespace=UnityEngine type=SendMouseEvents method=DoSendMouseEvents ptr=0x1206ad130"
+        }
+      ]
+    }
+  ],
+  "offPlayer": "Blocked_NotLaunched_BuildPrerequisiteFailed",
+  "independentInstalledBytePairs": 135,
+  "independentPairsInSuccessfulRoles": 90,
+  "independentPairsInFailedOffTree": 45,
+  "installedBytePairs": [
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/Assembly.cpp",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/Assembly.cpp",
+      "gitBlob": "cb383d664ed02e138a9dd0cb42f2a64629146207",
+      "sha256": "0c46232f94b6e7afc2b5277d287618d8405a3f19784781ae800dda19ba8c4431"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/Assembly.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/Assembly.h",
+      "gitBlob": "3e4bbb85c190bf0f9c43fee9e3fc3518c61ed457",
+      "sha256": "74b9615a04bdf59df8da62948fd6dad2a2a10e8a8eda0cbf369635ab981e9181"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadow.cpp",
+      "gitBlob": "57cf47f964a83973df8296955ccf856b105c595f",
+      "sha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadow.h",
+      "gitBlob": "68e78fe6250e3bd1028641d9513eb7d14158e8da",
+      "sha256": "55e572887d7ed89cc5d9cd57b3457df240357aa389474512442f3a5fea487e8f"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+      "gitBlob": "a615a839f5af8614c672a9bfb45be02d12b01a0e",
+      "sha256": "9b309fa25aadfb983787540e7d0b65d01e3aaf7a2fad5b7e67cfa737ef1c8d99"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+      "gitBlob": "5b2afe1cfcf14570e64b8836ef4f995ee5e6db57",
+      "sha256": "d4f4d495fc0636fcdd41f1121a1aa71404e838e1dfedfc7a7a3d10d70777e734"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+      "gitBlob": "94bcd4e12e553c2f28c727d9c74bc2feb0b22e8c",
+      "sha256": "6e53d15eab13a4a0169884a4d032af14a30352f111de166515b9d940362044ef"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+      "gitBlob": "b7ba5dffb2e3ecebe7406f598e97a1ab97251cdf",
+      "sha256": "b77a46ffc4ba6e522fc8c34e0ac43283f502639a8ca4f6b9282afc097fa5c895"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+      "gitBlob": "9e63e46a429c07f0b5adaf529b48f455ce1328fc",
+      "sha256": "2550f78b66def91a2f0851c8edf2a24f3beb1887b595f2ac45b246aa5a125ade"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+      "gitBlob": "b554eb36f6337c139a3f24beb168ab3f2b6e4343",
+      "sha256": "1dc1a731f75a773494edf669965a7034d1fa908c2201401a3eb2238228e1b7f5"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+      "gitBlob": "a85a6ec310b85e96dfe199c6d773407cf47779b3",
+      "sha256": "2be24d11ff97527706c4125699c7d04dc060e5f38ea9eac931d17ef97a7dbca0"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h",
+      "gitBlob": "91f049cc7d81d5e6de95ec50884ed3d6b9b63163",
+      "sha256": "ae4c2a471c1879510849d4902694caa7308bc70f3804cb6b1d0fb2ac839615a8"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+      "gitBlob": "4e82e7f3814b8ed021a24d235dcfbe79c4c2412a",
+      "sha256": "0545c483230b7a1f6ea007ff28f000ec37a2f85444062c62eff74a048c5986c1"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h",
+      "gitBlob": "d2a6fb798de9a3599f6b6c63149515cb23ab3350",
+      "sha256": "fe37931e27f1616bea8e08c134a2349567161bd8cd5c739c3954be349b9da3c8"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h",
+      "gitBlob": "fc3a569ea0f617b67b3867a804126e9583d86b72",
+      "sha256": "b5b91b9480016493f1b26fcd78be96f9c1ff107b866950d7b08d999870ea785a"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+      "gitBlob": "edef7c2f37978e65c02a8d2008886c6c4af8ae20",
+      "sha256": "03f1c76f84e79de38ddc708130cf4a95c736e3abab0e0e4266a84ba7cad2684f"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
+      "gitBlob": "887eb1398a3b9c4ed06c23b4f9913b4ba3d2a0f5",
+      "sha256": "f30252461b1ab5b8bf4007fdbac461d84848b3a14a6e5e40f5bea09599207e88"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+      "gitBlob": "6f14ca874f77592d845ce0563afaff2eb7573a90",
+      "sha256": "67afc44c92255d76d7c8d29a95b634d53a648be637fe4112c4566659f1f95cc8"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionRegistryPublisher.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowExecutionRegistryPublisher.h",
+      "gitBlob": "4d7e80346cf8b3a8c93ad95e025f00035629f141",
+      "sha256": "7db3ea584e332c92364ebee5b9c778e0c731c449783551a9adb4204cf1df8ff7"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h",
+      "gitBlob": "46a313742295acaa52d5022f238fbcba4430c6df",
+      "sha256": "4d318426f4be784fe3eb6065ef47ed97539416f871fbe060f6c4ca6e8be41d5e"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h",
+      "gitBlob": "624a43c0f153456001288c904d9705ec59171aae",
+      "sha256": "1ce04b4678d7f48e205162db6572199489d22612f53afc9bebb9b07866f7ecf4"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+      "gitBlob": "eeb413f8c8c0f6c1658da68ddd404b9b478e6e70",
+      "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+      "gitBlob": "08856d4a610ed3fa519cee67bad8a307dd82a34b",
+      "sha256": "bc8660655e19ee15c02caf21403ef90f5f87c95b0fa1dcc212a7ca7a61573e6e"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenR02Capture.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenR02Capture.h",
+      "gitBlob": "64ec2dc887106f12274febc74b4e155e140d70e5",
+      "sha256": "6014613e62b570c0f93f7317831e14645600f87e9d32a9e87d2902e19991dbad"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+      "gitBlob": "ab136038a49a8e6614243677d19e20c6f3fde4c5",
+      "sha256": "c383afe1ba28b3c88f00abcea4ff469d40e3557bdff0303368d6a31ded1ed378"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+      "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd",
+      "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservedTypeShape.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowObservedTypeShape.h",
+      "gitBlob": "9625544a62c4907c73da251f4062dea0731758b7",
+      "sha256": "c2dd2249c945a89ddc8ac2e712d0b56f5cde3e4dc474a364a4fd6f1b471c3a89"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+      "gitBlob": "23065b67456ee7d19c7019cf24900e66daaf28db",
+      "sha256": "83f2d79c4c7d6480267c1cb18392af914dcc7b2513f9a7b003131ecd1ddd9d14"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+      "gitBlob": "14b44ca96a1be6a0abc8629ecea1b7bade02eabe",
+      "sha256": "6eb08c239c34eb55a8f7e2f1fc1ca84244fc501131c7564d328018d7f0d756e3"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+      "gitBlob": "f432aa3ea638a05b42618ca242be5bbc3e3e1e67",
+      "sha256": "622601ccd395ed41edb512d0da12fe35a645b822f3e14e2994b8413cce00eaf9"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+      "gitBlob": "7778e2064cbba7fb5b16179746cbb7d272118fb6",
+      "sha256": "0472835c03165278579dc3b332f6ef74eea22fb0d527a337bdb157beb14a79d7"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+      "gitBlob": "a2ca61c35b0ba0e5f71a261b21647a36dfc0a9c4",
+      "sha256": "1d29f8119e0cafa1168ef46ee17aebed465359ff5f47902165a97586a6aa6369"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+      "gitBlob": "372d12209417dcb9e119da6bda64deca79389a23",
+      "sha256": "d27d0cdd391182a5b3c9a942bdc44bdf45418d1fb13c2c3e92df92e012ea1ea8"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+      "gitBlob": "dff6f12dca1c4f89dec7151ced6b63febeb0769f",
+      "sha256": "865a36b154965f0ae69bc788f6ba21fc6a841d546a34215a6448112110bb6604"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+      "gitBlob": "f722a34cacda9fa35f226e8b11f4800d3fd42c72",
+      "sha256": "216a8ec0365bd134ac0849d5fec2d709c24e5b3927c66c17360792eea836d5df"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+      "gitBlob": "35d4d000faa588cdd5147a0b2abdf00d566c0b06",
+      "sha256": "944d663e2d55e8ed07be3c62b1f6c7f7f6aee1bf0c34b9a464550b6817c5c15a"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+      "gitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3",
+      "sha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowPhysicalMembership.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowPhysicalMembership.h",
+      "gitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3",
+      "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowPhysicalMembershipSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowPhysicalMembershipSource.inl",
+      "gitBlob": "4e18fa035c324a67959284efa90fa601c6ede0d9",
+      "sha256": "bd0ff612a27913c1424cc7627454ae8eb5101b3479eca2ba24e6097bb3197651"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+      "gitBlob": "1c2a43384d03b0369a51b587fc5f5e445d5b58c8",
+      "sha256": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+      "gitBlob": "9f7266014b1514adfd0935948ff417375df274d8",
+      "sha256": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+      "gitBlob": "fd1ec63d6569f61d3642599cbbb5a2c647fef9be",
+      "sha256": "dd6cb3026bb78fb7925cef45e7c8f6ca1c157fee57e2e18bef1e4bab49845883"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowVisibility.cpp",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowVisibility.cpp",
+      "gitBlob": "1469a44b51ce0adb8d0e98dffd0ac66a0d107aaa",
+      "sha256": "4bae387bdd6917da03a74e4539207a1da54e0f071b607b46e499d9c170df8bb6"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowVisibility.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowVisibility.h",
+      "gitBlob": "0e94c3d478cb6c1cdd80fd84f684b91e680673bc",
+      "sha256": "e8a276f6ff474986fe769122df08d039b4c4544258aa29e6cac2ca1f5572bf7c"
+    },
+    {
+      "role": "candidate-release",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/Runtime.cpp",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/Runtime.cpp",
+      "gitBlob": "96b914fbeb31c69d649e4076a802de0b6418daa8",
+      "sha256": "f88e1c2165ccc5f723c40b71b6e85912f1be45fe12193106f4f022c250b1e454"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/Assembly.cpp",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/Assembly.cpp",
+      "gitBlob": "cb383d664ed02e138a9dd0cb42f2a64629146207",
+      "sha256": "0c46232f94b6e7afc2b5277d287618d8405a3f19784781ae800dda19ba8c4431"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/Assembly.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/Assembly.h",
+      "gitBlob": "3e4bbb85c190bf0f9c43fee9e3fc3518c61ed457",
+      "sha256": "74b9615a04bdf59df8da62948fd6dad2a2a10e8a8eda0cbf369635ab981e9181"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadow.cpp",
+      "gitBlob": "57cf47f964a83973df8296955ccf856b105c595f",
+      "sha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadow.h",
+      "gitBlob": "68e78fe6250e3bd1028641d9513eb7d14158e8da",
+      "sha256": "55e572887d7ed89cc5d9cd57b3457df240357aa389474512442f3a5fea487e8f"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+      "gitBlob": "a615a839f5af8614c672a9bfb45be02d12b01a0e",
+      "sha256": "9b309fa25aadfb983787540e7d0b65d01e3aaf7a2fad5b7e67cfa737ef1c8d99"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+      "gitBlob": "5b2afe1cfcf14570e64b8836ef4f995ee5e6db57",
+      "sha256": "d4f4d495fc0636fcdd41f1121a1aa71404e838e1dfedfc7a7a3d10d70777e734"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+      "gitBlob": "94bcd4e12e553c2f28c727d9c74bc2feb0b22e8c",
+      "sha256": "6e53d15eab13a4a0169884a4d032af14a30352f111de166515b9d940362044ef"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+      "gitBlob": "b7ba5dffb2e3ecebe7406f598e97a1ab97251cdf",
+      "sha256": "b77a46ffc4ba6e522fc8c34e0ac43283f502639a8ca4f6b9282afc097fa5c895"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+      "gitBlob": "9e63e46a429c07f0b5adaf529b48f455ce1328fc",
+      "sha256": "2550f78b66def91a2f0851c8edf2a24f3beb1887b595f2ac45b246aa5a125ade"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+      "gitBlob": "b554eb36f6337c139a3f24beb168ab3f2b6e4343",
+      "sha256": "1dc1a731f75a773494edf669965a7034d1fa908c2201401a3eb2238228e1b7f5"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+      "gitBlob": "a85a6ec310b85e96dfe199c6d773407cf47779b3",
+      "sha256": "2be24d11ff97527706c4125699c7d04dc060e5f38ea9eac931d17ef97a7dbca0"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h",
+      "gitBlob": "91f049cc7d81d5e6de95ec50884ed3d6b9b63163",
+      "sha256": "ae4c2a471c1879510849d4902694caa7308bc70f3804cb6b1d0fb2ac839615a8"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+      "gitBlob": "4e82e7f3814b8ed021a24d235dcfbe79c4c2412a",
+      "sha256": "0545c483230b7a1f6ea007ff28f000ec37a2f85444062c62eff74a048c5986c1"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h",
+      "gitBlob": "d2a6fb798de9a3599f6b6c63149515cb23ab3350",
+      "sha256": "fe37931e27f1616bea8e08c134a2349567161bd8cd5c739c3954be349b9da3c8"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h",
+      "gitBlob": "fc3a569ea0f617b67b3867a804126e9583d86b72",
+      "sha256": "b5b91b9480016493f1b26fcd78be96f9c1ff107b866950d7b08d999870ea785a"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+      "gitBlob": "edef7c2f37978e65c02a8d2008886c6c4af8ae20",
+      "sha256": "03f1c76f84e79de38ddc708130cf4a95c736e3abab0e0e4266a84ba7cad2684f"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
+      "gitBlob": "887eb1398a3b9c4ed06c23b4f9913b4ba3d2a0f5",
+      "sha256": "f30252461b1ab5b8bf4007fdbac461d84848b3a14a6e5e40f5bea09599207e88"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+      "gitBlob": "6f14ca874f77592d845ce0563afaff2eb7573a90",
+      "sha256": "67afc44c92255d76d7c8d29a95b634d53a648be637fe4112c4566659f1f95cc8"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionRegistryPublisher.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowExecutionRegistryPublisher.h",
+      "gitBlob": "4d7e80346cf8b3a8c93ad95e025f00035629f141",
+      "sha256": "7db3ea584e332c92364ebee5b9c778e0c731c449783551a9adb4204cf1df8ff7"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h",
+      "gitBlob": "46a313742295acaa52d5022f238fbcba4430c6df",
+      "sha256": "4d318426f4be784fe3eb6065ef47ed97539416f871fbe060f6c4ca6e8be41d5e"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h",
+      "gitBlob": "624a43c0f153456001288c904d9705ec59171aae",
+      "sha256": "1ce04b4678d7f48e205162db6572199489d22612f53afc9bebb9b07866f7ecf4"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+      "gitBlob": "eeb413f8c8c0f6c1658da68ddd404b9b478e6e70",
+      "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+      "gitBlob": "08856d4a610ed3fa519cee67bad8a307dd82a34b",
+      "sha256": "bc8660655e19ee15c02caf21403ef90f5f87c95b0fa1dcc212a7ca7a61573e6e"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenR02Capture.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenR02Capture.h",
+      "gitBlob": "64ec2dc887106f12274febc74b4e155e140d70e5",
+      "sha256": "6014613e62b570c0f93f7317831e14645600f87e9d32a9e87d2902e19991dbad"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+      "gitBlob": "ab136038a49a8e6614243677d19e20c6f3fde4c5",
+      "sha256": "c383afe1ba28b3c88f00abcea4ff469d40e3557bdff0303368d6a31ded1ed378"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+      "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd",
+      "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservedTypeShape.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowObservedTypeShape.h",
+      "gitBlob": "9625544a62c4907c73da251f4062dea0731758b7",
+      "sha256": "c2dd2249c945a89ddc8ac2e712d0b56f5cde3e4dc474a364a4fd6f1b471c3a89"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+      "gitBlob": "23065b67456ee7d19c7019cf24900e66daaf28db",
+      "sha256": "83f2d79c4c7d6480267c1cb18392af914dcc7b2513f9a7b003131ecd1ddd9d14"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+      "gitBlob": "14b44ca96a1be6a0abc8629ecea1b7bade02eabe",
+      "sha256": "6eb08c239c34eb55a8f7e2f1fc1ca84244fc501131c7564d328018d7f0d756e3"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+      "gitBlob": "f432aa3ea638a05b42618ca242be5bbc3e3e1e67",
+      "sha256": "622601ccd395ed41edb512d0da12fe35a645b822f3e14e2994b8413cce00eaf9"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+      "gitBlob": "7778e2064cbba7fb5b16179746cbb7d272118fb6",
+      "sha256": "0472835c03165278579dc3b332f6ef74eea22fb0d527a337bdb157beb14a79d7"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+      "gitBlob": "a2ca61c35b0ba0e5f71a261b21647a36dfc0a9c4",
+      "sha256": "1d29f8119e0cafa1168ef46ee17aebed465359ff5f47902165a97586a6aa6369"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+      "gitBlob": "372d12209417dcb9e119da6bda64deca79389a23",
+      "sha256": "d27d0cdd391182a5b3c9a942bdc44bdf45418d1fb13c2c3e92df92e012ea1ea8"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+      "gitBlob": "dff6f12dca1c4f89dec7151ced6b63febeb0769f",
+      "sha256": "865a36b154965f0ae69bc788f6ba21fc6a841d546a34215a6448112110bb6604"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+      "gitBlob": "f722a34cacda9fa35f226e8b11f4800d3fd42c72",
+      "sha256": "216a8ec0365bd134ac0849d5fec2d709c24e5b3927c66c17360792eea836d5df"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+      "gitBlob": "35d4d000faa588cdd5147a0b2abdf00d566c0b06",
+      "sha256": "944d663e2d55e8ed07be3c62b1f6c7f7f6aee1bf0c34b9a464550b6817c5c15a"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+      "gitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3",
+      "sha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowPhysicalMembership.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowPhysicalMembership.h",
+      "gitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3",
+      "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowPhysicalMembershipSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowPhysicalMembershipSource.inl",
+      "gitBlob": "4e18fa035c324a67959284efa90fa601c6ede0d9",
+      "sha256": "bd0ff612a27913c1424cc7627454ae8eb5101b3479eca2ba24e6097bb3197651"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+      "gitBlob": "1c2a43384d03b0369a51b587fc5f5e445d5b58c8",
+      "sha256": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+      "gitBlob": "9f7266014b1514adfd0935948ff417375df274d8",
+      "sha256": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+      "gitBlob": "fd1ec63d6569f61d3642599cbbb5a2c647fef9be",
+      "sha256": "dd6cb3026bb78fb7925cef45e7c8f6ca1c157fee57e2e18bef1e4bab49845883"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowVisibility.cpp",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowVisibility.cpp",
+      "gitBlob": "1469a44b51ce0adb8d0e98dffd0ac66a0d107aaa",
+      "sha256": "4bae387bdd6917da03a74e4539207a1da54e0f071b607b46e499d9c170df8bb6"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowVisibility.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowVisibility.h",
+      "gitBlob": "0e94c3d478cb6c1cdd80fd84f684b91e680673bc",
+      "sha256": "e8a276f6ff474986fe769122df08d039b4c4544258aa29e6cac2ca1f5572bf7c"
+    },
+    {
+      "role": "candidate-debug",
+      "roleBuildResult": "Passed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/Runtime.cpp",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/Runtime.cpp",
+      "gitBlob": "96b914fbeb31c69d649e4076a802de0b6418daa8",
+      "sha256": "f88e1c2165ccc5f723c40b71b6e85912f1be45fe12193106f4f022c250b1e454"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/Assembly.cpp",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/Assembly.cpp",
+      "gitBlob": "cb383d664ed02e138a9dd0cb42f2a64629146207",
+      "sha256": "0c46232f94b6e7afc2b5277d287618d8405a3f19784781ae800dda19ba8c4431"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/Assembly.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/Assembly.h",
+      "gitBlob": "3e4bbb85c190bf0f9c43fee9e3fc3518c61ed457",
+      "sha256": "74b9615a04bdf59df8da62948fd6dad2a2a10e8a8eda0cbf369635ab981e9181"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadow.cpp",
+      "gitBlob": "57cf47f964a83973df8296955ccf856b105c595f",
+      "sha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadow.h",
+      "gitBlob": "68e78fe6250e3bd1028641d9513eb7d14158e8da",
+      "sha256": "55e572887d7ed89cc5d9cd57b3457df240357aa389474512442f3a5fea487e8f"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+      "gitBlob": "a615a839f5af8614c672a9bfb45be02d12b01a0e",
+      "sha256": "9b309fa25aadfb983787540e7d0b65d01e3aaf7a2fad5b7e67cfa737ef1c8d99"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+      "gitBlob": "5b2afe1cfcf14570e64b8836ef4f995ee5e6db57",
+      "sha256": "d4f4d495fc0636fcdd41f1121a1aa71404e838e1dfedfc7a7a3d10d70777e734"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+      "gitBlob": "94bcd4e12e553c2f28c727d9c74bc2feb0b22e8c",
+      "sha256": "6e53d15eab13a4a0169884a4d032af14a30352f111de166515b9d940362044ef"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+      "gitBlob": "b7ba5dffb2e3ecebe7406f598e97a1ab97251cdf",
+      "sha256": "b77a46ffc4ba6e522fc8c34e0ac43283f502639a8ca4f6b9282afc097fa5c895"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+      "gitBlob": "9e63e46a429c07f0b5adaf529b48f455ce1328fc",
+      "sha256": "2550f78b66def91a2f0851c8edf2a24f3beb1887b595f2ac45b246aa5a125ade"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+      "gitBlob": "b554eb36f6337c139a3f24beb168ab3f2b6e4343",
+      "sha256": "1dc1a731f75a773494edf669965a7034d1fa908c2201401a3eb2238228e1b7f5"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+      "gitBlob": "a85a6ec310b85e96dfe199c6d773407cf47779b3",
+      "sha256": "2be24d11ff97527706c4125699c7d04dc060e5f38ea9eac931d17ef97a7dbca0"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h",
+      "gitBlob": "91f049cc7d81d5e6de95ec50884ed3d6b9b63163",
+      "sha256": "ae4c2a471c1879510849d4902694caa7308bc70f3804cb6b1d0fb2ac839615a8"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+      "gitBlob": "4e82e7f3814b8ed021a24d235dcfbe79c4c2412a",
+      "sha256": "0545c483230b7a1f6ea007ff28f000ec37a2f85444062c62eff74a048c5986c1"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h",
+      "gitBlob": "d2a6fb798de9a3599f6b6c63149515cb23ab3350",
+      "sha256": "fe37931e27f1616bea8e08c134a2349567161bd8cd5c739c3954be349b9da3c8"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h",
+      "gitBlob": "fc3a569ea0f617b67b3867a804126e9583d86b72",
+      "sha256": "b5b91b9480016493f1b26fcd78be96f9c1ff107b866950d7b08d999870ea785a"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+      "gitBlob": "edef7c2f37978e65c02a8d2008886c6c4af8ae20",
+      "sha256": "03f1c76f84e79de38ddc708130cf4a95c736e3abab0e0e4266a84ba7cad2684f"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
+      "gitBlob": "887eb1398a3b9c4ed06c23b4f9913b4ba3d2a0f5",
+      "sha256": "f30252461b1ab5b8bf4007fdbac461d84848b3a14a6e5e40f5bea09599207e88"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+      "gitBlob": "6f14ca874f77592d845ce0563afaff2eb7573a90",
+      "sha256": "67afc44c92255d76d7c8d29a95b634d53a648be637fe4112c4566659f1f95cc8"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionRegistryPublisher.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowExecutionRegistryPublisher.h",
+      "gitBlob": "4d7e80346cf8b3a8c93ad95e025f00035629f141",
+      "sha256": "7db3ea584e332c92364ebee5b9c778e0c731c449783551a9adb4204cf1df8ff7"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h",
+      "gitBlob": "46a313742295acaa52d5022f238fbcba4430c6df",
+      "sha256": "4d318426f4be784fe3eb6065ef47ed97539416f871fbe060f6c4ca6e8be41d5e"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h",
+      "gitBlob": "624a43c0f153456001288c904d9705ec59171aae",
+      "sha256": "1ce04b4678d7f48e205162db6572199489d22612f53afc9bebb9b07866f7ecf4"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+      "gitBlob": "eeb413f8c8c0f6c1658da68ddd404b9b478e6e70",
+      "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+      "gitBlob": "08856d4a610ed3fa519cee67bad8a307dd82a34b",
+      "sha256": "bc8660655e19ee15c02caf21403ef90f5f87c95b0fa1dcc212a7ca7a61573e6e"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenR02Capture.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenR02Capture.h",
+      "gitBlob": "64ec2dc887106f12274febc74b4e155e140d70e5",
+      "sha256": "6014613e62b570c0f93f7317831e14645600f87e9d32a9e87d2902e19991dbad"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+      "gitBlob": "ab136038a49a8e6614243677d19e20c6f3fde4c5",
+      "sha256": "c383afe1ba28b3c88f00abcea4ff469d40e3557bdff0303368d6a31ded1ed378"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+      "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd",
+      "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservedTypeShape.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowObservedTypeShape.h",
+      "gitBlob": "9625544a62c4907c73da251f4062dea0731758b7",
+      "sha256": "c2dd2249c945a89ddc8ac2e712d0b56f5cde3e4dc474a364a4fd6f1b471c3a89"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+      "gitBlob": "23065b67456ee7d19c7019cf24900e66daaf28db",
+      "sha256": "83f2d79c4c7d6480267c1cb18392af914dcc7b2513f9a7b003131ecd1ddd9d14"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+      "gitBlob": "14b44ca96a1be6a0abc8629ecea1b7bade02eabe",
+      "sha256": "6eb08c239c34eb55a8f7e2f1fc1ca84244fc501131c7564d328018d7f0d756e3"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+      "gitBlob": "f432aa3ea638a05b42618ca242be5bbc3e3e1e67",
+      "sha256": "622601ccd395ed41edb512d0da12fe35a645b822f3e14e2994b8413cce00eaf9"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+      "gitBlob": "7778e2064cbba7fb5b16179746cbb7d272118fb6",
+      "sha256": "0472835c03165278579dc3b332f6ef74eea22fb0d527a337bdb157beb14a79d7"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+      "gitBlob": "a2ca61c35b0ba0e5f71a261b21647a36dfc0a9c4",
+      "sha256": "1d29f8119e0cafa1168ef46ee17aebed465359ff5f47902165a97586a6aa6369"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+      "gitBlob": "372d12209417dcb9e119da6bda64deca79389a23",
+      "sha256": "d27d0cdd391182a5b3c9a942bdc44bdf45418d1fb13c2c3e92df92e012ea1ea8"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+      "gitBlob": "dff6f12dca1c4f89dec7151ced6b63febeb0769f",
+      "sha256": "865a36b154965f0ae69bc788f6ba21fc6a841d546a34215a6448112110bb6604"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+      "gitBlob": "f722a34cacda9fa35f226e8b11f4800d3fd42c72",
+      "sha256": "216a8ec0365bd134ac0849d5fec2d709c24e5b3927c66c17360792eea836d5df"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+      "gitBlob": "35d4d000faa588cdd5147a0b2abdf00d566c0b06",
+      "sha256": "944d663e2d55e8ed07be3c62b1f6c7f7f6aee1bf0c34b9a464550b6817c5c15a"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+      "gitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3",
+      "sha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowPhysicalMembership.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowPhysicalMembership.h",
+      "gitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3",
+      "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowPhysicalMembershipSource.inl",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowPhysicalMembershipSource.inl",
+      "gitBlob": "4e18fa035c324a67959284efa90fa601c6ede0d9",
+      "sha256": "bd0ff612a27913c1424cc7627454ae8eb5101b3479eca2ba24e6097bb3197651"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+      "gitBlob": "1c2a43384d03b0369a51b587fc5f5e445d5b58c8",
+      "sha256": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+      "gitBlob": "9f7266014b1514adfd0935948ff417375df274d8",
+      "sha256": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+      "gitBlob": "fd1ec63d6569f61d3642599cbbb5a2c647fef9be",
+      "sha256": "dd6cb3026bb78fb7925cef45e7c8f6ca1c157fee57e2e18bef1e4bab49845883"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowVisibility.cpp",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowVisibility.cpp",
+      "gitBlob": "1469a44b51ce0adb8d0e98dffd0ac66a0d107aaa",
+      "sha256": "4bae387bdd6917da03a74e4539207a1da54e0f071b607b46e499d9c170df8bb6"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowVisibility.h",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowVisibility.h",
+      "gitBlob": "0e94c3d478cb6c1cdd80fd84f684b91e680673bc",
+      "sha256": "e8a276f6ff474986fe769122df08d039b4c4544258aa29e6cac2ca1f5572bf7c"
+    },
+    {
+      "role": "candidate-off",
+      "roleBuildResult": "Failed",
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/Runtime.cpp",
+      "installed": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/Runtime.cpp",
+      "gitBlob": "96b914fbeb31c69d649e4076a802de0b6418daa8",
+      "sha256": "f88e1c2165ccc5f723c40b71b6e85912f1be45fe12193106f4f022c250b1e454"
+    }
+  ],
+  "installedComparisonScope": "Read-only135 diagnostic byte matches;45 belong to a failed OFF build. No successful3-role installed parity acceptance; coordinator stage stays Blocked.",
+  "sourceBindings": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp",
+      "sha256": "3c9290dcf231306a771a4b8a26f03112add1aeb7c0b44ff0e7a01330e47f4387"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs",
+      "sha256": "0c16bcaad8bb2ceb5568ab3b4bb5147f258da884b05b249b8c174952bc36350d"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/complete_general_diagnostic.py",
+      "sha256": "564e809ccf799e39f1afd5a30354b5f93a45cda15a588ec73352c1c9af87c7ef"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_terminal_local.py",
+      "sha256": "be25644b33de9c55157e3e0ff1e8330e8ae5e4ede5873f938301dab9bdc77165"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/engine_owner_quit_contracts.py",
+      "sha256": "2322f34309adbed09c975e6bea185e9053e36bdb17581d028ad9ba5b59de208c"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
+      "sha256": "f30252461b1ab5b8bf4007fdbac461d84848b3a14a6e5e40f5bea09599207e88"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+      "sha256": "dd6cb3026bb78fb7925cef45e7c8f6ca1c157fee57e2e18bef1e4bab49845883"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/il2cpp-object-internals.h",
+      "sha256": "f9d0f093ccb08a7279148fb8988a5601debb8aae951a26fec0f551e0672040e4"
+    }
+  ],
+  "findings": [
+    {
+      "id": "IR-LOCAL-R03-ONEUSE-G-OFF-COMPILE-01",
+      "symptom": "OFF actual C++11 build fails member access into incomplete Il2CppException/Il2CppString at EngineReportingProbe.cpp:53,55,57,59",
+      "firstFailure": {
+        "line": 25111,
+        "text": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp:53:25: error: member access into incomplete type 'const Il2CppException'"
+      },
+      "mostLikelyRootCause": "Probe is compiled under HYBRIDCLR_R03_RUNTIME_PROBE=1 even when featureOFF, but its concrete type definitions arrive transitively only from TerminalReporting.h inside HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW. OFF leaves forward declarations only.",
+      "scope": "FeatureOFF probe SDK build and dependent OFF Player. ON builds passed. Real failed BuildReport/error provenance is now preserved correctly.",
+      "recommendedDirection": "Primary must make the probe translation unit self-contained for complete exception/string types or align OFF declarations/definitions with tested feature guards. Add real SDK OFF compilation coverage; host mocks currently define complete types and do not expose this include boundary.",
+      "localFixDisposition": "No Local source patch: closed-loop revalidation needs a new source-pinned native build and G is consumed; return to Primary."
+    },
+    {
+      "id": "IR-LOCAL-R03-ONEUSE-G-ENGINE-02",
+      "symptom": "Engine quit request hook observed once, but51865 reports/500ms exceeds64; deliberate observer exit71",
+      "mostLikelyRootCause": "Requesting the resolved Unity quit icall once does not establish containment of subsequent engine callback dispatch. Underlying request effect/decision/ABI and owner lifecycle remain unproved.",
+      "scope": "Real native engine-unhandled Player; no successful bounded owner termination or full shutdown proof.",
+      "recommendedDirection": "Primary must trace resolved quit target/effect and owner dispatch/termination decision, then implement fail-closed containment without suppressing counters/callbacks, increasing64/500ms, sleeping callbacks or bypassing guards. A once-request flag is not completion acknowledgement.",
+      "uncertainty": "Retained evidence does not establish exact Unity internal reason quit did not contain dispatch; no additional stimulus or diagnostic rerun was performed."
+    }
+  ],
+  "newSidecarRemediation": "Three original ON snapshot failures now Passed complete bytes/schema and focused post-poison witnesses in G only; E remains unchanged FAIL",
+  "coordinatorInstalledSourceAudit": "Blocked_NotForced",
+  "runtimeAcceptance": false,
+  "R03Accepted": false,
+  "sourceChangesByLocal": false,
+  "retry": false
+}

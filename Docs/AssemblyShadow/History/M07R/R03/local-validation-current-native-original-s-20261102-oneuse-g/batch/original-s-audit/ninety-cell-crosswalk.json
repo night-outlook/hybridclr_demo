@@ -1,0 +1,2264 @@
+{
+  "cells": [
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "21f49a14aa393f8e204e33045ffe404f6b4f792bd236f3623a6157a3e5e7fccb",
+      "dependencies": [],
+      "id": "entry-authority",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "631ba26114ee39b270813f3cc406c44a9af72388e7398caa084e4fc4b8fc8c13",
+      "dependencies": [
+        "entry-authority"
+      ],
+      "id": "completion-tool-contracts",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "3552c92cc3061e55436d158532aca0f32b76a39fc8b6dd84c7b4a120efff03f7",
+      "dependencies": [
+        "entry-authority"
+      ],
+      "id": "qualification",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "98be7856d1bf558242c34bfce7dfc7e46fe7635e6d669f2cb0cb569446e40232",
+      "dependencies": [
+        "entry-authority"
+      ],
+      "id": "verifier-contracts",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "af7f57c11166ec56f9d2ded80b11c94d53a83d9241234cdb74ca20c42b4bf187",
+      "dependencies": [
+        "entry-authority"
+      ],
+      "id": "reference-sources",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "d3822d183d80581cab7d010104a78ab17e229a3af760214e94399de6abe0ed3a",
+      "dependencies": [
+        "reference-sources"
+      ],
+      "id": "host-baseline-graph",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "8c29877231d8d18b431bf4c935cd414ea80eb38b988dfce524d3032949a0e61e",
+      "dependencies": [
+        "entry-authority"
+      ],
+      "id": "host-candidate-graph",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "2b863b3986cd77841eecefae6b84906dd3937375c09dc3881c1c9131e4a74e39",
+      "dependencies": [
+        "entry-authority"
+      ],
+      "id": "host-admission",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "be84099ca69bba6f2efaaf4c17d909852e582aade737f87e4509a8f368f801cb",
+      "dependencies": [
+        "host-admission"
+      ],
+      "id": "player-fixtures",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "aed6d3093d74a6dfb2ca4623b7f190d0b3e49c411369a5468d8e38bfe8045a4d",
+      "dependencies": [
+        "player-fixtures",
+        "entry-authority",
+        "verifier-contracts"
+      ],
+      "id": "prepare-candidate-release",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "28596bcaafd014078f94e20f8129c3134f0b937c9a7fb9b0cdaa96d3b0812928",
+      "dependencies": [
+        "prepare-candidate-release"
+      ],
+      "id": "build-candidate-release",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "68e2f0898d19f73212512f86ebb8a50e75e11c85c6c9365b6e8e563688162338",
+      "dependencies": [
+        "player-fixtures",
+        "reference-sources",
+        "verifier-contracts"
+      ],
+      "id": "prepare-reference-release",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "a16994afd57e2b838b34de022cb50d1c8506b263c95466f82c78239e438ce04f",
+      "dependencies": [
+        "prepare-reference-release"
+      ],
+      "id": "build-reference-release",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "49538e90522587fe848235a97a755b85b7df45037e3a0493af8e6cbd03b954de",
+      "dependencies": [
+        "player-fixtures",
+        "entry-authority",
+        "verifier-contracts"
+      ],
+      "id": "prepare-candidate-debug",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "34dfa6f6d13cdcff8c3a188d48fcd24cfddd79769ca4d69795cd49ef9d82b70c",
+      "dependencies": [
+        "prepare-candidate-debug"
+      ],
+      "id": "build-candidate-debug",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "e6ea90e5b34dc5a5b24731048a8d167c3fae52b80b6deddfb729eff172cda857",
+      "dependencies": [
+        "player-fixtures",
+        "entry-authority",
+        "verifier-contracts"
+      ],
+      "id": "prepare-candidate-off",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "b4b5a7142ecfffd00d335fbad3917187a06006191f7ffc6c6ada5355947680cd",
+      "dependencies": [
+        "prepare-candidate-off"
+      ],
+      "id": "build-candidate-off",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "c9f02f4c7a8b8400be9e04ab1ca0edc3732c095a9e6dabd2479399908f261510",
+      "dependencies": [
+        "prepare-candidate-release",
+        "host-admission"
+      ],
+      "id": "editor-tests",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "bfbe29e1d5bbb946442978196de93916c0672822299826e05276850f52641e87",
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C01-baseline",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64279
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "764513436af82710dba8dd287625a5645f9d1b747ed5f80e01891e06a8fd2879"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "2c143d82ddb5ae5f88d0fdf66b4d443782ae73d65ac59dfcce17179c1da09323"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "c4b6acc50a22744a07861a6e46093a9e48adbc1ba2c4015747f4c91e10d0521e",
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C02-private-reference",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64288
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "1074facae63f87cfc27c9aa2f82569d6970c358db2a948279d0691a600e1e01b"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "9b0c7743a78fd4aeeda5e218600f381563d7d972c75012c2112e1c5da0cae65f"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "e6a727c11e57e26785c901fc83bc662a069fa76e4969359802b2ff1e34f1351f",
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C03-moved-slot",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64290
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "2c23c0cb462f1f5695ba923cc2d07f5df6b712d7c621fabce82e75efd25833fa"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "3fac0628365dd96796fe16a92661702ca70211068078d5aac3cf7e1149275bce"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "5bfeb67b14fcf38952ce9ca66b1cc93a814f5b97ce94b7a1d4cb92bdca579210",
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C04-old-AOT-guard",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64292
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "412fe982b302aff32b727f40a55d88ef5313aff14002442357d06402b95a60b5"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "b7158b5c50847fdf5741f1bcabc1f1126fffba7cc2083100a2d7b0eac406693d"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "b3dace728ee11e7d749598ab7c7c4523dc01a8a1a28ef02f58e3fb9f22855980",
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C05-direction-reversal",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64294
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "d6e2e482b095c0371e7e66afc86b2fdaa5e99bc7235390d9586fd66a8bb8ccb1"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "a49f7127acb64cf604cdf5666cf048b60bd2c427f26eea726f0a0e0d8d0be06f"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "2a9510a2438545f7f10316ada82b4e39590ae1e6b8acbbaa1a1aa0bfc5d44360",
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C06-actual-target-cycle",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64296
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "7ba6cb6785434c556e4c89452da96eaa9b6b1a964e62225a84b16e597b34783c"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "59f9cbfb3aa38f89686f273ddab627cbb464bd2e6cb3093bb5b24f50a6785edf"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "3c5c3aed2c21c73c4a80902d8bdeab73e317d49aba2aec37f8a9ceee553a1d90",
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C07-private-primitive-append",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64298
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "e7d38ab568cc5f0d24a46440604dc381d1ab645076375eaacddeb9e282edba21"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "90be8c7f6b7cece51609b417b0d3c2ba16d6d91df1aa114a0c305b29dc6ebe0e"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "992a8c55f6be473888a1c72558ae48be459b90d2d3085200be1e93bb17e9daff",
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C08-interface-change",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64300
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "bc471237c69fdb7dd2583b227f3def2aa016fde976d7342310d3830d2d328553"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "97dce5a61a897d65c9861ae8d4cce53b5dba0ca6848f567e205532d3dee24590"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "bed44c7cbbc8ba62515a154719969b99bc78e7ee38e642e333f02361b209186c",
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C09-reference-to-value-kind",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64302
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "270ba03e5f4af896a86f8def607d2e1fec6c3cd2d08cab25aacf58451b61e5b5"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "937beb31d21196fc74e4529fb9335c981f6c4ee0895cff3ba9a3fd6d73720789"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "02ccab7ce753f5c852a619f7f59d1a5aa3af8fe1bc750b923c2930306d05374d",
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C10-field-removal",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "8e30c875d37b5465361255bcb06994b679cfd72d19b045d4fdd2eb1f5fae0a2f"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64304
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "308e1cf8e94f95c7589a9be92992134eca176c6dba7fbe1cb5bf8e20ebb77f8c"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "1e19076a6364a11ff439cdda83f1bbd8bc484b67e7170d91ed6ba6a862552b57"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "e62628d819a0e0b8c0ae00cf08dc7e33ecef57dae89fdc467f134b82fd81b5a9",
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "id": "R01-baseline",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "78d4efe48b74745769c540b189e62e6974d12303e04ae7e50cf4afb63c715ca7"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64306
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "3ed51ee58bed936e63480a14600f805abc1b1161cc87a4cd7d8cfde6432e37e0"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "4124d9b4a6582eb85939482ec7d12939e8643d81d3e4afd3abc68784fd8e2670"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "4f9fc063ffb05b48870efdea7a3e18189b11fbe5a9e0bd238e57939dc52508d7",
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "id": "R02-original-late-layout",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "78d4efe48b74745769c540b189e62e6974d12303e04ae7e50cf4afb63c715ca7"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64308
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "975cb43d01880f8d4c6d208a75a487eda4fb665db981f4c3998d6d9e7d9913f5"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "185904701ce7143dc490de7f65d4ea01bbcd879d4260d9b6947770a0e01e64b0"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "3eb0986b7118dd977b368cbf59c53f5c19525e9fc858b985c291ef4bffd8e1d0",
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "id": "R03-original-slot-lookup",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "78d4efe48b74745769c540b189e62e6974d12303e04ae7e50cf4afb63c715ca7"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64310
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "42e04d721fdc6afb9b5cd8e5a95dff1ca10ac8fee3c9504aebcef080cc7c7387"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "903f1b85989814e7ff237a64d6c83ad2abb9877b0e527444dccc39b90b52dcf7"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "a4f0c33e2519955f216f5c019103fff2f100c440e34590e5d4b25323bde9478e",
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "id": "R04-direction-reversal",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "78d4efe48b74745769c540b189e62e6974d12303e04ae7e50cf4afb63c715ca7"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64312
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "26b8cd9077979819b53534db1078fd6afb659946c043a404f9e7363965016735"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "a2255aa57dc7beef8810d5a80114de8b369276f55bd72e7adbbc4627e2735cb9"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "0ca6a8952ec49f4b873eda19bd2e538fab96c71486feb4638d54ebc09e638b99",
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "id": "R05-actual-target-cycle",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "78d4efe48b74745769c540b189e62e6974d12303e04ae7e50cf4afb63c715ca7"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64314
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "a741efa2e6d0ea5f054a1d341b2e6d8e7e6c32ef6e819ba68e63bc0817d57659"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "12585a2a96a72e4201c6a66ab5136d9e1035c0b2965edb4f2c48eff20560242b"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "db6f2529d72ce5b47b8fd28c0c9c25157ada6b7d77e20140977ee614f81e1f67",
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "id": "D01-private-reference",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "bc2f244a91aaa6216cf4cb8ca80c4aef3ca12c98a41b019a6a4d125a4d895433"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64316
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "817475f916b8b60f5114e0f28f70d4ae24762f0bba5084a9c58dc8421eb5dffe"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "dce8335c8a2b4fb56c7d8d9931bf49db7b3f2097210056c6d1a945d8f288aed5"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "62c62211a299468a06797f616430b87b57739da93db9ac59893c2a3bc496c1d5",
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "id": "D02-moved-slot",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "bc2f244a91aaa6216cf4cb8ca80c4aef3ca12c98a41b019a6a4d125a4d895433"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64319
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "6fd036c518f9dfe4a13d31975f10e46e7ba506d366acd565b20d9ac13a40be84"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "6ba22a344f48d2b7cf7d0af16ea4e05637270e4fcb1cfdaa939af255132ebe68"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "4e1c0bc53a1e896686d80ee2a5d7a279b2ae5b045ce71604c7da307aa4fc9182",
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "id": "D03-old-AOT-guard",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "bc2f244a91aaa6216cf4cb8ca80c4aef3ca12c98a41b019a6a4d125a4d895433"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64321
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "e995d8401060d553c0c1fa01896fe4a8c3e410e391a14bf31f9be7ba843202b1"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "d2ba82ad45f8156c0f6b9d4c7fdec9cd631478428c90aad188cd91314e424990"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "da94b93cc0709a636905885763d3cba287a360d71e8042a12166b244851bf4eb",
+      "dependencies": [
+        "build-candidate-off"
+      ],
+      "id": "O01-feature-OFF-baseline",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "Recorded",
+          "value": "a3c71d61655b223ee6f817469f2706470bb488b2ed90593c0ec5d088a9f6f030"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 64323
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "8729e4c7fefc170f9b92931a7bfe90ec97b867e819bfb6deeb0d2ddf08d4900f"
+        },
+        "requestSha256": {
+          "state": "Recorded",
+          "value": "db2ccbdc022023803b107bfad1671c7b1fb2d37b8df4754571cfc10c620e9fd8"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "74fffa263feb8a4ae284ed7917f6dc69cbde87cba7db241f0e01b838779f3566",
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "producer-controls",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "b8dd7d6412b6484fef773c05198e122364c7d8b177aa3925c4d2500c34c2ff91",
+      "dependencies": [
+        "entry-authority",
+        "completion-tool-contracts"
+      ],
+      "id": "resource-prepare",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "fea53c8145e476b56f4800e61412fee334c03673df8863e4c1507e9d0f6dd0f4",
+      "dependencies": [
+        "resource-prepare"
+      ],
+      "id": "resource-install",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "2693e8e1f6935ddd62d5494b1e8e962436067da5aa0490609738bd2ec217fe78",
+      "dependencies": [
+        "resource-install"
+      ],
+      "id": "resource-compiler",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "f705f7183966c8fe684ebe2bbe3ce0790bbcd628d63ab2e8eeb9818dc8e849b5",
+      "dependencies": [
+        "resource-compiler"
+      ],
+      "id": "resource-bundles",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "ea00bf286822fd787cc9601331377676c03024eb83e532a2c05cb100db96d2c9",
+      "dependencies": [
+        "resource-bundles"
+      ],
+      "id": "resource-player-on",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "6f7d38805e25f8e9bfdf659a24f1db96ab4f4f310c38701b59681c189d81beee",
+      "dependencies": [
+        "resource-bundles"
+      ],
+      "id": "resource-player-off",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "7795285508ef60ce9ae88f1ae5aa75a58c1ef1481f667125128cb7d0eb92fe25",
+      "dependencies": [
+        "resource-player-on",
+        "resource-player-off"
+      ],
+      "id": "resource-p05-prepare",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "c8f2428001f20a70b5b474b6c0c3e68b780bc39a5d7720a6a274d8999eb1fac7",
+      "dependencies": [
+        "resource-p05-prepare"
+      ],
+      "id": "resource-p05-compile",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "e9cc8c7a1f419a0d1740693fb89e5752506cb156f74b231893ced7ebb101a655",
+      "dependencies": [
+        "resource-prepare"
+      ],
+      "id": "resource-p05-restore",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "679a11b80a0650021a6e9526d23da507f713dc81c7195c70cba970fb21661d16",
+      "dependencies": [
+        "resource-p05-compile",
+        "resource-p05-restore"
+      ],
+      "id": "resource-p05-finalize",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "05218ff50f6df732760c69e14479a0e140f7593b3ef3bcb3fc08834dad36af10",
+      "dependencies": [
+        "resource-install",
+        "resource-p05-restore",
+        "host-admission"
+      ],
+      "id": "resource-editor",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "70afc9511c44ca4e8685e32e170dfe6af9babd0b65082d28ad25260f72b9aef8",
+      "dependencies": [
+        "resource-p05-finalize"
+      ],
+      "id": "resource-input-binding",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "9e5a04b40c03dc420231fd09d654c250c829e3f0fbe33012e090a5c696eeeff6",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "production-entry-integration",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "fae090a69df68f6e4d804fa297f25f7bacd76cd32c719b1d35b9985fce740360",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-01-Prefab-P01",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 72043
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "754aab903b94689139a4460c4c0ba88a3b0f026c12575cd8e6a8f4fce7035317"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "d5823a867cbaf53ab23102c91f3bd5a9cf0a11fe587f484e914ec7da58ebb688",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-02-Nested-P02",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 72172
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "f812cfc8c453eaf8dc060b7a73dce3a5099240bf47046b1ffae65268a26bde0d"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "5589b33414cc1bcbf715fb012e3135415b0a525f829f9968acdb09400bde9435",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-03-FullClosure-P03",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 72274
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "f098abe80374bf52909938252dcbab898b864d2664250f01dc4a472808f610c1"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "04c568fba43805139416ef9add7cc35a905a3389a34664c748adb433d505fb67",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-04-UnityApis-P01",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 72375
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "05ce38c9639072a03b682bd616ff61118a4443e17d1cd5137b28d02298670d2c"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "1f47b7e79978961a031339b58fd627d44aa49fa58803d8c9c58829d715da7c32",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-05-Scriptable-P03",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 72477
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "c0fb69650b40c354ced4a460acc9b486e9ce11faee16658cb60757c7d6af3a78"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "ec00f8ac4a7d49aa16b094ed899fc710c93c04550ea90fbcd70b3b4a901a4a53",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-06-SceneSingle-P01",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 72577
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "bc3a2308cd96aa89420a22131948e8565374c2ff89eb8b093cbbba8786a0dcfa"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "50636104a42b49d7a35cb3a79e43ad78928035fbc80d01476e02d6f8967c37a8",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-07-SceneAdditive-P03",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 72679
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "5ffd03d1ed61d83c96cf02e4e121fbaa343e70d225ebbfe956f5c6bf1622d1cf"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "25e35f17ec347fefee2bfaa6773afd3918eab3029a2647c9ea01413a5e624add",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-08-SerializeReference-P03",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 72779
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "97d67f92642ca9132786ed9266fd7629765112dad6b7137d48bf18716238072c"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "ed02b68cb3d12ed6da1a8f9d2821a42bc63184293848c07af9c725c9d965672a",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-09-Messages-P01",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 72879
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "e90a253c7280f2dc75822aadbe0cf32c2b05ab86757503f89fbf40f6044f7aa1"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "e452bba53b9ac03707cca18f7349f59f56cf459ea5c4d30acb5c97da036883a5",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-10-Cache-P03",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 72981
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "81422117aacacb041f7bd225a3377065d2df59ffbfd91eb46b0c2b85f65dc148"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "7796071dbc74d6fb69060d656117b548b1dab5e08f262bc803f83c4c9273bbf8",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-11-DelayedCatalog-P03",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 73083
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "0a9fab2b1f4d301a1fdcbbd10774ba27ba57dadc750b7524c06e9fa54c0b445b"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "542dbc38439fdc1b195e54b4b975aa59a93b91c3ac9c242f9a554064114a282d",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-12-P04-NonSerialized",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 73183
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "d38ddf7d591df0ae01fbe296000f208783d7a4d2e39ae8311c2deb45b03209d6"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "ccc2e4d51ed2252b7bc811ca613f5ce4ff158d295723df03b84771c7d06d3535",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-13-P05-Rebuilt",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 73286
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "095e6faf7e7413da2543bb78ee5a4a2eb8c5215300d5df247bbdeac6c5b3917f"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "0b02793718d064d768e73d33b0b6a63ab48b6da6ad89ab4467dc615a78e7a5fd",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-14-FeatureOff",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 73388
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "09722ca0bc0348e37b2cfaf5d97ce3f56b3a9c78bc9121eefb882bd6eb86ac8e"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "ca8527b77dc79a0bc92a8fbbdd3612bb1abf7fae18cac7572a785da4a25b206b",
+      "dependencies": [
+        "resource-T07-01-Prefab-P01",
+        "resource-T07-02-Nested-P02",
+        "resource-T07-03-FullClosure-P03",
+        "resource-T07-04-UnityApis-P01",
+        "resource-T07-05-Scriptable-P03",
+        "resource-T07-06-SceneSingle-P01",
+        "resource-T07-07-SceneAdditive-P03",
+        "resource-T07-08-SerializeReference-P03",
+        "resource-T07-09-Messages-P01",
+        "resource-T07-10-Cache-P03",
+        "resource-T07-11-DelayedCatalog-P03",
+        "resource-T07-12-P04-NonSerialized",
+        "resource-T07-13-P05-Rebuilt",
+        "resource-T07-14-FeatureOff"
+      ],
+      "id": "resource-contracts",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "dfc3d1b7f254a8ed84b76b38ddff6211a81ced3c9c149f36151ffd3547396d01",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-NoPatch-0",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 74007
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "dfa63b395b01236d1daa8b7fade0185e344921d509c4d9b1f3c8ffa46f4caebc"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "cd7b83df7ac3a4d7c78d743e7818b7f400e2ff50aacf8e2aeceae3b3d9e1df33",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-NoPatch-1",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 74078
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "94f0967a5e3de8b30e393c58a2ed659f053f7d0d7f44ee26d8ab421c284d851b"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "79e9eb362ace1f42b07938ec03d04e74469403728831e562028f37879b22aedf",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-NoPatch-2",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 74153
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "9eea85b1f0ff2dac439bf52dcd829d83fc24b0614598fa06ab9c440be9e8fe6d"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "f3d10a832b87220343442afa44bda13195c134b16e33627d500f26f6acfd1d87",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P01-0",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 74227
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "14903d584a01635bad767d18a92c5cd4bc81eb82318032c1a8eb0c0e8de9ca34"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "145fec12db35d678c1649256d16bafe260d12f4e6fafb5753d7a9a91fb694264",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P01-1",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 74300
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "3f954f540eae547cbbd518450fff34e5721d197bec5a262eb6a67c2e1af3ed1d"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "d3c86ae11c5c0bd7bed6d4d73f3dbd4db534a9218e3115fc08a3d72c3cc7d7ef",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P01-2",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 74372
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "b42a36dfd6e69cc493242f76cb2f063d89c4b1c7c16e92c3c914ced4615d93a3"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "b3c424c59a52db7a582814419e2febb3aed796275db07c4343be26fb7cc9a40f",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P03-0",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 74445
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "58ff7fbbe116734ef4baca014650fffcf0d43230150b8fa4948713fe127cbb22"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "6d71ba6c305f678bd51dc08701712186d5f0ae39b26a4bcee62eda25bf4b4012",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P03-1",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 74520
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "55e406ea32730da93cac7ad7d1c33ab408319975423190005c556fd2573a5dfd"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "e03c3641b3f854949d415b52f42a10a9b4c09c0c70efac3b06ce64380b71fc9d",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P03-2",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 74591
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "2ef8d31e5c238a2566d13e859db7af4b10ef1bc925fcd3b10705553d28011f1a"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "51e78bf0d8bd2988fef2701181c0c4d367222b0b6d60e3af1b5d026de977f444",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-OFF-NoPatch-0",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 74663
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "62631a745ac90a08e46fac946778352a36d32df0cd5942de61ca16f611c50cea"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "4d55a7fb561b321d2609c6f429210eeda8a715f2537d60a3ba4ed2f6a2fb635f",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-OFF-NoPatch-1",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 74736
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "9819bbc06e4947f88c246b09f380bbcc0d7a2ec47d8d0458784a405f56d4e476"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "1104d16f214fd43dca1b96989aa4c9daa039879da597a527e2e55c036da02616",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-OFF-NoPatch-2",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 74807
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "84e09713b9f4d4b5b146d09fa3eb773acb132d6a699c380cf682ffc62e5a3bf6"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "64095912bd58b6031a44091f759763ea7bc817f4c4a32f119086dd09d27aa2d6",
+      "dependencies": [
+        "measure-R00-ON-NoPatch-0",
+        "measure-R00-ON-NoPatch-1",
+        "measure-R00-ON-NoPatch-2",
+        "measure-R00-ON-P01-0",
+        "measure-R00-ON-P01-1",
+        "measure-R00-ON-P01-2",
+        "measure-R00-ON-P03-0",
+        "measure-R00-ON-P03-1",
+        "measure-R00-ON-P03-2",
+        "measure-R00-OFF-NoPatch-0",
+        "measure-R00-OFF-NoPatch-1",
+        "measure-R00-OFF-NoPatch-2"
+      ],
+      "id": "measurement-summary",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "814295a55d954e55b1a676489e2c2eb375faea0193b4c4bdd4d7e2e597854315",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Control-P03",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 74885
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "8b6a24509240ffc7e22f0a869de43de849ed3ad137a6649b0aabefcf2a8330f1"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "c30ff596cb61af5473be3003d966ed33d532702e6013218d01624b9403b13044",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Control-P01",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 74983
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "374c5c64e88ed7279d7ea8345cba9f07dab514c9ed1c5f0bc817b9528c2ef377"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "716499aeac33ec4ef91a0584f4c4762f6083f88682f5ac3e076bd5e586bf8120",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-OrdinaryFirst",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 75088
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "0ccd3ca5a1fdbc8c1de71ecbb1b5b7014798f13d1751cf6ce571a3c34d3c9c3c"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "e4f3716b843cf34f9038eb7894576582e15bf7efc415964700c05076aec3e32a",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-OrdinaryAfterReserve",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 75194
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "84a0c0abfb7ea3a3fff21acd7c5c5c63c1b23617e00aaa707721ab8444fcdb75"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "251169b8034730f1874117d7797580a6a390d0fb5db959aaa7a5f7cb5160e441",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Oversize",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 75297
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "4bd0c4653c32df579ca2a3f51b55f67c4bb997c3105c3534e325093824539100"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "c251db26d83878dfef95ac8a99c9e936b742b83f8454976683729afdf94f6c89",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Mismatch",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 75369
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "7a6d8246fca8a3b918ecf05053384523333e15b1c96fc2e80bdcfc7e5ff9e831"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "4b8979aa61365c5a82278682753e85b0444d5f0cff5a6d9e357597dbba4beb9b",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Type",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 75437
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "22219c1c5c265e2ef2f1228fd73c761045a33607214e48ff5316af4dc31c0021"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "48a1723a6478a8dc9d097dc12bca7af827e6e086c252e0c7bc91e36eff3ae3fa",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Object",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 75507
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "c0eb7f48e2054c4e341e7764d3641af84fb20698f91e9c8181cce281c06df4ea"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "7d4f400a71563c035fb5dd1d54de8c175c447379ff3d739f959b474b4bafd94d",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Cctor",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 75584
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "616093fbeafd041b032fee7ec0d0c2bb9009de7b43d63b6f76d88facd1bded81"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "edc30c7d99f0e16593f3e835a5a5b1b786685e0d2261dab301b4edeb0e94b96e",
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-NativeScript",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "Recorded",
+          "value": 75655
+        },
+        "rawSha256": {
+          "state": "Recorded",
+          "value": "8896cca4751d3021f18b7a085d11690492526f636bbd242951398a30ddf8f378"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    },
+    {
+      "assurance": "AuthenticatedLedgerCellEquality",
+      "cellSha256": "0eefa853fca3fcde467f51517a8a4e471d879c836af952ef7d6870790295302b",
+      "dependencies": [],
+      "id": "final-authority",
+      "result": "Passed",
+      "topLevelEvidenceFields": {
+        "buildReceiptSha256": {
+          "state": "NotRecorded"
+        },
+        "launchPid": {
+          "state": "NotRecorded"
+        },
+        "rawSha256": {
+          "state": "NotRecorded"
+        },
+        "requestSha256": {
+          "state": "NotRecorded"
+        }
+      }
+    }
+  ],
+  "executionTuple": {
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_demo": "29bb3d4a39bf8a2f23be404f77535aaba3485bfc",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+  },
+  "fullSourceBuildProcessSemanticAudit": false,
+  "scope": "All cell bytes and ledger equality; absent top-level fields are not verified role-specific joins."
+}
