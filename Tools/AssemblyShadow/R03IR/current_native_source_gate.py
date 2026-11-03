@@ -64,6 +64,30 @@ def strict_object(pairs):
     return d
 
 
+def expected_batch_repositories(demo_commit: str) -> dict:
+    """The exact producer's full repository record, not a reduced four-pin map.
+
+    The historical R03 in-memory source overlay preserves schema/phase/branch
+    and the explicit non-acceptance marker. Keep all consumers aligned here.
+    """
+    require(type(demo_commit) is str and HEX40.fullmatch(demo_commit) is not None,
+            "Exact 40-character demo commit required")
+    return {"schemaVersion": 1, "phase": "candidate", "branch": BRANCH,
+            "hybridclr_demo": demo_commit, **CURRENT, "runtimeAcceptance": False}
+
+
+def verify_batch_repository_record(observed: object, demo_commit: str) -> dict:
+    """Fail closed on missing, extra, mistyped or stale source provenance."""
+    expected = expected_batch_repositories(demo_commit)
+    require(type(observed) is dict and set(observed) == set(expected),
+            "Complete exact native batch repository metadata required")
+    require(type(observed["schemaVersion"]) is int and
+            type(observed["runtimeAcceptance"]) is bool,
+            "Native batch metadata cannot masquerade as boolean/integer")
+    require(observed == expected, "Complete exact native batch source record mismatch")
+    return expected
+
+
 def read_config(path: Path = CONFIG) -> dict:
     require(path.is_file() and not path.is_symlink(), "Missing source candidate config")
     d = json.loads(path.read_bytes(), object_pairs_hook=strict_object)

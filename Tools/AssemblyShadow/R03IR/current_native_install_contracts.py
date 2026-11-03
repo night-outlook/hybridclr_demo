@@ -182,6 +182,21 @@ class InstalledNativeAuditContracts(unittest.TestCase):
         self.assertEqual(audit.delta.LEGACY_NATIVE,
                          "74dbdbea80d83923863303bd2b2c0a87f36541b1")
 
+    def test_18_typed_shared_producer_metadata_rejects_bool_int_and_extra(self):
+        for field, bad in (("schemaVersion", True),
+                           ("runtimeAcceptance", 0), ("branch", "main"),
+                           ("phase", "unreviewed"), ("hybridclr_demo", "0"*40)):
+            with self.subTest(field=field):
+                receipt = self.sealed_batch()
+                receipt["repositories"][field] = bad
+                with self.assertRaises(ValueError):
+                    audit.admit_sealed_three_builds(receipt, "a"*40)
+        receipt = self.sealed_batch()
+        receipt["repositories"]["extraUnknownKey"] = False
+        with self.assertRaises(ValueError):
+            audit.admit_sealed_three_builds(receipt, "a"*40)
+
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

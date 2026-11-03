@@ -132,13 +132,10 @@ def admit_sealed_three_builds(batch_result: dict, demo_commit: str) -> dict:
           batch_result.get("R03Accepted") is False and
           batch_result.get("H2Passed") is False,
           "Sealed non-acceptance original Player batch required")
-    expected = {
-        "schemaVersion": 1, "phase": "candidate", "branch": candidate.BRANCH,
-        "hybridclr_demo": demo_commit, **candidate.CURRENT,
-        "runtimeAcceptance": False,
-    }
-    check(batch_result.get("repositories") == expected,
-          "Complete exact repository tuple including original metadata required")
+    # Share the complete producer record contract with the top-level
+    # coordinator; typed schema/acceptance fields are not interchangeable
+    # with 1/0 and no extra or missing provenance keys are permitted.
+    candidate.verify_batch_repository_record(batch_result.get("repositories"), demo_commit)
     check(type(batch_result.get("plannedFreshBuilds")) is int and
           batch_result["plannedFreshBuilds"] == 3 and
           type(batch_result.get("verifiedFreshBuilds")) is int and

@@ -26,6 +26,7 @@ sys.path.insert(0, str(HERE.parent / "R03"))
 import current_native_source_gate as source
 import current_native_vm_delta_contracts as delta
 import current_native_install_audit as installed
+import run_current_native_host_preflight as current_host
 from run_local import BRANCH, REPOS, identity
 from command_lifetime import group_exists, group_snapshot
 NATIVE = source.CURRENT["il2cpp_plus"]
@@ -372,11 +373,29 @@ def main() -> int:
                 "state": "Blocked", "reason": "Authentic original S full archive must pass first"}
         stages["native-host-diagnostics"] = run_step(
             root, "native-host-diagnostics",
-            [sys.executable, "-B", script / "run_primary_host_preflight.py",
+            [sys.executable, "-B", script / "run_current_native_host_preflight.py",
              "--workspace", args.workspace, "--expected-demo", args.demo_commit,
              "--expected-native", NATIVE,
              "--output", root / "native-host-diagnostics"], 7200)
-        if all(step_ok(stages[name]) for name, _, _ in tests):
+        if step_ok(stages["native-host-diagnostics"]):
+            try:
+                host_path = root / "native-host-diagnostics/RESULT.json"
+                require(host_path.is_file() and not host_path.is_symlink(),
+                        "Actual ten-component native host report required")
+                host_receipt = json.loads(
+                    host_path.read_bytes(), object_pairs_hook=source.strict_object)
+                current_host.verify_current_host_report(
+                    host_receipt, args.demo_commit, NATIVE)
+            except Exception as error:
+                stages["native-host-diagnostics"]["state"] = "Failed"
+                stages["native-host-diagnostics"]["hostVerdictError"] = str(error)
+        if (all(step_ok(stages[name]) for name, _, _ in tests) and
+                step_ok(stages["native-host-diagnostics"]) and
+                step_ok(stages["original-s-audit"]) and
+                step_ok(stages["original-s-process-joins"])):
+            # A successful exit code from the historical eight-component
+            # helper alone must never launch Unity in this current source
+            # cycle: the two fresh owner C++11 suites are mandatory.
             # Repeat source, branch, clean, live remote and 45 VM byte checks after
             # independent host/archive commands and immediately before actual Unity.
             validate_sources(args.workspace, args.demo_commit)
@@ -435,7 +454,7 @@ def main() -> int:
                             "Three real-build source pairs and original Player result required")
         else:
             stages["current-native-players"] = {
-                "state": "Blocked", "reason": "At least one source/oracle/VM host contract failed"}
+                "state": "Blocked", "reason": "Source, original-S, or complete ten-component native host prerequisite failed"}
             stages["native-installed-source-audit"] = {
                 "state": "Blocked", "reason": "No current Player source installation exists"}
     except BaseException as error:

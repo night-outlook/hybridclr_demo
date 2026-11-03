@@ -5,6 +5,9 @@ on:
     paths:
       - 'Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_cycle_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_host_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py'
+      - 'Tools/AssemblyShadow/R03IR/fixtures/retained_oneuse_i_LOCAL_BATCH_RESULT.json'
       - 'Tools/AssemblyShadow/R03IR/current_native_handoff_ci_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_vm_delta.json'
       - 'Tools/AssemblyShadow/R03IR/current_native_vm_delta_contracts.py'
@@ -98,6 +101,7 @@ jobs:
           export PYTHONDONTWRITEBYTECODE=1
           python3 -B Tools/AssemblyShadow/R03IR/current_native_cycle_contracts.py
           python3 -B Tools/AssemblyShadow/R03IR/current_native_install_contracts.py
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_host_contracts.py
       - name: Twenty-five retained-worktree capacity and net8 toolchain source-only tests
         shell: bash
         run: |

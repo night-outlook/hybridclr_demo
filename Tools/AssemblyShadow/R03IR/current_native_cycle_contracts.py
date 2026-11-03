@@ -7,6 +7,7 @@ root execution. The actual coordinator is exercised on isolated tiny controls.
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -34,11 +35,10 @@ class CurrentNativeCycleContracts(unittest.TestCase):
         self.output.parent.mkdir()
 
     def fake_result(self) -> dict:
-        cells = ([{"id": "build-" + role, "result": "Passed"}
-                  for role in cycle.EXPECTED_BUILD_ROLES] +
-                 [{"id": ident, "result": "Passed"}
-                  for ident in cycle.EXPECTED_PLAYERS])
-        return {"repositories": {"hybridclr_demo": "a" * 40, **cycle.source.CURRENT},
+        cells = [{"id": ident, "result": "Passed"}
+                 for ident in cycle.EXPECTED_CHILD_CELLS]
+        return {"schemaVersion": 1, "kind": "R03IRFocusedTerminalLocalBatch",
+                "repositories": cycle.source.expected_batch_repositories("a" * 40),
                 "result": "FocusedEvidenceReadyForPrimaryReview",
                 "sealStatus": "Passed", "plannedFreshBuilds": 3,
                 "verifiedFreshBuilds": 3, "plannedFreshPlayers": 5,
@@ -50,11 +50,11 @@ class CurrentNativeCycleContracts(unittest.TestCase):
                 "qualificationApproved": False, "pureInterpreterExpansionEnabled": False,
                 "cells": cells}
 
-    def read_batch(self, data: dict):
+    def read_batch(self, data: dict, demo_commit="a" * 40):
         receipt = self.base / "test-batch.json"
         receipt.write_text(json.dumps(data), encoding="utf-8")
         try:
-            return cycle.verify_current_batch(receipt, "a" * 40)
+            return cycle.verify_current_batch(receipt, demo_commit)
         finally:
             receipt.unlink()
 
@@ -282,6 +282,88 @@ class CurrentNativeCycleContracts(unittest.TestCase):
         self.assertEqual(cycle.assess_summary(stages, None,
             {"result": "PassedReadOnlySourceAdmission_NotBuildOrRuntime"})["result"],
             "ReturnRequired")
+
+
+    def test_22_actual_retained_oneuse_i_positive_child_receipt(self):
+        # Exact original published I child bytes copied to the current-source
+        # test tree. Its real child passed, but I's *outer* result stays FAIL.
+        archive = Path(__file__).resolve().parent / (
+            "fixtures/retained_oneuse_i_LOCAL_BATCH_RESULT.json")
+        raw = archive.read_bytes()
+        self.assertEqual(cycle.source.git_blob(raw),
+                         "d7209e369f481bb91df3bd697046ae9447f5b255")
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),
+                         "a2a4fc891f26151ff1e0822214e0625fe409a7be3cf7c95b1e941838f3363224")
+        original_demo = "c707141204265a8111f1f5928515fc8cf28abfee"
+        verdict = cycle.verify_current_batch(archive, original_demo)
+        self.assertEqual(verdict["result"], "PassedFiveFocusedCurrentNativePlayersOnly")
+        self.assertEqual(verdict["validatedCells"], 18)
+        self.assertIs(verdict["completeProducerRepositoryRecord"], True)
+        self.assertIs(verdict["R03Accepted"], False)
+        self.assertIs(verdict["IRR0302IndependentlyClosed"], False)
+
+    def test_23_complete_repo_metadata_is_required_and_typed(self):
+        fields = (
+            ("schemaVersion", True), ("schemaVersion", "1"),
+            ("schemaVersion", 2), ("branch", "main"), ("phase", "runtime"),
+            ("runtimeAcceptance", 0), ("runtimeAcceptance", True),
+            ("hybridclr_demo", "b" * 40),
+            ("il2cpp_plus", "0" * 40),
+        )
+        for field, value in fields:
+            with self.subTest(field=field, value=value):
+                receipt = self.fake_result()
+                receipt["repositories"][field] = value
+                with self.assertRaises(ValueError):
+                    self.read_batch(receipt)
+        for key in ("schemaVersion", "branch", "phase", "runtimeAcceptance"):
+            with self.subTest(missing=key):
+                receipt = self.fake_result()
+                del receipt["repositories"][key]
+                with self.assertRaises(ValueError):
+                    self.read_batch(receipt)
+        receipt = self.fake_result()
+        receipt["repositories"]["extra"] = "unreviewed"
+        with self.assertRaises(ValueError):
+            self.read_batch(receipt)
+
+    def test_24_real_i_metadata_positive_and_negative_source_reuse(self):
+        fixture = Path(__file__).resolve().parent / (
+            "fixtures/retained_oneuse_i_LOCAL_BATCH_RESULT.json")
+        record = json.loads(fixture.read_bytes())
+        original_demo = "c707141204265a8111f1f5928515fc8cf28abfee"
+        self.assertEqual(self.read_batch(record, original_demo)["validatedCells"], 18)
+        record["repositories"]["branch"] = "different-branch"
+        with self.assertRaises(ValueError):
+            self.read_batch(record, original_demo)
+
+    def test_25_duplicate_or_failed_child_and_boolean_counts_rejected(self):
+        for scenario in ("duplicate", "missing", "failed-prepare",
+                         "boolean-build-count", "false-fixture-hash"):
+            with self.subTest(scenario=scenario):
+                rec = self.fake_result()
+                if scenario == "duplicate":
+                    rec["cells"][0]["id"] = rec["cells"][1]["id"]
+                if scenario == "missing":
+                    rec["cells"].pop(0)
+                if scenario == "failed-prepare":
+                    rec["cells"][4]["result"] = "Blocked"
+                if scenario == "boolean-build-count":
+                    rec["verifiedFreshBuilds"] = True
+                if scenario == "false-fixture-hash":
+                    rec["originalSFixtureAuthoritySha256"] = "not-sha256"
+                with self.assertRaises(ValueError):
+                    self.read_batch(rec)
+
+    def test_26_duplicate_json_keys_cannot_mask_source_identity(self):
+        rec = self.fake_result()
+        text = json.dumps(rec)
+        self.assertIn('"repositories": {', text)
+        text = text.replace('"repositories": {', '"repositories": {"branch": "main",', 1)
+        p = self.base / "duplicate.json"
+        p.write_text(text, encoding="utf-8")
+        with self.assertRaises(ValueError):
+            cycle.verify_current_batch(p, "a" * 40)
 
 
 
