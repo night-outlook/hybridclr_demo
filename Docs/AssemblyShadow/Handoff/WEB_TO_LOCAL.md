@@ -1,48 +1,44 @@
-# Primary Implementation → Local Validation — CONDITIONAL R03 oneuse-I (2026-11-03 UTC)
+# Primary Implementation → Local Validation — CONDITIONAL R03 oneuse-J (2026-11-03 UTC)
 
-**Authority and stop:** One brand-new, source-pinned R03 **I** cycle is permitted **only** after all exact nine-workflow CI, four-repository Git source/branch/head, read-only Mac/SDK/original-S custody, H preservation, two-source-pinned capacity, and absent I root gates below pass. H is **consumed FAIL** and must never be replayed. The exact final demo commit is the 40-character pushed HEAD in the closing Primary handoff prompt, not any intermediate Primary commit or historical H execution SHA.
+**Authority, scope and stop.** This is a **new, exactly one-use J R03** validation batch. Its sole new goals are (1) genuinely consuming the complete source-bound native child result, and (2) proving that Local executes the **full 8 historical + 2 fresh current** native host suites and fail-stops before Unity on an incomplete roster. Only the **final 40-character pushed demo HEAD in the closing Primary prompt** is execution authority; every other source SHA below is an explicitly different historical or constituent pin. All nine mandatory exact-final-commit macOS/Ubuntu CI workflows and all read-only Local admission checks must PASS before the J root is created. I is consumed FAIL, no retry or retroactive promotion.
 
-Design and independent limits: [I Design](../History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_H_ENGINE_OWNER_2026-11-03/DESIGN.md), [I Plan](../History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_H_ENGINE_OWNER_2026-11-03/PLAN.md), [Primary source review](../History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_H_ENGINE_OWNER_2026-11-03/PRIMARY_SOURCE_REVIEW.md).
+[Current J Design](../History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_I_CONSUMER_HOST_2026-11-03/DESIGN.md), [Current J Plan](../History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_I_CONSUMER_HOST_2026-11-03/PLAN.md), [Primary source review](../History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_I_CONSUMER_HOST_2026-11-03/PRIMARY_SOURCE_REVIEW.md).
 
-## 1. Prior evidence and exact Git pins
+## 1. Historical I results — preserve exact scopes
 
-H Local actual: three fresh Unity2022.3.62f2 C++11 ON Release/ON Debug/OFF Release builds **Passed**; ON baseline release/debug, ON type and OFF Player **Passed**; genuine engine Player **Failed** (55,656 reports/514ms vs 64/500ms, watchdog exit71, owner quit once/request returned, no normal atexit). Original source demo `3e838edf8995e40058f3bc6c42f071446a0be821`, native `cdd3f7bc671880052e4f55ae4c1cd75b99a603e1`. Publication descendant demo `d49ad3e113b67b300381e6af904ed1d343005e7e`. H original official135 installed-source audit was **Blocked** though Local separately authenticated 135 byte comparisons. H raw engine, failed-command receipt, native logs, build output, sealed archive and all prior G/E/F history must remain byte-identical. Never rewrite H, rerun its original coordinator/Player, or infer acceptance.
+I actual execution demo `c707141204265a8111f1f5928515fc8cf28abfee`, native `41764ae1eeefb33b05966e7f7676e52aae39c340`; Local I evidence was published on descendant demo `2af9aee4b22abb49f414abc57059eb21a3bd4822` and remains byte-identical in `History/M07R/R03/local-validation-current-native-original-s-20261103-oneuse-i/`. Its top-level `batch/RESULT.json` is **ReturnRequired/exit1**; do not change, rename, overwrite, re-execute or infer aggregate PASS.
 
-All four workspaces must be physically clean Git checkouts of the exact canonical `night-outlook` repo, `codex/assembly-shadow-r01b-h1` branch, and **latest pushed HEAD** matching the closing Primary handoff and GitHub remote:
+I's genuine scoped evidence: all three actual Unity2022.3.62f2 arm64 IL2CPP C++11 builds Passed, all five Players Passed, child18/18 cells Passed, three complete native general sidecars, and official 135/135 installed VM source-pair audit Passed. I engine PID88764 exited0/NativeAtexit, exact sentinel, original type failure13/RestartRequired, one owner quit request, wants/quit native decision counters1 each, 11 real completed reports/103ms under unchanged64/500ms. First failure is **the outer consumer**: producer `repositories` contained 1/candidate/branch/four source SHAs/runtimeAcceptance=false, but `verify_current_batch` compared only the SHA map, then rejected otherwise valid metadata. The consumer did not reach later checks. Secondary independent coverage: fresh Local host had **eight** original commands Passed; the two new owner C++11 suites were **NotRun** locally, despite separate exact-source two-OS CI PASS. The official source-pair audit Passed independently, not because outer coordinator was accepted.
 
-| Repository | Expected Local path | Latest pushed execution commit |
+Preserve original S detached sparse `fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b` tree `2acdcc0ec3c0f15dea11f99bc9c5d6d0f431de79` / 16,978 protected files, original nine-part/15,713-member/90 historical cells and 59 historical process joins, all retained A–I checkpoints, older H/G/E failures, F absence and all 2,405 installed SDK source inputs. No cleanup, resparsify, source rewrite or reuse of prior output roots.
+
+## 2. Repository/source authority
+
+All four clean worktrees must have the **same branch** `codex/assembly-shadow-r01b-h1`, canonical `night-outlook` origin, their own real Git `HEAD`, and identical live `ls-remote` HEAD. Paths are exact (each is a nested Git repository; workspace parent is not a Git repository).
+
+| Repository | Absolute Local checkout | Required pushed execution SHA |
 | --- | --- | --- |
-| night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | **final 40-digit demo SHA in closing Primary prompt; exact CI head_sha** |
-| night-outlook/hybridclr | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
-| night-outlook/hybridclr_unity | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
-| night-outlook/il2cpp_plus | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `41764ae1eeefb33b05966e7f7676e52aae39c340` |
+| `night-outlook/hybridclr_demo` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | **the full final pushed demo commit in closing Primary prompt**; nine CI run `head_sha` must equal it |
+| `night-outlook/hybridclr` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `night-outlook/hybridclr_unity` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| `night-outlook/il2cpp_plus` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `41764ae1eeefb33b05966e7f7676e52aae39c340` |
 
-Original historical S native `1cf87f8209790f9fb2ebec97487dc1990ccd56c5`, original historical R03 native `74dbdbea80d83923863303bd2b2c0a87f36541b1`, D `e1e5...`, E `ca0...`, G `2c899ece...`, H `cdd3...` and current I native **must not be conflated**. Original `Tools/AssemblyShadow/R03/source-pins.json` is immutable; current source overlay pins exactly **11** candidate source files including `run_terminal_local.py`, both Unity Player fixtures and physical `Runtime.cpp`; `current_native_vm_delta.json` pins **45** changed native VM paths, so official current installed-role parity requires **135** source pairs after three successful builds. Use actual remote Git blob identities, not file names/old SDK copies.
+Source-gate pin: eleven exact R03IR candidate files (current `Tools/AssemblyShadow/R03IR/current_native_candidate.json`) plus all 45 changed physical native VM paths from `current_native_vm_delta.json`. The original R03 `source-pins.json` remains immutable at historical native `74db...`. G/H/I source commits are distinct; only I native `41764...` is the current J constituent. The last implementation source candidate before the final documentary handoff is demo `7bda4a0448ad0a1abac4ac774830ec8daae8b297`, but Local must **NOT** use that intermediate demo SHA as J execution authority.
 
-## 2. Mandatory read and preservation order
+## 3. Source changes and mandatory Local host evidence
 
-Read:
-1. `Docs/AssemblyShadow/README.md`;
-2. this canonical `Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md`;
-3. Local-owned `Handoff/LOCAL_VALIDATION.md`, then `Handoff/RETURN_TO_WEB.md`;
-4. H `History/M07R/R03/local-validation-current-native-original-s-20261102-oneuse-h/{README.md,LOCAL_RESULT.json,RUNTIME_FINDINGS.json}`, especially original exact Player.log line33–56 and raw1004 bytes;
-5. I Design/Plan/Primary source review linked above.
+New code is **only in `hybridclr_demo`**. No production/native changes to the other three repositories. Primary repaired:
+- `current_native_source_gate.py`: one typed, exact full `repositories` producer record shared with coordinator and parity; reject wrong schema/phase/branch/SHA/runtime flag, missing/extra fields or Boolean/number confusion.
+- `run_current_native_validation_cycle.py`: consume full retained record using duplicate-key-rejecting JSON parser, exact seal/schema/kind/18 unique Passed cells, three/five typed counts and original fixture/acceptance; independently verify full Local ten-host `RESULT.json` and **block Unity** if any source/host/original-S prerequisite failed. Preserve all original aggregate failure conditions.
+- `current_native_install_audit.py`: reuse exact full record source predicate without changing its independent three-build/135-physical-source/Player-semantics separation.
+- `run_current_native_host_preflight.py`: current Local wrapper around unchanged historical eight-component helper `run_primary_host_preflight.py` (exact original Git blob `2d51be157b94a47ac19d1061d0066c1f98dbc177`). Execute and verify eight genuine historical helper commands, then **fresh** `native-owner-method-classifier` (2 strict C++11 compiled method-classifier tests) and `native-owner-full-tu` (3 genuine native probe TU C++11 OFF/ON/normal-exit/watchdog tests). Preserve per-child original argv, unique PID, exit, timeout, stdout/stderr SHA256, actual unittest count/OK and pre/post current native source hashes. Fail on missing/duplicate, unrecorded, failed/NotRun or forged component. Current host receipt kind `R03IRCurrentNativeTenHostComponents`, exactly ten `Passed`, scope `PassedHostOnlyTenComponents` and `runtimeAcceptance=false`.
+- `current_native_cycle_contracts.py`, `current_native_install_contracts.py`, `current_native_host_contracts.py`, `current_native_cli_contracts.py`, combined host workflow: replay a **byte-identical published I child receipt** as a test-only positive, with original Git blob `d7209e369f481bb91df3bd697046ae9447f5b255` / SHA256 `a2a4fc891f26151ff1e0822214e0625fe409a7be3cf7c95b1e941838f3363224`; all stale/mistyped/duplicate/partial/false acceptance cases rejected. Never reclassify I itself. All new host source is pinned through exact demo commit and new source-hash receipts.
 
-Preserve H's actual engine completedReports=55,656, elapsed514ms, watchdog exit71, original failure13/RestartRequired; previous G 51,865 / E 51,211 counts and their separate evidence, F Blocked/NotRun/root absent, all A–D and original S/failed independent source decisions. Preserve original S sparse detached worktree `/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse`, HEAD `fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b`, protected Git tree `2acdcc0ec3c0f15dea11f99bc9c5d6d0f431de79`, 16,978 protected files. No re-sparsify/recreate/gc/prune/clean, no source/SDK alteration or history reset.
+**Critical Local gate:** do not count the original eight-suite `run_primary_host_preflight.py` or exact-source CI alone as a current native ten-suite Local PASS. The new wrapper must actually execute both extra C++11 subprocesses during J and produce its own log/PID/roster receipts. Unity must not start if the wrapper returns Failed/NotRun or its RESULT is incomplete. The coordinator's ten *stages* now contain one host stage with ten *components* (8+2); do not confuse the two cardinalities.
 
-## 3. Primary I implementation — exact bounded behavior
+## 4. Exact final demo SHA — nine CI workflows required before any Local J
 
-`AssemblyShadowTerminalReporting.h`, `Runtime.cpp`, `AssemblyShadowEngineReportingProbe.cpp` now have a **test-only** native owner-lifecycle responder, limited to `HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1` and `HYBRIDCLR_R03_RUNTIME_PROBE=1`, after a genuine H-style sentinel, one native Unity owner `Application.Quit(0)` request, original durable recovery and actual state9. It matches exact physical nongeneric static no-parameter `UnityEngine.CoreModule:UnityEngine.Application.Internal_ApplicationWantsToQuit():bool` and `Internal_ApplicationQuit():void` only, returning an already-pinned true Boolean or native void without running managed callbacks, cancellation-token code, reflection, interpreter or class initialization. Other `Runtime::Invoke` calls still hit the unchanged original terminal method/class denial. The native responder is **not** a general production recovery or managed shutdown API.
-
-The existing native V2 raw also includes `ownerWantsToQuitNativeResponses` and `ownerApplicationQuitNativeNotifications` (both must equal1 for focused engine PASS), plus separate exact native-decision stderr markers with `managedBodyExecuted=false`. Original reporter count remains **uncapped real 1..64**, observation **<=500ms** unchanged; original failure13/RestartRequired, one quit request, actual `NativeAtexit` and durable original raw/normal-exit log marker are required. Missing markers, `WatchdogForcedExit`, count>64, timeout, wrong source/method, continued denied Unity callbacks preventing exit, corrupted raw/nonce or false first failure = **Failed**. No counter cap, callback sleep, extra stimuli, log/finalizer suppression or bypass of ordinary terminal guards.
-
-Primary also decouples physical installed-source parity from Player semantic PASS. When **all three actual builds** are successful, the child native batch is source-pinned and **sealed**, and its original results/acceptance=false fields remain, the official 45-file×3-role audit runs independently even if one Player fails. It must authenticate original BuildReports, per-role installed before/after file inventories and all135 hashes. Its `siblingPlayerBatchResult` and `siblingPlayerSemanticsAccepted` must reflect the unchanged Player verdict. **Scoped source parity PASS never upgrades a failed Player or full coordinator.** Missing/failed build or invalid seal/source = parity Blocked or Failed; no forged audit PASS.
-
-No Unity local validation or broad full-Shutdown proof is implied by Primary CI. Even native `NativeAtexit` only establishes scoped C-runtime normal exit, not managed Unity teardown, cancellation token completion, GC/RSS or coherent whole-VM epoch.
-
-## 4. Exact final demo commit — nine mandatory CI workflows before Local I
-
-All **nine** paths below must produce a new `push` run with `head_sha` exactly equal to the **full final pushed demo SHA in closing Primary prompt** and both required **macOS/Ubuntu** jobs `completed/success`; record real run IDs, actual jobs/logs/SHA and source/workflow blob hashes. No ancestor-substitution and no relying only on source trigger tests.
+All nine below MUST have an actual fresh **push** run with `head_sha` equal to the *identical final demo SHA in the closing Primary prompt*, and each required macOS and Ubuntu job `completed/success` (18 required job results). Inspect run IDs, job IDs, logs and exact checked-out native/interpreter/package refs; a workflow trigger text assertion is not a substitute. Do not accept ancestor/source-equivalent runs, previous I/H CI or an only-partially-passed matrix.
 
 - `r03-ir-current-native-local-cycle-host.yml`
 - `r03-ir-current-native-source-only.yml`
@@ -54,46 +50,48 @@ All **nine** paths below must produce a new `push` run with `head_sha` exactly e
 - `r03-k-sourcecheck.yml`
 - `r03-l-contracts.yml`
 
-The combined host must compile genuine native-code method-classifier extracted from the new physical header (positive exact AOT signature, wrong method/assembly/return/generic/preterminal/unarmed negatives) and full genuine native reporter TU in both C++11 OFF and ON SDK-like tests, with normal-exit and watchdog-negative raw. Synthetic oracle verifies new V2 owner response/notification counters and unchanged original semantic guards. All nine workflows watch this canonical handoff path for final exact-commit triggers. CI proof is **host only**, no Unity SDK/Player acceptance. Any required missing/pending/failed/cancelled/wrong-head OS job = **NO-GO**: no I output root or Local coordinator, return complete blocker.
+All nine watch this canonical `Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md` push path. The combined current host must exercise the positive exact I receipt and its negatives, `current_native_host_contracts.py` full roster/fail-stop/adversarial controls, and both genuine C++11 owner scripts. Nine fresh CI PASSes prove **only source/host/test infrastructure**; they are not a Unity native build, newly run Player or complete Unity shutdown.
 
-## 5. Read-only Mac prerequisite and one-use I capacity admission
+If any missing/wrong-SHA/failing/pending/cancelled job: **NO-GO: coordinator0, Unity0, I root preserved, J root absent**, record exact prerequisite and stop.
 
-Check actual Unity **2022.3.62f2 arm64** at `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`, real SDK8.0.318/runtime8.0.21, Git/Python/clang++/lipo and clean installed source/SDK pins. No extra Unity/IL2CPP active processes, no SDK/toolchain install and no compiler flag override. The previously trusted DotNetSdk may be exposed through child-process PATH only, as recorded in H; do not substitute another Unity Player version.
+## 5. Read-only Mac admission and J-only disk decision
 
-**Primary explicit I-only capacity GO/NO-GO:** Fixed minimum20GiB and advisory40GiB are unchanged. H observed immediate 39,287,488,512 bytes (36.589GiB), final 36,140,306,432 bytes (~33.658GiB), difference3,147,182,080 bytes (~2.931GiB), *historical* evidence only. A new one-time I advisory exception is granted **only if BOTH** fresh source-pinned read-only Mac admission and a second *independent immediate pre-coordinator* sample show **>=32.0GiB free on the actual I output-parent volume**, with full CI/source/SDK/original-S/custody and root admission Passed. At32.0..under40GiB explicitly record the exceptional GO, exact bytes/timestamps, device and volume; at>=40GiB ordinary advisory GO. **Below32.0GiB NO-GO** even if hard20 passed, no I root creation. I waiver expires with this one-use cycle; never reinterpret H's prior capacity as fresh admission. No cache/history cleanup/APFS sibling-volume workaround.
+Required: installed actual Unity **2022.3.62f2 arm64** at `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity` (H/I hash `35721b35221875b2d170160f7fdd661afff7458b3386f029124f30e1ba2b862c`), .NET SDK8.0.318/runtime8.0.21 osx-arm64, Apple clang++/lipo/Git/Python, actual installed source/SDK pinned and original-S/A–I preservation Passed. Use the proven installed DotNetSdk only via **child-process PATH**, not another Unity version; no compiler overrides, extra installed SDKs or protected cache cleanup. No conflicting Unity/IL2CPP owned processes.
 
-Required I root only if canonical, disjoint and absent:
-`/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I`.
-Never precreate/auto-suffix/reuse. Keep F unused, H consumed and all earlier roots untouched. Preflight stdout/stderr and independent capacity receipts belong **outside** I and historical roots.
+I had available 35,502,940,160 bytes immediately pre-dispatch and 32,462,106,624 bytes at after audit, an **observed** 3,040,833,536-byte (~2.832GiB) drop. The hard20GiB and advisory40GiB thresholds remain unchanged. Primary grants a **J-only conditional advisory exception** with **both** a new source-pinned read-only admission and an independent immediately-before-coordinator sample of **>=28.0GiB free on the actual J parent filesystem**. At>=40GiB normal GO; 28..under40GiB document explicit J-specific exception, exact bytes/timestamps/device/volume and all other gates Passed. **Below28GiB NO-GO**, no J root. I's consumed32GiB exception is not reusable; observed historic usage is not a storage guarantee. Do not delete/purge/symlink/move old evidence to synthesize capacity.
 
-Set exactly:
+J output must be physically canonical, outside all four source repos and original-S and every historical root, and **not exist** before the coordinator:
+`/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-J`.
+No auto-suffix/reuse; F absent, A–I retained.
+
+Use these source-bound values:
 ```bash
 WORKSPACE=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r
 ORIGINAL_S=/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse
 UNITY_EXE=/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
-RUN_ROOT=/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I
-DEMO_COMMIT=<exact-40-character-final-pushed-demo-commit-in-closing-Primary-prompt>
+RUN_ROOT=/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-J
+DEMO_COMMIT=<exact-full-final-pushed-demo-SHA-from-Primary-closing-prompt>
 ```
 
-Run only the read-only original source-pinned admission **before I root creation**, require `PassedReadOnlyPrerequisites_NoCoordinatorOrUnityRun` and the independent immediate I volume check:
+Run **only** source-pinned read-only admission with no new J root, required result `PassedReadOnlyPrerequisites_NoCoordinatorOrUnityRun`, then independent immediate capacity sample:
 ```bash
 PYTHONDONTWRITEBYTECODE=1 python3 -B "$WORKSPACE/hybridclr_demo/Tools/AssemblyShadow/R03IR/current_native_environment_admission.py" --workspace "$WORKSPACE" --original-s "$ORIGINAL_S" --unity "$UNITY_EXE" --demo-commit "$DEMO_COMMIT" --output "$RUN_ROOT"
 ```
-If any prerequisite fails, report `PrerequisiteBlocked`, I root absent, coordinator0, Unity0, stop. No Local source edit or "test" root creation.
+Retain read-only samples/CI/CLI receipts separately outside source and all consumed roots. Failed preflight or <28GiB = `PrerequisiteBlocked`, J root absent and no Unity, stop.
 
-## 6. Exactly ONE I combined ten-stage coordinator
+## 6. Exactly ONE full J coordinator after all section4/5 gates pass
 
-**Only after all CI, Git and two read-only Mac/capacity gates passed**, invoke the exact existing coordinator ONCE with the **latest final pushed** demo commit:
+Execute the shipped current-source coordinator **once**, no retries/reused binaries/unreviewed Local source changes:
 ```bash
 PYTHONDONTWRITEBYTECODE=1 python3 -B "$WORKSPACE/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py" --workspace "$WORKSPACE" --original-s "$ORIGINAL_S" --unity "$UNITY_EXE" --demo-commit "$DEMO_COMMIT" --output "$RUN_ROOT"
 ```
 
-Ten stages: source/oracle/VM source/installed-source host, real native host diagnostics, original-S nine-part archive 15,713 members/90 **historical** cells and 59 original process joins (archival scope), three actual new Unity2022 arm64 IL2CPP C++11 builds, five real fresh Players (release/debug baseline, type, OFF, engine), plus source-verified official **135** installed VM pairs when all three real builds and sealed batch exist. Keep actual process/command/PID/run nonce/request hash/source/SDK/build/Editor Bee/Player.log/raw/sidecar/semantic-verifier/normal-exit/wants-quit log/counter evidence and first real errors, including after-effects if engine fails. If any other prerequisite prevents genuine source audit, mark separate audit Blocked instead of running a synthetic pass.
+The ten-stage cycle first validates five source/oracle/VM/install-host suites, original-S archive/59 process joins, and **fresh Local native host (8 historical+2 current owner)**. An actual missing/Failed/NotRun native owner test MUST block subsequent Unity. If admitted, it creates **three new** real ON Release/ON Debug/OFF Release Unity2022.3 arm64 IL2CPP C++11 builds (BuildReport/Bee/source SDK hashes) and **five new** real ON release/debug baseline, ON type-resolution, OFF healthy control, and engine-originated unhandled Players (nonce/request/PID/executable/build/raw/log/sidecar/strict verification). Engine retains exact original type failure13, native wants/quit counts1 each, real uncapped 1..64 reports in<=500ms, genuine native `NativeAtexit`/exit0 not watchdog, managed post-terminal body denial, original first-failure stability. Complete general sidecars use actual strict byte/CRC/SHA/UTF8/schema/required arrays. Failed command/actual count/time are never masked by a synthetic PASS.
 
-Engine expected: real frame75 and original synthetic type failure13, exact terminal sentinel handled without invoking managed logger/body, single owner native quit, native wants-to-quit true **once**, native quit notification void **once**, unchanged true total report count 1..64 within <=500ms, true normal C runtime `atexit` durable raw and original recovery, 0 exit. Post-poison ordinary method guard and field/canary/first failure witnesses must remain intact; OFF control must work. Any failed Player must retain Failed/NotRun original verifier, regardless independent installed parity outcome.
+Official installed-source stage must independently authenticate **135** current 45-file×3-real-successful-build pairs after sealed source/three builds, even if a Player fails, never upgrading Player. The child complete 18-cell producer metadata must be genuinely accepted by the new top-level consumer for an overall scoped J result, but no evidence from I may substitute as a fresh J child or Player. Preserve all first errors and original request/raw files unaltered.
 
-## 7. Required evidence, publication, review gate and stop
+## 7. Additive evidence and stopping point
 
-Publish a **new, additive I checkpoint** at `Docs/AssemblyShadow/History/M07R/R03/local-validation-current-native-original-s-20261103-oneuse-i/`, update Local-owned `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md`. Record all CLI/Unity/SDK/CI/repo/head and output identities, 3 builds, 5 Players, engine counters/flags, separately labeled installed parity 135-pair status, source/old-S archival audits, original exact raw failure if any, scoped seal and independent post-preservation. Commit/push and verify four remote HEADs, preserve original S and A–H exactly, and return to Primary Implementation. Local may apply only bounded immediately verifiable fixes, no architecture/SDK/native refactor. Never retry consumed I or start another milestone automatically.
+Local owns a new **additive** `Docs/AssemblyShadow/History/M07R/R03/local-validation-current-native-original-s-20261103-oneuse-j/` plus `Handoff/LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md`. Record actual full/source/git/SDK/CI root/hashes, real ten host component statuses and two owner subprocesses, real 3 builds / 5 Players / 135 physical pairs, coordinator exact consumer result, original-S archival scope, seal and independent original-S/A–I/SDK preservation. Commit/push final Local evidence and verify all four current remote heads. No Local nontrivial refactoring; if a new issue arises, return FAILED/BLOCKED/NotRun to Primary and **stop**, no J retry or next milestone.
 
-**Gate remains closed** even if focused I passes: original Oct 8 independent R03 FAIL/High IR-R03-01/02, D1=A/D2=A, incomplete P1/P2/E0/E1/P3 and whole-VM epoch/full managed Shutdown obligations are still open; `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`, `qualificationApproved=false`, `runtimeAcceptance=false`, PureInterpreter disabled. No H2/M08A/X02/SNAP-01 or Human Review Gate approval.
+**Gate not met** even if all focused J checks pass: original independent Oct8 R03 FAIL/High IR-R03-01/02 and P1/P2/E0/E1/P3, broad Unity-managed Shutdown/GC/RSS and coherent whole-VM epoch remain unproven. Only `FocusedEvidenceReadyForIndependentReview` may be reported. `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`, `qualificationApproved=false`, `runtimeAcceptance=false`, PureInterpreter disabled. Do not start H2/M08A/X02/SNAP-01 or Human Review Gate automatically.
