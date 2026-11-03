@@ -1,0 +1,75 @@
+{
+  "id": "IR-LOCAL-R03-ONEUSE-J-PATH-TYPE-01",
+  "kind": "ReadOnlyActualFailedHostGateDiagnosis",
+  "time": "2026-11-03T10:19:22.350652+00:00",
+  "result": "FAIL_HostStartup_NoUnityOrPlayer",
+  "sourceDemo": "07c96a3739d746b0fe70a9b7acc861d5261a0752",
+  "native": "41764ae1eeefb33b05966e7f7676e52aae39c340",
+  "sourcePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py",
+  "sourceSha256": "beb3685c5a8a5ac9ea5320c936ad1fff2542fab5042e9286db6ca60759876063",
+  "testSourcePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/current_native_host_contracts.py",
+  "testSourceSha256": "5a29568fbafce4b28368a46163263b4cb4bee4f6a2d83860b6fba7d842870970",
+  "symptom": "New current-native host wrapper exits1 at inputs():180 before any host output root or10 components; coordinator correctly blocks Unity and135-pair audit.",
+  "reproduction": {
+    "originalInvocation": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-J/steps/native-host-diagnostics/INVOCATION.json",
+    "originalCommand": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-J/steps/native-host-diagnostics/RESULT.json",
+    "stderr": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-J/steps/native-host-diagnostics/stderr.log",
+    "stderrSha256": "f66059f25855469330e807f08ab8dd1d8bbf1258efc992479675c836ab17bccd",
+    "pid": 90608,
+    "workspace": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+    "output": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-J/native-host-diagnostics",
+    "runOnce": true,
+    "rerunAuthorized": false
+  },
+  "relevantExcerpts": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py",
+      "line": 180,
+      "text": "require(type(workspace) is Path and workspace.is_absolute() and ... workspace.resolve(strict=True) == workspace, \"Canonical absolute workspace required\")"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-J/steps/native-host-diagnostics/stderr.log",
+      "text": "main():227 \u2192 inputs():180 \u2192 require():45 \u2192 ValueError: Canonical absolute workspace required"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/current_native_host_contracts.py",
+      "lines": "156-175",
+      "text": "test_07 checks source strings/order; test_08 asserts CI script names. No successful real Path/argparse-to-inputs startup path is exercised."
+    }
+  ],
+  "actualWorkspaceFacts": {
+    "typeName": "PosixPath",
+    "typeIsPath": false,
+    "isinstancePath": true,
+    "absolute": true,
+    "directory": true,
+    "symlink": false,
+    "physicallyCanonical": true
+  },
+  "mostLikelyRootCause": "pathlib.Path is a factory/interface whose construction returns the concrete platform class PosixPath on this macOS. argparse(type=Path) therefore supplies a valid canonical PosixPath, but exact class identity type(workspace) is Path is false. The type guard short-circuits before all otherwise-true canonical checks. This is not a symlink, wrong source path, TMPDIR alias or storage failure.",
+  "affectedScope": "New current-native host dispatcher input admission on macOS/POSIX; all8+2 internal host commands NotRun,3 builds/5 Players/official135 pairs Blocked and NotRun. FreshJ complete child-record consumer is also NotRun because no child exists. No new native runtime failure is inferred.",
+  "recommendedDirection": "Primary should accept the pathlib concrete object through an appropriate Path isinstance check while preserving absolute/directory/no-symlink/physical-canonical/source/disjoint-root guards. Add a true argparse(type=Path) positive startup/input test using canonical real Path on macOS+Linux, invalid string/relative/symlink negatives, and dispatch/fail-stop integration beyond string-presence assertions. Do not change TMPDIR, coerce source identities or relax ten-component requirements.",
+  "remainingUncertainty": "All later inputs/ten-host gates and complete freshJ child consumer remain unexecuted; further failures may surface after fixing this first gate.",
+  "validationStillRequired": "Source-bound CI with real startup positives/negatives and exact roster checks, followed only under a new published Local handoff by fresh admitted8+2 host/build/Player/parity evidence. Preserve consumedJ ReturnRequired and originalI FAIL; noJ retry.",
+  "localFixDisposition": "No source patch: source-pinned one-useJ is consumed and its mandatory host gate failed; the handoff requires stop/return on a new issue, so a closed-loop corrected invocation is outside this cycle.",
+  "originalAggregateResult": "ReturnRequired",
+  "originalStageStates": {
+    "current-native-players": "Blocked",
+    "installed-source-host-contracts": "Passed",
+    "native-host-diagnostics": "Failed",
+    "native-installed-source-audit": "Blocked",
+    "oracle-contracts": "Passed",
+    "original-s-audit": "Passed",
+    "original-s-host-contracts": "Passed",
+    "original-s-process-joins": "Passed",
+    "source-contracts": "Passed",
+    "vm-delta-contracts": "Passed"
+  },
+  "nativeHostInternalComponentsNotRun": 10,
+  "UnityLaunches": 0,
+  "PlayersLaunched": 0,
+  "sourceModified": false,
+  "consumedEvidenceModified": false,
+  "capacityExceptionWasAdmitted": true,
+  "classification": "HostGateFailed_PathFactoryExactType"
+}

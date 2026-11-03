@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py", line 297, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py", line 227, in main
+    report = inputs(args.workspace, args.expected_demo, args.expected_native)
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py", line 180, in inputs
+    require(type(workspace) is Path and workspace.is_absolute() and
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            workspace.is_dir() and not workspace.is_symlink() and
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            workspace.resolve(strict=True) == workspace, "Canonical absolute workspace required")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py", line 45, in require
+    raise ValueError(message)
+ValueError: Canonical absolute workspace required

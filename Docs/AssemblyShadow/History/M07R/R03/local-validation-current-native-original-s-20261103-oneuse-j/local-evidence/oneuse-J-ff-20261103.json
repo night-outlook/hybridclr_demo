@@ -1,0 +1,56 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "fetch",
+        "origin",
+        "refs/heads/codex/assembly-shadow-r01b-h1"
+      ],
+      "start": "2026-11-03T10:07:33.668098+00:00",
+      "end": "2026-11-03T10:07:38.741101+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "From github.com:night-outlook/hybridclr_demo\n * branch                codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   2af9aee4b..07c96a373  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "merge-base",
+        "--is-ancestor",
+        "HEAD",
+        "07c96a3739d746b0fe70a9b7acc861d5261a0752"
+      ],
+      "start": "2026-11-03T10:07:38.741138+00:00",
+      "end": "2026-11-03T10:07:38.753354+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "merge",
+        "--ff-only",
+        "07c96a3739d746b0fe70a9b7acc861d5261a0752"
+      ],
+      "start": "2026-11-03T10:07:38.753377+00:00",
+      "end": "2026-11-03T10:07:39.094500+00:00",
+      "exit": 0,
+      "stdout": "Updating 2af9aee4b..07c96a373\nFast-forward\n .../r03-ir-current-native-local-cycle-host.yml     |   4 +\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        |  96 ++--\n .../DESIGN.md                                      |  54 +++\n .../PLAN.md                                        |  61 +++\n .../PRIMARY_SOURCE_REVIEW.md                       |  32 ++\n Docs/AssemblyShadow/README.md                      |  12 +\n .../R03IR/current_native_cli_contracts.py          |   2 +-\n .../R03IR/current_native_cycle_contracts.py        |  96 +++-\n .../R03IR/current_native_host_contracts.py         | 178 +++++++\n .../R03IR/current_native_install_audit.py          |  11 +-\n .../R03IR/current_native_install_contracts.py      |  15 +\n .../R03IR/current_native_source_gate.py            |  24 +\n .../retained_oneuse_i_LOCAL_BATCH_RESULT.json      | 529 +++++++++++++++++++++\n .../R03IR/run_current_native_host_preflight.py     | 297 ++++++++++++\n .../R03IR/run_current_native_validation_cycle.py   |  86 +++-\n 15 files changed, 1414 insertions(+), 83 deletions(-)\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_I_CONSUMER_HOST_2026-11-03/DESIGN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_I_CONSUMER_HOST_2026-11-03/PLAN.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_I_CONSUMER_HOST_2026-11-03/PRIMARY_SOURCE_REVIEW.md\n create mode 100644 Tools/AssemblyShadow/R03IR/current_native_host_contracts.py\n create mode 100644 Tools/AssemblyShadow/R03IR/fixtures/retained_oneuse_i_LOCAL_BATCH_RESULT.json\n create mode 100644 Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py\n",
+      "stderr": ""
+    }
+  ],
+  "pins": {
+    "hybridclr_demo": "07c96a3739d746b0fe70a9b7acc861d5261a0752",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340"
+  }
+}
