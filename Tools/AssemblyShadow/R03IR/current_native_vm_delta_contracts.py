@@ -18,7 +18,7 @@ import unittest
 
 HERE = Path(__file__).resolve().parent
 MANIFEST = HERE / "current_native_vm_delta.json"
-MANIFEST_BLOB = "TO_BE_UPDATED"
+MANIFEST_BLOB = "b7840afc4e1b475e2d6814adcb0963a25a91a553"
 LEGACY_NATIVE = "74dbdbea80d83923863303bd2b2c0a87f36541b1"
 CURRENT_NATIVE = "cdd3f7bc671880052e4f55ae4c1cd75b99a603e1"
 EXPECTED_VM_NAMES = (
