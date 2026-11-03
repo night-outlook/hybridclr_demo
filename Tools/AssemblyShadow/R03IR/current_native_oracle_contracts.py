@@ -18,8 +18,9 @@ from run_terminal_local import verify_ir, verify_engine
 from batch_contract import ContractError
 
 HERE = Path(__file__).resolve().parent
-PINNED_ORACLE_BLOB = "dd7b57dcf9d42010e4c9ae44177ecf710236693f"
-PINNED_PLAYER_BLOB = "598feeec3231707091699d99fbf4428d50b52024"
+PINNED_ORACLE_BLOB = "09e601ed3b7b90caaea96e82dc8063d454eee935"
+PINNED_PLAYER_BLOB = "e2f650ad95b290620aa52949b43a1866272ac6bf"
+PINNED_FRAME_BLOB = "47a3e095480de2ec657e7e5acc453a5a76002a18"
 CASE_IDS = {
     "baseline-owner": "IR-R03-02-release-baseline",
     "type-resolution": "IR-R03-02-release-type",
@@ -95,14 +96,18 @@ def ir_raw(stimulus: str) -> dict:
 
 def engine_raw():
     req = request_for("engine-unhandled")
-    return {"schemaVersion": 1, "kind": "R03IREngineReportingV1",
+    return {"schemaVersion": 2, "kind": "R03IREngineReportingV2",
             "runtimeAcceptance": False, "runId": req["runId"],
             "caseId": req["caseId"], "processId": PINNED_SAMPLE_PID,
             "result": "ObservedNotAccepted", "timedOut": False,
             "initialState": 6, "finalState": 9,
             "preManagedLoggerCalls": 1, "finalManagedLoggerCalls": 1,
-            "completedReports": 1, "observationMilliseconds": 500,
+            "completedReports": 1,
+            "observationLimitMilliseconds": 500,
+            "observationElapsedMilliseconds": 20,
             "ownerQuitRequested": True, "ownerQuitNativeCalls": 1,
+            "ownerQuitReturned": True, "normalExitHookObserved": True,
+            "witnessExitMode": "NativeAtexit",
             "recovery": {"published": True, "stateCode": 9,
                          "terminalFailureCode": 13,
                          "disposition": "RestartRequired"}}
@@ -111,10 +116,12 @@ def engine_raw():
 def engine_log():
     run_id = request_for("engine-unhandled")["runId"]
     return (
+        '[AssemblyShadowPhase] phase=75 state=6 generation=1\n'
         '[AssemblyShadowTerminalReport] sequence=1 state=9 message="'
         'R03_ENGINE_UNHANDLED_' + run_id +
         '" managedHandlerExecuted=false\n'
         '[R03EngineOwnerQuit] source=UnityNativeIcall once=1 sentinelMatched=true\n'
+        '[R03EngineOwnerExit] nativeAtexit=true rawFlushed=true\n'
         '[R03ReserveGcProbe] mask=31 source=actual-test\n'
     )
 
@@ -126,10 +133,13 @@ class CurrentNativeOracleContracts(unittest.TestCase):
     def setUpClass(cls):
         cls.oracle_source = HERE / "run_terminal_local.py"
         cls.player_source = HERE / "PlayerProject/R03TerminalPlayer.cs"
+        cls.frame_source = HERE / "PlayerProject/R03EngineFrameDispatcher.cs"
         if git_blob(cls.oracle_source) != PINNED_ORACLE_BLOB:
             raise AssertionError("Existing oracle source changed; review test assumptions")
         if git_blob(cls.player_source) != PINNED_PLAYER_BLOB:
             raise AssertionError("Original Player witness source changed")
+        if git_blob(cls.frame_source) != PINNED_FRAME_BLOB:
+            raise AssertionError("Real Unity frame witness source changed")
 
     def check_ir(self, stimulus, raw=None, req=None, pid=PINNED_SAMPLE_PID):
         return verify_ir(
@@ -158,6 +168,7 @@ class CurrentNativeOracleContracts(unittest.TestCase):
     def test_01_actual_source_blobs_fixed(self):
         self.assertEqual(git_blob(self.oracle_source), PINNED_ORACLE_BLOB)
         self.assertEqual(git_blob(self.player_source), PINNED_PLAYER_BLOB)
+        self.assertEqual(git_blob(self.frame_source), PINNED_FRAME_BLOB)
 
     def test_02_positive_baseline_owner_oracle_is_nonacceptance(self):
         ret = self.check_ir("baseline-owner")
@@ -281,7 +292,10 @@ class CurrentNativeOracleContracts(unittest.TestCase):
 
     def test_24_engine_bounded_native_completion_required(self):
         for k, value in (("completedReports", 0), ("completedReports", 65),
-                         ("observationMilliseconds", 0), ("timedOut", True)):
+                         ("observationLimitMilliseconds", 0),
+                         ("observationElapsedMilliseconds", -1),
+                         ("observationElapsedMilliseconds", 501),
+                         ("timedOut", True)):
             with self.subTest(field=k, value=value):
                 self.reject_engine(lambda r, key=k, v=value: r.__setitem__(key, v))
 
@@ -315,7 +329,13 @@ class CurrentNativeOracleContracts(unittest.TestCase):
         indices = [source.find(s) for s in tokens]
         self.assertTrue(all(x >= 0 for x in indices), indices)
         self.assertEqual(indices, sorted(indices))
-        self.assertIn('throw engineSentinel;', source)
+        self.assertNotIn('throw engineSentinel;', source)
+        self.assertIn('frame.Arm(engineSentinel);', source)
+        self.assertIn('UnityEngine.Object.DontDestroyOnLoad(owner);', source)
+        frame = self.frame_source.read_text(encoding="utf-8")
+        self.assertIn('private void Update()', frame)
+        self.assertIn('ForceEngineFailureOnFrame()', frame)
+        self.assertIn('throw _sentinel;', frame)
         self.assertIn('R03_IR_Exit(exit);', source)
 
     def test_27_complete_case_ids_and_source_only_marker(self):
@@ -323,6 +343,29 @@ class CurrentNativeOracleContracts(unittest.TestCase):
         self.assertEqual(len(set(CASE_IDS.values())), 4)
         self.assertNotIn("UnityEngine", self.oracle_source.read_text())
         self.assertEqual(PINNED_SAMPLE_PID, 424242)
+
+    def test_30_engine_watchdog_cannot_invent_success(self):
+        for field, value in (
+            ("schemaVersion", 1), ("kind", "R03IREngineReportingV1"),
+            ("normalExitHookObserved", False),
+            ("witnessExitMode", "WatchdogForcedExit"),
+            ("ownerQuitReturned", 1), ("ownerQuitReturned", None),
+            ("observationElapsedMilliseconds", True),
+            ("observationLimitMilliseconds", 499),
+        ):
+            with self.subTest(field=field, value=value):
+                self.reject_engine(lambda r, f=field, v=value: r.__setitem__(f, v))
+        for marker in ("[R03EngineOwnerExit] nativeAtexit=true rawFlushed=true",
+                       "[AssemblyShadowPhase] phase=75 state=6"):
+            with self.assertRaises(ContractError):
+                self.check_engine(log=engine_log().replace(marker, ""))
+
+    def test_31_engine_process_must_exit_with_native_provenance(self):
+        self.assertEqual(self.check_engine()["scope"],
+                         "One frame-originated unhandled sentinel and normal process exit; not full R03")
+        with self.assertRaises(ContractError):
+            self.check_engine(log=engine_log().replace(
+                "nativeAtexit=true rawFlushed=true", "nativeAtexit=true rawFlushed=false"))
 
 
 if __name__ == "__main__":
