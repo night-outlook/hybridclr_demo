@@ -1,3 +1,13 @@
+# Current Primary response — oneuse-G FAIL remediated in source; conditional oneuse-H (2026-11-03 UTC)
+
+**Latest Local G is FAIL / ReturnRequired**, not acceptance: two ON actual Unity2022.3.62f2 C++11 builds and three ON post-poison complete sidecar Players Passed; OFF C++11 build failed on incomplete exception/string types; engine observer recorded 51,865 reports in500ms despite a single native owner quit request, exited71; OFF Player/official 135-pair audit Blocked. G is consumed and immutable. F remains BLOCKED and E remains FAIL.
+
+**Primary H candidate:** native probe includes `il2cpp-object-internals.h` independently in feature-OFF and feature-gates its recovery/exit writer; Unity fixture triggers the authentic unhandled sentinel from a running `MonoBehaviour.Update` frame instead of `BeforeSceneLoad`; native V2 observer distinguishes normal `atexit` (durably logged) from failure-only `std::_Exit(71)` watchdog, preserving actual 64-report/500ms bounds and first failure. New source-only C++11 OFF/ON full-translation-unit mock tests, strict host oracle negatives and 11 candidate/45 native-VM source blob pins prepare **one** conditional H combined Local cycle. Normal process exit is not full Unity Shutdown or a coherent VM epoch. [Design](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_G_OFF_ENGINE_2026-11-03/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_G_OFF_ENGINE_2026-11-03/PLAN.md), [Primary source review](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_G_OFF_ENGINE_2026-11-03/PRIMARY_SOURCE_REVIEW.md), [canonical H handoff](Handoff/WEB_TO_LOCAL.md).
+
+**Local H strict prerequisites:** nine actual macOS+Ubuntu CI workflows at identical *final* demo SHA, exact four remote/source pins, read-only Mac and unconsumed H root, original-S and all A–G evidence preservation. Hard20GiB/advisory40GiB unchanged; explicit **H-only** conditional admission needs two current >=36GiB samples on actual parent, else NO-GO. No automatic Player run before gates. CI source-host tests are not actual Unity acceptance. All Oct8 independent R03 FAIL/High IR-R03-01/02 and `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`, `runtimeAcceptance=false`, PureInterpreter disabled remain. No H2/M08A/X02/SNAP-01/Human Review Gate.
+
+---
+
 # Current Primary response — oneuse-F CI BLOCKED; exact-source oneuse-G preparation (2026-11-02)
 
 **Latest Local F remains BLOCKED / NotRun**, not a new product/runtime failure: at governing demo `9db3927a9cc899fbe73948e0ff9c586f96efde6d` only the combined host had both OS jobs PASS; eight required workflows had no matching exact-commit run. F coordinator0, Unity0, Players0; its root remained absent. E FAIL and all A–F prior checkpoints stay immutable.
