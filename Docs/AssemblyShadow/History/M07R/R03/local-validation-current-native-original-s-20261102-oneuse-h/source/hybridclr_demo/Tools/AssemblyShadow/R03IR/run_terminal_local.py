@@ -1,0 +1,378 @@
+#!/usr/bin/env python3
+"""R03 IR-R03-02: one new four-process native terminal-entry diagnostic batch.
+
+Distinct from historical 90-cell S. Never rerun, replace, or modify S/R/Q/P/O/N.
+Only fresh copied isolated Unity projects and unused output roots are written.
+"""
+import argparse
+import json
+from pathlib import Path
+import re
+import shutil
+import sys
+import uuid
+
+HERE = Path(__file__).resolve().parent
+R03 = HERE.parent / 'R03'
+sys.path.insert(0, str(R03))
+from run_local import Batch, ROOT, REPOS
+from batch_contract import loads, require, sha
+from batch_evidence import finalize, write
+from command_lifetime import build_arguments
+from ir_original_fixtures import stage_immutable_original_s, S_PUBLICATION, S_INVENTORY_BLOB
+from bee_observation import verify_observation
+from complete_general_diagnostic import verify as verify_complete_general
+
+# Exact deterministic IR-only target observed identically on macOS and Linux.
+# This is not any historical S byte or proof of Player runtime behavior.
+IR_TARGET_SHA256 = "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd"
+IR_TARGET_MVID = "597eb18e-e0e7-6f8b-7e4a-6cdaabf9d1ff"
+
+
+def original_s_fixtures(batch):
+    """Bind all 15 original S bytes to the immutable published commit, not
+    to a newly compiled DLL whose timestamp/MVID can be nondeterministic."""
+    root = batch.root / 'host/player-fixtures'
+    entries, authority = stage_immutable_original_s(
+        batch.workspace / 'hybridclr_demo', root, sha)
+    batch.fixture_root, batch.fixture_files = root, entries
+    batch.ir_original_s_fixture_authority = authority
+    return {'kind': 'R03IROriginalSFixturePreflight', 'result': 'Passed',
+            'count': len(entries), 'authorityReceipt': str(authority),
+            'authoritySha256': sha(authority), 'sourcePublication': S_PUBLICATION,
+            'inventoryGitBlob': S_INVENTORY_BLOB,
+            'originalBytesCopied': True, 'regenerationAttempted': False,
+            'runtimeAcceptance': False}
+
+
+def build_ir_generator(batch):
+    """Build the generator, but run ONLY the distinct --ir-target mode."""
+    binary_root = batch.root / 'bin/player-fixtures'
+    obj_root = batch.root / 'obj/player-fixtures'
+    batch.command(build_arguments(R03 / 'PlayerFixtures/PlayerFixtures.csproj',
+                 binary_root, obj_root, batch.workspace / 'hybridclr_unity'))
+    binary = binary_root / 'PlayerFixtures.dll'
+    require(binary.is_file(), 'Exact IR generator binary required')
+    return {'generatorBinary': str(binary), 'sha256': sha(binary),
+            'generatorCompiled': True, 'originalFifteenRegenerated': False}
+
+
+def prepare_ir(batch, role):
+    observed = batch.prepare_project(role)
+    project = Path(observed['project'])
+    # Exactly two Primary test-only source files. No change to the original
+    # R03Player, no optional implicit project source, no in-place SDK edits.
+    source_names = ('R03TerminalPlayer.cs', 'R03EngineFrameDispatcher.cs')
+    manifest = project / 'source-inputs.json'
+    record = loads(manifest.read_text())
+    sources = {}
+    for name in source_names:
+        relative = 'Assets/' + name
+        source = HERE / 'PlayerProject' / name
+        target = project / relative
+        require(source.is_file() and not target.exists(), 'Unique Primary IR Player source: ' + name)
+        require(not any(row['path'] == relative for row in record['files']),
+                'No duplicate IR source: ' + name)
+        shutil.copyfile(source, target)
+        record['files'].append({'path': relative, 'sha256': sha(target),
+                                'origin': {'kind': 'R03IRPrimarySupplement', 'source': str(source),
+                                           'demoCommit': batch.pins['hybridclr_demo']}})
+        sources[name] = {'path': str(target), 'sha256': sha(target)}
+        require(sha(target) == sha(source), 'Exact IR build input: ' + name)
+    manifest.write_text(json.dumps(record, indent=2, sort_keys=True) + '\n')
+    config_path = batch.root / 'builds' / role['id'] / 'config.json'
+    config = loads(config_path.read_text())
+    config['sourceManifestSha256'] = sha(manifest)
+    config_path.write_text(json.dumps(config, indent=2, sort_keys=True) + '\n')
+    batch.builds[role['id']]['config'] = config
+    require(config['sourceManifestSha256'] == sha(manifest),
+            'Exact two-source IR build input manifest')
+    return {'project': str(project),
+            'sourceSha256': sources['R03TerminalPlayer.cs']['sha256'],
+            'frameSourceSha256': sources['R03EngineFrameDispatcher.cs']['sha256'],
+            'sourceManifestSha256': sha(manifest), 'configuration': str(config_path)}
+
+
+def ir_side_effect_fixture(batch):
+    binary = batch.root / 'bin/player-fixtures/PlayerFixtures.dll'
+    require(binary.is_file(), 'IR target-only generator must be compiled first')
+    root = batch.root / 'host/ir-side-effect'
+    require(not root.exists(), 'IR fixture destination must be unused')
+    batch.command(['dotnet', str(binary), '--ir-target', str(root)], 120)
+    record = loads((root / 'ir-target.json').read_text())
+    require(record.get('schemaVersion') == 1 and record.get('kind') == 'R03IRSideEffectFixture' and
+            record.get('result') == 'GeneratedNotRuntimeValidated' and
+            record.get('assembly') == 'Methods' and record.get('instanceField') == 'R03.Node.stable' and
+            record.get('method') == 'R03.Node.Keep' and record.get('expectedIncrementPerCall') == 1 and
+            record.get('originalSFixtureUnchanged') is True and
+            record.get('runtimeAcceptance') is False, 'Exact distinct IR fixture contract')
+    dll = root / 'Methods.dll'
+    require(dll.is_file() and sha(dll) == record['sha256'] == IR_TARGET_SHA256 and
+            record.get('mvid') == IR_TARGET_MVID and
+            record.get('sideEffectInstructionsVerified') is True and
+            record.get('layoutEditorAdmission') == 'Passed' and
+            record['size'] == dll.stat().st_size, 'Deterministic IR-only fixture byte and metadata contract')
+    original = batch.fixture_root / 'virtual-slot/Methods.dll'
+    require(sha(original) == batch.fixture_files['virtual-slot/Methods.dll']['sha256'] and
+            sha(original) != sha(dll), 'Original native fixture remains unchanged and IR target differs')
+    batch.ir_target = {'path': dll, 'sha256': sha(dll),
+                       'receipt': root / 'ir-target.json', 'receiptSha256': sha(root / 'ir-target.json')}
+    return {'receipt': str(batch.ir_target['receipt']),
+            'receiptSha256': batch.ir_target['receiptSha256'], 'targetSha256': sha(dll),
+            'targetBytes': dll.stat().st_size, 'originalFixtureSha256': sha(original)}
+
+
+def exact_int(value, expected):
+    return type(value) is int and value == expected
+
+
+def verify_ir(raw, request, launch, build_sha, *, raw_path=None):
+    require(raw.get('reportTransport') == 'NativePreopenedSnapshotV1', 'Native snapshot transport required')
+    require(type(raw) is dict and raw.get('schemaVersion') == 1 and
+            raw.get('kind') == 'R03IRPostPoisonEntryV1' and raw.get('acceptance') is False,
+            'Actual non-authorizing IR Player result contract')
+    require(raw.get('result') == 'Passed' and not raw.get('error'), 'Player witness must explicitly pass')
+    require(raw.get('runId') == request['runId'] and raw.get('caseId') == request['caseId'] and
+            raw.get('stimulus') == request['stimulus'], 'Exact request identity')
+    require(type(raw.get('processId')) is int and raw['processId'] == launch['pid'], 'Owned fresh Player process')
+    require(raw.get('unityVersion') == '2022.3.62f2' and raw.get('platform') == 'OSXPlayer',
+            'Actual Unity 2022.3 Player target')
+    if request['stimulus'] == 'off':
+        require(exact_int(raw.get('initialState'), 0) and exact_int(raw.get('finalState'), 0) and
+                raw.get('prePositive') is True and exact_int(raw.get('preCanaryCount'), 1) and
+                exact_int(raw.get('finalCanaryCount'), 2), 'Feature OFF ordinary calls')
+        require(exact_int(raw.get('reserveGcProbeMask'), 0), 'OFF has no Boolean reserve experiment')
+        require(exact_int(raw.get('terminalReportingProbeMask'), 0),
+                'OFF must not report a terminal callback substitution')
+        require(not raw.get('activeReflectionAttempted') and not raw.get('activeDelegateAttempted') and
+                not raw.get('aotReflectionAttempted'), 'No synthetic terminal OFF probe')
+    else:
+        require(exact_int(raw.get('reserveGcProbeMask'), 31), 'Real healthy GC must preserve pinned reserve')
+        require(exact_int(raw.get('initialState'), 6) and exact_int(raw.get('poisonedState'), 9) and
+                exact_int(raw.get('finalState'), 9) and raw.get('prePositive') is True and
+                exact_int(raw.get('preActiveReflection'), 42) and exact_int(raw.get('preActiveDelegate'), 42) and
+                exact_int(raw.get('preCanaryCount'), 1) and exact_int(raw.get('preShadowField'), 2),
+                'Current shadow Keep body must increment its private field twice before poison')
+        for prefix in ('activeReflection', 'activeDelegate', 'aotReflection'):
+            require(raw.get(prefix + 'Attempted') is True and raw.get(prefix + 'Succeeded') is False and
+                    isinstance(raw.get(prefix + 'Exception'), str) and raw[prefix + 'Exception'],
+                    'Actual rejected post-poison attempted entry: ' + prefix)
+        require(exact_int(raw.get('finalCanaryCount'), 1) and exact_int(raw.get('preCanaryCount'), 1) and
+                raw.get('shadowFieldReadable') is True and
+                exact_int(raw.get('finalShadowField'), 2) and exact_int(raw.get('preShadowField'), 2) and
+                raw.get('recoveryStable') is True and raw.get('fixedDiagnosticsReadable') is True and
+                raw.get('firstRecovery') == raw.get('finalRecovery'), 'No body side effects or first-failure mutation')
+        require(exact_int(raw.get('terminalReportingProbeMask'), 15),
+                'Native diagnostic responses and continued guard denial must be witnessed')
+        recovery = loads(raw['firstRecovery'])
+        require(recovery.get('published') is True and exact_int(recovery.get('stateCode'), 9) and
+                recovery.get('disposition') == 'RestartRequired' and
+                type(recovery.get('terminalFailureCode')) is int and recovery['terminalFailureCode'] in (13, 21), 'Actual first terminal failure')
+        if request['stimulus'] == 'baseline-owner':
+            require(recovery['terminalFailureCode'] == 21, 'Captured baseline-owner failure reason')
+            native = loads(raw['nativeGuardJson'])
+            require(native.get('available') is True and exact_int(native.get('activeGuard'), 1) and
+                    exact_int(native.get('baselineGuard'), 0) and exact_int(native.get('caughtOldGuard'), 1) and
+                    exact_int(native.get('stateCode'), 9) and exact_int(raw.get('nativeStimulusReturn'), 1),
+                    'Actual caught old-baseline managed failure')
+        else:
+            require(exact_int(recovery['terminalFailureCode'], 13) and exact_int(raw.get('nativeStimulusReturn'), 1),
+                    'Production type-resolution failure boundary was exercised')
+    general_proof = None
+    if request['stimulus'] != 'off':
+        # Exact full source bytes, never a clipped field, truncated JSON or
+        # synthetic prefix. Distinguish transport fidelity from global VM
+        # capture coherence; the latter remains a separate R03 obligation.
+        general_proof = verify_complete_general(raw.get('finalDiagnostics'), raw_path)
+    return {'kind': 'R03IRVerifiedPostPoisonPlayer', 'result': 'Passed',
+            'caseId': request['caseId'], 'stimulus': request['stimulus'],
+            'completeGeneralDiagnostic': general_proof,
+            'buildReceiptSha256': build_sha, 'runtimeAcceptance': False,
+            'R03Accepted': False, 'H2Passed': False}
+
+
+def verify_engine(raw, request, launch, log):
+    """A genuine Unity-frame sentinel followed by a native normal-exit hook.
+
+    A one-shot Application.Quit icall is insufficient evidence of shutdown.
+    The previous watchdog called std::_Exit(0), so even a positive count could
+    falsely pass. V2 permits only an observed native atexit result: the
+    failure-only watchdog must return a nonzero process exit and may not pass.
+    This still does not prove full Unity subsystem teardown or VM epoch.
+    """
+    require(type(raw) is dict and raw.get('schemaVersion') == 2 and
+            raw.get('kind') == 'R03IREngineReportingV2' and raw.get('runtimeAcceptance') is False,
+            'Native engine normal-exit witness schema v2')
+    require(raw.get('runId') == request['runId'] and raw.get('caseId') == request['caseId'] and
+            type(raw.get('processId')) is int and raw['processId'] == launch['pid'],
+            'Exact engine witness process/request')
+    require(raw.get('result') == 'ObservedNotAccepted' and raw.get('timedOut') is False and
+            exact_int(raw.get('initialState'), 6) and exact_int(raw.get('finalState'), 9) and
+            exact_int(raw.get('preManagedLoggerCalls'), 1) and exact_int(raw.get('finalManagedLoggerCalls'), 1),
+            'Healthy logger control and terminal no-body condition')
+    require(type(raw.get('completedReports')) is int and 1 <= raw['completedReports'] <= 64 and
+            exact_int(raw.get('observationLimitMilliseconds'), 500) and
+            type(raw.get('observationElapsedMilliseconds')) is int and
+            0 <= raw['observationElapsedMilliseconds'] <= 500,
+            'Original real-report count and maximum 500ms native completion window')
+    require(raw.get('ownerQuitRequested') is True and
+            exact_int(raw.get('ownerQuitNativeCalls'), 1) and
+            type(raw.get('ownerQuitReturned')) is bool,
+            'Single native Unity owner request with independently typed return signal')
+    require(raw.get('normalExitHookObserved') is True and
+            raw.get('witnessExitMode') == 'NativeAtexit',
+            'A watchdog-forced process exit can never pass as normal Unity shutdown')
+    recovery = raw.get('recovery')
+    require(type(recovery) is dict and recovery.get('published') is True and
+            exact_int(recovery.get('stateCode'), 9) and exact_int(recovery.get('terminalFailureCode'), 13) and
+            recovery.get('disposition') == 'RestartRequired', 'Authentic first type failure retained')
+    sentinel = 'R03_ENGINE_UNHANDLED_' + request['runId']
+    require(re.search(r'\[AssemblyShadowTerminalReport\] sequence=\d+ state=9 message="' +
+                      re.escape(sentinel) + r'" managedHandlerExecuted=false', log) is not None,
+            'Actual unhandled sentinel must reach native Unity reporter')
+    require('[AssemblyShadowPhase] phase=75 state=6' in log,
+            'The native failure must originate from the already-running Unity frame callback')
+    require('[R03EngineOwnerQuit] source=UnityNativeIcall once=1 sentinelMatched=true' in log,
+            'Exact sentinel must trigger one actual native quit request')
+    require('[R03EngineOwnerExit] nativeAtexit=true rawFlushed=true' in log,
+            'Process normal-exit callback and durable raw flush must be independently visible')
+    require('[R03ReserveGcProbe] mask=31 ' in log, 'Real reserve/GC prerequisite in this process')
+    require('fatal=' not in log, 'No native fatal path accepted')
+    return {'result': 'Passed',
+            'scope': 'One frame-originated unhandled sentinel and normal process exit; not full R03',
+            'freshPlayer': True, 'runtimeAcceptance': False}
+
+
+def player(batch, case):
+    role = case['role']
+    batch.verify_build(role)
+    state = batch.builds[role]
+    root = batch.root / 'players' / case['id']
+    root.mkdir(parents=True)
+    require(hasattr(batch, 'ir_target') and
+            sha(batch.ir_target['path']) == batch.ir_target['sha256'] and
+            sha(batch.ir_target['receipt']) == batch.ir_target['receiptSha256'],
+            'IR target and source receipt are hash-bound')
+    if case['stimulus'] == 'off':
+        dll_path, dll_hash = '', ''
+    else:
+        dll_path, dll_hash = str(batch.ir_target['path']), batch.ir_target['sha256']
+    nonce = uuid.uuid4().hex
+    request = {'schemaVersion': 1, 'runId': nonce, 'caseId': case['id'],
+               'baselineId': 'R03IR-Isolated-' + role, 'dllPath': dll_path,
+               'dllSha256': dll_hash, 'stimulus': case['stimulus']}
+    write(root / 'request.json', request)
+    cmd = [str(state['executable']), '-batchmode', '-nographics',
+           '-r03IrRequest', root / 'request.json', '-r03IrOutput', root / 'raw.json',
+           '-r03IrRunId', nonce, '-logFile', root / 'Player.log']
+    try:
+        launch = batch.command(cmd, 180)
+    except Exception as exc:
+        # Preserve diagnostic facts for command failures without falsely
+        # calling verify_ir/verify_engine on empty or incomplete raw bytes.
+        raw_file = root / 'raw.json'
+        general_file = root / 'raw.json.general.json'
+        safe_raw = raw_file.is_file() and not raw_file.is_symlink()
+        safe_general = general_file.is_file() and not general_file.is_symlink()
+        write(root / 'verification.json', {
+            'kind': 'R03IRFailedPlayerCommandReceiptV1',
+            'result': 'Failed',
+            'semanticVerifierStatus': 'NotRun_CommandFailed',
+            'error': str(exc),
+            'caseId': case['id'],
+            'stimulus': case['stimulus'],
+            'runId': nonce,
+            'requestSha256': sha(root / 'request.json'),
+            'rawExists': safe_raw,
+            'rawBytes': raw_file.stat().st_size if safe_raw else None,
+            'rawSha256': sha(raw_file) if safe_raw else None,
+            'fullGeneralSidecarExists': safe_general,
+            'fullGeneralSidecarBytes': general_file.stat().st_size if safe_general else None,
+            'fullGeneralSidecarSha256': sha(general_file) if safe_general else None,
+            'R03Accepted': False,
+            'runtimeAcceptance': False,
+        })
+        raise
+    require((root / 'raw.json').is_file(), 'Fresh Player raw evidence must exist')
+    raw = loads((root / 'raw.json').read_text())
+    bind = {'requestSha256': sha(root / 'request.json'), 'rawSha256': sha(root / 'raw.json'),
+            'buildReceiptSha256': sha(state['root'] / 'build-receipt.json'),
+            'launchPid': launch['pid'], 'runId': nonce, 'argv': [str(x) for x in cmd]}
+    try:
+        require(raw.get('requestSha256') == bind['requestSha256'], 'Raw/launch request digest')
+        verdict = (verify_engine(raw, request, launch, (root / 'Player.log').read_text())
+                   if case['stimulus'] == 'engine-unhandled' else
+                   verify_ir(raw, request, launch, bind['buildReceiptSha256'], raw_path=root / 'raw.json'))
+    except Exception as error:
+        write(root / 'verification.json', dict(bind, result='Failed', error=str(error)))
+        raise
+    verdict.update(bind)
+    write(root / 'verification.json', verdict)
+    return verdict
+
+
+def observe_build(batch, role):
+    state = batch.builds[role['id']]
+    path = state['root'] / 'bee-result-observation.json'
+    require(path.is_file(), 'Current build observation missing')
+    data = loads(path.read_text())
+    analysis = verify_observation(data, state['config']['sourceManifestSha256'])
+    write(state['root'] / 'bee-result-analysis.json', analysis)
+    return dict(analysis, receiptSha256=sha(path))
+
+
+def execute(workspace, output, unity, demo_commit, *, batch_type=Batch):
+    require(HERE == Path(workspace).resolve() / 'hybridclr_demo/Tools/AssemblyShadow/R03IR',
+            'Execute from the owning exact demo checkout')
+    batch = batch_type(workspace, output, unity, demo_commit)
+    batch.cell('entry-authority', batch.authority)
+    batch.cell('real-dll-fixtures', lambda: original_s_fixtures(batch), ('entry-authority',))
+    batch.cell('ir-generator-build', lambda: build_ir_generator(batch), ('real-dll-fixtures',))
+    batch.cell('ir-side-effect-fixture', lambda: ir_side_effect_fixture(batch), ('ir-generator-build',))
+    roles = [r for r in batch.matrix['roles'] if r['id'] in
+             ('candidate-release', 'candidate-debug', 'candidate-off')]
+    require(len(roles) == 3, 'Three required native build roles')
+    for role in roles:
+        name = role['id']
+        batch.cell('prepare-' + name, lambda r=role: prepare_ir(batch, r), ('ir-side-effect-fixture',))
+        batch.cell('build-' + name, lambda r=role: batch.build(r), ('prepare-' + name,))
+        # Diagnostic collection remains independent of build success; never launches a failed app.
+        batch.cell('observe-' + name, lambda r=role: observe_build(batch, r), ('prepare-' + name,))
+    cases = [
+        {'id':'IR-R03-02-release-baseline', 'role':'candidate-release', 'stimulus':'baseline-owner'},
+        {'id':'IR-R03-02-debug-baseline', 'role':'candidate-debug', 'stimulus':'baseline-owner'},
+        {'id':'IR-R03-02-release-type', 'role':'candidate-release', 'stimulus':'type-resolution'},
+        {'id':'IR-R03-02-off', 'role':'candidate-off', 'stimulus':'off'},
+        {'id':'IR-R03-02-release-engine', 'role':'candidate-release', 'stimulus':'engine-unhandled'}
+    ]
+    for case in cases:
+        batch.cell(case['id'], lambda c=case: player(batch, c), ('build-' + case['role'],))
+    states = {row['id']: row['result'] for row in batch.cells}
+    build_passes = sum(states.get('build-' + role['id']) == 'Passed' for role in roles)
+    player_passes = sum(states.get(case['id']) == 'Passed' for case in cases)
+    player_raw = sum((batch.root / 'players' / case['id'] / 'raw.json').is_file() for case in cases)
+    summary = {'schemaVersion':1, 'kind':'R03IRFocusedTerminalLocalBatch',
+        'result':'ReturnRequired' if batch.failed else 'FocusedEvidenceReadyForPrimaryReview',
+        'repositories':batch.pins, 'cells':batch.cells,
+        'plannedFreshBuilds':3, 'verifiedFreshBuilds':build_passes,
+        'plannedFreshPlayers':5, 'verifiedFreshPlayers':player_passes,
+        'recordedFreshPlayerRawFiles':player_raw,
+        'originalSFixtureAuthority':'AuthenticatedOriginalCommit' if hasattr(batch, 'ir_original_s_fixture_authority') else 'NotRun',
+        'originalSFixtureAuthoritySha256':sha(batch.ir_original_s_fixture_authority) if hasattr(batch, 'ir_original_s_fixture_authority') else None,
+        'freshFixturesRegeneratedFromOldOutputMode':False,
+        'scope':'IR active Methods side effects, native snapshot, healthy GC reserve, baseline/type/OFF and bounded engine-originated unhandled reporter; generic/initializer not covered',
+        'initializerFailure': 'NotRun', 'capturedGenericFailure': 'NotRun',
+        'fullLegacyRegressionAcceptance':False, 'R03Accepted':False, 'H2Passed':False,
+        'qualificationApproved':False, 'pureInterpreterExpansionEnabled':False}
+    result = finalize(batch.root, summary)
+    return 0 if (result['result'] == 'FocusedEvidenceReadyForPrimaryReview' and
+                 result['sealStatus'] == 'Passed') else 1
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    for field in ('workspace','output','unity','demo-commit'):
+        parser.add_argument('--' + field, required=True)
+    args = parser.parse_args()
+    require(re.fullmatch('[0-9a-f]{40}', args.demo_commit) is not None, 'Exact pushed demo SHA')
+    raise SystemExit(execute(args.workspace, args.output, args.unity, args.demo_commit))

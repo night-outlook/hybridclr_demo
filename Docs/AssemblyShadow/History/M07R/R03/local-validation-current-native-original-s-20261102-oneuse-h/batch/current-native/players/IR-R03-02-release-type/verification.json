@@ -1,0 +1,42 @@
+{
+  "H2Passed": false,
+  "R03Accepted": false,
+  "argv": [
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-H/current-native/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+    "-batchmode",
+    "-nographics",
+    "-r03IrRequest",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-H/current-native/players/IR-R03-02-release-type/request.json",
+    "-r03IrOutput",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-H/current-native/players/IR-R03-02-release-type/raw.json",
+    "-r03IrRunId",
+    "9387b7b98d1f48d3a4e6f8cca7e62dca",
+    "-logFile",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-H/current-native/players/IR-R03-02-release-type/Player.log"
+  ],
+  "buildReceiptSha256": "143ad302d5702ffd4572665ec390b9b1e0b9d273b813af2647ad84ca9dc97047",
+  "caseId": "IR-R03-02-release-type",
+  "completeGeneralDiagnostic": {
+    "R03Accepted": false,
+    "bytes": 540759,
+    "classEnumerationGeneration": 1,
+    "coherentVmEpochProven": false,
+    "enumerationGeneration": 1,
+    "kind": "R03CompleteBoundedGeneralDiagnosticsV1",
+    "ordinaryAssemblyCount": 46,
+    "ordinaryClassCount": 3352,
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-H/current-native/players/IR-R03-02-release-type/raw.json.general.json",
+    "result": "PassedCompleteByteBoundAndSchema_WithoutGlobalEpochProof",
+    "runtimeAcceptance": false,
+    "sha256": "e9b2e4e2ca4d96b3549acaa6ac38a636ae4705c27aa24f7d2a5cbc1a11666b31",
+    "transport": "FullPreopenedSidecar"
+  },
+  "kind": "R03IRVerifiedPostPoisonPlayer",
+  "launchPid": 82625,
+  "rawSha256": "4ba125c665fa69781b93f597dda3459b15af0d95abad57ef0fe990a705709638",
+  "requestSha256": "183180056f56f8662e5b175a7a504a7565a27972356e8b8ecdc4f70b177e8234",
+  "result": "Passed",
+  "runId": "9387b7b98d1f48d3a4e6f8cca7e62dca",
+  "runtimeAcceptance": false,
+  "stimulus": "type-resolution"
+}

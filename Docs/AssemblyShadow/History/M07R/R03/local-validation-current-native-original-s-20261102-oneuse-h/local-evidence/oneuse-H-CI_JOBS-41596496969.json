@@ -1,0 +1,475 @@
+{
+  "run": {
+    "id": 41596496969,
+    "name": "R03 one-use current-native Local cycle host contracts",
+    "node_id": "WFR_kwLOUFsAuM8AAAAJr1gsSQ",
+    "head_branch": "codex/assembly-shadow-r01b-h1",
+    "head_sha": "3e838edf8995e40058f3bc6c42f071446a0be821",
+    "path": ".github/workflows/r03-ir-current-native-local-cycle-host.yml",
+    "display_title": "test(r03): complete OFF host stub and eleven-source workflow assertion",
+    "run_number": 67,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 396967330,
+    "check_suite_id": 112715858579,
+    "check_suite_node_id": "CS_kwDOUFsAuM8AAAAaPmOCkw",
+    "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/41596496969",
+    "html_url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/41596496969",
+    "pull_requests": [],
+    "created_at": "2026-11-03T07:28:03Z",
+    "updated_at": "2026-11-03T07:28:51Z",
+    "actor": {
+      "login": "night-outlook",
+      "id": 310526669,
+      "node_id": "U_kgDOEoJCzQ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/310526669?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/night-outlook",
+      "html_url": "https://github.com/night-outlook",
+      "followers_url": "https://api.github.com/users/night-outlook/followers",
+      "following_url": "https://api.github.com/users/night-outlook/following{/other_user}",
+      "gists_url": "https://api.github.com/users/night-outlook/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/night-outlook/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/night-outlook/subscriptions",
+      "organizations_url": "https://api.github.com/users/night-outlook/orgs",
+      "repos_url": "https://api.github.com/users/night-outlook/repos",
+      "events_url": "https://api.github.com/users/night-outlook/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/night-outlook/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-03T07:28:03Z",
+    "triggering_actor": {
+      "login": "night-outlook",
+      "id": 310526669,
+      "node_id": "U_kgDOEoJCzQ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/310526669?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/night-outlook",
+      "html_url": "https://github.com/night-outlook",
+      "followers_url": "https://api.github.com/users/night-outlook/followers",
+      "following_url": "https://api.github.com/users/night-outlook/following{/other_user}",
+      "gists_url": "https://api.github.com/users/night-outlook/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/night-outlook/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/night-outlook/subscriptions",
+      "organizations_url": "https://api.github.com/users/night-outlook/orgs",
+      "repos_url": "https://api.github.com/users/night-outlook/repos",
+      "events_url": "https://api.github.com/users/night-outlook/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/night-outlook/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/41596496969/jobs",
+    "logs_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/41596496969/logs",
+    "check_suite_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/check-suites/112715858579",
+    "artifacts_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/41596496969/artifacts",
+    "cancel_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/41596496969/cancel",
+    "rerun_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/41596496969/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/workflows/396967330",
+    "head_commit": {
+      "id": "3e838edf8995e40058f3bc6c42f071446a0be821",
+      "tree_id": "6ea6ba0dc71dc4e714dcbc6e7467aa82f0e5e2aa",
+      "message": "test(r03): complete OFF host stub and eleven-source workflow assertion",
+      "timestamp": "2026-11-03T07:27:58Z",
+      "author": {
+        "name": "night-outlook",
+        "email": "wangxingfred.night@outlook.com"
+      },
+      "committer": {
+        "name": "night-outlook",
+        "email": "wangxingfred.night@outlook.com"
+      }
+    },
+    "repository": {
+      "id": 1348141240,
+      "node_id": "R_kgDOUFsAuA",
+      "name": "hybridclr_demo",
+      "full_name": "night-outlook/hybridclr_demo",
+      "private": false,
+      "owner": {
+        "login": "night-outlook",
+        "id": 310526669,
+        "node_id": "U_kgDOEoJCzQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/310526669?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/night-outlook",
+        "html_url": "https://github.com/night-outlook",
+        "followers_url": "https://api.github.com/users/night-outlook/followers",
+        "following_url": "https://api.github.com/users/night-outlook/following{/other_user}",
+        "gists_url": "https://api.github.com/users/night-outlook/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/night-outlook/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/night-outlook/subscriptions",
+        "organizations_url": "https://api.github.com/users/night-outlook/orgs",
+        "repos_url": "https://api.github.com/users/night-outlook/repos",
+        "events_url": "https://api.github.com/users/night-outlook/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/night-outlook/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/night-outlook/hybridclr_demo",
+      "description": "Unity demo for hybridclr",
+      "fork": false,
+      "url": "https://api.github.com/repos/night-outlook/hybridclr_demo",
+      "forks_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/forks",
+      "keys_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/teams",
+      "hooks_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/hooks",
+      "issue_events_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/events",
+      "assignees_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/tags",
+      "blobs_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/languages",
+      "stargazers_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/stargazers",
+      "contributors_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/contributors",
+      "subscribers_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/subscribers",
+      "subscription_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/subscription",
+      "commits_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/merges",
+      "archive_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/downloads",
+      "issues_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/labels{/name}",
+      "releases_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/deployments"
+    },
+    "head_repository": {
+      "id": 1348141240,
+      "node_id": "R_kgDOUFsAuA",
+      "name": "hybridclr_demo",
+      "full_name": "night-outlook/hybridclr_demo",
+      "private": false,
+      "owner": {
+        "login": "night-outlook",
+        "id": 310526669,
+        "node_id": "U_kgDOEoJCzQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/310526669?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/night-outlook",
+        "html_url": "https://github.com/night-outlook",
+        "followers_url": "https://api.github.com/users/night-outlook/followers",
+        "following_url": "https://api.github.com/users/night-outlook/following{/other_user}",
+        "gists_url": "https://api.github.com/users/night-outlook/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/night-outlook/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/night-outlook/subscriptions",
+        "organizations_url": "https://api.github.com/users/night-outlook/orgs",
+        "repos_url": "https://api.github.com/users/night-outlook/repos",
+        "events_url": "https://api.github.com/users/night-outlook/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/night-outlook/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/night-outlook/hybridclr_demo",
+      "description": "Unity demo for hybridclr",
+      "fork": false,
+      "url": "https://api.github.com/repos/night-outlook/hybridclr_demo",
+      "forks_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/forks",
+      "keys_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/teams",
+      "hooks_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/hooks",
+      "issue_events_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/events",
+      "assignees_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/tags",
+      "blobs_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/languages",
+      "stargazers_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/stargazers",
+      "contributors_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/contributors",
+      "subscribers_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/subscribers",
+      "subscription_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/subscription",
+      "commits_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/merges",
+      "archive_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/downloads",
+      "issues_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/labels{/name}",
+      "releases_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/deployments"
+    }
+  },
+  "metadata": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "id": 125784988375,
+          "name": "Preflight/oracle/VM/dispatch tests (macos-15)",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 41596496969,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Demo R03 and R03IR source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Current native VM H (source only)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Interpreter 4b27 (source only)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Package 948c (source only)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Nine canonical Local handoff workflow trigger contracts",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Failed BuildReport source ordering (8 negative source contracts)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "One-use coordinator and installed VM parity adversarial host tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Twenty-five retained-worktree capacity and net8 toolchain source-only tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Actual fresh Python CLI startup without PYTHONPATH or Unity",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Thirty-one temporary Git sparse source-custody regression tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Existing 20 source, 27 real-oracle synthetic, 12 VM source and archive host suites",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Explicit host-only verdict",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Post Package 948c (source only)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23
+            },
+            {
+              "name": "Post Interpreter 4b27 (source only)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24
+            },
+            {
+              "name": "Post Current native VM H (source only)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25
+            },
+            {
+              "name": "Post Demo R03 and R03IR source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27
+            }
+          ]
+        },
+        {
+          "id": 125784988725,
+          "name": "Preflight/oracle/VM/dispatch tests (ubuntu-24.04)",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 41596496969,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Demo R03 and R03IR source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Current native VM H (source only)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Interpreter 4b27 (source only)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Package 948c (source only)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Nine canonical Local handoff workflow trigger contracts",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Failed BuildReport source ordering (8 negative source contracts)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "One-use coordinator and installed VM parity adversarial host tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Twenty-five retained-worktree capacity and net8 toolchain source-only tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Actual fresh Python CLI startup without PYTHONPATH or Unity",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Thirty-one temporary Git sparse source-custody regression tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Existing 20 source, 27 real-oracle synthetic, 12 VM source and archive host suites",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Explicit host-only verdict",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Post Package 948c (source only)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23
+            },
+            {
+              "name": "Post Interpreter 4b27 (source only)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24
+            },
+            {
+              "name": "Post Current native VM H (source only)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25
+            },
+            {
+              "name": "Post Demo R03 and R03IR source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27
+            }
+          ]
+        }
+      ]
+    },
+    "isError": false
+  }
+}
