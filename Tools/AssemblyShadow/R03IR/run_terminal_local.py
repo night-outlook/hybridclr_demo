@@ -60,26 +60,36 @@ def build_ir_generator(batch):
 def prepare_ir(batch, role):
     observed = batch.prepare_project(role)
     project = Path(observed['project'])
-    relative = 'Assets/R03TerminalPlayer.cs'
-    source = HERE / 'PlayerProject/R03TerminalPlayer.cs'
-    target = project / relative
-    require(source.is_file() and not target.exists(), 'Unique Primary IR Player source')
-    shutil.copyfile(source, target)
+    # Exactly two Primary test-only source files. No change to the original
+    # R03Player, no optional implicit project source, no in-place SDK edits.
+    source_names = ('R03TerminalPlayer.cs', 'R03EngineFrameDispatcher.cs')
     manifest = project / 'source-inputs.json'
     record = loads(manifest.read_text())
-    require(not any(row['path'] == relative for row in record['files']), 'No duplicate IR source')
-    record['files'].append({'path': relative, 'sha256': sha(target),
-                            'origin': {'kind': 'R03IRPrimarySupplement', 'source': str(source),
-                                       'demoCommit': batch.pins['hybridclr_demo']}})
+    sources = {}
+    for name in source_names:
+        relative = 'Assets/' + name
+        source = HERE / 'PlayerProject' / name
+        target = project / relative
+        require(source.is_file() and not target.exists(), 'Unique Primary IR Player source: ' + name)
+        require(not any(row['path'] == relative for row in record['files']),
+                'No duplicate IR source: ' + name)
+        shutil.copyfile(source, target)
+        record['files'].append({'path': relative, 'sha256': sha(target),
+                                'origin': {'kind': 'R03IRPrimarySupplement', 'source': str(source),
+                                           'demoCommit': batch.pins['hybridclr_demo']}})
+        sources[name] = {'path': str(target), 'sha256': sha(target)}
+        require(sha(target) == sha(source), 'Exact IR build input: ' + name)
     manifest.write_text(json.dumps(record, indent=2, sort_keys=True) + '\n')
     config_path = batch.root / 'builds' / role['id'] / 'config.json'
     config = loads(config_path.read_text())
     config['sourceManifestSha256'] = sha(manifest)
     config_path.write_text(json.dumps(config, indent=2, sort_keys=True) + '\n')
     batch.builds[role['id']]['config'] = config
-    require(sha(target) == sha(source) and config['sourceManifestSha256'] == sha(manifest),
-            'Exact IR build input')
-    return {'project': str(project), 'sourceSha256': sha(target),
+    require(config['sourceManifestSha256'] == sha(manifest),
+            'Exact two-source IR build input manifest')
+    return {'project': str(project),
+            'sourceSha256': sources['R03TerminalPlayer.cs']['sha256'],
+            'frameSourceSha256': sources['R03EngineFrameDispatcher.cs']['sha256'],
             'sourceManifestSha256': sha(manifest), 'configuration': str(config_path)}
 
 
