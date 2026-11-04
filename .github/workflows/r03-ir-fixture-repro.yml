@@ -4,7 +4,7 @@ on:
     branches: [codex/assembly-shadow-r01b-h1]
     paths:
       - '.github/workflows/r03-ir-fixture-repro.yml'
-      - 'Tools/AssemblyShadow/R03/PlayerFixtures/Program.cs'
+      - 'Tools/AssemblyShadow/R03/PlayerFixtures/**'
       - 'Tools/AssemblyShadow/R03/Fixtures/EvolutionFixtureCorpus.cs'
 permissions:
   contents: read
@@ -21,6 +21,12 @@ jobs:
         with:
           path: demo
           persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03/PlayerFixtures/
+            /Tools/AssemblyShadow/R03/Fixtures/
+            /Tools/AssemblyShadow/R03/HostTests/EnvironmentBoundaries.cs
+            /Tools/AssemblyShadow/R03IR/current_native_generator_receipt.py
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/hybridclr_unity
@@ -32,18 +38,26 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/ir-repro"
+          dotnet --info > "$RUNNER_TEMP/ir-repro/dotnet-info.txt"
           dotnet build demo/Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj \
             -c Release -v minimal \
             -p:PackageRoot="$GITHUB_WORKSPACE/package" \
             -p:BaseIntermediateOutputPath="$RUNNER_TEMP/ir-repro/obj/" \
             -p:OutputPath="$RUNNER_TEMP/ir-repro/bin/" \
             > "$RUNNER_TEMP/ir-repro/compile.log" 2>&1
-      - name: Two independent generator invocations (never original S)
+      - name: Retain original generator observations and pinned old IR target
         shell: bash
         run: |
           set -euo pipefail
-          dotnet "$RUNNER_TEMP/ir-repro/bin/PlayerFixtures.dll" --output "$RUNNER_TEMP/ir-repro/first" > "$RUNNER_TEMP/ir-repro/first.stdout"
-          dotnet "$RUNNER_TEMP/ir-repro/bin/PlayerFixtures.dll" --output "$RUNNER_TEMP/ir-repro/second" > "$RUNNER_TEMP/ir-repro/second.stdout"
+          exe="$RUNNER_TEMP/ir-repro/bin/PlayerFixtures.dll"
+          dotnet "$exe" --output "$RUNNER_TEMP/ir-repro/first" > "$RUNNER_TEMP/ir-repro/first.stdout"
+          dotnet "$exe" --output "$RUNNER_TEMP/ir-repro/second" > "$RUNNER_TEMP/ir-repro/second.stdout"
+          dotnet "$exe" --ir-target "$RUNNER_TEMP/ir-repro/old-ir-first" > "$RUNNER_TEMP/ir-repro/old-ir-first.stdout"
+          dotnet "$exe" --ir-target "$RUNNER_TEMP/ir-repro/old-ir-second" > "$RUNNER_TEMP/ir-repro/old-ir-second.stdout"
+          python3 demo/Tools/AssemblyShadow/R03IR/current_native_generator_receipt.py \
+            --original "$RUNNER_TEMP/ir-repro/first/inventory.json" \
+            --first "$RUNNER_TEMP/ir-repro/old-ir-first" \
+            --repeat "$RUNNER_TEMP/ir-repro/old-ir-second" > "$RUNNER_TEMP/ir-repro/old-ir-regression.json"
           python3 - <<'PY'
           import json,os
           from pathlib import Path
@@ -52,7 +66,7 @@ jobs:
           second=json.loads((root/'second/inventory.json').read_text())
           a={x['path']:x for x in first['files']}
           b={x['path']:x for x in second['files']}
-          assert len(a)==len(b)==15 and a.keys()==b.keys()
+          if len(a)!=15 or len(b)!=15 or a.keys()!=b.keys(): raise ValueError('Original fifteen fixture shape changed')
           diff={name:{k:[a[name].get(k),b[name].get(k)] for k in set(a[name])|set(b[name]) if a[name].get(k)!=b[name].get(k)} for name in sorted(a)}
           diff={k:v for k,v in diff.items() if v}
           result={'kind':'R03IRHostFixtureReproObservation','schemaVersion':1,
@@ -64,6 +78,34 @@ jobs:
           (root/'comparison.json').write_text(json.dumps(result,indent=2,sort_keys=True)+'\n')
           print(json.dumps({'result':result['result'],'changed':list(diff)},sort_keys=True))
           PY
+      - name: Generate terminal producers twice and execute CLR-only bodies and mutations
+        shell: bash
+        run: |
+          set -euo pipefail
+          exe="$RUNNER_TEMP/ir-repro/bin/PlayerFixtures.dll"
+          dotnet "$exe" --ir-terminal-producers "$RUNNER_TEMP/ir-repro/terminal-first" > "$RUNNER_TEMP/ir-repro/terminal-first.stdout"
+          dotnet "$exe" --ir-terminal-producers "$RUNNER_TEMP/ir-repro/terminal-second" > "$RUNNER_TEMP/ir-repro/terminal-second.stdout"
+          python3 - <<'PY'
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'ir-repro'
+          a=root/'terminal-first'; b=root/'terminal-second'
+          names=['baseline/Methods.dll','captured-generic/Methods.dll','initializer-failure/Methods.dll','initializer-control/Methods.dll','terminal-fixtures.json']
+          rows=[]
+          for name in names:
+            left=(a/name).read_bytes();right=(b/name).read_bytes()
+            if left!=right: raise ValueError('Terminal fixture nondeterminism: '+name)
+            rows.append({'path':name,'bytes':len(left),'sha256':hashlib.sha256(left).hexdigest()})
+          report={'kind':'R03IRTerminalFixtureHostRepro','schemaVersion':1,'result':'PassedByteRepeatabilityOnly',
+            'sourceCommit':os.environ['GITHUB_SHA'],'packageCommit':subprocess.check_output(['git','-C','package','rev-parse','HEAD'],text=True).strip(),
+            'files':rows,'unityRun':False,'runtimeAcceptance':False,'R03Accepted':False}
+          (root/'terminal-repeatability.json').write_text(json.dumps(report,indent=2,sort_keys=True)+'\n')
+          PY
+          dotnet "$exe" --ir-terminal-host "$RUNNER_TEMP/ir-repro/terminal-first" > "$RUNNER_TEMP/ir-repro/terminal-host.stdout" 2>&1
+          # Outputs are exclusive: an accidental rerun may not replace evidence.
+          if dotnet "$exe" --ir-terminal-producers "$RUNNER_TEMP/ir-repro/terminal-first" > "$RUNNER_TEMP/ir-repro/reuse-rejected.log" 2>&1; then
+            echo 'Existing output root was incorrectly accepted' >&2; exit 1
+          fi
           git -C demo diff --exit-code
           git -C package diff --exit-code
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -71,9 +113,13 @@ jobs:
         with:
           name: r03-ir-fixture-repro-${{ matrix.os }}-${{ github.sha }}
           path: |
-            ${{ runner.temp }}/ir-repro/compile.log
-            ${{ runner.temp }}/ir-repro/comparison.json
+            ${{ runner.temp }}/ir-repro/*.log
+            ${{ runner.temp }}/ir-repro/*.stdout
+            ${{ runner.temp }}/ir-repro/*.json
+            ${{ runner.temp }}/ir-repro/dotnet-info.txt
             ${{ runner.temp }}/ir-repro/first/inventory.json
             ${{ runner.temp }}/ir-repro/second/inventory.json
-          retention-days: 14
+            ${{ runner.temp }}/ir-repro/terminal-first
+            ${{ runner.temp }}/ir-repro/terminal-second
+          retention-days: 30
           if-no-files-found: warn
