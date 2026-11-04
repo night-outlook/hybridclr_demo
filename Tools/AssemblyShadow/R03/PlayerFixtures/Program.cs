@@ -17,6 +17,8 @@ internal static class Program
     private static string root;
     private static int Main(string[] args)
     {
+        if (args.Length == 2 && args[0] == "--ir-terminal-producers") return TerminalProducerFixtures.Write(args[1]);
+        if (args.Length == 2 && args[0] == "--ir-terminal-host") return TerminalProducerFixtures.VerifyHost(args[1]);
         if (args.Length == 2 && args[0] == "--ir-target") return WriteIrTarget(args[1]);
         if (args.Length != 2 || args[0] != "--output") return 2;
         root = Path.GetFullPath(args[1]);
