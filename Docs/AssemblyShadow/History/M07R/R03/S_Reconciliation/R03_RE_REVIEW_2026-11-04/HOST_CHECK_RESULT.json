@@ -1,0 +1,65 @@
+{
+  "kind": "R03ReReviewIndependentHostTerminalPolicyCheck",
+  "reviewDate": "2026-11-04",
+  "reviewContinuity": "Reviewer role in the same session that previously performed Primary reconciliation; not a separate isolated agent",
+  "sourceCommit": "41764ae1eeefb33b05966e7f7676e52aae39c340",
+  "path": "libil2cpp/vm/AssemblyShadowTerminalExecution.h",
+  "gitBlob": "33258986c31b2e6ae3af17b8553030482a83aef7",
+  "gitObjectHashRecomputedAndMatched": true,
+  "headerSha256": "3ff7e1f149090c9869844de9059cc6829bdbf104d93bba5f13dcd09e4f4a08ce",
+  "unityRun": false,
+  "fullRuntimeValidation": false,
+  "casesPerCompiler": 100,
+  "compilers": [
+    {
+      "command": ["/usr/bin/g++", "-std=c++11", "-Wall", "-Wextra", "-Werror", "-pedantic", "/mnt/data/r03_rereview_20261104/terminal_policy_review.cpp", "-o", "/mnt/data/r03_rereview_20261104/gpp_policy"],
+      "version": "g++ (Debian 14.2.0-19) 14.2.0",
+      "compileExit": 0,
+      "runExit": 0,
+      "stdout": "checks=100 failures=0\n"
+    },
+    {
+      "command": ["/usr/local/swift/usr/bin/clang++", "-std=c++11", "-Wall", "-Wextra", "-Werror", "-pedantic", "/mnt/data/r03_rereview_20261104/terminal_policy_review.cpp", "-o", "/mnt/data/r03_rereview_20261104/clangpp_policy"],
+      "version": "clang version 17.0.0 (https://github.com/swiftlang/llvm-project.git 10999b6d034fe318f3d56c83bddb6572593a8bb0)",
+      "compileExit": 0,
+      "runExit": 0,
+      "stdout": "checks=100 failures=0\n"
+    }
+  ],
+  "mutationCompileCommand": "g++ -std=c++11 <isolated-mutation-directory>/terminal_policy_review.cpp -o <isolated-mutation-directory>/test",
+  "mutations": [
+    {"name": "omit_failed_after_commit", "compileExit": 0, "testExit": 1, "detected": true, "stdout": "checks=100 failures=4\n"},
+    {"name": "ignore_durable_failure", "compileExit": 0, "testExit": 1, "detected": true, "stdout": "checks=100 failures=28\n"},
+    {"name": "poison_disabled_on_durable", "compileExit": 0, "testExit": 1, "detected": true, "stdout": "checks=100 failures=4\n"},
+    {"name": "diagnostic_or_instead_of_and", "compileExit": 0, "testExit": 1, "detected": true, "stdout": "checks=100 failures=22\n"},
+    {"name": "allow_unverified_scoped_method", "compileExit": 0, "testExit": 1, "detected": true, "stdout": "checks=100 failures=11\n"}
+  ],
+  "sourceTreeChecks": {
+    "demoExecutedSource": "c20da0b261172cbdd188378e24dbe9343a14c6b2",
+    "demoReviewInput": "6e4790a32103c76148c751a0d6f12fbf30fefe23",
+    "method": "Direct nonrecursive Git root-tree entries; not a capped comparison file list",
+    "nonDocsEntriesIdentical": true,
+    "scope": "Git tree identity, not fresh runtime execution"
+  },
+  "generatedSourceCrosswalkArtifact": {
+    "artifactId": 11594386600,
+    "downloadedThroughConnector": true,
+    "sha256Recomputed": "65db909cc7f39b1296f6f11be6bb4d3a3cd44ac1ce3a4f7c5065f311ea89f22e",
+    "expectedSha256Matched": true,
+    "innerResult": "Passed",
+    "sourceOccurrences": 4,
+    "uniqueSourceBlobs": 2,
+    "semanticInspectionCompleted": false
+  },
+  "originalFullAuditArtifact": {
+    "artifactId": 11579112494,
+    "downloadResult": "Blocked_ResponseTooLarge",
+    "fullOriginalArchiveRehashedInThisReview": false
+  },
+  "reproduction": "Obtain the header from the exact pinned native commit in a disposable directory; verify its Git blob; copy the adjacent harness there; run either recorded compiler with C++11 warnings-as-errors and execute the output. Mutations are disposable negative controls only, never changes to the native checkout.",
+  "claimBoundary": "Pure boolean policy and host compiler check only. No VM integration, real constructor identity, Player, concurrency, shutdown or full-stage acceptance proof.",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "ReadyForHumanReviewGate": false,
+  "runtimeAcceptance": false
+}
