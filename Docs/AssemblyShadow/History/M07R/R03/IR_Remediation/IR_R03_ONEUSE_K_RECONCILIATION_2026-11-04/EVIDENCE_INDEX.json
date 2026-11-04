@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "kind": "PrimaryR03KPostLocalReconciliationEvidenceIndex",
+  "classification": "PrimaryOnly_NotIndependentReview",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "executedKSource": {
+    "hybridclr_demo": "c20da0b261172cbdd188378e24dbe9343a14c6b2",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340"
+  },
+  "KPublicationCommit": "14f97f15af6c06afa65957a9b880ccf841069452",
+  "historicalS": {
+    "executionDemo": "29bb3d4a39bf8a2f23be404f77535aaba3485bfc",
+    "checkpointDemo": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+    "native": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+    "originalArchiveSha256": "23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6",
+    "withdrawnFivePartArchiveSha256": "f4c2a120e3fdbb1fbc5a984e920ba0dbf34a3e1502c3ecea955769d70179054a7"
+  },
+  "independentOriginalReview": "History/M07R/R03/S_Reconciliation/INDEPENDENT_FULL_STAGE_REVIEW_2026-10-08.md",
+  "KCheckpoint": "History/M07R/R03/local-validation-current-native-original-s-20261103-oneuse-k",
+  "KRawRecords": [
+    "README.md",
+    "LOCAL_RESULT.json",
+    "RUNTIME_FINDINGS.json",
+    "EVIDENCE_SCOPE.json",
+    "batch/RESULT.json",
+    "batch/current-native/LOCAL_BATCH_RESULT.json",
+    "batch/native-host-diagnostics/RESULT.json",
+    "batch/installed-native-vm-parity.json",
+    "local-evidence/oneuse-K-FINAL_INDEPENDENT_AUDIT.json"
+  ],
+  "verifiedGitHubPushRuns": [
+    41630559141,
+    41630559134,
+    41630559223,
+    41630559149,
+    41630559135,
+    41630559129,
+    41630559213,
+    41630559137,
+    41630559182
+  ],
+  "verifiedJobs": 18,
+  "scopedResults": {
+    "oneUseK": "PASS_FocusedEvidenceReadyForIndependentReview",
+    "coordinatorStages": 10,
+    "nativeHostComponents": 10,
+    "realUnityBuilds": 3,
+    "realPlayerProcesses": 5,
+    "freshChildCells": 18,
+    "installedNativeSourcePairs": 135,
+    "originalSHistoricalCells": 90,
+    "originalSHistoricalProcessJoins": 59,
+    "engineReports": 11,
+    "engineElapsedMs": 103,
+    "engineExit": 0,
+    "engineExitMode": "NativeAtexit"
+  },
+  "testedBoundaries": {
+    "baselineOwnerReleaseAndDebug": "Passed",
+    "typeResolutionRelease": "Passed",
+    "offOrdinary": "Passed",
+    "engineSentinel": "Passed",
+    "capturedGenericFailure": "NotRun",
+    "postPublicationInitializerFailure": "NotRun",
+    "fullNativeIncludeClosure": "NotProven",
+    "generatedCppBinaryLinkage": "NotProven",
+    "coherentVmEpoch": "NotProven",
+    "fullUnityManagedShutdown": "NotProven",
+    "GCAndRSS": "NotProven",
+    "historicalOriginalSSemanticReReview": "NotRun",
+    "independentR03FullStageReview": "NotRun"
+  },
+  "findings": {
+    "IR-R03-02": "SourceCorrected_ScopedRealPlayerPassed_IndependentClosurePending",
+    "IR-R03-01": "CorrectedSBytes_LocalCustodyPassed_IndependentSemanticClosurePending"
+  },
+  "acceptance": {
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false,
+    "qualificationApproved": false,
+    "runtimeAcceptance": false,
+    "fullLegacyRegressionAcceptance": false,
+    "pureInterpreterEnabled": false
+  },
+  "primaryChecks": "GitHub branch identities; nine runs and 18 job status; direct K published JSON and current source guard inspection. No new Unity, archive byte rehash, independent reviewer or source mutation.",
+  "stop": "Consumed K. No new Local cycle authorized. Requires explicit independent review initiation."
+}

@@ -1,3 +1,13 @@
+# Current R03 Primary state — K PASS reconciled; independent R03 FAIL remains (2026-11-04)
+
+**Local one-use K completed PASS within focused scope** at executed demo c20da0b261172cbdd188378e24dbe9343a14c6b2 and published evidence demo 14f97f15af6c06afa65957a9b880ccf841069452. Primary verified nine exact-source Actions runs / 18 OS success jobs and inspected the actual K producer, ten host components, three Unity builds, five Players, 135 source-install pairs, original S custody and preservation receipts. This is not a new full-stage review. [Primary K reconciliation](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_K_RECONCILIATION_2026-11-04/PRIMARY_RECONCILIATION.md) and [prepared independent R03 review brief](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_K_RECONCILIATION_2026-11-04/INDEPENDENT_REREVIEW_BRIEF.md).
+
+**Open High findings:** IR-R03-02 has current corrected native source and three real ON post-poison witness cases (pre-positive 42, attempted/denied active reflection/delegate/AOT, canary1→1/field2→2; OFF1→2), but captured-generic and initializer cases remain NotRun and independent closure has not occurred. IR-R03-01 has corrected canonical original S nine-part archive custody and 59 archived historical process joins; complete independent original source/build/Player/generated-code semantic authentication is still open. NativeAtexit/exit0 after 11 reports in103ms is a scoped C-runtime exit, **not** full managed Shutdown, coherent whole-VM epoch or GC/RSS acceptance.
+
+**K is consumed; canonical WEB_TO_LOCAL is CLOSED.** No new Local run, independent review, H2, M08A, X02 or SNAP-01 is automatically authorized. The October 8 independent R03 FAIL remains; R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, qualificationApproved=false, runtimeAcceptance=false and PureInterpreter disabled. The older conditional K instructions below are retained as historical context and superseded by this header and the CLOSED handoff.
+
+---
+
 # Current Primary K response — consumed J FAIL, concrete Path and genuine host CLI correction (2026-11-03 UTC)
 
 **Latest Local J is consumed FAIL/ReturnRequired**, not a product/runtime regression: the first actual `run_current_native_host_preflight.py::inputs` gate rejected an otherwise canonical absolute macOS `PosixPath` because `type(workspace) is Path` is false for the pathlib factory's concrete class. Nine exact-source CI workflows/18 jobs, Mac/SDK/read-only capacity and seven source/archive stages Passed. **J executed 0 of 10 native host subcomponents; no Unity/IL2CPP builds or Players and no official 135 native VM pairs.** Original J coordinator exit1/failure raw and every prior A–J/H/I/G/E/F status remain unchanged; J may never be rerun.
