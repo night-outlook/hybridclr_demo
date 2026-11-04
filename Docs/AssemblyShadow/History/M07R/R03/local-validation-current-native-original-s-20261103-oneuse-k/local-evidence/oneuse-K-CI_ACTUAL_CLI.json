@@ -1,0 +1,38 @@
+{
+  "result": "PassedBothOS",
+  "workflows": {
+    "local-cycle-host": {
+      "nativePins": [
+        "41764ae1eeefb33b05966e7f7676e52aae39c340",
+        "41764ae1eeefb33b05966e7f7676e52aae39c340"
+      ],
+      "sha256": "b511d5907c57453d4ba34ab5df9556782622aaec3645c73039bddcf322ecec13"
+    },
+    "source-only": {
+      "nativePins": [
+        "41764ae1eeefb33b05966e7f7676e52aae39c340"
+      ],
+      "sha256": "1ee8480c77aaf127a172fe86b0d1d648f1cb50e51897e1ba11e3bb92bf4b1b24"
+    },
+    "vm-delta-source-only": {
+      "nativePins": [
+        "41764ae1eeefb33b05966e7f7676e52aae39c340"
+      ],
+      "sha256": "e9995f337290fb929276c992c4d8567a5d5970dfe23d109db71fea7a98f903ec"
+    }
+  },
+  "jobs": [
+    {
+      "jobId": 125898728491,
+      "admissionAndNegatives": "Passed",
+      "normalHostComponents": 10,
+      "logSha256": "2aa7b7e3caf9b1a045bb81205a9dfad1a5b490c88618ebaafe3bcb7deac48dba"
+    },
+    {
+      "jobId": 125898728773,
+      "admissionAndNegatives": "Passed",
+      "normalHostComponents": 10,
+      "logSha256": "bc72924251dc6d188728899bb1ee10763675a0545ead80e45a88fc880a8eb8bf"
+    }
+  ]
+}

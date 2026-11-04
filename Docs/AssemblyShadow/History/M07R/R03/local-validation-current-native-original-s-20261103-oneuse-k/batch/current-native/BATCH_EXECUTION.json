@@ -1,0 +1,520 @@
+{
+  "H2Passed": false,
+  "R03Accepted": false,
+  "capturedGenericFailure": "NotRun",
+  "cells": [
+    {
+      "dependencies": [],
+      "evidence": {
+        "actualUnityPlayerExecutedAtAuthority": false,
+        "candidateNative": "41764ae1eeefb33b05966e7f7676e52aae39c340",
+        "candidateSourceFilesVerified": 11,
+        "inputContract": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/current_native_candidate.json",
+        "kind": "R03IRCurrentNativePinAuthority",
+        "originalNativePinUntouched": "74dbdbea80d83923863303bd2b2c0a87f36541b1",
+        "repositories": [
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "c20da0b261172cbdd188378e24dbe9343a14c6b2",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_demo"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "948c0e3b4f8891481301770115e8ba4945eea6de",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_unity"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "41764ae1eeefb33b05966e7f7676e52aae39c340",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/il2cpp_plus"
+          }
+        ],
+        "result": "PassedSourceAuthority_NotRuntimeAcceptance",
+        "runtimeAcceptance": false
+      },
+      "id": "entry-authority",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "authorityReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/host/ir-original-s-fixture-authority.json",
+        "authoritySha256": "7f10bba595230a19141e5e62fd11e70bed6dd73cd1056cfe48601428d52f074c",
+        "count": 15,
+        "inventoryGitBlob": "0688bd2dad054bd59fcdd1564a050a398cfa14e7",
+        "kind": "R03IROriginalSFixturePreflight",
+        "originalBytesCopied": true,
+        "regenerationAttempted": false,
+        "result": "Passed",
+        "runtimeAcceptance": false,
+        "sourcePublication": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b"
+      },
+      "id": "real-dll-fixtures",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "real-dll-fixtures"
+      ],
+      "evidence": {
+        "generatorBinary": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/bin/player-fixtures/PlayerFixtures.dll",
+        "generatorCompiled": true,
+        "originalFifteenRegenerated": false,
+        "sha256": "44ffbf1cc4c7de378ac3785ce7c8d2137a92e52272ae6fc2889cd738cc576bed"
+      },
+      "id": "ir-generator-build",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "ir-generator-build"
+      ],
+      "evidence": {
+        "originalFixtureSha256": "c21598ce556646601cbbc55e80c0c4f42603d68ca8861d084b4b3fd748a4d144",
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/host/ir-side-effect/ir-target.json",
+        "receiptSha256": "8858b101c5188f0acf0dd076cf05d04134bcfcff0f7fdfd1db86b8f7703f1c0c",
+        "targetBytes": 2048,
+        "targetSha256": "8d0b28cbca4d889801883ad436c51c215b913f1645055590980f902f1e80fffd"
+      },
+      "id": "ir-side-effect-fixture",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "ir-side-effect-fixture"
+      ],
+      "evidence": {
+        "configuration": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/builds/candidate-release/config.json",
+        "frameSourceSha256": "5cb22fb7764115b8264d99026e920c6f2d79d3329846267f0112e83c1dafbc22",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/projects/candidate-release",
+        "sourceManifestSha256": "8262a817931a68ad1d637821a608c430b769b9ce172e467bab43b23b142a1464",
+        "sourceSha256": "948c5f6f853525daa1e45cfb3200333a1bbecb62fd5a7552b43928029d0e5600"
+      },
+      "id": "prepare-candidate-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-release"
+      ],
+      "evidence": {
+        "nativeBinding": {
+          "installReceiptSha256": "4ebcbe57b002f4a4db61d92015b2f1932db0fcd8ccac6d8522bad92bdacce55b",
+          "installationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "kind": "R03InstalledNativeRootV1",
+          "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/projects/candidate-release",
+          "repositories": {
+            "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "hybridclr_demo": "c20da0b261172cbdd188378e24dbe9343a14c6b2",
+            "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+            "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340"
+          },
+          "runtimeAcceptance": false,
+          "schemaVersion": 1,
+          "sourcePinsSha256": "71b1aa43edb8550e32e80c0469444d867f0639dfc4878f930c4ffe62bce835f9",
+          "verifiedNativeFiles": 1012
+        },
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/builds/candidate-release/build-receipt.json",
+        "sha256": "69b95dae4c87c4bcd639ae49a6cf1fa48e1ba9deca9214bb42bb9d6ae67c614b"
+      },
+      "id": "build-candidate-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-release"
+      ],
+      "evidence": {
+        "buildAcceptanceChanged": false,
+        "buildErrors": 0,
+        "exactEmitter": "Unavailable; task output correlation is not emitter proof",
+        "kind": "R03BeeResultProcessingAnalysis",
+        "nodeErrorLines": 0,
+        "nodes": 615,
+        "receiptSha256": "043c09d9b0323a4a249952fca018431e17d2cc087aca889f239d4bc66b086bec",
+        "result": "CapturedForAnalysis",
+        "runtimeAcceptance": false,
+        "sharedCacheLogs": []
+      },
+      "id": "observe-candidate-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "ir-side-effect-fixture"
+      ],
+      "evidence": {
+        "configuration": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/builds/candidate-debug/config.json",
+        "frameSourceSha256": "5cb22fb7764115b8264d99026e920c6f2d79d3329846267f0112e83c1dafbc22",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/projects/candidate-debug",
+        "sourceManifestSha256": "8262a817931a68ad1d637821a608c430b769b9ce172e467bab43b23b142a1464",
+        "sourceSha256": "948c5f6f853525daa1e45cfb3200333a1bbecb62fd5a7552b43928029d0e5600"
+      },
+      "id": "prepare-candidate-debug",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-debug"
+      ],
+      "evidence": {
+        "nativeBinding": {
+          "installReceiptSha256": "4ebcbe57b002f4a4db61d92015b2f1932db0fcd8ccac6d8522bad92bdacce55b",
+          "installationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "kind": "R03InstalledNativeRootV1",
+          "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/projects/candidate-debug",
+          "repositories": {
+            "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "hybridclr_demo": "c20da0b261172cbdd188378e24dbe9343a14c6b2",
+            "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+            "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340"
+          },
+          "runtimeAcceptance": false,
+          "schemaVersion": 1,
+          "sourcePinsSha256": "71b1aa43edb8550e32e80c0469444d867f0639dfc4878f930c4ffe62bce835f9",
+          "verifiedNativeFiles": 1012
+        },
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/builds/candidate-debug/build-receipt.json",
+        "sha256": "f167f0ae9314b1a4db470311bb146f45dc1e6f3ffc95a9e88bd96c329c14c903"
+      },
+      "id": "build-candidate-debug",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-debug"
+      ],
+      "evidence": {
+        "buildAcceptanceChanged": false,
+        "buildErrors": 0,
+        "exactEmitter": "Unavailable; task output correlation is not emitter proof",
+        "kind": "R03BeeResultProcessingAnalysis",
+        "nodeErrorLines": 0,
+        "nodes": 615,
+        "receiptSha256": "eb8a1c9266ace03095626d6378a2c3173fa971a8ce1c1551605b0114b440b4c7",
+        "result": "CapturedForAnalysis",
+        "runtimeAcceptance": false,
+        "sharedCacheLogs": []
+      },
+      "id": "observe-candidate-debug",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "ir-side-effect-fixture"
+      ],
+      "evidence": {
+        "configuration": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/builds/candidate-off/config.json",
+        "frameSourceSha256": "5cb22fb7764115b8264d99026e920c6f2d79d3329846267f0112e83c1dafbc22",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/projects/candidate-off",
+        "sourceManifestSha256": "8262a817931a68ad1d637821a608c430b769b9ce172e467bab43b23b142a1464",
+        "sourceSha256": "948c5f6f853525daa1e45cfb3200333a1bbecb62fd5a7552b43928029d0e5600"
+      },
+      "id": "prepare-candidate-off",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-off"
+      ],
+      "evidence": {
+        "nativeBinding": {
+          "installReceiptSha256": "4ebcbe57b002f4a4db61d92015b2f1932db0fcd8ccac6d8522bad92bdacce55b",
+          "installationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "kind": "R03InstalledNativeRootV1",
+          "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/projects/candidate-off",
+          "repositories": {
+            "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "hybridclr_demo": "c20da0b261172cbdd188378e24dbe9343a14c6b2",
+            "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+            "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340"
+          },
+          "runtimeAcceptance": false,
+          "schemaVersion": 1,
+          "sourcePinsSha256": "71b1aa43edb8550e32e80c0469444d867f0639dfc4878f930c4ffe62bce835f9",
+          "verifiedNativeFiles": 1012
+        },
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/builds/candidate-off/build-receipt.json",
+        "sha256": "9e0934f097f0366a0ae44f9a485d985550cac403ce79e9228daea2bb34f1fe23"
+      },
+      "id": "build-candidate-off",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-off"
+      ],
+      "evidence": {
+        "buildAcceptanceChanged": false,
+        "buildErrors": 0,
+        "exactEmitter": "Unavailable; task output correlation is not emitter proof",
+        "kind": "R03BeeResultProcessingAnalysis",
+        "nodeErrorLines": 0,
+        "nodes": 615,
+        "receiptSha256": "37373bff2fe26c3a3e110eac8ccdf8a9f85dd26460ad9a35bb1b2274e10ceae5",
+        "result": "CapturedForAnalysis",
+        "runtimeAcceptance": false,
+        "sharedCacheLogs": []
+      },
+      "id": "observe-candidate-off",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "H2Passed": false,
+        "R03Accepted": false,
+        "argv": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "-batchmode",
+          "-nographics",
+          "-r03IrRequest",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-release-baseline/request.json",
+          "-r03IrOutput",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-release-baseline/raw.json",
+          "-r03IrRunId",
+          "4ef7696a0aee47c180f56989e32edfbe",
+          "-logFile",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-release-baseline/Player.log"
+        ],
+        "buildReceiptSha256": "69b95dae4c87c4bcd639ae49a6cf1fa48e1ba9deca9214bb42bb9d6ae67c614b",
+        "caseId": "IR-R03-02-release-baseline",
+        "completeGeneralDiagnostic": {
+          "R03Accepted": false,
+          "bytes": 540959,
+          "classEnumerationGeneration": 1,
+          "coherentVmEpochProven": false,
+          "enumerationGeneration": 1,
+          "kind": "R03CompleteBoundedGeneralDiagnosticsV1",
+          "ordinaryAssemblyCount": 46,
+          "ordinaryClassCount": 3352,
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-release-baseline/raw.json.general.json",
+          "result": "PassedCompleteByteBoundAndSchema_WithoutGlobalEpochProof",
+          "runtimeAcceptance": false,
+          "sha256": "007471916a2391d7e634216262466dd59e4d154dc1d2d5b76c73f7ee1a0f9732",
+          "transport": "FullPreopenedSidecar"
+        },
+        "kind": "R03IRVerifiedPostPoisonPlayer",
+        "launchPid": 3851,
+        "rawSha256": "11a6b3c79c862d688f8ce348d84be73f17be36cffffa4635122cbab66ab18e02",
+        "requestSha256": "621b64f5a1f52dfb4fc3693507bb80fdabc2573b9458688ba00bc51b98bcd193",
+        "result": "Passed",
+        "runId": "4ef7696a0aee47c180f56989e32edfbe",
+        "runtimeAcceptance": false,
+        "stimulus": "baseline-owner"
+      },
+      "id": "IR-R03-02-release-baseline",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "evidence": {
+        "H2Passed": false,
+        "R03Accepted": false,
+        "argv": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/builds/candidate-debug/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "-batchmode",
+          "-nographics",
+          "-r03IrRequest",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-debug-baseline/request.json",
+          "-r03IrOutput",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-debug-baseline/raw.json",
+          "-r03IrRunId",
+          "9b6a62215c5346aa849ce0c3b88502d5",
+          "-logFile",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-debug-baseline/Player.log"
+        ],
+        "buildReceiptSha256": "f167f0ae9314b1a4db470311bb146f45dc1e6f3ffc95a9e88bd96c329c14c903",
+        "caseId": "IR-R03-02-debug-baseline",
+        "completeGeneralDiagnostic": {
+          "R03Accepted": false,
+          "bytes": 540382,
+          "classEnumerationGeneration": 1,
+          "coherentVmEpochProven": false,
+          "enumerationGeneration": 1,
+          "kind": "R03CompleteBoundedGeneralDiagnosticsV1",
+          "ordinaryAssemblyCount": 46,
+          "ordinaryClassCount": 3348,
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-debug-baseline/raw.json.general.json",
+          "result": "PassedCompleteByteBoundAndSchema_WithoutGlobalEpochProof",
+          "runtimeAcceptance": false,
+          "sha256": "e9f506bd870c6d84ceac73bc836594dd62700f1d1dba975a55d3320848d4850c",
+          "transport": "FullPreopenedSidecar"
+        },
+        "kind": "R03IRVerifiedPostPoisonPlayer",
+        "launchPid": 3853,
+        "rawSha256": "1db97c9e2b574149075cbbd101778e3f684da91bbfa7ca2298e80a9a11c8ebea",
+        "requestSha256": "9c33d03a5522c857d65226b62e6e47b95b04449a23cb760721333bac4316c87f",
+        "result": "Passed",
+        "runId": "9b6a62215c5346aa849ce0c3b88502d5",
+        "runtimeAcceptance": false,
+        "stimulus": "baseline-owner"
+      },
+      "id": "IR-R03-02-debug-baseline",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "H2Passed": false,
+        "R03Accepted": false,
+        "argv": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "-batchmode",
+          "-nographics",
+          "-r03IrRequest",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-release-type/request.json",
+          "-r03IrOutput",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-release-type/raw.json",
+          "-r03IrRunId",
+          "ac4643a9325b4551a6731101a65f923c",
+          "-logFile",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-release-type/Player.log"
+        ],
+        "buildReceiptSha256": "69b95dae4c87c4bcd639ae49a6cf1fa48e1ba9deca9214bb42bb9d6ae67c614b",
+        "caseId": "IR-R03-02-release-type",
+        "completeGeneralDiagnostic": {
+          "R03Accepted": false,
+          "bytes": 540759,
+          "classEnumerationGeneration": 1,
+          "coherentVmEpochProven": false,
+          "enumerationGeneration": 1,
+          "kind": "R03CompleteBoundedGeneralDiagnosticsV1",
+          "ordinaryAssemblyCount": 46,
+          "ordinaryClassCount": 3352,
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-release-type/raw.json.general.json",
+          "result": "PassedCompleteByteBoundAndSchema_WithoutGlobalEpochProof",
+          "runtimeAcceptance": false,
+          "sha256": "49b8c7fd4c5a8ca7b5c72c7b8773c6126a09b7c1b4944538360601a61fc35e79",
+          "transport": "FullPreopenedSidecar"
+        },
+        "kind": "R03IRVerifiedPostPoisonPlayer",
+        "launchPid": 3855,
+        "rawSha256": "c05b9046a7a5386d1f659b51220801f27ec88de1083a75dd376785e02f8fef1a",
+        "requestSha256": "2cb47aba88c93e5250aa9a894a8a91aa4f489fc56f1429cd40ce9298746c2c94",
+        "result": "Passed",
+        "runId": "ac4643a9325b4551a6731101a65f923c",
+        "runtimeAcceptance": false,
+        "stimulus": "type-resolution"
+      },
+      "id": "IR-R03-02-release-type",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-off"
+      ],
+      "evidence": {
+        "H2Passed": false,
+        "R03Accepted": false,
+        "argv": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/builds/candidate-off/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "-batchmode",
+          "-nographics",
+          "-r03IrRequest",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-off/request.json",
+          "-r03IrOutput",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-off/raw.json",
+          "-r03IrRunId",
+          "9befd25fcfcf42de81e8dba7d3cd3425",
+          "-logFile",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-off/Player.log"
+        ],
+        "buildReceiptSha256": "9e0934f097f0366a0ae44f9a485d985550cac403ce79e9228daea2bb34f1fe23",
+        "caseId": "IR-R03-02-off",
+        "completeGeneralDiagnostic": null,
+        "kind": "R03IRVerifiedPostPoisonPlayer",
+        "launchPid": 3857,
+        "rawSha256": "144adc9b36602ffcb69837bfdd14ee2ac077a3e8a6fa1226d38318ceb1f10611",
+        "requestSha256": "b51e3872bc4988736ffc00eceb37d43d5c555f714a7b13f9411175f6abdee4c5",
+        "result": "Passed",
+        "runId": "9befd25fcfcf42de81e8dba7d3cd3425",
+        "runtimeAcceptance": false,
+        "stimulus": "off"
+      },
+      "id": "IR-R03-02-off",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "argv": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "-batchmode",
+          "-nographics",
+          "-r03IrRequest",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-release-engine/request.json",
+          "-r03IrOutput",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-release-engine/raw.json",
+          "-r03IrRunId",
+          "28e2c7de622e417fad6554e36eb90722",
+          "-logFile",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-release-engine/Player.log"
+        ],
+        "buildReceiptSha256": "69b95dae4c87c4bcd639ae49a6cf1fa48e1ba9deca9214bb42bb9d6ae67c614b",
+        "freshPlayer": true,
+        "launchPid": 3859,
+        "rawSha256": "81da065f5613b73978ca8ffcc81a4c91ae3e67560ac7d641ec23161567ef3e1f",
+        "requestSha256": "52475aff78ed4ee85b52625e859a64575b148bf97c687dbc44fd8f61d0954556",
+        "result": "Passed",
+        "runId": "28e2c7de622e417fad6554e36eb90722",
+        "runtimeAcceptance": false,
+        "scope": "One frame-originated unhandled sentinel and normal process exit; not full R03"
+      },
+      "id": "IR-R03-02-release-engine",
+      "result": "Passed"
+    }
+  ],
+  "freshFixturesRegeneratedFromOldOutputMode": false,
+  "fullLegacyRegressionAcceptance": false,
+  "initializerFailure": "NotRun",
+  "kind": "R03IRFocusedTerminalLocalBatch",
+  "originalSFixtureAuthority": "AuthenticatedOriginalCommit",
+  "originalSFixtureAuthoritySha256": "7f10bba595230a19141e5e62fd11e70bed6dd73cd1056cfe48601428d52f074c",
+  "plannedFreshBuilds": 3,
+  "plannedFreshPlayers": 5,
+  "pureInterpreterExpansionEnabled": false,
+  "qualificationApproved": false,
+  "recordedFreshPlayerRawFiles": 5,
+  "repositories": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_demo": "c20da0b261172cbdd188378e24dbe9343a14c6b2",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340",
+    "phase": "candidate",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1
+  },
+  "result": "FocusedEvidenceReadyForPrimaryReview",
+  "schemaVersion": 1,
+  "scope": "IR active Methods side effects, native snapshot, healthy GC reserve, baseline/type/OFF and bounded engine-originated unhandled reporter; generic/initializer not covered",
+  "verifiedFreshBuilds": 3,
+  "verifiedFreshPlayers": 5
+}

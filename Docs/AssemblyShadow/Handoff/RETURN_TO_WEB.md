@@ -1,5 +1,15 @@
 # Local Validation → Primary Implementation
 
+## oneuse-K follow-up on the I and J returns
+
+K completed the focused host, build, Player, parity and producer-consumption checks at demo `c20da0b261172cbdd188378e24dbe9343a14c6b2`. Both read-only CLI admissions and all ten fresh Local native host components passed. The corrected consumer accepted K's complete fresh 18-cell producer record. The coordinator returned `FocusedEvidenceReadyForIndependentReview` with exit 0. [K checkpoint](../History/M07R/R03/local-validation-current-native-original-s-20261103-oneuse-k/README.md), [K result](../History/M07R/R03/local-validation-current-native-original-s-20261103-oneuse-k/LOCAL_RESULT.json).
+
+K supplies evidence for the bounded corrections to IR-LOCAL-R03-ONEUSE-J-PATH-TYPE-01 and the prior I host roster and producer record findings. The earlier I and J receipts retain their original FAIL classifications.
+
+Primary Implementation owns reconciliation with the existing independent High IR-R03-01/02 findings. The remaining full-stage review must address the managed shutdown, whole-VM epoch, GC/RSS and legacy coverage obligations. All acceptance flags are false.
+
+---
+
 ## oneuse-J return — FAIL / native host input type rejects valid Path
 
 [Checkpoint](../History/M07R/R03/local-validation-current-native-original-s-20261103-oneuse-j/README.md), [factual result](../History/M07R/R03/local-validation-current-native-original-s-20261103-oneuse-j/LOCAL_RESULT.json), [actionable finding](../History/M07R/R03/local-validation-current-native-original-s-20261103-oneuse-j/RUNTIME_FINDINGS.json), [actual failed stderr](../History/M07R/R03/local-validation-current-native-original-s-20261103-oneuse-j/batch/steps/native-host-diagnostics/stderr.log).

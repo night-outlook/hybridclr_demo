@@ -1,0 +1,111 @@
+{
+  "kind": "LocalCurrentNativeOriginalSOneuseKOutcome",
+  "result": "PASS",
+  "classification": "FocusedEvidenceReadyForIndependentReview",
+  "coordinatorResult": "FocusedEvidenceReadyForIndependentReview",
+  "sourcePins": {
+    "hybridclr_demo": "c20da0b261172cbdd188378e24dbe9343a14c6b2",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340"
+  },
+  "coordinatorRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K",
+  "coordinatorInvocations": 1,
+  "coordinatorPid": 98585,
+  "coordinatorExit": 0,
+  "actualStartUtc": "2026-11-04T09:08:49.391201+00:00",
+  "actualEndUtc": "2026-11-04T09:15:08.008885+00:00",
+  "stageCounts": {
+    "Passed": 10
+  },
+  "nativeHostComponentsPassed": 10,
+  "historicalEightPassed": 8,
+  "freshOwnerSuites": [
+    {
+      "name": "native-owner-method-classifier",
+      "tests": 2,
+      "pid": 99407,
+      "start": "2026-11-04T09:10:46.319425+00:00",
+      "end": "2026-11-04T09:10:46.912406+00:00",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/native_owner_decision_contracts.py",
+        "--native",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus"
+      ],
+      "stderrSha256": "468d0c9a596ef35744a202138a5034686e5218665187257608ca6e4da41f3f35",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "PassedFreshLocalBeforeUnity"
+    },
+    {
+      "name": "native-owner-full-tu",
+      "tests": 3,
+      "pid": 99412,
+      "start": "2026-11-04T09:10:46.914768+00:00",
+      "end": "2026-11-04T09:10:49.758156+00:00",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/engine_owner_quit_contracts.py",
+        "--native",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus"
+      ],
+      "stderrSha256": "323ff19b76b12ab6d4e3e8dbeb0adbd80522ddb5397b5ea11e55f7270157abd3",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "PassedFreshLocalBeforeUnity"
+    }
+  ],
+  "buildAttempts": 3,
+  "buildsPassed": 3,
+  "actualPlayers": 5,
+  "playersPassed": 5,
+  "childCells": {
+    "Passed": 18
+  },
+  "completeProducerRecordConsumed": {
+    "IRR0301IndependentlyClosed": false,
+    "IRR0302IndependentlyClosed": false,
+    "R03Accepted": false,
+    "builds": 3,
+    "completeProducerRepositoryRecord": true,
+    "localBatchResultSha256": "23c0410ca3224aa7f4638c0ae6ab47f5497ebc8b02f46679f40baa343e2f85da",
+    "players": 5,
+    "result": "PassedFiveFocusedCurrentNativePlayersOnly",
+    "validatedCells": 18
+  },
+  "officialInstalledSourcePairs": 135,
+  "installedSourceAudit": "PassedInstalledSourceParityOnly",
+  "engine": {
+    "pid": 3859,
+    "reports": 11,
+    "elapsedMs": 103,
+    "exit": 0,
+    "mode": "NativeAtexit",
+    "rawSha256": "81da065f5613b73978ca8ffcc81a4c91ae3e67560ac7d641ec23161567ef3e1f",
+    "ownerQuitCalls": 1,
+    "wantsToQuitResponses": 1,
+    "quitNotifications": 1,
+    "terminalFailureCode": 13
+  },
+  "capacityAdmissionBytes": 33784832000,
+  "capacityImmediateBytes": 33785069568,
+  "primaryK25GiBExceptionUsed": true,
+  "historicalCheckpointsPreserved": 13,
+  "originalSFilesPreserved": 16978,
+  "installedSdkInputsPreserved": 2405,
+  "independentPreservation": "Passed",
+  "nativeBatchSeal": "Passed",
+  "nativeArchiveSha256": "0ba06b64d7eb7c84bd92e330bf5abd87645c2c726e8e556f845727093d2a077d",
+  "fullRawFiles": 46661,
+  "fullRawBytes": 6414459908,
+  "sourceChangesByLocal": false,
+  "retry": false,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "ReadyForHumanReviewGate": false,
+  "qualificationApproved": false,
+  "runtimeAcceptance": false,
+  "pureInterpreterEnabled": false,
+  "nextState": "Primary Implementation"
+}

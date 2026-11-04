@@ -1,0 +1,42 @@
+{
+  "H2Passed": false,
+  "R03Accepted": false,
+  "argv": [
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/builds/candidate-debug/R03Isolated.app/Contents/MacOS/R03Isolated",
+    "-batchmode",
+    "-nographics",
+    "-r03IrRequest",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-debug-baseline/request.json",
+    "-r03IrOutput",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-debug-baseline/raw.json",
+    "-r03IrRunId",
+    "9b6a62215c5346aa849ce0c3b88502d5",
+    "-logFile",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-debug-baseline/Player.log"
+  ],
+  "buildReceiptSha256": "f167f0ae9314b1a4db470311bb146f45dc1e6f3ffc95a9e88bd96c329c14c903",
+  "caseId": "IR-R03-02-debug-baseline",
+  "completeGeneralDiagnostic": {
+    "R03Accepted": false,
+    "bytes": 540382,
+    "classEnumerationGeneration": 1,
+    "coherentVmEpochProven": false,
+    "enumerationGeneration": 1,
+    "kind": "R03CompleteBoundedGeneralDiagnosticsV1",
+    "ordinaryAssemblyCount": 46,
+    "ordinaryClassCount": 3348,
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K/current-native/players/IR-R03-02-debug-baseline/raw.json.general.json",
+    "result": "PassedCompleteByteBoundAndSchema_WithoutGlobalEpochProof",
+    "runtimeAcceptance": false,
+    "sha256": "e9f506bd870c6d84ceac73bc836594dd62700f1d1dba975a55d3320848d4850c",
+    "transport": "FullPreopenedSidecar"
+  },
+  "kind": "R03IRVerifiedPostPoisonPlayer",
+  "launchPid": 3853,
+  "rawSha256": "1db97c9e2b574149075cbbd101778e3f684da91bbfa7ca2298e80a9a11c8ebea",
+  "requestSha256": "9c33d03a5522c857d65226b62e6e47b95b04449a23cb760721333bac4316c87f",
+  "result": "Passed",
+  "runId": "9b6a62215c5346aa849ce0c3b88502d5",
+  "runtimeAcceptance": false,
+  "stimulus": "baseline-owner"
+}
