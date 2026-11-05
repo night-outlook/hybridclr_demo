@@ -1,3 +1,11 @@
+# R03 Primary checkpoint — initializer test-source implementation (2026-11-05 UTC)
+
+Primary published distinct initializer-control/failure Methods.dll generator, pre-Committing-state callback observer, native preopened **diagnostic V1 (not V2)** receipt, isolated Player entry, composite-overlay preparation and fail-closed host schema tests. Source-bound CI generation, C++11 observer/writer, project preparation, and managed API compilation **passed** without running Unity/IL2CPP or real Players. [Exact evidence and remaining blockers](../History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/INITIALIZER_IMPLEMENTATION_PROGRESS.md).
+
+Original K Local is consumed; WEB_TO_LOCAL.md CLOSED. IR-R03-01/02 both High / NeedsEvidence. No complete V2 first-recovery/general diagnostic path or captured-generic Player witness. R03Accepted/H2Passed/ReadyForHumanReviewGate/runtimeAcceptance/qualificationApproved=false; PureInterpreter disabled.
+
+---
+
 # Current R03 Primary checkpoint — original S binary symbol review (2026-11-05 UTC)
 
 New audit/script/host tests/CI on feature branch: authenticated original S generated-code registration and both original archived macOS GameAssembly binaries. Exact-source run [41965330265](https://github.com/night-outlook/hybridclr_demo/actions/runs/41965330265) Passed 14 tests and actual binary checks; required generic/invoker symbols are physically defined in each binary. This is **not** a compiled-object input graph or original Player process/executable identity join. [Evidence record](../History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/ORIGINAL_S_BINARY_REGISTRATION_AUDIT.md).
