@@ -95,3 +95,27 @@ All gates remain `R03Accepted=false`, `H2Passed=false`,
 `pureInterpreterExpansionEnabled=false`.
 Do not treat source CI, synthetic host tests, or original 15 fixture
 regeneration as runtime qualification.
+
+## Follow-up: all diagnosed current-source host gates restored
+
+- `149db30e164ae04109bfe99ab1e3bef6d298a4ba`: update
+  `current_native_cli_contracts.py` to the exact reviewed V1 verifier
+  blob, without changing any consumed historical evidence.
+- The complete current-native host workflow **passed** on macOS 15 and
+  Ubuntu 24.04 at that source commit:
+  [41956813877](https://github.com/night-outlook/hybridclr_demo/actions/runs/41956813877).
+  This run includes source admission, real fresh Python CLI bootstrap,
+  capacity/net8 preflight checks, and strict host-only contracts. It
+  does not launch a Unity Player.
+- Five additional K/L/source host workflows also **passed** at
+  `149db30e...`:
+  [41956813592](https://github.com/night-outlook/hybridclr_demo/actions/runs/41956813592),
+  [41956813417](https://github.com/night-outlook/hybridclr_demo/actions/runs/41956813417),
+  [41956813478](https://github.com/night-outlook/hybridclr_demo/actions/runs/41956813478),
+  [41956813559](https://github.com/night-outlook/hybridclr_demo/actions/runs/41956813559).
+- Before that, the source-only fixture and compatibility workflow
+  [41956481142](https://github.com/night-outlook/hybridclr_demo/actions/runs/41956481142)
+  passed at `ceab491...`.
+
+This resolves the **identified host CI failures** for the newly reviewed
+source. It does not close either High R03 finding or authorize Local execution.
