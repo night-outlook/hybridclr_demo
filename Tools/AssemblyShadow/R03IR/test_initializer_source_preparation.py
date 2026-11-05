@@ -36,7 +36,11 @@ class InitializerSourcePreparationTests(unittest.TestCase):
             "schemaVersion":1, "projectPath":str(self.project),
             "sourceManifestSha256":sha(self.manifest.read_bytes()),
             "overlayPath":str(self.overlay),
-            "overlaySha256":sha(self.overlay.read_bytes())}) + "\n")
+            "overlaySha256":sha(self.overlay.read_bytes()),
+            "outputPath":str(self.project.parent / "build" / "R03Isolated.app"),
+            "receiptPath":str(self.project.parent / "build" / "build-receipt.json"),
+            "featureEnabled":True, "diagnosticsLevel":2,
+            "cppConfiguration":"Release"}) + "\n")
 
     def test_preserves_original_and_appends_exact_new_sources(self):
         previous = self.overlay.read_bytes()
@@ -93,6 +97,21 @@ class InitializerSourcePreparationTests(unittest.TestCase):
         manifest["files"].append(manifest["files"][0])
         self.manifest.write_text(json.dumps(manifest))
         self._write_config()
+        with self.assertRaises(ValueError):
+            prepare(self.project, self.config, self.out)
+
+    def test_existing_build_receipt_rejected(self):
+        config = json.loads(self.config.read_text())
+        receipt = Path(config["receiptPath"])
+        receipt.parent.mkdir(parents=True, exist_ok=True)
+        receipt.write_text("already built")
+        with self.assertRaises(ValueError):
+            prepare(self.project, self.config, self.out)
+
+    def test_disabled_feature_profile_rejected(self):
+        config = json.loads(self.config.read_text())
+        config["featureEnabled"] = False
+        self.config.write_text(json.dumps(config))
         with self.assertRaises(ValueError):
             prepare(self.project, self.config, self.out)
 
