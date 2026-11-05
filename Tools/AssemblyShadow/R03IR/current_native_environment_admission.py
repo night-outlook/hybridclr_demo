@@ -21,7 +21,7 @@ import xml.etree.ElementTree as ET
 import current_native_source_gate as source
 import run_current_native_validation_cycle as cycle
 
-REQUIRED_CSPROJ_BLOB = "6bd02a765a53d9fc1830d1026f2b02710172a092"
+REQUIRED_CSPROJ_BLOB = "249c47c1b453fc0cd3520173122599ca03cbe78c"
 ADVISORY_HEADROOM_GIB = 40
 
 
