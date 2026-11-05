@@ -127,9 +127,9 @@ def classify_nm_symbols(lines):
     for line in lines:
         item = line.strip()
         for name in TABLES:
-            if re.search(r"(?:^|\\s)_" + re.escape(name) + r"$", item) and
-                    re.match(r"^[0-9a-fA-F]{8,16}\\s+\\([^)]+\\)\\s+", item) and
-                    "undefined" not in item.lower():
+            if (re.search(r"(?:^|\s)_" + re.escape(name) + r"$", item) is not None and
+                    re.match(r"^[0-9a-fA-F]{8,16}\s+\([^)]+\)\s+", item) is not None and
+                    "undefined" not in item.lower()):
                 definitions[name].append(item[:250])
     return {"definedSymbols": definitions,
             "allRequiredSymbolsDefined": all(len(v) == 1 for v in definitions.values())}
