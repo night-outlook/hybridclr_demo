@@ -7,7 +7,7 @@ import unittest
 
 from audit_s_binary_linkage import (
     ORIGINAL, TABLES, ROLES, MACHO_BLOBS, SOURCES, registration_symbols,
-    git_blob_file, audit, unique, bounded_nm,
+    git_blob_file, audit, unique, bounded_nm, classify_nm_symbols,
 )
 
 
@@ -77,6 +77,30 @@ class SBinaryLinkageContracts(unittest.TestCase):
         self.assertEqual(set(ROLES), {"NativeOn", "NativeOff"})
         self.assertEqual(len(SOURCES), 2)
         self.assertEqual({v[1] for v in MACHO_BLOBS.values()}, {98041110, 96480726})
+
+    def test_real_macho_symbol_format_is_defined(self):
+        entries = [
+            "0000000002b9dee8 (__DATA_CONST,__const) non-external (was a private external) _g_Il2CppGenericMethodPointers",
+            "0000000002b4c328 (__DATA_CONST,__const) non-external (was a private external) _g_Il2CppInvokerPointers",
+        ]
+        answer = classify_nm_symbols(entries)
+        self.assertIs(answer["allRequiredSymbolsDefined"], True)
+        self.assertEqual(len(answer["definedSymbols"]["g_Il2CppGenericMethodPointers"]), 1)
+
+    def test_undefined_and_lookalike_symbols_cannot_pass(self):
+        bad = [
+            "                 (undefined) external _g_Il2CppGenericMethodPointers",
+            "0000000002b4c328 (__DATA_CONST,__const) non-external _g_Il2CppInvokerPointers",
+            "0000000002b9dee8 (__DATA_CONST,__const) non-external _g_Il2CppGenericMethodPointersSuffix",
+        ]
+        self.assertIs(classify_nm_symbols(bad)["allRequiredSymbolsDefined"], False)
+
+    def test_duplicate_definition_rejected(self):
+        defined = [
+            "0000000002b9dee8 (__DATA_CONST,__const) non-external _g_Il2CppGenericMethodPointers",
+            "0000000002b4c328 (__DATA_CONST,__const) non-external _g_Il2CppInvokerPointers",
+        ]
+        self.assertIs(classify_nm_symbols(defined + defined)["allRequiredSymbolsDefined"], False)
 
     def test_no_invented_original_binary_fixture(self):
         with tempfile.TemporaryDirectory() as p:
