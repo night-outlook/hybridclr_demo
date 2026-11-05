@@ -1,3 +1,11 @@
+# Current Primary R03 status — source-only S table audit and V2 host check (2026-11-04)
+
+**Primary continuation only.** At exact current-source demo `e32be835148715db838014c06a645d72b0772614`, read-only original S generated source scan [41962491415](https://github.com/night-outlook/hybridclr_demo/actions/runs/41962491415) passed 15/15 tests and authenticated original four generated files and scalar initializer-table cardinalities (48,232 method pointers; 10,198 invokers per ON/OFF copy). It does not bind original compiled/link outputs or reconcile all historical capture omissions. New remaining-witness V2 schema host workflow [41962796627](https://github.com/night-outlook/hybridclr_demo/actions/runs/41962796627) passed 8/8 on each of macOS 15 and Ubuntu 24.04. No new Unity or native Player execution. [Report](../History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-04/ORIGINAL_S_GENERATED_MATERIAL_AUDIT.md).
+
+**Independent R03 verdict remains FAIL**, IR-R03-01/02 High remain NeedsEvidence. Original S/K raw and Local verdicts unchanged; consumed K handoff stays CLOSED. R03Accepted/H2Passed/ReadyForHumanReviewGate/runtimeAcceptance/qualificationApproved=false; PureInterpreter disabled. No new Local cycle/H2 or adjacent milestones.
+
+---
+
 # Current Primary checkpoint — R03 K consumed; independent re-review pending (2026-11-04)
 
 At exact K execution demo c20da0b261172cbdd188378e24dbe9343a14c6b2 and evidence publication demo 14f97f15af6c06afa65957a9b880ccf841069452, K is **PASS / FocusedEvidenceReadyForIndependentReview** (nine mandatory dual-OS CI runs/18 jobs, 10 Local native host components, three Unity IL2CPP C++11 builds, five real Players, 18 child cells, 135 installed native source pairs, original-S custody and preservation). The direct K source/result links and scope ledger are in [Primary K reconciliation](../History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_K_RECONCILIATION_2026-11-04/PRIMARY_RECONCILIATION.md). No fresh K retry or new source modification is authorized.
