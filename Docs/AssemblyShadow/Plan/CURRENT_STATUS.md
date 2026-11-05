@@ -1,3 +1,11 @@
+# Current R03 Primary checkpoint — original S binary symbol review (2026-11-05 UTC)
+
+New audit/script/host tests/CI on feature branch: authenticated original S generated-code registration and both original archived macOS GameAssembly binaries. Exact-source run [41965330265](https://github.com/night-outlook/hybridclr_demo/actions/runs/41965330265) Passed 14 tests and actual binary checks; required generic/invoker symbols are physically defined in each binary. This is **not** a compiled-object input graph or original Player process/executable identity join. [Evidence record](../History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/ORIGINAL_S_BINARY_REGISTRATION_AUDIT.md).
+
+IR-R03-01 and IR-R03-02 remain High / NeedsEvidence; the independent full-stage FAIL is unchanged. A production/ABI claim is not authorized from this audit. K consumed, WEB_TO_LOCAL.md CLOSED, no new Local cycle. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; qualificationApproved=false; runtimeAcceptance=false; PureInterpreter disabled.
+
+---
+
 # Current Primary R03 status — source-only S table audit and V2 host check (2026-11-04)
 
 **Primary continuation only.** At exact current-source demo `e32be835148715db838014c06a645d72b0772614`, read-only original S generated source scan [41962491415](https://github.com/night-outlook/hybridclr_demo/actions/runs/41962491415) passed 15/15 tests and authenticated original four generated files and scalar initializer-table cardinalities (48,232 method pointers; 10,198 invokers per ON/OFF copy). It does not bind original compiled/link outputs or reconcile all historical capture omissions. New remaining-witness V2 schema host workflow [41962796627](https://github.com/night-outlook/hybridclr_demo/actions/runs/41962796627) passed 8/8 on each of macOS 15 and Ubuntu 24.04. No new Unity or native Player execution. [Report](../History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-04/ORIGINAL_S_GENERATED_MATERIAL_AUDIT.md).
