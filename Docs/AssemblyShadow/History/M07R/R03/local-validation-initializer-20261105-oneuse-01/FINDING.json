@@ -1,0 +1,66 @@
+{
+  "id": "IR-LOCAL-R03-INITIALIZER-01-ADMISSION-01",
+  "time": "2026-11-05T10:06:45.194605+00:00",
+  "classification": "PrimaryImplementationRequired_StaleFixtureSourceAdmission",
+  "symptom": {
+    "coordinatorInvoked": false,
+    "kind": "R03RetainedOriginalSReadOnlyReadmission",
+    "newBatchRootCreated": false,
+    "reason": "Current R03 net8.0 fixture project source identity changed",
+    "result": "BlockedBeforeCoordinator",
+    "runtimeAcceptance": false
+  },
+  "sourcePin": "bf1e8283061fe3a94c56ea2ac9ab6445905cf738",
+  "gate": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/current_native_environment_admission.py",
+    "sha256": "5ee289a423be1de7ad5b8811162c33172c11a88a571d56564673028a9c4614f3",
+    "constant": "REQUIRED_CSPROJ_BLOB",
+    "expectedGitBlob": "249c47c1b453fc0cd3520173122599ca03cbe78c",
+    "location": "line24;fixture_net8_source lines73-81;verify_toolchain line113;inspect line184"
+  },
+  "fixtureProject": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj",
+    "actualGitBlob": "1c5c8628ead41d67d94bb1846dd5bf9764620c68",
+    "gitHeadBlob": "1c5c8628ead41d67d94bb1846dd5bf9764620c68",
+    "sha256": "c75494bd2d7fe26fed245cae641d1cebd036bb382f3884439bdc4d732e3bdbda",
+    "expectedOldBytesSha256": "1cc7bf7be99a3d7a6226c0059b04caddebd70fa6fe8662df917c6afabf6d074d",
+    "lastChangeCommit": "c2cbf6737c0f506adb9acc7dedc56f7541535715",
+    "workingTreeMatchesCommittedSource": true
+  },
+  "exactBlobDiff": "diff --git a/249c47c1b453fc0cd3520173122599ca03cbe78c b/1c5c8628ead41d67d94bb1846dd5bf9764620c68\nindex 249c47c1b..1c5c8628e 100644\n--- a/249c47c1b453fc0cd3520173122599ca03cbe78c\n+++ b/1c5c8628ead41d67d94bb1846dd5bf9764620c68\n@@ -6,7 +6,7 @@\n   </PropertyGroup>\n   <ItemGroup>\n     <Reference Include=\"dnlib\"><HintPath>$(PackageRoot)/Plugins/dnlib.dll</HintPath></Reference>\n-    <Compile Include=\"Program.cs\"/><Compile Include=\"TerminalProducerFixtures.cs\"/><Compile Include=\"../Fixtures/EvolutionFixtureCorpus.cs\"/>\n+    <Compile Include=\"Program.cs\"/><Compile Include=\"TerminalProducerFixtures.cs\"/><Compile Include=\"InitializerNativeTargetFixtures.cs\"/><Compile Include=\"../Fixtures/EvolutionFixtureCorpus.cs\"/>\n     <Compile Include=\"../HostTests/EnvironmentBoundaries.cs\"/>\n     <Compile Include=\"$(PackageRoot)/Editor/AssemblyShadow/Model/ShadowConfiguration.cs\"/>\n     <Compile Include=\"$(PackageRoot)/Editor/AssemblyShadow/Metadata/AssemblyIdentityUtil.cs\"/>\n",
+  "reproduction": {
+    "argv": [
+      "python3",
+      "-B",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/current_native_environment_admission.py",
+      "--workspace",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+      "--original-s",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+      "--unity",
+      "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+      "--demo-commit",
+      "bf1e8283061fe3a94c56ea2ac9ab6445905cf738",
+      "--output",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-01"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+    "start": "2026-11-05T10:05:24.263600+00:00",
+    "end": "2026-11-05T10:05:44.182394+00:00",
+    "pid": 10582,
+    "exit": 2,
+    "stdout": "/Users/ah/GitHub/hybridclr/r03-local-validation/initializer-01-readmission.stdout.log",
+    "stdoutSha256": "8b856809516cd4ba7d783a17038864387e6f9192fedc9462ee454620fcfd2e8c",
+    "stderr": "/Users/ah/GitHub/hybridclr/r03-local-validation/initializer-01-readmission.stderr.log",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rootAbsentAfter": true,
+    "UnityLaunches": 0,
+    "PlayersLaunched": 0
+  },
+  "rootCause": "Published initializer generator adds InitializerNativeTargetFixtures.cs to the fixture project, but the mandatory read-only admission still pins its pre-addition Git blob.",
+  "impact": "Mandatory environment admission fails before standalone CLI/capacity result; all 15 initializer cells, local host suites, original-S archive/process audits, one build, two Players and fresh seal are NotRun.",
+  "recommendedDirection": "Primary must reconcile the exact source admission with the reviewed initializer fixture project and add source-bound admission regressions; preserve the existing identity guard and historical pins. Publish a new exact-source single-use handoff before any runtime execution.",
+  "remainingUncertainty": "No fresh initializer build or runtime outcome is available. Passing initializer-only CI does not exercise this mandatory read-only admission; supplementary combined CI reproduces the same failure on both OSes.",
+  "sourceFixApplied": false,
+  "runtimeAcceptance": false
+}

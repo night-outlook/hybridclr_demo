@@ -1,0 +1,64 @@
+{
+  "result": "VerifiedCleanFastForwardDescendantAtRequestedSource",
+  "initialHead": "14f97f15af6c06afa65957a9b880ccf841069452",
+  "admissionHead": "bf1e8283061fe3a94c56ea2ac9ab6445905cf738",
+  "fastForwardPerformedEarlier": true,
+  "scope": "Read-only post-synchronization ancestry verification; no second merge or source reset",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "merge-base",
+        "--is-ancestor",
+        "14f97f15af6c06afa65957a9b880ccf841069452",
+        "bf1e8283061fe3a94c56ea2ac9ab6445905cf738"
+      ],
+      "time": "2026-11-05T10:08:29.798793+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "rev-parse",
+        "HEAD"
+      ],
+      "time": "2026-11-05T10:08:29.813147+00:00",
+      "exit": 0,
+      "stdout": "bf1e8283061fe3a94c56ea2ac9ab6445905cf738\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "status",
+        "--short"
+      ],
+      "time": "2026-11-05T10:08:29.822139+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "log",
+        "--format=%H %s",
+        "14f97f15af6c06afa65957a9b880ccf841069452..bf1e8283061fe3a94c56ea2ac9ab6445905cf738"
+      ],
+      "time": "2026-11-05T10:08:30.851206+00:00",
+      "exit": 0,
+      "stdout": "bf1e8283061fe3a94c56ea2ac9ab6445905cf738 feat(r03): prepare bounded oneuse initializer local validation with original S audit and full native host gate\n81597899d1ba0f8d00e3fd5dfd8531f8fab40fe9 feat(r03): source-bound initializer oneuse native Player runner and host contracts\nc06f97d7e3de3ac084037e624b950f80b29e8ff2 docs(r03): surface initializer source-only checkpoint and keep Local closed\nc700a32afea89048a4a3788abd89308ae0a00b5f docs(r03): surface initializer source-only checkpoint and keep Local closed\n1246879ff4ea841c0246c685c85ee92da2025211 docs(r03): record initializer source-only implementation and verified CI boundaries\n18374896b69d623e884e87361cf44c1404d4df7a ci(r03): validate distinct initializer diagnostic schema on two hosts\nfc8a70a1f51e7267ff7a54cf6aa25c2dc088732e test(r03): add synthetic negative controls for initializer native diagnostic schema\n83c65d02d8d9275d3afe6a1c91fbf13b5bd6b30b test(r03): add strict non-authorizing initializer observation schema consumer\n5287708fcff91a2820c740c00859ab8842a4166d test(r03): cover consumed-build and disabled-profile preparation rejection\neaa8e7f892a7d76ecb8218d8ec37ae61c357155b fix(r03): reject built or disabled initializer source-preparation targets\n8404bad5b0aba4f0ce07e9dc4e86199a8e47398c ci(r03): scope managed API checkout to exact declared compilation inputs\nb6e0a5b610561edbe34eb3acf28c2c7efc5ef1b0 ci(r03): independently compile source-bound native prepared observer on two OSes\n1b2270d524288d37988b32bd30cbcad4d8701a7c test(r03): compile exact prepared initializer observer with C++11 host models\ncf27a8871aa8933bee6ccd1c7b7151e2e70092f9 ci(r03): test isolated initializer project source preparation on two OSes\n4dca51ad21acffeb605e78b20cca6a3d3be1a95b test(r03): enforce isolated source preparation and negative input checks\na306360f19cf606533571ff4309fb7c050c6f3ee build(r03): add source-only isolated initializer Player overlay preparation\n7a1941e7b03070bf559f7e14500ec67ccd8ae788 ci(r03): compile actual initializer writer with two-OS host negatives\nc48a9a0e75907b86f7acfdfa949514a688abf7dc test(r03): verify actual native writer protocol with host-only negative controls\n3e32ba2a6c77ee8ce0d50f3b02ee9466222e539c test(r03): add isolated native initializer receipt boundary test driver\n644a6c5baf53d340d42bf4f39734ae4e9aa7dadf test(r03): add isolated host-only native writer include definitions\n5a76be1056940ba43ba95aa096d3544c06153991 test(r03): compile new initializer Player against pinned runtime API signatures\n37da2c1e823a3cd25690b8fc4a7c9cb586dddc8f feat(r03): add separate preopened native initializer diagnostic receipt writer\ndcf2870a24c29897e9c885137df0c85ba88555dc feat(r03): add isolated initializer Commit diagnostic Player entry\n3375bf081d651f6d35b6949f4f12a6470b335a37 ci(r03): exercise deterministic native initializer fixture generator on two hosts\n965a402897ffacecb3c999d07abd705f8eaa242e test(r03): compile actual frame dispatcher with IR Player API harness\ncfe8b0a054dcc4eea0073c2831f824baf0c4d9ca test(r03): complete compile-only Unity lifecycle type surface\nccbbf1858dab82bcb054cc2a124227ebd8f3665b feat(r03): add test-only Committing-state native prepared-object observer\nc2cbf6737c0f506adb9acc7dedc56f7541535715 build(r03): add isolated native initializer fixture generator mode\n562cd52b96499d783eec225ccc3bb124ba4ede0c build(r03): add isolated native initializer fixture generator mode\n3ac7b5e73e7eadc624887ffa9549a506d1fcd900 feat(r03): generate isolated initializer targets with before-failure native observation callback\nb712bd924bae4e856ab8d67186fc602ae4edd06e docs(r03): reflect authenticated original S Mach-O symbol evidence without stage approval\nda608abe83727cde29d9a66c6f85f91b21e6a0f2 docs(r03): reflect authenticated original S Mach-O symbol evidence without stage approval\n7150e4180ee1f0bd542287c2fbcbdfa5dca1b2da docs(r03): record bounded original S registration and Mach-O verification\nf15eb260b51117da0da37a567876eab2cd1ed331 test(r03): reject undefined alias or duplicate Mach-O symbol names\n6b4dffc8ffe67d47443a768e3e613716731db63f fix(r03): correct Python continuation and exact nm symbol regex\n2260abf86c4925022f81e4a792df570e0e75790c audit(r03): require exact physically defined generated symbols in original Mach-O\nd75493d136e3243e696ad1be669ef6d3be329c0a fix(r03): authenticate original executable dylib Git mode 100755\n8a0884d4e61b40c307dff7928955ebc6bab2fb49 ci(r03): audit original S code registration and Mach-O source identities on macOS\nfcb414680ca6f2da236ffba44f301a7bce53812b test(r03): cover original S binary-linkage verifier fail-closed semantics\ndc1851df2b7e40c7d7f25c76462cc7ae1dc3221d audit(r03): bind original S code registration to archived Mach-O identities\nb28e81935be7e3700534f632d9f3af0535ed373c docs(r03): surface bounded source-only progress and keep Local closed\n2771d400c0905b1fdf2033e18740590d9b3ab778 docs(r03): surface bounded source-only progress and keep Local closed\n612615071d81ca2326e5753fae0a6f1d40d54d17 docs(r03): bind dual-OS V2 host test evidence without runtime promotion\nd5bfcfc52f23d643b33831758b3b770948a4f7f0 docs(r03): record actual original S table audit and unresolved linkage\n53af0d86094453696669ecd07de440eee27b6afa ci(r03): run remaining-witness host semantic tests on two OSes\ne32be835148715db838014c06a645d72b0772614 test(r03): cover generated table cardinality, duplicates and unknown syntax\n0d004bfdaff52c3c698a73077cfaf0aa9c8e0d8f audit(r03): verify original generated method and invoker table initializer counts\n0bdbdaebbb522b95561aa193e882a991d8b17c25 ci(r03): run read-only original S material scan on source changes\n650173617b21d597608006ded6c00f303f180cfd test(r03): fail-closed host tests for original S generated material scan\n5777518cccb856bb8b54cb3521894dd2a6dceed7 audit(r03): add bounded original S generated source read-only scanner\na3108563755d45e0dbc1766c88fda44595be869d docs(r03): record source-only remaining witness verifier publication\n521021f01adde37cc033396d00d7f8b17f07ef13 test(r03): add negative controls for remaining witness schemas\nc301ad0e8756f802c660ed4dcdc80e210f57a1c0 test(r03): add separate non-authorizing remaining witness semantic contract\n715ab80283a4df8961ef88aa3f08ef765bc38d7a docs(r03): correct current-source host workflow count\nf443ace035d5c78bd8bb417d63fe89a6d85c093f docs(r03): record final passing current-native host and source CI checks\n149db30e164ae04109bfe99ab1e3bef6d298a4ba test(r03): align standalone current-native CLI source pin with reviewed V1 correction\n12121169512b7068c6c2d0876e72f435c3c30d60 docs(r03): specify real generic and module-initializer Player witness construction\n8e5f5d343090d47571218b5c0e1843832561f0e4 docs(r03): record Primary source corrections CI provenance and remaining runtime obligations\nceab491411934f92f1d2c80487fd32456d4e3a3d fix(r03): align current net8 fixture readmission with actual reviewed project blob\n24fccd9692ce371534be594cc41d894bd008eaa3 fix(r03): align current nonauthorizing source manifest with reviewed verifier\n5c5a9aff8b1a9691174ac0d9779c460e4a3100b1 fix(r03): update reviewed current source admission to fail-closed V1 verifier blob\ncc6e391aa2a757601f42680e686752efcb7f966e test(r03): re-pin reviewed current V1 oracle and reject relabelled stimuli\n6e3510dad54afc1ad5b624425dbbb415c518acd7 fix(r03): resolve three ambiguous dnlib MemberRef method operands\n96cb83ba6455820216b02f9b8df07221b62d433f test(r03): fail closed on unproved terminal stimuli with 58 host regression cases\n01120395fe161dae8d9631ef193206e9ac986021 test: run terminal fixture bodies and mutation controls on Linux and macOS\nf029e344b218ef8e19875b8c2d8af085b5aa6444 test: expose additive terminal fixture generation and CLR host checks\n613d725f99b76235563b65f9186cf41f75a48256 build: include additive R03 terminal producer fixture source\n3325e0c2a0962a29e96542daf27046eedf1c8282 test: add deterministic generic and initializer terminal-producer fixtures\n7db12f14ad8e94a825d42f66fdd24efb287a3667 test: export exact deduplicated original S generated sources for bounded audit\nda5a60318c9e3f499df1eb8a007fca6be9380757 docs: bound R03 post-review primary preparation and evidence closure\nb17c73372e3d735d47b52aa85adb548b0e8a2a37 docs(r03): publish reusable C++11 terminal-policy re-review harness\n574d8855d20891d6d38c75ae0979af96608e5937 docs(r03): retain fresh source-bound re-review host checks and mutation results\nd357a3d7314596d01b71b3d7dce8e1becf1ef778 docs(r03): publish current-session re-review of K evidence and remaining High closure gaps\n6e4790a32103c76148c751a0d6f12fbf30fefe23 docs(r03): correct K evidence relative links in Primary reconciliation\nb82cfc6c7b0196437d6645e527d4ae6d52b28596 docs(r03): reconcile K focused PASS against independent High findings and close consumed handoff\n",
+      "stderr": ""
+    }
+  ]
+}

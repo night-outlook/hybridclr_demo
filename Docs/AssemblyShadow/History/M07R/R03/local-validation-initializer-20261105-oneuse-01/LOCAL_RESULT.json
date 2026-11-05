@@ -1,0 +1,211 @@
+{
+  "kind": "LocalInitializer01PrerequisiteOutcome",
+  "reportedAt": "2026-11-05T10:10:22.841445+00:00",
+  "result": "BLOCKED",
+  "classification": "PrerequisiteBlocked",
+  "batch": "NotRun",
+  "executionPins": {
+    "hybridclr_demo": "bf1e8283061fe3a94c56ea2ac9ab6445905cf738",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340"
+  },
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "repositories": {
+    "hybridclr_demo": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "hybridclr": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+    "hybridclr_unity": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+    "il2cpp_plus": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus"
+  },
+  "plannedRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-01",
+  "rootAbsent": true,
+  "readOnlyAdmission": {
+    "command": [
+      "python3",
+      "-B",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/current_native_environment_admission.py",
+      "--workspace",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+      "--original-s",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+      "--unity",
+      "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+      "--demo-commit",
+      "bf1e8283061fe3a94c56ea2ac9ab6445905cf738",
+      "--output",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-01"
+    ],
+    "pid": 10582,
+    "start": "2026-11-05T10:05:24.263600+00:00",
+    "end": "2026-11-05T10:05:44.182394+00:00",
+    "exit": 2,
+    "stdoutSha256": "8b856809516cd4ba7d783a17038864387e6f9192fedc9462ee454620fcfd2e8c",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reason": "Current R03 net8.0 fixture project source identity changed"
+  },
+  "requiredCI": {
+    "run": 42003996365,
+    "exactHead": "bf1e8283061fe3a94c56ea2ac9ab6445905cf738",
+    "OSJobsPassed": 2,
+    "testsPerOS": 29
+  },
+  "supplementaryCombinedCI": {
+    "run": 42003996493,
+    "status": "FailedBothOS",
+    "cause": "Same stale fixture project blob admission guard"
+  },
+  "independentToolVersions": "PassedVersionQueriesOnly",
+  "capacitySamples": [
+    {
+      "time": "2026-11-05T10:04:14.445208+00:00",
+      "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-01",
+      "checkpoint": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-initializer-20261105-oneuse-01",
+      "bothAbsent": true,
+      "canonicalNonaliasing": true,
+      "parent": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "device": 16777229,
+      "freeBytes": 28109631488,
+      "freeGiB": 26.179134368896484,
+      "minimumGiB": 25,
+      "hardGiB": 20,
+      "advisoryGiB": 40,
+      "df": "Filesystem   512-blocks      Used Available Capacity  Mounted on\n/dev/disk3s1  965595304 861530480  54901624    95%    /System/Volumes/Data\n",
+      "rootCreated": false
+    },
+    {
+      "time": "2026-11-05T10:05:24.263466+00:00",
+      "kind": "IndependentReadOnlyStatvfs_NoDispatch",
+      "parent": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "device": 16777229,
+      "freeBytes": 28123234304,
+      "freeGiB": 26.191802978515625,
+      "fBavail": 6866024,
+      "fFrsize": 4096,
+      "minimumGiB": 25,
+      "hardGiB": 20,
+      "advisoryGiB": 40,
+      "above25GiB": true,
+      "advisoryExceptionForInitializer01Only": true,
+      "coordinatorDispatched": false
+    }
+  ],
+  "capacityDecision": "BothAbove25GiB_Below40GiBAdvisory_InitializerOnlyException; admission still blocked",
+  "plannedCells": 15,
+  "executedCells": 0,
+  "cellStates": {
+    "entry-authority": "NotRun",
+    "initializer-host-contracts": "NotRun",
+    "original-s-archive": "NotRun",
+    "original-s-process-joins": "NotRun",
+    "audit_s_generated_material": "NotRun",
+    "audit_s_binary_linkage": "NotRun",
+    "real-dll-fixtures": "NotRun",
+    "ir-generator-build": "NotRun",
+    "initializer-native-targets": "NotRun",
+    "prepare-release": "NotRun",
+    "prepare-initializer": "NotRun",
+    "build-initializer": "NotRun",
+    "player-initializer-control": "NotRun",
+    "player-initializer-failure": "NotRun",
+    "final-authority": "NotRun"
+  },
+  "localNativeHostSuites": "NotRun",
+  "originalSArchiveAndProcessAudits": "NotRun",
+  "plannedUnityBuilds": 1,
+  "actualUnityBuilds": 0,
+  "plannedPlayers": 2,
+  "actualPlayers": 0,
+  "initializerRunnerInvocations": 0,
+  "productBuildResult": "NotRun",
+  "productRuntimeResult": "NotRun",
+  "freshLedgerIndexArchiveSeal": "Unavailable_NoBatchConstructed",
+  "preservation": {
+    "before": "PassedScopedPreservation_BeforeAuthorizedConditionalAdmission",
+    "after": "PassedScopedPreservation_AfterBlockedReadOnlyAdmission",
+    "originalSFiles": 16978,
+    "checkpoints": 14,
+    "retainedRawInventories": [
+      {
+        "cycle": "D",
+        "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D",
+        "manifestSha256": "44a622f3b2164e1cc813292e44c060e40f6fcf560c89edaf15995f3dd6df7e05",
+        "filesVerified": 44976,
+        "symlinksVerified": 4,
+        "bytesVerified": 5141694663
+      },
+      {
+        "cycle": "E",
+        "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261030-oneuse-E",
+        "manifestSha256": "0bba745b2077bec6059e61b2b0e822d541f92f84a995709091feaac65638490a",
+        "filesVerified": 46603,
+        "symlinksVerified": 4,
+        "bytesVerified": 6408904467
+      },
+      {
+        "cycle": "G",
+        "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G",
+        "manifestSha256": "1c8de38b99b083afe20a4ad58168937fefdad72cd572355b068293a0311ce345",
+        "filesVerified": 46074,
+        "symlinksVerified": 4,
+        "bytesVerified": 6002940945
+      },
+      {
+        "cycle": "H",
+        "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-H",
+        "manifestSha256": "0ec4e2c6e8b58c797f3e29329cecd4422283b469991abefb91b59450363f8366",
+        "filesVerified": 46619,
+        "symlinksVerified": 4,
+        "bytesVerified": 6412887522
+      },
+      {
+        "cycle": "I",
+        "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I",
+        "manifestSha256": "349adcd558fd29008ff3ee0c80d5f248c6599b8d20d0894f5d8163f47ef44a89",
+        "filesVerified": 46624,
+        "symlinksVerified": 4,
+        "bytesVerified": 6412386000
+      },
+      {
+        "cycle": "J",
+        "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-J",
+        "manifestSha256": "d85e3b902cbb9e7c3cfe7321765b8e572c524c50285f8bb273f75a8b22bbf882",
+        "filesVerified": 50,
+        "symlinksVerified": 0,
+        "bytesVerified": 957409880
+      },
+      {
+        "cycle": "K",
+        "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K",
+        "manifestSha256": "f41d48c4426bd210e6f4d3d81d285579c21222d5109202c97322fb9d2937520e",
+        "filesVerified": 46661,
+        "symlinksVerified": 4,
+        "bytesVerified": 6414459908
+      }
+    ],
+    "installedSdkInputs": 2405,
+    "sourceBindings": 66,
+    "fullRawPathSetsVerified": true,
+    "beforeScanStart": "2026-11-05T10:04:44.831829+00:00",
+    "beforeScanEnd": "2026-11-05T10:06:08.698759+00:00",
+    "beforeScanOverlappedReadOnlyAdmission": true,
+    "afterScanStart": "2026-11-05T10:07:09.012582+00:00",
+    "afterScanEnd": "2026-11-05T10:08:44.948366+00:00"
+  },
+  "sourceOrTestFixApplied": false,
+  "retries": 0,
+  "oldEvidenceChanged": false,
+  "independentR03HighFindings": "IR-R03-01/02 remain open",
+  "nativeV2": "NotImplemented_NotRun",
+  "capturedGeneric": "NotRun",
+  "wholeVmEpoch": "NotProven",
+  "managedShutdown": "NotProven",
+  "runtimeAcceptance": false,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "ReadyForHumanReviewGate": false,
+  "qualificationApproved": false,
+  "fullLegacyRegressionAcceptance": false,
+  "pureInterpreterExpansionEnabled": false,
+  "nextState": "Primary Implementation",
+  "publicationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/initializer-01-PUBLICATION_RECEIPT.json"
+}

@@ -1,0 +1,759 @@
+{
+  "kind": "Initializer01ExactSourceRequiredCIGate",
+  "time": "2026-11-05T10:04:14.444405+00:00",
+  "head": "bf1e8283061fe3a94c56ea2ac9ab6445905cf738",
+  "result": "PassedExactInitializerWorkflow_BothOS",
+  "workflow": {
+    "id": 42003996365,
+    "name": "R03 initializer oneuse runner source and native host contracts",
+    "node_id": "WFR_kwLOUFsAuM8AAAAJx6IezQ",
+    "head_branch": "codex/assembly-shadow-r01b-h1",
+    "head_sha": "bf1e8283061fe3a94c56ea2ac9ab6445905cf738",
+    "path": ".github/workflows/r03-ir-initializer-local-contracts.yml",
+    "display_title": "feat(r03): prepare bounded oneuse initializer local validation with o\u2026",
+    "run_number": 2,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 407932115,
+    "check_suite_id": 113817693418,
+    "check_suite_node_id": "CS_kwDOUFsAuM8AAAAagBAs6g",
+    "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42003996365",
+    "html_url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/42003996365",
+    "pull_requests": [],
+    "created_at": "2026-11-05T09:38:08Z",
+    "updated_at": "2026-11-05T09:38:24Z",
+    "actor": {
+      "login": "night-outlook",
+      "id": 310526669,
+      "node_id": "U_kgDOEoJCzQ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/310526669?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/night-outlook",
+      "html_url": "https://github.com/night-outlook",
+      "followers_url": "https://api.github.com/users/night-outlook/followers",
+      "following_url": "https://api.github.com/users/night-outlook/following{/other_user}",
+      "gists_url": "https://api.github.com/users/night-outlook/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/night-outlook/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/night-outlook/subscriptions",
+      "organizations_url": "https://api.github.com/users/night-outlook/orgs",
+      "repos_url": "https://api.github.com/users/night-outlook/repos",
+      "events_url": "https://api.github.com/users/night-outlook/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/night-outlook/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-05T09:38:08Z",
+    "triggering_actor": {
+      "login": "night-outlook",
+      "id": 310526669,
+      "node_id": "U_kgDOEoJCzQ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/310526669?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/night-outlook",
+      "html_url": "https://github.com/night-outlook",
+      "followers_url": "https://api.github.com/users/night-outlook/followers",
+      "following_url": "https://api.github.com/users/night-outlook/following{/other_user}",
+      "gists_url": "https://api.github.com/users/night-outlook/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/night-outlook/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/night-outlook/subscriptions",
+      "organizations_url": "https://api.github.com/users/night-outlook/orgs",
+      "repos_url": "https://api.github.com/users/night-outlook/repos",
+      "events_url": "https://api.github.com/users/night-outlook/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/night-outlook/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42003996365/jobs",
+    "logs_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42003996365/logs",
+    "check_suite_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/check-suites/113817693418",
+    "artifacts_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42003996365/artifacts",
+    "cancel_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42003996365/cancel",
+    "rerun_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42003996365/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/workflows/407932115",
+    "head_commit": {
+      "id": "bf1e8283061fe3a94c56ea2ac9ab6445905cf738",
+      "tree_id": "7269e06dc76fddecd8355350ea3d22f7cd96e7fe",
+      "message": "feat(r03): prepare bounded oneuse initializer local validation with original S audit and full native host gate",
+      "timestamp": "2026-11-05T09:38:03Z",
+      "author": {
+        "name": "night-outlook",
+        "email": "wangxingfred.night@outlook.com"
+      },
+      "committer": {
+        "name": "night-outlook",
+        "email": "wangxingfred.night@outlook.com"
+      }
+    },
+    "repository": {
+      "id": 1348141240,
+      "node_id": "R_kgDOUFsAuA",
+      "name": "hybridclr_demo",
+      "full_name": "night-outlook/hybridclr_demo",
+      "private": false,
+      "owner": {
+        "login": "night-outlook",
+        "id": 310526669,
+        "node_id": "U_kgDOEoJCzQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/310526669?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/night-outlook",
+        "html_url": "https://github.com/night-outlook",
+        "followers_url": "https://api.github.com/users/night-outlook/followers",
+        "following_url": "https://api.github.com/users/night-outlook/following{/other_user}",
+        "gists_url": "https://api.github.com/users/night-outlook/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/night-outlook/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/night-outlook/subscriptions",
+        "organizations_url": "https://api.github.com/users/night-outlook/orgs",
+        "repos_url": "https://api.github.com/users/night-outlook/repos",
+        "events_url": "https://api.github.com/users/night-outlook/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/night-outlook/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/night-outlook/hybridclr_demo",
+      "description": "Unity demo for hybridclr",
+      "fork": false,
+      "url": "https://api.github.com/repos/night-outlook/hybridclr_demo",
+      "forks_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/forks",
+      "keys_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/teams",
+      "hooks_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/hooks",
+      "issue_events_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/events",
+      "assignees_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/tags",
+      "blobs_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/languages",
+      "stargazers_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/stargazers",
+      "contributors_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/contributors",
+      "subscribers_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/subscribers",
+      "subscription_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/subscription",
+      "commits_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/merges",
+      "archive_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/downloads",
+      "issues_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/labels{/name}",
+      "releases_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/deployments"
+    },
+    "head_repository": {
+      "id": 1348141240,
+      "node_id": "R_kgDOUFsAuA",
+      "name": "hybridclr_demo",
+      "full_name": "night-outlook/hybridclr_demo",
+      "private": false,
+      "owner": {
+        "login": "night-outlook",
+        "id": 310526669,
+        "node_id": "U_kgDOEoJCzQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/310526669?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/night-outlook",
+        "html_url": "https://github.com/night-outlook",
+        "followers_url": "https://api.github.com/users/night-outlook/followers",
+        "following_url": "https://api.github.com/users/night-outlook/following{/other_user}",
+        "gists_url": "https://api.github.com/users/night-outlook/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/night-outlook/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/night-outlook/subscriptions",
+        "organizations_url": "https://api.github.com/users/night-outlook/orgs",
+        "repos_url": "https://api.github.com/users/night-outlook/repos",
+        "events_url": "https://api.github.com/users/night-outlook/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/night-outlook/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/night-outlook/hybridclr_demo",
+      "description": "Unity demo for hybridclr",
+      "fork": false,
+      "url": "https://api.github.com/repos/night-outlook/hybridclr_demo",
+      "forks_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/forks",
+      "keys_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/teams",
+      "hooks_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/hooks",
+      "issue_events_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/events",
+      "assignees_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/tags",
+      "blobs_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/languages",
+      "stargazers_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/stargazers",
+      "contributors_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/contributors",
+      "subscribers_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/subscribers",
+      "subscription_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/subscription",
+      "commits_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/merges",
+      "archive_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/downloads",
+      "issues_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/labels{/name}",
+      "releases_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/deployments"
+    }
+  },
+  "jobs": [
+    {
+      "id": 127166029278,
+      "name": "Source and native host contract / ubuntu-24.04",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 42003996365,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Compile local coordinator source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Actual host-only oneuse coordinator contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Compile actual native additive sources under C++11 and exercise negatives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        }
+      ]
+    },
+    {
+      "id": 127166029486,
+      "name": "Source and native host contract / macos-14",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 42003996365,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Compile local coordinator source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Actual host-only oneuse coordinator contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Compile actual native additive sources under C++11 and exercise negatives",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        }
+      ]
+    }
+  ],
+  "requiredJobsPassed": 2,
+  "hostTestCountsByJob": {
+    "127166029278": [
+      4,
+      12,
+      8,
+      1,
+      4
+    ],
+    "127166029486": [
+      4,
+      12,
+      8,
+      1,
+      4
+    ]
+  },
+  "sourceBindings": [
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/source-pins.json",
+      "gitBlob": "9d72a237fb6ecd3efe3267ca89625aa49c61775d",
+      "sha256": "8f80fa7e382b77838a55d613031f272c4f6eb8245f780117da5abd8284b2633c"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/run_local.py",
+      "gitBlob": "9aef8093f98fb7f9b5dd395ba4e5c2ed0220276e",
+      "sha256": "ebbbf9139de5f6bff0075ef966ee6ed3f3070059eae3733052fbc5406bb360a6"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/run_terminal_local.py",
+      "gitBlob": "489e4bb13309c175545a042e15660f5d5c3aa83c",
+      "sha256": "615e27d492d51e349b3a9595d21bef67fa181ed6901f7add9c4d0d783c0b0948"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs",
+      "gitBlob": "e2f650ad95b290620aa52949b43a1866272ac6bf",
+      "sha256": "948c5f6f853525daa1e45cfb3200333a1bbecb62fd5a7552b43928029d0e5600"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03EngineFrameDispatcher.cs",
+      "gitBlob": "47a3e095480de2ec657e7e5acc453a5a76002a18",
+      "sha256": "5cb22fb7764115b8264d99026e920c6f2d79d3329846267f0112e83c1dafbc22"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs",
+      "gitBlob": "b993703d918090733a659bd7c3ac883cd5d753e1",
+      "sha256": "05b5f21e91b18f04da07fc10eca053b64e68d7d8fc838b1a006bebd3b740e52f"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp",
+      "gitBlob": "7a5dd88748dd98a387130c046b47790b80752cf9",
+      "sha256": "3c9290dcf231306a771a4b8a26f03112add1aeb7c0b44ff0e7a01330e47f4387"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "gitBlob": "57cf47f964a83973df8296955ccf856b105c595f",
+      "sha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTerminalExecution.h",
+      "gitBlob": "33258986c31b2e6ae3af17b8553030482a83aef7",
+      "sha256": "3ff7e1f149090c9869844de9059cc6829bdbf104d93bba5f13dcd09e4f4a08ce"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Runtime.cpp",
+      "gitBlob": "1b176ee5fd3e2127a0237877e5c9c32bc53058b3",
+      "sha256": "85edcf180cc66233d555075f40364d383e27239237ef196dc7bdf631f3550da1"
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/interpreter/Interpreter_Execute.cpp",
+      "gitBlob": "2dbdb7527afee7f2546e45f20e6ef93e1bca237a",
+      "sha256": "a784afb4ead165e8a0be6c3b6bf8aff7893734ebb458cd60ccf9ed7a61f575e6"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Assembly.cpp",
+      "gitBlob": "cb383d664ed02e138a9dd0cb42f2a64629146207",
+      "sha256": "0c46232f94b6e7afc2b5277d287618d8405a3f19784781ae800dda19ba8c4431"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Assembly.h",
+      "gitBlob": "3e4bbb85c190bf0f9c43fee9e3fc3518c61ed457",
+      "sha256": "74b9615a04bdf59df8da62948fd6dad2a2a10e8a8eda0cbf369635ab981e9181"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadow.h",
+      "gitBlob": "68e78fe6250e3bd1028641d9513eb7d14158e8da",
+      "sha256": "55e572887d7ed89cc5d9cd57b3457df240357aa389474512442f3a5fea487e8f"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+      "gitBlob": "a615a839f5af8614c672a9bfb45be02d12b01a0e",
+      "sha256": "9b309fa25aadfb983787540e7d0b65d01e3aaf7a2fad5b7e67cfa737ef1c8d99"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLive.h",
+      "gitBlob": "5b2afe1cfcf14570e64b8836ef4f995ee5e6db57",
+      "sha256": "d4f4d495fc0636fcdd41f1121a1aa71404e838e1dfedfc7a7a3d10d70777e734"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
+      "gitBlob": "94bcd4e12e553c2f28c727d9c74bc2feb0b22e8c",
+      "sha256": "6e53d15eab13a4a0169884a4d032af14a30352f111de166515b9d940362044ef"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedFirstUseCapture.h",
+      "gitBlob": "b7ba5dffb2e3ecebe7406f598e97a1ab97251cdf",
+      "sha256": "b77a46ffc4ba6e522fc8c34e0ac43283f502639a8ca4f6b9282afc097fa5c895"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedGeneralComposer.h",
+      "gitBlob": "9e63e46a429c07f0b5adaf529b48f455ce1328fc",
+      "sha256": "2550f78b66def91a2f0851c8edf2a24f3beb1887b595f2ac45b246aa5a125ade"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedGeneralLive.h",
+      "gitBlob": "b554eb36f6337c139a3f24beb168ab3f2b6e4343",
+      "sha256": "1dc1a731f75a773494edf669965a7034d1fa908c2201401a3eb2238228e1b7f5"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedGeneralLiveSource.inl",
+      "gitBlob": "a85a6ec310b85e96dfe199c6d773407cf47779b3",
+      "sha256": "2be24d11ff97527706c4125699c7d04dc060e5f38ea9eac931d17ef97a7dbca0"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedOrdinaryClasses.h",
+      "gitBlob": "91f049cc7d81d5e6de95ec50884ed3d6b9b63163",
+      "sha256": "ae4c2a471c1879510849d4902694caa7308bc70f3804cb6b1d0fb2ac839615a8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedPhysicalAssemblies.h",
+      "gitBlob": "4e82e7f3814b8ed021a24d235dcfbe79c4c2412a",
+      "sha256": "0545c483230b7a1f6ea007ff28f000ec37a2f85444062c62eff74a048c5986c1"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedTransactionInventory.h",
+      "gitBlob": "d2a6fb798de9a3599f6b6c63149515cb23ab3350",
+      "sha256": "fe37931e27f1616bea8e08c134a2349567161bd8cd5c739c3954be349b9da3c8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowBoundedTransactionStatus.h",
+      "gitBlob": "fc3a569ea0f617b67b3867a804126e9583d86b72",
+      "sha256": "b5b91b9480016493f1b26fcd78be96f9c1ff107b866950d7b08d999870ea785a"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+      "gitBlob": "edef7c2f37978e65c02a8d2008886c6c4af8ae20",
+      "sha256": "03f1c76f84e79de38ddc708130cf4a95c736e3abab0e0e4266a84ba7cad2684f"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp",
+      "gitBlob": "f3244a4852f6fc3a46ca61a6efd36945e1318246",
+      "sha256": "8e0b0ce0f221c76a75e91a84250f37890b6444818283f1c2c10ddd49a184f401"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowExecutionRegistrationWitness.h",
+      "gitBlob": "6f14ca874f77592d845ce0563afaff2eb7573a90",
+      "sha256": "67afc44c92255d76d7c8d29a95b634d53a648be637fe4112c4566659f1f95cc8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowExecutionRegistryPublisher.h",
+      "gitBlob": "4d7e80346cf8b3a8c93ad95e025f00035629f141",
+      "sha256": "7db3ea584e332c92364ebee5b9c778e0c731c449783551a9adb4204cf1df8ff7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowExecutionRegistryRevision.h",
+      "gitBlob": "46a313742295acaa52d5022f238fbcba4430c6df",
+      "sha256": "4d318426f4be784fe3eb6065ef47ed97539416f871fbe060f6c4ca6e8be41d5e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenExecutionCapture.h",
+      "gitBlob": "624a43c0f153456001288c904d9705ec59171aae",
+      "sha256": "1ce04b4678d7f48e205162db6572199489d22612f53afc9bebb9b07866f7ecf4"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+      "gitBlob": "eeb413f8c8c0f6c1658da68ddd404b9b478e6e70",
+      "sha256": "76fde63a7b17610f3adee5d08ff066e75a3ce02a67943ee6258550292bba91e9"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenGeneralCapture.h",
+      "gitBlob": "08856d4a610ed3fa519cee67bad8a307dd82a34b",
+      "sha256": "bc8660655e19ee15c02caf21403ef90f5f87c95b0fa1dcc212a7ca7a61573e6e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenR02Capture.h",
+      "gitBlob": "64ec2dc887106f12274febc74b4e155e140d70e5",
+      "sha256": "6014613e62b570c0f93f7317831e14645600f87e9d32a9e87d2902e19991dbad"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+      "gitBlob": "ab136038a49a8e6614243677d19e20c6f3fde4c5",
+      "sha256": "c383afe1ba28b3c88f00abcea4ff469d40e3557bdff0303368d6a31ded1ed378"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+      "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd",
+      "sha256": "8797827d57a47ef262257312a96b41aabcb1777d158fefef9f219851a48a5716"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShape.h",
+      "gitBlob": "9625544a62c4907c73da251f4062dea0731758b7",
+      "sha256": "c2dd2249c945a89ddc8ac2e712d0b56f5cde3e4dc474a364a4fd6f1b471c3a89"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeCensus.h",
+      "gitBlob": "23065b67456ee7d19c7019cf24900e66daaf28db",
+      "sha256": "83f2d79c4c7d6480267c1cb18392af914dcc7b2513f9a7b003131ecd1ddd9d14"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJson.h",
+      "gitBlob": "14b44ca96a1be6a0abc8629ecea1b7bade02eabe",
+      "sha256": "6eb08c239c34eb55a8f7e2f1fc1ca84244fc501131c7564d328018d7f0d756e3"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeJsonLiveSource.inl",
+      "gitBlob": "f432aa3ea638a05b42618ca242be5bbc3e3e1e67",
+      "sha256": "622601ccd395ed41edb512d0da12fe35a645b822f3e14e2994b8413cce00eaf9"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowObservedTypeShapeLiveSource.inl",
+      "gitBlob": "7778e2064cbba7fb5b16179746cbb7d272118fb6",
+      "sha256": "0472835c03165278579dc3b332f6ef74eea22fb0d527a337bdb157beb14a79d7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventory.h",
+      "gitBlob": "a2ca61c35b0ba0e5f71a261b21647a36dfc0a9c4",
+      "sha256": "1d29f8119e0cafa1168ef46ee17aebed465359ff5f47902165a97586a6aa6369"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOpaqueExecutionInventorySource.inl",
+      "gitBlob": "372d12209417dcb9e119da6bda64deca79389a23",
+      "sha256": "d27d0cdd391182a5b3c9a942bdc44bdf45418d1fb13c2c3e92df92e012ea1ea8"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalLiveJsonSource.inl",
+      "gitBlob": "dff6f12dca1c4f89dec7151ced6b63febeb0769f",
+      "sha256": "865a36b154965f0ae69bc788f6ba21fc6a841d546a34215a6448112110bb6604"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNames.h",
+      "gitBlob": "f722a34cacda9fa35f226e8b11f4800d3fd42c72",
+      "sha256": "216a8ec0365bd134ac0849d5fec2d709c24e5b3927c66c17360792eea836d5df"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesJson.h",
+      "gitBlob": "35d4d000faa588cdd5147a0b2abdf00d566c0b06",
+      "sha256": "944d663e2d55e8ed07be3c62b1f6c7f7f6aee1bf0c34b9a464550b6817c5c15a"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowOwnedPhysicalNamesSource.inl",
+      "gitBlob": "4e66890239ff40f0c073cc8b379c6a5f54bb1fa3",
+      "sha256": "915c2eadd7173192497cac910f9b7f67d5588bab23937ee2bc8ec9d7892a1177"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowPhysicalMembership.h",
+      "gitBlob": "273e613570fa72e061df2e41b7a5dfb736e086c3",
+      "sha256": "d51fe5fe4ba81857801aacefcbe66e79d244b2dee08338bd86f36d811b869ab7"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowPhysicalMembershipSource.inl",
+      "gitBlob": "4e18fa035c324a67959284efa90fa601c6ede0d9",
+      "sha256": "bd0ff612a27913c1424cc7627454ae8eb5101b3479eca2ba24e6097bb3197651"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+      "gitBlob": "1c2a43384d03b0369a51b587fc5f5e445d5b58c8",
+      "sha256": "b42e61cbd65dc26f2f9c207c318697b46d0c909e7d83f1e2b8b4b4e109ce56ba"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+      "gitBlob": "9f7266014b1514adfd0935948ff417375df274d8",
+      "sha256": "2473329621ef29decddcfcd88cafae29bcda54e039fdfa67760be4fcfa076ddf"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTerminalReporting.h",
+      "gitBlob": "d76c0df677762509bc26e3d341f07b595f2af4bf",
+      "sha256": "68bbe93136cc6abf6228519cc52e4d270ae1872d75336f7d8e4216b3802b0837"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowVisibility.cpp",
+      "gitBlob": "1469a44b51ce0adb8d0e98dffd0ac66a0d107aaa",
+      "sha256": "4bae387bdd6917da03a74e4539207a1da54e0f071b607b46e499d9c170df8bb6"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowVisibility.h",
+      "gitBlob": "0e94c3d478cb6c1cdd80fd84f684b91e680673bc",
+      "sha256": "e8a276f6ff474986fe769122df08d039b4c4544258aa29e6cac2ca1f5572bf7c"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/run_initializer_local.py",
+      "gitBlob": "3c511be2b98d25da5f90c1120efde50cffcc2e25",
+      "sha256": "4ebd1ec90db83242b42c668c5c2b7b96f9f73a86511198af60ec5d1b0aa48853"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/test_initializer_local_orchestration.py",
+      "gitBlob": "3c1362cad3a3e0458c04c2fb7e78af475fc0375c",
+      "sha256": "bfbcfe8c3d89718e4641aa61c396639ae4ce878cc682509313c3891ee6b4c92d"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/prepare_initializer_sources.py",
+      "gitBlob": "088a88b6366edeaa9e8a97a76fbfa88f1e4e9c6c",
+      "sha256": "987c6082f016278f71bcb394d12c0766d980699778dece2d4c772f2a05521289"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/verify_initializer_observation.py",
+      "gitBlob": "b3c57941545e1660681a58f4ab1fc0589c8a2735",
+      "sha256": "1abb7eebcff35a64a70b33e520b6485daed9a41ea6319b38aebae4f82762b0fe"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerPreparedProbe.cpp",
+      "gitBlob": "d08b4560b1a7785ee7278a02758265394063d79c",
+      "sha256": "1c7f1e0614eeb08e467e20d0ecb6a8874cd35be10426c941792ff4d528d7b06a"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationWriter.cpp",
+      "gitBlob": "db9fcbe423e0e25cb36ec06bb2a52a31f65a6df8",
+      "sha256": "2fb5692f0c9cb770de5cad1f42e26d5b3dd1ba83028b528d0367819c492d4003"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationPlayer.cs",
+      "gitBlob": "98bcf83058a5ee98e97a2e6d3aafac6089113a96",
+      "sha256": "7171270d36ad5ea6d2c417942e2e2d589478bd794031fe06744690e929551e00"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs",
+      "gitBlob": "da4bf2ece4999d2765ca51d4bdeecf2bc0617fd2",
+      "sha256": "47de10015ed6a597860843e954f591c8d00a866e8c0ab0a03991184da5ac8820"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj",
+      "gitBlob": "1c5c8628ead41d67d94bb1846dd5bf9764620c68",
+      "sha256": "c75494bd2d7fe26fed245cae641d1cebd036bb382f3884439bdc4d732e3bdbda"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerFixtures/Program.cs",
+      "gitBlob": "c8de453c03321a5b91635da7c6ed795664bcb975",
+      "sha256": "625ea01318c07d83d82992b576cb5afdabc5ea2b438ab274cd4b4336a9839a4b"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/current_native_environment_admission.py",
+      "gitBlob": "3dd3c46bad766f843e040171637cfa0cc1d6ba9f",
+      "sha256": "5ee289a423be1de7ad5b8811162c33172c11a88a571d56564673028a9c4614f3"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": ".github/workflows/r03-ir-initializer-local-contracts.yml",
+      "gitBlob": "b31e79a5dc257483d13f4999c418d6b1a3f4d3fb",
+      "sha256": "7468bbd436eb3ae558dfc44bd9adea3676fec265155f3204ddad243dc35cdad2"
+    }
+  ],
+  "supplementaryCombinedWorkflow": {
+    "run": 42003996493,
+    "result": "FailedBothOS",
+    "test": "test_25_actual_net8_fixture_source_is_rechecked",
+    "reason": "Current R03 net8.0 fixture project source identity changed",
+    "mandatoryUnderCurrentHandoff": false
+  },
+  "runtimeAcceptance": false
+}

@@ -1,0 +1,63 @@
+name: R03 initializer oneuse runner source and native host contracts
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-ir-initializer-local-contracts.yml'
+      - 'Tools/AssemblyShadow/R03IR/run_initializer_local.py'
+      - 'Tools/AssemblyShadow/R03IR/test_initializer_local_orchestration.py'
+      - 'Tools/AssemblyShadow/R03IR/prepare_initializer_sources.py'
+      - 'Tools/AssemblyShadow/R03IR/verify_initializer_observation.py'
+      - 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/**'
+      - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03Initializer*'
+      - 'Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs'
+      - 'Docs/AssemblyShadow/README.md'
+      - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/**'
+permissions:
+  contents: read
+jobs:
+  host-local-batch:
+    name: Source and native host contract / ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03
+            Tools/AssemblyShadow/R03IR
+      - name: Compile local coordinator source
+        shell: bash
+        run: |
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B -m py_compile Tools/AssemblyShadow/R03IR/run_initializer_local.py
+          python3 -B -m py_compile Tools/AssemblyShadow/R03IR/test_initializer_local_orchestration.py
+      - name: Actual host-only oneuse coordinator contracts
+        shell: bash
+        run: |
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B -m unittest discover \
+            -s Tools/AssemblyShadow/R03IR \
+            -p test_initializer_local_orchestration.py -v
+          python3 -B -m unittest discover \
+            -s Tools/AssemblyShadow/R03IR \
+            -p test_initializer_source_preparation.py -v
+          python3 -B -m unittest discover \
+            -s Tools/AssemblyShadow/R03IR \
+            -p test_initializer_observation.py -v
+      - name: Compile actual native additive sources under C++11 and exercise negatives
+        shell: bash
+        run: |
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B -m unittest discover \
+            -s Tools/AssemblyShadow/R03IR/NativeDiagnostics \
+            -p test_initializer_observer_native.py -v
+          python3 -B -m unittest discover \
+            -s Tools/AssemblyShadow/R03IR/NativeDiagnostics \
+            -p test_initializer_writer_host.py -v
+          echo 'Host and source checks only: no Unity, no Player, no R03 acceptance'

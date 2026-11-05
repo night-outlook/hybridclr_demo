@@ -1,0 +1,13 @@
+diff --git a/249c47c1b453fc0cd3520173122599ca03cbe78c b/1c5c8628ead41d67d94bb1846dd5bf9764620c68
+index 249c47c1b..1c5c8628e 100644
+--- a/249c47c1b453fc0cd3520173122599ca03cbe78c
++++ b/1c5c8628ead41d67d94bb1846dd5bf9764620c68
+@@ -6,7 +6,7 @@
+   </PropertyGroup>
+   <ItemGroup>
+     <Reference Include="dnlib"><HintPath>$(PackageRoot)/Plugins/dnlib.dll</HintPath></Reference>
+-    <Compile Include="Program.cs"/><Compile Include="TerminalProducerFixtures.cs"/><Compile Include="../Fixtures/EvolutionFixtureCorpus.cs"/>
++    <Compile Include="Program.cs"/><Compile Include="TerminalProducerFixtures.cs"/><Compile Include="InitializerNativeTargetFixtures.cs"/><Compile Include="../Fixtures/EvolutionFixtureCorpus.cs"/>
+     <Compile Include="../HostTests/EnvironmentBoundaries.cs"/>
+     <Compile Include="$(PackageRoot)/Editor/AssemblyShadow/Model/ShadowConfiguration.cs"/>
+     <Compile Include="$(PackageRoot)/Editor/AssemblyShadow/Metadata/AssemblyIdentityUtil.cs"/>
