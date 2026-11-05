@@ -1,6 +1,23 @@
-# Primary Implementation -> Local Validation — CONDITIONAL / NEW R03 initializer one-use (2026-11-05 UTC)
+# Primary Implementation -> Local Validation — CONDITIONAL / initializer oneuse-02 admission recovery (2026-11-05 UTC)
 
-**One new narrowly bounded authority:** `R03IR-Initializer-20261105-oneuse-01`
+**Replaces only the live one-use authority.** The preceding initializer
+**oneuse-01 is BLOCKED / all 15 cells NotRun**, at actual source
+`bf1e8283061fe3a94c56ea2ac9ab6445905cf738`; its read-only
+Mac admission exited 2 because the reviewed fixture project gained
+one initializer source without updating the strict old Git blob pin.
+That original evidence and [Local checkpoint](../History/M07R/R03/local-validation-initializer-20261105-oneuse-01/README.md)
+remain immutable, even though oneuse-01's runner root was never created.
+**Do not retry or reuse the original oneuse-01 path.**
+
+The admission has been corrected by Primary on source commit
+`b24e51ec074c7b3f9c7f7d86584c873f38dc2387`: the new exact
+`PlayerFixtures.csproj`, initializer fixture producer and generator
+entry source are pinned by verified Git blob and exact compile inclusion.
+Read [recovery design and plan](../History/M07R/R03/IR_Remediation/INITIALIZER02_ADMISSION_RECOVERY_2026-11-05/DESIGN_AND_PLAN.md)
+before any local action. **A current successful admission remains necessary;
+do not reuse oneuse-01's 25-GiB capacity receipts or CI from earlier SHAs.**
+
+**One new narrowly bounded authority:** `R03IR-Initializer-20261105-oneuse-02`
 is authorized **only after** all gates below pass. It is distinct from the
 consumed oneuse-K and earlier I/J/G/H cycles. Do not rerun, modify, delete or
 rewrite those executions or historical S evidence. No automatic H2/M08A/X02,
@@ -17,7 +34,7 @@ Canonical branch for all four repositories: `codex/assembly-shadow-r01b-h1`.
 
 | Canonical repository | Required branch and commit |
 | --- | --- |
-| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1`, **exact latest pushed remote HEAD from the Primary final copyable handoff prompt**. Resolve and verify the full 40-character SHA against origin before any run. The Primary implementation source was first committed at `81597899d1ba0f8d00e3fd5dfd8531f8fab40fe9`; this is NOT a valid replacement for the final handoff HEAD if documentation was published afterward. |
+| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1`, **exact latest pushed remote HEAD from the Primary final copyable handoff prompt**. Resolve and verify the full 40-character SHA against origin before any run. The original initializer implementation was committed at `81597899d1ba0f8d00e3fd5dfd8531f8fab40fe9` and the corrected exact-source admission implementation at `b24e51ec074c7b3f9c7f7d86584c873f38dc2387`; **neither replaces the latest final pushed handoff SHA** if there are later documentation commits. |
 | `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` @ `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
 | `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` @ `948c0e3b4f8891481301770115e8ba4945eea6de` |
 | `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` @ `41764ae1eeefb33b05966e7f7676e52aae39c340` |
@@ -40,8 +57,10 @@ Original S must be a distinct clean read-only checkout at demo
 ## 2. Read order and published implementation
 
 1. `Docs/AssemblyShadow/README.md`; this live handoff.
-2. `Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/INITIALIZER_ONEUSE_DESIGN.md`
-   and `INITIALIZER_ONEUSE_PLAN.md` in that directory.
+2. `Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/INITIALIZER02_ADMISSION_RECOVERY_2026-11-05/DESIGN_AND_PLAN.md`
+   for the verified local admission failure and strict source correction.
+3. The earlier `PRIMARY_FOLLOWUP_2026-11-05/INITIALIZER_ONEUSE_DESIGN.md`
+   and `INITIALIZER_ONEUSE_PLAN.md` for the unchanged 15-cell batch.
 3. `Tools/AssemblyShadow/R03IR/run_initializer_local.py` and
    `test_initializer_local_orchestration.py`.
 4. Existing `prepare_initializer_sources.py`,
@@ -54,11 +73,21 @@ Original S must be a distinct clean read-only checkout at demo
    consumed K preservation/custody and the independent 2026-10-08 FAIL.
    Do not treat original S/K/J/I documents as current run instructions.
 
-New source-only CI:
-`.github/workflows/r03-ir-initializer-local-contracts.yml`. Require both
-macOS and Ubuntu jobs completed/success on the **same final pushed demo SHA**
-before starting Local. Previous source-only generator/writer/observer/managed
-API workflows are supplementary and cannot substitute a real new Player.
+**Two mandatory exact-source CI workflows**, each with **two completed
+successful macOS/Ubuntu jobs at the same final pushed demo HEAD**:
+- `.github/workflows/r03-ir-initializer-local-contracts.yml` — strict
+  initializer `.csproj`/producer/admission and native writer/observer suites.
+- `.github/workflows/r03-ir-current-native-local-cycle-host.yml` — full
+  shared current-native source/host and actual retained-worktree admission
+  contracts, including the new initializer regression.
+
+At the intermediate corrected-source commit
+`b24e51ec074c7b3f9c7f7d86584c873f38dc2387`, **both passed**:
+[initializer 42012373589](https://github.com/night-outlook/hybridclr_demo/actions/runs/42012373589)
+and [shared 42012373659](https://github.com/night-outlook/hybridclr_demo/actions/runs/42012373659).
+**These do not substitute for fresh final-documentation-SHA CI or Local
+Unity/IL2CPP/Player execution.** If either final SHA run is not success
+on both OSes, STOP before any Local invocation.
 
 Production/native repositories remain unchanged. The new composite observer
 and writer are **only test overlay** sources. K's five-Player runner is
@@ -71,16 +100,19 @@ Expected actual paths:
 WORKSPACE=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r
 ORIGINAL_S=/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse
 UNITY_EXE=/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
-RUN_ROOT=/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-01
-# Paste DEMO_COMMIT from the Primary final handoff prompt, not from K.
+RUN_ROOT=/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02
+# Paste DEMO_COMMIT from the FINAL Primary handoff prompt (not the earlier
+# oneuse-01 source commit, and not the intermediate admission source commit).
+# This is a new absent root. Never reuse /oneuse-01.
 ~~~
 
 Require all four clean Git roots, canonical origin/branch/live SHA, original S
 unchanged and preserved, installed pinned Unity/IL2CPP/SDK, no conflicting
 Unity/Bee/Player processes or active evidence mounts, exact source/fixture
 preservation and a genuinely absent external RUN_ROOT. Take two independent
-**fresh** timestamped free-space samples on RUN_ROOT's actual parent; both
-must be >=25.0 GiB. At 25–<40 GiB record this new-cycle-only advisory
+**fresh, separately timed** free-space samples on RUN_ROOT's actual parent; both
+must be >=25.0 GiB. The oneuse-01 measurements are consumed historical
+evidence and must not be copied into oneuse-02's admission. At 25–<40 GiB record this new-cycle-only advisory
 exception. Below 25.0 GiB: **Blocked/STOP**, no runner output root or Unity.
 Hard20/advisory40 thresholds are otherwise unchanged.
 
@@ -107,7 +139,10 @@ PYTHONDONTWRITEBYTECODE=1 python3 -B \
   --unity "$UNITY_EXE" --demo-commit "$DEMO_COMMIT" --output "$RUN_ROOT"
 ~~~
 
-The runner itself enforces 15 fixed cells and rechecks source authority.
+The unchanged runner itself enforces 15 fixed cells and rechecks source
+authority; the corrected strict read-only admission runs first. The 01
+preflight was BLOCKED, so neither the 01 root nor any 01 Player output
+is a substitute for this entirely new source-bound run.
 Before Unity it runs ten real K-current-native host components plus the new
 C++11 observer/writer and Python negatives. It verifies original nine-part S
 archive and its 59 original process joins, original generated tables and the two archived NativeOn/Off Mach-O
@@ -144,8 +179,10 @@ Expected output locations:
 - `RUN_ROOT/BATCH_EXECUTION.json`, `LOCAL_BATCH_RESULT.json`,
   `evidence-index.json`, `evidence.tar.gz`, `seal-receipt.json`.
 
-Publish one new additive checkpoint under
-`Docs/AssemblyShadow/History/M07R/R03/local-validation-initializer-20261105-oneuse-01/`
+Publish one **new** additive checkpoint under
+`Docs/AssemblyShadow/History/M07R/R03/local-validation-initializer-20261105-oneuse-02/`,
+preserving `local-validation-initializer-20261105-oneuse-01`
+verbatim and separately classifying its prior BLOCKED / NotRun result
 and update Local-owned `Handoff/LOCAL_VALIDATION.md` and
 `Handoff/RETURN_TO_WEB.md` with **actual** executed source/published evidence
 SHAs, command transcripts, full raw evidence and every Pass/Fail/Blocked/

@@ -1,3 +1,44 @@
+# Current Primary state — oneuse-01 admission BLOCKED; oneuse-02 source correction ready (2026-11-05 UTC)
+
+**Oneuse-01 is BLOCKED / 15 cells NotRun** at original executed demo
+`bf1e8283061fe3a94c56ea2ac9ab6445905cf738`, Local publication
+`fda6c84b8cf1af336c6eedb16343e7ddc0362831`. The mandatory
+Mac read-only admission exited2 on a stale strict `PlayerFixtures.csproj`
+blob, introduced by the legitimate new initializer fixture source.
+**No Unity build, no Player, no Local runner or new batch root.**
+The published [Local checkpoint](History/M07R/R03/local-validation-initializer-20261105-oneuse-01/README.md)
+and old evidence remain immutable.
+
+Primary corrected the **exact** fixture-project, initializer producer,
+and generator-entry Git blob admission (without relaxing source checks).
+The host regressions and current-native host workflows passed
+on both macOS and Ubuntu at implementation source demo
+`b24e51ec074c7b3f9c7f7d86584c873f38dc2387`.
+The new conditional **oneuse-02**, at a fresh distinct root and final
+pushed SHA, is described in the
+[current WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md),
+[admission recovery design/plan](History/M07R/R03/IR_Remediation/INITIALIZER02_ADMISSION_RECOVERY_2026-11-05/DESIGN_AND_PLAN.md)
+and [Primary source review](History/M07R/R03/IR_Remediation/INITIALIZER02_ADMISSION_RECOVERY_2026-11-05/PRIMARY_SOURCE_REVIEW.md).
+
+**Entry conditions:** both initializer and shared native host workflows
+must have completed successful macOS+Ubuntu jobs at the same **final**
+pushed demo SHA; a fresh read-only Mac/SDK/Git/original-S admission,
+two new capacity measurements each >=25.0 GiB, prior evidence custody
+and clean exact remote heads must also pass. Prior oneuse-01 capacity
+measurements are not reusable. Even a passing source-level gate is not
+a Unity/Player result or independent R03 acceptance.
+
+The independent October 8 R03 FAIL and High IR-R03-01/02 remain open.
+Captured-generic, complete native V2/first-failure diagnostics,
+original-S full source-to-binary/Player provenance, managed shutdown,
+GC/RSS, whole-VM and RC/P/E acceptance remain incomplete:
+`R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`;
+`runtimeAcceptance=false`; `qualificationApproved=false`;
+PureInterpreter disabled. Do not start H2/M08A/X02/SNAP-01 or
+self-approve the Human Review Gate.
+
+---
+
 # R03 Primary conditional initializer one-use handoff (2026-11-05 UTC)
 
 **New, narrow Local authority is CONDITIONAL** for one previously unexecuted
