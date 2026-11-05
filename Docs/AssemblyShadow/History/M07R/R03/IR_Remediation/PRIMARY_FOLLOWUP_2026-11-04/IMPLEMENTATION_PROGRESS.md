@@ -107,7 +107,7 @@ regeneration as runtime qualification.
   This run includes source admission, real fresh Python CLI bootstrap,
   capacity/net8 preflight checks, and strict host-only contracts. It
   does not launch a Unity Player.
-- Five additional K/L/source host workflows also **passed** at
+- Four additional K/L/source host workflows also **passed** at
   `149db30e...`:
   [41956813592](https://github.com/night-outlook/hybridclr_demo/actions/runs/41956813592),
   [41956813417](https://github.com/night-outlook/hybridclr_demo/actions/runs/41956813417),
