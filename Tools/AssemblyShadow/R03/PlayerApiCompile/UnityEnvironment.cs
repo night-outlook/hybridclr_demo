@@ -10,7 +10,16 @@ namespace UnityEngine
     public sealed class RuntimeInitializeOnLoadMethodAttribute : Attribute
     { public RuntimeInitializeOnLoadMethodAttribute(RuntimeInitializeLoadType value) { } }
     public enum RuntimePlatform { OSXPlayer }
-    public class Object { }
+    public class Object
+    {
+        public static void DontDestroyOnLoad(Object value) { throw new NotSupportedException(); }
+    }
+    public class MonoBehaviour : Object { }
+    public sealed class GameObject : Object
+    {
+        public GameObject(string name) { throw new NotSupportedException(); }
+        public T AddComponent<T>() where T : MonoBehaviour { throw new NotSupportedException(); }
+    }
     public enum LogType { Error, Assert, Warning, Log, Exception }
     public interface ILogHandler
     {
