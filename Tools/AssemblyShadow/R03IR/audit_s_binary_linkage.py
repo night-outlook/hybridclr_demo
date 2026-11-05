@@ -121,8 +121,22 @@ def registration_symbols(code):
             "sourceRegistrationContract": "PassedExactFieldsAndExternalSymbols"}
 
 
+def classify_nm_symbols(lines):
+    """Require exact named, defined Mach-O symbols; undefined references cannot pass."""
+    definitions = {name: [] for name in TABLES}
+    for line in lines:
+        item = line.strip()
+        for name in TABLES:
+            if re.search(r"(?:^|\\s)_" + re.escape(name) + r"$", item) and
+                    re.match(r"^[0-9a-fA-F]{8,16}\\s+\\([^)]+\\)\\s+", item) and
+                    "undefined" not in item.lower():
+                definitions[name].append(item[:250])
+    return {"definedSymbols": definitions,
+            "allRequiredSymbolsDefined": all(len(v) == 1 for v in definitions.values())}
+
+
 def bounded_nm(binary):
-    """Inspect archived Mach-O symbols without trusting symbol names as object linkage."""
+    """Inspect archived Mach-O symbols without equating symbols to source-object identity."""
     with tempfile.TemporaryFile(mode="w+t", encoding="utf-8") as output:
         try:
             result = subprocess.run(["nm", "-m", str(binary)], stdout=output,
@@ -136,7 +150,9 @@ def bounded_nm(binary):
                     if name in line and len(matches[name]) < 12:
                         matches[name].append(line.strip()[:250])
             stderr = (result.stderr or "")[:2000]
+            defined = classify_nm_symbols(line for group in matches.values() for line in group)
             return {"tool": "nm -m", "returnCode": result.returncode,
+                    **defined,
                     "linesExamined": scanned, "boundedMatches": matches,
                     "stderrPrefix": stderr,
                     "symbolPresence": {name: bool(matches[name]) for name in TABLES},
@@ -183,6 +199,9 @@ def audit(original):
         binary = original_entry(checkpoint, indexed, original, "/".join((M07, app_folder,
             "Contents/Frameworks/GameAssembly.dylib")), binary_blob, binary_size)
         binary["nativeSymbolInspection"] = bounded_nm(checkpoint / binary["path"])
+        require(binary["nativeSymbolInspection"].get("returnCode") == 0 and
+                binary["nativeSymbolInspection"].get("allRequiredSymbolsDefined") is True,
+                "Original Mach-O must physically define both exact generated table symbols")
         rows.append({"role": role, "generatedSources": source_rows,
                      "sourceRegistration": registration, "archivedGameAssembly": binary})
     require(rows[0]["generatedSources"][0]["sha256"] == rows[1]["generatedSources"][0]["sha256"] and
@@ -197,6 +216,7 @@ def audit(original):
             "originalPublication": ORIGINAL, "originalIndexSha256": INDEX_SHA,
             "originalIndexMembers": len(indexed), "roles": rows,
             "sourceRegistrationLinkedByText": True,
+            "twoNamedTableDefinitionsInEachOriginalMachO": True,
             "originalCompiledObjectCommandGraph": "NotProven",
             "actualGeneratedSourceObjectIdentity": "NotProven",
             "fullNativeBinaryLinkage": "NotProven",
