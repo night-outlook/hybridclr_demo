@@ -125,6 +125,10 @@ class InitializerLocalOrchestrationTests(unittest.TestCase):
         self.assertIn('validate_sources(workspace, demo_commit)', source)
         self.assertIn('batch.cell("final-authority"', source)
         self.assertIn('R03IRInitializerOneUseEvidenceBatchV1', source)
+        self.assertIn('verify_current_host_report(', source)
+        self.assertIn('"tenCurrentNativeHostResultSha256"', source)
+        self.assertIn('Passed59ArchivedProcessJoinsOnly', source)
+        self.assertIn('Exact new non-replayed 15-cell roster', source)
 
 
 if __name__ == "__main__":

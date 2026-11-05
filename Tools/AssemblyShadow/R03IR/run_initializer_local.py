@@ -192,8 +192,25 @@ def prepare_initializer(batch, role):
 
 
 def local_hosts(batch):
+    # Do not substitute a handful of new tests for K's ten actual native
+    # host components. Both the original owner suites and the new initializer
+    # compile/contracts must pass before launching any new Unity build.
+    import run_current_native_host_preflight as full_native_host
+    from current_native_source_gate import CURRENT
+    output = batch.root / "native-host-diagnostics"
+    recorded = batch.command([
+        sys.executable, "-B", str(HERE / "run_current_native_host_preflight.py"),
+        "--workspace", str(batch.workspace),
+        "--expected-demo", batch.pins["hybridclr_demo"],
+        "--expected-native", CURRENT["il2cpp_plus"],
+        "--output", str(output),
+    ], 7200)
+    report = loads((output / "RESULT.json").read_text(encoding="utf-8"))
+    full_native_host.verify_current_host_report(
+        report, batch.pins["hybridclr_demo"], CURRENT["il2cpp_plus"])
     tests = ("test_initializer_observer_native.py", "test_initializer_writer_host.py")
-    receipts = {}
+    receipts = {"tenCurrentNativeHost": recorded, "tenCurrentNativeHostResultSha256":
+                sha(output / "RESULT.json")}
     for name in tests:
         receipt = batch.command([
             sys.executable, "-B", "-m", "unittest", "discover",
@@ -220,6 +237,23 @@ def archive_audit(batch):
             recorded.get("cells") == 90, "Original S historical authority")
     return {"result": "PassedArchivedSIdentityOnly",
             "receiptSha256": sha(output / "audit.json"), "runtimeAcceptance": False}
+
+
+def original_process_audit(batch):
+    output = batch.root / "original-s-process-joins"
+    batch.command([sys.executable, "-B", str(HERE / "audit_s_process_joins.py"),
+                   "--original", str(batch.original_s),
+                   "--audit", str(batch.root / "original-s-provenance"),
+                   "--output", str(output)], 5400)
+    recorded = loads((output / "process-joins.json").read_text(encoding="utf-8"))
+    require(recorded.get("result") == "Passed" and
+            recorded.get("totalPlayerReceipts") == 59 and
+            recorded.get("originalLedgerCellsPreviouslyAuthenticated") == 90 and
+            recorded.get("R03Accepted") is False,
+            "Exact original 59 process joins are archived evidence, not new Players")
+    return {"result": "Passed59ArchivedProcessJoinsOnly",
+            "receiptSha256": sha(output / "process-joins.json"),
+            "runtimeAcceptance": False}
 
 
 def original_binary_audit(batch, script, expected):
@@ -319,6 +353,8 @@ def execute(workspace, original_s, output, unity, demo_commit):
                ("entry-authority",))
     batch.cell("original-s-archive", lambda: archive_audit(batch),
                ("entry-authority",))
+    batch.cell("original-s-process-joins", lambda: original_process_audit(batch),
+               ("original-s-archive",))
     for script, expected in (
         ("audit_s_generated_material.py", "PassedIdentityAndLexicalScanOnly"),
         ("audit_s_binary_linkage.py",
@@ -348,14 +384,14 @@ def execute(workspace, original_s, output, unity, demo_commit):
         "initializerSourceSha256": check_git_source(workspace / "hybridclr_demo")})
     expected_cells = (
         "entry-authority", "initializer-host-contracts", "original-s-archive",
-        "audit_s_generated_material", "audit_s_binary_linkage",
+        "original-s-process-joins", "audit_s_generated_material", "audit_s_binary_linkage",
         "real-dll-fixtures", "ir-generator-build", "initializer-native-targets",
         "prepare-release", "prepare-initializer", "build-initializer",
         "player-initializer-control", "player-initializer-failure",
         "final-authority",
     )
     require(tuple(row["id"] for row in batch.cells) == expected_cells,
-            "Exact new non-replayed 14-cell roster")
+            "Exact new non-replayed 15-cell roster")
     statuses = {row["id"]: row["result"] for row in batch.cells}
     passed = all(value == "Passed" for value in statuses.values())
     result = finalize(batch.root, {
@@ -369,6 +405,7 @@ def execute(workspace, original_s, output, unity, demo_commit):
         "verifiedFreshInitializerPlayers": sum(
             statuses["player-" + mode] == "Passed" for mode in MODE_SHA),
         "originalSIndependentBinaryAudit": statuses["audit_s_binary_linkage"],
+        "originalSArchivedProcessJoinAudit": statuses["original-s-process-joins"],
         "capturedGenericFailure": "NotRun",
         "completeNativeSnapshotV2": "NotImplemented_NotRun",
         "firstRecoveryAuthenticated": False,

@@ -1,3 +1,31 @@
+# R03 Primary conditional initializer one-use handoff (2026-11-05 UTC)
+
+**New, narrow Local authority is CONDITIONAL** for one previously unexecuted
+initializer-only cycle after all current CI, exact Git HEAD, independent
+macOS capacity, original-S preservation and SDK admissions pass. Read the
+[current WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md), [new design](History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/INITIALIZER_ONEUSE_DESIGN.md)
+and [execution plan](History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/INITIALIZER_ONEUSE_PLAN.md).
+This authorizes only one new ON/Release native build and two separate
+initializer-control/failure Players, plus ten local native host components
+and archived original-S provenance/source/Mach-O audits. No new execution has
+occurred at the time of publication. The older K `WEB_TO_LOCAL` CLOSED
+state remains historically correct for **consumed K**; it is not reused.
+
+Prior source-only initializer CI was successful, but real IL2CPP compilation,
+postpublication callback, raw V1 observation and native Player process
+identity have not yet been established. The new runner is V1, not complete
+native V2/first-failure/general diagnostic or captured-generic error-15 proof.
+
+The independent October 8 R03 FAIL, both open High IR-R03-01/02,
+the missing whole-VM/managed shutdown/GC/RSS/RC obligations, and all
+historical K/I/J classifications remain unchanged:
+`R03Accepted=false`; `H2Passed=false`;
+`ReadyForHumanReviewGate=false`; `runtimeAcceptance=false`;
+`qualificationApproved=false`; PureInterpreter disabled.
+No H2/M08A/X02/SNAP-01 or Human Review Gate automatically.
+
+---
+
 # R03 current Primary — initializer diagnostic source prepared (2026-11-05 UTC)
 
 **No new Unity or Player execution.** The new isolated initializer-control/failure target generator, native prepared-field observer, separate preopened diagnostic writer, managed Player source and project-preparation/verifier contracts are published. Six focused workflows passed in their exact source scopes (dual-OS generator, observer, writer, project preparation, diagnostic schema; pinned managed API compile). [Implementation/evidence record](History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/INITIALIZER_IMPLEMENTATION_PROGRESS.md).
