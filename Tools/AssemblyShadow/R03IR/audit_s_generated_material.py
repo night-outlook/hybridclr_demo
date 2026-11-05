@@ -82,6 +82,49 @@ def scan(raw):
         "compiledObjectBound": False, "linkedPlayerBound": False}
 
 
+
+TABLES = {
+    "Il2CppGenericMethodPointerTable.c": ("Il2CppMethodPointer", "g_Il2CppGenericMethodPointers", 48232),
+    "Il2CppInvokerTable.cpp": ("InvokerMethod", "g_Il2CppInvokerPointers", 10198),
+}
+
+
+def table_structure(raw, basename):
+    """Count the scalar initializer rows in two original generated tables.
+
+    This is not a full C++ parser, typed symbol resolution, or evidence of
+    actual compiler/link input. Unknown syntax must fail, not silently pass.
+    """
+    require(basename in TABLES, "Unexpected generated source table name")
+    typename, symbol, expected = TABLES[basename]
+    source = raw.decode("utf-8", "strict")
+    definition = (r"\bconst\s+" + re.escape(typename) + r"\s+" +
+                  re.escape(symbol) + r"\[(\d+)\]\s*=\s*\{")
+    matches = list(re.finditer(definition, source))
+    require(len(matches) == 1, "Exactly one generated table definition: " + symbol)
+    match = matches[0]
+    declared = int(match.group(1))
+    require(declared == expected, "Generated table declared row count mismatch: " + symbol)
+    remainder = source[match.end():]
+    close = re.search(r"(?m)^\s*};\s*$", remainder)
+    require(close is not None, "Generated table closing brace missing: " + symbol)
+    body = remainder[:close.start()]
+    rows = [line.strip() for line in body.splitlines() if line.strip()]
+    require(len(rows) == expected, "Actual generated table initializer row count differs: " + symbol)
+    require(all(row.endswith(",") or (i == expected - 1 and
+                not row.startswith(("//", "#", "/*"))) for i, row in enumerate(rows)),
+            "Generated initializer line format unsupported: " + symbol)
+    require(all(not row.startswith(("//", "#", "/*", "}")) for row in rows),
+            "Generated table includes unsupported non-entry line: " + symbol)
+    return {"symbol": symbol, "typeName": typename, "declaredRows": declared,
+            "initializerRows": len(rows),
+            "initializerTextSha256": hashlib.sha256(body.encode("utf-8")).hexdigest(),
+            "distinctInitializerLines": len(set(rows)),
+            "firstEntries": rows[:4],
+            "lastEntries": rows[-4:],
+            "fullSemanticCxxInspection": False,
+            "linkageToCompiledObject": "NotProven"}
+
 def audit(root):
     root = Path(root).resolve()
     require((root / ".git").exists(), "Original S Git checkout required")
@@ -125,9 +168,11 @@ def audit(root):
                     found.decode() == oid and name.decode() == path,
                     "Original source path Git tree/blob mismatch")
             lexical = scan(raw)
+            table = table_structure(raw, basename)
             require(lexical["lines"] == line_count, "Original generated source line-count drift")
             rows.append({"role": role, "relativePath": relative, "gitBlob": oid,
-                "sha256": sha, "bytes": size, "lexicalScan": lexical})
+                "sha256": sha, "bytes": size, "lexicalScan": lexical,
+                "generatedTable": table})
     for basename in FILES:
         pair = [row for row in rows if row["relativePath"].endswith("/" + basename)]
         require(len(pair) == 2 and pair[0]["lexicalScan"] == pair[1]["lexicalScan"],
@@ -137,7 +182,9 @@ def audit(root):
         "result": "PassedIdentityAndLexicalScanOnly", "originalPublication": ORIGINAL,
         "originalIndexSha256": INDEX_SHA, "originalIndexMembers": len(lookup),
         "sourceOccurrences": rows, "uniqueSourceBlobs": 2,
-        "onOffSourceBytesIdentical": True, "sourceToObjectBuildJoin": "NotProven",
+        "onOffSourceBytesIdentical": True,
+        "declarationAndInitializerRowCardinalitiesChecked": True,
+        "sourceToObjectBuildJoin": "NotProven",
         "generatedCppBinaryLinkage": "NotProven",
         "originalCaptureOmissionsFullReconciliation": "NotRun",
         "fullCxxSemanticInspection": False, "independentReviewer": False,
