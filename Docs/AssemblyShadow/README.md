@@ -1,3 +1,11 @@
+# R03 Primary continuation — original S registration and Mach-O evidence (2026-11-05 UTC)
+
+**Read-only archived evidence advance, not stage acceptance.** [Exact-source macOS run 41965330265](https://github.com/night-outlook/hybridclr_demo/actions/runs/41965330265) **Passed**: 14/14 host checks; authenticated both original S NativeOn/NativeOff GameAssembly.dylib Git/archive identities and found *defined* g_Il2CppGenericMethodPointers and g_Il2CppInvokerPointers symbols in both archived Mach-O binaries. Original source code-registration counts 48,232/10,198 agree with audited generated array rows. [Detailed non-authorizing report](History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/ORIGINAL_S_BINARY_REGISTRATION_AUDIT.md).
+
+**Still open:** original source-to-object/compiler/link receipt and executable-to-Player join, and the IR-R03-02 real captured-generic/initializer native Player witnesses. Both High IR-R03-01/02 remain NeedsEvidence. K remains consumed and Handoff/WEB_TO_LOCAL.md **CLOSED**. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; runtimeAcceptance=false; qualificationApproved=false; PureInterpreter disabled.
+
+---
+
 # R03 Primary source-only continuation — original S table audit and V2 host CI (2026-11-04)
 
 **Latest Primary evidence, no Local handoff:** original-S generated source material read-only audit at demo `e32be835148715db838014c06a645d72b0772614` [Actions 41962491415](https://github.com/night-outlook/hybridclr_demo/actions/runs/41962491415) PASS: 15 host tests, exact original S git/index/file byte identities, 4 generated file occurrences, 48,232 generic method-pointer initializer rows and 10,198 invoker initializer rows in both NativeOn/NativeOff. **Source → compiled object → Player linkage and original capture omissions reconciliation remain NotProven/NotRun.** The remaining-witness V2 *synthetic* semantic verifier [Actions 41962796627](https://github.com/night-outlook/hybridclr_demo/actions/runs/41962796627) passed 8/8 host tests on both Ubuntu 24.04 and macOS 15, **not real Unity/Player**. [Exact run and artifact report](History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-04/ORIGINAL_S_GENERATED_MATERIAL_AUDIT.md).
