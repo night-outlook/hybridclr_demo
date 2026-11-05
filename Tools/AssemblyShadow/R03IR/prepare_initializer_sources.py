@@ -57,6 +57,15 @@ def prepare(project, config_path, dest):
     need(config.get('schemaVersion') == 1 and config.get('projectPath') == str(project) and
          config.get('sourceManifestSha256') == sha(manifest_path.read_bytes()),
          'Coherent existing project/config')
+    build_output = Path(config.get('outputPath', ''))
+    build_receipt = Path(config.get('receiptPath', ''))
+    need(build_output.is_absolute() and build_receipt.is_absolute() and
+         not build_output.exists() and not build_receipt.exists(),
+         'Only an unbuilt, unconsumed project may be prepared')
+    need(config.get('featureEnabled') is True and config.get('diagnosticsLevel') == 2 and
+         config.get('cppConfiguration') in ('Release', 'Debug'),
+         'Native initializer requires an explicit ON diagnostic build profile')
+
     files = record.get('files')
     need(record.get('schemaVersion') == 1 and type(files) is list, 'Typed source manifest')
     mapped = {x['path']: x for x in files}
