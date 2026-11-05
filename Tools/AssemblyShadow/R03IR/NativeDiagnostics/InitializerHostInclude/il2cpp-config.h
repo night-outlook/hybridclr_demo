@@ -1,0 +1,3 @@
+#pragma once
+#define IL2CPP_EXPORT
+#define HYBRIDCLR_R03_RUNTIME_PROBE 1
