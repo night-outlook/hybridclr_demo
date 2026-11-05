@@ -28,7 +28,7 @@ CURRENT = {
 FILES = {
     ("hybridclr_demo", "Tools/AssemblyShadow/R03/source-pins.json"): "9d72a237fb6ecd3efe3267ca89625aa49c61775d",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03/run_local.py"): "9aef8093f98fb7f9b5dd395ba4e5c2ed0220276e",
-    ("hybridclr_demo", "Tools/AssemblyShadow/R03IR/run_terminal_local.py"): "66766406969bbfc3458f49b865fd80dc1ddc0680",
+    ("hybridclr_demo", "Tools/AssemblyShadow/R03IR/run_terminal_local.py"): "489e4bb13309c175545a042e15660f5d5c3aa83c",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs"): "e2f650ad95b290620aa52949b43a1866272ac6bf",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03IR/PlayerProject/R03EngineFrameDispatcher.cs"): "47a3e095480de2ec657e7e5acc453a5a76002a18",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs"): "b993703d918090733a659bd7c3ac883cd5d753e1",
