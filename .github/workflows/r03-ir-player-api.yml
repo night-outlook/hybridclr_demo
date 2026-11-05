@@ -19,6 +19,13 @@ jobs:
         with:
           path: hybridclr_demo
           persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/workflows/r03-ir-player-api.yml
+            /Tools/AssemblyShadow/R03/source-pins.json
+            /Tools/AssemblyShadow/R03/PlayerApiCompile/
+            /Tools/AssemblyShadow/R03/PlayerProject/R03Player.cs
+            /Tools/AssemblyShadow/R03IR/PlayerProject/
       - name: Exact required package revision
         id: package
         shell: python
