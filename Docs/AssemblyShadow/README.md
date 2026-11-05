@@ -1,3 +1,11 @@
+# R03 current Primary — initializer diagnostic source prepared (2026-11-05 UTC)
+
+**No new Unity or Player execution.** The new isolated initializer-control/failure target generator, native prepared-field observer, separate preopened diagnostic writer, managed Player source and project-preparation/verifier contracts are published. Six focused workflows passed in their exact source scopes (dual-OS generator, observer, writer, project preparation, diagnostic schema; pinned managed API compile). [Implementation/evidence record](History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/INITIALIZER_IMPLEMENTATION_PROGRESS.md).
+
+**IR-R03-02 remains High / NeedsEvidence:** actual IL2CPP native build, full terminal V2 reporter and first-failure diagnostics, fresh Player observation, captured-generic producer and source-bound runtime witness are **NotRun/incomplete**. IR-R03-01 and RC closure remain open. Historical K is consumed; Handoff/WEB_TO_LOCAL.md remains **CLOSED**. R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, runtimeAcceptance=false, PureInterpreter disabled.
+
+---
+
 # R03 Primary continuation — original S registration and Mach-O evidence (2026-11-05 UTC)
 
 **Read-only archived evidence advance, not stage acceptance.** [Exact-source macOS run 41965330265](https://github.com/night-outlook/hybridclr_demo/actions/runs/41965330265) **Passed**: 14/14 host checks; authenticated both original S NativeOn/NativeOff GameAssembly.dylib Git/archive identities and found *defined* g_Il2CppGenericMethodPointers and g_Il2CppInvokerPointers symbols in both archived Mach-O binaries. Original source code-registration counts 48,232/10,198 agree with audited generated array rows. [Detailed non-authorizing report](History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/ORIGINAL_S_BINARY_REGISTRATION_AUDIT.md).
