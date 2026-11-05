@@ -89,7 +89,8 @@ def original_entry(checkpoint, indexed, repo, rel, blob=None, size=None, sha=Non
     require(len(entries) == 2 and entries[0], "Expected exactly one original Git tree file")
     props, name = entries[0].split(b"\t", 1)
     mode, kind, oid = props.split()
-    require(mode == b"100644" and kind == b"blob" and
+    required_mode = b"100755" if rel.endswith("/GameAssembly.dylib") else b"100644"
+    require(mode == required_mode and kind == b"blob" and
             name.decode() == git_path and oid.decode() == actual_blob,
             "Original file Git path/blob authentication failed: " + rel)
     return {"path": rel, "bytes": length, "sha256": actual_sha, "gitBlob": actual_blob}
