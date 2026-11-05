@@ -127,8 +127,15 @@ def exact_int(value, expected):
 
 
 def verify_ir(raw, request, launch, build_sha, *, raw_path=None):
+    # V1 proves only these three stimuli. A newly named generic/initializer
+    # case needs its own actual producer and verifier, not the type-failure
+    # fallback. The engine-unhandled witness uses verify_engine instead.
+    require(type(request) is dict and type(request.get('stimulus')) is str and
+            request['stimulus'] in ('off', 'baseline-owner', 'type-resolution'),
+            'Unsupported R03IRPostPoisonEntryV1 stimulus')
+    require(type(raw) is dict, 'IR Player result must be an object')
     require(raw.get('reportTransport') == 'NativePreopenedSnapshotV1', 'Native snapshot transport required')
-    require(type(raw) is dict and raw.get('schemaVersion') == 1 and
+    require(exact_int(raw.get('schemaVersion'), 1) and
             raw.get('kind') == 'R03IRPostPoisonEntryV1' and raw.get('acceptance') is False,
             'Actual non-authorizing IR Player result contract')
     require(raw.get('result') == 'Passed' and not raw.get('error'), 'Player witness must explicitly pass')
@@ -175,7 +182,7 @@ def verify_ir(raw, request, launch, build_sha, *, raw_path=None):
                     exact_int(native.get('baselineGuard'), 0) and exact_int(native.get('caughtOldGuard'), 1) and
                     exact_int(native.get('stateCode'), 9) and exact_int(raw.get('nativeStimulusReturn'), 1),
                     'Actual caught old-baseline managed failure')
-        else:
+        elif request['stimulus'] == 'type-resolution':
             require(exact_int(recovery['terminalFailureCode'], 13) and exact_int(raw.get('nativeStimulusReturn'), 1),
                     'Production type-resolution failure boundary was exercised')
     general_proof = None
