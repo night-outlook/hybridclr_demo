@@ -4,10 +4,50 @@ import tempfile
 import unittest
 
 from audit_s_generated_material import (FILES, ORIGINAL, git_blob, scan,
-    no_duplicates, audit, sha256)
+    no_duplicates, audit, sha256, table_structure)
 
 
 class OriginalSGeneratedMaterialTests(unittest.TestCase):
+
+    def test_generic_table_scalar_entries(self):
+        raw = (b"IL2CPP_EXTERN_C const Il2CppMethodPointer g_Il2CppGenericMethodPointers[];\n"
+               b"const Il2CppMethodPointer g_Il2CppGenericMethodPointers[48232] =\n{\n" +
+               b" (Il2CppMethodPointer)&Foo_gshared,\n" * 48231 +
+               b" (Il2CppMethodPointer)&Last_gshared,\n};\n")
+        result = table_structure(raw, "Il2CppGenericMethodPointerTable.c")
+        self.assertEqual(result["declaredRows"], 48232)
+        self.assertEqual(result["initializerRows"], 48232)
+        self.assertEqual(result["distinctInitializerLines"], 2)
+        self.assertEqual(result["linkageToCompiledObject"], "NotProven")
+
+    def test_invoker_table_scalar_entries(self):
+        raw = (b"IL2CPP_EXTERN_C const InvokerMethod g_Il2CppInvokerPointers[];\n"
+               b"const InvokerMethod g_Il2CppInvokerPointers[10198] =\n{\n" +
+               b" RuntimeInvoker_One,\n" * 10197 +
+               b" RuntimeInvoker_Last\n};\n")
+        result = table_structure(raw, "Il2CppInvokerTable.cpp")
+        self.assertEqual(result["initializerRows"], 10198)
+        self.assertFalse(result["fullSemanticCxxInspection"])
+
+    def test_table_rejects_missing_row_and_wrong_size(self):
+        head = b"const InvokerMethod g_Il2CppInvokerPointers[10198] =\n{\n"
+        valid_rows = b" ExampleInvoker,\n" * 10198
+        for data in (head + valid_rows[:-len(b" ExampleInvoker,\n")] + b"};\n",
+                     b"const InvokerMethod g_Il2CppInvokerPointers[10197] =\n{\n" +
+                     valid_rows + b"};\n"):
+            with self.subTest(length=len(data)), self.assertRaises(ValueError):
+                table_structure(data, "Il2CppInvokerTable.cpp")
+
+    def test_table_rejects_duplicate_declaration_and_comment_rows(self):
+        raw = b"const InvokerMethod g_Il2CppInvokerPointers[10198] =\n{\n" + \
+            b" x,\n" * 10198 + b"};\n"
+        with self.assertRaises(ValueError):
+            table_structure(raw + raw, "Il2CppInvokerTable.cpp")
+        broken = raw.replace(b" x,\n", b" // not an initializer,\n", 1)
+        with self.assertRaises(ValueError):
+            table_structure(broken, "Il2CppInvokerTable.cpp")
+
+
     def test_git_blob_known(self):
         self.assertEqual(git_blob(b"hello\n"), "ce013625030ba8dba906f756967f9e9ca394464a")
 
