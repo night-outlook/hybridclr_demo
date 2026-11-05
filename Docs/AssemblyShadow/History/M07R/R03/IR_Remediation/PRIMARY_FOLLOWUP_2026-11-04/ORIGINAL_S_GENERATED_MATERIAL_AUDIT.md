@@ -36,6 +36,10 @@ At that exact demo SHA, four other source/host workflows also concluded success:
 
 **IR-R03-02 — NeedsEvidence.** The separate `R03IRRemainingTerminalWitnessV1` host consumer and tests exist, but **no genuine captured-generic / initializer-failure / initializer-control Unity Player producers, native V2 preopened reporter, real postpublication initializer field observer, or independently bound source/build/Player receipts are present**. The new cross-platform host workflow `.github/workflows/r03-ir-remaining-witness-host.yml` checks only the existing synthetic verifier; it cannot supply those Player witnesses.
 
+## V2 remaining-witness host CI (separate non-authorizing scope)
+
+The newly published [dual-OS V2 semantic-contract run 41962796627](https://github.com/night-outlook/hybridclr_demo/actions/runs/41962796627) executed at demo source commit `53af0d86094453696669ecd07de440eee27b6afa`. Its Ubuntu 24.04 job `127032834590` and macOS 15 job `127032834794` both completed **success**, with **8/8 synthetic host test methods Passed on each OS** and Python source compilation passing. These cases reject relabelled K output, wrong terminal codes, missing side effects, PID/digest/source-binding mismatches, and unsupported new stimuli at the **schema** layer. They prove no native Unity process, C++ reporter, real captured-generic route, initializer field observer, or true runtime-provenance binding.
+
 ## Next Primary actions and stop
 
 1. For IR-R03-01, implement/verify original compile/link input graph and full original capture-index reconciliation using only authenticated historical sources, without replacing or regenerating old outputs.
