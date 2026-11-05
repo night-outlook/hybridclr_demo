@@ -1,3 +1,11 @@
+# R03 Primary source-only continuation — original S table audit and V2 host CI (2026-11-04)
+
+**Latest Primary evidence, no Local handoff:** original-S generated source material read-only audit at demo `e32be835148715db838014c06a645d72b0772614` [Actions 41962491415](https://github.com/night-outlook/hybridclr_demo/actions/runs/41962491415) PASS: 15 host tests, exact original S git/index/file byte identities, 4 generated file occurrences, 48,232 generic method-pointer initializer rows and 10,198 invoker initializer rows in both NativeOn/NativeOff. **Source → compiled object → Player linkage and original capture omissions reconciliation remain NotProven/NotRun.** The remaining-witness V2 *synthetic* semantic verifier [Actions 41962796627](https://github.com/night-outlook/hybridclr_demo/actions/runs/41962796627) passed 8/8 host tests on both Ubuntu 24.04 and macOS 15, **not real Unity/Player**. [Exact run and artifact report](History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-04/ORIGINAL_S_GENERATED_MATERIAL_AUDIT.md).
+
+**Open independent High IR-R03-01/02 remain NeedsEvidence.** Captured-generic and module-initializer Player producers, real V2 native snapshot, independently bound original source/build/Player linkage, managed shutdown/GC/RSS/whole-VM and other RC obligations remain unaccepted. K was consumed; the active `Handoff/WEB_TO_LOCAL.md` remains **CLOSED**. `R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; runtimeAcceptance=false`; PureInterpreter disabled. No H2/M08A/X02/SNAP-01.
+
+---
+
 # Current R03 Primary state — K PASS reconciled; independent R03 FAIL remains (2026-11-04)
 
 **Local one-use K completed PASS within focused scope** at executed demo c20da0b261172cbdd188378e24dbe9343a14c6b2 and published evidence demo 14f97f15af6c06afa65957a9b880ccf841069452. Primary verified nine exact-source Actions runs / 18 OS success jobs and inspected the actual K producer, ten host components, three Unity builds, five Players, 135 source-install pairs, original S custody and preservation receipts. This is not a new full-stage review. [Primary K reconciliation](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_K_RECONCILIATION_2026-11-04/PRIMARY_RECONCILIATION.md) and [prepared independent R03 review brief](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_K_RECONCILIATION_2026-11-04/INDEPENDENT_REREVIEW_BRIEF.md).
