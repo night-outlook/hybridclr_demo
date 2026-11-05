@@ -18,7 +18,7 @@ from run_terminal_local import verify_ir, verify_engine
 from batch_contract import ContractError
 
 HERE = Path(__file__).resolve().parent
-PINNED_ORACLE_BLOB = "66766406969bbfc3458f49b865fd80dc1ddc0680"
+PINNED_ORACLE_BLOB = "489e4bb13309c175545a042e15660f5d5c3aa83c"
 PINNED_PLAYER_BLOB = "e2f650ad95b290620aa52949b43a1866272ac6bf"
 PINNED_FRAME_BLOB = "47a3e095480de2ec657e7e5acc453a5a76002a18"
 CASE_IDS = {
@@ -341,6 +341,19 @@ class CurrentNativeOracleContracts(unittest.TestCase):
         self.assertIn('ForceEngineFailureOnFrame()', frame)
         self.assertIn('throw _sentinel;', frame)
         self.assertIn('R03_IR_Exit(exit);', source)
+
+    def test_33_unsupported_v1_stimuli_cannot_alias_type_resolution(self):
+        # Synthetic host-only identities; no Unity execution or runtime PASS.
+        for stimulus in ("captured-generic", "initializer-failure",
+                         "initializer-control", "module-initializer", "future-case"):
+            with self.subTest(stimulus=stimulus):
+                req = {"runId": "typed-host-only-id-9285",
+                       "caseId": "HOST-UNSUPPORTED-V1", "stimulus": stimulus}
+                raw = ir_raw("type-resolution")
+                raw["caseId"] = req["caseId"]
+                raw["stimulus"] = stimulus
+                with self.assertRaises(ContractError):
+                    self.check_ir("type-resolution", raw=raw, req=req)
 
     def test_27_complete_case_ids_and_source_only_marker(self):
         self.assertEqual(len(CASE_IDS), 4)
