@@ -103,12 +103,12 @@ internal static class TerminalProducerFixtures
             var il = prepare.Body;
             Emit(il, OpCodes.Newobj, node.Methods.Single(m => m.Name == ".ctor")); Emit(il, OpCodes.Stsfld, instance);
             Emit(il, OpCodes.Ldsfld, instance); Emit(il, OpCodes.Ldftn, keep);
-            Emit(il, OpCodes.Newobj, new MemberRefUser(module, ".ctor", MethodSig.CreateInstance(module.CorLibTypes.Void,
+            Emit(il, OpCodes.Newobj, (IMethod)new MemberRefUser(module, ".ctor", MethodSig.CreateInstance(module.CorLibTypes.Void,
                 module.CorLibTypes.Object, module.CorLibTypes.IntPtr), funcType));
             Emit(il, OpCodes.Stsfld, cached);
             Emit(il, OpCodes.Ldsfld, instance); Emit(il, OpCodes.Callvirt, keep); Emit(il, OpCodes.Stsfld, direct);
             Emit(il, OpCodes.Ldsfld, cached);
-            Emit(il, OpCodes.Callvirt, new MemberRefUser(module, "Invoke", MethodSig.CreateInstance(new GenericVar(0)), funcType));
+            Emit(il, OpCodes.Callvirt, (IMethod)new MemberRefUser(module, "Invoke", MethodSig.CreateInstance(new GenericVar(0)), funcType));
             Emit(il, OpCodes.Stsfld, delegated);
             Emit(il, OpCodes.Ldsfld, instance);
             Emit(il, OpCodes.Callvirt, new MethodSpecUser(generic, new GenericInstMethodSig(module.CorLibTypes.Object)));
@@ -129,7 +129,7 @@ internal static class TerminalProducerFixtures
                 {
                     var error = new TypeRefUser(module, "System", "InvalidOperationException", module.CorLibTypes.AssemblyRef);
                     Emit(cctor.Body, OpCodes.Ldstr, Sentinel);
-                    Emit(cctor.Body, OpCodes.Newobj, new MemberRefUser(module, ".ctor",
+                    Emit(cctor.Body, OpCodes.Newobj, (IMethod)new MemberRefUser(module, ".ctor",
                         MethodSig.CreateInstance(module.CorLibTypes.Void, module.CorLibTypes.String), error));
                     Emit(cctor.Body, OpCodes.Throw);
                 }
