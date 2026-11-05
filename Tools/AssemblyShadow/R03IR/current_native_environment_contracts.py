@@ -200,6 +200,12 @@ class R03RetainedOriginalReadmissionContracts(unittest.TestCase):
         result = gate.fixture_net8_source(current_demo.parent)
         self.assertEqual(result["targetFramework"], "net8.0")
         self.assertEqual(result["gitBlob"], gate.REQUIRED_CSPROJ_BLOB)
+        self.assertEqual(result["initializerSourceGitBlob"],
+                         gate.REQUIRED_INITIALIZER_SOURCE_BLOB)
+        self.assertEqual(result["programSourceGitBlob"],
+                         gate.REQUIRED_PROGRAM_SOURCE_BLOB)
+        self.assertIs(result["initializerCompileIncludedExactlyOnce"], True)
+        self.assertIs(result["defaultCompileItemsDisabled"], True)
 
 
     def test_26_import_failure_refuses_readmission_without_output(self):

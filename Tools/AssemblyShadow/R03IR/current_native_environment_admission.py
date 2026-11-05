@@ -21,7 +21,13 @@ import xml.etree.ElementTree as ET
 import current_native_source_gate as source
 import run_current_native_validation_cycle as cycle
 
-REQUIRED_CSPROJ_BLOB = "249c47c1b453fc0cd3520173122599ca03cbe78c"
+# Current initializer input: the single reviewed csproj change adds
+# InitializerNativeTargetFixtures.cs. Historical blob 249c47... is NOT
+# accepted for this new cycle; keep exact fingerprinting, do not whitelist
+# arbitrary project revisions.
+REQUIRED_CSPROJ_BLOB = "1c5c8628ead41d67d94bb1846dd5bf9764620c68"
+REQUIRED_INITIALIZER_SOURCE_BLOB = "da4bf2ece4999d2765ca51d4bdeecf2bc0617fd2"
+REQUIRED_PROGRAM_SOURCE_BLOB = "c8de453c03321a5b91635da7c6ed795664bcb975"
 ADVISORY_HEADROOM_GIB = 40
 
 
@@ -71,15 +77,43 @@ def registered_original(workspace: Path, original: Path) -> dict:
 
 
 def fixture_net8_source(workspace: Path) -> dict:
-    path = workspace / "hybridclr_demo/Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj"
-    require(path.is_file() and not path.is_symlink() and
-            source.git_blob(path.read_bytes()) == REQUIRED_CSPROJ_BLOB,
-            "Current R03 net8.0 fixture project source identity changed")
+    """Authenticate the *current* initializer fixture project and its producer.
+
+    This is deliberately not a blanket 'accept HEAD' check: every source is
+    pinned to a reviewed Git blob, and all three files must be regular files.
+    The earlier pre-initializer csproj remains historical input, not a new
+    Local validation authority.
+    """
+    root = workspace / "hybridclr_demo/Tools/AssemblyShadow/R03/PlayerFixtures"
+    path = root / "PlayerFixtures.csproj"
+    producer = root / "InitializerNativeTargetFixtures.cs"
+    program = root / "Program.cs"
+    for target, expected, label in (
+        (path, REQUIRED_CSPROJ_BLOB, "net8.0 fixture project"),
+        (producer, REQUIRED_INITIALIZER_SOURCE_BLOB, "initializer fixture producer"),
+        (program, REQUIRED_PROGRAM_SOURCE_BLOB, "fixture generator entry"),
+    ):
+        require(target.is_file() and not target.is_symlink() and
+                source.git_blob(target.read_bytes()) == expected,
+                "Current R03 " + label + " source identity changed")
     project = ET.fromstring(path.read_text(encoding="utf-8"))
     frameworks = [e.text for e in project.iter("TargetFramework")]
     require(frameworks == ["net8.0"], "Expected unique real net8.0 fixture target")
+    compile_items = [e.get("Include") for e in project.iter("Compile")]
+    require(len(compile_items) == len(set(compile_items)) and
+            all(compile_items.count(name) == 1 for name in (
+                "Program.cs", "TerminalProducerFixtures.cs",
+                "InitializerNativeTargetFixtures.cs")) and
+            [e.text for e in project.iter("EnableDefaultCompileItems")] == ["false"],
+            "Exactly one explicit initializer and legacy generator source required")
+    require("--ir-terminal-native-targets" in program.read_text(encoding="utf-8"),
+            "Initializer fixture entry point missing from pinned generator")
     return {"path": str(path), "gitBlob": REQUIRED_CSPROJ_BLOB,
-            "targetFramework": "net8.0"}
+            "targetFramework": "net8.0",
+            "initializerSourceGitBlob": REQUIRED_INITIALIZER_SOURCE_BLOB,
+            "programSourceGitBlob": REQUIRED_PROGRAM_SOURCE_BLOB,
+            "initializerCompileIncludedExactlyOnce": True,
+            "defaultCompileItemsDisabled": True}
 
 
 def verify_sdk_output(sdks: str, runtimes: str) -> dict:

@@ -11,6 +11,11 @@ on:
       - 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/**'
       - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03Initializer*'
       - 'Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs'
+      - 'Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj'
+      - 'Tools/AssemblyShadow/R03/PlayerFixtures/Program.cs'
+      - 'Tools/AssemblyShadow/R03IR/current_native_environment_admission.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_environment_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/initializer_admission_contracts.py'
       - 'Docs/AssemblyShadow/README.md'
       - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
       - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/**'
@@ -50,6 +55,13 @@ jobs:
           python3 -B -m unittest discover \
             -s Tools/AssemblyShadow/R03IR \
             -p test_initializer_observation.py -v
+      - name: Actual shared readmission and new initializer project/CLI regression
+        shell: bash
+        run: |
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_environment_contracts.py
+          python3 -B Tools/AssemblyShadow/R03IR/initializer_admission_contracts.py
+          echo 'Readmission simulated host boundary; real Unity/SDK/archive are not run'
       - name: Compile actual native additive sources under C++11 and exercise negatives
         shell: bash
         run: |

@@ -19,6 +19,10 @@ on:
       - 'Tools/AssemblyShadow/R03IR/current_native_install_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_environment_admission.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_environment_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/initializer_admission_contracts.py'
+      - 'Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj'
+      - 'Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs'
+      - 'Tools/AssemblyShadow/R03/PlayerFixtures/Program.cs'
       - 'Tools/AssemblyShadow/R03IR/run_terminal_current.py'
       - 'Tools/AssemblyShadow/R03IR/complete_general_diagnostic.py'
       - 'Tools/AssemblyShadow/R03IR/complete_general_diagnostic_contracts.py'
@@ -239,6 +243,7 @@ jobs:
           set -euo pipefail
           export PYTHONDONTWRITEBYTECODE=1
           python3 -B Tools/AssemblyShadow/R03IR/current_native_environment_contracts.py
+          python3 -B Tools/AssemblyShadow/R03IR/initializer_admission_contracts.py
       - name: Actual fresh Python CLI startup without PYTHONPATH or Unity
         shell: bash
         run: |
