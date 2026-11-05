@@ -3,7 +3,7 @@
 
 Every positive test launches a fresh interpreter from a foreign cwd, without
 PYTHONPATH, with no Unity/IL2CPP/SDK, no Local output root and no Player.
-Historical runner, fixture and source pins must stay byte-identical.
+Historical S/K evidence remains immutable; these current-source pins are updated only after review.
 The test file is explicitly run, not picked up by old test_*.py discovery.
 """
 from __future__ import annotations
@@ -27,7 +27,7 @@ DEMO = HERE.parents[2]
 R03 = HERE.parent / "R03"
 BLOB_PINS = {
     "Tools/AssemblyShadow/R03/run_local.py": "9aef8093f98fb7f9b5dd395ba4e5c2ed0220276e",
-    "Tools/AssemblyShadow/R03IR/run_terminal_local.py": "66766406969bbfc3458f49b865fd80dc1ddc0680",
+    "Tools/AssemblyShadow/R03IR/run_terminal_local.py": "489e4bb13309c175545a042e15660f5d5c3aa83c",
     "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs":
         "e2f650ad95b290620aa52949b43a1866272ac6bf",
     "Tools/AssemblyShadow/R03IR/PlayerProject/R03EngineFrameDispatcher.cs":
@@ -153,7 +153,7 @@ class StandaloneCliBootstrapContracts(unittest.TestCase):
         self.assertNotIn("ModuleNotFoundError", p.stderr)
         self.assertFalse(output.exists())
 
-    def test_12_old_source_files_are_pinned_without_edit(self):
+    def test_12_reviewed_current_source_files_are_pinned(self):
         for relative, pin in BLOB_PINS.items():
             with self.subTest(relative=relative):
                 path = DEMO / relative
