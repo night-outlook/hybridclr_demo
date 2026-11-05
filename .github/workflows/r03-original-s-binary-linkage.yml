@@ -1,0 +1,55 @@
+name: R03 original S code registration and Mach-O read-only audit
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-original-s-binary-linkage.yml'
+      - 'Tools/AssemblyShadow/R03IR/audit_s_binary_linkage.py'
+      - 'Tools/AssemblyShadow/R03IR/test_s_binary_linkage.py'
+permissions:
+  contents: read
+jobs:
+  original-source-binary-audit:
+    runs-on: macos-15
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: tools
+          persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/audit_s_binary_linkage.py
+            Tools/AssemblyShadow/R03IR/test_s_binary_linkage.py
+      - name: Source-only host contract tests (not Unity/Player)
+        shell: bash
+        run: |
+          python3 -B -m py_compile tools/Tools/AssemblyShadow/R03IR/audit_s_binary_linkage.py \
+            tools/Tools/AssemblyShadow/R03IR/test_s_binary_linkage.py
+          PYTHONPATH=tools/Tools/AssemblyShadow/R03IR \
+            python3 -B -m unittest discover -s tools/Tools/AssemblyShadow/R03IR \
+              -p test_s_binary_linkage.py -v
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b
+          path: original
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/evidence-index.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/projects/resource-complete/Builds/AssemblyShadow/M07/*/il2cppOutput/Il2CppCodeRegistration.cpp
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/projects/resource-complete/Builds/AssemblyShadow/M07/*/il2cppOutput/Il2CppGenericMethodPointerTable.c
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/projects/resource-complete/Builds/AssemblyShadow/M07/*/il2cppOutput/Il2CppInvokerTable.cpp
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-s-evidence-ready/batch/projects/resource-complete/Builds/AssemblyShadow/M07/*.app/Contents/Frameworks/GameAssembly.dylib
+      - name: Authenticate original source, code registration and archived Mach-O
+        shell: bash
+        run: |
+          python3 -B tools/Tools/AssemblyShadow/R03IR/audit_s_binary_linkage.py \
+            --original "$GITHUB_WORKSPACE/original" \
+            --output "$RUNNER_TEMP/r03-original-s-binary-linkage.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-original-s-binary-linkage
+          path: ${{ runner.temp }}/r03-original-s-binary-linkage.json
+          if-no-files-found: warn
+          retention-days: 30
