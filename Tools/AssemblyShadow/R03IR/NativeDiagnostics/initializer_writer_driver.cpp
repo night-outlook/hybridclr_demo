@@ -14,8 +14,9 @@ extern "C" int R03_IRW_Trace(int,int,int,int,int);
 static const char* mode=nullptr;
 il2cpp::vm::AssemblyShadowError il2cpp::vm::AssemblyShadow::GetRecoveryInfoJson(std::string& json) {
     const bool control=std::strcmp(mode,"control")==0;
-    json = control ? R"({"schemaVersion":1,"stateCode":6,"terminalFailureCode":0,"published":true,"reason":"","disposition":"ActiveShadow"})"
-                   : R"({"schemaVersion":1,"stateCode":9,"terminalFailureCode":19,"published":true,"reason":"Methods: controlled host initializer failure","disposition":"RestartRequired"})";
+    json = control
+        ? R"({"schemaVersion":1,"enabled":true,"capabilityVersion":1,"stateCode":6,"state":"Committed","published":true,"abortAllowed":false,"dispositionCode":4,"disposition":"ActiveShadow","terminalFailureCode":0,"reason":"","retainedBytes":2048,"baselineEligibilityRequiresStartupValidation":false})"
+        : R"({"schemaVersion":1,"enabled":true,"capabilityVersion":1,"stateCode":9,"state":"FailedAfterCommit","published":true,"abortAllowed":false,"dispositionCode":0,"disposition":"RestartRequired","terminalFailureCode":19,"reason":"Methods: controlled host initializer failure","retainedBytes":2048,"baselineEligibilityRequiresStartupValidation":false})";
     return AssemblyShadowError::Success;
 }
 
