@@ -1,3 +1,15 @@
+# Owner-authorized readmission — initializer oneuse-05 after scoped storage retirement
+
+The user requested resuming Local Validation after the explicitly approved retirement of17 runtime roots and all40 specified duplicate copies. Source/runtime/fixture/test/compiler inputs are unchanged. The prior immutable oneuse05 capacity-readiness report remains historical Blocked/NotRun; the actual oneuse05 batch has never been invoked and both product/host roots remain absent.
+
+The exact retired paths remain Unavailable/PermanentlyDeleted_UserAuthorized. Historical verdicts and published checkpoints remain unchanged. All remaining protected inputs must still be authenticated; no additional missing or modified bytes are excused. No old root/app/SDK copy may be restored or reused.
+
+Follow Handoff/WEB_TO_LOCAL.md. This Docs-only readmission commit must receive successful exact-SHA macOS15 and Ubuntu24.04 jobs in all three prescribed workflows before any runner invocation, followed by fresh source/Unity/SDK/original-S/custody admission and capacity rechecks. One fresh15-cell batch, one Unity2022.3.62f2 ON/Release build and two Players only. No retry, test/guard/timeout change or milestone advancement.
+
+All R03/H2/qualification/runtime/Human Review Gate flags remain false.
+
+---
+
 # Current Primary — initializer oneuse-04 CapacityBlocked; read-only readiness and conditional oneuse-05 (2026-11-06 UTC)
 
 **Published Local outcome remains BLOCKED**, not a runtime failure:

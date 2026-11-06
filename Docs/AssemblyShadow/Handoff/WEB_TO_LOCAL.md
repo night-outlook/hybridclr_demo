@@ -1,3 +1,36 @@
+# Owner-authorized readmission supplement — initializer oneuse-05
+
+The user explicitly approved this documentation-only readmission and conditional oneuse05 execution on2026-11-06. It supersedes the older source-publication binding and live-retention requirements solely as stated here; runtime scope, predicates, fixture hashes, deadlines, cleanup rules and all other gates below remain unchanged.
+
+1. The governing demo source is the exact pushed40-character SHA of the commit containing this supplement and README update. Record it in the source publication receipt before execution. This is a Docs-only descendant of caa91936d74a3fe5f206473d4766688f73f58da8 and executable-equivalent to Primary source85fb825ccd70291afa3eaa279cc6280703ed58f7. Do not use either predecessor as the runtime demo SHA. The three sibling commits remain4b2774b066cfc6afd77a8c8aded6bda7ea574f55 /948c0e3b4f8891481301770115e8ba4945eea6de /41764ae1eeefb33b05966e7f7676e52aae39c340, branch codex/assembly-shadow-r01b-h1.
+2. Require all three mandatory workflows below to complete successfully on BOTH macOS15 and Ubuntu24.04 at that exact pushed demo SHA. This documentation update deliberately touches their existing path filters. No reused85fb CI or stub compilation substitutes for this gate or Local Unity execution.
+3. Adopt only the17 exact paths in History/M07R/R03/storage-retirement-20261106-runtime17/CUSTODY_DISPOSITION.json as owner-retired/unavailable. Authenticate its published manifest and explicit owner approval. Preserve historical Passed/Failed/Blocked/NotRun verdicts as historical facts; do not report these retired payloads as currently verified or restored. Any preservation check formerly addressing those exact roots must record Unavailable_UserAuthorizedRetirement, never Passed. All remaining original-S, published-checkpoint, source, SDK and undisposed evidence bindings remain required; no wildcard exemption, additional loss, mutation or historical reclassification is allowed.
+4. Authenticate untouched source/input pins and dedicated writer/API compile input equivalence; verify every remaining protected artifact before and after. Run the unchanged actual read-only current_native_environment_admission.py with the newly pinned demo SHA and exact oneuse05 root. Keep both product and host roots absent until dispatch.
+5. Prior readiness-only samples do not consume oneuse05. Require two new same-volume samples >=25GiB separated by at least60seconds, plus fresh >=25GiB observations at/after actual admission and immediately before the runner. Hard20/advisory40 rules remain unchanged.
+6. Only after every gate passes, invoke the unchanged run_initializer_local.py command below ONCE with the newly pinned demo SHA, originalS fc55 checkout, official Unity2022.3.62f2, existing process-only .NET8 toolchain and the exact unused oneuse05 product/host roots. Preserve all15 cells, one native build, two fresh Players, VM recovery reason, host custody/seal and independent after-preservation. No runtime/implementation changes, old-root reconstruction, retries or acceptance promotion.
+7. Publish the actual result separately from the existing readiness and retirement checkpoints, update Local reports, commit/push and verify all four remote heads, then return to Primary. All acceptance flags remain false.
+
+Exact owner-retired roots (no other exemption):
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-C`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261026-oneuse-D`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261030-oneuse-E`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-G`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261102-oneuse-H`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-I`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-J`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CurrentNativeOriginalS-20261103-oneuse-K`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03-native-host-raw`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-20261010E-native-receipt`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-I-post-H-custody-7f36`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-K-after-J-41bc`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-M-after-L-73bc`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-N-after-M-6f28`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IRLocal-SNAP01-82bd`
+
+---
+
 # Primary Implementation -> Local Validation — oneuse-05 capacity-readiness gate (2026-11-06 UTC)
 
 **CONDITIONAL, NOT YET EXECUTION-READY.** The user's actual macOS volume
