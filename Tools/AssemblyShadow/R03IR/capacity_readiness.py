@@ -40,8 +40,8 @@ def is_overlapping(a: Path, b: Path) -> bool:
 
 
 def exact_existing(path: Path, label: str, *, directory: bool = True) -> Path:
-    need(path.is_absolute() and ".." not in path.parts and not path.is_symlink()
-         and path.resolve(strict=True) == path,
+    need(path.exists() and path.is_absolute() and ".." not in path.parts
+         and not path.is_symlink() and path.resolve(strict=False) == path,
          "Noncanonical or symlink " + label)
     need(path.is_dir() if directory else path.is_file(),
          "Missing regular " + label)
