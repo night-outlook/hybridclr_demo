@@ -53,7 +53,9 @@ byte-unchanged in this source cycle.
    history. `Handoff/LOCAL_VALIDATION.md` is Local-owned.
 
 Two **mandatory exact-FINAL-demo-SHA GitHub Actions workflows**
-must each have completed/success on macOS **and** Ubuntu:
+must each have completed/success on macOS 15 **and** Ubuntu 24.04.
+The initializer workflow's earlier macOS-14 jobs were cancelled without
+a verified success; those cancelled jobs are not admissible evidence:
 - `.github/workflows/r03-ir-initializer-local-contracts.yml`:
   real C++11 native observer/writer hosts, standalone Player
   orchestrator, strict diagnostic parser, source preparation, source
