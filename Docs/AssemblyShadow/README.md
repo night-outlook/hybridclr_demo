@@ -1,3 +1,54 @@
+# Current Primary — initializer oneuse-03 pre-callback FAIL; conditional diagnostic oneuse-04 (2026-11-06 UTC)
+
+**The genuine oneuse-03 Local Validation outcome remains FAIL / ReturnRequired.**
+Executed demo `7a3b6c31408d8fd8b9fb5f74d78be4fa65670915`, evidence
+publication demo `ec753f2facb4b2645083ed969d40d541c9f03cf4`:
+one real Unity2022.3.62f2 macOS ARM64 ON/Release IL2CPP build, ten native host
+components, 41 initializer host tests, original S archival audits, independent
+host-custody and the **product evidence seal** Passed within their scopes.
+Two actual separate Players exited2: strict V1 raw files remained zero bytes;
+the authentic native journals recorded Commit19/state9 even for the control,
+no phase299/300 callback, prepared state0, ReadPrepared -1 and Seal reason1.
+That does NOT establish the intended initializer failure sentinel or a
+postprepared field invariant. Both Players remain Failed; 13/15 cells Passed.
+Previous oneuse-01 BLOCKED and oneuse-02 FAIL are unchanged.
+
+**Primary source-side response:** HybridCLR's existing native initializer
+catch stores its real exception message in the transaction's first terminal
+recovery reason, which can be read with `AssemblyShadow::GetRecoveryInfoJson`
+without formatting a managed exception after poison. A test-only preopened
+`raw.json.vm-recovery.json` now captures that **existing** native reason,
+bound to exact run/case/fixture/PID and strict parser. The original V1
+callback/field/mask/Seal, deterministic DLL bytes and product VM are
+unchanged; the current underlying precursor to the callback is *not
+yet diagnosed as an actual implementation bug*. The next Local evidence
+should discriminate pre-callback IL/delegate/generic/PInvoke failures.
+The prior separate native journal, successful host custody and product
+seal remain in force.
+
+**New oneuse-04 is conditional**, not already executed. Read the
+[current canonical WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md),
+[design](History/M07R/R03/IR_Remediation/INITIALIZER04_PRECALLBACK_2026-11-06/DESIGN.md),
+[execution plan](History/M07R/R03/IR_Remediation/INITIALIZER04_PRECALLBACK_2026-11-06/PLAN.md)
+and [Primary source review](History/M07R/R03/IR_Remediation/INITIALIZER04_PRECALLBACK_2026-11-06/PRIMARY_SOURCE_REVIEW.md).
+Before a new Local invocation require dual-OS exact **final pushed demo SHA**
+initializer and full current native host CI success, source-bound managed
+Player C# and native writer host compiles, four exact clean Git remotes,
+pinned macOS/SDK/original S, untouched historical evidence, fresh absent
+oneuse-04 and sibling host roots, and **two new >=25.0GiB capacity samples**
+(hard20/advisory40 otherwise unchanged). Do not reuse previous runs.
+
+Independent R03 FAIL and High `IR-R03-01/02` remain open. Native V2/complete
+general diagnostics, captured-generic error15, original S complete compiler/
+link/Player chain, whole-VM epoch, managed shutdown, GC/RSS and RC/P/E
+obligations remain unaccepted.
+`R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false;
+runtimeAcceptance=false; qualificationApproved=false;
+fullLegacyRegressionAcceptance=false`; PureInterpreter disabled.
+No H2/M08A/X02/SNAP-01 or Human Review Gate self-approval.
+
+---
+
 # Current Primary — initializer oneuse-02 FAIL remediated in source; conditional oneuse-03 (2026-11-06 UTC)
 
 **Original initializer oneuse-02 remains FAIL / ReturnRequired** at execution demo `7da27a486b529cdebf73100b5ce4c332a1bb7e86`, Local evidence publication `61bf436d65e5909767206d385ecba865e4c7a5ac`. Exactly one actual Unity2022.3.62f2 macOS arm64 ON/Release IL2CPP build Passed (0 errors, 1 warning); 13/15 cells Passed but both initializer Players exited 2 and their strict native `raw.json` files were zero bytes. The original product seal Failed on an intentionally created ten-host negative-test directory symlink. Original evidence remains unmodified; oneuse-01 remains BLOCKED / NotRun. No oneuse-03 Unity/Player execution has occurred.
