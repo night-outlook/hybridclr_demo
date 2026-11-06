@@ -1,0 +1,317 @@
+name: R03 one-use current-native Local cycle host contracts
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - 'Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_cycle_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_host_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py'
+      - 'Tools/AssemblyShadow/R03IR/fixtures/retained_oneuse_i_LOCAL_BATCH_RESULT.json'
+      - 'Tools/AssemblyShadow/R03IR/current_native_handoff_ci_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_vm_delta.json'
+      - 'Tools/AssemblyShadow/R03IR/current_native_vm_delta_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_candidate.json'
+      - 'Tools/AssemblyShadow/R03IR/current_native_source_gate.py'
+      - 'Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs'
+      - 'Tools/AssemblyShadow/R03IR/current_native_build_failure_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_install_audit.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_install_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_environment_admission.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_environment_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/initializer_admission_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/initializer_host_custody.py'
+      - 'Tools/AssemblyShadow/R03IR/test_initializer_host_custody.py'
+      - 'Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj'
+      - 'Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs'
+      - 'Tools/AssemblyShadow/R03/PlayerFixtures/Program.cs'
+      - 'Tools/AssemblyShadow/R03IR/run_terminal_current.py'
+      - 'Tools/AssemblyShadow/R03IR/complete_general_diagnostic.py'
+      - 'Tools/AssemblyShadow/R03IR/complete_general_diagnostic_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/snapshot_general_transport_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/engine_owner_quit_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/native_owner_decision_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/failed_player_receipt_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/run_terminal_local.py'
+      - 'Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp'
+      - 'Tools/AssemblyShadow/R03IR/current_native_cli_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/original_s_sparse_projection.py'
+      - 'Tools/AssemblyShadow/R03IR/original_s_sparse_contracts.py'
+      - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
+      - '.github/workflows/r03-ir-current-native-local-cycle-host.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  host-only:
+    name: Preflight/oracle/VM/dispatch tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, ubuntu-24.04]
+    steps:
+      - name: Demo R03 and R03IR source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03
+            Tools/AssemblyShadow/R03IR
+            .github/workflows
+      - name: Current native VM I (source only)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 41764ae1eeefb33b05966e7f7676e52aae39c340
+          path: external/il2cpp_plus
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            libil2cpp/vm
+      - name: Interpreter 4b27 (source only)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+          path: external/hybridclr
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            hybridclr/interpreter/Interpreter_Execute.cpp
+      - name: Package 948c (source only)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: external/hybridclr_unity
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            README.md
+      # Four real clean repos with the exact Local workspace shape. The main
+      # sparse CI checkout is deliberately not a Local workspace.
+      - name: Real Local demo checkout for native-host CLI
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: codex/assembly-shadow-r01b-h1
+          path: admission/hybridclr_demo
+          persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03
+            Tools/AssemblyShadow/R03IR
+            Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/N_SNAPSHOT_PUBLICATION_91b7/checks
+            Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference
+      - name: Real Local native checkout for native-host CLI
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 41764ae1eeefb33b05966e7f7676e52aae39c340
+          path: admission/il2cpp_plus
+          persist-credentials: false
+          sparse-checkout: |
+            libil2cpp/vm
+            tools/r03/diagnostic_stream
+      - name: Real Local interpreter checkout for native-host CLI
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: codex/assembly-shadow-r01b-h1
+          path: admission/hybridclr
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            hybridclr/interpreter/Interpreter_Execute.cpp
+      - name: Real Local package checkout for native-host CLI
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: codex/assembly-shadow-r01b-h1
+          path: admission/hybridclr_unity
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            README.md
+      - name: Real four-repo native-host CLI admission
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          unset PYTHONPATH || true
+          unset PYTHONHOME || true
+          real_root="$GITHUB_WORKSPACE/admission"
+          # The exact immutable native SHA checkout is detached; reattach only
+          # to the canonical local feature-branch name for live remote checks.
+          git -C "$real_root/il2cpp_plus" checkout -B codex/assembly-shadow-r01b-h1 HEAD
+          test -d "$real_root/hybridclr_demo/.git"
+          test -d "$real_root/il2cpp_plus/.git"
+          test -d "$real_root/hybridclr" && test -d "$real_root/hybridclr_unity"
+          test "$(git -C "$real_root/hybridclr_demo" rev-parse HEAD)" = "$GITHUB_SHA"
+          local_test_root="$(mktemp -d "$RUNNER_TEMP/r03-current-host-XXXXXX")"
+          echo "$local_test_root" > "$RUNNER_TEMP/r03-current-host-output-root.txt"
+          wrapper="$GITHUB_WORKSPACE/Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py"
+          (
+            cd "$RUNNER_TEMP"
+            python3 -B "$wrapper" --read-only-admission \
+              --workspace "$real_root" --expected-demo "$GITHUB_SHA" \
+              --expected-native "41764ae1eeefb33b05966e7f7676e52aae39c340" \
+              --output "$local_test_root/read-only-must-not-exist" \
+              > "$local_test_root/admission.json"
+          )
+          test ! -e "$local_test_root/read-only-must-not-exist"
+          python3 - "$local_test_root/admission.json" <<'PY'
+          import json,sys
+          with open(sys.argv[1], encoding="utf-8") as f: d=json.load(f)
+          assert d["result"]=="PassedReadOnlyNativeHostInputs_NoComponentsOrUnity"
+          assert d["nativeHostComponentsExecuted"]==0 and d["outputRootCreated"] is False
+          assert d["UnityOrPlayerLaunched"] is False and d["runtimeAcceptance"] is False
+          PY
+          ln -s "$real_root" "$local_test_root/aliased-source"
+          if (cd "$RUNNER_TEMP"; python3 -B "$wrapper" --read-only-admission \
+              --workspace "$local_test_root/aliased-source" \
+              --expected-demo "$GITHUB_SHA" \
+              --expected-native "41764ae1eeefb33b05966e7f7676e52aae39c340" \
+              --output "$local_test_root/negative-symlink-root" \
+              > "$local_test_root/negative-symlink.stdout" 2> "$local_test_root/negative-symlink.stderr"); then
+            echo "Symlink alias was incorrectly admitted" >&2; exit 31
+          fi
+          grep -q 'Canonical absolute workspace required' "$local_test_root/negative-symlink.stderr"
+          test ! -e "$local_test_root/negative-symlink-root"
+          if (cd "$RUNNER_TEMP"; python3 -B "$wrapper" --read-only-admission \
+              --workspace "relative-source" \
+              --expected-demo "$GITHUB_SHA" \
+              --expected-native "41764ae1eeefb33b05966e7f7676e52aae39c340" \
+              --output "$local_test_root/negative-relative-root" \
+              > "$local_test_root/negative-relative.stdout" 2> "$local_test_root/negative-relative.stderr"); then
+            echo "Relative source was incorrectly admitted" >&2; exit 32
+          fi
+          grep -q 'Canonical absolute workspace required' "$local_test_root/negative-relative.stderr"
+          test ! -e "$local_test_root/negative-relative-root"
+          echo "Real fresh-process argparse(Path)/source/remote/symlink admission passed; no host root created."
+      - name: Run complete current 8+2 native-host CLI
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          unset PYTHONPATH || true
+          unset PYTHONHOME || true
+          local_test_root="$(cat "$RUNNER_TEMP/r03-current-host-output-root.txt")"
+          wrapper="$GITHUB_WORKSPACE/Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py"
+          (
+            cd "$RUNNER_TEMP"
+            python3 -B "$wrapper" \
+              --workspace "$GITHUB_WORKSPACE/admission" \
+              --expected-demo "$GITHUB_SHA" \
+              --expected-native "41764ae1eeefb33b05966e7f7676e52aae39c340" \
+              --output "$local_test_root/full-current-native-host"
+          )
+          python3 - "$local_test_root/full-current-native-host/RESULT.json" <<'PY'
+          import json,sys
+          with open(sys.argv[1], encoding="utf-8") as f: d=json.load(f)
+          assert d["result"]=="PassedHostOnlyTenComponents",d.get("error")
+          assert d["expectedComponentCount"]==10 and len(d["components"])==10
+          assert len({c["name"] for c in d["components"]})==10
+          assert all(c["status"]=="Passed" for c in d["components"])
+          assert [c["name"] for c in d["components"][-2:]]==[
+            "native-owner-method-classifier","native-owner-full-tu"]
+          assert len(d["steps"])==3
+          assert d["sourcePreserved"] is True
+          assert d["actualUnityOrPlayerRun"] is False
+          assert d["runtimeAcceptance"] is False and d["R03Accepted"] is False
+          print("Real current CLI host: eight historical + two owner suites passed (no Unity).")
+          PY
+      - name: Authenticate actual ten-host symlinks and full regular-byte custody through product seal
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          local_test_root="$(cat "$RUNNER_TEMP/r03-current-host-output-root.txt")"
+          python3 -B "$GITHUB_WORKSPACE/Tools/AssemblyShadow/R03IR/initializer_host_custody.py" \
+            --raw-host "$local_test_root/full-current-native-host" \
+            --output "$local_test_root/host-custody"
+          python3 - "$local_test_root" "$GITHUB_WORKSPACE" <<'PY'
+          import json, pathlib, shutil, sys, tarfile
+          root, workspace = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
+          sys.path.insert(0, str(workspace / "Tools/AssemblyShadow/R03IR"))
+          sys.path.insert(0, str(workspace / "Tools/AssemblyShadow/R03"))
+          from initializer_host_custody import verify_live
+          from batch_evidence import finalize
+          host = root / "full-current-native-host"
+          receipt = verify_live(host, root / "host-custody")
+          assert receipt["result"] == "PassedFullRawHostAndArchiveBinding_NoRuntimeAcceptance"
+          assert receipt["symlinkCount"] == 4,receipt
+          test_root = root / "seal-integration-host-only"
+          test_root.mkdir()
+          shutil.copytree(root / "host-custody", test_root / "host-custody")
+          sealed = finalize(test_root, {
+              "kind":"R03RealTenHostCustodyHostOnly",
+              "result":"ReturnRequired", "runtimeAcceptance":False, "R03Accepted":False})
+          assert sealed["sealStatus"] == "Passed", sealed.get("sealError")
+          assert sealed["R03Accepted"] is False
+          with tarfile.open(test_root / "evidence.tar.gz") as archive:
+              members = archive.getnames()
+              assert "host-custody/HOST_MANIFEST.json" in members
+              assert "host-custody/HOST_REGULAR_BYTES.tar.gz" in members
+          print("Real ten-host output and four negative symlinks authenticated; generic seal PassedHostOnly")
+          PY
+      - name: Nine canonical Local handoff workflow trigger contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONDONTWRITEBYTECODE=1 python3 -B Tools/AssemblyShadow/R03IR/current_native_handoff_ci_contracts.py
+      - name: Failed BuildReport source ordering (8 negative source contracts)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_build_failure_contracts.py
+      - name: One-use coordinator and installed VM parity adversarial host tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_cycle_contracts.py
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_install_contracts.py
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_host_contracts.py
+      - name: Twenty-five retained-worktree capacity and net8 toolchain source-only tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_environment_contracts.py
+          python3 -B Tools/AssemblyShadow/R03IR/initializer_admission_contracts.py
+      - name: Actual fresh Python CLI startup without PYTHONPATH or Unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_cli_contracts.py
+      - name: Thirty-one temporary Git sparse source-custody regression tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Tools/AssemblyShadow/R03IR/original_s_sparse_contracts.py
+      - name: Existing 20 source, 27 real-oracle synthetic, 12 VM source and archive host suites
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_source_contracts.py \
+            --demo "$PWD" --native "$PWD/external/il2cpp_plus" \
+            --hybridclr "$PWD/external/hybridclr" --package "$PWD/external/hybridclr_unity"
+          python3 -B Tools/AssemblyShadow/R03IR/complete_general_diagnostic_contracts.py
+          python3 -B Tools/AssemblyShadow/R03IR/snapshot_general_transport_contracts.py
+          python3 -B Tools/AssemblyShadow/R03IR/engine_owner_quit_contracts.py --native "$PWD/external/il2cpp_plus"
+          python3 -B Tools/AssemblyShadow/R03IR/native_owner_decision_contracts.py --native "$PWD/external/il2cpp_plus"
+          python3 -B Tools/AssemblyShadow/R03IR/failed_player_receipt_contracts.py
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_oracle_contracts.py
+          python3 -B Tools/AssemblyShadow/R03IR/current_native_vm_delta_contracts.py \
+            --native "$PWD/external/il2cpp_plus"
+          python3 -B Tools/AssemblyShadow/R03IR/test_audit_s_provenance.py
+      - name: Explicit host-only verdict
+        shell: bash
+        run: |
+          echo 'This workflow performs host/source tests only.'
+          echo 'NO new Unity/IL2CPP build, installed native proof or actual Player.'
+          echo 'NO original-S archive reproduction and no R03/H2 acceptance.'

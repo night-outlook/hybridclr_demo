@@ -1,0 +1,550 @@
+# Owner-authorized readmission — initializer oneuse-05 after scoped storage retirement
+
+The user requested resuming Local Validation after the explicitly approved retirement of17 runtime roots and all40 specified duplicate copies. Source/runtime/fixture/test/compiler inputs are unchanged. The prior immutable oneuse05 capacity-readiness report remains historical Blocked/NotRun; the actual oneuse05 batch has never been invoked and both product/host roots remain absent.
+
+The exact retired paths remain Unavailable/PermanentlyDeleted_UserAuthorized. Historical verdicts and published checkpoints remain unchanged. All remaining protected inputs must still be authenticated; no additional missing or modified bytes are excused. No old root/app/SDK copy may be restored or reused.
+
+Follow Handoff/WEB_TO_LOCAL.md. This Docs-only readmission commit must receive successful exact-SHA macOS15 and Ubuntu24.04 jobs in all three prescribed workflows before any runner invocation, followed by fresh source/Unity/SDK/original-S/custody admission and capacity rechecks. One fresh15-cell batch, one Unity2022.3.62f2 ON/Release build and two Players only. No retry, test/guard/timeout change or milestone advancement.
+
+All R03/H2/qualification/runtime/Human Review Gate flags remain false.
+
+---
+
+# Current Primary — initializer oneuse-04 CapacityBlocked; read-only readiness and conditional oneuse-05 (2026-11-06 UTC)
+
+**Published Local outcome remains BLOCKED**, not a runtime failure:
+executed-input demo `e0f52c008b6b244e58be135e9bdba46192b76d04`,
+Local evidence publication `c55950504e21b1a61044f818e1819946ec2dea7e`.
+Original same-volume readings of the actual output parent were
+**24.733444 GiB** and **24.729546 GiB**, both under mandatory
+**25.0 GiB** (26,843,545,600 bytes). The latter deficit was
+**290,398,208 bytes (~277 MiB)**. The reserved oneuse-04 roots
+were never created; all15 cells, one build, two Players and native
+initializer recovery remain **NotRun**. Source, SDK and historical
+evidence preservation passed. Prior oneuse-01 BLOCKED and
+oneuse-02/03 FAIL and their original seals remain unchanged.
+
+**Primary remedy:** no deletion target is supported by the
+evidence and no cleanup, relocation or threshold change is
+authorized. Primary implemented a strictly no-write
+`capacity_readiness.py` and 14 safety/negative host tests:
+actual output-parent statvfs free bytes, canonical fresh
+product/host roots, explicit source/SDK/evidence exclusion and
+optional user-specified candidate inventory without following
+symlinks. A single read-only sample is NEVER Unity authorization.
+Additional capacity on the actual same APFS volume must be
+established by the user or other separately approved action,
+then **two new independent >=25 GiB samples** must pass.
+Fixed20GiB hard/40GiB advisory rules remain unchanged.
+
+Read the [current conditional WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md),
+[new capacity readiness design/plan](History/M07R/R03/IR_Remediation/INITIALIZER05_CAPACITY_2026-11-06/DESIGN_AND_PLAN.md)
+and [Primary source review](History/M07R/R03/IR_Remediation/INITIALIZER05_CAPACITY_2026-11-06/PRIMARY_SOURCE_REVIEW.md).
+Read-only readiness checks precede any new product root.
+**Initializer oneuse-05 is conditional and has not been executed.**
+Only after real user Mac capacity, source/CI/Unity/SDK/historical
+preservation gates pass can one distinct fresh15-cell batch run
+(one real IL2CPP build and two Players). A new native recovery
+reason, strict V1 trace/Player and sealed host custody are still
+required; the previous oneuse-03 pre-callback exception is unknown.
+
+The independent R03 FAIL and High IR-R03-01/02 remain open.
+`R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false;
+runtimeAcceptance=false; qualificationApproved=false;
+fullLegacyRegressionAcceptance=false`; PureInterpreter disabled.
+No H2/M08A/X02/SNAP-01 or Human Review Gate self-approval.
+
+---
+
+# Current Primary — initializer oneuse-03 pre-callback FAIL; conditional diagnostic oneuse-04 (2026-11-06 UTC)
+
+**The genuine oneuse-03 Local Validation outcome remains FAIL / ReturnRequired.**
+Executed demo `7a3b6c31408d8fd8b9fb5f74d78be4fa65670915`, evidence
+publication demo `ec753f2facb4b2645083ed969d40d541c9f03cf4`:
+one real Unity2022.3.62f2 macOS ARM64 ON/Release IL2CPP build, ten native host
+components, 41 initializer host tests, original S archival audits, independent
+host-custody and the **product evidence seal** Passed within their scopes.
+Two actual separate Players exited2: strict V1 raw files remained zero bytes;
+the authentic native journals recorded Commit19/state9 even for the control,
+no phase299/300 callback, prepared state0, ReadPrepared -1 and Seal reason1.
+That does NOT establish the intended initializer failure sentinel or a
+postprepared field invariant. Both Players remain Failed; 13/15 cells Passed.
+Previous oneuse-01 BLOCKED and oneuse-02 FAIL are unchanged.
+
+**Primary source-side response:** HybridCLR's existing native initializer
+catch stores its real exception message in the transaction's first terminal
+recovery reason, which can be read with `AssemblyShadow::GetRecoveryInfoJson`
+without formatting a managed exception after poison. A test-only preopened
+`raw.json.vm-recovery.json` now captures that **existing** native reason,
+bound to exact run/case/fixture/PID and strict parser. The original V1
+callback/field/mask/Seal, deterministic DLL bytes and product VM are
+unchanged; the current underlying precursor to the callback is *not
+yet diagnosed as an actual implementation bug*. The next Local evidence
+should discriminate pre-callback IL/delegate/generic/PInvoke failures.
+The prior separate native journal, successful host custody and product
+seal remain in force.
+
+**New oneuse-04 is conditional**, not already executed. Read the
+[current canonical WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md),
+[design](History/M07R/R03/IR_Remediation/INITIALIZER04_PRECALLBACK_2026-11-06/DESIGN.md),
+[execution plan](History/M07R/R03/IR_Remediation/INITIALIZER04_PRECALLBACK_2026-11-06/PLAN.md)
+and [Primary source review](History/M07R/R03/IR_Remediation/INITIALIZER04_PRECALLBACK_2026-11-06/PRIMARY_SOURCE_REVIEW.md).
+Before a new Local invocation require dual-OS exact **final pushed demo SHA**
+initializer and full current native host CI success, source-bound managed
+Player C# and native writer host compiles, four exact clean Git remotes,
+pinned macOS/SDK/original S, untouched historical evidence, fresh absent
+oneuse-04 and sibling host roots, and **two new >=25.0GiB capacity samples**
+(hard20/advisory40 otherwise unchanged). Do not reuse previous runs.
+
+Independent R03 FAIL and High `IR-R03-01/02` remain open. Native V2/complete
+general diagnostics, captured-generic error15, original S complete compiler/
+link/Player chain, whole-VM epoch, managed shutdown, GC/RSS and RC/P/E
+obligations remain unaccepted.
+`R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false;
+runtimeAcceptance=false; qualificationApproved=false;
+fullLegacyRegressionAcceptance=false`; PureInterpreter disabled.
+No H2/M08A/X02/SNAP-01 or Human Review Gate self-approval.
+
+---
+
+# Current Primary — initializer oneuse-02 FAIL remediated in source; conditional oneuse-03 (2026-11-06 UTC)
+
+**Original initializer oneuse-02 remains FAIL / ReturnRequired** at execution demo `7da27a486b529cdebf73100b5ce4c332a1bb7e86`, Local evidence publication `61bf436d65e5909767206d385ecba865e4c7a5ac`. Exactly one actual Unity2022.3.62f2 macOS arm64 ON/Release IL2CPP build Passed (0 errors, 1 warning); 13/15 cells Passed but both initializer Players exited 2 and their strict native `raw.json` files were zero bytes. The original product seal Failed on an intentionally created ten-host negative-test directory symlink. Original evidence remains unmodified; oneuse-01 remains BLOCKED / NotRun. No oneuse-03 Unity/Player execution has occurred.
+
+**Primary implementation source correction:** a separate native preopened `raw.json.native-trace.jsonl` records bounded Open/Configure/Stage/Commit/callback/field-read/Seal primitive phases and failures, even when the strict V1 report fails. Failed Players remain Failed and `NotRun_CommandFailed`; diagnostic traces never prove V1/V2 acceptance. The ten-host raw tree, including all four adversarial symlinks, is retained in an unused sibling output root. Every actual regular byte and literal symlink target is recorded in a separate authenticated, symlink-free custody archive included in the unchanged strict product seal. The original S/K and production VM sources are unchanged.
+
+Read the [new conditional WEB_TO_LOCAL handoff](Handoff/WEB_TO_LOCAL.md), [oneuse-03 design](History/M07R/R03/IR_Remediation/INITIALIZER03_PLAYER_SEAL_REPAIR_2026-11-06/DESIGN.md), [execution plan](History/M07R/R03/IR_Remediation/INITIALIZER03_PLAYER_SEAL_REPAIR_2026-11-06/PLAN.md), and [Primary source review](History/M07R/R03/IR_Remediation/INITIALIZER03_PLAYER_SEAL_REPAIR_2026-11-06/PRIMARY_SOURCE_REVIEW.md). Local oneuse-03 may execute **only after** both designated GitHub host workflows have macOS and Ubuntu completed/success jobs at the same final published demo SHA, plus fresh read-only Mac Git/Unity/SDK/original-S/custody admission and two fresh >=25.0GiB capacity samples for its unused output roots. No earlier CI/measurements substitute.
+
+The independent October 8 R03 FAIL and High IR-R03-01/02 remain open. Captured-generic error15, complete native V2/first-failure/general diagnostics, original-S compiler/object/link/Player joins, whole-VM epoch, managed shutdown, GC/RSS, RC1–RC6, P1/P2/E0/E1/P3, full legacy regression and performance qualification are still unaccepted. `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`, `qualificationApproved=false`, `runtimeAcceptance=false`. PureInterpreter disabled; no H2/M08A/X02/SNAP-01 or Human Review Gate self-approval.
+
+---
+
+# Current Primary state — oneuse-01 admission BLOCKED; oneuse-02 source correction ready (2026-11-05 UTC)
+
+**Oneuse-01 is BLOCKED / 15 cells NotRun** at original executed demo
+`bf1e8283061fe3a94c56ea2ac9ab6445905cf738`, Local publication
+`fda6c84b8cf1af336c6eedb16343e7ddc0362831`. The mandatory
+Mac read-only admission exited2 on a stale strict `PlayerFixtures.csproj`
+blob, introduced by the legitimate new initializer fixture source.
+**No Unity build, no Player, no Local runner or new batch root.**
+The published [Local checkpoint](History/M07R/R03/local-validation-initializer-20261105-oneuse-01/README.md)
+and old evidence remain immutable.
+
+Primary corrected the **exact** fixture-project, initializer producer,
+and generator-entry Git blob admission (without relaxing source checks).
+The host regressions and current-native host workflows passed
+on both macOS and Ubuntu at implementation source demo
+`b24e51ec074c7b3f9c7f7d86584c873f38dc2387`.
+The new conditional **oneuse-02**, at a fresh distinct root and final
+pushed SHA, is described in the
+[current WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md),
+[admission recovery design/plan](History/M07R/R03/IR_Remediation/INITIALIZER02_ADMISSION_RECOVERY_2026-11-05/DESIGN_AND_PLAN.md)
+and [Primary source review](History/M07R/R03/IR_Remediation/INITIALIZER02_ADMISSION_RECOVERY_2026-11-05/PRIMARY_SOURCE_REVIEW.md).
+
+**Entry conditions:** both initializer and shared native host workflows
+must have completed successful macOS+Ubuntu jobs at the same **final**
+pushed demo SHA; a fresh read-only Mac/SDK/Git/original-S admission,
+two new capacity measurements each >=25.0 GiB, prior evidence custody
+and clean exact remote heads must also pass. Prior oneuse-01 capacity
+measurements are not reusable. Even a passing source-level gate is not
+a Unity/Player result or independent R03 acceptance.
+
+The independent October 8 R03 FAIL and High IR-R03-01/02 remain open.
+Captured-generic, complete native V2/first-failure diagnostics,
+original-S full source-to-binary/Player provenance, managed shutdown,
+GC/RSS, whole-VM and RC/P/E acceptance remain incomplete:
+`R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`;
+`runtimeAcceptance=false`; `qualificationApproved=false`;
+PureInterpreter disabled. Do not start H2/M08A/X02/SNAP-01 or
+self-approve the Human Review Gate.
+
+---
+
+# R03 Primary conditional initializer one-use handoff (2026-11-05 UTC)
+
+**New, narrow Local authority is CONDITIONAL** for one previously unexecuted
+initializer-only cycle after all current CI, exact Git HEAD, independent
+macOS capacity, original-S preservation and SDK admissions pass. Read the
+[current WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md), [new design](History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/INITIALIZER_ONEUSE_DESIGN.md)
+and [execution plan](History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/INITIALIZER_ONEUSE_PLAN.md).
+This authorizes only one new ON/Release native build and two separate
+initializer-control/failure Players, plus ten local native host components
+and archived original-S provenance/source/Mach-O audits. No new execution has
+occurred at the time of publication. The older K `WEB_TO_LOCAL` CLOSED
+state remains historically correct for **consumed K**; it is not reused.
+
+Prior source-only initializer CI was successful, but real IL2CPP compilation,
+postpublication callback, raw V1 observation and native Player process
+identity have not yet been established. The new runner is V1, not complete
+native V2/first-failure/general diagnostic or captured-generic error-15 proof.
+
+The independent October 8 R03 FAIL, both open High IR-R03-01/02,
+the missing whole-VM/managed shutdown/GC/RSS/RC obligations, and all
+historical K/I/J classifications remain unchanged:
+`R03Accepted=false`; `H2Passed=false`;
+`ReadyForHumanReviewGate=false`; `runtimeAcceptance=false`;
+`qualificationApproved=false`; PureInterpreter disabled.
+No H2/M08A/X02/SNAP-01 or Human Review Gate automatically.
+
+---
+
+# R03 current Primary — initializer diagnostic source prepared (2026-11-05 UTC)
+
+**No new Unity or Player execution.** The new isolated initializer-control/failure target generator, native prepared-field observer, separate preopened diagnostic writer, managed Player source and project-preparation/verifier contracts are published. Six focused workflows passed in their exact source scopes (dual-OS generator, observer, writer, project preparation, diagnostic schema; pinned managed API compile). [Implementation/evidence record](History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/INITIALIZER_IMPLEMENTATION_PROGRESS.md).
+
+**IR-R03-02 remains High / NeedsEvidence:** actual IL2CPP native build, full terminal V2 reporter and first-failure diagnostics, fresh Player observation, captured-generic producer and source-bound runtime witness are **NotRun/incomplete**. IR-R03-01 and RC closure remain open. Historical K is consumed; Handoff/WEB_TO_LOCAL.md remains **CLOSED**. R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, runtimeAcceptance=false, PureInterpreter disabled.
+
+---
+
+# R03 Primary continuation — original S registration and Mach-O evidence (2026-11-05 UTC)
+
+**Read-only archived evidence advance, not stage acceptance.** [Exact-source macOS run 41965330265](https://github.com/night-outlook/hybridclr_demo/actions/runs/41965330265) **Passed**: 14/14 host checks; authenticated both original S NativeOn/NativeOff GameAssembly.dylib Git/archive identities and found *defined* g_Il2CppGenericMethodPointers and g_Il2CppInvokerPointers symbols in both archived Mach-O binaries. Original source code-registration counts 48,232/10,198 agree with audited generated array rows. [Detailed non-authorizing report](History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/ORIGINAL_S_BINARY_REGISTRATION_AUDIT.md).
+
+**Still open:** original source-to-object/compiler/link receipt and executable-to-Player join, and the IR-R03-02 real captured-generic/initializer native Player witnesses. Both High IR-R03-01/02 remain NeedsEvidence. K remains consumed and Handoff/WEB_TO_LOCAL.md **CLOSED**. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; runtimeAcceptance=false; qualificationApproved=false; PureInterpreter disabled.
+
+---
+
+# R03 Primary source-only continuation — original S table audit and V2 host CI (2026-11-04)
+
+**Latest Primary evidence, no Local handoff:** original-S generated source material read-only audit at demo `e32be835148715db838014c06a645d72b0772614` [Actions 41962491415](https://github.com/night-outlook/hybridclr_demo/actions/runs/41962491415) PASS: 15 host tests, exact original S git/index/file byte identities, 4 generated file occurrences, 48,232 generic method-pointer initializer rows and 10,198 invoker initializer rows in both NativeOn/NativeOff. **Source → compiled object → Player linkage and original capture omissions reconciliation remain NotProven/NotRun.** The remaining-witness V2 *synthetic* semantic verifier [Actions 41962796627](https://github.com/night-outlook/hybridclr_demo/actions/runs/41962796627) passed 8/8 host tests on both Ubuntu 24.04 and macOS 15, **not real Unity/Player**. [Exact run and artifact report](History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-04/ORIGINAL_S_GENERATED_MATERIAL_AUDIT.md).
+
+**Open independent High IR-R03-01/02 remain NeedsEvidence.** Captured-generic and module-initializer Player producers, real V2 native snapshot, independently bound original source/build/Player linkage, managed shutdown/GC/RSS/whole-VM and other RC obligations remain unaccepted. K was consumed; the active `Handoff/WEB_TO_LOCAL.md` remains **CLOSED**. `R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; runtimeAcceptance=false`; PureInterpreter disabled. No H2/M08A/X02/SNAP-01.
+
+---
+
+# Current R03 Primary state — K PASS reconciled; independent R03 FAIL remains (2026-11-04)
+
+**Local one-use K completed PASS within focused scope** at executed demo c20da0b261172cbdd188378e24dbe9343a14c6b2 and published evidence demo 14f97f15af6c06afa65957a9b880ccf841069452. Primary verified nine exact-source Actions runs / 18 OS success jobs and inspected the actual K producer, ten host components, three Unity builds, five Players, 135 source-install pairs, original S custody and preservation receipts. This is not a new full-stage review. [Primary K reconciliation](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_K_RECONCILIATION_2026-11-04/PRIMARY_RECONCILIATION.md) and [prepared independent R03 review brief](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_K_RECONCILIATION_2026-11-04/INDEPENDENT_REREVIEW_BRIEF.md).
+
+**Open High findings:** IR-R03-02 has current corrected native source and three real ON post-poison witness cases (pre-positive 42, attempted/denied active reflection/delegate/AOT, canary1→1/field2→2; OFF1→2), but captured-generic and initializer cases remain NotRun and independent closure has not occurred. IR-R03-01 has corrected canonical original S nine-part archive custody and 59 archived historical process joins; complete independent original source/build/Player/generated-code semantic authentication is still open. NativeAtexit/exit0 after 11 reports in103ms is a scoped C-runtime exit, **not** full managed Shutdown, coherent whole-VM epoch or GC/RSS acceptance.
+
+**K is consumed; canonical WEB_TO_LOCAL is CLOSED.** No new Local run, independent review, H2, M08A, X02 or SNAP-01 is automatically authorized. The October 8 independent R03 FAIL remains; R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, qualificationApproved=false, runtimeAcceptance=false and PureInterpreter disabled. The older conditional K instructions below are retained as historical context and superseded by this header and the CLOSED handoff.
+
+---
+
+# Current Primary K response — consumed J FAIL, concrete Path and genuine host CLI correction (2026-11-03 UTC)
+
+**Latest Local J is consumed FAIL/ReturnRequired**, not a product/runtime regression: the first actual `run_current_native_host_preflight.py::inputs` gate rejected an otherwise canonical absolute macOS `PosixPath` because `type(workspace) is Path` is false for the pathlib factory's concrete class. Nine exact-source CI workflows/18 jobs, Mac/SDK/read-only capacity and seven source/archive stages Passed. **J executed 0 of 10 native host subcomponents; no Unity/IL2CPP builds or Players and no official 135 native VM pairs.** Original J coordinator exit1/failure raw and every prior A–J/H/I/G/E/F status remain unchanged; J may never be rerun.
+
+**Primary K source fix:** accept a genuine `isinstance(workspace, Path)` while retaining strict absolute/directory/non-symlink/physical canonical and 4 clean Git HEAD/remote/source/SDK checks. The current-only host wrapper gains explicit `--read-only-admission`, which runs real input/output preflight and returns `PassedReadOnlyNativeHostInputs_NoComponentsOrUnity` with no output or runtime/host acceptance. New dual-OS CI uses four **actual independent clean checkout roots** and executes a fresh real foreign-cwd positive CLI admission, negative relative/symlink CLI calls and then a **complete real 8 historical + 2 current owner C++11 host CLI** (not merely mocked receipt assertions). At pre-doc source `de09b8c87b69eaa1cb91bb9ea5bc2ffb2340d2e0`, combined workflow `41629858510` macOS `125896367873` and Ubuntu `125896368772` both Passed, showing exact `PassedHostOnlyTenComponents` and ten genuine host receipts; this remains **host-only**, not fresh Local/Unity evidence. The CI native checkout contract now requires both literal exact pinned source refs in the combined workflow and one in each other native source workflow.
+
+**Next Local K is conditional and single-use** at a distinct absent K root, only after **all nine** new final-demo-SHA `push` workflows and both macOS+Ubuntu jobs each success, four clean pinned repos/SDK/original-S and A–J preservation, two independent **fresh >=25.0GiB** K-parent capacity measurements under an explicit K-only exception (hard20GiB/advisory40GiB unchanged), and *both* Mac read-only environment admission and newly implemented host CLI read-only admission. After all pass, execute one new complete coordinator with 10 actual Local host components before 3 fresh Unity2022.3.62f2 C++11 builds/5 real Players/official135 source pairs. No earlier I Player substitutes, no J retry or history rewriting. [K Design](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_J_PATH_CLI_2026-11-03/DESIGN.md), [K Plan](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_J_PATH_CLI_2026-11-03/PLAN.md), [Primary source review](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_J_PATH_CLI_2026-11-03/PRIMARY_SOURCE_REVIEW.md), [canonical K handoff](Handoff/WEB_TO_LOCAL.md).
+
+**Gate unchanged:** original Oct8 independent R03 FAIL/High IR-R03-01/02, P1/P2/E0/E1/P3, full Unity-managed Shutdown/GC/RSS and coherent whole-VM epoch are still unresolved. `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`, `qualificationApproved=false`, `runtimeAcceptance=false`; PureInterpreter disabled. No H2/M08A/X02/SNAP-01 or Human Review Gate automatically.
+
+---
+
+# Current Primary J response — I FAIL consumed; complete batch record + native host roster repair (2026-11-03 UTC)
+
+**Latest Local I is consumed/FAIL / ReturnRequired, not a runtime failure.** The original I coordinator `batch/RESULT.json` exited1 because its `verify_current_batch` compared the valid original complete `repositories` producer record (schemaVersion1/phase/candidate/branch/four SHA pins/runtimeAcceptance=false) against only four SHA keys. The original I *child* in `History/M07R/R03/local-validation-current-native-original-s-20261103-oneuse-i/` was `FocusedEvidenceReadyForPrimaryReview`, 18/18 genuine cells Passed, three real Unity IL2CPP C++11 builds Passed, five actual Players Passed, official135 installed source pairs Passed, engine11 reports/103ms with NativeAtexit/exit0, native wants/quit counts1 each. **No original I outer verdict or raw has been rewritten or promoted.** A second independent issue: Local I native-host diagnostics ran only eight historical tests, while two current C++11 native owner suites were **NotRun** locally (both independently Passed exact-source CI).
+
+**Primary J solution:** `current_native_source_gate.py` now supplies one full typed repository-record contract shared by the coordinator and source-parity audit. `verify_current_batch` requires original schema/kind, 18 uniquely Passed cells, exact three/five typed build/Player counts, complete repository metadata, original-S fixture SHA and every false acceptance flag, rejecting duplicates/extra/missing/typed mismatches. An exact byte copy of I's already published `LOCAL_BATCH_RESULT.json` with Git blob `d7209e...` is used **only as a read-only source/host regression fixture**, not fresh J Unity evidence. New `run_current_native_host_preflight.py` preserves the historic eight-command helper byte-for-byte and adds two fresh Local current owner C++11 suites; the coordinator requires exactly ten native host components and valid receipts before any Unity operation. Shared source and host tests cover missing/failed/faked output, stale source heads and unwanted Player-result promotion. **No production/native changes** to `hybridclr`, `hybridclr_unity`, or `il2cpp_plus`.
+
+**Next Local J is CONDITIONAL and single-use.** Require nine fresh GitHub `push` workflows with two completed successful macOS+Ubuntu jobs **at the same final pushed demo SHA**. Source/host CI is not a new Unity Player run. Before creating an unused J root, independently validate four clean exact canonical repo/branch/remote heads, original S/A–I raw+SDK preservation, installed Unity2022.3.62f2 arm64/SDK, no conflicting processes, a read-only Mac admission and two current capacity samples **both >=28.0GiB on the J output parent** under an explicit J-only advisory exception (hard20/advisory40 unchanged). Below28, no J coordinator/root/Unity. If all prerequisites pass, execute exactly one source-pinned J full ten-stage batch, preserve 8+2 Local owner host receipts before Unity, and independently verify three builds/five Players/135 native source pairs without changing I.
+
+**Unchanged gate:** Independent Oct8 full-stage R03 FAIL/High IR-R03-01/02, P1/P2/E0/E1/P3, managed Shutdown/GC/RSS/whole-VM epoch obligations are unresolved. `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`, `qualificationApproved=false`, `runtimeAcceptance=false`, PureInterpreter disabled. No H2/M08A/X02/SNAP-01 or Human Review Gate. [J Design](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_I_CONSUMER_HOST_2026-11-03/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_I_CONSUMER_HOST_2026-11-03/PLAN.md), [Primary review](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_I_CONSUMER_HOST_2026-11-03/PRIMARY_SOURCE_REVIEW.md), [canonical J handoff](Handoff/WEB_TO_LOCAL.md).
+
+---
+
+# Current Primary I response — H FAIL, native-only Unity quit decision and independent build parity (2026-11-03 UTC)
+
+**Latest Local H = FAIL / ReturnRequired and consumed.** At actual demo `3e838edf8995e40058f3bc6c42f071446a0be821` / native `cdd3f7bc671880052e4f55ae4c1cd75b99a603e1`, all three real Unity2022.3.62f2 arm64 C++11 builds and four of five focused Players Passed. The engine Player still recorded **55,656 real completed reports in 514ms**, compared with the unmodified **64 reports / 500ms** bound, and exited **71** via the failure-only watchdog, without normal `atexit`. The native owner `Application.Quit(0)` call returned, but real `UnityEngine.Application.Internal_ApplicationWantsToQuit` was subsequently denied by the post-terminal guard. H's official installed 135-pair audit remained Blocked although Local independently compared 135 equal bytes. H original failed raw/evidence, all older checkpoints and unchanged acceptance flags remain immutable; **never retry H**.
+
+**Primary I implementation:** new test-only native handling for exactly two Unity2022.3 physical AOT lifecycle methods: `Internal_ApplicationWantsToQuit():bool` (respond with pre-pinned native `true`) and `Internal_ApplicationQuit():void` (return native void, without executing managed callbacks). Eligibility requires original exact-sentinel native owner request, captured first failure, state `FailedAfterCommit`, physical metadata and source-pinned test configuration; all other post-terminal entry remains denied. The original report counter and timing bounds are unchanged; V2 raw adds separate native lifecycle decision counts and exact log markers. Current source: `night-outlook/il2cpp_plus@41764ae1eeefb33b05966e7f7676e52aae39c340`. A separate correction allows the official installed native **135 physical source pairs** to be independently audited after three real successful Unity builds and sealed source evidence even if a Player fails, without upgrading Player or R03 outcome.
+
+**I is a new conditional one-use Local cycle**, not H replay. Source host tests include C++11 full translation unit ON/OFF, actual extracted native owner-method classifier with adversarial method/assembly/owner-state negatives, strict original Player oracle and three-build source-parity rejection tests. The final **nine** required GitHub workflows must each pass macOS and Ubuntu on the **identical final pushed demo SHA**, without ancestor substitution, before any Local invocation. Actual Unity/Player remains NotRun for I until new read-only Mac/SDK/Git/preservation and I-only disk admission: fixed hard20GiB/advisory40GiB, explicit **I-only conditional >=32GiB** two-sample exception on actual parent volume; below32GiB NO-GO, no I root. A normal native process exit does not prove full Unity-managed shutdown, coherent whole-VM epoch, GC/RSS or full R03 acceptance. See [I Design](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_H_ENGINE_OWNER_2026-11-03/DESIGN.md), [I Plan](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_H_ENGINE_OWNER_2026-11-03/PLAN.md), [Primary source review](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_H_ENGINE_OWNER_2026-11-03/PRIMARY_SOURCE_REVIEW.md), and [canonical conditional I handoff](Handoff/WEB_TO_LOCAL.md).
+
+**Gate stays closed:** independent Oct8 full-stage R03 FAIL / High IR-R03-01/02; D1=A/D2=A and original P1/P2/E0/E1/P3 outstanding; `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`, `qualificationApproved=false`, `runtimeAcceptance=false`, PureInterpreter disabled. Do not begin H2/M08A/X02/SNAP-01 or Human Review Gate.
+
+---
+
+# Primary H source/CI correction — first candidate CI FAIL (2026-11-03 UTC)
+
+The prior pushed H source `953e8e5e4a7f5a4fd7ea0851726b2be1496c37b0` ran exact-source CI and was **NOT eligible for Local H**: the coordinator still expected ten source files, the K synthetic engine witness was V1 instead of V2, and three mandatory workflows still checked out the consumed G native revision. Primary has prepared corrections, including a new actual-workflow checkout-ref gate and source-pinned K fixture. See the latest [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) for the **final** pushed demo SHA and nine fresh two-OS successful workflow requirements. Earlier CI failures remain visible. All A–G Local evidence and R03 acceptance flags are unchanged. Do not execute H from the earlier SHA.
+
+---
+
+# Current Primary response — oneuse-G FAIL remediated in source; conditional oneuse-H (2026-11-03 UTC)
+
+**Latest Local G is FAIL / ReturnRequired**, not acceptance: two ON actual Unity2022.3.62f2 C++11 builds and three ON post-poison complete sidecar Players Passed; OFF C++11 build failed on incomplete exception/string types; engine observer recorded 51,865 reports in500ms despite a single native owner quit request, exited71; OFF Player/official 135-pair audit Blocked. G is consumed and immutable. F remains BLOCKED and E remains FAIL.
+
+**Primary H candidate:** native probe includes `il2cpp-object-internals.h` independently in feature-OFF and feature-gates its recovery/exit writer; Unity fixture triggers the authentic unhandled sentinel from a running `MonoBehaviour.Update` frame instead of `BeforeSceneLoad`; native V2 observer distinguishes normal `atexit` (durably logged) from failure-only `std::_Exit(71)` watchdog, preserving actual 64-report/500ms bounds and first failure. New source-only C++11 OFF/ON full-translation-unit mock tests, strict host oracle negatives and 11 candidate/45 native-VM source blob pins prepare **one** conditional H combined Local cycle. Normal process exit is not full Unity Shutdown or a coherent VM epoch. [Design](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_G_OFF_ENGINE_2026-11-03/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_G_OFF_ENGINE_2026-11-03/PLAN.md), [Primary source review](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_G_OFF_ENGINE_2026-11-03/PRIMARY_SOURCE_REVIEW.md), [canonical H handoff](Handoff/WEB_TO_LOCAL.md).
+
+**Local H strict prerequisites:** nine actual macOS+Ubuntu CI workflows at identical *final* demo SHA, exact four remote/source pins, read-only Mac and unconsumed H root, original-S and all A–G evidence preservation. Hard20GiB/advisory40GiB unchanged; explicit **H-only** conditional admission needs two current >=36GiB samples on actual parent, else NO-GO. No automatic Player run before gates. CI source-host tests are not actual Unity acceptance. All Oct8 independent R03 FAIL/High IR-R03-01/02 and `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`, `runtimeAcceptance=false`, PureInterpreter disabled remain. No H2/M08A/X02/SNAP-01/Human Review Gate.
+
+---
+
+# Current Primary response — oneuse-F CI BLOCKED; exact-source oneuse-G preparation (2026-11-02)
+
+**Latest Local F remains BLOCKED / NotRun**, not a new product/runtime failure: at governing demo `9db3927a9cc899fbe73948e0ff9c586f96efde6d` only the combined host had both OS jobs PASS; eight required workflows had no matching exact-commit run. F coordinator0, Unity0, Players0; its root remained absent. E FAIL and all A–F prior checkpoints stay immutable.
+
+**Primary CI remediation:** all nine mandatory workflows now include `Handoff/WEB_TO_LOCAL.md` in `push.paths`; a new `current_native_handoff_ci_contracts.py` independently checks all nine and six positive/negative trigger cases from the actual checked-out files. A final handoff-only change must trigger nine **fresh runs at identical final demo SHA**; their actual two-OS success must still be verified before any Local execution. Ancestor/source-equivalent CI is not silently accepted. See [Design](Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_F_CI_CAPACITY_2026-11-02/DESIGN.md), [Plan](Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_F_CI_CAPACITY_2026-11-02/PLAN.md), [Primary review and capacity decision](Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_F_CI_CAPACITY_2026-11-02/PRIMARY_REVIEW.md), and [new G handoff](Handoff/WEB_TO_LOCAL.md).
+
+**Primary one-use capacity decision:** F's previously measured 39.5234375 GiB was below advisory40 but above hard20. A narrow **conditional GO** for G is granted only with a new source-pinned read-only Mac admission **and second immediate pre-coordinator sample both at least 39.0 GiB** on the actual output parent, all source/CI checks green. Below39.0 = NO-GO, no root creation; hard20/advisory40 unchanged. E's prior ~2.966-GiB disk reduction is only historical capacity evidence, not guaranteed G usage. No cleanup or APFS volume workaround.
+
+No Unity or Player validation is implied by this CI repair. The independent R03 FAIL/High IR-R03-01/02 remains open; R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, runtimeAcceptance=false; PureInterpreter disabled. No H2/M08A/X02/SNAP-01/Human Review Gate.
+
+---
+
+# Current R03 Primary response — oneuse-E FAIL, F conditional source/host handoff (2026-11-02)
+
+**Actual oneuse-E is consumed/FAIL:** three native Unity2022.3 C++11 builds Passed; OFF Player Passed; three ON Players failed their original bounded field14 snapshot (empty raw, exit2), and one genuine engine observer recorded **51211** terminal reports in500ms (bound64, exit71). The official installed parity stage remains Blocked, despite independent scoped 129 source-to-installed byte comparisons. No prior A–E result changed.
+
+Current Primary candidate: exact full general diagnostic bytes carried by a source-pinned preopened bounded sidecar, host-side complete strict JSON/CRC/schema verification, one-shot native owner-quit request for the genuine engine sentinel, and strict host-negative and legacy source/runner contracts. The new `il2cpp_plus@2c899ece8cf241887b14040bab0a73d7c854d2bf` manifest has **45 changed VM files** requiring **135 installed source-role pairs** in a future Local cycle. See [Design](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_E_RUNTIME_REPAIR_2026-11-02/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_E_RUNTIME_REPAIR_2026-11-02/PLAN.md), [Primary source review](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_E_RUNTIME_REPAIR_2026-11-02/PRIMARY_SOURCE_REVIEW.md), and [conditional oneuse-F WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md). All required current-source CI and read-only Mac preflight must pass before F root creation. Neither mock host proofs nor diagnostic byte completeness imply a coherent all-VM epoch, actual Unity quit, Player acceptance or independent re-review.
+
+**Gate remains closed:** Original independent R03 FAIL/High IR-R03-01/02, R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, qualificationApproved=false, runtimeAcceptance=false; PureInterpreter disabled. No H2/M08A/X02/SNAP-01 or Human Review Gate.
+
+---
+
+# Current Primary repair — oneuse-D local FAIL and conditional oneuse-E (2026-10-30)
+
+**Current Local result is FAIL, not runtime acceptance.** In oneuse-D, three actual Unity2022.3.62f2 IL2CPP builds (ON Release/Debug, OFF Release) failed on C++11 compilation before any current Player launched; combined coordinator 8 scoped Passed / 1 Failed / 1 Blocked, child 10 Passed / 3 Failed / 5 Blocked. The original-S archive and process audits remained historical/source-scope Passed. Absent-app enumeration obscured the original C++ compiler errors, and a newly generated CI comparison JSON had a trailing literal backslash-n. The consumed D source and evidence were not modified.
+
+**Primary correction**: C++11-compatible native source in `il2cpp_plus` (now `ca0aab8e0abcbcb60a1532223d9e1bdb0aea86c4`); native three-compiler/macOS/Ubuntu C++11/C++17 source-host workflow [41043686073](https://github.com/night-outlook/il2cpp_plus/actions/runs/41043686073) **PASS**, but NOT real Unity. The subsequent native ca0 commit changes two host test scripts only; production VM source bytes remain identical to the 6510 tested version. Demo now records genuine BuildReport failure before any absent-app inventory, and emits/strictly reparses valid CI comparison JSON. The new source delta covers **43** changed native VM files, including previously omitted `AssemblyShadowDiagnosticWriter.h`, and requires **129** installed source-role pairs (3 x 43) rather than D's old 126. See [Design](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_D_CXX11_REPAIR_2026-10-30/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_D_CXX11_REPAIR_2026-10-30/PLAN.md), [Primary review](History/M07R/R03/IR_Remediation/IR_R03_ONEUSE_D_CXX11_REPAIR_2026-10-30/PRIMARY_SOURCE_REVIEW.md) and [active conditional oneuse-E WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md). Local oneuse-E must not run until the exact final demo source has passing host/source/fixture CI and read-only Mac admission. Its root must be fresh/unused; D and prior A/B/C remain immutable.
+
+**Gate remains closed:** original independent R03 FAIL/High IR-R03-01/02, R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, qualificationApproved=false, runtimeAcceptance=false; PureInterpreter disabled. No automatic new milestone or Human Review Gate.
+
+---
+
+# Current R03 Primary preparation — pinned pre-Local generator proof (2026-10-29)
+
+Before consuming the active oneuse-D Local root, verify **new real .NET 8.0 generator CI on both macOS and Ubuntu at the final demo commit**. The existing `r03-ir-fixture.yml` now runs on current-native integration/handoff changes, uses sparse exact source and pinned SDK 8.0.318, enforces the independent IR `Methods.dll` SHA/MVID, generates it in two fresh directories and rejects reuse, and runs 16 adversarial receipt checks. The read-only Local capacity advisory now matches **40 GiB**, with the fixed **20 GiB hard minimum** unchanged. See [Design](History/M07R/R03/IR_Remediation/IR_R03_PRELOCAL_GENERATOR_2026-10-29/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/IR_R03_PRELOCAL_GENERATOR_2026-10-29/PLAN.md), [Primary review](History/M07R/R03/IR_Remediation/IR_R03_PRELOCAL_GENERATOR_2026-10-29/PRIMARY_REVIEW.md) and [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md).
+
+These tests are *host-only* and do not prove actual Unity/IL2CPP, 3 current native builds, 5 Players or 126 installed source pairs. Original oneuse-C FAIL and oneuse-D conditional authority are unchanged. Both CI OS jobs and source/remote pins must be checked at the final handoff commit before Local execution. R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false; PureInterpreter disabled.
+
+---
+
+# Current R03 Primary response — oneuse-C CLI import failure repaired; oneuse-D conditional handoff (2026-10-26)
+
+**Authoritative latest Local oneuse-C = FAIL / ReturnRequired, NOT Player failure.** A single original-S fc55 sparse projection and fresh admission passed, 16,978 protected original-S files preserved; measured available space increased from 19.844 to 46.334 GiB. The coordinator ran ONCE, with **eight scoped Passes** (104 source/host tests, original S authentic nine-part archive/90-cell and 59 original archived process joins, native host diagnostics), **one Failed** current-native-players CLI startup at run_terminal_current.py:14 due to missing sibling run_local module, and **one Blocked** native installed-source audit. Actual current native 3 builds, 5 Unity2022.3 Players and 126 physical native source pairs remain NotRun. oneuse-C coordinator/sparse roots are now permanently consumed. Original oneuse-A/B capacity BLOCKED remain immutable.
+
+**Primary correction:** The standalone wrapper now bootstraps the exact adjacent owning R03 Python infrastructure *before* its first import. No PYTHONPATH workaround, historical native source pin mutation or product C++/Player fixture change. Read-only current_native_environment_admission now launches the real corrected CLI in a fresh Python process from an external cwd, **without PYTHONPATH/PYTHONHOME**, and rejects any import failure before the next one-use output root. [Design](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_CLI_BOOTSTRAP_2026-10-26/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_CLI_BOOTSTRAP_2026-10-26/PLAN.md), [Primary source review](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_CLI_BOOTSTRAP_2026-10-26/PRIMARY_SOURCE_REVIEW.md), [source-only evidence](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_CLI_BOOTSTRAP_2026-10-26/EVIDENCE.json), [new oneuse-D WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md).
+
+Mac/Linux CI [40459012594](https://github.com/night-outlook/hybridclr_demo/actions/runs/40459012594) completed **205 source/host tests per OS PASS**, including 23 genuine fresh-interpreter startup/negative cases and new fail-closed readmission checks. This is NOT actual Unity/IL2CPP compilation or Player/terminal safety evidence. Related independent-review **host contracts** [40460340694](https://github.com/night-outlook/hybridclr_demo/actions/runs/40460340694) passed **156/156 on both macos-14 and Ubuntu** after correcting the CI-only sparse checkout scope; previous macOS checkout disk-exhaustion and missing R03Storage input failures remain retained. These are not an independent R03 full-stage reviewer verdict. New Local oneuse-D must preserve the ALREADY SPARSE clean original-S fc55 (do not re-sparsify), verify latest full four Git remote heads and genuine SDK8.0.318/runtime8.0.21 + Unity2022.3 arm64, pass fresh actual standalone CLI/read-only capacity admission (hard >=20 GiB, >=40 GiB advisory), then run the unchanged combined 10-stage coordinator once in a NEW unused root.
+
+Oct 8 independent full-stage R03 **FAIL** with High IR-R03-01/02 remains; D1=A NativeLayoutAdmissionV1 conservative/X02 deferred, D2=A performance observational, previous contaminated Failed certificates, original S bounded90/90, b7e3/c42a overall Local FAIL and f51d historical-audit-only PASS all retained. R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, runtimeAcceptance=false, qualificationApproved=false; PureInterpreter disabled. No H2/M08A/X02/SNAP-01/Human Review Gate automatically.
+
+---
+
+## Earlier source/status records — historical, NOT current Local execution authority
+
+# Current Primary response — oneuse-B capacity BLOCKED; bounded fc55 projection and conditional oneuse-C (2026-10-26)
+
+**Newest Local oneuse-B remains BLOCKED before coordinator, and original oneuse-A remains BLOCKED.** All ten empirical R03 stages are NotRun, with zero Unity/IL2CPP builds, zero Players and no original-S archive/process reauthentication. oneuse-B output space was 19.858/19.840 GiB, below the unchanged 20-GiB minimum. A proposed /Volumes/Data was in the same APFS disk3 container, not a separate capacity pool. The originally retained clean fc55 worktree remains at its exact path; it was not recreated. Existing trusted .NET SDK8.0.318/runtime8.0.21 osx-arm64 was discovered and enabled via process-scoped PATH, without installation or build.
+
+**Primary remediation:** GitHub directly verified that the exact original-S checkpoint subtree at fc55 contains **16,978 regular files / 3,882,340,952 logical bytes**, Git tree 2acdcc0ec3c0f15dea11f99bc9c5d6d0f431de79. New [bounded sparse projection source](../../Tools/AssemblyShadow/R03IR/original_s_sparse_projection.py) is designed to retain original Git history, original worktree registration and *all* checkpoint bytes while de-materializing unrelated clean tracked files from that auxiliary worktree. This is an explicit controlled working-tree change, not guaranteed physical APFS reclamation; no actual Mac sparse conversion has occurred. It never deletes original Git objects, changes product source pins, prunes worktrees or loosens the 20 GiB floor.
+
+[Design](History/M07R/R03/IR_Remediation/IR_R03_ORIGINAL_S_SPARSE_CAPACITY_2026-10-26/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/IR_R03_ORIGINAL_S_SPARSE_CAPACITY_2026-10-26/PLAN.md), [Primary source review](History/M07R/R03/IR_Remediation/IR_R03_ORIGINAL_S_SPARSE_CAPACITY_2026-10-26/PRIMARY_SOURCE_AUDIT.md), [source-only evidence](History/M07R/R03/IR_Remediation/IR_R03_ORIGINAL_S_SPARSE_CAPACITY_2026-10-26/EVIDENCE.json), [ACTIVE conditional oneuse-C WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md). Mac/Linux current source CI validated **180 host-only tests per platform**, including 31 new tiny-Git sparse-custody tests; neither original-S actual worktree, Unity, archive audit nor Player was run. New oneuse-C capacity remediation has one bounded sparse command and must pass full checkpoint postflight and fresh storage/toolchain admission before any single unchanged 10-stage coordinator invocation. 20 GiB hard minimum preserved; 40 GiB advisory buffer, not proven build budget.
+
+Original October 8 independent full-stage R03 verdict remains FAIL, High IR-R03-01/02 independently open; D1=A conservative NativeLayoutAdmissionV1 / X02 deferred, D2=A observational-only performance, contaminated Failed certificates, original S historical bounded 90/90, b7e3/c42a overall Local FAIL and f51d historical audit-only PASS untouched. R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, runtimeAcceptance=false, qualificationApproved=false, PureInterpreter disabled. No H2/M08A/X02/protected SNAP-01/Human Review Gate.
+
+---
+
+## Earlier status records — history only, not active authorization
+
+# Current R03 Primary response — retained original-S fc55 and oneuse-B readmission (2026-10-26)
+
+**Previous oneuse-A was BLOCKED before the coordinator was invoked.** The latest Local checkpoint at [oneuse-A capacity BLOCKED](History/M07R/R03/local-validation-current-native-original-s-20261026-oneuse-a/README.md) confirms 19.63 GiB immediately after fc55 worktree creation versus a fixed 20 GiB admission minimum, later 20.29 GiB passive sample, ten coordinator stages NotRun and 0 Unity/Player/SDK invocations. The clean original S fc55 worktree is retained, but prior oneuse-A authority/root is consumed. Actual dotnet was absent on PATH; the net8.0 fixture runtime is not admitted. The Oct 8 independent R03 **FAIL** and High IR-R03-01/02 remain open.
+
+**New Primary disposition:** Preserve oneuse-A and original S history; authorize **read-only reuse** of the retained clean fc55 after new exact Git registration/source admission. No additional original worktree materialization, deletion, cache pruning, threshold weakening or oneuse-A retry. Prefer a new oneuse-B output root on a verified larger volume with >=30 GiB *advisory* headroom; hard coordinator minimum stays 20 GiB. New read-only [environment admission script](../../Tools/AssemblyShadow/R03IR/current_native_environment_admission.py) requires actual PATH-visible net8-capable dotnet SDK + Microsoft.NETCore.App 8.x runtime as well as the existing Unity and source checks.
+
+[Design](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_CAPACITY_READMISSION_2026-10-26/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_CAPACITY_READMISSION_2026-10-26/PLAN.md), [Primary reconciliation](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_CAPACITY_READMISSION_2026-10-26/PRIMARY_RECONCILIATION.md), [source/CI evidence](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_CAPACITY_READMISSION_2026-10-26/EVIDENCE.json), [new canonical one-use-B WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md). GitHub CI [40438909487](https://github.com/night-outlook/hybridclr_demo/actions/runs/40438909487) **PASSED 149 source/host-only tests each on Mac/Linux** including 25 new no-write storage/fc55/net8 admissions. CI did not run the Mac Local environment, Unity or original S archive. All ten original R03 empirical stages still NotRun. R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, qualificationApproved=false, runtimeAcceptance=false, PureInterpreter disabled; no H2/M08A/X02/SNAP-01.
+
+---
+
+## Earlier status records — historical only; not active authorization
+
+# Current Primary handoff — one-use R03 current-native and original-S Local validation (2026-10-26)
+
+**ACTIVE ONCE only under canonical pushed WEB_TO_LOCAL.md and exact final demo remote SHA.** Primary has prepared additive one-use R03 source/host orchestration, physical 42 changed-VM-file × 3 installed-build-role parity checks, and 35 new adversarial coordinator/installed-source tests. See [Design](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_LOCAL_CYCLE_2026-10-26/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_LOCAL_CYCLE_2026-10-26/PLAN.md), [Primary source review](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_LOCAL_CYCLE_2026-10-26/PRIMARY_SOURCE_REVIEW.md), [machine source/CI evidence](History/M07R/R03/IR_Remediation/IR_R03_CURRENT_NATIVE_LOCAL_CYCLE_2026-10-26/EVIDENCE.json) and the [canonical active WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md).
+
+[GitHub Actions 40317130046](https://github.com/night-outlook/hybridclr_demo/actions/runs/40317130046) passed Mac/Linux with **124 source/host-only tests per platform** (20 coordinator, 15 VM-install synthetic, 20 source, 27 verifier synthetic, 12 VM delta, 30 original S audit host). This does NOT reconstruct original S full archive, compile installed Unity SDK, or run a real Player. The original first Mac fixture FAIL is retained, corrected and verified. No historical product FAIL was promoted.
+
+**Next Local scope:** one fresh original-S nine-part archival/provenance/59-process crosswalk, current-native e1e5 three build roles/five real macOS arm64 Unity Player cases, and physical 126 source-installed byte comparisons; these remain NotRun. October 8 independent full-stage R03 **FAIL** and High IR-R03-01/02 remain unclosed. R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, qualificationApproved=false, runtimeAcceptance=false, PureInterpreter disabled. No H2/M08A/X02/protected SNAP-01.
+
+---
+
+# HybridCLR Assembly Shadow
+
+## Latest Primary Implementation — current-native R03 source review and independent-gate preparation (2026-10-26)
+
+**Current independent full-stage R03 verdict remains FAIL.** The independent review performed on October 8 recorded High **IR-R03-02** (method entry after terminal transaction failure) and **IR-R03-01** (original S archive identity contradiction). An additive original-S provenance correction authenticates the proper nine-part original archive within byte/index/90-cell scope but is **not a separate full semantic independent review**. The current-native terminal guard source appears corrected, but actual matching Unity 2022.3 Player execution at native `il2cpp_plus@e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb` is still **NotRun**.
+
+**New Primary source-only evidence (not Player acceptance):** [Mac/Linux CI 40264569824](https://github.com/night-outlook/hybridclr_demo/actions/runs/40264569824) passed the existing **20/20 current-native source/pin tests** per host. [CI 40285861973](https://github.com/night-outlook/hybridclr_demo/actions/runs/40285861973) passed **27/27 actual Player-verifier host oracle tests** per host against synthetic positive and deliberately forged post-poison receipts. [CI 40287146227](https://github.com/night-outlook/hybridclr_demo/actions/runs/40287146227) passed **12/12 full changed native VM source-identity tests** per host, pinning all **42** changed `libil2cpp/vm` files among the native candidate's **147 commits / 125 changed paths** since the old R03 runner native pin. This is source identity, not proof of source inclusion, generated C++, linked Player binaries or runtime outcomes. No previous production code or original Player fixture was edited.
+
+**Next authoritative Primary review package:** [R03 RC1–RC6 closure matrix](History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/R03_RC1_RC6_CLOSURE_MATRIX_2026-10-26.md), [source-bound machine evidence](History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/R03_RC1_RC6_CLOSURE_EVIDENCE_2026-10-26.json), [IR-R03-02 oracle source review](History/M07R/R03/IR_Remediation/IR_R03_02_CURRENT_NATIVE_COHERENCE_2026-10-25/ORACLE_SOURCE_AUDIT_2026-10-26.md), [42-file native VM delta audit](History/M07R/R03/IR_Remediation/IR_R03_02_CURRENT_NATIVE_COHERENCE_2026-10-25/NATIVE_42_FILE_SOURCE_DELTA_AUDIT_2026-10-26.md), and [unexecuted independent re-review request addendum](History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/INDEPENDENT_REREVIEW_DELTA_2026-10-26.md). Owner **D1=A** retains conservative `NativeLayoutAdmissionV1` and defers structural expansion to X02; **D2=A** regards performance measurements as observational only, preserving four contaminated Failed certificates and deferred R02 CPU/H1 RSS risk.
+
+**Separate historical audit:** `f51d` PASS remains **`PassedHistoricalAuditOnly_UnchangedLocalFail`**; original `b7e3` and `c42a` overall Local FAILs remain unchanged. `S` original 90/90 is historical Local evidence, not an R03 acceptance. **[WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) is CLOSED** and no new Local run is allocated. R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, qualificationApproved=false, runtimeAcceptance=false; PureInterpreter disabled. P1 incomplete; P2 NotIntegrated; E0 Blocked/Unavailable; E1 BlockedByE0; full P3 Incomplete. No H2/M08A/X02/protected SNAP-01.
+
+---
+
+## Earlier status records — retained, not current approval
+## Current R03 Primary state — current-native terminal source candidate prepared, Player evidence still NotRun (2026-10-25)
+
+**The independent R03 full-stage review dated 2026-10-08 remains FAIL**, with two high findings: `IR-R03-02` (terminal failure must prevent a later otherwise-valid business method entry) and `IR-R03-01` (incorrect original S archive identity and independent source/build/process authentication). The original S execution remains 90/90 within its tested scope; owner **D1=A** retains conservative NativeLayoutAdmissionV1, deferring extra PureInterpreter layouts to X02; **D2=A** keeps development performance measurements observational-only. No H2 or next milestone is initiated.
+
+**Latest Primary work:** the existing R03 focused Player runner still bound native `il2cpp_plus@74dbdbea80d83923863303bd2b2c0a87f36541b1` while current terminal runtime sources are at `e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb` (147 commits ahead). Primary published a **parallel coherent candidate**: [source manifest](../../Tools/AssemblyShadow/R03IR/current_native_candidate.json), [ten-blob gate](../../Tools/AssemblyShadow/R03IR/current_native_source_gate.py), [isolated current-native runner](../../Tools/AssemblyShadow/R03IR/run_terminal_current.py), and [20 adversarial host-only checks](../../Tools/AssemblyShadow/R03IR/current_native_source_contracts.py). Historical `R03/source-pins.json`, original `run_terminal_local.py`, original S/Player evidence and actual native implementation are **unchanged**. The new wrapper validates actual source identity *before* any new batch root and inherits all existing real repo/clean/remote/build-source checks.
+
+**Source-only CI:** [GitHub Actions 40264569824](https://github.com/night-outlook/hybridclr_demo/actions/runs/40264569824) **PASS** on macos-15 and ubuntu-24.04 (**20/20 tests per platform**, all ten source blobs). Original broad R03 test discovery briefly failed on the candidate's initial `test_` filename; Primary renamed it to `current_native_source_contracts.py` and deleted the auto-discovered version rather than changing existing test rosters or creating skips. Historic R03 K source, K terminal and L source-contract workflows were successfully rerun. This code/CI establishes source-only candidate coherency, **NOT** real Player execution or a full audit of all 147 native commits. Read [new Design](History/M07R/R03/IR_Remediation/IR_R03_02_CURRENT_NATIVE_COHERENCE_2026-10-25/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/IR_R03_02_CURRENT_NATIVE_COHERENCE_2026-10-25/PLAN.md), [Primary Source Review](History/M07R/R03/IR_Remediation/IR_R03_02_CURRENT_NATIVE_COHERENCE_2026-10-25/PRIMARY_SOURCE_AUDIT.md) and [machine evidence](History/M07R/R03/IR_Remediation/IR_R03_02_CURRENT_NATIVE_COHERENCE_2026-10-25/EVIDENCE.json).
+
+**f51d remains a COMPLETED historical audit-only PASS** within `PassedHistoricalAuditOnly_UnchangedLocalFail` scope. Original `b7e3` and `c42a` overall Local FAIL remain unchanged, with b7e3's original raw 25/25 scope PASS separately preserved. The f51d record is read-only historical evidence, **not** freshly compiled current-source Player proof. The original R03 independent FAIL also has not been replaced by a separate PASS. IR-R03-01 original-S semantic/provenance re-review and IR-R03-02 source-matched real Player proof are both OPEN.
+
+**Next gate is NOT active:** [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) remains **CLOSED / no Local execution authority**. Do not run the new current-native runner, Unity/IL2CPP compiler/Player, re-execute original S/b7e3/c42a/f51d roots, advance H2/M08A/X02 or initiate Human Review Gate based on green source-only CI. A future fresh Real Local scope requires explicit Primary/human authorization, a new one-use source-pinned handoff and independent review of the complete Player input/install/build boundary.
+
+**Project acceptance unchanged:** P1 Incomplete; P2 NotIntegrated; E0 Blocked/Unavailable; E1 BlockedByE0; full P3 Incomplete. `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`, `qualificationApproved=false`, `runtimeAcceptance=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter disabled. Original protected SNAP-01 and performance/CPU/RSS risks remain open.
+
+---
+
+## Earlier dated status records — history only, not current handoff
+
+## Current R03 Primary stage — independent FAIL findings IR-R03-01/02 source pre-review (2026-10-24)
+
+**The already completed `f51d` historical audit-only PASS remains valid solely within historical source/host/official SDK syntax receipt scope.** The earlier independent full R03 review dated 2026-10-08 has an immutable **FAIL** verdict for two High findings: `IR-R03-02` terminal method-entry safety after caught poison, and `IR-R03-01` incompatible original S archive identities. No independent *re-review* or H2 Human Review Gate has been initiated. The accepted owner D1=A conservative NativeLayoutAdmissionV1/X02 deferral and D2=A observational-only performance limit remain binding.
+
+**New completed Primary work:** source/CI preflight for the two findings at [IR_R03_REREVIEW_PREP_2026-10-24](History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/DESIGN.md). Current native `il2cpp_plus@e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb` has early **and** success-path terminal guards; Runtime/HybridCLR interpreter common entry source guards are present. The focused Player fixture has a pre/post-poison side-effect witness in source, but demo R03 `source-pins.json` points to older native `74dbdbea80d83923863303bd2b2c0a87f36541b1`; current-source Player validation remains **NotRun/BlockedStaleRunnerNativePin**. Independently compiled full Unity/IL2CPP SDK/Player evidence is NOT supplied by this source-only preflight.
+
+**Original S provenance:** immutable nine-part source archive SHA `23aedcaf54e67a07a93853dcca299ddbc69cc0c1a91b7149e21fd254ea6ae9f6` is bound by original transport/seal and additive byte/90-cell audit. The earlier contradictory five-part Primary archive `f4c2a120e3fdbb1fbc5a984e920ba0dbf34a3e1502c3ecea955769d70179054a7` was expressly withdrawn as original S authority, not deleted or relabeled. IR-R03-01 still **PartiallyRemediatedAwaitingIndependentRereview**; complete source/build/process semantic reauthentication and separate full-stage reviewer decision remain pending.
+
+**Verified source-only CI:** [run 40086902503](https://github.com/night-outlook/hybridclr_demo/actions/runs/40086902503) Passed both macos-15 and ubuntu-24.04, each **20/20 adversarial Python source tests and 69/69 compiled native terminal-policy header checks**. Its explicit result is `PassedSourceOnlyPreflight_PendingRealPlayerAndIndependentReview`, never product approval. Original CI attempts 40086592790 and 40086808626 remain honest test-tool FAILs, followed by Primary corrections. No product source files, original Local outputs or historical evidence were changed in this work.
+
+Read [Primary source review](History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/PRIMARY_REVIEW.md), [Design](History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/PLAN.md), [machine evidence](History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/EVIDENCE.json) and the [uninvoked independent re-review request](History/M07R/R03/IR_Remediation/IR_R03_REREVIEW_PREP_2026-10-24/INDEPENDENT_REREVIEW_REQUEST.md). Current [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) stays **CLOSED / NO ACTIVE LOCAL RUN**. Do not begin runtime/SDK compiler tests, H2/M08A/X02 or any other milestone on this evidence.
+
+**Unchanged gates:** P1 Incomplete (canonical TypeKeys, physical pointer provenance/lifetime, coherent epoch, full V1 and true Player/GC/RSS/Shutdown), P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, full P3 Incomplete. Original b7e3 and c42a Local FAIL remain, f51d historical-only PASS retained; older S 90/90 scope result unchanged. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `runtimeAcceptance=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter disabled.
+
+---
+
+## Older history and bounded evidence records — not current execution authorization
+## Latest Primary disposition — f51d historical evidence audit completed, runtime gates still OPEN (2026-10-24)
+
+**Authoritative latest Local Validation: `20261024-f51d` PASS only in `PassedHistoricalAuditOnly_UnchangedLocalFail` scope.** The new, isolated historical auditor ran **once**, exited **0**, produced `stage/EVIDENCE_AUDIT.json` with `PassedHistoricalEvidenceAuditOnly`, and completed its previously unreached admitted-execution and captured historical Git-authority checks. Original 51/51 source-only prerequisites, historical 25 component receipts, original 85 test identities, eight inventories, admitted nine strict+nine sanitized cases, five original managed positives + exact expected negative, 100 original native SDK syntax receipts, 515 command streams and original Git20 are confirmed within that *read-only historical-evidence* scope. Supplied and independent original data-preservation reports both Passed. **This is NOT a new Player/Unity/runtime execution.**
+
+**Do not promote or rewrite earlier results.** The original `b7e3` raw batch remains `PassedSourceHostAndSDKOnly` 25/25 **but its original overall Local result remains FAIL** due to its own auditor failure at line190. The later isolated `c42a` audit remains **FAIL** at line1031; `f51d` is a new, separately qualified success, not a replay or retroactive fix to those historical execution records. The `7896`/`7c2c` source-host scope PASS, `82dd` raw FAIL and `e1e5`/`6c72` prerequisite Blocked also remain intact.
+
+**Source and custody authority:** f51d audited source `hybridclr_demo@ea530e59eef38175738e517110c698ebd31bb07f`, published factual Local checkpoint under `hybridclr_demo@ac32d96939147f0309ddd8679e2d0fe8c9986592`; other source repository commits unchanged. The Local after-check reports preservation of original **4269 raw**, **2405 installed SDK**, **1925 SDK scratch**, **104 preflight**, prior **2506 b7e3 checkpoint** and **197 c42a checkpoint** entries plus older historical sets. Primary independently examined source/actual receipts and recomputed **7/7** key f51d published file SHA-256 hashes against its 206-entry manifest; Primary has **not** directly rehashed all external original SDK/raw files.
+
+**Primary reconciliation is complete within the historical evidence-only scope.** Read [current LOCAL_VALIDATION](Handoff/LOCAL_VALIDATION.md), [RETURN_TO_WEB](Handoff/RETURN_TO_WEB.md), the [f51d evidence checkpoint](History/M07R/R03/local-audit-only-p1-20261024-f51d/README.md), [Primary reconciliation report](History/M07R/R03/IR_Remediation/P1_F51D_HISTORICAL_AUDIT_RECONCILIATION_2026-10-24/PRIMARY_RECONCILIATION.md) and [machine evidence](History/M07R/R03/IR_Remediation/P1_F51D_HISTORICAL_AUDIT_RECONCILIATION_2026-10-24/EVIDENCE.json). The old one-shot handoff is preserved [for history only](History/M07R/R03/IR_Remediation/P1_F51D_HISTORICAL_AUDIT_RECONCILIATION_2026-10-24/CONSUMED_WEB_TO_LOCAL_F51D.md). **[WEB_TO_LOCAL.md](Handoff/WEB_TO_LOCAL.md) is now CLOSED / NO ACTIVE LOCAL EXECUTION AUTHORITY.** Do not rerun `f51d` or start another audit, core/SDK compiler/Player cycle without a new explicitly authorized plan.
+
+**Remaining:** P1 Incomplete (canonical TypeKeys, physical `Il2CppClass*` origin/lifetime, coherent VM epoch, original full execution V1/metadata safety, genuine Player/runtime initialization/shutdown, GC/RSS), P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, full P3 Incomplete. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `runtimeAcceptance=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter remains **disabled**. No H2/X02/M08A/protected SNAP-01 or Human Review Gate begins on this evidence alone.
+
+---
+
+## Historical source, audit, and handoff states — not current execution instructions
+## Latest P1 Primary state — c42a historical-audit helper identity correction (2026-10-24)
+
+**Authoritative latest Local: `20261023-c42a` isolated historical audit-only overall FAIL**, distinct from the original `b7e3` **overall Local FAIL / raw `PassedSourceHostAndSDKOnly` 25/25**. Its 23/23 host prerequisite and independent original evidence admission/preservation Passed; the one-shot historical auditor exited1 with `StopIteration` at line1031. The original checked-in `test_p1_command_failures.py` defines and calls `verify_admitted_execution_receipt_and_negative_mutations` (lines504/892), while the auditor looked up and asserted the obsolete `verify_admitted_execution_receipt_and_fail_closed_mutations` name (lines1031/1032). All subsequent full auditor checks and `EVIDENCE_AUDIT.json` remained NotRun/Unavailable. Read latest [LOCAL_VALIDATION](Handoff/LOCAL_VALIDATION.md) FIRST, then [RETURN_TO_WEB](Handoff/RETURN_TO_WEB.md) and [c42a finding](History/M07R/R03/local-audit-only-p1-20261023-c42a/FINDING.json). Both the c42a and b7e3 roots are consumed.
+
+**Primary source correction published:** new [audit_historical_helper_successor.py](History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/audit_historical_helper_successor.py) is derived from the exact c42a auditor Git blob `c451e0cb7794e624eabb9029db0a35ba28d14592` with precisely TWO helper-name replacements on lines1031/1032, yielding blob `220aa2831458b37a81f66555f27d95349ec7013f`; every other source check remains unchanged. New source-bound [stager](History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/stage_helper_successor.py) authenticates original `b7e3` raw4269, SDK2405, scratch1925, preflight104 and **the 197-file immutable c42a FAIL checkpoint**, then stages only a fresh isolated audit. New [runner](History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/run_helper_audit_once.py) preserves the one-shot/no-retry process contract. The original production/native code, original85, consumed Local/checkpoint bytes and source pins are untouched.
+
+**Source-only validation:** 17 new original-helper AST/identity/negative-mutation tests plus 11 new immutable-c42a source/custody tests, in addition to 23 retained one-shot/host tests and the published source/receipt SHA audit. The first CI run was a real host-only test fixture FAIL (quote-style mismatch, corrected without source-auditor changes). Final [Mac/Linux CI 40076790889](https://github.com/night-outlook/hybridclr_demo/actions/runs/40076790889) is **completed SUCCESS, 51/51 source-only tests per platform** (17 new helper identity, 11 c42a custody, 23 prior host contracts), plus complete 2,506-file published checkpoint SHA check with 1,873 original raw files unavailable in GitHub. Local still needs independent original evidence admission and the real new historical audit; no original product/SDK/compiler has been rerun. No full historical auditor, original SDK compiler, Unity Editor/Player or core25 has run in Primary.
+
+See the new [Design](History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/PLAN.md), [Primary Source Audit](History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/PRIMARY_SOURCE_AUDIT.md), [Evidence](History/M07R/R03/IR_Remediation/P1_HISTORICAL_AUDIT_HELPER_2026-10-24/EVIDENCE.json) and final [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md). Only the latter may authorize ONE new *historical audit-only* `20261024-f51d` Local cycle after all gates; NEVER rerun b7e3 core/compiler/SDK or consumed c42a audit.
+
+**Unchanged acceptance:** P1 Incomplete, P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, P3 Incomplete. Historical `7896`/`7c2c` scoped PASS, `82dd` raw FAIL, `e1e5`/`6c72` Blocked, b7e3 raw scoped PASS versus Local FAIL, and c42a historical audit-only FAIL remain distinct. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `runtimeAcceptance=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter disabled. No H2/X02/M08A/SNAP-01/Human Review Gate.
+
+---
+
+## Earlier status records (historical; NOT current execution instructions)
+## Current Primary state — b7e3 isolated audit-only continuation (2026-10-23)
+
+**Latest factual Local Validation remains `20261023-b7e3` overall `FAIL`:** one raw source/host/official installed Unity2022.3.62f2 SDK syntax-only batch `PassedSourceHostAndSDKOnly` at 25/25, original85, admitted9+9, eight inventories, managed5 positives + exact negative, native100 and Git20, but its required **original independent auditor Failed at line190** and all subsequent assertions were **NotRun**. Do not reclassify the historical Local result, change consumed sources, or infer actual Player/runtime acceptance. Read Local-owned [LOCAL_VALIDATION](Handoff/LOCAL_VALIDATION.md) first and [RETURN_TO_WEB](Handoff/RETURN_TO_WEB.md).
+
+**New narrowly scoped audit-only work:** user-requested continuation authorizes preparing ONE independent **historical evidence-only audit**, not rerunning Unity/SDK/core. Source-pinned `verify_published_checkpoint.py` and **23 host-only regression tests** completed [Mac+Linux GitHub CI 40072179278](https://github.com/night-outlook/hybridclr_demo/actions/runs/40072179278) **PASS on both hosts**: verified **2506 published checkpoint file hashes**, **2396 of 4269 raw-manifest files** available in GitHub, and the recorded **1925-file native SDK scratch manifest**; **1873 original raw files remain NOT published** and require original retained Local evidence to close. Two of the 23 tests launch only tiny test-owned Python audit stubs to prove the runner's one-shot/no-retry contract; neither invokes the historical Local audit or any Unity/SDK compiler. This is `PassedPublishedSnapshotScope_ExternalInputsUnavailable`, **not a full independent audit or Local PASS**.
+
+An isolated `audit_historical_only.py` carries the full existing corrected auditor's checks and replaces only its obsolete **present-time** terminal Git-HEAD comparison with strict **captured b7e3 source-authority** checks from `GIT_BEFORE.json` and the already reverified 20 historical postflight receipts. It explicitly outputs a new historical-audit-only result, never a retroactive original Local PASS. `stage_local_audit_only.py` performs full original external raw (4269), installed official SDK (2405), **copied SDK scratch (1925)** and source hash admission before and after the isolated review; it rejects changed, duplicate or symlink-aliased scratch inputs, stages a separate audit copy and preserves all originals read-only; `run_local_audit_once.py` enforces one execution and records exact logs/PID/exit; the stager's after mode rehashes the originals. These scripts have **not** been run in the Local environment in the current Primary cycle.
+
+Read the new [Design](History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/PLAN.md), [Primary source audit](History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/PRIMARY_SOURCE_AUDIT.md), [machine evidence](History/M07R/R03/IR_Remediation/P1_B7E3_AUDIT_ONLY_2026-10-23/EVIDENCE.json), and the current [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md). **Only** WEB_TO_LOCAL authorizes the new isolated `c42a` audit-only Local work after the source-only Mac/Linux CI and external evidence admission gates; it never authorizes Unity Editor/Player, SDK compilation, b7e3 core re-execution, or another project milestone.
+
+**Protected outcome stays unchanged:** `b7e3` overall FAIL despite raw scoped PASS; earlier `7896` and `7c2c` scope PASS, `82dd` raw FAIL, `e1e5` and `6c72` prerequisite Blocked. P1 Incomplete; P2 NotIntegrated; E0 Blocked/Unavailable; E1 BlockedByE0; P3 Incomplete, R03Accepted=false, H2Passed=false, qualificationApproved=false, ReadyForHumanReviewGate=false, runtimeAcceptance=false, fullLegacyRegressionAcceptance=false, PureInterpreter disabled. No H2/X02/M08A/protected SNAP-01/Human Review Gate.
+
+---
+
+## Earlier Primary states (historical, not current execution authority)
+
+## Current authoritative Primary state — b7e3 raw PASS / required auditor FAIL (2026-10-23)
+
+**Latest Local Validation is `20261023-b7e3`: overall `FAIL`, not accepted.** Its single raw source/host/actual Unity2022.3.62f2 installed SDK syntax-only batch is **`PassedSourceHostAndSDKOnly` with 25/25 passed**, original85 tests, eight inventories, admitted9+9, five real managed positives + exact original compiler-negative, 100 native C++17 `-fsyntax-only`, and 20 Git source checks. But the *unchanged required independent auditor* exited1 at line190: the strict 25-count assertion preceded an obsolete **24-name** ordered roster that omitted `admitted-execution`. All original auditor statements after line190 were **NotRun**. Read Local-owned [LOCAL_VALIDATION](Handoff/LOCAL_VALIDATION.md) FIRST, then [RETURN_TO_WEB](Handoff/RETURN_TO_WEB.md) and the [original finding](History/M07R/R03/local-validation-p1-admitted-execution-20261023-b7e3/FINDING.json). No historical result is relabeled.
+
+**Primary correction published, without execution authorization:** a separately source-pinned full [audit_successor.py](History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/audit_successor.py) changes **only source line190** (+21 bytes) to insert `admitted-execution` between `vm-shape-json` and `bounded-status`, keeping the exact identity/order requirement, original line189 count25 and all other checks intact. The old audited file, b7e3 RESULT/MANIFEST, failed audit log and Local findings remain untouched. Primary 20/20 direct Connector source/published-evidence checks passed. [Mac/Linux source-only CI](https://github.com/night-outlook/hybridclr_demo/actions/runs/39946839722) Passed 2/2, each running **16/16 roster tests plus 10/10 published-receipt checks**. This does **not** establish that the *full* independent auditor or any missing post-line190 checks passed.
+
+Read [new Design](History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/DESIGN.md), [one-cycle Plan](History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/PLAN.md), [Independent Primary Evidence Review](History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/PRIMARY_INDEPENDENT_EVIDENCE_REVIEW.md), and [machine evidence](History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/EVIDENCE.json).
+
+**NO FURTHER LOCAL RUN IS AUTHORIZED.** The canonical [WEB_TO_LOCAL.md](Handoff/WEB_TO_LOCAL.md) is explicitly **CLOSED / NO EXECUTION**, superseding the consumed b7e3 handoff. The old b7e3 instruction is retained only as [immutable historical reference](History/M07R/R03/IR_Remediation/P1_AUDIT_ROSTER_2026-10-23/HISTORICAL_WEB_TO_LOCAL_B7E3.md). A new isolated **audit-only** re-review of the existing consumed evidence requires a **separate explicit human authorization**, with new source/receipt custody and safety constraints. Do not rerun b7e3 core/compiler/SDK/Unity, edit consumed roots, or begin a later milestone.
+
+**Project remains:** P1 Incomplete; P2 NotIntegrated; E0 Blocked/Unavailable; E1 BlockedByE0; full P3 Incomplete. Historical 7896/7c2c scope PASS, 82dd raw FAIL, e1e5 and 6c72 prerequisite BLOCKED, original SNAP-01/N/M/K/I/E/R02 and independent full-stage review negatives remain. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `runtimeAcceptance=false`, `fullLegacyRegressionAcceptance=false`, PureInterpreter disabled. No H2/X02/M08A/Human Review Gate.
+
+---
+
+## Previous state records (archived; no operative Local execution instructions)
+
+## Current Primary Implementation — P1 preparer canonical temporary fixture fix (2026-10-23)
+
+**Latest authoritative Local Validation is 20261023-6c72: BLOCKED / PrerequisiteBlocked, 0/25 core components invoked.** Source/remote/SDK/historical and unused-root admission passed. The published Primary test prerequisite ran once: **13 tests; 12 Passed, one ERROR; exit 1** because the test-owned temporary directory inherited macOS `/var -> /private/var` aliasing and the test mistakenly passed its *noncanonical* path as an expected-good input. `pristine_root()` correctly rejected it. Local correctly stopped without invoking the preparer, original 85 tests or SDK compilers. Read the latest [LOCAL_VALIDATION](Handoff/LOCAL_VALIDATION.md) **FIRST**, then [RETURN_TO_WEB](Handoff/RETURN_TO_WEB.md), and the frozen [6c72 FINDING](History/M07R/R03/local-validation-p1-admitted-execution-20261023-6c72/FINDING.json). Both `6c72` and earlier `e1e5` root identifiers are consumed, even where absent; do not resume/relabel either attempt.
+
+**Primary fix:** `Docs/AssemblyShadow/Handoff/Tools/test_prepare_p1_admitted_local.py` now canonicalizes *only the test-owned* temporary parent and adds inherited-alias and deterministic symlink-parent regression leaves. The original `prepare_p1_admitted_local.py` source, native runtime, original frozen source/historical results, local toolchain, and production path guards are unchanged. Exact published test blob `d8838bf0788d41a306f900f70d8052cb2d409803`; unchanged preparer blob `cf2fdf39fe17df076d50dcc33ed72c757eaa3b26`. **15/15 Passed** on Primary Linux Python 3.13.5 and **15/15 Passed** in an independently run, deterministic simulated `/var -> /private/var` temp alias. Actual native macOS 15-test suite and new official installed Unity SDK batch remain **NotRun**. See [new Design](History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/DESIGN.md), [one-cycle Plan](History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/PLAN.md), [Primary source audit and raw host results](History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/PRIMARY_SOURCE_AUDIT.md), [machine evidence](History/M07R/R03/IR_Remediation/P1_PREPARER_TEMP_CANONICAL_2026-10-23/EVIDENCE.json), and updated [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md).
+
+**Next authorized scope:** one fresh, independently admitted `20261023-b7e3` Local cycle: **15/15 prerequisite** and ONE source-pinned **25/25 source/host/official Unity2022.3.62f2 SDK syntax-only batch**, original 85 tests, eight inventories, nine admitted cases per strict/sanitized, five managed positives + original expected compiler-negative, 100 Apple arm64 native `-fsyntax-only` commands, twenty genuine Git postflight authority checks, independent audit and SDK/history preservation. Four new root names in WEB_TO_LOCAL require independent absent/canonical admission. No retry and no Unity Editor/Player/product link.
+
+**Outstanding project gates unchanged:** P1 Incomplete; P2 NotIntegrated; E0 Blocked/Unavailable; E1 BlockedByE0; P3 Incomplete. Historical `7896` and `7c2c` host/SDK-only PASS, `82dd` raw FAIL and both `e1e5` and `6c72` prerequisite BLOCKED remain distinct. Original SNAP-01/N/M/K/I/E/R02 and full-stage independent review failures remain. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `runtimeAcceptance=false`; PureInterpreter disabled. No protected SNAP-01, Human Review Gate or H2/X02/M08A.
+
+---
+
+## Earlier snapshots — historical, not current instructions
+
+## Current Primary Implementation — P1 admitted-execution Local collector correction (2026-10-23)
+
+**Latest authoritative Local Validation: 20261022-e1e5 is BLOCKED / PrerequisiteBlocked, core NotRun (0/25).** The independently written Local preflight helper omitted the exact newly admitted CPP/API literals in its *early opaque* frozen-source reconstruction. This is an evidence-collector prerequisite, not an observed production/native or official SDK failure. Read current [LOCAL_VALIDATION](Handoff/LOCAL_VALIDATION.md) FIRST, then [RETURN_TO_WEB](Handoff/RETURN_TO_WEB.md), and the immutable [blocked finding](History/M07R/R03/local-validation-p1-admitted-execution-20261022-e1e5/FINDING.json). The old e1e5 preflight/checkpoint is consumed and MUST NOT be resumed or altered.
+
+Primary has now committed a **source-authenticated deterministic corrected Local collector preparer**, with 13/13 local Python synthetic regression tests, dual native source-verifier and old 82dd exact CPP/API byte checks. The tool binds the entire blocked 42-file checkpoint manifest, repairs only two frozen-byte reconstruction expressions, and produces the unchanged previous independent audit.py on **one entirely new preflight root**. No native or demo product/runtime code changed, no prior test acceptance was promoted, and **new installed SDK / 25-component Local validation is NotRun**. See the [Design](History/M07R/R03/IR_Remediation/P1_LOCAL_PREFLIGHT_RECONSTRUCTION_2026-10-23/DESIGN.md), [Plan](History/M07R/R03/IR_Remediation/P1_LOCAL_PREFLIGHT_RECONSTRUCTION_2026-10-23/PLAN.md), [Primary audit](History/M07R/R03/IR_Remediation/P1_LOCAL_PREFLIGHT_RECONSTRUCTION_2026-10-23/PRIMARY_SOURCE_AUDIT.md), [Evidence](History/M07R/R03/IR_Remediation/P1_LOCAL_PREFLIGHT_RECONSTRUCTION_2026-10-23/EVIDENCE.json), and **final** [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md). Source and scripts under [Handoff/Tools](Handoff/Tools/prepare_p1_admitted_local.py).
+
+One new independently admitted Local run may verify **25/25** source/host/actual installed official SDK syntax-only components, original 85 test IDs, eight source inventories, nine strict+sanitized new groups, five real managed positive compiler products + expected negative, 100 native C++17 syntax commands, twenty Git source-authority commands, before/after evidence/SDK/history. **No retries; no Unity Editor/Player/native product link.**
+
+**Outstanding:** P1 Incomplete; P2 NotIntegrated; E0 Blocked/Unavailable; E1 BlockedByE0; full P3 Incomplete; historical SNAP-01/N/M/K/I/E/R02 fingerprint FAIL, strict S custody Blocked and independent full-stage R03 FAIL/re-review NotRun remain. R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; fullLegacyRegressionAcceptance=false; PureInterpreter disabled. Earlier 7896/7c2c PASS and 82dd raw FAIL are unchanged.
+
+---
+
+## Earlier status snapshots (historical; not current instructions)
+
+## New Primary implementation — inactive metadata-admitted V1 getter (official installed SDK NotRun)
+
+**Latest consumed Local:** [20261021-7896](History/M07R/R03/local-validation-p1-git-lifetime-20261021-7896/README.md) **PASS / PassedSourceHostAndSDKOnly**, executed demo `a5c0a4272efc4eee000220f40b7ca769be277917`, native `82ddcef9417e3d662fdd39916a92124b5c835094`, unchanged other two. **24/24** components, original 85 tests, seven case inventories, five genuine managed positives + original exact expected-negative, **100/100** native official SDK syntax, **20/20** Git source-head checks, independently preserved SDK/source/history. The separate `7c2c` PASS and `82dd` raw aggregate **FAIL** remain unchanged. Read Local-owned [LOCAL_VALIDATION](Handoff/LOCAL_VALIDATION.md) FIRST, then [RETURN_TO_WEB](Handoff/RETURN_TO_WEB.md). No Unity Editor/TestRunner/Player/native product link, real GC/RSS/Shutdown.
+
+**New exact source pins:** native `night-outlook/il2cpp_plus@e1e5be67641f18c4a5b1d5fb35429a6d15aa2edb` adds an **INACTIVE** `AssemblyShadow::TryGetExecutionDiagnosticsWithMetadataAdmission`, with a default initial-source-epoch MetadataLifetime Reader around the **unchanged** original V1 diagnostic getter. It clears stale output and rejects unavailable Reader with `InvalidState` before any old getter call, releases Reader after the full synchronous delegate call even on exception, and never opens a new epoch. No existing getter/Player/managed API calls this wrapper. **Do not infer class pointer allocation validity, coherent whole-VM epoch, canonical TypeKeys, complete safe execution V1 or real shutdown/runtime behavior.**
+
+Demo **tested code anchor `117cc6b1c2be8050cd2f433ef17db8b3c5138f93`** adds **25th** independently receipted `admitted-execution` source-host child, **nine** exact groups per strict/sanitized and **eighth** inventory flag. The old 24 children, 85 original discovered IDs, seven old inventories, five actual managed-positive+one negative and 100 native SDK syntax configs remain. Existing official SDK TU binds the inactive native method signature; no new TU/Player caller. Native [final CI 39735806552](https://github.com/night-outlook/il2cpp_plus/actions/runs/39735806552) **PASS 3/3** Mac/Linux compilers; demo [integrated CI 39736751961](https://github.com/night-outlook/hybridclr_demo/actions/runs/39736751961) and [focused 39736752238](https://github.com/night-outlook/hybridclr_demo/actions/runs/39736752238) **PASS 2/2 each**. Initial source-verifier and mock-count CI failures remain recorded in [Primary Source Audit](History/M07R/R03/IR_Remediation/P1_ADMITTED_EXECUTION_2026-10-22/PRIMARY_SOURCE_AUDIT.md), not reclassified. **New installed Unity SDK execution at this tuple is NotRun** until new Local handoff.
+
+Read the [new Design](History/M07R/R03/IR_Remediation/P1_ADMITTED_EXECUTION_2026-10-22/DESIGN.md), [one-cycle Plan](History/M07R/R03/IR_Remediation/P1_ADMITTED_EXECUTION_2026-10-22/PLAN.md), [Primary Source Audit](History/M07R/R03/IR_Remediation/P1_ADMITTED_EXECUTION_2026-10-22/PRIMARY_SOURCE_AUDIT.md), [machine evidence](History/M07R/R03/IR_Remediation/P1_ADMITTED_EXECUTION_2026-10-22/EVIDENCE.json), and final exact-source [WEB_TO_LOCAL.md](Handoff/WEB_TO_LOCAL.md).
+
+**One new source/host/official Unity2022.3.62f2 SDK syntax-only 25-component Local batch** may run ONLY after independently verifying four exact pushed heads, all consumed evidence/vendor SDK and four fresh never-used roots specified in final handoff. No retry, original getter activation, Unity Editor/Player, protected SNAP-01, Human Review Gate, H2/X02/M08A. **P1 Incomplete, P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, full P3 Incomplete.** Historical R02 fingerprint FAIL and full-stage independent review restrictions intact; all product/Human Review acceptance booleans false, PureInterpreter disabled.
+
+---
+
+
+## Latest authoritative Local: 20261021-7896 PASS (source/host/SDK syntax only)
+
+Local-owned [LOCAL_VALIDATION.md](Handoff/LOCAL_VALIDATION.md) and [RETURN_TO_WEB.md](Handoff/RETURN_TO_WEB.md) confirm **24/24 components Passed**, 85 original failure tests, seven source inventories, five real managed positives plus exact negative, **100/100** native SDK syntax commands and **20/20** Git postflight checks, with four exact repository heads verified and independent source/SDK/history preservation. The one-shot executed demo was `a5c0a4272efc4eee000220f40b7ca769be277917`, native `82ddcef9417e3d662fdd39916a92124b5c835094`. Both serialized lifetime flags are **false** and the inventory is `CompletedBatchFiles`. **PASS / PassedSourceHostAndSDKOnly**, no retry/Unity Editor/Player. Read [Primary reconciliation](History/M07R/R03/IR_Remediation/P1_GIT_MANIFEST_LIFETIME_2026-10-21/PRIMARY_RECONCILIATION_7896.md) and [raw checkpoint](History/M07R/R03/local-validation-p1-git-lifetime-20261021-7896/README.md).
+
+Finding `IR-LOCAL-P1-GIT-MANIFEST-LIFETIME-01` retains its original `SourceConfirmed_NotFaultInjected` status; successor correction `CorrectedAndRegressionValidatedWithinHostScope_NoRealTimeoutInjected` was verified with a separate mocked Git-only timeout test, **not a real Git timeout**. **7c2c PASS** and **82dd raw FAIL** remain separate, unchanged historical outcomes. **P1/runtime/R03 acceptance is not established.** This correction is **closed within source/host/SDK-syntax scope**. The previous [WEB_TO_LOCAL.md](Handoff/WEB_TO_LOCAL.md) is **consumed/archival; no new Local execution is authorized** by it.
+
+---
+
+
+## Historical snapshot — pre-7896 Primary handoff
+
+**Authoritative latest Local Validation:** `20261021-7c2c` [LOCAL_VALIDATION.md](Handoff/LOCAL_VALIDATION.md) FIRST, then [RETURN_TO_WEB.md](Handoff/RETURN_TO_WEB.md), [immutable checkpoint](History/M07R/R03/local-validation-p1-git-postflight-20261021-7c2c/README.md) and [finding](History/M07R/R03/local-validation-p1-git-postflight-20261021-7c2c/FINDING.json). Its exact *executed* tuple is demo `c5dde8493504cf69781fb0ab52123f525010a3aa`, native `82ddcef9417e3d662fdd39916a92124b5c835094`, hybridclr `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de`. **PASS / PassedSourceHostAndSDKOnly:** 24/24 independent components; 85 original tests; all seven source inventory flags; five actually compiled managed positives plus exact original negative; 100/100 original installed Unity2022.3.62f2 Apple arm64 C++17 SDK syntax; **20/20** final Git postflight commands exit0 and **all four** final repository heads independently verified; source/SDK/history audit Passed, **no batch retry**. No Unity Editor/Test Runner/Player, product native link, real GC/RSS, metadata Shutdown or complete P1/R03 runtime acceptance. `20261021-7c2c` raw/scratch/audit/checkpoint are consumed and immutable.
+
+**Separate older Local `20261021-82dd` aggregate remains `FAIL / FailedOrIncomplete`**: its 24 child results Passed but final `hybridclr ls-remote` exceeded 120 seconds; original `sourcePreserved=false`, `fourRepositoriesAfter=[]`, exit1. Later independent preservation results do not overwrite `82dd` raw evidence.
+
+### New Primary correction — source-host RED→GREEN, not new SDK evidence
+
+- Latest Primary **demo tested code anchor `789655f19bd54c8abdcda67946a1f8195193176c`** changes only root manifest `commandLifetimeUnverified` to match the pre-existing aggregate `unknown_lifetime=stopped is not None or git_probe.unknown_lifetime`. On a **Git-only final postflight timeout**, both `RESULT.json` and `MANIFEST.json` now say `commandLifetimeUnverified=true`, while manifest `inventoryScope=UnsealedObservedFiles`, `sourcePreserved=false` and aggregate `FailedOrIncomplete` stay fail-closed. On successful Git postflight both remain false and inventory is completed. **The 120-second Git limit, SSH transport, source/remote guards, no-retry policy, 24 child scheduling, seven inventories, original 85 test IDs, five+negative managed contracts and 100 native SDK syntax matrix are unchanged.** No native/Unity production code or historical source pins changed.
+- Existing `test_p1_command_failures.py` performs a **synthetic end-to-end** run of the real Python orchestrator with 24 mocked Passed children and a deliberately timed-out second repo `ls-remote`. It parses the separately emitted `RESULT.json` and `MANIFEST.json`, asserts identical true lifetime, failed aggregate, unsealed inventory, one partially verified final repo, and no false quiescence/runtime claim. Existing success and earlier child-timeout cases assert matching flags. No new discovered test IDs.
+- **RED:** test-only `b29b6385b428e1cb3fbc5684306f6a754d1f7664` [integrated CI 39710461380](https://github.com/night-outlook/hybridclr_demo/actions/runs/39710461380) / [focused CI 39710461363](https://github.com/night-outlook/hybridclr_demo/actions/runs/39710461363), **FAIL 2/2 each Mac/Linux** precisely on original false manifest flag.
+- **GREEN:** corrected [integrated 85 CI 39710581913](https://github.com/night-outlook/hybridclr_demo/actions/runs/39710581913), [focused failure CI 39710581915](https://github.com/night-outlook/hybridclr_demo/actions/runs/39710581915), [managed receipt CI 39710581907](https://github.com/night-outlook/hybridclr_demo/actions/runs/39710581907), all **PASS 2/2 Mac/Linux each**. These check real checked-in Python behavior with **mocked Git/SDK/VM child operations**, not new installed Unity SDK validation or a real Git outage.
+
+**Unchanged:** `night-outlook/il2cpp_plus@82ddcef9417e3d662fdd39916a92124b5c835094`, `night-outlook/hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55` and `night-outlook/hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de`. The current code change is **demo validation infrastructure only**, not activation of original getters/TypeKeys/Player.
+
+**Required reading:** [Current status](Plan/CURRENT_STATUS.md), [Design](History/M07R/R03/IR_Remediation/P1_GIT_MANIFEST_LIFETIME_2026-10-21/DESIGN.md), [one-cycle Plan](History/M07R/R03/IR_Remediation/P1_GIT_MANIFEST_LIFETIME_2026-10-21/PLAN.md), [Primary source audit](History/M07R/R03/IR_Remediation/P1_GIT_MANIFEST_LIFETIME_2026-10-21/PRIMARY_SOURCE_AUDIT.md), [machine evidence](History/M07R/R03/IR_Remediation/P1_GIT_MANIFEST_LIFETIME_2026-10-21/EVIDENCE.json), and **final** [WEB_TO_LOCAL.md](Handoff/WEB_TO_LOCAL.md).
+
+One new **24-component source/host/official SDK syntax-only Local batch** requires a fresh source-pinned handoff with four new absent/disjoint raw/scratch/audit/checkpoint roots and independent preservation admission. No retry or replacement of older `82dd` FAIL or `7c2c` PASS. No Unity Editor/Test Runner/Player, product native link, protected SNAP-01, H2/X02/M08A or Human Review Gate.
+
+**P1 Incomplete, P2 NotIntegrated, E0 Blocked/Unavailable, E1 BlockedByE0, full P3 Incomplete**. Original SNAP-01/N/M/K/I/E/R02 fingerprint FAIL, strict S custody Blocked, independent full-stage R03 FAIL/re-review NotRun, and original reporting 500ms/1..64/GC/logger/recovery/canary/performance constraints remain. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `fullLegacyRegressionAcceptance=false`, PureInterpreter disabled.

@@ -1,0 +1,73 @@
+{
+  "R03Accepted": false,
+  "buildReceiptSha256": "5610d828df6f7b925b08d40babdfded5d89000059b593fbef8a28dfc97c6fc92",
+  "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/commands/0017/command.json",
+  "executableSha256": "bf481c36b2e40faacee0d85f4966875fadbb1be3cd77ac3c3be01bf7b9132254",
+  "launchPidFromOwnedReceipt": 23120,
+  "nativeDiagnostic": {
+    "H2Passed": false,
+    "R03Accepted": false,
+    "commitStatusReported": [
+      19
+    ],
+    "completeStrictObservationProven": false,
+    "events": 25,
+    "kind": "R03InitializerTraceHostInterpretationV1",
+    "lastPhase": 610,
+    "managedCaughtPhase": [
+      205
+    ],
+    "nativeCallbackFailures": [],
+    "nativeCallbackObserved": false,
+    "nativeReadFailures": [
+      -1
+    ],
+    "nativeRecoveryCaptured": [
+      1
+    ],
+    "nativeSealFailures": [
+      {
+        "reason": 1,
+        "return": -2
+      }
+    ],
+    "nativeSealInput": [
+      {
+        "attempted": 0,
+        "commit": 19,
+        "state": 9,
+        "succeeded": 0
+      }
+    ],
+    "nativeV2TransportImplemented": false,
+    "preopenedWriter": true,
+    "rawBytes": 9036,
+    "rawSha256": "14f6d5e2f7e168a72d28cd278f64707e5dd0178d7a08c02acad94714f83e215b",
+    "result": "BoundedTraceObserved_NotRuntimeAuthenticated",
+    "runtimeAcceptance": false,
+    "vmRecovery": {
+      "H2Passed": false,
+      "R03Accepted": false,
+      "completeDiagnosticsAuthenticated": false,
+      "disposition": "RestartRequired",
+      "kind": "R03IRInitializerRecoverySourceOnlyDiagnosticV1",
+      "nativeGetterResult": 0,
+      "nativeV2TransportImplemented": false,
+      "rawBytes": 1166,
+      "rawSha256": "72ca654ebd82ac3f6eb766663684ec5a9559fe6b6b26b9da7ccabfebdb540628",
+      "result": "ParsedNativeVMFirstFailure_NotRuntimeAuthenticated",
+      "runtimeAcceptance": false,
+      "stateCode": 9,
+      "terminalFailureCode": 19,
+      "vmReason": "Methods: The type initializer for '<Module>' threw an exception. ---> Unable to load DLL '__Internal'. Tried the load the following dynamic libraries: Unable to load dynamic library '__Internal' because of 'Failed to open the requested dynamic library (0x06000000) dlerror() = dlopen(__Internal, 0x0005): tried: '__Internal' (no such file), '/System/Volumes/Preboot/Cryptexes/OS__Internal' (no such file), '/usr/lib/__Internal' (no such file, not in dyld cache), '__Internal' (no such file)"
+    }
+  },
+  "nativeOverlaySha256": "db94e481cb3cf86a3c656e964a39f34f15a81a02eec1b3c2d7ecc3e91d1af4d8",
+  "rawPresent": true,
+  "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "requestSha256": "86a389bcb2b32086d11508b2320756ac48d4a13c362dff1eabb53159f061579f",
+  "result": "Failed",
+  "runId": "2aae220cb0fb4422a6cc98cdeb0f18b3",
+  "runtimeAcceptance": false,
+  "semanticVerifierStatus": "NotRun_CommandFailed"
+}

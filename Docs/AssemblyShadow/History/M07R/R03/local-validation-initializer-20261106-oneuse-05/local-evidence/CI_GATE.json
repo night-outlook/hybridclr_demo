@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-06T13:28:27.699729+00:00",
+  "result": "PassedThreeExactWorkflowsSixOSJobs",
+  "sourceDemo": "db232418adf2fc35c54ed72a8933a174f8218126",
+  "requiredJobsPassed": 6,
+  "rows": [
+    {
+      "workflow": "r03-ir-initializer-local-contracts.yml",
+      "runId": 42225120124,
+      "jobId": 127916542418,
+      "name": "Source and native host contract / ubuntu-24.04",
+      "headSha": "db232418adf2fc35c54ed72a8933a174f8218126",
+      "result": "PassedExactSourceCI",
+      "logReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-Initializer05-Resume-20261106-after-retirement/CI_LOG_127916542418.json",
+      "logReceiptSha256": "a119722f64f8249bd949fcf40d723611263ace419f0f382d21d969c491414e87"
+    },
+    {
+      "workflow": "r03-ir-initializer-local-contracts.yml",
+      "runId": 42225120124,
+      "jobId": 127916542638,
+      "name": "Source and native host contract / macos-15",
+      "headSha": "db232418adf2fc35c54ed72a8933a174f8218126",
+      "result": "PassedExactSourceCI",
+      "logReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-Initializer05-Resume-20261106-after-retirement/CI_LOG_127916542638.json",
+      "logReceiptSha256": "973807ae2da6217fd983309ab5c7649172767c0ce2faa9e6953c9c27bf713f91"
+    },
+    {
+      "workflow": "r03-ir-capacity-readiness.yml",
+      "runId": 42225120279,
+      "jobId": 127916543456,
+      "name": "Actual read-only CLI and mutation negatives / ubuntu-24.04",
+      "headSha": "db232418adf2fc35c54ed72a8933a174f8218126",
+      "result": "PassedExactSourceCI",
+      "logReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-Initializer05-Resume-20261106-after-retirement/CI_LOG_127916543456.json",
+      "logReceiptSha256": "958a460e0292ed5aa682e3b107bccaa7a5f127b0234896091d007cd489880bd5"
+    },
+    {
+      "workflow": "r03-ir-capacity-readiness.yml",
+      "runId": 42225120279,
+      "jobId": 127916543681,
+      "name": "Actual read-only CLI and mutation negatives / macos-15",
+      "headSha": "db232418adf2fc35c54ed72a8933a174f8218126",
+      "result": "PassedExactSourceCI",
+      "logReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-Initializer05-Resume-20261106-after-retirement/CI_LOG_127916543681.json",
+      "logReceiptSha256": "75baff10d1980cdb22de3726b9a2b540d12b8ae075069879f33a9f616893c68a"
+    },
+    {
+      "workflow": "r03-ir-current-native-local-cycle-host.yml",
+      "runId": 42225120809,
+      "jobId": 127916544799,
+      "name": "Preflight/oracle/VM/dispatch tests (macos-15)",
+      "headSha": "db232418adf2fc35c54ed72a8933a174f8218126",
+      "result": "PassedExactSourceCI",
+      "logReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-Initializer05-Resume-20261106-after-retirement/CI_LOG_127916544799.json",
+      "logReceiptSha256": "8ed53ec4b5e946800fd8d6537453cfbc2615a29736951b87ea61a19e658b92c5"
+    },
+    {
+      "workflow": "r03-ir-current-native-local-cycle-host.yml",
+      "runId": 42225120809,
+      "jobId": 127916544902,
+      "name": "Preflight/oracle/VM/dispatch tests (ubuntu-24.04)",
+      "headSha": "db232418adf2fc35c54ed72a8933a174f8218126",
+      "result": "PassedExactSourceCI",
+      "logReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-Initializer05-Resume-20261106-after-retirement/CI_LOG_127916544902.json",
+      "logReceiptSha256": "81f891adfecbbbcc6f0802ac1bd2fea2d48bd6e570dcd962b57afa2c1b725492"
+    }
+  ],
+  "runtimeAcceptance": false
+}

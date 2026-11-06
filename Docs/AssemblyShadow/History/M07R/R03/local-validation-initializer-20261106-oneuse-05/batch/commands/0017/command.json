@@ -1,0 +1,41 @@
+{
+  "childEnvironmentPolicy": {
+    "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+    "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+    "GIT_TERMINAL_PROMPT": "0",
+    "MSBUILDDISABLENODEREUSE": "1",
+    "MSBUILDUSESERVER": "0",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "/private/tmp"
+  },
+  "cleanupErrors": [],
+  "command": [
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+    "-batchmode",
+    "-nographics",
+    "-r03IrInitializerRequest",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/players/IR-R03-02-initializer-control/request.json",
+    "-r03IrInitializerOutput",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/players/IR-R03-02-initializer-control/raw.json",
+    "-r03IrInitializerRunId",
+    "2aae220cb0fb4422a6cc98cdeb0f18b3",
+    "-logFile",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/players/IR-R03-02-initializer-control/Player.log"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+  "endedUtcEpoch": 1793971978.042867,
+  "exitCode": 2,
+  "interrupted": false,
+  "lifetimePolicy": "R03OwnedCommandV1",
+  "pgid": 23120,
+  "pid": 23120,
+  "postCleanupGroupExists": false,
+  "processGroupBeforeCleanup": null,
+  "remainingProcessGroup": false,
+  "schemaVersion": 2,
+  "startError": null,
+  "startedUtcEpoch": 1793971976.9268181,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+  "timeout": false
+}

@@ -1,0 +1,477 @@
+{
+  "kind": "Initializer05ActualVMRecoveryInvestigation",
+  "time": "2026-11-06T13:36:03.030237+00:00",
+  "result": "FAIL_ReturnRequired",
+  "sourcePins": {
+    "hybridclr_demo": "db232418adf2fc35c54ed72a8933a174f8218126",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340"
+  },
+  "sourceBindings": [
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs",
+      "sha256": "47de10015ed6a597860843e954f591c8d00a866e8c0ab0a03991184da5ac8820",
+      "gitBlob": "da4bf2ece4999d2765ca51d4bdeecf2bc0617fd2",
+      "relevantLines": [
+        {
+          "line": 19,
+          "text": "    private const string Export = \"R03_IRW_OnPrepared\";"
+        },
+        {
+          "line": 80,
+          "text": "            var moduleRef = new ModuleRefUser(module, \"__Internal\");"
+        },
+        {
+          "line": 118,
+          "text": "                callback.ImplMap.Name.String == Export && callback.ImplMap.Module.Name.String == \"__Internal\" &&"
+        },
+        {
+          "line": 121,
+          "text": "                \"Exact __Internal Cdecl no-arg native preparedness callback\");"
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerFixtures/TerminalProducerFixtures.cs",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerFixtures/TerminalProducerFixtures.cs",
+      "sha256": "2d068a4fcf62be42a6eb486fc3c04cefe7e4bfb9801b04adcf12eac126365819",
+      "gitBlob": "2a51992f1a2a4b697d72b2dca24950cceeba0725",
+      "relevantLines": []
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerPreparedProbe.cpp",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerPreparedProbe.cpp",
+      "sha256": "17fd00f6209e849eee39848377757c8e05f363de6182dddb42e75126579a9bd8",
+      "gitBlob": "f6991d4bf058f3203079643a1462574f0c8888af",
+      "relevantLines": [
+        {
+          "line": 20,
+          "text": "extern \"C\" IL2CPP_EXPORT int32_t R03_IRW_Trace("
+        },
+        {
+          "line": 45,
+          "text": "    R03_IRW_Trace(300, reason, a, b, c);"
+        },
+        {
+          "line": 64,
+          "text": "extern \"C\" IL2CPP_EXPORT int32_t R03_IRW_OnPrepared()"
+        },
+        {
+          "line": 70,
+          "text": "    R03_IRW_Trace(299, calls, 0, 0, 0);"
+        },
+        {
+          "line": 73,
+          "text": "        R03_IRW_Trace(300, -1, expected, 0, 0);"
+        },
+        {
+          "line": 117,
+          "text": "        R03_IRW_Trace(301, actual, ready, direct, delegated);"
+        },
+        {
+          "line": 118,
+          "text": "        R03_IRW_Trace(302, generic, 0, 0, 0);"
+        },
+        {
+          "line": 143,
+          "text": "    R03_IRW_Trace(300, 1, 3, 15, calls);"
+        },
+        {
+          "line": 161,
+          "text": "        R03_IRW_Trace(400, -1, prepared.state.load(std::memory_order_acquire), 0, 0);"
+        },
+        {
+          "line": 169,
+          "text": "        R03_IRW_Trace(400, -2, static_cast<int32_t>(state), 0, 0);"
+        },
+        {
+          "line": 177,
+          "text": "        R03_IRW_Trace(400, -3, prepared.stableOffset, prepared.instanceOffset,"
+        },
+        {
+          "line": 186,
+          "text": "        R03_IRW_Trace(400, -4, root != nullptr, object != nullptr, 0);"
+        },
+        {
+          "line": 200,
+          "text": "    R03_IRW_Trace(400, 1, static_cast<int32_t>(state), current, *calls);"
+        },
+        {
+          "line": 201,
+          "text": "    R03_IRW_Trace(401, *preField, *ready, *positiveMask, prepared.stableOffset);"
+        },
+        {
+          "line": 209,
+          "text": "extern \"C\" IL2CPP_EXPORT int32_t R03_IRW_OnPrepared() { return 0; }"
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationWriter.cpp",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationWriter.cpp",
+      "sha256": "81c6d268fd3e6cf884abedde27566bc9528e68a585958cba531082aa28241752",
+      "gitBlob": "ce88a1d382494f224aca1341711ad7e7c3bb08e7",
+      "relevantLines": [
+        {
+          "line": 101,
+          "text": "extern \"C\" IL2CPP_EXPORT int32_t R03_IRW_Trace("
+        },
+        {
+          "line": 278,
+          "text": "extern \"C\" IL2CPP_EXPORT int32_t R03_IRW_Trace("
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationPlayer.cs",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationPlayer.cs",
+      "sha256": "085faa30a949bb2cebdc45aefd672461c3108d7979bb7051fa65ec3943a4a3a5",
+      "gitBlob": "8fcd00750b537724eeab836cb7eb62f5ddbca2c5",
+      "relevantLines": [
+        {
+          "line": 24,
+          "text": "        [DllImport(\"__Internal\", CallingConvention = CallingConvention.Cdecl)]"
+        },
+        {
+          "line": 27,
+          "text": "        [DllImport(\"__Internal\", CallingConvention = CallingConvention.Cdecl)]"
+        },
+        {
+          "line": 30,
+          "text": "        [DllImport(\"__Internal\", CallingConvention = CallingConvention.Cdecl)]"
+        },
+        {
+          "line": 31,
+          "text": "        private static extern int R03_IRW_Trace(int phase, int a, int b, int c, int d);"
+        },
+        {
+          "line": 32,
+          "text": "        [DllImport(\"__Internal\", CallingConvention = CallingConvention.Cdecl)]"
+        },
+        {
+          "line": 34,
+          "text": "        [DllImport(\"__Internal\", CallingConvention = CallingConvention.Cdecl)]"
+        },
+        {
+          "line": 75,
+          "text": "                R03_IRW_Trace(102, openResult, 0, 0, 0);"
+        },
+        {
+          "line": 82,
+          "text": "                R03_IRW_Trace(111, before, 0, 0, 0);"
+        },
+        {
+          "line": 85,
+          "text": "                R03_IRW_Trace(120, 0, 0, 0, 0);"
+        },
+        {
+          "line": 89,
+          "text": "                R03_IRW_Trace(121, configured, 0, 0, 0);"
+        },
+        {
+          "line": 94,
+          "text": "                R03_IRW_Trace(131, began, 0, 0, 0);"
+        },
+        {
+          "line": 98,
+          "text": "                R03_IRW_Trace(141, reserved, 0, 0, 0);"
+        },
+        {
+          "line": 102,
+          "text": "                R03_IRW_Trace(151, staged, 0, 0, 0);"
+        },
+        {
+          "line": 106,
+          "text": "                R03_IRW_Trace(161, validated, 0, 0, 0);"
+        },
+        {
+          "line": 110,
+          "text": "                R03_IRW_Trace(190, 1, 0, 0, 0);"
+        },
+        {
+          "line": 112,
+          "text": "                R03_IRW_Trace(191, commit, 0, 0, 0);"
+        },
+        {
+          "line": 117,
+          "text": "                R03_IRW_Trace(201, getState, finalState, commit, 0);"
+        },
+        {
+          "line": 122,
+          "text": "                R03_IRW_Trace(231, recovery, commit, finalState, 0);"
+        },
+        {
+          "line": 127,
+          "text": "                R03_IRW_Trace(205, failure ? 1 : 0, commit, finalState, 0);"
+        },
+        {
+          "line": 135,
+          "text": "                    R03_IRW_Trace(210, 1, s_canary, 0, 0);"
+        },
+        {
+          "line": 138,
+          "text": "                    R03_IRW_Trace(211, succeeded, s_canary, 0, 0);"
+        },
+        {
+          "line": 142,
+          "text": "                R03_IRW_Trace(220, before, after, attempted, succeeded);"
+        },
+        {
+          "line": 151,
+          "text": "                    R03_IRW_Trace(900, lastPhase, commit, finalState, after);"
+        },
+        {
+          "line": 158,
+          "text": "                    R03_IRW_Trace(901, commit, finalState, before, after);"
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/verify_initializer_recovery.py",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/verify_initializer_recovery.py",
+      "sha256": "ee13bb78872c9da9ba73a7dc7fd3be4a290fe96e432adcdbfd8bb39b444e008a",
+      "gitBlob": "2a72ec3ea83573b2c5fdf2fa4733807f3bd2219b",
+      "relevantLines": []
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/run_initializer_local.py",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_initializer_local.py",
+      "sha256": "3def051936abe5adf8a788d8246b87b26d38204cba60b5ce464c5b55669c7177",
+      "gitBlob": "42362b4fa5d07d07c026c4988f9d2f3264f656f6",
+      "relevantLines": []
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp",
+      "sha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c",
+      "gitBlob": "57cf47f964a83973df8296955ccf856b105c595f",
+      "relevantLines": [
+        {
+          "line": 1072,
+          "text": "    static_assert(static_cast<int32_t>(AssemblyShadowError::ModuleInitializerFailed) == ErrorModuleInitializerFailed, \"Recovery ModuleInitializerFailed ABI changed\");"
+        },
+        {
+          "line": 1229,
+          "text": "        error = InterpreterAssembly::RunStagedModuleInitializer(member.staged, detail);"
+        },
+        {
+          "line": 1238,
+          "text": "                    AssemblyShadowError::ReferenceEscapesClosure : AssemblyShadowError::ModuleInitializerFailed),"
+        }
+      ]
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/PlatformInvoke.cpp",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/PlatformInvoke.cpp",
+      "sha256": "ba866aae1a70585e6f6b83bae984597090271d07872853de87668a9412543901",
+      "gitBlob": "eef0980afffa18291607d223d27dc8e3d1c98a77",
+      "relevantLines": [
+        {
+          "line": 37,
+          "text": "    Il2CppMethodPointer PlatformInvoke::Resolve(const PInvokeArguments& pinvokeArgs)"
+        },
+        {
+          "line": 50,
+          "text": "        if (utils::VmStringUtils::CaseSensitiveEquals(il2cpp::utils::StringUtils::NativeStringToUtf8(pinvokeArgs.moduleName.Str()).c_str(), \"__InternalDynamic\"))"
+        },
+        {
+          "line": 51,
+          "text": "            dynamicLibrary = os::LibraryLoader::LoadDynamicLibrary(il2cpp::utils::StringView<Il2CppNativeChar>::Empty(), detailedLoadError);"
+        },
+        {
+          "line": 53,
+          "text": "            dynamicLibrary = os::LibraryLoader::LoadDynamicLibrary(pinvokeArgs.moduleName, detailedLoadError);"
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/metadata/StagedAssembly.cpp",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr/metadata/StagedAssembly.cpp",
+      "sha256": "dfaf2f36b45847627e8907bc065d90a98d36f31aa5146be16c3fbced49545c98",
+      "gitBlob": "8b9e9da261365326b327051c43c52acc3b2052ce",
+      "relevantLines": [
+        {
+          "line": 544,
+          "text": "AssemblyShadowError Assembly::RunStagedModuleInitializer(StagedAssembly* staged, std::string& detail)"
+        },
+        {
+          "line": 562,
+          "text": "    return AssemblyShadowError::ModuleInitializerFailed;"
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/transform/TransformContext.cpp",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr/transform/TransformContext.cpp",
+      "sha256": "3e80f42f90f13aa644e096498e81295b18381561c3644117d02d425ffd5c036f",
+      "gitBlob": "caa569875ae06c11698eda8bb191ed51b83496de",
+      "relevantLines": [
+        {
+          "line": 2470,
+          "text": "\t\tIl2CppMethodPointer methodPointer = il2cpp::vm::PlatformInvoke::Resolve(pinvokeArgs);"
+        }
+      ]
+    }
+  ],
+  "build": {
+    "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/builds/candidate-release/build-receipt.json",
+    "sha256": "5610d828df6f7b925b08d40babdfded5d89000059b593fbef8a28dfc97c6fc92",
+    "result": "Passed",
+    "errors": 0,
+    "warnings": 1,
+    "buildPipelineResult": "Succeeded",
+    "config": {
+      "cppConfiguration": "Release",
+      "diagnosticsLevel": 2,
+      "featureEnabled": true,
+      "outputPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/builds/candidate-release/R03Isolated.app",
+      "overlayPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/initializer-source/R03InitializerCompositeOverlay.cpp",
+      "overlaySha256": "db94e481cb3cf86a3c656e964a39f34f15a81a02eec1b3c2d7ecc3e91d1af4d8",
+      "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/projects/candidate-release",
+      "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/builds/candidate-release/build-receipt.json",
+      "schemaVersion": 1,
+      "sourceManifestSha256": "6c289f7963980fdb5f942b77f950a15cef12fd10d3d16515b6bb8be524f88a13"
+    },
+    "executable": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+    "executableSha256": "bf481c36b2e40faacee0d85f4966875fadbb1be3cd77ac3c3be01bf7b9132254",
+    "architecture": "arm64",
+    "installedOverlay": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowR03Probe.cpp",
+    "overlaySha256": "db94e481cb3cf86a3c656e964a39f34f15a81a02eec1b3c2d7ecc3e91d1af4d8",
+    "sourceManifestSha256": "6c289f7963980fdb5f942b77f950a15cef12fd10d3d16515b6bb8be524f88a13",
+    "playerInventoryFiles": 22
+  },
+  "players": [
+    {
+      "case": "initializer-control",
+      "pid": 23120,
+      "exitCode": 2,
+      "request": {
+        "baselineId": "R03Initializer-candidate-release",
+        "caseId": "IR-R03-02-initializer-control",
+        "dllPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/host/initializer-native-targets/native/initializer-control/Methods.dll",
+        "dllSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+        "runId": "2aae220cb0fb4422a6cc98cdeb0f18b3",
+        "schemaVersion": 1,
+        "stimulus": "initializer-control"
+      },
+      "requestSha256": "86a389bcb2b32086d11508b2320756ac48d4a13c362dff1eabb53159f061579f",
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/commands/0017/command.json",
+      "verificationSha256": "7581e9b92ab24b97ab7b5e2a32ae2771123d9c5173ac55532f178ddda031d823",
+      "strictRawBytes": 0,
+      "semanticVerification": "NotRun_CommandFailed",
+      "traceSha256": "14f6d5e2f7e168a72d28cd278f64707e5dd0178d7a08c02acad94714f83e215b",
+      "traceEvents": 25,
+      "recoverySha256": "72ca654ebd82ac3f6eb766663684ec5a9559fe6b6b26b9da7ccabfebdb540628",
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 9,
+        "state": "FailedAfterCommit",
+        "published": true,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 19,
+        "reason": "Methods: The type initializer for '<Module>' threw an exception. ---> Unable to load DLL '__Internal'. Tried the load the following dynamic libraries: Unable to load dynamic library '__Internal' because of 'Failed to open the requested dynamic library (0x06000000) dlerror() = dlopen(__Internal, 0x0005): tried: '__Internal' (no such file), '/System/Volumes/Preboot/Cryptexes/OS__Internal' (no such file), '/usr/lib/__Internal' (no such file, not in dyld cache), '__Internal' (no such file)",
+        "retainedBytes": 2560,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/players/IR-R03-02-initializer-control/Player.log",
+      "logSha256": "03c5ae7e38e88f75a00a8e16c00905f8f81708e134f57f309fc641155962f6ab"
+    },
+    {
+      "case": "initializer-failure",
+      "pid": 23133,
+      "exitCode": 2,
+      "request": {
+        "baselineId": "R03Initializer-candidate-release",
+        "caseId": "IR-R03-02-initializer-failure",
+        "dllPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/host/initializer-native-targets/native/initializer-failure/Methods.dll",
+        "dllSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+        "runId": "fdb2fa0dbde4439c963ee14466a1b5aa",
+        "schemaVersion": 1,
+        "stimulus": "initializer-failure"
+      },
+      "requestSha256": "b45cac8f07e9cb577ae7db9464f1a3272dfda3e889c84212bd498e0409715236",
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/commands/0018/command.json",
+      "verificationSha256": "cc3d948a08d36a25be6ac8c5f350d89f887c7b9b479ec1b84fcd3e25b1a5d1d2",
+      "strictRawBytes": 0,
+      "semanticVerification": "NotRun_CommandFailed",
+      "traceSha256": "8ada227f5ee49a05496998db52acde4958af94154237780498793cd41031ace5",
+      "traceEvents": 27,
+      "recoverySha256": "6b23bcfbe50cd0b339867008a2d5a86c8a44ec9e99121621e9f4fb2cc70389bb",
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 9,
+        "state": "FailedAfterCommit",
+        "published": true,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 19,
+        "reason": "Methods: The type initializer for '<Module>' threw an exception. ---> Unable to load DLL '__Internal'. Tried the load the following dynamic libraries: Unable to load dynamic library '__Internal' because of 'Failed to open the requested dynamic library (0x06000000) dlerror() = dlopen(__Internal, 0x0005): tried: '__Internal' (no such file), '/System/Volumes/Preboot/Cryptexes/OS__Internal' (no such file), '/usr/lib/__Internal' (no such file, not in dyld cache), '__Internal' (no such file)",
+        "retainedBytes": 2560,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "logPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/players/IR-R03-02-initializer-failure/Player.log",
+      "logSha256": "272a633e5b8c55c050643d8fdd1d20d3a868af40c94036aae91b7494ab15f99b"
+    }
+  ],
+  "findings": [
+    {
+      "id": "IR-LOCAL-R03-INITIALIZER-05-INTERNAL-IMPORT-01",
+      "symptom": "Both real Players exit2 with empty strict V1; source/PID/fixture-bound native recovery records original Module initializer DllNotFound failure for __Internal before callback entry.",
+      "reproduction": "Use exact db232 source tuple and original requests/commands0017 and0018 captured in this checkpoint. They were executed once; do not replay consumed05. One ON/Release Unity2022.3.62f2 arm64 build, control and failure fresh processes.",
+      "evidenceExcerpts": [
+        "Methods: The type initializer for '<Module>' threw an exception. ---> Unable to load DLL '__Internal'. Tried the load the following dynamic libraries: Unable to load dynamic library '__Internal' because of 'Failed to open the requested dynamic library (0x06000000) dlerror() = dlopen(__Internal, 0x0005): tried: '__Internal' (no such file), '/System/Volumes/Preboot/Cryptexes/OS__Internal' (no such file), '/usr/lib/__Internal' (no such file, not in dyld cache), '__Internal' (no such file)",
+        "Methods: The type initializer for '<Module>' threw an exception. ---> Unable to load DLL '__Internal'. Tried the load the following dynamic libraries: Unable to load dynamic library '__Internal' because of 'Failed to open the requested dynamic library (0x06000000) dlerror() = dlopen(__Internal, 0x0005): tried: '__Internal' (no such file), '/System/Volumes/Preboot/Cryptexes/OS__Internal' (no such file), '/usr/lib/__Internal' (no such file, not in dyld cache), '__Internal' (no such file)"
+      ],
+      "mostLikelyRootCause": "Fixture emitter creates ModuleRef __Internal. Interpreter TransformContext resolves PInvoke through PlatformInvoke::Resolve. Current PlatformInvoke.cpp special-cases only __InternalDynamic for a null-name current-process dynamic handle; __Internal instead goes to named library loading. Actual recovery records dlopen(__Internal) lookup failure. Exported OnPrepared exists in GameAssembly.dylib, but dynamic import did not reach the callback. This is a producer/VM import-resolution contract mismatch, not evidence of a missing native export.",
+      "scope": "Control0/6 and intended failure-after-authenticated-preparation are both unsatisfied. The failure19/9 originates from loading the native callback library, not the intended post-preparation sentinel. Physical field/mask/cardinality and first-recovery/runtime acceptance remain unproved.",
+      "recommendedDirection": "Primary must reconcile the interpreted fixture callback import with the platform current-process symbol-resolution contract. Decide explicitly whether to fix fixture import authority or runtime handling; retain full fixture identities and strict callback/field/canary/control/terminal guards. A __InternalDynamic branch is source-supported but is NOT empirically verified by this batch and must not be called a proven fix. Publish new source pins/fixture bindings if changed, focused negative/positive real-VM coverage and fresh one-use Local authority.",
+      "remainingUncertainty": "Neither the alternative import module nor any correction was executed. Later preparation or intended-sentinel failures may remain after import repair. Native recovery is bounded source-only diagnostic evidence, not complete VM/nativeV2 authentication.",
+      "validationRequired": "Fresh source-matched Unity build and two independent Players with successful real native callback/field3/mask15/one callback proof, control0/6 and intended post-preparation failure19/9, complete strict V1, source/PID/request/fixture joins and bounded recovery diagnostics. Preserve generic seal and host custody. No replay of05."
+    }
+  ],
+  "exportCheck": {
+    "command": [
+      "/usr/bin/nm",
+      "-gU",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-05/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib"
+    ],
+    "startUtc": "2026-11-06T13:36:02.780564+00:00",
+    "endUtc": "2026-11-06T13:36:03.030256+00:00",
+    "exitCode": 0,
+    "imageSha256": "dda883619394fdf288f4bf6417ae075319f6fcb53d2c2e6082a9fca3448ecb3f",
+    "stdoutSha256": "384e92ce6d4601535d4465af7a3747ac5a42d4287fb15b45cfa3ec8b303ef4e3",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "symbols": [
+      "00000000000f5298 T _R03_IRW_OnPrepared",
+      "00000000000f5c6c T _R03_IRW_Open",
+      "00000000000f58a0 T _R03_IRW_ReadPrepared",
+      "00000000000f65fc T _R03_IRW_Seal",
+      "00000000000f57e4 T _R03_IRW_Trace"
+    ],
+    "scope": "Static export existence only; no new Player launch"
+  },
+  "retry": false,
+  "sourceEdited": false,
+  "runtimeAcceptance": false,
+  "R03Accepted": false
+}
