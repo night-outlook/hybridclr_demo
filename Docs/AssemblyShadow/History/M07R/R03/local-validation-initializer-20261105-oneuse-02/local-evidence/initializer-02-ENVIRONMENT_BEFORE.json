@@ -1,0 +1,144 @@
+{
+  "time": "2026-11-06T03:14:44.659841+00:00",
+  "commands": [
+    {
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "--version"
+      ],
+      "start": "2026-11-06T03:14:43.953825+00:00",
+      "end": "2026-11-06T03:14:44.228791+00:00",
+      "exit": 0,
+      "stdout": "8.0.318\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "--list-sdks"
+      ],
+      "start": "2026-11-06T03:14:44.228822+00:00",
+      "end": "2026-11-06T03:14:44.232949+00:00",
+      "exit": 0,
+      "stdout": "8.0.318 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/sdk]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "--list-runtimes"
+      ],
+      "start": "2026-11-06T03:14:44.232970+00:00",
+      "end": "2026-11-06T03:14:44.235960+00:00",
+      "exit": 0,
+      "stdout": "Microsoft.AspNetCore.App 8.0.21 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/shared/Microsoft.AspNetCore.App]\nMicrosoft.NETCore.App 8.0.21 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/shared/Microsoft.NETCore.App]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+        "--info"
+      ],
+      "start": "2026-11-06T03:14:44.235975+00:00",
+      "end": "2026-11-06T03:14:44.353184+00:00",
+      "exit": 0,
+      "stdout": ".NET SDK:\n Version:           8.0.318\n Commit:            e7c684c866\n Workload version:  8.0.300-manifests.c414f008\n MSBuild version:   17.10.46+aa888d321\n\nRuntime Environment:\n OS Name:     Mac OS X\n OS Version:  26.5\n OS Platform: Darwin\n RID:         osx-arm64\n Base Path:   /Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/sdk/8.0.318/\n\n.NET workloads installed:\nThere are no installed workloads to display.\n\nHost:\n  Version:      8.0.21\n  Architecture: arm64\n  Commit:       362ab6669d\n\n.NET SDKs installed:\n  8.0.318 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/sdk]\n\n.NET runtimes installed:\n  Microsoft.AspNetCore.App 8.0.21 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/shared/Microsoft.AspNetCore.App]\n  Microsoft.NETCore.App 8.0.21 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/shared/Microsoft.NETCore.App]\n\nOther architectures found:\n  None\n\nEnvironment variables:\n  Not set\n\nglobal.json file:\n  Not found\n\nLearn more:\n  https://aka.ms/dotnet/info\n\nDownload .NET:\n  https://aka.ms/dotnet/download\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "clang++",
+        "--version"
+      ],
+      "start": "2026-11-06T03:14:44.353209+00:00",
+      "end": "2026-11-06T03:14:44.584109+00:00",
+      "exit": 0,
+      "stdout": "Apple clang version 21.0.0 (clang-2100.1.1.101)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "lipo",
+        "-archs",
+        "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity"
+      ],
+      "start": "2026-11-06T03:14:44.584131+00:00",
+      "end": "2026-11-06T03:14:44.602537+00:00",
+      "exit": 0,
+      "stdout": "arm64\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "--version"
+      ],
+      "start": "2026-11-06T03:14:44.602556+00:00",
+      "end": "2026-11-06T03:14:44.612273+00:00",
+      "exit": 0,
+      "stdout": "Python 3.14.6\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "--version"
+      ],
+      "start": "2026-11-06T03:14:44.612294+00:00",
+      "end": "2026-11-06T03:14:44.621758+00:00",
+      "exit": 0,
+      "stdout": "git version 2.50.1 (Apple Git-155)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/bin/df",
+        "-P",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation"
+      ],
+      "start": "2026-11-06T03:14:44.621780+00:00",
+      "end": "2026-11-06T03:14:44.624698+00:00",
+      "exit": 0,
+      "stdout": "Filesystem   512-blocks      Used Available Capacity  Mounted on\n/dev/disk3s1  965595304 859869888  60755016    94%    /System/Volumes/Data\n",
+      "stderr": ""
+    }
+  ],
+  "PATH": "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk:/Applications/ChatGPT.app/Contents/Resources/codex-cli/codex-path:/Users/ah/.local/bin:/opt/homebrew/opt/mongodb-community@4.2/bin:/Users/ah/.asdf/shims:/Users/ah/.asdf/shims:/Library/Frameworks/Python.framework/Versions/3.14/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/opt/homebrew/bin:/Users/ah/.codex/tmp/arg0-macos/codex-arg0teYXYa:/Applications/ChatGPT.app/Contents/Resources/codex-cli/codex-path:/Users/ah/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ah/.unity/bin:/Users/ah/.local/bin:/opt/homebrew/opt/mongodb-community@4.2/bin:/Users/ah/.asdf/shims:/Library/Frameworks/Python.framework/Versions/3.14/bin:/Users/ah/Library/Application Support/JetBrains/Toolbox/scripts:/Users/ah/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources:/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS:/Users/ah/Library/Application Support/JetBrains/Toolbox/scripts",
+  "processOnlyPATH": true,
+  "TMPDIR": "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/",
+  "CXX": null,
+  "dotnet": "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+  "dotnetSha256": "f0b00592390ff002b5a834296d935bf23a144116d579795e26f945bb13839d8f",
+  "Unity2022": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+  "unitySha256": "35721b35221875b2d170160f7fdd661afff7458b3386f029124f30e1ba2b862c",
+  "volume": {
+    "parent": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+    "resolvedParent": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+    "device": 16777230,
+    "df": {
+      "argv": [
+        "/bin/df",
+        "-P",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation"
+      ],
+      "start": "2026-11-06T03:14:44.621780+00:00",
+      "end": "2026-11-06T03:14:44.624698+00:00",
+      "exit": 0,
+      "stdout": "Filesystem   512-blocks      Used Available Capacity  Mounted on\n/dev/disk3s1  965595304 859869888  60755016    94%    /System/Volumes/Data\n",
+      "stderr": ""
+    }
+  },
+  "freeBytes": 31106568192,
+  "conflictingProcesses": [],
+  "mountCommand": {
+    "argv": [
+      "/sbin/mount"
+    ],
+    "exit": 0,
+    "stdout": "/dev/disk3s7s1 on / (apfs, sealed, local, read-only, journaled)\ndevfs on /dev (devfs, local, nobrowse)\n/dev/disk3s6 on /System/Volumes/VM (apfs, local, noexec, journaled, noatime, nobrowse)\n/dev/disk3s2 on /System/Volumes/Preboot (apfs, local, journaled, nobrowse)\n/dev/disk3s4 on /System/Volumes/Update (apfs, local, journaled, nobrowse)\n/dev/disk1s2 on /System/Volumes/xarts (apfs, local, noexec, journaled, noatime, nobrowse)\n/dev/disk1s1 on /System/Volumes/iSCPreboot (apfs, local, journaled, nobrowse)\n/dev/disk1s3 on /System/Volumes/Hardware (apfs, local, journaled, nobrowse)\n/dev/disk3s1 on /System/Volumes/Data (apfs, local, journaled, nobrowse, protect, root data)\n/dev/disk3s5 on /Volumes/Data (apfs, local, journaled, protect)\nmap auto_home on /System/Volumes/Data/home (autofs, automounted, nobrowse)\n",
+    "stderr": ""
+  },
+  "UnityLaunches": 0,
+  "PlayersLaunched": 0,
+  "installationOrSourceChanges": false
+}

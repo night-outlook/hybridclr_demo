@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03IRTerminalProducerFixtures",
+  "result": "GeneratedAndIlVerified_NotNativeValidated",
+  "assembly": "Methods",
+  "baseline": {
+    "path": "baseline/Methods.dll",
+    "sha256": "89b089d418052978dd0faa816f827fe84c6af634101ffcd819be4b6920798c9e",
+    "size": 2048,
+    "authority": "NewDeterministicHostFixture_NotOriginalS"
+  },
+  "instanceField": "R03.Node.stable",
+  "genericMethod": "R03.Node.GenericKeep\u003CT\u003E",
+  "preparationMethod": "R03.TerminalWitness.Prepare",
+  "expectedPreparedField": 3,
+  "expectedMethodReturn": 42,
+  "initializerSentinel": "R03IR.InitializerFailure.AfterPublication.V1",
+  "files": [
+    {
+      "path": "captured-generic/Methods.dll",
+      "kind": "captured-generic",
+      "sha256": "c7e4ddd3da14207ad680e9c0f60458f967661202a9cbf6a383ba06289ec11aab",
+      "size": 2560,
+      "mvid": "d8f7bafb-421a-2979-4e5a-1b290117a32a",
+      "hasModuleInitializer": false,
+      "initializerThrows": false,
+      "emittedIlVerified": true,
+      "layoutEditorAdmission": "PassedNeedsNativeProof"
+    },
+    {
+      "path": "initializer-failure/Methods.dll",
+      "kind": "initializer-failure",
+      "sha256": "38079fd040fde1ae688d847cec37bed14d51976372b130b60db9629e2e09ad22",
+      "size": 2560,
+      "mvid": "6b49ace8-8124-035b-1f91-101baf3c4549",
+      "hasModuleInitializer": true,
+      "initializerThrows": true,
+      "emittedIlVerified": true,
+      "layoutEditorAdmission": "PassedNeedsNativeProof"
+    },
+    {
+      "path": "initializer-control/Methods.dll",
+      "kind": "initializer-control",
+      "sha256": "f1fea7712a76eee7818820f1bf57b0e1f66b1241105ec944da26099ef5e838cf",
+      "size": 2560,
+      "mvid": "ec36cd60-3b10-d056-0d6a-f8b590e9aafb",
+      "hasModuleInitializer": true,
+      "initializerThrows": false,
+      "emittedIlVerified": true,
+      "layoutEditorAdmission": "PassedNeedsNativeProof"
+    }
+  ],
+  "capturedBaselineArgumentExecuted": false,
+  "commitInitializerExecuted": false,
+  "nativeObserverIntegrated": false,
+  "playerExecution": "NotRun",
+  "runtimeAcceptance": false,
+  "originalSFixturesModified": false,
+  "oldIrTargetModified": false
+}
+{"schemaVersion":1,"kind":"R03IRInitializerNativeTargetFixturesV1","result":"GeneratedAndIlVerified_NotNativeValidated","assembly":"Methods","inputBaselineSha256":"89b089d418052978dd0faa816f827fe84c6af634101ffcd819be4b6920798c9e","targets":[{"path":"native/initializer-control/Methods.dll","kind":"initializer-control","size":2560,"sha256":"f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8","mvid":"c8dff3d3-01e2-4b9f-0969-87c69d2b9e73","originalClrSha256":"f1fea7712a76eee7818820f1bf57b0e1f66b1241105ec944da26099ef5e838cf","expectedNativeCallback":"R03_IRW_OnPrepared","expectedPreparedField":3,"callbackBeforeInitializerOutcome":true,"observedInUnity":false,"layoutEditorAdmission":"PassedNeedsNativeProof"},{"path":"native/initializer-failure/Methods.dll","kind":"initializer-failure","size":2560,"sha256":"1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d","mvid":"3ec341b2-04be-2d14-1904-fac3f8a6a6c4","originalClrSha256":"38079fd040fde1ae688d847cec37bed14d51976372b130b60db9629e2e09ad22","expectedNativeCallback":"R03_IRW_OnPrepared","expectedPreparedField":3,"callbackBeforeInitializerOutcome":true,"observedInUnity":false,"layoutEditorAdmission":"PassedNeedsNativeProof"}],"expectsNativeProbe":"R03_IRW_OnPrepared","originalSInputReplaced":false,"existingClrFixtureRegeneratedAsAuthority":false,"originalFifteenModified":false,"originalKRawModified":false,"runtimeAcceptance":false,"R03Accepted":false,"H2Passed":false}

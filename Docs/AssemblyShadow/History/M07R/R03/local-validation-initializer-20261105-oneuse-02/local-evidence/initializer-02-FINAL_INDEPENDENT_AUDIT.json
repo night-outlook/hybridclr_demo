@@ -1,0 +1,1746 @@
+{
+  "kind": "IndependentInitializer02EvidenceAudit",
+  "start": "2026-11-06T03:21:39.051124+00:00",
+  "end": "2026-11-06T03:21:39.164915+00:00",
+  "result": "PassedReceiptAudit_OriginalFailedProductSealRetained",
+  "sourcePins": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_demo": "7da27a486b529cdebf73100b5ce4c332a1bb7e86",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340",
+    "phase": "candidate",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1
+  },
+  "producerResult": "ReturnRequired",
+  "cellCounts": {
+    "Passed": 13,
+    "Failed": 2
+  },
+  "cellStates": {
+    "entry-authority": "Passed",
+    "initializer-host-contracts": "Passed",
+    "original-s-archive": "Passed",
+    "original-s-process-joins": "Passed",
+    "audit_s_generated_material": "Passed",
+    "audit_s_binary_linkage": "Passed",
+    "real-dll-fixtures": "Passed",
+    "ir-generator-build": "Passed",
+    "initializer-native-targets": "Passed",
+    "prepare-release": "Passed",
+    "prepare-initializer": "Passed",
+    "build-initializer": "Passed",
+    "player-initializer-control": "Failed",
+    "player-initializer-failure": "Failed",
+    "final-authority": "Passed"
+  },
+  "firstFailedCell": {
+    "dependencies": [
+      "build-initializer"
+    ],
+    "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0014/command.json",
+    "id": "player-initializer-control",
+    "result": "Failed"
+  },
+  "sealStatus": "Failed",
+  "archiveSha256": null,
+  "indexSha256": null,
+  "indexedFiles": null,
+  "archiveMembers": null,
+  "sealFailure": {
+    "error": "Unexpected directory symlink: native-host-diagnostics/historical-eight/native-v2-file-transaction/evidence/sanitized/case-0168/alias",
+    "result": "ReturnRequired",
+    "aliasPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/native-host-diagnostics/historical-eight/native-v2-file-transaction/evidence/sanitized/case-0168/alias",
+    "aliasTarget": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/native-host-diagnostics/historical-eight/native-v2-file-transaction/evidence/sanitized/case-0168/transaction",
+    "noIndexArchiveReceipt": true
+  },
+  "commands": [
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0001/command.json",
+      "receiptSha256": "3e947694516a0b32f235a7c4e42489851ad935b2dcbc8fb95ce20e8750c07f6d",
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py",
+        "--workspace",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+        "--expected-demo",
+        "7da27a486b529cdebf73100b5ce4c332a1bb7e86",
+        "--expected-native",
+        "41764ae1eeefb33b05966e7f7676e52aae39c340",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/native-host-diagnostics"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "endedUtcEpoch": 1793935108.8799639,
+      "exitCode": 0,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 5906,
+      "pid": 5906,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1793935025.436705,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "c99ccff3164a281a2d37c76e61207f23b9a1435d1b5e4e58a5bb7865b92ee09b",
+      "timeout": false
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0002/command.json",
+      "receiptSha256": "bbd600d6f0f9af6ce2c4c5dbfa601180b8766d97f64a194a4de12394bf45ce53",
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+        "-p",
+        "test_initializer_observer_native.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "endedUtcEpoch": 1793935109.9977422,
+      "exitCode": 0,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 6691,
+      "pid": 6691,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1793935108.882037,
+      "stderrSha256": "33f7740120d7d2d7b2d1fea44a12ae75306e09f7a33ac9fcea3d0cc4e0874826",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0003/command.json",
+      "receiptSha256": "91e97704060029e3f02cedb09cc6327997b514e3e1fa0cc100aa275c84e78bd1",
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics",
+        "-p",
+        "test_initializer_writer_host.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "endedUtcEpoch": 1793935110.8786938,
+      "exitCode": 0,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 6702,
+      "pid": 6702,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1793935109.998312,
+      "stderrSha256": "321d492c3ee0458c89ad00439c2fb24ccbeb3b24c7253ce04703733f15f41719",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0004/command.json",
+      "receiptSha256": "1db0ee2685be99cd7fa4aebbbff32a9add269572c45efb7686dd44a687feba4e",
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR",
+        "-p",
+        "test_initializer_observation.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "endedUtcEpoch": 1793935110.965445,
+      "exitCode": 0,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 6715,
+      "pid": 6715,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1793935110.87951,
+      "stderrSha256": "910d708e198ce81852d67678a06551b895e2de2b8160256390b9619dbba7bf6e",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0005/command.json",
+      "receiptSha256": "d00b9aec1cc59ea92012183e29c476f56c6b062313b54444b66d40c63a98d439",
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR",
+        "-p",
+        "test_initializer_source_preparation.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "endedUtcEpoch": 1793935111.0529332,
+      "exitCode": 0,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 6716,
+      "pid": 6716,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1793935110.96601,
+      "stderrSha256": "8ffad2c82dd9d283d07094cfb867f421e5cf46725578ab7e075e5af73eab5104",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0006/command.json",
+      "receiptSha256": "fb4ee862a2f8c8461762db14e347fbd029e2c9d6b8832b7032aef7638ea2ec88",
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR",
+        "-p",
+        "test_initializer_local_orchestration.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "endedUtcEpoch": 1793935111.360383,
+      "exitCode": 0,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 6717,
+      "pid": 6717,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1793935111.053468,
+      "stderrSha256": "3efab006e8cba65652c6a67e4b87b757909503a86c67c12577c5d751ed5127cc",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0007/command.json",
+      "receiptSha256": "4e373a7cae648dc843af5e0da3c50d3005134c57970805309bacb81f594c261b",
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/audit_s_provenance.py",
+        "--repo",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/original-s-provenance"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "endedUtcEpoch": 1793935124.224944,
+      "exitCode": 0,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 6718,
+      "pid": 6718,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1793935111.3613281,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "d7b09cc04b495a46b758d4356352b194eefd5357e188cacc31ff7de1704457d0",
+      "timeout": false
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0008/command.json",
+      "receiptSha256": "806f05bb057d77ea42f6e20ea705050d66b728827a718c03ec27522cddad190e",
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/audit_s_process_joins.py",
+        "--original",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+        "--audit",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/original-s-provenance",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/original-s-process-joins"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "endedUtcEpoch": 1793935124.962894,
+      "exitCode": 0,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 6723,
+      "pid": 6723,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1793935124.2260559,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "d0dd49261427d024f19f9d75d3482686d364c738597833eb61834ded7c3de0d0",
+      "timeout": false
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0009/command.json",
+      "receiptSha256": "d743889009c157ec1fd362c43f225ef84c2082d87a5b756c7b603e6f8c511adb",
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/audit_s_generated_material.py",
+        "--original",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/original-s-generated_material.json"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "endedUtcEpoch": 1793935126.494381,
+      "exitCode": 0,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 6727,
+      "pid": 6727,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1793935124.9638221,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "20643c732beb52d0f583cba87fc39dd0bf4db67f9a84ec4279c24bab6b60562c",
+      "timeout": false
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0010/command.json",
+      "receiptSha256": "f02d9654aa39f8c87f647b87268315dd0509b279cb00c5a1ce1272982e26645f",
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/audit_s_binary_linkage.py",
+        "--original",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/original-s-binary_linkage.json"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "endedUtcEpoch": 1793935128.0384881,
+      "exitCode": 0,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 6736,
+      "pid": 6736,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1793935126.4951859,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "a4bd1a2b1d5d14cfb2d3eb98dde969e9aa9519c292e6680293ebcfb0d9b61e29",
+      "timeout": false
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0011/command.json",
+      "receiptSha256": "27c6b5fa20532aa590f6ad3ee23b9334d6e378ab9d9981f5699fc7402596a6c0",
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "dotnet",
+        "build",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj",
+        "-c",
+        "Release",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/bin/player-fixtures",
+        "-p:PackageRoot=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+        "-p:BaseIntermediateOutputPath=/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/obj/player-fixtures/",
+        "--disable-build-servers",
+        "-p:UseSharedCompilation=false",
+        "-nodeReuse:false"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "endedUtcEpoch": 1793935129.971689,
+      "exitCode": 0,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 6801,
+      "pid": 6801,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1793935128.4896462,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "bd25dcac60459b2154770c19689d72a32a8893bfe6532575885d262ca58e7d49",
+      "timeout": false
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0012/command.json",
+      "receiptSha256": "a3e8331bf735c4d584c55c13623f0478ab01f316f7c0623d91d00d476e9ea556",
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "dotnet",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/bin/player-fixtures/PlayerFixtures.dll",
+        "--ir-terminal-native-targets",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/host/initializer-native-targets"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "endedUtcEpoch": 1793935130.1224709,
+      "exitCode": 0,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 6807,
+      "pid": 6807,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1793935129.972662,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "d8b5a51c78fb09fc9311cf1e6f7b87e7e77f8d3e34221ae10f32d29095bbbacf",
+      "timeout": false
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0013/command.json",
+      "receiptSha256": "144d7c08f3cfced7eaf3e5e165f192c1777075f7b4ac38f2af8751c7d10a99b7",
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py",
+        "--unity",
+        "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+        "--receipt",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0013/unity-completion.json",
+        "--",
+        "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+        "-batchmode",
+        "-nographics",
+        "-quit",
+        "-buildTarget",
+        "osx",
+        "-projectPath",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release",
+        "-executeMethod",
+        "AssemblyShadow.R03.Editor.R03Build.Build",
+        "-r03Config",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/config.json",
+        "-logFile",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/Editor.log"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "endedUtcEpoch": 1793935189.9962308,
+      "exitCode": 0,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 6808,
+      "pid": 6808,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1793935130.1297019,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0014/command.json",
+      "receiptSha256": "30669711fb793661c2fec7e147bdfe554f907fe8fa15e9abcfbef17c162cb137",
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+        "-batchmode",
+        "-nographics",
+        "-r03IrInitializerRequest",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-control/request.json",
+        "-r03IrInitializerOutput",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-control/raw.json",
+        "-r03IrInitializerRunId",
+        "1a6fcc49b20a423185d5e990a3e8e266",
+        "-logFile",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-control/Player.log"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "endedUtcEpoch": 1793935191.539241,
+      "exitCode": 2,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 8065,
+      "pid": 8065,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1793935190.347172,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+      "timeout": false
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0015/command.json",
+      "receiptSha256": "abf4aba232611e72edc3020398b180d85c1746e9c867d99830927ce24c05b542",
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+        "-batchmode",
+        "-nographics",
+        "-r03IrInitializerRequest",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-failure/request.json",
+        "-r03IrInitializerOutput",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-failure/raw.json",
+        "-r03IrInitializerRunId",
+        "c36f23e9f9ff426d8d6e5e529a409375",
+        "-logFile",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-failure/Player.log"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "endedUtcEpoch": 1793935191.930472,
+      "exitCode": 2,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 8067,
+      "pid": 8067,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1793935191.734611,
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+      "timeout": false
+    }
+  ],
+  "actualNativeHostComponents": 10,
+  "freshOwnerHostSuites": [
+    {
+      "name": "native-owner-method-classifier",
+      "tests": 2,
+      "pid": 6667,
+      "end": "2026-11-06T03:18:26.119227+00:00"
+    },
+    {
+      "name": "native-owner-full-tu",
+      "tests": 3,
+      "pid": 6672,
+      "end": "2026-11-06T03:18:28.818128+00:00"
+    }
+  ],
+  "initializerHostTests": [
+    {
+      "name": "test_initializer_observer_native.py",
+      "tests": 1,
+      "pid": 6691,
+      "receiptSha256": "bbd600d6f0f9af6ce2c4c5dbfa601180b8766d97f64a194a4de12394bf45ce53"
+    },
+    {
+      "name": "test_initializer_writer_host.py",
+      "tests": 4,
+      "pid": 6702,
+      "receiptSha256": "91e97704060029e3f02cedb09cc6327997b514e3e1fa0cc100aa275c84e78bd1"
+    },
+    {
+      "name": "test_initializer_observation.py",
+      "tests": 8,
+      "pid": 6715,
+      "receiptSha256": "1db0ee2685be99cd7fa4aebbbff32a9add269572c45efb7686dd44a687feba4e"
+    },
+    {
+      "name": "test_initializer_source_preparation.py",
+      "tests": 12,
+      "pid": 6716,
+      "receiptSha256": "d00b9aec1cc59ea92012183e29c476f56c6b062313b54444b66d40c63a98d439"
+    },
+    {
+      "name": "test_initializer_local_orchestration.py",
+      "tests": 4,
+      "pid": 6717,
+      "receiptSha256": "fb4ee862a2f8c8461762db14e347fbd029e2c9d6b8832b7032aef7638ea2ec88"
+    }
+  ],
+  "originalSArchiveMembers": 15713,
+  "originalSHistoricalCells": 90,
+  "originalSHistoricalPlayerJoins": 59,
+  "originalSIndependentAdditionalAudits": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/original-s-generated_material.json",
+      "sha256": "4fa3ac1e5f451f37f8046bad5cc27601c3fb6d7fc9c5a682e72fa661c47c93e0",
+      "report": {
+        "H2Passed": false,
+        "R03Accepted": false,
+        "ReadyForHumanReviewGate": false,
+        "declarationAndInitializerRowCardinalitiesChecked": true,
+        "fullCxxSemanticInspection": false,
+        "generatedCppBinaryLinkage": "NotProven",
+        "independentReviewer": false,
+        "kind": "R03OriginalSGeneratedMaterialReadOnlyScan",
+        "onOffSourceBytesIdentical": true,
+        "originalCaptureOmissionsFullReconciliation": "NotRun",
+        "originalIndexMembers": 15712,
+        "originalIndexSha256": "0685d23a40b581cc7d22abc543c7d9067e808a0f25fa0b3f2aea32966b22bd70",
+        "originalPublication": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+        "result": "PassedIdentityAndLexicalScanOnly",
+        "runtimeAcceptance": false,
+        "schemaVersion": 1,
+        "sourceOccurrences": [
+          {
+            "bytes": 11350766,
+            "generatedTable": {
+              "declaredRows": 48232,
+              "distinctInitializerLines": 48232,
+              "firstEntries": [
+                "NULL,",
+                "(Il2CppMethodPointer)&U3CU3Ec__cctor_m20E1E8BC89EF169FC9952BDAD4FE833B83B3CF03_gshared,",
+                "(Il2CppMethodPointer)&U3CU3Ec__ctor_mCB392FBC7ABEB610F0EA6AFDADCB30CD3AAF5330_gshared,",
+                "(Il2CppMethodPointer)&U3CU3Ec_U3C_cctorU3Eb__11_0_m0344F434C223B2985578FFF48ED85A6456875A95_gshared,"
+              ],
+              "fullSemanticCxxInspection": false,
+              "initializerRows": 48232,
+              "initializerTextSha256": "f6e749e2d91910aef2a855496efd722a165b66026c74f65788887ff31130047d",
+              "lastEntries": [
+                "(Il2CppMethodPointer)&TypeConstructorVisitor_Visit_TisVector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2_mA88A16DC097E207AD6CE15E89D3B94DBB01BDACE_gshared,",
+                "(Il2CppMethodPointer)&TypeConstructorVisitor_Visit_TisVector3Int_t65CB06F557251D18A37BD71F3655BA836A357376_m28D19B06528A4614AF9C3E29DC8274DE067868D8_gshared,",
+                "(Il2CppMethodPointer)&TypeConstructorVisitor_Visit_TisVector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3_m3CD9CD3C768BBCC83DD02B2C76300A03AF1B1AD6_gshared,",
+                "(Il2CppMethodPointer)&TypeConstructorVisitor_Visit_TisIl2CppFullySharedGenericAny_m8B414261A078E3FE7517FAF2F9E944969F6B73E2_gshared,"
+              ],
+              "linkageToCompiledObject": "NotProven",
+              "symbol": "g_Il2CppGenericMethodPointers",
+              "typeName": "Il2CppMethodPointer"
+            },
+            "gitBlob": "bf86c8ee7dffe81a23c0b21ccbdc37e7374d414c",
+            "lexicalScan": {
+              "compiledObjectBound": false,
+              "counts": {
+                "conditional": 3,
+                "externC": 48232,
+                "generic": 0,
+                "include": 2,
+                "invoker": 0,
+                "methodPointer": 48233
+              },
+              "lineFingerprints": {
+                "conditional": "646509c89f2d4b3db39ae478e5dd159a2d8da0189e4616667e6ec5acc5400cf1",
+                "externC": "399c2b3190195b1d3f06632723647a5522c4c052b5905cb884e2f3722feb2c87",
+                "generic": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "include": "1acb796f972d9ef9ea4a8f8b39b0ef7d8dec35e388e92cbe1c711e9f879ef890",
+                "invoker": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "methodPointer": "04104907fe689ebf03c5d7af58e9d36c1c9afe72a398bc95feebef5ac186dd21"
+              },
+              "lines": 96487,
+              "linkedPlayerBound": false,
+              "samples": {
+                "conditional": [
+                  {
+                    "line": 2,
+                    "lineSha256": "d3d68e4c267a8dad25f5d723b0a313e882211fe4d3cfcbe0845c0eaabf2c6e0e",
+                    "prefix": "#ifndef _MSC_VER"
+                  },
+                  {
+                    "line": 4,
+                    "lineSha256": "a95dbf91f6d6c3dc84eb44907afe37bdec7e3aa1cd0a07042249536df254415c",
+                    "prefix": "#else"
+                  },
+                  {
+                    "line": 6,
+                    "lineSha256": "9a349bbd1a21104f051e34b2c8a9e70cc7fbb50bc19a67781f2a140c386d9438",
+                    "prefix": "#endif"
+                  }
+                ],
+                "externC": [
+                  {
+                    "line": 21,
+                    "lineSha256": "280c01e3ec01ba6954189ba19ab14b0cb8ed4e3d686c874af10cbc905b267288",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec__cctor_m20E1E8BC89EF169FC9952BDAD4FE833B83B3CF03_gshared ();"
+                  },
+                  {
+                    "line": 22,
+                    "lineSha256": "db96c9046b7e4b29fc24a00db318ce9edf5e4dcff36d8be96c66950e23f4caed",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec__ctor_mCB392FBC7ABEB610F0EA6AFDADCB30CD3AAF5330_gshared ();"
+                  },
+                  {
+                    "line": 23,
+                    "lineSha256": "d164bcd2a3a4ad135db758663ab3681f2757d90cbb1fc6462b4f344e3f4ae66b",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec_U3C_cctorU3Eb__11_0_m0344F434C223B2985578FFF48ED85A6456875A95_gshared ();"
+                  },
+                  {
+                    "line": 24,
+                    "lineSha256": "0ae6e055137d8a2964db607d616ea555e1715c813cc87b8897d6299137bf79a7",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec__cctor_m398DCFB8D6595255273327462EF6C1A3D8CA0EE6_gshared ();"
+                  },
+                  {
+                    "line": 25,
+                    "lineSha256": "672af39c4f1bdb45b187ff4dde38fb199cac11226cba90d5a3f06848e116ac2f",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec__ctor_m340A11B59AD53F41B57169D48EFDA9356A26B8FB_gshared ();"
+                  },
+                  {
+                    "line": 26,
+                    "lineSha256": "863d7c362de8b5d926dc66027c98675b4442e1fcbeb5c352576c745be813f378",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec_U3C_cctorU3Eb__11_0_m159995A18228385FC31F68A4D43E2DCA02ABC09B_gshared ();"
+                  },
+                  {
+                    "line": 27,
+                    "lineSha256": "c90a66e299a88750f7be98c8691e85301f9286b51dd173e0026444f3985fc76d",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec__cctor_mDED9F85C63C8D0B6CF13B1611F51C2274BEDB3CA_gshared ();"
+                  },
+                  {
+                    "line": 28,
+                    "lineSha256": "b6cf8924be92850e30e1737104856db47f1b65d0a83b55e6ca9e4041c3bfa741",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec__ctor_m1198B3037BCF74F9109811BAADD6466664CD999A_gshared ();"
+                  }
+                ],
+                "generic": [],
+                "include": [
+                  {
+                    "line": 3,
+                    "lineSha256": "baac7e91a07d9ec015b5aa7e83220bc5c02fc25dba7fcf7e2b3899a51d8afc10",
+                    "prefix": "# include <alloca.h>"
+                  },
+                  {
+                    "line": 5,
+                    "lineSha256": "c26f86c03eb455191e7e4c1c9e27b05bab576eb047fe1ec17b087adb99bf2717",
+                    "prefix": "# include <malloc.h>"
+                  }
+                ],
+                "invoker": [],
+                "methodPointer": [
+                  {
+                    "line": 48252,
+                    "lineSha256": "ec04532978522829c9d0c95454b281767618ae352cd97bc09a5aed0d447dbc87",
+                    "prefix": "IL2CPP_EXTERN_C const Il2CppMethodPointer g_Il2CppGenericMethodPointers[];"
+                  },
+                  {
+                    "line": 48253,
+                    "lineSha256": "cdf66bf39c9c6be1a9d59bfc0978cd40d4319616b96cc4ded5ed8e267913b2b9",
+                    "prefix": "const Il2CppMethodPointer g_Il2CppGenericMethodPointers[48232] ="
+                  },
+                  {
+                    "line": 48256,
+                    "lineSha256": "ac30b8c6dcf0b64b6d12130c87ce40829a361facbb0eec81a67c6e0b1af5bc40",
+                    "prefix": "(Il2CppMethodPointer)&U3CU3Ec__cctor_m20E1E8BC89EF169FC9952BDAD4FE833B83B3CF03_gshared,"
+                  },
+                  {
+                    "line": 48257,
+                    "lineSha256": "3190039cbda0355f753e592c9464c4d2df7d559a17744460bdd56cebe3ada907",
+                    "prefix": "(Il2CppMethodPointer)&U3CU3Ec__ctor_mCB392FBC7ABEB610F0EA6AFDADCB30CD3AAF5330_gshared,"
+                  },
+                  {
+                    "line": 48258,
+                    "lineSha256": "257149973151d2d8a9ea4b428c1bad3b5925d0c2c26435ad8bdcc44b6e743fc4",
+                    "prefix": "(Il2CppMethodPointer)&U3CU3Ec_U3C_cctorU3Eb__11_0_m0344F434C223B2985578FFF48ED85A6456875A95_gshared,"
+                  },
+                  {
+                    "line": 48259,
+                    "lineSha256": "405b5a0428494d83cc51e60fce2076f8f488d4379e1c63ed0bb88601aaa18c72",
+                    "prefix": "(Il2CppMethodPointer)&U3CU3Ec__cctor_m398DCFB8D6595255273327462EF6C1A3D8CA0EE6_gshared,"
+                  },
+                  {
+                    "line": 48260,
+                    "lineSha256": "92ba17fb907fed4ddc3c039e45a1c4dc099a0444ccee1a131ecbf00de706ca70",
+                    "prefix": "(Il2CppMethodPointer)&U3CU3Ec__ctor_m340A11B59AD53F41B57169D48EFDA9356A26B8FB_gshared,"
+                  },
+                  {
+                    "line": 48261,
+                    "lineSha256": "2a2957164958e1c94a3adf94b93c7fc7ef1e99d2443e24a8dc6fc94d1c6b6ba6",
+                    "prefix": "(Il2CppMethodPointer)&U3CU3Ec_U3C_cctorU3Eb__11_0_m159995A18228385FC31F68A4D43E2DCA02ABC09B_gshared,"
+                  }
+                ]
+              },
+              "semanticCxxAstReviewed": false
+            },
+            "relativePath": "projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf-NativeOff_BackUpThisFolder_ButDontShipItWithYourGame/il2cppOutput/Il2CppGenericMethodPointerTable.c",
+            "role": "NativeOff",
+            "sha256": "197debac4e5ea493126785b48703f19d0b842caa1bab0ed83d19196d73ac59b6"
+          },
+          {
+            "bytes": 11350766,
+            "generatedTable": {
+              "declaredRows": 48232,
+              "distinctInitializerLines": 48232,
+              "firstEntries": [
+                "NULL,",
+                "(Il2CppMethodPointer)&U3CU3Ec__cctor_m20E1E8BC89EF169FC9952BDAD4FE833B83B3CF03_gshared,",
+                "(Il2CppMethodPointer)&U3CU3Ec__ctor_mCB392FBC7ABEB610F0EA6AFDADCB30CD3AAF5330_gshared,",
+                "(Il2CppMethodPointer)&U3CU3Ec_U3C_cctorU3Eb__11_0_m0344F434C223B2985578FFF48ED85A6456875A95_gshared,"
+              ],
+              "fullSemanticCxxInspection": false,
+              "initializerRows": 48232,
+              "initializerTextSha256": "f6e749e2d91910aef2a855496efd722a165b66026c74f65788887ff31130047d",
+              "lastEntries": [
+                "(Il2CppMethodPointer)&TypeConstructorVisitor_Visit_TisVector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2_mA88A16DC097E207AD6CE15E89D3B94DBB01BDACE_gshared,",
+                "(Il2CppMethodPointer)&TypeConstructorVisitor_Visit_TisVector3Int_t65CB06F557251D18A37BD71F3655BA836A357376_m28D19B06528A4614AF9C3E29DC8274DE067868D8_gshared,",
+                "(Il2CppMethodPointer)&TypeConstructorVisitor_Visit_TisVector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3_m3CD9CD3C768BBCC83DD02B2C76300A03AF1B1AD6_gshared,",
+                "(Il2CppMethodPointer)&TypeConstructorVisitor_Visit_TisIl2CppFullySharedGenericAny_m8B414261A078E3FE7517FAF2F9E944969F6B73E2_gshared,"
+              ],
+              "linkageToCompiledObject": "NotProven",
+              "symbol": "g_Il2CppGenericMethodPointers",
+              "typeName": "Il2CppMethodPointer"
+            },
+            "gitBlob": "bf86c8ee7dffe81a23c0b21ccbdc37e7374d414c",
+            "lexicalScan": {
+              "compiledObjectBound": false,
+              "counts": {
+                "conditional": 3,
+                "externC": 48232,
+                "generic": 0,
+                "include": 2,
+                "invoker": 0,
+                "methodPointer": 48233
+              },
+              "lineFingerprints": {
+                "conditional": "646509c89f2d4b3db39ae478e5dd159a2d8da0189e4616667e6ec5acc5400cf1",
+                "externC": "399c2b3190195b1d3f06632723647a5522c4c052b5905cb884e2f3722feb2c87",
+                "generic": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "include": "1acb796f972d9ef9ea4a8f8b39b0ef7d8dec35e388e92cbe1c711e9f879ef890",
+                "invoker": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "methodPointer": "04104907fe689ebf03c5d7af58e9d36c1c9afe72a398bc95feebef5ac186dd21"
+              },
+              "lines": 96487,
+              "linkedPlayerBound": false,
+              "samples": {
+                "conditional": [
+                  {
+                    "line": 2,
+                    "lineSha256": "d3d68e4c267a8dad25f5d723b0a313e882211fe4d3cfcbe0845c0eaabf2c6e0e",
+                    "prefix": "#ifndef _MSC_VER"
+                  },
+                  {
+                    "line": 4,
+                    "lineSha256": "a95dbf91f6d6c3dc84eb44907afe37bdec7e3aa1cd0a07042249536df254415c",
+                    "prefix": "#else"
+                  },
+                  {
+                    "line": 6,
+                    "lineSha256": "9a349bbd1a21104f051e34b2c8a9e70cc7fbb50bc19a67781f2a140c386d9438",
+                    "prefix": "#endif"
+                  }
+                ],
+                "externC": [
+                  {
+                    "line": 21,
+                    "lineSha256": "280c01e3ec01ba6954189ba19ab14b0cb8ed4e3d686c874af10cbc905b267288",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec__cctor_m20E1E8BC89EF169FC9952BDAD4FE833B83B3CF03_gshared ();"
+                  },
+                  {
+                    "line": 22,
+                    "lineSha256": "db96c9046b7e4b29fc24a00db318ce9edf5e4dcff36d8be96c66950e23f4caed",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec__ctor_mCB392FBC7ABEB610F0EA6AFDADCB30CD3AAF5330_gshared ();"
+                  },
+                  {
+                    "line": 23,
+                    "lineSha256": "d164bcd2a3a4ad135db758663ab3681f2757d90cbb1fc6462b4f344e3f4ae66b",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec_U3C_cctorU3Eb__11_0_m0344F434C223B2985578FFF48ED85A6456875A95_gshared ();"
+                  },
+                  {
+                    "line": 24,
+                    "lineSha256": "0ae6e055137d8a2964db607d616ea555e1715c813cc87b8897d6299137bf79a7",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec__cctor_m398DCFB8D6595255273327462EF6C1A3D8CA0EE6_gshared ();"
+                  },
+                  {
+                    "line": 25,
+                    "lineSha256": "672af39c4f1bdb45b187ff4dde38fb199cac11226cba90d5a3f06848e116ac2f",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec__ctor_m340A11B59AD53F41B57169D48EFDA9356A26B8FB_gshared ();"
+                  },
+                  {
+                    "line": 26,
+                    "lineSha256": "863d7c362de8b5d926dc66027c98675b4442e1fcbeb5c352576c745be813f378",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec_U3C_cctorU3Eb__11_0_m159995A18228385FC31F68A4D43E2DCA02ABC09B_gshared ();"
+                  },
+                  {
+                    "line": 27,
+                    "lineSha256": "c90a66e299a88750f7be98c8691e85301f9286b51dd173e0026444f3985fc76d",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec__cctor_mDED9F85C63C8D0B6CF13B1611F51C2274BEDB3CA_gshared ();"
+                  },
+                  {
+                    "line": 28,
+                    "lineSha256": "b6cf8924be92850e30e1737104856db47f1b65d0a83b55e6ca9e4041c3bfa741",
+                    "prefix": "IL2CPP_EXTERN_C void U3CU3Ec__ctor_m1198B3037BCF74F9109811BAADD6466664CD999A_gshared ();"
+                  }
+                ],
+                "generic": [],
+                "include": [
+                  {
+                    "line": 3,
+                    "lineSha256": "baac7e91a07d9ec015b5aa7e83220bc5c02fc25dba7fcf7e2b3899a51d8afc10",
+                    "prefix": "# include <alloca.h>"
+                  },
+                  {
+                    "line": 5,
+                    "lineSha256": "c26f86c03eb455191e7e4c1c9e27b05bab576eb047fe1ec17b087adb99bf2717",
+                    "prefix": "# include <malloc.h>"
+                  }
+                ],
+                "invoker": [],
+                "methodPointer": [
+                  {
+                    "line": 48252,
+                    "lineSha256": "ec04532978522829c9d0c95454b281767618ae352cd97bc09a5aed0d447dbc87",
+                    "prefix": "IL2CPP_EXTERN_C const Il2CppMethodPointer g_Il2CppGenericMethodPointers[];"
+                  },
+                  {
+                    "line": 48253,
+                    "lineSha256": "cdf66bf39c9c6be1a9d59bfc0978cd40d4319616b96cc4ded5ed8e267913b2b9",
+                    "prefix": "const Il2CppMethodPointer g_Il2CppGenericMethodPointers[48232] ="
+                  },
+                  {
+                    "line": 48256,
+                    "lineSha256": "ac30b8c6dcf0b64b6d12130c87ce40829a361facbb0eec81a67c6e0b1af5bc40",
+                    "prefix": "(Il2CppMethodPointer)&U3CU3Ec__cctor_m20E1E8BC89EF169FC9952BDAD4FE833B83B3CF03_gshared,"
+                  },
+                  {
+                    "line": 48257,
+                    "lineSha256": "3190039cbda0355f753e592c9464c4d2df7d559a17744460bdd56cebe3ada907",
+                    "prefix": "(Il2CppMethodPointer)&U3CU3Ec__ctor_mCB392FBC7ABEB610F0EA6AFDADCB30CD3AAF5330_gshared,"
+                  },
+                  {
+                    "line": 48258,
+                    "lineSha256": "257149973151d2d8a9ea4b428c1bad3b5925d0c2c26435ad8bdcc44b6e743fc4",
+                    "prefix": "(Il2CppMethodPointer)&U3CU3Ec_U3C_cctorU3Eb__11_0_m0344F434C223B2985578FFF48ED85A6456875A95_gshared,"
+                  },
+                  {
+                    "line": 48259,
+                    "lineSha256": "405b5a0428494d83cc51e60fce2076f8f488d4379e1c63ed0bb88601aaa18c72",
+                    "prefix": "(Il2CppMethodPointer)&U3CU3Ec__cctor_m398DCFB8D6595255273327462EF6C1A3D8CA0EE6_gshared,"
+                  },
+                  {
+                    "line": 48260,
+                    "lineSha256": "92ba17fb907fed4ddc3c039e45a1c4dc099a0444ccee1a131ecbf00de706ca70",
+                    "prefix": "(Il2CppMethodPointer)&U3CU3Ec__ctor_m340A11B59AD53F41B57169D48EFDA9356A26B8FB_gshared,"
+                  },
+                  {
+                    "line": 48261,
+                    "lineSha256": "2a2957164958e1c94a3adf94b93c7fc7ef1e99d2443e24a8dc6fc94d1c6b6ba6",
+                    "prefix": "(Il2CppMethodPointer)&U3CU3Ec_U3C_cctorU3Eb__11_0_m159995A18228385FC31F68A4D43E2DCA02ABC09B_gshared,"
+                  }
+                ]
+              },
+              "semanticCxxAstReviewed": false
+            },
+            "relativePath": "projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf_BackUpThisFolder_ButDontShipItWithYourGame/il2cppOutput/Il2CppGenericMethodPointerTable.c",
+            "role": "NativeOn",
+            "sha256": "197debac4e5ea493126785b48703f19d0b842caa1bab0ed83d19196d73ac59b6"
+          },
+          {
+            "bytes": 8465159,
+            "generatedTable": {
+              "declaredRows": 10198,
+              "distinctInitializerLines": 10198,
+              "firstEntries": [
+                "RuntimeInvoker_TrueByte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_RuntimeObject_RuntimeObject_VoidU2A_t104EAEFBD2D237A8C29618913DA9B4D99355E965_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_VoidU2A_t104EAEFBD2D237A8C29618913DA9B4D99355E965,",
+                "RuntimeInvoker_TrueByte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_RuntimeObject_RuntimeObject_Color_tD001788D726C3A7F1379BEED0260B9591F440C1F_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_VoidU2A_t104EAEFBD2D237A8C29618913DA9B4D99355E965,",
+                "RuntimeInvoker_TrueRuntimeObject_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_RuntimeObject,",
+                "RuntimeInvoker_TrueByte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_RuntimeObject_RuntimeObject_Color_tD001788D726C3A7F1379BEED0260B9591F440C1F_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_VoidU2A_t104EAEFBD2D237A8C29618913DA9B4D99355E965,"
+              ],
+              "fullSemanticCxxInspection": false,
+              "initializerRows": 10198,
+              "initializerTextSha256": "f72101069eee8dc963d71556f7ca432c5341e338638d97fd350ac0844dc29c14",
+              "lastEntries": [
+                "RuntimeInvoker_FalseMonoScriptData_tDB3826D42D26B785598ADBA79170E6CB48F79B92,",
+                "RuntimeInvoker_FalseMonoScriptData_t7B0CAD73C7F4F5B47AA229BBAB263F662D46573E,",
+                "RuntimeInvoker_FalseMonoScriptData_t717F06936298664FAB0FAFA5250D5D2082AA30C9,",
+                "RuntimeInvoker_FalseMonoScriptData_t7C1EFF89409588A65507FDF01648DD5646A1DA3E,"
+              ],
+              "linkageToCompiledObject": "NotProven",
+              "symbol": "g_Il2CppInvokerPointers",
+              "typeName": "InvokerMethod"
+            },
+            "gitBlob": "c5a9c6bb34b7a48c000e7c2f16f1b5d4844a4f86",
+            "lexicalScan": {
+              "compiledObjectBound": false,
+              "counts": {
+                "conditional": 47,
+                "externC": 1,
+                "generic": 0,
+                "include": 2,
+                "invoker": 2,
+                "methodPointer": 10218
+              },
+              "lineFingerprints": {
+                "conditional": "c3110ba15a5ea3af55808dc19e2e89c6ac7422c90a717a69536167f15dfcc39c",
+                "externC": "9cfd3c2e7fe2fa298f62e874d7821aaf8429938ecadf252bfcb29f7e3620b472",
+                "generic": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "include": "1acb796f972d9ef9ea4a8f8b39b0ef7d8dec35e388e92cbe1c711e9f879ef890",
+                "invoker": "62da783aa000ec99df89caafefbe2d4dfe29d8288396552c075df80b4201ccd4",
+                "methodPointer": "16993edf378171eba529bfba8b30fe8a16a0be701026f553ecba4749189c6628"
+              },
+              "lines": 91940,
+              "linkedPlayerBound": false,
+              "samples": {
+                "conditional": [
+                  {
+                    "line": 3,
+                    "lineSha256": "d3d68e4c267a8dad25f5d723b0a313e882211fe4d3cfcbe0845c0eaabf2c6e0e",
+                    "prefix": "#ifndef _MSC_VER"
+                  },
+                  {
+                    "line": 5,
+                    "lineSha256": "a95dbf91f6d6c3dc84eb44907afe37bdec7e3aa1cd0a07042249536df254415c",
+                    "prefix": "#else"
+                  },
+                  {
+                    "line": 7,
+                    "lineSha256": "9a349bbd1a21104f051e34b2c8a9e70cc7fbb50bc19a67781f2a140c386d9438",
+                    "prefix": "#endif"
+                  },
+                  {
+                    "line": 475,
+                    "lineSha256": "160ff45a7fd2f5d71175bedca609184afb2bd28d253b6b91dbb3a917d9471df4",
+                    "prefix": "#ifdef __clang__"
+                  },
+                  {
+                    "line": 479,
+                    "lineSha256": "9a349bbd1a21104f051e34b2c8a9e70cc7fbb50bc19a67781f2a140c386d9438",
+                    "prefix": "#endif"
+                  },
+                  {
+                    "line": 874,
+                    "lineSha256": "28f3ba5f28ae423225aa904c06ec21302cc178c414d2a5644b7096ff79305ab1",
+                    "prefix": "#ifndef CustomStyleProperty_1_t8315EF5D1C5F5FB5F920B77E40695C07DAAB349A_marshaled_pinvoke_define"
+                  },
+                  {
+                    "line": 880,
+                    "lineSha256": "9a349bbd1a21104f051e34b2c8a9e70cc7fbb50bc19a67781f2a140c386d9438",
+                    "prefix": "#endif"
+                  },
+                  {
+                    "line": 881,
+                    "lineSha256": "617f6898a79940fdaa81503762827c6effe2b4bb4860c87b7ddad981cd91f373",
+                    "prefix": "#ifndef CustomStyleProperty_1_t8315EF5D1C5F5FB5F920B77E40695C07DAAB349A_marshaled_com_define"
+                  }
+                ],
+                "externC": [
+                  {
+                    "line": 81739,
+                    "lineSha256": "9cfd3c2e7fe2fa298f62e874d7821aaf8429938ecadf252bfcb29f7e3620b472",
+                    "prefix": "IL2CPP_EXTERN_C const InvokerMethod g_Il2CppInvokerPointers[];"
+                  }
+                ],
+                "generic": [],
+                "include": [
+                  {
+                    "line": 4,
+                    "lineSha256": "baac7e91a07d9ec015b5aa7e83220bc5c02fc25dba7fcf7e2b3899a51d8afc10",
+                    "prefix": "# include <alloca.h>"
+                  },
+                  {
+                    "line": 6,
+                    "lineSha256": "c26f86c03eb455191e7e4c1c9e27b05bab576eb047fe1ec17b087adb99bf2717",
+                    "prefix": "# include <malloc.h>"
+                  }
+                ],
+                "invoker": [
+                  {
+                    "line": 81739,
+                    "lineSha256": "9cfd3c2e7fe2fa298f62e874d7821aaf8429938ecadf252bfcb29f7e3620b472",
+                    "prefix": "IL2CPP_EXTERN_C const InvokerMethod g_Il2CppInvokerPointers[];"
+                  },
+                  {
+                    "line": 81740,
+                    "lineSha256": "e7aa1761a80850f27da18365d24d4a1e341ea7fb2627677f51a2949af8ec1b1b",
+                    "prefix": "const InvokerMethod g_Il2CppInvokerPointers[10198] ="
+                  }
+                ],
+                "methodPointer": [
+                  {
+                    "line": 3044,
+                    "lineSha256": "36d78be7844b6c477d1dccea84c882b67bb56493786e4defe00da940c84d3383",
+                    "prefix": "Il2CppMethodPointer ___m_defaultContextAction;"
+                  },
+                  {
+                    "line": 3049,
+                    "lineSha256": "36d78be7844b6c477d1dccea84c882b67bb56493786e4defe00da940c84d3383",
+                    "prefix": "Il2CppMethodPointer ___m_defaultContextAction;"
+                  },
+                  {
+                    "line": 5941,
+                    "lineSha256": "21df39bd3e4771e1bceacb5bb28fdfa662de04c737ebcaa839c359e5eeead723",
+                    "prefix": "Il2CppMethodPointer ___callback;"
+                  },
+                  {
+                    "line": 5946,
+                    "lineSha256": "21df39bd3e4771e1bceacb5bb28fdfa662de04c737ebcaa839c359e5eeead723",
+                    "prefix": "Il2CppMethodPointer ___callback;"
+                  },
+                  {
+                    "line": 7283,
+                    "lineSha256": "393942a24a740e4778130dcccdca446563262e0726f5b2cb2b0d2dcfc9570c42",
+                    "prefix": "Il2CppMethodPointer ___m_DelagateCallback;"
+                  },
+                  {
+                    "line": 7289,
+                    "lineSha256": "393942a24a740e4778130dcccdca446563262e0726f5b2cb2b0d2dcfc9570c42",
+                    "prefix": "Il2CppMethodPointer ___m_DelagateCallback;"
+                  },
+                  {
+                    "line": 7415,
+                    "lineSha256": "4180793cc4ed439f005b1e97c067337e53c3e502271edab89d69a9ba4f29a7ef",
+                    "prefix": "Il2CppMethodPointer ___action;"
+                  },
+                  {
+                    "line": 7420,
+                    "lineSha256": "4180793cc4ed439f005b1e97c067337e53c3e502271edab89d69a9ba4f29a7ef",
+                    "prefix": "Il2CppMethodPointer ___action;"
+                  }
+                ]
+              },
+              "semanticCxxAstReviewed": false
+            },
+            "relativePath": "projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf-NativeOff_BackUpThisFolder_ButDontShipItWithYourGame/il2cppOutput/Il2CppInvokerTable.cpp",
+            "role": "NativeOff",
+            "sha256": "fc7a707baf8be8f23061b5362f29f6c2c3e0e52d607add49de1833c1f21c8c03"
+          },
+          {
+            "bytes": 8465159,
+            "generatedTable": {
+              "declaredRows": 10198,
+              "distinctInitializerLines": 10198,
+              "firstEntries": [
+                "RuntimeInvoker_TrueByte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_RuntimeObject_RuntimeObject_VoidU2A_t104EAEFBD2D237A8C29618913DA9B4D99355E965_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_VoidU2A_t104EAEFBD2D237A8C29618913DA9B4D99355E965,",
+                "RuntimeInvoker_TrueByte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_RuntimeObject_RuntimeObject_Color_tD001788D726C3A7F1379BEED0260B9591F440C1F_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_VoidU2A_t104EAEFBD2D237A8C29618913DA9B4D99355E965,",
+                "RuntimeInvoker_TrueRuntimeObject_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_RuntimeObject,",
+                "RuntimeInvoker_TrueByte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_RuntimeObject_RuntimeObject_Color_tD001788D726C3A7F1379BEED0260B9591F440C1F_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_VoidU2A_t104EAEFBD2D237A8C29618913DA9B4D99355E965,"
+              ],
+              "fullSemanticCxxInspection": false,
+              "initializerRows": 10198,
+              "initializerTextSha256": "f72101069eee8dc963d71556f7ca432c5341e338638d97fd350ac0844dc29c14",
+              "lastEntries": [
+                "RuntimeInvoker_FalseMonoScriptData_tDB3826D42D26B785598ADBA79170E6CB48F79B92,",
+                "RuntimeInvoker_FalseMonoScriptData_t7B0CAD73C7F4F5B47AA229BBAB263F662D46573E,",
+                "RuntimeInvoker_FalseMonoScriptData_t717F06936298664FAB0FAFA5250D5D2082AA30C9,",
+                "RuntimeInvoker_FalseMonoScriptData_t7C1EFF89409588A65507FDF01648DD5646A1DA3E,"
+              ],
+              "linkageToCompiledObject": "NotProven",
+              "symbol": "g_Il2CppInvokerPointers",
+              "typeName": "InvokerMethod"
+            },
+            "gitBlob": "c5a9c6bb34b7a48c000e7c2f16f1b5d4844a4f86",
+            "lexicalScan": {
+              "compiledObjectBound": false,
+              "counts": {
+                "conditional": 47,
+                "externC": 1,
+                "generic": 0,
+                "include": 2,
+                "invoker": 2,
+                "methodPointer": 10218
+              },
+              "lineFingerprints": {
+                "conditional": "c3110ba15a5ea3af55808dc19e2e89c6ac7422c90a717a69536167f15dfcc39c",
+                "externC": "9cfd3c2e7fe2fa298f62e874d7821aaf8429938ecadf252bfcb29f7e3620b472",
+                "generic": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "include": "1acb796f972d9ef9ea4a8f8b39b0ef7d8dec35e388e92cbe1c711e9f879ef890",
+                "invoker": "62da783aa000ec99df89caafefbe2d4dfe29d8288396552c075df80b4201ccd4",
+                "methodPointer": "16993edf378171eba529bfba8b30fe8a16a0be701026f553ecba4749189c6628"
+              },
+              "lines": 91940,
+              "linkedPlayerBound": false,
+              "samples": {
+                "conditional": [
+                  {
+                    "line": 3,
+                    "lineSha256": "d3d68e4c267a8dad25f5d723b0a313e882211fe4d3cfcbe0845c0eaabf2c6e0e",
+                    "prefix": "#ifndef _MSC_VER"
+                  },
+                  {
+                    "line": 5,
+                    "lineSha256": "a95dbf91f6d6c3dc84eb44907afe37bdec7e3aa1cd0a07042249536df254415c",
+                    "prefix": "#else"
+                  },
+                  {
+                    "line": 7,
+                    "lineSha256": "9a349bbd1a21104f051e34b2c8a9e70cc7fbb50bc19a67781f2a140c386d9438",
+                    "prefix": "#endif"
+                  },
+                  {
+                    "line": 475,
+                    "lineSha256": "160ff45a7fd2f5d71175bedca609184afb2bd28d253b6b91dbb3a917d9471df4",
+                    "prefix": "#ifdef __clang__"
+                  },
+                  {
+                    "line": 479,
+                    "lineSha256": "9a349bbd1a21104f051e34b2c8a9e70cc7fbb50bc19a67781f2a140c386d9438",
+                    "prefix": "#endif"
+                  },
+                  {
+                    "line": 874,
+                    "lineSha256": "28f3ba5f28ae423225aa904c06ec21302cc178c414d2a5644b7096ff79305ab1",
+                    "prefix": "#ifndef CustomStyleProperty_1_t8315EF5D1C5F5FB5F920B77E40695C07DAAB349A_marshaled_pinvoke_define"
+                  },
+                  {
+                    "line": 880,
+                    "lineSha256": "9a349bbd1a21104f051e34b2c8a9e70cc7fbb50bc19a67781f2a140c386d9438",
+                    "prefix": "#endif"
+                  },
+                  {
+                    "line": 881,
+                    "lineSha256": "617f6898a79940fdaa81503762827c6effe2b4bb4860c87b7ddad981cd91f373",
+                    "prefix": "#ifndef CustomStyleProperty_1_t8315EF5D1C5F5FB5F920B77E40695C07DAAB349A_marshaled_com_define"
+                  }
+                ],
+                "externC": [
+                  {
+                    "line": 81739,
+                    "lineSha256": "9cfd3c2e7fe2fa298f62e874d7821aaf8429938ecadf252bfcb29f7e3620b472",
+                    "prefix": "IL2CPP_EXTERN_C const InvokerMethod g_Il2CppInvokerPointers[];"
+                  }
+                ],
+                "generic": [],
+                "include": [
+                  {
+                    "line": 4,
+                    "lineSha256": "baac7e91a07d9ec015b5aa7e83220bc5c02fc25dba7fcf7e2b3899a51d8afc10",
+                    "prefix": "# include <alloca.h>"
+                  },
+                  {
+                    "line": 6,
+                    "lineSha256": "c26f86c03eb455191e7e4c1c9e27b05bab576eb047fe1ec17b087adb99bf2717",
+                    "prefix": "# include <malloc.h>"
+                  }
+                ],
+                "invoker": [
+                  {
+                    "line": 81739,
+                    "lineSha256": "9cfd3c2e7fe2fa298f62e874d7821aaf8429938ecadf252bfcb29f7e3620b472",
+                    "prefix": "IL2CPP_EXTERN_C const InvokerMethod g_Il2CppInvokerPointers[];"
+                  },
+                  {
+                    "line": 81740,
+                    "lineSha256": "e7aa1761a80850f27da18365d24d4a1e341ea7fb2627677f51a2949af8ec1b1b",
+                    "prefix": "const InvokerMethod g_Il2CppInvokerPointers[10198] ="
+                  }
+                ],
+                "methodPointer": [
+                  {
+                    "line": 3044,
+                    "lineSha256": "36d78be7844b6c477d1dccea84c882b67bb56493786e4defe00da940c84d3383",
+                    "prefix": "Il2CppMethodPointer ___m_defaultContextAction;"
+                  },
+                  {
+                    "line": 3049,
+                    "lineSha256": "36d78be7844b6c477d1dccea84c882b67bb56493786e4defe00da940c84d3383",
+                    "prefix": "Il2CppMethodPointer ___m_defaultContextAction;"
+                  },
+                  {
+                    "line": 5941,
+                    "lineSha256": "21df39bd3e4771e1bceacb5bb28fdfa662de04c737ebcaa839c359e5eeead723",
+                    "prefix": "Il2CppMethodPointer ___callback;"
+                  },
+                  {
+                    "line": 5946,
+                    "lineSha256": "21df39bd3e4771e1bceacb5bb28fdfa662de04c737ebcaa839c359e5eeead723",
+                    "prefix": "Il2CppMethodPointer ___callback;"
+                  },
+                  {
+                    "line": 7283,
+                    "lineSha256": "393942a24a740e4778130dcccdca446563262e0726f5b2cb2b0d2dcfc9570c42",
+                    "prefix": "Il2CppMethodPointer ___m_DelagateCallback;"
+                  },
+                  {
+                    "line": 7289,
+                    "lineSha256": "393942a24a740e4778130dcccdca446563262e0726f5b2cb2b0d2dcfc9570c42",
+                    "prefix": "Il2CppMethodPointer ___m_DelagateCallback;"
+                  },
+                  {
+                    "line": 7415,
+                    "lineSha256": "4180793cc4ed439f005b1e97c067337e53c3e502271edab89d69a9ba4f29a7ef",
+                    "prefix": "Il2CppMethodPointer ___action;"
+                  },
+                  {
+                    "line": 7420,
+                    "lineSha256": "4180793cc4ed439f005b1e97c067337e53c3e502271edab89d69a9ba4f29a7ef",
+                    "prefix": "Il2CppMethodPointer ___action;"
+                  }
+                ]
+              },
+              "semanticCxxAstReviewed": false
+            },
+            "relativePath": "projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf_BackUpThisFolder_ButDontShipItWithYourGame/il2cppOutput/Il2CppInvokerTable.cpp",
+            "role": "NativeOn",
+            "sha256": "fc7a707baf8be8f23061b5362f29f6c2c3e0e52d607add49de1833c1f21c8c03"
+          }
+        ],
+        "sourceToObjectBuildJoin": "NotProven",
+        "uniqueSourceBlobs": 2,
+        "unityRun": false
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/original-s-binary_linkage.json",
+      "sha256": "2715ec502e3d2f27584dfea0a84173fdf2d6698d10f6e3b78a9859adb6775e5b",
+      "report": {
+        "H2Passed": false,
+        "R03Accepted": false,
+        "ReadyForHumanReviewGate": false,
+        "actualGeneratedSourceObjectIdentity": "NotProven",
+        "executedPlayerCodeMapping": "NotProven",
+        "fullNativeBinaryLinkage": "NotProven",
+        "independentReviewer": false,
+        "kind": "R03OriginalSCodeRegistrationAndMachOLinkageReadOnly",
+        "originalCompiledObjectCommandGraph": "NotProven",
+        "originalIndexMembers": 15712,
+        "originalIndexSha256": "0685d23a40b581cc7d22abc543c7d9067e808a0f25fa0b3f2aea32966b22bd70",
+        "originalPublication": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+        "result": "PassedArchivedSourceRegistrationBinaryIdentity_NotFullLinkage",
+        "roles": [
+          {
+            "archivedGameAssembly": {
+              "bytes": 98041110,
+              "gitBlob": "f5e3f19b6a6e47b2b8fc8f7dab6f032513be7439",
+              "nativeSymbolInspection": {
+                "allRequiredSymbolsDefined": true,
+                "boundedMatches": {
+                  "g_Il2CppGenericMethodPointers": [
+                    "0000000002b9dee8 (__DATA_CONST,__const) non-external (was a private external) _g_Il2CppGenericMethodPointers"
+                  ],
+                  "g_Il2CppInvokerPointers": [
+                    "0000000002b4c328 (__DATA_CONST,__const) non-external (was a private external) _g_Il2CppInvokerPointers"
+                  ]
+                },
+                "definedSymbols": {
+                  "g_Il2CppGenericMethodPointers": [
+                    "0000000002b9dee8 (__DATA_CONST,__const) non-external (was a private external) _g_Il2CppGenericMethodPointers"
+                  ],
+                  "g_Il2CppInvokerPointers": [
+                    "0000000002b4c328 (__DATA_CONST,__const) non-external (was a private external) _g_Il2CppInvokerPointers"
+                  ]
+                },
+                "exactSourceBytesInBinaryProven": false,
+                "linesExamined": 294978,
+                "objectFileIdentityProven": false,
+                "returnCode": 0,
+                "stderrPrefix": "",
+                "symbolPresence": {
+                  "g_Il2CppGenericMethodPointers": true,
+                  "g_Il2CppInvokerPointers": true
+                },
+                "tool": "nm -m"
+              },
+              "path": "projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf.app/Contents/Frameworks/GameAssembly.dylib",
+              "sha256": "e9d926f18d8cc8632070b78e61ecebd1e2f67e47568977ad62f587f0326c3839"
+            },
+            "generatedSources": [
+              {
+                "bytes": 11350766,
+                "gitBlob": "bf86c8ee7dffe81a23c0b21ccbdc37e7374d414c",
+                "path": "projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf_BackUpThisFolder_ButDontShipItWithYourGame/il2cppOutput/Il2CppGenericMethodPointerTable.c",
+                "sha256": "197debac4e5ea493126785b48703f19d0b842caa1bab0ed83d19196d73ac59b6"
+              },
+              {
+                "bytes": 8465159,
+                "gitBlob": "c5a9c6bb34b7a48c000e7c2f16f1b5d4844a4f86",
+                "path": "projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf_BackUpThisFolder_ButDontShipItWithYourGame/il2cppOutput/Il2CppInvokerTable.cpp",
+                "sha256": "fc7a707baf8be8f23061b5362f29f6c2c3e0e52d607add49de1833c1f21c8c03"
+              }
+            ],
+            "role": "NativeOn",
+            "sourceRegistration": {
+              "bytes": 9198,
+              "gitBlob": "73196be40e8981578770ce959a9be1fc6827947f",
+              "path": "projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf_BackUpThisFolder_ButDontShipItWithYourGame/il2cppOutput/Il2CppCodeRegistration.cpp",
+              "sha256": "2c65d7879787e9e4f7ad3e379e8854bc3b49499d5b593fe20aadb5210983b6dd",
+              "validatedFields": {
+                "genericCount": 48232,
+                "invokerCount": 10198,
+                "referencedSymbols": [
+                  "g_Il2CppGenericMethodPointers",
+                  "g_Il2CppInvokerPointers"
+                ],
+                "registrationCall": "il2cpp_codegen_register",
+                "registrationFields": [
+                  "2",
+                  "g_ReversePInvokeWrapperPointers",
+                  "48232",
+                  "g_Il2CppGenericMethodPointers",
+                  "g_Il2CppGenericAdjustorThunks",
+                  "10198",
+                  "g_Il2CppInvokerPointers",
+                  "1795",
+                  "g_UnresolvedVirtualMethodPointers",
+                  "g_UnresolvedInstanceMethodPointers",
+                  "g_UnresolvedStaticMethodPointers",
+                  "456",
+                  "g_Il2CppInteropData",
+                  "0",
+                  "NULL",
+                  "57",
+                  "g_CodeGenModules"
+                ],
+                "sourceRegistrationContract": "PassedExactFieldsAndExternalSymbols"
+              }
+            }
+          },
+          {
+            "archivedGameAssembly": {
+              "bytes": 96480726,
+              "gitBlob": "4b59b2b09c44cfb7676721a87817e2aee0c9ec1e",
+              "nativeSymbolInspection": {
+                "allRequiredSymbolsDefined": true,
+                "boundedMatches": {
+                  "g_Il2CppGenericMethodPointers": [
+                    "0000000002b0dea8 (__DATA_CONST,__const) non-external (was a private external) _g_Il2CppGenericMethodPointers"
+                  ],
+                  "g_Il2CppInvokerPointers": [
+                    "0000000002abc2e8 (__DATA_CONST,__const) non-external (was a private external) _g_Il2CppInvokerPointers"
+                  ]
+                },
+                "definedSymbols": {
+                  "g_Il2CppGenericMethodPointers": [
+                    "0000000002b0dea8 (__DATA_CONST,__const) non-external (was a private external) _g_Il2CppGenericMethodPointers"
+                  ],
+                  "g_Il2CppInvokerPointers": [
+                    "0000000002abc2e8 (__DATA_CONST,__const) non-external (was a private external) _g_Il2CppInvokerPointers"
+                  ]
+                },
+                "exactSourceBytesInBinaryProven": false,
+                "linesExamined": 290568,
+                "objectFileIdentityProven": false,
+                "returnCode": 0,
+                "stderrPrefix": "",
+                "symbolPresence": {
+                  "g_Il2CppGenericMethodPointers": true,
+                  "g_Il2CppInvokerPointers": true
+                },
+                "tool": "nm -m"
+              },
+              "path": "projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf-NativeOff.app/Contents/Frameworks/GameAssembly.dylib",
+              "sha256": "7212782000fe67cc5917da333a362af9b3d6c73b94fb6cb97332ed079b229fe8"
+            },
+            "generatedSources": [
+              {
+                "bytes": 11350766,
+                "gitBlob": "bf86c8ee7dffe81a23c0b21ccbdc37e7374d414c",
+                "path": "projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf-NativeOff_BackUpThisFolder_ButDontShipItWithYourGame/il2cppOutput/Il2CppGenericMethodPointerTable.c",
+                "sha256": "197debac4e5ea493126785b48703f19d0b842caa1bab0ed83d19196d73ac59b6"
+              },
+              {
+                "bytes": 8465159,
+                "gitBlob": "c5a9c6bb34b7a48c000e7c2f16f1b5d4844a4f86",
+                "path": "projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf-NativeOff_BackUpThisFolder_ButDontShipItWithYourGame/il2cppOutput/Il2CppInvokerTable.cpp",
+                "sha256": "fc7a707baf8be8f23061b5362f29f6c2c3e0e52d607add49de1833c1f21c8c03"
+              }
+            ],
+            "role": "NativeOff",
+            "sourceRegistration": {
+              "bytes": 9198,
+              "gitBlob": "73196be40e8981578770ce959a9be1fc6827947f",
+              "path": "projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-29bb3d4a39bf-NativeOff_BackUpThisFolder_ButDontShipItWithYourGame/il2cppOutput/Il2CppCodeRegistration.cpp",
+              "sha256": "2c65d7879787e9e4f7ad3e379e8854bc3b49499d5b593fe20aadb5210983b6dd",
+              "validatedFields": {
+                "genericCount": 48232,
+                "invokerCount": 10198,
+                "referencedSymbols": [
+                  "g_Il2CppGenericMethodPointers",
+                  "g_Il2CppInvokerPointers"
+                ],
+                "registrationCall": "il2cpp_codegen_register",
+                "registrationFields": [
+                  "2",
+                  "g_ReversePInvokeWrapperPointers",
+                  "48232",
+                  "g_Il2CppGenericMethodPointers",
+                  "g_Il2CppGenericAdjustorThunks",
+                  "10198",
+                  "g_Il2CppInvokerPointers",
+                  "1795",
+                  "g_UnresolvedVirtualMethodPointers",
+                  "g_UnresolvedInstanceMethodPointers",
+                  "g_UnresolvedStaticMethodPointers",
+                  "456",
+                  "g_Il2CppInteropData",
+                  "0",
+                  "NULL",
+                  "57",
+                  "g_CodeGenModules"
+                ],
+                "sourceRegistrationContract": "PassedExactFieldsAndExternalSymbols"
+              }
+            }
+          }
+        ],
+        "runtimeAcceptance": false,
+        "schemaVersion": 1,
+        "sourceRegistrationLinkedByText": true,
+        "twoNamedTableDefinitionsInEachOriginalMachO": true,
+        "unityRun": false
+      }
+    }
+  ],
+  "targets": [
+    {
+      "path": "native/initializer-control/Methods.dll",
+      "kind": "initializer-control",
+      "size": 2560,
+      "sha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+      "mvid": "c8dff3d3-01e2-4b9f-0969-87c69d2b9e73",
+      "originalClrSha256": "f1fea7712a76eee7818820f1bf57b0e1f66b1241105ec944da26099ef5e838cf",
+      "expectedNativeCallback": "R03_IRW_OnPrepared",
+      "expectedPreparedField": 3,
+      "callbackBeforeInitializerOutcome": true,
+      "observedInUnity": false,
+      "layoutEditorAdmission": "PassedNeedsNativeProof"
+    },
+    {
+      "path": "native/initializer-failure/Methods.dll",
+      "kind": "initializer-failure",
+      "size": 2560,
+      "sha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+      "mvid": "3ec341b2-04be-2d14-1904-fac3f8a6a6c4",
+      "originalClrSha256": "38079fd040fde1ae688d847cec37bed14d51976372b130b60db9629e2e09ad22",
+      "expectedNativeCallback": "R03_IRW_OnPrepared",
+      "expectedPreparedField": 3,
+      "callbackBeforeInitializerOutcome": true,
+      "observedInUnity": false,
+      "layoutEditorAdmission": "PassedNeedsNativeProof"
+    }
+  ],
+  "build": {
+    "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/build-receipt.json",
+    "sha256": "653b8fb37851d728e8f369c42c62f9769c708a81db8379294c834164b8733bce",
+    "result": "Passed",
+    "errors": 0,
+    "warnings": 1,
+    "buildPipelineResult": "Succeeded",
+    "config": {
+      "cppConfiguration": "Release",
+      "diagnosticsLevel": 2,
+      "featureEnabled": true,
+      "outputPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/R03Isolated.app",
+      "overlayPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/initializer-source/R03InitializerCompositeOverlay.cpp",
+      "overlaySha256": "4dbdadfb48c3c88b49dcd73debc8cc03c9d6d72a21d63b01647c830277035238",
+      "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release",
+      "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/build-receipt.json",
+      "schemaVersion": 1,
+      "sourceManifestSha256": "ad119e15e42d259a92692c0e6e0821b2d1934bde3759d4eea663771a6f64ae7a"
+    },
+    "installedOverlay": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowR03Probe.cpp",
+    "overlaySha256": "4dbdadfb48c3c88b49dcd73debc8cc03c9d6d72a21d63b01647c830277035238",
+    "executable": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+    "executableSha256": "38ab350d00fa7757b8049699dab6bcfeadb3e2c60a8b8ae22097220901a8e8cc",
+    "sourceManifestSha256": "ad119e15e42d259a92692c0e6e0821b2d1934bde3759d4eea663771a6f64ae7a",
+    "architecture": "arm64",
+    "playerInventoryFiles": 22
+  },
+  "players": [
+    {
+      "case": "initializer-control",
+      "state": "Failed",
+      "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-control",
+      "rawPresent": true,
+      "request": {
+        "baselineId": "R03Initializer-candidate-release",
+        "caseId": "IR-R03-02-initializer-control",
+        "dllPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/host/initializer-native-targets/native/initializer-control/Methods.dll",
+        "dllSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+        "runId": "1a6fcc49b20a423185d5e990a3e8e266",
+        "schemaVersion": 1,
+        "stimulus": "initializer-control"
+      },
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0014/command.json",
+      "commandPid": 8065,
+      "commandExit": 2,
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "initializer-failure",
+      "state": "Failed",
+      "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-failure",
+      "rawPresent": true,
+      "request": {
+        "baselineId": "R03Initializer-candidate-release",
+        "caseId": "IR-R03-02-initializer-failure",
+        "dllPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/host/initializer-native-targets/native/initializer-failure/Methods.dll",
+        "dllSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+        "runId": "c36f23e9f9ff426d8d6e5e529a409375",
+        "schemaVersion": 1,
+        "stimulus": "initializer-failure"
+      },
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0015/command.json",
+      "commandPid": 8067,
+      "commandExit": 2,
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "ownedSurvivors": [],
+  "initializerRunnerInvocations": 1,
+  "sourceChanged": false,
+  "retry": false,
+  "runtimeAcceptance": false,
+  "R03Accepted": false
+}

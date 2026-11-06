@@ -1,0 +1,484 @@
+{
+  "kind": "Initializer02ReadOnlyFailureInvestigation",
+  "time": "2026-11-06T03:23:48.086831+00:00",
+  "sourcePins": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_demo": "7da27a486b529cdebf73100b5ce4c332a1bb7e86",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340",
+    "phase": "candidate",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1
+  },
+  "result": "FAIL_ReturnRequired",
+  "producerResult": "ReturnRequired",
+  "cellCounts": {
+    "Passed": 13,
+    "Failed": 2
+  },
+  "build": {
+    "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/build-receipt.json",
+    "sha256": "653b8fb37851d728e8f369c42c62f9769c708a81db8379294c834164b8733bce",
+    "result": "Passed",
+    "errors": 0,
+    "warnings": 1,
+    "buildPipelineResult": "Succeeded",
+    "config": {
+      "cppConfiguration": "Release",
+      "diagnosticsLevel": 2,
+      "featureEnabled": true,
+      "outputPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/R03Isolated.app",
+      "overlayPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/initializer-source/R03InitializerCompositeOverlay.cpp",
+      "overlaySha256": "4dbdadfb48c3c88b49dcd73debc8cc03c9d6d72a21d63b01647c830277035238",
+      "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release",
+      "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/build-receipt.json",
+      "schemaVersion": 1,
+      "sourceManifestSha256": "ad119e15e42d259a92692c0e6e0821b2d1934bde3759d4eea663771a6f64ae7a"
+    },
+    "installedOverlay": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowR03Probe.cpp",
+    "overlaySha256": "4dbdadfb48c3c88b49dcd73debc8cc03c9d6d72a21d63b01647c830277035238",
+    "executable": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+    "executableSha256": "38ab350d00fa7757b8049699dab6bcfeadb3e2c60a8b8ae22097220901a8e8cc",
+    "sourceManifestSha256": "ad119e15e42d259a92692c0e6e0821b2d1934bde3759d4eea663771a6f64ae7a",
+    "architecture": "arm64",
+    "playerInventoryFiles": 22
+  },
+  "actualPlayers": [
+    {
+      "case": "initializer-control",
+      "state": "Failed",
+      "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-control",
+      "rawPresent": true,
+      "request": {
+        "baselineId": "R03Initializer-candidate-release",
+        "caseId": "IR-R03-02-initializer-control",
+        "dllPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/host/initializer-native-targets/native/initializer-control/Methods.dll",
+        "dllSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+        "runId": "1a6fcc49b20a423185d5e990a3e8e266",
+        "schemaVersion": 1,
+        "stimulus": "initializer-control"
+      },
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0014/command.json",
+      "commandPid": 8065,
+      "commandExit": 2,
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "command": {
+        "childEnvironmentPolicy": {
+          "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+          "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+          "GIT_TERMINAL_PROMPT": "0",
+          "MSBUILDDISABLENODEREUSE": "1",
+          "MSBUILDUSESERVER": "0",
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "TMPDIR": "/private/tmp"
+        },
+        "cleanupErrors": [],
+        "command": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "-batchmode",
+          "-nographics",
+          "-r03IrInitializerRequest",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-control/request.json",
+          "-r03IrInitializerOutput",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-control/raw.json",
+          "-r03IrInitializerRunId",
+          "1a6fcc49b20a423185d5e990a3e8e266",
+          "-logFile",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-control/Player.log"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+        "endedUtcEpoch": 1793935191.539241,
+        "exitCode": 2,
+        "interrupted": false,
+        "lifetimePolicy": "R03OwnedCommandV1",
+        "pgid": 8065,
+        "pid": 8065,
+        "postCleanupGroupExists": false,
+        "processGroupBeforeCleanup": null,
+        "remainingProcessGroup": false,
+        "schemaVersion": 2,
+        "startError": null,
+        "startedUtcEpoch": 1793935190.347172,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+        "timeout": false
+      },
+      "requestSha256": "d7415fc55b57245b64e15ff87b7289eec6a49171328ac084bf2bad8c698ebda5",
+      "playerLogPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-control/Player.log",
+      "playerLogSha256": "556340a48ad5b5bcaaf36b798d4ddc1959605d2ffcf65548ab24bbaf581a573f",
+      "playerLogExcerpt": "[AssemblyShadowTerminalRejection] prepared=true pinned=true\n[AssemblyShadowBooleanReserve] prepared=true pinned=true size=17 cctorComplete=1\nFound 1 interfaces on host : 0) 192.168.1.134\nPlayer connection [8481250688]  Target information:\n\nPlayer connection [8481250688]  * \"[IP] 192.168.1.134 [Port] 55000 [Flags] 2 [Guid] 2283471468 [EditorId] 744722411 [Version] 1048832 [Id] OSXPlayer(1,Mac) [Debug] 0 [PackageName] OSXPlayer [ProjectName] R03Isolated\" \n\nPlayer connection [8481250688] Started UDP target info broadcast (1) on [225.0.0.222:54997].\n\nInput System module state changed to: Initialized.\n[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.\nInitialize engine version: 2022.3.62f2 (7670c08855a9)\n[Subsystems] Discovering subsystems at path /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/UnitySubsystems\nForcing GfxDevice: Null\nGfxDevice: creating device client; threaded=0; jobified=0\nNullGfxDevice:\n    Version:  NULL 1.0 [1.0]\n    Renderer: Null Device\n    Vendor:   Unity Technologies\nERROR: Shader Sprites/Default shader is not supported on this GPU (none of subshaders/fallbacks are suitable)\nERROR: Shader Sprites/Mask shader is not supported on this GPU (none of subshaders/fallbacks are suitable)\n[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.\nUnloadTime: 0.257291 ms\n[R03NativeLayoutAdmissionV1] sample=0 assembly=Methods baselineRows=2 targetRows=3 paired=2 changedProofs=0 added=1\n",
+      "verification": {
+        "R03Accepted": false,
+        "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0014/command.json",
+        "rawPresent": true,
+        "requestSha256": "d7415fc55b57245b64e15ff87b7289eec6a49171328ac084bf2bad8c698ebda5",
+        "result": "Failed",
+        "runId": "1a6fcc49b20a423185d5e990a3e8e266",
+        "runtimeAcceptance": false,
+        "semanticVerifierStatus": "NotRun_CommandFailed"
+      }
+    },
+    {
+      "case": "initializer-failure",
+      "state": "Failed",
+      "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-failure",
+      "rawPresent": true,
+      "request": {
+        "baselineId": "R03Initializer-candidate-release",
+        "caseId": "IR-R03-02-initializer-failure",
+        "dllPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/host/initializer-native-targets/native/initializer-failure/Methods.dll",
+        "dllSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+        "runId": "c36f23e9f9ff426d8d6e5e529a409375",
+        "schemaVersion": 1,
+        "stimulus": "initializer-failure"
+      },
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0015/command.json",
+      "commandPid": 8067,
+      "commandExit": 2,
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "command": {
+        "childEnvironmentPolicy": {
+          "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+          "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+          "GIT_TERMINAL_PROMPT": "0",
+          "MSBUILDDISABLENODEREUSE": "1",
+          "MSBUILDUSESERVER": "0",
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "TMPDIR": "/private/tmp"
+        },
+        "cleanupErrors": [],
+        "command": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "-batchmode",
+          "-nographics",
+          "-r03IrInitializerRequest",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-failure/request.json",
+          "-r03IrInitializerOutput",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-failure/raw.json",
+          "-r03IrInitializerRunId",
+          "c36f23e9f9ff426d8d6e5e529a409375",
+          "-logFile",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-failure/Player.log"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+        "endedUtcEpoch": 1793935191.930472,
+        "exitCode": 2,
+        "interrupted": false,
+        "lifetimePolicy": "R03OwnedCommandV1",
+        "pgid": 8067,
+        "pid": 8067,
+        "postCleanupGroupExists": false,
+        "processGroupBeforeCleanup": null,
+        "remainingProcessGroup": false,
+        "schemaVersion": 2,
+        "startError": null,
+        "startedUtcEpoch": 1793935191.734611,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+        "timeout": false
+      },
+      "requestSha256": "9d3f58eec2e0c0e63cd2c2ba42163ef5c244a9aaed36a640bc3e82a3d75d80b9",
+      "playerLogPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-failure/Player.log",
+      "playerLogSha256": "744ea45cf61bbf8e3b0f0ffb107ea38ec50e1683ee59fe93acdc126276c8ce35",
+      "playerLogExcerpt": "[AssemblyShadowTerminalRejection] prepared=true pinned=true\n[AssemblyShadowBooleanReserve] prepared=true pinned=true size=17 cctorComplete=1\nFound 1 interfaces on host : 0) 192.168.1.134\nPlayer connection [8481250688]  Target information:\n\nPlayer connection [8481250688]  * \"[IP] 192.168.1.134 [Port] 55000 [Flags] 2 [Guid] 3394472162 [EditorId] 744722411 [Version] 1048832 [Id] OSXPlayer(1,Mac) [Debug] 0 [PackageName] OSXPlayer [ProjectName] R03Isolated\" \n\nPlayer connection [8481250688] Started UDP target info broadcast (1) on [225.0.0.222:54997].\n\nInput System module state changed to: Initialized.\n[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.\nInitialize engine version: 2022.3.62f2 (7670c08855a9)\n[Subsystems] Discovering subsystems at path /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/UnitySubsystems\nForcing GfxDevice: Null\nGfxDevice: creating device client; threaded=0; jobified=0\nNullGfxDevice:\n    Version:  NULL 1.0 [1.0]\n    Renderer: Null Device\n    Vendor:   Unity Technologies\nERROR: Shader Sprites/Default shader is not supported on this GPU (none of subshaders/fallbacks are suitable)\nERROR: Shader Sprites/Mask shader is not supported on this GPU (none of subshaders/fallbacks are suitable)\n[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.\nUnloadTime: 0.173542 ms\n[R03NativeLayoutAdmissionV1] sample=0 assembly=Methods baselineRows=2 targetRows=3 paired=2 changedProofs=0 added=1\n[R03TerminalDenied] ordinal=1 site=codegen.virtual namespace=System.Reflection type=RuntimeMethodInfo method=Invoke ptr=0x121358180\n[AssemblyShadowTerminalRejection] throw=1 constructorRun=false stackPrepared=false\n",
+      "verification": {
+        "R03Accepted": false,
+        "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0015/command.json",
+        "rawPresent": true,
+        "requestSha256": "9d3f58eec2e0c0e63cd2c2ba42163ef5c244a9aaed36a640bc3e82a3d75d80b9",
+        "result": "Failed",
+        "runId": "c36f23e9f9ff426d8d6e5e529a409375",
+        "runtimeAcceptance": false,
+        "semanticVerifierStatus": "NotRun_CommandFailed"
+      }
+    }
+  ],
+  "compiledNativeSymbols": {
+    "argv": [
+      "/usr/bin/nm",
+      "-gU",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib"
+    ],
+    "start": "2026-11-06T03:23:47.829813+00:00",
+    "end": "2026-11-06T03:23:48.086853+00:00",
+    "exit": 0,
+    "stdout": "/Users/ah/GitHub/hybridclr/r03-local-validation/initializer-02-GameAssembly-symbols.stdout.log",
+    "stderr": "/Users/ah/GitHub/hybridclr/r03-local-validation/initializer-02-GameAssembly-symbols.stderr.log",
+    "stdoutSha256": "658fd37cd59e1b2c00e9f1a4e1cf24e0b84b05673be389f36d6dbbf983346476",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "imageSha256": "f129349f421a9639557372ac4a869ae73f642479d76973dbfe2200926a45bf93",
+    "symbols": [
+      "00000000001ec070 T _R03_IRW_OnPrepared",
+      "00000000001ec66c T _R03_IRW_Open",
+      "00000000001ec490 T _R03_IRW_ReadPrepared",
+      "00000000001ec9f4 T _R03_IRW_Seal"
+    ],
+    "scope": "Read-only Mach-O export existence; not callback execution proof"
+  },
+  "warningLogExcerpts": [
+    "UnityEngine.Debug:LogWarning (object)",
+    "UnityEngine.Debug:LogWarning (object)",
+    "clang++: warning: argument unused during compilation: '-stdlib=libc++' [-Wunused-command-line-argument]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:140:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:141:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:140:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:141:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:140:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:141:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:140:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:141:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:140:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:141:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:218:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:219:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:231:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:232:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "14 warnings generated.",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:140:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:141:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:140:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:141:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:140:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:141:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include/Cpp/../C/Internal/../Internal/../Internal/../Internal/Compiler/Baselib_Atomic_Gcc.h:140:5: warning: failure memory order argument to atomic operation is invalid [-Watomic-memory-ordering]"
+  ],
+  "sourceBindings": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationPlayer.cs",
+      "relative": "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationPlayer.cs",
+      "sha256": "7171270d36ad5ea6d2c417942e2e2d589478bd794031fe06744690e929551e00",
+      "gitBlob": "98bcf83058a5ee98e97a2e6d3aafac6089113a96"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationWriter.cpp",
+      "relative": "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationWriter.cpp",
+      "sha256": "2fb5692f0c9cb770de5cad1f42e26d5b3dd1ba83028b528d0367819c492d4003",
+      "gitBlob": "db9fcbe423e0e25cb36ec06bb2a52a31f65a6df8"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerPreparedProbe.cpp",
+      "relative": "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerPreparedProbe.cpp",
+      "sha256": "1c7f1e0614eeb08e467e20d0ecb6a8874cd35be10426c941792ff4d528d7b06a",
+      "gitBlob": "d08b4560b1a7785ee7278a02758265394063d79c"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_initializer_local.py",
+      "relative": "Tools/AssemblyShadow/R03IR/run_initializer_local.py",
+      "sha256": "4ebd1ec90db83242b42c668c5c2b7b96f9f73a86511198af60ec5d1b0aa48853",
+      "gitBlob": "3c511be2b98d25da5f90c1120efde50cffcc2e25"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/bounded_v2/run_transaction_tests.py",
+      "relative": "Tools/AssemblyShadow/R03IR/bounded_v2/run_transaction_tests.py",
+      "sha256": "b827467d335043c0ed166f8843a2d8d9ec3c1c593d56edcc0ef5469d22cd97d3",
+      "gitBlob": "50f5c25e3d8422b079c9e7ac4fd75e0754066c56"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/batch_evidence.py",
+      "relative": "Tools/AssemblyShadow/R03/batch_evidence.py",
+      "sha256": "5ba51d25c4f3296681c1f7bb7139abe6e523b85e18968c14ef1f9323d01aed4b",
+      "gitBlob": "fe8770192ba8706b17b6aaaeb4d924b3a5b903d1"
+    }
+  ],
+  "findings": [
+    {
+      "id": "IR-LOCAL-R03-INITIALIZER-02-PLAYER-01",
+      "symptom": "Both new real initializer Players exit2 with0-byte native raw; semantic verification is NotRun_CommandFailed.",
+      "reproduction": "Use exact source tuple7da27a/41764 and this single fresh ON/Release build; launch each stored request once using commands0014/0015. The executed args, PID, times and hashes are retained below; do not rerun.",
+      "evidence": [
+        {
+          "case": "initializer-control",
+          "state": "Failed",
+          "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-control",
+          "rawPresent": true,
+          "request": {
+            "baselineId": "R03Initializer-candidate-release",
+            "caseId": "IR-R03-02-initializer-control",
+            "dllPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/host/initializer-native-targets/native/initializer-control/Methods.dll",
+            "dllSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "runId": "1a6fcc49b20a423185d5e990a3e8e266",
+            "schemaVersion": 1,
+            "stimulus": "initializer-control"
+          },
+          "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0014/command.json",
+          "commandPid": 8065,
+          "commandExit": 2,
+          "rawBytes": 0,
+          "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "command": {
+            "childEnvironmentPolicy": {
+              "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+              "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+              "GIT_TERMINAL_PROMPT": "0",
+              "MSBUILDDISABLENODEREUSE": "1",
+              "MSBUILDUSESERVER": "0",
+              "PYTHONDONTWRITEBYTECODE": "1",
+              "TMPDIR": "/private/tmp"
+            },
+            "cleanupErrors": [],
+            "command": [
+              "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+              "-batchmode",
+              "-nographics",
+              "-r03IrInitializerRequest",
+              "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-control/request.json",
+              "-r03IrInitializerOutput",
+              "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-control/raw.json",
+              "-r03IrInitializerRunId",
+              "1a6fcc49b20a423185d5e990a3e8e266",
+              "-logFile",
+              "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-control/Player.log"
+            ],
+            "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+            "endedUtcEpoch": 1793935191.539241,
+            "exitCode": 2,
+            "interrupted": false,
+            "lifetimePolicy": "R03OwnedCommandV1",
+            "pgid": 8065,
+            "pid": 8065,
+            "postCleanupGroupExists": false,
+            "processGroupBeforeCleanup": null,
+            "remainingProcessGroup": false,
+            "schemaVersion": 2,
+            "startError": null,
+            "startedUtcEpoch": 1793935190.347172,
+            "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdoutSha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+            "timeout": false
+          },
+          "requestSha256": "d7415fc55b57245b64e15ff87b7289eec6a49171328ac084bf2bad8c698ebda5",
+          "playerLogPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-control/Player.log",
+          "playerLogSha256": "556340a48ad5b5bcaaf36b798d4ddc1959605d2ffcf65548ab24bbaf581a573f",
+          "playerLogExcerpt": "[AssemblyShadowTerminalRejection] prepared=true pinned=true\n[AssemblyShadowBooleanReserve] prepared=true pinned=true size=17 cctorComplete=1\nFound 1 interfaces on host : 0) 192.168.1.134\nPlayer connection [8481250688]  Target information:\n\nPlayer connection [8481250688]  * \"[IP] 192.168.1.134 [Port] 55000 [Flags] 2 [Guid] 2283471468 [EditorId] 744722411 [Version] 1048832 [Id] OSXPlayer(1,Mac) [Debug] 0 [PackageName] OSXPlayer [ProjectName] R03Isolated\" \n\nPlayer connection [8481250688] Started UDP target info broadcast (1) on [225.0.0.222:54997].\n\nInput System module state changed to: Initialized.\n[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.\nInitialize engine version: 2022.3.62f2 (7670c08855a9)\n[Subsystems] Discovering subsystems at path /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/UnitySubsystems\nForcing GfxDevice: Null\nGfxDevice: creating device client; threaded=0; jobified=0\nNullGfxDevice:\n    Version:  NULL 1.0 [1.0]\n    Renderer: Null Device\n    Vendor:   Unity Technologies\nERROR: Shader Sprites/Default shader is not supported on this GPU (none of subshaders/fallbacks are suitable)\nERROR: Shader Sprites/Mask shader is not supported on this GPU (none of subshaders/fallbacks are suitable)\n[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.\nUnloadTime: 0.257291 ms\n[R03NativeLayoutAdmissionV1] sample=0 assembly=Methods baselineRows=2 targetRows=3 paired=2 changedProofs=0 added=1\n",
+          "verification": {
+            "R03Accepted": false,
+            "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0014/command.json",
+            "rawPresent": true,
+            "requestSha256": "d7415fc55b57245b64e15ff87b7289eec6a49171328ac084bf2bad8c698ebda5",
+            "result": "Failed",
+            "runId": "1a6fcc49b20a423185d5e990a3e8e266",
+            "runtimeAcceptance": false,
+            "semanticVerifierStatus": "NotRun_CommandFailed"
+          }
+        },
+        {
+          "case": "initializer-failure",
+          "state": "Failed",
+          "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-failure",
+          "rawPresent": true,
+          "request": {
+            "baselineId": "R03Initializer-candidate-release",
+            "caseId": "IR-R03-02-initializer-failure",
+            "dllPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/host/initializer-native-targets/native/initializer-failure/Methods.dll",
+            "dllSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "runId": "c36f23e9f9ff426d8d6e5e529a409375",
+            "schemaVersion": 1,
+            "stimulus": "initializer-failure"
+          },
+          "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0015/command.json",
+          "commandPid": 8067,
+          "commandExit": 2,
+          "rawBytes": 0,
+          "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "command": {
+            "childEnvironmentPolicy": {
+              "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+              "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+              "GIT_TERMINAL_PROMPT": "0",
+              "MSBUILDDISABLENODEREUSE": "1",
+              "MSBUILDUSESERVER": "0",
+              "PYTHONDONTWRITEBYTECODE": "1",
+              "TMPDIR": "/private/tmp"
+            },
+            "cleanupErrors": [],
+            "command": [
+              "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+              "-batchmode",
+              "-nographics",
+              "-r03IrInitializerRequest",
+              "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-failure/request.json",
+              "-r03IrInitializerOutput",
+              "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-failure/raw.json",
+              "-r03IrInitializerRunId",
+              "c36f23e9f9ff426d8d6e5e529a409375",
+              "-logFile",
+              "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-failure/Player.log"
+            ],
+            "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+            "endedUtcEpoch": 1793935191.930472,
+            "exitCode": 2,
+            "interrupted": false,
+            "lifetimePolicy": "R03OwnedCommandV1",
+            "pgid": 8067,
+            "pid": 8067,
+            "postCleanupGroupExists": false,
+            "processGroupBeforeCleanup": null,
+            "remainingProcessGroup": false,
+            "schemaVersion": 2,
+            "startError": null,
+            "startedUtcEpoch": 1793935191.734611,
+            "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdoutSha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+            "timeout": false
+          },
+          "requestSha256": "9d3f58eec2e0c0e63cd2c2ba42163ef5c244a9aaed36a640bc3e82a3d75d80b9",
+          "playerLogPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/players/IR-R03-02-initializer-failure/Player.log",
+          "playerLogSha256": "744ea45cf61bbf8e3b0f0ffb107ea38ec50e1683ee59fe93acdc126276c8ce35",
+          "playerLogExcerpt": "[AssemblyShadowTerminalRejection] prepared=true pinned=true\n[AssemblyShadowBooleanReserve] prepared=true pinned=true size=17 cctorComplete=1\nFound 1 interfaces on host : 0) 192.168.1.134\nPlayer connection [8481250688]  Target information:\n\nPlayer connection [8481250688]  * \"[IP] 192.168.1.134 [Port] 55000 [Flags] 2 [Guid] 3394472162 [EditorId] 744722411 [Version] 1048832 [Id] OSXPlayer(1,Mac) [Debug] 0 [PackageName] OSXPlayer [ProjectName] R03Isolated\" \n\nPlayer connection [8481250688] Started UDP target info broadcast (1) on [225.0.0.222:54997].\n\nInput System module state changed to: Initialized.\n[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.\nInitialize engine version: 2022.3.62f2 (7670c08855a9)\n[Subsystems] Discovering subsystems at path /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/UnitySubsystems\nForcing GfxDevice: Null\nGfxDevice: creating device client; threaded=0; jobified=0\nNullGfxDevice:\n    Version:  NULL 1.0 [1.0]\n    Renderer: Null Device\n    Vendor:   Unity Technologies\nERROR: Shader Sprites/Default shader is not supported on this GPU (none of subshaders/fallbacks are suitable)\nERROR: Shader Sprites/Mask shader is not supported on this GPU (none of subshaders/fallbacks are suitable)\n[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.\nUnloadTime: 0.173542 ms\n[R03NativeLayoutAdmissionV1] sample=0 assembly=Methods baselineRows=2 targetRows=3 paired=2 changedProofs=0 added=1\n[R03TerminalDenied] ordinal=1 site=codegen.virtual namespace=System.Reflection type=RuntimeMethodInfo method=Invoke ptr=0x121358180\n[AssemblyShadowTerminalRejection] throw=1 constructorRun=false stackPrepared=false\n",
+          "verification": {
+            "R03Accepted": false,
+            "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/commands/0015/command.json",
+            "rawPresent": true,
+            "requestSha256": "9d3f58eec2e0c0e63cd2c2ba42163ef5c244a9aaed36a640bc3e82a3d75d80b9",
+            "result": "Failed",
+            "runId": "c36f23e9f9ff426d8d6e5e529a409375",
+            "runtimeAcceptance": false,
+            "semanticVerifierStatus": "NotRun_CommandFailed"
+          }
+        }
+      ],
+      "likelyCause": "Initializer observation production fails before native V1 sealing. The managed player swallows exceptions (lines105-109); native Seal rejects any missing/unprepared observer, field/mask/callback/canary or commit/state predicate (lines85-93). Actual branch and OnPrepared/ReadPrepared return codes are not recorded. The compiled symbols are present. A specific VM/PInvoke/field-offset defect cannot be established from empty raw.",
+      "impact": "Both control and failure full initializer outcomes, prepared field, callback count, canary and postterminal AOT proof remain Unavailable. Build/host passes cannot replace Player evidence.",
+      "recommendedDirection": "Primary should add bounded immutable phase/first-failure diagnostics for the actual managed/native producer: authenticate Open/OnPrepared/ReadPrepared/Seal return codes and primitive decision inputs without managed formatting/logging after poison; then fix the source-bound failure while retaining all existing strict predicates. Extend actual VM-bound integration coverage and issue fresh one-use authority.",
+      "remainingUncertainty": "No failing predicate, commit/state pair, callback result or field value is available in native output. A lone failure log terminal-denial is a narrow observation only, not proof of every expected state or side effect.",
+      "requiredRevalidation": "New source-matched native build and two new independent initializer Players, full request/run/PID/fixture/source bindings, strict failure-aware raw verification and preservation; never replay consumed02."
+    },
+    {
+      "id": "IR-LOCAL-R03-INITIALIZER-02-SEAL-02",
+      "symptom": "Final seal fails before writing index/archive/receipt on intentional directory symlink inside retained host evidence.",
+      "evidence": {
+        "error": "Unexpected directory symlink: native-host-diagnostics/historical-eight/native-v2-file-transaction/evidence/sanitized/case-0168/alias",
+        "result": "ReturnRequired"
+      },
+      "aliases": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/native-host-diagnostics/historical-eight/native-v2-legacy-sink/evidence/cases/posix-93/diagnostics.v2",
+          "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/native-host-diagnostics/historical-eight/native-v2-legacy-sink/evidence/cases/posix-93/target"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/native-host-diagnostics/historical-eight/native-v2-legacy-sink/evidence/cases/posix-92/diagnostics.v2",
+          "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/native-host-diagnostics/historical-eight/native-v2-legacy-sink/evidence/cases/posix-92/target"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/native-host-diagnostics/historical-eight/native-v2-file-transaction/evidence/sanitized/case-0168/alias",
+          "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/native-host-diagnostics/historical-eight/native-v2-file-transaction/evidence/sanitized/case-0168/transaction"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/native-host-diagnostics/historical-eight/native-v2-file-transaction/evidence/strict/case-0073/alias",
+          "target": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261105-oneuse-02/native-host-diagnostics/historical-eight/native-v2-file-transaction/evidence/strict/case-0073/transaction"
+        }
+      ],
+      "likelyCause": "The initializer runner nests the unchanged ten-host output under its own batch.root/native-host-diagnostics. The file-transaction negative suite deliberately retains alias directory symlinks (run_transaction_tests.py172-176). batch_evidence.selected_files rejects every included directory symlink (line39) and excludes only reference-worktrees,bin,obj and selected project caches. This topology differs from the older outer-coordinator sibling host evidence.",
+      "impact": "The constructed fifteen-cell batch has Failed product seal and no evidence-index.json/evidence.tar.gz/seal-receipt.json. All raw files and symlink identities remain retained and independently inventoried; no replacement product seal is manufactured.",
+      "recommendedDirection": "Primary must design an explicit evidence boundary for deliberate negative-test symlinks, retaining exact link identity and authenticated host receipts without following links or loosening the generic sealer. Add a full integration regression using the actual ten-host output tree through finalization. Do not delete links, silently exclude arbitrary evidence or mark current seal Passed.",
+      "remainingUncertainty": "Later sealing checks have not run after the first refused symlink. Additional archive constraints may remain.",
+      "requiredRevalidation": "Fresh successor must prove complete actual host evidence custody and successful bounded finalization, including intentional-negative artifacts and source-bound archive membership. Preserve current Failed seal unchanged."
+    }
+  ],
+  "rawEvidenceModified": false,
+  "retry": false,
+  "runtimeAcceptance": false
+}

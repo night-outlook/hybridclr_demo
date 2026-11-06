@@ -1,0 +1,65 @@
+{
+  "result": "VerifiedCleanFastForwardDescendantAtRequestedSource",
+  "initialHead": "fda6c84b8cf1af336c6eedb16343e7ddc0362831",
+  "executionHead": "7da27a486b529cdebf73100b5ce4c332a1bb7e86",
+  "fastForwardPerformedEarlier": true,
+  "scope": "Read-only post-execution ancestry verification; no second merge",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "merge-base",
+        "--is-ancestor",
+        "fda6c84b8cf1af336c6eedb16343e7ddc0362831",
+        "7da27a486b529cdebf73100b5ce4c332a1bb7e86"
+      ],
+      "time": "2026-11-06T03:25:24.472000+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "rev-parse",
+        "HEAD"
+      ],
+      "time": "2026-11-06T03:25:24.485630+00:00",
+      "exit": 0,
+      "stdout": "7da27a486b529cdebf73100b5ce4c332a1bb7e86\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "status",
+        "--short"
+      ],
+      "time": "2026-11-06T03:25:24.495779+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "diff",
+        "--stat",
+        "fda6c84b8cf1af336c6eedb16343e7ddc0362831",
+        "7da27a486b529cdebf73100b5ce4c332a1bb7e86"
+      ],
+      "time": "2026-11-06T03:25:25.608699+00:00",
+      "exit": 0,
+      "stdout": " .../r03-ir-current-native-local-cycle-host.yml     |   5 +\n .../r03-ir-initializer-local-contracts.yml         |  12 ++\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        |  73 ++++++---\n .../CONSUMED_WEB_TO_LOCAL_INITIALIZER_01.md        | 163 +++++++++++++++++++++\n .../DESIGN_AND_PLAN.md                             |  96 ++++++++++++\n .../PRIMARY_SOURCE_REVIEW.md                       |  80 ++++++++++\n Docs/AssemblyShadow/README.md                      |  41 ++++++\n .../R03IR/current_native_environment_admission.py  |  46 +++++-\n .../R03IR/current_native_environment_contracts.py  |   6 +\n .../R03IR/initializer_admission_contracts.py       | 155 ++++++++++++++++++++\n 10 files changed, 653 insertions(+), 24 deletions(-)\n",
+      "stderr": ""
+    }
+  ]
+}
