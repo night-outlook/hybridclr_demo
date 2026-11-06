@@ -1,3 +1,49 @@
+# Current Primary — initializer oneuse-04 CapacityBlocked; read-only readiness and conditional oneuse-05 (2026-11-06 UTC)
+
+**Published Local outcome remains BLOCKED**, not a runtime failure:
+executed-input demo `e0f52c008b6b244e58be135e9bdba46192b76d04`,
+Local evidence publication `c55950504e21b1a61044f818e1819946ec2dea7e`.
+Original same-volume readings of the actual output parent were
+**24.733444 GiB** and **24.729546 GiB**, both under mandatory
+**25.0 GiB** (26,843,545,600 bytes). The latter deficit was
+**290,398,208 bytes (~277 MiB)**. The reserved oneuse-04 roots
+were never created; all15 cells, one build, two Players and native
+initializer recovery remain **NotRun**. Source, SDK and historical
+evidence preservation passed. Prior oneuse-01 BLOCKED and
+oneuse-02/03 FAIL and their original seals remain unchanged.
+
+**Primary remedy:** no deletion target is supported by the
+evidence and no cleanup, relocation or threshold change is
+authorized. Primary implemented a strictly no-write
+`capacity_readiness.py` and 14 safety/negative host tests:
+actual output-parent statvfs free bytes, canonical fresh
+product/host roots, explicit source/SDK/evidence exclusion and
+optional user-specified candidate inventory without following
+symlinks. A single read-only sample is NEVER Unity authorization.
+Additional capacity on the actual same APFS volume must be
+established by the user or other separately approved action,
+then **two new independent >=25 GiB samples** must pass.
+Fixed20GiB hard/40GiB advisory rules remain unchanged.
+
+Read the [current conditional WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md),
+[new capacity readiness design/plan](History/M07R/R03/IR_Remediation/INITIALIZER05_CAPACITY_2026-11-06/DESIGN_AND_PLAN.md)
+and [Primary source review](History/M07R/R03/IR_Remediation/INITIALIZER05_CAPACITY_2026-11-06/PRIMARY_SOURCE_REVIEW.md).
+Read-only readiness checks precede any new product root.
+**Initializer oneuse-05 is conditional and has not been executed.**
+Only after real user Mac capacity, source/CI/Unity/SDK/historical
+preservation gates pass can one distinct fresh15-cell batch run
+(one real IL2CPP build and two Players). A new native recovery
+reason, strict V1 trace/Player and sealed host custody are still
+required; the previous oneuse-03 pre-callback exception is unknown.
+
+The independent R03 FAIL and High IR-R03-01/02 remain open.
+`R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false;
+runtimeAcceptance=false; qualificationApproved=false;
+fullLegacyRegressionAcceptance=false`; PureInterpreter disabled.
+No H2/M08A/X02/SNAP-01 or Human Review Gate self-approval.
+
+---
+
 # Current Primary — initializer oneuse-03 pre-callback FAIL; conditional diagnostic oneuse-04 (2026-11-06 UTC)
 
 **The genuine oneuse-03 Local Validation outcome remains FAIL / ReturnRequired.**
