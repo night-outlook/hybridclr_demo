@@ -398,6 +398,11 @@ def execute(workspace, original_s, output, unity, demo_commit):
     original_s = Path(original_s)
     unity = Path(unity)
     validate_destination(workspace, original_s, output)
+    host_root = output.parent / (output.name + "-native-host-raw")
+    require(host_root.is_absolute() and not host_root.exists() and
+            not host_root.is_symlink() and
+            host_root.parent == output.parent and host_root != output,
+            "Unused separate sibling host evidence root required before dispatch")
     validate_original(original_s)
     validate_sources(workspace, demo_commit)
     validate_machine(unity, output)

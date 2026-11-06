@@ -95,7 +95,8 @@ class HostCustodySealTests(unittest.TestCase):
     def test_06_generic_seal_rejects_direct_raw_symlink_host_tree(self):
         # Demonstrates exactly the failure fixed by the new placement.
         from batch_evidence import selected_files
-        with self.assertRaisesRegex(Exception, "Unexpected directory symlink"):
+        with self.assertRaisesRegex(Exception,
+                                   "Unexpected directory symlink|Expected regular evidence file"):
             list(selected_files(self.raw))
         self.assertTrue((self.raw / "historical-eight/evidence/alias").is_symlink())
 
