@@ -329,6 +329,12 @@ def trace_report(root: Path, request: dict, pid: int | None, *,
                     (0 if commit_codes[0] == 0 else 19) and
                     commit_codes[0] in (0, 19),
                     "VM native recovery must agree with real Commit and terminal state")
+            if request["stimulus"] == "initializer-failure":
+                require("R03IR.InitializerFailure.AfterPublication.V1" in recovery["vmReason"],
+                        "Real postprepared initializer sentinel must occur in first VM failure")
+            else:
+                require(recovery["vmReason"] == "",
+                        "Healthy control must not contain an unexpected initializer failure")
         return observed
     except Exception as error:
         return {"result": "RejectedNativeJournal_NotRuntimeAuthenticated",

@@ -69,6 +69,8 @@ class FakeInitializerBatch:
             row["pid"] = self.pid
         if self.corrupt == "trace-pid":
             traces[2]["pid"] = self.pid + 1
+        if self.corrupt == "recovery-wrong-reason":
+            raw["postAotSucceeded"] = False
         if self.corrupt == "exit":
             # Synthetic reproduction of a real native seal failure. The
             # command returns nonzero, raw remains exactly empty, but a
@@ -93,6 +95,8 @@ class FakeInitializerBatch:
             recovery["caseId"] = request["caseId"]
             recovery["fixtureSha256"] = request["dllSha256"]
             recovery["processId"] = self.pid + (1 if self.corrupt == "recovery-pid" else 0)
+            if self.corrupt == "recovery-wrong-reason":
+                recovery["nativeRecovery"]["reason"] = "Methods: unrelated initializer exception"
             Path(str(out) + ".vm-recovery.json").write_bytes(
                 (json.dumps(recovery, sort_keys=True) + "\n").encode())
         if self.corrupt == "exit":
@@ -151,7 +155,8 @@ class InitializerLocalOrchestrationTests(unittest.TestCase):
     def test_pid_and_native_state_mutations_fail_closed(self):
         for mode in cycle.MODE_SHA:
             for corrupt in ("pid", "postAot", "canary", "exit",
-                            "trace-missing", "trace-pid", "recovery-missing", "recovery-pid"):
+                            "trace-missing", "trace-pid", "recovery-missing", "recovery-pid",
+                            "recovery-wrong-reason"):
                 with self.subTest(mode=mode, corrupt=corrupt):
                     self.run_case(mode, corrupt)
 

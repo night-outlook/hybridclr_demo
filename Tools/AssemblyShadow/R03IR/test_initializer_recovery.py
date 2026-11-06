@@ -26,7 +26,7 @@ def fixture(mode="initializer-failure"):
             "dispositionCode": 0 if failed else 4,
             "disposition": "RestartRequired" if failed else "ActiveShadow",
             "terminalFailureCode": 19 if failed else 0,
-            "reason": "Methods: actual module initializer exception" if failed else "",
+            "reason": "Methods: actual module initializer exception R03IR.InitializerFailure.AfterPublication.V1" if failed else "",
             "retainedBytes": 2048,
             "baselineEligibilityRequiresStartupValidation": False,
         },
