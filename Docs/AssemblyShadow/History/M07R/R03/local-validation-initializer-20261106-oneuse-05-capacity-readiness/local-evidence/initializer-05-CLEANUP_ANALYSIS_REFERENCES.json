@@ -1,0 +1,35 @@
+{
+  "timeUtc": "2026-11-06T09:25:05.838854+00:00",
+  "command": [
+    "rg",
+    "-l",
+    "-F",
+    "--hidden",
+    "-g",
+    "*.json",
+    "-g",
+    "*.jsonl",
+    "-g",
+    "*.md",
+    "-g",
+    "*.sha256",
+    "-g",
+    "*.txt",
+    "-e",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Library/Bee",
+    "-e",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/HybridCLRData/StrippedAOTDllsTempProj",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow"
+  ],
+  "exitCode": 0,
+  "stderr": "",
+  "referenceFiles": [
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R02/local-validation-20260928-batch-h-return-required/batch/m00-batch-e-forensics/analysis.json",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R02/local-validation-20260927-batch-f-return-required/batch/m00-batch-e-forensics/analysis.json",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R02/local-validation-20260928-batch-g-return-required/batch/m00-batch-e-forensics/analysis.json",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R02/local-validation-20260929-batch-i-evidence-ready/batch/m00-batch-e-forensics/analysis.json",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260920-authority3168/V01/primary-fixture/bee-action-graph.json"
+  ],
+  "interpretation": "Text references identify possible provenance dependencies; separate byte-custody audit still required before deletion",
+  "deletionApproved": false
+}

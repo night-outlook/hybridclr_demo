@@ -1,0 +1,75 @@
+{
+  "timeUtc": "2026-11-06T09:31:26.520445+00:00",
+  "request": "Read-only analysis of old data in this project; no deletion approval yet",
+  "result": "SpecificRecoverableOptionPrepared_AwaitingUserDecision",
+  "recommendedExactTarget": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/HybridCLRData/StrippedAOTDllsTempProj",
+  "candidate": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/HybridCLRData/StrippedAOTDllsTempProj",
+    "regularFiles": 2664,
+    "logicalBytes": 526680638,
+    "allocatedBytes": 532893696,
+    "symlinks": 0,
+    "specialFiles": 0,
+    "oldestMtimeUtc": "2026-09-30T00:37:03.343336+00:00",
+    "newestMtimeUtc": "2026-09-30T00:37:11.580747+00:00",
+    "device": 16777230,
+    "readOnly": true,
+    "deletionApproved": false
+  },
+  "backup": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Initializer05-CapacityAnalysis-20261106/StrippedAOTDllsTempProj.recovery.tar.gz",
+    "bytes": 112759682,
+    "sha256": "4b5e3b8eb84646bd5025f755f0f23436adf359cbaf9ff850983a2837fe16a727",
+    "all2664RegularFilesVerified": true,
+    "originalUnchanged": true
+  },
+  "estimatedNetAllocatedBytesBeforeApfsEffects": 420134014,
+  "reclaimableBytes": "Unknown_APFSSharingSnapshots",
+  "basis": {
+    "gitTrackedFiles": 0,
+    "originalCCustodyExactBindings": 0,
+    "priorCleanupCustodyExactBindings": 0,
+    "exactCandidateAbsoluteReferencesInCurrentDocs": 0,
+    "all91RelativeReferenceFilesInspected": true,
+    "freshRunnerBuildsIndependentProjects": "Tools/AssemblyShadow/R03/run_local.py:130-172",
+    "noActiveUnityBeeIl2CppDotnetObserved": true
+  },
+  "notAFullRuntimeCustodyAcceptance": true,
+  "otherCandidates": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Library/Bee",
+      "allocatedBytes": 998182912,
+      "disposition": "Keep: original H1 Bee action graph and R02 forensic references exist; separate authority/custody review required"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Library/PackageCache",
+      "allocatedBytes": 1794183168,
+      "disposition": "Keep: package source cache, exact dependency and historical reference review required"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp",
+      "disposition": "Keep: 425 paths bound by prior cleanup custody; no whole-directory cleanup"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Builds",
+      "disposition": "Keep: historical Player provenance; no retired-artifact disposition authorized"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs",
+      "disposition": "Keep: committed source and evidence"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+      "disposition": "Keep: retained raw evidence, SDK scratch, original S and recovery backups"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/.git",
+      "disposition": "Keep: shared Git object/worktree authority; no GC or pruning"
+    }
+  ],
+  "userApproval": "Pending_ExactTargetQuestion",
+  "deletionOperations": 0,
+  "movedExistingData": false,
+  "runtimeRunnerInvocations": 0,
+  "capacityPolicy": "Fresh independent same-volume samples and all remaining admission gates required after any approved action"
+}
