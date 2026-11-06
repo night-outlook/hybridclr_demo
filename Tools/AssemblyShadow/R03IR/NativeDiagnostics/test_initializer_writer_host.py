@@ -59,8 +59,9 @@ class InitializerWriterHostTests(unittest.TestCase):
                                                 "a" * 64,
                                                 require_complete=mode in ("control", "failure"))
                 recovery = Path(str(output) + ".vm-recovery.json")
-                self.last_recovery = inspect_recovery(recovery, request, child.pid, "a" * 64)
-                self.assertEqual(self.last_recovery["terminalFailureCode"], 0 if mode == "control" else 19)
+                if recovery.is_file():
+                    self.last_recovery = inspect_recovery(recovery, request, child.pid, "a" * 64)
+                    self.assertEqual(self.last_recovery["terminalFailureCode"], 0 if mode == "control" else 19)
             return output.read_bytes() if output.exists() else None
 
     def test_failure_is_real_unaccepted_native_schema(self):
@@ -102,6 +103,7 @@ class InitializerWriterHostTests(unittest.TestCase):
         self.assertIsNone(self.run_mode("bad-run"))
         self.assertEqual(self.run_mode("preexisting", preexisting=True),
                          b"preexisting\n")
+        self.assertIsNone(self.last_recovery)
 
 
 if __name__ == "__main__":
