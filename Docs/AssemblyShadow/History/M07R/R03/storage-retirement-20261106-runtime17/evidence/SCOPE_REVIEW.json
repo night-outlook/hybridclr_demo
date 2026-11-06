@@ -1,0 +1,25 @@
+{
+  "reviewerTask": "/root/storage_scope_review_gpt61sol_high_1",
+  "role": "Independent read-only storage scope review",
+  "result": "PASS",
+  "scopeSha256": "43fd0b63568c391eef04b23da01b756692043f83ee53783f328cf45f92fa7b5f",
+  "approvedRoots": 17,
+  "registeredWorktreesCheckedUnique": 81,
+  "registeredWorktreeOverlaps": 0,
+  "duplicateFilesChecked": 40,
+  "duplicateContainingRoots": 10,
+  "rootOrAncestorSymlinks": 0,
+  "nestedMountsObserved": 0,
+  "owningSourcesAndGitOutsideScope": true,
+  "originalSOutsideScopeAndRegistered": true,
+  "commands": [
+    "git -C <each of four owning repositories> worktree list --porcelain -z",
+    "git -C <each of four owning repositories> rev-parse --path-format=absolute --git-common-dir",
+    "/sbin/mount",
+    "Python lstat/realpath/ismount and containment checks of roots, ancestors and forty duplicate paths"
+  ],
+  "payloadsReadOrHashedByReviewer": false,
+  "mutationsPerformedByReviewer": false,
+  "residualCheck": "Main agent inventories internal symlinks and every selected file before deletion.",
+  "notR03AcceptanceOrHumanReviewGate": true
+}

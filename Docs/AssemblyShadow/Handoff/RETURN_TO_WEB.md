@@ -1,5 +1,17 @@
 # Local Validation → Primary Implementation
 
+## R03-STORAGE-RETIRE17-20261106 — owner-approved raw evidence no longer available
+
+The user explicitly authorized permanent deletion of17 complete runtime-related roots, including unique evidence, and all40 specified duplicate paths without preserving a representative copy. The action is complete: **17 roots /575245 regular files /36 symlinks** removed; all40 paths absent, no new payload recovery archive. [Scope](../History/M07R/R03/storage-retirement-20261106-runtime17/evidence/APPROVED_SCOPE.json), [actual result](../History/M07R/R03/storage-retirement-20261106-runtime17/evidence/RESULT.json), [current custody](../History/M07R/R03/storage-retirement-20261106-runtime17/CUSTODY_DISPOSITION.json).
+
+**Impact and reproduction:** read the exact retired-root list, confirm nonexistence, and compare it with prior raw manifests referenced by current admissions. Direct old-path rehash gates will now fail by design. Metadata hashes are retained for provenance only; selected payloads are unavailable for current verification. This is an explicit owner retention decision, not a newly reproduced VM defect, successful runtime repair, or permission to rewrite historical results. All earlier verdicts and existing Git-published checkpoints remain unchanged. No Unity/Player/compile or new runtime batch occurred.
+
+**Required Primary action:** adopt this precise retirement disposition in a new source-bound handoff/custody plan before dispatch. Preserve all remaining data and distinguish unavailable live artifacts from historical results. Do not silently bypass missing evidence, regenerate consumed roots, reuse old apps or promote prior partial observations to acceptance. Independent High findings and R03 obligations remain open; all acceptance flags are false.
+
+Boundary review and independent before/after protection Passed within declared scope: four owning sources/OriginalS,19 published checkpoints,16978 S files,2405 installed SDK files and1135 outside top-level entries preserved. Unselected raw interiors were not fully rehashed. Actual volume free-space increase **29.991043GiB**; final verification is in the publication receipt `/Users/ah/GitHub/hybridclr_cleanup_receipts/user-retire-runtime17-20261106/PUBLICATION_RECEIPT.json`. [Local report](../History/M07R/R03/storage-retirement-20261106-runtime17/LOCAL_RESULT.json), [after protection](../History/M07R/R03/storage-retirement-20261106-runtime17/evidence/PROTECTED_AFTER.json). Return to Primary Implementation.
+
+---
+
 ## IR-LOCAL-R03-INITIALIZER-05-CAPACITY-01 — readiness remains Blocked after the one approved action
 
 Both fresh post-action readings remain below25GiB: **24.841884613/24.841583252GiB**, final deficit **170098688 bytes**. Exact command/timestamps/device/bytes are preserved in [FINDING.json](../History/M07R/R03/local-validation-initializer-20261106-oneuse-05-capacity-readiness/FINDING.json) and [Local result](../History/M07R/R03/local-validation-initializer-20261106-oneuse-05-capacity-readiness/LOCAL_RESULT.json). The user-approved single ignored temporary AOT export directory was removed only after verified recovery archiving;2664 payloads are recoverable locally and92631 adjacent records remained unchanged. This is a capacity blocker, not a newly reproduced implementation/runtime defect.
