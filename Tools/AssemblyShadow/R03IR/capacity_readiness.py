@@ -150,7 +150,8 @@ def candidate_inventory(candidate: Path, *, parent: Path,
 
 def inspect(*, parent: Path, run_root: Path, host_root: Path,
             workspace: Path, original_s: Path, unity: Path,
-            candidates: tuple[Path, ...] = ()) -> dict:
+            candidates: tuple[Path, ...] = (),
+            additional_protected: tuple[Path, ...] = ()) -> dict:
     parent = exact_existing(parent, "output parent")
     workspace = exact_existing(workspace, "workspace root")
     original_s = exact_existing(original_s, "historical original S")
@@ -160,8 +161,10 @@ def inspect(*, parent: Path, run_root: Path, host_root: Path,
     need(run_root != host_root and
          host_root.name == run_root.name + "-native-host-raw",
          "New product/host roots must have one exact distinct naming contract")
+    extra = tuple(exact_existing(p, "additional protected root") for p in
+                  additional_protected)
     protect = (workspace, original_s, parent, unity,
-               run_root, host_root)
+               run_root, host_root, *extra)
     need(all(not is_overlapping(run_root, root) and
              not is_overlapping(host_root, root)
              for root in (workspace, original_s, unity)),
@@ -185,6 +188,7 @@ def inspect(*, parent: Path, run_root: Path, host_root: Path,
         "capacity": state,
         "explicitCandidateInspectionOnly": samples,
         "candidateCount": len(samples),
+        "additionalProtectedRootCount": len(extra),
         "readOnly": True, "writesPerformed": 0, "deletionsPerformed": 0,
         "automaticCleanupEnabled": False,
         "futureUnityDiskUseGuaranteed": False,
@@ -205,11 +209,14 @@ def main() -> int:
         parser.add_argument("--" + arg, required=True, type=Path)
     parser.add_argument("--candidate", action="append", default=[], type=Path,
                         help="EXPLICIT read-only candidate inspection; never deletion authorization")
+    parser.add_argument("--protected-root", action="append", default=[], type=Path,
+                        help="Additional known SDK, archive or user-owned root to exclude")
     args = parser.parse_args()
     report = inspect(parent=args.output_parent, run_root=args.run_root,
                      host_root=args.host_raw_root, workspace=args.workspace,
                      original_s=args.original_s, unity=args.unity,
-                     candidates=tuple(args.candidate))
+                     candidates=tuple(args.candidate),
+                     additional_protected=tuple(args.protected_root))
     print(json.dumps(report, indent=2, sort_keys=True))
     return 0
 

@@ -174,5 +174,25 @@ class ReadOnlyCapacityContracts(unittest.TestCase):
         self.assertFalse(report["eligibleForUnityRun"])
 
 
+    def test_13_explicit_custom_sdk_protection_rejects_candidate_overlap(self):
+        sdk = self.root / "user-installed-sdk"
+        sdk.mkdir()
+        cache = sdk / "downloaded-files"
+        cache.mkdir()
+        (cache / "keep.bin").write_bytes(b"protected sdk")
+        with self.assertRaisesRegex(cap.CapacityReadinessError,
+                                    "Candidate overlaps protected"):
+            self.probe(candidates=(cache,), additional_protected=(sdk,))
+        with self.assertRaisesRegex(cap.CapacityReadinessError,
+                                    "Candidate overlaps protected"):
+            self.probe(candidates=(sdk,), additional_protected=(sdk,))
+        self.assertEqual((cache / "keep.bin").read_bytes(), b"protected sdk")
+        self.assertFalse(self.run.exists())
+
+    def test_14_no_forged_extra_protected_root(self):
+        with self.assertRaises(cap.CapacityReadinessError):
+            self.probe(additional_protected=(self.root / "missing-sdk",))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
