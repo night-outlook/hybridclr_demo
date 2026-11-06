@@ -26,6 +26,7 @@ from run_terminal_local import build_ir_generator, original_s_fixtures, prepare_
 from prepare_initializer_sources import prepare as prepare_sources
 from verify_initializer_observation import strict_load, verify as verify_observation
 from verify_initializer_trace import inspect as inspect_native_trace
+from verify_initializer_recovery import inspect as inspect_native_recovery
 from initializer_host_custody import capture as capture_host, verify_live as verify_host
 from run_current_native_validation_cycle import (
     validate_destination, validate_original, validate_sources, validate_machine,
@@ -51,6 +52,9 @@ SOURCE_PATHS = (
     "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationWriter.cpp",
     "Tools/AssemblyShadow/R03IR/run_initializer_local.py",
     "Tools/AssemblyShadow/R03IR/verify_initializer_trace.py",
+    "Tools/AssemblyShadow/R03IR/verify_initializer_recovery.py",
+    "Tools/AssemblyShadow/R03IR/test_initializer_recovery.py",
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/InitializerHostInclude/vm/AssemblyShadow.h",
     "Tools/AssemblyShadow/R03IR/initializer_host_custody.py",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/initializer_writer_driver.cpp",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_initializer_writer_host.py",
@@ -240,6 +244,7 @@ def local_hosts(batch):
                  "test_initializer_source_preparation.py",
                  "test_initializer_local_orchestration.py",
                  "test_initializer_trace.py",
+                 "test_initializer_recovery.py",
                  "test_initializer_host_custody.py"):
         receipts[name] = batch.command([
             sys.executable, "-B", "-m", "unittest", "discover",
@@ -298,13 +303,36 @@ def trace_report(root: Path, request: dict, pid: int | None, *,
         return {"result": "UnavailableNoBoundNativeJournal",
                 "traceExists": path.is_file() and not path.is_symlink(),
                 "runtimeAcceptance": False, "R03Accepted": False}
+    recovery_path = root / "raw.json.vm-recovery.json"
+    recovery = {"result": "UnavailableNoBoundVmRecovery", "runtimeAcceptance": False}
+    if recovery_path.is_file() and not recovery_path.is_symlink():
+        try:
+            recovery = inspect_native_recovery(
+                recovery_path, request, pid, request["dllSha256"])
+        except Exception as error:
+            recovery = {
+                "result": "RejectedVmRecovery_NotRuntimeAuthenticated",
+                "error": str(error), "rawSha256": sha(recovery_path),
+                "rawBytes": recovery_path.stat().st_size, "runtimeAcceptance": False}
     try:
         observed = inspect_native_trace(
             path, request, pid, request["dllSha256"], require_complete=complete)
+        observed["vmRecovery"] = recovery
+        if complete:
+            require(recovery.get("result") ==
+                    "ParsedNativeVMFirstFailure_NotRuntimeAuthenticated",
+                    "Exact native VM recovery reason required alongside strict V1")
+            commit_codes = observed.get("commitStatusReported")
+            require(type(commit_codes) is list and len(commit_codes) == 1 and
+                    recovery["stateCode"] == (6 if commit_codes[0] == 0 else 9) and
+                    recovery["terminalFailureCode"] ==
+                    (0 if commit_codes[0] == 0 else 19) and
+                    commit_codes[0] in (0, 19),
+                    "VM native recovery must agree with real Commit and terminal state")
         return observed
     except Exception as error:
         return {"result": "RejectedNativeJournal_NotRuntimeAuthenticated",
-                "error": str(error),
+                "error": str(error), "vmRecovery": recovery,
                 "traceSha256": sha(path), "traceBytes": path.stat().st_size,
                 "runtimeAcceptance": False, "R03Accepted": False}
 

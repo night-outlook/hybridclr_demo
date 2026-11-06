@@ -30,6 +30,8 @@ namespace AssemblyShadow.R03.IR
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern int R03_IRW_Trace(int phase, int a, int b, int c, int d);
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IRW_CaptureRecovery();
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern void R03_IR_Exit(int code);
 
         private static bool s_started;
@@ -113,6 +115,12 @@ namespace AssemblyShadow.R03.IR
                 int getState = (int)AssemblyShadowRuntime.GetState(out state);
                 finalState = (int)state;
                 R03_IRW_Trace(201, getState, finalState, commit, 0);
+                // Only the existing native recovery getter reads the preserved
+                // caught initializer detail. No managed exception formatting.
+                lastPhase = 230;
+                int recovery = R03_IRW_CaptureRecovery();
+                R03_IRW_Trace(231, recovery, commit, finalState, 0);
+                Need(recovery == 1, "Bounded native recovery detail");
                 Need(getState == (int)AssemblyShadowErrorCode.Success, "State after Commit");
                 bool failure = request.stimulus == "initializer-failure";
                 lastPhase = 205;

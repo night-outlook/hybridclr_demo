@@ -19,7 +19,7 @@ DIGEST = re.compile(r"[0-9a-f]{64}\Z")
 PHASES = frozenset((
     100, 101, 102, 110, 111, 120, 121, 130, 131, 140, 141,
     150, 151, 160, 161, 190, 191, 200, 201, 205, 210, 211,
-    220, 299, 300, 301, 302, 400, 401, 600, 601, 602, 603,
+    220, 230, 231, 299, 300, 301, 302, 400, 401, 600, 601, 602, 603,
     610, 620, 900, 901,
 ))
 MAX_BYTES = 65536
@@ -109,6 +109,7 @@ def summarize(records, *, require_complete=False):
         "nativeSealFailures": [{"return": e["a"], "reason": e["b"]} for e in seals],
         "managedCaughtPhase": [e["a"] for e in managed_failures],
         "commitStatusReported": [e["a"] for e in steps[191]],
+        "nativeRecoveryCaptured": [e["a"] for e in steps[230]],
         "nativeSealInput": [{"commit": e["a"], "state": e["b"],
                               "attempted": e["c"], "succeeded": e["d"]}
                              for e in steps[600]],
@@ -118,7 +119,7 @@ def summarize(records, *, require_complete=False):
     }
     if require_complete:
         need(all(steps[k] for k in (100, 101, 190, 191, 201, 205,
-                                    299, 300, 400, 401, 600, 601,
+                                    230, 231, 299, 300, 400, 401, 600, 601,
                                     602, 603, 620)) and
              not steps[610] and not steps[900] and
              len(steps[300]) == 1 and steps[300][0]["a"] == 1 and

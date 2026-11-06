@@ -12,7 +12,7 @@ from verify_initializer_trace import TraceRejected, parse, summarize, inspect
 def fixture(mode="initializer-failure"):
     request = {"runId": "HostInitializerEvidenceRun000001",
                "caseId": "HOST-INIT", "stimulus": mode, "dllSha256": "a" * 64}
-    phases = (100, 101, 299, 300, 190, 191, 201, 205,
+    phases = (100, 101, 299, 300, 190, 191, 201, 230, 231, 205,
               400, 401, 600, 601, 602, 603, 620)
     rows = []
     for i, stage in enumerate(phases, 1):
@@ -21,7 +21,7 @@ def fixture(mode="initializer-failure"):
             "runId": request["runId"], "caseId": request["caseId"],
             "stimulus": mode, "fixtureSha256": request["dllSha256"],
             "pid": 521, "seq": i, "phase": stage,
-            "a": 1 if stage in (100, 101, 299, 300, 400, 620) else 0,
+            "a": 1 if stage in (100, 101, 230, 231, 299, 300, 400, 620) else 0,
             "b": 0, "c": 0, "d": 0,
             "runtimeAcceptance": False, "R03Accepted": False, "H2Passed": False,
         }

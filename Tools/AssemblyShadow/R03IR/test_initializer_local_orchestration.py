@@ -14,6 +14,7 @@ import run_initializer_local as cycle
 from test_initializer_observation import fixture as raw_fixture
 from verify_initializer_observation import Rejected
 from test_initializer_trace import fixture as native_trace_fixture, encode as native_trace_encode
+from test_initializer_recovery import fixture as native_recovery_fixture
 
 
 class FakeInitializerBatch:
@@ -86,6 +87,14 @@ class FakeInitializerBatch:
         if self.corrupt != "trace-missing":
             (Path(str(out) + ".native-trace.jsonl")).write_bytes(
                 native_trace_encode(traces))
+        if self.corrupt != "recovery-missing":
+            recovery, _ = native_recovery_fixture(self.mode)
+            recovery["runId"] = request["runId"]
+            recovery["caseId"] = request["caseId"]
+            recovery["fixtureSha256"] = request["dllSha256"]
+            recovery["processId"] = self.pid + (1 if self.corrupt == "recovery-pid" else 0)
+            Path(str(out) + ".vm-recovery.json").write_bytes(
+                (json.dumps(recovery, sort_keys=True) + "\n").encode())
         if self.corrupt == "exit":
             raise RuntimeError("Synthetic nonzero native Player exit")
         return {"pid": self.pid}
@@ -109,6 +118,8 @@ class InitializerLocalOrchestrationTests(unittest.TestCase):
                     self.assertEqual(batch.call_count, 1)
                     self.assertEqual(result["nativeDiagnostic"]["result"],
                                      "CompletePhaseTrace_NotRuntimeAuthenticated")
+                    self.assertEqual(result["nativeDiagnostic"]["vmRecovery"]["result"],
+                                     "ParsedNativeVMFirstFailure_NotRuntimeAuthenticated")
                 else:
                     with self.assertRaises((Rejected, ValueError, RuntimeError)):
                         cycle.init_player(batch, mode)
@@ -126,6 +137,9 @@ class InitializerLocalOrchestrationTests(unittest.TestCase):
                         self.assertEqual(result["nativeDiagnostic"]["nativeCallbackFailures"], [-7])
                         self.assertEqual((evidence / "raw.json").stat().st_size, 0)
                         self.assertEqual(result["launchPidFromOwnedReceipt"], batch.pid)
+                        self.assertIn("nativeDiagnostic", result)
+                        self.assertEqual(result["nativeDiagnostic"]["vmRecovery"]["stateCode"],
+                                         6 if mode == "initializer-control" else 9)
                     else:
                         self.assertTrue((evidence / "raw.json").exists())
 
@@ -137,7 +151,7 @@ class InitializerLocalOrchestrationTests(unittest.TestCase):
     def test_pid_and_native_state_mutations_fail_closed(self):
         for mode in cycle.MODE_SHA:
             for corrupt in ("pid", "postAot", "canary", "exit",
-                            "trace-missing", "trace-pid"):
+                            "trace-missing", "trace-pid", "recovery-missing", "recovery-pid"):
                 with self.subTest(mode=mode, corrupt=corrupt):
                     self.run_case(mode, corrupt)
 

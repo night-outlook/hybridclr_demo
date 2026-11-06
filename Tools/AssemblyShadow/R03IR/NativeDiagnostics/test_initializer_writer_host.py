@@ -11,6 +11,7 @@ import sys
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 from verify_initializer_trace import inspect as inspect_trace
+from verify_initializer_recovery import inspect as inspect_recovery
 SOURCE = HERE.parent / "PlayerProject/R03InitializerObservationWriter.cpp"
 DRIVER = HERE / "initializer_writer_driver.cpp"
 INCLUDE = HERE / "InitializerHostInclude"
@@ -45,6 +46,7 @@ class InitializerWriterHostTests(unittest.TestCase):
             self.assertEqual(child.returncode, 0, (mode, stdout, stderr))
             diagnostic = Path(str(output) + ".native-trace.jsonl")
             self.last_trace = None
+            self.last_recovery = None
             if diagnostic.is_file():
                 request = {
                     "runId": "HostInitializerEvidenceRun000001",
@@ -56,6 +58,9 @@ class InitializerWriterHostTests(unittest.TestCase):
                 self.last_trace = inspect_trace(diagnostic, request, child.pid,
                                                 "a" * 64,
                                                 require_complete=mode in ("control", "failure"))
+                recovery = Path(str(output) + ".vm-recovery.json")
+                self.last_recovery = inspect_recovery(recovery, request, child.pid, "a" * 64)
+                self.assertEqual(self.last_recovery["terminalFailureCode"], 0 if mode == "control" else 19)
             return output.read_bytes() if output.exists() else None
 
     def test_failure_is_real_unaccepted_native_schema(self):

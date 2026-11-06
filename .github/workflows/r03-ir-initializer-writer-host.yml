@@ -5,6 +5,8 @@ on:
     paths:
       - '.github/workflows/r03-ir-initializer-writer-host.yml'
       - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationWriter.cpp'
+      - 'Tools/AssemblyShadow/R03IR/verify_initializer_trace.py'
+      - 'Tools/AssemblyShadow/R03IR/verify_initializer_recovery.py'
       - 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_initializer_writer_host.py'
       - 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/initializer_writer_driver.cpp'
       - 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/InitializerHostInclude/**'
@@ -15,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-24.04, macos-14]
+        os: [ubuntu-24.04, macos-15]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -24,6 +26,8 @@ jobs:
           sparse-checkout: |
             Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationWriter.cpp
             Tools/AssemblyShadow/R03IR/NativeDiagnostics
+            Tools/AssemblyShadow/R03IR/verify_initializer_trace.py
+            Tools/AssemblyShadow/R03IR/verify_initializer_recovery.py
       - name: Build C++11 and run source-bound host negatives
         shell: bash
         run: |

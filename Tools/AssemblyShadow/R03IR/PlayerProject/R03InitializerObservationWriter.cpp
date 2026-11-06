@@ -4,6 +4,8 @@
 // All post-Commit journal operations use preopened fds and native primitives.
 #include "il2cpp-config.h"
 #if HYBRIDCLR_R03_RUNTIME_PROBE
+#include "vm/AssemblyShadow.h"
+#include <string>
 #include <atomic>
 #include <cerrno>
 #include <cstdint>
@@ -21,7 +23,8 @@ static std::atomic<int32_t> state{0}; // 0 unused, 1 opened, 2 sealed, -1 invali
 static std::atomic<int32_t> nextSequence{0};
 static std::atomic_flag journalBusy = ATOMIC_FLAG_INIT;
 static std::atomic<bool> journalBroken{false};
-static int fd = -1, journal = -1;
+static int fd = -1, journal = -1, recoveryFd = -1;
+static std::atomic<bool> recoveryCaptured{false};
 static char runId[96]{}, caseId[96]{}, stimulus[32]{}, digest[65]{};
 static const int MAX_EVENTS = 128;
 
@@ -87,6 +90,7 @@ static int32_t Event(int32_t phase, int32_t a, int32_t b, int32_t c, int32_t d) 
 
 static void CloseOutputs() noexcept {
     if (fd >= 0) { ::close(fd); fd = -1; }
+    if (recoveryFd >= 0) { ::fsync(recoveryFd); ::close(recoveryFd); recoveryFd = -1; }
     if (journal >= 0) { ::fsync(journal); ::close(journal); journal = -1; }
 }
 } // namespace r03_irw_output
@@ -106,9 +110,11 @@ extern "C" IL2CPP_EXPORT int32_t R03_IRW_Open(
     int32_t expected = 0;
     if (!state.compare_exchange_strong(expected, 1)) return -1;
     static const char suffix[] = ".native-trace.jsonl";
+    static const char recoverySuffix[] = ".vm-recovery.json";
     const size_t pathLen = path ? ::strnlen(path, 4096) : 0;
     if (!path || pathLen < 2 || path[0] != '/' ||
         pathLen + sizeof suffix > 4096 ||
+        pathLen + sizeof recoverySuffix > 4096 ||
         !Safe(run, sizeof(runId), false) || ::strlen(run) < 24 ||
         !Safe(caseName, sizeof(caseId), false) ||
         !Safe(mode, sizeof(stimulus), false) ||
@@ -139,7 +145,68 @@ extern "C" IL2CPP_EXPORT int32_t R03_IRW_Open(
     if (Event(101, 1, 0, 0, 0) != 1) {
         CloseOutputs(); state.store(-1); return -6;
     }
+    char recoveryPath[4096];
+    std::memcpy(recoveryPath, path, pathLen);
+    std::memcpy(recoveryPath + pathLen, recoverySuffix, sizeof recoverySuffix);
+    recoveryFd = ::open(recoveryPath, O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW, 0600);
+    if (!ValidFd(recoveryFd)) {
+        Event(102, -7, errno, 0, 0);
+        CloseOutputs(); state.store(-1); return -7;
+    }
+    Event(102, 1, 0, 0, 0);
     return 1;
+}
+
+// Non-mutating native read of the VM's *existing* first terminal reason.
+// The core already recorded the caught module initializer exception before
+// returning code 19. Do not call managed ToString/GetType/Exception in a
+// terminal VM. This independent file is not a V2 snapshot or acceptance.
+extern "C" IL2CPP_EXPORT int32_t R03_IRW_CaptureRecovery()
+{
+    using namespace r03_irw_output;
+    if (state.load(std::memory_order_acquire) != 1 ||
+        recoveryFd < 0 || recoveryCaptured.exchange(true, std::memory_order_acq_rel))
+        return -1;
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
+    try {
+        std::string actual;
+        const auto error = il2cpp::vm::AssemblyShadow::GetRecoveryInfoJson(actual);
+        const int32_t status = static_cast<int32_t>(error);
+        if (status != 0 || actual.empty() || actual.size() > 16384 ||
+            actual[0] != '{' || actual[actual.size()-1] != '}') {
+            Event(230, -2, status, static_cast<int32_t>(actual.size()), 0);
+            return -2;
+        }
+        char prefix[512];
+        const int len = std::snprintf(prefix, sizeof prefix,
+            "{\"schemaVersion\":1,\"kind\":\"R03IRNativeInitializerRecoveryV1\","
+            "\"runId\":\"%s\",\"caseId\":\"%s\",\"stimulus\":\"%s\","
+            "\"fixtureSha256\":\"%s\",\"processId\":%ld,"
+            "\"nativeReturn\":%d,\"nativeRecovery\":",
+            runId, caseId, stimulus, digest, static_cast<long>(::getpid()), status);
+        static const char tail[] =
+            ",\"runtimeAcceptance\":false,\"R03Accepted\":false,\"H2Passed\":false}\n";
+        if (len <= 0 || static_cast<size_t>(len) >= sizeof prefix ||
+            !WriteAll(recoveryFd, prefix, static_cast<size_t>(len)) ||
+            !WriteAll(recoveryFd, actual.data(), actual.size()) ||
+            !WriteAll(recoveryFd, tail, sizeof tail-1) ||
+            ::fsync(recoveryFd) != 0 || ::close(recoveryFd) != 0) {
+            recoveryFd = -1;
+            Event(230, -3, status, static_cast<int32_t>(actual.size()), errno);
+            return -3;
+        }
+        recoveryFd = -1;
+        Event(230, 1, status, static_cast<int32_t>(actual.size()), 0);
+        return 1;
+    }
+    catch (...) {
+        Event(230, -4, 0, 0, 0);
+        return -4;
+    }
+#else
+    Event(230, -5, 0, 0, 0);
+    return -5;
+#endif
 }
 
 extern "C" IL2CPP_EXPORT int32_t R03_IRW_Seal(
@@ -212,4 +279,5 @@ extern "C" IL2CPP_EXPORT int32_t R03_IRW_Trace(
     int32_t, int32_t, int32_t, int32_t, int32_t) { return 0; }
 extern "C" IL2CPP_EXPORT int32_t R03_IRW_Seal(
     int32_t,int32_t,int32_t,int32_t,int32_t,int32_t) { return 0; }
+extern "C" IL2CPP_EXPORT int32_t R03_IRW_CaptureRecovery() { return 0; }
 #endif

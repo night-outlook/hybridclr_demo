@@ -5,11 +5,20 @@
 #include <fstream>
 #include <iterator>
 #include <string>
+#include "vm/AssemblyShadow.h"
 extern "C" int R03_IRW_Open(const char*,const char*,const char*,const char*,const char*);
 extern "C" int R03_IRW_Seal(int,int,int,int,int,int);
+extern "C" int R03_IRW_CaptureRecovery();
 extern "C" int R03_IRW_Trace(int,int,int,int,int);
 
 static const char* mode=nullptr;
+il2cpp::vm::AssemblyShadowError il2cpp::vm::AssemblyShadow::GetRecoveryInfoJson(std::string& json) {
+    const bool control=std::strcmp(mode,"control")==0;
+    json = control ? R"({"schemaVersion":1,"stateCode":6,"terminalFailureCode":0,"published":true,"reason":"","disposition":"ActiveShadow"})"
+                   : R"({"schemaVersion":1,"stateCode":9,"terminalFailureCode":19,"published":true,"reason":"Methods: controlled host initializer failure","disposition":"RestartRequired"})";
+    return AssemblyShadowError::Success;
+}
+
 extern "C" int R03_IRW_ReadPrepared(int* field,int* before,int* ready,int* mask,int* calls)
 {
     if(std::strcmp(mode,"observer-reject")==0) {
@@ -45,6 +54,8 @@ int main(int argc,char** argv)
     R03_IRW_Trace(191,nativeCommit,0,0,0);
     R03_IRW_Trace(201,0,nativeState,nativeCommit,0);
     R03_IRW_Trace(205,!control,nativeCommit,nativeState,0);
+    if (R03_IRW_CaptureRecovery()!=1) return 17;
+    R03_IRW_Trace(231,1,nativeCommit,nativeState,0);
     const int result=R03_IRW_Seal(control?0:19,
        std::strcmp(mode,"wrong-state")==0?6:(control?6:9),
        1,1,control?0:1,std::strcmp(mode,"canary-executed")==0?1:0);
