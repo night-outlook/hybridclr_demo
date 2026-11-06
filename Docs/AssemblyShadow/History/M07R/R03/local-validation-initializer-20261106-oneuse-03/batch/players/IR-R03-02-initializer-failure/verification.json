@@ -1,0 +1,52 @@
+{
+  "R03Accepted": false,
+  "buildReceiptSha256": "3fd5caaab2d511f33c0afc46efcc0d2f9729fa5e930adb33926840aee20691dc",
+  "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/commands/0017/command.json",
+  "executableSha256": "7d416f1d5117fcd2dc9956430a7286a08390c7593100856309b28a29f47a81af",
+  "launchPidFromOwnedReceipt": 12525,
+  "nativeDiagnostic": {
+    "H2Passed": false,
+    "R03Accepted": false,
+    "commitStatusReported": [
+      19
+    ],
+    "completeStrictObservationProven": false,
+    "events": 24,
+    "kind": "R03InitializerTraceHostInterpretationV1",
+    "lastPhase": 610,
+    "managedCaughtPhase": [],
+    "nativeCallbackFailures": [],
+    "nativeCallbackObserved": false,
+    "nativeReadFailures": [
+      -1
+    ],
+    "nativeSealFailures": [
+      {
+        "reason": 1,
+        "return": -2
+      }
+    ],
+    "nativeSealInput": [
+      {
+        "attempted": 1,
+        "commit": 19,
+        "state": 9,
+        "succeeded": 0
+      }
+    ],
+    "nativeV2TransportImplemented": false,
+    "preopenedWriter": true,
+    "rawBytes": 8669,
+    "rawSha256": "7349cd501ab19c7989f4f8bec2342abd95dcbd1dde512140d9f38d0a7536b544",
+    "result": "BoundedTraceObserved_NotRuntimeAuthenticated",
+    "runtimeAcceptance": false
+  },
+  "nativeOverlaySha256": "8ec51f59fa5b83fbbf6134656c15637c491134e48ea18862743fb6ae321272d1",
+  "rawPresent": true,
+  "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "requestSha256": "12d9adada7acde424940b15e09bd7572f8055d2adff962a69f682b09a68fc694",
+  "result": "Failed",
+  "runId": "8d578693e56e43648b6693b4d0d2d755",
+  "runtimeAcceptance": false,
+  "semanticVerifierStatus": "NotRun_CommandFailed"
+}

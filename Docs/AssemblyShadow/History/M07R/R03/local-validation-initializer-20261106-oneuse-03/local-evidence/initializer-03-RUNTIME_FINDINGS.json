@@ -1,0 +1,2375 @@
+{
+  "kind": "Initializer03NativeTraceAndCustodyInvestigation",
+  "time": "2026-11-06T06:13:17.267478+00:00",
+  "result": "FAIL_ReturnRequired",
+  "sourcePins": {
+    "hybridclr_demo": "7a3b6c31408d8fd8b9fb5f74d78be4fa65670915",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340"
+  },
+  "producerResult": "ReturnRequired",
+  "cellCounts": {
+    "Passed": 13,
+    "Failed": 2
+  },
+  "build": {
+    "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/builds/candidate-release/build-receipt.json",
+    "sha256": "3fd5caaab2d511f33c0afc46efcc0d2f9729fa5e930adb33926840aee20691dc",
+    "result": "Passed",
+    "errors": 0,
+    "warnings": 1,
+    "buildPipelineResult": "Succeeded",
+    "config": {
+      "cppConfiguration": "Release",
+      "diagnosticsLevel": 2,
+      "featureEnabled": true,
+      "outputPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/builds/candidate-release/R03Isolated.app",
+      "overlayPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/initializer-source/R03InitializerCompositeOverlay.cpp",
+      "overlaySha256": "8ec51f59fa5b83fbbf6134656c15637c491134e48ea18862743fb6ae321272d1",
+      "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/projects/candidate-release",
+      "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/builds/candidate-release/build-receipt.json",
+      "schemaVersion": 1,
+      "sourceManifestSha256": "b058892503d2996272712ae6394de3722a307c91f0e451881064ed0dccde55b1"
+    },
+    "installedOverlay": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowR03Probe.cpp",
+    "overlaySha256": "8ec51f59fa5b83fbbf6134656c15637c491134e48ea18862743fb6ae321272d1",
+    "executable": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+    "executableSha256": "7d416f1d5117fcd2dc9956430a7286a08390c7593100856309b28a29f47a81af",
+    "sourceManifestSha256": "b058892503d2996272712ae6394de3722a307c91f0e451881064ed0dccde55b1",
+    "architecture": "arm64",
+    "playerInventoryFiles": 22
+  },
+  "players": [
+    {
+      "case": "initializer-control",
+      "state": "Failed",
+      "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/players/IR-R03-02-initializer-control",
+      "rawPresent": true,
+      "request": {
+        "baselineId": "R03Initializer-candidate-release",
+        "caseId": "IR-R03-02-initializer-control",
+        "dllPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/host/initializer-native-targets/native/initializer-control/Methods.dll",
+        "dllSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+        "runId": "67960f0e300d42de93266e29209280d7",
+        "schemaVersion": 1,
+        "stimulus": "initializer-control"
+      },
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/commands/0016/command.json",
+      "commandPid": 12510,
+      "commandExit": 2,
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "requestSha256": "0b3ab9b4cf8d925a787e26f4bb043cad5bc7852093eb725f76ee16b44cf19808",
+      "verification": {
+        "R03Accepted": false,
+        "buildReceiptSha256": "3fd5caaab2d511f33c0afc46efcc0d2f9729fa5e930adb33926840aee20691dc",
+        "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/commands/0016/command.json",
+        "executableSha256": "7d416f1d5117fcd2dc9956430a7286a08390c7593100856309b28a29f47a81af",
+        "launchPidFromOwnedReceipt": 12510,
+        "nativeDiagnostic": {
+          "H2Passed": false,
+          "R03Accepted": false,
+          "commitStatusReported": [
+            19
+          ],
+          "completeStrictObservationProven": false,
+          "events": 22,
+          "kind": "R03InitializerTraceHostInterpretationV1",
+          "lastPhase": 610,
+          "managedCaughtPhase": [
+            205
+          ],
+          "nativeCallbackFailures": [],
+          "nativeCallbackObserved": false,
+          "nativeReadFailures": [
+            -1
+          ],
+          "nativeSealFailures": [
+            {
+              "reason": 1,
+              "return": -2
+            }
+          ],
+          "nativeSealInput": [
+            {
+              "attempted": 0,
+              "commit": 19,
+              "state": 9,
+              "succeeded": 0
+            }
+          ],
+          "nativeV2TransportImplemented": false,
+          "preopenedWriter": true,
+          "rawBytes": 7950,
+          "rawSha256": "7f938f628152b9c365cfcf4fb54d1ca785815372aa746a3bc5efef98f9ea6b26",
+          "result": "BoundedTraceObserved_NotRuntimeAuthenticated",
+          "runtimeAcceptance": false
+        },
+        "nativeOverlaySha256": "8ec51f59fa5b83fbbf6134656c15637c491134e48ea18862743fb6ae321272d1",
+        "rawPresent": true,
+        "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "requestSha256": "0b3ab9b4cf8d925a787e26f4bb043cad5bc7852093eb725f76ee16b44cf19808",
+        "result": "Failed",
+        "runId": "67960f0e300d42de93266e29209280d7",
+        "runtimeAcceptance": false,
+        "semanticVerifierStatus": "NotRun_CommandFailed"
+      },
+      "command": {
+        "childEnvironmentPolicy": {
+          "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+          "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+          "GIT_TERMINAL_PROMPT": "0",
+          "MSBUILDDISABLENODEREUSE": "1",
+          "MSBUILDUSESERVER": "0",
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "TMPDIR": "/private/tmp"
+        },
+        "cleanupErrors": [],
+        "command": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "-batchmode",
+          "-nographics",
+          "-r03IrInitializerRequest",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/players/IR-R03-02-initializer-control/request.json",
+          "-r03IrInitializerOutput",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/players/IR-R03-02-initializer-control/raw.json",
+          "-r03IrInitializerRunId",
+          "67960f0e300d42de93266e29209280d7",
+          "-logFile",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/players/IR-R03-02-initializer-control/Player.log"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+        "endedUtcEpoch": 1793945350.486718,
+        "exitCode": 2,
+        "interrupted": false,
+        "lifetimePolicy": "R03OwnedCommandV1",
+        "pgid": 12510,
+        "pid": 12510,
+        "postCleanupGroupExists": false,
+        "processGroupBeforeCleanup": null,
+        "remainingProcessGroup": false,
+        "schemaVersion": 2,
+        "startError": null,
+        "startedUtcEpoch": 1793945349.056321,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+        "timeout": false
+      },
+      "trace": {
+        "case": "initializer-control",
+        "present": true,
+        "producerNativeDiagnostic": {
+          "H2Passed": false,
+          "R03Accepted": false,
+          "commitStatusReported": [
+            19
+          ],
+          "completeStrictObservationProven": false,
+          "events": 22,
+          "kind": "R03InitializerTraceHostInterpretationV1",
+          "lastPhase": 610,
+          "managedCaughtPhase": [
+            205
+          ],
+          "nativeCallbackFailures": [],
+          "nativeCallbackObserved": false,
+          "nativeReadFailures": [
+            -1
+          ],
+          "nativeSealFailures": [
+            {
+              "reason": 1,
+              "return": -2
+            }
+          ],
+          "nativeSealInput": [
+            {
+              "attempted": 0,
+              "commit": 19,
+              "state": 9,
+              "succeeded": 0
+            }
+          ],
+          "nativeV2TransportImplemented": false,
+          "preopenedWriter": true,
+          "rawBytes": 7950,
+          "rawSha256": "7f938f628152b9c365cfcf4fb54d1ca785815372aa746a3bc5efef98f9ea6b26",
+          "result": "BoundedTraceObserved_NotRuntimeAuthenticated",
+          "runtimeAcceptance": false
+        },
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/players/IR-R03-02-initializer-control/raw.json.native-trace.jsonl",
+        "sha256": "7f938f628152b9c365cfcf4fb54d1ca785815372aa746a3bc5efef98f9ea6b26",
+        "bytes": 7950,
+        "events": [
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 1,
+            "phase": 100,
+            "a": 1,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 2,
+            "phase": 101,
+            "a": 1,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 3,
+            "phase": 102,
+            "a": 1,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 4,
+            "phase": 111,
+            "a": 1,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 5,
+            "phase": 120,
+            "a": 0,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 6,
+            "phase": 121,
+            "a": 0,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 7,
+            "phase": 131,
+            "a": 0,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 8,
+            "phase": 141,
+            "a": 0,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 9,
+            "phase": 151,
+            "a": 0,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 10,
+            "phase": 161,
+            "a": 0,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 11,
+            "phase": 190,
+            "a": 1,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 12,
+            "phase": 191,
+            "a": 19,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 13,
+            "phase": 201,
+            "a": 0,
+            "b": 9,
+            "c": 19,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 14,
+            "phase": 205,
+            "a": 0,
+            "b": 19,
+            "c": 9,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 15,
+            "phase": 900,
+            "a": 205,
+            "b": 19,
+            "c": 9,
+            "d": 1,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 16,
+            "phase": 901,
+            "a": 19,
+            "b": 9,
+            "c": 1,
+            "d": 1,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 17,
+            "phase": 600,
+            "a": 19,
+            "b": 9,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 18,
+            "phase": 601,
+            "a": 1,
+            "b": 1,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 19,
+            "phase": 400,
+            "a": -1,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 20,
+            "phase": 602,
+            "a": -1,
+            "b": -1,
+            "c": -1,
+            "d": -1,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 21,
+            "phase": 603,
+            "a": -1,
+            "b": -1,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 22,
+            "phase": 610,
+            "a": -2,
+            "b": 1,
+            "c": -1,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          }
+        ],
+        "callbackReturns": [],
+        "managedCatches": [
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 15,
+            "phase": 900,
+            "a": 205,
+            "b": 19,
+            "c": 9,
+            "d": 1,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          }
+        ],
+        "sealFailures": [
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 22,
+            "phase": 610,
+            "a": -2,
+            "b": 1,
+            "c": -1,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          }
+        ],
+        "commitReports": [
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 12,
+            "phase": 191,
+            "a": 19,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          }
+        ],
+        "sealInputs": [
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "67960f0e300d42de93266e29209280d7",
+            "caseId": "IR-R03-02-initializer-control",
+            "stimulus": "initializer-control",
+            "fixtureSha256": "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            "pid": 12510,
+            "seq": 17,
+            "phase": 600,
+            "a": 19,
+            "b": 9,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          }
+        ]
+      },
+      "playerLogPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/players/IR-R03-02-initializer-control/Player.log",
+      "playerLogSha256": "206e3adca2d01e2d3652a3b4a894d3bfa19b8a225524d7d1de800e99103df99d",
+      "playerLog": "[AssemblyShadowTerminalRejection] prepared=true pinned=true\n[AssemblyShadowBooleanReserve] prepared=true pinned=true size=17 cctorComplete=1\nFound 1 interfaces on host : 0) 192.168.1.134\nPlayer connection [8481250688]  Target information:\n\nPlayer connection [8481250688]  * \"[IP] 192.168.1.134 [Port] 55000 [Flags] 2 [Guid] 3470028801 [EditorId] 2098782842 [Version] 1048832 [Id] OSXPlayer(1,Mac) [Debug] 0 [PackageName] OSXPlayer [ProjectName] R03Isolated\" \n\nPlayer connection [8481250688] Started UDP target info broadcast (1) on [225.0.0.222:54997].\n\nInput System module state changed to: Initialized.\n[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.\nInitialize engine version: 2022.3.62f2 (7670c08855a9)\n[Subsystems] Discovering subsystems at path /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/UnitySubsystems\nForcing GfxDevice: Null\nGfxDevice: creating device client; threaded=0; jobified=0\nNullGfxDevice:\n    Version:  NULL 1.0 [1.0]\n    Renderer: Null Device\n    Vendor:   Unity Technologies\nERROR: Shader Sprites/Default shader is not supported on this GPU (none of subshaders/fallbacks are suitable)\nERROR: Shader Sprites/Mask shader is not supported on this GPU (none of subshaders/fallbacks are suitable)\n[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.\nUnloadTime: 0.266958 ms\n[R03NativeLayoutAdmissionV1] sample=0 assembly=Methods baselineRows=2 targetRows=3 paired=2 changedProofs=0 added=1\n"
+    },
+    {
+      "case": "initializer-failure",
+      "state": "Failed",
+      "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/players/IR-R03-02-initializer-failure",
+      "rawPresent": true,
+      "request": {
+        "baselineId": "R03Initializer-candidate-release",
+        "caseId": "IR-R03-02-initializer-failure",
+        "dllPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/host/initializer-native-targets/native/initializer-failure/Methods.dll",
+        "dllSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+        "runId": "8d578693e56e43648b6693b4d0d2d755",
+        "schemaVersion": 1,
+        "stimulus": "initializer-failure"
+      },
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/commands/0017/command.json",
+      "commandPid": 12525,
+      "commandExit": 2,
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "requestSha256": "12d9adada7acde424940b15e09bd7572f8055d2adff962a69f682b09a68fc694",
+      "verification": {
+        "R03Accepted": false,
+        "buildReceiptSha256": "3fd5caaab2d511f33c0afc46efcc0d2f9729fa5e930adb33926840aee20691dc",
+        "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/commands/0017/command.json",
+        "executableSha256": "7d416f1d5117fcd2dc9956430a7286a08390c7593100856309b28a29f47a81af",
+        "launchPidFromOwnedReceipt": 12525,
+        "nativeDiagnostic": {
+          "H2Passed": false,
+          "R03Accepted": false,
+          "commitStatusReported": [
+            19
+          ],
+          "completeStrictObservationProven": false,
+          "events": 24,
+          "kind": "R03InitializerTraceHostInterpretationV1",
+          "lastPhase": 610,
+          "managedCaughtPhase": [],
+          "nativeCallbackFailures": [],
+          "nativeCallbackObserved": false,
+          "nativeReadFailures": [
+            -1
+          ],
+          "nativeSealFailures": [
+            {
+              "reason": 1,
+              "return": -2
+            }
+          ],
+          "nativeSealInput": [
+            {
+              "attempted": 1,
+              "commit": 19,
+              "state": 9,
+              "succeeded": 0
+            }
+          ],
+          "nativeV2TransportImplemented": false,
+          "preopenedWriter": true,
+          "rawBytes": 8669,
+          "rawSha256": "7349cd501ab19c7989f4f8bec2342abd95dcbd1dde512140d9f38d0a7536b544",
+          "result": "BoundedTraceObserved_NotRuntimeAuthenticated",
+          "runtimeAcceptance": false
+        },
+        "nativeOverlaySha256": "8ec51f59fa5b83fbbf6134656c15637c491134e48ea18862743fb6ae321272d1",
+        "rawPresent": true,
+        "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "requestSha256": "12d9adada7acde424940b15e09bd7572f8055d2adff962a69f682b09a68fc694",
+        "result": "Failed",
+        "runId": "8d578693e56e43648b6693b4d0d2d755",
+        "runtimeAcceptance": false,
+        "semanticVerifierStatus": "NotRun_CommandFailed"
+      },
+      "command": {
+        "childEnvironmentPolicy": {
+          "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+          "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+          "GIT_TERMINAL_PROMPT": "0",
+          "MSBUILDDISABLENODEREUSE": "1",
+          "MSBUILDUSESERVER": "0",
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "TMPDIR": "/private/tmp"
+        },
+        "cleanupErrors": [],
+        "command": [
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+          "-batchmode",
+          "-nographics",
+          "-r03IrInitializerRequest",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/players/IR-R03-02-initializer-failure/request.json",
+          "-r03IrInitializerOutput",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/players/IR-R03-02-initializer-failure/raw.json",
+          "-r03IrInitializerRunId",
+          "8d578693e56e43648b6693b4d0d2d755",
+          "-logFile",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/players/IR-R03-02-initializer-failure/Player.log"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+        "endedUtcEpoch": 1793945350.8858082,
+        "exitCode": 2,
+        "interrupted": false,
+        "lifetimePolicy": "R03OwnedCommandV1",
+        "pgid": 12525,
+        "pid": 12525,
+        "postCleanupGroupExists": false,
+        "processGroupBeforeCleanup": null,
+        "remainingProcessGroup": false,
+        "schemaVersion": 2,
+        "startError": null,
+        "startedUtcEpoch": 1793945350.687559,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+        "timeout": false
+      },
+      "trace": {
+        "case": "initializer-failure",
+        "present": true,
+        "producerNativeDiagnostic": {
+          "H2Passed": false,
+          "R03Accepted": false,
+          "commitStatusReported": [
+            19
+          ],
+          "completeStrictObservationProven": false,
+          "events": 24,
+          "kind": "R03InitializerTraceHostInterpretationV1",
+          "lastPhase": 610,
+          "managedCaughtPhase": [],
+          "nativeCallbackFailures": [],
+          "nativeCallbackObserved": false,
+          "nativeReadFailures": [
+            -1
+          ],
+          "nativeSealFailures": [
+            {
+              "reason": 1,
+              "return": -2
+            }
+          ],
+          "nativeSealInput": [
+            {
+              "attempted": 1,
+              "commit": 19,
+              "state": 9,
+              "succeeded": 0
+            }
+          ],
+          "nativeV2TransportImplemented": false,
+          "preopenedWriter": true,
+          "rawBytes": 8669,
+          "rawSha256": "7349cd501ab19c7989f4f8bec2342abd95dcbd1dde512140d9f38d0a7536b544",
+          "result": "BoundedTraceObserved_NotRuntimeAuthenticated",
+          "runtimeAcceptance": false
+        },
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/players/IR-R03-02-initializer-failure/raw.json.native-trace.jsonl",
+        "sha256": "7349cd501ab19c7989f4f8bec2342abd95dcbd1dde512140d9f38d0a7536b544",
+        "bytes": 8669,
+        "events": [
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 1,
+            "phase": 100,
+            "a": 1,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 2,
+            "phase": 101,
+            "a": 1,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 3,
+            "phase": 102,
+            "a": 1,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 4,
+            "phase": 111,
+            "a": 1,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 5,
+            "phase": 120,
+            "a": 0,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 6,
+            "phase": 121,
+            "a": 0,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 7,
+            "phase": 131,
+            "a": 0,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 8,
+            "phase": 141,
+            "a": 0,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 9,
+            "phase": 151,
+            "a": 0,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 10,
+            "phase": 161,
+            "a": 0,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 11,
+            "phase": 190,
+            "a": 1,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 12,
+            "phase": 191,
+            "a": 19,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 13,
+            "phase": 201,
+            "a": 0,
+            "b": 9,
+            "c": 19,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 14,
+            "phase": 205,
+            "a": 1,
+            "b": 19,
+            "c": 9,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 15,
+            "phase": 210,
+            "a": 1,
+            "b": 1,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 16,
+            "phase": 211,
+            "a": 0,
+            "b": 1,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 17,
+            "phase": 220,
+            "a": 1,
+            "b": 1,
+            "c": 1,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 18,
+            "phase": 901,
+            "a": 19,
+            "b": 9,
+            "c": 1,
+            "d": 1,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 19,
+            "phase": 600,
+            "a": 19,
+            "b": 9,
+            "c": 1,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 20,
+            "phase": 601,
+            "a": 1,
+            "b": 1,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 21,
+            "phase": 400,
+            "a": -1,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 22,
+            "phase": 602,
+            "a": -1,
+            "b": -1,
+            "c": -1,
+            "d": -1,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 23,
+            "phase": 603,
+            "a": -1,
+            "b": -1,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          },
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 24,
+            "phase": 610,
+            "a": -2,
+            "b": 1,
+            "c": -1,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          }
+        ],
+        "callbackReturns": [],
+        "managedCatches": [],
+        "sealFailures": [
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 24,
+            "phase": 610,
+            "a": -2,
+            "b": 1,
+            "c": -1,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          }
+        ],
+        "commitReports": [
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 12,
+            "phase": 191,
+            "a": 19,
+            "b": 0,
+            "c": 0,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          }
+        ],
+        "sealInputs": [
+          {
+            "kind": "R03IRInitializerNativeTraceV1",
+            "runId": "8d578693e56e43648b6693b4d0d2d755",
+            "caseId": "IR-R03-02-initializer-failure",
+            "stimulus": "initializer-failure",
+            "fixtureSha256": "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            "pid": 12525,
+            "seq": 19,
+            "phase": 600,
+            "a": 19,
+            "b": 9,
+            "c": 1,
+            "d": 0,
+            "runtimeAcceptance": false,
+            "R03Accepted": false,
+            "H2Passed": false
+          }
+        ]
+      },
+      "playerLogPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/players/IR-R03-02-initializer-failure/Player.log",
+      "playerLogSha256": "2976baaff5abb5f95b442ef06c2443aa99c30487e5e85d83bcdfa5c81f839051",
+      "playerLog": "[AssemblyShadowTerminalRejection] prepared=true pinned=true\n[AssemblyShadowBooleanReserve] prepared=true pinned=true size=17 cctorComplete=1\nFound 1 interfaces on host : 0) 192.168.1.134\nPlayer connection [8481250688]  Target information:\n\nPlayer connection [8481250688]  * \"[IP] 192.168.1.134 [Port] 55000 [Flags] 2 [Guid] 3514669790 [EditorId] 2098782842 [Version] 1048832 [Id] OSXPlayer(1,Mac) [Debug] 0 [PackageName] OSXPlayer [ProjectName] R03Isolated\" \n\nPlayer connection [8481250688] Started UDP target info broadcast (1) on [225.0.0.222:54997].\n\nInput System module state changed to: Initialized.\n[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.\nInitialize engine version: 2022.3.62f2 (7670c08855a9)\n[Subsystems] Discovering subsystems at path /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/builds/candidate-release/R03Isolated.app/Contents/Resources/Data/UnitySubsystems\nForcing GfxDevice: Null\nGfxDevice: creating device client; threaded=0; jobified=0\nNullGfxDevice:\n    Version:  NULL 1.0 [1.0]\n    Renderer: Null Device\n    Vendor:   Unity Technologies\nERROR: Shader Sprites/Default shader is not supported on this GPU (none of subshaders/fallbacks are suitable)\nERROR: Shader Sprites/Mask shader is not supported on this GPU (none of subshaders/fallbacks are suitable)\n[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.\nUnloadTime: 0.164958 ms\n[R03NativeLayoutAdmissionV1] sample=0 assembly=Methods baselineRows=2 targetRows=3 paired=2 changedProofs=0 added=1\n[R03TerminalDenied] ordinal=1 site=codegen.virtual namespace=System.Reflection type=RuntimeMethodInfo method=Invoke ptr=0x120958180\n[AssemblyShadowTerminalRejection] throw=1 constructorRun=false stackPrepared=false\n"
+    }
+  ],
+  "sourceBindings": [
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerPreparedProbe.cpp",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerPreparedProbe.cpp",
+      "sha256": "17fd00f6209e849eee39848377757c8e05f363de6182dddb42e75126579a9bd8",
+      "gitBlob": "f6991d4bf058f3203079643a1462574f0c8888af"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationWriter.cpp",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationWriter.cpp",
+      "sha256": "e87f3ae75a5f831cdffb615cec463a511298c2c5995bce170d978de56701293d",
+      "gitBlob": "cacd0c511553d96e9a5740c97c3a162b7cd0991e"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationPlayer.cs",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationPlayer.cs",
+      "sha256": "2367522cca0ea176459c36193fae46487cf9d37c898836cffe38b07651634ad4",
+      "gitBlob": "3daf84e126657fb08c78dd5b7642d884c3ad9d96"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs",
+      "sha256": "47de10015ed6a597860843e954f591c8d00a866e8c0ab0a03991184da5ac8820",
+      "gitBlob": "da4bf2ece4999d2765ca51d4bdeecf2bc0617fd2"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03/PlayerFixtures/TerminalProducerFixtures.cs",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerFixtures/TerminalProducerFixtures.cs",
+      "sha256": "2d068a4fcf62be42a6eb486fc3c04cefe7e4bfb9801b04adcf12eac126365819",
+      "gitBlob": "2a51992f1a2a4b697d72b2dca24950cceeba0725"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/initializer_host_custody.py",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/initializer_host_custody.py",
+      "sha256": "d5b1ac3764de475bc22cb2087a0155a76fd9974cde94596d621fbe382ae0b246",
+      "gitBlob": "28dc22a92d170ae804daef82fe6f8de6e13a29c1"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R03IR/run_initializer_local.py",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_initializer_local.py",
+      "sha256": "931260a1cda564c33461ef0e9932cc4af1877d9715bfdb8091c9c3352426f789",
+      "gitBlob": "f37f8dd1710795ff525ba279b911e66eb06c88f5"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadow.cpp",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp",
+      "sha256": "75845283c8c8c9e8e01c64bacd82995532cc879a2ba3041f25d272a4894b489c",
+      "gitBlob": "57cf47f964a83973df8296955ccf856b105c595f"
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/metadata/StagedAssembly.cpp",
+      "absolutePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr/metadata/StagedAssembly.cpp",
+      "sha256": "dfaf2f36b45847627e8907bc065d90a98d36f31aa5146be16c3fbced49545c98",
+      "gitBlob": "8b9e9da261365326b327051c43c52acc3b2052ce"
+    }
+  ],
+  "findings": [
+    {
+      "id": "IR-LOCAL-R03-INITIALIZER-03-PRECALLBACK-01",
+      "symptom": "Both real Players exit2 with zero-byte strict V1; journal authenticates Commit19/state9 even for control, no callback entry event, untouched prepared state0 and Seal rejection reason1.",
+      "reproduction": "Exactly the retained oneuse03 source tuple, one ON/Release build and requests/owned commands0016/0017; actual argv/run/PID/source/build bindings below. No replay was performed.",
+      "mostLikelyBoundary": "Module initializer / TerminalWitness.Prepare failed before entering the compiled OnPrepared callback, or in resolving its __Internal PInvoke. Current source places native phase299 at callback entry and increments its state before returning. Native ReadPrepared phase400 returns -1 with prepared.state0. Thus this is not an observed callback branch -1..-9 or a measured field3 mismatch. Exact exception and pre-callback suboperation remain unavailable.",
+      "sourceTrace": "CommitTransaction invokes InterpreterAssembly::RunStagedModuleInitializer (AssemblyShadow.cpp1229); StagedAssembly.cpp544-562 catches module initialization exceptions, saves detail and returns ModuleInitializerFailed19. Current journals record that return but not the retained exception detail. Fixture Prepare performs object/delegate/direct/generic work before the final native callback; either earlier work or native import resolution can fail without a299 marker.",
+      "impact": "Control does not meet0/6. Failure19/9 cannot authenticate the intended sentinel after preparation because no callback was observed. Both field/mask/callback/cardinality strict V1 proofs remain unavailable; semantic verification is NotRun_CommandFailed. Trace-only canary/state observations do not grant runtime acceptance.",
+      "recommendedDirection": "Primary should authenticate the existing initializer exception detail or bounded exception identity at RunStagedModuleInitializer catch/commit boundary, and discriminate pre-callback Prepare operations and __Internal import dispatch with source-bound diagnostics. Repair the actual fault without relaxing expected control0/6, callback1, field3/mask15 or terminal canary bounds. Extend real VM/PInvoke integration coverage and publish new source/CI/fresh-root authority.",
+      "remainingUncertainty": "No actual exception type/message/native import return is preserved. It is not possible to distinguish an object/delegate/generic preparation error from native import resolution solely from these journals; exported symbols do not prove interpreter PInvoke resolution.",
+      "requiredValidation": "Fresh actual Unity build and two independent Players; strict V1 plus source/PID/request/fixture-bound complete journals and first-failure evidence, host custody/postflight and product seal; no replay of03."
+    }
+  ],
+  "priorSealFinding": {
+    "id": "IR-LOCAL-R03-INITIALIZER-02-SEAL-02",
+    "current03Status": "PassedFocusedHostCustodyAndProductSeal",
+    "historical02Status": "Failed_Unchanged",
+    "receipt": {
+      "receipt": {
+        "H2Passed": false,
+        "R03Accepted": false,
+        "archiveSha256": "45247278d4887d62b7300786d0697e5eb545d00d4e88d2f3a8bb7873fb557cbc",
+        "archivedRegularMembersIncludingManifest": 3199,
+        "directoryCount": 666,
+        "fileCount": 3198,
+        "kind": "R03InitializerNativeHostCustodyReceiptV1",
+        "manifestSha256": "363e09ed5884dc4d156423d2ddba3cc9b701e8ae258de15baaf1146713f0bc8c",
+        "rawHostPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03-native-host-raw",
+        "rawHostPreservedOutsideProductSeal": true,
+        "regularBytes": 173485957,
+        "result": "PassedFullRegularBytesAndLiteralSymlinkTargets",
+        "runtimeAcceptance": false,
+        "schemaVersion": 1,
+        "symlinkCount": 4,
+        "symlinksFollowed": false
+      },
+      "manifestSha256": "363e09ed5884dc4d156423d2ddba3cc9b701e8ae258de15baaf1146713f0bc8c",
+      "rawExternalRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03-native-host-raw",
+      "verifiedRegularFiles": 3198,
+      "verifiedSymlinks": 4,
+      "regularBytes": 173485957,
+      "archiveMembers": 3199,
+      "postflight": {
+        "R03Accepted": false,
+        "hostReceiptSha256": "077f424b11eb372d9bd2f7ae17dff1c2f4c7d81697701484d319cfa1ac7d57b0",
+        "regularFiles": 3198,
+        "result": "PassedFullRawHostAndArchiveBinding_NoRuntimeAcceptance",
+        "runtimeAcceptance": false,
+        "symlinkCount": 4
+      }
+    },
+    "productArchiveSha256": "a007dddc009743a7c951f28c8df4fbd7f79aec8fbbcf307d098fa356ad7fc970",
+    "productIndexSha256": "f7db30cd08f5ce1f53b5b6df57d5be5a626b12efdc819624aaedc12de9581c0a",
+    "members": 446,
+    "acceptancePromoted": false
+  },
+  "compiledNativeSymbols": {
+    "argv": [
+      "/usr/bin/nm",
+      "-gU",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib"
+    ],
+    "start": "2026-11-06T06:13:17.058048+00:00",
+    "end": "2026-11-06T06:13:17.267501+00:00",
+    "exit": 0,
+    "stdout": "/Users/ah/GitHub/hybridclr/r03-local-validation/initializer-03-GameAssembly-symbols.stdout.log",
+    "stderr": "/Users/ah/GitHub/hybridclr/r03-local-validation/initializer-03-GameAssembly-symbols.stderr.log",
+    "stdoutSha256": "e0a58d57c4212e76238b4d7d931071590073f31021c1f9a4fa2cd2d98c79e16c",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "imageSha256": "d5d918dbb31ee08667987d854ef4d27987be9811c8981b9c27759aa468c06a6c",
+    "symbols": [
+      "000000000011a910 T _R03_IRW_OnPrepared",
+      "000000000011b2e4 T _R03_IRW_Open",
+      "000000000011af18 T _R03_IRW_ReadPrepared",
+      "000000000011b848 T _R03_IRW_Seal",
+      "000000000011ae5c T _R03_IRW_Trace"
+    ],
+    "scope": "Read-only export existence, not callback/import execution proof"
+  },
+  "actualCpp11Graphs": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261106-oneuse-03/projects/candidate-release/Library/Bee/Playerd9479e9a.dag.json",
+      "sha256": "c637b6ba42a7137bdca5b3540495d262e1edf21224606e95764097417df4bc7f",
+      "cpp11Actions": 185,
+      "annotations": [
+        {
+          "index": 188,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/bdth7z9medmf.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 189,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/b8thkhluegsa.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 190,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/pytr4a6cczeh.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 191,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/ymvg6cq64z70.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 192,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/4tooq7uvav4p.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 193,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/asjzqsizndft.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 194,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/r8834hvjshhv.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 195,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/odoanopousk8.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 196,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/rwysownsq802.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 197,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/a8p3uaoxn2mt.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 198,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/tvzfs772pjls.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 199,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/aad49vwgg6mr.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 200,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/cs4q00c2pph3.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 201,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/boqlb0xoljva.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 202,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/4akz0024txk3.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 203,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/m7is4uiuhwtl.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 204,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/frn92hfkg8q2.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 205,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/xm7gw9ca52wd.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 206,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/pissdg2e9u4y.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 207,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/ij4sdtm8fwe3.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 208,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/l2ebf1kcccvx.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 209,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/4d6llflh95go.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 210,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/f1ve7s08m8t0.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 211,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/z83pw0t4fzxm.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 212,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/gjmlt2byu6a6.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 213,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/jga0m6zmqmyc.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 214,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/hqjsbbw93mtj.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 215,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/skd0xntyc7pq.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 216,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/tdayi2hlg7sc.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 217,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/xk0txcykkstm.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 218,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/x8kjs0ms7y2i.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 219,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/nrmb2zku8mtt.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 220,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/ujd5fwtysaav.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 221,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/jj46y35325ny.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 222,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/1bd6lqfvxn67.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 223,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/08funmefj9gi.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 224,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/9j3lah633yu0.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 225,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/c3d4bp47zebv.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 226,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/fmomdx2bwurp.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 227,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/i5y4e50fsa8j.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 228,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/4fi3ufiinwav.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 229,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/abjkvzzsurvc.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 230,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/3zbvwraloagq.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 231,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/s0g2v3ubc44z.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 232,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/e2gm778g04dh.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 233,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/q3ql7jxthpk7.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 234,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/jwwrkv5fxcz0.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 235,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/30r8h8ns39yf.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 236,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/h3xcfg1askg1.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 237,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/shkdr9o1jb5c.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 238,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/btboxnp6g5q3.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 239,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/ecm6yvnadl7x.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 240,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/430jjn37r3c3.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 241,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/dbm8osrtm74k.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 242,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/5pduckqdmb6o.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 243,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/adql70exqh7b.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 244,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/tohwdff2nbt2.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 245,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/hx2bdgt0sck8.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 246,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/ui4wsimt32qr.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 247,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/x1efuqkxzi7l.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 248,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/umoi9nl1zlax.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 249,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/sx0kopith8dk.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 250,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/vgb3pxgxdoue.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 251,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/es2dwbh2aig5.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 252,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/gplpma6m4hri.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 253,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/n37n5u52xhkg.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 254,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/qmi66236tx0a.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 255,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/9x9gdh4brrm1.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 256,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/chkzep2fn72v.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 257,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/phnimldyfars.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 258,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/87fr5afr7hf3.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 259,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/brq96idv3xvx.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 260,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/ea1r8qbzzdcs.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 261,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/htbaaz92vtsm.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 262,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/042kgda8sned.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 263,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/nic0m0krejt5.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 264,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/y9dq9yqb1bd4.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 265,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/1so8a7ofxrty.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 266,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/ega4ddqq0mso.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 267,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/hzkmflouw28i.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 268,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/0acxlzoztwu9.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 269,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/x19t0xr57oc2.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 270,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/vu9hponfrubx.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 271,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/g4792iqxkir5.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 272,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/vcr2bdmu4uct.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 273,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/yv1kdlky0atn.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 274,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/1ec3eti2wq9h.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 275,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/kq3dl7i7tkv8.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 276,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/n9dwmfhbq0b3.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 277,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/qsoeonffmgsx.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 278,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/93fpu1fkjaeo.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 279,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/cnq7v9dofqui.o",
+          "displayName": "Compiling Cpp for il2cpp (arm64)"
+        },
+        {
+          "index": 309,
+          "annotation": "C_Mac_arm64Pch Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/pch-cpp-17470645900610321256.pch",
+          "displayName": "Generating Precompiled Header"
+        },
+        {
+          "index": 312,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/txu8170l0ln2.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 313,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/6p0jbpqb5xh7.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 314,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/edywhhfj39yl.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 315,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/h2yf0wcsvkcz.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 316,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/mwthh3lyll4s.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 317,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/n4dy1i2wpnl8.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 318,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/8jhmhsgusbxr.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 319,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/60kdmt01marz.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 320,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/hpn25os3bm41.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 321,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/5scxenqu30nh.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 322,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/24qqly60eagl.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 323,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/3cb75dnzicx0.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 324,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/osevln1wl08j.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 325,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/97hj1wfuook3.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 326,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/ag2zlcwssq1i.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 327,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/vv5n1laqved2.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 328,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/gb9bhvony2ol.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 329,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/hjts1a5l2450.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 330,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/7j5vkzctxp4x.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 331,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/1c22qf3x1655.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 332,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/t52wfg84t4vf.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 333,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/8u9b1fje0oyk.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 334,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/ad6f1ma6f1y7.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 335,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/cjbfuv7ai5bq.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 336,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/l1spshqf7v9x.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 337,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/yx0o8099hc95.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 338,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/bqr5vml4oy3x.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 339,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/4z27xclk5m8r.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 340,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/s3dzbwfe04p5.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 341,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/upqlqb56sa6q.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 342,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/boscduj8d644.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 343,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/jk7qmvu8sr8u.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 344,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/kaw21whufdw1.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 345,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/mni5sakyewvp.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 346,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/72lt8jyvhk78.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 347,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/8a69szeulmoo.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 348,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/tq9x88sroa07.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 349,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/e6cmoi7orybr.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 350,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/fex28xnnv0s6.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 351,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/0t0qo71kyo4p.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 352,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/11k78mij2ql5.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 353,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/mhovowwg5exo.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 354,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/ligjmcysjfdh.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 355,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/6xj71lcqm3o0.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 356,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/rdnvhvqnpr0j.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 357,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/sl7b2a7ltthz.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 358,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/d1a0hkljwhti.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 359,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/e9ug2z1h0jay.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 360,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/zoy4h9ff37lh.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 361,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/k41sxiuc6vx0.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 362,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/bngjcpue7vje.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 363,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/dqak92d2mqsp.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 364,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/if6j6g4nplcr.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 365,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/lief8cblvgty.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 366,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/ydqn5hmg5ekp.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 367,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/mbpnns7xqrtu.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 368,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/7qsb31lvtf5d.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 369,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/8ycsnh2txhmt.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 370,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/lhgj649z1apw.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 371,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/nkp2jfvtfy3l.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 372,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/xqys9m5bs0r6.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 373,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/rrra352jn79z.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 374,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/zyfcbu4k6whr.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 375,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/oyfn7ajti6mn.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 376,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/fs199mwqavtb.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 377,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/bry8v4sw93dl.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 378,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/5tf1ykvs3k9v.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 379,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/s7s8k9zbzn98.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 380,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/j1surou872p4.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 381,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/gzopokq9mycm.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 382,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/879875oxt9s7.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 383,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/3qrccws3dvff.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 384,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/9k5rbjbpdfdd.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 385,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/ihi6ce9qmemx.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 386,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/m2d58m1banqc.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 387,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/4hmsqbcm1hmi.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 388,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/g1mmloni130x.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 389,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/67hhc1neux4f.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 390,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/5bsc6q1lvu0m.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 391,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/2l8k172clc0w.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 392,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/k4bp18obuw4d.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 393,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/z03hotmxccwf.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 394,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/swdwm5lqshcp.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 395,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/5n0hmgxayn7t.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 396,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/ulkznsnp9mxe.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 397,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/ty5tgv22ddhp.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 398,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/dwqlv63x3zt7.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 399,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/wwmq8izpcvrb.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 400,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/tgkztg3b0je7.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 401,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/r834ztrr3n6y.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 402,
+          "annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/v4u0v7uarukd.o",
+          "displayName": "Compiling Cpp for GameAssembly (arm64)"
+        },
+        {
+          "index": 458,
+          "annotation": "Link_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/4t7v3/GameAssembly.dylib",
+          "displayName": "Linking GameAssembly.dylib (arm64)"
+        }
+      ]
+    }
+  ],
+  "rawEvidenceModified": false,
+  "retry": false,
+  "runtimeAcceptance": false,
+  "R03Accepted": false
+}
