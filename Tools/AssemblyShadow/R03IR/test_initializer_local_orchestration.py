@@ -13,12 +13,14 @@ from unittest.mock import patch
 import run_initializer_local as cycle
 from test_initializer_observation import fixture as raw_fixture
 from verify_initializer_observation import Rejected
+from test_initializer_trace import fixture as native_trace_fixture, encode as native_trace_encode
 
 
 class FakeInitializerBatch:
     def __init__(self, root: Path, mode: str, corrupt=None):
         self.root, self.mode, self.corrupt = root, mode, corrupt
         self.pid, self.call_count = 3187, 0
+        self.command_count = 0
         (root / "target").mkdir()
         (root / "build").mkdir()
         (root / "project").mkdir()
@@ -44,6 +46,7 @@ class FakeInitializerBatch:
 
     def command(self, argv, timeout):
         self.call_count += 1
+        self.command_count += 1
         request = json.loads(Path(argv[argv.index("-r03IrInitializerRequest") + 1]).read_text())
         raw, _, _, _ = raw_fixture(self.mode)
         raw["runId"] = request["runId"]
@@ -56,10 +59,35 @@ class FakeInitializerBatch:
             raw["postAotSucceeded"] = True
         if self.corrupt == "canary":
             raw["finalField"] = 4
+        out = Path(argv[argv.index("-r03IrInitializerOutput") + 1])
+        traces, _ = native_trace_fixture(self.mode)
+        for row in traces:
+            row["runId"] = request["runId"]
+            row["caseId"] = request["caseId"]
+            row["fixtureSha256"] = request["dllSha256"]
+            row["pid"] = self.pid
+        if self.corrupt == "trace-pid":
+            traces[2]["pid"] = self.pid + 1
+        if self.corrupt == "exit":
+            # Synthetic reproduction of a real native seal failure. The
+            # command returns nonzero, raw remains exactly empty, but a
+            # preopened diagnostic journal can still be authenticated.
+            traces = traces[:4]
+            traces[-1]["a"] = -7
+            traces.append(dict(traces[-1], seq=5, phase=900, a=190))
+            traces.append(dict(traces[-1], seq=6, phase=610, a=-2, b=3))
+            out.write_bytes(b"")
+            receipt = self.root / "commands" / ("%04d" % self.command_count)
+            receipt.mkdir(parents=True)
+            (receipt / "command.json").write_text(json.dumps({
+                "pid": self.pid, "exitCode": 2}) + "\n")
+        else:
+            out.write_text(json.dumps(raw, separators=(",", ":")) + "\n")
+        if self.corrupt != "trace-missing":
+            (Path(str(out) + ".native-trace.jsonl")).write_bytes(
+                native_trace_encode(traces))
         if self.corrupt == "exit":
             raise RuntimeError("Synthetic nonzero native Player exit")
-        out = Path(argv[argv.index("-r03IrInitializerOutput") + 1])
-        out.write_text(json.dumps(raw, separators=(",", ":")) + "\n")
         return {"pid": self.pid}
 
 
@@ -79,6 +107,8 @@ class InitializerLocalOrchestrationTests(unittest.TestCase):
                     self.assertEqual(result["targetGeneratorReceiptSha256"],
                                      batch.target_receipt_sha)
                     self.assertEqual(batch.call_count, 1)
+                    self.assertEqual(result["nativeDiagnostic"]["result"],
+                                     "CompletePhaseTrace_NotRuntimeAuthenticated")
                 else:
                     with self.assertRaises((Rejected, ValueError, RuntimeError)):
                         cycle.init_player(batch, mode)
@@ -91,6 +121,11 @@ class InitializerLocalOrchestrationTests(unittest.TestCase):
                     if corrupt == "exit":
                         self.assertEqual(result["semanticVerifierStatus"],
                                          "NotRun_CommandFailed")
+                        self.assertEqual(result["nativeDiagnostic"]["result"],
+                                         "BoundedTraceObserved_NotRuntimeAuthenticated")
+                        self.assertEqual(result["nativeDiagnostic"]["nativeCallbackFailures"], [-7])
+                        self.assertEqual((evidence / "raw.json").stat().st_size, 0)
+                        self.assertEqual(result["launchPidFromOwnedReceipt"], batch.pid)
                     else:
                         self.assertTrue((evidence / "raw.json").exists())
 
@@ -101,7 +136,8 @@ class InitializerLocalOrchestrationTests(unittest.TestCase):
 
     def test_pid_and_native_state_mutations_fail_closed(self):
         for mode in cycle.MODE_SHA:
-            for corrupt in ("pid", "postAot", "canary", "exit"):
+            for corrupt in ("pid", "postAot", "canary", "exit",
+                            "trace-missing", "trace-pid"):
                 with self.subTest(mode=mode, corrupt=corrupt):
                     self.run_case(mode, corrupt)
 
@@ -127,6 +163,8 @@ class InitializerLocalOrchestrationTests(unittest.TestCase):
         self.assertIn('R03IRInitializerOneUseEvidenceBatchV1', source)
         self.assertIn('verify_current_host_report(', source)
         self.assertIn('"tenCurrentNativeHostResultSha256"', source)
+        self.assertIn('capture_host(output, batch.root / "host-custody")', source)
+        self.assertIn('"nativeDiagnostic"', source)
         self.assertIn('Passed59ArchivedProcessJoinsOnly', source)
         self.assertIn('Exact new non-replayed 15-cell roster', source)
 

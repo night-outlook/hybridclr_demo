@@ -7,13 +7,19 @@
 #include <string>
 extern "C" int R03_IRW_Open(const char*,const char*,const char*,const char*,const char*);
 extern "C" int R03_IRW_Seal(int,int,int,int,int,int);
+extern "C" int R03_IRW_Trace(int,int,int,int,int);
 
 static const char* mode=nullptr;
 extern "C" int R03_IRW_ReadPrepared(int* field,int* before,int* ready,int* mask,int* calls)
 {
-    if(std::strcmp(mode,"observer-reject")==0) return -1;
+    if(std::strcmp(mode,"observer-reject")==0) {
+        R03_IRW_Trace(400,-1,0,0,0); return -1;
+    }
     *field=std::strcmp(mode,"field-mutated")==0?4:3;
-    *before=3; *ready=1; *mask=15; *calls=1; return 1;
+    *before=3; *ready=1; *mask=15; *calls=1;
+    R03_IRW_Trace(400,1,9,*field,*calls);
+    R03_IRW_Trace(401,*before,*ready,*mask,0);
+    return 1;
 }
 int main(int argc,char** argv)
 {
@@ -29,6 +35,16 @@ int main(int argc,char** argv)
     const int second=R03_IRW_Open(argv[2],nonce,"HOST-INIT","initializer-failure",sha);
     if(second==1) return 12;
     const bool control=std::strcmp(mode,"control")==0;
+    const int nativeCommit=control?0:19;
+    const int nativeState=control?6:9;
+    // Synthetic observer and managed phases, only for C++11 writer tests.
+    // NOT a Unity callback or an actual Shadow Commit.
+    R03_IRW_Trace(299,1,0,0,0);
+    R03_IRW_Trace(300,1,3,15,1);
+    R03_IRW_Trace(190,1,0,0,0);
+    R03_IRW_Trace(191,nativeCommit,0,0,0);
+    R03_IRW_Trace(201,0,nativeState,nativeCommit,0);
+    R03_IRW_Trace(205,!control,nativeCommit,nativeState,0);
     const int result=R03_IRW_Seal(control?0:19,
        std::strcmp(mode,"wrong-state")==0?6:(control?6:9),
        1,1,control?0:1,std::strcmp(mode,"canary-executed")==0?1:0);

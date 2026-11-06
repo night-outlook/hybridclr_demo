@@ -114,6 +114,10 @@ FieldInfo* il2cpp::vm::Class::GetFieldFromName(Il2CppClass* k,const char* name) 
 uint32_t il2cpp::gc::GCHandle::New(Il2CppObject* o,bool pin) { return pin && o==&node.object?1:0; }
 Il2CppObject* il2cpp::gc::GCHandle::GetTarget(uint32_t h) { return h==1?&node.object:nullptr; }
 void il2cpp::gc::GCHandle::Free(uint32_t) {}
+// Stub for the real writer's preopened diagnostic, host-only.
+extern "C" int32_t R03_IRW_Trace(int32_t phase,int32_t a,int32_t,int32_t,int32_t) {
+    return phase>0 && a>=-9 ? 1 : -1;
+}
 extern "C" int32_t R03_IRW_OnPrepared();
 extern "C" int32_t R03_IRW_ReadPrepared(int32_t*,int32_t*,int32_t*,int32_t*,int32_t*);
 int main() {

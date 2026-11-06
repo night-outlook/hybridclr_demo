@@ -20,6 +20,8 @@ on:
       - 'Tools/AssemblyShadow/R03IR/current_native_environment_admission.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_environment_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/initializer_admission_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/initializer_host_custody.py'
+      - 'Tools/AssemblyShadow/R03IR/test_initializer_host_custody.py'
       - 'Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj'
       - 'Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs'
       - 'Tools/AssemblyShadow/R03/PlayerFixtures/Program.cs'
@@ -218,6 +220,40 @@ jobs:
           assert d["actualUnityOrPlayerRun"] is False
           assert d["runtimeAcceptance"] is False and d["R03Accepted"] is False
           print("Real current CLI host: eight historical + two owner suites passed (no Unity).")
+          PY
+      - name: Authenticate actual ten-host symlinks and full regular-byte custody through product seal
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          local_test_root="$(cat "$RUNNER_TEMP/r03-current-host-output-root.txt")"
+          python3 -B "$GITHUB_WORKSPACE/Tools/AssemblyShadow/R03IR/initializer_host_custody.py" \
+            --raw-host "$local_test_root/full-current-native-host" \
+            --output "$local_test_root/host-custody"
+          python3 - "$local_test_root" "$GITHUB_WORKSPACE" <<'PY'
+          import json, pathlib, shutil, sys, tarfile
+          root, workspace = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
+          sys.path.insert(0, str(workspace / "Tools/AssemblyShadow/R03IR"))
+          sys.path.insert(0, str(workspace / "Tools/AssemblyShadow/R03"))
+          from initializer_host_custody import verify_live
+          from batch_evidence import finalize
+          host = root / "full-current-native-host"
+          receipt = verify_live(host, root / "host-custody")
+          assert receipt["result"] == "PassedFullRawHostAndArchiveBinding_NoRuntimeAcceptance"
+          assert receipt["symlinkCount"] == 4,receipt
+          test_root = root / "seal-integration-host-only"
+          test_root.mkdir()
+          shutil.copytree(root / "host-custody", test_root / "host-custody")
+          sealed = finalize(test_root, {
+              "kind":"R03RealTenHostCustodyHostOnly",
+              "result":"ReturnRequired", "runtimeAcceptance":False, "R03Accepted":False})
+          assert sealed["sealStatus"] == "Passed", sealed.get("sealError")
+          assert sealed["R03Accepted"] is False
+          with tarfile.open(test_root / "evidence.tar.gz") as archive:
+              members = archive.getnames()
+              assert "host-custody/HOST_MANIFEST.json" in members
+              assert "host-custody/HOST_REGULAR_BYTES.tar.gz" in members
+          print("Real ten-host output and four negative symlinks authenticated; generic seal PassedHostOnly")
           PY
       - name: Nine canonical Local handoff workflow trigger contracts
         shell: bash

@@ -6,8 +6,11 @@ import shutil
 import subprocess
 import tempfile
 import unittest
+import sys
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent))
+from verify_initializer_trace import inspect as inspect_trace
 SOURCE = HERE.parent / "PlayerProject/R03InitializerObservationWriter.cpp"
 DRIVER = HERE / "initializer_writer_driver.cpp"
 INCLUDE = HERE / "InitializerHostInclude"
@@ -35,9 +38,24 @@ class InitializerWriterHostTests(unittest.TestCase):
             output = Path(root) / "report.json"
             if preexisting:
                 output.write_text("preexisting\n", encoding="utf-8")
-            result = subprocess.run([str(self.binary), mode, str(output)],
-                                    capture_output=True, text=True, timeout=20)
-            self.assertEqual(result.returncode, 0, (mode, result.stderr))
+            child = subprocess.Popen([str(self.binary), mode, str(output)],
+                                     stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                     text=True)
+            stdout, stderr = child.communicate(timeout=20)
+            self.assertEqual(child.returncode, 0, (mode, stdout, stderr))
+            diagnostic = Path(str(output) + ".native-trace.jsonl")
+            self.last_trace = None
+            if diagnostic.is_file():
+                request = {
+                    "runId": "HostInitializerEvidenceRun000001",
+                    "caseId": "HOST-INIT",
+                    "stimulus": "initializer-control" if mode == "control"
+                                else "initializer-failure",
+                    "dllSha256": "a" * 64,
+                }
+                self.last_trace = inspect_trace(diagnostic, request, child.pid,
+                                                "a" * 64,
+                                                require_complete=mode in ("control", "failure"))
             return output.read_bytes() if output.exists() else None
 
     def test_failure_is_real_unaccepted_native_schema(self):
@@ -48,6 +66,9 @@ class InitializerWriterHostTests(unittest.TestCase):
         self.assertEqual(raw["preparedField"], 3)
         self.assertEqual(raw["finalField"], 3)
         self.assertEqual(raw["positiveMask"], 15)
+        self.assertEqual(self.last_trace["result"],
+                         "CompletePhaseTrace_NotRuntimeAuthenticated")
+        self.assertEqual(self.last_trace["nativeCallbackFailures"], [])
         self.assertEqual(raw["initializerCallbackCalls"], 1)
         self.assertIs(raw["postAotAttempted"], True)
         for flag in ("runtimeAcceptance", "R03Accepted", "H2Passed",
@@ -58,6 +79,8 @@ class InitializerWriterHostTests(unittest.TestCase):
     def test_control_is_distinct_success_case(self):
         raw = json.loads(self.run_mode("control"))
         self.assertEqual((raw["commitReturn"], raw["finalState"]), (0, 6))
+        self.assertEqual(self.last_trace["result"],
+                         "CompletePhaseTrace_NotRuntimeAuthenticated")
         self.assertIs(raw["postAotAttempted"], False)
         self.assertEqual(raw["initializerCallbackCalls"], 1)
 
@@ -66,6 +89,9 @@ class InitializerWriterHostTests(unittest.TestCase):
                      "observer-reject", "canary-executed"):
             with self.subTest(mode=mode):
                 self.assertEqual(self.run_mode(mode), b"")
+                self.assertIsNotNone(self.last_trace)
+                self.assertTrue(self.last_trace["nativeSealFailures"] or
+                                self.last_trace["nativeReadFailures"])
 
     def test_bad_nonce_and_reused_output_rejected(self):
         self.assertIsNone(self.run_mode("bad-run"))

@@ -8,6 +8,10 @@ on:
       - 'Tools/AssemblyShadow/R03IR/test_initializer_local_orchestration.py'
       - 'Tools/AssemblyShadow/R03IR/prepare_initializer_sources.py'
       - 'Tools/AssemblyShadow/R03IR/verify_initializer_observation.py'
+      - 'Tools/AssemblyShadow/R03IR/verify_initializer_trace.py'
+      - 'Tools/AssemblyShadow/R03IR/initializer_host_custody.py'
+      - 'Tools/AssemblyShadow/R03IR/test_initializer_trace.py'
+      - 'Tools/AssemblyShadow/R03IR/test_initializer_host_custody.py'
       - 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/**'
       - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03Initializer*'
       - 'Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs'
@@ -55,6 +59,12 @@ jobs:
           python3 -B -m unittest discover \
             -s Tools/AssemblyShadow/R03IR \
             -p test_initializer_observation.py -v
+          python3 -B -m unittest discover \
+            -s Tools/AssemblyShadow/R03IR \
+            -p test_initializer_trace.py -v
+          python3 -B -m unittest discover \
+            -s Tools/AssemblyShadow/R03IR \
+            -p test_initializer_host_custody.py -v
       - name: Actual shared readmission and new initializer project/CLI regression
         shell: bash
         run: |

@@ -25,6 +25,8 @@ from run_terminal_current import CurrentNativeBatch
 from run_terminal_local import build_ir_generator, original_s_fixtures, prepare_ir
 from prepare_initializer_sources import prepare as prepare_sources
 from verify_initializer_observation import strict_load, verify as verify_observation
+from verify_initializer_trace import inspect as inspect_native_trace
+from initializer_host_custody import capture as capture_host, verify_live as verify_host
 from run_current_native_validation_cycle import (
     validate_destination, validate_original, validate_sources, validate_machine,
 )
@@ -48,6 +50,11 @@ SOURCE_PATHS = (
     "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerPreparedProbe.cpp",
     "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationWriter.cpp",
     "Tools/AssemblyShadow/R03IR/run_initializer_local.py",
+    "Tools/AssemblyShadow/R03IR/verify_initializer_trace.py",
+    "Tools/AssemblyShadow/R03IR/initializer_host_custody.py",
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/initializer_writer_driver.cpp",
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_initializer_writer_host.py",
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_initializer_observer_native.py",
 )
 
 
@@ -197,7 +204,14 @@ def local_hosts(batch):
     # compile/contracts must pass before launching any new Unity build.
     import run_current_native_host_preflight as full_native_host
     from current_native_source_gate import CURRENT
-    output = batch.root / "native-host-diagnostics"
+    # The actual ten-suite host output retains intentional directory symlinks.
+    # Keep it as an immutable sibling, never inside batch_evidence.seal's
+    # strict symlink-free regular-file traversal. Losslessly bind its bytes
+    # and literal symlink identities into the product archive instead.
+    output = batch.root.parent / (batch.root.name + "-native-host-raw")
+    require(not output.exists() and not output.is_symlink() and
+            output.parent == batch.root.parent,
+            "One fresh sibling ten-host evidence root required")
     recorded = batch.command([
         sys.executable, "-B", str(HERE / "run_current_native_host_preflight.py"),
         "--workspace", str(batch.workspace),
@@ -208,9 +222,15 @@ def local_hosts(batch):
     report = loads((output / "RESULT.json").read_text(encoding="utf-8"))
     full_native_host.verify_current_host_report(
         report, batch.pins["hybridclr_demo"], CURRENT["il2cpp_plus"])
+    captured = capture_host(output, batch.root / "host-custody")
+    require(captured["result"] == "PassedFullRegularBytesAndLiteralSymlinkTargets" and
+            captured["symlinkCount"] == 4,
+            "Exactly four native-host negative-control symlinks preserved")
+    batch.native_host_raw = output
+    batch.native_host_custody = batch.root / "host-custody"
     tests = ("test_initializer_observer_native.py", "test_initializer_writer_host.py")
     receipts = {"tenCurrentNativeHost": recorded, "tenCurrentNativeHostResultSha256":
-                sha(output / "RESULT.json")}
+                sha(output / "RESULT.json"), "boundActualHostCustody": captured}
     for name in tests:
         receipt = batch.command([
             sys.executable, "-B", "-m", "unittest", "discover",
@@ -218,7 +238,9 @@ def local_hosts(batch):
         receipts[name] = receipt
     for name in ("test_initializer_observation.py",
                  "test_initializer_source_preparation.py",
-                 "test_initializer_local_orchestration.py"):
+                 "test_initializer_local_orchestration.py",
+                 "test_initializer_trace.py",
+                 "test_initializer_host_custody.py"):
         receipts[name] = batch.command([
             sys.executable, "-B", "-m", "unittest", "discover",
             "-s", str(HERE), "-p", name, "-v"], 300)
@@ -268,6 +290,25 @@ def original_binary_audit(batch, script, expected):
             "runtimeAcceptance": False}
 
 
+def trace_report(root: Path, request: dict, pid: int | None, *,
+                 complete: bool = False) -> dict:
+    """Diagnostic only; no success promotion and no synthetic trace fallback."""
+    path = root / "raw.json.native-trace.jsonl"
+    if not path.is_file() or path.is_symlink() or type(pid) is not int or pid <= 0:
+        return {"result": "UnavailableNoBoundNativeJournal",
+                "traceExists": path.is_file() and not path.is_symlink(),
+                "runtimeAcceptance": False, "R03Accepted": False}
+    try:
+        observed = inspect_native_trace(
+            path, request, pid, request["dllSha256"], require_complete=complete)
+        return observed
+    except Exception as error:
+        return {"result": "RejectedNativeJournal_NotRuntimeAuthenticated",
+                "error": str(error),
+                "traceSha256": sha(path), "traceBytes": path.stat().st_size,
+                "runtimeAcceptance": False, "R03Accepted": False}
+
+
 def init_player(batch, mode):
     role_id = "candidate-release"
     batch.verify_build(role_id)
@@ -294,11 +335,23 @@ def init_player(batch, mode):
         launch = batch.command(command, 180)
     except Exception as error:
         raw_file = root / "raw.json"
+        receipt_file = batch.root / "commands" / ("%04d" % batch.command_count) / "command.json"
+        pid = None
+        if receipt_file.is_file() and not receipt_file.is_symlink():
+            receipt = loads(receipt_file.read_text(encoding="utf-8"))
+            pid = receipt.get("pid")
+        observed = trace_report(root, request, pid)
         write(root / "verification.json", {
             "result": "Failed", "error": str(error),
             "semanticVerifierStatus": "NotRun_CommandFailed",
             "rawPresent": raw_file.is_file() and not raw_file.is_symlink(),
+            "rawSha256": sha(raw_file) if raw_file.is_file() and not raw_file.is_symlink() else None,
+            "nativeDiagnostic": observed,
+            "launchPidFromOwnedReceipt": pid,
             "runId": run_id, "requestSha256": sha(root / "request.json"),
+            "buildReceiptSha256": sha(state["root"] / "build-receipt.json"),
+            "nativeOverlaySha256": state["config"]["overlaySha256"],
+            "executableSha256": sha(state["executable"]),
             "R03Accepted": False, "runtimeAcceptance": False,
         })
         raise
@@ -319,6 +372,10 @@ def init_player(batch, mode):
         binding["rawSha256"] = sha(raw_path)
         raw = strict_load(raw_path.read_bytes())
         verdict = verify_observation(raw, request, launch, sha(dll))
+        diagnostic = trace_report(root, request, launch["pid"], complete=True)
+        require(diagnostic.get("result") == "CompletePhaseTrace_NotRuntimeAuthenticated",
+                "Real native preopened phase journal required alongside strict V1")
+        binding["nativeDiagnostic"] = diagnostic
         require(verdict.get("result") == "SchemaConsistentNotRuntimeAuthenticated" and
                 raw["processId"] == launch["pid"] and
                 raw["runtimeAcceptance"] is False, "Native diagnostic receipt")
@@ -326,6 +383,8 @@ def init_player(batch, mode):
         binding["result"] = "PassedFocusedV1PlayerObservation_NotV2"
         write(root / "verification.json", binding)
     except Exception as error:
+        if "nativeDiagnostic" not in binding:
+            binding["nativeDiagnostic"] = trace_report(root, request, launch["pid"])
         write(root / "verification.json", dict(binding, result="Failed",
                                                error=str(error)))
         raise
@@ -393,7 +452,15 @@ def execute(workspace, original_s, output, unity, demo_commit):
     require(tuple(row["id"] for row in batch.cells) == expected_cells,
             "Exact new non-replayed 15-cell roster")
     statuses = {row["id"]: row["result"] for row in batch.cells}
-    passed = all(value == "Passed" for value in statuses.values())
+    custody_postflight = {"result": "NotRun_HostFailed", "runtimeAcceptance": False}
+    if hasattr(batch, "native_host_raw") and hasattr(batch, "native_host_custody"):
+        try:
+            custody_postflight = verify_host(batch.native_host_raw, batch.native_host_custody)
+        except Exception as error:
+            custody_postflight = {"result": "FailedLiveHostCustodyBinding",
+                                  "error": str(error), "runtimeAcceptance": False}
+    passed = (all(value == "Passed" for value in statuses.values()) and
+              custody_postflight["result"] == "PassedFullRawHostAndArchiveBinding_NoRuntimeAcceptance")
     result = finalize(batch.root, {
         "schemaVersion": 1, "kind": "R03IRInitializerOneUseEvidenceBatchV1",
         "result": "FocusedInitializerEvidenceReadyForIndependentReview"
@@ -406,6 +473,9 @@ def execute(workspace, original_s, output, unity, demo_commit):
             statuses["player-" + mode] == "Passed" for mode in MODE_SHA),
         "originalSIndependentBinaryAudit": statuses["audit_s_binary_linkage"],
         "originalSArchivedProcessJoinAudit": statuses["original-s-process-joins"],
+        "actualNativeHostCustodyPostflight": custody_postflight,
+        "nativeHostRawOutsideProductSeal": str(batch.native_host_raw) if
+            hasattr(batch, "native_host_raw") else None,
         "capturedGenericFailure": "NotRun",
         "completeNativeSnapshotV2": "NotImplemented_NotRun",
         "firstRecoveryAuthenticated": False,
