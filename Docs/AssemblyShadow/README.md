@@ -1,3 +1,15 @@
+# Current Primary — initializer oneuse-02 FAIL remediated in source; conditional oneuse-03 (2026-11-06 UTC)
+
+**Original initializer oneuse-02 remains FAIL / ReturnRequired** at execution demo `7da27a486b529cdebf73100b5ce4c332a1bb7e86`, Local evidence publication `61bf436d65e5909767206d385ecba865e4c7a5ac`. Exactly one actual Unity2022.3.62f2 macOS arm64 ON/Release IL2CPP build Passed (0 errors, 1 warning); 13/15 cells Passed but both initializer Players exited 2 and their strict native `raw.json` files were zero bytes. The original product seal Failed on an intentionally created ten-host negative-test directory symlink. Original evidence remains unmodified; oneuse-01 remains BLOCKED / NotRun. No oneuse-03 Unity/Player execution has occurred.
+
+**Primary implementation source correction:** a separate native preopened `raw.json.native-trace.jsonl` records bounded Open/Configure/Stage/Commit/callback/field-read/Seal primitive phases and failures, even when the strict V1 report fails. Failed Players remain Failed and `NotRun_CommandFailed`; diagnostic traces never prove V1/V2 acceptance. The ten-host raw tree, including all four adversarial symlinks, is retained in an unused sibling output root. Every actual regular byte and literal symlink target is recorded in a separate authenticated, symlink-free custody archive included in the unchanged strict product seal. The original S/K and production VM sources are unchanged.
+
+Read the [new conditional WEB_TO_LOCAL handoff](Handoff/WEB_TO_LOCAL.md), [oneuse-03 design](History/M07R/R03/IR_Remediation/INITIALIZER03_PLAYER_SEAL_REPAIR_2026-11-06/DESIGN.md), [execution plan](History/M07R/R03/IR_Remediation/INITIALIZER03_PLAYER_SEAL_REPAIR_2026-11-06/PLAN.md), and [Primary source review](History/M07R/R03/IR_Remediation/INITIALIZER03_PLAYER_SEAL_REPAIR_2026-11-06/PRIMARY_SOURCE_REVIEW.md). Local oneuse-03 may execute **only after** both designated GitHub host workflows have macOS and Ubuntu completed/success jobs at the same final published demo SHA, plus fresh read-only Mac Git/Unity/SDK/original-S/custody admission and two fresh >=25.0GiB capacity samples for its unused output roots. No earlier CI/measurements substitute.
+
+The independent October 8 R03 FAIL and High IR-R03-01/02 remain open. Captured-generic error15, complete native V2/first-failure/general diagnostics, original-S compiler/object/link/Player joins, whole-VM epoch, managed shutdown, GC/RSS, RC1–RC6, P1/P2/E0/E1/P3, full legacy regression and performance qualification are still unaccepted. `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`, `qualificationApproved=false`, `runtimeAcceptance=false`. PureInterpreter disabled; no H2/M08A/X02/SNAP-01 or Human Review Gate self-approval.
+
+---
+
 # Current Primary state — oneuse-01 admission BLOCKED; oneuse-02 source correction ready (2026-11-05 UTC)
 
 **Oneuse-01 is BLOCKED / 15 cells NotRun** at original executed demo
