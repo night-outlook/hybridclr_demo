@@ -1,0 +1,44 @@
+name: R03 initializer oneuse-05 read-only capacity readiness contracts
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-ir-capacity-readiness.yml'
+      - 'Tools/AssemblyShadow/R03IR/capacity_readiness.py'
+      - 'Tools/AssemblyShadow/R03IR/test_capacity_readiness.py'
+      - 'Docs/AssemblyShadow/README.md'
+      - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
+      - 'Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/INITIALIZER05_CAPACITY_2026-11-06/**'
+permissions:
+  contents: read
+jobs:
+  read-only-capacity:
+    name: Actual read-only CLI and mutation negatives / ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/capacity_readiness.py
+            Tools/AssemblyShadow/R03IR/test_capacity_readiness.py
+      - name: Read-only capacity safety contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B -m unittest discover \
+            -s Tools/AssemblyShadow/R03IR -p test_capacity_readiness.py -v
+      - name: Fresh CLI help from independent cwd
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          script="$GITHUB_WORKSPACE/Tools/AssemblyShadow/R03IR/capacity_readiness.py"
+          cd "$RUNNER_TEMP"
+          python3 -B "$script" --help | grep -F -- '--output-parent'
+          echo 'Source/host only: no real Local Mac capacity claim, cleanup, Unity or Player.'
