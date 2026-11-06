@@ -5,7 +5,10 @@ from pathlib import Path
 import tarfile
 import tempfile
 import unittest
+import sys
 
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent / "R03"))
 import initializer_host_custody as custody
 from batch_evidence import finalize
 
