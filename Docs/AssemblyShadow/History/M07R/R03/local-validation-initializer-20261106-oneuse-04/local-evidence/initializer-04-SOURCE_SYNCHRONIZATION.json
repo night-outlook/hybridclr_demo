@@ -1,0 +1,65 @@
+{
+  "result": "VerifiedCleanFastForwardDescendantAtRequestedSource",
+  "initialHead": "ec753f2facb4b2645083ed969d40d541c9f03cf4",
+  "admissionSource": "e0f52c008b6b244e58be135e9bdba46192b76d04",
+  "fastForwardPerformedEarlier": true,
+  "scope": "Read-only ancestry check; no second merge",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "merge-base",
+        "--is-ancestor",
+        "ec753f2facb4b2645083ed969d40d541c9f03cf4",
+        "e0f52c008b6b244e58be135e9bdba46192b76d04"
+      ],
+      "time": "2026-11-06T07:46:09.924244+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "rev-parse",
+        "HEAD"
+      ],
+      "time": "2026-11-06T07:46:09.936454+00:00",
+      "exit": 0,
+      "stdout": "e0f52c008b6b244e58be135e9bdba46192b76d04\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "status",
+        "--short"
+      ],
+      "time": "2026-11-06T07:46:09.943786+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "diff",
+        "--stat",
+        "ec753f2facb4b2645083ed969d40d541c9f03cf4",
+        "e0f52c008b6b244e58be135e9bdba46192b76d04"
+      ],
+      "time": "2026-11-06T07:46:11.221626+00:00",
+      "exit": 0,
+      "stdout": " .../r03-ir-initializer-local-contracts.yml         |   5 +\n .../workflows/r03-ir-initializer-writer-host.yml   |   6 +-\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        | 328 ++++++++++-----------\n .../CONSUMED_WEB_TO_LOCAL_INITIALIZER_03.md        | 186 ++++++++++++\n .../INITIALIZER04_PRECALLBACK_2026-11-06/DESIGN.md | 164 +++++++++++\n .../INITIALIZER04_PRECALLBACK_2026-11-06/PLAN.md   | 172 +++++++++++\n .../PRIMARY_SOURCE_REVIEW.md                       | 139 +++++++++\n Docs/AssemblyShadow/README.md                      |  51 ++++\n .../InitializerHostInclude/vm/AssemblyShadow.h     |   9 +\n .../initializer_writer_driver.cpp                  |  12 +\n .../test_initializer_writer_host.py                |   7 +\n .../R03InitializerObservationPlayer.cs             |   8 +\n .../R03InitializerObservationWriter.cpp            |  70 ++++-\n .../AssemblyShadow/R03IR/run_initializer_local.py  |  36 ++-\n .../R03IR/test_initializer_local_orchestration.py  |  21 +-\n .../R03IR/test_initializer_recovery.py             | 102 +++++++\n .../AssemblyShadow/R03IR/test_initializer_trace.py |   4 +-\n .../R03IR/verify_initializer_recovery.py           | 115 ++++++++\n .../R03IR/verify_initializer_trace.py              |   5 +-\n 19 files changed, 1265 insertions(+), 175 deletions(-)\n",
+      "stderr": ""
+    }
+  ]
+}
