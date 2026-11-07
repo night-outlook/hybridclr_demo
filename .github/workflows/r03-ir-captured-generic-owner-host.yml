@@ -1,0 +1,102 @@
+name: R03 captured-generic physical owner CLR host prerequisite
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - 'Tools/AssemblyShadow/R03IR/CapturedGenericHost/**'
+      - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericAotOwner.cs'
+      - 'Tools/AssemblyShadow/R03IR/verify_captured_generic_host.py'
+      - 'Tools/AssemblyShadow/R03IR/test_captured_generic_host.py'
+      - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
+      - '.github/workflows/r03-ir-captured-generic-owner-host.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  actual-clr-physical-context:
+    runs-on: ${{ matrix.os }}
+    name: Real CLR generic owner and metadata / ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    steps:
+      - name: Owning demo source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          path: hybridclr_demo
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03/Fixtures/EvolutionFixtureCorpus.cs
+            /Tools/AssemblyShadow/R03IR/CapturedGenericHost/
+            /Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericAotOwner.cs
+            /Tools/AssemblyShadow/R03IR/verify_captured_generic_host.py
+            /Tools/AssemblyShadow/R03IR/test_captured_generic_host.py
+      - name: Exact package/dnlib source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: hybridclr_unity
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Plugins/dnlib.dll
+      - name: Exact native captured-context guard source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 41764ae1eeefb33b05966e7f7676e52aae39c340
+          path: il2cpp_plus
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /libil2cpp/vm/AssemblyShadow.cpp
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+        with:
+          dotnet-version: '8.0.318'
+      - name: Compile actual independent owner and generate physical Methods input
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          test "$(git -C hybridclr_demo rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git -C hybridclr_unity rev-parse HEAD)" = 948c0e3b4f8891481301770115e8ba4945eea6de
+          test "$(git -C il2cpp_plus rev-parse HEAD)" = 41764ae1eeefb33b05966e7f7676e52aae39c340
+          tmp="$RUNNER_TEMP/r03-captured-generic-owner"
+          mkdir -p "$tmp/obj" "$tmp/bin"
+          dotnet build hybridclr_demo/Tools/AssemblyShadow/R03IR/CapturedGenericHost/CapturedGenericHost.csproj \
+            -c Release -v minimal \
+            -p:PackageRoot="$GITHUB_WORKSPACE/hybridclr_unity" \
+            -p:BaseIntermediateOutputPath="$tmp/obj/" \
+            -p:OutputPath="$tmp/bin/" \
+            --disable-build-servers -p:UseSharedCompilation=false -nodeReuse:false
+          dotnet "$tmp/bin/R03CapturedGenericHost.dll" --emit-and-verify "$tmp/physical"
+          test -s "$tmp/physical/HOST_RESULT.json"
+          test -s "$tmp/physical/Methods.dll"
+      - name: Strict host receipt and real negative mutation contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          tmp="$RUNNER_TEMP/r03-captured-generic-owner"
+          export CAPTURED_OWNER_REPORT="$tmp/physical/HOST_RESULT.json"
+          export CAPTURED_OWNER_METHODS="$tmp/physical/Methods.dll"
+          export CAPTURED_OWNER_SOURCE="$GITHUB_WORKSPACE/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericAotOwner.cs"
+          export CAPTURED_OWNER_NATIVE="$GITHUB_WORKSPACE/il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp"
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03IR/verify_captured_generic_host.py \
+            --receipt "$CAPTURED_OWNER_REPORT" --methods "$CAPTURED_OWNER_METHODS" \
+            --owner-source "$CAPTURED_OWNER_SOURCE" --native-source "$CAPTURED_OWNER_NATIVE"
+          python3 -B -m unittest discover \
+            -s hybridclr_demo/Tools/AssemblyShadow/R03IR \
+            -p test_captured_generic_host.py -v
+          original="$(shasum -a 256 "$CAPTURED_OWNER_REPORT" | awk '{print $1}')"
+          if dotnet "$tmp/bin/R03CapturedGenericHost.dll" --emit-and-verify "$tmp/physical" \
+                > "$tmp/reuse.stdout" 2> "$tmp/reuse.stderr"; then
+            echo 'Unexpected acceptance of consumed host-only output' >&2
+            exit 44
+          fi
+          test "$(shasum -a 256 "$CAPTURED_OWNER_REPORT" | awk '{print $1}')" = "$original"
+          echo 'CLR host structural check only; no actual IL2CPP MethodInfo/context or error15 claimed'
