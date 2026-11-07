@@ -40,6 +40,9 @@ internal static class InitializerNativeTargetFixtures
             byte[] target = AddCallback(original, kind);
             Need(!original.SequenceEqual(target), "Native initializer must differ from original CLR fixture");
             Verify(target, kind);
+            // Independent in-memory negative controls; never reserialize the
+            // authoritative target bytes or mutate the original CLR fixtures.
+            VerifyLegacyImportRejected(target, kind);
             var admission = NativeLayoutAdmissionValidator.Analyze(baseline, target);
             admission.RequireEditorAdmission();
             Need(!admission.pureInterpreterExpansionEnabled && !admission.nativeProofExecuted,
@@ -162,6 +165,33 @@ internal static class InitializerNativeTargetFixtures
             Need(kind != "initializer-control" ||
                  (instructions.Count == 2 && instructions[1].OpCode == OpCodes.Ret),
                  "Control initializer returns only after callback");
+        }
+    }
+
+    private static void VerifyLegacyImportRejected(byte[] bytes, string kind)
+    {
+        // A PInvoke MethodImpl map with the former module name was accepted
+        // by IL metadata, but the interpreted path attempted dlopen("__Internal")
+        // in the actual consumed oneuse-05. Verify refuses that old authority.
+        using (var module = ModuleDefMD.Load(bytes))
+        {
+            var witness = module.GetTypes().Single(t => t.FullName == "R03.TerminalWitness");
+            var callback = witness.Methods.Single(m => m.Name == "RecordPreparedInNative");
+            callback.ImplMap = new ImplMapUser(new ModuleRefUser(module, "__Internal"),
+                Export, PInvokeAttributes.CallConvCdecl | PInvokeAttributes.NoMangle);
+            var options = new ModuleWriterOptions(module);
+            options.PEHeadersOptions.TimeDateStamp = 0;
+            using (var stream = new MemoryStream())
+            {
+                module.Write(stream, options);
+                bool rejected = false;
+                try { Verify(stream.ToArray(), kind); }
+                catch (InvalidOperationException error)
+                {
+                    rejected = error.Message == "Exact interpreted current-process Cdecl no-arg native preparedness callback";
+                }
+                Need(rejected, "Legacy __Internal import must never pass dynamic interpreter fixture admission");
+            }
         }
     }
 

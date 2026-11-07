@@ -160,6 +160,22 @@ class InitializerLocalOrchestrationTests(unittest.TestCase):
                 with self.subTest(mode=mode, corrupt=corrupt):
                     self.run_case(mode, corrupt)
 
+    def test_current_v2_target_pins_are_distinct_from_retired_v1(self):
+        self.assertEqual(cycle.MODE_SHA, {
+            "initializer-control": (
+                "d6e5b66f695498a9ba0806ea81930f03804d98f77382cb851d24c2b24f24202e",
+                "5bb6e17a-09b9-5b29-dac2-41d3519f76f4"),
+            "initializer-failure": (
+                "6ad097153da2054579c13ec48d9f81a35d2551b08bf7a77398f13809ef9e5370",
+                "f61d7325-6d38-4640-5873-37371f587b16"),
+        })
+        self.assertNotIn(
+            "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
+            [v[0] for v in cycle.MODE_SHA.values()])
+        self.assertNotIn(
+            "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
+            [v[0] for v in cycle.MODE_SHA.values()])
+
     def test_explicit_oneuse_scope_excludes_unsupported_claims(self):
         source = Path(cycle.__file__).read_text(encoding="utf-8")
         for explicit in (

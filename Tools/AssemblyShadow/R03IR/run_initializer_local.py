@@ -33,14 +33,18 @@ from run_current_native_validation_cycle import (
 )
 
 BRANCH = "codex/assembly-shadow-r01b-h1"
+# Source-authenticated actual .NET8/dnlib v2 outputs, generated twice on
+# macOS and Linux at demo 7e53f193cf7453e92856ca307e628ba93a35ab03.
+# Different MVIDs and bytes from the consumed __Internal v1 targets.
+# This is not a real Player or acceptance attestation.
 MODE_SHA = {
     "initializer-control": (
-        "f909d3a4dd2ae3e561f1c0a2e25b50009203e440ce35a743afae937073e294a8",
-        "c8dff3d3-01e2-4b9f-0969-87c69d2b9e73",
+        "d6e5b66f695498a9ba0806ea81930f03804d98f77382cb851d24c2b24f24202e",
+        "5bb6e17a-09b9-5b29-dac2-41d3519f76f4",
     ),
     "initializer-failure": (
-        "1cf13922d9f5798873a2581867f4dc0ea7415bd5ceee815e1b9489d99ce4937d",
-        "3ec341b2-04be-2d14-1904-fac3f8a6a6c4",
+        "6ad097153da2054579c13ec48d9f81a35d2551b08bf7a77398f13809ef9e5370",
+        "f61d7325-6d38-4640-5873-37371f587b16",
     ),
 }
 SOURCE_PATHS = (
