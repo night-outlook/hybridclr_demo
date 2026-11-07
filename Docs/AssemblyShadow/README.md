@@ -1,3 +1,13 @@
+# Current Primary — oneuse-07 mandatory CI source-pin reconciliation (2026-11-07 UTC)
+
+The pending oneuse-07 runtime batch is still CONDITIONAL. At the previous demo `b0469e46c405`, the bridge-host and initializer-local-contracts workflows passed both operating systems, but the mandatory full current-native-host workflow failed on both operating systems before native-host execution. The separate current-native source-only workflow also failed. Raw GitHub Actions logs show a stale pre-bridge `R03Build.cs` blob pin, **not** a new Unity/Player outcome.
+
+Primary updated only the *current candidate* source gate and candidate JSON to the exact reviewed conditional initializer builder Git blob `71c685f419d157bf3774996f28f2d075246cf4e4`, plus positive/negative source regression checks. The original `R03/source-pins.json`, all native fork pins, Build.cs implementation, original fixture roles, historical outputs and 15-cell oneuse-07 contract are untouched. Read the [pin remediation report](History/M07R/R03/IR_Remediation/INITIALIZER07_BRIDGE_2026-11-07/SOURCE_PIN_CI_REMEDIATION_2026-11-07.md) and [current WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md).
+
+This is a source/CI prerequisite repair only. **Before** Local oneuse-07, all three mandatory workflows must have completed/success macOS15 and Ubuntu24.04 jobs at the exact **final** pushed demo SHA, plus fresh independent Local admission and two >=25 GiB same-volume samples. Any failure/skip/cancellation blocks execution. Oneuse01–06 outcomes and the 17 permanently retired roots/40 duplicates remain immutable/unavailable. `R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; runtimeAcceptance=false; qualificationApproved=false`. No later milestone or Human Review Gate approval.
+
+---
+
 # Current Primary — R03 initializer oneuse-06 missing native Bi4 bridge; conditional oneuse-07 (2026-11-07 UTC)
 
 **Original oneuse-06 Local Validation remains FAIL/ReturnRequired**, executed

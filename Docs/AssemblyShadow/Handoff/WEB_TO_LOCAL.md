@@ -5,6 +5,14 @@ Current Primary source correction resolves the **missing generation input**
 for interpreted `Cdecl int32()` ABI `Bi4`. The actual corrected
 Unity Player has NOT run; this handoff never grants acceptance.
 
+## Primary source-pin CI repair before this Local cycle
+
+At **prior** demo source `b0469e46c4052ea986d4d92ad501ac020c032d5e`, the mandatory current-native-local-cycle-host run `42336107614` failed on **both** operating systems in read-only source admission, before executing the 8+2 native-host suites. The separate current-native source-only run `42336107652` also failed. Both reported that current `R03Build.cs` did not match its **stale pre-bridge** Git blob in the current-native candidate source gate. These are real failed CI outcomes, not evidence of a passing native-host cycle.
+
+Primary corrected the *current candidate* `R03Build.cs` Git blob from `b993703d918090733a659bd7c3ac883cd5d753e1` to the actual reviewed initializer-only builder `71c685f419d157bf3774996f28f2d075246cf4e4` in `current_native_source_gate.py` and `current_native_candidate.json`, with current-source and stale-pin-negative regression checks in `current_native_source_contracts.py`. The historical R03 pins and native forks are unchanged. Details: `History/M07R/R03/IR_Remediation/INITIALIZER07_BRIDGE_2026-11-07/SOURCE_PIN_CI_REMEDIATION_2026-11-07.md`.
+
+**Do not use the prior failed runs or prior green workflows as final-source evidence.** Require all three workflow names below to complete successfully for macOS15 **and** Ubuntu24.04 at the exact *new final pushed demo SHA*, and inspect their actual job statuses. If the separate current-native source-only workflow fails again, record it as a blocker and return it to Primary. None of these checks authorizes bypassing fresh Mac admission or broadening the single 15-cell run.
+
 ## First reads and immutable evidence
 
 Read `Docs/AssemblyShadow/README.md` and THIS canonical

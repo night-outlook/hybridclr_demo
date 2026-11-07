@@ -23,7 +23,9 @@ CURRENT = {
     "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
     "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340",
 }
-# Each source blob was directly fetched at the fixed repository commit.
+# Each source blob is bound to the actual reviewed Git source. R03Build.cs
+# now includes the strictly opt-in initializer Bi4 bridge, so its current
+# candidate blob changes while historical R03/source-pins.json remains fixed.
 # A config edit cannot weaken the required source file inventory or hashes.
 FILES = {
     ("hybridclr_demo", "Tools/AssemblyShadow/R03/source-pins.json"): "9d72a237fb6ecd3efe3267ca89625aa49c61775d",
@@ -31,7 +33,7 @@ FILES = {
     ("hybridclr_demo", "Tools/AssemblyShadow/R03IR/run_terminal_local.py"): "489e4bb13309c175545a042e15660f5d5c3aa83c",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs"): "e2f650ad95b290620aa52949b43a1866272ac6bf",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03IR/PlayerProject/R03EngineFrameDispatcher.cs"): "47a3e095480de2ec657e7e5acc453a5a76002a18",
-    ("hybridclr_demo", "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs"): "b993703d918090733a659bd7c3ac883cd5d753e1",
+    ("hybridclr_demo", "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs"): "71c685f419d157bf3774996f28f2d075246cf4e4",
     ("hybridclr_demo", "Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp"): "7a5dd88748dd98a387130c046b47790b80752cf9",
     ("il2cpp_plus", "libil2cpp/vm/AssemblyShadow.cpp"): "57cf47f964a83973df8296955ccf856b105c595f",
     ("il2cpp_plus", "libil2cpp/vm/AssemblyShadowTerminalExecution.h"): "33258986c31b2e6ae3af17b8553030482a83aef7",

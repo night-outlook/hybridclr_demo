@@ -83,6 +83,20 @@ class CurrentNativeSourceGateContracts(unittest.TestCase):
         self.assertEqual(d["currentSourceMatchedPlayerExecution"], "NotRun")
         self.assertFalse(d["runtimeAcceptance"])
         self.assertFalse(d["newBuildOrUnityPlayerRun"])
+        # A source-only candidate must bind the actual reviewed conditional
+        # initializer Editor builder, not a stale pre-Bi4 historical blob.
+        builder = self.roots["hybridclr_demo"] / (
+            "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs")
+        current_blob = FILES[("hybridclr_demo",
+            "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs")]
+        self.assertEqual(current_blob, "71c685f419d157bf3774996f28f2d075246cf4e4")
+        self.assertNotEqual(current_blob, "b993703d918090733a659bd7c3ac883cd5d753e1")
+        self.assertEqual(git_blob(builder.read_bytes()), current_blob)
+        source = builder.read_text(encoding="utf-8")
+        self.assertIn("PrebuildCommand.GenerateAll();", source)
+        self.assertIn("GenerateInitializerBridgeIfRequested(config, native)", source)
+        self.assertIn("if (string.IsNullOrEmpty(config.initializerBridgeContract))", source)
+        self.assertIn("initializerBridgePostBuildSha256 = ShadowHash.File(generated)", source)
 
     def test_05_candidate_file_tamper_fails_closed(self):
         with tempfile.TemporaryDirectory() as d:
@@ -147,6 +161,18 @@ class CurrentNativeSourceGateContracts(unittest.TestCase):
             p = Path(d).resolve() / "candidate.json"
             p.write_text(json.dumps(data))
             with self.assertRaises(CandidateSourceError):
+                read_config(p)
+            # Replaying the exact stale pre-bridge R03Build Git blob is a
+            # provenance failure, not an allowed "historical compatibility".
+            data = copy.deepcopy(self.config)
+            old_build = [row for row in data["files"] if
+                         row["repository"] == "hybridclr_demo" and
+                         row["path"] == "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs"]
+            self.assertEqual(len(old_build), 1)
+            old_build[0]["gitBlob"] = "b993703d918090733a659bd7c3ac883cd5d753e1"
+            p.write_text(json.dumps(data))
+            with self.assertRaisesRegex(CandidateSourceError,
+                                        "Source file Git blob changed"):
                 read_config(p)
 
     def test_12_old_and_current_native_revisions_cannot_be_swapped(self):
