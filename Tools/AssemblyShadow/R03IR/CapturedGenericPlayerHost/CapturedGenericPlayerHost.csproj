@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <DefineConstants>UNITY_2022_3_OR_NEWER</DefineConstants>
+    <AssemblyName>R03CapturedGenericPlayerHost</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Stubs.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="../PlayerProject/R03CapturedGenericPlayer.cs" Link="R03CapturedGenericPlayer.cs" />
+    <Compile Include="../PlayerProject/R03CapturedGenericAotOwner.cs" Link="R03CapturedGenericAotOwner.cs" />
+  </ItemGroup>
+</Project>
