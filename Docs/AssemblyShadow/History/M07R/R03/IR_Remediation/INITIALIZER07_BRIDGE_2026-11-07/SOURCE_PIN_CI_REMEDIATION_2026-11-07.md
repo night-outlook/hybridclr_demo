@@ -14,6 +14,12 @@ The candidate-only `FILES` map in `Tools/AssemblyShadow/R03IR/current_native_sou
 
 Update only this **current candidate** source pin from `b993703d918090733a659bd7c3ac883cd5d753e1` to `71c685f419d157bf3774996f28f2d075246cf4e4`. Add source tests asserting actual Git blob equality, the opt-in bridge/post-build source checks and a negative old-blob candidate-manifest case. **Do not modify** `Tools/AssemblyShadow/R03/source-pins.json`, the original native/interpreter/package pins, R03Build implementation, the two fixture DLL identities, any historical Local evidence, or the 15-cell initializer runner.
 
+## Follow-up CI failure exposed by the first correction
+
+The first correction committed as `bc3a3fe89b8035bb81cc8c79128115bac1b6363a` passed the current-native-source-only and focused initializer bridge and coordinator workflows on both operating systems. Full current-native-host run `42354711808` got past the original read-only preflight and ran the genuine ten native-host components on both operating systems. Its next `Actual fresh Python CLI startup without PYTHONPATH or Unity` step FAILED on both operating systems because independent `current_native_cli_contracts.py` held the same obsolete `R03Build.cs` git blob `b993703d918090733a659bd7c3ac883cd5d753e1`. Ubuntu raw job `128350141447` explicitly reported `AssertionError: '71c685f419d157bf3774996f28f2d075246cf4e4' != 'b993703d918090733a659bd7c3ac883cd5d753e1'` in `test_12_reviewed_current_source_files_are_pinned`. The macOS job `128350141740` failed the same named step. Do not reclassify these failures; previous current-host success is not an overall run pass.
+
+Second focused Primary correction: align only that CLI contract's candidate `BLOB_PINS` builder entry to `71c685f419d157bf3774996f28f2d075246cf4e4` and assert current/legacy identities plus the actual conditional generator entry. Keep all original source and older historical pins untouched. The required final three-workflow two-OS CI gate remains unchanged.
+
 ## Verification and operational gate
 
 Primary source sanity requires the pinned actual `R03Build.cs` Git blob to equal `71c685f419d157bf3774996f28f2d075246cf4e4`, the candidate JSON and source-gate FILES map to agree, and the unchanged twenty source contract tests to include positive current and negative stale Git-blob checks.

@@ -34,7 +34,7 @@ BLOB_PINS = {
         "47a3e095480de2ec657e7e5acc453a5a76002a18",
     "Tools/AssemblyShadow/R03/source-pins.json": "9d72a237fb6ecd3efe3267ca89625aa49c61775d",
     "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs":
-        "b993703d918090733a659bd7c3ac883cd5d753e1",
+        "71c685f419d157bf3774996f28f2d075246cf4e4",
     "Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py":
         "1753b3096e818484527627f8a7ac6e8835d7950d",
 }
@@ -154,6 +154,15 @@ class StandaloneCliBootstrapContracts(unittest.TestCase):
         self.assertFalse(output.exists())
 
     def test_12_reviewed_current_source_files_are_pinned(self):
+        # The source-only CLI tests must use the same reviewed initializer
+        # builder identity as the current-native source gate, never the
+        # original pre-bridge candidate pin.
+        build = "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs"
+        self.assertEqual(BLOB_PINS[build], "71c685f419d157bf3774996f28f2d075246cf4e4")
+        self.assertNotEqual(BLOB_PINS[build], "b993703d918090733a659bd7c3ac883cd5d753e1")
+        builder = (DEMO / build).read_text(encoding="utf-8")
+        self.assertIn("PrebuildCommand.GenerateAll();", builder)
+        self.assertIn("GenerateInitializerBridgeIfRequested(config, native)", builder)
         for relative, pin in BLOB_PINS.items():
             with self.subTest(relative=relative):
                 path = DEMO / relative
