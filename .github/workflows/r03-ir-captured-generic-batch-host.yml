@@ -1,0 +1,62 @@
+name: R03 captured-generic onebuild threeplayer Primary host contracts
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - '.github/workflows/r03-ir-captured-generic-batch-host.yml'
+      - 'Tools/AssemblyShadow/R03IR/run_captured_generic_local.py'
+      - 'Tools/AssemblyShadow/R03IR/prepare_captured_generic_sources.py'
+      - 'Tools/AssemblyShadow/R03IR/test_captured_source_preparation.py'
+      - 'Tools/AssemblyShadow/R03IR/test_captured_batch_source.py'
+      - 'Tools/AssemblyShadow/R03IR/CapturedGenericPlayerHost/**'
+      - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericPlayer.cs'
+      - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericAotOwner.cs'
+      - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  host-execution-contracts:
+    name: A2 coordinator/preparer and actual CSharp source / ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03
+            Tools/AssemblyShadow/R03IR
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+        with:
+          dotnet-version: '8.0.318'
+      - name: Compile actual A2 Player CSharp against host-only managed API surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          temp="$RUNNER_TEMP/captured-player-api"
+          mkdir -p "$temp/bin" "$temp/obj"
+          dotnet build Tools/AssemblyShadow/R03IR/CapturedGenericPlayerHost/CapturedGenericPlayerHost.csproj \
+            -c Release -v minimal \
+            -p:BaseIntermediateOutputPath="$temp/obj/" \
+            -p:OutputPath="$temp/bin/" \
+            --disable-build-servers -p:UseSharedCompilation=false -nodeReuse:false
+          dotnet "$temp/bin/R03CapturedGenericPlayerHost.dll"
+      - name: Execute real isolated source preparation negative contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B -m py_compile \
+            Tools/AssemblyShadow/R03IR/run_captured_generic_local.py \
+            Tools/AssemblyShadow/R03IR/prepare_captured_generic_sources.py
+          python3 -B -m unittest discover -s Tools/AssemblyShadow/R03IR \
+            -p test_captured_source_preparation.py -v
+          python3 -B -m unittest discover -s Tools/AssemblyShadow/R03IR \
+            -p test_captured_batch_source.py -v
+          python3 -B Tools/AssemblyShadow/R03IR/run_captured_generic_local.py --help
+          echo 'HOST ONLY: no Unity/IL2CPP Player or source-matched Local batch.'
