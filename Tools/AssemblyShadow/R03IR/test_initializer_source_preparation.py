@@ -77,8 +77,12 @@ class InitializerSourcePreparationTests(unittest.TestCase):
         self.assertEqual(cfg["initializerBridgeContract"], ABI_CONTRACT)
         self.assertEqual(cfg["initializerBridgeControlSha256"], self.expected["initializer-control"][0])
         self.assertEqual(cfg["initializerBridgeFailureSha256"], self.expected["initializer-failure"][0])
-        self.assertEqual(json.loads(self.manifest.read_text())["files"][-1]["path"],
-                         "Assets/R03InitializerObservationPlayer.cs")
+        paths = [row["path"] for row in
+                 json.loads(self.manifest.read_text())["files"]]
+        self.assertEqual(paths[-2:], [
+            "Assets/R03InitializerObservationPlayer.cs",
+            "Assets/Editor/R03InitializerBridge.cs",
+        ])
         self.assertEqual(json.loads((self.out / "SOURCE_PREPARATION.json").read_text()), result)
 
     def test_reuse_rejected(self):

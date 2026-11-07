@@ -75,10 +75,12 @@ class FakeInitializerBatch:
             # Synthetic reproduction of a real native seal failure. The
             # command returns nonzero, raw remains exactly empty, but a
             # preopened diagnostic journal can still be authenticated.
-            traces = traces[:4]
+            # The new phase103 genuinely reads the linked Bi4 table.
+            # This synthetic failure occurs later in the native callback.
+            traces = traces[:5]  # 100,101,103,299,300
             traces[-1]["a"] = -7
-            traces.append(dict(traces[-1], seq=5, phase=900, a=190))
-            traces.append(dict(traces[-1], seq=6, phase=610, a=-2, b=3))
+            traces.append(dict(traces[-1], seq=6, phase=900, a=190))
+            traces.append(dict(traces[-1], seq=7, phase=610, a=-2, b=3))
             out.write_bytes(b"")
             receipt = self.root / "commands" / ("%04d" % self.command_count)
             receipt.mkdir(parents=True)

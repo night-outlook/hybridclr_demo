@@ -94,6 +94,7 @@ DRIVER = r"""
 #include "vm/Image.h"
 #include "vm/Class.h"
 #include "gc/GCHandle.h"
+#include "hybridclr/interpreter/MethodBridge.h"
 static auto state=il2cpp::vm::AssemblyShadowState::Committing;
 static Il2CppImage image{};
 static Il2CppAssembly assembly{};
@@ -202,8 +203,9 @@ class ObserverHostTests(unittest.TestCase):
                         args = [compiler, '-std=c++11','-Wall','-Wextra','-Werror',
                                 '-I',str(root)]
                         if negative: args.append('-DR03_TEST_NO_LINKED_BI4=1')
-                        subprocess.run(args + [str(SOURCE),str(driver),'-o',str(app)],
-                                       capture_output=True, text=True, check=True, timeout=80)
+                        compiled = subprocess.run(args + [str(SOURCE),str(driver),'-o',str(app)],
+                                                  capture_output=True, text=True, timeout=80)
+                        self.assertEqual(compiled.returncode, 0, compiled.stderr)
                         done=subprocess.run([str(app)],capture_output=True,text=True,timeout=20)
                         self.assertEqual(done.returncode,0,done.stderr)
                         self.assertIn('HOST OBSERVER PASSED',done.stdout)
