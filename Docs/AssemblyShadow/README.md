@@ -1,3 +1,13 @@
+# Current Primary — initializer oneuse-07 focused PASS; Local authority CLOSED (2026-11-07 UTC)
+
+The latest Local outcome is **focused initializer PASS**: execution demo `6e1dc7b4349a386dc35c5ed46fca4225db273b18`, evidence-publication demo `66a0218ffb17e363531b7f7bc0f4114787ae0b76`. One authorized 15-cell run passed (one real Unity2022.3.62f2 macOS arm64 IL2CPP build, two distinct Players exit0); actual linked Bi4 phase103 preceded native callback299/300, with field3/mask15 and healthy 0/6 versus postprepared failure19/9, expected first-recovery sentinel. Host suite and bounded custody/product seal passed within declared scopes; old oneuse01–06 remain historical.
+
+The oneuse-07 **WEB_TO_LOCAL is now consumed/CLOSED**. Read [postpass Primary reconciliation](History/M07R/R03/IR_Remediation/POST_INITIALIZER07_2026-11-07/PRIMARY_RECONCILIATION.md), [next Primary work](History/M07R/R03/IR_Remediation/POST_INITIALIZER07_2026-11-07/NEXT_PRIMARY_WORK.md), and [current handoff status](Handoff/WEB_TO_LOCAL.md). The original execution handoff is retained at demo source `6e1dc7...`, not executable authority for another batch.
+
+Both High findings `IR-R03-01/02` and independent full-stage R03 FAIL remain open. Captured-generic15, native V2/full first recovery, coherent VM epoch, original S full source/object/link/Player provenance, managed shutdown/GC/RSS and RC/P/E qualification are not accepted. Historical strict custody is still Blocked; 17 retired runtime roots/40 duplicates stay Unavailable. `R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; runtimeAcceptance=false; qualificationApproved=false; fullLegacyRegressionAcceptance=false`. PureInterpreter disabled. No Local build/Player, H2/M08A/X02/SNAP-01 or Human Review Gate self-approval.
+
+---
+
 # Current Primary — oneuse-07 mandatory CI source-pin reconciliation (2026-11-07 UTC)
 
 The pending oneuse-07 runtime batch is still CONDITIONAL. At the previous demo `b0469e46c405`, the bridge-host and initializer-local-contracts workflows passed both operating systems, but the mandatory full current-native-host workflow failed on both operating systems before native-host execution. The separate current-native source-only workflow also failed. Raw GitHub Actions logs show a stale pre-bridge `R03Build.cs` blob pin, **not** a new Unity/Player outcome.
