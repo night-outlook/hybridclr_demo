@@ -1,3 +1,11 @@
+# Current R03 Primary checkpoint — oneuse-07 focused PASS and handoff consumed (2026-11-07)
+
+Oneuse-07 **focused PASS** at execution source `6e1dc7b4349a386dc35c5ed46fca4225db273b18` and Local publication `66a0218ffb17e363531b7f7bc0f4114787ae0b76`: 15/15 cells, one Unity2022.3.62f2 macOS arm64 IL2CPP ON/Release build, two separate Players exit0, linked Bi4 phase103, native callback once, field3/mask15, control0/6 and failure19/9 with actual postprepared sentinel. The prior single-use WEB_TO_LOCAL is **CLOSED** and shall not be replayed.
+
+See [postpass reconciliation](../History/M07R/R03/IR_Remediation/POST_INITIALIZER07_2026-11-07/PRIMARY_RECONCILIATION.md) and [next Primary Implementation plan](../History/M07R/R03/IR_Remediation/POST_INITIALIZER07_2026-11-07/NEXT_PRIMARY_WORK.md). Both High independent R03 findings still require closure; captured-generic error15, native V2 diagnostics, full original-S semantic compiler/link/Player, whole-VM epoch/managed shutdown/GC/RSS, historical strict custody and R03/H2/Human Review Gate acceptance remain unfinished. All stage/qualification flags remain false; PureInterpreter disabled. No further Local execution until new source-complete, exact-push contract.
+
+---
+
 # R03 Primary checkpoint — initializer test-source implementation (2026-11-05 UTC)
 
 Primary published distinct initializer-control/failure Methods.dll generator, pre-Committing-state callback observer, native preopened **diagnostic V1 (not V2)** receipt, isolated Player entry, composite-overlay preparation and fail-closed host schema tests. Source-bound CI generation, C++11 observer/writer, project preparation, and managed API compilation **passed** without running Unity/IL2CPP or real Players. [Exact evidence and remaining blockers](../History/M07R/R03/IR_Remediation/PRIMARY_FOLLOWUP_2026-11-05/INITIALIZER_IMPLEMENTATION_PROGRESS.md).
