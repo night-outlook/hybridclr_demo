@@ -1,5 +1,28 @@
 # Local Validation report
 
+## Initializer oneuse-06 — FAIL
+
+**13 cells Passed and 2 Failed.** The fresh Unity 2022.3.62f2 macOS arm64 ON/diagnostics2/Release IL2CPP build succeeded with zero errors and one warning. The ten native host components and 47 initializer host tests passed. Original-S archival checks passed in their archived identity scope. Both V2 fixture DLLs reproduced the exact SHA-256, MVID and 2,560-byte size in WEB_TO_LOCAL. Host custody verified 3,198 regular files and four literal symlinks. The independent audit verified the original 451-member product seal.
+
+| Fresh Player | Owned command | PID | Exit | Commit / state | Trace events | Strict V1 bytes |
+| --- | --- | ---: | ---: | --- | ---: | ---: |
+| initializer-control | 0017 | 30595 | 2 | 19 / 9 | 25 | 0 |
+| initializer-failure | 0018 | 30603 | 2 | 19 / 9 | 27 | 0 |
+
+**IR-LOCAL-R03-INITIALIZER-06-NATIVE-BRIDGE-01.** Both identity-bound native VM recovery records report `NotSupportManaged2NativeFunctionMethod` inside the `Methods` module initializer. The failure differs from the consumed oneuse-05 named-library lookup. Neither trace records phase 299 or 300. The prepared-state reader returned -1 and the native seal writer rejected reason 1. Both strict semantic verifiers are NotRun_CommandFailed. The failure Player recorded an attempted terminal AOT call with no success and canary 1→1. It lacked the intended post-preparation sentinel and the required physical field/mask evidence.
+
+**Source and build attribution.** The actual build receipt binds generated `hybridclr/generated/MethodBridge.cpp` at SHA-256 `65f2d1993808492e31396c554c7e3301bc338d13a7be4680b55e1745e165c47c`. Its managed-to-native function-pointer table contains only the null sentinel. The isolated project lists no hot-update analyzer assemblies. The pinned transform resolves the P/Invoke address before querying the bridge table. The pinned metadata and signature code derive `Bi4` from the fixture's static Cdecl int32 call with no arguments. A missing table entry routes to the exact observed exception. The linked GameAssembly exports `R03_IRW_OnPrepared`. Taken together, this supports a missing generated bridge as the next runtime blocker. The exact lookup key is source-derived, and the batch did not reach callback execution.
+
+**Primary action.** Bind the authenticated fixture ABI into the isolated build's managed-to-native function-pointer generation. Require evidence that the generated and linked Player bridge supplies the exact Cdecl int32() signature while preserving fixture roles and initializer predicates. Return with fresh one-use authority for the build and both Player outcomes. The source, raw Player evidence and build are retained at the recorded execution paths.
+
+Execution source was `611ad2e45a92ebfbd07cb64238bf2f47b5aff626`. The three mandatory workflows ran six successful OS jobs at that SHA. The dedicated writer and API compile inputs matched all 32 recorded blobs. Fresh capacity was 55.377140 GiB and 55.374889 GiB on the same device, with 55.373936 GiB at dispatch. Read-only Unity and SDK admission passed. Runner PID 28245 ran once from 2026-11-07T02:50:13.571362+00:00 to 2026-11-07T02:54:54.299161+00:00, UTC. Exit code was 1.
+
+Before and after custody matched 339,367 present and 77,477 historically missing frozen-C identities. Historical strict custody remains Blocked. The exact 17 retired roots and 40 duplicate paths remain Unavailable. The surviving oneuse-05 raw files, 21 prior checkpoints, Original S, installed SDK and protected outside entries matched their recorded scopes. The earlier capacity publication receipt retained identical bytes after its documented timestamp change. [Preflight and custody](../History/M07R/R03/local-validation-initializer-20261107-oneuse-06/local-evidence/PRESERVATION_AFTER.json).
+
+The execution tuple is recorded in the [Local result](../History/M07R/R03/local-validation-initializer-20261107-oneuse-06/LOCAL_RESULT.json). The publication receipt is `/Users/ah/GitHub/hybridclr/r03-local-validation/initializer-06-runtime-PUBLICATION_RECEIPT.json`. All acceptance flags remain false.
+
+---
+
 ## Initializer oneuse-05 — FAIL / ReturnRequired; original VM exception identified
 
 Exactly **one** fresh batch ran: **13/15 cells Passed, both Player cells Failed**. One real Unity **2022.3.62f2 macOS arm64 ON/diagnostics2/Release IL2CPP** build Passed (**0 errors /1 warning**). Two real Players exited **2**, both strict `raw.json` files are **0 bytes**, and semantic verifiers remain **NotRun_CommandFailed**. New native recovery diagnostics identify **`Methods: The type initializer for '<Module>' threw an exception. ---> Unable to load DLL '__Internal'`**. Host custody and bounded product seal Passed; this does not promote failed semantics. [Factual result](../History/M07R/R03/local-validation-initializer-20261106-oneuse-05/LOCAL_RESULT.json), [producer result](../History/M07R/R03/local-validation-initializer-20261106-oneuse-05/batch/LOCAL_BATCH_RESULT.json), [source/PID-bound finding](../History/M07R/R03/local-validation-initializer-20261106-oneuse-05/RUNTIME_FINDINGS.json).

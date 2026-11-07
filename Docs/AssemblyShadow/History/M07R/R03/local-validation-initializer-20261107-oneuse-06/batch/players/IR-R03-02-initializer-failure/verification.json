@@ -1,0 +1,71 @@
+{
+  "R03Accepted": false,
+  "buildReceiptSha256": "28c9c6f2be083c5d5bbc880dff75a37e24490df284a57e469527ea112ab1982f",
+  "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/commands/0018/command.json",
+  "executableSha256": "81500605c4258ed7bb3c00e51189b1cb7cec9bf777fcd9c488aebfad4b896aa5",
+  "launchPidFromOwnedReceipt": 30603,
+  "nativeDiagnostic": {
+    "H2Passed": false,
+    "R03Accepted": false,
+    "commitStatusReported": [
+      19
+    ],
+    "completeStrictObservationProven": false,
+    "events": 27,
+    "kind": "R03InitializerTraceHostInterpretationV1",
+    "lastPhase": 610,
+    "managedCaughtPhase": [],
+    "nativeCallbackFailures": [],
+    "nativeCallbackObserved": false,
+    "nativeReadFailures": [
+      -1
+    ],
+    "nativeRecoveryCaptured": [
+      1
+    ],
+    "nativeSealFailures": [
+      {
+        "reason": 1,
+        "return": -2
+      }
+    ],
+    "nativeSealInput": [
+      {
+        "attempted": 1,
+        "commit": 19,
+        "state": 9,
+        "succeeded": 0
+      }
+    ],
+    "nativeV2TransportImplemented": false,
+    "preopenedWriter": true,
+    "rawBytes": 9755,
+    "rawSha256": "ac45296bfb4158259979ca7b77451fe9bbb28af74e93f0f060438e2d22394d61",
+    "result": "BoundedTraceObserved_NotRuntimeAuthenticated",
+    "runtimeAcceptance": false,
+    "vmRecovery": {
+      "H2Passed": false,
+      "R03Accepted": false,
+      "completeDiagnosticsAuthenticated": false,
+      "disposition": "RestartRequired",
+      "kind": "R03IRInitializerRecoverySourceOnlyDiagnosticV1",
+      "nativeGetterResult": 0,
+      "nativeV2TransportImplemented": false,
+      "rawBytes": 784,
+      "rawSha256": "1d0591fa3005eab1e667bee211aaaba294bb33cab8c8a7d96d5188f20502b54a",
+      "result": "ParsedNativeVMFirstFailure_NotRuntimeAuthenticated",
+      "runtimeAcceptance": false,
+      "stateCode": 9,
+      "terminalFailureCode": 19,
+      "vmReason": "Methods: The type initializer for '<Module>' threw an exception. ---> NotSupportManaged2NativeFunctionMethod"
+    }
+  },
+  "nativeOverlaySha256": "db94e481cb3cf86a3c656e964a39f34f15a81a02eec1b3c2d7ecc3e91d1af4d8",
+  "rawPresent": true,
+  "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "requestSha256": "e2198e5699e592c4330a4f2cf46fb3c47bf009270bf25630f9f29bdb39c943dc",
+  "result": "Failed",
+  "runId": "83b3054c858947a0b28a58506610bc91",
+  "runtimeAcceptance": false,
+  "semanticVerifierStatus": "NotRun_CommandFailed"
+}

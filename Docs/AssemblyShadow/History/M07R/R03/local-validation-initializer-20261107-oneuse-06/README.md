@@ -1,0 +1,21 @@
+# Initializer oneuse-06 — FAIL
+
+**13 cells Passed and 2 Failed.** The fresh Unity 2022.3.62f2 macOS arm64 ON/diagnostics2/Release IL2CPP build succeeded with zero errors and one warning. The ten native host components and 47 initializer host tests passed. Original-S archival checks passed in their archived identity scope. Both V2 fixture DLLs reproduced the exact SHA-256, MVID and 2,560-byte size in WEB_TO_LOCAL. Host custody verified 3,198 regular files and four literal symlinks. The independent audit verified the original 451-member product seal.
+
+| Fresh Player | Owned command | PID | Exit | Commit / state | Trace events | Strict V1 bytes |
+| --- | --- | ---: | ---: | --- | ---: | ---: |
+| initializer-control | 0017 | 30595 | 2 | 19 / 9 | 25 | 0 |
+| initializer-failure | 0018 | 30603 | 2 | 19 / 9 | 27 | 0 |
+
+**IR-LOCAL-R03-INITIALIZER-06-NATIVE-BRIDGE-01.** Both identity-bound native VM recovery records report `NotSupportManaged2NativeFunctionMethod` inside the `Methods` module initializer. The failure differs from the consumed oneuse-05 named-library lookup. Neither trace records phase 299 or 300. The prepared-state reader returned -1 and the native seal writer rejected reason 1. Both strict semantic verifiers are NotRun_CommandFailed. The failure Player recorded an attempted terminal AOT call with no success and canary 1→1. It lacked the intended post-preparation sentinel and the required physical field/mask evidence.
+
+**Source and build attribution.** The actual build receipt binds generated `hybridclr/generated/MethodBridge.cpp` at SHA-256 `65f2d1993808492e31396c554c7e3301bc338d13a7be4680b55e1745e165c47c`. Its managed-to-native function-pointer table contains only the null sentinel. The isolated project lists no hot-update analyzer assemblies. The pinned transform resolves the P/Invoke address before querying the bridge table. The pinned metadata and signature code derive `Bi4` from the fixture's static Cdecl int32 call with no arguments. A missing table entry routes to the exact observed exception. The linked GameAssembly exports `R03_IRW_OnPrepared`. Taken together, this supports a missing generated bridge as the next runtime blocker. The exact lookup key is source-derived, and the batch did not reach callback execution.
+
+**Primary action.** Bind the authenticated fixture ABI into the isolated build's managed-to-native function-pointer generation. Require evidence that the generated and linked Player bridge supplies the exact Cdecl int32() signature while preserving fixture roles and initializer predicates. Return with fresh one-use authority for the build and both Player outcomes. The source, raw Player evidence and build are retained at the recorded execution paths.
+
+The execution source, command receipts, CI, original Player bytes, fixture targets and custody audits are bound in the checkpoint manifest. Concatenate the sealed archive parts in transport order and verify the original archive SHA-256. The original product and host roots retain the raw payloads identified by the complete inventories. Files ending in .utf8.json carry exact original bytes in their UTF-8 text field.
+
+The separate publication receipt records the closing pushed commit and verified remote heads.
+
+- [Local result](LOCAL_RESULT.json)
+- [Independent audit](local-evidence/FINAL_INDEPENDENT_AUDIT.json)

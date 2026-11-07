@@ -1,0 +1,172 @@
+{
+  "kind": "ReadOnlyActualBuildBridgeFailureAttribution",
+  "finding": "IR-LOCAL-R03-INITIALIZER-06-NATIVE-BRIDGE-01",
+  "buildReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/builds/candidate-release/build-receipt.json",
+  "buildReceiptSha256": "28c9c6f2be083c5d5bbc880dff75a37e24490df284a57e469527ea112ab1982f",
+  "actualInstalledGeneratedBridge": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/hybridclr/generated/MethodBridge.cpp",
+  "generatedBridgeSha256": "65f2d1993808492e31396c554c7e3301bc338d13a7be4680b55e1745e165c47c",
+  "generatedBridgePublishedCopy": "ActualGeneratedMethodBridge.cpp",
+  "tableBody": "{nullptr, nullptr},",
+  "realManagedToNativeFunctionPointerEntries": 0,
+  "derivedRequiredKey": "Bi4",
+  "derivedKeyBasis": "Cdecl => IL2CPP_CALL_C => A+1, static Int32/no arguments => i4",
+  "isolatedSettings": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/projects/candidate-release/ProjectSettings/HybridCLRSettings.asset",
+  "isolatedSettingsSha256": "5ed307493c41a511deb7bf5e7dd7bc363da6af809ecb1e11c20e503a1c575160",
+  "hotUpdateSettings": [
+    "hotUpdateAssemblyDefinitions: []",
+    "hotUpdateAssemblies: []"
+  ],
+  "gameAssembly": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib",
+  "gameAssemblySha256": "7e06d6926b7b7021b477c7150d5eabd2cab4f4f7ad3e2f13888c79f40d86185e",
+  "staticExportCommand": [
+    "/usr/bin/nm",
+    "-gU",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib"
+  ],
+  "staticExportLines": [
+    "00000000000ea478 T _R03_IRW_OnPrepared"
+  ],
+  "sources": {
+    "hybridclr/hybridclr/interpreter/InterpreterModule.cpp": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr/interpreter/InterpreterModule.cpp",
+      "sha256": "313f3baa89d82be4c5d31bf2325cdd83290f4e98d52dc8825dc2379a477a7b5e",
+      "lines": [
+        {
+          "line": 107,
+          "text": "sigName[0] = 'A' + callConvention;"
+        },
+        {
+          "line": 182,
+          "text": "const Managed2NativeFunctionPointerCallData& method = g_managed2NativeFunctionPointerCallStub[i];"
+        },
+        {
+          "line": 228,
+          "text": "static void NotSupportManaged2NativeFunctionMethod(Il2CppMethodPointer methodPointer, uint16_t* argVarIndexs, StackObject* localVarBase, void* ret)"
+        },
+        {
+          "line": 230,
+          "text": "il2cpp::vm::Exception::Raise(il2cpp::vm::Exception::GetExecutionEngineException(\"NotSupportManaged2NativeFunctionMethod\"));"
+        },
+        {
+          "line": 397,
+          "text": "sigName[0] = 'A' + callConvention;"
+        },
+        {
+          "line": 400,
+          "text": "return it != s_managed2nativeFunctionPointers.end() ? it->second : NotSupportManaged2NativeFunctionMethod;"
+        },
+        {
+          "line": 407,
+          "text": "sigName[0] = 'A' + callConvention;"
+        },
+        {
+          "line": 410,
+          "text": "return it != s_managed2nativeFunctionPointers.end() ? it->second : NotSupportManaged2NativeFunctionMethod;"
+        }
+      ]
+    },
+    "hybridclr/hybridclr/interpreter/MethodBridge.cpp": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr/interpreter/MethodBridge.cpp",
+      "sha256": "0061d8490747882dd0fe65ea22b20823c39b7ad02f18bb29d9bf8b06f343d0a7",
+      "lines": [
+        {
+          "line": 143,
+          "text": "case IL2CPP_TYPE_I4: AppendString(sigBuf, bufferSize, pos, \"i4\"); break;"
+        },
+        {
+          "line": 276,
+          "text": "bool ComputeSignature(const MethodInfo* method, bool call, char* sigBuf, size_t bufferSize)"
+        }
+      ]
+    },
+    "hybridclr/hybridclr/metadata/MetadataUtil.h": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr/metadata/MetadataUtil.h",
+      "sha256": "4866c9e6d83d3a6198a2a11fcf05a5ee73428360a697152e6fd4d00048b56382",
+      "lines": [
+        {
+          "line": 263,
+          "text": "case IMPLMAP_FLAG_CALLCONV_CDECL: return Il2CppCallConvention::IL2CPP_CALL_C;"
+        }
+      ]
+    },
+    "hybridclr/hybridclr/transform/TransformContext.cpp": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr/transform/TransformContext.cpp",
+      "sha256": "3e80f42f90f13aa644e096498e81295b18381561c3644117d02d425ffd5c036f",
+      "lines": [
+        {
+          "line": 2470,
+          "text": "Il2CppMethodPointer methodPointer = il2cpp::vm::PlatformInvoke::Resolve(pinvokeArgs);"
+        },
+        {
+          "line": 3235,
+          "text": "Il2CppMethodPointer pinvokeMethodPointer = ResolvePInvokeMethod(shareMethod, callingConvention);"
+        },
+        {
+          "line": 3241,
+          "text": "Managed2NativeFunctionPointerCallMethod managed2NativeFunctionPointerMethod = InterpreterModule::GetManaged2NativeFunctionPointerMethodPointer(shareMethod, callingConvention);"
+        }
+      ]
+    },
+    "il2cpp_plus/libil2cpp/il2cpp-pinvoke-support.h": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/il2cpp-pinvoke-support.h",
+      "sha256": "d6aa0bf32695cab08785322ad951ba79963d117750c65210895cb7e8cefb7b59",
+      "lines": [
+        {
+          "line": 6,
+          "text": "IL2CPP_CALL_DEFAULT,"
+        },
+        {
+          "line": 7,
+          "text": "IL2CPP_CALL_C,"
+        }
+      ]
+    },
+    "hybridclr_unity/Editor/Commands/MethodBridgeGeneratorCommand.cs": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/Commands/MethodBridgeGeneratorCommand.cs",
+      "sha256": "30b506f5b22e89156253f9aa18faa65b1efb2ec9c790dfdd319c6229272f45b9",
+      "lines": [
+        {
+          "line": 117,
+          "text": "List<string> hotUpdateDlls = SettingsUtil.HotUpdateAssemblyNamesExcludePreserved;"
+        },
+        {
+          "line": 125,
+          "text": "var pinvokeAnalyzer = new PInvokeAnalyzer(cache, hotUpdateDlls);"
+        }
+      ]
+    },
+    "hybridclr_demo/Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs",
+      "sha256": "05b5f21e91b18f04da07fc10eca053b64e68d7d8fc838b1a006bebd3b740e52f",
+      "lines": [
+        {
+          "line": 110,
+          "text": "// hot-update filter stays empty: no role promotion is involved."
+        },
+        {
+          "line": 113,
+          "text": "PrebuildCommand.GenerateAll();"
+        }
+      ]
+    },
+    "hybridclr_demo/Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs",
+      "sha256": "172285dd563ee392fe8771fc603b30d920eb406181bc0d095688364d9e34ac01",
+      "lines": [
+        {
+          "line": 94,
+          "text": "MethodSig.CreateStatic(module.CorLibTypes.Int32),"
+        },
+        {
+          "line": 99,
+          "text": "PInvokeAttributes.CallConvCdecl | PInvokeAttributes.NoMangle);"
+        },
+        {
+          "line": 181,
+          "text": "Export, PInvokeAttributes.CallConvCdecl | PInvokeAttributes.NoMangle);"
+        }
+      ]
+    }
+  },
+  "runtimeAcceptance": false
+}

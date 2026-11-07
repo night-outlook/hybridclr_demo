@@ -1,0 +1,347 @@
+{
+  "result": "FAIL",
+  "producerResult": "ReturnRequired",
+  "runner": {
+    "command": [
+      "python3",
+      "-B",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_initializer_local.py",
+      "--workspace",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+      "--original-s",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+      "--unity",
+      "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+      "--demo-commit",
+      "611ad2e45a92ebfbd07cb64238bf2f47b5aff626",
+      "--output",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+    "startUtc": "2026-11-07T02:50:13.571362+00:00",
+    "endUtc": "2026-11-07T02:54:54.299161+00:00",
+    "pid": 28245,
+    "pgid": 28245,
+    "exitCode": 1,
+    "stdout": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-Initializer06/runner.stdout.log",
+    "stdoutSha256": "ac612bb3384b5897a137e0b4fe5ae2664b470ef01bac5575b33831973205b84f",
+    "stderr": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-Initializer06/runner.stderr.log",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runnerInvocations": 1,
+    "retryPerformed": false,
+    "productRootConstructed": true
+  },
+  "sourcePins": {
+    "hybridclr_demo": "611ad2e45a92ebfbd07cb64238bf2f47b5aff626",
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340"
+  },
+  "cellCounts": {
+    "Passed": 13,
+    "Failed": 2
+  },
+  "cellStates": {
+    "entry-authority": "Passed",
+    "initializer-host-contracts": "Passed",
+    "original-s-archive": "Passed",
+    "original-s-process-joins": "Passed",
+    "audit_s_generated_material": "Passed",
+    "audit_s_binary_linkage": "Passed",
+    "real-dll-fixtures": "Passed",
+    "ir-generator-build": "Passed",
+    "initializer-native-targets": "Passed",
+    "prepare-release": "Passed",
+    "prepare-initializer": "Passed",
+    "build-initializer": "Passed",
+    "player-initializer-control": "Failed",
+    "player-initializer-failure": "Failed",
+    "final-authority": "Passed"
+  },
+  "build": {
+    "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/builds/candidate-release/build-receipt.json",
+    "sha256": "28c9c6f2be083c5d5bbc880dff75a37e24490df284a57e469527ea112ab1982f",
+    "result": "Passed",
+    "errors": 0,
+    "warnings": 1,
+    "buildPipelineResult": "Succeeded",
+    "config": {
+      "cppConfiguration": "Release",
+      "diagnosticsLevel": 2,
+      "featureEnabled": true,
+      "outputPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/builds/candidate-release/R03Isolated.app",
+      "overlayPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/initializer-source/R03InitializerCompositeOverlay.cpp",
+      "overlaySha256": "db94e481cb3cf86a3c656e964a39f34f15a81a02eec1b3c2d7ecc3e91d1af4d8",
+      "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/projects/candidate-release",
+      "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/builds/candidate-release/build-receipt.json",
+      "schemaVersion": 1,
+      "sourceManifestSha256": "43432c81d046f5a039d4f2f6c7ffbbbca59fc60611808fb30fe73b223e048764"
+    },
+    "executable": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+    "executableSha256": "81500605c4258ed7bb3c00e51189b1cb7cec9bf777fcd9c488aebfad4b896aa5",
+    "architecture": "arm64",
+    "installedOverlay": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowR03Probe.cpp",
+    "overlaySha256": "db94e481cb3cf86a3c656e964a39f34f15a81a02eec1b3c2d7ecc3e91d1af4d8",
+    "sourceManifestSha256": "43432c81d046f5a039d4f2f6c7ffbbbca59fc60611808fb30fe73b223e048764",
+    "playerInventoryFiles": 22
+  },
+  "players": [
+    {
+      "case": "initializer-control",
+      "state": "Failed",
+      "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/players/IR-R03-02-initializer-control",
+      "rawPresent": true,
+      "request": {
+        "baselineId": "R03Initializer-candidate-release",
+        "caseId": "IR-R03-02-initializer-control",
+        "dllPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/host/initializer-native-targets/native/initializer-control/Methods.dll",
+        "dllSha256": "d6e5b66f695498a9ba0806ea81930f03804d98f77382cb851d24c2b24f24202e",
+        "runId": "c642f2daae0a44539e45ffc345ff7993",
+        "schemaVersion": 1,
+        "stimulus": "initializer-control"
+      },
+      "commandPid": 30595,
+      "commandExit": 2,
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/commands/0017/command.json",
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": {
+        "R03Accepted": false,
+        "buildReceiptSha256": "28c9c6f2be083c5d5bbc880dff75a37e24490df284a57e469527ea112ab1982f",
+        "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/commands/0017/command.json",
+        "executableSha256": "81500605c4258ed7bb3c00e51189b1cb7cec9bf777fcd9c488aebfad4b896aa5",
+        "launchPidFromOwnedReceipt": 30595,
+        "nativeDiagnostic": {
+          "H2Passed": false,
+          "R03Accepted": false,
+          "commitStatusReported": [
+            19
+          ],
+          "completeStrictObservationProven": false,
+          "events": 25,
+          "kind": "R03InitializerTraceHostInterpretationV1",
+          "lastPhase": 610,
+          "managedCaughtPhase": [
+            205
+          ],
+          "nativeCallbackFailures": [],
+          "nativeCallbackObserved": false,
+          "nativeReadFailures": [
+            -1
+          ],
+          "nativeRecoveryCaptured": [
+            1
+          ],
+          "nativeSealFailures": [
+            {
+              "reason": 1,
+              "return": -2
+            }
+          ],
+          "nativeSealInput": [
+            {
+              "attempted": 0,
+              "commit": 19,
+              "state": 9,
+              "succeeded": 0
+            }
+          ],
+          "nativeV2TransportImplemented": false,
+          "preopenedWriter": true,
+          "rawBytes": 9036,
+          "rawSha256": "46940511789bf518e2d3de0f93a2926ab93491534bd448ee6bbf1b960c9ca4fe",
+          "result": "BoundedTraceObserved_NotRuntimeAuthenticated",
+          "runtimeAcceptance": false,
+          "vmRecovery": {
+            "H2Passed": false,
+            "R03Accepted": false,
+            "completeDiagnosticsAuthenticated": false,
+            "disposition": "RestartRequired",
+            "kind": "R03IRInitializerRecoverySourceOnlyDiagnosticV1",
+            "nativeGetterResult": 0,
+            "nativeV2TransportImplemented": false,
+            "rawBytes": 784,
+            "rawSha256": "1aa042ebc31d1c028136adbd914fefe9e6ba2ed31e684452eb057f81304c0526",
+            "result": "ParsedNativeVMFirstFailure_NotRuntimeAuthenticated",
+            "runtimeAcceptance": false,
+            "stateCode": 9,
+            "terminalFailureCode": 19,
+            "vmReason": "Methods: The type initializer for '<Module>' threw an exception. ---> NotSupportManaged2NativeFunctionMethod"
+          }
+        },
+        "nativeOverlaySha256": "db94e481cb3cf86a3c656e964a39f34f15a81a02eec1b3c2d7ecc3e91d1af4d8",
+        "rawPresent": true,
+        "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "requestSha256": "d6dcd82b57bb63c3071720767fe3ed9b1b2650dd2786748f5ed47d7ca424bae7",
+        "result": "Failed",
+        "runId": "c642f2daae0a44539e45ffc345ff7993",
+        "runtimeAcceptance": false,
+        "semanticVerifierStatus": "NotRun_CommandFailed"
+      }
+    },
+    {
+      "case": "initializer-failure",
+      "state": "Failed",
+      "root": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/players/IR-R03-02-initializer-failure",
+      "rawPresent": true,
+      "request": {
+        "baselineId": "R03Initializer-candidate-release",
+        "caseId": "IR-R03-02-initializer-failure",
+        "dllPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/host/initializer-native-targets/native/initializer-failure/Methods.dll",
+        "dllSha256": "6ad097153da2054579c13ec48d9f81a35d2551b08bf7a77398f13809ef9e5370",
+        "runId": "83b3054c858947a0b28a58506610bc91",
+        "schemaVersion": 1,
+        "stimulus": "initializer-failure"
+      },
+      "commandPid": 30603,
+      "commandExit": 2,
+      "commandReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/commands/0018/command.json",
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": {
+        "R03Accepted": false,
+        "buildReceiptSha256": "28c9c6f2be083c5d5bbc880dff75a37e24490df284a57e469527ea112ab1982f",
+        "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06/commands/0018/command.json",
+        "executableSha256": "81500605c4258ed7bb3c00e51189b1cb7cec9bf777fcd9c488aebfad4b896aa5",
+        "launchPidFromOwnedReceipt": 30603,
+        "nativeDiagnostic": {
+          "H2Passed": false,
+          "R03Accepted": false,
+          "commitStatusReported": [
+            19
+          ],
+          "completeStrictObservationProven": false,
+          "events": 27,
+          "kind": "R03InitializerTraceHostInterpretationV1",
+          "lastPhase": 610,
+          "managedCaughtPhase": [],
+          "nativeCallbackFailures": [],
+          "nativeCallbackObserved": false,
+          "nativeReadFailures": [
+            -1
+          ],
+          "nativeRecoveryCaptured": [
+            1
+          ],
+          "nativeSealFailures": [
+            {
+              "reason": 1,
+              "return": -2
+            }
+          ],
+          "nativeSealInput": [
+            {
+              "attempted": 1,
+              "commit": 19,
+              "state": 9,
+              "succeeded": 0
+            }
+          ],
+          "nativeV2TransportImplemented": false,
+          "preopenedWriter": true,
+          "rawBytes": 9755,
+          "rawSha256": "ac45296bfb4158259979ca7b77451fe9bbb28af74e93f0f060438e2d22394d61",
+          "result": "BoundedTraceObserved_NotRuntimeAuthenticated",
+          "runtimeAcceptance": false,
+          "vmRecovery": {
+            "H2Passed": false,
+            "R03Accepted": false,
+            "completeDiagnosticsAuthenticated": false,
+            "disposition": "RestartRequired",
+            "kind": "R03IRInitializerRecoverySourceOnlyDiagnosticV1",
+            "nativeGetterResult": 0,
+            "nativeV2TransportImplemented": false,
+            "rawBytes": 784,
+            "rawSha256": "1d0591fa3005eab1e667bee211aaaba294bb33cab8c8a7d96d5188f20502b54a",
+            "result": "ParsedNativeVMFirstFailure_NotRuntimeAuthenticated",
+            "runtimeAcceptance": false,
+            "stateCode": 9,
+            "terminalFailureCode": 19,
+            "vmReason": "Methods: The type initializer for '<Module>' threw an exception. ---> NotSupportManaged2NativeFunctionMethod"
+          }
+        },
+        "nativeOverlaySha256": "db94e481cb3cf86a3c656e964a39f34f15a81a02eec1b3c2d7ecc3e91d1af4d8",
+        "rawPresent": true,
+        "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "requestSha256": "e2198e5699e592c4330a4f2cf46fb3c47bf009270bf25630f9f29bdb39c943dc",
+        "result": "Failed",
+        "runId": "83b3054c858947a0b28a58506610bc91",
+        "runtimeAcceptance": false,
+        "semanticVerifierStatus": "NotRun_CommandFailed"
+      }
+    }
+  ],
+  "targets": [
+    {
+      "path": "native/initializer-control/Methods.dll",
+      "kind": "initializer-control",
+      "size": 2560,
+      "sha256": "d6e5b66f695498a9ba0806ea81930f03804d98f77382cb851d24c2b24f24202e",
+      "mvid": "5bb6e17a-09b9-5b29-dac2-41d3519f76f4",
+      "originalClrSha256": "f1fea7712a76eee7818820f1bf57b0e1f66b1241105ec944da26099ef5e838cf",
+      "expectedNativeCallback": "R03_IRW_OnPrepared",
+      "expectedNativeModule": "__InternalDynamic",
+      "interpreterImportContract": "R03IR.InterpreterCurrentProcessImport.V2",
+      "expectedPreparedField": 3,
+      "callbackBeforeInitializerOutcome": true,
+      "observedInUnity": false,
+      "layoutEditorAdmission": "PassedNeedsNativeProof"
+    },
+    {
+      "path": "native/initializer-failure/Methods.dll",
+      "kind": "initializer-failure",
+      "size": 2560,
+      "sha256": "6ad097153da2054579c13ec48d9f81a35d2551b08bf7a77398f13809ef9e5370",
+      "mvid": "f61d7325-6d38-4640-5873-37371f587b16",
+      "originalClrSha256": "38079fd040fde1ae688d847cec37bed14d51976372b130b60db9629e2e09ad22",
+      "expectedNativeCallback": "R03_IRW_OnPrepared",
+      "expectedNativeModule": "__InternalDynamic",
+      "interpreterImportContract": "R03IR.InterpreterCurrentProcessImport.V2",
+      "expectedPreparedField": 3,
+      "callbackBeforeInitializerOutcome": true,
+      "observedInUnity": false,
+      "layoutEditorAdmission": "PassedNeedsNativeProof"
+    }
+  ],
+  "seal": {
+    "archiveSha256": "88c185d8f173556e1f1521f304794c0527120076f87f22feec73cd792c2f333e",
+    "boundedEvidenceOnly": true,
+    "indexSha256": "c0324a12609e5d4b0380b79542e1e3faee7c63493c57333defc47ca8075f4f4d",
+    "members": 451,
+    "runtimeAcceptance": false
+  },
+  "sealStatus": "Passed",
+  "hostCustody": {
+    "H2Passed": false,
+    "R03Accepted": false,
+    "archiveSha256": "7f1bc361569c21760f00ac68fc8dbac0b34da0fdeb5b350c3725e52b4cd46c1b",
+    "archivedRegularMembersIncludingManifest": 3199,
+    "directoryCount": 666,
+    "fileCount": 3198,
+    "kind": "R03InitializerNativeHostCustodyReceiptV1",
+    "manifestSha256": "4b61c0f7b2b4edc35907d61d42811ab26d13c4c743d2fdcd8fad2eee8e3fb2bc",
+    "rawHostPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06-native-host-raw",
+    "rawHostPreservedOutsideProductSeal": true,
+    "regularBytes": 173485974,
+    "result": "PassedFullRegularBytesAndLiteralSymlinkTargets",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1,
+    "symlinkCount": 4,
+    "symlinksFollowed": false
+  },
+  "preservation": {
+    "before": "PassedRemainingProtectedInputs_Exact17RetiredRemainUnavailable",
+    "after": "PassedRemainingProtectedInputs_Exact17RetiredRemainUnavailable",
+    "originalStrictCustody": "Blocked",
+    "priorCheckpoints": 21,
+    "retiredRootsUnavailable": 17
+  },
+  "sourceExecutionRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-06",
+  "publicationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/initializer-06-runtime-PUBLICATION_RECEIPT.json",
+  "runtimeAcceptance": false,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "ReadyForHumanReviewGate": false,
+  "nextState": "Primary Implementation"
+}
