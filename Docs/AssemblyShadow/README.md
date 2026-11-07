@@ -1,3 +1,56 @@
+# Current Primary — R03 initializer oneuse-06 missing native Bi4 bridge; conditional oneuse-07 (2026-11-07 UTC)
+
+**Original oneuse-06 Local Validation remains FAIL/ReturnRequired**, executed
+at demo `611ad2e45a92ebfbd07cb64238bf2f47b5aff626`,
+Local evidence published at `7ada3408a2a5f211a7acfdadd06c36a6c48e274c`.
+One real Unity2022.3.62f2 macOS ARM64 IL2CPP build passed with 0 errors/1 warning,
+ten current-native hosts, 47 initializer tests and original host/product
+evidence seal passed separately. Both real Players exited2:
+control PID30595 and failure PID30603, Commit19/state9,
+strict V1 raw empty, native callback phases299/300 absent.
+Actual VM recovery was `NotSupportManaged2NativeFunctionMethod`.
+The generated native `MethodBridge.cpp` owned by the original build
+had a null-only managed-to-native function-pointer table, while the
+pinned V2 Cdecl no-arg int32 callback requires signature `Bi4`.
+These facts support a missing generated bridge; they did NOT prove
+anything about a repaired Player.
+
+**Scoped Primary implementation:** preserve normal HybridCLR prebuild
+generation, zero general hot-update analyzer assemblies, and the
+original AOT baseline fixture role. In the *new isolated initializer
+project only*, source/authenticate both V2 Methods DLLs and inject
+exactly one `__M2NF_Bi4` Cdecl int32() stub + table entry into the
+fresh normal generated source, rejecting missing/different/duplicate
+identities and rechecks after Player build. Add real AOT
+`R03_IRW_BridgeStatus` that reads the **actual linked** table
+and emits phase103 before Commit. A correct phase103 and all
+original native callback/field/Commit/canary/first-error predicates
+are required for a focused pass; static source or nm symbols alone
+are never enough.
+
+The new [canonical conditional WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md),
+[design/plan](History/M07R/R03/IR_Remediation/INITIALIZER07_BRIDGE_2026-11-07/DESIGN_AND_PLAN.md)
+and [Primary source review](History/M07R/R03/IR_Remediation/INITIALIZER07_BRIDGE_2026-11-07/PRIMARY_SOURCE_REVIEW.md)
+are the current Primary instructions. Oneuse-07 has **not** run.
+Before Local execution require three dual-OS host workflows at the exact
+final pushed demo source SHA, independently fresh Mac/Unity/SDK/
+surviving historical preservation, and two new >=25 GiB real
+same-volume capacity samples. The 17 owner-retired runtime roots
+and 40 duplicate paths remain `Unavailable/PermanentlyDeleted`;
+strict historical custody remains Blocked, not silently waived.
+
+Original oneuse01–06 checkpoints, the independent R03 FAIL and High
+`IR-R03-01/02` remain immutable/open, as do native V2/complete
+general diagnostics, captured-generic15, original-S complete
+compiler/link/Player join, managed shutdown/VM epoch/GC/RSS,
+RC/P/E/performance and qualification.
+`R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false;
+runtimeAcceptance=false; qualificationApproved=false;
+fullLegacyRegressionAcceptance=false`; PureInterpreter disabled.
+No Human Review Gate, H2/M08A/X02/SNAP-01.
+
+---
+
 # Current Primary — oneuse-05 interpreted `__Internal` import failure; conditional oneuse-06 (2026-11-07 UTC)
 
 **Original oneuse-05 FAIL is preserved, not reclassified.** Executed
