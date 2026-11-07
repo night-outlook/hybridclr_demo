@@ -147,7 +147,7 @@ extern "C" IL2CPP_EXPORT int32_t R03_IRG_Open(
               (x >= '0' && x <= '9') || x == '.' || x == '_' || x == '-')) return -2;
     }
     const Il2CppAssembly* physicalOwner = MetadataCache::GetAotAssemblyByNamePhysical(ownerAssembly);
-    if (!physicalOwner || !physicalOwner->image ||
+    if (!physicalOwner || !physicalOwner->image || !physicalOwner->aname.name ||
         AssemblyShadow::IsCandidate(physicalOwner) ||
         AssemblyShadow::IsShadowedBaseline(physicalOwner) ||
         AssemblyShadow::IsActiveShadow(physicalOwner)) return -3;
@@ -286,7 +286,7 @@ extern "C" IL2CPP_EXPORT int32_t R03_IRG_Seal()
     char prefix[2048];
     int written = std::snprintf(prefix, sizeof prefix,
         "{\"schemaVersion\":1,\"kind\":\"R03IRCapturedGenericPhysicalNativeV1\","
-        "\"result\":\"ObservedNotAccepted\",\"runId\":\"%s\","
+        "\"result\":\"ObservedNotAccepted\",\"processId\":%lld,\"runId\":\"%s\","
         "\"caseId\":\"%s\",\"fixtureSha256\":\"%s\","
         "\"ownerAssembly\":\"%s\",\"capturedArgumentAssembly\":\"Methods\","
         "\"capturedType\":\"R03.Node\",\"physicalTypeIndex\":%u,"
@@ -296,7 +296,7 @@ extern "C" IL2CPP_EXPORT int32_t R03_IRG_Seal()
         "\"beforeCount\":%d,\"afterCount\":%d,"
         "\"runtimeInvokeAttempted\":%s,\"runtimeInvokeSucceeded\":%s,"
         "\"runtimeInvokeThrew\":%s,\"nativeRecovery\":",
-        witness.runId, kCase, witness.fixtureSha256,
+        static_cast<long long>(::getpid()), witness.runId, kCase, witness.fixtureSha256,
         witness.ownerAssembly->aname.name, witness.physicalIndex,
         witness.methodInflated ? "true":"false",
         witness.methodContextPhysical ? "true":"false",
