@@ -1,0 +1,86 @@
+{
+  "H2Passed": false,
+  "R03Accepted": false,
+  "argv": [
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-07/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+    "-batchmode",
+    "-nographics",
+    "-r03IrInitializerRequest",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-07/players/IR-R03-02-initializer-control/request.json",
+    "-r03IrInitializerOutput",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-07/players/IR-R03-02-initializer-control/raw.json",
+    "-r03IrInitializerRunId",
+    "d00ef7b138aa46388ff16928b8a0535a",
+    "-logFile",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-Initializer-20261107-oneuse-07/players/IR-R03-02-initializer-control/Player.log"
+  ],
+  "buildReceiptSha256": "553af2f5cd35a08da543e2b6b2d68ac89a5a7e98d63b7fb840ce2e64dfd60a05",
+  "caseId": "IR-R03-02-initializer-control",
+  "executableSha256": "ff107bc825246e19b9b09a5ac6e7c53fa8bb69ffa96d31f3a925ed7d9da5d47a",
+  "firstRecoveryAuthenticated": false,
+  "kind": "R03IRInitializerObservationHostConsumer",
+  "launchPid": 35820,
+  "nativeDiagnostic": {
+    "H2Passed": false,
+    "R03Accepted": false,
+    "commitStatusReported": [
+      0
+    ],
+    "completeStrictObservationProven": false,
+    "events": 29,
+    "genuineLinkedBi4ProbeStatus": [
+      1
+    ],
+    "kind": "R03InitializerTraceHostInterpretationV1",
+    "lastPhase": 620,
+    "managedCaughtPhase": [],
+    "nativeCallbackFailures": [],
+    "nativeCallbackObserved": true,
+    "nativeReadFailures": [],
+    "nativeRecoveryCaptured": [
+      1
+    ],
+    "nativeSealFailures": [],
+    "nativeSealInput": [
+      {
+        "attempted": 0,
+        "commit": 0,
+        "state": 6,
+        "succeeded": 0
+      }
+    ],
+    "nativeV2TransportImplemented": false,
+    "preopenedWriter": true,
+    "rawBytes": 10466,
+    "rawSha256": "12035b84b9573e80c2dfa861ff67620c3aea3c93cc4804ab4004cb244f01aee0",
+    "result": "CompletePhaseTrace_NotRuntimeAuthenticated",
+    "runtimeAcceptance": false,
+    "vmRecovery": {
+      "H2Passed": false,
+      "R03Accepted": false,
+      "completeDiagnosticsAuthenticated": false,
+      "disposition": "ActiveShadow",
+      "kind": "R03IRInitializerRecoverySourceOnlyDiagnosticV1",
+      "nativeGetterResult": 0,
+      "nativeV2TransportImplemented": false,
+      "rawBytes": 665,
+      "rawSha256": "8f15a4d8cd2c7016084e78ff942f56ea35a3819db91dae5d9e083d6f8185698e",
+      "result": "ParsedNativeVMFirstFailure_NotRuntimeAuthenticated",
+      "runtimeAcceptance": false,
+      "stateCode": 6,
+      "terminalFailureCode": 0,
+      "vmReason": ""
+    }
+  },
+  "nativeOverlaySha256": "0ae1d9a38b63fd2131d788d3826705516e3ae2958265878f93b4ce760625e193",
+  "nativeV2TransportImplemented": false,
+  "rawSha256": "7592592ceeb1be02a0079a4292da52293c28b90a6665d2aa633870684177a6dc",
+  "requestSha256": "b4b22e5c719423c9b76eeae0820f876e5d0a1b513485d737d089584de7f1f989",
+  "result": "PassedFocusedV1PlayerObservation_NotV2",
+  "runId": "d00ef7b138aa46388ff16928b8a0535a",
+  "runtimeAcceptance": false,
+  "schemaVersion": 1,
+  "sourceManifestSha256": "c41811c866742d0c388dabbdb199c99cb53dc3286d755e2efa4b901eccbdb8b7",
+  "stimulus": "initializer-control",
+  "targetGeneratorReceiptSha256": "4e31330e13032ff90194d1b6546e321542f032c07e9202f16aade59bf13bedb4"
+}

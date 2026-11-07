@@ -1,5 +1,34 @@
 # Local Validation report
 
+## Initializer oneuse-07 — PASS
+
+**Focused initializer PASS.** 15 Passed across one 15-cell batch.
+
+Unity 2022.3.62f2 macOS arm64 IL2CPP BuildPipeline reported Succeeded with 0 errors and 1 warning(s). The build receipt SHA-256 is `553af2f5cd35a08da543e2b6b2d68ac89a5a7e98d63b7fb840ce2e64dfd60a05`.
+
+The generated Cdecl int32() wrapper and table contained exactly one `Bi4` row and a null terminator. The source hash after augmentation and after BuildPipeline was `c6bbea6e179964b7296bff02ee4f434b188e8578a4e7086da1c283e79b82f3da`. The helper checks its pre-augmentation source internally. The BuildReceipt records the two post-augmentation hashes. GameAssembly SHA-256 `416eedc304a5f0429bcd67710a4ed86203eadf1e2e611e37b6b197758a23dd68` binds both native exports and the linked Bi4 identity. The isolated project kept its empty hot-update assembly list.
+
+| Player | PID | Exit | Bi4 phase 103 | Callback 299/300 | Commit / state | Field / mask |
+| --- | ---: | ---: | --- | --- | --- | --- |
+| initializer-control | 35820 | 0 | 1 | 1 / 1 | 0 / 6 | 3 / 15 |
+| initializer-failure | 35842 | 0 | 1 | 1 / 1 | 19 / 9 | 3 / 15 |
+
+Both distinct Players observed the real linked Bi4 entry before Commit and entered and completed the native callback exactly once. The pinned field remained 3 and the positive mask was 15. Control committed successfully at state 6 and had empty recovery reason. Commit returned 19 and entered FailedAfterCommit state 9 after the callback, with the exact post-preparation recovery sentinel `R03IR.InitializerFailure.AfterPublication.V1`. The AOT canary remained 1→1 and the failure Player recorded an attempted post-terminal AOT call that failed without changing the canary. Both strict V1 verifications passed within the initializer scope.
+
+The native host audit covered 10 components and 56 initializer tests. Host custody recorded 3198 regular files and 4 literal symlinks. The original product seal was Passed with 456 members.
+
+WEB_TO_LOCAL refers to a historical oneuse-06 RUNTIME_FINDINGS.json filename. Its published findings are in local-evidence/FINDING.md and BRIDGE_FINDING.json. Those files and the preserved historical raw inventory supplied the prior-cycle record.
+
+Return to Primary Implementation with all acceptance flags false.
+
+Execution source was `6e1dc7b4349a386dc35c5ed46fca4225db273b18`. The three mandatory workflows ran six successful OS jobs at that SHA. The exact-source jobs compiled and exercised the native observer and writer. The successful managed API compile inputs were matched against the execution sources. Fresh capacity was 50.352150 GiB and 50.359390 GiB on the same device, with 50.357330 GiB at dispatch. Read-only Unity and SDK admission passed. Runner PID 33508 ran once from 2026-11-07T08:41:26.062776+00:00 to 2026-11-07T08:45:51.333560+00:00, UTC. Exit code was 0.
+
+Before and after custody matched 339,367 present and 77,477 historically missing frozen-C identities. Historical strict custody remains Blocked. The exact 17 retired roots and 40 duplicate paths remain Unavailable. The surviving oneuse-05 and oneuse-06 raw files, 22 prior checkpoints, Original S, installed SDK and protected outside entries matched their recorded scopes. The earlier capacity publication receipt retained identical bytes after its documented timestamp change. [Preflight and custody](../History/M07R/R03/local-validation-initializer-20261107-oneuse-07/local-evidence/PRESERVATION_AFTER.json).
+
+The execution tuple is recorded in the [Local result](../History/M07R/R03/local-validation-initializer-20261107-oneuse-07/LOCAL_RESULT.json). The publication receipt is `/Users/ah/GitHub/hybridclr/r03-local-validation/initializer-07-runtime-PUBLICATION_RECEIPT.json`. All acceptance flags remain false.
+
+---
+
 ## Initializer oneuse-06 — FAIL
 
 **13 cells Passed and 2 Failed.** The fresh Unity 2022.3.62f2 macOS arm64 ON/diagnostics2/Release IL2CPP build succeeded with zero errors and one warning. The ten native host components and 47 initializer host tests passed. Original-S archival checks passed in their archived identity scope. Both V2 fixture DLLs reproduced the exact SHA-256, MVID and 2,560-byte size in WEB_TO_LOCAL. Host custody verified 3,198 regular files and four literal symlinks. The independent audit verified the original 451-member product seal.

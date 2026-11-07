@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03IRInitializerNativeTargetFixturesV1",
+  "result": "GeneratedAndIlVerified_NotNativeValidated",
+  "assembly": "Methods",
+  "inputBaselineSha256": "89b089d418052978dd0faa816f827fe84c6af634101ffcd819be4b6920798c9e",
+  "targets": [
+    {
+      "path": "native/initializer-control/Methods.dll",
+      "kind": "initializer-control",
+      "size": 2560,
+      "sha256": "d6e5b66f695498a9ba0806ea81930f03804d98f77382cb851d24c2b24f24202e",
+      "mvid": "5bb6e17a-09b9-5b29-dac2-41d3519f76f4",
+      "originalClrSha256": "f1fea7712a76eee7818820f1bf57b0e1f66b1241105ec944da26099ef5e838cf",
+      "expectedNativeCallback": "R03_IRW_OnPrepared",
+      "expectedNativeModule": "__InternalDynamic",
+      "interpreterImportContract": "R03IR.InterpreterCurrentProcessImport.V2",
+      "expectedPreparedField": 3,
+      "callbackBeforeInitializerOutcome": true,
+      "observedInUnity": false,
+      "layoutEditorAdmission": "PassedNeedsNativeProof"
+    },
+    {
+      "path": "native/initializer-failure/Methods.dll",
+      "kind": "initializer-failure",
+      "size": 2560,
+      "sha256": "6ad097153da2054579c13ec48d9f81a35d2551b08bf7a77398f13809ef9e5370",
+      "mvid": "f61d7325-6d38-4640-5873-37371f587b16",
+      "originalClrSha256": "38079fd040fde1ae688d847cec37bed14d51976372b130b60db9629e2e09ad22",
+      "expectedNativeCallback": "R03_IRW_OnPrepared",
+      "expectedNativeModule": "__InternalDynamic",
+      "interpreterImportContract": "R03IR.InterpreterCurrentProcessImport.V2",
+      "expectedPreparedField": 3,
+      "callbackBeforeInitializerOutcome": true,
+      "observedInUnity": false,
+      "layoutEditorAdmission": "PassedNeedsNativeProof"
+    }
+  ],
+  "expectsNativeProbe": "R03_IRW_OnPrepared",
+  "expectsNativeModule": "__InternalDynamic",
+  "interpreterImportContract": "R03IR.InterpreterCurrentProcessImport.V2",
+  "originalSInputReplaced": false,
+  "existingClrFixtureRegeneratedAsAuthority": false,
+  "originalFifteenModified": false,
+  "originalKRawModified": false,
+  "runtimeAcceptance": false,
+  "R03Accepted": false,
+  "H2Passed": false
+}
