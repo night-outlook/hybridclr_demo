@@ -70,6 +70,8 @@ def extend(project, config_path, receipt_dir):
          "Only previously prepared initializer composite may be extended")
     origin = overlay.read_bytes()
     prep = overlay.parent / "SOURCE_PREPARATION.json"
+    need(prep.is_file() and not prep.is_symlink(),
+         "Missing exact prior initializer source receipt")
     prep_record = read_json(prep)
     need(prep_record.get("result") == "PreparedSourcesOnly_NoUnityOrPlayer" and
          prep_record.get("compositeOverlaySha256") == sha(origin) and
