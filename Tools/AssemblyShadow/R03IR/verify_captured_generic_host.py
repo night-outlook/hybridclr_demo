@@ -103,8 +103,11 @@ def verify(receipt_bytes: bytes, methods: bytes, owner_source: bytes, native_sou
                    "if (!typeof(T).IsClass)", "Interlocked.Increment(ref s_calls)",
                    "return Touch<object>();", "MethodImplOptions.NoInlining"):
         need(anchor in owner, "AOT owner source witness missing: " + anchor)
-    need("using Methods" not in owner and "Methods.R03.Node" not in owner.replace(
-         "// In a future real Player, the closed generic MethodInfo must be\n        // owned by this physical AOT type while its T is the physical,\n        // original (not interpreter) Methods.R03.Node.", ""),
+    active_lines = "\n".join(line for line in owner.splitlines()
+                             if not line.lstrip().startswith("//"))
+    need("using Methods" not in active_lines and
+         "typeof(Methods." not in active_lines and
+         "Methods.R03.Node" not in active_lines,
          "No hard static Methods type binding in compiled AOT owner")
     for anchor in ("struct CapturedArgumentVisitor",
                    'Fail("CapturedBaselineType", candidate)',
