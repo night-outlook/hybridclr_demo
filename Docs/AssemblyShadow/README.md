@@ -1,3 +1,52 @@
+# Current Primary — oneuse-05 interpreted `__Internal` import failure; conditional oneuse-06 (2026-11-07 UTC)
+
+**Original oneuse-05 FAIL is preserved, not reclassified.** Executed
+demo `db232418adf2fc35c54ed72a8933a174f8218126`; Local evidence
+publication `eeeec3ba574047c06b5b853e58a5b594e80c37ae`.
+One real Unity2022.3.62f2 macOS ARM64 IL2CPP build, ten native hosts,
+46 initializer tests, host custody and product seal passed within their
+scopes. Two actual Players exited2 with empty strict V1 output and
+source/PID-bound VM recovery `Unable to load DLL '__Internal'`:
+the interpreted PInvoke attempted `dlopen(__Internal)` and never entered
+`R03_IRW_OnPrepared`. The control's code19/state9 did not satisfy
+healthy0/6; the failure code19/state9 was **not** the expected
+postprepared sentinel. Original oneuse-01–04 records remain immutable.
+
+**Reviewed narrow Primary correction:** the opt-in test-only dnlib
+initializer targets now emit `__InternalDynamic`, matching the already
+existing `PlatformInvoke::Resolve` current-program-symbol lookup
+branch in the fixed native fork. The production resolver, AOT
+`__Internal` managed imports, strict V1 callback/field/side-effect
+predicates and older fixtures are unchanged. Actual .NET8 generation
+on macOS15 and Ubuntu24.04 proved two deterministic new
+SHA256/MVID target identities; the runner and strict admission pins
+were updated, and a negative mutated legacy import must fail.
+No corrected real Unity Player has yet run; current-process export
+visibility, any missing PInvoke bridge and subsequent initializer
+behavior remain unknown until fresh Local evidence.
+
+Read the [new WEB_TO_LOCAL handoff](Handoff/WEB_TO_LOCAL.md),
+[source-level design and execution plan](History/M07R/R03/IR_Remediation/INITIALIZER06_DYNAMIC_IMPORT_2026-11-07/DESIGN_AND_PLAN.md)
+and [Primary source review](History/M07R/R03/IR_Remediation/INITIALIZER06_DYNAMIC_IMPORT_2026-11-07/PRIMARY_SOURCE_REVIEW.md).
+The new **oneuse-06** is conditional on three exact-final-demo-SHA
+dual-OS CI workflows, fresh Mac original-S/source/SDK/preservation
+and two genuinely new >=25GiB capacity samples. The 17
+owner-authorized permanently deleted runtime roots/40 duplicate
+paths remain `Unavailable`, not recreated or counted as intact
+raw evidence; all remaining protected data must be authenticated.
+Historical strict custody remains Blocked.
+
+The independent R03 High `IR-R03-01/02` and all whole-VM,
+nativeV2/full first-failure, captured-generic, original-S
+link/Player, managed shutdown, GC/RSS and RC/P/E obligations
+remain open. `R03Accepted=false`,
+`H2Passed=false`, `ReadyForHumanReviewGate=false`,
+`runtimeAcceptance=false`, `qualificationApproved=false`,
+`fullLegacyRegressionAcceptance=false`, PureInterpreter disabled.
+No H2/M08A/X02/SNAP-01 or Human Review Gate self-approval.
+
+---
+
 # Owner-authorized readmission — initializer oneuse-05 after scoped storage retirement
 
 The user requested resuming Local Validation after the explicitly approved retirement of17 runtime roots and all40 specified duplicate copies. Source/runtime/fixture/test/compiler inputs are unchanged. The prior immutable oneuse05 capacity-readiness report remains historical Blocked/NotRun; the actual oneuse05 batch has never been invoked and both product/host roots remain absent.
