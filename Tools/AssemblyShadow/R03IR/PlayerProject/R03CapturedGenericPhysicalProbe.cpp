@@ -156,7 +156,7 @@ extern "C" IL2CPP_EXPORT int32_t R03_IRG_Open(
     const MethodInfo* definition = Class::GetMethodFromName(owner, kOwnerMethod, 0);
     const FieldInfo* counter = Class::GetFieldFromName(owner, "s_calls");
     if (!definition || definition->klass != owner || !definition->is_generic ||
-        definition->is_inflated || !definition->is_static ||
+        definition->is_inflated || !(definition->flags & METHOD_ATTRIBUTE_STATIC) ||
         !counter || counter->parent != owner) return -5;
     witness.ownerAssembly = physicalOwner;
     witness.owner = owner;
