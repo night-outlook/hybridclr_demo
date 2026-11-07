@@ -9,10 +9,13 @@ import hashlib
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent))
+from verify_captured_generic_native import verify as verify_native_receipt
 NATIVE = HERE.parent / "PlayerProject/R03CapturedGenericPhysicalProbe.cpp"
 HEADERS = {
     "il2cpp-config.h": """
@@ -333,12 +336,25 @@ class NativePhysicalCapturedProbeTests(unittest.TestCase):
                 for kind in ("valid", "bad-owner", "bad-generic", "wrong-physical",
                              "premature", "escaped-body", "preexisting"):
                     out = root / (compiler.replace("+", "p") + "-" + kind + ".json")
-                    run = subprocess.run([str(binary), kind, str(out)],
-                                         capture_output=True, text=True, timeout=15)
+                    process = subprocess.Popen([str(binary), kind, str(out)],
+                                               stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                               text=True)
+                    stdout, stderr = process.communicate(timeout=15)
                     with self.subTest(compiler=compiler, kind=kind):
-                        self.assertEqual(run.returncode, 0, run.stdout + run.stderr)
+                        self.assertEqual(process.returncode, 0, stdout + stderr)
                         if kind == "valid":
-                            self.assertIn(b'"terminalFailureCode":15', out.read_bytes())
+                            receipt = verify_native_receipt(
+                                out.read_bytes(), {
+                                    "runId": "a123456789abcdef123456789abcdef",
+                                    "caseId": "IR-R03-02-captured-generic",
+                                    "stimulus": "captured-generic",
+                                    "dllSha256": "a"*64,
+                                }, expected_pid=process.pid,
+                                expected_owner="Assembly-CSharp",
+                                expected_fixture_sha256="a"*64)
+                            self.assertEqual(receipt["result"],
+                                "SchemaConsistentNotRuntimeAuthenticated")
+                            self.assertFalse(receipt["nativeVMProofIndependent"])
                         elif kind in ("bad-owner", "preexisting"):
                             self.assertFalse(kind == "bad-owner" and out.exists())
                         else:
