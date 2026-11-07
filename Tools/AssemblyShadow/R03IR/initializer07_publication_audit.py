@@ -114,6 +114,22 @@ def verify(root=CHECKPOINT, overrides=None):
          local.get("hostCustody", {}).get("symlinkCount") == 4, "Host/product scope")
     build_bytes = read("batch/builds/candidate-release/build-receipt.json")
     build = strict_json(build_bytes)
+    # Source-only diagnostics: show which receipt binding failed before any
+    # classification; never suppress or replace a bad hash.
+    print("ONEUSE07_BUILD_INPUT=" + json.dumps({
+        "bytesDigest": sha(build_bytes),
+        "expected": SHA_BUILD,
+        "local": local.get("build", {}).get("sha256"),
+        "finding": findings.get("build", {}).get("sha256"),
+        "result": build.get("result"),
+        "pipeline": build.get("buildPipelineResult"),
+        "errors": build.get("errors"),
+        "warnings": build.get("warnings"),
+        "signature": build.get("initializerBridgeSignature"),
+        "generated": build.get("initializerBridgeGeneratedSha256"),
+        "postBuild": build.get("initializerBridgePostBuildSha256"),
+        "linkedObserved": build.get("initializerBridgeLinkedRuntimeObserved"),
+    }, sort_keys=True), file=sys.stderr)
     need(sha(build_bytes) == SHA_BUILD == local.get("build", {}).get("sha256") and
          findings.get("build", {}).get("sha256") == SHA_BUILD and
          build.get("result") == "Passed" and build.get("buildPipelineResult") == "Succeeded" and
