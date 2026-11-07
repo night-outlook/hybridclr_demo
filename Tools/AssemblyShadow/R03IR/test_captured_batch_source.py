@@ -14,6 +14,7 @@ import unittest
 from unittest import mock
 
 import run_captured_generic_local as runner
+from batch_contract import ContractError
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
@@ -40,21 +41,21 @@ class CapturedBatchSourceContracts(unittest.TestCase):
 
     def test_03_missing_foreign_repo_fails_closed(self):
         with tempfile.TemporaryDirectory(prefix="r03-capture-outside-") as tmp:
-            with self.assertRaises((ValueError, OSError)):
+            with self.assertRaises((ContractError, OSError)):
                 runner.check_new_sources(Path(tmp))
 
     def test_04_git_show_failure_cannot_be_labelled_PASS(self):
         with mock.patch.object(runner.subprocess,"run",
              return_value=subprocess.CompletedProcess([],returncode=1,
                  stdout=b"",stderr=b"not actual git authority")):
-            with self.assertRaises((ValueError,OSError)):
+            with self.assertRaises((ContractError, OSError)):
                 runner.check_new_sources(ROOT)
 
     def test_05_git_source_sha_mismatch_cannot_be_labelled_PASS(self):
         with mock.patch.object(runner.subprocess,"run",
              return_value=subprocess.CompletedProcess([],returncode=0,
                  stdout=b"not committed source bytes",stderr=b"")):
-            with self.assertRaises((ValueError,OSError)):
+            with self.assertRaises((ContractError, OSError)):
                 runner.check_new_sources(ROOT)
 
     def test_06_exact_coordinator_imports_and_Git_and_runtime_guards(self):
