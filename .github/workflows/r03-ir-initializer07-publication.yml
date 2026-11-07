@@ -1,0 +1,47 @@
+name: R03 oneuse07 immutable published record source cross-check
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - 'Tools/AssemblyShadow/R03IR/initializer07_publication_audit.py'
+      - 'Tools/AssemblyShadow/R03IR/initializer07_publication_contracts.py'
+      - '.github/workflows/r03-ir-initializer07-publication.yml'
+      - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  published-records:
+    runs-on: ${{ matrix.os }}
+    name: Published oneuse07 source receipts / ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03IR/initializer07_publication_audit.py
+            /Tools/AssemblyShadow/R03IR/initializer07_publication_contracts.py
+            /Tools/AssemblyShadow/R03IR/verify_initializer_observation.py
+            /Tools/AssemblyShadow/R03IR/verify_initializer_trace.py
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-initializer-20261107-oneuse-07/LOCAL_RESULT.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-initializer-20261107-oneuse-07/local-evidence/RUNTIME_FINDINGS.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-initializer-20261107-oneuse-07/local-evidence/FINAL_INDEPENDENT_AUDIT.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-initializer-20261107-oneuse-07/batch/builds/candidate-release/build-receipt.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-initializer-20261107-oneuse-07/batch/players/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-initializer-20261107-oneuse-07/batch/commands/0018/command.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-initializer-20261107-oneuse-07/batch/commands/0019/command.json
+      - name: Verify actual published records and 22 adversarial controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Tools/AssemblyShadow/R03IR/initializer07_publication_audit.py
+          python3 -B -m unittest discover \
+            -s Tools/AssemblyShadow/R03IR \
+            -p initializer07_publication_contracts.py -v
+          echo 'No Unity/Player; no original Mac executable rehash; no V2/R03 acceptance'
