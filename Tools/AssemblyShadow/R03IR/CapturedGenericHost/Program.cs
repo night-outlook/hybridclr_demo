@@ -65,7 +65,9 @@ internal static class Program
             Need(node.Methods.Any(m => m.Name == "Keep") &&
                  node.Fields.Count(f => f.Name == "stable" && !f.IsStatic) == 1,
                  "Original physical instance shape in host fixture");
-            mvid = module.Mvid;
+            Need(module.Mvid.HasValue && module.Mvid.Value != Guid.Empty,
+                 "Source module must carry an actual nonempty MVID");
+            mvid = module.Mvid.Value;
         }
         string methodsSha256 = Convert.ToHexString(SHA256.HashData(methods)).ToLowerInvariant();
         var owner = typeof(R03CapturedGenericAotOwner);
