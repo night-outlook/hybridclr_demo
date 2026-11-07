@@ -1,0 +1,136 @@
+name: R03 interpreted initializer current-process fixture attestations
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-ir-initializer-dynamic-targets.yml'
+      - 'Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs'
+      - 'Tools/AssemblyShadow/R03IR/run_initializer_local.py'
+      - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  generator:
+    name: Deterministic real dotnet8 targets / ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03/PlayerFixtures/
+            /Tools/AssemblyShadow/R03/Fixtures/EvolutionFixtureCorpus.cs
+            /Tools/AssemblyShadow/R03/HostTests/EnvironmentBoundaries.cs
+            /Tools/AssemblyShadow/R03IR/run_initializer_local.py
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: hybridclr_unity
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Plugins/dnlib.dll
+            /Editor/AssemblyShadow/Model/ShadowConfiguration.cs
+            /Editor/AssemblyShadow/Metadata/AssemblyIdentityUtil.cs
+            /Editor/AssemblyShadow/Metadata/EvolutionSignature.cs
+            /Editor/AssemblyShadow/Metadata/LogicalMethodIdentity.cs
+            /Editor/AssemblyShadow/Metadata/NativeLayoutAdmissionValidator.cs
+            /Editor/AssemblyShadow/Metadata/NativeLayoutIdentityContext.cs
+            /Editor/AssemblyShadow/Hashing/CanonicalSignatureWriter.cs
+            /Tests/Editor/AssemblyShadow/R03EvolutionContractCases.cs
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+          path: hybridclr
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /hybridclr/transform/TransformContext.cpp
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 41764ae1eeefb33b05966e7f7676e52aae39c340
+          path: il2cpp_plus
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /libil2cpp/vm/PlatformInvoke.cpp
+            /libil2cpp/os/LibraryLoader.cpp
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+        with:
+          dotnet-version: '8.0.318'
+      - name: Actual generator build and two independent deterministic outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          tmp="$RUNNER_TEMP/r03-interpreted-fixture"
+          mkdir -p "$tmp"
+          dotnet build hybridclr_demo/Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj \
+            -c Release -v minimal -p:PackageRoot="$GITHUB_WORKSPACE/hybridclr_unity" \
+            -p:BaseIntermediateOutputPath="$tmp/obj/" \
+            -p:OutputPath="$tmp/bin/" \
+            --disable-build-servers -p:UseSharedCompilation=false -nodeReuse:false \
+            > "$tmp/build.log" 2>&1
+          test -s "$tmp/bin/PlayerFixtures.dll"
+          dotnet "$tmp/bin/PlayerFixtures.dll" --ir-terminal-native-targets "$tmp/first" \
+            > "$tmp/first.stdout"
+          dotnet "$tmp/bin/PlayerFixtures.dll" --ir-terminal-native-targets "$tmp/repeat" \
+            > "$tmp/repeat.stdout"
+      - name: Verify exact pinned code path, module, IL and actual target SHA MVID
+        shell: python
+        run: |
+          import ast,hashlib,json,os,pathlib,re,subprocess
+          root=pathlib.Path(os.environ['RUNNER_TEMP'])/'r03-interpreted-fixture'
+          producer=pathlib.Path('hybridclr_demo/Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs').read_text()
+          native=pathlib.Path('il2cpp_plus/libil2cpp/vm/PlatformInvoke.cpp').read_text()
+          loader=pathlib.Path('il2cpp_plus/libil2cpp/os/LibraryLoader.cpp').read_text()
+          transform=pathlib.Path('hybridclr/hybridclr/transform/TransformContext.cpp').read_text()
+          assert 'InterpreterImportModule = "__InternalDynamic"' in producer
+          assert 'new ModuleRefUser(module, InterpreterImportModule)' in producer
+          assert 'R03IR/InitializerNative/v2/' in producer
+          assert '"__InternalDynamic"' in native
+          assert 'LoadDynamicLibrary(il2cpp::utils::StringView<Il2CppNativeChar>::Empty()' in native
+          assert 'LoadDynamicLibrary(pinvokeArgs.moduleName' in native
+          assert 'OpenProgramHandle(errorState, needsClosing)' in loader
+          assert 'il2cpp::vm::PlatformInvoke::Resolve(pinvokeArgs)' in transform
+          for name,sha in [('hybridclr_unity','948c0e3b4f8891481301770115e8ba4945eea6de'),('hybridclr','4b2774b066cfc6afd77a8c8aded6bda7ea574f55'),('il2cpp_plus','41764ae1eeefb33b05966e7f7676e52aae39c340'),('hybridclr_demo',os.environ['GITHUB_SHA'])]:
+            actual=subprocess.check_output(['git','-C',name,'rev-parse','HEAD'],text=True).strip()
+            assert actual==sha,(name,actual,sha)
+          rows_by_run=[]
+          for tag in ('first','repeat'):
+            record=json.loads((root/tag/'initializer-native-targets.json').read_text())
+            assert record['schemaVersion']==1 and record['kind']=='R03IRInitializerNativeTargetFixturesV1'
+            assert record['result']=='GeneratedAndIlVerified_NotNativeValidated'
+            assert record['expectsNativeModule']=='__InternalDynamic'
+            assert record['interpreterImportContract']=='R03IR.InterpreterCurrentProcessImport.V2'
+            assert record['runtimeAcceptance'] is False and record['R03Accepted'] is False
+            rows={}
+            for item in record['targets']:
+              mode=item['kind']
+              assert mode in ('initializer-control','initializer-failure') and mode not in rows
+              assert item['expectedNativeModule']=='__InternalDynamic'
+              assert item['interpreterImportContract']=='R03IR.InterpreterCurrentProcessImport.V2'
+              file=root/tag/item['path']
+              binary=file.read_bytes()
+              assert binary[:2]==b'MZ' and len(binary)==item['size']
+              assert hashlib.sha256(binary).hexdigest()==item['sha256']
+              assert re.fullmatch('[0-9a-f-]{36}',item['mvid'])
+              rows[mode]={'sha256':item['sha256'],'mvid':item['mvid'],'bytes':len(binary)}
+            assert len(rows)==2
+            rows_by_run.append(rows)
+          assert rows_by_run[0]==rows_by_run[1], 'Nonrepeatable CLR generator'
+          print('R03_INITIALIZER_V2_ATTESTATION='+json.dumps({'source':os.environ['GITHUB_SHA'],'os':os.environ['RUNNER_OS'],'generator':'ActualDotNet8_Dnlib','realUnityPlayerExecuted':False,'targets':rows_by_run[0]},sort_keys=True))
+          runner=pathlib.Path('hybridclr_demo/Tools/AssemblyShadow/R03IR/run_initializer_local.py').read_text()
+          pins=ast.literal_eval(next(node.value for node in ast.parse(runner).body if isinstance(node,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='MODE_SHA' for t in node.targets)))
+          assert {k:(v['sha256'],v['mvid']) for k,v in rows_by_run[0].items()}==pins, 'Update new reviewed target pins after actual generator attestation; no Local run permitted'
+          print('Pinned V2 target hashes and MVIDs exactly match REAL generated bytes')

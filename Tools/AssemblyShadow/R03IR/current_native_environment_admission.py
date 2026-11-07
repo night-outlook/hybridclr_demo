@@ -26,7 +26,7 @@ import run_current_native_validation_cycle as cycle
 # accepted for this new cycle; keep exact fingerprinting, do not whitelist
 # arbitrary project revisions.
 REQUIRED_CSPROJ_BLOB = "1c5c8628ead41d67d94bb1846dd5bf9764620c68"
-REQUIRED_INITIALIZER_SOURCE_BLOB = "da4bf2ece4999d2765ca51d4bdeecf2bc0617fd2"
+REQUIRED_INITIALIZER_SOURCE_BLOB = "73e1c79c593b46cd2d8232ca6ccaae62d5dff4f0"
 REQUIRED_PROGRAM_SOURCE_BLOB = "c8de453c03321a5b91635da7c6ed795664bcb975"
 ADVISORY_HEADROOM_GIB = 40
 
@@ -106,6 +106,11 @@ def fixture_net8_source(workspace: Path) -> dict:
                 "InitializerNativeTargetFixtures.cs")) and
             [e.text for e in project.iter("EnableDefaultCompileItems")] == ["false"],
             "Exactly one explicit initializer and legacy generator source required")
+    producer_text = producer.read_text(encoding="utf-8")
+    require('InterpreterImportModule = "__InternalDynamic"' in producer_text and
+            'new ModuleRefUser(module, InterpreterImportModule)' in producer_text and
+            'R03IR/InitializerNative/v2/' in producer_text,
+            "Reviewed dynamic interpreted import and v2 identity required")
     require("--ir-terminal-native-targets" in program.read_text(encoding="utf-8"),
             "Initializer fixture entry point missing from pinned generator")
     return {"path": str(path), "gitBlob": REQUIRED_CSPROJ_BLOB,

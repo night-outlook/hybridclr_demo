@@ -45,6 +45,8 @@ MODE_SHA = {
 }
 SOURCE_PATHS = (
     "Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs",
+    "Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj",
+    "Tools/AssemblyShadow/R03/PlayerFixtures/Program.cs",
     "Tools/AssemblyShadow/R03IR/prepare_initializer_sources.py",
     "Tools/AssemblyShadow/R03IR/verify_initializer_observation.py",
     "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationPlayer.cs",
@@ -157,6 +159,9 @@ def target_fixture(batch):
             report.get("result") == "GeneratedAndIlVerified_NotNativeValidated" and
             report.get("originalSInputReplaced") is False and
             report.get("originalFifteenModified") is False and
+            report.get("expectsNativeModule") == "__InternalDynamic" and
+            report.get("interpreterImportContract") ==
+                "R03IR.InterpreterCurrentProcessImport.V2" and
             report.get("runtimeAcceptance") is False and
             type(report.get("targets")) is list and len(report["targets"]) == 2,
             "Deterministic native test fixture record")
@@ -168,6 +173,9 @@ def target_fixture(batch):
                 row.get("sha256") == MODE_SHA[mode][0] and
                 row.get("mvid") == MODE_SHA[mode][1] and
                 row.get("callbackBeforeInitializerOutcome") is True and
+                row.get("expectedNativeModule") == "__InternalDynamic" and
+                row.get("interpreterImportContract") ==
+                    "R03IR.InterpreterCurrentProcessImport.V2" and
                 row.get("observedInUnity") is False and
                 row.get("layoutEditorAdmission") == "PassedNeedsNativeProof",
                 "Exact independent initializer target identity")

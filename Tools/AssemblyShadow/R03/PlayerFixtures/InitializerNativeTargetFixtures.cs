@@ -17,6 +17,11 @@ using DMethodImplAttributes = dnlib.DotNet.MethodImplAttributes;
 internal static class InitializerNativeTargetFixtures
 {
     private const string Export = "R03_IRW_OnPrepared";
+    // Interpreted P/Invoke resolves at runtime through PlatformInvoke::Resolve.
+    // Unlike AOT's link-time __Internal, this fork routes __InternalDynamic
+    // to a current-process program handle. Never treat the two as aliases.
+    private const string InterpreterImportModule = "__InternalDynamic";
+    private const string InteropVersion = "R03IR.InterpreterCurrentProcessImport.V2";
     private const string Sentinel = "R03IR.InitializerFailure.AfterPublication.V1";
     private static readonly string[] Kinds = { "initializer-control", "initializer-failure" };
 
@@ -47,13 +52,17 @@ internal static class InitializerNativeTargetFixtures
             using (var decoded = ModuleDefMD.Load(target))
                 rows.Add(new { path = relative, kind, size = target.Length, sha256 = Hash(target),
                     mvid = decoded.Mvid.ToString(), originalClrSha256 = Hash(original),
-                    expectedNativeCallback = Export, expectedPreparedField = 3,
+                    expectedNativeCallback = Export,
+                    expectedNativeModule = InterpreterImportModule,
+                    interpreterImportContract = InteropVersion,
+                    expectedPreparedField = 3,
                     callbackBeforeInitializerOutcome = true, observedInUnity = false,
                     layoutEditorAdmission = "PassedNeedsNativeProof" });
         }
         var record = new { schemaVersion = 1, kind = "R03IRInitializerNativeTargetFixturesV1",
             result = "GeneratedAndIlVerified_NotNativeValidated", assembly = "Methods",
             inputBaselineSha256 = Hash(baseline), targets = rows, expectsNativeProbe = Export,
+            expectsNativeModule = InterpreterImportModule, interpreterImportContract = InteropVersion,
             originalSInputReplaced = false, existingClrFixtureRegeneratedAsAuthority = false,
             originalFifteenModified = false, originalKRawModified = false,
             runtimeAcceptance = false, R03Accepted = false, H2Passed = false };
@@ -77,7 +86,7 @@ internal static class InitializerNativeTargetFixtures
                 il[il.Count - 2].OpCode == OpCodes.Stsfld &&
                 ((IField)il[il.Count - 2].Operand).Name.String == "Ready",
                 "Callback must follow exactly the Ready store");
-            var moduleRef = new ModuleRefUser(module, "__Internal");
+            var moduleRef = new ModuleRefUser(module, InterpreterImportModule);
             var callback = new MethodDefUser("RecordPreparedInNative",
                 MethodSig.CreateStatic(module.CorLibTypes.Int32),
                 DMethodImplAttributes.PreserveSig,
@@ -100,7 +109,7 @@ internal static class InitializerNativeTargetFixtures
             il.Add(success);
             using (var digest = SHA256.Create())
                 module.Mvid = new Guid(digest.ComputeHash(Encoding.UTF8.GetBytes(
-                    "R03IR/InitializerNative/v1/" + kind)).Take(16).ToArray());
+                    "R03IR/InitializerNative/v2/" + kind)).Take(16).ToArray());
             var options = new ModuleWriterOptions(module);
             options.PEHeadersOptions.TimeDateStamp = 0;
             using (var output = new MemoryStream()) { module.Write(output, options); return output.ToArray(); }
@@ -115,10 +124,12 @@ internal static class InitializerNativeTargetFixtures
             var witness = module.GetTypes().Single(t => t.FullName == "R03.TerminalWitness");
             var callback = witness.Methods.Single(m => m.Name == "RecordPreparedInNative");
             Need(callback.IsPinvokeImpl && callback.IsStatic && callback.HasImplMap &&
-                callback.ImplMap.Name.String == Export && callback.ImplMap.Module.Name.String == "__Internal" &&
+                callback.ImplMap.Name.String == Export &&
+                callback.ImplMap.Module.Name.String == InterpreterImportModule &&
+                callback.ImplMap.Module.Name.String != "__Internal" &&
                 (callback.ImplMap.Attributes & PInvokeAttributes.CallConvMask) == PInvokeAttributes.CallConvCdecl &&
                 callback.MethodSig.Params.Count == 0 && callback.MethodSig.RetType.ElementType == ElementType.I4,
-                "Exact __Internal Cdecl no-arg native preparedness callback");
+                "Exact interpreted current-process Cdecl no-arg native preparedness callback");
             var prepare = witness.Methods.Single(m => m.Name == "Prepare");
             var il = prepare.Body.Instructions;
             int readyIndex = il.ToList().FindIndex(i => i.OpCode == OpCodes.Stsfld &&

@@ -44,7 +44,7 @@ class InitializerAdmissionContracts(unittest.TestCase):
         record = gate.fixture_net8_source(WORKSPACE)
         self.assertEqual(record["gitBlob"], "1c5c8628ead41d67d94bb1846dd5bf9764620c68")
         self.assertEqual(record["initializerSourceGitBlob"],
-                         "da4bf2ece4999d2765ca51d4bdeecf2bc0617fd2")
+                         "73e1c79c593b46cd2d8232ca6ccaae62d5dff4f0")
         self.assertEqual(record["programSourceGitBlob"],
                          "c8de453c03321a5b91635da7c6ed795664bcb975")
         self.assertIs(record["initializerCompileIncludedExactlyOnce"], True)
