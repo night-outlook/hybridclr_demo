@@ -123,7 +123,10 @@ def verify(root=CHECKPOINT, overrides=None):
          build.get("initializerBridgeGeneratedSha256") == SHA_BRIDGE and
          build.get("initializerBridgePostBuildSha256") == SHA_BRIDGE and
          build.get("initializerBridgeLinkedRuntimeObserved") is False, "Published BuildReceipt")
-    no_acceptance(build)
+    # BuildReceipt schema carries runtimeAcceptance only; R03/H2 fields
+    # belong to Local result/Player records and must not be fabricated.
+    need(build.get("runtimeAcceptance") is False,
+         "Original BuildReceipt cannot claim runtime acceptance")
     need(type(local.get("players")) is list and len(local["players"]) == 2 and
          type(findings.get("players")) is list and len(findings["players"]) == 2,
          "Two original distinct Players")
