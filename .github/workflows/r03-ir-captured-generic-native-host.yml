@@ -6,6 +6,8 @@ on:
       - '.github/workflows/r03-ir-captured-generic-native-host.yml'
       - 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_captured_generic_physical_probe.py'
       - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericPhysicalProbe.cpp'
+      - 'Tools/AssemblyShadow/R03IR/verify_captured_generic_native.py'
+      - 'Tools/AssemblyShadow/R03IR/test_captured_generic_native_consumer.py'
       - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
   workflow_dispatch:
 permissions:
@@ -26,6 +28,8 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             /Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_captured_generic_physical_probe.py
+            /Tools/AssemblyShadow/R03IR/verify_captured_generic_native.py
+            /Tools/AssemblyShadow/R03IR/test_captured_generic_native_consumer.py
             /Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericPhysicalProbe.cpp
       - name: Compile exact A2 source under C++11 and reject forged host states
         shell: bash
@@ -35,4 +39,7 @@ jobs:
           python3 -B -m unittest discover \
             -s Tools/AssemblyShadow/R03IR/NativeDiagnostics \
             -p test_captured_generic_physical_probe.py -v
+          python3 -B -m unittest discover \
+            -s Tools/AssemblyShadow/R03IR \
+            -p test_captured_generic_native_consumer.py -v
           echo 'VM-shaped native host only; Unity/IL2CPP/real guard/error15 NotRun'
