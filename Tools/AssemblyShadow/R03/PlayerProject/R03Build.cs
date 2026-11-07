@@ -30,6 +30,11 @@ namespace AssemblyShadow.R03.Editor
         public bool featureEnabled;
         public int diagnosticsLevel;
         public string cppConfiguration;
+        // Set only by the source-authenticated initializer preparation step.
+        // Null/empty in all historical and general R03 Player roles.
+        public string initializerBridgeContract;
+        public string initializerBridgeControlPath, initializerBridgeControlSha256, initializerBridgeControlMvid;
+        public string initializerBridgeFailurePath, initializerBridgeFailureSha256, initializerBridgeFailureMvid;
     }
     [Serializable] public sealed class FileHash { public string path; public string sha256; public long size; }
     [Serializable] public sealed class BuildReceipt
@@ -57,6 +62,12 @@ namespace AssemblyShadow.R03.Editor
         public FileHash[] installedAfter;
         public FileHash[] playerFiles;
         public FileHash[] linkedDlls;
+        // One isolated test-only managed-to-native function-pointer ABI.
+        // A generated source PASS is not a linked-Player/runtime proof.
+        public string initializerBridgeSignature, initializerBridgeImportModule;
+        public string initializerBridgeControlSha256, initializerBridgeFailureSha256;
+        public string initializerBridgeGeneratedSha256, initializerBridgePostBuildSha256;
+        public bool initializerBridgeLinkedRuntimeObserved = false;
         // Additive v2 failure diagnostics. A failed BuildReport must not be
         // overwritten by a DirectoryNotFoundException from an absent .app.
         public string buildPipelineResult;
@@ -106,11 +117,19 @@ namespace AssemblyShadow.R03.Editor
                 string probe = Path.Combine(native, "vm", "AssemblyShadowR03Probe.cpp");
                 if (File.Exists(probe)) throw new BuildFailedException("Unexpected pre-existing diagnostic source.");
                 File.Copy(config.overlayPath, probe, false);
-                // All fixture DLLs remain AOT Player inputs. The ordinary
-                // hot-update filter stays empty: no role promotion is involved.
-                // This suite adds no native signatures beyond those in the
-                // preserved baseline and fixed diagnostic bootstrap.
+                // All baseline assemblies remain AOT Player inputs; do NOT
+                // populate HotUpdateAssemblyNames to generate a single bridge.
+                // The ordinary HybridCLR generation is always first.
                 PrebuildCommand.GenerateAll();
+                string extraBi4 = GenerateInitializerBridgeIfRequested(config, native);
+                if (extraBi4 != null)
+                {
+                    receipt.initializerBridgeSignature = "Bi4";
+                    receipt.initializerBridgeImportModule = "__InternalDynamic";
+                    receipt.initializerBridgeControlSha256 = config.initializerBridgeControlSha256;
+                    receipt.initializerBridgeFailureSha256 = config.initializerBridgeFailureSha256;
+                    receipt.initializerBridgeGeneratedSha256 = extraBi4;
+                }
                 receipt.nativeArguments = PlayerSettings.GetAdditionalIl2CppArgs();
                 observation = new R03BeeObservation(config, project);
                 var report = actualReport = BuildPipeline.BuildPlayer(new BuildPlayerOptions
@@ -138,6 +157,13 @@ namespace AssemblyShadow.R03.Editor
 
                 receipt.installedAfter = Inventory(native);
                 VerifyCore(receipt.installedBefore, receipt.installedAfter);
+                if (extraBi4 != null)
+                {
+                    string generated = Path.Combine(native, "hybridclr", "generated", "MethodBridge.cpp");
+                    receipt.initializerBridgePostBuildSha256 = ShadowHash.File(generated);
+                    if (receipt.initializerBridgePostBuildSha256 != extraBi4)
+                        throw new BuildFailedException("Source-authenticated Bi4 bridge was overwritten before Player verification");
+                }
                 if (ShadowHash.File(installReceipt) != receipt.installReceiptSha256 || ShadowHash.File(probe) != config.overlaySha256)
                     throw new BuildFailedException("The source installation receipt or test overlay changed during build.");
                 receipt.nonGeneratedCorePreserved = true;
@@ -175,6 +201,45 @@ namespace AssemblyShadow.R03.Editor
                 using (var stream = new FileStream(config.receiptPath, FileMode.CreateNew))
                 using (var writer = new StreamWriter(stream)) writer.Write(JsonUtility.ToJson(receipt, true) + "\n");
             }
+        }
+
+        private static string GenerateInitializerBridgeIfRequested(BuildConfig config, string native)
+        {
+            if (string.IsNullOrEmpty(config.initializerBridgeContract))
+            {
+                if (!string.IsNullOrEmpty(config.initializerBridgeControlPath) ||
+                    !string.IsNullOrEmpty(config.initializerBridgeFailurePath))
+                    throw new BuildFailedException("Orphan initializer bridge fixture without an explicit contract");
+                return null;
+            }
+            // The new helper exists only in the initializer-specific copied
+            // Assets/Editor source. General legacy R03 builds contain no such
+            // class and must compile/exe unchanged.
+            Type owner = typeof(R03Build).Assembly.GetType(
+                "AssemblyShadow.R03.Editor.R03InitializerBridge", false);
+            if (owner == null)
+                throw new BuildFailedException("Initializer bridge helper absent from isolated Editor compilation");
+            MethodInfo method = owner.GetMethod("Generate",
+                BindingFlags.Static | BindingFlags.NonPublic);
+            if (method == null)
+                throw new BuildFailedException("Initializer bridge helper generation entry missing");
+            object output;
+            try { output = method.Invoke(null, new object[] { config, native }); }
+            catch (TargetInvocationException e)
+            {
+                throw new BuildFailedException("Source-authenticated initializer bridge generation rejected: " +
+                    (e.InnerException == null ? e.Message : e.InnerException.ToString()));
+            }
+            if (output == null)
+                throw new BuildFailedException("Initializer bridge generation returned no result");
+            FieldInfo shaField = output.GetType().GetField(
+                "generatedSourceAfterSha256", BindingFlags.Instance | BindingFlags.Public);
+            string expectedSha = shaField == null ? null : shaField.GetValue(output) as string;
+            string file = Path.Combine(native, "hybridclr", "generated", "MethodBridge.cpp");
+            if (string.IsNullOrEmpty(expectedSha) || expectedSha.Length != 64 ||
+                ShadowHash.File(file) != expectedSha)
+                throw new BuildFailedException("Initializer bridge postgenerator identity unavailable");
+            return expectedSha;
         }
 
         private static void Configure(BuildConfig config)

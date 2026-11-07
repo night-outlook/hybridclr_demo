@@ -32,6 +32,8 @@ namespace AssemblyShadow.R03.IR
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern int R03_IRW_CaptureRecovery();
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IRW_BridgeStatus();
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern void R03_IR_Exit(int code);
 
         private static bool s_started;
@@ -73,6 +75,12 @@ namespace AssemblyShadow.R03.IR
                 Need(openResult == 1, "Native output preopen");
                 opened = true;
                 R03_IRW_Trace(102, openResult, 0, 0, 0);
+                // Read the actual linked GameAssembly's native bridge table.
+                // This is a test-only AOT query before any terminal VM state.
+                lastPhase = 103;
+                int linkedBi4 = R03_IRW_BridgeStatus();
+                R03_IRW_Trace(103, linkedBi4, 0, 0, 0);
+                Need(linkedBi4 == 1, "Genuine linked Bi4 bridge table entry");
                 lastPhase = 110;
                 MethodInfo canary = typeof(R03InitializerObservationPlayer).GetMethod("AotCanary",
                     BindingFlags.Static | BindingFlags.NonPublic);

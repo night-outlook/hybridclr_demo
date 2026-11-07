@@ -51,6 +51,12 @@ SOURCE_PATHS = (
     "Tools/AssemblyShadow/R03/PlayerFixtures/InitializerNativeTargetFixtures.cs",
     "Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj",
     "Tools/AssemblyShadow/R03/PlayerFixtures/Program.cs",
+    "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs",
+    "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerBridge.cs",
+    "Tools/AssemblyShadow/R03IR/prepare_initializer_sources.py",
+    "Tools/AssemblyShadow/R03IR/bridge_host_contracts.py",
+    "Tools/AssemblyShadow/R03IR/BridgeHost/BridgeHost.csproj",
+    "Tools/AssemblyShadow/R03IR/BridgeHost/Program.cs",
     "Tools/AssemblyShadow/R03IR/prepare_initializer_sources.py",
     "Tools/AssemblyShadow/R03IR/verify_initializer_observation.py",
     "Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerObservationPlayer.cs",
@@ -133,8 +139,49 @@ class InitializerBatch(CurrentNativeBatch):
         for entry in manifest["files"]:
             require(sha(project / entry["path"]) == entry["sha256"],
                     "Actual source/fixture file changed: " + entry["path"])
+        require(config.get("initializerBridgeContract") ==
+                    "R03IR.Managed2Native.Cdecl.Int32NoArgs.V1" and
+                receipt.get("initializerBridgeSignature") == "Bi4" and
+                receipt.get("initializerBridgeImportModule") == "__InternalDynamic" and
+                receipt.get("initializerBridgeControlSha256") == MODE_SHA["initializer-control"][0] and
+                receipt.get("initializerBridgeFailureSha256") == MODE_SHA["initializer-failure"][0] and
+                receipt.get("initializerBridgeLinkedRuntimeObserved") is False and
+                config.get("initializerBridgeControlSha256") == MODE_SHA["initializer-control"][0] and
+                config.get("initializerBridgeFailureSha256") == MODE_SHA["initializer-failure"][0] and
+                config.get("initializerBridgeControlMvid") == MODE_SHA["initializer-control"][1] and
+                config.get("initializerBridgeFailureMvid") == MODE_SHA["initializer-failure"][1],
+                "Unmodified AOT roles with one source-bound Bi4 native signature")
+        generated = Path(receipt["installedNativeRoot"]) / "hybridclr/generated/MethodBridge.cpp"
+        require(generated.is_file() and not generated.is_symlink() and
+                len(receipt.get("initializerBridgeGeneratedSha256") or "") == 64 and
+                sha(generated) == receipt["initializerBridgeGeneratedSha256"] ==
+                    receipt.get("initializerBridgePostBuildSha256"),
+                "Real installed post-IL2CPP generated Bi4 source identity")
+        generator_source = generated.read_text(encoding="utf-8")
+        require(generator_source.count('{"Bi4", __M2NF_Bi4}') == 1 and
+                generator_source.count('static void __M2NF_Bi4(') == 1 and
+                generator_source.count('typedef int32_t (CDECL *NativeMethod)();') == 1 and
+                generator_source.count('const Managed2NativeFunctionPointerCallData hybridclr::interpreter::g_managed2NativeFunctionPointerCallStub[]') == 1,
+                "Only one authentic Cdecl/int32 linked bridge source table row")
         app = Path(config["outputPath"])
         self.verify_inventory(app, receipt["playerFiles"])
+        game_assembly = app / "Contents/Frameworks/GameAssembly.dylib"
+        require(game_assembly.is_file() and not game_assembly.is_symlink() and
+                b"Bi4\x00" in game_assembly.read_bytes(),
+                "Linked native GameAssembly must contain Bi4 table identity")
+        exports = subprocess.run(["nm", "-gU", str(game_assembly)],
+                                 capture_output=True, text=True, timeout=80)
+        require(exports.returncode == 0 and
+                exports.stdout.count("_R03_IRW_BridgeStatus") == 1 and
+                exports.stdout.count("_R03_IRW_OnPrepared") == 1,
+                "Actual linked GameAssembly export set must include bridge probe and callback")
+        state["bi4LinkedEvidence"] = {
+            "kind": "R03InitializerLinkedBi4StaticEvidenceV1",
+            "gameAssemblySha256": sha(game_assembly),
+            "generatedMethodBridgeSha256": sha(generated),
+            "exactBi4Entry": True, "genuineLinkedProbeExported": True,
+            "realRuntimeProbeExecuted": False, "runtimeAcceptance": False}
+
         native = Path(receipt["installedNativeRoot"]) / "vm/AssemblyShadowR03Probe.cpp"
         require(native.is_file() and sha(native) == sha(overlay),
                 "Real installed native overlay differs from source")
@@ -202,12 +249,17 @@ def prepare_initializer(batch, role):
     state = batch.builds[role["id"]]
     config_path = state["root"] / "config.json"
     prepared = prepare_sources(state["project"], config_path,
-                               batch.root / "initializer-source")
+                               batch.root / "initializer-source", batch.initializer_targets)
     state["config"] = loads(config_path.read_text(encoding="utf-8"))
     require(prepared["compositeOverlaySha256"] ==
             state["config"]["overlaySha256"] and
             prepared["managedSourceSha256"] ==
             sha(state["project"] / "Assets/R03InitializerObservationPlayer.cs") and
+            prepared.get("initializerBridgeContract") ==
+                "R03IR.Managed2Native.Cdecl.Int32NoArgs.V1" and
+            prepared.get("initializerBridgeSignature") == "Bi4" and
+            prepared.get("initializerBridgeHelperSha256") ==
+                sha(state["project"] / "Assets/Editor/R03InitializerBridge.cs") and
             prepared["R03Accepted"] is False and
             prepared["unityBuildExecuted"] is False,
             "Source preparation cannot claim a Player or mutate the wrong input")
@@ -255,6 +307,7 @@ def local_hosts(batch):
     for name in ("test_initializer_observation.py",
                  "test_initializer_source_preparation.py",
                  "test_initializer_local_orchestration.py",
+                 "test_initializer_bridge_source.py",
                  "test_initializer_trace.py",
                  "test_initializer_recovery.py",
                  "test_initializer_host_custody.py"):

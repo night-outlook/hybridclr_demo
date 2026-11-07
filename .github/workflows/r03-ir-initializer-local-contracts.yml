@@ -5,6 +5,9 @@ on:
     paths:
       - '.github/workflows/r03-ir-initializer-local-contracts.yml'
       - 'Tools/AssemblyShadow/R03IR/run_initializer_local.py'
+      - 'Tools/AssemblyShadow/R03IR/test_initializer_bridge_source.py'
+      - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03InitializerBridge.cs'
+      - 'Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs'
       - 'Tools/AssemblyShadow/R03IR/test_initializer_local_orchestration.py'
       - 'Tools/AssemblyShadow/R03IR/prepare_initializer_sources.py'
       - 'Tools/AssemblyShadow/R03IR/verify_initializer_observation.py'
@@ -58,6 +61,9 @@ jobs:
           python3 -B -m unittest discover \
             -s Tools/AssemblyShadow/R03IR \
             -p test_initializer_source_preparation.py -v
+          python3 -B -m unittest discover \
+            -s Tools/AssemblyShadow/R03IR \
+            -p test_initializer_bridge_source.py -v
           python3 -B -m unittest discover \
             -s Tools/AssemblyShadow/R03IR \
             -p test_initializer_observation.py -v

@@ -11,6 +11,7 @@
 #include "vm/Image.h"
 #include "vm/Class.h"
 #include "gc/GCHandle.h"
+#include "hybridclr/interpreter/MethodBridge.h"
 #include <atomic>
 #include <cstdint>
 #include <cstring>
@@ -19,6 +20,34 @@
 // C++11 host driver supplies an explicitly labelled test-only trace stub.
 extern "C" IL2CPP_EXPORT int32_t R03_IRW_Trace(
     int32_t phase, int32_t a, int32_t b, int32_t c, int32_t d);
+
+// Genuine linked binary table inspection, before any interpreted Commit.
+// A source or nm string alone is NOT evidence of a callable Bi4 stub.
+// The exported AOT test function reads the same compiled native table that
+// InterpreterModule::InitMethodBridge consumes. Never call user methods here.
+extern "C" IL2CPP_EXPORT int32_t R03_IRW_BridgeStatus()
+{
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
+    const hybridclr::interpreter::Managed2NativeFunctionPointerCallData* entries =
+        hybridclr::interpreter::g_managed2NativeFunctionPointerCallStub;
+    if (!entries) return -1;
+    int32_t found = 0;
+    for (int32_t i = 0; i < 64; ++i)
+    {
+        if (entries[i].methodSig == nullptr)
+            return (found == 1) ? 1 : -2;
+        if (std::strcmp(entries[i].methodSig, "Bi4") == 0)
+        {
+            if (entries[i].methodPointer == nullptr) return -3;
+            ++found;
+            if (found != 1) return -4;
+        }
+    }
+    return -5; // Missing bounded sentinel is not an authenticated bridge.
+#else
+    return 0;
+#endif
+}
 
 namespace r03_irw_initializer {
 struct Prepared final
@@ -206,6 +235,7 @@ extern "C" IL2CPP_EXPORT int32_t R03_IRW_ReadPrepared(
 #endif
 }
 #else
+extern "C" IL2CPP_EXPORT int32_t R03_IRW_BridgeStatus() { return 0; }
 extern "C" IL2CPP_EXPORT int32_t R03_IRW_OnPrepared() { return 0; }
 extern "C" IL2CPP_EXPORT int32_t R03_IRW_ReadPrepared(
     int32_t*,int32_t*,int32_t*,int32_t*,int32_t*) { return 0; }

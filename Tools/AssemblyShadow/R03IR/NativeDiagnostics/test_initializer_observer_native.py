@@ -69,6 +69,16 @@ struct GCHandle {
 };
 }}
 """,
+    "hybridclr/interpreter/MethodBridge.h": """#pragma once
+#include <cstdint>
+namespace hybridclr { namespace interpreter {
+struct Managed2NativeFunctionPointerCallData {
+    const char* methodSig;
+    void (*methodPointer)();
+};
+extern const Managed2NativeFunctionPointerCallData g_managed2NativeFunctionPointerCallStub[];
+}}
+""",
 }
 DRIVER = r"""
 #include <cassert>
@@ -114,6 +124,21 @@ FieldInfo* il2cpp::vm::Class::GetFieldFromName(Il2CppClass* k,const char* name) 
 uint32_t il2cpp::gc::GCHandle::New(Il2CppObject* o,bool pin) { return pin && o==&node.object?1:0; }
 Il2CppObject* il2cpp::gc::GCHandle::GetTarget(uint32_t h) { return h==1?&node.object:nullptr; }
 void il2cpp::gc::GCHandle::Free(uint32_t) {}
+// Exact native table stub, with one negative no-Bi4 linked program.
+namespace hybridclr { namespace interpreter {
+#if !defined(R03_TEST_NO_LINKED_BI4)
+static void FakeBi4() {}
+#endif
+extern const Managed2NativeFunctionPointerCallData g_managed2NativeFunctionPointerCallStub[] = {
+#if defined(R03_TEST_NO_LINKED_BI4)
+    {nullptr, nullptr},
+#else
+    {"Bi4", FakeBi4},
+    {nullptr, nullptr},
+#endif
+};
+}}
+extern "C" int32_t R03_IRW_BridgeStatus();
 // Stub for the real writer's preopened diagnostic, host-only.
 extern "C" int32_t R03_IRW_Trace(int32_t phase,int32_t a,int32_t,int32_t,int32_t) {
     return phase>0 && a>=-9 ? 1 : -1;
@@ -121,6 +146,11 @@ extern "C" int32_t R03_IRW_Trace(int32_t phase,int32_t a,int32_t,int32_t,int32_t
 extern "C" int32_t R03_IRW_OnPrepared();
 extern "C" int32_t R03_IRW_ReadPrepared(int32_t*,int32_t*,int32_t*,int32_t*,int32_t*);
 int main() {
+#if defined(R03_TEST_NO_LINKED_BI4)
+    assert(R03_IRW_BridgeStatus()==-2);
+#else
+    assert(R03_IRW_BridgeStatus()==1);
+#endif
     image.assembly=&assembly;assembly.image=&image;
     nodeClass.image=&image;nodeClass.instance_size=sizeof(Node);
     witnessClass.image=&image;witnessClass.static_fields=&values;
@@ -166,14 +196,17 @@ class ObserverHostTests(unittest.TestCase):
             compilers = [cc for cc in ('clang++', 'g++') if shutil.which(cc)]
             self.assertTrue(compilers, 'C++ compiler required')
             for compiler in compilers:
-                with self.subTest(compiler=compiler):
-                    app = root / compiler.replace('+','p')
-                    subprocess.run([compiler, '-std=c++11','-Wall','-Wextra','-Werror',
-                                    '-I',str(root),str(SOURCE),str(driver),'-o',str(app)],
-                                   capture_output=True, text=True, check=True, timeout=80)
-                    done=subprocess.run([str(app)],capture_output=True,text=True,timeout=20)
-                    self.assertEqual(done.returncode,0,done.stderr)
-                    self.assertIn('HOST OBSERVER PASSED',done.stdout)
+                for negative in (False, True):
+                    with self.subTest(compiler=compiler, negative=negative):
+                        app = root / (compiler.replace('+','p') + ('-noBi4' if negative else '-Bi4'))
+                        args = [compiler, '-std=c++11','-Wall','-Wextra','-Werror',
+                                '-I',str(root)]
+                        if negative: args.append('-DR03_TEST_NO_LINKED_BI4=1')
+                        subprocess.run(args + [str(SOURCE),str(driver),'-o',str(app)],
+                                       capture_output=True, text=True, check=True, timeout=80)
+                        done=subprocess.run([str(app)],capture_output=True,text=True,timeout=20)
+                        self.assertEqual(done.returncode,0,done.stderr)
+                        self.assertIn('HOST OBSERVER PASSED',done.stdout)
             self.assertEqual(hashlib.sha256(source_bytes).hexdigest(),
                              hashlib.sha256(SOURCE.read_bytes()).hexdigest())
 

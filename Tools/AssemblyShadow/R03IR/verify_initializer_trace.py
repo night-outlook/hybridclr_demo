@@ -17,7 +17,7 @@ NONCE = re.compile(r"[A-Za-z0-9_.-]{24,95}\Z")
 CASE = re.compile(r"[A-Za-z0-9_.-]{1,95}\Z")
 DIGEST = re.compile(r"[0-9a-f]{64}\Z")
 PHASES = frozenset((
-    100, 101, 102, 110, 111, 120, 121, 130, 131, 140, 141,
+    100, 101, 102, 103, 110, 111, 120, 121, 130, 131, 140, 141,
     150, 151, 160, 161, 190, 191, 200, 201, 205, 210, 211,
     220, 230, 231, 299, 300, 301, 302, 400, 401, 600, 601, 602, 603,
     610, 620, 900, 901,
@@ -104,6 +104,7 @@ def summarize(records, *, require_complete=False):
         "lastPhase": records[-1]["phase"],
         "preopenedWriter": True,
         "nativeCallbackObserved": bool(steps[299]),
+        "genuineLinkedBi4ProbeStatus": [e["a"] for e in steps[103]],
         "nativeCallbackFailures": failed_observer,
         "nativeReadFailures": [e["a"] for e in steps[400] if e["a"] < 0],
         "nativeSealFailures": [{"return": e["a"], "reason": e["b"]} for e in seals],
@@ -118,9 +119,10 @@ def summarize(records, *, require_complete=False):
         "runtimeAcceptance": False, "R03Accepted": False, "H2Passed": False,
     }
     if require_complete:
-        need(all(steps[k] for k in (100, 101, 190, 191, 201, 205,
+        need(all(steps[k] for k in (100, 101, 103, 190, 191, 201, 205,
                                     230, 231, 299, 300, 400, 401, 600, 601,
                                     602, 603, 620)) and
+             len(steps[103]) == 1 and steps[103][0]["a"] == 1 and
              not steps[610] and not steps[900] and
              len(steps[300]) == 1 and steps[300][0]["a"] == 1 and
              len(steps[400]) == 1 and steps[400][0]["a"] == 1 and

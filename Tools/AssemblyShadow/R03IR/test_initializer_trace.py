@@ -12,7 +12,7 @@ from verify_initializer_trace import TraceRejected, parse, summarize, inspect
 def fixture(mode="initializer-failure"):
     request = {"runId": "HostInitializerEvidenceRun000001",
                "caseId": "HOST-INIT", "stimulus": mode, "dllSha256": "a" * 64}
-    phases = (100, 101, 299, 300, 190, 191, 201, 230, 231, 205,
+    phases = (100, 101, 103, 299, 300, 190, 191, 201, 230, 231, 205,
               400, 401, 600, 601, 602, 603, 620)
     rows = []
     for i, stage in enumerate(phases, 1):
@@ -21,7 +21,7 @@ def fixture(mode="initializer-failure"):
             "runId": request["runId"], "caseId": request["caseId"],
             "stimulus": mode, "fixtureSha256": request["dllSha256"],
             "pid": 521, "seq": i, "phase": stage,
-            "a": 1 if stage in (100, 101, 230, 231, 299, 300, 400, 620) else 0,
+            "a": 1 if stage in (100, 101, 103, 230, 231, 299, 300, 400, 620) else 0,
             "b": 0, "c": 0, "d": 0,
             "runtimeAcceptance": False, "R03Accepted": False, "H2Passed": False,
         }
@@ -86,7 +86,7 @@ class NativeInitializerTraceContracts(unittest.TestCase):
                 parse(raw, request, 521, request["dllSha256"])
 
     def test_04_lack_of_real_native_callback_read_seal_is_not_complete(self):
-        for stage in (299, 300, 400, 620):
+        for stage in (103, 299, 300, 400, 620):
             rows, request = fixture()
             reduced = [r for r in rows if r["phase"] != stage]
             for i, r in enumerate(reduced, 1):
@@ -94,6 +94,17 @@ class NativeInitializerTraceContracts(unittest.TestCase):
             got = parse(encode(reduced), request, 521, request["dllSha256"])
             with self.subTest(stage=stage), self.assertRaises(TraceRejected):
                 summarize(got, require_complete=True)
+
+    def test_04b_actual_linked_bridge_must_be_nonnull_and_unique(self):
+        rows, request = fixture()
+        index = next(i for i, r in enumerate(rows) if r["phase"] == 103)
+        self.assertEqual(rows[index]["a"], 1)
+        for value in (-1, -2, 0, 2):
+            mutated = copy.deepcopy(rows)
+            mutated[index]["a"] = value
+            parsed = parse(encode(mutated), request, 521, request["dllSha256"])
+            with self.subTest(value=value), self.assertRaises(TraceRejected):
+                summarize(parsed, require_complete=True)
 
     def test_05_failure_diary_stays_non_authorizing(self):
         rows, request = fixture()

@@ -12,6 +12,16 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 MANAGED = HERE / 'PlayerProject/R03InitializerObservationPlayer.cs'
+BRIDGE = HERE / 'PlayerProject/R03InitializerBridge.cs'
+ABI_CONTRACT = 'R03IR.Managed2Native.Cdecl.Int32NoArgs.V1'
+PINNED_BRIDGE_TARGETS = {
+    'initializer-control': (
+        'd6e5b66f695498a9ba0806ea81930f03804d98f77382cb851d24c2b24f24202e',
+        '5bb6e17a-09b9-5b29-dac2-41d3519f76f4'),
+    'initializer-failure': (
+        '6ad097153da2054579c13ec48d9f81a35d2551b08bf7a77398f13809ef9e5370',
+        'f61d7325-6d38-4640-5873-37371f587b16'),
+}
 ADDITIONS = (HERE / 'PlayerProject/R03InitializerPreparedProbe.cpp',
              HERE / 'PlayerProject/R03InitializerObservationWriter.cpp')
 EXISTING = ('R03TerminalPlayer.cs', 'R03EngineFrameDispatcher.cs')
@@ -43,8 +53,26 @@ def new_bytes(path, data):
         out.write(data)
 
 
-def prepare(project, config_path, dest):
+def prepare(project, config_path, dest, target_paths, *, expected_targets=None):
     project, config_path, dest = map(Path, (project, config_path, dest))
+    expectations = PINNED_BRIDGE_TARGETS if expected_targets is None else expected_targets
+    need(type(target_paths) is dict and set(target_paths) == set(PINNED_BRIDGE_TARGETS)
+         and set(expectations) == set(PINNED_BRIDGE_TARGETS),
+         'Exactly two distinct initializer ABI targets required')
+    verified_targets = {}
+    for mode in sorted(PINNED_BRIDGE_TARGETS):
+        file = Path(target_paths[mode])
+        expected_sha, expected_mvid = expectations[mode]
+        need(file.is_absolute() and '..' not in file.parts and
+             file.is_file() and not file.is_symlink() and
+             file.resolve(strict=True) == file and sha(file.read_bytes()) == expected_sha,
+             'Pinned actual native fixture input identity: ' + mode)
+        verified_targets[mode] = {
+            'path': str(file), 'sha256': expected_sha, 'mvid': expected_mvid}
+    need(verified_targets['initializer-control']['path'] !=
+         verified_targets['initializer-failure']['path'] and
+         expectations['initializer-control'] != expectations['initializer-failure'],
+         'Distinct control and failure native ABI identities required')
     need(all(p.is_absolute() for p in (project, config_path, dest)),
          'Absolute isolated paths required')
     need(project.is_dir() and not project.is_symlink() and
@@ -82,10 +110,15 @@ def prepare(project, config_path, dest):
          config.get('overlaySha256') == sha(old_overlay.read_bytes()),
          'Pinned preexisting native diagnostic overlay')
     name = 'Assets/R03InitializerObservationPlayer.cs'
+    helper_name = 'Assets/Editor/R03InitializerBridge.cs'
     target = project / name
+    helper = project / helper_name
     need(name not in mapped and not target.exists() and
+         helper_name not in mapped and not helper.exists() and
+         BRIDGE.is_file() and not BRIDGE.is_symlink() and
          MANAGED.is_file() and all(p.is_file() for p in ADDITIONS),
-         'No previous initializer source or missing new inputs')
+         'No previous initializer source or missing bridge helper inputs')
+    need(not helper.parent.is_symlink(), 'No linked Editor directory')
     original = old_overlay.read_bytes()
     concat = original + b''.join(
         b'\n// Source-bound separate initializer part: ' + p.name.encode() + b'\n' +
@@ -100,17 +133,34 @@ def prepare(project, config_path, dest):
     files.append({'path': name, 'sha256': sha(managed_bytes),
         'origin': {'kind': 'R03InitializerPrimarySource',
                    'source': str(MANAGED), 'runtimeAcceptance': False}})
+    helper.parent.mkdir(exist_ok=True, parents=True)
+    helper_bytes = BRIDGE.read_bytes()
+    new_bytes(helper, helper_bytes)
+    files.append({'path': helper_name, 'sha256': sha(helper_bytes),
+        'origin': {'kind': 'R03InitializerBridgePrimarySource',
+                   'source': str(BRIDGE), 'runtimeAcceptance': False}})
     new_manifest = (json.dumps(record, indent=2, sort_keys=True) + '\n').encode()
     manifest_path.write_bytes(new_manifest)
     config['overlayPath'] = str(combined_path)
     config['overlaySha256'] = sha(concat)
     config['sourceManifestSha256'] = sha(new_manifest)
+    config['initializerBridgeContract'] = ABI_CONTRACT
+    for kind, prefix in (('initializer-control', 'initializerBridgeControl'),
+                         ('initializer-failure', 'initializerBridgeFailure')):
+        row = verified_targets[kind]
+        config[prefix + 'Path'] = row['path']
+        config[prefix + 'Sha256'] = row['sha256']
+        config[prefix + 'Mvid'] = row['mvid']
     config_path.write_text(json.dumps(config, indent=2, sort_keys=True) + '\n',
                            encoding='utf-8')
     receipt = {'schemaVersion': 1, 'kind': 'R03InitializerSourcePreparationV1',
         'result': 'PreparedSourcesOnly_NoUnityOrPlayer',
         'project': str(project), 'configuration': str(config_path),
         'managedSourceSha256': sha(managed_bytes),
+        'initializerBridgeHelperSha256': sha(helper_bytes),
+        'initializerBridgeContract': ABI_CONTRACT,
+        'initializerBridgeSignature': 'Bi4',
+        'initializerBridgeTargets': verified_targets,
         'originalOverlaySha256': sha(original),
         'compositeOverlaySha256': sha(concat),
         'nativePartsSha256': {p.name: sha(p.read_bytes()) for p in ADDITIONS},
@@ -124,10 +174,13 @@ def prepare(project, config_path, dest):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    for name in ('project', 'config', 'output'):
+    for name in ('project', 'config', 'output', 'control', 'failure'):
         parser.add_argument('--' + name, type=Path, required=True)
     args = parser.parse_args()
-    print(json.dumps(prepare(args.project, args.config, args.output), sort_keys=True))
+    print(json.dumps(prepare(args.project, args.config, args.output, {
+        'initializer-control': args.control,
+        'initializer-failure': args.failure,
+    }), sort_keys=True))
 
 
 if __name__ == '__main__':

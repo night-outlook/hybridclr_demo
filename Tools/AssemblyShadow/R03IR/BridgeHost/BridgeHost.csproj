@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework>
+    <LangVersion>9.0</LangVersion><EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <ImplicitUsings>disable</ImplicitUsings><Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="dnlib"><HintPath>$(PackageRoot)/Plugins/dnlib.dll</HintPath></Reference>
+    <Compile Include="Program.cs"/>
+    <Compile Include="../PlayerProject/R03InitializerBridge.cs" Link="R03InitializerBridge.cs"/>
+  </ItemGroup>
+</Project>
