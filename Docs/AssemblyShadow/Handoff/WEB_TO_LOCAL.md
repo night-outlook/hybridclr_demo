@@ -4,6 +4,12 @@ Date: 2026-11-07 UTC. **No Local Validation build, Player, runner, repair, clean
 
 The previous `R03IR-Initializer-20261107-oneuse-07` single-use 15-cell batch ran exactly once, with execution demo `6e1dc7b4349a386dc35c5ed46fca4225db273b18`. The Local publication demo commit is `66a0218ffb17e363531b7f7bc0f4114787ae0b76`. The verified result is **focused initializer PASS (15/15 cells)**, not R03 acceptance. The previous `WEB_TO_LOCAL.md` was consumed; do not copy its old invocation or reuse its output roots.
 
+## Current Primary-only work (A1 structural host prerequisite)
+
+An isolated `R03CapturedGenericAotOwner.Touch<T>` source and a .NET8 host have proved CLR-owner/physical-`Methods` generic argument structure and real positive reflection/delegate body effects. Exact dual-OS [CI 42363760691](https://github.com/night-outlook/hybridclr_demo/actions/runs/42363760691) passed for this **host-only prerequisite**. [A1 scope review](../History/M07R/R03/IR_Remediation/POST_INITIALIZER07_2026-11-07/CAPTURED_GENERIC_A1_OWNER_HOST.md).
+
+**A2 remains incomplete**: source and runtime evidence for acquiring the physical baseline generic argument without crossing the first-use barrier, constructing an actual IL2CPP inflated MethodInfo, and proving native error15/denied body with full first-error joins. The new A1 result is not a Player or native guard result and does **not** authorize Local execution. This handoff remains CLOSED; no oneuse07 replay or new batch.
+
 ## Required read order (for review, not execution)
 
 1. `Docs/AssemblyShadow/README.md` and `Plan/CURRENT_STATUS.md`.

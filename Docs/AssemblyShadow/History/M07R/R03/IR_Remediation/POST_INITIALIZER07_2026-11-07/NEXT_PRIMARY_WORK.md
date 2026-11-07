@@ -2,6 +2,9 @@
 
 Stage: Primary Implementation only. This document is NOT authority for a Local build or Player run. It preserves the 15/15 initializer oneuse-07 focused PASS, original evidence and independent R03 FAIL.
 
+> **Current progress (2026-11-07): A1 completed, A2 earliest incomplete.** The actual independent-owner CLR host, strict source/fixture/receipt checks and dual-OS CI passed at demo source `353617ca0461a5df34f57e44784adae0525b7277` (run `42363760691`). See [A1 review](CAPTURED_GENERIC_A1_OWNER_HOST.md). No native/IL2CPP `method_inst`, captured-baseline terminal error15, prepublication-safe physical type acquisition, or complete V2/whole-VM evidence has run. Continue only A2 Primary source work; this plan does **not** authorize Local Validation. The 15/15 initializer oneuse07 result remains focused PASS, while full independent R03 remains FAIL.
+
+
 ## A. Captured-baseline generic failure (IR-R03-02)
 
 Objective: a real physically captured generic argument whose *generic method's AOT owner is not Methods*, with original baseline Methods.R03.Node as a closed generic argument, prewarmed before Shadow, producing genuine terminal error15 rather than relabeled error13/21.

@@ -1,3 +1,11 @@
+# Current Primary R03 — captured-generic A1 CLR structural prerequisite PASS (2026-11-07)
+
+Primary implemented a new test-only generic AOT-owner source and a real CLR host fixture. [Dual-OS CI 42363760691](https://github.com/night-outlook/hybridclr_demo/actions/runs/42363760691) passed: one separate physical `Methods.R03.Node` type argument, a closed `Touch<T>` owned by another assembly, actual reflection/delegate side effects and strict negative controls, with 0 C# errors/warnings and eight host tests on each OS. Generated host fixture SHA differs macOS/Ubuntu despite common MVID and is not original S authority.
+
+[A1 review](../History/M07R/R03/IR_Remediation/POST_INITIALIZER07_2026-11-07/CAPTURED_GENERIC_A1_OWNER_HOST.md); [next Primary plan](../History/M07R/R03/IR_Remediation/POST_INITIALIZER07_2026-11-07/NEXT_PRIMARY_WORK.md). The real native captured-generic error15 is **NotRun**; A2 physical baseline argument capture/actual IL2CPP MethodInfo/guard remains Primary-owned. Local oneuse07 focused PASS stays preserved; WEB_TO_LOCAL CLOSED; both High independent findings open, all acceptance flags false.
+
+---
+
 # Current R03 Primary checkpoint — oneuse-07 focused PASS and handoff consumed (2026-11-07)
 
 Oneuse-07 **focused PASS** at execution source `6e1dc7b4349a386dc35c5ed46fca4225db273b18` and Local publication `66a0218ffb17e363531b7f7bc0f4114787ae0b76`: 15/15 cells, one Unity2022.3.62f2 macOS arm64 IL2CPP ON/Release build, two separate Players exit0, linked Bi4 phase103, native callback once, field3/mask15, control0/6 and failure19/9 with actual postprepared sentinel. The prior single-use WEB_TO_LOCAL is **CLOSED** and shall not be replayed.

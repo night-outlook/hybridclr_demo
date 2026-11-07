@@ -1,3 +1,11 @@
+# Current Primary — R03 captured-generic A1 host prerequisite passed, A2 pending (2026-11-07 UTC)
+
+**New scoped Primary implementation:** `R03CapturedGenericAotOwner.Touch<T>` (test-only), isolated real .NET8 host, strict source/receipt consumer and negative tests. Actual `macos-15` and `ubuntu-24.04` CI [run 42363760691](https://github.com/night-outlook/hybridclr_demo/actions/runs/42363760691) passed C# compilation (0 errors/0 warnings), genuine CLR closed generic with owner outside `Methods`, three positive body/side-effect calls, eight host tests on each OS and output-reuse rejection. This is **structural host proof, not actual Unity/IL2CPP native error15 or runtime acceptance**. The new host Methods.dll SHA differs between OSes even though its MVID matches; it is never substituted for historical S.
+
+Read [A1 source and empirical scope review](History/M07R/R03/IR_Remediation/POST_INITIALIZER07_2026-11-07/CAPTURED_GENERIC_A1_OWNER_HOST.md) and [next Primary plan](History/M07R/R03/IR_Remediation/POST_INITIALIZER07_2026-11-07/NEXT_PRIMARY_WORK.md). **Earliest incomplete Primary work is A2:** physical baseline argument / actual IL2CPP generic MethodInfo acquisition and native error15; A1 cannot grant a Local run. `WEB_TO_LOCAL.md` remains CLOSED. Original oneuse07 focused PASS remains immutable; independent High IR-R03-01/02 and full R03 FAIL remain open. All R03/H2/qualification/Human Review Gate flags false, PureInterpreter disabled. No Local build, H2/M08A/X02/SNAP-01.
+
+---
+
 # Current Primary — initializer oneuse-07 focused PASS; Local authority CLOSED (2026-11-07 UTC)
 
 The latest Local outcome is **focused initializer PASS**: execution demo `6e1dc7b4349a386dc35c5ed46fca4225db273b18`, evidence-publication demo `66a0218ffb17e363531b7f7bc0f4114787ae0b76`. One authorized 15-cell run passed (one real Unity2022.3.62f2 macOS arm64 IL2CPP build, two distinct Players exit0); actual linked Bi4 phase103 preceded native callback299/300, with field3/mask15 and healthy 0/6 versus postprepared failure19/9, expected first-recovery sentinel. Host suite and bounded custody/product seal passed within declared scopes; old oneuse01–06 remain historical.
