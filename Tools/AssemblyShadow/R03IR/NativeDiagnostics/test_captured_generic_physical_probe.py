@@ -166,7 +166,6 @@ AssemblyShadowError AssemblyShadow::GetState(AssemblyShadowState& out) {
 bool AssemblyShadow::AssertMethodIsActive(const MethodInfo* method,const char* site) noexcept {
     ++guardCalls;
     assert(method==&inflated && site && strstr(site,"PhysicalCaptured"));
-    if(mode==4) return false;
     state=AssemblyShadowState::FailedAfterCommit;
     return false; // HOST FAKE only, actual native guard is NOT executed
 }
