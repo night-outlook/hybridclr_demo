@@ -47,6 +47,9 @@ int main(int argc,char** argv)
     const bool control=std::strcmp(mode,"control")==0;
     const int nativeCommit=control?0:19;
     const int nativeState=control?6:9;
+    // This host-only phase103 is synthetic. The real Player calls
+    // R03_IRW_BridgeStatus() against the linked native table instead.
+    R03_IRW_Trace(103,1,0,0,0);
     // Synthetic observer and managed phases, only for C++11 writer tests.
     // NOT a Unity callback or an actual Shadow Commit.
     R03_IRW_Trace(299,1,0,0,0);
