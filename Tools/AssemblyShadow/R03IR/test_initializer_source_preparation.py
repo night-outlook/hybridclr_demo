@@ -11,7 +11,7 @@ from prepare_initializer_sources import prepare, sha, MANAGED, ADDITIONS, BRIDGE
 class InitializerSourcePreparationTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="r03-init-source-")
-        root = Path(self.temp.name)
+        root = Path(self.temp.name).resolve(strict=True)
         self.project = root / "isolated"
         (self.project / "Assets").mkdir(parents=True)
         (self.project / ".r03-isolated-project").write_text("fresh\n")

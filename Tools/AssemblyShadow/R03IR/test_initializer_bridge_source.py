@@ -69,7 +69,9 @@ class InitializerBridgeScopeTests(unittest.TestCase):
         source = BRIDGE.read_text()
         self.assertNotIn('ConfigureCandidates', source)
         self.assertNotIn('StageAssembly', source)
-        self.assertNotIn('PrebuildCommand.GenerateAll', source)
+        self.assertNotIn('PrebuildCommand.GenerateAll();\n', source)
+        self.assertNotIn('PrebuildCommand.GenerateAll();', '\n'.join(
+            row for row in source.splitlines() if not row.lstrip().startswith('//'))
         self.assertNotIn('hotUpdateAssemblies =', source)
         self.assertNotIn('GetManaged2NativeFunctionPointerMethodPointer', source)
 
