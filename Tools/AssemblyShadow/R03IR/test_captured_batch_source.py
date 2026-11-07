@@ -14,7 +14,6 @@ import unittest
 from unittest import mock
 
 import run_captured_generic_local as runner
-from batch_contract import ContractError
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
