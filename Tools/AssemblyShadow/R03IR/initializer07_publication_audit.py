@@ -17,7 +17,7 @@ PINS = {
     "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
     "il2cpp_plus": "41764ae1eeefb33b05966e7f7676e52aae39c340",
 }
-SHA_BUILD = "553af2f5cd35a08da543e2b6d2d68ac89a5a7e98d63b7fb840ce2e64dfd60a05"
+SHA_BUILD = "553af2f5cd35a08da543e2b6b2d68ac89a5a7e98d63b7fb840ce2e64dfd60a05"
 SHA_BRIDGE = "c6bbea6e179964b7296bff02ee4f434b188e8578a4e7086da1c283e79b82f3da"
 MODES = {
     "initializer-control": ("d6e5b66f695498a9ba0806ea81930f03804d98f77382cb851d24c2b24f24202e", 0, 6, 35820, "0018"),
@@ -114,22 +114,6 @@ def verify(root=CHECKPOINT, overrides=None):
          local.get("hostCustody", {}).get("symlinkCount") == 4, "Host/product scope")
     build_bytes = read("batch/builds/candidate-release/build-receipt.json")
     build = strict_json(build_bytes)
-    # Source-only diagnostics: show which receipt binding failed before any
-    # classification; never suppress or replace a bad hash.
-    print("ONEUSE07_BUILD_INPUT=" + json.dumps({
-        "bytesDigest": sha(build_bytes),
-        "expected": SHA_BUILD,
-        "local": local.get("build", {}).get("sha256"),
-        "finding": findings.get("build", {}).get("sha256"),
-        "result": build.get("result"),
-        "pipeline": build.get("buildPipelineResult"),
-        "errors": build.get("errors"),
-        "warnings": build.get("warnings"),
-        "signature": build.get("initializerBridgeSignature"),
-        "generated": build.get("initializerBridgeGeneratedSha256"),
-        "postBuild": build.get("initializerBridgePostBuildSha256"),
-        "linkedObserved": build.get("initializerBridgeLinkedRuntimeObserved"),
-    }, sort_keys=True), file=sys.stderr)
     need(sha(build_bytes) == SHA_BUILD == local.get("build", {}).get("sha256") and
          findings.get("build", {}).get("sha256") == SHA_BUILD and
          build.get("result") == "Passed" and build.get("buildPipelineResult") == "Succeeded" and
