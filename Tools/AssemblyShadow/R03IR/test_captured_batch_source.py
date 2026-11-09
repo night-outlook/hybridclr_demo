@@ -22,9 +22,9 @@ ROOT = HERE.parents[2]
 
 class CapturedBatchSourceContracts(unittest.TestCase):
     def test_01_fixed_distinct_onebuild_threeplayer_roster(self):
-        self.assertIn("R03IRCapturedGenericOneUse09EvidenceBatchV1",
+        self.assertIn("R03IRNativeB1OneUse10EvidenceBatchV1",
                       (HERE / "run_captured_generic_local.py").read_text())
-        self.assertNotIn("R03IRCapturedGenericOneUse08EvidenceBatchV1",
+        self.assertNotIn("R03IRCapturedGenericOneUse09EvidenceBatchV1",
                          (HERE / "run_captured_generic_local.py").read_text())
         self.assertEqual(len(runner.CELLS),19)
         self.assertEqual(len(set(runner.CELLS)),19)
@@ -52,7 +52,11 @@ class CapturedBatchSourceContracts(unittest.TestCase):
                          "captured_ci_job_admission.py",
                          "test_captured_ci_job_admission.py",
                          "test_captured_source_preparation.py",
-                         "test_captured_batch_source.py"):
+                         "test_captured_batch_source.py",
+                         "PlayerProject/R03FirstErrorB1Probe.cpp",
+                         "verify_first_error_b1.py",
+                         "test_first_error_b1.py",
+                         "NativeDiagnostics/test_first_error_b1_probe.py"):
             self.assertIn("Tools/AssemblyShadow/R03IR/" + required,
                           runner.EXTRA_SOURCE_PATHS)
         report=runner.check_new_sources(ROOT)
@@ -105,7 +109,7 @@ class CapturedBatchSourceContracts(unittest.TestCase):
         self.assertIn("super().verify_build(role_id)",s)
         self.assertIn('"initializerBridgeSignature") == "Bi4"',s)
         self.assertIn("target_fixture(batch)",s)
-        self.assertIn("init_player(batch, m)",s)
+        self.assertIn("initializer_b1_player(batch, m)",s)
         self.assertIn("original_s_fixtures(batch)",s)
         self.assertIn("archive_audit(batch)",s)
         self.assertIn("original_process_audit(batch)",s)
@@ -126,7 +130,7 @@ class CapturedBatchSourceContracts(unittest.TestCase):
                        "AssemblyShadowRuntime.ValidateTransaction()",
                        "AssemblyShadowRuntime.CommitTransaction()",
                        "R03_IRG_Probe()", "R03_IRG_AttemptRuntimeInvoke()",
-                       "R03_IRG_Seal()", "R03_IR_Exit(0)"):
+                       "R03_IRG_Seal()", "R03_IRB1_Seal(15, 1)", "R03_IR_Exit(0)"):
             self.assertIn(anchor,s)
         self.assertLess(s.index("R03CapturedGenericAotOwner.WarmShared()"),
                         s.index("AssemblyShadowRuntime.ConfigureCandidates("))
