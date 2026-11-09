@@ -37,6 +37,7 @@ HEADER = r'''
 #include <cstddef>
 #include <cstring>
 namespace il2cpp { namespace vm { namespace assembly_shadow_first_failure_v2 {
+static const std::size_t kReasonLimit=4096;
 enum class State : unsigned char { Empty=0, Writing=1, Frozen=2, Invalid=3 };
 enum class Origin : unsigned char {
     Guard=1, InterpreterInitializer=2, LateBaselineUse=3,
