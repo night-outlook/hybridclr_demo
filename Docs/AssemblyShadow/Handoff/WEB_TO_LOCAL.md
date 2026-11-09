@@ -1,61 +1,99 @@
-# Primary Implementation → Local Validation — CLOSED (oneuse-07 consumed)
+# Primary Implementation → Local Validation — CONDITIONAL A2 oneuse-08
 
-Date: 2026-11-07 UTC. **No Local Validation build, Player, runner, repair, cleanup or retry is presently authorized.**
+Date: 2026-11-09 UTC. Owner: Primary Implementation. **One** fresh, source-pinned, focused R03 IR-R03-02 *physical captured-baseline generic* cycle. This is a new 19-cell, 1-build/3-Player batch — **not** a replay of initializer oneuse-07 or an acceptance of the independent R03 stage. Local may execute only after every gate below passes; otherwise return `BLOCKED/NotRun` without creating/consuming the batch root.
 
-The previous `R03IR-Initializer-20261107-oneuse-07` single-use 15-cell batch ran exactly once, with execution demo `6e1dc7b4349a386dc35c5ed46fca4225db273b18`. The Local publication demo commit is `66a0218ffb17e363531b7f7bc0f4114787ae0b76`. The verified result is **focused initializer PASS (15/15 cells)**, not R03 acceptance. The previous `WEB_TO_LOCAL.md` was consumed; do not copy its old invocation or reuse its output roots.
+## 1. Required reading and exact source authority
 
-## Current Primary-only work (A1 structural host prerequisite)
+Read in order:
 
-An isolated `R03CapturedGenericAotOwner.Touch<T>` source and a .NET8 host have proved CLR-owner/physical-`Methods` generic argument structure and real positive reflection/delegate body effects. Exact dual-OS [CI 42363760691](https://github.com/night-outlook/hybridclr_demo/actions/runs/42363760691) passed for this **host-only prerequisite**. [A1 scope review](../History/M07R/R03/IR_Remediation/POST_INITIALIZER07_2026-11-07/CAPTURED_GENERIC_A1_OWNER_HOST.md).
+1. `Docs/AssemblyShadow/README.md`, `Plan/CURRENT_STATUS.md`, this document, then `Handoff/RETURN_TO_WEB.md`.
+2. `History/M07R/R03/IR_Remediation/POST_INITIALIZER07_2026-11-07/CAPTURED_GENERIC_A2_PRIMARY_SOURCE_REVIEW.md`, `CAPTURED_GENERIC_A1_OWNER_HOST.md`, and `NEXT_PRIMARY_WORK.md`.
+3. `Tools/AssemblyShadow/R03IR/run_captured_generic_local.py`, `prepare_captured_generic_sources.py`, `PlayerProject/R03CapturedGenericPhysicalProbe.cpp`, `R03CapturedGenericPlayer.cs`, `R03CapturedGenericAotOwner.cs`, `verify_captured_generic_native.py` and their actual CI test sources.
+4. Published Local oneuse-07 `History/M07R/R03/local-validation-initializer-20261107-oneuse-07/`, original oneuse-06 finding in `local-evidence/FINDING.md` plus `BRIDGE_FINDING.json`, historical original-S custody and owner-retirement disposition.
 
-**A2 remains incomplete**: source and runtime evidence for acquiring the physical baseline generic argument without crossing the first-use barrier, constructing an actual IL2CPP inflated MethodInfo, and proving native error15/denied body with full first-error joins. The new A1 result is not a Player or native guard result and does **not** authorize Local execution. This handoff remains CLOSED; no oneuse07 replay or new batch.
+Common branch `codex/assembly-shadow-r01b-h1`. **The exact execution demo SHA is the FINAL 40-character pushed branch SHA in the accompanying Primary-to-Local continuation prompt; a Git document cannot embed the SHA of its own later publication commit.**
 
-## Required read order (for review, not execution)
+| Repository | Expected local clean checkout | Required source revision |
+| --- | --- | --- |
+| `night-outlook/hybridclr_demo` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | Final Primary demo publication SHA — verify local HEAD, actual live remote and Git source bytes |
+| `night-outlook/hybridclr` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `night-outlook/hybridclr_unity` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| `night-outlook/il2cpp_plus` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `41764ae1eeefb33b05966e7f7676e52aae39c340` |
 
-1. `Docs/AssemblyShadow/README.md` and `Plan/CURRENT_STATUS.md`.
-2. `History/M07R/R03/local-validation-initializer-20261107-oneuse-07/{README.md,LOCAL_RESULT.json,local-evidence/FINAL_INDEPENDENT_AUDIT.json}` and original raw Player records.
-3. Local-owned `Handoff/RETURN_TO_WEB.md`, oneuse-07 section. The Local-owned `Handoff/LOCAL_VALIDATION.md` is **empty** in the published repository; use actual checkpoint/RETURN_TO_WEB facts, and do not invent a Local record.
-4. `History/M07R/R03/IR_Remediation/POST_INITIALIZER07_2026-11-07/{PRIMARY_RECONCILIATION.md,NEXT_PRIMARY_WORK.md}`.
+All repos must be independently Git-owned, clean and with the exact canonical origin. Local must not use uncommitted working-tree changes or substitute a newer native/runtime/package revision. Do not mutate original S/K or prior Local checkpoint sources. The new captured target is an independently emitted `Methods.dll` and is checked for repeatable **same-host** bytes twice; A1 demonstrated that equal MVIDs do not guarantee cross-host identical SHA-256. Do not hardcode an unverified A1 Mac/Linux Methods digest as a Player fixture identity.
 
-The original oneuse-07 **historical** instructions are retrievable at
-`night-outlook/hybridclr_demo` commit
-`6e1dc7b4349a386dc35c5ed46fca4225db273b18`,
-`Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md`. They are not a live authorization.
-The historical oneuse-06 file referenced there as `RUNTIME_FINDINGS.json` was
-incorrectly named: the published finding is
-`History/M07R/R03/local-validation-initializer-20261107-oneuse-06/local-evidence/FINDING.md`,
-with `BRIDGE_FINDING.json`. Neither error changes previous evidence.
+## 2. Mandatory exact-final-source dual-OS CI
 
-## Source authority (fixed four-repository branch)
+Before any run, inspect the **actual workflow jobs**, not just overall status, for exact final pushed demo SHA, **both `macos-15` and `ubuntu-24.04` completed/success with no missing, failed, skipped or cancelled job**:
 
-All on `codex/assembly-shadow-r01b-h1`:
-- `night-outlook/hybridclr_demo`: current pushed Primary `HEAD` must be verified against GitHub Connector; current *runtime execution source*, not a new HEAD assertion, was `6e1dc7b4349a386dc35c5ed46fca4225db273b18`.
-- `night-outlook/hybridclr`: `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`.
-- `night-outlook/hybridclr_unity`: `948c0e3b4f8891481301770115e8ba4945eea6de`.
-- `night-outlook/il2cpp_plus`: `41764ae1eeefb33b05966e7f7676e52aae39c340`.
+- `.github/workflows/r03-ir-captured-generic-owner-host.yml` — real CLR owner/physical argument structural and body/negative tests (host only).
+- `.github/workflows/r03-ir-captured-generic-native-host.yml` — real test-only native probe compiled under C++11 with intentionally **VM-shaped mock** APIs, including inflation-poison, silent-null, and side-effect negatives.
+- `.github/workflows/r03-ir-captured-generic-batch-host.yml` — real C# source compilation against isolated API host, prepare/coordinator and strict source tests.
+- `.github/workflows/r03-ir-captured-generic-real-headers.yml` — real pinned **public fork source ABI** declarations/implementations. This is explicitly **NO official Unity SDK/Baselib compile**.
+- `.github/workflows/r03-ir-initializer-bridge-host.yml` — original real Bi4 bridge-host source.
+- `.github/workflows/r03-ir-initializer-local-contracts.yml` — original initializer runner/native host regressions.
+- `.github/workflows/r03-ir-current-native-local-cycle-host.yml` — actual current 8+2 native host source/execution and custody preflight.
 
-The oneuse-07 record proves a real linked Bi4 phase103=1 and native
-299/300 callback once per Player, field3/mask15, control0/6 and the
-postprepared failure19/9 sentinel in distinct successful Players.
-It does not identify the postterminal AOT denial mechanism,
-implement native snapshot V2, or prove physical captured generic error15.
+The current-native source-only gate should also be green if triggered. Record the actual final-source run IDs/job IDs/conclusions and any red/cancelled ancillary workflows without reclassifying their historical outcomes. A real-fork source audit is NOT a pass for official SDK translation-unit compilation. All new C++ A2 integration and real IL2CPP linking remain genuine Local proof obligations.
 
-## Next responsibility and explicit stop
+## 3. Fresh macOS/SDK/source/custody/capacity admission
 
-**Primary Implementation retains ownership.** Further design, implementation,
-native V2 instrumentation, captured-generic real test stimulus, host tests,
-documentation, and source-bound CI belong to Primary.
-Local Validation may read/inspect the published checkpoint but
-must not execute another build or Player until a separately reviewed,
-fully prepared, committed/pushed, exact-source new `WEB_TO_LOCAL.md`
-explicitly authorizes a new single-use cycle with fresh roots and machine,
-Git, SDK, history/custody and capacity gates.
+On the actual Apple Silicon Mac, verify official Unity **2022.3.62f2** at the pinned executable and real working IL2CPP SDK/compiler, `dotnet` SDK >=8 and actual .NET8 runtime, current process-local PATH, no competing Unity/Bee/Player, four Git commits above, and the retained **clean, registered, detached** original-S `fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b` at the exact path below.
 
-The 17 user-authorized retired runtime roots and 40 duplicate paths
-remain `Unavailable/PermanentlyDeleted`. Historical strict custody
-remains `Blocked` and historical verdicts are not overwritten.
-The independent R03 review remains **FAIL** with High `IR-R03-01/02`
-open. `R03Accepted=false`; `H2Passed=false`;
-`ReadyForHumanReviewGate=false`; `runtimeAcceptance=false`;
-`qualificationApproved=false`; `fullLegacyRegressionAcceptance=false`;
-PureInterpreter disabled. No Human Review Gate/H2/M08A/X02/SNAP-01.
+The owner explicitly deleted **17 historical runtime-related roots and 40 duplicate paths**. Mark them `Unavailable/PermanentlyDeleted`; do **not** recreate, restore, compare nonexistent payloads as present or silently waive surviving custody. Historical strict custody remains `Blocked`. Preserve source/installed SDK/remaining history with the established before/after tests.
+
+Use these exact existing paths (the NEW output roots must **not** exist):
+
+```bash
+WORKSPACE=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r
+ORIGINAL_S=/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse
+UNITY_EXE=/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
+OUTPUT_PARENT=/Users/ah/GitHub/hybridclr/r03-local-validation
+RUN_ROOT="$OUTPUT_PARENT/R03IR-CapturedGeneric-20261109-oneuse-08"
+HOST_RAW="$RUN_ROOT-native-host-raw"
+# DEMO_COMMIT = exact FINAL pushed SHA reported in Primary's closing prompt.
+```
+
+Require canonical physical paths, no symlink/alias, no overlap with repositories, original-S, previous batch/evidence roots or SDK, and both RUN_ROOT and HOST_RAW absent. Before creating either, sample **actual available bytes via statvfs** on the same `OUTPUT_PARENT` volume in **two fresh measurements at least 60 seconds apart**; preserve timestamps, mount/device and raw values. This cycle grants a **new oneuse-08-only conditional 25GiB minimum**: **BOTH** samples must be >=**26,843,545,600 bytes**. This is a single-use allowance for this one IL2CPP build/three-Player cycle, not transfer of oneuse-07's consumed permission, not a change to the project's 20GiB hard or 40GiB advisory thresholds, not a promise future build disk usage fits. At >=25 but <40GiB, explicitly record advisory risk. **No disk cleanup target is authorized** by this document.
+
+Run existing read-only environment admission (not the actual coordinator) with the new absent output path:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -B \
+ "$WORKSPACE/hybridclr_demo/Tools/AssemblyShadow/R03IR/current_native_environment_admission.py" \
+ --workspace "$WORKSPACE" --original-s "$ORIGINAL_S" \
+ --unity "$UNITY_EXE" --demo-commit "$DEMO_COMMIT" --output "$RUN_ROOT"
+```
+
+If **ANY** gate fails: retain source/CI/capacity/admission logs, return `PrerequisiteBlocked`, runner count 0, builds 0, Players 0; **no** automatic retries or capacity-threshold changes. Obtain human approval for any separate storage operation; do not silently perform cleanup.
+
+## 4. ONE authorized 19-cell Local execution — after GO only
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -B \
+ "$WORKSPACE/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_captured_generic_local.py" \
+ --workspace "$WORKSPACE" --original-s "$ORIGINAL_S" \
+ --unity "$UNITY_EXE" --demo-commit "$DEMO_COMMIT" --output "$RUN_ROOT"
+```
+
+The runner itself authenticates the four Git HEADs, actual new Git-source bytes, new unused roots, source preparation receipts, both fixture families, ten original native hosts, original-S **archival-only** S/process/binary audits, and final custody. Its fixed 19 cells include exactly **one actual Unity2022.3.62f2 macOS arm64 IL2CPP ON/diagnostics2/Release BuildPipeline**, exactly **two distinct original initializer regression Players** and exactly **one new physical captured-generic Player**. No additional stimuli, stale app reuse, process replay, manual binary patch, alternative fixture, changed timeout/guard/expected semantics, or Local architectural refactor.
+
+The same new compiled Player must preserve the prior source-bound Bi4 `MethodBridge.cpp` augmentation before/after BuildPipeline and the real linked exports `R03_IRW_BridgeStatus`, `R03_IRW_OnPrepared`, `R03_IRG_Open`, `R03_IRG_Probe`, `R03_IRG_AttemptRuntimeInvoke`, `R03_IRG_Seal`. An actual linked binary is necessary, but is not alone runtime success.
+
+Two **fresh** initializer Players must reproduce oneuse-07 control (Commit0/state6, linked Bi4 phase103=1, one callback299/300, native physical field3/mask15, no reason) and failure (Commit19/state9, same linked callback/field/mask, exact `R03IR.InitializerFailure.AfterPublication.V1` first-recovery, attempted postterminal AOT without side effect). Keep their original strict V1 native raw, phase journals, native recovery, fresh OS commands/PIDs/nonces, logs and byte digests. **Do not substitute old oneuse-07 receipts as new Players.**
+
+The *new captured-generic Player* must first prove successful **real** fresh transaction Commit0/state6 with prewarmed `Touch<object>` counter1, without resolving/using physical `Methods.R03.Node` before Commit. Only afterward, a native test-only observer obtains the physical AOT `Methods` TypeDef handle, constructs an actual inflated `Assembly-CSharp` owner `R03CapturedGenericAotOwner.Touch<Methods.R03.Node>` `MethodInfo`, verifies its `method_inst` physically captures the original baseline type rather than the interpreter replacement, and checks state6 **again after generic inflation**. It then calls the **actual native `AssemblyShadow::AssertMethodIsActive`**, expecting denial, final FailedAfterCommit state9, unmodified native first-error **15** with `ShadowCapturedBaselineType`, `CapturedArgumentAssembly=Methods`, `Context=method_inst`, `TypePath=/arg[0]` and `Reason=CapturedBaselineType`. A separate postterminal actual `Runtime::Invoke` must report a **real exception/rejection** (not merely null return), no AOT method-body execution, preserved counter1→1 and unaltered first failure. The unique bounded native V1 JSON writer must be exclusive, fsynced, strictly request/fixture/PID/executable/overlay/build bound, with native real-source probe flags and all acceptance fields false.
+
+Any early failure (including method inflation poisoning the world **before** the guard), Unity compiler issue, absent specialization, wrong type, missing export, missing method-entry denial, wrong error/state or silent-null must remain a genuine `Failed/ReturnRequired`, with its exact native/Unity/Bee/log/command artifact. **Do not repair nontrivial source locally, rerun or claim the first error15 was the method guard if it was caused earlier.** Native V2 remains NotImplemented/NotRun in this experiment.
+
+## 5. Evidence custody, publication and STOP
+
+After the single invocation even if a cell fails, authenticate the complete raw new batch and sibling native-host custody (including actual literal symlinks, original byte inventory, source/body/install/Player PIDs), independent bounded seal, and before/after protected source/SDK/surviving historical evidence. Preserve the new product/host roots unchanged. Record BuildReport warning/error **without** suppressing a failed BuildPipeline, full actual Unity Editor.log/Bee diagnostics, `MethodBridge.cpp` source after augmentation and after build, GameAssembly link identity and each unique Player log.
+
+Publish to a **new**, nonoverwriting checkpoint at `Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-08/`, with scoped `LOCAL_RESULT`, original raw receipts, evidence index/seal, strict first-error and Player process joins, exact execution SHA/source vs later evidence publication SHA, original-S archival and retired-source dispositions. Update **Local-owned** `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md`. Commit/push via GitHub and verify all four repository remote HEADs. Report the exact result and stop. No retry, unrelated workload, H2/M08A/X02/SNAP-01, Human Review Gate approval or milestone promotion.
+
+## 6. Explicit acceptance boundary
+
+A successful A2 oneuse-08 establishes **only** focused compiled/linked source, genuine physical captured-method native guard error15 and its three Player witnesses. It does **not** prove native complete `NativePreopenedSnapshotV2`, VM-wide epoch, GC/RSS, managed shutdown, complete source/object/link historical original-S joins, production SLA, universal AOT direct-call denial or independent R03 full-stage acceptance.
+
+The independent R03 **FAIL** and High `IR-R03-01/02` remain open. `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`, `runtimeAcceptance=false`, `qualificationApproved=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter disabled. No automatic Human Review Gate.
