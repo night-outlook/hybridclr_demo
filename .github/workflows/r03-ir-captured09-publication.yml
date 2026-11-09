@@ -1,0 +1,61 @@
+name: R03 oneuse09 published captured generic raw crosscheck
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-ir-captured09-publication.yml'
+      - 'Tools/AssemblyShadow/R03IR/captured09_publication_audit.py'
+      - 'Tools/AssemblyShadow/R03IR/test_captured09_publication.py'
+      - 'Tools/AssemblyShadow/R03IR/captured_ci_job_admission.py'
+      - 'Tools/AssemblyShadow/R03IR/verify_captured_generic_native.py'
+      - 'Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/**'
+      - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  published-raw:
+    name: Git-published raw and negative tests / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, ubuntu-24.04]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03IR/captured09_publication_audit.py
+            /Tools/AssemblyShadow/R03IR/test_captured09_publication.py
+            /Tools/AssemblyShadow/R03IR/captured_ci_job_admission.py
+            /Tools/AssemblyShadow/R03IR/verify_captured_generic_native.py
+            /Tools/AssemblyShadow/R03IR/verify_initializer_observation.py
+            /Tools/AssemblyShadow/R03IR/verify_initializer_trace.py
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/LOCAL_RESULT.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/local-evidence/RUNTIME_FINDINGS.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/local-evidence/FINAL_INDEPENDENT_AUDIT.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/local-evidence/CI_VALIDATOR.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/local-evidence/captured-generic-09-prerequisite-CI.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/batch/LOCAL_BATCH_RESULT.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/batch/seal-receipt.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/batch/evidence-index.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/batch/builds/candidate-release/build-receipt.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/batch/players/IR-R03-02-initializer-control/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/batch/players/IR-R03-02-initializer-failure/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/batch/players/IR-R03-02-captured-generic/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/batch/commands/0026/command.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/batch/commands/0027/command.json
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/batch/commands/0028/command.json
+      - name: Recheck original published bytes; no Unity/IL2CPP execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 -B Tools/AssemblyShadow/R03IR/captured09_publication_audit.py
+          python3 -B -m unittest discover -s Tools/AssemblyShadow/R03IR \
+            -p test_captured09_publication.py -v
+          test -z "$(git status --porcelain)"
+          echo 'Source-only: no Unity or full product binary rehash.'
