@@ -51,6 +51,8 @@ EXTRA_SOURCE_PATHS = (
     "Tools/AssemblyShadow/R03IR/prepare_captured_generic_sources.py",
     "Tools/AssemblyShadow/R03IR/run_captured_generic_local.py",
     "Tools/AssemblyShadow/R03IR/verify_captured_generic_native.py",
+    "Tools/AssemblyShadow/R03IR/real_native_header_surface.py",
+    "Tools/AssemblyShadow/R03IR/test_real_native_header_surface.py",
     "Tools/AssemblyShadow/R03IR/test_captured_generic_native_consumer.py",
     "Tools/AssemblyShadow/R03IR/test_captured_source_preparation.py",
     "Tools/AssemblyShadow/R03IR/test_captured_batch_source.py",
