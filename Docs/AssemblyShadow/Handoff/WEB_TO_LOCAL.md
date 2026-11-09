@@ -1,4 +1,6 @@
-# Primary Implementation → Local Validation — CONDITIONAL A2 oneuse-08
+# Primary Implementation → Local Validation — CONDITIONAL A2 oneuse-09
+
+**Why oneuse-09 rather than oneuse-08:** The first oneuse-08 attempt never reached the runner. It remains immutable `PrerequisiteBlocked / NotRun` at candidate source `26843412eda7034cd91c0754bdcde16d5517d814`, published evidence `c9a5cf7a5e9c33a08db0a0f5f9bc1917e8c7ac25`, because Ubuntu Actions job `128946622207` (run `42551093381`) persistently reported `status=in_progress` with `conclusion=success`. No completed-job inference from the parent workflow, timestamp, logs or check-run is allowed. All 19 old cells are NotRun, old runner/build/Player counts zero, and both old `R03IR-CapturedGeneric-20261109-oneuse-08` product/native-host roots remain **absent and not reused**. Read the [exact Primary reconciliation](../History/M07R/R03/IR_Remediation/POST_CAPTURED08_2026-11-09/PRIMARY_CI_ADMISSION_REMEDIATION.md) and the **original** Local prerequisite evidence. The new oneuse-09 is a *fresh* independent authority with distinct unused roots, evidence checkpoint and final-source CI jobs.
 
 Date: 2026-11-09 UTC. Owner: Primary Implementation. **One** fresh, source-pinned, focused R03 IR-R03-02 *physical captured-baseline generic* cycle. This is a new 19-cell, 1-build/3-Player batch — **not** a replay of initializer oneuse-07 or an acceptance of the independent R03 stage. Local may execute only after every gate below passes; otherwise return `BLOCKED/NotRun` without creating/consuming the batch root.
 
@@ -36,6 +38,8 @@ Before any run, inspect the **actual workflow jobs**, not just overall status, f
 - `.github/workflows/r03-ir-initializer-local-contracts.yml` — original initializer runner/native host regressions.
 - `.github/workflows/r03-ir-current-native-local-cycle-host.yml` — actual current 8+2 native host source/execution and custody preflight.
 
+**Strict job-status gate for this new cycle:** `Tools/AssemblyShadow/R03IR/captured_ci_job_admission.py` reads a fresh, exact-new-source `CI.json`-shaped snapshot assembled from **actual GitHub workflow-run and job-list responses**. It must return `PassedSevenWorkflowFourteenJobRecords_NoLocalAuthorization` only if all seven run IDs and all fourteen OS job records are genuine `status=completed` AND `conclusion=success` at the final pushed SHA. Independently confirm each direct job and its attempt-level/check-run status; if any source disagrees, stop as `PrerequisiteBlocked`. The parser deliberately rejects the original oneuse-08 `in_progress/success` sample and cannot overwrite it. A parser PASS is a necessary CI receipt cross-check, **not** permission to skip other admission gates or launch Unity.
+
 The current-native source-only gate should also be green if triggered. Record the actual final-source run IDs/job IDs/conclusions and any red/cancelled ancillary workflows without reclassifying their historical outcomes. A real-fork source audit is NOT a pass for official SDK translation-unit compilation. All new C++ A2 integration and real IL2CPP linking remain genuine Local proof obligations.
 
 ## 3. Fresh macOS/SDK/source/custody/capacity admission
@@ -51,12 +55,24 @@ WORKSPACE=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r
 ORIGINAL_S=/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse
 UNITY_EXE=/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
 OUTPUT_PARENT=/Users/ah/GitHub/hybridclr/r03-local-validation
-RUN_ROOT="$OUTPUT_PARENT/R03IR-CapturedGeneric-20261109-oneuse-08"
+RUN_ROOT="$OUTPUT_PARENT/R03IR-CapturedGeneric-20261109-oneuse-09"
 HOST_RAW="$RUN_ROOT-native-host-raw"
+CI_SNAPSHOT="$OUTPUT_PARENT/captured-generic-09-prerequisite-CI.json"
+# CI_SNAPSHOT is a NEW, fresh GitHub API snapshot outside both unconsumed roots.
 # DEMO_COMMIT = exact FINAL pushed SHA reported in Primary's closing prompt.
 ```
 
-Require canonical physical paths, no symlink/alias, no overlap with repositories, original-S, previous batch/evidence roots or SDK, and both RUN_ROOT and HOST_RAW absent. Before creating either, sample **actual available bytes via statvfs** on the same `OUTPUT_PARENT` volume in **two fresh measurements at least 60 seconds apart**; preserve timestamps, mount/device and raw values. This cycle grants a **new oneuse-08-only conditional 25GiB minimum**: **BOTH** samples must be >=**26,843,545,600 bytes**. This is a single-use allowance for this one IL2CPP build/three-Player cycle, not transfer of oneuse-07's consumed permission, not a change to the project's 20GiB hard or 40GiB advisory thresholds, not a promise future build disk usage fits. At >=25 but <40GiB, explicitly record advisory risk. **No disk cleanup target is authorized** by this document.
+Require canonical physical paths, no symlink/alias, no overlap with repositories, original-S, previous batch/evidence roots or SDK, and both RUN_ROOT and HOST_RAW absent. Before creating either, sample **actual available bytes via statvfs** on the same `OUTPUT_PARENT` volume in **two fresh measurements at least 60 seconds apart**; preserve timestamps, mount/device and raw values. This cycle grants a **new oneuse-09-only conditional 25GiB minimum**: **BOTH** samples must be >=**26,843,545,600 bytes**. This is a single-use allowance for this one IL2CPP build/three-Player cycle, not transfer of oneuse-07's consumed permission, not a change to the project's 20GiB hard or 40GiB advisory thresholds, not a promise future build disk usage fits. At >=25 but <40GiB, explicitly record advisory risk. **No disk cleanup target is authorized** by this document.
+
+First independently collect and preserve a **new** `CI_SNAPSHOT` from the **latest final-source** GitHub Actions workflow and job endpoints in the same `{"runs":[...],"jobs":{"<runId>":{"jobs":[...]}}}` structure as the prior published `preflight/CI.json`; it must not be an edited copy of oneuse-08. Ensure it is a new regular nonsymlink file outside both product roots, retain the original source bytes and hash, then evaluate the strict job-level predicates:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -B \
+ "$WORKSPACE/hybridclr_demo/Tools/AssemblyShadow/R03IR/captured_ci_job_admission.py" \
+ --ci-json "$CI_SNAPSHOT" --demo-commit "$DEMO_COMMIT"
+```
+
+Any result other than `PassedSevenWorkflowFourteenJobRecords_NoLocalAuthorization` is **BLOCKED**, no runner. Do not repair or filter a contradictory job status in the JSON. Verify original direct job, attempt jobs and check-run records independently, and retain any contradictory bytes. The other six admission categories remain mandatory even if this script passes.
 
 Run existing read-only environment admission (not the actual coordinator) with the new absent output path:
 
@@ -90,12 +106,14 @@ Any early failure (including method inflation poisoning the world **before** the
 
 ## 5. Evidence custody, publication and STOP
 
+Preserve the original oneuse-08 `local-validation-captured-generic-20261109-oneuse-08-prerequisite-blocked` checkpoint, its contradictory job records and the unused old root names unchanged. The new oneuse-09 checkpoint is additive and distinct.
+
 After the single invocation even if a cell fails, authenticate the complete raw new batch and sibling native-host custody (including actual literal symlinks, original byte inventory, source/body/install/Player PIDs), independent bounded seal, and before/after protected source/SDK/surviving historical evidence. Preserve the new product/host roots unchanged. Record BuildReport warning/error **without** suppressing a failed BuildPipeline, full actual Unity Editor.log/Bee diagnostics, `MethodBridge.cpp` source after augmentation and after build, GameAssembly link identity and each unique Player log.
 
-Publish to a **new**, nonoverwriting checkpoint at `Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-08/`, with scoped `LOCAL_RESULT`, original raw receipts, evidence index/seal, strict first-error and Player process joins, exact execution SHA/source vs later evidence publication SHA, original-S archival and retired-source dispositions. Update **Local-owned** `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md`. Commit/push via GitHub and verify all four repository remote HEADs. Report the exact result and stop. No retry, unrelated workload, H2/M08A/X02/SNAP-01, Human Review Gate approval or milestone promotion.
+Publish to a **new**, nonoverwriting checkpoint at `Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/`, with scoped `LOCAL_RESULT`, original raw receipts, evidence index/seal, strict first-error and Player process joins, exact execution SHA/source vs later evidence publication SHA, original-S archival and retired-source dispositions. Update **Local-owned** `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md`. Commit/push via GitHub and verify all four repository remote HEADs. Report the exact result and stop. No retry, unrelated workload, H2/M08A/X02/SNAP-01, Human Review Gate approval or milestone promotion.
 
 ## 6. Explicit acceptance boundary
 
-A successful A2 oneuse-08 establishes **only** focused compiled/linked source, genuine physical captured-method native guard error15 and its three Player witnesses. It does **not** prove native complete `NativePreopenedSnapshotV2`, VM-wide epoch, GC/RSS, managed shutdown, complete source/object/link historical original-S joins, production SLA, universal AOT direct-call denial or independent R03 full-stage acceptance.
+A successful A2 oneuse-09 establishes **only** focused compiled/linked source, genuine physical captured-method native guard error15 and its three Player witnesses. It does **not** prove native complete `NativePreopenedSnapshotV2`, VM-wide epoch, GC/RSS, managed shutdown, complete source/object/link historical original-S joins, production SLA, universal AOT direct-call denial or independent R03 full-stage acceptance.
 
 The independent R03 **FAIL** and High `IR-R03-01/02` remain open. `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`, `runtimeAcceptance=false`, `qualificationApproved=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter disabled. No automatic Human Review Gate.
