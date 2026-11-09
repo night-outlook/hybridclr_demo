@@ -34,6 +34,11 @@ namespace AssemblyShadow.R03.IR
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern int R03_IRG_Seal();
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IRB1_Open(string path, string runId,
+            string caseId, string fixtureSha256);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IRB1_Seal(int expectedCode, int expectedOrigin);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern void R03_IR_Exit(int status);
 
         private static bool s_started;
@@ -84,6 +89,9 @@ namespace AssemblyShadow.R03.IR
                 Need(R03_IRG_Open(output, request.runId, request.caseId,
                                   request.dllSha256, owner) == 1,
                      "Exclusive native physical generic witness/open");
+                Need(R03_IRB1_Open(output + ".first-error-b1.json",
+                                   request.runId, request.caseId, request.dllSha256) == 1,
+                     "Independent native B1 first-error preopen");
                 Need(AssemblyShadowRuntime.ConfigureCandidates(
                          request.baselineId,
                          new[] { "A", "B", "Layout", "Methods", "R03Contract" },
@@ -120,6 +128,8 @@ namespace AssemblyShadow.R03.IR
                      "Real postterminal AOT method body remains denied");
                 Need(R03_IRG_Seal() == 1,
                      "Native bounded source/PID/first-recovery observation");
+                Need(R03_IRB1_Seal(15, 1) == 1,
+                     "Actual originating Guard15 B1 record preserved after Runtime::Invoke");
                 R03_IR_Exit(0);
             }
             catch (Exception)
