@@ -24,6 +24,8 @@ All repos must be independently Git-owned, clean and with the exact canonical or
 
 ## 2. Mandatory exact-final-source dual-OS CI
 
+The source-bound `Tools/AssemblyShadow/R03IR/captured_generic_handoff_ci_contracts.py` performs five positive/negative host tests that **all seven** real workflow files self-trigger and include this exact handoff path, plus the pinned public native checkout. This is a *trigger-source* proof only: it does not claim that any actual GitHub Actions job ran. Following this final publication, inspect each workflow's **real** latest run with the exact demo commit in the Primary continuation prompt; even a successful run at the immediately preceding demo commit is insufficient.
+
 Before any run, inspect the **actual workflow jobs**, not just overall status, for exact final pushed demo SHA, **both `macos-15` and `ubuntu-24.04` completed/success with no missing, failed, skipped or cancelled job**:
 
 - `.github/workflows/r03-ir-captured-generic-owner-host.yml` — real CLR owner/physical argument structural and body/negative tests (host only).
