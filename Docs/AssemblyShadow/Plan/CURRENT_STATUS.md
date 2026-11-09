@@ -1,3 +1,13 @@
+# R03 current status — B1 shared admission corrected; oneuse-11 conditional (2026-11-09)
+
+Original oneuse-10 Local `7c8af27e63038c77c13171c5776760e869e9c09d` (published `e75cb536626358b69d7bbd90837a2044a2fab86a`) remains **PrerequisiteBlocked/NotRun** with 0 coordinator/Unity/Players, 19 cells NotRun; constituent 14-source/47-path checks passed, but shared Mac/runner gate still demanded 11/45. Its historical roots remain absent and cannot be reused; actual B1 runtime is NotRun. See [original return](../Handoff/RETURN_TO_WEB.md) and [focused Primary remediation](../History/M07R/R03/IR_Remediation/POST_B1_BLOCKED10_2026-11-09/PRIMARY_ADMISSION_REMEDIATION.md).
+
+Primary fixed the outer `run_current_native_validation_cycle.validate_sources` and inner `run_current_native_host_preflight.inputs`, enforced exact reviewed 14/47 and current four-repo source pins, added real-checkout hosted CI admission + negatives and corrected three active current-native workflow native-SHA pins. Historical I/S/oneuse07–10 source/receipts unchanged. [New oneuse-11 WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md) is **conditional only**; final-source green CI and fresh Local capacity/custody/Unity preflight required before one 19-cell/one-build/three-Player run. Inactive B2 component host tests remain separate from actual VM V2 transport.
+
+Independent full R03 FAIL, both High IR-R03-01/02 open, original S full provenance/strict historical custody still blocked, 17 retired roots/40 paths Unavailable. Native V2 writer/B3 whole VM epoch/GC/RSS/RC/P/E pending, no product/H2/Human Gate acceptance, PureInterpreter disabled.
+
+---
+
 # R03 Primary current checkpoint — native B1 first-error source ready, conditional oneuse-10 (2026-11-09)
 
 Current Primary code binds the new immutable, fixed-buffer originating native B1 error source in `il2cpp_plus@a0209bf4285db3f0d0fc66d8817578235438cef4`, with a test-only preopened native Player reader, old V1 crosschecks and new oneuse-10 exact-source single-batch runner. 14 Git source pins, 47 VM delta paths, native/header C++11/17 host coverage and separate C++11 test-probe/mock-source checks were prepared. Old oneuse07/08/09 immutable verdicts unchanged. New [B1 Primary review](../History/M07R/R03/IR_Remediation/POST_CAPTURED09_2026-11-09/B1_NATIVE_ORIGIN_IMPLEMENTATION_AND_REVIEW.md).
