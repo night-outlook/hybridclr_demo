@@ -48,9 +48,9 @@ class CurrentNativeSourceGateContracts(unittest.TestCase):
             target.write_bytes(source.read_bytes())
         return roots
 
-    def test_01_manifest_has_exact_eleven_files_and_fixed_source_pins(self):
+    def test_01_manifest_has_exact_fourteen_files_and_fixed_source_pins(self):
         self.assertEqual(len(self.config["files"]), len(FILES))
-        self.assertEqual(len(FILES), 11)
+        self.assertEqual(len(FILES), 14)
         self.assertEqual(self.config["candidateNativePin"], CURRENT["il2cpp_plus"])
         self.assertEqual(self.config["legacyR03NativePin"], OLD_NATIVE)
         self.assertNotEqual(CURRENT["il2cpp_plus"], OLD_NATIVE)
@@ -74,10 +74,10 @@ class CurrentNativeSourceGateContracts(unittest.TestCase):
         self.assertEqual(new["branch"], BRANCH)
         self.assertIsNot(new, original)
 
-    def test_04_real_checkout_sources_have_exact_eleven_known_git_blobs(self):
+    def test_04_real_checkout_sources_have_exact_fourteen_known_git_blobs(self):
         d = verify_source_roots(self.roots, require_checkout_heads=True)
         self.assertEqual(d["result"], "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation")
-        self.assertEqual(d["verifiedSourceFiles"], 11)
+        self.assertEqual(d["verifiedSourceFiles"], 14)
         self.assertEqual(d["currentCandidatePins"], CURRENT)
         self.assertEqual(d["checkoutHeads"], CURRENT)
         self.assertEqual(d["currentSourceMatchedPlayerExecution"], "NotRun")
