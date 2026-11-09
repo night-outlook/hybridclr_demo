@@ -106,7 +106,12 @@ class SharedB1AdmissionContracts(unittest.TestCase):
             doc = json.loads(source.CONFIG.read_text())
             doc["candidateNativePin"] = "41764ae1eeefb33b05966e7f7676e52aae39c340"
             path.write_text(json.dumps(doc), encoding="utf-8")
-            with mock.patch.object(source, "CONFIG", path), \
+            # read_config(path=CONFIG) captures its default at definition
+            # time; replace the callable so this mutation truly reaches the
+            # identical production parser rather than patching a dead constant.
+            real_reader = source.read_config
+            with mock.patch.object(source, "read_config",
+                         side_effect=lambda: real_reader(path)), \
                  mock.patch.object(cycle, "identity", return_value={"remoteHeadVerified": True}):
                 with self.assertRaises(source.CandidateSourceError):
                     cycle.validate_sources(self.workspace, self.sha)
