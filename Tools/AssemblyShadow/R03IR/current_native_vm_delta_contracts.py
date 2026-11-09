@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""All 45 changed current-native VM bytes vs legacy focused-native pin, SOURCE ONLY.
+"""All 47 changed current-native VM bytes vs legacy focused-native pin, SOURCE ONLY.
 
 No Unity, IL2CPP, compiler or Player execution. The exact native source
 checkout is immutable, and the manifest is a review inventory, not a claim
@@ -18,14 +18,16 @@ import unittest
 
 HERE = Path(__file__).resolve().parent
 MANIFEST = HERE / "current_native_vm_delta.json"
-MANIFEST_BLOB = "c022eff82c1f3678820dc87299c0d8814bf6c660"
+MANIFEST_BLOB = "bef707cd0ebef481c8f2a72044634f85070533b8"
 LEGACY_NATIVE = "74dbdbea80d83923863303bd2b2c0a87f36541b1"
-CURRENT_NATIVE = "41764ae1eeefb33b05966e7f7676e52aae39c340"
+CURRENT_NATIVE = "a0209bf4285db3f0d0fc66d8817578235438cef4"
 EXPECTED_VM_NAMES = (
     "Assembly.cpp",
     "Assembly.h",
     "AssemblyShadow.cpp",
     "AssemblyShadow.h",
+    "AssemblyShadowFirstFailureV2.h",
+    "AssemblyShadowFirstFailureV2Host.cpp",
     "AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
     "AssemblyShadowBoundedExecutionEmptyLive.h",
     "AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
@@ -113,14 +115,14 @@ def validate(cfg: dict, root: Path, *, check_native_commit: bool = True) -> dict
             cfg["baselineNativeCommit"] == LEGACY_NATIVE and
             cfg["candidateNativeCommit"] == CURRENT_NATIVE,
             "Immutable legacy/current native source authority")
-    require(type(cfg["files"]) is list and len(cfg["files"]) == len(EXPECTED_VM_NAMES) == 45,
-            "Exactly 45 changed production-facing VM paths")
+    require(type(cfg["files"]) is list and len(cfg["files"]) == len(EXPECTED_VM_NAMES) == 47,
+            "Exactly 47 changed production-facing VM paths")
     require(tuple(row["path"].replace("libil2cpp/vm/", "") for row in cfg["files"])
             == EXPECTED_VM_NAMES, "Ordered, complete canonical VM delta path identity")
     compare = cfg["comparison"]
-    require(compare == {"aheadBy":168, "behindBy":0, "totalFilesChanged":131,
-                        "vmFilesChanged":45, "diagnosticToolFilesChanged":61,
-                        "workflowFilesChanged":25}, "Fixed Git history delta cardinality")
+    require(compare == {"aheadBy":174, "behindBy":0, "totalFilesChanged":134,
+                        "vmFilesChanged":47, "diagnosticToolFilesChanged":61,
+                        "workflowFilesChanged":26}, "Fixed Git history delta cardinality")
     require(cfg["acceptance"] == {"actualUnityPlayerRun":False,
              "nativeCompilerReexecuted":False,
              "allChangedVmFilesSemanticallyReviewed":False,
@@ -144,11 +146,11 @@ def validate(cfg: dict, root: Path, *, check_native_commit: bool = True) -> dict
         require_source(root, row)
     counts = {t: sum(x["baselineDelta"] == t for x in cfg["files"])
               for t in ("modified", "added")}
-    require(counts == {"modified": 11, "added": 34},
+    require(counts == {"modified": 11, "added": 36},
             "Original delta status distribution mismatch")
     return {"result": "PassedCurrentNativeVmSourceDeltaOnly",
             "baseNativeCommit": LEGACY_NATIVE, "currentNativeCommit": CURRENT_NATIVE,
-            "changedVmFileCount":45, "modified":11, "added":34,
+            "changedVmFileCount":47, "modified":11, "added":36,
             "officialUnitySdkCompilation":"NotRun",
             "linkedPlayerInputCoverage":"NotProven",
             "independentSemanticReview":"NotRun",
@@ -168,16 +170,16 @@ class CurrentVmDeltaTests(unittest.TestCase):
         self.assertEqual(git_blob(MANIFEST.read_bytes()), MANIFEST_BLOB)
 
     def test_02_path_roster_and_source_schema(self):
-        self.assertEqual(len(EXPECTED_VM_NAMES), 45)
-        self.assertEqual(len(set(EXPECTED_VM_NAMES)), 45)
-        self.assertEqual(len(self.cfg["files"]), 45)
+        self.assertEqual(len(EXPECTED_VM_NAMES), 47)
+        self.assertEqual(len(set(EXPECTED_VM_NAMES)), 47)
+        self.assertEqual(len(self.cfg["files"]), 47)
         self.assertEqual(self.cfg["files"][0]["path"], "libil2cpp/vm/Assembly.cpp")
         self.assertEqual(self.cfg["files"][-1]["path"], "libil2cpp/vm/Runtime.cpp")
 
-    def test_03_all_45_genuine_native_checkout_sources_match(self):
+    def test_03_all_47_genuine_native_checkout_sources_match(self):
         x = self.check()
         self.assertEqual(x["result"], "PassedCurrentNativeVmSourceDeltaOnly")
-        self.assertEqual(x["changedVmFileCount"], 45)
+        self.assertEqual(x["changedVmFileCount"], 47)
         self.assertFalse(x["runtimeAcceptance"])
 
     def test_04_mutated_blob_is_refused(self):
@@ -233,8 +235,8 @@ class CurrentVmDeltaTests(unittest.TestCase):
     def test_12_actual_key_native_source_blobs_match(self):
         by_name = {x["path"]: x["gitBlob"] for x in self.cfg["files"]}
         for name, pin in (
-            ("AssemblyShadow.cpp", "57cf47f964a83973df8296955ccf856b105c595f"),
-            ("AssemblyShadow.h", "68e78fe6250e3bd1028641d9513eb7d14158e8da"),
+            ("AssemblyShadow.cpp", "4ab5b6257d300bb796579c32e54f6a16c822c21c"),
+            ("AssemblyShadow.h", "538312675c99c97ffa73072aac78bd6aefedd49e"),
             ("Runtime.cpp", "1b176ee5fd3e2127a0237877e5c9c32bc53058b3"),
         ):
             with self.subTest(name=name):
