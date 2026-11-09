@@ -58,7 +58,9 @@ public:
         memcpy(value_.reason,p,n);state_=State::Frozen;return true;
     }
     bool Read(Snapshot& s) const noexcept {
-        if(state_!=State::Frozen)return false;s=value_;return true;
+        if(state_!=State::Frozen) return false;
+        s=value_;
+        return true;
     }
 };
 }}}
