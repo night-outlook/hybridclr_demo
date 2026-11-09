@@ -1,3 +1,13 @@
+# Current Primary R03 — oneuse-08 PrerequisiteBlocked, oneuse-09 conditional CI readmission (2026-11-09 UTC)
+
+Original oneuse08 demo `26843412eda7034cd91c0754bdcde16d5517d814`, published evidence demo `c9a5cf7a5e9c33a08db0a0f5f9bc1917e8c7ac25`: **PrerequisiteBlocked/NotRun** before runner, builds or Players (19 cells NotRun). One mandatory Ubuntu Actions job `128946622207` reported `in_progress/success` with completed timestamp and fully successful steps; this **fails** the job-level `completed/success` admission predicate. Original historical receipt unchanged and not relabeled. Original Mac read-only admission/capacity/custody passed within oneuse08 scope only.
+
+[Primary reconciliation and strict parser](../History/M07R/R03/IR_Remediation/POST_CAPTURED08_2026-11-09/PRIMARY_CI_ADMISSION_REMEDIATION.md): actual Git-published historical `CI.json` is a required *negative* in the new tests. The tool rejects inconsistent job status even with positive workflow conclusion, timestamps and logs; it validates a new seven-workflow/14-job CI snapshot only when all real job-level statuses are `completed/success`. No platform metadata is forged or waived. A fresh **conditional** oneuse09 cycle, 19 cells / one Mac IL2CPP build / three Players, uses new absent roots and is allowed only after final exact-source dual-OS green CI and new Mac/same-volume capacity/Original-S/preservation admission. [Handoff](../Handoff/WEB_TO_LOCAL.md).
+
+Full original R03 independent verdict FAIL/High IR-R03-01/02; runtime error15 remains NotRun, V2/whole-VM/historical strict custody remains unaccepted. Acceptance flags false; PureInterpreter disabled. No Human Review Gate or next milestone.
+
+---
+
 # Current R03 Primary stage — A2 source-reviewed, oneuse-08 conditional (2026-11-09 UTC)
 
 A2 physical captured-baseline generic actual-Unity Player path is **source prepared** (prior A2 implementation plus Primary corrections for premature `typeof(T)`, inflation-state attribution, silent-null postterminal attempt and full Git source inventory). Source-level native real-fork ABI audit and dual-OS mock/native/CLR/managed test suites passed their own scopes. The public fork excludes the official Unity SDK `Baselib.h` dependency; a C++ compile against the official SDK and real Player execution are **NotRun** in the Primary environment. [Review and limitations](../History/M07R/R03/IR_Remediation/POST_INITIALIZER07_2026-11-07/CAPTURED_GENERIC_A2_PRIMARY_SOURCE_REVIEW.md).
