@@ -177,6 +177,14 @@ class CapturedBatchSourceContracts(unittest.TestCase):
             self.assertNotIn("--dry-run",p.stdout)
             self.assertFalse(list(Path(tmp).iterdir()))
 
+    def test_15_inactive_b2_native_codec_and_posix_sinks_share_one_use_host_batch(self):
+        s=(HERE/"run_captured_generic_local.py").read_text()
+        self.assertIn('("run_tests.py", "bounded-codec")',s)
+        self.assertIn('("run_transaction_tests.py", "descriptor-transaction")',s)
+        self.assertIn('report.get("actualUnity") is False',s)
+        self.assertIn('"nativeV2TransportImplemented": False',s)
+        self.assertIn('not root.exists() and not root.is_symlink()',s)
+
     def test_14_protected_old_initializer_source_bytes_are_not_modified_by_runner(self):
         s=(HERE/"run_captured_generic_local.py").read_text()
         self.assertIn("from run_initializer_local import (",s)
