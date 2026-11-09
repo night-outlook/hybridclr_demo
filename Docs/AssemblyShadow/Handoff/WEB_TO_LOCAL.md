@@ -5,7 +5,8 @@ Date: **2026-11-09 UTC**.
 **Historical Local return (CONSUMED oneuse-10):** original execution candidate `hybridclr_demo@7c8af27e63038c77c13171c5776760e869e9c09d`, evidence publication `hybridclr_demo@e75cb536626358b69d7bbd90837a2044a2fab86a`. The independently authenticated 14-file source and 47-path native VM gates, all six CI jobs, retained original-S/custody and historical 42.193/42.198-GiB samples passed within original scope. The **shared Mac/runner** consumer still required 11/45 and returned `PrerequisiteBlocked/NotRun` before coordinator (0 calls), build (0), Players (0), all 19 cells NotRun. **Both oneuse-10 reserved output roots remain absent but are retired; NEVER reuse them.** Read [original checkpoint](../History/M07R/R03/local-validation-native-b1-20261109-oneuse-10/README.md), Local-owned [RETURN_TO_WEB](RETURN_TO_WEB.md), and [Primary correction/review](../History/M07R/R03/IR_Remediation/POST_B1_BLOCKED10_2026-11-09/PRIMARY_ADMISSION_REMEDIATION.md). `LOCAL_VALIDATION.md` was empty in the published Git; do not invent contents.
 
 **Primary oneuse-11 correction:** both actual `run_current_native_validation_cycle.validate_sources` (shared by Mac readmission and runner) and `run_current_native_host_preflight.inputs` enforce the **exact selected B1 candidate**: 14 pinned source file identities, 47 native VM file hashes, current pins `il2cpp_plus@a0209bf4285db3f0d0fc66d8817578235438cef4`. Both entry paths have positive and negative CI (real four-repo checkouts; 11/45, wrong pin/blob, mixed profile and wrong branch rejected). Historical oneuse-I source evidence at old native `41764ae...` is retained as historical, not promoted. All native/Player/B1/B2 implementation code, original S archive and historical evidence remain unchanged. The only new execution authority is this **conditional oneuse-11**; no retries.
- This handoff authorizes **one** new focused, source-pinned Local Validation cycle, **only after every admission requirement below passes**. If any prerequisite is false or unavailable, record `PrerequisiteBlocked/NotRun` without invoking the runner. The previous oneuse-09 and oneuse-10 are **CLOSED/CONSUMED**; never rerun them or reuse their output paths.
+
+This handoff authorizes **one** new focused, source-pinned Local Validation cycle, **only after every admission requirement below passes**. If any prerequisite is false or unavailable, record `PrerequisiteBlocked/NotRun` without invoking the runner. The previous oneuse-09 and oneuse-10 are **CLOSED/CONSUMED**; never rerun them or reuse their output paths.
 
 ## 1. Current objective and boundaries
 
@@ -26,7 +27,7 @@ This cycle **cannot** prove full general NativePreopenedSnapshotV2 transport, B3
 4. `History/M07R/R03/IR_Remediation/POST_CAPTURED09_2026-11-09/B_NATIVE_V2_FIRST_ERROR_DESIGN_AND_PLAN.md`
 5. `History/M07R/R03/IR_Remediation/POST_CAPTURED09_2026-11-09/B1_NATIVE_ORIGIN_IMPLEMENTATION_AND_REVIEW.md`
    - `History/M07R/R03/IR_Remediation/POST_B1_BLOCKED10_2026-11-09/PRIMARY_ADMISSION_REMEDIATION.md` (new shared-admission return/fix).
-6. `Handoff/RETURN_TO_WEB.md` (historical Local oneuse09 result), plus `History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/README.md` (read only).
+6. `Handoff/RETURN_TO_WEB.md` (latest Local oneuse-10 blocked report followed by historical oneuse-09 results), plus `History/M07R/R03/local-validation-native-b1-20261109-oneuse-10/README.md` and `History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/README.md` (both read only).
 7. `Tools/AssemblyShadow/R03IR/run_captured_generic_local.py`, `current_native_source_gate.py`, `current_native_vm_delta_contracts.py`, `verify_first_error_b1.py`, and `PlayerProject/R03FirstErrorB1Probe.cpp`.
 
 ## 3. Canonical repositories, branch, exact candidate pins
@@ -72,7 +73,7 @@ python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/A
   --demo-commit <EXACT_FINAL_40_CHARACTER_DEMO_HEAD>
 ```
 
-This is one invocation of `run_captured_generic_local.py` despite historical filename; its result kind is now **`R03IRNativeB1OneUse11EvidenceBatchV1`**. It is NOT the consumed oneuse09. It owns 19 fixed cells (original-S archive/process/compiled-source lexical/binary checks, deterministic fixture generation, ten native-host components plus B2 strict+sanitized codec/descriptor suites, one Unity build, initializer-control/failure/captured-generic three independent Players, postflight authority). No dry-run, mock Unity, automatic retry, mutated fixture, extra Player or substitute engine.
+This is one invocation of `run_captured_generic_local.py` despite historical filename; its result kind is now **`R03IRNativeB1OneUse11EvidenceBatchV1`**. It is NOT either consumed oneuse-09 or oneuse-10. It owns 19 fixed cells (original-S archive/process/compiled-source lexical/binary checks, deterministic fixture generation, ten native-host components plus B2 strict+sanitized codec/descriptor suites, one Unity build, initializer-control/failure/captured-generic three independent Players, postflight authority). No dry-run, mock Unity, automatic retry, mutated fixture, extra Player or substitute engine.
 
 ## 6. Mandatory observations and raw evidence
 
@@ -89,7 +90,7 @@ Required emitted local paths (under the new output root): `LOCAL_BATCH_RESULT.js
 
 ## 7. Ownership, failure handling and handoff back to Primary
 
-Local may only adjust **non-source** invocation/environment details necessary to locate the actual installed Unity/.NET/SDK or correct command spelling/absolute path before executing the single batch. It may diagnose, collect traces, perform source read-only analysis, and make independently testable tiny local fixes **only if** they are truly bounded and permitted by the established ownership boundary. **Do not edit** `AssemblyShadow.cpp/.h`, new B1 header/host, managed Player, B1 writer/parser/runner, native fixture, source-pins, B2, architecture, or historical evidence in Local. A non-trivial correctness/scope/source issue is **ReturnRequired** to Primary with code lines, raw evidence and proposed focused tests; no second oneuse10 execution.
+Local may only adjust **non-source** invocation/environment details necessary to locate the actual installed Unity/.NET/SDK or correct command spelling/absolute path before executing the single batch. It may diagnose, collect traces, perform source read-only analysis, and make independently testable tiny local fixes **only if** they are truly bounded and permitted by the established ownership boundary. **Do not edit** `AssemblyShadow.cpp/.h`, new B1 header/host, managed Player, B1 writer/parser/runner, native fixture, source-pins, B2, architecture, or historical evidence in Local. A non-trivial correctness/scope/source issue is **ReturnRequired** to Primary with code lines, raw evidence and proposed focused tests; no second oneuse-11 execution.
 
 Record new factual Local result in **`Handoff/LOCAL_VALIDATION.md`**, and any Primary-owned fixes in **`Handoff/RETURN_TO_WEB.md`**; commit and push original immutable source/evidence/receipt records through the assigned Local Git transport. Distinguish `Passed`, `Failed`, `PrerequisiteBlocked/NotRun`, `Unavailable`, `NoCoverage` and audited historical evidence; do not promote partial results. The handoff is **consumed** after exactly one invocation or after a documented prerequisite block; any future run needs a **new Primary Implementation source-pinned WEB_TO_LOCAL** and fresh output roots.
 
@@ -109,7 +110,19 @@ Historical pre-oneuse-10 source checkpoint `c6b7b557078251028ce8f9869e0279b59bb0
 
 The native fork [B1 host C++11/17 CI 42598105952](https://github.com/night-outlook/il2cpp_plus/actions/runs/42598105952) remains pinned at actual native commit `a0209bf4285db3f0d0fc66d8817578235438cef4`.
 
-These are accurately scoped **historical pre-oneuse-10 source receipts**, never a waiver of the final-demo-SHA job-status predicate above. This handoff/documentation commit advances the demo SHA; Local must require a **fresh successful exact-final-demo-HEAD** run of both B1 primary workflows with job-level status and source identities. Existing c6b7 host outcomes and all historical PASS/FAIL/Blocked snapshots remain immutable. No Unity Player run is claimed by Primary.
+These are accurately scoped **historical pre-oneuse-10 source receipts**, never a waiver of the final-demo-SHA job-status predicate above. This handoff/documentation commit advances the demo SHA; Local must require a **fresh successful exact-final-demo-HEAD** run of all three B1 demo workflows with job-level status and source identities. Existing c6b7 host outcomes and all historical PASS/FAIL/Blocked snapshots remain immutable. No Unity Player run is claimed by Primary.
+
+## 9a. Post-remediation source-only receipts (historical until final source SHA)
+
+The following *different, earlier GitHub source revisions* completed successfully on both macOS and Ubuntu after the repair; they are useful review evidence but **not** exact-final-HEAD admission:
+
+- [42609715255](https://github.com/night-outlook/hybridclr_demo/actions/runs/42609715255), demo `7dc76118b971dd3b69201aa91f7cf2a99d859010`: actual shared Mac/runner + inner host 14/47 source validator on four real pinned Git checkouts, including adversarial stale/mutated source tests; Unity/SDK/Original-S environmental admission mocked in CI.
+- [42609815600](https://github.com/night-outlook/hybridclr_demo/actions/runs/42609815600), demo `45bde6e726d97be21e140111c1751ad1a105dba9`: complete current-native source/host workflow, ten native host components and current CLI/source/custody tests within host scope.
+- [42610395899](https://github.com/night-outlook/hybridclr_demo/actions/runs/42610395899), demo `ff04823bade5f6468560e5ec869e640f87cd26f3`: previously stale sparse-source standalone gate now authenticates every reviewed 14-source B1 file, including the newly introduced native headers.
+- [42609815715](https://github.com/night-outlook/hybridclr_demo/actions/runs/42609815715), demo `45bde6e726d97be21e140111c1751ad1a105dba9`: focused B1 player-probe source/host compilation and parser adversarial regression scope.
+- Original fixed native fork [42598105952](https://github.com/night-outlook/il2cpp_plus/actions/runs/42598105952), native `a0209bf4285db3f0d0fc66d8817578235438cef4`: both operating systems C++11/17 first-error owner host tests.
+
+Some earlier intermediate CI attempts failed on stale test-only pins, skipped source files or incomplete test fixtures; they stay historical failures, not reclassified as a fresh native/Unity failure. Local must **not** use any of these older demo runs to waive the final 3×dual-OS source-job requirements specified above.
 
 ## 10. New oneuse-11 source-admission proof required
 
