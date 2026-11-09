@@ -1,0 +1,103 @@
+name: R03 B1 shared Mac and runner source-admission contract
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - '.github/workflows/r03-ir-b1-shared-mac-runner-admission.yml'
+      - 'Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_environment_admission.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_b1_shared_admission_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_cycle_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_candidate.json'
+      - 'Tools/AssemblyShadow/R03IR/current_native_source_gate.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_vm_delta.json'
+      - 'Tools/AssemblyShadow/R03IR/current_native_vm_delta_contracts.py'
+      - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-four-repo-shared-admission:
+    name: B1 actual 14/47 Mac-runner source path / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    timeout-minutes: 40
+    steps:
+      - name: Checkout the actual demo feature branch as a sibling Git root
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: codex/assembly-shadow-r01b-h1
+          path: sources/hybridclr_demo
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03/
+            /Tools/AssemblyShadow/R03IR/
+      - name: Checkout pinned interpreter (real Git repository)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: codex/assembly-shadow-r01b-h1
+          path: sources/hybridclr
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /hybridclr/interpreter/Interpreter_Execute.cpp
+      - name: Checkout pinned Unity package (real Git repository)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: codex/assembly-shadow-r01b-h1
+          path: sources/hybridclr_unity
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /README.md
+      - name: Checkout pinned IL2CPP native fork (real Git repository)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: codex/assembly-shadow-r01b-h1
+          path: sources/il2cpp_plus
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /libil2cpp/vm/
+      - name: Validate exact four local HEADs and feature branch before admission
+        shell: bash
+        run: |
+          set -euo pipefail
+          workspace="$GITHUB_WORKSPACE/sources"
+          test "$(git -C "$workspace/hybridclr_demo" rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git -C "$workspace/hybridclr" rev-parse HEAD)" = "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+          test "$(git -C "$workspace/hybridclr_unity" rev-parse HEAD)" = "948c0e3b4f8891481301770115e8ba4945eea6de"
+          test "$(git -C "$workspace/il2cpp_plus" rev-parse HEAD)" = "a0209bf4285db3f0d0fc66d8817578235438cef4"
+          for repo in hybridclr_demo hybridclr hybridclr_unity il2cpp_plus; do
+            test "$(git -C "$workspace/$repo" branch --show-current)" = "codex/assembly-shadow-r01b-h1"
+            test -z "$(git -C "$workspace/$repo" status --porcelain)"
+          done
+      - name: Execute actual shared 14/47 Mac/runner source admission and adversarial negatives
+        shell: bash
+        run: |
+          set -euo pipefail
+          workspace="$GITHUB_WORKSPACE/sources"
+          demo="$workspace/hybridclr_demo"
+          python3 -B "$demo/Tools/AssemblyShadow/R03IR/current_native_b1_shared_admission_contracts.py" \
+            --workspace "$workspace" --demo-commit "$GITHUB_SHA"
+      - name: Preserve older coordinator's 27 source-failure/receipt regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          demo="$GITHUB_WORKSPACE/sources/hybridclr_demo"
+          python3 -B "$demo/Tools/AssemblyShadow/R03IR/current_native_cycle_contracts.py"
+      - name: No source changes and no actual Unity/OriginalS/Player execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          for repo in hybridclr_demo hybridclr hybridclr_unity il2cpp_plus; do
+            test -z "$(git -C "$GITHUB_WORKSPACE/sources/$repo" status --porcelain)"
+          done
+          echo "REAL SOURCE/COMPOSED ADMISSION ONLY: Mac environment prerequisites MOCKED on CI, actual SDK/Unity and 19 cells NotRun"
