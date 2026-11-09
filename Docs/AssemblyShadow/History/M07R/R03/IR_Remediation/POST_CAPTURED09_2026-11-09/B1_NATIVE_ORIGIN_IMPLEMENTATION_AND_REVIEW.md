@@ -4,7 +4,7 @@ Date: 2026-11-09 UTC. Stage: **Primary Implementation source complete / real Uni
 
 ## 1. Purpose and provenance
 
-Follow [current design/plan](B_NATIVE_V2_FIRST_ERROR_DESIGN_AND_PLAN.md), [oneuse-09 focused reconciliation](PRIMARY_RECONCILIATION.md) and the [closed prior handoff](../../../../../Handoff/WEB_TO_LOCAL.md). Source prior to B1: demo `061dcc59a22a837cdec348bb102f7883b3acb737`, native `41764ae1eeefb33b05966e7f7676e52aae39c340`. B1 native candidate is the separately pushed exact `a0209bf4285db3f0d0fc66d8817578235438cef4`; unchanged interpreter `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, package `948c0e3b4f8891481301770115e8ba4945eea6de`. Final demo source revision is the current verified feature-branch HEAD at actual Local handoff, not the retired oneuse09 executed source SHA.
+Follow [current design/plan](B_NATIVE_V2_FIRST_ERROR_DESIGN_AND_PLAN.md), [oneuse-09 focused reconciliation](PRIMARY_RECONCILIATION.md) and the [current conditional B1 handoff](../../../../../Handoff/WEB_TO_LOCAL.md). Source prior to B1: demo `061dcc59a22a837cdec348bb102f7883b3acb737`, native `41764ae1eeefb33b05966e7f7676e52aae39c340`. B1 native candidate is the separately pushed exact `a0209bf4285db3f0d0fc66d8817578235438cef4`; unchanged interpreter `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, package `948c0e3b4f8891481301770115e8ba4945eea6de`. Final demo source revision is the current verified feature-branch HEAD at actual Local handoff, not the retired oneuse09 executed source SHA.
 
 ### Immutable historical boundaries
 
