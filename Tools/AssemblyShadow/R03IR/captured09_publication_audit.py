@@ -120,7 +120,10 @@ def verify(root=CHECKPOINT, overrides=None):
          findings.get("result") == "PASS" and findings.get("firstFailedCell") is None,
          "Exact Local oneuse09 and source tuple")
     no_acceptance(local)
-    no_acceptance(findings)
+    # The original RUNTIME_FINDINGS producer writes runtimeAcceptance only;
+    # never invent R03/H2 fields missing from that historical JSON schema.
+    need(findings.get("runtimeAcceptance") is False,
+         "Original findings cannot claim runtime acceptance")
     no_acceptance(independent)
     no_acceptance(ledger)
     runner = local.get("runner", {})
@@ -142,8 +145,12 @@ def verify(root=CHECKPOINT, overrides=None):
          independent.get("sourcePins") == PINS and
          independent.get("archiveMembers") == 509,
          "Original complete 19-cell independent scope")
+    repository_record = ledger.get("repositories", {})
     need(ledger.get("kind") == "R03IRCapturedGenericOneUse09EvidenceBatchV1" and
-         ledger.get("repositories") == PINS and
+         type(repository_record) is dict and
+         all(repository_record.get(k) == v for k, v in PINS.items()) and
+         repository_record.get("branch") == "codex/assembly-shadow-r01b-h1" and
+         repository_record.get("runtimeAcceptance") is False and
          ledger.get("result") == "FocusedCapturedGenericAndInitializerEvidenceForIndependentReview" and
          exact_int(ledger.get("plannedFreshUnityBuilds"), 1) and
          exact_int(ledger.get("verifiedFreshUnityBuilds"), 1) and
@@ -207,8 +214,9 @@ def verify(root=CHECKPOINT, overrides=None):
              args.get("interrupted") is False and
              type(actual) is list and actual.count(flag) == 1 and
              actual[actual.index(flag)+1] == request.get("runId") and
-             (prefix + "request.json").split("/")[-1] == "request.json" and
-             actual[actual.index("-logFile")+1].endswith("/" + mode + "/Player.log") is False,
+             actual.count("-logFile") == 1 and
+             actual[actual.index("-logFile")+1].endswith(
+                 "/IR-R03-02-" + mode + "/Player.log"),
              "Original OS process/nonce/command source join")
         # Literal OS argv fields, not user-synthesized PIDs or host parser receipts.
         need(any(item.endswith("/IR-R03-02-" + mode + "/request.json") for item in actual) and
