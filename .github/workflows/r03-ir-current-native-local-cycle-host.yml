@@ -60,11 +60,11 @@ jobs:
             Tools/AssemblyShadow/R03
             Tools/AssemblyShadow/R03IR
             .github/workflows
-      - name: Current native VM I (source only)
+      - name: Current native VM B1 (source only)
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/il2cpp_plus
-          ref: 41764ae1eeefb33b05966e7f7676e52aae39c340
+          ref: a0209bf4285db3f0d0fc66d8817578235438cef4
           path: external/il2cpp_plus
           persist-credentials: false
           sparse-checkout-cone-mode: false
@@ -107,7 +107,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/il2cpp_plus
-          ref: 41764ae1eeefb33b05966e7f7676e52aae39c340
+          ref: a0209bf4285db3f0d0fc66d8817578235438cef4
           path: admission/il2cpp_plus
           persist-credentials: false
           sparse-checkout: |
@@ -155,7 +155,7 @@ jobs:
             cd "$RUNNER_TEMP"
             python3 -B "$wrapper" --read-only-admission \
               --workspace "$real_root" --expected-demo "$GITHUB_SHA" \
-              --expected-native "41764ae1eeefb33b05966e7f7676e52aae39c340" \
+              --expected-native "a0209bf4285db3f0d0fc66d8817578235438cef4" \
               --output "$local_test_root/read-only-must-not-exist" \
               > "$local_test_root/admission.json"
           )
@@ -171,7 +171,7 @@ jobs:
           if (cd "$RUNNER_TEMP"; python3 -B "$wrapper" --read-only-admission \
               --workspace "$local_test_root/aliased-source" \
               --expected-demo "$GITHUB_SHA" \
-              --expected-native "41764ae1eeefb33b05966e7f7676e52aae39c340" \
+              --expected-native "a0209bf4285db3f0d0fc66d8817578235438cef4" \
               --output "$local_test_root/negative-symlink-root" \
               > "$local_test_root/negative-symlink.stdout" 2> "$local_test_root/negative-symlink.stderr"); then
             echo "Symlink alias was incorrectly admitted" >&2; exit 31
@@ -181,7 +181,7 @@ jobs:
           if (cd "$RUNNER_TEMP"; python3 -B "$wrapper" --read-only-admission \
               --workspace "relative-source" \
               --expected-demo "$GITHUB_SHA" \
-              --expected-native "41764ae1eeefb33b05966e7f7676e52aae39c340" \
+              --expected-native "a0209bf4285db3f0d0fc66d8817578235438cef4" \
               --output "$local_test_root/negative-relative-root" \
               > "$local_test_root/negative-relative.stdout" 2> "$local_test_root/negative-relative.stderr"); then
             echo "Relative source was incorrectly admitted" >&2; exit 32
@@ -203,7 +203,7 @@ jobs:
             python3 -B "$wrapper" \
               --workspace "$GITHUB_WORKSPACE/admission" \
               --expected-demo "$GITHUB_SHA" \
-              --expected-native "41764ae1eeefb33b05966e7f7676e52aae39c340" \
+              --expected-native "a0209bf4285db3f0d0fc66d8817578235438cef4" \
               --output "$local_test_root/full-current-native-host"
           )
           python3 - "$local_test_root/full-current-native-host/RESULT.json" <<'PY'
