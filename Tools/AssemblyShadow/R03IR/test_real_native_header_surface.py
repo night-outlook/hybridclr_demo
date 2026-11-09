@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Adversarial actual-fork source declaration tests. NO official Unity SDK."""
 import os
+import re
 from pathlib import Path
 import unittest
 
@@ -28,8 +29,11 @@ class RealNativeHeaderSurfaceTests(unittest.TestCase):
         count = 0
         for path, anchors in FILES.items():
             for anchor in anchors:
-                needle = anchor.encode()
-                raw = self.inputs[path]
+                # Real fork declarations can span lines. Mutate the
+                # whitespace-normalized source only in this in-memory test,
+                # preserving strict anchor semantics without file writes.
+                needle = re.sub(rb"\\s+", b" ", anchor.encode())
+                raw = re.sub(rb"\\s+", b" ", self.inputs[path])
                 self.assertIn(needle, raw, (path, anchor))
                 changed = dict(self.inputs)
                 changed[path] = raw.replace(needle, b"__R03_DECLARATION_DRIFT__", 1)
