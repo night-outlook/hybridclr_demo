@@ -1,3 +1,13 @@
+# R03 Primary current checkpoint — native B1 first-error source ready, conditional oneuse-10 (2026-11-09)
+
+Current Primary code binds the new immutable, fixed-buffer originating native B1 error source in `il2cpp_plus@a0209bf4285db3f0d0fc66d8817578235438cef4`, with a test-only preopened native Player reader, old V1 crosschecks and new oneuse-10 exact-source single-batch runner. 14 Git source pins, 47 VM delta paths, native/header C++11/17 host coverage and separate C++11 test-probe/mock-source checks were prepared. Old oneuse07/08/09 immutable verdicts unchanged. New [B1 Primary review](../History/M07R/R03/IR_Remediation/POST_CAPTURED09_2026-11-09/B1_NATIVE_ORIGIN_IMPLEMENTATION_AND_REVIEW.md).
+
+**Next action:** strictly conditional [WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md): after final exact-SHA dual-OS green CI, fresh original-S/SDK/custody/capacity admission and absent roots, one real Unity2022.3.62f2 Mac ARM64 ON/Release IL2CPP build and 3 fresh Players proving B1 first code/physical owner/byte-identical V1 reason. Pre-Unity host execution also runs inactive B2 strict/sanitized codec and descriptor transaction and ten native source-host components. No oneuse-09 replay; oneuse10 NotRun until Local. Never promote component host PASS to VM/Player PASS.
+
+**Overall:** independent R03 FAIL; both High IR-R03-01/02 open. B2 full native V2 writer NotIntegrated, B3 whole VM epoch NotProven; original S complete link/Player, GC/RSS/RC/P/E unfinished. `R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; runtimeAcceptance=false; qualificationApproved=false; fullLegacyRegressionAcceptance=false`; PureInterpreter disabled; no later milestones or automatic Human Review Gate.
+
+---
+
 # R03 current Primary checkpoint — A2 physical captured generic PASS; native V2 B0 host-only (2026-11-09)
 
 Local oneuse-09 executed at demo `bb5fce9c15450e68c6341d88270fbc30dd7b9738`, publication `97cd47e06a837569ff62c4ac7744117d22966126`: **19/19 focused PASS**, one Unity2022.3.62f2 IL2CPP Mac ARM64 build, 3 real Players. Control/failure initializer commits 0/19 with 6/9 states and genuine Bi4 callbacks; actual physical captured Methods.R03.Node method_inst with postinflation state6 triggered real native error15/state9, postterminal Runtime::Invoke exception, no AOT counter increment. [Raw scope/reconciliation](../History/M07R/R03/IR_Remediation/POST_CAPTURED09_2026-11-09/PRIMARY_RECONCILIATION.md). The error's **exception type is not captured**.
