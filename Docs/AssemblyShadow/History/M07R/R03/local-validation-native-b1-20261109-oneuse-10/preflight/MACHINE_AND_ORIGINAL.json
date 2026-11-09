@@ -1,0 +1,29 @@
+{
+  "startUtc": "2026-11-09T10:39:13.036338+00:00",
+  "endUtc": "2026-11-09T10:39:13.429314+00:00",
+  "checks": {
+    "originalS": {
+      "result": "Passed",
+      "facts": {
+        "repository": "night-outlook/hybridclr_demo",
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+        "commit": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+        "clean": true,
+        "role": "immutable-original-S-read-only"
+      }
+    },
+    "machine": {
+      "result": "Passed",
+      "facts": {
+        "host": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+        "architecture": "arm64",
+        "unityExecutable": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+        "unityExecutableSha256": "35721b35221875b2d170160f7fdd661afff7458b3386f029124f30e1ba2b862c",
+        "freeBytesAtAdmission": 45309853696,
+        "minimumFreeGiB": 20,
+        "unityVersionValidatedByBuild": "NotRunAtPreflight"
+      }
+    }
+  },
+  "unityLaunched": false
+}

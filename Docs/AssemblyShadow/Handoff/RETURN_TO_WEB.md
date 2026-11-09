@@ -1,5 +1,19 @@
 # Local Validation → Primary Implementation
 
+## Native B1 oneuse-10 — PrerequisiteBlocked / NotRun
+
+**IR-LOCAL-R03-NATIVE-B1-10-ADMISSION-01.** The shared source admission validator rejects the authenticated B1 candidate because it still enforces the previous 11-source and 45-VM-file cardinalities.
+
+**Reproduction.** Use the four exact clean checkout pins and the absolute command in the [Local result](../History/M07R/R03/local-validation-native-b1-20261109-oneuse-10/LOCAL_RESULT.json). The standalone `current_native_source_gate.py --exact-checkout-heads` passes with `verifiedSourceFiles=14`. The standalone VM inventory passes with `changedVmFileCount=47`. Run `current_native_environment_admission.py` with the pinned workspace, retained fc55 Original S, installed Unity 2022.3.62f2, fresh output path and exact demo SHA. It exits 2 with `Eleven-file source proof not passed`.
+
+**Cause and scope.** At demo `7c8af27e63038c77c13171c5776760e869e9c09d`, `Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py:121–137` checks `verifiedSourceFiles == 11` at line 132 and still checks `changedVmFileCount == 45` at line 136. The latter predicate was not reached in the observed admission. `current_native_environment_admission.py:222` and `run_captured_generic_local.py:405` call this shared validator. The B1 four-repository CI workflow executes the constituent source gate and contract scripts directly, leaving the shared composed admission path unexercised. Oneuse-10 was not invoked. All 19 cells and runtime-dependent observations remain NotRun.
+
+**Primary action.** Bind the shared validator to the exact reviewed current candidate and VM-delta contracts. Keep exact identity and fail-closed count checks for the selected profile. Add exact-four-checkout coverage through the same shared validator used by Mac admission and the runner, including a positive 14/47 B1 case and negative pin/inventory mutations. Inspect retained older workflow checkout pins separately. Publish a fresh exact-source handoff and unused roots for Local to re-admit and execute the build, three Player comparisons, B2 host suites and evidence sealing. No empirical B1 verdict exists yet.
+
+[Raw admission receipt](../History/M07R/R03/local-validation-native-b1-20261109-oneuse-10/preflight/ADMISSION.json) · [Pinned call chain](../History/M07R/R03/local-validation-native-b1-20261109-oneuse-10/preflight/source-call-chain.txt) · [Checkpoint](../History/M07R/R03/local-validation-native-b1-20261109-oneuse-10/README.md)
+
+---
+
 ## Captured-generic oneuse-09 — PASS
 
 **Focused captured-generic PASS.** One invocation produced 19 Passed across the fixed 19-cell roster. There were 1 Unity build commands and 3 actual Player launches.

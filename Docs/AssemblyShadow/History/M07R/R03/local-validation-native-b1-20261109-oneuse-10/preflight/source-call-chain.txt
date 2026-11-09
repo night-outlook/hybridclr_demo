@@ -1,0 +1,51 @@
+/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py SHA-256 cc48e09b6b69470220f28944121cc326c8efeb2df4a5d49cfbe8a698317896a0
+121: def validate_sources(workspace: Path, demo_commit: str) -> dict:
+122:     require(re.fullmatch("[0-9a-f]{40}", demo_commit) is not None,
+123:             "Exact 40-digit demo source commit required")
+124:     roots = {name: workspace / name for name in REPOS}
+125:     for p in roots.values():
+126:         exact_path(p)
+127:         require(p.is_dir(), "Repository root must be a directory")
+128:     repositories = [identity(roots[name], demo_commit if name == "hybridclr_demo"
+129:                              else source.CURRENT[name]) for name in REPOS]
+130:     checked = source.verify_source_roots(roots, require_checkout_heads=True)
+131:     require(checked["result"] == "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation" and
+132:             checked["verifiedSourceFiles"] == 11, "Eleven-file source proof not passed")
+133:     config = json.loads(delta.MANIFEST.read_text(encoding="utf-8"))
+134:     vm = delta.validate(config, roots["il2cpp_plus"], check_native_commit=True)
+135:     require(vm["result"] == "PassedCurrentNativeVmSourceDeltaOnly" and
+136:             vm["changedVmFileCount"] == 45, "Forty-five-file source inventory not passed")
+137:     return {"result": "PassedReadOnlySourceAdmission_NotBuildOrRuntime",
+/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_captured_generic_local.py SHA-256 06e2ec90b45fbe3e8662cef87451e2c4873ab93989cfb9873a78beb4fb7f26d3
+394: def execute(workspace, original_s, output, unity, demo_commit):
+395:     require(re.fullmatch(r"[0-9a-f]{40}", demo_commit) is not None,
+396:             "Exact pushed source commit required")
+397:     workspace, output, original_s, unity = map(
+398:         Path, (workspace, output, original_s, unity))
+399:     validate_destination(workspace, original_s, output)
+400:     host_root = output.parent / (output.name + "-native-host-raw")
+401:     require(host_root.is_absolute() and not host_root.exists() and
+402:             host_root.parent == output.parent and
+403:             not host_root.is_symlink(), "Unused actual native host evidence root")
+404:     validate_original(original_s)
+405:     validate_sources(workspace, demo_commit)
+406:     validate_machine(unity, output)
+407:     batch = CapturedBatch(workspace, output, unity, demo_commit, original_s)
+/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/.github/workflows/r03-ir-native-b1-four-repo-source.yml SHA-256 cbae56f1406fc322be0a2702966b26463c77de13a4b1b63617ea4364768c27c2
+46:           sparse-checkout-cone-mode: false
+47:           sparse-checkout: |
+48:             /README.md
+49:       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+50:         with:
+51:           repository: night-outlook/il2cpp_plus
+52:           ref: a0209bf4285db3f0d0fc66d8817578235438cef4
+53:           path: pinned-native
+54:           persist-credentials: false
+55:           sparse-checkout-cone-mode: false
+56:           sparse-checkout: |
+57:             /libil2cpp/vm/
+58:       - name: Verify pinned four-repo source checkout and all 47 native VM paths
+59:         shell: bash
+60:         run: |
+61:           set -euo pipefail
+62:           demo="$PWD"; native="$PWD/pinned-native"

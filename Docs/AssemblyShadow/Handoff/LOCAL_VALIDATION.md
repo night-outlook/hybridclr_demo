@@ -1,5 +1,19 @@
 # Local Validation report
 
+## Native B1 oneuse-10 — PrerequisiteBlocked / NotRun
+
+The clean Local candidate used demo `7c8af27e63038c77c13171c5776760e869e9c09d` and native `a0209bf4285db3f0d0fc66d8817578235438cef4`. All four local and live remote refs matched their pins. The three mandatory workflows passed all six OS jobs at the exact demo/native SHAs. The independent Local source proof passed 14 source files, and all 47 native VM paths matched. The focused source suites passed 20 and 12 tests. Three separate older current-native workflow runs at the same demo SHA failed both jobs. Their job records are retained separately from the three mandatory B1 workflows.
+
+Read-only Mac admission exited 2 with `Eleven-file source proof not passed`. The oneuse-10 runner uses the same validator before batch construction. No runner or Unity process was launched. All 19 cells, the one planned IL2CPP build, the three Players, both Local B2 host suites and product sealing are NotRun. Both reserved output roots remain absent.
+
+The separately probed macOS arm64 toolchain included Unity 2022.3.62f2, .NET SDK 8.0.318, .NET runtime 8.0.21, Apple clang 21.0.0 and macOS SDK 26.5 on macOS 26.5.2. The accepted capacity samples measured 42.193436 and 42.198132 GiB on the same destination device, 70.495 seconds apart. The intervening sample is retained and excluded because it fell short of 60 seconds.
+
+Before/after custody verified 339,367 survivors and 77,477 unchanged missing identities. Historical strict custody remains Blocked. The preservation audit verified 25 prior checkpoints, 16,978 Original-S files, 2,405 installed SDK files, retained oneuse-05/06/07/09 raw inventories and 1,135 outside entries within their recorded scope. The 17 owner-retired roots and 40 duplicate paths remain Unavailable. Earlier dispositions are unchanged.
+
+Raw preflight evidence is at `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-NativeB1-10`. The [additive checkpoint](../History/M07R/R03/local-validation-native-b1-20261109-oneuse-10/README.md) preserves selected exact receipts, file digests, and the pinned source and CI identities. The blocked attempt is consumed. All acceptance flags remain false. Next state is Primary Implementation.
+
+---
+
 ## Captured-generic oneuse-09 — PASS
 
 **Focused captured-generic PASS.** One invocation produced 19 Passed across the fixed 19-cell roster. There were 1 Unity build commands and 3 actual Player launches.

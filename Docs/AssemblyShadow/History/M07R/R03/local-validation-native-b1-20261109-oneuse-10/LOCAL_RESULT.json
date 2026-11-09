@@ -1,0 +1,134 @@
+{
+  "H2Passed": false,
+  "R03Accepted": false,
+  "ReadyForHumanReviewGate": false,
+  "batch": "NotRun",
+  "batchRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-10",
+  "blockedAdmissionCommand": [
+    "python3",
+    "-B",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/current_native_environment_admission.py",
+    "--workspace",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+    "--original-s",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+    "--unity",
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+    "--output",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-10",
+    "--demo-commit",
+    "7c8af27e63038c77c13171c5776760e869e9c09d"
+  ],
+  "blockedAdmissionEndFileTimestampUtc": "2026-11-09T10:38:52.185953+00:00",
+  "blockedAdmissionExitCode": 2,
+  "blockedAdmissionReason": "Eleven-file source proof not passed",
+  "blockedAdmissionStartFileTimestampUtc": "2026-11-09T10:38:31.197813+00:00",
+  "blockedConsumer": {
+    "actualSourceFiles": 14,
+    "actualVmFiles": 47,
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py",
+    "requiredSourceFilesInConsumer": 11,
+    "requiredVmFilesInConsumer": 45,
+    "sha256": "cc48e09b6b69470220f28944121cc326c8efeb2df4a5d49cfbe8a698317896a0",
+    "vmCountCheckReachedInAdmission": false
+  },
+  "bothRootsAbsent": true,
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "capacity": {
+    "acceptedSamples": [
+      "CAPACITY_1.json",
+      "CAPACITY_3.json"
+    ],
+    "device": 16777230,
+    "freeGiB": [
+      42.19343566894531,
+      42.1981315612793
+    ],
+    "intervalSeconds": 70.494619,
+    "thresholdGiB": 25
+  },
+  "historicalOwnerRetiredDuplicates": 40,
+  "historicalOwnerRetiredRoots": 17,
+  "hostRawRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-10-native-host-raw",
+  "kind": "R03IRNativeB1OneUse10LocalPrerequisiteVerdict",
+  "localB2HostSuites": "NotRun",
+  "mandatoryCi": {
+    "passedJobs": 6,
+    "result": "Passed",
+    "workflows": [
+      {
+        "attempt": 1,
+        "evidence": {
+          "github/42601611746-attempts-1-jobs.json": "1c3e189f22a7da49041b8dcfafb6b228fefc71ed532f29e7680ffd42f37b5838",
+          "github/42601611746-attempts-1.json": "402d990c9c6ac13b4c19c145a722582e6faa0b4d317ab663a68a79c93e318ce9",
+          "github/42601611746.json": "c4601f79ce838e4fd9d62563f4e54563e9ad7e4b9ab97b9b47585884b4ee21df"
+        },
+        "headSha": "7c8af27e63038c77c13171c5776760e869e9c09d",
+        "jobIds": [
+          129107201482,
+          129107201896
+        ],
+        "repository": "hybridclr_demo",
+        "run": 42601611746,
+        "workflow": "r03-ir-native-b1-source-and-host.yml"
+      },
+      {
+        "attempt": 1,
+        "evidence": {
+          "github/42601611676-attempts-1-jobs.json": "9cca647ceb0fb8d1409d1d2cb3fbda55039466c7ad895a3f56f02cd35453c23f",
+          "github/42601611676-attempts-1.json": "69e158055de197c12bd9e015409cdba45a3f9b138b0fcb396c9cce07bd64a2ba",
+          "github/42601611676.json": "d856e62e8701e1c31501803eb398f8c9b97263d7cff69fc843bfbf11f79e138a"
+        },
+        "headSha": "7c8af27e63038c77c13171c5776760e869e9c09d",
+        "jobIds": [
+          129107201531,
+          129107201929
+        ],
+        "repository": "hybridclr_demo",
+        "run": 42601611676,
+        "workflow": "r03-ir-native-b1-four-repo-source.yml"
+      },
+      {
+        "attempt": 1,
+        "evidence": {
+          "github/42598105952-attempts-1-jobs.json": "7e074f69c9cbf3c8e61bf088fffff0f91b156db809282cb536f33ea7f952f9ce",
+          "github/42598105952-attempts-1.json": "97966afa8b6089aaf56cd6a39b604404d71d5ffe60d9f1943206482b73d3fe56",
+          "github/42598105952.json": "b8b24713d8f5870c2e9ac71fe377bc9ad27f28f3c0edab033141c4249ee45cfd"
+        },
+        "headSha": "a0209bf4285db3f0d0fc66d8817578235438cef4",
+        "jobIds": [
+          129095619583,
+          129095620026
+        ],
+        "repository": "il2cpp_plus",
+        "run": 42598105952,
+        "workflow": "r03-native-b1-first-origin.yml"
+      }
+    ]
+  },
+  "nativeV2TransportImplemented": false,
+  "nextState": "Primary Implementation",
+  "originalS": "/Users/ah/GitHub/hybridclr/r03-local-validation/OriginalS-20261026-fc55-oneuse",
+  "originalStrictCustody": "Blocked",
+  "plannedBuildsNotRun": 1,
+  "plannedCellsNotRun": 19,
+  "plannedPlayersNotRun": 3,
+  "playerLaunches": 0,
+  "productSeal": "NotRun",
+  "pureInterpreterExpansionEnabled": false,
+  "qualificationApproved": false,
+  "rawLocalPreflightRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-NativeB1-10",
+  "result": "PrerequisiteBlocked",
+  "runnerInvocations": 0,
+  "runtimeAcceptance": false,
+  "sourcePins": {
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_demo": "7c8af27e63038c77c13171c5776760e869e9c09d",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "a0209bf4285db3f0d0fc66d8817578235438cef4"
+  },
+  "unityBuilds": 0,
+  "unityLaunches": 0,
+  "wholeVmEpoch": "NotProven",
+  "workspace": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r"
+}
