@@ -91,3 +91,15 @@ Record new factual Local result in **`Handoff/LOCAL_VALIDATION.md`**, and any Pr
 `R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; runtimeAcceptance=false; qualificationApproved=false; fullLegacyRegressionAcceptance=false; nativeV2TransportImplemented=false; firstRecoveryAuthenticatedV2=false; wholeVmEpoch=NotProven`. PureInterpreter disabled; original independent R03 overall FAIL and High IR-R03-01/02 open.
 
 After this focused B1 Local return, Primary owns remaining **B2 actual exclusive descriptor-relative complete V2 writer and B3 coherent VM epoch / lifecycle**, original S full provenance and deferred GC/RSS/RC/P/E. No H2, M08A, X02, SNAP-01 or human review self-approval. Local Validation's role is empirical verification, not new architecture or major code changes.
+
+## 9. Exact-source prepublication CI receipts (not execution authority for a later SHA)
+
+At source checkpoint `c6b7b557078251028ce8f9869e0279b59bb0c4c7`, these **host-only** GitHub Actions workflows completed/success on both macOS15 and Ubuntu24.04:
+
+- [B1 source + host CI 42601246155](https://github.com/night-outlook/hybridclr_demo/actions/runs/42601246155): 55 focused Python source/identity/preparer tests and real test-only native probe C++11 host builds.
+- [B1 four-repository exact source CI 42601246125](https://github.com/night-outlook/hybridclr_demo/actions/runs/42601246125): all four actual Git checkouts, exact 14 source files, 47 native VM source paths and negative gates.
+- [Captured-generic A2/current source host CI 42601246174](https://github.com/night-outlook/hybridclr_demo/actions/runs/42601246174): source, managed/host and batch controller contracts.
+
+The native fork [B1 host C++11/17 CI 42598105952](https://github.com/night-outlook/il2cpp_plus/actions/runs/42598105952) remains pinned at actual native commit `a0209bf4285db3f0d0fc66d8817578235438cef4`.
+
+These are accurately scoped **earlier source receipts**, never a waiver of the final-demo-SHA job-status predicate above. This handoff/documentation commit advances the demo SHA; Local must require a **fresh successful exact-final-demo-HEAD** run of both B1 primary workflows with job-level status and source identities. Existing c6b7 host outcomes and all historical PASS/FAIL/Blocked snapshots remain immutable. No Unity Player run is claimed by Primary.
