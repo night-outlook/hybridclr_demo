@@ -8,6 +8,7 @@ on:
       - 'Tools/AssemblyShadow/R03IR/prepare_captured_generic_sources.py'
       - 'Tools/AssemblyShadow/R03IR/test_captured_source_preparation.py'
       - 'Tools/AssemblyShadow/R03IR/test_captured_batch_source.py'
+      - 'Tools/AssemblyShadow/R03IR/captured_generic_handoff_ci_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/CapturedGenericPlayerHost/**'
       - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericPlayer.cs'
       - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericAotOwner.cs'
@@ -59,4 +60,5 @@ jobs:
           python3 -B -m unittest discover -s Tools/AssemblyShadow/R03IR \
             -p test_captured_batch_source.py -v
           python3 -B Tools/AssemblyShadow/R03IR/run_captured_generic_local.py --help
+          python3 -B Tools/AssemblyShadow/R03IR/captured_generic_handoff_ci_contracts.py
           echo 'HOST ONLY: no Unity/IL2CPP Player or source-matched Local batch.'

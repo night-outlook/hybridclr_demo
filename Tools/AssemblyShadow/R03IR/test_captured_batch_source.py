@@ -44,6 +44,7 @@ class CapturedBatchSourceContracts(unittest.TestCase):
                          "test_captured_generic_host.py",
                          "real_native_header_surface.py",
                          "test_real_native_header_surface.py",
+                         "captured_generic_handoff_ci_contracts.py",
                          "test_captured_source_preparation.py",
                          "test_captured_batch_source.py"):
             self.assertIn("Tools/AssemblyShadow/R03IR/" + required,
