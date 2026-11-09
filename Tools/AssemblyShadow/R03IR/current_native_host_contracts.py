@@ -190,16 +190,22 @@ class CurrentNativeHostContracts(unittest.TestCase):
             self.assertIsInstance(workspace, Path)
             self.assertIsNot(type(workspace), Path)
             expected = {
-                "verifiedSourceFiles": 11,
+                "verifiedSourceFiles": 14,
+                "currentCandidatePins": dict(host.source.CURRENT),
                 "result": "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation",
             }
+            vm = {"result": "PassedCurrentNativeVmSourceDeltaOnly",
+                  "changedVmFileCount": 47,
+                  "currentNativeCommit": host.source.CURRENT["il2cpp_plus"]}
             with mock.patch.object(host.source, "verify_source_roots", return_value=expected) as sources, \
+                 mock.patch.object(host.delta, "validate", return_value=vm) as inventory, \
                  mock.patch.object(host.source, "git_head", return_value=DEMO), \
                  mock.patch.object(host.historical, "verify_repo",
                                    return_value={"clean": True}) as remotes:
                 self.assertIs(host.inputs(workspace, DEMO,
                     source.CURRENT["il2cpp_plus"]), expected)
                 self.assertEqual(sources.call_count, 1)
+                inventory.assert_called_once()
                 self.assertEqual(remotes.call_count, 4)
                 self.assertFalse((root / "fresh-evidence").exists())
 
@@ -257,6 +263,34 @@ class CurrentNativeHostContracts(unittest.TestCase):
             self.assertEqual(helped.returncode, 0, helped.stderr)
             self.assertIn("--read-only-admission", helped.stdout)
             self.assertFalse(output.exists())
+
+    def test_13_inner_native_host_admission_rejects_stale_count_and_pin(self):
+        # Keep the inner host gate independent of outer Mac/runner admission.
+        with tempfile.TemporaryDirectory(prefix="r03-b1-host-count-") as tmp:
+            workspace = Path(tmp).resolve(strict=True) / "sources"
+            workspace.mkdir()
+            for name in host.expected_heads(DEMO):
+                (workspace / name).mkdir()
+            good = {"result": "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation",
+                    "verifiedSourceFiles": 14,
+                    "currentCandidatePins": dict(host.source.CURRENT)}
+            valid_delta = {"result": "PassedCurrentNativeVmSourceDeltaOnly",
+                           "changedVmFileCount": 47,
+                           "currentNativeCommit": host.source.CURRENT["il2cpp_plus"]}
+            for kind in ("11-source", "wrong-current-pin", "45-native-files",
+                         "wrong-native-head"):
+                manifest = copy.deepcopy(good)
+                vm = copy.deepcopy(valid_delta)
+                if kind == "11-source": manifest["verifiedSourceFiles"] = 11
+                elif kind == "wrong-current-pin":
+                    manifest["currentCandidatePins"]["il2cpp_plus"] = "0"*40
+                elif kind == "45-native-files": vm["changedVmFileCount"] = 45
+                else: vm["currentNativeCommit"] = "0"*40
+                with self.subTest(kind=kind), \
+                     mock.patch.object(host.source, "verify_source_roots", return_value=manifest), \
+                     mock.patch.object(host.delta, "validate", return_value=vm):
+                    with self.assertRaisesRegex(ValueError, "B1"):
+                        host.inputs(workspace, DEMO, host.source.CURRENT["il2cpp_plus"])
 
     def test_11_no_current_admission_can_claim_component_runtime_pass(self):
         script = (host.HERE / "run_current_native_host_preflight.py").read_text()
