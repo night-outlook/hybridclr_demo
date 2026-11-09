@@ -126,7 +126,7 @@ static bool Concurrent() {
     for (unsigned i = 0; i < count; ++i) threads[i].join();
     Snapshot snap{};
     if (winners.load() != 1 || state.status() != State::Frozen ||
-        !state.Read(snap) || snap.code < 100 || snap.code >= 100+count ||
+        !state.Read(snap) || snap.code < 100 || snap.code >= std::int32_t(100 + count) ||
         snap.length != 7 || std::memcmp(snap.reason, "writer", 6))
         return false;
     return snap.reason[6] == char('A' + snap.code - 100);
