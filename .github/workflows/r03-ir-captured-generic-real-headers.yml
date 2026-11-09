@@ -1,30 +1,34 @@
-name: R03 captured generic native probe real IL2CPP header syntax
+name: R03 captured generic exact public native fork API source audit
 on:
   push:
     branches: ['codex/assembly-shadow-r01b-h1']
     paths:
       - '.github/workflows/r03-ir-captured-generic-real-headers.yml'
       - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericPhysicalProbe.cpp'
+      - 'Tools/AssemblyShadow/R03IR/real_native_header_surface.py'
+      - 'Tools/AssemblyShadow/R03IR/test_real_native_header_surface.py'
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  native-headers:
-    name: Pinned il2cpp_plus real header C++11 syntax / ${{ matrix.os }}
+  actual-fork-source:
+    name: Authentic pinned fork declarations (source only) / ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-24.04, macos-15]
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          persist-credentials: false
           path: hybridclr_demo
+          persist-credentials: false
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             /Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericPhysicalProbe.cpp
+            /Tools/AssemblyShadow/R03IR/real_native_header_surface.py
+            /Tools/AssemblyShadow/R03IR/test_real_native_header_surface.py
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/il2cpp_plus
@@ -33,50 +37,19 @@ jobs:
           persist-credentials: false
           sparse-checkout: |
             libil2cpp
-      - name: Real native fork headers, no test-double API substitution
+      - name: Actual pinned fork API declaration and implementation audit
         shell: bash
         run: |
           set -euo pipefail
+          export PYTHONDONTWRITEBYTECODE=1
           test "$(git -C hybridclr_demo rev-parse HEAD)" = "$GITHUB_SHA"
           test "$(git -C il2cpp_plus rev-parse HEAD)" = 41764ae1eeefb33b05966e7f7676e52aae39c340
-          src="$GITHUB_WORKSPACE/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericPhysicalProbe.cpp"
-          native="$GITHUB_WORKSPACE/il2cpp_plus/libil2cpp"
-          temp="$RUNNER_TEMP/r03-captured-actual-headers"
-          mkdir -p "$temp/generated/hybridclr/generated"
-          # The fork stores UnityVersion.h only in generated SDK output.
-          # This test stub is a VERSION MACRO ONLY, not an IL2CPP API mock.
-          printf '#pragma once\n#define HYBRIDCLR_UNITY_VERSION 20220362\n' \
-            > "$temp/generated/hybridclr/generated/UnityVersion.h"
-          # The public native fork intentionally omits Unity's separately
-          # supplied external/google/sparsehash headers. Supply host package
-          # headers in the ephemeral CI checkout; these are external dependency
-          # shims, NOT replacements for any il2cpp_plus type/API declarations.
-          if test "$RUNNER_OS" = Linux; then
-            sudo apt-get update -qq
-            sudo apt-get install -y -qq libsparsehash-dev
-            sparse=/usr/include/sparsehash
-            dpkg-query -W libsparsehash-dev
-          else
-            HOMEBREW_NO_AUTO_UPDATE=1 brew install google-sparsehash
-            sparse="$(brew --prefix google-sparsehash)/include/sparsehash"
-            brew list --versions google-sparsehash
-          fi
-          test -d "$sparse"
-          external="$GITHUB_WORKSPACE/il2cpp_plus/external/google/sparsehash"
-          mkdir -p "$external"
-          cp -R "$sparse/." "$external/"
-          for name in dense_hash_map sparse_hash_map; do
-            if test ! -f "$external/$name.h" && test -f "$external/$name"; then
-              cp "$external/$name" "$external/$name.h"
-            fi
-          done
-          test -f "$external/dense_hash_map.h"
-          compiler="$(command -v clang++ || command -v g++)"
-          test -n "$compiler"
-          "$compiler" -std=c++11 -fsyntax-only \
-            -DHYBRIDCLR_R03_RUNTIME_PROBE=1 \
-            -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 \
-            -I"$temp/generated" -I"$native" -I"$native/pch" \
-            -I"$GITHUB_WORKSPACE/il2cpp_plus/external/google" \
-            "$src"
-          echo 'Real pinned fork API headers compile. This is NOT Unity/Player/link evidence.'
+          export R03_FORK_ROOT="$GITHUB_WORKSPACE/il2cpp_plus"
+          export R03_CAPTURED_PROBE="$GITHUB_WORKSPACE/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericPhysicalProbe.cpp"
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03IR/real_native_header_surface.py \
+            --fork "$R03_FORK_ROOT" --probe "$R03_CAPTURED_PROBE"
+          python3 -B -m unittest discover \
+            -s hybridclr_demo/Tools/AssemblyShadow/R03IR \
+            -p test_real_native_header_surface.py -v
+          echo 'PUBLIC FORK SOURCE DECLARATIONS ONLY: no vendor Unity SDK/Baselib,'
+          echo 'no native translation-unit compilation, no Unity/Player/IL2CPP, no error15.'
