@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""R03 IR-R03-02 oneuse-09: exact-source 1-build/3-real-Player Local batch.
+"""R03 IR-R03-02 oneuse-10: exact-source B1 native-origin 1-build/3-real-Player Local batch.
 
 Only runnable after a NEW explicit Primary WEB_TO_LOCAL authorizes the exact
 pushed SHA, verified dual-OS source tests, fresh Mac volume/Unity/SDK/original-S
@@ -7,7 +7,7 @@ admission and fresh empty output roots. This file creates NO runtime evidence
 on its own and cannot grant full R03/H2 acceptance.
 
 One real AOT IL2CPP image carries: original initializer control/failure +
-physical captured generic. The earlier oneuse07 binary/output is never reused.
+physical captured generic. All earlier oneuse07/08/09 binary/output roots are never reused.
 """
 from __future__ import annotations
 
@@ -32,6 +32,7 @@ from run_initializer_local import (
     init_player, check_git_source, MODE_SHA)
 from prepare_captured_generic_sources import extend as extend_captured
 from verify_captured_generic_native import inspect as verify_captured
+from verify_first_error_b1 import inspect as verify_b1
 from run_current_native_validation_cycle import (
     validate_destination, validate_original, validate_sources, validate_machine)
 
@@ -41,6 +42,9 @@ EXTRA_SOURCE_PATHS = (
     "Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericAotOwner.cs",
     "Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericPlayer.cs",
     "Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericPhysicalProbe.cpp",
+    "Tools/AssemblyShadow/R03IR/PlayerProject/R03FirstErrorB1Probe.cpp",
+    "Tools/AssemblyShadow/R03IR/verify_first_error_b1.py",
+    "Tools/AssemblyShadow/R03IR/test_first_error_b1.py",
     "Tools/AssemblyShadow/R03IR/CapturedGenericHost/CapturedGenericHost.csproj",
     "Tools/AssemblyShadow/R03IR/CapturedGenericHost/Program.cs",
     "Tools/AssemblyShadow/R03IR/CapturedGenericPlayerHost/CapturedGenericPlayerHost.csproj",
@@ -110,6 +114,9 @@ class CapturedBatch(InitializerBatch):
         require(pre.get("kind") == "R03PhysicalCapturedGenericA2SourcesV1" and
                 pre.get("result") == "PreparedNewProjectSourceOnly_NoUnityOrPlayer" and
                 pre.get("initializerBridgeKept") is True and
+                pre.get("b1FirstErrorTransport") == "PreopenedNativeB1NotV2" and
+                pre.get("b1NativePartSha256") == sha(
+                    HERE / "PlayerProject/R03FirstErrorB1Probe.cpp") and
                 pre.get("R03Accepted") is False and
                 pre.get("unityBuildExecuted") is False and
                 pre.get("combinedOverlayAfterSha256") == config["overlaySha256"] and
@@ -127,7 +134,8 @@ class CapturedBatch(InitializerBatch):
         nm = subprocess.run(["nm", "-gU", str(game_assembly)],
                             capture_output=True, text=True, timeout=90)
         for export in ("_R03_IRG_Open", "_R03_IRG_Probe",
-                       "_R03_IRG_AttemptRuntimeInvoke", "_R03_IRG_Seal"):
+                       "_R03_IRG_AttemptRuntimeInvoke", "_R03_IRG_Seal",
+                       "_R03_IRB1_Open", "_R03_IRB1_Seal"):
             require(nm.returncode == 0 and
                     nm.stdout.count(export) == 1,
                     "Actual linked native physical captured generic AOT export: " + export)
@@ -143,6 +151,8 @@ def captured_hosts(batch):
     for directory, pattern in (
         ("NativeDiagnostics", "test_captured_generic_physical_probe.py"),
         (".", "test_captured_generic_native_consumer.py"),
+        (".", "test_first_error_b1.py"),
+        (".", "test_captured_source_preparation.py"),
     ):
         root = HERE if directory == "." else HERE / directory
         results[pattern] = batch.command([
@@ -261,6 +271,33 @@ def prepare_captured(batch, role):
     return receipt
 
 
+
+def initializer_b1_player(batch, mode):
+    """Invoke actual initializer Player once, then crosscheck its native B1.
+
+    The original V1 oracle stays independently mandatory. No replay or retry.
+    A failed B1 crosscheck is recorded as a failed cell, never a V2 PASS.
+    """
+    result = init_player(batch, mode)
+    root = batch.root / "players" / ("IR-R03-02-" + mode)
+    request = loads((root / "request.json").read_text(encoding="utf-8"))
+    recovered = loads((root / "raw.json.vm-recovery.json").read_text(
+        encoding="utf-8"))
+    require(recovered.get("nativeRecovery") is not None and
+            type(recovered["nativeRecovery"].get("reason")) is str,
+            "Independent original native V1 initializer reason")
+    receipt = verify_b1(root / "raw.json.first-error-b1.json", request, mode,
+                        result["launchPid"],
+                        recovered["nativeRecovery"]["reason"])
+    require(receipt["result"] == "PassedExactB1OriginVsV1_NotV2OrRuntimeAcceptance",
+            "Genuine initializer B1 exact reason/PID source")
+    result["nativeFirstErrorB1"] = receipt
+    result["nativeFirstErrorB1RawSha256"] = sha(
+        root / "raw.json.first-error-b1.json")
+    write(root / "verification.json", result)
+    return result
+
+
 def generic_player(batch):
     role = "candidate-release"
     batch.verify_build(role)
@@ -307,6 +344,16 @@ def generic_player(batch):
                 observed["capturedNativeError15Field"] == 15 and
                 observed["nativeVMProofIndependent"] is False,
                 "V1 native strict semantics require actual source/exe/PID independent joins")
+        recovery = loads(raw.read_text(encoding="utf-8")).get("nativeRecovery")
+        require(type(recovery) is dict and type(recovery.get("reason")) is str,
+                "Original native captured-generic V1 first reason")
+        b1 = verify_b1(root / "raw.json.first-error-b1.json", request,
+                       "captured-generic", launch["pid"], recovery["reason"])
+        require(b1["result"] == "PassedExactB1OriginVsV1_NotV2OrRuntimeAcceptance",
+                "Actual B1 origin15 equals original physical captured VM reason")
+        evidence["nativeFirstErrorB1"] = b1
+        evidence["nativeFirstErrorB1RawSha256"] = sha(
+            root / "raw.json.first-error-b1.json")
         evidence["semanticRecord"] = observed
         evidence["result"] = "PassedFocusedCapturedGenericV1PlayerObservation_NotV2"
     except Exception as error:
@@ -379,7 +426,7 @@ def execute(workspace, original_s, output, unity, demo_commit):
     batch.cell("build-captured", lambda: batch.build(role),
                ("prepare-captured",))
     for mode in MODE_SHA:
-        batch.cell("player-" + mode, lambda m=mode: init_player(batch, m),
+        batch.cell("player-" + mode, lambda m=mode: initializer_b1_player(batch, m),
                    ("build-captured",))
     batch.cell("player-captured-generic", lambda: generic_player(batch),
                ("build-captured",))
@@ -405,8 +452,8 @@ def execute(workspace, original_s, output, unity, demo_commit):
                "PassedFullRawHostAndArchiveBinding_NoRuntimeAcceptance")
     record = finalize(batch.root, {
         "schemaVersion": 1,
-        "kind": "R03IRCapturedGenericOneUse09EvidenceBatchV1",
-        "result": "FocusedCapturedGenericAndInitializerEvidenceForIndependentReview"
+        "kind": "R03IRNativeB1OneUse10EvidenceBatchV1",
+        "result": "FocusedNativeFirstErrorB1AndV1Controls_NotV2"
             if success else "ReturnRequired",
         "repositories": dict(batch.pins), "cells": batch.cells,
         "plannedFreshUnityBuilds": 1,
@@ -416,6 +463,8 @@ def execute(workspace, original_s, output, unity, demo_commit):
                                     for mode in MODES),
         "recordedNativeHostCustody": custody,
         "nativeV2TransportImplemented": False,
+        "nativeB1OriginReadbackObservedInPlayers": success,
+        "nativeB1IsCompleteV2": False,
         "firstRecoveryAuthenticatedV2": False,
         "wholeVmEpoch": "NotProven",
         "fullOriginalSIndependentCompilerLinkPlayerJoin": False,
