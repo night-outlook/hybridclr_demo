@@ -15,6 +15,7 @@ from prepare_initializer_sources import read_json, need, sha
 
 HERE = Path(__file__).resolve().parent
 NATIVE = HERE / "PlayerProject/R03CapturedGenericPhysicalProbe.cpp"
+B1_NATIVE = HERE / "PlayerProject/R03FirstErrorB1Probe.cpp"
 MANAGED = {
     "Assets/R03CapturedGenericAotOwner.cs":
         HERE / "PlayerProject/R03CapturedGenericAotOwner.cs",
@@ -79,16 +80,21 @@ def extend(project, config_path, receipt_dir):
          prep_record.get("runtimeAcceptance") is False,
          "Exact oneuse-09 initializer preextension source provenance required")
     need(NATIVE.is_file() and not NATIVE.is_symlink() and
+         B1_NATIVE.is_file() and not B1_NATIVE.is_symlink() and
          all(p.is_file() and not p.is_symlink() for p in MANAGED.values()),
          "All Primary physical native and managed source files must be present")
     need(b"R03_IRG_Probe" not in origin and
-         b"R03_IRG_Seal" not in origin,
+         b"R03_IRG_Seal" not in origin and
+         b"R03_IRB1_Open" not in origin and
+         b"R03_IRB1_Seal" not in origin,
          "Never append duplicate native exports")
     for relative in MANAGED:
         need(relative not in entries and not (project / relative).exists(),
              "No preexisting captured-generic Player source: " + relative)
     appended = (b"\n// Source-bound physical captured generic A2 extension "
-                b"(test-only, no original source mutation)\n" + NATIVE.read_bytes())
+                b"(test-only, no original source mutation)\n" + NATIVE.read_bytes() +
+                b"\n// Source-bound native B1 originating-first-error witness "
+                b"(test-only, not V2 transport)\n" + B1_NATIVE.read_bytes())
     combined = origin + appended
     need(combined.startswith(origin) and len(combined) > len(origin),
          "Original initializer composite remains an exact prefix")
@@ -121,6 +127,8 @@ def extend(project, config_path, receipt_dir):
         "overlay": str(overlay),
         "initializerCompositeBeforeSha256": sha(origin),
         "genericNativePartSha256": sha(NATIVE.read_bytes()),
+        "b1NativePartSha256": sha(B1_NATIVE.read_bytes()),
+        "b1FirstErrorTransport": "PreopenedNativeB1NotV2",
         "combinedOverlayAfterSha256": sha(combined),
         "managedSourceSha256": {name: sha(path.read_bytes())
                                for name, path in MANAGED.items()},
