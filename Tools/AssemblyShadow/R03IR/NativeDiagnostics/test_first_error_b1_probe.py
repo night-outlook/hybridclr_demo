@@ -86,7 +86,7 @@ int main(int argc,char** argv) {
         ?"IR-R03-02-captured-generic":("IR-R03-02-"+mode).c_str();
     // This is test-only, but caseId must be stable during the call.
     const std::string caseOwned = "IR-R03-02-" + mode;
-    caseId=caseOwned.c_str();
+    const char* caseId=caseOwned.c_str();
     const char* fixture="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
     if(mode=="preexisting") {
         assert(R03_IRB1_Open(argv[2],run,caseId,fixture)!=1);
