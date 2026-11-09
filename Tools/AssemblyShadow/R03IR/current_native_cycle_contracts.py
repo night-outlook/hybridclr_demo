@@ -136,7 +136,8 @@ class CurrentNativeCycleContracts(unittest.TestCase):
         with mock.patch.object(cycle, "identity", return_value={"remoteHeadVerified": True}), \
              mock.patch.object(cycle.source, "verify_source_roots", return_value={
                  "result": "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation",
-                 "verifiedSourceFiles": 11}), \
+                 "verifiedSourceFiles": 14,
+                 "currentCandidatePins": dict(cycle.source.CURRENT)}), \
              mock.patch.object(cycle.delta, "validate", return_value={
                  "result": "PassedCurrentNativeVmSourceDeltaOnly",
                  "changedVmFileCount": 47,
@@ -342,12 +343,15 @@ class CurrentNativeCycleContracts(unittest.TestCase):
         self.assertEqual(hashlib.sha256(raw).hexdigest(),
                          "a2a4fc891f26151ff1e0822214e0625fe409a7be3cf7c95b1e941838f3363224")
         original_demo = "c707141204265a8111f1f5928515fc8cf28abfee"
-        verdict = cycle.verify_current_batch(archive, original_demo)
-        self.assertEqual(verdict["result"], "PassedFiveFocusedCurrentNativePlayersOnly")
-        self.assertEqual(verdict["validatedCells"], 18)
-        self.assertIs(verdict["completeProducerRepositoryRecord"], True)
-        self.assertIs(verdict["R03Accepted"], False)
-        self.assertIs(verdict["IRR0302IndependentlyClosed"], False)
+        historical = json.loads(raw)
+        # The I child was source-accurate under 41764..., not the current
+        # a020... native. Preserve the original scoped child/outer FAIL;
+        # never silently rebind it to a later B1 checkout or label it Passed.
+        self.assertEqual(historical["repositories"]["il2cpp_plus"],
+                         "41764ae1eeefb33b05966e7f7676e52aae39c340")
+        self.assertIs(historical["R03Accepted"], False)
+        with self.assertRaises(cycle.source.CandidateSourceError):
+            cycle.verify_current_batch(archive, original_demo)
 
     def test_23_complete_repo_metadata_is_required_and_typed(self):
         fields = (
@@ -374,15 +378,18 @@ class CurrentNativeCycleContracts(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.read_batch(receipt)
 
-    def test_24_real_i_metadata_positive_and_negative_source_reuse(self):
+    def test_24_retained_i_source_is_not_rebound_or_promoted(self):
         fixture = Path(__file__).resolve().parent / (
             "fixtures/retained_oneuse_i_LOCAL_BATCH_RESULT.json")
-        record = json.loads(fixture.read_bytes())
-        original_demo = "c707141204265a8111f1f5928515fc8cf28abfee"
-        self.assertEqual(self.read_batch(record, original_demo)["validatedCells"], 18)
-        record["repositories"]["branch"] = "different-branch"
-        with self.assertRaises(ValueError):
-            self.read_batch(record, original_demo)
+        old = json.loads(fixture.read_bytes())
+        self.assertEqual(old["repositories"]["il2cpp_plus"],
+                         "41764ae1eeefb33b05966e7f7676e52aae39c340")
+        with self.assertRaises(cycle.source.CandidateSourceError):
+            self.read_batch(old, "c707141204265a8111f1f5928515fc8cf28abfee")
+        current_synthetic = self.fake_result()
+        current_synthetic["repositories"]["branch"] = "different-branch"
+        with self.assertRaises(cycle.source.CandidateSourceError):
+            self.read_batch(current_synthetic)
 
     def test_25_duplicate_or_failed_child_and_boolean_counts_rejected(self):
         for scenario in ("duplicate", "missing", "failed-prepare",
