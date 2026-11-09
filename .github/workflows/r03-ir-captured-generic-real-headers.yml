@@ -47,11 +47,36 @@ jobs:
           # This test stub is a VERSION MACRO ONLY, not an IL2CPP API mock.
           printf '#pragma once\n#define HYBRIDCLR_UNITY_VERSION 20220362\n' \
             > "$temp/generated/hybridclr/generated/UnityVersion.h"
+          # The public native fork intentionally omits Unity's separately
+          # supplied external/google/sparsehash headers. Supply host package
+          # headers in the ephemeral CI checkout; these are external dependency
+          # shims, NOT replacements for any il2cpp_plus type/API declarations.
+          if test "$RUNNER_OS" = Linux; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq libsparsehash-dev
+            sparse=/usr/include/sparsehash
+            dpkg-query -W libsparsehash-dev
+          else
+            HOMEBREW_NO_AUTO_UPDATE=1 brew install google-sparsehash
+            sparse="$(brew --prefix google-sparsehash)/include/sparsehash"
+            brew list --versions google-sparsehash
+          fi
+          test -d "$sparse"
+          external="$GITHUB_WORKSPACE/il2cpp_plus/external/google/sparsehash"
+          mkdir -p "$external"
+          cp -R "$sparse/." "$external/"
+          for name in dense_hash_map sparse_hash_map; do
+            if test ! -f "$external/$name.h" && test -f "$external/$name"; then
+              cp "$external/$name" "$external/$name.h"
+            fi
+          done
+          test -f "$external/dense_hash_map.h"
           compiler="$(command -v clang++ || command -v g++)"
           test -n "$compiler"
           "$compiler" -std=c++11 -fsyntax-only \
             -DHYBRIDCLR_R03_RUNTIME_PROBE=1 \
             -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 \
             -I"$temp/generated" -I"$native" -I"$native/pch" \
+            -I"$GITHUB_WORKSPACE/il2cpp_plus/external/google" \
             "$src"
           echo 'Real pinned fork API headers compile. This is NOT Unity/Player/link evidence.'
