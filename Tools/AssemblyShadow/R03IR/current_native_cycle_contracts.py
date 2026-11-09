@@ -167,9 +167,9 @@ class CurrentNativeCycleContracts(unittest.TestCase):
                 record["currentCandidatePins"]["il2cpp_plus"] = "0"*40
             else:
                 del record["currentCandidatePins"]["il2cpp_plus"]
-            with self.subTest(variant=variant), \\
-                 mock.patch.object(cycle, "identity", return_value={"remoteHeadVerified":True}), \\
-                 mock.patch.object(cycle.source, "verify_source_roots", return_value=record), \\
+            with self.subTest(variant=variant), \
+                 mock.patch.object(cycle, "identity", return_value={"remoteHeadVerified":True}), \
+                 mock.patch.object(cycle.source, "verify_source_roots", return_value=record), \
                  mock.patch.object(cycle.delta, "validate", return_value=delta_ok):
                 with self.assertRaisesRegex(ValueError,"Fourteen-file B1"):
                     cycle.validate_sources(self.workspace,"a"*40)
@@ -181,9 +181,9 @@ class CurrentNativeCycleContracts(unittest.TestCase):
             elif variant == "unreviewed-vm-count": record["changedVmFileCount"] = 48
             elif variant == "wrong-native-head": record["currentNativeCommit"] = "0"*40
             else: del record["currentNativeCommit"]
-            with self.subTest(variant=variant), \\
-                 mock.patch.object(cycle, "identity", return_value={"remoteHeadVerified":True}), \\
-                 mock.patch.object(cycle.source, "verify_source_roots", return_value=valid), \\
+            with self.subTest(variant=variant), \
+                 mock.patch.object(cycle, "identity", return_value={"remoteHeadVerified":True}), \
+                 mock.patch.object(cycle.source, "verify_source_roots", return_value=valid), \
                  mock.patch.object(cycle.delta, "validate", return_value=record):
                 with self.assertRaisesRegex(ValueError,"Forty-seven-file B1"):
                     cycle.validate_sources(self.workspace,"a"*40)
