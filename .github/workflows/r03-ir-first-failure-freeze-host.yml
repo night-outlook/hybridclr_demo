@@ -41,15 +41,7 @@ jobs:
               exe="$RUNNER_TEMP/r03-first-freeze/${cxx}-${standard}"
               "$cxx" -std="$standard" -O1 -Wall -Wextra -Werror -pedantic -pthread "$source" -o "$exe"
               "$exe" > "$exe.json"
-              python3 - "$exe.json" <<'PY'
-              import json,sys
-              from pathlib import Path
-              p=Path(sys.argv[1]); r=json.loads(p.read_bytes())
-              assert r['result']=='PassedHostLatchOnly_NotVmOrV2Transport'
-              for key in ('nativeVmFirstErrorObserved','firstErrorV2Integrated','wholeVmEpochAuthenticated','runtimeAcceptance','R03Accepted','H2Passed'):
-                  assert r[key] is False, (key,r[key])
-              print(r['kind'],r['result'])
-              PY
+              python3 -c 'import json,sys; r=json.load(open(sys.argv[1])); assert r["result"]=="PassedHostLatchOnly_NotVmOrV2Transport"; assert all(r[k] is False for k in ("nativeVmFirstErrorObserved","firstErrorV2Integrated","wholeVmEpochAuthenticated","runtimeAcceptance","R03Accepted","H2Passed")); print(r["kind"],r["result"])' "$exe.json"
             done
           done
           test -z "$(git status --porcelain)"
