@@ -29,7 +29,7 @@ def fixture():
         "beforeState": 6, "afterState": 9,
         "beforeCount": 1, "afterCount": 1,
         "runtimeInvokeAttempted": True, "runtimeInvokeSucceeded": False,
-        "runtimeInvokeThrew": False,
+        "runtimeInvokeThrew": True,
         "nativeRecovery": {
             "schemaVersion": 1, "enabled": True, "capabilityVersion": 1,
             "stateCode": 9, "state": "FailedAfterCommit", "published": True,
@@ -81,7 +81,8 @@ class NativeCapturedV1Contracts(unittest.TestCase):
             ("beforeState", 9), ("afterState", 6),
             ("beforeCount", 0), ("afterCount", 2),
             ("runtimeInvokeAttempted", False),
-            ("runtimeInvokeSucceeded", True), ("runtimeInvokeThrew", 1),
+            ("runtimeInvokeSucceeded", True), ("runtimeInvokeThrew", False),
+            ("runtimeInvokeThrew", 1),
             ("runtimeAcceptance", True), ("R03Accepted", True),
             ("H2Passed", True)
         ]
@@ -150,13 +151,14 @@ class NativeCapturedV1Contracts(unittest.TestCase):
                 verify(raw,REQUEST,expected_pid=PID,expected_owner=OWNER,
                        expected_fixture_sha256=SHA)
 
-    def test_07_values_are_not_coerced(self):
+    def test_07_actual_rejection_requires_managed_exception_evidence(self):
         original=fixture()
-        original["runtimeInvokeThrew"]=True
         self.assertEqual(self.check(original)["result"],
                          "SchemaConsistentNotRuntimeAuthenticated")
-        original["runtimeInvokeThrew"]=1
-        with self.assertRaises(NativeReceiptRejected): self.check(original)
+        for value in (False, 0, 1, None):
+            original["runtimeInvokeThrew"]=value
+            with self.subTest(value=value), self.assertRaises(NativeReceiptRejected):
+                self.check(original)
 
 
 if __name__ == "__main__":

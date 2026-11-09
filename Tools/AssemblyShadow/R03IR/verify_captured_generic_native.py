@@ -102,7 +102,7 @@ def verify(raw_bytes: bytes, request: dict, *, expected_pid: int,
          exact_bool(raw.get("ownerIndependentAot"), True) and
          exact_bool(raw.get("runtimeInvokeAttempted"), True) and
          exact_bool(raw.get("runtimeInvokeSucceeded"), False) and
-         type(raw.get("runtimeInvokeThrew")) is bool and
+         exact_bool(raw.get("runtimeInvokeThrew"), True) and
          all(exact_bool(raw.get(k), False) for k in
              ("runtimeAcceptance", "R03Accepted", "H2Passed")),
          "Actual contained generic method guard and postterminal no-side-effects contract")

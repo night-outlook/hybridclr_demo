@@ -141,7 +141,7 @@ using namespace il2cpp::vm;
 
 static AssemblyShadowState state=AssemblyShadowState::Disabled;
 static int32_t bodyCalls=1, guardCalls=0, invokeCalls=0;
-static int32_t mode=0; // 0=valid,1=bad owner,2=bad generic,3=wrong physical name,4=body escaped
+static int32_t mode=0; // 0=valid,1=bad owner,2=bad generic,3=wrong physical name,4=body escaped,5=silent-null
 static Il2CppImage ownerImage{}, baselineImage{};
 static Il2CppAssembly ownerAssembly{}, baselineAssembly{};
 static Il2CppClass ownerClass{};
@@ -218,6 +218,7 @@ const FieldInfo* Class::GetFieldFromName(Il2CppClass* cl,const char* name) {
 Il2CppObject* Runtime::Invoke(const MethodInfo* method,void*,void**,Il2CppException** ex) {
     assert(method==&inflated);++invokeCalls;
     if(mode==4) {++bodyCalls; *ex=nullptr;return &resultBox;}
+    if(mode==5) {*ex=nullptr;return nullptr;}
     *ex=&exception;return nullptr;
 }
 extern "C" int32_t R03_IRG_Open(const char*,const char*,const char*,const char*,const char*);
@@ -232,6 +233,7 @@ int main(int argc,char** argv) {
     else if(kind=="bad-generic") mode=2;
     else if(kind=="wrong-physical") mode=3;
     else if(kind=="escaped-body") mode=4;
+    else if(kind=="silent-null") mode=5;
     ownerImage.assembly=&ownerAssembly;
     ownerAssembly.image=&ownerImage;ownerAssembly.aname.name="Assembly-CSharp";
     baselineImage.assembly=&baselineAssembly;baselineImage.typeCount=2;
@@ -282,8 +284,9 @@ int main(int argc,char** argv) {
     assert(probe==1);
     assert(guardCalls==1 && state==AssemblyShadowState::FailedAfterCommit);
     const int attempt=R03_IRG_AttemptRuntimeInvoke();
-    if(kind=="escaped-body") {
-        assert(attempt!=1 && bodyCalls==2);
+    if(kind=="escaped-body" || kind=="silent-null") {
+        assert(attempt!=1);
+        assert(bodyCalls==(kind=="escaped-body"?2:1));
         assert(R03_IRG_Seal()!=1);
         return 0;
     }
@@ -334,7 +337,7 @@ class NativePhysicalCapturedProbeTests(unittest.TestCase):
                         capture_output=True, text=True, timeout=120)
                     self.assertEqual(result.returncode, 0, result.stderr)
                 for kind in ("valid", "bad-owner", "bad-generic", "wrong-physical",
-                             "premature", "escaped-body", "preexisting"):
+                             "premature", "escaped-body", "silent-null", "preexisting"):
                     out = root / (compiler.replace("+", "p") + "-" + kind + ".json")
                     process = subprocess.Popen([str(binary), kind, str(out)],
                                                stdout=subprocess.PIPE, stderr=subprocess.PIPE,

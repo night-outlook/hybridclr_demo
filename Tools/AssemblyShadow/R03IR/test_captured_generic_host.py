@@ -113,7 +113,10 @@ class CapturedGenericHostContracts(unittest.TestCase):
         with self.assertRaisesRegex(HostRejected, "AOT owner source witness"):
             self.check(owner=raw)
 
-    def test_06_pinned_native_guard_source_required(self):
+    def test_06_no_eager_runtime_typeof_generic_parameter(self):
+        self.assertNotIn(b"typeof(T)", self.owner)
+
+    def test_07_pinned_native_guard_source_required(self):
         raw = self.native.replace(b'Fail("CapturedBaselineType", candidate)',
                                   b'Fail("Other", candidate)')
         self.assertNotEqual(raw, self.native)
