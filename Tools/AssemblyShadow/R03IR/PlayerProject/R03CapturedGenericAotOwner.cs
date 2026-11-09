@@ -28,8 +28,9 @@ namespace AssemblyShadow.R03.IR
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static int Touch<T>() where T : class
         {
-            if (!typeof(T).IsClass)
-                throw new InvalidOperationException("Captured argument must be a class.");
+            // The reference-type constraint is verified when the method closes.
+            // Avoid T's class metadata/RGCTX access before the native method
+            // guard: inflation must not materialize physical Methods.R03.Node.
             Interlocked.Increment(ref s_calls);
             return 42;
         }

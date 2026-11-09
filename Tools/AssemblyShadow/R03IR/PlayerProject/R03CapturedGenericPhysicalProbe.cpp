@@ -256,6 +256,9 @@ extern "C" IL2CPP_EXPORT int32_t R03_IRG_AttemptRuntimeInvoke()
     {
         Il2CppObject* result = Runtime::Invoke(witness.inflated, nullptr, nullptr, &exception);
         witness.invokeSucceeded = exception == nullptr && result != nullptr;
+        // A null return with a null exception could simply mean an
+        // unavailable method pointer. It is NOT a denied method-entry proof.
+        witness.invokeThrew = exception != nullptr ? 1 : 0;
     }
     catch (const Il2CppExceptionWrapper&)
     {
@@ -263,7 +266,8 @@ extern "C" IL2CPP_EXPORT int32_t R03_IRG_AttemptRuntimeInvoke()
     }
     catch (...) { return Fault(-22); }
     if (!StaticCounter(witness.afterCount) ||
-        witness.afterCount != witness.beforeCount || witness.invokeSucceeded)
+        witness.afterCount != witness.beforeCount || witness.invokeSucceeded ||
+        !witness.invokeThrew)
         return Fault(-23);
     return 1;
 }
@@ -276,7 +280,7 @@ extern "C" IL2CPP_EXPORT int32_t R03_IRG_Seal()
     using namespace il2cpp::vm;
     using namespace r03_irg_captured;
     if (witness.fd < 0 || witness.stage.load(std::memory_order_acquire) != 2 ||
-        !witness.invoked || witness.invokeSucceeded ||
+        !witness.invoked || witness.invokeSucceeded || !witness.invokeThrew ||
         !witness.methodContextPhysical || !witness.methodInflated ||
         !State(9, witness.afterState)) return Fault(-24);
     std::string recovery;

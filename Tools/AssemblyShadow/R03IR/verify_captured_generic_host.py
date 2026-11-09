@@ -100,15 +100,16 @@ def verify(receipt_bytes: bytes, methods: bytes, owner_source: bytes, native_sou
     # explicitly updating this exact bounded test-only witness contract.
     for anchor in ("public static class R03CapturedGenericAotOwner",
                    "public static int Touch<T>() where T : class",
-                   "if (!typeof(T).IsClass)", "Interlocked.Increment(ref s_calls)",
+                   "where T : class", "Interlocked.Increment(ref s_calls)",
                    "return Touch<object>();", "MethodImplOptions.NoInlining"):
         need(anchor in owner, "AOT owner source witness missing: " + anchor)
     active_lines = "\n".join(line for line in owner.splitlines()
                              if not line.lstrip().startswith("//"))
     need("using Methods" not in active_lines and
          "typeof(Methods." not in active_lines and
-         "Methods.R03.Node" not in active_lines,
-         "No hard static Methods type binding in compiled AOT owner")
+         "Methods.R03.Node" not in active_lines and
+         "typeof(T)" not in active_lines,
+         "No static Methods reference or eager generic argument reflection")
     for anchor in ("struct CapturedArgumentVisitor",
                    'Fail("CapturedBaselineType", candidate)',
                    'visitor.Context(method->genericMethod->context',
