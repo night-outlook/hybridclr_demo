@@ -5,7 +5,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from prepare_captured_generic_sources import extend, NATIVE, MANAGED, ABICONTRACT
+from prepare_captured_generic_sources import extend, NATIVE, B1_NATIVE, MANAGED, ABICONTRACT
 from prepare_initializer_sources import sha
 
 
@@ -69,6 +69,9 @@ class CapturedSourcePreparationTests(unittest.TestCase):
         self.assertEqual(report["genericNativePartSha256"],sha(NATIVE.read_bytes()))
         self.assertEqual(report["combinedOverlayAfterSha256"],sha(self.overlay.read_bytes()))
         self.assertIn(NATIVE.read_bytes(),self.overlay.read_bytes())
+        self.assertIn(B1_NATIVE.read_bytes(), self.overlay.read_bytes())
+        self.assertEqual(report["b1NativePartSha256"], sha(B1_NATIVE.read_bytes()))
+        self.assertEqual(report["b1FirstErrorTransport"], "PreopenedNativeB1NotV2")
         self.assertEqual(json.loads(self.config.read_text())["overlaySha256"],
                          report["combinedOverlayAfterSha256"])
         self.assertEqual(json.loads(self.config.read_text())["capturedGenericPhysicalContract"],
@@ -156,6 +159,13 @@ class CapturedSourcePreparationTests(unittest.TestCase):
         self.overlay.symlink_to(outside)
         self._config()
         with self.assertRaises(ValueError):self.extend()
+
+    def test_15_preexisting_b1_export_rejected_without_overwrite(self):
+        self.overlay.write_bytes(self.overlay.read_bytes() + b"R03_IRB1_Open\n")
+        self._config()
+        with self.assertRaises(ValueError):
+            self.extend()
+        self.assertFalse(self.out.exists())
 
     def test_14_wrong_initializer_source_hash_not_corrected(self):
         p=self.overlay.parent/"SOURCE_PREPARATION.json"
