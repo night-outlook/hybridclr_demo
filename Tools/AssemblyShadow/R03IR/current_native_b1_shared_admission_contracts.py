@@ -21,6 +21,7 @@ import current_native_environment_admission as admission
 import current_native_source_gate as source
 import current_native_vm_delta_contracts as delta
 import run_current_native_validation_cycle as cycle
+import run_current_native_host_preflight as host
 from batch_contract import ContractError
 
 WORKSPACE: Path | None = None
@@ -139,6 +140,34 @@ class SharedB1AdmissionContracts(unittest.TestCase):
     def test_08_wrong_demo_sha_refused_before_any_product_run(self):
         with self.assertRaises(ContractError):
             cycle.validate_sources(self.workspace, "f"*40)
+
+    def test_10_real_inner_native_host_source_admission(self):
+        # Source-only execution of the *actual* inner host preflight. A
+        # source-inventory PASS on the outer runner must not hide a stale
+        # validation contract reached later by the same one-use cycle.
+        report = host.inputs(self.workspace, self.sha, source.CURRENT["il2cpp_plus"])
+        self.assertEqual(report["verifiedSourceFiles"], 14)
+        self.assertEqual(report["currentCandidatePins"], source.CURRENT)
+        self.assertEqual(report["result"],
+                         "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation")
+
+    def test_11_inner_native_host_old_source_and_vm_counts_fail_closed(self):
+        genuine = source.verify_source_roots(self.roots, require_checkout_heads=True)
+        native = {"result": "PassedCurrentNativeVmSourceDeltaOnly",
+                  "changedVmFileCount": 47,
+                  "currentNativeCommit": source.CURRENT["il2cpp_plus"]}
+        stale_source = copy.deepcopy(genuine)
+        stale_source["verifiedSourceFiles"] = 11
+        with mock.patch.object(source, "verify_source_roots", return_value=stale_source), \
+             mock.patch.object(host.delta, "validate", return_value=native):
+            with self.assertRaisesRegex(ValueError, "fourteen-source B1"):
+                host.inputs(self.workspace, self.sha, source.CURRENT["il2cpp_plus"])
+        stale_vm = copy.deepcopy(native)
+        stale_vm["changedVmFileCount"] = 45
+        with mock.patch.object(source, "verify_source_roots", return_value=genuine), \
+             mock.patch.object(host.delta, "validate", return_value=stale_vm):
+            with self.assertRaisesRegex(ValueError, "forty-seven-file B1"):
+                host.inputs(self.workspace, self.sha, source.CURRENT["il2cpp_plus"])
 
     def test_09_no_generated_output_or_source_edits(self):
         self.assertEqual(len(source.FILES), 14)
