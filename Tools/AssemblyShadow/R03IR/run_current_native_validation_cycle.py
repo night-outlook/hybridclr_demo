@@ -128,12 +128,22 @@ def validate_sources(workspace: Path, demo_commit: str) -> dict:
     repositories = [identity(roots[name], demo_commit if name == "hybridclr_demo"
                              else source.CURRENT[name]) for name in REPOS]
     checked = source.verify_source_roots(roots, require_checkout_heads=True)
+    # B1 current-only candidate: the *same* source pins and inventory used
+    # by the individual CI gates must also pass this shared Mac/runner path.
+    # Retain explicit reviewed 14/47 cardinalities; neither dynamic manifest
+    # length nor a plausible synthetic result may silently select a new profile.
     require(checked["result"] == "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation" and
-            checked["verifiedSourceFiles"] == 11, "Eleven-file source proof not passed")
+            type(checked.get("verifiedSourceFiles")) is int and
+            checked["verifiedSourceFiles"] == len(source.FILES) == 14 and
+            checked.get("currentCandidatePins") == source.CURRENT,
+            "Fourteen-file B1 source proof not passed")
     config = json.loads(delta.MANIFEST.read_text(encoding="utf-8"))
     vm = delta.validate(config, roots["il2cpp_plus"], check_native_commit=True)
     require(vm["result"] == "PassedCurrentNativeVmSourceDeltaOnly" and
-            vm["changedVmFileCount"] == 45, "Forty-five-file source inventory not passed")
+            type(vm.get("changedVmFileCount")) is int and
+            vm["changedVmFileCount"] == len(delta.EXPECTED_VM_NAMES) == 47 and
+            vm.get("currentNativeCommit") == source.CURRENT["il2cpp_plus"],
+            "Forty-seven-file B1 source inventory not passed")
     return {"result": "PassedReadOnlySourceAdmission_NotBuildOrRuntime",
             "repositories": repositories, "sourceGate": checked, "vmDelta": vm,
             "R03Accepted": False, "ReadyForHumanReviewGate": False}
