@@ -1,3 +1,12 @@
+# R03 current Primary checkpoint — A2 physical captured generic PASS; native V2 B0 host-only (2026-11-09)
+
+Local oneuse-09 executed at demo `bb5fce9c15450e68c6341d88270fbc30dd7b9738`, publication `97cd47e06a837569ff62c4ac7744117d22966126`: **19/19 focused PASS**, one Unity2022.3.62f2 IL2CPP Mac ARM64 build, 3 real Players. Control/failure initializer commits 0/19 with 6/9 states and genuine Bi4 callbacks; actual physical captured Methods.R03.Node method_inst with postinflation state6 triggered real native error15/state9, postterminal Runtime::Invoke exception, no AOT counter increment. [Raw scope/reconciliation](../History/M07R/R03/IR_Remediation/POST_CAPTURED09_2026-11-09/PRIMARY_RECONCILIATION.md). The error's **exception type is not captured**.
+
+New exact Git-published receipt auditor/22 negative tests passed both OS at [42570848609](https://github.com/night-outlook/hybridclr_demo/actions/runs/42570848609). A host-only allocation-free immutable first-failure latch (B0) passed dual-OS C++11/17 [42571591288](https://github.com/night-outlook/hybridclr_demo/actions/runs/42571591288); no VM integration or native V2 real Player. [B staged integration design](../History/M07R/R03/IR_Remediation/POST_CAPTURED09_2026-11-09/B_NATIVE_V2_FIRST_ERROR_DESIGN_AND_PLAN.md). **Earliest unfinished work is native V2 B1 actual originating-first-error integration**, then B2 descriptor-bound writer, B3 epoch and source provenance.
+
+Oneuse-09 WEB_TO_LOCAL is **CLOSED**; no Local authorization. Original oneuse-08 remains PrerequisiteBlocked/NotRun, 17 retired roots/40 duplicates unavailable, historical strict custody Blocked. Full independent R03 FAIL; High IR-R03-01/02 unclosed, all stage and qualification flags false. PureInterpreter disabled. Do not begin H2/M08A/X02/SNAP-01.
+
+---
 # Current Primary R03 — oneuse-08 PrerequisiteBlocked, oneuse-09 conditional CI readmission (2026-11-09 UTC)
 
 Original oneuse08 demo `26843412eda7034cd91c0754bdcde16d5517d814`, published evidence demo `c9a5cf7a5e9c33a08db0a0f5f9bc1917e8c7ac25`: **PrerequisiteBlocked/NotRun** before runner, builds or Players (19 cells NotRun). One mandatory Ubuntu Actions job `128946622207` reported `in_progress/success` with completed timestamp and fully successful steps; this **fails** the job-level `completed/success` admission predicate. Original historical receipt unchanged and not relabeled. Original Mac read-only admission/capacity/custody passed within oneuse08 scope only.
