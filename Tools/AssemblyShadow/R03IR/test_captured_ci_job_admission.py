@@ -96,11 +96,18 @@ class ExactCIJobStatusContracts(unittest.TestCase):
     def test_05_each_missing_workflow_job_pair_or_duplicate_blocked(self):
         source = self.source_consistent_fixture()
         self.assertEqual(len(REQUIRED), 7)
-        for index in range(7):
+        # CI.json also records the optional source-only workflow. Removing
+        # that optional run is valid; mutate each REQUIRED identity by name.
+        for name in REQUIRED:
             rows = copy.deepcopy(source)
-            erased = rows["runs"].pop(index)
+            path = ".github/workflows/" + name
+            found = [run for run in rows["runs"] if run.get("path") == path]
+            self.assertEqual(len(found), 1)
+            erased = found[0]
+            rows["runs"].remove(erased)
             rows["jobs"].pop(str(erased["id"]))
-            self.assert_denied(rows)
+            with self.subTest(required=name):
+                self.assert_denied(rows)
         rows = copy.deepcopy(source)
         rows["jobs"].pop("42551093381")
         self.assert_denied(rows, "Actual job list missing")
