@@ -1,0 +1,56 @@
+name: R03 Native V2 B1 first-failure freeze host contracts
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - '.github/workflows/r03-ir-first-failure-freeze-host.yml'
+      - 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/FirstFailureFreezeV2.h'
+      - 'Tools/AssemblyShadow/R03IR/NativeDiagnostics/first_failure_freeze_driver.cpp'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  first-error-host:
+    name: Preallocated C++11 first-error host / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, ubuntu-24.04]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03IR/NativeDiagnostics/FirstFailureFreezeV2.h
+            /Tools/AssemblyShadow/R03IR/NativeDiagnostics/first_failure_freeze_driver.cpp
+      - name: Compile and run actual bounded C++11 and C++17 latch source
+        shell: bash
+        run: |
+          set -euo pipefail
+          source=Tools/AssemblyShadow/R03IR/NativeDiagnostics/first_failure_freeze_driver.cpp
+          mkdir -p "$RUNNER_TEMP/r03-first-freeze"
+          compilers=()
+          if command -v clang++ >/dev/null 2>&1; then compilers+=(clang++); fi
+          if command -v g++ >/dev/null 2>&1; then compilers+=(g++); fi
+          test "${#compilers[@]}" -ge 1
+          for cxx in "${compilers[@]}"; do
+            for standard in c++11 c++17; do
+              exe="$RUNNER_TEMP/r03-first-freeze/${cxx}-${standard}"
+              "$cxx" -std="$standard" -O1 -Wall -Wextra -Werror -pedantic -pthread "$source" -o "$exe"
+              "$exe" > "$exe.json"
+              python3 - "$exe.json" <<'PY'
+import json,sys
+from pathlib import Path
+p=Path(sys.argv[1]); r=json.loads(p.read_bytes())
+assert r['result']=='PassedHostLatchOnly_NotVmOrV2Transport'
+for key in ('nativeVmFirstErrorObserved','firstErrorV2Integrated','wholeVmEpochAuthenticated','runtimeAcceptance','R03Accepted','H2Passed'):
+    assert r[key] is False, (key,r[key])
+print(r['kind'],r['result'])
+PY
+            done
+          done
+          test -z "$(git status --porcelain)"
+          echo 'HOST-ONLY: first-failure latch not integrated into IL2CPP, Unity/Player never executed.'
