@@ -17,6 +17,7 @@ import re
 import sys
 
 import current_native_source_gate as source
+import current_native_vm_delta_contracts as delta
 import run_primary_host_preflight as historical
 
 HERE = Path(__file__).resolve().parent
@@ -187,9 +188,21 @@ def inputs(workspace: Path, demo_commit: str, native_commit: str) -> dict:
     roots = {name: workspace / name for name in (
         "hybridclr_demo", "hybridclr", "hybridclr_unity", "il2cpp_plus")}
     report = source.verify_source_roots(roots, require_checkout_heads=True)
-    require(report["verifiedSourceFiles"] == 11 and
-            report["result"] == "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation",
-            "Pinned eleven-source gate required before Local host")
+    require(report["result"] == "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation" and
+            type(report.get("verifiedSourceFiles")) is int and
+            report["verifiedSourceFiles"] == len(source.FILES) == 14 and
+            report.get("currentCandidatePins") == source.CURRENT,
+            "Pinned fourteen-source B1 gate required before Local host")
+    # This host wrapper is a second real pre-build consumer. It must reject
+    # mixed B1/old native histories rather than rely on the outer runner.
+    inventory = delta.validate(
+        json.loads(delta.MANIFEST.read_text(encoding="utf-8")),
+        roots["il2cpp_plus"], check_native_commit=True)
+    require(inventory["result"] == "PassedCurrentNativeVmSourceDeltaOnly" and
+            type(inventory.get("changedVmFileCount")) is int and
+            inventory["changedVmFileCount"] == len(delta.EXPECTED_VM_NAMES) == 47 and
+            inventory.get("currentNativeCommit") == source.CURRENT["il2cpp_plus"],
+            "Pinned forty-seven-file B1 VM gate required before Local host")
     require(source.git_head(roots["hybridclr_demo"]) == demo_commit,
             "Current demo commit differs before Local host")
     # The outer coordinator already checks all four remotes, but the current
