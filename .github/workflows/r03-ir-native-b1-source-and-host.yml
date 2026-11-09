@@ -1,0 +1,59 @@
+name: R03 Native B1 first error source/host qualification (not Unity)
+on:
+  push:
+    branches: ['codex/assembly-shadow-r01b-h1']
+    paths:
+      - '.github/workflows/r03-ir-native-b1-source-and-host.yml'
+      - 'Tools/AssemblyShadow/R03IR/**'
+      - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  b1-source-host:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, ubuntu-24.04]
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Tools/AssemblyShadow/R03IR/
+            /Tools/AssemblyShadow/R03/
+      - name: Run strict B1 receipt, source preparer and one-use batch regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd Tools/AssemblyShadow/R03IR
+          python3 -B -m unittest -v \
+            test_first_error_b1 \
+            test_captured_source_preparation \
+            test_captured_batch_source
+      - name: Compile real B1 probe source with isolated C++11 VM-shaped mocks
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd Tools/AssemblyShadow/R03IR
+          python3 -B -m unittest discover -v -s NativeDiagnostics \
+            -p test_first_error_b1_probe.py
+      - name: Check no changed or untracked source and no acceptance promotion
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(git status --porcelain)"
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('Tools/AssemblyShadow/R03IR/run_captured_generic_local.py').read_text()
+          for needle in ['nativeB1OriginReadbackObservedInPlayers',
+                         'nativeB1IsCompleteV2": False',
+                         '"nativeV2TransportImplemented": False',
+                         '"R03Accepted": False',
+                         '"ReadyForHumanReviewGate": False']:
+              assert needle in p,needle
+          print('Host-only B1/source checks; NO actual Unity/Player invocation.')
+          PY
