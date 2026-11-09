@@ -1,0 +1,36 @@
+curl: (56) The requested URL returned error: 403
+curl: (56) The requested URL returned error: 403
+curl: (56) The requested URL returned error: 403
+curl: (56) The requested URL returned error: 403
+curl: (56) The requested URL returned error: 403
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-CapturedGeneric09/collect_ci.py", line 64, in <module>
+    joins=list(pool.map(join,tasks))
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 645, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 312, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 454, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 396, in __get_result
+    raise self._exception
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-CapturedGeneric09/collect_ci.py", line 51, in join
+    check = fetch(f'check-runs/{jid}',f'check-{jid}.json')
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-CapturedGeneric09/collect_ci.py", line 23, in fetch
+    raw = subprocess.check_output(['curl','-fSs','--max-time','25','-H','Cache-Control: no-cache',url])
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 473, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['curl', '-fSs', '--max-time', '25', '-H', 'Cache-Control: no-cache', 'https://api.github.com/repos/night-outlook/hybridclr_demo/check-runs/128962346634']' returned non-zero exit status 56.

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03IRTerminalProducerClrHostCheck",
+  "result": "PassedHostBodiesOnly",
+  "results": [
+    {
+      "kind": "captured-generic",
+      "result": "PassedClrPositiveBodies",
+      "preparedField": 3,
+      "finalField": 6
+    },
+    {
+      "kind": "initializer-failure",
+      "result": "ExpectedClrInitializerException",
+      "sideEffectsAfterFailureRead": false
+    },
+    {
+      "kind": "initializer-control",
+      "result": "PassedClrPositiveBodies",
+      "preparedField": 3,
+      "finalField": 6
+    }
+  ],
+  "mutations": [
+    "wrong-return",
+    "public-instance-field",
+    "missing-generic-parameter",
+    "missing-instance-write",
+    "wrong-positive-target",
+    "wrong-sentinel",
+    "missing-initializer",
+    "initializer-returns",
+    "missing-positive-preparation",
+    "control-throws"
+  ],
+  "runtime": ".NET 8.0.21",
+  "capturedBaselineArgumentExecuted": false,
+  "nativeCommitInitializerExecuted": false,
+  "postPoisonEntryExecuted": false,
+  "unityOrPlayerExecuted": false,
+  "runtimeAcceptance": false,
+  "R03Accepted": false
+}

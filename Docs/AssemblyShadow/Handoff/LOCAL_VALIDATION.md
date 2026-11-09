@@ -1,5 +1,37 @@
 # Local Validation report
 
+## Captured-generic oneuse-09 — PASS
+
+**Focused captured-generic PASS.** One invocation produced 19 Passed across the fixed 19-cell roster. There were 1 Unity build commands and 3 actual Player launches.
+
+Unity 2022.3.62f2 macOS arm64 IL2CPP ON/diagnostics2/Release BuildPipeline reported Succeeded with 0 errors and 1 BuildReport warning(s). Build receipt SHA-256 is `671644a8b110684389fe07c00e6052559b5151d2ed876364824d1bb66ac3b345`.
+
+The generated Cdecl int32() wrapper and table contained exactly one `Bi4` row and its null terminator. The generated source hashes after augmentation and after BuildPipeline matched `c6bbea6e179964b7296bff02ee4f434b188e8578a4e7086da1c283e79b82f3da`. The actual GameAssembly SHA-256 `1a7b6a25125c79478b6019a859498fbed6d412cd8d05bc03aed4d081e77882c4` binds the Bi4 identity and all six initializer and captured-generic exports.
+
+Two fresh same-host fixture generations matched for captured Methods.dll at SHA-256 `c7e4ddd3da14207ad680e9c0f60458f967661202a9cbf6a383ba06289ec11aab`, MVID `d8f7bafb-421a-2979-4e5a-1b290117a32a`, 2560 bytes.
+
+| Player | Cell | PID | Exit | Strict raw bytes |
+| --- | --- | ---: | ---: | ---: |
+| initializer-control | Passed | 52095 | 0 | 752 |
+| initializer-failure | Passed | 52113 | 0 | 752 |
+| captured-generic | Passed | 52122 | 0 | 1273 |
+
+Both fresh initializer traces record linked Bi4 phase 103 result 1 before Commit and one native callback at phases 299/300. The physical field was 3 and mask 15. Control returned Commit/state 0/6 with an empty reason. The failure returned 19/9 after the callback and retained the exact R03IR.InitializerFailure.AfterPublication.V1 sentinel. The post-terminal AOT attempt did not succeed and the canary remained 1→1.
+
+The captured-generic Player joined the physical original Methods.R03.Node type handle to its inflated Assembly-CSharp AOT method owner. It recorded state 6 after inflation and a native guard denial that produced FailedAfterCommit state 9 and first error 15. Its exact native reason was `ShadowCapturedBaselineType Assembly=Assembly-CSharp Type=AssemblyShadow.R03.IR.R03CapturedGenericAotOwner Method=Touch Site=R03IR:PhysicalCapturedAotOwner CapturedArgumentAssembly=Methods Context=method_inst TypePath=/arg[0] Reason=CapturedBaselineType`. The actual post-terminal Runtime::Invoke reported an exception and the native counter remained 1→1.
+
+The host audit recorded 10 native host components. Host custody recorded 3198 regular files and 4 literal symlinks. The product seal was Passed with 509 members.
+
+Return to Primary Implementation with all acceptance flags false. The old oneuse-08 prerequisite result remains PrerequisiteBlocked/NotRun.
+
+Execution source was `bb5fce9c15450e68c6341d88270fbc30dd7b9738`. The seven mandatory workflows ran fourteen successful OS jobs at that SHA. The strict CI validator passed the new snapshot. Direct job records, attempt jobs and check runs agreed. Four direct job pages supplied independent status during API rate limiting. The original responses and byte digests are preserved. Fresh capacity was 45.876743 GiB and 45.870342 GiB on the same device, with 45.868549 GiB at dispatch. Read-only Unity and SDK admission passed. Runner PID 49754 ran once from 2026-11-09T03:39:49.028370+00:00 to 2026-11-09T03:43:54.667287+00:00, UTC. Exit code was 0.
+
+Before and after custody matched 339,367 present and 77,477 historically missing frozen-C identities. Historical strict custody remains Blocked. The exact 17 retired roots and 40 duplicate paths remain Unavailable. The surviving oneuse-05 through oneuse-07 raw files, 24 prior checkpoints including blocked oneuse-08, Original S, installed SDK and protected outside entries matched their recorded scopes. The earlier capacity publication receipt retained identical bytes after its documented timestamp change. [Preflight and custody](../History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/local-evidence/PRESERVATION_AFTER.json).
+
+The execution tuple is recorded in the [Local result](../History/M07R/R03/local-validation-captured-generic-20261109-oneuse-09/LOCAL_RESULT.json). The publication receipt is `/Users/ah/GitHub/hybridclr/r03-local-validation/captured-generic-09-runtime-PUBLICATION_RECEIPT.json`. All acceptance flags remain false.
+
+---
+
 ## Captured-generic oneuse-08 — PrerequisiteBlocked
 
 **PrerequisiteBlocked / NotRun.** The oneuse-08 candidate was `26843412eda7034cd91c0754bdcde16d5517d814`. The runner, Unity build and Player counts are all zero. All 19 planned cells are NotRun. Both reserved runtime roots are absent.

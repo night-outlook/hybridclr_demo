@@ -1,0 +1,269 @@
+{
+  "total_count": 2,
+  "jobs": [
+    {
+      "id": 128962347630,
+      "run_id": 42556202684,
+      "workflow_name": "R03 initializer source-derived managed-to-native Bi4 bridge contracts",
+      "head_branch": "codex/assembly-shadow-r01b-h1",
+      "run_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42556202684",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUFsAuM8AAAAeBsFCbg",
+      "head_sha": "bb5fce9c15450e68c6341d88270fbc30dd7b9738",
+      "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/128962347630",
+      "html_url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/42556202684/job/128962347630",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-09T03:24:10Z",
+      "started_at": "2026-11-09T03:24:19Z",
+      "completed_at": "2026-11-09T03:24:56Z",
+      "name": "Actual dnlib fixture, CSharp bridge and native Cdecl invocation / ubuntu-24.04",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-09T03:24:20Z",
+          "completed_at": "2026-11-09T03:24:21Z"
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-09T03:24:21Z",
+          "completed_at": "2026-11-09T03:24:24Z"
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-09T03:24:24Z",
+          "completed_at": "2026-11-09T03:24:25Z"
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-09T03:24:25Z",
+          "completed_at": "2026-11-09T03:24:26Z"
+        },
+        {
+          "name": "Run actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-09T03:24:26Z",
+          "completed_at": "2026-11-09T03:24:36Z"
+        },
+        {
+          "name": "Authenticate exact source authority and build real generator plus CSharp helper",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-09T03:24:36Z",
+          "completed_at": "2026-11-09T03:24:52Z"
+        },
+        {
+          "name": "Execute real CSharp source bridge against both independently pinned V2 DLLs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-09T03:24:52Z",
+          "completed_at": "2026-11-09T03:24:52Z"
+        },
+        {
+          "name": "Negative cases never relabel or change an already generated bridge",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-09T03:24:52Z",
+          "completed_at": "2026-11-09T03:24:53Z"
+        },
+        {
+          "name": "Post Run actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-09T03:24:53Z",
+          "completed_at": "2026-11-09T03:24:53Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-09T03:24:53Z",
+          "completed_at": "2026-11-09T03:24:53Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-09T03:24:53Z",
+          "completed_at": "2026-11-09T03:24:53Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-09T03:24:53Z",
+          "completed_at": "2026-11-09T03:24:53Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-09T03:24:53Z",
+          "completed_at": "2026-11-09T03:24:54Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/check-runs/128962347630",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000006813,
+      "runner_name": "GitHub Actions 1000006813",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 128962347817,
+      "run_id": 42556202684,
+      "workflow_name": "R03 initializer source-derived managed-to-native Bi4 bridge contracts",
+      "head_branch": "codex/assembly-shadow-r01b-h1",
+      "run_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42556202684",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUFsAuM8AAAAeBsFDKQ",
+      "head_sha": "bb5fce9c15450e68c6341d88270fbc30dd7b9738",
+      "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/128962347817",
+      "html_url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/42556202684/job/128962347817",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-09T03:24:10Z",
+      "started_at": "2026-11-09T03:24:20Z",
+      "completed_at": "2026-11-09T03:24:53Z",
+      "name": "Actual dnlib fixture, CSharp bridge and native Cdecl invocation / macos-15",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-09T03:24:21Z",
+          "completed_at": "2026-11-09T03:24:22Z"
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-09T03:24:22Z",
+          "completed_at": "2026-11-09T03:24:25Z"
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-09T03:24:25Z",
+          "completed_at": "2026-11-09T03:24:26Z"
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-09T03:24:26Z",
+          "completed_at": "2026-11-09T03:24:27Z"
+        },
+        {
+          "name": "Run actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-09T03:24:27Z",
+          "completed_at": "2026-11-09T03:24:40Z"
+        },
+        {
+          "name": "Authenticate exact source authority and build real generator plus CSharp helper",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-09T03:24:40Z",
+          "completed_at": "2026-11-09T03:24:46Z"
+        },
+        {
+          "name": "Execute real CSharp source bridge against both independently pinned V2 DLLs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-09T03:24:46Z",
+          "completed_at": "2026-11-09T03:24:48Z"
+        },
+        {
+          "name": "Negative cases never relabel or change an already generated bridge",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-09T03:24:48Z",
+          "completed_at": "2026-11-09T03:24:48Z"
+        },
+        {
+          "name": "Post Run actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-09T03:24:48Z",
+          "completed_at": "2026-11-09T03:24:48Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-09T03:24:48Z",
+          "completed_at": "2026-11-09T03:24:48Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-09T03:24:48Z",
+          "completed_at": "2026-11-09T03:24:49Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-09T03:24:49Z",
+          "completed_at": "2026-11-09T03:24:49Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-09T03:24:49Z",
+          "completed_at": "2026-11-09T03:24:49Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/check-runs/128962347817",
+      "labels": [
+        "macos-15"
+      ],
+      "runner_id": 1000006815,
+      "runner_name": "GitHub Actions 1000006815",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

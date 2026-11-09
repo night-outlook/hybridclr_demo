@@ -1,0 +1,41 @@
+{
+  "childEnvironmentPolicy": {
+    "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+    "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+    "GIT_TERMINAL_PROMPT": "0",
+    "MSBUILDDISABLENODEREUSE": "1",
+    "MSBUILDUSESERVER": "0",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "/private/tmp"
+  },
+  "cleanupErrors": [],
+  "command": [
+    "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+    "-B",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py",
+    "--workspace",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+    "--expected-demo",
+    "bb5fce9c15450e68c6341d88270fbc30dd7b9738",
+    "--expected-native",
+    "41764ae1eeefb33b05966e7f7676e52aae39c340",
+    "--output",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CapturedGeneric-20261109-oneuse-09-native-host-raw"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+  "endedUtcEpoch": 1794195706.6189451,
+  "exitCode": 0,
+  "interrupted": false,
+  "lifetimePolicy": "R03OwnedCommandV1",
+  "pgid": 49886,
+  "pid": 49886,
+  "postCleanupGroupExists": false,
+  "processGroupBeforeCleanup": null,
+  "remainingProcessGroup": false,
+  "schemaVersion": 2,
+  "startError": null,
+  "startedUtcEpoch": 1794195624.8946948,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "1bc6722e145031cf2fb8e1d0cc0c493fe8eef2edaf68f0093290dc9c8db7a490",
+  "timeout": false
+}

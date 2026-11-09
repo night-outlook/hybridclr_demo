@@ -1,0 +1,189 @@
+{
+  "total_count": 2,
+  "jobs": [
+    {
+      "id": 128962346837,
+      "run_id": 42556202780,
+      "workflow_name": "R03 captured-generic onebuild threeplayer Primary host contracts",
+      "head_branch": "codex/assembly-shadow-r01b-h1",
+      "run_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42556202780",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUFsAuM8AAAAeBsE_VQ",
+      "head_sha": "bb5fce9c15450e68c6341d88270fbc30dd7b9738",
+      "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/128962346837",
+      "html_url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/42556202780/job/128962346837",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-09T03:24:10Z",
+      "started_at": "2026-11-09T03:24:43Z",
+      "completed_at": "2026-11-09T03:25:12Z",
+      "name": "A2 coordinator/preparer and actual CSharp source / macos-15",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-09T03:24:43Z",
+          "completed_at": "2026-11-09T03:24:45Z"
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-09T03:24:45Z",
+          "completed_at": "2026-11-09T03:24:49Z"
+        },
+        {
+          "name": "Run actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-09T03:24:49Z",
+          "completed_at": "2026-11-09T03:25:02Z"
+        },
+        {
+          "name": "Compile actual A2 Player CSharp against host-only managed API surface",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-09T03:25:02Z",
+          "completed_at": "2026-11-09T03:25:06Z"
+        },
+        {
+          "name": "Execute real isolated source preparation negative contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-09T03:25:06Z",
+          "completed_at": "2026-11-09T03:25:08Z"
+        },
+        {
+          "name": "Post Run actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-09T03:25:08Z",
+          "completed_at": "2026-11-09T03:25:08Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-09T03:25:08Z",
+          "completed_at": "2026-11-09T03:25:08Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-09T03:25:08Z",
+          "completed_at": "2026-11-09T03:25:09Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/check-runs/128962346837",
+      "labels": [
+        "macos-15"
+      ],
+      "runner_id": 1000006821,
+      "runner_name": "GitHub Actions 1000006821",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 128962346969,
+      "run_id": 42556202780,
+      "workflow_name": "R03 captured-generic onebuild threeplayer Primary host contracts",
+      "head_branch": "codex/assembly-shadow-r01b-h1",
+      "run_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42556202780",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUFsAuM8AAAAeBsE_2Q",
+      "head_sha": "bb5fce9c15450e68c6341d88270fbc30dd7b9738",
+      "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/128962346969",
+      "html_url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/42556202780/job/128962346969",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-09T03:24:10Z",
+      "started_at": "2026-11-09T03:24:12Z",
+      "completed_at": "2026-11-09T03:24:44Z",
+      "name": "A2 coordinator/preparer and actual CSharp source / ubuntu-24.04",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-09T03:24:12Z",
+          "completed_at": "2026-11-09T03:24:13Z"
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-09T03:24:13Z",
+          "completed_at": "2026-11-09T03:24:16Z"
+        },
+        {
+          "name": "Run actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-09T03:24:16Z",
+          "completed_at": "2026-11-09T03:24:30Z"
+        },
+        {
+          "name": "Compile actual A2 Player CSharp against host-only managed API surface",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-09T03:24:30Z",
+          "completed_at": "2026-11-09T03:24:41Z"
+        },
+        {
+          "name": "Execute real isolated source preparation negative contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-09T03:24:41Z",
+          "completed_at": "2026-11-09T03:24:42Z"
+        },
+        {
+          "name": "Post Run actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-09T03:24:42Z",
+          "completed_at": "2026-11-09T03:24:42Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-09T03:24:42Z",
+          "completed_at": "2026-11-09T03:24:42Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-09T03:24:42Z",
+          "completed_at": "2026-11-09T03:24:42Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/check-runs/128962346969",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000006809,
+      "runner_name": "GitHub Actions 1000006809",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}
