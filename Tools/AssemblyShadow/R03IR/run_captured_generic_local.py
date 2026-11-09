@@ -43,10 +43,17 @@ EXTRA_SOURCE_PATHS = (
     "Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericPhysicalProbe.cpp",
     "Tools/AssemblyShadow/R03IR/CapturedGenericHost/CapturedGenericHost.csproj",
     "Tools/AssemblyShadow/R03IR/CapturedGenericHost/Program.cs",
+    "Tools/AssemblyShadow/R03IR/CapturedGenericPlayerHost/CapturedGenericPlayerHost.csproj",
+    "Tools/AssemblyShadow/R03IR/CapturedGenericPlayerHost/Program.cs",
+    "Tools/AssemblyShadow/R03IR/CapturedGenericPlayerHost/Stubs.cs",
+    "Tools/AssemblyShadow/R03IR/verify_captured_generic_host.py",
+    "Tools/AssemblyShadow/R03IR/test_captured_generic_host.py",
     "Tools/AssemblyShadow/R03IR/prepare_captured_generic_sources.py",
     "Tools/AssemblyShadow/R03IR/run_captured_generic_local.py",
     "Tools/AssemblyShadow/R03IR/verify_captured_generic_native.py",
     "Tools/AssemblyShadow/R03IR/test_captured_generic_native_consumer.py",
+    "Tools/AssemblyShadow/R03IR/test_captured_source_preparation.py",
+    "Tools/AssemblyShadow/R03IR/test_captured_batch_source.py",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_captured_generic_physical_probe.py",
 )
 MODES = ("initializer-control", "initializer-failure", "captured-generic")

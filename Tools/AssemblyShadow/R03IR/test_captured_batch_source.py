@@ -35,6 +35,17 @@ class CapturedBatchSourceContracts(unittest.TestCase):
     def test_02_all_actual_new_primary_files_have_Git_HEAD_byte_authority(self):
         self.assertEqual(len(runner.EXTRA_SOURCE_PATHS),
                          len(set(runner.EXTRA_SOURCE_PATHS)))
+        # All fresh managed API compilation and host-test inputs are Git HEAD
+        # authenticated, not just the native/Player source files.
+        for required in ("CapturedGenericPlayerHost/CapturedGenericPlayerHost.csproj",
+                         "CapturedGenericPlayerHost/Program.cs",
+                         "CapturedGenericPlayerHost/Stubs.cs",
+                         "verify_captured_generic_host.py",
+                         "test_captured_generic_host.py",
+                         "test_captured_source_preparation.py",
+                         "test_captured_batch_source.py"):
+            self.assertIn("Tools/AssemblyShadow/R03IR/" + required,
+                          runner.EXTRA_SOURCE_PATHS)
         report=runner.check_new_sources(ROOT)
         self.assertEqual(set(report),set(runner.EXTRA_SOURCE_PATHS))
         self.assertTrue(all(len(x)==64 for x in report.values()))
