@@ -160,6 +160,27 @@ def captured_hosts(batch):
         results[pattern] = batch.command([
             sys.executable, "-B", "-m", "unittest", "discover",
             "-s", str(root), "-p", pattern, "-v"], 600)
+    # Preserve B2's existing independent native codec / descriptor-exclusivity
+    # host coverage in the same one-use batch, without claiming B2 VM/Player
+    # producer integration. These outputs live under this batch's fresh root.
+    for script, label in (("run_tests.py", "bounded-codec"),
+                          ("run_transaction_tests.py", "descriptor-transaction")):
+        root = batch.root / "host" / ("b2-" + label)
+        root.parent.mkdir(parents=True, exist_ok=True)
+        require(not root.exists() and not root.is_symlink(),
+                "B2 host output root must be unused")
+        results[label] = batch.command([
+            sys.executable, "-B", str(HERE / "bounded_v2" / script),
+            "--repository", str(batch.workspace / "hybridclr_demo"),
+            "--output", str(root)], 1200)
+        report = loads((root / "RESULT.json").read_text(encoding="utf-8"))
+        require(report.get("actualUnity") is False and
+                report.get("productionIntegration",
+                           report.get("productionTransportEnabled")) is False,
+                "B2 native component host scope must remain explicitly non-VM")
+        results[label + "-source"] = {
+            "reportSha256": sha(root / "RESULT.json"),
+            "componentOnly": True, "nativeV2TransportImplemented": False}
     obj = batch.root / "obj/captured-owner-host"
     binpath = batch.root / "bin/captured-owner-host"
     src = HERE / "CapturedGenericHost/CapturedGenericHost.csproj"
