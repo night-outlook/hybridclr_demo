@@ -34,6 +34,11 @@ namespace AssemblyShadow.R03.IR
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern int R03_IRW_BridgeStatus();
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IRB1_Open(string path, string runId,
+            string caseId, string fixtureSha256);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_IRB1_Seal(int expectedCode, int expectedOrigin);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern void R03_IR_Exit(int code);
 
         private static bool s_started;
@@ -51,7 +56,8 @@ namespace AssemblyShadow.R03.IR
             int commit = -1, finalState = -1, before = 0, after = 0;
             int attempted = 0, succeeded = 0;
             int lastPhase = 0;
-            bool opened = false;
+            bool opened = false, b1Opened = false;
+            int b1ExpectedCode = 0, b1ExpectedOrigin = 0;
             try
             {
                 Need(!string.IsNullOrEmpty(output) && Path.IsPathRooted(output) &&
@@ -74,6 +80,13 @@ namespace AssemblyShadow.R03.IR
                     request.stimulus, request.dllSha256);
                 Need(openResult == 1, "Native output preopen");
                 opened = true;
+                // Preopen independent B1 raw before any transaction/terminal event.
+                b1ExpectedCode = request.stimulus == "initializer-failure" ? 19 : 0;
+                b1ExpectedOrigin = b1ExpectedCode == 19 ? 2 : 0;
+                Need(R03_IRB1_Open(output + ".first-error-b1.json", request.runId,
+                                   request.caseId, request.dllSha256) == 1,
+                     "B1 native first-error witness preopen");
+                b1Opened = true;
                 R03_IRW_Trace(102, openResult, 0, 0, 0);
                 // Read the actual linked GameAssembly's native bridge table.
                 // This is a test-only AOT query before any terminal VM state.
@@ -166,7 +179,9 @@ namespace AssemblyShadow.R03.IR
                     R03_IRW_Trace(901, commit, finalState, before, after);
                 int sealedResult = opened ? R03_IRW_Seal(commit, finalState,
                     before, after, attempted, succeeded) : -1;
-                R03_IR_Exit(sealedResult == 1 ? 0 : 2);
+                int b1Result = b1Opened
+                    ? R03_IRB1_Seal(b1ExpectedCode, b1ExpectedOrigin) : -1;
+                R03_IR_Exit(sealedResult == 1 && b1Result == 1 ? 0 : 2);
             }
         }
 
