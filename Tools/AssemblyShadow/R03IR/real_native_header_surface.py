@@ -48,7 +48,7 @@ FILES = {
     ),
     "il2cpp-runtime-metadata.h": (
         "typedef struct Il2CppType", "Il2CppMetadataTypeHandle typeHandle",
-        "const Il2CppGenericInst* method_inst",
+        "const Il2CppGenericInst *method_inst",
     ),
     "vm/MetadataCache.cpp": (
         "MetadataCache::GetGenericInstanceMethod(",
