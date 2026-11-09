@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""R03 IR-R03-02 oneuse-10: exact-source B1 native-origin 1-build/3-real-Player Local batch.
+"""R03 IR-R03-02 oneuse-11: exact-source B1 native-origin 1-build/3-real-Player Local batch.
 
 Only runnable after a NEW explicit Primary WEB_TO_LOCAL authorizes the exact
 pushed SHA, verified dual-OS source tests, fresh Mac volume/Unity/SDK/original-S
@@ -7,7 +7,7 @@ admission and fresh empty output roots. This file creates NO runtime evidence
 on its own and cannot grant full R03/H2 acceptance.
 
 One real AOT IL2CPP image carries: original initializer control/failure +
-physical captured generic. All earlier oneuse07/08/09 binary/output roots are never reused.
+physical captured generic. All earlier oneuse07/08/09/10 binary/output roots are never reused.
 """
 from __future__ import annotations
 
@@ -475,7 +475,7 @@ def execute(workspace, original_s, output, unity, demo_commit):
                "PassedFullRawHostAndArchiveBinding_NoRuntimeAcceptance")
     record = finalize(batch.root, {
         "schemaVersion": 1,
-        "kind": "R03IRNativeB1OneUse10EvidenceBatchV1",
+        "kind": "R03IRNativeB1OneUse11EvidenceBatchV1",
         "result": "FocusedNativeFirstErrorB1AndV1Controls_NotV2"
             if success else "ReturnRequired",
         "repositories": dict(batch.pins), "cells": batch.cells,
