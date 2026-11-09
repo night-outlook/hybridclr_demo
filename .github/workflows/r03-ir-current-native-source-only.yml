@@ -29,7 +29,7 @@ jobs:
           sparse-checkout: |
             Tools/AssemblyShadow/R03
             Tools/AssemblyShadow/R03IR
-      - name: Actual current native pin e1e5 (no compile)
+      - name: Actual current native B1 pin a020 (no compile)
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/il2cpp_plus
@@ -39,6 +39,9 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             libil2cpp/vm/AssemblyShadow.cpp
+            libil2cpp/vm/AssemblyShadow.h
+            libil2cpp/vm/AssemblyShadowFirstFailureV2.h
+            libil2cpp/vm/AssemblyShadowFirstFailureV2Host.cpp
             libil2cpp/vm/AssemblyShadowTerminalExecution.h
             libil2cpp/vm/Runtime.cpp
       - name: Exact interpreter pin 4b27 (no compile)
@@ -68,7 +71,7 @@ jobs:
           python3 -B Tools/AssemblyShadow/R03IR/current_native_source_contracts.py \
             --demo "$PWD" --native "$PWD/external/il2cpp_plus" \
             --hybridclr "$PWD/external/hybridclr" --package "$PWD/external/hybridclr_unity"
-      - name: Authenticate exact eleven source blobs and detached current checkouts
+      - name: Authenticate exact fourteen source blobs and detached current checkouts
         shell: bash
         run: |
           set -euo pipefail
@@ -81,7 +84,7 @@ jobs:
           import json,sys
           data=json.load(open(sys.argv[1]))
           assert data['result']=='PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation'
-          assert data['verifiedSourceFiles']==11
+          assert data['verifiedSourceFiles']==14
           assert data['focusedPlayerCaseCount']==5 and data['candidateNativeBuildRoles']==3
           assert data['currentSourceMatchedPlayerExecution']=='NotRun'
           assert data['nextLocalAuthority']=='NotAuthorized'
