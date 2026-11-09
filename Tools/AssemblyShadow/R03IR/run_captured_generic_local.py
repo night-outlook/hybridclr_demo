@@ -45,6 +45,7 @@ EXTRA_SOURCE_PATHS = (
     "Tools/AssemblyShadow/R03IR/PlayerProject/R03FirstErrorB1Probe.cpp",
     "Tools/AssemblyShadow/R03IR/verify_first_error_b1.py",
     "Tools/AssemblyShadow/R03IR/test_first_error_b1.py",
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_first_error_b1_probe.py",
     "Tools/AssemblyShadow/R03IR/CapturedGenericHost/CapturedGenericHost.csproj",
     "Tools/AssemblyShadow/R03IR/CapturedGenericHost/Program.cs",
     "Tools/AssemblyShadow/R03IR/CapturedGenericPlayerHost/CapturedGenericPlayerHost.csproj",
@@ -152,6 +153,7 @@ def captured_hosts(batch):
         ("NativeDiagnostics", "test_captured_generic_physical_probe.py"),
         (".", "test_captured_generic_native_consumer.py"),
         (".", "test_first_error_b1.py"),
+        ("NativeDiagnostics", "test_first_error_b1_probe.py"),
         (".", "test_captured_source_preparation.py"),
     ):
         root = HERE if directory == "." else HERE / directory
