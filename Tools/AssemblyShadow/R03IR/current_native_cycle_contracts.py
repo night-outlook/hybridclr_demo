@@ -67,7 +67,7 @@ class CurrentNativeCycleContracts(unittest.TestCase):
             "native-installed-source-audit")}
 
     def test_01_constituent_source_pins_are_explicit(self):
-        self.assertEqual(cycle.NATIVE, "41764ae1eeefb33b05966e7f7676e52aae39c340")
+        self.assertEqual(cycle.NATIVE, "a0209bf4285db3f0d0fc66d8817578235438cef4")
         self.assertEqual(cycle.S_PUBLICATION,
                          "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b")
         self.assertEqual(len(cycle.EXPECTED_BUILD_ROLES), 3)
@@ -118,14 +118,16 @@ class CurrentNativeCycleContracts(unittest.TestCase):
                 cycle.validate_sources(self.workspace, "a" * 40)
         self.assertFalse(self.output.exists())
 
-    def test_09_45_vm_files_required_before_output(self):
+    def test_09_47_vm_files_required_before_output(self):
         with mock.patch.object(cycle, "identity", return_value={"remoteHeadVerified": True}), \
              mock.patch.object(cycle.source, "verify_source_roots", return_value={
                  "result": "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation",
-                 "verifiedSourceFiles": 11}), \
+                 "verifiedSourceFiles": 14,
+                 "currentCandidatePins": dict(cycle.source.CURRENT)}), \
              mock.patch.object(cycle.delta, "validate", return_value={
                  "result": "PassedCurrentNativeVmSourceDeltaOnly",
-                 "changedVmFileCount": 42}):
+                 "changedVmFileCount": 45,
+                 "currentNativeCommit": cycle.source.CURRENT["il2cpp_plus"]}):
             with self.assertRaises(ValueError):
                 cycle.validate_sources(self.workspace, "a" * 40)
         self.assertFalse(self.output.exists())
@@ -137,10 +139,55 @@ class CurrentNativeCycleContracts(unittest.TestCase):
                  "verifiedSourceFiles": 11}), \
              mock.patch.object(cycle.delta, "validate", return_value={
                  "result": "PassedCurrentNativeVmSourceDeltaOnly",
-                 "changedVmFileCount": 45}):
+                 "changedVmFileCount": 47,
+                 "currentNativeCommit": cycle.source.CURRENT["il2cpp_plus"]}):
             result = cycle.validate_sources(self.workspace, "a"*40)
         self.assertEqual(result["result"], "PassedReadOnlySourceAdmission_NotBuildOrRuntime")
         self.assertIs(result["R03Accepted"], False)
+
+
+    def test_27_shared_admission_rejects_candidate_pin_and_count_drift(self):
+        """The composed Mac/runner gate must not accept a merely green label."""
+        valid = {
+            "result": "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation",
+            "verifiedSourceFiles": 14,
+            "currentCandidatePins": dict(cycle.source.CURRENT),
+        }
+        delta_ok = {
+            "result": "PassedCurrentNativeVmSourceDeltaOnly",
+            "changedVmFileCount": 47,
+            "currentNativeCommit": cycle.source.CURRENT["il2cpp_plus"],
+        }
+        for variant in ("old-source-count", "new-unknown-source-count",
+                        "native-pin", "missing-pin"):
+            record = copy.deepcopy(valid)
+            if variant == "old-source-count": record["verifiedSourceFiles"] = 11
+            elif variant == "new-unknown-source-count": record["verifiedSourceFiles"] = 15
+            elif variant == "native-pin":
+                record["currentCandidatePins"]["il2cpp_plus"] = "0"*40
+            else:
+                del record["currentCandidatePins"]["il2cpp_plus"]
+            with self.subTest(variant=variant), \\
+                 mock.patch.object(cycle, "identity", return_value={"remoteHeadVerified":True}), \\
+                 mock.patch.object(cycle.source, "verify_source_roots", return_value=record), \\
+                 mock.patch.object(cycle.delta, "validate", return_value=delta_ok):
+                with self.assertRaisesRegex(ValueError,"Fourteen-file B1"):
+                    cycle.validate_sources(self.workspace,"a"*40)
+
+        for variant in ("old-vm-count", "unreviewed-vm-count",
+                        "wrong-native-head", "missing-native-head"):
+            record = copy.deepcopy(delta_ok)
+            if variant == "old-vm-count": record["changedVmFileCount"] = 45
+            elif variant == "unreviewed-vm-count": record["changedVmFileCount"] = 48
+            elif variant == "wrong-native-head": record["currentNativeCommit"] = "0"*40
+            else: del record["currentNativeCommit"]
+            with self.subTest(variant=variant), \\
+                 mock.patch.object(cycle, "identity", return_value={"remoteHeadVerified":True}), \\
+                 mock.patch.object(cycle.source, "verify_source_roots", return_value=valid), \\
+                 mock.patch.object(cycle.delta, "validate", return_value=record):
+                with self.assertRaisesRegex(ValueError,"Forty-seven-file B1"):
+                    cycle.validate_sources(self.workspace,"a"*40)
+        self.assertFalse(self.output.exists())
 
     def test_11_new_subprocess_log_receipt_and_hashes(self):
         self.output.mkdir()
