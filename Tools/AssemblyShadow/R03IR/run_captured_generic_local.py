@@ -54,6 +54,8 @@ EXTRA_SOURCE_PATHS = (
     "Tools/AssemblyShadow/R03IR/real_native_header_surface.py",
     "Tools/AssemblyShadow/R03IR/test_real_native_header_surface.py",
     "Tools/AssemblyShadow/R03IR/captured_generic_handoff_ci_contracts.py",
+    "Tools/AssemblyShadow/R03IR/captured_ci_job_admission.py",
+    "Tools/AssemblyShadow/R03IR/test_captured_ci_job_admission.py",
     "Tools/AssemblyShadow/R03IR/test_captured_generic_native_consumer.py",
     "Tools/AssemblyShadow/R03IR/test_captured_source_preparation.py",
     "Tools/AssemblyShadow/R03IR/test_captured_batch_source.py",

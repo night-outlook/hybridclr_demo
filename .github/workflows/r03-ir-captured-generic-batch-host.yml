@@ -9,6 +9,8 @@ on:
       - 'Tools/AssemblyShadow/R03IR/test_captured_source_preparation.py'
       - 'Tools/AssemblyShadow/R03IR/test_captured_batch_source.py'
       - 'Tools/AssemblyShadow/R03IR/captured_generic_handoff_ci_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/captured_ci_job_admission.py'
+      - 'Tools/AssemblyShadow/R03IR/test_captured_ci_job_admission.py'
       - 'Tools/AssemblyShadow/R03IR/CapturedGenericPlayerHost/**'
       - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericPlayer.cs'
       - 'Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericAotOwner.cs'
@@ -29,10 +31,12 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
+          sparse-checkout-cone-mode: false
           sparse-checkout: |
-            Tools/AssemblyShadow/R03
-            Tools/AssemblyShadow/R03IR
-            .github/workflows
+            /Tools/AssemblyShadow/R03/
+            /Tools/AssemblyShadow/R03IR/
+            /.github/workflows/
+            /Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-08-prerequisite-blocked/preflight/CI.json
       - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
         with:
           dotnet-version: '8.0.318'
@@ -62,4 +66,17 @@ jobs:
             -p test_captured_batch_source.py -v
           python3 -B Tools/AssemblyShadow/R03IR/run_captured_generic_local.py --help
           python3 -B Tools/AssemblyShadow/R03IR/captured_generic_handoff_ci_contracts.py
-          echo 'HOST ONLY: no Unity/IL2CPP Player or source-matched Local batch.'
+          python3 -B -m unittest discover -s Tools/AssemblyShadow/R03IR \
+            -p test_captured_ci_job_admission.py -v
+          # The original oneuse08 record must still FAIL admission; do not
+          # silently classify the malformed Ubuntu status as completed.
+          old=Docs/AssemblyShadow/History/M07R/R03/local-validation-captured-generic-20261109-oneuse-08-prerequisite-blocked/preflight/CI.json
+          if python3 -B Tools/AssemblyShadow/R03IR/captured_ci_job_admission.py \
+              --ci-json "$PWD/$old" \
+              --demo-commit 26843412eda7034cd91c0754bdcde16d5517d814 \
+              > "$RUNNER_TEMP/blocked-old.stdout" 2> "$RUNNER_TEMP/blocked-old.stderr"; then
+            echo 'Anomalous original job was incorrectly admitted' >&2
+            exit 42
+          fi
+          grep -F 'Job-level status is NOT completed' "$RUNNER_TEMP/blocked-old.stderr"
+          echo 'HOST ONLY: immutable oneuse08 is still blocked; no Unity/Player run.'
