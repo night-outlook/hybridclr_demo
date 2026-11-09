@@ -21,6 +21,7 @@ import current_native_environment_admission as admission
 import current_native_source_gate as source
 import current_native_vm_delta_contracts as delta
 import run_current_native_validation_cycle as cycle
+from batch_contract import ContractError
 
 WORKSPACE: Path | None = None
 DEMO_SHA: str | None = None
@@ -131,7 +132,7 @@ class SharedB1AdmissionContracts(unittest.TestCase):
                 cycle.validate_sources(self.workspace, self.sha)
 
     def test_08_wrong_demo_sha_refused_before_any_product_run(self):
-        with self.assertRaises((ValueError, AssertionError)):
+        with self.assertRaises(ContractError):
             cycle.validate_sources(self.workspace, "f"*40)
 
     def test_09_no_generated_output_or_source_edits(self):
