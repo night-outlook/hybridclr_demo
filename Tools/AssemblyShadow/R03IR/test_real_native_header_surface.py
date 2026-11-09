@@ -36,7 +36,7 @@ class RealNativeHeaderSurfaceTests(unittest.TestCase):
                 raw = re.sub(rb"\s+", b" ", self.inputs[path])
                 self.assertIn(needle, raw, (path, anchor))
                 changed = dict(self.inputs)
-                changed[path] = raw.replace(needle, b"__R03_DECLARATION_DRIFT__", 1)
+                changed[path] = raw.replace(needle, b"__R03_DECLARATION_DRIFT__")
                 with self.subTest(file=path, anchor=anchor), self.assertRaises(SourceRejected):
                     inspect(changed, self.body)
                 count += 1
@@ -58,7 +58,7 @@ class RealNativeHeaderSurfaceTests(unittest.TestCase):
             needle = anchor.encode()
             self.assertIn(needle, self.body)
             with self.subTest(anchor=anchor), self.assertRaises(SourceRejected):
-                inspect(self.inputs, self.body.replace(needle, b"__MISSING__", 1))
+                inspect(self.inputs, self.body.replace(needle, b"__MISSING__"))
 
     def test_05_forged_physical_class_materialization_refused(self):
         with self.assertRaisesRegex(SourceRejected, "cannot be materialized"):
