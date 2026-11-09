@@ -8,6 +8,8 @@ on:
       - 'Tools/AssemblyShadow/R03IR/current_native_environment_admission.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_b1_shared_admission_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_cycle_contracts.py'
+      - 'Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py'
+      - 'Tools/AssemblyShadow/R03IR/current_native_host_contracts.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_candidate.json'
       - 'Tools/AssemblyShadow/R03IR/current_native_source_gate.py'
       - 'Tools/AssemblyShadow/R03IR/current_native_vm_delta.json'
@@ -93,6 +95,7 @@ jobs:
           set -euo pipefail
           demo="$GITHUB_WORKSPACE/sources/hybridclr_demo"
           python3 -B "$demo/Tools/AssemblyShadow/R03IR/current_native_cycle_contracts.py"
+          python3 -B "$demo/Tools/AssemblyShadow/R03IR/current_native_host_contracts.py"
       - name: No source changes and no actual Unity/OriginalS/Player execution
         shell: bash
         run: |
