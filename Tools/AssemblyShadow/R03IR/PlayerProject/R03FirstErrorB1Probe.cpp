@@ -21,7 +21,7 @@ static std::atomic<int32_t> stage{0}; // 0 unused, 1 preopened, 2 sealed, -1 fai
 static int fd=-1;
 static char runId[80]{}, caseId[100]{}, fixtureSha256[65]{};
 // All I/O/JSON scratch is reserved at process initialization, not at failure.
-static char quoted[6*kReasonLimit+1]{};
+static char quoted[6*il2cpp::vm::assembly_shadow_first_failure_v2::kReasonLimit+1]{};
 
 static bool Identifier(const char* p,size_t limit,size_t minimum,bool digest=false) noexcept {
     if (!p) return false;
@@ -49,7 +49,7 @@ static bool WriteAll(const char* p,size_t n) noexcept {
 static bool Encode(const char* p,size_t n,size_t& out) noexcept {
     out=0;
     static const char hex[]="0123456789abcdef";
-    if(n>kReasonLimit) return false;
+    if(n>il2cpp::vm::assembly_shadow_first_failure_v2::kReasonLimit) return false;
     for(size_t i=0;i<n;++i) {
         const unsigned char c=static_cast<unsigned char>(p[i]);
         if(c=='"'||c=='\\') { quoted[out++]='\\';quoted[out++]=static_cast<char>(c); }
