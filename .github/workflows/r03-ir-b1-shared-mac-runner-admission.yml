@@ -38,6 +38,7 @@ jobs:
           sparse-checkout: |
             /Tools/AssemblyShadow/R03/
             /Tools/AssemblyShadow/R03IR/
+            /.github/workflows/r03-ir-current-native-local-cycle-host.yml
       - name: Checkout pinned interpreter (real Git repository)
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
