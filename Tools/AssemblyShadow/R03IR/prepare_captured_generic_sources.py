@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Extend a NEW unbuilt oneuse-08 initializer project with the captured witness.
+"""Extend a NEW unbuilt oneuse-09 initializer project with the captured witness.
 
 Uses the already-prepared exact source-bound initializer composite/2 DLLs and
 the original AOT/IL2CPP bridge helper. Does not modify the historical oneuse07
@@ -77,7 +77,7 @@ def extend(project, config_path, receipt_dir):
          prep_record.get("compositeOverlaySha256") == sha(origin) and
          prep_record.get("initializerBridgeSignature") == "Bi4" and
          prep_record.get("runtimeAcceptance") is False,
-         "Exact oneuse-08 initializer preextension source provenance required")
+         "Exact oneuse-09 initializer preextension source provenance required")
     need(NATIVE.is_file() and not NATIVE.is_symlink() and
          all(p.is_file() and not p.is_symlink() for p in MANAGED.values()),
          "All Primary physical native and managed source files must be present")

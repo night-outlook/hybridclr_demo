@@ -22,6 +22,10 @@ ROOT = HERE.parents[2]
 
 class CapturedBatchSourceContracts(unittest.TestCase):
     def test_01_fixed_distinct_onebuild_threeplayer_roster(self):
+        self.assertIn("R03IRCapturedGenericOneUse09EvidenceBatchV1",
+                      (HERE / "run_captured_generic_local.py").read_text())
+        self.assertNotIn("R03IRCapturedGenericOneUse08EvidenceBatchV1",
+                         (HERE / "run_captured_generic_local.py").read_text())
         self.assertEqual(len(runner.CELLS),19)
         self.assertEqual(len(set(runner.CELLS)),19)
         self.assertEqual(runner.CELLS.count("build-captured"),1)

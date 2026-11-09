@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""R03 IR-R03-02 oneuse-08: exact-source 1-build/3-real-Player Local batch.
+"""R03 IR-R03-02 oneuse-09: exact-source 1-build/3-real-Player Local batch.
 
 Only runnable after a NEW explicit Primary WEB_TO_LOCAL authorizes the exact
 pushed SHA, verified dual-OS source tests, fresh Mac volume/Unity/SDK/original-S
@@ -405,7 +405,7 @@ def execute(workspace, original_s, output, unity, demo_commit):
                "PassedFullRawHostAndArchiveBinding_NoRuntimeAcceptance")
     record = finalize(batch.root, {
         "schemaVersion": 1,
-        "kind": "R03IRCapturedGenericOneUse08EvidenceBatchV1",
+        "kind": "R03IRCapturedGenericOneUse09EvidenceBatchV1",
         "result": "FocusedCapturedGenericAndInitializerEvidenceForIndependentReview"
             if success else "ReturnRequired",
         "repositories": dict(batch.pins), "cells": batch.cells,
