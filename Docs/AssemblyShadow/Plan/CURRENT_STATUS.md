@@ -1,3 +1,13 @@
+# Current R03 Primary stage — A2 source-reviewed, oneuse-08 conditional (2026-11-09 UTC)
+
+A2 physical captured-baseline generic actual-Unity Player path is **source prepared** (prior A2 implementation plus Primary corrections for premature `typeof(T)`, inflation-state attribution, silent-null postterminal attempt and full Git source inventory). Source-level native real-fork ABI audit and dual-OS mock/native/CLR/managed test suites passed their own scopes. The public fork excludes the official Unity SDK `Baselib.h` dependency; a C++ compile against the official SDK and real Player execution are **NotRun** in the Primary environment. [Review and limitations](../History/M07R/R03/IR_Remediation/POST_INITIALIZER07_2026-11-07/CAPTURED_GENERIC_A2_PRIMARY_SOURCE_REVIEW.md).
+
+The new canonical [WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md) is **conditional oneuse-08**: one genuine Unity2022.3.62f2 macOS arm64 IL2CPP build, two new initializer control/failure Players plus a new physical captured-generic Player, fixed 19 cells, exact final source tuple and seven dual-OS CI gates, fresh original-S/capacity/custody/SDK admission, no retries. This targeted A2 execution is separate from incomplete native V2 and must not be mislabeled full R03 closure.
+
+Initializer oneuse07 is consumed/focused PASS, original S and 17 owner-retired roots remain immutable/unavailable. Independent R03 overall FAIL, High IR-R03-01/02 and RC/whole-VM/performance/H2 still open. All acceptance and qualification flags false; PureInterpreter disabled. No human gate approval or subsequent milestone.
+
+---
+
 # Current Primary R03 — captured-generic A1 CLR structural prerequisite PASS (2026-11-07)
 
 Primary implemented a new test-only generic AOT-owner source and a real CLR host fixture. [Dual-OS CI 42363760691](https://github.com/night-outlook/hybridclr_demo/actions/runs/42363760691) passed: one separate physical `Methods.R03.Node` type argument, a closed `Touch<T>` owned by another assembly, actual reflection/delegate side effects and strict negative controls, with 0 C# errors/warnings and eight host tests on each OS. Generated host fixture SHA differs macOS/Ubuntu despite common MVID and is not original S authority.
