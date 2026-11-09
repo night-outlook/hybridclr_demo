@@ -58,6 +58,11 @@ FILES = {
         "GlobalMetadata::GetGenericInstanceMethod(",
         "GenericMethod::GetMethod(method, classInst, methodInst)",
     ),
+    "vm/Runtime.cpp": (
+        'AssemblyShadow::RequireActiveMethod(method, "Runtime::Invoke")',
+        "method = AssemblyShadow::ResolveReflectionMethod(method);",
+        "catch (Il2CppExceptionWrapper& ex)",
+    ),
     "metadata/GenericMethod.cpp": (
         "GenericMetadata::InflateIfNeeded(",
         "MetadataCache::GetGenericMethodPointers(",
@@ -76,6 +81,7 @@ PROBE = (
     "MetadataCache::GetGenericInstanceMethod(",
     "AssemblyShadow::AssertMethodIsActive(",
     "Runtime::Invoke(witness.inflated, nullptr, nullptr, &exception)",
+    "if (!State(6, witness.beforeState)) return Fault(-28);",
     "witness.invokeThrew = exception != nullptr ? 1 : 0;",
     "!witness.invokeThrew",
 )

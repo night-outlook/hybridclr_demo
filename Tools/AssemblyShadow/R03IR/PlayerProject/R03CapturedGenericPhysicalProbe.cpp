@@ -226,6 +226,11 @@ extern "C" IL2CPP_EXPORT int32_t R03_IRG_Probe()
     const Il2CppType* captured = method->genericMethod->context.method_inst->type_argv[0];
     if (!captured || captured->type != IL2CPP_TYPE_CLASS ||
         captured->data.typeHandle != found) return Fault(-17);
+    // Generic method inflation itself may resolve RGCTX/class metadata.
+    // If it poisoned the world first, do not credit a later denial to the
+    // captured-argument method guard. The *original* Committed state must
+    // survive the physical method-context construction unchanged.
+    if (!State(6, witness.beforeState)) return Fault(-28);
     witness.methodContextPhysical = 1;
     witness.methodInflated = 1;
     witness.inflated = method;

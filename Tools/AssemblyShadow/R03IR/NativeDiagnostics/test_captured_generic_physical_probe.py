@@ -141,7 +141,7 @@ using namespace il2cpp::vm;
 
 static AssemblyShadowState state=AssemblyShadowState::Disabled;
 static int32_t bodyCalls=1, guardCalls=0, invokeCalls=0;
-static int32_t mode=0; // 0=valid,1=bad owner,2=bad generic,3=wrong physical name,4=body escaped,5=silent-null
+static int32_t mode=0; // 0=valid,1=bad owner,2=bad generic,3=wrong physical name,4=body escaped,5=silent-null,6=inflation-poison
 static Il2CppImage ownerImage{}, baselineImage{};
 static Il2CppAssembly ownerAssembly{}, baselineAssembly{};
 static Il2CppClass ownerClass{};
@@ -199,6 +199,7 @@ const MethodInfo* MetadataCache::GetGenericInstanceMethod(
     assert(method==&definition && count==1);
     arguments[0]=input[0]; genericInst.type_argc=1;genericInst.type_argv=arguments;
     gmethod.methodDefinition=method;gmethod.context.method_inst=&genericInst;
+    if(mode==6) state=AssemblyShadowState::FailedAfterCommit;
     inflated=definition;
     inflated.is_generic=false;inflated.is_inflated=mode!=2;
     inflated.genericMethod=&gmethod;
@@ -234,6 +235,7 @@ int main(int argc,char** argv) {
     else if(kind=="wrong-physical") mode=3;
     else if(kind=="escaped-body") mode=4;
     else if(kind=="silent-null") mode=5;
+    else if(kind=="inflation-poison") mode=6;
     ownerImage.assembly=&ownerAssembly;
     ownerAssembly.image=&ownerImage;ownerAssembly.aname.name="Assembly-CSharp";
     baselineImage.assembly=&baselineAssembly;baselineImage.typeCount=2;
@@ -274,7 +276,7 @@ int main(int argc,char** argv) {
     }
     state=AssemblyShadowState::Committed;
     const int probe=R03_IRG_Probe();
-    if(kind=="bad-generic"||kind=="wrong-physical") {
+    if(kind=="bad-generic"||kind=="wrong-physical"||kind=="inflation-poison") {
         assert(probe!=1);
         assert(guardCalls==0);
         std::ifstream empty(argv[2]);empty.seekg(0,std::ios::end);
@@ -337,7 +339,8 @@ class NativePhysicalCapturedProbeTests(unittest.TestCase):
                         capture_output=True, text=True, timeout=120)
                     self.assertEqual(result.returncode, 0, result.stderr)
                 for kind in ("valid", "bad-owner", "bad-generic", "wrong-physical",
-                             "premature", "escaped-body", "silent-null", "preexisting"):
+                             "premature", "escaped-body", "silent-null",
+                             "inflation-poison", "preexisting"):
                     out = root / (compiler.replace("+", "p") + "-" + kind + ".json")
                     process = subprocess.Popen([str(binary), kind, str(out)],
                                                stdout=subprocess.PIPE, stderr=subprocess.PIPE,
