@@ -42,14 +42,14 @@ jobs:
               "$cxx" -std="$standard" -O1 -Wall -Wextra -Werror -pedantic -pthread "$source" -o "$exe"
               "$exe" > "$exe.json"
               python3 - "$exe.json" <<'PY'
-import json,sys
-from pathlib import Path
-p=Path(sys.argv[1]); r=json.loads(p.read_bytes())
-assert r['result']=='PassedHostLatchOnly_NotVmOrV2Transport'
-for key in ('nativeVmFirstErrorObserved','firstErrorV2Integrated','wholeVmEpochAuthenticated','runtimeAcceptance','R03Accepted','H2Passed'):
-    assert r[key] is False, (key,r[key])
-print(r['kind'],r['result'])
-PY
+              import json,sys
+              from pathlib import Path
+              p=Path(sys.argv[1]); r=json.loads(p.read_bytes())
+              assert r['result']=='PassedHostLatchOnly_NotVmOrV2Transport'
+              for key in ('nativeVmFirstErrorObserved','firstErrorV2Integrated','wholeVmEpochAuthenticated','runtimeAcceptance','R03Accepted','H2Passed'):
+                  assert r[key] is False, (key,r[key])
+              print(r['kind'],r['result'])
+              PY
             done
           done
           test -z "$(git status --porcelain)"
