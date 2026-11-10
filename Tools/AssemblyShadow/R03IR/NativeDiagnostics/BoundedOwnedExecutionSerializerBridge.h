@@ -5,7 +5,7 @@
 // separately validate source provenance, header/R02 counters, sink Finish()
 // and the final semantic byte/identity/epoch contract.
 #include "BoundedOwnedExecutionRows.h"
-#include "AssemblyShadowExecutionSerializer.h"
+#include "vm/AssemblyShadowExecutionSerializer.h"
 
 namespace r03_b2_owned_execution_bridge {
 
