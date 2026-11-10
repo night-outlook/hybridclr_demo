@@ -1,3 +1,13 @@
+# R03 Primary status — B2-0 exact eight-source audit 2/2 PASS, full-field capture BLOCKED (2026-11-10)
+
+**New Primary implementation:** `Tools/AssemblyShadow/R03IR/bounded_v2/b2_source_readiness.py` validates exact demo/native Git heads, eight native source Git blobs, immutable reference `finalDiagnostics` (slot14) / `finalExecutionDiagnostics` (slot15), and fail-closed partial source boundaries. A 12-test suite rejects schema drift, missing/aliased source, missing metadata admission, deleted execution nonempty-class rejection and unreviewed allocation paths. [CI 42793741078](https://github.com/night-outlook/hybridclr_demo/actions/runs/42793741078) **2/2 completed/success**, 12 tests each, expected result `readyForNativeV2FieldCapture=false`. [Provenance and next primary work](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_VM_SOURCE_READINESS_GATE.md).
+
+B1 oneuse-12 actual Unity source result stays **focused 19/19 PASS**; B2 codec C++11/17 + strict/sanitized host tests stay **376/376 PASS** in their original scope. **No new real Unity build/Player**, no complete terminal general slot14 or nonempty class/TypeKey slot15 source, no integrated native V2 transaction/writer/receipt, no whole-VM epoch, no R03 acceptance. The next Primary-owned work is canonical owned nonempty execution class rows and exact full-field source parity, before any B2-1 runtime emission. [WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md) explicitly **CLOSED / NO EXECUTION**. Oneuse-12 is consumed and cannot be replayed.
+
+`R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; runtimeAcceptance=false; qualificationApproved=false; fullLegacyRegressionAcceptance=false; nativeV2TransportImplemented=false; firstRecoveryAuthenticatedV2=false; wholeVmEpoch=NotProven`. Original full-stage independent R03 FAIL and High IR-R03-01/02 remain open; historical strict S custody and missing full provenance not rewritten. PureInterpreter disabled. No H2/M08A/X02/SNAP-01 or human self-approval.
+
+---
+
 # R03 current Primary status — B1 PASS; B2-0 compiler host validated, source field semantics blocked (2026-11-10)
 
 **Latest Local** oneuse-12 remains consumed / focused **19/19 PASS** at executed demo source `2d690bb2f7234ddcbee339f9da7125d687f5ed45`, evidence publication `9c210801c8da1e8371a09c25e0ef708a6d130fc3`. Primary [B1 reconciliation](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/PRIMARY_EVIDENCE_RECONCILIATION.md) preserves exact empirical scope and the original R03 independent FAIL. No new Unity SDK/Player cycle executed.
