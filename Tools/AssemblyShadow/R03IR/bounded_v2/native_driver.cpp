@@ -73,7 +73,9 @@ int main(int argc,char** argv){
     const bool badTag=input[0]>1||input[1]>1;
     Digest context{},inl{};std::memcpy(context.data(),input.data()+10,32);std::memcpy(inl.data(),input.data()+42,32);
     std::vector<uint8_t> output(kArtifactMax),captureStorage(kArtifactMax),scratch(kFrame);
-    Encoder encoder;Output out{output.data(),output.size()};out.context=context;out.inl=inl;
+    // Default-initialize the NSDMI host context for C++11 (non-aggregate).
+    Encoder encoder;Output out{};out.p=output.data();out.capacity=output.size();
+    out.context=context;out.inl=inl;
     out.failCall=std::strtoul(argv[4],nullptr,10);std::string mode=argv[5];size_t inlineSize=std::strtoul(argv[6],nullptr,10);
     out.encoder=&encoder;out.fields=fields;out.scratch=scratch.data();out.reenter=mode=="reenter";out.mutate=mode=="mutate";
     Capture capture(captureStorage.data(),captureStorage.size());Receipt result;bool ok=!badTag;
