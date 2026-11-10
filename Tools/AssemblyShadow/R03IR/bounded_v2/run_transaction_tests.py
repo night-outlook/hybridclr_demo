@@ -311,6 +311,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--repository', required=True, type=Path)
     parser.add_argument('--output', required=True, type=Path)
+    parser.add_argument('--cxx-standard',choices=('c++11','c++17'),default='c++17',
+                        help='Native host language mode; C++17 remains default')
     args = parser.parse_args()
     if not __debug__:
         raise RuntimeError('Assertions must remain enabled')
@@ -330,6 +332,7 @@ def main():
         data = p.read_bytes()
         sources.append({'path': str(p.relative_to(ROOT)), 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest(),
                         'gitBlob': hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()})
+    cxx_standard = args.cxx_standard
     profiles = []
     try:
         for PROFILE in ('strict', 'sanitized'):
@@ -339,7 +342,7 @@ def main():
             compiler = shutil.which(os.environ.get('CXX', 'clang++'))
             if not compiler:
                 raise RuntimeError('Native C++ compiler required')
-            args = [compiler, '-std=c++17', '-Wall', '-Wextra', '-Werror', '-pedantic', '-g',
+            args = [compiler, '-std='+cxx_standard, '-Wall', '-Wextra', '-Werror', '-pedantic', '-g',
                     str(here/'transaction_driver.cpp'), '-o', str(DRIVER)]
             if PROFILE == 'sanitized':
                 args += ['-fsanitize=address,undefined', '-fno-omit-frame-pointer']
@@ -357,7 +360,8 @@ def main():
         print(json.dumps({'profiles': profiles, 'commands': len(RECORDS)}, indent=2))
     finally:
         (OUT/'RESULT.json').write_text(json.dumps({'kind': 'InactiveNativeFileTransactionTests', 'profiles': profiles,
-              'sources': sources, 'commands': len(RECORDS), 'actualUnity': False, 'productionTransportEnabled': False,
+              'sources': sources, 'commands': len(RECORDS), 'cxxStandard': cxx_standard,
+              'actualUnity': False, 'productionTransportEnabled': False,
               'VMProducerOrSemanticAcceptanceProven': False, 'platform': platform.platform(),
               'leakSanitizer': 'UnavailableOnApple' if sys.platform == 'darwin' else 'Enabled',
               'devicePowerLossTested': False}, indent=2)+'\n')
