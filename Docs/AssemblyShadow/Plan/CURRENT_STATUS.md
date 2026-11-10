@@ -1,3 +1,15 @@
+# R03 current status — oneuse-12 B1 focused PASS; WEB_TO_LOCAL CLOSED; B2-0 Primary (2026-11-10)
+
+**Authoritative executed tuple:** demo `2d690bb2f7234ddcbee339f9da7125d687f5ed45`, native `8aa8d09319a89b55b2496bcc2c69ccc69cb57be9`, interpreter `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, Unity package `948c0e3b4f8891481301770115e8ba4945eea6de`. Evidence-publication demo `9c210801c8da1e8371a09c25e0ef708a6d130fc3`. Local [report](../Handoff/LOCAL_VALIDATION.md) and [return](../Handoff/RETURN_TO_WEB.md) reconcile one authorized run, **19/19 PASS**, one genuine Unity2022.3.62f2 Mac ARM64 IL2CPP ON/Release build, three real Players with first native B1 states/codes/origins `0/0/0`, `2/19/2`, `2/15/1`, exact original V1 reason equality, no linked host allocators, corrected receipt separation, independent B2 raw host custody and 534 regular archived evidence members. Reconciled [Primary result](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/PRIMARY_EVIDENCE_RECONCILIATION.md).
+
+**Oneuse-12 is consumed.** [Canonical WEB_TO_LOCAL](../Handoff/WEB_TO_LOCAL.md) is **CLOSED / NO EXECUTION**. Do not replay or reuse the oneuse-12 product/native/B2/preflight roots. Prior oneuse-10 PrerequisiteBlocked, oneuse-11 FAIL and oneuse-07/09 focused PASS remain historical.
+
+**Next owned source stage:** [B2-0 field14/15 schema/VM ownership, healthy-time descriptor admission and C++11-vs-C++17 compiler compatibility review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_IMPLEMENTATION_DESIGN_AND_PLAN.md); later B2 isolated real native V2 producer and dual-OS adversarial host/source CI. **No new B2 code, real Player, test runner or Local handoff is yet ready.** B3 VM-wide epoch and full original S/GC/RSS/RC/P/E remain separate unfinished work.
+
+Original independent full-stage R03 FAIL; High `IR-R03-01/02` open; historical strict S custody Blocked and retired evidence Unavailable. `R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; runtimeAcceptance=false; qualificationApproved=false; fullLegacyRegressionAcceptance=false; nativeV2TransportImplemented=false; firstRecoveryAuthenticatedV2=false; wholeVmEpoch=NotProven`. PureInterpreter disabled; no H2/M08A/X02/SNAP-01 or self-approved Human Review Gate.
+
+---
+
 # R03 current status — Primary source remediation after oneuse-11 FAIL; oneuse-12 CONDITIONAL (2026-11-10)
 
 **Authoritative latest oneuse-11 Local outcome**: FAIL/ReturnRequired (16/19 Passed, real Unity IL2CPP one build, three Player SIGABRT exit -6, B1/V1 NotRun). Real compiled Bee lump / GameAssembly included test-driver global new/delete; independent B2 sanitized negative symlink caused a correctly refused product seal; latent V1→B1 exclusive `verification.json` collision reproduced. Historical sealed evidence and strict S custody not rewritten. See [Local RETURN_TO_WEB](../Handoff/RETURN_TO_WEB.md), [raw checkpoint](../History/M07R/R03/local-validation-native-b1-20261109-oneuse-11/README.md) and [Primary remediation design/test report](../History/M07R/R03/IR_Remediation/POST_B1_FAILED11_2026-11-10/PRIMARY_REMEDIATION_DESIGN_TEST_PLAN.md).
