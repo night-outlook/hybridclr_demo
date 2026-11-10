@@ -6,7 +6,7 @@ Read the source-anchored [B2-0 findings](B2_SOURCE_REVIEW.md) **before any integ
 
 **Blocking source order:** first prove byte-equivalent complete bounded sources for both fields under a legitimate metadata/lifetime contract, or explicitly design a separately versioned reduced schema and obtain the appropriate review. Only then may B2-1..B2-3 produce a compatible V2 artifact. Do **not** populate final diagnostics with B1 text, optimistic nulls or partial P1 data under the existing wire schema.
 
-The new [host-only C++11/C++17 cross-OS syntax gate](../../../../../../.github/workflows/r03-ir-b2-compiler-compat-source.yml) is an additional **compatibility diagnostic**, not Unity SDK compile/link or proof of the native V2 producer. Its result must be recorded at an exact commit before any B2 source is admitted to the Player. The original B1 oneuse-12 source, local evidence and native V1 controls remain immutable.
+The new [host-only C++11/C++17 cross-OS syntax gate](../../../../../../../.github/workflows/r03-ir-b2-compiler-compat-source.yml) is an additional **compatibility diagnostic**, not Unity SDK compile/link or proof of the native V2 producer. Its result must be recorded at an exact commit before any B2 source is admitted to the Player. The original B1 oneuse-12 source, local evidence and native V1 controls remain immutable.
 
 ---
 
