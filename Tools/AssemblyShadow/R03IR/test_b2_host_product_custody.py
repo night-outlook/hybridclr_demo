@@ -26,6 +26,7 @@ class B2CustodyAndProductSealContracts(unittest.TestCase):
         self.product = base / "product"
         self.product.mkdir()
         self.custody = self.product / "host" / "b2-raw-custody"
+        self.custody.parent.mkdir(parents=True)
         (self.raw / "bounded-codec").mkdir()
         (self.raw / "bounded-codec" / "RESULT.json").write_text(
             json.dumps({"kind": "BoundedNativeV2Interop", "actualUnity": False}) + "\n")

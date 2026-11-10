@@ -22,7 +22,7 @@ ROOT = HERE.parents[2]
 
 class CapturedBatchSourceContracts(unittest.TestCase):
     def test_01_fixed_distinct_onebuild_threeplayer_roster(self):
-        self.assertIn("R03IRNativeB1OneUse11EvidenceBatchV1",
+        self.assertIn("R03IRNativeB1OneUse12EvidenceBatchV1",
                       (HERE / "run_captured_generic_local.py").read_text())
         self.assertNotIn("R03IRNativeB1OneUse10EvidenceBatchV1",
                          (HERE / "run_captured_generic_local.py").read_text())
@@ -191,6 +191,59 @@ class CapturedBatchSourceContracts(unittest.TestCase):
         self.assertNotIn("write_text(\"PASS\")",s)
         self.assertNotIn("def init_player(",s)
         self.assertNotIn("R03InitializerObservationPlayer.cs\"].write",s)
+
+    def test_16_original_initializer_receipt_survives_b1_success_exclusive_write(self):
+        from types import SimpleNamespace
+        from batch_evidence import write
+        for mode in ("initializer-control", "initializer-failure"):
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as tmp:
+                batch = SimpleNamespace(root=Path(tmp).resolve(strict=True))
+                directory = batch.root / "players" / ("IR-R03-02-" + mode)
+                original = {"result": "PassedFocusedV1PlayerObservation_NotV2",
+                            "launchPid": 12345, "nativeDiagnostic": {"result": "test"}}
+
+                def original_v1(b, m):
+                    directory.mkdir(parents=True)
+                    write(directory / "verification.json", original)
+                    write(directory / "request.json", {"runId": "test", "stimulus": m})
+                    write(directory / "raw.json.vm-recovery.json",
+                          {"nativeRecovery": {"reason": "example"}})
+                    write(directory / "raw.json.first-error-b1.json",
+                          {"reason": "example", "kind": "host fixture only"})
+                    return dict(original)
+
+                with mock.patch.object(runner, "init_player", side_effect=original_v1), \
+                     mock.patch.object(runner, "verify_b1",
+                         return_value={"result": "PassedExactB1OriginVsV1_NotV2OrRuntimeAcceptance"}):
+                    result = runner.initializer_b1_player(batch, mode)
+                v1 = (directory / "verification.json").read_bytes()
+                b1 = (directory / "verification-b1.json").read_bytes()
+                self.assertEqual(__import__("json").loads(v1), original)
+                self.assertEqual(__import__("json").loads(b1), result)
+                self.assertIn("nativeFirstErrorB1", result)
+                with self.assertRaises(FileExistsError):
+                    write(directory / "verification-b1.json", result)
+                self.assertEqual((directory / "verification.json").read_bytes(), v1)
+                self.assertEqual((directory / "verification-b1.json").read_bytes(), b1)
+
+    def test_17_b2_raw_custody_is_external_and_owns_symlinks(self):
+        s = (HERE / "run_captured_generic_local.py").read_text()
+        for anchor in (
+            'batch.root.name + "-b2-host-raw"',
+            "capture_b2_raw(b2_raw, b2_custody)",
+            "verify_b2_raw(batch.b2_host_raw, batch.b2_host_custody)",
+            '"recordedB2HostCustody": b2_custody',
+            '"nativeB1OriginReadbackObservedInPlayers": players_passed'):
+            self.assertIn(anchor, s)
+        self.assertNotIn('root = batch.root / "host" / ("b2-" + label)', s)
+
+    def test_18_real_build_rejects_linked_allocator_source_and_symbols(self):
+        s = (HERE / "run_captured_generic_local.py").read_text()
+        self.assertIn("verify_native_build_roster(", s)
+        self.assertIn('"b1NativeHostAllocatorExclusion"', s)
+        self.assertIn("native_b1_build_roster.py", s)
+        self.assertIn("test_native_b1_build_roster.py", runner.EXTRA_SOURCE_PATHS.__repr__() +
+            s)
 
 
 if __name__=="__main__":
