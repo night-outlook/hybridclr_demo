@@ -83,6 +83,12 @@ def attest(evidence_directory: Path, installed_libil2cpp: Path,
     raw = nm_stdout.encode("utf-8")
     def digest(source: bytes) -> str:
         return hashlib.sha256(source).hexdigest()
+    def digest_file(path: Path) -> str:
+        hashed = hashlib.sha256()
+        with path.open("rb") as stream:
+            for data in iter(lambda: stream.read(1024 * 1024), b""):
+                hashed.update(data)
+        return hashed.hexdigest()
     observed = None
     failure = None
     try:
@@ -102,7 +108,7 @@ def attest(evidence_directory: Path, installed_libil2cpp: Path,
         "nmStderrSha256": digest(nm_stderr.encode("utf-8")),
         "nativeInstalledLibil2cpp": str(installed_libil2cpp),
         "actualGameAssembly": str(binary),
-        "actualGameAssemblySha256": digest(binary.read_bytes()),
+        "actualGameAssemblySha256": digest_file(binary),
         "verifiedExclusion": observed,
         "failure": failure,
         "actualUnityPlayerStarted": False,
