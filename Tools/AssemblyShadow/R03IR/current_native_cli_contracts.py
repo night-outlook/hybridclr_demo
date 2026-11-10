@@ -36,7 +36,7 @@ BLOB_PINS = {
     "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs":
         "71c685f419d157bf3774996f28f2d075246cf4e4",
     "Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py":
-        "e4bc41e7c864c28309f1a0b451dd05d9792bc91d",
+        "80100158732267ff36e37b0fa5c3b2d5bbe96d56",
 }
 HEX40 = "0" * 40
 

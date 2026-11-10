@@ -20,7 +20,7 @@ permissions:
   contents: read
 jobs:
   real-four-repo-shared-admission:
-    name: B1 actual 14/47 Mac-runner source path / ${{ matrix.os }}
+    name: B1 actual 14/46 Mac-runner source path / ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -69,6 +69,7 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             /libil2cpp/vm/
+            /NativeHostTests/AssemblyShadowFirstFailureV2Host.cpp
       - name: Validate exact four local HEADs and feature branch before admission
         shell: bash
         run: |
@@ -77,12 +78,12 @@ jobs:
           test "$(git -C "$workspace/hybridclr_demo" rev-parse HEAD)" = "$GITHUB_SHA"
           test "$(git -C "$workspace/hybridclr" rev-parse HEAD)" = "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
           test "$(git -C "$workspace/hybridclr_unity" rev-parse HEAD)" = "948c0e3b4f8891481301770115e8ba4945eea6de"
-          test "$(git -C "$workspace/il2cpp_plus" rev-parse HEAD)" = "a0209bf4285db3f0d0fc66d8817578235438cef4"
+          test "$(git -C "$workspace/il2cpp_plus" rev-parse HEAD)" = "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9"
           for repo in hybridclr_demo hybridclr hybridclr_unity il2cpp_plus; do
             test "$(git -C "$workspace/$repo" branch --show-current)" = "codex/assembly-shadow-r01b-h1"
             test -z "$(git -C "$workspace/$repo" status --porcelain)"
           done
-      - name: Execute actual shared 14/47 Mac/runner source admission and adversarial negatives
+      - name: Execute actual shared 14/46 Mac/runner source admission and adversarial negatives
         shell: bash
         run: |
           set -euo pipefail

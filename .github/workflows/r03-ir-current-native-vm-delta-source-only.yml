@@ -30,17 +30,17 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/il2cpp_plus
-          ref: a0209bf4285db3f0d0fc66d8817578235438cef4
+          ref: 8aa8d09319a89b55b2496bcc2c69ccc69cb57be9
           path: external/il2cpp_plus
           persist-credentials: false
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             libil2cpp/vm
-      - name: 12 source-only positive and hostile 45-delta contracts
+      - name: 12 source-only exact 46-production-source contracts
         shell: bash
         run: |
           set -euo pipefail
           python3 -B Tools/AssemblyShadow/R03IR/current_native_vm_delta_contracts.py --native "$PWD/external/il2cpp_plus"
       - name: Non-acceptance boundary
         shell: bash
-        run: echo '43 SOURCE Git blobs only. No evidence these headers are linked into a Player. No Unity/compiler or R03 acceptance.'
+        run: echo '46 SOURCE Git blobs only. No evidence these headers are linked into a Player. No Unity/compiler or R03 acceptance.'
