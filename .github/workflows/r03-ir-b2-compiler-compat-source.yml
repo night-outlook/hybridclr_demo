@@ -1,0 +1,39 @@
+name: R03 B2 native compiler compatibility (host source only, no Unity)
+on:
+  push:
+    branches:
+      - codex/assembly-shadow-r01b-h1
+    paths:
+      - .github/workflows/r03-ir-b2-compiler-compat-source.yml
+      - Tools/AssemblyShadow/R03IR/bounded_v2/BoundedDiagnosticsV2.h
+      - Tools/AssemblyShadow/R03IR/bounded_v2/PosixDiagnosticTransaction.h
+      - Tools/AssemblyShadow/R03IR/bounded_v2/native_driver.cpp
+      - Tools/AssemblyShadow/R03IR/bounded_v2/transaction_driver.cpp
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compiler-source:
+    name: B2 ${{ matrix.os }} ${{ matrix.std }} compile-only
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+        std: [c++11, c++17]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Actual compiler, source integrity, exact language mode
+        shell: bash
+        run: |
+          set -euo pipefail
+          clang++ --version
+          git rev-parse HEAD
+          git status --short
+          cd Tools/AssemblyShadow/R03IR/bounded_v2
+          shasum -a 256 BoundedDiagnosticsV2.h PosixDiagnosticTransaction.h native_driver.cpp transaction_driver.cpp
+          for driver in native_driver.cpp transaction_driver.cpp; do
+            echo "Compiling $driver with -std=${{ matrix.std }} (source only, no Unity SDK)"
+            clang++ -std=${{ matrix.std }} -fsyntax-only -pthread -Wno-deprecated-declarations "$driver"
+          done
+          echo "R03 B2 host-only syntax passed; not a Unity or V2 integration verdict"
