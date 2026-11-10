@@ -1,5 +1,13 @@
 # R03 B2-0 — Primary source inventory and blocking findings
 
+## B2-0 follow-up: exact native source-readiness audit (2026-11-10)
+
+Primary added [a pinned eight-native-blob source gate and adversarial tests](B2_VM_SOURCE_READINESS_GATE.md) to preserve the original V2 `finalDiagnostics` and `finalExecutionDiagnostics` schema and fail closed on unknown full-VM source coverage. [CI 42793524378](https://github.com/night-outlook/hybridclr_demo/actions/runs/42793524378) and [last source gate 42793741078](https://github.com/night-outlook/hybridclr_demo/actions/runs/42793741078) each ran independently on macOS and Ubuntu and **passed** 12 unit tests per job plus exact demo/native source inspection. Their machine result is `sourceAudit=PassedPinnedStructuralInspection` **but `readyForNativeV2FieldCapture=false`**.
+
+The actual general source (`TryCaptureBoundedGeneralLive`) has a bounded field composer and initial-session metadata reader, but neither terminal-time semantic parity nor VM-wide epoch is proven. The actual execution source (`TryCaptureBoundedEmptyExecutionLive`) rejects a **nonempty** observed-class set with `ClassRowsNotSupported`; the legacy full execution getter continues to use `std::ostringstream` and allocating `FormatMetadataOnly` over metadata. The current physical owned-name subset is explicitly not a canonical execution TypeKey. B2-SRC-01/03/04 remain **Primary-owned blockers**. No B2 runtime writer, Unity build or new Local run was performed by this audit.
+
+---
+
 Date: 2026-11-10 UTC. Initial scope: **read-only, source-level** interface assessment at demo source `9c210801c8da1e8371a09c25e0ef708a6d130fc3` and native `il2cpp_plus@8aa8d09319a89b55b2496bcc2c69ccc69cb57be9`. These exact source bytes were inspected through the GitHub Connector. No SDK/Unity compiler was run in this environment. This is a partial B2-0 source review, not an implementation approval.
 
 ## Direct interface inventory
