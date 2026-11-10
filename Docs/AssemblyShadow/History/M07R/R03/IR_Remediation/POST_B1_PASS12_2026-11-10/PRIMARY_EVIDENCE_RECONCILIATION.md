@@ -13,7 +13,7 @@ The successful **executed** source tuple on branch `codex/assembly-shadow-r01b-h
 | `night-outlook/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
 | `night-outlook/il2cpp_plus` | `8aa8d09319a89b55b2496bcc2c69ccc69cb57be9` |
 
-The **subsequent evidence publication** is `hybridclr_demo@9c210801c8da1e8371a09c25e0ef708a6d130fc3`, not an alternate execution source. Read Local-owned [LOCAL_VALIDATION](../../../../Handoff/LOCAL_VALIDATION.md) **first**, then [RETURN_TO_WEB](../../../../Handoff/RETURN_TO_WEB.md), then the immutable [oneuse-12 checkpoint](../../local-validation-native-b1-20261110-oneuse-12/README.md), its `LOCAL_RESULT.json`, `product/LOCAL_BATCH_RESULT.json` and `local-evidence/FINAL_INDEPENDENT_AUDIT.json`.
+The **subsequent evidence publication** is `hybridclr_demo@9c210801c8da1e8371a09c25e0ef708a6d130fc3`, not an alternate execution source. Read Local-owned [LOCAL_VALIDATION](../../../../../Handoff/LOCAL_VALIDATION.md) **first**, then [RETURN_TO_WEB](../../../../../Handoff/RETURN_TO_WEB.md), then the immutable [oneuse-12 checkpoint](../../local-validation-native-b1-20261110-oneuse-12/README.md), its `LOCAL_RESULT.json`, `product/LOCAL_BATCH_RESULT.json` and `local-evidence/FINAL_INDEPENDENT_AUDIT.json`.
 
 The Primary read the Git-published structured results, original Local report and independent audit and compared their shared counts, source tuple, Player PID/error fields and all-false acceptance flags. This is a **selected published-receipt semantic reconciliation**, not an independent byte-for-byte rehash of the entire retained local raw evidence tree, the 534-member product archive or the physical GameAssembly.
 
