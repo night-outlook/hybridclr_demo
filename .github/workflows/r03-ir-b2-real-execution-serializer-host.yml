@@ -44,9 +44,9 @@ jobs:
           git -C demo rev-parse HEAD
           clang++ --version
           SRC="demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics"
-          INC="native/libil2cpp/vm"
-          shasum -a 256 "$INC/AssemblyShadowExecutionSerializer.h" \
-            "$INC/AssemblyShadowDiagnosticWriter.h" \
+          INC="native/libil2cpp"
+          shasum -a 256 "$INC/vm/AssemblyShadowExecutionSerializer.h" \
+            "$INC/vm/AssemblyShadowDiagnosticWriter.h" \
             "$SRC/BoundedOwnedDefinitionTypeKey.h" \
             "$SRC/BoundedOwnedExecutionRows.h" \
             "$SRC/BoundedOwnedExecutionSerializerBridge.h" \
