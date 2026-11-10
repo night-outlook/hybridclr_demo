@@ -1,5 +1,15 @@
 # R03 B2-0 — Primary source inventory and blocking findings
 
+## Primary follow-up: owned nonempty class representation (host source, 2026-11-10)
+
+Primary has now implemented a **pure bounded, single-owner, allocation-free** TypeKey subset and nonempty class-row staging, with adapters into the **actual** source-pinned `AssemblyShadowExecutionSerializer` and `AssemblyShadowFrozenExecutionRecord` (including typed synthetic `R02::Snapshot`). All new code lives under `Tools/AssemblyShadow/R03IR/NativeDiagnostics`; native `il2cpp_plus`, original historical source pins, prior Local evidence and Unity composite were not modified.
+
+The new [design, file-by-file static review, adversarial results and exact CI receipts](B2_OWNED_NONEMPTY_EXECUTION_IMPLEMENTATION.md) verify **four 4-job dual-OS C++11/17 strict/sanitized workflows**: [bounded canonical definition subset 42801925182](https://github.com/night-outlook/hybridclr_demo/actions/runs/42801925182), [owned row staging 42802730095](https://github.com/night-outlook/hybridclr_demo/actions/runs/42802730095), [original native class serializer 42803482307](https://github.com/night-outlook/hybridclr_demo/actions/runs/42803482307), [original frozen execution/R02 record 42804244546](https://github.com/night-outlook/hybridclr_demo/actions/runs/42804244546). **16/16 CI jobs**, 32 real host process executions, **2,520 assertions**, zero observed protected allocations. They prove bounded/synthetic exact bytes and source reuse of real native serializers, **not** a real observed class or original R02 runtime state.
+
+**The original blocker remains active:** the VM's nonempty observed class source is not connected to the owned rows. The formatter's canonical subset deliberately rejects non-ASCII assembly folding, constructed generic types and qualifiers; unsupported shapes and missing physical metadata/ownership/revision proofs cannot silently become complete execution diagnostics. B2-SRC-01, B2-SRC-03 and B2-SRC-04 remain incomplete, `readyForNativeV2FieldCapture=false`. The next Primary work is an inactive **actual VM-source** adapter with physical TypeDef provenance, metadata lifetime/registry joining and a fully reviewed supported-shape/TypeKey parity policy, not a new Local batch.
+
+---
+
 ## B2-0 follow-up: exact native source-readiness audit (2026-11-10)
 
 Primary added [a pinned eight-native-blob source gate and adversarial tests](B2_VM_SOURCE_READINESS_GATE.md) to preserve the original V2 `finalDiagnostics` and `finalExecutionDiagnostics` schema and fail closed on unknown full-VM source coverage. [CI 42793524378](https://github.com/night-outlook/hybridclr_demo/actions/runs/42793524378) and [last source gate 42793741078](https://github.com/night-outlook/hybridclr_demo/actions/runs/42793741078) each ran independently on macOS and Ubuntu and **passed** 12 unit tests per job plus exact demo/native source inspection. Their machine result is `sourceAudit=PassedPinnedStructuralInspection` **but `readyForNativeV2FieldCapture=false`**.
