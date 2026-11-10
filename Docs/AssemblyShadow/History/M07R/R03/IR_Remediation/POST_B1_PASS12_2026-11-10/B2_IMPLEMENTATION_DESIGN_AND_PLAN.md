@@ -1,5 +1,13 @@
 # R03 B2 — integrate native bounded V2 transport in the isolated Player
 
+## B2-0 source-admission result and stop boundary (2026-11-10)
+
+The new [B2 exact eight-native-file readiness gate](B2_VM_SOURCE_READINESS_GATE.md) passed its **read-only source verification** and 12 negative regressions on both macOS and Ubuntu at [CI 42793741078](https://github.com/night-outlook/hybridclr_demo/actions/runs/42793741078). The output is explicitly `readyForNativeV2FieldCapture=false`: even with B1 real Player PASS and 376 native V2 host tests, the existing VM cannot safely expose complete `finalExecutionDiagnostics` for nonzero observed classes, nor prove complete postterminal `finalDiagnostics` parity. Therefore B2-1 runtime writer integration must not begin until the real full-field source is available.
+
+**Chosen next bounded Primary task:** complete owned canonical execution TypeKey capture and full nonempty class-row source, with a lifetime proof under the original metadata Reader and class registry ownership. Require a source-exact, byte-equivalent V1 execution JSON comparison in class-empty AND nonempty, generic/non-generic cases; failure must invalidate source and never substitute display names or a B1 summary. Then address general final field parity and terminal semantics before transport. No Local Execution Authority exists yet.
+
+---
+
 ## 0. Source-review addendum (2026-11-10)
 
 Read the source-anchored [B2-0 findings](B2_SOURCE_REVIEW.md) **before any integration code**. The normative V2 reference explicitly assigns **slot14 = `finalDiagnostics`** and **slot15 = `finalExecutionDiagnostics`**. These are the original full diagnostics payloads, **not the B1 first-error record**. Current `AssemblyShadow::GetDiagnosticsJson/GetExecutionDiagnosticsJson` are allocationful and contain metadata reads across separate synchronization regimes; the bounded P1 general/empty execution capture APIs are explicitly inactive/incomplete.
