@@ -1,0 +1,88 @@
+{
+  "H2Passed": false,
+  "R03Accepted": false,
+  "ReadyForHumanReviewGate": false,
+  "buildVerified": 1,
+  "cellCounts": {
+    "Failed": 3,
+    "Passed": 16
+  },
+  "failedCells": [
+    {
+      "dependencies": [
+        "build-captured"
+      ],
+      "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/commands/0031/command.json",
+      "id": "player-initializer-control",
+      "result": "Failed"
+    },
+    {
+      "dependencies": [
+        "build-captured"
+      ],
+      "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/commands/0032/command.json",
+      "id": "player-initializer-failure",
+      "result": "Failed"
+    },
+    {
+      "dependencies": [
+        "build-captured"
+      ],
+      "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/commands/0033/command.json",
+      "id": "player-captured-generic",
+      "result": "Failed"
+    }
+  ],
+  "localPreflightRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-NativeB1-11",
+  "nativeHostRawRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11-native-host-raw",
+  "nativeV2TransportImplemented": false,
+  "playerLaunches": 3,
+  "playerPids": [
+    63689,
+    63711,
+    63723
+  ],
+  "playersVerified": 0,
+  "producerResult": "ReturnRequired",
+  "productResultSha256": "36b6f03ace25b78c232682727b43fd6fa69fd4dd493929c30adf17accc3d4d69",
+  "productRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11",
+  "publicationReceiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/native-b1-11-PUBLICATION_RECEIPT.json",
+  "qualificationApproved": false,
+  "rawB1V1Observations": [
+    {
+      "b1Path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/players/IR-R03-02-initializer-control/raw.json.first-error-b1.json",
+      "mode": "initializer-control",
+      "producerCell": "Failed",
+      "status": "UnavailableOrNotRun",
+      "v1Path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/players/IR-R03-02-initializer-control/raw.json.vm-recovery.json"
+    },
+    {
+      "b1Path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/players/IR-R03-02-initializer-failure/raw.json.first-error-b1.json",
+      "mode": "initializer-failure",
+      "producerCell": "Failed",
+      "status": "UnavailableOrNotRun",
+      "v1Path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/players/IR-R03-02-initializer-failure/raw.json.vm-recovery.json"
+    },
+    {
+      "b1Path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/players/IR-R03-02-captured-generic/raw.json.first-error-b1.json",
+      "mode": "captured-generic",
+      "producerCell": "Failed",
+      "status": "UnavailableOrNotRun",
+      "v1Path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/players/IR-R03-02-captured-generic/raw.json"
+    }
+  ],
+  "result": "FAIL",
+  "runnerCommandReceiptSha256": "27fb1c7aa044e7ca39c0709d6965f42272cf48a29b8c70e98fa1123958ea93fc",
+  "runnerInvocations": 1,
+  "runtimeAcceptance": false,
+  "sealError": "Unexpected directory symlink: host/b2-descriptor-transaction/sanitized/case-0160/alias",
+  "sealStatus": "Failed",
+  "sourcePins": {
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_demo": "3ddbac666caf9b5ec2482467652eefd7c5e7833f",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "a0209bf4285db3f0d0fc66d8817578235438cef4"
+  },
+  "unityBuildCommands": 1,
+  "wholeVmEpoch": "NotProven"
+}

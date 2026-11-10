@@ -1,5 +1,33 @@
 # Local Validation → Primary Implementation
 
+## Native B1 oneuse-11 — FAIL / ReturnRequired
+
+The corrected source admission passed 14/47 on both Local paths. One authorized run at demo `3ddbac666caf9b5ec2482467652eefd7c5e7833f` and native `a0209bf4285db3f0d0fc66d8817578235438cef4` built Unity 2022.3.62f2 macOS arm64 IL2CPP Release/Shadow ON successfully with zero errors and one warning. The 19 cells produced 16 Passed and three Failed. No second run was made.
+
+### IR-LOCAL-R03-NATIVE-B1-11-PLAYER-STARTUP-01
+
+**Symptom and reproduction.** Authenticate the existing build and the exact launch arguments in the retained product commands 0031–0033. The oneuse-11 executable launched as initializer-control PID 63689, initializer-failure PID 63711 and captured-generic PID 63723. All exited `-6` and each Player.log recorded `SIGABRT`. No scenario emitted raw observations, a V1 recovery record, a native initializer trace or a B1 record. B1/V1 comparisons are NotRun. The first failed cell was initializer-control.
+
+**Evidence and likely cause.** The macOS crash reports for PIDs 63711 and 63723 both join to the verified GameAssembly UUID `71cc95be-7c3a-354d-bb8b-2fd09ff2a15e`. Both show `___BUG_IN_CLIENT_OF_LIBMALLOC_POINTER_BEING_FREED_WAS_NOT_ALLOCATED` in `il2cpp::os::File::Close`, through `FileHandle`'s string destructor during `MetadataLoader::LoadMetadataFile`. An OS crash report for PID 63689 was unavailable. The actual Unity Bee DAG and compiled lump show that the host test `libil2cpp/vm/AssemblyShadowFirstFailureV2Host.cpp` was included in the Player native build. The object defines global `new`, `new[]`, `delete` and `delete[]` at source lines 15–33, and the four corresponding strong definitions occur in the linked GameAssembly. The historical oneuse-09 binary did not define those symbols. The host driver allocator overrides are the leading cause of the startup failure. The exact allocation/free pairing remains untraced.
+
+**Required Primary correction.** Isolate the standalone host driver from the Unity/libil2cpp production source roster while retaining the actual B1 VM implementation and host tests. Add a fail-closed build-roster and linked-symbol regression covering these global allocator definitions. Verify that the replacement candidate starts IL2CPP and produces the authenticated B1/V1 records in all three scenarios under a fresh handoff.
+
+### IR-LOCAL-R03-NATIVE-B1-11-PRODUCT-SEAL-01
+
+**Symptom and reproduction.** Inspect the retained batch result and the exact path `host/b2-descriptor-transaction/sanitized/case-0160/alias` inside the oneuse-11 product root. The descriptor host suite exited successfully and intentionally left a directory symlink for its noncanonical-path negative case. The product sealer failed at `batch_evidence.py:39` with `Unexpected directory symlink: host/b2-descriptor-transaction/sanitized/case-0160/alias`. The independent native-host custody passed. No product archive or successful product seal was emitted.
+
+**Required Primary correction.** Keep the descriptor negative test and symlink rejection. Give B2 raw outputs separate custody, bind regular manifests and authenticated literal symlink targets into the product, and add a positive product-seal regression using the actual host output shape plus a negative for unexpected symlinks in the product tree.
+
+### Follow-up source finding — exclusive initializer receipt collision
+
+The Player failures prevented the B1 initializer receipt path from running. At the pinned source, `run_initializer_local.py:483` writes `verification.json` on V1 success and `run_captured_generic_local.py:320` attempts to write the same path after B1 success. The pinned writer uses exclusive creation. An isolated writer-only check reproduced `FileExistsError` on the second call and verified that the first receipt survived. Use distinct immutable V1 and B1 receipt paths or a single final writer, and cover both records in a host-only regression before the next Local candidate.
+
+[Source, crash and seal diagnosis](../History/M07R/R03/local-validation-native-b1-20261109-oneuse-11/local-evidence/CRASH_AND_SEAL_DIAGNOSIS.json) · [Exclusive-write check](../History/M07R/R03/local-validation-native-b1-20261109-oneuse-11/local-evidence/EXCLUSIVE_WRITE_REPRO.json) · [Local checkpoint](../History/M07R/R03/local-validation-native-b1-20261109-oneuse-11/README.md)
+
+Oneuse-11 is consumed. Historical strict custody remains Blocked. B2 full V2 transport, B3 whole-VM epoch and R03 acceptance remain open.
+
+---
+
 ## Native B1 oneuse-10 — PrerequisiteBlocked / NotRun
 
 **IR-LOCAL-R03-NATIVE-B1-10-ADMISSION-01.** The shared source admission validator rejects the authenticated B1 candidate because it still enforces the previous 11-source and 45-VM-file cardinalities.

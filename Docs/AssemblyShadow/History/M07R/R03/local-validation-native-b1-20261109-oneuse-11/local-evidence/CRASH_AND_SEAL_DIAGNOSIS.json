@@ -1,0 +1,429 @@
+{
+  "startUtc": "2026-11-10T02:22:07.658778+00:00",
+  "endUtc": "2026-11-10T02:22:07.978912+00:00",
+  "buildGameAssembly": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib",
+    "sha256": "b9eab0a73ea0a668e22c03e39c2d783254dcc05a7d8c16d93214559ecbf631f5",
+    "bytes": 19168742
+  },
+  "gameAssemblyUuid": "71cc95be-7c3a-354d-bb8b-2fd09ff2a15e",
+  "gameAssemblyAllocatorDefinitions": [
+    "00000000000f9dcc (__TEXT,__text) external __ZdaPv",
+    "00000000000f9dc8 (__TEXT,__text) external __ZdlPv",
+    "00000000000f9d84 (__TEXT,__text) external __Znam",
+    "00000000000f9d40 (__TEXT,__text) external __Znwm"
+  ],
+  "nativeHostSource": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowFirstFailureV2Host.cpp",
+    "sha256": "12c371fd98c1d1cc5e30121d48d9b1268e613b155e8c62790f64f01ae1a2cd51",
+    "bytes": 8218
+  },
+  "installedHostSourceCopies": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/vm/AssemblyShadowFirstFailureV2Host.cpp",
+      "sha256": "12c371fd98c1d1cc5e30121d48d9b1268e613b155e8c62790f64f01ae1a2cd51",
+      "bytes": 8218
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/projects/candidate-release/HybridCLRData/StrippedAOTDllsTempProj/StandaloneOSX/Il2CppOutputProject/IL2CPP/libil2cpp/vm/AssemblyShadowFirstFailureV2Host.cpp",
+      "sha256": "12c371fd98c1d1cc5e30121d48d9b1268e613b155e8c62790f64f01ae1a2cd51",
+      "bytes": 8218
+    }
+  ],
+  "beeDag": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/projects/candidate-release/Library/Bee/Playerc692e7ec.dag.json",
+    "sha256": "5efa36b87d88f6361d19d6a6abfb4cee57478b924ab98040b8c845c1cfdd5991",
+    "bytes": 2042717
+  },
+  "beeLumpSource": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/projects/candidate-release/Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/ixp977fs07ov2.lump.cpp",
+    "sha256": "30a3f39f0044e6e2468908af19dbf49593f5a20d864f91a3192e4b7e817dff3f",
+    "bytes": 1865
+  },
+  "beeCompileAction": {
+    "Annotation": "C_Mac_arm64 Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/8p3gwnx2ivn8.o",
+    "DisplayName": "Compiling Cpp for il2cpp (arm64)",
+    "Action": "\"/Library/Developer/CommandLineTools/usr/bin/clang++\" -std=c++11 -Wswitch -Wno-trigraphs -Wno-tautological-compare -Wno-invalid-offsetof -Wno-implicitly-unsigned-literal -Wno-integer-overflow -Wno-shift-negative-value -Wno-unknown-attributes -Wno-implicit-function-declaration -Wno-null-conversion -Wno-missing-declarations -Wno-unused-value -Wno-pragma-once-outside-header -fvisibility=hidden -isysroot \"/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk\" -fexceptions -frtti -g -O3 -fno-strict-overflow -ffunction-sections -fdata-sections -fmessage-length=0 -pipe -D_GLIBCXX_USE_CXX11_ABI=0 -DBASELIB_INLINE_NAMESPACE=il2cpp_baselib -DIL2CPP_MONO_DEBUGGER_DISABLED -DRUNTIME_IL2CPP -DTARGET_ARM64 -DIL2CPP_ENABLE_WRITE_BARRIERS=1 -DIL2CPP_INCREMENTAL_TIME_SLICE=3 -DGC_NOT_DLL -DIL2CPP_DEFAULT_DATA_DIR_PATH=Data -DNDEBUG -I\".\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/bdwgc/include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/pch\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/os/ClassLibraryPAL/brotli/include\" -I\"/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Platforms/OSX/Include\" -o \"Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/8p3gwnx2ivn8.o\" -fcolor-diagnostics -stdlib=libc++ -arch arm64 -mmacosx-version-min=11.0 -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 -DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=2 -DHYBRIDCLR_R03_RUNTIME_PROBE=1 -c -x c++ \"Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/ixp977fs07ov2.lump.cpp\"",
+    "Inputs": [
+      "Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/ixp977fs07ov2.lump.cpp",
+      "/Library/Developer/CommandLineTools/usr/bin/clang++",
+      "/Library/Developer/CommandLineTools/usr/bin/libtool",
+      "/Library/Developer/CommandLineTools/usr/bin/clang++",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/dummy"
+    ],
+    "Outputs": [
+      "Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/8p3gwnx2ivn8.o"
+    ],
+    "ToBuildDependencies": [
+      181
+    ],
+    "OverwriteOutputs": false,
+    "AllowUnexpectedOutput": true,
+    "Env": [],
+    "DebugActionIndex": 274,
+    "ScannerIndex": 2
+  },
+  "beeCompiledObject": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/projects/candidate-release/Library/Bee/artifacts/MacStandalonePlayerBuildProgram/gqhcy/8p3gwnx2ivn8.o",
+    "sha256": "7811215860faa9fe29fb23c00291acb076e39d8fdce618e43e305ade1e8e8b79",
+    "bytes": 1270680
+  },
+  "objectAllocatorDefinitions": [
+    "000000000000523c (__TEXT,__text) external __ZdaPv",
+    "0000000000005238 (__TEXT,__text) external __ZdlPv",
+    "00000000000051f4 (__TEXT,__text) external __Znam",
+    "00000000000051b0 (__TEXT,__text) external __Znwm"
+  ],
+  "historicalOneuse09GameAssembly": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-CapturedGeneric-20261109-oneuse-09/builds/candidate-release/R03Isolated.app/Contents/Frameworks/GameAssembly.dylib",
+    "sha256": "1a7b6a25125c79478b6019a859498fbed6d412cd8d05bc03aed4d081e77882c4",
+    "bytes": 19152086
+  },
+  "historicalOneuse09AllocatorDefinitions": [],
+  "players": [
+    {
+      "pid": 63689,
+      "exitCode": -6,
+      "case": "IR-R03-02-initializer-control",
+      "request": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/players/IR-R03-02-initializer-control/request.json",
+        "sha256": "54b1033e07816810828f5a88721668f3f6d3585d263c6298e207da3142059f39",
+        "bytes": 458
+      },
+      "command": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/commands/0031/command.json",
+        "sha256": "2c942e2fc765a5ddd42515f74dc39b903b9d89bd85240a5dc40ea92143d2d625",
+        "bytes": 1686
+      },
+      "playerLog": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/players/IR-R03-02-initializer-control/Player.log",
+        "sha256": "9c3c7c3ef70de8fcadc0f29f7df2f19012ca8036716ec593702863419b46f648",
+        "bytes": 62
+      },
+      "B1": "Missing",
+      "V1": "Missing",
+      "B1V1Comparison": "NotRun",
+      "macOSCrashReport": "Unavailable"
+    },
+    {
+      "pid": 63711,
+      "exitCode": -6,
+      "case": "IR-R03-02-initializer-failure",
+      "request": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/players/IR-R03-02-initializer-failure/request.json",
+        "sha256": "c8574aaf2837a584eab8c7472d378fd9ba2ba589c752038e472d7da3e53dc3ff",
+        "bytes": 458
+      },
+      "command": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/commands/0032/command.json",
+        "sha256": "243b5827ca073091ec7637c15ee14d7542c544845de3344adc7cff212211cb35",
+        "bytes": 1686
+      },
+      "playerLog": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/players/IR-R03-02-initializer-failure/Player.log",
+        "sha256": "9c3c7c3ef70de8fcadc0f29f7df2f19012ca8036716ec593702863419b46f648",
+        "bytes": 62
+      },
+      "B1": "Missing",
+      "V1": "Missing",
+      "B1V1Comparison": "NotRun",
+      "macOSCrashReport": "Present",
+      "originalCrashReport": {
+        "path": "/Users/ah/Library/Logs/DiagnosticReports/R03Isolated-2026-11-09-181951.000.ips",
+        "sha256": "f907a41d27cf25eca3f13806627ea79fa36fcc03e1b1e0486ecd57c75274a12d",
+        "bytes": 29451
+      },
+      "retainedCrashReport": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-NativeB1-11/crash-reports/R03Isolated-2026-11-09-181951.000.ips",
+        "sha256": "f907a41d27cf25eca3f13806627ea79fa36fcc03e1b1e0486ecd57c75274a12d",
+        "bytes": 29451
+      },
+      "GameAssemblyUuid": "71cc95be-7c3a-354d-bb8b-2fd09ff2a15e",
+      "exception": {
+        "codes": "0x0000000000000000, 0x0000000000000000",
+        "rawCodes": [
+          0,
+          0
+        ],
+        "type": "EXC_CRASH",
+        "signal": "SIGABRT"
+      },
+      "faultingFrames": [
+        {
+          "symbol": "__pthread_kill",
+          "imageOffset": 38376,
+          "image": "libsystem_kernel.dylib"
+        },
+        {
+          "symbol": "pthread_kill",
+          "imageOffset": 26840,
+          "image": "libsystem_pthread.dylib"
+        },
+        {
+          "symbol": "abort",
+          "imageOffset": 493124,
+          "image": "libsystem_c.dylib"
+        },
+        {
+          "symbol": "malloc_vreport",
+          "imageOffset": 55872,
+          "image": "libsystem_malloc.dylib"
+        },
+        {
+          "symbol": "malloc_report",
+          "imageOffset": 70284,
+          "image": "libsystem_malloc.dylib"
+        },
+        {
+          "symbol": "___BUG_IN_CLIENT_OF_LIBMALLOC_POINTER_BEING_FREED_WAS_NOT_ALLOCATED",
+          "imageOffset": 91720,
+          "image": "libsystem_malloc.dylib"
+        },
+        {
+          "symbol": "void std::__1::__libcpp_deallocate[abi:nqe210106]<char>(std::__1::__type_identity<char>::type*, std::__1::__element_count, unsigned long)",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "std::__1::allocator<char>::deallocate[abi:nqe210106](char*, unsigned long)",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "std::__1::allocator_traits<std::__1::allocator<char>>::deallocate[abi:nqe210106](std::__1::allocator<char>&, char*, unsigned long)",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::~basic_string()",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::~basic_string()",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp::os::FileHandle::~FileHandle()",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp::os::FileHandle::~FileHandle()",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp::os::File::Close(il2cpp::os::FileHandle*, int*)",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp::vm::MetadataLoader::LoadMetadataFile(char const*)",
+          "imageOffset": 1803400,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp::vm::GlobalMetadata::Initialize(int*, int*)",
+          "imageOffset": 1802680,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp::vm::MetadataCache::Initialize()",
+          "imageOffset": 879204,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp::vm::Runtime::Init(char const*)",
+          "imageOffset": 2141768,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp_init",
+          "imageOffset": 756480,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "InitializeIl2CppFromMain(core::basic_string<char, core::StringStorageDefault<char>> const&, core::basic_string<char, core::StringStorageDefault<char>> const&, int, char const**, bool)",
+          "imageOffset": 14181588,
+          "image": "UnityPlayer.dylib"
+        },
+        {
+          "symbol": "LoadScriptingRuntime(core::basic_string<char, core::StringStorageDefault<char>> const&, core::basic_string<char, core::StringStorageDefault<char>> const&, int, char**)",
+          "imageOffset": 26988200,
+          "image": "UnityPlayer.dylib"
+        },
+        {
+          "symbol": "SetupUnityPlayer(int, char**)",
+          "imageOffset": 26989576,
+          "image": "UnityPlayer.dylib"
+        }
+      ]
+    },
+    {
+      "pid": 63723,
+      "exitCode": -6,
+      "case": "IR-R03-02-captured-generic",
+      "request": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/players/IR-R03-02-captured-generic/request.json",
+        "sha256": "34d0ff84a28dc5d0d9d926701e501148d4a00abc3f535733bb6fad12649af14e",
+        "bytes": 436
+      },
+      "command": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/commands/0033/command.json",
+        "sha256": "4bb5b560473a5fea7305ab8fd39154efe50f1e040d2ace09b6bc9b225a660f97",
+        "bytes": 1669
+      },
+      "playerLog": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/players/IR-R03-02-captured-generic/Player.log",
+        "sha256": "9c3c7c3ef70de8fcadc0f29f7df2f19012ca8036716ec593702863419b46f648",
+        "bytes": 62
+      },
+      "B1": "Missing",
+      "V1": "Missing",
+      "B1V1Comparison": "NotRun",
+      "macOSCrashReport": "Present",
+      "originalCrashReport": {
+        "path": "/Users/ah/Library/Logs/DiagnosticReports/R03Isolated-2026-11-09-181951.ips",
+        "sha256": "a55ed961d2ff80e4ba4a3bee70637442029a27637d9ae42695bcd63ec9580f63",
+        "bytes": 29452
+      },
+      "retainedCrashReport": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-NativeB1-11/crash-reports/R03Isolated-2026-11-09-181951.ips",
+        "sha256": "a55ed961d2ff80e4ba4a3bee70637442029a27637d9ae42695bcd63ec9580f63",
+        "bytes": 29452
+      },
+      "GameAssemblyUuid": "71cc95be-7c3a-354d-bb8b-2fd09ff2a15e",
+      "exception": {
+        "codes": "0x0000000000000000, 0x0000000000000000",
+        "rawCodes": [
+          0,
+          0
+        ],
+        "type": "EXC_CRASH",
+        "signal": "SIGABRT"
+      },
+      "faultingFrames": [
+        {
+          "symbol": "__pthread_kill",
+          "imageOffset": 38376,
+          "image": "libsystem_kernel.dylib"
+        },
+        {
+          "symbol": "pthread_kill",
+          "imageOffset": 26840,
+          "image": "libsystem_pthread.dylib"
+        },
+        {
+          "symbol": "abort",
+          "imageOffset": 493124,
+          "image": "libsystem_c.dylib"
+        },
+        {
+          "symbol": "malloc_vreport",
+          "imageOffset": 55872,
+          "image": "libsystem_malloc.dylib"
+        },
+        {
+          "symbol": "malloc_report",
+          "imageOffset": 70284,
+          "image": "libsystem_malloc.dylib"
+        },
+        {
+          "symbol": "___BUG_IN_CLIENT_OF_LIBMALLOC_POINTER_BEING_FREED_WAS_NOT_ALLOCATED",
+          "imageOffset": 91720,
+          "image": "libsystem_malloc.dylib"
+        },
+        {
+          "symbol": "void std::__1::__libcpp_deallocate[abi:nqe210106]<char>(std::__1::__type_identity<char>::type*, std::__1::__element_count, unsigned long)",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "std::__1::allocator<char>::deallocate[abi:nqe210106](char*, unsigned long)",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "std::__1::allocator_traits<std::__1::allocator<char>>::deallocate[abi:nqe210106](std::__1::allocator<char>&, char*, unsigned long)",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::~basic_string()",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::~basic_string()",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp::os::FileHandle::~FileHandle()",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp::os::FileHandle::~FileHandle()",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp::os::File::Close(il2cpp::os::FileHandle*, int*)",
+          "imageOffset": 1977288,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp::vm::MetadataLoader::LoadMetadataFile(char const*)",
+          "imageOffset": 1803400,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp::vm::GlobalMetadata::Initialize(int*, int*)",
+          "imageOffset": 1802680,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp::vm::MetadataCache::Initialize()",
+          "imageOffset": 879204,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp::vm::Runtime::Init(char const*)",
+          "imageOffset": 2141768,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "il2cpp_init",
+          "imageOffset": 756480,
+          "image": "GameAssembly.dylib"
+        },
+        {
+          "symbol": "InitializeIl2CppFromMain(core::basic_string<char, core::StringStorageDefault<char>> const&, core::basic_string<char, core::StringStorageDefault<char>> const&, int, char const**, bool)",
+          "imageOffset": 14181588,
+          "image": "UnityPlayer.dylib"
+        },
+        {
+          "symbol": "LoadScriptingRuntime(core::basic_string<char, core::StringStorageDefault<char>> const&, core::basic_string<char, core::StringStorageDefault<char>> const&, int, char**)",
+          "imageOffset": 26988200,
+          "image": "UnityPlayer.dylib"
+        },
+        {
+          "symbol": "SetupUnityPlayer(int, char**)",
+          "imageOffset": 26989576,
+          "image": "UnityPlayer.dylib"
+        }
+      ]
+    }
+  ],
+  "seal": {
+    "producerStatus": "Failed",
+    "error": "Unexpected directory symlink: host/b2-descriptor-transaction/sanitized/case-0160/alias",
+    "symlink": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/host/b2-descriptor-transaction/sanitized/case-0160/alias",
+    "literalTarget": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/host/b2-descriptor-transaction/sanitized/case-0160/transaction",
+    "productArchiveConstructed": false
+  },
+  "inference": "The B1 host driver entered Unity native source discovery and its allocator overrides entered the linked GameAssembly. These overrides are the leading explanation for the independently observed invalid free during metadata startup. The precise allocation/deallocation pairing is not traced."
+}

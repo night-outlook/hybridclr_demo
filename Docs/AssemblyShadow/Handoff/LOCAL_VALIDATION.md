@@ -1,5 +1,33 @@
 # Local Validation report
 
+## Native B1 oneuse-11 — FAIL
+
+Execution source `3ddbac666caf9b5ec2482467652eefd7c5e7833f`. The corrected shared Mac and inner native-host 14/47 admissions passed. All eight required CI jobs at the exact demo/native SHAs passed. Fresh capacity was 43.330097 and 43.317841 GiB on the same device, 61.059 seconds apart.
+
+The runner was invoked once from 2026-11-10T02:15:52.254768+00:00 to 2026-11-10T02:20:09.586254+00:00 with exit 1. Producer result `ReturnRequired`. Cell roster Passed 16, Failed 3. Actual Unity build commands 1 and Player launches 3. Product seal `Failed`. BuildReport Succeeded, 0 errors, 1 warnings. Linked GameAssembly SHA-256 `b9eab0a73ea0a668e22c03e39c2d783254dcc05a7d8c16d93214559ecbf631f5`. Required exports and the linked Bi4 bridge were verified.
+
+| Player | Cell | PID | Raw B1 state/code/origin | Reason bytes |
+| --- | --- | ---: | --- | ---: |
+| initializer-control | Failed | 63689 | Missing | — |
+| initializer-failure | Failed | 63711 | Missing | — |
+| captured-generic | Failed | 63723 | Missing | — |
+
+Native host roster `PassedHostOnlyTenComponents`. B2 host-only diagnostics recorded 2 suites. Host custody `PassedFullRawHostAndArchiveBinding_NoRuntimeAcceptance`. Original-S archival and source evidence is scoped as recorded in the cell receipts.
+
+All three Players exited with SIGABRT before emitting B1 or V1 evidence. Two macOS crash reports located an invalid free during IL2CPP metadata initialization. The Bee object and linked GameAssembly both define allocator overrides from the B1 host driver. The product seal separately rejected a literal symlink from the B2 descriptor host suite. [Diagnosis](../History/M07R/R03/local-validation-native-b1-20261109-oneuse-11/local-evidence/CRASH_AND_SEAL_DIAGNOSIS.json).
+
+Observed failed cells
+
+- `player-initializer-control` — Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/commands/0031/command.json
+- `player-initializer-failure` — Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/commands/0032/command.json
+- `player-captured-generic` — Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261109-oneuse-11/commands/0033/command.json
+
+Before/after custody verified 339,367 present and 77,477 unchanged missing frozen-C identities. Historical strict custody remains Blocked. The 17 retired roots and 40 duplicate paths remain Unavailable. The preservation audit verified 26 prior checkpoints including oneuse-10, 16,978 Original-S files and 2,405 installed SDK files within its recorded scope.
+
+The [additive checkpoint](../History/M07R/R03/local-validation-native-b1-20261109-oneuse-11/README.md) binds selected immutable receipts to the live raw product, native host and preflight roots. All acceptance flags remain false. B2 full transport and B3 whole-VM epoch remain open. Next state is Primary Implementation.
+
+---
+
 ## Native B1 oneuse-10 — PrerequisiteBlocked / NotRun
 
 The clean Local candidate used demo `7c8af27e63038c77c13171c5776760e869e9c09d` and native `a0209bf4285db3f0d0fc66d8817578235438cef4`. All four local and live remote refs matched their pins. The three mandatory workflows passed all six OS jobs at the exact demo/native SHAs. The independent Local source proof passed 14 source files, and all 47 native VM paths matched. The focused source suites passed 20 and 12 tests. Three separate older current-native workflow runs at the same demo SHA failed both jobs. Their job records are retained separately from the three mandatory B1 workflows.
