@@ -68,7 +68,12 @@ class PosixDiagnosticTransaction {
     bool busy_=false;
     uint8_t readback_[4096]{};
     bool Fail(FileError error,const char* operation,int systemError=0) noexcept {
-        if(failure_.error==FileError::None) failure_={error,operation,systemError};
+        if(failure_.error==FileError::None) {
+            // C++11 NSDMI structs are non-aggregates; preserve first failure.
+            failure_.error=error;
+            failure_.operation=operation;
+            failure_.systemError=systemError;
+        }
         state_=FileState::Failed; receipt_.complete=false; return false;
     }
     struct Call {
@@ -92,8 +97,11 @@ class PosixDiagnosticTransaction {
             am.tv_sec==bm.tv_sec && am.tv_nsec==bm.tv_nsec && ac.tv_sec==bc.tv_sec && ac.tv_nsec==bc.tv_nsec;
     }
     static FileIdentity Identity(const struct stat& s,size_t bytes,Digest hash={}) noexcept {
-        return {uint64_t(s.st_dev),uint64_t(s.st_ino),uint64_t(s.st_uid),
-            uint64_t(s.st_mode & 07777),uint64_t(bytes),hash};
+        FileIdentity id{};
+        id.device=uint64_t(s.st_dev);id.inode=uint64_t(s.st_ino);
+        id.owner=uint64_t(s.st_uid);id.mode=uint64_t(s.st_mode & 07777);
+        id.bytes=uint64_t(bytes);id.sha256=hash;
+        return id;
     }
     int Root() const noexcept { return nodes_[nodeCount_-1].fd; }
     bool Chain() noexcept {
