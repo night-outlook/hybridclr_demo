@@ -1,0 +1,64 @@
+name: R03 B2 exact field14/15 source readiness (BLOCKED is correct)
+on:
+  push:
+    branches:
+      - codex/assembly-shadow-r01b-h1
+    paths:
+      - .github/workflows/r03-ir-b2-exact-full-field-source-readiness.yml
+      - Tools/AssemblyShadow/R03IR/bounded_v2/b2_source_readiness.py
+      - Tools/AssemblyShadow/R03IR/bounded_v2/test_b2_source_readiness.py
+      - Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/diagnostic_stream.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-audit:
+    runs-on: ${{ matrix.os }}
+    name: B2 source audit ${{ matrix.os }} (no Unity)
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: demo
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/bounded_v2
+            Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 8aa8d09319a89b55b2496bcc2c69ccc69cb57be9
+          path: native
+          filter: blob:none
+          sparse-checkout: |
+            libil2cpp/vm
+      - name: Real four-repo source evidence boundary (native+demo only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          git -C demo rev-parse HEAD
+          git -C native rev-parse HEAD
+          python3 -B -m unittest discover \
+            -s demo/Tools/AssemblyShadow/R03IR/bounded_v2 \
+            -p 'test_b2_source_readiness.py' -v
+          python3 -B demo/Tools/AssemblyShadow/R03IR/bounded_v2/b2_source_readiness.py \
+            --demo "$GITHUB_WORKSPACE/demo" \
+            --native "$GITHUB_WORKSPACE/native" \
+            --expected-demo "$GITHUB_SHA" \
+            --expected-native 8aa8d09319a89b55b2496bcc2c69ccc69cb57be9 > /tmp/r03-b2-readiness.json
+          cat /tmp/r03-b2-readiness.json
+          python3 -B - /tmp/r03-b2-readiness.json <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding='utf8'))
+          assert r['sourceAudit']=='PassedPinnedStructuralInspection'
+          assert r['readyForNativeV2FieldCapture'] is False
+          assert r['nativeV2TransportImplemented'] is False
+          assert (r['field14'],r['field15'])==('finalDiagnostics','finalExecutionDiagnostics')
+          assert r['handoffAuthority']=='CLOSED_NO_LOCAL_EXECUTION'
+          assert r['verifiedNativeFiles']==8
+          print('Source pin/readiness audit PASSED, full B2 producer remains explicitly BLOCKED')
+          PY
