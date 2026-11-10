@@ -36,7 +36,7 @@ jobs:
           filter: blob:none
           sparse-checkout: |
             libil2cpp/vm
-      - name: Real four-repo source evidence boundary (native+demo only)
+      - name: Pinned demo/native source-readiness audit (not full four-repo admission)
         shell: bash
         run: |
           set -euo pipefail
