@@ -1,0 +1,49 @@
+# R03 B1 oneuse-11 failure → focused Primary remediation → conditional oneuse-12
+
+Date: 2026-11-10 UTC. Owner: Primary Implementation. Scope: **R03 B1 recovery only**; do not begin B2 integrated V2 transport, B3 whole-VM epoch, H2, M08A, X02, SNAP-01, or approve a Human Review Gate.
+
+## 1. Evidence and admission
+
+Read the immutable [oneuse-11 Local checkpoint](../../../local-validation-native-b1-20261109-oneuse-11/README.md) and [Local-owned failure return](../../../Handoff/RETURN_TO_WEB.md). At the actual oneuse-11 code source `hybridclr_demo@3ddbac666caf9b5ec2482467652eefd7c5e7833f`, `il2cpp_plus@a0209bf4285db3f0d0fc66d8817578235438cef4`, Unity 2022.3.62f2 macOS arm64 IL2CPP Release/Shadow ON built once (0 errors, 1 warning) and 16/19 cells passed; all three Players exited -6 / SIGABRT with no diagnostic records. B1 first-origin and V1 byte agreement were **NotRun**. Source evidence tied the actual compiled Bee lump and linked GameAssembly strong `operator new/delete` definitions to `libil2cpp/vm/AssemblyShadowFirstFailureV2Host.cpp`. The two available Mac crash reports identify `FileHandle` destruction / `MetadataLoader::LoadMetadataFile` and invalid free. **Likely root cause**: standalone host global allocation overrides contaminated Unity's Player native link; exact allocator pair is not dynamically traced and causality must be verified by fresh Player startup.
+
+The independent B2 POSIX descriptor test intentionally left a directory symlink `sanitized/case-0160/alias`. It landed under the oneuse-11 product root and the correct fail-closed `batch_evidence.py` sealer rejected it; no sealed product archive. A source/host-only check independently reproduced an exclusive writer collision: V1 initializer writes `verification.json` first; the B1 overlay later tried to write the same path with `open('x')`. This collision was not reached during the failed Players.
+
+No historical oneuse-11 output, original S, custody evidence, or source pin is rewritten. Original strict S custody remains Blocked; 17 retired roots / 40 duplicate paths Unavailable. Original independent R03 verdict FAIL, High IR-R03-01/02 open.
+
+## 2. Design choices and code
+
+### A. Native production-roster separation (Primary owns cross-module correction)
+
+Move the **standalone** `AssemblyShadowFirstFailureV2Host.cpp` out of `libil2cpp/vm` into `il2cpp_plus/NativeHostTests/`. Its relative include points back to the actual unchanged `libil2cpp/vm/AssemblyShadowFirstFailureV2.h`; native host workflow explicitly compiles it with C++11/C++17. The Unity-installed native source roster must contain only the 46 reviewed production-facing changed VM files, not the test's `main()` and allocator overrides. The original native VM B1 `AssemblyShadow.cpp/.h/AssemblyShadowFirstFailureV2.h` and all production error producers are **unchanged**.
+
+Current/native source candidate is `il2cpp_plus@8aa8d09319a89b55b2496bcc2c69ccc69cb57be9`; 14 exact pinned four-repository source files, including the relocated host driver; 46 exact production VM file blobs (11 modified / 35 added). Baseline `74dbdbea80d83923863303bd2b2c0a87f36541b1` vs new native: 175 commits ahead, 135 changed files, 46 VM changed. The original historical `R03/source-pins.json` is immutable. Outer shared Mac/runner validator, inner native-host admission, current source gate, delta inventory, real-checkout CI and installed-source audit all bind 14/46 and the new SHA.
+
+Independent native linked-binary tripwire `native_b1_build_roster.inspect` checks both **physical installed** `vm/AssemblyShadowFirstFailureV2Host.cpp` absence and the **actual** `nm -gU GameAssembly.dylib` symbol list for defined global `operator new/new[]/delete/delete[]` and sized variants. Real linked six B1/captured exports, source manifest, Bi4 bridge remain required. It cannot claim Player startup from source checks.
+
+### B. Separate B2 raw custody (no weakened symlink policy)
+
+Run strict/sanitized B2 codec and POSIX descriptor hosts inside a **new external sibling** `<output>-b2-host-raw/{bounded-codec,descriptor-transaction}`, not beneath the regular-only product. Preserve raw files and literal symlink targets with existing `initializer_host_custody.capture` into regular-only product members `host/b2-raw-custody/{HOST_MANIFEST.json,HOST_REGULAR_BYTES.tar.gz,HOST_CUSTODY_RESULT.json}`. Verify archive hashes and live original raw link targets **after** the full batch. Product `batch_evidence.py` remains unchanged and rejects any unexpected symlink (positive + hostile regression).
+
+### C. Separate immutable V1/B1 initializer verification
+
+The original `run_initializer_local.init_player` exclusively writes `players/IR-R03-02-<mode>/verification.json` and owns its source/PID/recovery bindings. The B1 wrapper checks that receipt is complete and byte/source-equivalent to the actual returned V1 binding; only then it writes new exclusive `verification-b1.json` with the B1 raw SHA and actual native first-origin/V1-reason crosscheck. No overwrite or shared writer. Captured-generic continues to write its single existing `verification.json`.
+
+## 3. Primary tests and diagnostics
+
+At the initial implementation commit, the native [R03 B1 first-origin source CI run 42776471103](https://github.com/night-outlook/il2cpp_plus/actions/runs/42776471103) completed/success on both Ubuntu24.04 and macOS15 (native C++11/C++17 host and source mapping). The demo's [B1 source/host run 42777992570](https://github.com/night-outlook/hybridclr_demo/actions/runs/42777992570) also completed/success on both OSes. This runs: strict B1 Python receipt/source/runner suites; actual C++11 B1 probe compilation with explicitly isolated mocks; seven positive/hostile linked-allocator input tests; five B2 host product-custody tests; actual strict and sanitized POSIX native descriptor suite including deliberately-created symlinks; regular-only product seal and hostile unexpected-product-symlink negative. Existing [exact native four-repo source CI 42777255893](https://github.com/night-outlook/hybridclr_demo/actions/runs/42777255893), [shared source Mac/runner CI 42777255794](https://github.com/night-outlook/hybridclr_demo/actions/runs/42777255794), and [current native Local-cycle host CI 42777255848](https://github.com/night-outlook/hybridclr_demo/actions/runs/42777255848) also passed with exact-source host scope at earlier demo commits. Those earlier CI receipts DO NOT authorize the final demo SHA.
+
+**Required new final-source regression**: every mandatory job, both OSes, must independently complete/succeed at the **final pushed demo SHA**, including the actual shared 14/46 Mac/runner validator and the full B2 host test. The native run must match the final pinned native SHA. Do not treat workflow-level success without job-level completed/success as a PASS. CI does **not** use a real Unity Editor, installed proprietary SDK, original S custody, or Player; synthetic negatives and host compiler are not runtime acceptance.
+
+## 4. Conditional Local oneuse-12 batch
+
+The sole new authority is [WEB_TO_LOCAL.md](../../../Handoff/WEB_TO_LOCAL.md) at the final demo pushed SHA. Three **fresh separately absent canonical** roots: product `/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261110-oneuse-12`; `<product>-native-host-raw`; `<product>-b2-host-raw`. A consumed or aliased root, missing original S/SDK, wrong clean four-repo HEAD, any CI job not completed/success, invalid source/blob, or insufficient fresh same-volume 2×≥25 GiB ≥60-sec capacity **blocks before the runner**. No retry/dry-run/relabel, no previous root reuse, no historical binary substitution.
+
+One runner invocation: exactly 19 cells, one actual Unity2022.3.62f2 macOS ARM64 IL2CPP ON/Release native build, three independent fresh Players; V1/B1 joins for healthy control (code0/state6/B1 Empty), postprepared initializer error19/state9/B1 origin2 and physical captured generic guard error15/state9/B1 origin1 (byte-identical first reason, exact PID/build/raw bindings, postterminal denial), plus actual linked symbol exclusion, Bi4, real B2 hosts/seal and independent final source checks. Preserve original raw/crash/command/Player.log evidence and four repository receipts. A failed Player is a **Failed** cell, never a cached positive from oneuse09.
+
+Original S complete independent compiler/object/link/Player and strict historical custody, B2 integrated native V2 descriptor writer, B3 coherent VM epoch, complete GC/RSS/RC/P/E, qualification and full legacy regression remain open. `R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; runtimeAcceptance=false; qualificationApproved=false; fullLegacyRegressionAcceptance=false; nativeV2TransportImplemented=false; firstRecoveryAuthenticatedV2=false; wholeVmEpoch=NotProven`. PureInterpreter stays disabled. No Human Review Gate self-approval.
+
+## 5. Review/rollback and ownership
+
+**Code and source scope**: native moves one standalone host test and its explicit CI path; demo changes source pins/inventories/CI, B1 orchestrator, host tests, and current docs. No change to baseline VM semantics, Unity original S sources, or historical evidence. Removing test driver from production libil2cpp is intentional and must be confirmed from installed source bytes, real Bee DAG/lumps and linked binary; exact C++ new/delete collision mechanism remains a hypothesis until real repaired Players run.
+
+**Rollback**: revert these focused native/demo commits together to their verified pre-oneuse12 sources; never selectively reinstate the host driver inside live `libil2cpp` without explicitly acknowledging the oneuse-11 crash, and do not rewrite immutable Local evidence. Any non-trivial Native/V1/B2/receipt failure remains Primary-owned: Local diagnoses and returns raw proof, no broad source edits. Stop at the next Human Review Gate as defined in project docs.
