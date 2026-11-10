@@ -1,0 +1,345 @@
+{
+  "result": "Passed",
+  "workflowCount": 7,
+  "jobCount": 14,
+  "startUtc": "2026-11-10T08:45:31.475092+00:00",
+  "endUtc": "2026-11-10T08:45:46.119984+00:00",
+  "workflows": [
+    {
+      "repo": "hybridclr_demo",
+      "run": 42779576236,
+      "workflow": "r03-ir-native-b1-source-and-host.yml",
+      "headSha": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 129706087966,
+          "name": "b1-source-host (macos-15)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 129706088100,
+          "name": "b1-source-host (ubuntu-24.04)",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "records": [
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576236",
+          "file": "github/42779576236.json",
+          "sha256": "74ad817e93808920f7bf5d88c03214ec8db02df8a523161d93c50d511c83380a"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576236/attempts/1",
+          "file": "github/42779576236-attempts-1.json",
+          "sha256": "e027b6b65714a6fff8a7aa0b682cbcb5547816c0412b61e36a7e0c61dd107710"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576236/attempts/1/jobs",
+          "file": "github/42779576236-attempts-1-jobs.json",
+          "sha256": "86314c97d92b72a47476bb54916bca6cde644457ff25faa2a95c8e5f3f21c206"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/129706087966",
+          "file": "github/job-129706087966.json",
+          "sha256": "0a7c175d26c050bad1c0e847246893bf73ac82ffa48bbda289aef83a4988b4c1"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/129706088100",
+          "file": "github/job-129706088100.json",
+          "sha256": "82e6430c5a3189f040125a427ad20668cad66a3e615f237a70c8df207b6664c9"
+        }
+      ]
+    },
+    {
+      "repo": "hybridclr_demo",
+      "run": 42779576238,
+      "workflow": "r03-ir-native-b1-four-repo-source.yml",
+      "headSha": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 129706088106,
+          "name": "b1-exact-source (macos-15)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 129706088496,
+          "name": "b1-exact-source (ubuntu-24.04)",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "records": [
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576238",
+          "file": "github/42779576238.json",
+          "sha256": "a6b54afa96f757114f9a8ad1d71071fdb9543456c8f525e4c2e66e5c1b8c4d89"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576238/attempts/1",
+          "file": "github/42779576238-attempts-1.json",
+          "sha256": "56930f18eca8ea15396929bf32e560df904a128ba0a61b2cfa0e834a617d8a8d"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576238/attempts/1/jobs",
+          "file": "github/42779576238-attempts-1-jobs.json",
+          "sha256": "9d6eb4f8cc1af6ccb67a86fcffdecef0762f9d43bd2292d8bd6c849f2d853089"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/129706088106",
+          "file": "github/job-129706088106.json",
+          "sha256": "014633fcab7239f6622c9ee27fa2095b3d64b28cc940a6106355c6d40077910e"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/129706088496",
+          "file": "github/job-129706088496.json",
+          "sha256": "48d8d7e03c15dbe95f9433b76727911df870c3d1f0e89c618c3a3ca71e228b51"
+        }
+      ]
+    },
+    {
+      "repo": "hybridclr_demo",
+      "run": 42779576627,
+      "workflow": "r03-ir-b1-shared-mac-runner-admission.yml",
+      "headSha": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 129706093045,
+          "name": "B1 actual 14/46 Mac-runner source path / ubuntu-24.04",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 129706093271,
+          "name": "B1 actual 14/46 Mac-runner source path / macos-15",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "records": [
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576627",
+          "file": "github/42779576627.json",
+          "sha256": "4fe43e86c0c1982bf3e922e77eb621665117503fcdf30fb414f2df6242a93937"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576627/attempts/1",
+          "file": "github/42779576627-attempts-1.json",
+          "sha256": "489c4d1e85f6743e91a8c5624d3e088c632d6ae349c92e533661b25e34d9a038"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576627/attempts/1/jobs",
+          "file": "github/42779576627-attempts-1-jobs.json",
+          "sha256": "d6d50771ccec57dde6fad22a2b499a924930eb6d664666e77fb9af70a6bd9b56"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/129706093045",
+          "file": "github/job-129706093045.json",
+          "sha256": "dcc46e250740dfcfb1c4f31a4cc86e4d85f796283c692c76757e95832c693d73"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/129706093271",
+          "file": "github/job-129706093271.json",
+          "sha256": "d0d837fa483ea79d3c568daca9464b459e325a2f6124776332a416be801da275"
+        }
+      ]
+    },
+    {
+      "repo": "hybridclr_demo",
+      "run": 42779576542,
+      "workflow": "r03-ir-current-native-local-cycle-host.yml",
+      "headSha": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 129706089146,
+          "name": "Preflight/oracle/VM/dispatch tests (macos-15)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 129706089348,
+          "name": "Preflight/oracle/VM/dispatch tests (ubuntu-24.04)",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "records": [
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576542",
+          "file": "github/42779576542.json",
+          "sha256": "a7329ad8d6f71dd493bb38cb76444a49f8ef763df4bc90af940c8be2d934b417"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576542/attempts/1",
+          "file": "github/42779576542-attempts-1.json",
+          "sha256": "6620b8a025b2f3da71cfac452cac71c89bb96d9073aaa029c0e6af3ad5808163"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576542/attempts/1/jobs",
+          "file": "github/42779576542-attempts-1-jobs.json",
+          "sha256": "71059c76fe9f186025524011175f0e2f547a082716e5cf87beefa4dd7b665d86"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/129706089146",
+          "file": "github/job-129706089146.json",
+          "sha256": "c869e474e128b013ed371a144f0a16615c44ecc76ad4f677c29e4226bc1fbadf"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/129706089348",
+          "file": "github/job-129706089348.json",
+          "sha256": "86c677536273009f9b4b612f198249014b54df84513cb35cfda9c1b0a0ac1aa0"
+        }
+      ]
+    },
+    {
+      "repo": "hybridclr_demo",
+      "run": 42779576556,
+      "workflow": "r03-ir-current-native-source-only.yml",
+      "headSha": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 129706089020,
+          "name": "Current native/IR source-only (macos-15)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 129706089338,
+          "name": "Current native/IR source-only (ubuntu-24.04)",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "records": [
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576556",
+          "file": "github/42779576556.json",
+          "sha256": "3761e696e7e7ecf177cdb52ac37d73fdaa9aa7144ad10c136bb2fc4068aa1e79"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576556/attempts/1",
+          "file": "github/42779576556-attempts-1.json",
+          "sha256": "ff2c7130285064b033f660abbd9d660b1f2cc95e02c5fcd59cc3fd8946e2750a"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576556/attempts/1/jobs",
+          "file": "github/42779576556-attempts-1-jobs.json",
+          "sha256": "936790c3b90dffe0ff32ef74ba15b83bebdd08800092a38407757b9ad79b6042"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/129706089020",
+          "file": "github/job-129706089020.json",
+          "sha256": "2c5fc078ba4346c1ca430e180cf7b3d549de76d8a05eff8eafe7ee8cd88376cf"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/129706089338",
+          "file": "github/job-129706089338.json",
+          "sha256": "d9a4172b6c4dc5ff878e2d863d11869792f82096c65e2fcfe02e20a783a894f8"
+        }
+      ]
+    },
+    {
+      "repo": "hybridclr_demo",
+      "run": 42779576895,
+      "workflow": "r03-ir-current-native-vm-delta-source-only.yml",
+      "headSha": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 129706102567,
+          "name": "45 changed native VM source SHA contracts (macos-15)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 129706102964,
+          "name": "45 changed native VM source SHA contracts (ubuntu-24.04)",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "records": [
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576895",
+          "file": "github/42779576895.json",
+          "sha256": "dd74b61d0c46cf11accbeec7a4e8ad1e417347d72452819656bb16626f87d6ce"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576895/attempts/1",
+          "file": "github/42779576895-attempts-1.json",
+          "sha256": "b1cb028271c45e74ed8680f2aca894723482813aa46468f4948276d2b85ea28b"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576895/attempts/1/jobs",
+          "file": "github/42779576895-attempts-1-jobs.json",
+          "sha256": "2134477683cde023045f03bb3cb78933acbcd96a819d39120a2c108e39f524b3"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/129706102567",
+          "file": "github/job-129706102567.json",
+          "sha256": "d3040a37c3c22f18c2355258af7d235b3795f5da301dd569d488acc1239e9f4e"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/129706102964",
+          "file": "github/job-129706102964.json",
+          "sha256": "8d5dfcc0b59ff97faabae9073253d11d5ddd80ed09a6c8231090a6ce30a18cf4"
+        }
+      ]
+    },
+    {
+      "repo": "il2cpp_plus",
+      "run": 42776471103,
+      "workflow": "r03-native-b1-first-origin.yml",
+      "headSha": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 129696017406,
+          "name": "first-origin-host (ubuntu-24.04)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 129696017588,
+          "name": "first-origin-host (macos-15)",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "records": [
+        {
+          "url": "https://api.github.com/repos/night-outlook/il2cpp_plus/actions/runs/42776471103",
+          "file": "github/42776471103.json",
+          "sha256": "f9d38def8118dd78ab1e8385495aec0d2767d62281142a0e455c2d7632dfc556"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/il2cpp_plus/actions/runs/42776471103/attempts/1",
+          "file": "github/42776471103-attempts-1.json",
+          "sha256": "bc72748f4452a71e414009a1197fc6c8dce9e01b5de07e8c28aba79fd93929a8"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/il2cpp_plus/actions/runs/42776471103/attempts/1/jobs",
+          "file": "github/42776471103-attempts-1-jobs.json",
+          "sha256": "9163b51273393181a98b883e921efe8cccc638854626938625090cd79ca1a623"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/il2cpp_plus/actions/jobs/129696017406",
+          "file": "github/job-129696017406.json",
+          "sha256": "113b0f4da82bb9fe98a1ba949eb77cb843628c4bf6dcf62c748f94e5944711eb"
+        },
+        {
+          "url": "https://api.github.com/repos/night-outlook/il2cpp_plus/actions/jobs/129696017588",
+          "file": "github/job-129696017588.json",
+          "sha256": "bd5b48670eef36854fb70cd3f28fd118f41b080652a71e477a54eb74377df048"
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,12 @@
 # Local Validation → Primary Implementation
 
+## Native B1 oneuse-12 — focused PASS
+
+The batch passed all 19 cells, including the real build and three Players. The linked allocator exclusion, separate initializer V1/B1 receipts, B2 host custody and regular-only product seal passed. Read the [Local result and evidence](../History/M07R/R03/local-validation-native-b1-20261110-oneuse-12/README.md). No new B1 implementation issue was observed in this batch. R03 acceptance, B2 full V2 transport, B3 whole-VM epoch and historical strict custody remain outside this focused pass.
+
+
+---
+
 ## Native B1 oneuse-11 — FAIL / ReturnRequired
 
 The corrected source admission passed 14/47 on both Local paths. One authorized run at demo `3ddbac666caf9b5ec2482467652eefd7c5e7833f` and native `a0209bf4285db3f0d0fc66d8817578235438cef4` built Unity 2022.3.62f2 macOS arm64 IL2CPP Release/Shadow ON successfully with zero errors and one warning. The 19 cells produced 16 Passed and three Failed. No second run was made.

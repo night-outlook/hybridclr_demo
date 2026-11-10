@@ -1,0 +1,51 @@
+{
+  "dependencies": [
+    "build-captured"
+  ],
+  "evidence": {
+    "H2Passed": false,
+    "R03Accepted": false,
+    "buildReceiptSha256": "197284e0b591caf53ba003354d33b6807bf95a5ee040bf5f276236d0047237a4",
+    "dllProducerSha256": "f620ffc457e604e830fed5c2b9e790d5f6233b03dbf6898636ecc6e1a5915193",
+    "dllSha256": "c7e4ddd3da14207ad680e9c0f60458f967661202a9cbf6a383ba06289ec11aab",
+    "executableSha256": "a870eb3b9e9203e92bbcbdc329d01647c92afe51ce10cc15ae226daba579f243",
+    "kind": "R03IRCapturedGenericActualPlayerEvidenceV1",
+    "launchPid": 8787,
+    "nativeFirstErrorB1": {
+      "firstCode": 15,
+      "firstOrigin": 1,
+      "firstReasonBytes": 252,
+      "kind": "R03NativeFirstErrorB1ReadOnlyCrosscheck",
+      "mode": "captured-generic",
+      "nativeV2TransportImplemented": false,
+      "processId": 8787,
+      "result": "PassedExactB1OriginVsV1_NotV2OrRuntimeAcceptance",
+      "runtimeAcceptance": false
+    },
+    "nativeFirstErrorB1RawSha256": "34fbd403a1a512f325778b7b294feaaac28f4cd15454795e731eaf67d0b5fc66",
+    "nativeOverlaySha256": "4255095f62764e32d23e9298f3ea7607b233af1df1feca813da5ad91f95a5ba4",
+    "nativeV2TransportImplemented": false,
+    "rawSha256": "ca75ea5ab4a1b701133c4a5b124a3600c01caf3982482372ebb47b85e89edd3b",
+    "requestSha256": "5180978f71f6c5a4a2450287cea2ce911b7004484f210b43a3de2836b3a2e965",
+    "result": "PassedFocusedCapturedGenericV1PlayerObservation_NotV2",
+    "runId": "84bad359fae248d1a71654dde846bfe2",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1,
+    "semanticRecord": {
+      "H2Passed": false,
+      "R03Accepted": false,
+      "capturedNativeError15Field": 15,
+      "firstRecoveryAuthenticatedV2": false,
+      "kind": "R03CapturedGenericNativeSourceConsumerV1",
+      "nativeVMProofIndependent": false,
+      "ownerAssembly": "Assembly-CSharp",
+      "processId": 8787,
+      "result": "SchemaConsistentNotRuntimeAuthenticated",
+      "runtimeAcceptance": false,
+      "schemaVersion": 1
+    },
+    "sourceManifestSha256": "8516507d6e0b201eb8124434ee11a6463491c1ae3beb4db5ce98e01c9fd4e284"
+  },
+  "id": "player-captured-generic",
+  "result": "Passed"
+}

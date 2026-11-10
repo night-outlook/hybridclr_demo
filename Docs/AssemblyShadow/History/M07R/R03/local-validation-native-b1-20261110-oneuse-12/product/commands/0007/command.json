@@ -1,0 +1,40 @@
+{
+  "childEnvironmentPolicy": {
+    "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+    "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+    "GIT_TERMINAL_PROMPT": "0",
+    "MSBUILDDISABLENODEREUSE": "1",
+    "MSBUILDUSESERVER": "0",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "/private/tmp"
+  },
+  "cleanupErrors": [],
+  "command": [
+    "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR",
+    "-p",
+    "test_initializer_bridge_source.py",
+    "-v"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+  "endedUtcEpoch": 1794300503.50246,
+  "exitCode": 0,
+  "interrupted": false,
+  "lifetimePolicy": "R03OwnedCommandV1",
+  "pgid": 6814,
+  "pid": 6814,
+  "postCleanupGroupExists": false,
+  "processGroupBeforeCleanup": null,
+  "remainingProcessGroup": false,
+  "schemaVersion": 2,
+  "startError": null,
+  "startedUtcEpoch": 1794300503.463157,
+  "stderrSha256": "794d9c19364186e3595fcecdf664927fcb80e0ad2f1f7f8e6243863cdb612e08",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "timeout": false
+}

@@ -1,0 +1,86 @@
+{
+  "H2Passed": false,
+  "R03Accepted": false,
+  "argv": [
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261110-oneuse-12/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+    "-batchmode",
+    "-nographics",
+    "-r03IrInitializerRequest",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261110-oneuse-12/players/IR-R03-02-initializer-failure/request.json",
+    "-r03IrInitializerOutput",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261110-oneuse-12/players/IR-R03-02-initializer-failure/raw.json",
+    "-r03IrInitializerRunId",
+    "ce9c8a0c6cff4bca948f644b69c3479b",
+    "-logFile",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261110-oneuse-12/players/IR-R03-02-initializer-failure/Player.log"
+  ],
+  "buildReceiptSha256": "197284e0b591caf53ba003354d33b6807bf95a5ee040bf5f276236d0047237a4",
+  "caseId": "IR-R03-02-initializer-failure",
+  "executableSha256": "a870eb3b9e9203e92bbcbdc329d01647c92afe51ce10cc15ae226daba579f243",
+  "firstRecoveryAuthenticated": false,
+  "kind": "R03IRInitializerObservationHostConsumer",
+  "launchPid": 8777,
+  "nativeDiagnostic": {
+    "H2Passed": false,
+    "R03Accepted": false,
+    "commitStatusReported": [
+      19
+    ],
+    "completeStrictObservationProven": false,
+    "events": 31,
+    "genuineLinkedBi4ProbeStatus": [
+      1
+    ],
+    "kind": "R03InitializerTraceHostInterpretationV1",
+    "lastPhase": 620,
+    "managedCaughtPhase": [],
+    "nativeCallbackFailures": [],
+    "nativeCallbackObserved": true,
+    "nativeReadFailures": [],
+    "nativeRecoveryCaptured": [
+      1
+    ],
+    "nativeSealFailures": [],
+    "nativeSealInput": [
+      {
+        "attempted": 1,
+        "commit": 19,
+        "state": 9,
+        "succeeded": 0
+      }
+    ],
+    "nativeV2TransportImplemented": false,
+    "preopenedWriter": true,
+    "rawBytes": 11164,
+    "rawSha256": "3b91effe1a5c828fa5fc08f20c82b6358ed51e054258603d9087c3ae5bc0a8f7",
+    "result": "CompletePhaseTrace_NotRuntimeAuthenticated",
+    "runtimeAcceptance": false,
+    "vmRecovery": {
+      "H2Passed": false,
+      "R03Accepted": false,
+      "completeDiagnosticsAuthenticated": false,
+      "disposition": "RestartRequired",
+      "kind": "R03IRInitializerRecoverySourceOnlyDiagnosticV1",
+      "nativeGetterResult": 0,
+      "nativeV2TransportImplemented": false,
+      "rawBytes": 789,
+      "rawSha256": "b2d621e76efa8526596e8a10baf24fdbe1464d9620fbb0ffee4b7c69b4c14c80",
+      "result": "ParsedNativeVMFirstFailure_NotRuntimeAuthenticated",
+      "runtimeAcceptance": false,
+      "stateCode": 9,
+      "terminalFailureCode": 19,
+      "vmReason": "Methods: The type initializer for '<Module>' threw an exception. ---> R03IR.InitializerFailure.AfterPublication.V1"
+    }
+  },
+  "nativeOverlaySha256": "4255095f62764e32d23e9298f3ea7607b233af1df1feca813da5ad91f95a5ba4",
+  "nativeV2TransportImplemented": false,
+  "rawSha256": "ff3379d5ade28aa5509a3c433db95040f0e7fea79e4f9f36aec21ae25513f972",
+  "requestSha256": "f10abbab813e7b24c66d230be7da9f8a554f64a225c5d33f218b46c896530802",
+  "result": "PassedFocusedV1PlayerObservation_NotV2",
+  "runId": "ce9c8a0c6cff4bca948f644b69c3479b",
+  "runtimeAcceptance": false,
+  "schemaVersion": 1,
+  "sourceManifestSha256": "8516507d6e0b201eb8124434ee11a6463491c1ae3beb4db5ce98e01c9fd4e284",
+  "stimulus": "initializer-failure",
+  "targetGeneratorReceiptSha256": "4e31330e13032ff90194d1b6546e321542f032c07e9202f16aade59bf13bedb4"
+}

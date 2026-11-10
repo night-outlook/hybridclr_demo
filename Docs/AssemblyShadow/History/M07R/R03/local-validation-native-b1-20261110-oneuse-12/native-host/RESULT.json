@@ -1,0 +1,140 @@
+{
+  "R03Accepted": false,
+  "actualUnityOrPlayerRun": false,
+  "components": [
+    {
+      "name": "native-general-stream",
+      "origin": "ImmutableHistoricalHelper",
+      "status": "Passed"
+    },
+    {
+      "name": "native-v2-codec",
+      "origin": "ImmutableHistoricalHelper",
+      "status": "Passed"
+    },
+    {
+      "name": "native-v2-file-transaction",
+      "origin": "ImmutableHistoricalHelper",
+      "status": "Passed"
+    },
+    {
+      "name": "native-v2-legacy-sink",
+      "origin": "ImmutableHistoricalHelper",
+      "status": "Passed"
+    },
+    {
+      "name": "execution-serializer-strict",
+      "origin": "ImmutableHistoricalHelper",
+      "status": "Passed"
+    },
+    {
+      "name": "execution-serializer-strict-run",
+      "origin": "ImmutableHistoricalHelper",
+      "status": "Passed"
+    },
+    {
+      "name": "execution-serializer-sanitized",
+      "origin": "ImmutableHistoricalHelper",
+      "status": "Passed"
+    },
+    {
+      "name": "execution-serializer-sanitized-run",
+      "origin": "ImmutableHistoricalHelper",
+      "status": "Passed"
+    },
+    {
+      "exitCode": 0,
+      "name": "native-owner-method-classifier",
+      "origin": "FreshLocalCurrentOwner",
+      "processId": 6733,
+      "status": "Passed",
+      "stderrSha256": "e1a50dd44c583f57180cb8cfc115303ecc1cf810ab6770b6354e1abe2511c855",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unittestCases": 2
+    },
+    {
+      "exitCode": 0,
+      "name": "native-owner-full-tu",
+      "origin": "FreshLocalCurrentOwner",
+      "processId": 6738,
+      "status": "Passed",
+      "stderrSha256": "a2e4a26955fae17357354e3c06d5b2b6d7e8b7d507e0a0ed8218adbb968d7c27",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unittestCases": 3
+    }
+  ],
+  "error": null,
+  "expectedComponentCount": 10,
+  "expectedDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
+  "expectedNative": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
+  "finalSourceHashes": {
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/engine_owner_quit_contracts.py": "ba242e1b9299efa6b0de72fee4e0a26f06254aa69530b405b7434874e208ca85",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/native_owner_decision_contracts.py": "176938015f6986070abc521fbdf96d0bbd28ed8bd95f7faf806b845195cfbfea",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py": "9bbd78990f87148c310a9e9f294a1f3ca58e0b2988f8700e951449e845fb7f44",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py": "06629ef3170b49b5407af25d0aaa23f2c9b8fb7da58b9a55f1f7f90ffe59bdd9",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp": "8e0b0ce0f221c76a75e91a84250f37890b6444818283f1c2c10ddd49a184f401",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowTerminalReporting.h": "68bbe93136cc6abf6228519cc52e4d270ae1872d75336f7d8e4216b3802b0837",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/Runtime.cpp": "85edcf180cc66233d555075f40364d383e27239237ef196dc7bdf631f3550da1"
+  },
+  "historicalEightResultSha256": "debc8a143c914ba5462d1558f757d27475e0c116e1889ef7f3544dafc829db85",
+  "kind": "R03IRCurrentNativeTenHostComponents",
+  "officialUnitySdkCompile": false,
+  "originalSourceHashes": {
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/engine_owner_quit_contracts.py": "ba242e1b9299efa6b0de72fee4e0a26f06254aa69530b405b7434874e208ca85",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/native_owner_decision_contracts.py": "176938015f6986070abc521fbdf96d0bbd28ed8bd95f7faf806b845195cfbfea",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_current_native_host_preflight.py": "9bbd78990f87148c310a9e9f294a1f3ca58e0b2988f8700e951449e845fb7f44",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/run_primary_host_preflight.py": "06629ef3170b49b5407af25d0aaa23f2c9b8fb7da58b9a55f1f7f90ffe59bdd9",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowEngineReportingProbe.cpp": "8e0b0ce0f221c76a75e91a84250f37890b6444818283f1c2c10ddd49a184f401",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowTerminalReporting.h": "68bbe93136cc6abf6228519cc52e4d270ae1872d75336f7d8e4216b3802b0837",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/Runtime.cpp": "85edcf180cc66233d555075f40364d383e27239237ef196dc7bdf631f3550da1"
+  },
+  "result": "PassedHostOnlyTenComponents",
+  "runtimeAcceptance": false,
+  "schemaVersion": 1,
+  "sourceGateVerified": "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation",
+  "sourcePreserved": true,
+  "steps": [
+    {
+      "exitCode": 0,
+      "finishedUtc": "2026-11-10T08:48:15.277319+00:00",
+      "mayHaveExternalOwnedChildren": false,
+      "name": "historical-eight",
+      "postCleanupGroupExists": false,
+      "processGroupRemainedAtExit": false,
+      "processId": 5943,
+      "startedUtc": "2026-11-10T08:47:16.923731+00:00",
+      "state": "Passed",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "2cb120dcba0e188e567ee6f3b41c8822ff956158bebc12f52db558e614f6bc6e",
+      "timedOut": false
+    },
+    {
+      "exitCode": 0,
+      "finishedUtc": "2026-11-10T08:48:15.794292+00:00",
+      "mayHaveExternalOwnedChildren": false,
+      "name": "native-owner-method-classifier",
+      "postCleanupGroupExists": false,
+      "processGroupRemainedAtExit": false,
+      "processId": 6733,
+      "startedUtc": "2026-11-10T08:48:15.278260+00:00",
+      "state": "Passed",
+      "stderrSha256": "e1a50dd44c583f57180cb8cfc115303ecc1cf810ab6770b6354e1abe2511c855",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timedOut": false
+    },
+    {
+      "exitCode": 0,
+      "finishedUtc": "2026-11-10T08:48:18.254745+00:00",
+      "mayHaveExternalOwnedChildren": false,
+      "name": "native-owner-full-tu",
+      "postCleanupGroupExists": false,
+      "processGroupRemainedAtExit": false,
+      "processId": 6738,
+      "startedUtc": "2026-11-10T08:48:15.796600+00:00",
+      "state": "Passed",
+      "stderrSha256": "a2e4a26955fae17357354e3c06d5b2b6d7e8b7d507e0a0ed8218adbb968d7c27",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timedOut": false
+    }
+  ]
+}

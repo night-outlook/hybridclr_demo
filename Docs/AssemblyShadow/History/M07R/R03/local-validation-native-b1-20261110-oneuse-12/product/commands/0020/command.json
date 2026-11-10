@@ -1,0 +1,41 @@
+{
+  "childEnvironmentPolicy": {
+    "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+    "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+    "GIT_TERMINAL_PROMPT": "0",
+    "MSBUILDDISABLENODEREUSE": "1",
+    "MSBUILDUSESERVER": "0",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "/private/tmp"
+  },
+  "cleanupErrors": [],
+  "command": [
+    "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+    "-B",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/verify_captured_generic_host.py",
+    "--receipt",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261110-oneuse-12/host/captured-owner/HOST_RESULT.json",
+    "--methods",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261110-oneuse-12/host/captured-owner/Methods.dll",
+    "--owner-source",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03IR/PlayerProject/R03CapturedGenericAotOwner.cs",
+    "--native-source",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadow.cpp"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/r03-local-validation",
+  "endedUtcEpoch": 1794300523.559392,
+  "exitCode": 0,
+  "interrupted": false,
+  "lifetimePolicy": "R03OwnedCommandV1",
+  "pgid": 7273,
+  "pid": 7273,
+  "postCleanupGroupExists": false,
+  "processGroupBeforeCleanup": null,
+  "remainingProcessGroup": false,
+  "schemaVersion": 2,
+  "startError": null,
+  "startedUtcEpoch": 1794300523.519052,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "ae3eff1537059e34b0a52f17df0ed9a92833180510167c43d2700cca5b6a15fd",
+  "timeout": false
+}

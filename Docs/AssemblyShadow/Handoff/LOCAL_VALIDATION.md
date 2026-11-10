@@ -1,5 +1,25 @@
 # Local Validation report
 
+## Native B1 oneuse-12 — PASS
+
+Execution source `2d690bb2f7234ddcbee339f9da7125d687f5ed45`. The corrected shared Mac and inner native-host 14/46 admissions passed. All 14 reviewed CI jobs at the exact demo/native SHAs passed. Fresh capacity was 41.501865 and 41.495850 GiB on the same device, 61.053 seconds apart.
+
+The runner was invoked once from 2026-11-10T08:46:18.764262+00:00 to 2026-11-10T08:50:44.513259+00:00 with exit 0. Producer result `FocusedNativeFirstErrorB1AndV1Controls_NotV2`. Cell roster Passed 19. Actual Unity build commands 1 and Player launches 3. Product seal `Passed` with 534 verified regular members including the index. BuildReport Succeeded, 0 errors, 1 warnings. Linked GameAssembly SHA-256 `b660d8ff6128ad934f7605cf25736559ab2fcf51d82bb78f322f4e56c7e7303e`. Required exports and the linked Bi4 bridge were verified. Mach-O UUID `9667BE92-31EF-3C4A-B809-2ABB82B10718`. The host driver was absent from the installed VM and Bee source DAGs, and the linked allocator-symbol scan found zero overrides.
+
+| Player | Cell | PID | Raw B1 state/code/origin | Reason bytes |
+| --- | --- | ---: | --- | ---: |
+| initializer-control | Passed | 8760 | 0/0/0 | 0 |
+| initializer-failure | Passed | 8777 | 2/19/2 | 114 |
+| captured-generic | Passed | 8787 | 2/15/1 | 252 |
+
+Native host roster `PassedHostOnlyTenComponents`. B2 host-only diagnostics recorded 2 suites. Host custody `PassedFullRawHostAndArchiveBinding_NoRuntimeAcceptance`. B2 raw custody `PassedFullRawHostAndArchiveBinding_NoRuntimeAcceptance` verified 2006 regular files and 2 literal symlink targets, including 2 alias fixture paths. Original-S archival and source evidence is scoped as recorded in the cell receipts.
+
+Before/after custody verified 339,367 present and 77,477 unchanged missing frozen-C identities. Historical strict custody remains Blocked. The 17 retired roots and 40 duplicate paths remain Unavailable. The preservation audit verified 27 prior checkpoints including oneuse-11, 16,978 Original-S files and 2,405 installed SDK files within its recorded scope.
+
+The [additive checkpoint](../History/M07R/R03/local-validation-native-b1-20261110-oneuse-12/README.md) binds selected immutable receipts to the live raw product, native host and preflight roots. All acceptance flags remain false. B2 full transport and B3 whole-VM epoch remain open. Next state is Primary Implementation.
+
+---
+
 ## Native B1 oneuse-11 — FAIL
 
 Execution source `3ddbac666caf9b5ec2482467652eefd7c5e7833f`. The corrected shared Mac and inner native-host 14/47 admissions passed. All eight required CI jobs at the exact demo/native SHAs passed. Fresh capacity was 43.330097 and 43.317841 GiB on the same device, 61.059 seconds apart.

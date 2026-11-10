@@ -1,0 +1,92 @@
+{
+  "id": 129706087966,
+  "run_id": 42779576236,
+  "workflow_name": "R03 Native B1 first error source/host qualification (not Unity)",
+  "head_branch": "codex/assembly-shadow-r01b-h1",
+  "run_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/42779576236",
+  "run_attempt": 1,
+  "node_id": "CR_kwDOUFsAuM8AAAAeMxXWHg",
+  "head_sha": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
+  "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/129706087966",
+  "html_url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/42779576236/job/129706087966",
+  "status": "completed",
+  "conclusion": "success",
+  "created_at": "2026-11-10T08:02:42Z",
+  "started_at": "2026-11-10T08:02:46Z",
+  "completed_at": "2026-11-10T08:03:18Z",
+  "name": "b1-source-host (macos-15)",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-11-10T08:02:46Z",
+      "completed_at": "2026-11-10T08:02:46Z"
+    },
+    {
+      "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-11-10T08:02:47Z",
+      "completed_at": "2026-11-10T08:02:51Z"
+    },
+    {
+      "name": "Run strict B1 receipt, source preparer and one-use batch regressions",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-11-10T08:02:51Z",
+      "completed_at": "2026-11-10T08:02:53Z"
+    },
+    {
+      "name": "Compile real B1 probe source with isolated C++11 VM-shaped mocks",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-11-10T08:02:53Z",
+      "completed_at": "2026-11-10T08:02:58Z"
+    },
+    {
+      "name": "Run ACTUAL sanitized B2 POSIX negative suite and seal external raw host",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5,
+      "started_at": "2026-11-10T08:02:58Z",
+      "completed_at": "2026-11-10T08:03:11Z"
+    },
+    {
+      "name": "Check no changed or untracked source and no acceptance promotion",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6,
+      "started_at": "2026-11-10T08:03:11Z",
+      "completed_at": "2026-11-10T08:03:13Z"
+    },
+    {
+      "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 12,
+      "started_at": "2026-11-10T08:03:13Z",
+      "completed_at": "2026-11-10T08:03:16Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 13,
+      "started_at": "2026-11-10T08:03:16Z",
+      "completed_at": "2026-11-10T08:03:16Z"
+    }
+  ],
+  "check_run_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/check-runs/129706087966",
+  "labels": [
+    "macos-15"
+  ],
+  "runner_id": 1000007863,
+  "runner_name": "GitHub Actions 1000007863",
+  "runner_group_id": 0,
+  "runner_group_name": "GitHub Actions"
+}

@@ -1,0 +1,42 @@
+{
+  "dependencies": [
+    "prepare-release"
+  ],
+  "evidence": {
+    "H2Passed": false,
+    "R03Accepted": false,
+    "compositeOverlaySha256": "0ae1d9a38b63fd2131d788d3826705516e3ae2958265878f93b4ce760625e193",
+    "configuration": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261110-oneuse-12/builds/candidate-release/config.json",
+    "initializerBridgeContract": "R03IR.Managed2Native.Cdecl.Int32NoArgs.V1",
+    "initializerBridgeHelperSha256": "5ad24a9178ecc18f7d226f36d452f640490a517003e0152495b074c40d7d59ba",
+    "initializerBridgeSignature": "Bi4",
+    "initializerBridgeTargets": {
+      "initializer-control": {
+        "mvid": "5bb6e17a-09b9-5b29-dac2-41d3519f76f4",
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261110-oneuse-12/host/initializer-native-targets/native/initializer-control/Methods.dll",
+        "sha256": "d6e5b66f695498a9ba0806ea81930f03804d98f77382cb851d24c2b24f24202e"
+      },
+      "initializer-failure": {
+        "mvid": "f61d7325-6d38-4640-5873-37371f587b16",
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261110-oneuse-12/host/initializer-native-targets/native/initializer-failure/Methods.dll",
+        "sha256": "6ad097153da2054579c13ec48d9f81a35d2551b08bf7a77398f13809ef9e5370"
+      }
+    },
+    "kind": "R03InitializerSourcePreparationV1",
+    "managedSourceSha256": "8a709ccca64b654d3cb3b4f3d09c0aaadf7d6023ff34554b5059a216d2590514",
+    "manifestSha256": "85d8c41ca0a9e92fbfbfcc3544a5ae6324098af33a2b64b18aa9fd7ea3e0e2b0",
+    "nativePartsSha256": {
+      "R03InitializerObservationWriter.cpp": "81c6d268fd3e6cf884abedde27566bc9528e68a585958cba531082aa28241752",
+      "R03InitializerPreparedProbe.cpp": "6d1925c34f5fc13975d0bc011190abc1a69a54ed196a0fb85a1b3d986734705f"
+    },
+    "originalOverlaySha256": "3c9290dcf231306a771a4b8a26f03112add1aeb7c0b44ff0e7a01330e47f4387",
+    "playerExecuted": false,
+    "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03IR-NativeB1-20261110-oneuse-12/projects/candidate-release",
+    "result": "PreparedSourcesOnly_NoUnityOrPlayer",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1,
+    "unityBuildExecuted": false
+  },
+  "id": "prepare-initializer",
+  "result": "Passed"
+}
