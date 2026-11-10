@@ -9,6 +9,31 @@
 
 namespace r03_b2_owned_execution_bridge {
 
+// Shared byte-identical adapter for both the old ostream/class serializer
+// and the independent frozen native execution-record serializer. No source
+// admission is asserted by the presence of this mapping.
+inline il2cpp::vm::assembly_shadow_execution_diagnostic::ClassRow
+ToNativeClassRow(const r03_b2_owned_execution_rows::RowView& observed) noexcept
+{
+    using il2cpp::vm::assembly_shadow_execution_diagnostic::ClassRow;
+    ClassRow row{};
+    row.logicalAssembly.data=observed.logicalAssembly.data;
+    row.logicalAssembly.bytes=observed.logicalAssembly.size;
+    row.typeKey.data=observed.typeKey.data;
+    row.typeKey.bytes=observed.typeKey.size;
+    row.interpreterShadow=observed.fields.interpreterShadow;
+    row.physicalInterpreter=observed.fields.physicalInterpreter;
+    row.isActive=observed.fields.isActive;
+    row.cctorStarted=observed.fields.cctorStarted;
+    row.cctorFinished=observed.fields.cctorFinished;
+    row.hasInitializationException=observed.fields.hasInitializationException;
+    row.staticStoragePointer.data=observed.staticStoragePointer.data;
+    row.staticStoragePointer.bytes=observed.staticStoragePointer.size;
+    row.pointerDetailsAvailable=observed.fields.pointerDetailsAvailable;
+    row.staticStorageAvailable=observed.fields.staticStorageAvailable;
+    return row;
+}
+
 template<class Output>
 bool AppendClassRows(Output& output,
                      const r03_b2_owned_execution_rows::Rows& rows)
@@ -16,25 +41,10 @@ bool AppendClassRows(Output& output,
     if (!rows.Complete()) return false;
     namespace source=r03_b2_owned_execution_rows;
     namespace target=il2cpp::vm::assembly_shadow_execution_diagnostic;
-    for(size_t index=0; index<rows.Count(); ++index)
-    {
+    for(size_t index=0; index<rows.Count(); ++index) {
         source::RowView observed{};
-        if (!rows.Get(index,observed)) return false;
-        target::ClassRow row{};
-        row.logicalAssembly.data=observed.logicalAssembly.data;
-        row.logicalAssembly.bytes=observed.logicalAssembly.size;
-        row.typeKey.data=observed.typeKey.data;
-        row.typeKey.bytes=observed.typeKey.size;
-        row.interpreterShadow=observed.fields.interpreterShadow;
-        row.physicalInterpreter=observed.fields.physicalInterpreter;
-        row.isActive=observed.fields.isActive;
-        row.cctorStarted=observed.fields.cctorStarted;
-        row.cctorFinished=observed.fields.cctorFinished;
-        row.hasInitializationException=observed.fields.hasInitializationException;
-        row.staticStoragePointer.data=observed.staticStoragePointer.data;
-        row.staticStoragePointer.bytes=observed.staticStoragePointer.size;
-        row.pointerDetailsAvailable=observed.fields.pointerDetailsAvailable;
-        row.staticStorageAvailable=observed.fields.staticStorageAvailable;
+        if(!rows.Get(index,observed))return false;
+        const target::ClassRow row=ToNativeClassRow(observed);
         target::AppendClass(output,row,index!=0);
     }
     return true; // NOT a Writer::Finish(), source-admission, or V2 receipt.
