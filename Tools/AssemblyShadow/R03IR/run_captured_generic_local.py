@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""R03 IR-R03-02 oneuse-11: exact-source B1 native-origin 1-build/3-real-Player Local batch.
+"""R03 IR-R03-02 oneuse-12: exact-source B1 native-origin 1-build/3-real-Player Local batch.
 
 Only runnable after a NEW explicit Primary WEB_TO_LOCAL authorizes the exact
 pushed SHA, verified dual-OS source tests, fresh Mac volume/Unity/SDK/original-S
@@ -7,7 +7,7 @@ admission and fresh empty output roots. This file creates NO runtime evidence
 on its own and cannot grant full R03/H2 acceptance.
 
 One real AOT IL2CPP image carries: original initializer control/failure +
-physical captured generic. All earlier oneuse07/08/09/10 binary/output roots are never reused.
+physical captured generic. All earlier oneuse07/08/09/10/11 binary/output roots are never reused.
 """
 from __future__ import annotations
 
@@ -33,6 +33,8 @@ from run_initializer_local import (
 from prepare_captured_generic_sources import extend as extend_captured
 from verify_captured_generic_native import inspect as verify_captured
 from verify_first_error_b1 import inspect as verify_b1
+from native_b1_build_roster import inspect as verify_native_build_roster
+from initializer_host_custody import capture as capture_b2_raw, verify_live as verify_b2_raw
 from run_current_native_validation_cycle import (
     validate_destination, validate_original, validate_sources, validate_machine)
 
@@ -46,6 +48,9 @@ EXTRA_SOURCE_PATHS = (
     "Tools/AssemblyShadow/R03IR/verify_first_error_b1.py",
     "Tools/AssemblyShadow/R03IR/test_first_error_b1.py",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/test_first_error_b1_probe.py",
+    "Tools/AssemblyShadow/R03IR/native_b1_build_roster.py",
+    "Tools/AssemblyShadow/R03IR/test_native_b1_build_roster.py",
+    "Tools/AssemblyShadow/R03IR/test_b2_host_product_custody.py",
     "Tools/AssemblyShadow/R03IR/CapturedGenericHost/CapturedGenericHost.csproj",
     "Tools/AssemblyShadow/R03IR/CapturedGenericHost/Program.cs",
     "Tools/AssemblyShadow/R03IR/CapturedGenericPlayerHost/CapturedGenericPlayerHost.csproj",
@@ -140,6 +145,13 @@ class CapturedBatch(InitializerBatch):
             require(nm.returncode == 0 and
                     nm.stdout.count(export) == 1,
                     "Actual linked native physical captured generic AOT export: " + export)
+        # oneuse-11 exposed a standalone allocator test linked into Player.
+        # Both source staging and actual linked strong symbols must be clean.
+        receipt["b1NativeHostAllocatorExclusion"] = verify_native_build_roster(
+            Path(receipt["installedNativeRoot"]), nm.stdout)
+        require(receipt["b1NativeHostAllocatorExclusion"]["result"] ==
+                "PassedInstalledTreeAndDefinedSymbols_NotPlayerStartup",
+                "Real linked B1 allocator-roster regression")
         require(not receipt.get("initializerBridgeLinkedRuntimeObserved", True) and
                 receipt.get("initializerBridgeSignature") == "Bi4",
                 "Keep original real Bi4 bridge proof scope unchanged")
@@ -160,13 +172,18 @@ def captured_hosts(batch):
         results[pattern] = batch.command([
             sys.executable, "-B", "-m", "unittest", "discover",
             "-s", str(root), "-p", pattern, "-v"], 600)
-    # Preserve B2's existing independent native codec / descriptor-exclusivity
-    # host coverage in the same one-use batch, without claiming B2 VM/Player
-    # producer integration. These outputs live under this batch's fresh root.
+    # Actual POSIX B2 negative cases intentionally leave a directory symlink.
+    # Keep all raw host outputs in a NEW sibling, never the regular-only
+    # product root; preserve literal symlink targets + regular bytes with
+    # the existing independent host custody archive.
+    b2_raw = batch.root.parent / (batch.root.name + "-b2-host-raw")
+    require(b2_raw.is_absolute() and b2_raw.parent == batch.root.parent and
+            not b2_raw.exists() and not b2_raw.is_symlink(),
+            "Unused separate external B2 raw host root required")
+    b2_raw.mkdir(mode=0o700)
     for script, label in (("run_tests.py", "bounded-codec"),
                           ("run_transaction_tests.py", "descriptor-transaction")):
-        root = batch.root / "host" / ("b2-" + label)
-        root.parent.mkdir(parents=True, exist_ok=True)
+        root = b2_raw / label
         require(not root.exists() and not root.is_symlink(),
                 "B2 host output root must be unused")
         results[label] = batch.command([
@@ -180,7 +197,21 @@ def captured_hosts(batch):
                 "B2 native component host scope must remain explicitly non-VM")
         results[label + "-source"] = {
             "reportSha256": sha(root / "RESULT.json"),
+            "externalRawPath": str(root),
             "componentOnly": True, "nativeV2TransportImplemented": False}
+    b2_custody = batch.root / "host" / "b2-raw-custody"
+    b2_custody.parent.mkdir(parents=True, exist_ok=True)
+    custody = capture_b2_raw(b2_raw, b2_custody)
+    require(custody["result"] == "PassedFullRegularBytesAndLiteralSymlinkTargets" and
+            custody["symlinkCount"] >= 1 and
+            custody["rawHostPreservedOutsideProductSeal"] is True,
+            "Genuine B2 negative symlink and regular bytes must be externally retained")
+    batch.b2_host_raw, batch.b2_host_custody = b2_raw, b2_custody
+    results["b2-raw-custody"] = {
+        "receiptSha256": sha(b2_custody / "HOST_CUSTODY_RESULT.json"),
+        "literalNegativeSymlinkCount": custody["symlinkCount"],
+        "regularHostFiles": custody["fileCount"],
+        "externalRawEvidence": True, "runtimeAcceptance": False}
     obj = batch.root / "obj/captured-owner-host"
     binpath = batch.root / "bin/captured-owner-host"
     src = HERE / "CapturedGenericHost/CapturedGenericHost.csproj"
@@ -303,6 +334,13 @@ def initializer_b1_player(batch, mode):
     """
     result = init_player(batch, mode)
     root = batch.root / "players" / ("IR-R03-02-" + mode)
+    # The original V1 writer exclusively owns verification.json. Never rewrite
+    # that immutable receipt with the subsequent B1 crosscheck.
+    v1_path = root / "verification.json"
+    require(v1_path.is_file() and not v1_path.is_symlink() and
+            loads(v1_path.read_text(encoding="utf-8")) == result and
+            result.get("result") == "PassedFocusedV1PlayerObservation_NotV2",
+            "Original initializer V1 receipt must be complete and immutable")
     request = loads((root / "request.json").read_text(encoding="utf-8"))
     recovered = loads((root / "raw.json.vm-recovery.json").read_text(
         encoding="utf-8"))
@@ -317,7 +355,7 @@ def initializer_b1_player(batch, mode):
     result["nativeFirstErrorB1"] = receipt
     result["nativeFirstErrorB1RawSha256"] = sha(
         root / "raw.json.first-error-b1.json")
-    write(root / "verification.json", result)
+    write(root / "verification-b1.json", result)
     return result
 
 
@@ -401,6 +439,10 @@ def execute(workspace, original_s, output, unity, demo_commit):
     require(host_root.is_absolute() and not host_root.exists() and
             host_root.parent == output.parent and
             not host_root.is_symlink(), "Unused actual native host evidence root")
+    b2_root = output.parent / (output.name + "-b2-host-raw")
+    require(b2_root.is_absolute() and b2_root.parent == output.parent and
+            b2_root != host_root and not b2_root.exists() and
+            not b2_root.is_symlink(), "Unused external B2 host evidence root")
     validate_original(original_s)
     validate_sources(workspace, demo_commit)
     validate_machine(unity, output)
@@ -470,12 +512,22 @@ def execute(workspace, original_s, output, unity, demo_commit):
         except Exception as error:
             custody = {"result": "FailedLiveNativeHostCustodyBinding",
                        "error": str(error), "runtimeAcceptance": False}
+    b2_custody = {"result": "NotRun_B2RawHostFailed", "runtimeAcceptance": False}
+    if hasattr(batch, "b2_host_raw") and hasattr(batch, "b2_host_custody"):
+        try:
+            b2_custody = verify_b2_raw(batch.b2_host_raw, batch.b2_host_custody)
+        except Exception as error:
+            b2_custody = {"result": "FailedLiveB2HostCustodyBinding",
+                          "error": str(error), "runtimeAcceptance": False}
+    players_passed = all(states["player-" + mode] == "Passed" for mode in MODES)
     success = (all(status == "Passed" for status in states.values()) and
                custody["result"] ==
+               "PassedFullRawHostAndArchiveBinding_NoRuntimeAcceptance" and
+               b2_custody["result"] ==
                "PassedFullRawHostAndArchiveBinding_NoRuntimeAcceptance")
     record = finalize(batch.root, {
         "schemaVersion": 1,
-        "kind": "R03IRNativeB1OneUse11EvidenceBatchV1",
+        "kind": "R03IRNativeB1OneUse12EvidenceBatchV1",
         "result": "FocusedNativeFirstErrorB1AndV1Controls_NotV2"
             if success else "ReturnRequired",
         "repositories": dict(batch.pins), "cells": batch.cells,
@@ -485,8 +537,9 @@ def execute(workspace, original_s, output, unity, demo_commit):
         "verifiedFreshPlayers": sum(states["player-" + mode] == "Passed"
                                     for mode in MODES),
         "recordedNativeHostCustody": custody,
+        "recordedB2HostCustody": b2_custody,
         "nativeV2TransportImplemented": False,
-        "nativeB1OriginReadbackObservedInPlayers": success,
+        "nativeB1OriginReadbackObservedInPlayers": players_passed,
         "nativeB1IsCompleteV2": False,
         "firstRecoveryAuthenticatedV2": False,
         "wholeVmEpoch": "NotProven",
