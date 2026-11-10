@@ -1,0 +1,66 @@
+name: R03 B2 native host wire and POSIX compatibility (not Unity)
+on:
+  push:
+    branches:
+      - codex/assembly-shadow-r01b-h1
+    paths:
+      - .github/workflows/r03-ir-b2-host-cxx11-cxx17.yml
+      - Tools/AssemblyShadow/R03IR/bounded_v2/**
+      - Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/diagnostic_stream.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-host:
+    name: B2 host wire+POSIX ${{ matrix.os }} ${{ matrix.std }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+        std: [c++11, c++17]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/bounded_v2
+            Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference
+      - name: Compile and execute exact Python/native codec and POSIX suites
+        shell: bash
+        env:
+          CXX: clang++
+          LANG: C.UTF-8
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          set -euo pipefail
+          python3 --version
+          clang++ --version
+          git rev-parse HEAD
+          git status --short
+          SRC="Tools/AssemblyShadow/R03IR/bounded_v2"
+          BASE="$(python3 -c 'import os;print(os.path.realpath(os.environ["RUNNER_TEMP"]))')"
+          OUT="$BASE/r03-b2-host-${{ matrix.std }}"
+          test ! -e "$OUT"
+          mkdir "$OUT"
+          python3 -B "$SRC/run_tests.py" --repository "$GITHUB_WORKSPACE" \
+            --output "$OUT/codec" --cxx-standard "${{ matrix.std }}"
+          python3 -B "$SRC/run_transaction_tests.py" --repository "$GITHUB_WORKSPACE" \
+            --output "$OUT/transaction" --cxx-standard "${{ matrix.std }}"
+          python3 -B - "$OUT" "${{ matrix.std }}" <<'PY'
+          import json, pathlib, sys
+          root=pathlib.Path(sys.argv[1])
+          std=sys.argv[2]
+          codec=json.loads((root/"codec/RESULT.json").read_text())
+          posix=json.loads((root/"transaction/RESULT.json").read_text())
+          assert codec["sourceUnchanged"] is True
+          assert codec["cxxStandard"] == posix["cxxStandard"] == std
+          for group in (codec["results"],posix["profiles"]):
+              assert len(group)==2
+              assert {x["profile"] for x in group}=={"strict","sanitized"}
+              assert all(x["tests"]>0 and x["failures"]==0 and x["errors"]==0 and x["skipped"]==0 for x in group)
+          assert codec["actualUnity"] is False and codec["productionIntegration"] is False
+          assert posix["actualUnity"] is False and posix["productionTransportEnabled"] is False
+          print("R03 B2 host-only byte and POSIX suites passed:",std)
+          PY
