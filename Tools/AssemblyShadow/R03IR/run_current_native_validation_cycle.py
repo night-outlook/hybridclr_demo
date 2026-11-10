@@ -130,7 +130,7 @@ def validate_sources(workspace: Path, demo_commit: str) -> dict:
     checked = source.verify_source_roots(roots, require_checkout_heads=True)
     # B1 current-only candidate: the *same* source pins and inventory used
     # by the individual CI gates must also pass this shared Mac/runner path.
-    # Retain explicit reviewed 14/47 cardinalities; neither dynamic manifest
+    # Retain explicit reviewed 14/46 cardinalities; neither dynamic manifest
     # length nor a plausible synthetic result may silently select a new profile.
     require(checked["result"] == "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation" and
             type(checked.get("verifiedSourceFiles")) is int and
@@ -141,9 +141,9 @@ def validate_sources(workspace: Path, demo_commit: str) -> dict:
     vm = delta.validate(config, roots["il2cpp_plus"], check_native_commit=True)
     require(vm["result"] == "PassedCurrentNativeVmSourceDeltaOnly" and
             type(vm.get("changedVmFileCount")) is int and
-            vm["changedVmFileCount"] == len(delta.EXPECTED_VM_NAMES) == 47 and
+            vm["changedVmFileCount"] == len(delta.EXPECTED_VM_NAMES) == 46 and
             vm.get("currentNativeCommit") == source.CURRENT["il2cpp_plus"],
-            "Forty-seven-file B1 source inventory not passed")
+            "Forty-six-file B1 source inventory not passed")
     return {"result": "PassedReadOnlySourceAdmission_NotBuildOrRuntime",
             "repositories": repositories, "sourceGate": checked, "vmDelta": vm,
             "R03Accepted": False, "ReadyForHumanReviewGate": False}

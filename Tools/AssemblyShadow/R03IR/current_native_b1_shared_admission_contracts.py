@@ -41,7 +41,7 @@ class SharedB1AdmissionContracts(unittest.TestCase):
         result = cycle.validate_sources(self.workspace, self.sha)
         self.assertEqual(result["result"], "PassedReadOnlySourceAdmission_NotBuildOrRuntime")
         self.assertEqual(result["sourceGate"]["verifiedSourceFiles"], 14)
-        self.assertEqual(result["vmDelta"]["changedVmFileCount"], 47)
+        self.assertEqual(result["vmDelta"]["changedVmFileCount"], 46)
         self.assertEqual(result["sourceGate"]["currentCandidatePins"], source.CURRENT)
         self.assertEqual(result["vmDelta"]["currentNativeCommit"], source.CURRENT["il2cpp_plus"])
         self.assertEqual(
@@ -73,7 +73,7 @@ class SharedB1AdmissionContracts(unittest.TestCase):
                 result = admission.inspect(self.workspace, original, unity, output, self.sha)
             destination.assert_called_once_with(self.workspace, original, output)
             self.assertEqual(result["currentSource"]["sourceGate"]["verifiedSourceFiles"], 14)
-            self.assertEqual(result["currentSource"]["vmDelta"]["changedVmFileCount"], 47)
+            self.assertEqual(result["currentSource"]["vmDelta"]["changedVmFileCount"], 46)
             self.assertEqual(result["result"], "PassedReadOnlyPrerequisites_NoCoordinatorOrUnityRun")
             self.assertTrue(result["runRootCreated"] is False and
                             result["coordinatorInvoked"] is False and
@@ -98,7 +98,7 @@ class SharedB1AdmissionContracts(unittest.TestCase):
         with mock.patch.object(source, "verify_source_roots", return_value=original), \
              mock.patch.object(delta, "validate", return_value=old), \
              mock.patch.object(cycle, "identity", return_value={"remoteHeadVerified": True}):
-            with self.assertRaisesRegex(ValueError, "Forty-seven-file B1"):
+            with self.assertRaisesRegex(ValueError, "Forty-six-file B1"):
                 cycle.validate_sources(self.workspace, self.sha)
 
     def test_05_native_candidate_pin_mutation_rejected_by_real_gate(self):
@@ -154,7 +154,7 @@ class SharedB1AdmissionContracts(unittest.TestCase):
     def test_11_inner_native_host_old_source_and_vm_counts_fail_closed(self):
         genuine = source.verify_source_roots(self.roots, require_checkout_heads=True)
         native = {"result": "PassedCurrentNativeVmSourceDeltaOnly",
-                  "changedVmFileCount": 47,
+                  "changedVmFileCount": 46,
                   "currentNativeCommit": source.CURRENT["il2cpp_plus"]}
         stale_source = copy.deepcopy(genuine)
         stale_source["verifiedSourceFiles"] = 11
@@ -166,14 +166,14 @@ class SharedB1AdmissionContracts(unittest.TestCase):
         stale_vm["changedVmFileCount"] = 45
         with mock.patch.object(source, "verify_source_roots", return_value=genuine), \
              mock.patch.object(host.delta, "validate", return_value=stale_vm):
-            with self.assertRaisesRegex(ValueError, "forty-seven-file B1"):
+            with self.assertRaisesRegex(ValueError, "forty-six-file B1"):
                 host.inputs(self.workspace, self.sha, source.CURRENT["il2cpp_plus"])
 
     def test_09_no_generated_output_or_source_edits(self):
         self.assertEqual(len(source.FILES), 14)
-        self.assertEqual(len(delta.EXPECTED_VM_NAMES), 47)
+        self.assertEqual(len(delta.EXPECTED_VM_NAMES), 46)
         self.assertEqual(cycle.NATIVE, source.CURRENT["il2cpp_plus"])
-        for p in (self.workspace / "oneuse-11", self.workspace / "oneuse-10"):
+        for p in (self.workspace / "oneuse-12", self.workspace / "oneuse-11", self.workspace / "oneuse-10"):
             self.assertFalse(p.exists(), "Host tests must never create runtime roots")
 
 

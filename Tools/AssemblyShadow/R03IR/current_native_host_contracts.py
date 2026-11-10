@@ -195,7 +195,7 @@ class CurrentNativeHostContracts(unittest.TestCase):
                 "result": "PassedCoherentSourceOnly_NoPlayerOrRuntimeValidation",
             }
             vm = {"result": "PassedCurrentNativeVmSourceDeltaOnly",
-                  "changedVmFileCount": 47,
+                  "changedVmFileCount": 46,
                   "currentNativeCommit": host.source.CURRENT["il2cpp_plus"]}
             with mock.patch.object(host.source, "verify_source_roots", return_value=expected) as sources, \
                  mock.patch.object(host.delta, "validate", return_value=vm) as inventory, \
@@ -275,7 +275,7 @@ class CurrentNativeHostContracts(unittest.TestCase):
                     "verifiedSourceFiles": 14,
                     "currentCandidatePins": dict(host.source.CURRENT)}
             valid_delta = {"result": "PassedCurrentNativeVmSourceDeltaOnly",
-                           "changedVmFileCount": 47,
+                           "changedVmFileCount": 46,
                            "currentNativeCommit": host.source.CURRENT["il2cpp_plus"]}
             for kind in ("11-source", "wrong-current-pin", "45-native-files",
                          "wrong-native-head"):

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Read-only source-to-installed-native VM parity after three real R03 builds.
 
-Verifies exactly the 45 changed source VM file bytes in every installed Unity
+Verifies exactly the 46 changed source VM file bytes in every installed Unity
 native tree, plus the actual R03 build/source tuple. This is NOT proof every
 file was compiled, linked or executed, and is NOT R03 product acceptance.
 """
@@ -36,6 +36,14 @@ def check(ok: bool, message: str) -> None:
 def vm_installed_parity(source_root: Path, native_root: Path, rows: list,
                         before: dict, after: dict) -> list[dict]:
     """Compare each native checkout blob with the *actual* installed file."""
+    # Native B1 stand-alone host driver defines global allocator operators.
+    # It must remain outside the Unity-installed libil2cpp roster. Both
+    # production install and checked-out VM source must omit it.
+    forbidden_rel = Path("vm/AssemblyShadowFirstFailureV2Host.cpp")
+    for parent in (native_root, source_root / "libil2cpp"):
+        host = parent / forbidden_rel
+        check(not host.exists() and not host.is_symlink(),
+              "Standalone allocator test driver included in production libil2cpp: " + str(host))
     found = set()
     observed = []
     for row in rows:

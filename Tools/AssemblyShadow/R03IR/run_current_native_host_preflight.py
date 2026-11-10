@@ -200,9 +200,9 @@ def inputs(workspace: Path, demo_commit: str, native_commit: str) -> dict:
         roots["il2cpp_plus"], check_native_commit=True)
     require(inventory["result"] == "PassedCurrentNativeVmSourceDeltaOnly" and
             type(inventory.get("changedVmFileCount")) is int and
-            inventory["changedVmFileCount"] == len(delta.EXPECTED_VM_NAMES) == 47 and
+            inventory["changedVmFileCount"] == len(delta.EXPECTED_VM_NAMES) == 46 and
             inventory.get("currentNativeCommit") == source.CURRENT["il2cpp_plus"],
-            "Pinned forty-seven-file B1 VM gate required before Local host")
+            "Pinned forty-six-file B1 VM gate required before Local host")
     require(source.git_head(roots["hybridclr_demo"]) == demo_commit,
             "Current demo commit differs before Local host")
     # The outer coordinator already checks all four remotes, but the current

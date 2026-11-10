@@ -67,7 +67,7 @@ class CurrentNativeCycleContracts(unittest.TestCase):
             "native-installed-source-audit")}
 
     def test_01_constituent_source_pins_are_explicit(self):
-        self.assertEqual(cycle.NATIVE, "a0209bf4285db3f0d0fc66d8817578235438cef4")
+        self.assertEqual(cycle.NATIVE, "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9")
         self.assertEqual(cycle.S_PUBLICATION,
                          "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b")
         self.assertEqual(len(cycle.EXPECTED_BUILD_ROLES), 3)
@@ -140,7 +140,7 @@ class CurrentNativeCycleContracts(unittest.TestCase):
                  "currentCandidatePins": dict(cycle.source.CURRENT)}), \
              mock.patch.object(cycle.delta, "validate", return_value={
                  "result": "PassedCurrentNativeVmSourceDeltaOnly",
-                 "changedVmFileCount": 47,
+                 "changedVmFileCount": 46,
                  "currentNativeCommit": cycle.source.CURRENT["il2cpp_plus"]}):
             result = cycle.validate_sources(self.workspace, "a"*40)
         self.assertEqual(result["result"], "PassedReadOnlySourceAdmission_NotBuildOrRuntime")
@@ -156,7 +156,7 @@ class CurrentNativeCycleContracts(unittest.TestCase):
         }
         delta_ok = {
             "result": "PassedCurrentNativeVmSourceDeltaOnly",
-            "changedVmFileCount": 47,
+            "changedVmFileCount": 46,
             "currentNativeCommit": cycle.source.CURRENT["il2cpp_plus"],
         }
         for variant in ("old-source-count", "new-unknown-source-count",
@@ -186,7 +186,7 @@ class CurrentNativeCycleContracts(unittest.TestCase):
                  mock.patch.object(cycle, "identity", return_value={"remoteHeadVerified":True}), \
                  mock.patch.object(cycle.source, "verify_source_roots", return_value=valid), \
                  mock.patch.object(cycle.delta, "validate", return_value=record):
-                with self.assertRaisesRegex(ValueError,"Forty-seven-file B1"):
+                with self.assertRaisesRegex(ValueError,"Forty-six-file B1"):
                     cycle.validate_sources(self.workspace,"a"*40)
         self.assertFalse(self.output.exists())
 
