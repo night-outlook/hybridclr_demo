@@ -25,6 +25,7 @@ jobs:
           sparse-checkout: |
             /Tools/AssemblyShadow/R03IR/
             /Tools/AssemblyShadow/R03/
+            /Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/SNAP01_BOUNDED_DESIGN_f8a2/reference/
       - name: Run strict B1 receipt, source preparer and one-use batch regressions
         shell: bash
         run: |
@@ -33,7 +34,9 @@ jobs:
           python3 -B -m unittest -v \
             test_first_error_b1 \
             test_captured_source_preparation \
-            test_captured_batch_source
+            test_captured_batch_source \
+            test_native_b1_build_roster \
+            test_b2_host_product_custody
       - name: Compile real B1 probe source with isolated C++11 VM-shaped mocks
         shell: bash
         run: |
@@ -41,6 +44,60 @@ jobs:
           cd Tools/AssemblyShadow/R03IR
           python3 -B -m unittest discover -v -s NativeDiagnostics \
             -p test_first_error_b1_probe.py
+      - name: Run ACTUAL sanitized B2 POSIX negative suite and seal external raw host
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import json, os, pathlib, subprocess, sys, tarfile
+          repo = pathlib.Path.cwd().resolve(strict=True)
+          temp = pathlib.Path(os.environ["RUNNER_TEMP"]).resolve(strict=True)
+          root = temp / "r03-b2-real-evidence-integration"
+          root.mkdir()
+          raw = root / "b2-host-raw"
+          result = subprocess.run([
+              sys.executable, "-B",
+              str(repo/"Tools/AssemblyShadow/R03IR/bounded_v2/run_transaction_tests.py"),
+              "--repository", str(repo), "--output", str(raw)],
+              capture_output=True, text=True, timeout=900)
+          (root/"b2-stdout.log").write_text(result.stdout)
+          (root/"b2-stderr.log").write_text(result.stderr)
+          if result.returncode:
+              raise RuntimeError("Actual B2 native host suite failed: "+result.stderr[-3000:])
+          report=json.loads((raw/"RESULT.json").read_text())
+          assert report["kind"] == "InactiveNativeFileTransactionTests"
+          assert report["actualUnity"] is False and report["productionTransportEnabled"] is False
+          aliases=list(raw.rglob("alias"))
+          assert aliases and any(p.is_symlink() for p in aliases), "Real POSIX alias negative must execute"
+          sys.path.insert(0,str(repo/"Tools/AssemblyShadow/R03IR"))
+          sys.path.insert(0,str(repo/"Tools/AssemblyShadow/R03"))
+          from initializer_host_custody import capture, verify_live
+          from batch_evidence import finalize
+          product=root/"product"; (product/"host").mkdir(parents=True)
+          custody=product/"host"/"b2-raw-custody"
+          receipt=capture(raw,custody)
+          assert receipt["symlinkCount"]>=1 and receipt["fileCount"]>=1
+          verified=verify_live(raw,custody)
+          assert verified["result"] == "PassedFullRawHostAndArchiveBinding_NoRuntimeAcceptance"
+          sealed=finalize(product,{"kind":"R03B2RealPOSIXHostSealOnly",
+                "result":"HostOnly_NotPlayer", "runtimeAcceptance":False,"R03Accepted":False})
+          assert sealed["sealStatus"]=="Passed",sealed.get("sealError")
+          with tarfile.open(product/"evidence.tar.gz") as tf:
+              names=tf.getnames()
+          assert "host/b2-raw-custody/HOST_MANIFEST.json" in names
+          assert not any(name.endswith("/alias") for name in names)
+          negative=root/"negative-product"; (negative/"host").mkdir(parents=True)
+          (negative/"host"/"foreign-link").symlink_to(raw,target_is_directory=True)
+          refused=finalize(negative,{"kind":"R03B2UnexpectedProductSymlinkTest",
+                     "result":"HostOnly_NotPlayer","R03Accepted":False})
+          assert refused["sealStatus"]=="Failed"
+          assert "Unexpected directory symlink" in refused["sealError"]
+          assert sealed["R03Accepted"] is False
+          print(json.dumps({"realNativeB2Host":True, "profiles":report["profiles"],
+              "rawLiteralSymlinks":receipt["symlinkCount"],
+              "productSeal":"Passed", "negativeProductSymlink":"Rejected",
+              "actualUnity":False, "runtimeAcceptance":False},sort_keys=True))
+          PY
       - name: Check no changed or untracked source and no acceptance promotion
         shell: bash
         run: |
