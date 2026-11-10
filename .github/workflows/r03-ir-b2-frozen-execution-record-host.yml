@@ -1,0 +1,80 @@
+name: R03 B2 native frozen execution R02 record host (not Unity)
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - .github/workflows/r03-ir-b2-frozen-execution-record-host.yml
+      - Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedDefinitionTypeKey.h
+      - Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedExecutionRows.h
+      - Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedExecutionSerializerBridge.h
+      - Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedExecutionFrozenRecordBridge.h
+      - Tools/AssemblyShadow/R03IR/NativeDiagnostics/bounded_execution_frozen_record_driver.cpp
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  frozen-host:
+    runs-on: ${{ matrix.os }}
+    name: Real frozen record ${{ matrix.os }} ${{ matrix.std }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+        std: [c++11, c++17]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: demo
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/NativeDiagnostics
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 8aa8d09319a89b55b2496bcc2c69ccc69cb57be9
+          path: native
+          filter: blob:none
+          sparse-checkout: |
+            libil2cpp/vm
+      - name: Owned nonempty rows plus actual frozen native record and R02 suffix
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C native rev-parse HEAD)" = "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9"
+          clang++ --version
+          SRC="demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics"
+          INC="native/libil2cpp"
+          shasum -a 256 "$INC/vm/AssemblyShadowFrozenExecutionRecord.h" \
+            "$INC/vm/AssemblyShadowR02Snapshot.h" \
+            "$INC/vm/AssemblyShadowFrozenR02Serializer.h" \
+            "$INC/vm/AssemblyShadowExecutionSerializer.h" \
+            "$SRC/BoundedOwnedExecutionFrozenRecordBridge.h" \
+            "$SRC/bounded_execution_frozen_record_driver.cpp"
+          mkdir -p "$RUNNER_TEMP/r03-b2-frozen-record"
+          for profile in strict sanitized; do
+            FLAGS=(-std=${{ matrix.std }} -g -O1 -Wall -Wextra -Werror -pedantic)
+            if [ "$profile" = sanitized ]; then
+              FLAGS+=(-fsanitize=address,undefined -fno-omit-frame-pointer)
+            fi
+            clang++ "${FLAGS[@]}" -I"$INC" \
+              "$SRC/bounded_execution_frozen_record_driver.cpp" \
+              -o "$RUNNER_TEMP/r03-b2-frozen-record/$profile"
+            ASAN_OPTIONS="detect_leaks=0:abort_on_error=1" \
+              UBSAN_OPTIONS="halt_on_error=1:print_stacktrace=1" \
+              "$RUNNER_TEMP/r03-b2-frozen-record/$profile" \
+              > "$RUNNER_TEMP/r03-b2-frozen-record/$profile.json"
+            cat "$RUNNER_TEMP/r03-b2-frozen-record/$profile.json"
+            python3 -B - "$RUNNER_TEMP/r03-b2-frozen-record/$profile.json" <<'PY'
+          import json,sys
+          j=json.load(open(sys.argv[1],encoding='utf8'))
+          assert j['kind']=='R03B2NativeFrozenExecutionRecordHost'
+          assert j['result']=='PassedOwnedRowsAndFrozenR02Only'
+          assert j['assertions']>=25 and j['protectedAllocations']==0
+          assert j['realPhysicalClassProven'] is False
+          assert j['completeFinalExecutionDiagnostics'] is False
+          assert j['nativeV2TransportImplemented'] is False
+          assert j['runtimeAcceptance'] is False
+          PY
+          done
+          echo "Native frozen execution+R02 bytes tested; physical VM source still unproven"
