@@ -86,7 +86,14 @@ enum class Error : uint8_t { None, Reused, InvalidInput, ResourceLimit, InvalidU
     SinkFailure, Reentered, ChangedCapture, WrongSlot, NotFrozen, Capacity };
 struct Receipt { size_t bytes=0; Digest sha256{}; bool complete=false; };
 struct Failure { Error error=Error::None; int slot=-1; size_t emitted=0; };
+// C++17 makes noexcept part of the function-pointer type; C++11 does not.
+// Preserve the original C++17 callback type and accept the same noexcept
+// sink through a plain function pointer in Unity's C++11 native mode.
+#if __cplusplus >= 201703L
 using Write = bool (*)(void*,const uint8_t*,size_t) noexcept;
+#else
+using Write = bool (*)(void*,const uint8_t*,size_t);
+#endif
 inline size_t Frames(size_t n) noexcept { return n/kFrame+(n%kFrame!=0); }
 inline bool ValidUtf8(const uint8_t* p,size_t n) noexcept {
     for(size_t i=0;i<n;) {
@@ -164,7 +171,10 @@ class Encoder {
     bool started_=false,running_=false;
     Failure first_{};size_t emitted_=0;Sha256 stream_;
     bool Fail(Error e,int slot) noexcept {
-        if(first_.error==Error::None) first_={e,slot,emitted_};
+        if(first_.error==Error::None) {
+            // NSDMI structs are not aggregate-assignable in C++11.
+            first_.error=e;first_.slot=slot;first_.emitted=emitted_;
+        }
         return false;
     }
     bool Send(Write write,void* user,const uint8_t* p,size_t n,int slot) noexcept {
