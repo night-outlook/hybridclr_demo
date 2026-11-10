@@ -1,3 +1,11 @@
+# Current Primary — B2 full-field source admission remains BLOCKED (2026-11-10 UTC)
+
+**New Primary code/test:** `Tools/AssemblyShadow/R03IR/bounded_v2/b2_source_readiness.py` and 12 source/pin-drift regression tests inspect original V2 slots 14/15 and **eight exact** native fork source blobs. [Final source CI 42793741078](https://github.com/night-outlook/hybridclr_demo/actions/runs/42793741078): macOS and Ubuntu 2/2 PASS; each explicitly returns `sourceAudit=PassedPinnedStructuralInspection` and **`readyForNativeV2FieldCapture=false`**. [Source audit/provenance and next changes](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_VM_SOURCE_READINESS_GATE.md).
+
+**Why blocked:** complete `finalDiagnostics` and `finalExecutionDiagnostics` require original VM fields; B1 native first-error is not a substitute. General bounded source has initial-session Reader/observable fences but lacks accepted terminal/full-VM semantics. Live execution bounded source deliberately rejects nonempty observed classes; physically copied display names are not canonical execution TypeKeys. Completing no-allocation full class rows, metadata lifetime and exact legacy parity is Primary-owned. Previous B2 C++11/17 compiler and 376 native host tests remain PASS **within host-only scope**. [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) remains **CLOSED / NO EXECUTION**; B1 oneuse-12 remains focused PASS, R03/H2/Human Review Gate false, PureInterpreter disabled.
+
+---
+
 # Current Primary — B1 oneuse-12 PASS reconciled; B2 host C++11 compatibility fixed (2026-11-10 UTC)
 
 **Current source-only result:** original B2 C++11 codec/host was RED on Mac/Linux at [42789420796](https://github.com/night-outlook/hybridclr_demo/actions/runs/42789420796) while C++17 passed. Primary corrected only the inactive V2 codec/POSIX source and standalone host C++11 syntax/initialization without changing wire/receipt semantics. [C++11/17 source CI 42789933778](https://github.com/night-outlook/hybridclr_demo/actions/runs/42789933778) **4/4 PASS** and [full strict/sanitized dual-OS wire+POSIX 42790274635](https://github.com/night-outlook/hybridclr_demo/actions/runs/42790274635) **4/4 PASS, 376 host tests**. Exact code/receipts and limits: [B2 compatibility remediation](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CPP11_COMPATIBILITY_REMEDIATION.md).
