@@ -88,7 +88,7 @@ def assess(sources: dict[str, str], reference: str) -> dict:
         "assembly_shadow_metadata_lifetime::Gate::Reader reader",
         "receipt.componentSourcesComplete=true",
         "receipt.observableSourceFenceStable=true",
-        "not an atomic all-VM epoch")
+        "NOT an atomic all-VM epoch")
     has(head + "AssemblyShadowBoundedExecutionEmptyLiveSource.inl",
         "AssemblyShadow::TryCaptureBoundedEmptyExecutionLive",
         "if(before.count!=0)",
