@@ -1,5 +1,15 @@
 # R03 B2 — integrate native bounded V2 transport in the isolated Player
 
+## Current Primary increment: owned nonempty class formatting now host-verified
+
+Source-only implementation through [B2 owned execution review](B2_OWNED_NONEMPTY_EXECUTION_IMPLEMENTATION.md) has provided an allocation-free fixed-size TypeKey formatter for an **explicitly restricted metadata-definition subset**, immutable source-unverified nonempty rows (original registry-slot order, copied flags/bytes), and adapters that feed the **actual** `AssemblyShadowExecutionSerializer` and `AssemblyShadowFrozenExecutionRecord` with a **synthetic** typed R02 snapshot. Four Mac/Linux C++11/C++17 workflows passed strict and ASan/UBSan profiles, **32 real host processes / 2,520 assertions, zero protected allocations**. Code remains isolated in `hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics`; no Unity Player or native fork VM code was changed by this increment.
+
+**Not closed:** This cannot yet read physical classes from the VM, prove class-pointer lifetime or fully represent arbitrary generic/array/qualified/unicode assembly TypeKeys. The original full V2 fields still require complete source semantics: slot14 `finalDiagnostics` and slot15 `finalExecutionDiagnostics`. The new row staging is a *consumer of externally authenticated source*, not itself an authenticator. Real native `GetExecutionDiagnosticsJson` and `TryCaptureBoundedEmptyExecutionLive` remain unchanged. **Never** activate V2 transport using only synthetic rows or reduced B1 first-error facts.
+
+**Next code milestone (Primary only):** implement and source-review a VM-owned, fail-closed class producer that binds process-lifetime registration witness to an actual physical metadata callback and original initial-session metadata Reader, copies each class's original flags, verifies genuine metadata declaration ancestry and full canonical TypeKey parity for each admitted shape, and rejects unsupported/changed source before any frozen record exposure. Only then validate complete nonempty output against original V1 formatting with real R02 counter values; follow with terminal-safe general field14 capture and integrated descriptor writer. No new Local run is authorized.
+
+---
+
 ## B2-0 source-admission result and stop boundary (2026-11-10)
 
 The new [B2 exact eight-native-file readiness gate](B2_VM_SOURCE_READINESS_GATE.md) passed its **read-only source verification** and 12 negative regressions on both macOS and Ubuntu at [CI 42793741078](https://github.com/night-outlook/hybridclr_demo/actions/runs/42793741078). The output is explicitly `readyForNativeV2FieldCapture=false`: even with B1 real Player PASS and 376 native V2 host tests, the existing VM cannot safely expose complete `finalExecutionDiagnostics` for nonzero observed classes, nor prove complete postterminal `finalDiagnostics` parity. Therefore B2-1 runtime writer integration must not begin until the real full-field source is available.
