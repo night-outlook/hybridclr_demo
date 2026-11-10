@@ -14,6 +14,12 @@ Authoritative Local records:
 
 The full **historical executable oneuse-12 instructions** remain recoverable only from the original immutable Git source commit `2d690bb2...` at this path. That command and its three root names are **consumed/retired**. Do not rerun it, reuse the oneuse-12 root names, delete/fix up historical raw data, or treat the evidence-publication commit as a new execution source.
 
+## B2 exact-source admission (Primary only, NOT a Local handoff)
+
+[Source-authenticated B2-0 audit](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_VM_SOURCE_READINESS_GATE.md) and [CI 42793741078](https://github.com/night-outlook/hybridclr_demo/actions/runs/42793741078) verify eight native VM source blobs and the original two-field V2 schema with 12 regression tests on both operating systems. This is an intentionally **negative readiness verdict**, with `readyForNativeV2FieldCapture=false`, because the bounded execution source rejects observed nonzero class rows and the original final diagnostics full-field lifetime cannot yet be established. **Do not turn a green source-audit job into authorization to build or run a Player.**
+
+The next work remains with Primary Implementation: canonical owned execution TypeKeys / nonempty class rows, postterminal full general source parity, exact source/metadata lifetime and authenticated native V2 descriptor writer. Source/CI prerequisites for a new Local batch are **not complete**, and no new output roots or command are authorized.
+
 ## Primary-owned next work: B2 native V2 integration
 
 Read [B2 implementation design/plan](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_IMPLEMENTATION_DESIGN_AND_PLAN.md) and the original [B-stage design](../History/M07R/R03/IR_Remediation/POST_CAPTURED09_2026-11-09/B_NATIVE_V2_FIRST_ERROR_DESIGN_AND_PLAN.md).
