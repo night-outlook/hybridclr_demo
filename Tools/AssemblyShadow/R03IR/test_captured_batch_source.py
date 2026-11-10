@@ -239,8 +239,9 @@ class CapturedBatchSourceContracts(unittest.TestCase):
 
     def test_18_real_build_rejects_linked_allocator_source_and_symbols(self):
         s = (HERE / "run_captured_generic_local.py").read_text()
-        self.assertIn("verify_native_build_roster(", s)
+        self.assertIn("attest_native_build_roster(", s)
         self.assertIn('"b1NativeHostAllocatorExclusion"', s)
+        self.assertIn('nm.stdout, nm.stderr, nm.returncode', s)
         self.assertIn("native_b1_build_roster.py", s)
         self.assertIn("test_native_b1_build_roster.py", runner.EXTRA_SOURCE_PATHS.__repr__() +
             s)

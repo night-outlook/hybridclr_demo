@@ -33,7 +33,7 @@ from run_initializer_local import (
 from prepare_captured_generic_sources import extend as extend_captured
 from verify_captured_generic_native import inspect as verify_captured
 from verify_first_error_b1 import inspect as verify_b1
-from native_b1_build_roster import inspect as verify_native_build_roster
+from native_b1_build_roster import attest as attest_native_build_roster
 from initializer_host_custody import capture as capture_b2_raw, verify_live as verify_b2_raw
 from run_current_native_validation_cycle import (
     validate_destination, validate_original, validate_sources, validate_machine)
@@ -139,19 +139,22 @@ class CapturedBatch(InitializerBatch):
         game_assembly = Path(config["outputPath"]) / "Contents/Frameworks/GameAssembly.dylib"
         nm = subprocess.run(["nm", "-gU", str(game_assembly)],
                             capture_output=True, text=True, timeout=90)
+        # Preserve ACTUAL linked nm stdout and first verdict in a regular,
+        # immutable build-owned receipt BEFORE any Player can start. Even a
+        # rejected allocator roster becomes independently auditable evidence.
+        receipt["b1NativeHostAllocatorExclusion"] = attest_native_build_roster(
+            self.root / "builds" / role_id,
+            Path(receipt["installedNativeRoot"]), game_assembly,
+            nm.stdout, nm.stderr, nm.returncode)
+        require(receipt["b1NativeHostAllocatorExclusion"]["result"] ==
+                "PassedSourceAndLinkedDefinedExclusion_NotPlayerStartup",
+                "Actual linked GameAssembly allocator roster rejected")
         for export in ("_R03_IRG_Open", "_R03_IRG_Probe",
                        "_R03_IRG_AttemptRuntimeInvoke", "_R03_IRG_Seal",
                        "_R03_IRB1_Open", "_R03_IRB1_Seal"):
             require(nm.returncode == 0 and
                     nm.stdout.count(export) == 1,
                     "Actual linked native physical captured generic AOT export: " + export)
-        # oneuse-11 exposed a standalone allocator test linked into Player.
-        # Both source staging and actual linked strong symbols must be clean.
-        receipt["b1NativeHostAllocatorExclusion"] = verify_native_build_roster(
-            Path(receipt["installedNativeRoot"]), nm.stdout)
-        require(receipt["b1NativeHostAllocatorExclusion"]["result"] ==
-                "PassedInstalledTreeAndDefinedSymbols_NotPlayerStartup",
-                "Real linked B1 allocator-roster regression")
         require(not receipt.get("initializerBridgeLinkedRuntimeObserved", True) and
                 receipt.get("initializerBridgeSignature") == "Bi4",
                 "Keep original real Bi4 bridge proof scope unchanged")

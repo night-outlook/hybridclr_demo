@@ -2,9 +2,10 @@
 """Host-only positive/negative cases for real Player-linked allocator exclusion."""
 from pathlib import Path
 import tempfile
+import json
 import unittest
 
-from native_b1_build_roster import inspect
+from native_b1_build_roster import inspect, attest
 
 GOOD = ("0000000000010000 T _R03_IRB1_Open\n"
         "0000000000020000 T _R03_IRG_Open\n"
@@ -56,6 +57,59 @@ class NativeB1BuildRosterContracts(unittest.TestCase):
         alias.symlink_to(self.root, target_is_directory=True)
         with self.assertRaisesRegex(ValueError, "Canonical installed"):
             inspect(alias, GOOD)
+
+
+    def test_08_exact_real_shaped_nm_receipt_writes_once_and_rechecks(self):
+        evidence = self.root.parent / "build-evidence"
+        evidence.mkdir()
+        assembly = self.root.parent / "GameAssembly.dylib"
+        assembly.write_bytes(b"known-test-binary-not-Unity")
+        received = attest(evidence, self.root, assembly, GOOD, "", 0)
+        self.assertEqual(received["result"],
+                         "PassedSourceAndLinkedDefinedExclusion_NotPlayerStartup")
+        self.assertEqual(received["nmStdoutBytes"], len(GOOD.encode()))
+        self.assertEqual(received["verifiedExclusion"]["linkedHostAllocatorOverrides"], 0)
+        self.assertEqual((evidence/"native-b1-linked-symbols.nm").read_text(), GOOD)
+        self.assertEqual(json.loads((evidence/"native-b1-linked-roster.json").read_text()),
+                         received)
+        self.assertEqual(attest(evidence, self.root, assembly, GOOD, "", 0),
+                         received)
+
+    def test_09_mutated_nm_recheck_rejected_without_overwriting_first_receipt(self):
+        evidence = self.root.parent / "build-evidence"
+        evidence.mkdir()
+        assembly = self.root.parent / "GameAssembly.dylib"
+        assembly.write_bytes(b"known-test-binary-not-Unity")
+        attest(evidence, self.root, assembly, GOOD, "", 0)
+        original = (evidence/"native-b1-linked-roster.json").read_bytes()
+        with self.assertRaisesRegex(ValueError, "Prior exclusive B1"):
+            attest(evidence, self.root, assembly, GOOD+"another_defined_symbol T _x\\n", "", 0)
+        self.assertEqual((evidence/"native-b1-linked-roster.json").read_bytes(),
+                         original)
+
+    def test_10_rejected_linked_allocation_persists_raw_failing_receipt(self):
+        evidence = self.root.parent / "build-evidence"
+        evidence.mkdir()
+        assembly = self.root.parent / "GameAssembly.dylib"
+        assembly.write_bytes(b"known-test-binary-not-Unity")
+        bad_nm = GOOD+"0000000000040000 T __Znwm\\n"
+        with self.assertRaisesRegex(ValueError, "Actual linked allocator roster refused"):
+            attest(evidence, self.root, assembly, bad_nm, "", 0)
+        receipt = json.loads((evidence/"native-b1-linked-roster.json").read_text())
+        self.assertEqual(receipt["result"], "RejectedNativeLinkedRoster_NotPlayerRun")
+        self.assertIn("__Znwm", (evidence/"native-b1-linked-symbols.nm").read_text())
+        self.assertFalse(receipt["actualUnityPlayerStarted"])
+
+    def test_11_failure_to_run_nm_is_persisted_without_claiming_pass(self):
+        evidence = self.root.parent / "build-evidence"
+        evidence.mkdir()
+        assembly = self.root.parent / "GameAssembly.dylib"
+        assembly.write_bytes(b"known-test-binary-not-Unity")
+        with self.assertRaisesRegex(ValueError, "Actual linked allocator roster refused"):
+            attest(evidence, self.root, assembly, "", "nm cannot read binary", 2)
+        receipt = json.loads((evidence/"native-b1-linked-roster.json").read_text())
+        self.assertEqual(receipt["nmExitCode"], 2)
+        self.assertEqual(receipt["result"], "RejectedNativeLinkedRoster_NotPlayerRun")
 
 
 if __name__ == "__main__":
