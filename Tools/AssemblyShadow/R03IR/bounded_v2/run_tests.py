@@ -229,6 +229,8 @@ def main():
     p.add_argument('--repository',type=Path,required=True)
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--reference',type=Path)
+    p.add_argument('--cxx-standard',choices=('c++11','c++17'),default='c++17',
+                   help='Exact native language mode (default preserves original C++17 contract)')
     args=p.parse_args()
     if not __debug__:raise RuntimeError('Assertions must be enabled')
     repo=args.repository.resolve(strict=True)
@@ -252,7 +254,7 @@ def main():
     try:
         for PROFILE in ('strict','sanitized'):
             (OUT/PROFILE).mkdir();DRIVER=OUT/PROFILE/'native-driver'
-            flags=['-std=c++17','-O1','-g','-Wall','-Wextra','-Werror','-pedantic']
+            flags=['-std='+args.cxx_standard,'-O1','-g','-Wall','-Wextra','-Werror','-pedantic']
             if PROFILE=='sanitized':flags+=['-fsanitize=address,undefined','-fno-omit-frame-pointer']
             command([compiler,*flags,here/'native_driver.cpp','-o',DRIVER],OUT/PROFILE/'compile')
             with (OUT/PROFILE/'tests.log').open('w') as log:
@@ -263,6 +265,7 @@ def main():
         unchanged=all(sha(f.read_bytes())==s['sha256'] for f,s in zip(inputs,sources))
         (OUT/'RESULT.json').write_text(json.dumps(dict(kind='BoundedNativeV2Interop',results=results,
             sources=sources,sourceUnchanged=unchanged,commands=COMMANDS,
+            cxxStandard=args.cxx_standard,
             actualUnity=False,productionIntegration=False,runtimeAcceptance=False,
             leakSanitizer=('UnavailableOnAppleRunner' if sys.platform=='darwin' else 'Enabled')),indent=2)+'\n')
         files=[dict(path=str(f.relative_to(OUT)),bytes=f.stat().st_size,sha256=sha(f.read_bytes())) for f in sorted(OUT.rglob('*')) if f.is_file()]
