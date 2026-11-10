@@ -18,7 +18,13 @@ The full **historical executable oneuse-12 instructions** remain recoverable onl
 
 [Source-authenticated B2-0 audit](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_VM_SOURCE_READINESS_GATE.md) and [CI 42793741078](https://github.com/night-outlook/hybridclr_demo/actions/runs/42793741078) verify eight native VM source blobs and the original two-field V2 schema with 12 regression tests on both operating systems. This is an intentionally **negative readiness verdict**, with `readyForNativeV2FieldCapture=false`, because the bounded execution source rejects observed nonzero class rows and the original final diagnostics full-field lifetime cannot yet be established. **Do not turn a green source-audit job into authorization to build or run a Player.**
 
-The next work remains with Primary Implementation: canonical owned execution TypeKeys / nonempty class rows, postterminal full general source parity, exact source/metadata lifetime and authenticated native V2 descriptor writer. Source/CI prerequisites for a new Local batch are **not complete**, and no new output roots or command are authorized.
+The next work remains with Primary Implementation: an actual VM-owned physical class/metadata TypeKey producer and full nonempty execution rows, postterminal full general source parity, exact source/metadata lifetime and authenticated native V2 descriptor writer. Source/CI prerequisites for a new Local batch are **not complete**, and no new output roots or command are authorized.
+
+## B2 native execution-row staging (Primary-only host PASS, no Local execution)
+
+Primary implemented pure bounded owned definition TypeKey bytes, an immutable nonempty class-row store and native bridges to the **unchanged real** `AssemblyShadowExecutionSerializer` and `AssemblyShadowFrozenExecutionRecord` with **synthetic** R02 source counters. The source is new under `Tools/AssemblyShadow/R03IR/NativeDiagnostics/`, NOT installed into the original Unity or libil2cpp VM. All four [native host CI workflows](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_OWNED_NONEMPTY_EXECUTION_IMPLEMENTATION.md) passed on Mac/Linux C++11/17, strict/sanitized: **16/16 jobs, 32 host executions, 2,520 assertions, zero protected allocations**.
+
+This does **not** change the `readyForNativeV2FieldCapture=false` result. Restricted synthetic TypeKeys cannot establish physical Il2CppClass pointer provenance, original generic/array/unicode TypeKey coverage, postterminal metadata lifetime or full original `finalExecutionDiagnostics`/field15; neither have the full final general field14 sources been activated. **No Local Agent may build/run oneuse-12 again, invent a oneuse-13, or interpret host success as native Player V2 success.** The source owner is Primary Implementation; there is no new executable handoff.
 
 ## Primary-owned next work: B2 native V2 integration
 
