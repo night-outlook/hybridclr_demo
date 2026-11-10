@@ -6,11 +6,11 @@ Read the source-anchored [B2-0 findings](B2_SOURCE_REVIEW.md) **before any integ
 
 **Blocking source order:** first prove byte-equivalent complete bounded sources for both fields under a legitimate metadata/lifetime contract, or explicitly design a separately versioned reduced schema and obtain the appropriate review. Only then may B2-1..B2-3 produce a compatible V2 artifact. Do **not** populate final diagnostics with B1 text, optimistic nulls or partial P1 data under the existing wire schema.
 
-The new [host-only C++11/C++17 cross-OS syntax gate](../../../../../../../.github/workflows/r03-ir-b2-compiler-compat-source.yml) is an additional **compatibility diagnostic**, not Unity SDK compile/link or proof of the native V2 producer. Its result must be recorded at an exact commit before any B2 source is admitted to the Player. The original B1 oneuse-12 source, local evidence and native V1 controls remain immutable.
+The [host-only C++11/C++17 source gate](../../../../../../../.github/workflows/r03-ir-b2-compiler-compat-source.yml) is now **4/4 passed** after focused source compatibility corrections. The [full dual-OS strict/sanitized wire+POSIX host matrix](../../../../../../../.github/workflows/r03-ir-b2-host-cxx11-cxx17.yml) is also **4/4 passed**, totaling 376 real host tests with no failures/skips. [Exact RED→GREEN commits and raw CI jobs](B2_CPP11_COMPATIBILITY_REMEDIATION.md). These are **not** Unity SDK compile/link or proof of the live VM V2 producer. The original B1 evidence and controls remain immutable. The original B1 oneuse-12 source, local evidence and native V1 controls remain immutable.
 
 ---
 
-Date: 2026-11-10 UTC. Owner: Primary Implementation. **Design and executable work plan, not a claim of implemented B2 code.** B1 was authenticated by the consumed oneuse-12 focused Local PASS; see [Primary reconciliation](PRIMARY_EVIDENCE_RECONCILIATION.md). B2 source work has **not begun** in this handoff-reconciliation cycle. Do not run Unity or hand work to Local until the source gates below are satisfied.
+Date: 2026-11-10 UTC. Owner: Primary Implementation. **Design and executable work plan, not a claim of implemented B2 code.** B1 was authenticated by the consumed oneuse-12 focused Local PASS; see [Primary reconciliation](PRIMARY_EVIDENCE_RECONCILIATION.md). B2 **Player/source-producer integration has not begun**; only bounded host compiler compatibility and its focused test infrastructure have been implemented. Do not run Unity or hand work to Local until the source gates below are satisfied.
 
 ## 1. Objective, retained boundary and architecture
 
