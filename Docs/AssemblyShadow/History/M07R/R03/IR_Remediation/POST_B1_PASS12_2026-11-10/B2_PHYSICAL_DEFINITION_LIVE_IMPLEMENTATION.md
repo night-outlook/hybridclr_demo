@@ -1,8 +1,18 @@
 # R03 B2 — inactive real VM physical TypeDef execution source implementation and review
 
+## Latest Primary compile-source correction (2026-11-11 UTC)
+
+**Current native fork HEAD: `4c900ab22735768f517d81daccfed31a3d9aeb1e`.** The previous source candidate `fd1bc0bc...` passed the complete mock-VM suite but its `AssemblyShadow.cpp` did **not** include `vm/GlobalMetadataFileInternals.h` despite dereferencing `Il2CppTypeDefinition::declaringTypeIndex` and `::genericContainerIndex`. In the actual fork, `vm/GlobalMetadata.h` only forward-declares `struct Il2CppTypeDefinition`; its file-layout definition is in `vm/GlobalMetadataFileInternals.h`, as used by the existing `AssemblyShadowTypeKey.cpp`. This was an independent real-header **source-review finding** invisible to the fake-VM `.inl` harness.
+
+Primary added the explicit production-TU include in `libil2cpp/vm/AssemblyShadow.cpp`, extended the native CI to hash/check the production TU and require this include, and tightened its acceptance to all **20** release/debug mock cases and **158** assertions per execution. The separate cross-repository byte/HEAD gate now requires the same include and pins the new native `4c900ab...` commit and Git source blobs. [Native CI run 42975604704](https://github.com/night-outlook/il2cpp_plus/actions/runs/42975604704) and the four-repository source gate are the newly published source-check candidates; **neither is an official Unity IL2CPP build**. Do not elevate either source proof to native Player acceptance.
+
+**Remaining blocker unchanged:** Full source/generic TypeKey coverage, coherent terminal metadata lifetime, real field14/15 V1 parity, descriptor V2 writer, original-S provenance and B3 remain unfinished. All R03/H2/Human Gate, Player/runtime and V2 acceptance flags stay false. [WEB_TO_LOCAL](../../../../../Handoff/WEB_TO_LOCAL.md) **CLOSED / NO EXECUTION**.
+
+---
+
 ## Final-source review addendum — reordered callbacks and staged generic-container defense (2026-11-11 UTC)
 
-The **latest remotely verified native source pin is `il2cpp_plus@fd1bc0bc41b12a0d612daa80fc7be222df5ce2b2`**, an additive successor to intermediate `ba2750f5201e2cef8cc47fdee362d1e800e27e3c` and original `69e4032bf5131a991d85f39910619e8ec3579eaa` described in historical sections below. All three remain in Git history, but only `fd1bc0...` is the source manifest's current native candidate.
+The **latest remotely verified native source pin is `il2cpp_plus@4c900ab22735768f517d81daccfed31a3d9aeb1e`**, an additive successor to intermediate `ba2750f5201e2cef8cc47fdee362d1e800e27e3c` and original `69e4032bf5131a991d85f39910619e8ec3579eaa` described in historical sections below. All three remain in Git history, but only `fd1bc0...` is the source manifest's current native candidate.
 
 Additional B2-native source hardening:
 - Physical callback order can differ from the process-lifetime registration order. The real `.inl` copies rows and the bounded owner sorts by the *original registry slot*; the new two-class mock deliberately enumerates classes in reverse order, requires the full two-row record in registry order, and checks unchanged original class-row serialization.
