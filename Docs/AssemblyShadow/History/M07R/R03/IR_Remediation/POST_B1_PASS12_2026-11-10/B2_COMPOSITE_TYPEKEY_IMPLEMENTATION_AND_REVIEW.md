@@ -1,3 +1,9 @@
+# Unicode source extension to prior composite checkpoint (2026-11-11 UTC)
+
+The earlier 26-native/4-demo composite source report is historical. Current native source db5354a9befd5cfd02f907d3169c8106e0a29305 uses **original VM Unicode UTF-16 casefolding** from AssemblyShadowName.h, a bounded folded UTF-8 assembly TypeKey encoder, and new fail-closed receipts. The exact manifest now contains 38 native files and four demo mirrors. See [new Unicode implementation and independent source review](B2_ORIGINAL_UNICODE_ASSEMBLY_FOLD_IMPLEMENTATION_AND_REVIEW.md) for source/test scope and CI status. Full primitive/open field15 semantics, terminal field14/15 lifetime, V2 writer and actual Unity Player remain blocked. WEB_TO_LOCAL CLOSED / NO EXECUTION.
+
+---
+
 # R03 B2 — composite TypeKey implementation and independent source review
 
 Date: 2026-11-11 UTC. Owner: Primary Implementation. Source scope: **inactive native source and host evidence only; NOT full V2**.
