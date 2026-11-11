@@ -1,5 +1,17 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Latest Primary-only B2 native checkpoint — DO NOT EXECUTE (2026-11-11 UTC)
+
+Primary has implemented an **inactive genuine `il2cpp_plus` physical metadata-definition execution source**; this is not the final B2 native V2 writer and does not authorize Unity or Player execution. The exact new source pin on `codex/assembly-shadow-r01b-h1` is **`night-outlook/il2cpp_plus@ba2750f5201e2cef8cc47fdee362d1e800e27e3c`**. Interpreter **`hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55`** and Unity package **`hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de`** remain fixed. The current demo branch contains [new additive source manifest](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_PHYSICAL_DEFINITION_LIVE_IMPLEMENTATION.md) and exact [`b2_definition_native_candidate.json`](../../Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json), **not** a rebuilt oneuse-12 artifact. Verify current exact `hybridclr_demo` HEAD through the connector before any future handoff.
+
+The new source method `AssemblyShadow::TryCaptureBoundedDefinitionExecutionLive` is separately declared/compiled in `AssemblyShadow.cpp` and **has no real Player or legacy getter caller**. It checks original initial-session `MetadataLifetimeGate::Reader`, registration witness/revision, physical first-match enumeration while `g_MetadataLock` is held, bounds actual image TypeDef ownership and nested declaring chains, copies primitive class fields into owned fixed buffers and constructs the unchanged real frozen execution/R02 record. Unsupported types or forged ownership, changed R02/registry observations, B1 first-error before/during capture and stale metadata epochs **fail closed**. Full constructed-generic/qualified/unicode-assembly TypeKeys, postterminal slot14/15 semantics, coherent VM epoch and V2 descriptor writer are **not present**.
+
+[Native source review/RED→GREEN evidence](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_PHYSICAL_DEFINITION_LIVE_IMPLEMENTATION.md). The exact native [CI run 42974458979](https://github.com/night-outlook/il2cpp_plus/actions/runs/42974458979) was **4/4 successful jobs** (Mac/Linux × C++11/17; strict/sanitized × Release/Debug in each job; 16 actual host processes / 288 mock scenarios / 2,112 assertions). This test compiles the actual `.inl` using **mocked VM fields**, not official Unity SDK/IL2CPP, so do not promote its result to real native Player qualification. The separate exact four-repo source audit must remain `PassedInactiveSourceOnly_NotFullV2`, with every acceptance flag false.
+
+**Next Primary-owned stages:** audit/complete full canonical execution TypeKeys, metadata lifetime and actual nonempty class-row parity (field15); implement terminal-safe full general `finalDiagnostics` field14; integrate the native descriptor-relative V2 file writer with externally authenticated identity/receipts; add adversarial real-source CI and independent source review. Only once these are source-complete and all final-source gates are green may Primary publish an entirely new conditional Local batch with **new** absent roots and exact four current source SHAs. Do not replay oneuse-12 or begin H2/M08A/X02/SNAP-01. **Local response today is `NoExecutionAuthority`, not a build/test run.**
+
+---
+
 Date: 2026-11-10 UTC. **No new Local Validation cycle is authorized by this document.**
 
 ## Consumed oneuse-12
