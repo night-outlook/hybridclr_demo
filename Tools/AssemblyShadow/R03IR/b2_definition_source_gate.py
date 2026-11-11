@@ -20,6 +20,9 @@ FIXED_UNITY="948c0e3b4f8891481301770115e8ba4945eea6de"
 NATIVE_REQUIRED={
     "libil2cpp/il2cpp-runtime-metadata.h",
     "libil2cpp/vm/AssemblyShadow.cpp",
+    "libil2cpp/vm/Assembly.cpp",
+    "libil2cpp/vm/Assembly.h",
+    "libil2cpp/vm/AssemblyShadowRegisteredAotImageScan.h",
     "libil2cpp/vm/AssemblyShadowObservedPhysicalImages.h",
     "libil2cpp/vm/MemoryInformation.cpp",
     "libil2cpp/il2cpp-api.cpp",
@@ -98,8 +101,17 @@ def validate_contract(m:dict)->None:
             c.get("arbitraryGenericInstantiationTypeKeys") is False and
             c.get("crossImageGenericArgumentsSupported") is False and
             c.get("crossImageGenericArgumentsSupportedInMock") is True and
-            c.get("crossImageOnlyWhenBothImagesMatchedObservedClass") is True and
-            c.get("crossImageUnmatchedArgumentFailsClosed") is True and
+            c.get("crossImageOnlyWhenBothImagesMatchedObservedClass") is False and
+            c.get("crossImageUnmatchedArgumentFailsClosed") is False and
+            c.get("crossImageUnregisteredArgumentFailsClosed") is True and
+            c.get("registeredUnobservedArgumentSupportedInMock") is True and
+            c.get("registeredAotImageLimit")==1024 and
+            c.get("registeredAssemblyRegistryVisits")==2 and
+            c.get("registeredAotImageSetDoubleChecked") is True and
+            c.get("registeredImageSetOnlyObservational") is True and
+            c.get("originalAssemblyRegistrySnapshotIncompleteForFullVmEpoch") is True and
+            c.get("realAssemblyCppUnityCompiled") is False and
+            c.get("runtimeAcceptanceProven") is False and
             c.get("ambiguousMetadataOwnerFailsClosed") is True and
             c.get("allPhysicalMetadataImagesEnumerated") is False and
             c.get("physicalImageLimit")==64 and
