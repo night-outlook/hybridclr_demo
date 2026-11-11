@@ -1,4 +1,4 @@
-name: R03 B2 bounded composite TypeKey exact four-pin source audit (NO Unity)
+name: R03 B2 Unicode source / composite exact four-pin audit (NO Unity)
 on:
   push:
     branches: [codex/assembly-shadow-r01b-h1]
@@ -34,11 +34,15 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: night-outlook/il2cpp_plus
-          ref: 272f3077eee50835284e27855352fe300362ad79
+          ref: db5354a9befd5cfd02f907d3169c8106e0a29305
           path: native
           filter: blob:none
           sparse-checkout: |
             libil2cpp/vm
+            libil2cpp/vm-utils
+            libil2cpp/utils/StringUtils.cpp
+            libil2cpp/char-conversions.cpp
+            libil2cpp/char-conversions.h
             libil2cpp/il2cpp-runtime-metadata.h
             libil2cpp/il2cpp-api.cpp
             libil2cpp/os/Posix/MutexImpl.h
@@ -55,13 +59,13 @@ jobs:
           test "$(git -C demo rev-parse HEAD)" = "$GITHUB_SHA"
           grep -Fqx "# Primary Implementation → Local Validation — CLOSED / NO EXECUTION" \
             demo/Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md
-          test "$(git -C native rev-parse HEAD)" = "272f3077eee50835284e27855352fe300362ad79"
+          test "$(git -C native rev-parse HEAD)" = "db5354a9befd5cfd02f907d3169c8106e0a29305"
           # Exact branch heads of the two untouched forks and the native fork
           # are checked directly without cloning or mutating their repositories.
           for spec in \
             "hybridclr:4b2774b066cfc6afd77a8c8aded6bda7ea574f55" \
             "hybridclr_unity:948c0e3b4f8891481301770115e8ba4945eea6de" \
-            "il2cpp_plus:272f3077eee50835284e27855352fe300362ad79"; do
+            "il2cpp_plus:db5354a9befd5cfd02f907d3169c8106e0a29305"; do
             repo="${spec%%:*}"
             expected="${spec#*:}"
             actual="$(git ls-remote "https://github.com/night-outlook/$repo.git" \
@@ -75,7 +79,7 @@ jobs:
             --demo "$GITHUB_WORKSPACE/demo" \
             --native "$GITHUB_WORKSPACE/native" \
             --expected-demo "$GITHUB_SHA" \
-            --expected-native 272f3077eee50835284e27855352fe300362ad79 \
+            --expected-native db5354a9befd5cfd02f907d3169c8106e0a29305 \
             > "$RUNNER_TEMP/b2-definition-source-result.json" || {
               cat "$RUNNER_TEMP/b2-definition-source-result.json"
               exit 2
@@ -85,7 +89,7 @@ jobs:
           import json,sys
           r=json.load(open(sys.argv[1],encoding='utf8'))
           assert r['result']=='PassedInactiveSourceOnly_NotFullV2'
-          assert r['verifiedNativeFiles']==26 and r['verifiedDemoPureFiles']==4
+          assert r['verifiedNativeFiles']==38 and r['verifiedDemoPureFiles']==4
           assert r['readyForNativeV2FieldCapture'] is False
           assert r['nativeV2TransportImplemented'] is False
           assert r['runtimeAcceptance'] is False
