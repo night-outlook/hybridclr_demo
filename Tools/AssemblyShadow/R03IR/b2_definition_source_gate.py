@@ -21,16 +21,21 @@ NATIVE_REQUIRED={
     "libil2cpp/vm/AssemblyShadow.cpp",
     "libil2cpp/vm/GlobalMetadataFileInternals.h",
     "libil2cpp/vm/AssemblyShadow.h",
+    "libil2cpp/vm/AssemblyShadowTypeKey.cpp",
     "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
     "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
     "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
+    "libil2cpp/vm/AssemblyShadowOwnedConstructedTypeKey.h",
     "libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
     "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
+    "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
     ".github/workflows/r03-native-b2-definition-live-source-host.yml",
+    ".github/workflows/r03-native-b2-constructed-typekey-host.yml",
     "NativeHostTests/README.md",
 }
 DEMO_REQUIRED={
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedDefinitionTypeKey.h",
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedConstructedTypeKey.h",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedExecutionRows.h",
 }
 class Rejected(ValueError):
@@ -119,6 +124,15 @@ def source_boundary(native:dict[str,bytes])->None:
          "typedef struct Il2CppTypeDefinition",
          "TypeIndex declaringTypeIndex",
          "GenericContainerIndex genericContainerIndex")
+    must("libil2cpp/vm/AssemblyShadowTypeKey.cpp",
+         "case IL2CPP_TYPE_GENERICINST:",
+         'value = "generic(" + FormatType(generic->type',
+         'Part(FormatType(generic->context.class_inst->type_argv[index]',
+         "kMaximumTypeDepth = 128")
+    must("libil2cpp/vm/AssemblyShadowOwnedConstructedTypeKey.h",
+         'Put("generic(",8)', 'Decimal(argument.Bytes())',
+         "kMaximumArguments=16",
+         "struct DOES_NOT_EXIST" if False else "AddArgument(")
     must("libil2cpp/vm/AssemblyShadow.cpp",
          '#include "AssemblyShadowBoundedDefinitionExecutionLive.h"',
          '#include "vm/GlobalMetadataFileInternals.h"',
@@ -134,6 +148,11 @@ def source_boundary(native:dict[str,bytes])->None:
          "MetadataCache::GetAssemblyTypeHandle",
          "GlobalMetadata::GetTypeNamespaceAndName",
          "GlobalMetadata::GetIl2CppTypeFromIndex",
+         "IL2CPP_TYPE_GENERICINST",
+         "generic->context.class_inst",
+         "definitionArity!=instance->type_argc",
+         "constructed_key::Capture genericKey",
+         "buildDefinition(arg->data.typeHandle",
          "kMaximumTotalMetadataLookups",
          "assembly_shadow_first_failure_v2::State::Empty",
          "s_executionRegistrationWitnesses",
@@ -153,6 +172,9 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::StagedNestedIndex",
          "Mode::CyclicNested",
          "Mode::GenericDefinition",
+         "Mode::GenericSameImage",
+         "Mode::GenericNestedArgument",
+         "Mode::GenericTooManyArguments",
          "Mode::NestedType",
          "Mode::CounterChanged",
          "NoMetadataAdmission")
@@ -160,6 +182,7 @@ def source_boundary(native:dict[str,bytes])->None:
         "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
         "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
         "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
+        "libil2cpp/vm/AssemblyShadowOwnedConstructedTypeKey.h",
         "libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
     ):
         raw=native[name]
@@ -191,9 +214,16 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
     rows=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedExecutionRows.h"]
     require(n["libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h"]==key,
             "Fork TypeKey diverged from independently tested pure original")
+    composed=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedConstructedTypeKey.h"]
+    require(n["libil2cpp/vm/AssemblyShadowOwnedConstructedTypeKey.h"].replace(
+                b'"AssemblyShadowOwnedDefinitionTypeKey.h"',
+                b'"BoundedOwnedDefinitionTypeKey.h"')==composed,
+            "Fork generic composer diverged from independent pure source")
     require(n["libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h"].replace(
                 b'"AssemblyShadowOwnedDefinitionTypeKey.h"',
-                b'"BoundedOwnedDefinitionTypeKey.h"')==rows,
+                b'"BoundedOwnedDefinitionTypeKey.h"').replace(
+                b'"AssemblyShadowOwnedConstructedTypeKey.h"',
+                b'"BoundedOwnedConstructedTypeKey.h"')==rows,
             "Fork owned-row source diverged beyond local include path")
     return {
         "kind":"R03B2RestrictedDefinitionExactSourceGate",
@@ -202,7 +232,7 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
         "verifiedDemoPureFiles":len(d),
         "pins":{"hybridclr_demo":expected_demo,"il2cpp_plus":expected_native,
                 "hybridclr":m["hybridclr"],"hybridclr_unity":m["hybridclr_unity"]},
-        "supportedSubset":"Physical AOT TypeDef definitions, nested and generic definition arity",
+        "supportedSubset":"Physical AOT TypeDef definitions and same-image concrete GENERICINST TypeDef arguments only",
         "liveMetadataReadProvenByUnity":False,
         "readyForNativeV2FieldCapture":False,
         "nativeV2TransportImplemented":False,
