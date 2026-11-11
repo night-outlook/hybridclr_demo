@@ -1,5 +1,15 @@
 # R03 B2 — integrate native bounded V2 transport in the isolated Player
 
+## Current B2 Primary source step (2026-11-11 UTC)
+
+**Implemented, source/mock verified:** [same-image GENERICINST code and review](B2_SAME_IMAGE_GENERICINST_IMPLEMENTATION_AND_REVIEW.md) at native `20a57e58098e3476dad5459f04f9fc730c3848c1`. The actual inactive VM capture can now format and own simple/nested physical AOT TypeDef keys, generic **definition** arities, and a constructed `GENERICINST` with one or more concrete same-image physical definition arguments (max 16, max 4096 output bytes). It uses the existing metadata admission, authentic physical enumerator, bounded per-image owner proof and original frozen execution/R02 writer. 31 scenarios per mock process with original C++11/C++17 Mac/Linux Release/Debug strict/sanitized coverage passed, plus an independent pure bounded composer and exact source admission gate.
+
+**Not an end-to-end B2:** Cross-image generic arguments, nested constructed generics, arrays, pointers, qualifiers, open VAR/MVAR and Unicode assembly-name folding remain unsupported. The source has no postterminal admission; full original V1 execution JSON equality for arbitrary actual Unity classes is not yet demonstrated. General `finalDiagnostics`/slot14 and full `finalExecutionDiagnostics`/slot15, native V2 descriptor file writer/envelope, externally authentic receipt, coherent VM epoch and R03 qualification remain incomplete. No Local build or new Player candidate is authorized.
+
+**Earliest next Primary-owned source stage:** implement **cross-image physical metadata TypeDef owner inventory under the same metadata lifetime contract** (without introducing unstable class pointer dereference) and expand canonical argument shapes through verified source adapters. Add strict byte-reference tests against the pinned legacy `AssemblyShadowTypeKey.cpp` grammar and adversarial source/index/lifetime checks. Then prove complete nonempty field15 and terminal-safe field14 semantics before B2 writer integration. All old B1 receipts remain immutable; `WEB_TO_LOCAL` is CLOSED / NO EXECUTION.
+
+---
+
 ## Current Primary increment: owned nonempty class formatting now host-verified
 
 Source-only implementation through [B2 owned execution review](B2_OWNED_NONEMPTY_EXECUTION_IMPLEMENTATION.md) has provided an allocation-free fixed-size TypeKey formatter for an **explicitly restricted metadata-definition subset**, immutable source-unverified nonempty rows (original registry-slot order, copied flags/bytes), and adapters that feed the **actual** `AssemblyShadowExecutionSerializer` and `AssemblyShadowFrozenExecutionRecord` with a **synthetic** typed R02 snapshot. Four Mac/Linux C++11/C++17 workflows passed strict and ASan/UBSan profiles, **32 real host processes / 2,520 assertions, zero protected allocations**. Code remains isolated in `hybridclr_demo/Tools/AssemblyShadow/R03IR/NativeDiagnostics`; no Unity Player or native fork VM code was changed by this increment.
