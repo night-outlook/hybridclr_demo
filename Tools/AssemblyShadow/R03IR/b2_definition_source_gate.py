@@ -173,10 +173,25 @@ def source_boundary(native:dict[str,bytes])->None:
     must("libil2cpp/os/Posix/MutexImpl.h","PTHREAD_MUTEX_RECURSIVE")
     must("libil2cpp/os/Win32/MutexImpl.h","EnterCriticalSection",
          "LeaveCriticalSection")
+    must("libil2cpp/vm/AssemblyShadowRegisteredAotImageScan.h",
+         "namespace assembly_shadow_registered_aot_scan",
+         "bool Scan(", "assembly->token",
+         "assembly->image->assembly!=assembly", "visit(image)")
+    must("libil2cpp/vm/Assembly.h",
+         "TryVisitRegisteredAotImages(",
+         "caller MUST hold",
+         "g_MetadataLock")
+    must("libil2cpp/vm/Assembly.cpp",
+         "s_Assemblies.begin(),s_Assemblies.end()",
+         "assembly_shadow_registered_aot_scan::Scan(",
+         "IsInterpreterImage(image)",
+         "s_assemblyLock",
+         "TryVisitRegisteredAotImages(")
     must("libil2cpp/vm/AssemblyShadowObservedPhysicalImages.h",
          "class Inventory final","AddFromMatchedCallback",
-         "~Inventory() noexcept{Scrub();}","Count() const noexcept",
-         "Error::Capacity")
+         "AddFromRegisteredAssembly", "SameOrderedImageSet",
+         "Contains(const void*",
+         "~Inventory() noexcept{Scrub();}", "Error::Capacity")
     must("libil2cpp/vm/AssemblyShadowTypeKey.cpp",
          "case IL2CPP_TYPE_GENERICINST:",
          'value = "generic(" + FormatType(generic->type',
@@ -204,6 +219,11 @@ def source_boundary(native:dict[str,bytes])->None:
          "IL2CPP_TYPE_GENERICINST",
          "physical::Scratch discovery",
          "imageInventory.Count()",
+         "registeredAotImages.Count()",
+         "Assembly::TryVisitRegisteredAotImages",
+         "registeredAfter.SameOrderedImageSet(registeredAotImages)",
+         "registeredImageSetStable=true",
+         "usedUnobservedAotArgumentImage",
          "resolveOwner",
          "AmbiguousMetadataOwner",
          "context.images=nullptr",
@@ -236,6 +256,10 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::GenericTooManyArguments",
          "Mode::CrossImageGeneric",
          "Mode::CrossImageGenericUnobserved",
+         "Mode::CrossImageGenericNotRegistered",
+         "Mode::RegisteredAotChanged",
+         "Mode::RegisteredAotOverflow",
+         "Mode::RegisteredAotInvalidOwner",
          "Mode::CrossImageGenericAmbiguous",
          "Mode::CrossImageInterpreter",
          "Mode::CrossImageNestedArgument",
@@ -250,6 +274,7 @@ def source_boundary(native:dict[str,bytes])->None:
         "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
         "libil2cpp/vm/AssemblyShadowOwnedConstructedTypeKey.h",
         "libil2cpp/vm/AssemblyShadowObservedPhysicalImages.h",
+        "libil2cpp/vm/AssemblyShadowRegisteredAotImageScan.h",
         "libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
     ):
         raw=native[name]
@@ -299,7 +324,7 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
         "verifiedDemoPureFiles":len(d),
         "pins":{"hybridclr_demo":expected_demo,"il2cpp_plus":expected_native,
                 "hybridclr":m["hybridclr"],"hybridclr_unity":m["hybridclr_unity"]},
-        "supportedSubset":"Observed-matched AOT physical image inventory; bounded cross-image concrete GENERICINST TypeDef args, excluding unobserved images",
+        "supportedSubset":"Unfiltered registered physical AOT images, including images without observed classes, under original assembly/metadata lock; bounded concrete GENERICINST TypeDef arguments",
         "liveMetadataReadProvenByUnity":False,
         "readyForNativeV2FieldCapture":False,
         "nativeV2TransportImplemented":False,
