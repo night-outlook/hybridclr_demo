@@ -163,7 +163,7 @@ def source_boundary(native:dict[str,bytes])->None:
          "LeaveCriticalSection")
     must("libil2cpp/vm/AssemblyShadowObservedPhysicalImages.h",
          "class Inventory final","AddFromMatchedCallback",
-         "~Inventory() noexcept{Scrub()}","Count() const noexcept",
+         "~Inventory() noexcept{Scrub();}","Count() const noexcept",
          "Error::Capacity")
     must("libil2cpp/vm/AssemblyShadowTypeKey.cpp",
          "case IL2CPP_TYPE_GENERICINST:",
