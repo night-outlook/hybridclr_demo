@@ -13,6 +13,10 @@ import sys
 from pathlib import Path
 
 MANIFEST="Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json"
+FIXED_B1_DEMO="2d690bb2f7234ddcbee339f9da7125d687f5ed45"
+FIXED_B1_NATIVE="8aa8d09319a89b55b2496bcc2c69ccc69cb57be9"
+FIXED_HYBRIDCLR="4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+FIXED_UNITY="948c0e3b4f8891481301770115e8ba4945eea6de"
 NATIVE_REQUIRED={
     "libil2cpp/vm/AssemblyShadow.cpp",
     "libil2cpp/vm/AssemblyShadow.h",
@@ -71,6 +75,17 @@ def validate_contract(m:dict)->None:
         require(type(m.get(key)) is str and
                 re.fullmatch("[0-9a-f]{40}",m[key]) is not None,
                 "Invalid source pin: "+key)
+    require(m["originalB1ExecutionDemo"]==FIXED_B1_DEMO and
+            m["originalB1Native"]==FIXED_B1_NATIVE and
+            m["hybridclr"]==FIXED_HYBRIDCLR and
+            m["hybridclr_unity"]==FIXED_UNITY,
+            "Previously accepted source tuple must remain immutable")
+    c=m.get("nativeSourceCapabilities")
+    require(type(c) is dict and
+            c.get("sourceReadsAfterTerminal") is False and
+            c.get("arbitraryGenericInstantiationTypeKeys") is False and
+            c.get("coherentVmEpochProven") is False,
+            "Cannot invent terminal/full-key/VM-epoch acceptance")
     for key,required in (("nativeSources",NATIVE_REQUIRED),
                          ("demoPureSources",DEMO_REQUIRED)):
         rows=m.get(key)
@@ -135,8 +150,15 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::NestedType",
          "Mode::CounterChanged",
          "NoMetadataAdmission")
-    require("operator new" not in native["libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl"].decode(),
-            "Allocator driver leaked into VM source")
+    for name in (
+        "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
+        "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
+        "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
+        "libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
+    ):
+        raw=native[name]
+        require(b"operator new" not in raw and b"int main(" not in raw,
+                "Standalone allocator/host driver leaked into production vm: "+name)
 
 def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
     demo=demo.resolve(strict=True)
