@@ -1,5 +1,15 @@
 # R03 B2 — integrate native bounded V2 transport in the isolated Player
 
+## Current Primary stage: bounded observed cross-image metadata owner discovery (2026-11-11 UTC)
+
+**Implemented in native, inactive:** [cross-image AOT owner implementation/source review](B2_BOUNDED_CROSS_IMAGE_AOT_OWNER_IMPLEMENTATION.md), `il2cpp_plus@cfb33d58432b05f3d28052dfb88677a0561f6c93`. The matched-observed-class image inventory is built by a first physical iterator pass, then a second pass formats owned rows against that inventory. Both occur under one original `g_MetadataLock` and initial-session metadata Reader. Limits: 64 observed physical images, 8,192 TypeDefs/image, 65,536 aggregate owner lookups, 16 arguments/key and 4,096 bytes/key. A canonical cross-image generic TypeDef argument is admitted only when its owner image also has an independently matched observed class. Duplicates, missing/ambiguous owner, class disappearance, encoded index and exceeded capacity remain typed failures.
+
+**Source/mock tests:** [native 42983247910](https://github.com/night-outlook/il2cpp_plus/actions/runs/42983247910) **4/4 Mac/Linux C++11/17 PASS**, Release/Debug + strict/ASan-UBSan; 16 mock host executions, 592 typed scenarios, 6,336 assertions. [20-native/3-demo source identity 42983166781](https://github.com/night-outlook/hybridclr_demo/actions/runs/42983166781) **2/2 PASS**. No Unity/IL2CPP Player build or file-transport test occurred. All product and Human Review Gate acceptance flags stay false.
+
+**Earliest next uncompleted Primary task:** a truly complete physical AOT image-owner source for otherwise unobserved argument images, without violating the original metadata/assembly lock and lifecycle ordering; then additional composite TypeKey shapes and full original V1 nonempty execution field15 parity. Only after full field14/15 terminal-safe source, native V2 descriptor transport and external receipt authentication may Local be given a new one-use source-pinned batch. The current V2 slot14/15 schema is unchanged and `WEB_TO_LOCAL` remains CLOSED / NO EXECUTION.
+
+---
+
 ## Current B2 Primary source step (2026-11-11 UTC)
 
 **Implemented, source/mock verified:** [same-image GENERICINST code and review](B2_SAME_IMAGE_GENERICINST_IMPLEMENTATION_AND_REVIEW.md) at native `20a57e58098e3476dad5459f04f9fc730c3848c1`. The actual inactive VM capture can now format and own simple/nested physical AOT TypeDef keys, generic **definition** arities, and a constructed `GENERICINST` with one or more concrete same-image physical definition arguments (max 16, max 4096 output bytes). It uses the existing metadata admission, authentic physical enumerator, bounded per-image owner proof and original frozen execution/R02 writer. 31 scenarios per mock process with original C++11/C++17 Mac/Linux Release/Debug strict/sanitized coverage passed, plus an independent pure bounded composer and exact source admission gate.
