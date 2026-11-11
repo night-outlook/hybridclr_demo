@@ -1,3 +1,11 @@
+# B2 bounded original Unicode source checkpoint (2026-11-11 UTC)
+
+Primary completed the next inactive physical AOT TypeKey source increment at il2cpp_plus@db5354a9befd5cfd02f907d3169c8106e0a29305. Source uses the actual original VM ViewName/NameHash/NextFolded UTF16 casefold and a fixed-storage C++11 UTF16-to-UTF8 canonical key builder. Demo test mirror and exact 38-native/4-demo Git source admission are updated; three host tiers separately test pure encoding, original Unicode table, and actual .inl against mock metadata. See [independent implementation/review and exact CI classification](B2_ORIGINAL_UNICODE_ASSEMBLY_FOLD_IMPLEMENTATION_AND_REVIEW.md). Linux host results passed; queued macOS jobs must not be promoted to full 4/4. This is source-only, not a real official Unity TU, GameAssembly, Player, terminal field or V2 recovery.
+
+**Next Primary order:** prove authenticated primitive key source and exact original complete nonempty V1 field15 parity; terminal-safe complete general field14/exec field15 with metadata/class/GC lifetime; integrate the existing bounded V2 codec, POSIX descriptor transaction, native first error and independent identity receipt; adversarial CI and independent source review. Only then authorize one new one-use Local batch with fixed pushed four-SHA commits and approved fresh roots, one real Unity build and three distinct Player/receipt/GC tests. Original B1 oneuse-12 consumed; all R03/H2/Human Review Gate flags false, WEB_TO_LOCAL CLOSED / NO EXECUTION.
+
+---
+
 # B2 composite TypeKey restricted implementation checkpoint (2026-11-11 UTC)
 
 The inactive native source at il2cpp_plus@272f3077eee50835284e27855352fe300362ad79 now supports owned recursively nested GENERICINST, PTR, SZARRAY, multidimensional ARRAY and qualified TypeKey argument shapes using physically registered AOT TypeDef leaves. See [complete implementation, exact CI and review](B2_COMPOSITE_TYPEKEY_IMPLEMENTATION_AND_REVIEW.md). The pure composer and actual .inl mock CI passed macOS/Ubuntu C++11/C++17 4/4 each; four-pin exact source gate passed 2/2 with 26 native/4 demo source blobs and 18 negative tests per OS.
