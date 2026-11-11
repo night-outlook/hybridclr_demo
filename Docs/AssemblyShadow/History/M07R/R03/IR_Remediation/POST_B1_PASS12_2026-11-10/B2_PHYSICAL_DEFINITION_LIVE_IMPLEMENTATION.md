@@ -1,5 +1,22 @@
 # R03 B2 — inactive real VM physical TypeDef execution source implementation and review
 
+## Final-source review addendum — reordered callbacks and staged generic-container defense (2026-11-11 UTC)
+
+The **latest remotely verified native source pin is `il2cpp_plus@fd1bc0bc41b12a0d612daa80fc7be222df5ce2b2`**, an additive successor to intermediate `ba2750f5201e2cef8cc47fdee362d1e800e27e3c` and original `69e4032bf5131a991d85f39910619e8ec3579eaa` described in historical sections below. All three remain in Git history, but only `fd1bc0...` is the source manifest's current native candidate.
+
+Additional B2-native source hardening:
+- Physical callback order can differ from the process-lifetime registration order. The real `.inl` copies rows and the bounded owner sorts by the *original registry slot*; the new two-class mock deliberately enumerates classes in reverse order, requires the full two-row record in registry order, and checks unchanged original class-row serialization.
+- A physical AOT TypeDef can carry a generic container index whose negative value is an encoded interpreter index. The source now tests `genericContainerIndex` **before** invoking `GlobalMetadata::GetGenericContainerFromIndex`; only the original invalid/no-container sentinel is exempt. The mock aborts if an encoded staged index reaches the metadata getter and verifies rejection with `UnsupportedMetadataAncestry` instead.
+- Earlier B1-first-error race detection, stale-session admission and both `IL2CPP_DEBUG` pointer-output paths remain enabled and covered. Neither source reads after terminality nor an all-VM atomic epoch is claimed.
+
+**Final native evidence:** [GitHub Actions 42974759134](https://github.com/night-outlook/il2cpp_plus/actions/runs/42974759134) at **exact source SHA `fd1bc0bc41b12a0d612daa80fc7be222df5ce2b2`**: **4/4 jobs completed/success** (macOS 15 / Ubuntu 24.04 × C++11 / C++17), each with Debug + Release and strict + ASan/UBSan, **16 actual native host processes**. Each emitted **20 typed scenarios / 158 assertions**, totaling **320 mock scenarios / 2,528 assertions**, no reported sanitizer errors. The source tests compile the **real `.inl`** but substitute a *mock* `Il2CppClass`/metadata/lifetime registry, so these figures are **not** official Unity SDK compilation, linked GameAssembly or Player proof.
+
+**Final demo exact-source audit:** [CI run 42975090591](https://github.com/night-outlook/hybridclr_demo/actions/runs/42975090591) at source SHA `a5bf6b9375cae2364382a3d248408ee1aa983d7e` was **2/2 macOS/Ubuntu success**, **13 source-contract tests per job**, exact **9 native Git blobs + 2 pure demo counterpart blobs + unchanged hybridclr/hybridclr_unity Git branch HEADs**. Its result is `PassedInactiveSourceOnly_NotFullV2`; required `readyForNativeV2FieldCapture=false`, `nativeV2TransportImplemented=false`, `R03Accepted=false`, `ReadyForHumanReviewGate=false`, and `handoffAuthority=CLOSED_NO_LOCAL_EXECUTION`.
+
+This addendum supersedes **only** the intermediate native pin and test counts below. All source/lifetime/full-V2 acceptance limitations remain unchanged. Original oneuse-12 B1 focused PASS, missing historical raw roots and independent R03 FAIL remain immutable.
+
+---
+
 ## Latest Primary correction: real source first-error fence, two-class order and encoded metadata-index rejection (2026-11-11 UTC)
 
 **Current exact native source pin:** `night-outlook/il2cpp_plus@fd1bc0bc41b12a0d612daa80fc7be222df5ce2b2` on `codex/assembly-shadow-r01b-h1`. It supersedes historical partial/native mock pins `69e4032...` and `ba2750f...`, whose earlier RED/GREEN logs remain immutable below. The exact native code and nine Git blobs are enumerated in [`b2_definition_native_candidate.json`](../../../../../../Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json). Original consumed oneuse-12 native `8aa8d093...` and demo `2d690bb2...` remain separate historical execution sources, not replacements.
