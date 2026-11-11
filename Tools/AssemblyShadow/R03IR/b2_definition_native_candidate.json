@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "Inactive real VM physical AOT TypeDef and bounded same-image concrete GENERICINST source to owned execution/R02 record; no complete field15 or V2 admission",
+  "objective": "Inactive B2 physical-AOT TypeDef source including narrowly admitted cross-image generic argument metadata from matched observed classes; incomplete final field15 and no V2 admission",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "20a57e58098e3476dad5459f04f9fc730c3848c1",
+  "candidateNative": "3b48459f0f001cddd3d05ed51d8705a331aeaa6f",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
@@ -27,11 +27,11 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
-      "gitBlob": "29b4e5e815d2656b54f58c9ac39989292db55de1"
+      "gitBlob": "b3a62e83bd1a8fdda31a3500e3f84f52f59d5163"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
-      "gitBlob": "83f7e7b14466bbc286edefd2503226d4b36b2593"
+      "gitBlob": "d62c8c82d60a7b1b3aa4092489cc8edf955a3365"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
@@ -47,7 +47,7 @@
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "39c7f6f679ebc88f059303c75f30a710225e67eb"
+      "gitBlob": "bb73e688909a575cd2228ff275cd94534a48bb05"
     },
     {
       "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -55,7 +55,7 @@
     },
     {
       "path": ".github/workflows/r03-native-b2-definition-live-source-host.yml",
-      "gitBlob": "7e324752940dc68a738cc4321be0d1629528c5a9"
+      "gitBlob": "b965dc0b34d6dc95b951061e3d0a2653773355db"
     },
     {
       "path": ".github/workflows/r03-native-b2-constructed-typekey-host.yml",
@@ -68,6 +68,26 @@
     {
       "path": "libil2cpp/il2cpp-runtime-metadata.h",
       "gitBlob": "f7f235848209ee331adfd1c2b214b46cc753392e"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowObservedPhysicalImages.h",
+      "gitBlob": "9cd28ca1866da532a7243f1c15e5e0b526f3de4e"
+    },
+    {
+      "path": "libil2cpp/vm/MemoryInformation.cpp",
+      "gitBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6"
+    },
+    {
+      "path": "libil2cpp/il2cpp-api.cpp",
+      "gitBlob": "780f8416bdae08362ae811abe3a4386d043be9ce"
+    },
+    {
+      "path": "libil2cpp/os/Posix/MutexImpl.h",
+      "gitBlob": "d8235cb88965733c5aaa1c43374a4a16210b6579"
+    },
+    {
+      "path": "libil2cpp/os/Win32/MutexImpl.h",
+      "gitBlob": "925a0e7aed9db29c0c59b26c24bd4df0c1f09789"
     }
   ],
   "demoPureSources": [
@@ -84,7 +104,7 @@
       "gitBlob": "9244a08ccae8c62156c0b8b413d4dab391683e7c"
     }
   ],
-  "testProof": "Native 4/4 C++11/17 macOS/Ubuntu source-exact mock CI, each job Release/Debug strict/sanitized (16 processes) ×31 typed scenarios, 243 assertions/execution; zero recorded sanitizer errors. Pure constructed composer 4/4 dual-OS C++11/17 × strict/sanitized, 78 assertions per process. No Unity Player.",
+  "testProof": "Native mock source 4/4 jobs Mac/Linux C++11/17 Release/Debug strict+ASan/UBSan; 16 host executions x 37 typed scenarios x 396 assertions, no reported sanitizer errors; no real Unity/Player or B2 runtime acceptance",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "Same-image AOT physical TypeDef (nested and generic definitions) and GENERICINST whose base and all concrete CLASS/VALUETYPE arguments are separately proven in that same image",
     "sourceReadsAfterTerminal": false,
@@ -92,7 +112,7 @@
     "metadataReaderEpoch": "initial only",
     "coherentVmEpochProven": false,
     "sourceFirstErrorFence": "Checks B1 Empty before traversal, before record composition, after frozen record",
-    "mockScenarios": 31,
+    "mockScenarios": 37,
     "mockBuildVariants": [
       "release",
       "debug"
@@ -102,7 +122,7 @@
       "sanitized"
     ],
     "physicalClassMembershipScope": "Same-image AOT physical TypeDef subset, nested definition chain, two observed classes preserved in original registration-slot order",
-    "mockAssertionsPerExecution": 243,
+    "mockAssertionsPerExecution": 396,
     "mockProcessExecutions": 16,
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
     "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup",
@@ -117,7 +137,17 @@
     "standaloneGenericKeyTestRun": "42978349307",
     "legacyTypeKeyGrammarSourceBlob": "6b23b4bad66e9a8f36c68717ef82626351018624",
     "realUnityRuntimeIntegrationProven": false,
-    "realGenericRuntimeMetadataAbiBlob": "f7f235848209ee331adfd1c2b214b46cc753392e"
+    "realGenericRuntimeMetadataAbiBlob": "f7f235848209ee331adfd1c2b214b46cc753392e",
+    "physicalImageInventory": "Two physical il2cpp_class_for_each passes under one g_MetadataLock: only matched observed classes contribute physical AOT images; 64 unique-image maximum",
+    "physicalImageLimit": 64,
+    "physicalEnumerationPasses": 2,
+    "crossImageGenericArgumentsSupportedInMock": true,
+    "crossImageOnlyWhenBothImagesMatchedObservedClass": true,
+    "crossImageUnmatchedArgumentFailsClosed": true,
+    "ambiguousMetadataOwnerFailsClosed": true,
+    "allPhysicalMetadataImagesEnumerated": false,
+    "nativeSourceCiRun": "42982794751",
+    "physicalIteratorSourceBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6"
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
