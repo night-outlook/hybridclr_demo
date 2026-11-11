@@ -1,5 +1,62 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current Primary B2 Unicode physical TypeKey checkpoint — NO LOCAL EXECUTION (2026-11-11 UTC)
+
+**Authority: CLOSED / NO EXECUTION. Local response: NoExecutionAuthority.** This is an inactive native-source development checkpoint, not approval of a new Player build, test cycle, root name or Local architecture fix. Do not replay consumed oneuse-12, invent oneuse-13, overwrite raw evidence, start Unity, or enter H2/M08A/X02/SNAP-01.
+
+### Exact current remote source tuples
+
+All repositories: branch codex/assembly-shadow-r01b-h1, canonical HTTPS origin https://github.com/night-outlook/<repo>.git.
+
+| Repository | Expected default local checkout (not inspected here) | Latest source pin |
+| --- | --- | --- |
+| night-outlook/hybridclr_demo | /Users/ah/GitHub/hybridclr/hybridclr_demo | latest pushed GitHub branch HEAD, verify; this handoff document changes its commit |
+| night-outlook/hybridclr | /Users/ah/GitHub/hybridclr/hybridclr | 4b2774b066cfc6afd77a8c8aded6bda7ea574f55 |
+| night-outlook/hybridclr_unity | /Users/ah/GitHub/hybridclr/hybridclr_unity | 948c0e3b4f8891481301770115e8ba4945eea6de |
+| night-outlook/il2cpp_plus | /Users/ah/GitHub/hybridclr/il2cpp_plus | db5354a9befd5cfd02f907d3169c8106e0a29305 |
+
+[Exact 38-native/4-demo manifest](../../Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json) authenticates actual source, ABI, CI and reference Unicode table Git blobs. Four-repository branch/HEAD/state verification is mandatory for any future authorized batch. These listed default paths are not a claim of Local worktree inspection. Native/SDK platform preparation remains Unity 2022.3.62f2 macOS ARM64 IL2CPP ON Release/diagnostics2, C++11 real Bee mode, isolated R03 Player, the original pinned HybridCLR runtime and package source. Actual future generated code, Unity SDK overlay, GameAssembly build UUID/hash, PIDs, requests/fixtures and native symbols must be read from **one new real build**, not reconstructed or reused.
+
+### Primary source, tests, diagnostic and review completed
+
+The inactive observed physical AOT TypeDef producer now computes canonical assembly TypeKey bytes through the **original** AssemblyShadowName::ViewName, NameHash and NextFolded (Unity's UTF16-to-lower table) within its original metadata lock and first-session Reader. C++11 owned builder converts folded UTF16 to fixed-budget UTF8 with byte-length prefix, validates surrogate pairs, rejects malformed/budget-exceeded source, and revokes receipt/rows/record on failure. Prior independently owner-verified registered AOT TypeDef generic argument images, nested GENERICINST/PTR/SZARRAY/ARRAY/qualified keys, registry/R02/first-event fences and original serializer remain. The legacy V1 getter and native B1 first-error producer were not modified. Receipt.usedUnicodeAssemblyFold is positive-only.
+
+- [Native actual .inl source-mock CI 43011988073](https://github.com/night-outlook/il2cpp_plus/actions/runs/43011988073): 55 typed source/mock cases and 924 assertions per host process; Ubuntu C++11/17 strict/sanitized Release/Debug jobs completed/success, macOS queued at initial checkpoint. Recheck job-level final status.
+- [Pure Unicode folded key host CI 43011964681](https://github.com/night-outlook/il2cpp_plus/actions/runs/43011964681): owned UTF8/surrogate/no-allocation negatives; Ubuntu C++11/17 success, macOS pending initially.
+- [Original Name.h and Unicode tables reference host CI 43012431935](https://github.com/night-outlook/il2cpp_plus/actions/runs/43012431935): actual original Name.h and unchanged char-conversions.cpp data + pinned lower-table lookup, but test-only ABI and no Unity/full original TypeKey TU; Ubuntu C++11/17 PASS, Mac pending initially.
+- [Four-fork exact 38-native/four-demo source audit](https://github.com/night-outlook/hybridclr_demo/actions/workflows/r03-ir-b2-definition-four-pin-source.yml): strictly source-only; checks 20 negative/admission tests per OS, exact clean roots, demo/native Git blobs and immutable false acceptance flags; check exact final run and OS job status before any claim.
+- [New source design and independent review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ORIGINAL_UNICODE_ASSEMBLY_FOLD_IMPLEMENTATION_AND_REVIEW.md); [prior composite review and eventual single-batch matrix](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_COMPOSITE_TYPEKEY_IMPLEMENTATION_AND_REVIEW.md).
+
+**No Unity native full TU/GameAssembly/real Player/GC/metadata teardown source tests or native V2 full-field/file/receipt have executed on this candidate.** Historical B1 oneuse-12 focused real Player 19/19 PASS is not new B2 evidence or reusable authority.
+
+### Remaining nontrivial Primary blockers — NOT Local tasks
+
+1. Original primitive/default-enum execution TypeKeys need source identity proof without making new classes or cache population; original FormatMetadataOnly deliberately rejects VAR/MVAR with image map. Prove real full V1 nonempty field15 byte/semantic equality on official metadata before claiming an unrestricted source.
+2. Prove complete, source-owned, terminal-safe original finalDiagnostics (field14) and finalExecutionDiagnostics (field15) under valid VM metadata/class/GC lifetime, including cctor/static-value sampling; retain wholeVmEpoch=NotProven absent B3 proof. B1 first error or partial class rows cannot substitute for these full fields.
+3. Integrate already host-tested bounded native V2 serializer plus descriptor-relative POSIX transaction with one owner/preopening, authenticated source + external receipt and independent recovery reader. Add torn-write, symlink, duplicate/replay, source-race, invalid Unicode, postterminal and missing-provenance negative tests.
+4. Independent review and exact four-SHA source/CI admission; ONLY THEN issue a new one-use Local batch with verified fresh absent roots, precise commands and expected evidence. No large local fixes.
+
+### Future single-batch Local validation (CONDITIONAL; do not execute now)
+
+After new Primary authorization, group all high-cost questions into a **single** exact-source Unity build and three fresh Player executions, with no mixing of historical roots:
+
+| Checkpoint | Combined tests | Source-bound raw evidence |
+| --- | --- | --- |
+| 0. Admission | Four clean pinned Git roots; 38/4 source gate, two genuine spaced free-capacity checks, official Unity2022.3.62f2/SDK/original-S archive/owner-only absent roots and CI OS completion | commit and blob manifest, source admission, OS/SDK/Bee, storage/custody receipts |
+| 1. Build/link | One real C++11 Unity IL2CPP build; generated bridge table and linked GameAssembly code, no host-only allocator symbols; original actual Unity VmStringUtils casefold and type metadata ABI | BuildReport, Bee command, full source install and symbols roster, GameAssembly UUID/SHA and generated C++ hashes |
+| 2. Positive controls | Empty, native initializer error19, captured generic guard15, **Unicode assembly names** (Latin, Greek, supplementary, path/version) and nested/array/qualifier type keys with genuine physical AOT metadata; original full V1 class JSON and B1 first reason equality | three distinct Player PIDs/nonces/requests/fixtures, original V1 full byte fields and native B1, authenticated physical owner/type-key comparison |
+| 3. Native V2 | Complete terminal field14/15, preopened and bounded artifact-first/envelope-last binary and external identity receipt; strict independent V2 reader | raw binary/envelope/receipt, source/PID/UUID, device/inode/size/SHA, external verification |
+| 4. Negative and lifetime | Invalid Unicode, unowned/ambiguous/stale metadata, B1-first failure during source capture, no postterminal AOT, teardown/GC races, duplicate finalize, symlinks, partial receipt | typed errors, preserved first event, clean AOT canary, no partial success, crash/GC/RSS/symbol traces |
+| 5. Integrity/performance | Repeatable baseline GC/RSS/first-call and independent evidence seals, original-S/static provenance preserved, regular-only product archive | immutable product+host raw manifests, two independent auditors, local run result and RETURN_TO_WEB findings |
+
+No fresh one-use labels or executable commands are approved. Local may inspect read-only instructions only; do not invent a locally runnable entry. For future actual execution, Local maintains LOCAL_VALIDATION.md and RETURN_TO_WEB.md; Primary retains all nontrivial fixes and must produce the next committed WEB_TO_LOCAL.md.
+
+**Product flags:** readyForNativeV2FieldCapture=false; nativeV2TransportImplemented=false; firstRecoveryAuthenticatedV2=false; runtimeAcceptance=false; qualificationApproved=false; fullLegacyRegressionAcceptance=false; R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; wholeVmEpoch=NotProven; handoffAuthority=CLOSED_NO_LOCAL_EXECUTION. Original R03 independent full-stage FAIL, High IR-R03-01/02 and original strict custody remain unresolved. PureInterpreter disabled.
+
+**Read order:** Docs/AssemblyShadow/README.md → Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md → B2_ORIGINAL_UNICODE_ASSEMBLY_FOLD_IMPLEMENTATION_AND_REVIEW.md → exact candidate manifest → LOCAL_VALIDATION.md and RETURN_TO_WEB.md for historical Local evidence. Until explicit new authority, Local responds NoExecutionAuthority.
+
+---
+
 ## Current Primary candidate — composite physical AOT TypeKeys; LOCAL NOT AUTHORIZED (2026-11-11 UTC)
 
 **Authority: CLOSED / NO EXECUTION.** This is a committed Primary-owned implementation checkpoint and a **conditional future single-batch validation design**, not a runnable Local Validation order. Any Local Agent presented with this source must report NoExecutionAuthority, without running Unity, Player, build scripts, native linker or any new one-use cycle. Local must not implement missing field source, build transport, or repair architectural gaps. Do not infer oneuse-13 or reuse the consumed oneuse-12 output roots.
