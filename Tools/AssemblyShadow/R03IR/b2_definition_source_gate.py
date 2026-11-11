@@ -42,11 +42,11 @@ def git(root:Path,*args:str)->str:
     return p.stdout.strip()
 
 def blob(raw:bytes)->str:
-    return hashlib.sha1(b"blob "+str(len(raw)).encode()+b"\\x00"+raw).hexdigest()
+    return hashlib.sha1(b"blob "+str(len(raw)).encode()+b"\x00"+raw).hexdigest()
 
 def verify_file(root:Path,path:str,digest:str)->bytes:
     require(type(path) is str and path and not path.startswith("/") and
-            ".." not in Path(path).parts and "\\x00" not in path,
+            ".." not in Path(path).parts and "\x00" not in path,
             "Untrusted source path")
     require(type(digest) is str and re.fullmatch("[0-9a-f]{40}",digest) is not None,
             "Untrusted Git blob ID")
@@ -56,7 +56,7 @@ def verify_file(root:Path,path:str,digest:str)->bytes:
     raw=f.read_bytes()
     require(blob(raw)==digest,"Unreviewed file bytes: "+path)
     require(git(root,"ls-tree","HEAD","--",path)==
-            "100644 blob "+digest+"\\t"+path,
+            "100644 blob "+digest+"\t"+path,
             "Remote tree and file mismatch: "+path)
     return raw
 
