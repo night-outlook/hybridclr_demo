@@ -116,6 +116,7 @@ def source_boundary(native:dict[str,bytes])->None:
             require(token in txt,"Native source drift: "+path+" : "+token)
     must("libil2cpp/vm/AssemblyShadow.cpp",
          '#include "AssemblyShadowBoundedDefinitionExecutionLive.h"',
+         '#include "vm/GlobalMetadataFileInternals.h"',
          '#include "AssemblyShadowBoundedDefinitionExecutionLiveSource.inl"')
     must("libil2cpp/vm/AssemblyShadow.h",
          "TryCaptureBoundedDefinitionExecutionLive",
