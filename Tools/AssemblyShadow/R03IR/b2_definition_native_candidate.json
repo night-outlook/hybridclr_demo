@@ -44,6 +44,10 @@
     {
       "path": "NativeHostTests/README.md",
       "gitBlob": "cb8be6bf73d276b3cbd0074e01d927588535a0a4"
+    },
+    {
+      "path": "libil2cpp/vm/GlobalMetadataFileInternals.h",
+      "gitBlob": "c36d15775854889c6ee3447956c4138c604577c6"
     }
   ],
   "demoPureSources": [
@@ -79,7 +83,8 @@
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
     "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup",
     "realTypeDefinitionLayoutInclude": "#include \"vm/GlobalMetadataFileInternals.h\" from pinned IL2CPP fork",
-    "unityFullAssemblyShadowCompiled": false
+    "unityFullAssemblyShadowCompiled": false,
+    "actualTypeDefinitionLayoutBlob": "c36d15775854889c6ee3447956c4138c604577c6"
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
