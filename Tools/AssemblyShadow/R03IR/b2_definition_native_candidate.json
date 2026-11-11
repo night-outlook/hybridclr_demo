@@ -56,7 +56,7 @@
       "gitBlob": "6f7a7c017e10c044b3465af3f2df2c4721c641ad"
     }
   ],
-  "testProof": "Exact native-source .inl mock under real C++11/C++17 on macOS/Ubuntu, release and IL2CPP_DEBUG, strict+ASan/UBSan: 16 process executions, 18 scenarios and 132 assertions each; no Unity Player or V2",
+  "testProof": "Exact native-source .inl mock Mac/Linux C++11/17 release/debug strict/sanitized: 16 host processes, 20 cases and 158 assertions each (320 mock scenarios, 2528 assertions); no Unity Player, no V2",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "AOT TypeDef definitions only, nested declarations and generic definition arity",
     "sourceReadsAfterTerminal": false,
