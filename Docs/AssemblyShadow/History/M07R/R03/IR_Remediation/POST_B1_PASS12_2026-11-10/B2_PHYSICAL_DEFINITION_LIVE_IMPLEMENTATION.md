@@ -1,5 +1,13 @@
 # R03 B2 — inactive real VM physical TypeDef execution source implementation and review
 
+## Current source supersession — same-image constructed GENERICINST (2026-11-11 UTC)
+
+The historical native source pin `4c900ab...` and previous mock receipts below are **superseded for new Primary work** by [the bounded same-image GENERICINST implementation/review](B2_SAME_IMAGE_GENERICINST_IMPLEMENTATION_AND_REVIEW.md), exact `night-outlook/il2cpp_plus@20a57e58098e3476dad5459f04f9fc730c3848c1`. The new source adds 4,096-byte bounded generic-instantiation TypeKeys for the definition and all concrete argument TypeDefs **only when each handle belongs to the same admitted physical AOT image**. Existing simple/nested TypeDef and B1 first-error restrictions are retained. Original `AssemblyShadowTypeKey.cpp` and actual `Il2CppGenericClass`/Type ABI are pinned in the [15-native/3-demo manifest](../../../../../../../Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json).
+
+[Native source mock 42979860514](https://github.com/night-outlook/il2cpp_plus/actions/runs/42979860514) **4/4 PASS**, **31 typed scenarios × 16 source-mock processes = 496 scenario executions and 3,888 assertions**; [pure composed key 42978349307](https://github.com/night-outlook/il2cpp_plus/actions/runs/42978349307) **4/4 PASS**; [cross-repository Git source audit 42980498037](https://github.com/night-outlook/hybridclr_demo/actions/runs/42980498037) **2/2 PASS**. None proves actual Unity/IL2CPP live metadata lifetime, general canonical cross-image/open/array/qualified TypeKeys, full terminal field14/15, V2 transaction or R03 acceptance. `WEB_TO_LOCAL` remains CLOSED / NO EXECUTION. Older source pins and their evidence are retained below as **historical**, not live authority.
+
+---
+
 ## Latest Primary compile-source correction (2026-11-11 UTC)
 
 **Current native fork HEAD: `4c900ab22735768f517d81daccfed31a3d9aeb1e`.** The previous source candidate `fd1bc0bc...` passed the complete mock-VM suite but its `AssemblyShadow.cpp` did **not** include `vm/GlobalMetadataFileInternals.h` despite dereferencing `Il2CppTypeDefinition::declaringTypeIndex` and `::genericContainerIndex`. In the actual fork, `vm/GlobalMetadata.h` only forward-declares `struct Il2CppTypeDefinition`; its file-layout definition is in `vm/GlobalMetadataFileInternals.h`, as used by the existing `AssemblyShadowTypeKey.cpp`. This was an independent real-header **source-review finding** invisible to the fake-VM `.inl` harness.
