@@ -7,6 +7,9 @@ on:
       - Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json
       - Tools/AssemblyShadow/R03IR/b2_definition_source_gate.py
       - Tools/AssemblyShadow/R03IR/test_b2_definition_source_gate.py
+      - Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md
+      - Docs/AssemblyShadow/Plan/CURRENT_STATUS.md
+      - Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_PHYSICAL_DEFINITION_LIVE_IMPLEMENTATION.md
   workflow_dispatch:
 permissions:
   contents: read
@@ -29,7 +32,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: night-outlook/il2cpp_plus
-          ref: 69e4032bf5131a991d85f39910619e8ec3579eaa
+          ref: ba2750f5201e2cef8cc47fdee362d1e800e27e3c
           path: native
           filter: blob:none
           sparse-checkout: |
@@ -44,13 +47,13 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git -C demo rev-parse HEAD)" = "$GITHUB_SHA"
-          test "$(git -C native rev-parse HEAD)" = "69e4032bf5131a991d85f39910619e8ec3579eaa"
+          test "$(git -C native rev-parse HEAD)" = "ba2750f5201e2cef8cc47fdee362d1e800e27e3c"
           # Exact branch heads of the two untouched forks and the native fork
           # are checked directly without cloning or mutating their repositories.
           for spec in \
             "hybridclr:4b2774b066cfc6afd77a8c8aded6bda7ea574f55" \
             "hybridclr_unity:948c0e3b4f8891481301770115e8ba4945eea6de" \
-            "il2cpp_plus:69e4032bf5131a991d85f39910619e8ec3579eaa"; do
+            "il2cpp_plus:ba2750f5201e2cef8cc47fdee362d1e800e27e3c"; do
             repo="${spec%%:*}"
             expected="${spec#*:}"
             actual="$(git ls-remote "https://github.com/night-outlook/$repo.git" \
@@ -64,7 +67,7 @@ jobs:
             --demo "$GITHUB_WORKSPACE/demo" \
             --native "$GITHUB_WORKSPACE/native" \
             --expected-demo "$GITHUB_SHA" \
-            --expected-native 69e4032bf5131a991d85f39910619e8ec3579eaa \
+            --expected-native ba2750f5201e2cef8cc47fdee362d1e800e27e3c \
             > "$RUNNER_TEMP/b2-definition-source-result.json"
           cat "$RUNNER_TEMP/b2-definition-source-result.json"
           python3 -B - "$RUNNER_TEMP/b2-definition-source-result.json" <<'PY'
