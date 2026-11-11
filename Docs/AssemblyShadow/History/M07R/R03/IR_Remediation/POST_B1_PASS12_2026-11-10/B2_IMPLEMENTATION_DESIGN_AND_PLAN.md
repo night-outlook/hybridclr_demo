@@ -1,3 +1,11 @@
+# B2 composite TypeKey restricted implementation checkpoint (2026-11-11 UTC)
+
+The inactive native source at il2cpp_plus@272f3077eee50835284e27855352fe300362ad79 now supports owned recursively nested GENERICINST, PTR, SZARRAY, multidimensional ARRAY and qualified TypeKey argument shapes using physically registered AOT TypeDef leaves. See [complete implementation, exact CI and review](B2_COMPOSITE_TYPEKEY_IMPLEMENTATION_AND_REVIEW.md). The pure composer and actual .inl mock CI passed macOS/Ubuntu C++11/C++17 4/4 each; four-pin exact source gate passed 2/2 with 26 native/4 demo source blobs and 18 negative tests per OS.
+
+**Follow-on Primary order remains unchanged:** 1) primitive/open/Unicode original canonical TypeKey coverage and real V1 field15 byte parity; 2) terminal-safe full general field14 and execution field15 under approved class/GC/metadata lifetime contract; 3) descriptor-relative authenticated native V2 writer/envelope/independent receipt, adversarial host tests and independent review; 4) only then issue a new one-use Local Validation batch with all four pushed SHA pins, one official Unity/IL2CPP build, baseline/error19/guard15 Players, source/runtime/lifetime/perf/receipt/authentication checks together. No incomplete full-field data can populate original V2 slots. No official Unity/GameAssembly/Player was run for this source. WEB_TO_LOCAL CLOSED / NO EXECUTION; full B2/R03/H2/Human Review Gate flags false.
+
+---
+
 # R03 B2 — integrate native bounded V2 transport in the isolated Player
 
 ## Current Primary code stage — original registered AOT physical owners complete within bounded subset (2026-11-11 UTC)
