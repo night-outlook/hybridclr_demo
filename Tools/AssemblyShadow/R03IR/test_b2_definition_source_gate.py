@@ -96,6 +96,23 @@ class SourceGateTests(unittest.TestCase):
         with self.assertRaises(audit.Rejected):
             audit.source_boundary(snippets)
 
+    def test_historical_four_repo_pins_are_frozen(self):
+        for key in ("originalB1ExecutionDemo","originalB1Native",
+                    "hybridclr","hybridclr_unity"):
+            changed=copy.deepcopy(self.original)
+            changed[key]="0"*40
+            with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(changed)
+
+    def test_terminal_and_epoch_capabilities_cannot_be_promoted(self):
+        for key in ("sourceReadsAfterTerminal",
+                    "arbitraryGenericInstantiationTypeKeys",
+                    "coherentVmEpochProven"):
+            changed=copy.deepcopy(self.original)
+            changed["nativeSourceCapabilities"][key]=True
+            with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(changed)
+
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
         self.assertEqual(self.original["nativeSourceCapabilities"]["sourceReadsAfterTerminal"],False)
