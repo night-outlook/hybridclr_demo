@@ -70,7 +70,7 @@ class SourceGateTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             root=Path(td);(root/"x.h").write_bytes(b"data")
             digest=audit.blob(b"data")
-            with patch.object(audit,"git",return_value="100644 blob "+digest+"\\tx.h"):
+            with patch.object(audit,"git",return_value="100644 blob "+digest+"\tx.h"):
                 self.assertEqual(audit.verify_file(root,"x.h",digest),b"data")
             with patch.object(audit,"git",return_value=""):
                 with self.assertRaises(audit.Rejected):
