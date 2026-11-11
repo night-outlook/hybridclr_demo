@@ -188,6 +188,47 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(len(self.original["nativeSources"]),len(audit.NATIVE_REQUIRED))
         self.assertEqual(len(self.original["demoPureSources"]),len(audit.DEMO_REQUIRED))
 
+    def test_reference_unicode_fold_pinned_without_full_runtime_parity(self):
+        caps=self.original["nativeSourceCapabilities"]
+        self.assertTrue(caps["originalUnicodeAssemblyFoldBoundInVmSource"])
+        self.assertTrue(caps["originalNameTableParityHostOnly"])
+        self.assertTrue(caps["ownedUtf16FoldNoAllocationHostVerified"])
+        self.assertFalse(caps["realUnityUnicodeMetadataParityProven"])
+        self.assertFalse(caps["openGenericExecutionTypeKeysSupported"])
+        for field,value in (
+            ("originalUnicodeAssemblyFoldBoundInVmSource",False),
+            ("originalNameTableParityHostOnly",False),
+            ("ownedUtf16FoldNoAllocationHostVerified",False),
+            ("realUnityUnicodeMetadataParityProven",True),
+            ("openGenericExecutionTypeKeysSupported",True),
+        ):
+            changed=copy.deepcopy(self.original)
+            changed["nativeSourceCapabilities"][field]=value
+            with self.subTest(field=field),self.assertRaises(audit.Rejected):
+                audit.validate_contract(changed)
+
+    def test_reference_unicode_sources_and_hosts_are_all_exact_pins(self):
+        expected={
+            "libil2cpp/vm/AssemblyShadowName.h",
+            "libil2cpp/vm-utils/VmStringUtils.cpp",
+            "libil2cpp/vm-utils/VmStringUtils.h",
+            "libil2cpp/utils/StringUtils.cpp",
+            "libil2cpp/char-conversions.cpp",
+            "libil2cpp/char-conversions.h",
+            "NativeHostTests/AssemblyShadowFoldedNameMock.h",
+            "NativeHostTests/AssemblyShadowOwnedFoldedDefinitionHost.cpp",
+            "NativeHostTests/AssemblyShadowNameReferenceParityHost.cpp",
+            "NativeHostTests/ShadowNameParityShim/il2cpp-config.h",
+            ".github/workflows/r03-native-b2-folded-assembly-host.yml",
+            ".github/workflows/r03-native-b2-original-unicode-name-parity.yml",
+        }
+        self.assertTrue(expected.issubset(audit.NATIVE_REQUIRED))
+        self.assertEqual(
+            {row["path"] for row in self.original["nativeSources"]},
+            audit.NATIVE_REQUIRED)
+        self.assertEqual(len(self.original["nativeSources"]),38)
+        self.assertEqual(len(self.original["demoPureSources"]),4)
+
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
         self.assertEqual(self.original["nativeSourceCapabilities"]["sourceReadsAfterTerminal"],False)
