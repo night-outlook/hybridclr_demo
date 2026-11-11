@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "Inactive VM physical AOT TypeDef source to owned nonempty execution/R02 record; no final V2 field admission",
+  "objective": "Inactive real VM physical AOT TypeDef and bounded same-image concrete GENERICINST source to owned execution/R02 record; no complete field15 or V2 admission",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "4c900ab22735768f517d81daccfed31a3d9aeb1e",
+  "candidateNative": "20a57e58098e3476dad5459f04f9fc730c3848c1",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
@@ -18,36 +18,52 @@
       "gitBlob": "c4b4cfa9d7267a85f7d52de50e055002cc887eaa"
     },
     {
+      "path": "libil2cpp/vm/AssemblyShadowTypeKey.cpp",
+      "gitBlob": "6b23b4bad66e9a8f36c68717ef82626351018624"
+    },
+    {
+      "path": "libil2cpp/vm/GlobalMetadataFileInternals.h",
+      "gitBlob": "c36d15775854889c6ee3447956c4138c604577c6"
+    },
+    {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
       "gitBlob": "29b4e5e815d2656b54f58c9ac39989292db55de1"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
-      "gitBlob": "109f89e5775447a879a7da7c7d12c22213870e1a"
+      "gitBlob": "83f7e7b14466bbc286edefd2503226d4b36b2593"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
       "gitBlob": "4eecc15563f8911eec8f7cb1891e5d9bdc2eeffd"
     },
     {
+      "path": "libil2cpp/vm/AssemblyShadowOwnedConstructedTypeKey.h",
+      "gitBlob": "7544aa91057ce870ebf31909e132956ae3521ace"
+    },
+    {
       "path": "libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
-      "gitBlob": "d9b58570274c1bcd1559bc8b061cc3d4398c4290"
+      "gitBlob": "35a9d1bbd83c8e92a1e16c7a22ceed46b6a157a5"
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "711a3572fcea9666e2f5f084bfb3cd1ee4f26364"
+      "gitBlob": "39c7f6f679ebc88f059303c75f30a710225e67eb"
+    },
+    {
+      "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
+      "gitBlob": "157215a12416121affabddf931f35517f1a0f985"
     },
     {
       "path": ".github/workflows/r03-native-b2-definition-live-source-host.yml",
-      "gitBlob": "2095ba1ec171d15ce12378f114a6d48b4bdec9f6"
+      "gitBlob": "7e324752940dc68a738cc4321be0d1629528c5a9"
+    },
+    {
+      "path": ".github/workflows/r03-native-b2-constructed-typekey-host.yml",
+      "gitBlob": "5d4f9fc5e1be93c24806603c7df35ac99f64d6ef"
     },
     {
       "path": "NativeHostTests/README.md",
-      "gitBlob": "cb8be6bf73d276b3cbd0074e01d927588535a0a4"
-    },
-    {
-      "path": "libil2cpp/vm/GlobalMetadataFileInternals.h",
-      "gitBlob": "c36d15775854889c6ee3447956c4138c604577c6"
+      "gitBlob": "9838134ecadf946d1f527baf1306f87a8dcfbd17"
     }
   ],
   "demoPureSources": [
@@ -56,19 +72,23 @@
       "gitBlob": "4eecc15563f8911eec8f7cb1891e5d9bdc2eeffd"
     },
     {
+      "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedConstructedTypeKey.h",
+      "gitBlob": "59f2f7c7b6429533252ac30e77f95e3d769d45d9"
+    },
+    {
       "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedExecutionRows.h",
-      "gitBlob": "6f7a7c017e10c044b3465af3f2df2c4721c641ad"
+      "gitBlob": "9244a08ccae8c62156c0b8b413d4dab391683e7c"
     }
   ],
-  "testProof": "Exact native .inl mock, Mac/Linux C++11/17 × strict/ASan-UBSan × release/IL2CPP_DEBUG: 4 jobs, 16 real mock host processes; 20 scenarios and 158 assertions per run; 320 scenarios / 2528 assertions, no Unity Player or V2",
+  "testProof": "Native 4/4 C++11/17 macOS/Ubuntu source-exact mock CI, each job Release/Debug strict/sanitized (16 processes) ×31 typed scenarios, 243 assertions/execution; zero recorded sanitizer errors. Pure constructed composer 4/4 dual-OS C++11/17 × strict/sanitized, 78 assertions per process. No Unity Player.",
   "nativeSourceCapabilities": {
-    "boundedPhysicalOwnerJoin": "AOT TypeDef definitions only, nested declarations and generic definition arity",
+    "boundedPhysicalOwnerJoin": "Same-image AOT physical TypeDef (nested and generic definitions) and GENERICINST whose base and all concrete CLASS/VALUETYPE arguments are separately proven in that same image",
     "sourceReadsAfterTerminal": false,
     "arbitraryGenericInstantiationTypeKeys": false,
     "metadataReaderEpoch": "initial only",
     "coherentVmEpochProven": false,
     "sourceFirstErrorFence": "Checks B1 Empty before traversal, before record composition, after frozen record",
-    "mockScenarios": 20,
+    "mockScenarios": 31,
     "mockBuildVariants": [
       "release",
       "debug"
@@ -78,13 +98,21 @@
       "sanitized"
     ],
     "physicalClassMembershipScope": "Same-image AOT physical TypeDef subset, nested definition chain, two observed classes preserved in original registration-slot order",
-    "mockAssertionsPerExecution": 158,
+    "mockAssertionsPerExecution": 243,
     "mockProcessExecutions": 16,
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
     "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup",
     "realTypeDefinitionLayoutInclude": "#include \"vm/GlobalMetadataFileInternals.h\" from pinned IL2CPP fork",
     "unityFullAssemblyShadowCompiled": false,
-    "actualTypeDefinitionLayoutBlob": "c36d15775854889c6ee3447956c4138c604577c6"
+    "actualTypeDefinitionLayoutBlob": "c36d15775854889c6ee3447956c4138c604577c6",
+    "sameImageConcreteGenericInstantiationSupportedInMock": true,
+    "crossImageGenericArgumentsSupported": false,
+    "genericArgumentLimit": 16,
+    "genericOwnedOutputByteLimit": 4096,
+    "constructedGenericTestRun": "42979860514",
+    "standaloneGenericKeyTestRun": "42978349307",
+    "legacyTypeKeyGrammarSourceBlob": "6b23b4bad66e9a8f36c68717ef82626351018624",
+    "realUnityRuntimeIntegrationProven": false
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
