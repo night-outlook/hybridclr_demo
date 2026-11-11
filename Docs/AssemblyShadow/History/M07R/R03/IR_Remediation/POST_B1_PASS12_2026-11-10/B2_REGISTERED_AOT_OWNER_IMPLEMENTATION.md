@@ -1,5 +1,17 @@
 # R03 B2 — registered physical AOT image ownership for unobserved generic arguments
 
+## Final source correction — valid AOT assembly with zero TypeDefs (2026-11-11 UTC)
+
+**Latest reviewed native commit: `night-outlook/il2cpp_plus@8627a93f4f307c8d2c99e7edada54573a93cc312`.** The preceding `f08cb329...` source has been superseded **only** for current B2 candidate selection; its original tests and commits remain in history.
+
+**Finding / correction:** The original physical assembly registry (`s_Assemblies`) can contain a valid registered AOT assembly with `image->typeCount==0`. Such an assembly cannot own a metadata TypeDef; rejecting it would unnecessarily invalidate unrelated valid class diagnostics in fine-grained module projects. `AssemblyShadowRegisteredAotImageScan::Scan` now **skips** these empty AOT images after checking assembly token/image backreference and interpreter status. It continues to fail closed on invalid registered assembly source, over-capacity nonempty inventory, missing or ambiguous TypeDef owner, first-error publication and observed-class/registry changes. The actual unmodified source and R02 output schema remain intact.
+
+The native source-exact mock now includes a dedicated **`RegisteredEmptyAotAssembly` positive case** and strict 42-case CI threshold, plus the prior 41 source scenarios. [Native final CI 42988174617](https://github.com/night-outlook/il2cpp_plus/actions/runs/42988174617) **4/4 PASS**, macOS/Ubuntu C++11/17 × Release/Debug × strict/ASan-UBSan: **16 host executions, 672 case executions, 7,776 assertions**, with no reported sanitizer errors. [Final 23-native/3-demo exact-source audit 42988434479](https://github.com/night-outlook/hybridclr_demo/actions/runs/42988434479) **2/2 PASS** with the unchanged four-fork historical pins, updated native scanner/mock/workflow source blobs, 16 fail-closed source-admission tests per OS and explicit `PassedInactiveSourceOnly_NotFullV2` receipt. Neither run compiled the real `Assembly.cpp` in Unity/IL2CPP or executed a Player.
+
+**Disposition unchanged:** no full canonical execution TypeKey grammar, real V1 field15 parity, terminal-safe metadata snapshot, full field14/15 V2 transport or whole-VM epoch. `readyForNativeV2FieldCapture=false; nativeV2TransportImplemented=false; runtimeAcceptance=false; R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false`. Original oneuse-12 B1 real-Player 19/19 focused PASS remains immutable; `WEB_TO_LOCAL` remains **CLOSED / NO EXECUTION**.
+
+---
+
 Date: 2026-11-11 UTC. Owner: **Primary Implementation**. Source branch: `codex/assembly-shadow-r01b-h1`.
 
 **Outcome:** the previously inactive, bounded VM execution source can now construct a canonical concrete TypeDef argument key even when its owning physical AOT image has **no observed class**, provided the image comes from the original registered physical assembly table. This is a limited **healthy-time / initial-session source subset**, not a complete V1 execution snapshot, V2 field15, coherent VM epoch or runtime acceptance.
