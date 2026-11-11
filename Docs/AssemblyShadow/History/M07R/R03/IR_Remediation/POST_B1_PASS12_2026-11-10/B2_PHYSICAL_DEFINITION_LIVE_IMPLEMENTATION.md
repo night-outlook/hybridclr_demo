@@ -1,5 +1,15 @@
 # R03 B2 — inactive real VM physical TypeDef execution source implementation and review
 
+## Latest Primary revision: terminal race, Release/Debug parity, final native pin (2026-11-11 UTC)
+
+The final native source is **`night-outlook/il2cpp_plus@ba2750f5201e2cef8cc47fdee362d1e800e27e3c`**, an additive successor to the first restricted-source candidate `69e4032bf5131a991d85f39910619e8ec3579eaa` discussed below. Do not treat the earlier SHA as current. The new source also rejects an originating **B1 first-error publication racing the actual physical enumeration/record composition**, with explicit checks after collecting rows and after freezing record output. Before this correction, unchanged execution-registry/R02 revisions alone could have incorrectly allowed a fresh B1 error to coexist with a "successful" healthy capture. An additional mock race publishes actual first-error19 inside `il2cpp_class_for_each`, verifies typed `SourceChanged` and output invalidation, then checks the B1 first record remains immutable. This is an observational rejection check, **not** a global barrier between the final check and any caller.
+
+The mock also checks both **`IL2CPP_DEBUG=0` (Release) and `IL2CPP_DEBUG=1` (Debug)** pointer-format/availability flags against the unchanged execution serializer. This catches potential regressions in static-storage pointer output that would be invisible in Release-only testing. Exact final-source [native CI run 42974458979](https://github.com/night-outlook/il2cpp_plus/actions/runs/42974458979) was **4/4 completed/success** at the final native SHA: macOS/Ubuntu × C++11/17, each with Release+Debug and strict+ASan/UBSan (16 native host executions), **18 cases and 132 assertions each (288 scenarios / 2,112 assertions total)**, no sanitizer error. All receipts retain `realUnity=false`, `physicalClassProvenInRealPlayer=false`, `fullCanonicalTypeKeys=false`, `nativeV2TransportImplemented=false`, and `runtimeAcceptance=false`.
+
+The [source manifest](https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json) and [cross-repo CI](https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/.github/workflows/r03-ir-b2-definition-four-pin-source.yml) now reference this latest native SHA and latest exact Git blobs rather than the original candidate. Source-gate success is still only `PassedInactiveSourceOnly_NotFullV2`, not official Unity SDK compile or admission of complete terminal field15. The historical initial native mock [42973169175](https://github.com/night-outlook/il2cpp_plus/actions/runs/42973169175) (17 cases) and earlier B1/oneuse-12 evidence remain immutable.
+
+---
+
 Date: 2026-11-11 UTC. Owner: Primary Implementation. **This is actual new `il2cpp_plus` VM source, independently compiled against a mocked VM ABI, but it is INACTIVE and has not been built or run by Unity.** No Local Validation or R03 acceptance is authorized.
 
 ## 1. Exact source scope and immutable history
