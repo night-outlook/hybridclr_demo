@@ -6,6 +6,7 @@
 // register witness or a correct canonical metadata TypeKey.
 #include "BoundedOwnedDefinitionTypeKey.h"
 #include "BoundedOwnedConstructedTypeKey.h"
+#include "BoundedOwnedCompositeTypeKey.h"
 #include <type_traits>
 #include <array>
 #include <cstddef>
@@ -133,8 +134,9 @@ public:
              const Flags& fields) noexcept {
         static_assert(
             std::is_same<TrustedKey,::r03_b2_owned_definition_key::Capture>::value ||
-            std::is_same<TrustedKey,::r03_b2_owned_constructed_type_key::Capture>::value,
-            "Only canonical owned definition/constructed TypeKeys may enter rows");
+            std::is_same<TrustedKey,::r03_b2_owned_constructed_type_key::Capture>::value ||
+            std::is_same<TrustedKey,::r03_b2_owned_composite_type_key::Capture>::value,
+            "Only canonical owned definition/constructed/composite TypeKeys may enter rows");
         if(stage_!=Stage::Collecting)return Fail(Error::NotComplete);
         if(count_>=expected_)return Fail(Error::CountMismatch);
         if(registrationSlot>=kMaximumRegistrationSlots)return Fail(Error::InvalidSlot);
