@@ -1,4 +1,4 @@
-# Current Primary — B2 native physical TypeDef source at fd1; Local CLOSED (2026-11-11 UTC)
+# Current Primary — B2 native physical TypeDef source at 4c900; Local CLOSED (2026-11-11 UTC)
 
 **New actual native source (still inactive):** `night-outlook/il2cpp_plus@4c900ab22735768f517d81daccfed31a3d9aeb1e` adds `AssemblyShadow::TryCaptureBoundedDefinitionExecutionLive` in the VM, separate from the legacy getter. It binds observed registry/witness identities to physical first-match AOT TypeDefs under `g_MetadataLock` and the initial-session metadata Reader, validates same-image nested ancestry and definition arity, copies bounded owned source rows and outputs the original native frozen execution/R02 schema for the **restricted healthy-time subset**. It refuses staged generic/declaring indices, malformed/foreign/cyclic source, reversed-callback ordering mismatches, B1 terminal publication racing source collection, stale metadata admission, and incomplete registry/counter snapshots. It **does not** support full generic/array/qualified/unicode-assembly TypeKeys or complete postterminal V2 field15. No Unity native Player has built this new source yet.
 
