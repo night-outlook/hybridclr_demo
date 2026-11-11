@@ -1,5 +1,15 @@
 # R03 B2 — integrate native bounded V2 transport in the isolated Player
 
+## Current Primary checkpoint: unobserved but registered AOT owners (2026-11-11 UTC)
+
+**Implemented and tested in the inactive native VM source:** [original registered-AOT owner implementation/review](B2_REGISTERED_AOT_OWNER_IMPLEMENTATION.md) at `il2cpp_plus@f08cb329fb19eaa47eaa8075e62dbc3f2d42cf8a`. The original `Assembly.cpp::s_Assemblies` physical registry can now synchronously supply up to 1,024 AOT image identities under its existing lock, while the caller holds `g_MetadataLock` and the initial-session metadata Reader. An image with no physically matched observed class can provide a concrete TypeDef generic argument owner, but the **observed source class** must still be matched by both physical iterator passes. Two raw registry snapshots are compared under lock before releasing borrowed image metadata; missing/ambiguous/mutated source fails closed. Supported forms remain bounded to physical TypeDefs and canonical `GENERICINST` of concrete TypeDef arguments.
+
+**Exact source-only evidence:** [Mac/Linux C++11/17 native source-mock 42986790417](https://github.com/night-outlook/il2cpp_plus/actions/runs/42986790417), **4/4 PASS**, 16 processes / 656 mock cases / 7,408 assertions, plus [23-native/3-demo exact source CI 42987239404](https://github.com/night-outlook/hybridclr_demo/actions/runs/42987239404), **2/2 PASS**. No official Unity compilation or Player occurred; actual full V1 field15 parity, real metadata lifetime, terminal full field14/15 capture and native V2 descriptor transaction remain open.
+
+**Earliest next Primary work:** Complete supported composite type grammar from authenticated physical metadata and prove **full original V1 execution-class byte equivalence** on real Unity classes without replacing missing fields with B1 summaries; then establish terminal-safe general field14/execution field15 source custody. Only then connect the existing bounded V2 native transport. All acceptance/H2/Human Review Gate flags stay false and `WEB_TO_LOCAL` is **CLOSED / NO EXECUTION**.
+
+---
+
 ## Current Primary stage: bounded observed cross-image metadata owner discovery (2026-11-11 UTC)
 
 **Implemented in native, inactive:** [cross-image AOT owner implementation/source review](B2_BOUNDED_CROSS_IMAGE_AOT_OWNER_IMPLEMENTATION.md), `il2cpp_plus@cfb33d58432b05f3d28052dfb88677a0561f6c93`. The matched-observed-class image inventory is built by a first physical iterator pass, then a second pass formats owned rows against that inventory. Both occur under one original `g_MetadataLock` and initial-session metadata Reader. Limits: 64 observed physical images, 8,192 TypeDefs/image, 65,536 aggregate owner lookups, 16 arguments/key and 4,096 bytes/key. A canonical cross-image generic TypeDef argument is admitted only when its owner image also has an independently matched observed class. Duplicates, missing/ambiguous owner, class disappearance, encoded index and exceeded capacity remain typed failures.
