@@ -127,12 +127,21 @@ class SourceGateTests(unittest.TestCase):
 
     def test_cross_image_physical_inventory_capability_cannot_be_overstated(self):
         for key,bad in (
-            ("crossImageOnlyWhenBothImagesMatchedObservedClass",False),
-            ("crossImageUnmatchedArgumentFailsClosed",False),
+            ("crossImageOnlyWhenBothImagesMatchedObservedClass",True),
+            ("crossImageUnmatchedArgumentFailsClosed",True),
+            ("crossImageUnregisteredArgumentFailsClosed",False),
+            ("registeredUnobservedArgumentSupportedInMock",False),
+            ("registeredAotImageSetDoubleChecked",False),
+            ("registeredImageSetOnlyObservational",False),
+            ("originalAssemblyRegistrySnapshotIncompleteForFullVmEpoch",False),
+            ("realAssemblyCppUnityCompiled",True),
+            ("runtimeAcceptanceProven",True),
             ("ambiguousMetadataOwnerFailsClosed",False),
             ("crossImageGenericArgumentsSupportedInMock",False),
             ("allPhysicalMetadataImagesEnumerated",True),
             ("physicalImageLimit",65),
+            ("registeredAotImageLimit",1025),
+            ("registeredAssemblyRegistryVisits",1),
             ("physicalEnumerationPasses",1)):
             changed=copy.deepcopy(self.original)
             changed["nativeSourceCapabilities"][key]=bad
