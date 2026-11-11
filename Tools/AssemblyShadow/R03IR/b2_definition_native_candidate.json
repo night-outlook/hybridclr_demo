@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "Inactive B2 physical AOT source: bounded nested GENERICINST/PTR/SZARRAY/ARRAY/qualified TypeKey arguments from registered physical AOT TypeDef owners; no complete V2 fields or transport",
+  "objective": "Inactive physical AOT TypeDef source now uses original AssemblyShadowName NextFolded Unicode case folding, with reference name/table host comparison and bounded UTF-8 output; full V1 field15 and V2 remain blocked",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "272f3077eee50835284e27855352fe300362ad79",
+  "candidateNative": "db5354a9befd5cfd02f907d3169c8106e0a29305",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
@@ -27,15 +27,15 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
-      "gitBlob": "8e20012cd06f2ca22132cd08b5fb4ff3a5e3e716"
+      "gitBlob": "80200e89b6292503a83f6e57693332fd41dfe110"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
-      "gitBlob": "e8ee1d092482b91750349eef8b93d1a6ed3af75a"
+      "gitBlob": "e0b8746881952f005c33492d25820f3351be8426"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
-      "gitBlob": "4eecc15563f8911eec8f7cb1891e5d9bdc2eeffd"
+      "gitBlob": "4552c47dce7032f5cf922b46bf69be2eebed7d69"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedConstructedTypeKey.h",
@@ -47,7 +47,7 @@
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "bfb73e70cc3eddf6a1dddb212d727ae9270e3f3a"
+      "gitBlob": "511a3731eda90f508b2802ac59f4debc07af01a7"
     },
     {
       "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -55,7 +55,7 @@
     },
     {
       "path": ".github/workflows/r03-native-b2-definition-live-source-host.yml",
-      "gitBlob": "459c1508d04612a2c220e335a4bf74193e6ed0e1"
+      "gitBlob": "e60d9574c6c2d523fb82422d468a0bb3fc099a54"
     },
     {
       "path": ".github/workflows/r03-native-b2-constructed-typekey-host.yml",
@@ -63,7 +63,7 @@
     },
     {
       "path": "NativeHostTests/README.md",
-      "gitBlob": "1a2d0b1789b5f233db958fa4e73690c45c159182"
+      "gitBlob": "1c973bb8d8315bba23c90fb54401b2bdcf033dcd"
     },
     {
       "path": "libil2cpp/il2cpp-runtime-metadata.h",
@@ -112,12 +112,60 @@
     {
       "path": ".github/workflows/r03-native-b2-composite-typekey-host.yml",
       "gitBlob": "b57db6c532d10d24cb4e366b451f1f2f43ac8787"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowName.h",
+      "gitBlob": "dc2604bc7ae73236b39185de3121aded08ba7e79"
+    },
+    {
+      "path": "libil2cpp/vm-utils/VmStringUtils.cpp",
+      "gitBlob": "9c2414ac6b77cb0aefb6e8899e98d3bb25d28123"
+    },
+    {
+      "path": "libil2cpp/vm-utils/VmStringUtils.h",
+      "gitBlob": "acfbccd0cbc87554e9f3dc66ad5e5fc8fd631f60"
+    },
+    {
+      "path": "libil2cpp/utils/StringUtils.cpp",
+      "gitBlob": "e99048efafb699468ea264e4436fc5852f6fd890"
+    },
+    {
+      "path": "libil2cpp/char-conversions.cpp",
+      "gitBlob": "88b1cb16a0edc687f21eeb9d0e34482baa17b25c"
+    },
+    {
+      "path": "libil2cpp/char-conversions.h",
+      "gitBlob": "54fb49547215df8f2f419b18786e485b18eb9d5e"
+    },
+    {
+      "path": "NativeHostTests/AssemblyShadowFoldedNameMock.h",
+      "gitBlob": "9771eff2c5bf5186832981984e451d7f0e655875"
+    },
+    {
+      "path": "NativeHostTests/AssemblyShadowOwnedFoldedDefinitionHost.cpp",
+      "gitBlob": "4ccd223ca32ae747a11b964e9fb86b2712386448"
+    },
+    {
+      "path": "NativeHostTests/AssemblyShadowNameReferenceParityHost.cpp",
+      "gitBlob": "5f2228e066adb247182980b0bc3fd9c6668eef44"
+    },
+    {
+      "path": "NativeHostTests/ShadowNameParityShim/il2cpp-config.h",
+      "gitBlob": "5f796904a6ef40842560da86bce1d840fa0089f6"
+    },
+    {
+      "path": ".github/workflows/r03-native-b2-folded-assembly-host.yml",
+      "gitBlob": "823e3755eacfbcc9d82ee894eac860d7a13cb845"
+    },
+    {
+      "path": ".github/workflows/r03-native-b2-original-unicode-name-parity.yml",
+      "gitBlob": "a485ed089d852076ec326fec7e7b0ba0fc61c1f5"
     }
   ],
   "demoPureSources": [
     {
       "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedDefinitionTypeKey.h",
-      "gitBlob": "4eecc15563f8911eec8f7cb1891e5d9bdc2eeffd"
+      "gitBlob": "4552c47dce7032f5cf922b46bf69be2eebed7d69"
     },
     {
       "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedConstructedTypeKey.h",
@@ -132,7 +180,7 @@
       "gitBlob": "d930418031706006e10a41ade08f70ba6454bc47"
     }
   ],
-  "testProof": "Actual inactive native .inl mock and pure composite-host dual-OS C++11/17 CI; inspect final job status separately. Not official Unity/GameAssembly/Player, terminal V2 or full legacy field15 parity.",
+  "testProof": "Actual native inactive .inl source-mock host: 55 scenarios and 924 assertions/process (Ubuntu C++11/17 completed success; macOS pending at first review). Pure owned folded host and original Name.h/table host passed Ubuntu C++11/17; OS completion must be rechecked. These are NOT official Unity/Player, metadata lifetime, terminal full-field or native V2 transport tests.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -140,7 +188,7 @@
     "metadataReaderEpoch": "initial only",
     "coherentVmEpochProven": false,
     "sourceFirstErrorFence": "Checks B1 Empty before traversal, before record composition, after frozen record",
-    "mockScenarios": 50,
+    "mockScenarios": 55,
     "mockBuildVariants": [
       "release",
       "debug"
@@ -150,7 +198,7 @@
       "sanitized"
     ],
     "physicalClassMembershipScope": "The observed source class must physically match its registration witness; registered AOT images without an observed class may own concrete TypeDef generic arguments; output rows preserve registry-slot order",
-    "mockAssertionsPerExecution": 640,
+    "mockAssertionsPerExecution": 924,
     "mockProcessExecutions": 16,
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
     "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup",
@@ -171,7 +219,7 @@
     "crossImageGenericArgumentsSupportedInMock": true,
     "ambiguousMetadataOwnerFailsClosed": true,
     "allPhysicalMetadataImagesEnumerated": false,
-    "nativeSourceCiRun": "42993818837",
+    "nativeSourceCiRun": "43011988073",
     "physicalIteratorSourceBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6",
     "recordOriginalLegacyGrammarUnchanged": true,
     "registeredAotImageLimit": 1024,
@@ -185,7 +233,7 @@
     "runtimeAcceptanceProven": false,
     "unrestrictedCrossImageGenericArgumentsSupported": false,
     "unregisteredAotArgumentFailsClosed": true,
-    "supportedTypeShapeScope": "AOT definition and bounded GENERICINST with recursively nested GENERICINST, PTR, SZARRAY, ARRAY and qualifiers, all leaves registered physical CLASS/VALUETYPE TypeDefs. Primitive/open/Unicode-folded arguments not supported.",
+    "supportedTypeShapeScope": "Bounded physically registered AOT CLASS/VALUETYPE TypeDefs; Unicode-folded original assembly names; nested GENERICINST/PTR/SZARRAY/ARRAY/qualifiers using only owner-verified TypeDef leaves. Primitive and open VAR/MVAR types, terminal full V1 field15 and complete V2 fields are not supported.",
     "zeroTypeDefinitionRegisteredAotImagesSkipped": true,
     "registeredAotRegistrySource": "original physical Assembly::s_Assemblies under s_assemblyLock; zero-type AOT images skipped",
     "boundedCompositeArgumentShapesInMock": true,
@@ -193,7 +241,16 @@
     "arrayDimensionListLimit": 32,
     "compositeCoverageReceiptRevokedOnFailure": true,
     "arbitraryPrimitiveGenericArgumentKeys": false,
-    "fullLegacyNonemptyExecutionParityProven": false
+    "fullLegacyNonemptyExecutionParityProven": false,
+    "originalUnicodeAssemblyFoldBoundInVmSource": true,
+    "originalNameTableParityHostOnly": true,
+    "ownedUtf16FoldNoAllocationHostVerified": true,
+    "realUnityUnicodeMetadataParityProven": false,
+    "openGenericExecutionTypeKeysSupported": false,
+    "originalUnicodeNameReferenceCiRun": "43012431935",
+    "pureFoldedUnicodeCiRun": "43011964681",
+    "unicodeNameReferenceBytesReviewed": true,
+    "unicodeNameVmRuntimeUnproven": true
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
