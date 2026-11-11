@@ -75,7 +75,10 @@ jobs:
             --native "$GITHUB_WORKSPACE/native" \
             --expected-demo "$GITHUB_SHA" \
             --expected-native 3b48459f0f001cddd3d05ed51d8705a331aeaa6f \
-            > "$RUNNER_TEMP/b2-definition-source-result.json"
+            > "$RUNNER_TEMP/b2-definition-source-result.json" || {
+              cat "$RUNNER_TEMP/b2-definition-source-result.json"
+              exit 2
+            }
           cat "$RUNNER_TEMP/b2-definition-source-result.json"
           python3 -B - "$RUNNER_TEMP/b2-definition-source-result.json" <<'PY'
           import json,sys
