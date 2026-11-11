@@ -79,6 +79,14 @@ def validate_contract(m:dict)->None:
                 "Source roster format: "+key)
         require({row["path"] for row in rows}==required,
                 "Exact source roster: "+key)
+        for row in rows:
+            require(type(row["gitBlob"]) is str and
+                    re.fullmatch("[0-9a-f]{40}",row["gitBlob"]) is not None,
+                    "Source blob ID: "+row["path"])
+            require(type(row["path"]) is str and row["path"] and
+                    ".." not in Path(row["path"]).parts and
+                    not row["path"].startswith("/"),
+                    "Noncanonical source entry")
     for key in ("readyForNativeV2FieldCapture","nativeV2TransportImplemented",
                 "runtimeAcceptance","R03Accepted","H2Passed",
                 "ReadyForHumanReviewGate"):
