@@ -140,6 +140,7 @@ class SourceGateTests(unittest.TestCase):
             ("allPhysicalMetadataImagesEnumerated",True),
             ("physicalImageLimit",65),
             ("registeredAotImageLimit",1025),
+            ("zeroTypeDefinitionRegisteredAotImagesSkipped",False),
             ("registeredAssemblyRegistryVisits",1),
             ("physicalEnumerationPasses",1)):
             changed=copy.deepcopy(self.original)
