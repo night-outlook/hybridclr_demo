@@ -29,6 +29,7 @@ jobs:
           filter: blob:none
           sparse-checkout: |
             Tools/AssemblyShadow/R03IR
+            Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md
       - uses: actions/checkout@v4
         with:
           repository: night-outlook/il2cpp_plus
@@ -47,6 +48,8 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git -C demo rev-parse HEAD)" = "$GITHUB_SHA"
+          grep -Fqx "# Primary Implementation → Local Validation — CLOSED / NO EXECUTION" \
+            demo/Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md
           test "$(git -C native rev-parse HEAD)" = "ba2750f5201e2cef8cc47fdee362d1e800e27e3c"
           # Exact branch heads of the two untouched forks and the native fork
           # are checked directly without cloning or mutating their repositories.
