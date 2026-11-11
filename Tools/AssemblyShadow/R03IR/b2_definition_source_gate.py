@@ -99,11 +99,13 @@ def validate_contract(m:dict)->None:
     require(type(c) is dict and
             c.get("sourceReadsAfterTerminal") is False and
             c.get("arbitraryGenericInstantiationTypeKeys") is False and
-            c.get("crossImageGenericArgumentsSupported") is False and
+            c.get("unrestrictedCrossImageGenericArgumentsSupported") is False and
             c.get("crossImageGenericArgumentsSupportedInMock") is True and
-            c.get("crossImageOnlyWhenBothImagesMatchedObservedClass") is False and
-            c.get("crossImageUnmatchedArgumentFailsClosed") is False and
             c.get("crossImageUnregisteredArgumentFailsClosed") is True and
+            c.get("unregisteredAotArgumentFailsClosed") is True and
+            "crossImageGenericArgumentsSupported" not in c and
+            "crossImageOnlyWhenBothImagesMatchedObservedClass" not in c and
+            "crossImageUnmatchedArgumentFailsClosed" not in c and
             c.get("registeredUnobservedArgumentSupportedInMock") is True and
             c.get("registeredAotImageLimit")==1024 and
             c.get("registeredAssemblyRegistryVisits")==2 and
