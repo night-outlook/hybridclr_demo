@@ -1,5 +1,65 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current Primary candidate — composite physical AOT TypeKeys; LOCAL NOT AUTHORIZED (2026-11-11 UTC)
+
+**Authority: CLOSED / NO EXECUTION.** This is a committed Primary-owned implementation checkpoint and a **conditional future single-batch validation design**, not a runnable Local Validation order. Any Local Agent presented with this source must report NoExecutionAuthority, without running Unity, Player, build scripts, native linker or any new one-use cycle. Local must not implement missing field source, build transport, or repair architectural gaps. Do not infer oneuse-13 or reuse the consumed oneuse-12 output roots.
+
+### Identity and exact source/branch pins
+
+All canonical remotes resolve to https://github.com/night-outlook/<repo>.git; use existing verified access through GitHub Connector and verify current branches independently. Worktree paths below are the project **default expected** Mac layout, NOT a claim that this web environment inspected the local machine. Local must check each actual git remote/branch/HEAD and record any different absolute worktree root before use.
+
+| Repository | Default local path | Branch | Current authoritative pin |
+| --- | --- | --- | --- |
+| night-outlook/hybridclr_demo | /Users/ah/GitHub/hybridclr/hybridclr_demo | codex/assembly-shadow-r01b-h1 | latest pushed branch HEAD from GitHub, verify before any subsequent authorization |
+| night-outlook/hybridclr | /Users/ah/GitHub/hybridclr/hybridclr | codex/assembly-shadow-r01b-h1 | 4b2774b066cfc6afd77a8c8aded6bda7ea574f55 |
+| night-outlook/hybridclr_unity | /Users/ah/GitHub/hybridclr/hybridclr_unity | codex/assembly-shadow-r01b-h1 | 948c0e3b4f8891481301770115e8ba4945eea6de |
+| night-outlook/il2cpp_plus | /Users/ah/GitHub/hybridclr/il2cpp_plus | codex/assembly-shadow-r01b-h1 | 272f3077eee50835284e27855352fe300362ad79 |
+
+The exact **26 native + four demo** implementation, source ABI and CI Git blobs are in [the source manifest](../../Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json). Git branch HEAD at the time of executing is authoritative for hybridclr_demo because this document itself changes that Git SHA; the final chat handoff may supply a fixed four-SHA tuple only after its final remote readback.
+
+**Native/package/build pins:** Unity 2022.3.62f2 macOS ARM64; IL2CPP ON, Release diagnostics2 in isolated R03 Player; C++11 compile environment as evidenced by consumed oneuse-12; HybridCLR interpreter source 4b2774...; HybridCLR Unity package 948c0e...; native IL2CPP fork 272f3077...; generated method bridge and GameAssembly binaries must be hashed from the actual future Unity build and may not be invented or reused. The original immutable B1 oneuse-12 real Player executed against a **different** exact native source at 8aa8d093... and demo 2d690bb2...; do not call its result current B2 verification.
+
+### Primary implementation completed and test receipts
+
+The inactive native source now formats bounded composite original TypeKeys from independently authenticated physical AOT TypeDef leaves: simple/nested definitions, nested constructed GENERICINST, PTR, SZARRAY, ranked ARRAY sizes/bounds and original native qualifiers. It retains original V1 getters and B1 first-error producer, all registered physical AOT image and class-witness provenance, reader/lock/registry/R02/B1 source fences, registry-slot-order output and fail-closed source revocation. Added source receipt flags report supported shape observations but cannot claim a whole-VM epoch. Max 4,096 bytes/key, eight composite levels, 16 args/instantiation, 32 entries/array dimension-list, 65,536 owner lookups, 1,024 registered AOT image owners, 64 observed images, 8,192 TypeDefs/image.
+
+- [Pure C++11/17 composite host CI 42992930075](https://github.com/night-outlook/il2cpp_plus/actions/runs/42992930075): 4/4 completed/success, Mac/Linux release/debug strict/sanitized; standalone allocator exclusion.
+- [Actual new native .inl source-mock CI 42993897217](https://github.com/night-outlook/il2cpp_plus/actions/runs/42993897217): 4/4 completed/success, 50 typed mock scenarios per process, Mac/Linux C++11/C++17. This is **mocked VM**, not official Unity compilation.
+- [Four-fork 26 native/4 demo source audit 42994963528](https://github.com/night-outlook/hybridclr_demo/actions/runs/42994963528): 2/2 completed/success; 18 source/admission negative tests per OS; all full V2 and human approval flags remain false.
+- [Independent source review and conditional matrix](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_COMPOSITE_TYPEKEY_IMPLEMENTATION_AND_REVIEW.md). [Current plan](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_IMPLEMENTATION_DESIGN_AND_PLAN.md).
+
+The only acceptable machine disposition for these tests is PassedInactiveSourceOnly_NotFullV2. Neither Unity GameAssembly, real Player, complete field14/15, source/GC/terminal metadata lifetime, V2 file/envelope or first externally authenticated recovery has been tested for this candidate. The old B1 oneuse-12 19/19 focused PASS is historical and consumed, not an acceptance elevation.
+
+### Remaining Primary-owned blockers; no Local fixes permitted
+
+1. Complete original canonical primitive, generic parameter VAR/MVAR/declaring-method and Unicode assembly folding metadata sources; prove byte/semantic identity against real original V1 execution in class-empty, nonempty, nested, array, generic and pointer/qualifier cases.
+2. Complete terminal-safe **full** field14 finalDiagnostics and field15 finalExecutionDiagnostics with approved metadata/class/GC lifetime and source epoch, or formally review a separately versioned reduced schema. The current wire field14/15 contract explicitly forbids substituting a B1 first-error, null, or partial class-only source.
+3. Integrate a single-owner no-reentry bounded native V2 encoder and descriptor-relative POSIX artifact/envelope transaction, externally verified identity receipt and independent strict reader; negative symlink/path, torn-write, duplicate, race and end-of-lifetime tests.
+4. Complete independent source review and source-pin/CI gate across all four repos, then publish new **fresh exact-four-SHA** authorization and new absent one-use output roots, host/SDK/capacity/custody admission, actual command and expected evidence.
+
+These are nontrivial Primary Implementation changes. Do not hand them to Local Validation. Original independent full R03 review FAIL, High IR-R03-01/02, original-S strict custody Blocked and B3 whole-VM epoch/GC/RSS/RC/P/E remain open.
+
+### Future single-batch Local Validation — run only after reopening this gate
+
+A single eventual locally approved run shall use one exact Git tuple, one official Unity build, three fresh independent Players and separately sealed host/native evidence, with no prior root reuse. Group the following investigations so one run answers as many independent issues as practical:
+
+| Group | Explicit precondition / test | Evidence to retain |
+| --- | --- | --- |
+| 0. Admission | All four clean exact commits, source manifest negative gate, official Unity2022.3.62f2/SDK, archived Original S, two fresh >=60s capacity samples and approved absent owner-only roots | Branch/sha/clean-tree receipts, environment, source audit, capacity, original-S custody and root provenance |
+| 1. Real compiler/link | Exact Unity C++11 Bee build, VM overlay file roster, generated method bridge, source/blob/input hashes, post-link global new/delete exclusion | Compiler/link logs, BuildReport, source hashes, GameAssembly UUID/hash, nm symbol table, generated table |
+| 2. Three positive Players | Baseline Empty 0, initializer failure19 native origin2, captured generic guard15 origin1, exact V1 and native B1 reason equality, real TypeDef source and nonempty canonical TypeKeys | Distinct PID/nonce/request, build/fixture identities, literal full V1 field14+field15 before terminal and frozen full V2 after event, strict equality and class/owner traces |
+| 3. Native V2 custody | Complete field14+15 immutable sources, artifact-first/envelope-last descriptor relative exclusive writes, independently bound identity and first recovery | binary and JSON artifact raw bytes, source owner/size/SHA, dev/inode/fd, independently authenticated receipt and strict reader result |
+| 4. Negative/adversarial | Source epoch/registry/counter drift, ambiguous owner, unsupported class shape, over budget, postterminal, symlink and torn artifact, duplicate finalize or conflicting nonce | Typed fail-closed diagnostics, unchanged first event, rejection receipts, no false product seal |
+| 5. Cross checks and stability | metadata Reader teardown, repeated fresh startup/shutdown, GC/RSS/perf/first call, independent product seal and provenance consistency | OS crash/Player logs, GC/RSS/perf samples, unchanged AOT canary, independent product manifest and local report |
+
+No batch runner is currently approved; no exact new output directory or one-use label has been reserved. These requirements are **planning**, not authorization. Fresh resource and source verification must be re-evaluated when Primary issues new authorized handoff. Subsequent unblocked Local Agent must do bounded, locally closed-loop modifications only; substantive findings go into RETURN_TO_WEB.md and are fixed here in Primary.
+
+**Current product flags:** readyForNativeV2FieldCapture=false; nativeV2TransportImplemented=false; firstRecoveryAuthenticatedV2=false; runtimeAcceptance=false; qualificationApproved=false; fullLegacyRegressionAcceptance=false; R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; wholeVmEpoch=NotProven. PureInterpreter disabled; no H2/M08A/X02/SNAP-01 or Human Review Gate self-approval.
+
+**Next agent read order (even if only read-only):** Docs/AssemblyShadow/README.md → Handoff/WEB_TO_LOCAL.md → B2_COMPOSITE_TYPEKEY_IMPLEMENTATION_AND_REVIEW.md → candidate manifest → Handoff/LOCAL_VALIDATION.md and RETURN_TO_WEB.md for history. While gate remains closed: Local response exactly NoExecutionAuthority; do not perform any new executable Local Validation action.
+
+---
+
 ## Current B2 source — registered AOT images including empty assemblies (2026-11-11 UTC)
 
 **Local Validation is NOT authorized.** The exact native source on `codex/assembly-shadow-r01b-h1` is now `night-outlook/il2cpp_plus@8627a93f4f307c8d2c99e7edada54573a93cc312`, with fixed `hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, `hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de` and current `hybridclr_demo` branch HEAD to be read from GitHub. The [exact 23-native/3-demo source manifest](../../Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json) pins all relevant implementation/ABI/CI Git blobs.
