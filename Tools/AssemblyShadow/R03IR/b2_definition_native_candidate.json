@@ -56,7 +56,7 @@
       "gitBlob": "6f7a7c017e10c044b3465af3f2df2c4721c641ad"
     }
   ],
-  "testProof": "Exact native-source .inl mock Mac/Linux C++11/17 release/debug strict/sanitized: 16 host processes, 20 cases and 158 assertions each (320 mock scenarios, 2528 assertions); no Unity Player, no V2",
+  "testProof": "Exact native .inl mock, Mac/Linux C++11/17 × strict/ASan-UBSan × release/IL2CPP_DEBUG: 4 jobs, 16 real mock host processes; 20 scenarios and 158 assertions per run; 320 scenarios / 2528 assertions, no Unity Player or V2",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "AOT TypeDef definitions only, nested declarations and generic definition arity",
     "sourceReadsAfterTerminal": false,
@@ -73,7 +73,11 @@
       "strict",
       "sanitized"
     ],
-    "physicalClassMembershipScope": "Initial-session AOT physical TypeDef subset under metadata lock, two-class original registration order"
+    "physicalClassMembershipScope": "Same-image AOT physical TypeDef subset, nested definition chain, two observed classes preserved in original registration-slot order",
+    "mockAssertionsPerExecution": 158,
+    "mockProcessExecutions": 16,
+    "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
+    "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup"
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
