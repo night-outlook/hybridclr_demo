@@ -157,6 +157,37 @@ class SourceGateTests(unittest.TestCase):
             with self.subTest(key=key),self.assertRaises(audit.Rejected):
                 audit.validate_contract(changed)
 
+    def test_composite_contract_is_bounded_and_never_full_v2(self):
+        caps=self.original["nativeSourceCapabilities"]
+        self.assertIs(caps["boundedCompositeArgumentShapesInMock"],True)
+        self.assertIs(caps["fullLegacyNonemptyExecutionParityProven"],False)
+        self.assertIs(caps["arbitraryPrimitiveGenericArgumentKeys"],False)
+        for field,value in (
+            ("boundedCompositeArgumentShapesInMock",False),
+            ("compositeMaximumDepth",9),
+            ("arrayDimensionListLimit",33),
+            ("compositeCoverageReceiptRevokedOnFailure",False),
+            ("arbitraryPrimitiveGenericArgumentKeys",True),
+            ("fullLegacyNonemptyExecutionParityProven",True),
+        ):
+            changed=copy.deepcopy(self.original)
+            changed["nativeSourceCapabilities"][field]=value
+            with self.subTest(field=field),self.assertRaises(audit.Rejected):
+                audit.validate_contract(changed)
+
+    def test_pure_composite_header_and_host_are_source_pinned(self):
+        self.assertIn("libil2cpp/vm/AssemblyShadowOwnedCompositeTypeKey.h",
+                      audit.NATIVE_REQUIRED)
+        self.assertIn("NativeHostTests/AssemblyShadowOwnedCompositeTypeKeyHost.cpp",
+                      audit.NATIVE_REQUIRED)
+        self.assertIn(".github/workflows/r03-native-b2-composite-typekey-host.yml",
+                      audit.NATIVE_REQUIRED)
+        self.assertIn(
+            "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedCompositeTypeKey.h",
+            audit.DEMO_REQUIRED)
+        self.assertEqual(len(self.original["nativeSources"]),len(audit.NATIVE_REQUIRED))
+        self.assertEqual(len(self.original["demoPureSources"]),len(audit.DEMO_REQUIRED))
+
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
         self.assertEqual(self.original["nativeSourceCapabilities"]["sourceReadsAfterTerminal"],False)
