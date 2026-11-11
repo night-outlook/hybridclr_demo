@@ -31,6 +31,12 @@ NATIVE_REQUIRED={
     "libil2cpp/vm/GlobalMetadataFileInternals.h",
     "libil2cpp/vm/AssemblyShadow.h",
     "libil2cpp/vm/AssemblyShadowTypeKey.cpp",
+    "libil2cpp/vm/AssemblyShadowName.h",
+    "libil2cpp/vm-utils/VmStringUtils.cpp",
+    "libil2cpp/vm-utils/VmStringUtils.h",
+    "libil2cpp/utils/StringUtils.cpp",
+    "libil2cpp/char-conversions.cpp",
+    "libil2cpp/char-conversions.h",
     "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
     "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
     "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
@@ -40,6 +46,12 @@ NATIVE_REQUIRED={
     ".github/workflows/r03-native-b2-composite-typekey-host.yml",
     "libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
     "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
+    "NativeHostTests/AssemblyShadowFoldedNameMock.h",
+    "NativeHostTests/AssemblyShadowOwnedFoldedDefinitionHost.cpp",
+    "NativeHostTests/AssemblyShadowNameReferenceParityHost.cpp",
+    "NativeHostTests/ShadowNameParityShim/il2cpp-config.h",
+    ".github/workflows/r03-native-b2-folded-assembly-host.yml",
+    ".github/workflows/r03-native-b2-original-unicode-name-parity.yml",
     "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
     ".github/workflows/r03-native-b2-definition-live-source-host.yml",
     ".github/workflows/r03-native-b2-constructed-typekey-host.yml",
@@ -133,6 +145,11 @@ def validate_contract(m:dict)->None:
             c.get("compositeCoverageReceiptRevokedOnFailure") is True and
             c.get("arbitraryPrimitiveGenericArgumentKeys") is False and
             c.get("fullLegacyNonemptyExecutionParityProven") is False and
+            c.get("originalUnicodeAssemblyFoldBoundInVmSource") is True and
+            c.get("originalNameTableParityHostOnly") is True and
+            c.get("ownedUtf16FoldNoAllocationHostVerified") is True and
+            c.get("realUnityUnicodeMetadataParityProven") is False and
+            c.get("openGenericExecutionTypeKeysSupported") is False and
             c.get("legacyTypeKeyGrammarSourceBlob")==
                 "6b23b4bad66e9a8f36c68717ef82626351018624" and
             c.get("realGenericRuntimeMetadataAbiBlob")==
@@ -211,6 +228,35 @@ def source_boundary(native:dict[str,bytes])->None:
          'value = "generic(" + FormatType(generic->type',
          'Part(FormatType(generic->context.class_inst->type_argv[index]',
          "kMaximumTypeDepth = 128")
+    must("libil2cpp/vm/AssemblyShadowName.h",
+         "inline NameView ViewName(", "inline bool NextFolded(",
+         "VmStringUtils::Utf16ToLower", "inline bool NameHash(")
+    must("libil2cpp/vm-utils/VmStringUtils.cpp",
+         "VmStringUtils::Utf16ToLower", "ToLowerDataLow[c]",
+         "ToLowerDataHigh[c - kDataHighThreshold]")
+    must("libil2cpp/vm-utils/VmStringUtils.h",
+         "Utf16ToLower(Il2CppChar c)")
+    must("libil2cpp/utils/StringUtils.cpp",
+         "StringUtils::Utf16ToUtf8(const UTF16String& utf16String)")
+    must("libil2cpp/char-conversions.cpp",
+         "ToLowerDataLow[]", "ToLowerDataHigh[]")
+    must("libil2cpp/char-conversions.h",
+         "ToLowerDataLow[9424]", "ToLowerDataHigh[223]")
+    must("libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
+         "BeginCanonicalFolded(", "uint16_t first=0,second=0",
+         "nextFolded(cursor,end,first,second)",
+         "if(count>kCapacity-length)", "state_=State::Open")
+    must("NativeHostTests/AssemblyShadowNameReferenceParityHost.cpp",
+         '#include "vm/AssemblyShadowName.h"',
+         "VmStringUtils::Utf16ToLower", "ToLowerDataLow[c]",
+         "originalUnicodeTables")
+    must("NativeHostTests/AssemblyShadowOwnedFoldedDefinitionHost.cpp",
+         "R03B2CanonicalFoldedAssemblyHost",
+         "TestMalformed", "TestUntrustedFoldResults", "guardedAllocations")
+    must("NativeHostTests/AssemblyShadowFoldedNameMock.h",
+         "HOST TEST ONLY", "NameHash(", "NextFolded(")
+    must("NativeHostTests/ShadowNameParityShim/il2cpp-config.h",
+         "Host-only ABI shim", "HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW 1")
     must("libil2cpp/vm/AssemblyShadowOwnedConstructedTypeKey.h",
          'Put("generic(",8)', 'Decimal(argument.Bytes())',
          "kMaximumArguments=16",
@@ -251,6 +297,11 @@ def source_boundary(native:dict[str,bytes])->None:
          "AmbiguousMetadataOwner",
          "context.images=nullptr",
          "usedCrossImageArgument",
+         "assembly_shadow_detail::ViewName(",
+         "assembly_shadow_detail::NameHash(",
+         "assembly_shadow_detail::NextFolded(",
+         "BeginCanonicalFolded(",
+         "usedUnicodeAssemblyFold",
          "generic->context.class_inst",
          "definitionArity!=instance->type_argc",
          "composite_key::Capture genericKey",
@@ -268,6 +319,7 @@ def source_boundary(native:dict[str,bytes])->None:
     must("libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
          "callbackPhysicalMembershipProven",
          "completeArbitraryTypeKeys=false",
+         "usedUnicodeAssemblyFold",
          "completeExecutionDiagnostics=false",
          "coherentVmEpochProven=false",
          "nativeV2TransportImplemented=false",
@@ -279,6 +331,11 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::GenericDefinition",
          "Mode::GenericSameImage",
          "Mode::GenericConstructedArgument",
+         "Mode::UnicodeAssembly",
+         "Mode::UnicodePathVersionAssembly",
+         "Mode::UnicodeSupplementaryAssembly",
+         "Mode::InvalidUnicodeOverlong",
+         "Mode::InvalidUnicodeSurrogate",
          "Mode::GenericPointerArgument",
          "Mode::GenericSzArrayArgument",
          "Mode::GenericArrayArgument",
