@@ -38,6 +38,7 @@ jobs:
           filter: blob:none
           sparse-checkout: |
             libil2cpp/vm
+            libil2cpp/il2cpp-runtime-metadata.h
             NativeHostTests
             .github/workflows
       - name: Exact Git identity, source bytes and immutable closed handoff
@@ -77,7 +78,7 @@ jobs:
           import json,sys
           r=json.load(open(sys.argv[1],encoding='utf8'))
           assert r['result']=='PassedInactiveSourceOnly_NotFullV2'
-          assert r['verifiedNativeFiles']==14 and r['verifiedDemoPureFiles']==3
+          assert r['verifiedNativeFiles']==15 and r['verifiedDemoPureFiles']==3
           assert r['readyForNativeV2FieldCapture'] is False
           assert r['nativeV2TransportImplemented'] is False
           assert r['runtimeAcceptance'] is False
