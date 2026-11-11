@@ -18,6 +18,7 @@ FIXED_B1_NATIVE="8aa8d09319a89b55b2496bcc2c69ccc69cb57be9"
 FIXED_HYBRIDCLR="4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
 FIXED_UNITY="948c0e3b4f8891481301770115e8ba4945eea6de"
 NATIVE_REQUIRED={
+    "libil2cpp/il2cpp-runtime-metadata.h",
     "libil2cpp/vm/AssemblyShadow.cpp",
     "libil2cpp/vm/GlobalMetadataFileInternals.h",
     "libil2cpp/vm/AssemblyShadow.h",
@@ -90,8 +91,16 @@ def validate_contract(m:dict)->None:
     require(type(c) is dict and
             c.get("sourceReadsAfterTerminal") is False and
             c.get("arbitraryGenericInstantiationTypeKeys") is False and
-            c.get("coherentVmEpochProven") is False,
-            "Cannot invent terminal/full-key/VM-epoch acceptance")
+            c.get("crossImageGenericArgumentsSupported") is False and
+            c.get("realUnityRuntimeIntegrationProven") is False and
+            c.get("coherentVmEpochProven") is False and
+            c.get("genericArgumentLimit")==16 and
+            c.get("genericOwnedOutputByteLimit")==4096 and
+            c.get("legacyTypeKeyGrammarSourceBlob")==
+                "6b23b4bad66e9a8f36c68717ef82626351018624" and
+            c.get("realGenericRuntimeMetadataAbiBlob")==
+                "f7f235848209ee331adfd1c2b214b46cc753392e",
+            "Cannot invent terminal/full-key/generic ABI/VM-epoch acceptance")
     for key,required in (("nativeSources",NATIVE_REQUIRED),
                          ("demoPureSources",DEMO_REQUIRED)):
         rows=m.get(key)
@@ -120,6 +129,13 @@ def source_boundary(native:dict[str,bytes])->None:
         txt=native[path].decode("utf8","strict")
         for token in tokens:
             require(token in txt,"Native source drift: "+path+" : "+token)
+    must("libil2cpp/il2cpp-runtime-metadata.h",
+         "typedef struct Il2CppGenericClass",
+         "typedef struct Il2CppGenericInst",
+         "const Il2CppType **type_argv",
+         "Il2CppGenericContext context",
+         "Il2CppGenericClass *generic_class",
+         "Il2CppTypeEnum type")
     must("libil2cpp/vm/GlobalMetadataFileInternals.h",
          "typedef struct Il2CppTypeDefinition",
          "TypeIndex declaringTypeIndex",
