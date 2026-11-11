@@ -35,6 +35,9 @@ NATIVE_REQUIRED={
     "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
     "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
     "libil2cpp/vm/AssemblyShadowOwnedConstructedTypeKey.h",
+    "libil2cpp/vm/AssemblyShadowOwnedCompositeTypeKey.h",
+    "NativeHostTests/AssemblyShadowOwnedCompositeTypeKeyHost.cpp",
+    ".github/workflows/r03-native-b2-composite-typekey-host.yml",
     "libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
     "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
     "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -45,6 +48,7 @@ NATIVE_REQUIRED={
 DEMO_REQUIRED={
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedDefinitionTypeKey.h",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedConstructedTypeKey.h",
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedCompositeTypeKey.h",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedExecutionRows.h",
 }
 class Rejected(ValueError):
@@ -123,6 +127,12 @@ def validate_contract(m:dict)->None:
             c.get("coherentVmEpochProven") is False and
             c.get("genericArgumentLimit")==16 and
             c.get("genericOwnedOutputByteLimit")==4096 and
+            c.get("boundedCompositeArgumentShapesInMock") is True and
+            c.get("compositeMaximumDepth")==8 and
+            c.get("arrayDimensionListLimit")==32 and
+            c.get("compositeCoverageReceiptRevokedOnFailure") is True and
+            c.get("arbitraryPrimitiveGenericArgumentKeys") is False and
+            c.get("fullLegacyNonemptyExecutionParityProven") is False and
             c.get("legacyTypeKeyGrammarSourceBlob")==
                 "6b23b4bad66e9a8f36c68717ef82626351018624" and
             c.get("realGenericRuntimeMetadataAbiBlob")==
@@ -205,6 +215,15 @@ def source_boundary(native:dict[str,bytes])->None:
          'Put("generic(",8)', 'Decimal(argument.Bytes())',
          "kMaximumArguments=16",
          "AddArgument(")
+    must("libil2cpp/vm/AssemblyShadowOwnedCompositeTypeKey.h",
+         'Put("generic(",8)', "FromArray(", "FromQualified(",
+         "FromPointer(", "FromSzArray(", "kMaximumArguments=16",
+         "kMaximumArrayDimensions=32", "kCapacity=4096")
+    must("NativeHostTests/AssemblyShadowOwnedCompositeTypeKeyHost.cpp",
+         "R03B2OwnedCompositeTypeKeyHost",
+         "TestCompositeAndOriginalGrammar",
+         "TestFailuresAndNoPartialOutput",
+         "TestMaximumArgumentsAndSignedBounds")
     must("libil2cpp/vm/AssemblyShadow.cpp",
          '#include "AssemblyShadowBoundedDefinitionExecutionLive.h"',
          '#include "vm/GlobalMetadataFileInternals.h"',
@@ -234,7 +253,10 @@ def source_boundary(native:dict[str,bytes])->None:
          "usedCrossImageArgument",
          "generic->context.class_inst",
          "definitionArity!=instance->type_argc",
-         "constructed_key::Capture genericKey",
+         "composite_key::Capture genericKey",
+         "Composer composer", "IL2CPP_TYPE_ARRAY",
+         "IL2CPP_TYPE_PTR", "IL2CPP_TYPE_SZARRAY",
+         "FromQualified(", "usedMdArrayArgument",
          "buildDefinition(arg->data.typeHandle",
          "kMaximumTotalMetadataLookups",
          "assembly_shadow_first_failure_v2::State::Empty",
@@ -256,6 +278,13 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::CyclicNested",
          "Mode::GenericDefinition",
          "Mode::GenericSameImage",
+         "Mode::GenericConstructedArgument",
+         "Mode::GenericPointerArgument",
+         "Mode::GenericSzArrayArgument",
+         "Mode::GenericArrayArgument",
+         "Mode::GenericQualifiedPointerArgument",
+         "Mode::GenericArrayBadSizes",
+         "Mode::GenericCompositeTooDeep",
          "Mode::GenericNestedArgument",
          "Mode::GenericTooManyArguments",
          "Mode::CrossImageGeneric",
@@ -278,6 +307,7 @@ def source_boundary(native:dict[str,bytes])->None:
         "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
         "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
         "libil2cpp/vm/AssemblyShadowOwnedConstructedTypeKey.h",
+        "libil2cpp/vm/AssemblyShadowOwnedCompositeTypeKey.h",
         "libil2cpp/vm/AssemblyShadowObservedPhysicalImages.h",
         "libil2cpp/vm/AssemblyShadowRegisteredAotImageScan.h",
         "libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
@@ -316,11 +346,18 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
                 b'"AssemblyShadowOwnedDefinitionTypeKey.h"',
                 b'"BoundedOwnedDefinitionTypeKey.h"')==composed,
             "Fork generic composer diverged from independent pure source")
+    composite=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedCompositeTypeKey.h"]
+    require(n["libil2cpp/vm/AssemblyShadowOwnedCompositeTypeKey.h"].replace(
+                b'"AssemblyShadowOwnedDefinitionTypeKey.h"',
+                b'"BoundedOwnedDefinitionTypeKey.h"')==composite,
+            "Fork composite composer diverged from independent pure source")
     require(n["libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h"].replace(
                 b'"AssemblyShadowOwnedDefinitionTypeKey.h"',
                 b'"BoundedOwnedDefinitionTypeKey.h"').replace(
                 b'"AssemblyShadowOwnedConstructedTypeKey.h"',
-                b'"BoundedOwnedConstructedTypeKey.h"')==rows,
+                b'"BoundedOwnedConstructedTypeKey.h"').replace(
+                b'"AssemblyShadowOwnedCompositeTypeKey.h"',
+                b'"BoundedOwnedCompositeTypeKey.h"')==rows,
             "Fork owned-row source diverged beyond local include path")
     return {
         "kind":"R03B2RestrictedDefinitionExactSourceGate",
@@ -329,7 +366,7 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
         "verifiedDemoPureFiles":len(d),
         "pins":{"hybridclr_demo":expected_demo,"il2cpp_plus":expected_native,
                 "hybridclr":m["hybridclr"],"hybridclr_unity":m["hybridclr_unity"]},
-        "supportedSubset":"Unfiltered registered physical AOT images, including images without observed classes, under original assembly/metadata lock; bounded concrete GENERICINST TypeDef arguments",
+        "supportedSubset":"Registered physical AOT TypeDef owners; bounded nested GENERICINST/SZARRAY/PTR/ARRAY/qualified arguments with authenticated physical TypeDef leaves; primitive/open/terminal/full V2 excluded",
         "liveMetadataReadProvenByUnity":False,
         "readyForNativeV2FieldCapture":False,
         "nativeV2TransportImplemented":False,
