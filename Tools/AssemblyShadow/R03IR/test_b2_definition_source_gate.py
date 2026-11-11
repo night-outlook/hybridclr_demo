@@ -125,6 +125,20 @@ class SourceGateTests(unittest.TestCase):
             with self.subTest(field=field),self.assertRaises(audit.Rejected):
                 audit.validate_contract(changed)
 
+    def test_cross_image_physical_inventory_capability_cannot_be_overstated(self):
+        for key,bad in (
+            ("crossImageOnlyWhenBothImagesMatchedObservedClass",False),
+            ("crossImageUnmatchedArgumentFailsClosed",False),
+            ("ambiguousMetadataOwnerFailsClosed",False),
+            ("crossImageGenericArgumentsSupportedInMock",False),
+            ("allPhysicalMetadataImagesEnumerated",True),
+            ("physicalImageLimit",65),
+            ("physicalEnumerationPasses",1)):
+            changed=copy.deepcopy(self.original)
+            changed["nativeSourceCapabilities"][key]=bad
+            with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(changed)
+
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
         self.assertEqual(self.original["nativeSourceCapabilities"]["sourceReadsAfterTerminal"],False)
