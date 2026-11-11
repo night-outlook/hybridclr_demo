@@ -257,7 +257,7 @@ def source_boundary(native:dict[str,bytes])->None:
          "Composer composer", "IL2CPP_TYPE_ARRAY",
          "IL2CPP_TYPE_PTR", "IL2CPP_TYPE_SZARRAY",
          "FromQualified(", "usedMdArrayArgument",
-         "buildDefinition(arg->data.typeHandle",
+         "makeDefinition(value->data.typeHandle",
          "kMaximumTotalMetadataLookups",
          "assembly_shadow_first_failure_v2::State::Empty",
          "s_executionRegistrationWitnesses",
