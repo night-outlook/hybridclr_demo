@@ -107,10 +107,22 @@ class SourceGateTests(unittest.TestCase):
     def test_terminal_and_epoch_capabilities_cannot_be_promoted(self):
         for key in ("sourceReadsAfterTerminal",
                     "arbitraryGenericInstantiationTypeKeys",
+                    "crossImageGenericArgumentsSupported",
+                    "realUnityRuntimeIntegrationProven",
                     "coherentVmEpochProven"):
             changed=copy.deepcopy(self.original)
             changed["nativeSourceCapabilities"][key]=True
             with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(changed)
+
+    def test_generic_source_limits_cannot_be_relaxed(self):
+        for field,bad in (("genericArgumentLimit",17),
+                          ("genericOwnedOutputByteLimit",8192),
+                          ("legacyTypeKeyGrammarSourceBlob","0"*40),
+                          ("realGenericRuntimeMetadataAbiBlob","0"*40)):
+            changed=copy.deepcopy(self.original)
+            changed["nativeSourceCapabilities"][field]=bad
+            with self.subTest(field=field),self.assertRaises(audit.Rejected):
                 audit.validate_contract(changed)
 
     def test_no_execution_authority_transmitted(self):
