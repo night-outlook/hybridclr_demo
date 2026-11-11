@@ -116,7 +116,7 @@
       "gitBlob": "9244a08ccae8c62156c0b8b413d4dab391683e7c"
     }
   ],
-  "testProof": "Native actual .inl+registered-AOT pure Scan mock CI 42986790417: Mac/Linux x C++11/17 x Release/Debug x strict/ASan-UBSan; 4/4 jobs, 16 processes, 41 scenarios/process, 463 assertions/process, 0 observed sanitizer errors. No actual Assembly.cpp Unity compilation or Player.",
+  "testProof": "Exact pinned native CI 42986790417 (4/4 Mac/Linux C++11/17 jobs, 16 Release/Debug strict/ASan-UBSan mock executions × 41 scenarios × 463 assertions, no reported sanitizer errors); exact source CI 42987239404 (2/2, 23 native/3 demo blobs, 15 contract tests per OS). No official Unity native compilation, GC/shutdown or Player.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -133,7 +133,7 @@
       "strict",
       "sanitized"
     ],
-    "physicalClassMembershipScope": "Same-image AOT physical TypeDef subset, nested definition chain, two observed classes preserved in original registration-slot order",
+    "physicalClassMembershipScope": "The observed source class must physically match its registration witness; registered AOT images without an observed class may own concrete TypeDef generic arguments; output rows preserve registry-slot order",
     "mockAssertionsPerExecution": 463,
     "mockProcessExecutions": 16,
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
@@ -142,7 +142,6 @@
     "unityFullAssemblyShadowCompiled": false,
     "actualTypeDefinitionLayoutBlob": "c36d15775854889c6ee3447956c4138c604577c6",
     "sameImageConcreteGenericInstantiationSupportedInMock": true,
-    "crossImageGenericArgumentsSupported": false,
     "genericArgumentLimit": 16,
     "genericOwnedOutputByteLimit": 4096,
     "constructedGenericTestRun": "42979860514",
@@ -154,8 +153,6 @@
     "physicalImageLimit": 64,
     "physicalEnumerationPasses": 2,
     "crossImageGenericArgumentsSupportedInMock": true,
-    "crossImageOnlyWhenBothImagesMatchedObservedClass": false,
-    "crossImageUnmatchedArgumentFailsClosed": false,
     "ambiguousMetadataOwnerFailsClosed": true,
     "allPhysicalMetadataImagesEnumerated": false,
     "nativeSourceCiRun": "42986790417",
@@ -169,7 +166,10 @@
     "registeredUnobservedArgumentSupportedInMock": true,
     "originalAssemblyRegistrySnapshotIncompleteForFullVmEpoch": true,
     "realAssemblyCppUnityCompiled": false,
-    "runtimeAcceptanceProven": false
+    "runtimeAcceptanceProven": false,
+    "unrestrictedCrossImageGenericArgumentsSupported": false,
+    "unregisteredAotArgumentFailsClosed": true,
+    "supportedTypeShapeScope": "AOT physical TypeDefs and GENERICINST of up to 16 concrete physical CLASS/VALUETYPE TypeDefs; no arrays, qualifiers, open variables or non-ASCII assembly folds"
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
