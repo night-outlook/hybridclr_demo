@@ -5,7 +5,7 @@
 // generic(<definition>,<byteLength>:<argument>,...)
 // Source/owner/lifetime proof and type-shape admission belong to the VM caller.
 // There is no heap, VM metadata, pointer retention, terminal or V2 authority.
-#include "AssemblyShadowOwnedDefinitionTypeKey.h"
+#include "BoundedOwnedDefinitionTypeKey.h"
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
