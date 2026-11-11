@@ -19,7 +19,7 @@ This addendum supersedes **only** the intermediate native pin and test counts be
 
 ## Latest Primary correction: real source first-error fence, two-class order and encoded metadata-index rejection (2026-11-11 UTC)
 
-**Current exact native source pin:** `night-outlook/il2cpp_plus@fd1bc0bc41b12a0d612daa80fc7be222df5ce2b2` on `codex/assembly-shadow-r01b-h1`. It supersedes historical partial/native mock pins `69e4032...` and `ba2750f...`, whose earlier RED/GREEN logs remain immutable below. The exact native code and nine Git blobs are enumerated in [`b2_definition_native_candidate.json`](../../../../../../Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json). Original consumed oneuse-12 native `8aa8d093...` and demo `2d690bb2...` remain separate historical execution sources, not replacements.
+**Current exact native source pin:** `night-outlook/il2cpp_plus@fd1bc0bc41b12a0d612daa80fc7be222df5ce2b2` on `codex/assembly-shadow-r01b-h1`. It supersedes historical partial/native mock pins `69e4032...` and `ba2750f...`, whose earlier RED/GREEN logs remain immutable below. The exact native code and nine Git blobs are enumerated in [`b2_definition_native_candidate.json`](../../../../../../../Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json). Original consumed oneuse-12 native `8aa8d093...` and demo `2d690bb2...` remain separate historical execution sources, not replacements.
 
 ### Source-risk corrections
 
