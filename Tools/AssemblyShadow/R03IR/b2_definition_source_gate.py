@@ -20,6 +20,11 @@ FIXED_UNITY="948c0e3b4f8891481301770115e8ba4945eea6de"
 NATIVE_REQUIRED={
     "libil2cpp/il2cpp-runtime-metadata.h",
     "libil2cpp/vm/AssemblyShadow.cpp",
+    "libil2cpp/vm/AssemblyShadowObservedPhysicalImages.h",
+    "libil2cpp/vm/MemoryInformation.cpp",
+    "libil2cpp/il2cpp-api.cpp",
+    "libil2cpp/os/Posix/MutexImpl.h",
+    "libil2cpp/os/Win32/MutexImpl.h",
     "libil2cpp/vm/GlobalMetadataFileInternals.h",
     "libil2cpp/vm/AssemblyShadow.h",
     "libil2cpp/vm/AssemblyShadowTypeKey.cpp",
@@ -92,6 +97,13 @@ def validate_contract(m:dict)->None:
             c.get("sourceReadsAfterTerminal") is False and
             c.get("arbitraryGenericInstantiationTypeKeys") is False and
             c.get("crossImageGenericArgumentsSupported") is False and
+            c.get("crossImageGenericArgumentsSupportedInMock") is True and
+            c.get("crossImageOnlyWhenBothImagesMatchedObservedClass") is True and
+            c.get("crossImageUnmatchedArgumentFailsClosed") is True and
+            c.get("ambiguousMetadataOwnerFailsClosed") is True and
+            c.get("allPhysicalMetadataImagesEnumerated") is False and
+            c.get("physicalImageLimit")==64 and
+            c.get("physicalEnumerationPasses")==2 and
             c.get("realUnityRuntimeIntegrationProven") is False and
             c.get("coherentVmEpochProven") is False and
             c.get("genericArgumentLimit")==16 and
@@ -140,6 +152,19 @@ def source_boundary(native:dict[str,bytes])->None:
          "typedef struct Il2CppTypeDefinition",
          "TypeIndex declaringTypeIndex",
          "GenericContainerIndex genericContainerIndex")
+    must("libil2cpp/vm/MemoryInformation.cpp",
+         "ReportIL2CppClasses",
+         "GetInitializedTypeInfoFromAssembly",
+         "ReportVisibleClass",
+         "WalkAllGenericClasses")
+    must("libil2cpp/il2cpp-api.cpp","MemoryInformation::ReportIL2CppClasses")
+    must("libil2cpp/os/Posix/MutexImpl.h","PTHREAD_MUTEX_RECURSIVE")
+    must("libil2cpp/os/Win32/MutexImpl.h","EnterCriticalSection",
+         "LeaveCriticalSection")
+    must("libil2cpp/vm/AssemblyShadowObservedPhysicalImages.h",
+         "class Inventory final","AddFromMatchedCallback",
+         "~Inventory() noexcept{Scrub()}","Count() const noexcept",
+         "Error::Capacity")
     must("libil2cpp/vm/AssemblyShadowTypeKey.cpp",
          "case IL2CPP_TYPE_GENERICINST:",
          'value = "generic(" + FormatType(generic->type',
@@ -165,6 +190,12 @@ def source_boundary(native:dict[str,bytes])->None:
          "GlobalMetadata::GetTypeNamespaceAndName",
          "GlobalMetadata::GetIl2CppTypeFromIndex",
          "IL2CPP_TYPE_GENERICINST",
+         "physical::Scratch discovery",
+         "imageInventory.Count()",
+         "resolveOwner",
+         "AmbiguousMetadataOwner",
+         "context.images=nullptr",
+         "usedCrossImageArgument",
          "generic->context.class_inst",
          "definitionArity!=instance->type_argc",
          "constructed_key::Capture genericKey",
@@ -191,6 +222,13 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::GenericSameImage",
          "Mode::GenericNestedArgument",
          "Mode::GenericTooManyArguments",
+         "Mode::CrossImageGeneric",
+         "Mode::CrossImageGenericUnobserved",
+         "Mode::CrossImageGenericAmbiguous",
+         "Mode::CrossImageInterpreter",
+         "Mode::CrossImageNestedArgument",
+         "Mode::MissingSecondPass",
+         "TestPhysicalImageInventoryBounds",
          "Mode::NestedType",
          "Mode::CounterChanged",
          "NoMetadataAdmission")
@@ -199,6 +237,7 @@ def source_boundary(native:dict[str,bytes])->None:
         "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
         "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
         "libil2cpp/vm/AssemblyShadowOwnedConstructedTypeKey.h",
+        "libil2cpp/vm/AssemblyShadowObservedPhysicalImages.h",
         "libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
     ):
         raw=native[name]
@@ -248,7 +287,7 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
         "verifiedDemoPureFiles":len(d),
         "pins":{"hybridclr_demo":expected_demo,"il2cpp_plus":expected_native,
                 "hybridclr":m["hybridclr"],"hybridclr_unity":m["hybridclr_unity"]},
-        "supportedSubset":"Physical AOT TypeDef definitions and same-image concrete GENERICINST TypeDef arguments only",
+        "supportedSubset":"Observed-matched AOT physical image inventory; bounded cross-image concrete GENERICINST TypeDef args, excluding unobserved images",
         "liveMetadataReadProvenByUnity":False,
         "readyForNativeV2FieldCapture":False,
         "nativeV2TransportImplemented":False,
