@@ -19,6 +19,7 @@ FIXED_HYBRIDCLR="4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
 FIXED_UNITY="948c0e3b4f8891481301770115e8ba4945eea6de"
 NATIVE_REQUIRED={
     "libil2cpp/vm/AssemblyShadow.cpp",
+    "libil2cpp/vm/GlobalMetadataFileInternals.h",
     "libil2cpp/vm/AssemblyShadow.h",
     "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
     "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
@@ -114,6 +115,10 @@ def source_boundary(native:dict[str,bytes])->None:
         txt=native[path].decode("utf8","strict")
         for token in tokens:
             require(token in txt,"Native source drift: "+path+" : "+token)
+    must("libil2cpp/vm/GlobalMetadataFileInternals.h",
+         "typedef struct Il2CppTypeDefinition",
+         "TypeIndex declaringTypeIndex",
+         "GenericContainerIndex genericContainerIndex")
     must("libil2cpp/vm/AssemblyShadow.cpp",
          '#include "AssemblyShadowBoundedDefinitionExecutionLive.h"',
          '#include "vm/GlobalMetadataFileInternals.h"',
