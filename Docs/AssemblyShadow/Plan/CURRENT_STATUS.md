@@ -1,3 +1,13 @@
+# R03 Primary — original Unicode TypeKey source at db535; full B2 blocked (2026-11-11 UTC)
+
+Current native source is il2cpp_plus@db5354a9befd5cfd02f907d3169c8106e0a29305 with fixed hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55, hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de and latest pushed hybridclr_demo branch HEAD. [Exact 38/4 source candidate](../../Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json). The inactive physical TypeDef source now owns original-VM Unicode-folded assembly TypeKey bytes by calling ViewName/NameHash/NextFolded (not duplicating the table), with hard 4096-byte key budget and failing closed on invalid UTF8/UTF16. All existing AOT owner, class-witness, R02/registry/first-error and prior composite-shape source constraints remain.
+
+[Complete new source review and CI/evidence classification](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ORIGINAL_UNICODE_ASSEMBLY_FOLD_IMPLEMENTATION_AND_REVIEW.md). Host paths: [actual .inl mock 43011988073](https://github.com/night-outlook/il2cpp_plus/actions/runs/43011988073) has 55 cases and 924 assertions/host process (Ubuntu successful; macOS pending at checkpoint); [pure folded host 43011964681](https://github.com/night-outlook/il2cpp_plus/actions/runs/43011964681) Ubuntu successful, macOS pending; [original Name.h + Unicode tables host 43012431935](https://github.com/night-outlook/il2cpp_plus/actions/runs/43012431935) Ubuntu successful, macOS pending at checkpoint. Four-repo source audit has Ubuntu PASS and macOS pending at first checkpoint; check final GitHub run before upgrading claims. These are all host/source, not official Unity compilation or Player.
+
+Unfinished Primary: primitive class TypeKey source/real V1 field15 parity; complete terminal-safe field14/15 plus class/GC/metadata lifecycle; identity-bound native V2 transaction and independent receipt; original-S/whole VM epoch/GC/RSS/RC/P/E. Original R03 full independent FAIL/High IR findings and oneuse-12 focused B1 PASS preserved. WEB_TO_LOCAL CLOSED / NO EXECUTION; all B2/R03/H2/Human Review Gate flags false. No new Local validation/H2/M08A/X02/SNAP-01.
+
+---
+
 # R03 Current Primary — composite owned TypeKeys, source-verified, full B2 blocked (2026-11-11 UTC)
 
 **Latest native source:** night-outlook/il2cpp_plus@272f3077eee50835284e27855352fe300362ad79, with unchanged hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55 and hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de on codex/assembly-shadow-r01b-h1. The latest demo HEAD must be read from the GitHub branch and matched to the 26-native/4-demo [source manifest](../../Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json).
