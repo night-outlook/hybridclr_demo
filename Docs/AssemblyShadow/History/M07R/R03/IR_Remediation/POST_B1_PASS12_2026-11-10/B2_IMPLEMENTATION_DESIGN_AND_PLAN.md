@@ -1,5 +1,15 @@
 # R03 B2 — integrate native bounded V2 transport in the isolated Player
 
+## Current Primary code stage — original registered AOT physical owners complete within bounded subset (2026-11-11 UTC)
+
+**Implemented and source-tested:** [Registered AOT owner source review](B2_REGISTERED_AOT_OWNER_IMPLEMENTATION.md), native `il2cpp_plus@8627a93f4f307c8d2c99e7edada54573a93cc312`. The inactive source consumes the actual raw `Assembly.cpp::s_Assemblies` physical AOT table through a callback-only pure scanner under the original assembly lock while retaining its initial-session metadata lock/Reader. This adds TypeDef argument keys from registered AOT images with **no observed classes**. Empty (zero-TypeDef) physical AOT assemblies are legitimately skipped; malformed/foreign/ambiguous/changed registered owner sets fail closed. The first-error/registry/R02 observational controls and original frozen serializer remain unchanged.
+
+[Final native source mock 42988174617](https://github.com/night-outlook/il2cpp_plus/actions/runs/42988174617) **4/4 PASS** (16 Mac/Linux C++11/17 Release/Debug strict/sanitized host executions, 672 typed cases / 7,776 assertions); [exact 23-native/3-demo source audit 42988434479](https://github.com/night-outlook/hybridclr_demo/actions/runs/42988434479) **2/2 PASS**. These are **not** official Unity/full-translation-unit, GC/Player, postterminal field15, or V2 transport tests.
+
+**Next Primary code task:** prove full canonical composite type shapes and exact original V1 execution-class semantic/byte parity for nonempty classes under real metadata lifetime. Then complete terminal-safe full field14/15 source, integrate the existing bounded native V2 descriptor transaction, and independently authenticate its first-recovery receipts. If lifetime/source cannot prove full parity, keep the original V2 field contract **blocked**, not silently substitute reduced fields or B1 summaries. `WEB_TO_LOCAL.md` remains **CLOSED / NO EXECUTION**; prior oneuse-12 focused B1 PASS is immutable and no Local or Human Review Gate is authorized.
+
+---
+
 ## Current Primary checkpoint: unobserved but registered AOT owners (2026-11-11 UTC)
 
 **Implemented and tested in the inactive native VM source:** [original registered-AOT owner implementation/review](B2_REGISTERED_AOT_OWNER_IMPLEMENTATION.md) at `il2cpp_plus@f08cb329fb19eaa47eaa8075e62dbc3f2d42cf8a`. The original `Assembly.cpp::s_Assemblies` physical registry can now synchronously supply up to 1,024 AOT image identities under its existing lock, while the caller holds `g_MetadataLock` and the initial-session metadata Reader. An image with no physically matched observed class can provide a concrete TypeDef generic argument owner, but the **observed source class** must still be matched by both physical iterator passes. Two raw registry snapshots are compared under lock before releasing borrowed image metadata; missing/ambiguous/mutated source fails closed. Supported forms remain bounded to physical TypeDefs and canonical `GENERICINST` of concrete TypeDef arguments.
