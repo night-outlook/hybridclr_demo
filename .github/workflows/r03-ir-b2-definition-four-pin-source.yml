@@ -1,0 +1,82 @@
+name: R03 B2 restricted physical TypeDef exact four-pin source audit (NO Unity)
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - .github/workflows/r03-ir-b2-definition-four-pin-source.yml
+      - Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json
+      - Tools/AssemblyShadow/R03IR/b2_definition_source_gate.py
+      - Tools/AssemblyShadow/R03IR/test_b2_definition_source_gate.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  four-pin-audit:
+    name: B2 physical definition audit ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: demo
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 69e4032bf5131a991d85f39910619e8ec3579eaa
+          path: native
+          filter: blob:none
+          sparse-checkout: |
+            libil2cpp/vm
+            NativeHostTests
+            .github/workflows
+      - name: Exact Git identity, source bytes and immutable closed handoff
+        shell: bash
+        env:
+          GIT_TERMINAL_PROMPT: "0"
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          set -euo pipefail
+          test "$(git -C demo rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git -C native rev-parse HEAD)" = "69e4032bf5131a991d85f39910619e8ec3579eaa"
+          # Exact branch heads of the two untouched forks and the native fork
+          # are checked directly without cloning or mutating their repositories.
+          for spec in \
+            "hybridclr:4b2774b066cfc6afd77a8c8aded6bda7ea574f55" \
+            "hybridclr_unity:948c0e3b4f8891481301770115e8ba4945eea6de" \
+            "il2cpp_plus:69e4032bf5131a991d85f39910619e8ec3579eaa"; do
+            repo="${spec%%:*}"
+            expected="${spec#*:}"
+            actual="$(git ls-remote "https://github.com/night-outlook/$repo.git" \
+              refs/heads/codex/assembly-shadow-r01b-h1 | cut -f1)"
+            test "$actual" = "$expected"
+          done
+          python3 -B -m unittest discover \
+            -s demo/Tools/AssemblyShadow/R03IR \
+            -p test_b2_definition_source_gate.py -v
+          python3 -B demo/Tools/AssemblyShadow/R03IR/b2_definition_source_gate.py \
+            --demo "$GITHUB_WORKSPACE/demo" \
+            --native "$GITHUB_WORKSPACE/native" \
+            --expected-demo "$GITHUB_SHA" \
+            --expected-native 69e4032bf5131a991d85f39910619e8ec3579eaa \
+            > "$RUNNER_TEMP/b2-definition-source-result.json"
+          cat "$RUNNER_TEMP/b2-definition-source-result.json"
+          python3 -B - "$RUNNER_TEMP/b2-definition-source-result.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding='utf8'))
+          assert r['result']=='PassedInactiveSourceOnly_NotFullV2'
+          assert r['verifiedNativeFiles']==9 and r['verifiedDemoPureFiles']==2
+          assert r['readyForNativeV2FieldCapture'] is False
+          assert r['nativeV2TransportImplemented'] is False
+          assert r['runtimeAcceptance'] is False
+          assert r['R03Accepted'] is False
+          assert r['ReadyForHumanReviewGate'] is False
+          assert r['handoffAuthority']=='CLOSED_NO_LOCAL_EXECUTION'
+          print('Exact source audit PASSED; B2 live/Unity/V2 admission remains CLOSED')
+          PY
