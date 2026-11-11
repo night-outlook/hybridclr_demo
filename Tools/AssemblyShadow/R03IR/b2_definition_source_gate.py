@@ -108,6 +108,7 @@ def validate_contract(m:dict)->None:
             "crossImageUnmatchedArgumentFailsClosed" not in c and
             c.get("registeredUnobservedArgumentSupportedInMock") is True and
             c.get("registeredAotImageLimit")==1024 and
+            c.get("zeroTypeDefinitionRegisteredAotImagesSkipped") is True and
             c.get("registeredAssemblyRegistryVisits")==2 and
             c.get("registeredAotImageSetDoubleChecked") is True and
             c.get("registeredImageSetOnlyObservational") is True and
@@ -178,7 +179,8 @@ def source_boundary(native:dict[str,bytes])->None:
     must("libil2cpp/vm/AssemblyShadowRegisteredAotImageScan.h",
          "namespace assembly_shadow_registered_aot_scan",
          "bool Scan(", "assembly->token",
-         "assembly->image->assembly!=assembly", "visit(image)")
+         "assembly->image->assembly!=assembly",
+         "if(!image->typeCount)continue;", "visit(image)")
     must("libil2cpp/vm/Assembly.h",
          "TryVisitRegisteredAotImages(",
          "caller MUST hold",
@@ -262,6 +264,7 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::RegisteredAotChanged",
          "Mode::RegisteredAotOverflow",
          "Mode::RegisteredAotInvalidOwner",
+         "Mode::RegisteredEmptyAotAssembly",
          "Mode::CrossImageGenericAmbiguous",
          "Mode::CrossImageInterpreter",
          "Mode::CrossImageNestedArgument",
