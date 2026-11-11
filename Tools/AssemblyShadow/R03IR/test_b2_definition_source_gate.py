@@ -55,7 +55,7 @@ class SourceGateTests(unittest.TestCase):
             audit.validate_contract(changed)
         # Format is checked on the actual file; invalid blob cannot be admitted.
         with tempfile.TemporaryDirectory() as td:
-            root=Path(td)
+            root=Path(td).resolve()
             (root/"sample").write_bytes(b"a")
             with self.assertRaises(audit.Rejected):
                 audit.verify_file(root,"sample","hello")
@@ -68,7 +68,7 @@ class SourceGateTests(unittest.TestCase):
 
     def test_tree_sha_and_content_must_both_match(self):
         with tempfile.TemporaryDirectory() as td:
-            root=Path(td);(root/"x.h").write_bytes(b"data")
+            root=Path(td).resolve();(root/"x.h").write_bytes(b"data")
             digest=audit.blob(b"data")
             with patch.object(audit,"git",return_value="100644 blob "+digest+"\tx.h"):
                 self.assertEqual(audit.verify_file(root,"x.h",digest),b"data")
@@ -78,7 +78,7 @@ class SourceGateTests(unittest.TestCase):
 
     def test_symlink_alias_forbidden(self):
         with tempfile.TemporaryDirectory() as td:
-            root=Path(td)
+            root=Path(td).resolve()
             (root/"real").write_bytes(b"data")
             (root/"link").symlink_to(root/"real")
             with self.assertRaises(audit.Rejected):
@@ -86,7 +86,7 @@ class SourceGateTests(unittest.TestCase):
 
     def test_unsafe_paths_forbidden(self):
         with tempfile.TemporaryDirectory() as td:
-            root=Path(td)
+            root=Path(td).resolve()
             for unsafe in ("../escape","/absolute","some/../escape","bad"+chr(0)+"path"):
                 with self.subTest(unsafe=repr(unsafe)),self.assertRaises(audit.Rejected):
                     audit.verify_file(root,unsafe,"0"*40)
