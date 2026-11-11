@@ -107,7 +107,7 @@ class SourceGateTests(unittest.TestCase):
     def test_terminal_and_epoch_capabilities_cannot_be_promoted(self):
         for key in ("sourceReadsAfterTerminal",
                     "arbitraryGenericInstantiationTypeKeys",
-                    "crossImageGenericArgumentsSupported",
+                    "unrestrictedCrossImageGenericArgumentsSupported",
                     "realUnityRuntimeIntegrationProven",
                     "coherentVmEpochProven"):
             changed=copy.deepcopy(self.original)
@@ -127,9 +127,8 @@ class SourceGateTests(unittest.TestCase):
 
     def test_cross_image_physical_inventory_capability_cannot_be_overstated(self):
         for key,bad in (
-            ("crossImageOnlyWhenBothImagesMatchedObservedClass",True),
-            ("crossImageUnmatchedArgumentFailsClosed",True),
             ("crossImageUnregisteredArgumentFailsClosed",False),
+            ("unregisteredAotArgumentFailsClosed",False),
             ("registeredUnobservedArgumentSupportedInMock",False),
             ("registeredAotImageSetDoubleChecked",False),
             ("registeredImageSetOnlyObservational",False),
@@ -145,6 +144,15 @@ class SourceGateTests(unittest.TestCase):
             ("physicalEnumerationPasses",1)):
             changed=copy.deepcopy(self.original)
             changed["nativeSourceCapabilities"][key]=bad
+            with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(changed)
+
+    def test_ambiguous_legacy_capability_keys_are_rejected(self):
+        for key in ("crossImageGenericArgumentsSupported",
+                    "crossImageOnlyWhenBothImagesMatchedObservedClass",
+                    "crossImageUnmatchedArgumentFailsClosed"):
+            changed=copy.deepcopy(self.original)
+            changed["nativeSourceCapabilities"][key]=True
             with self.subTest(key=key),self.assertRaises(audit.Rejected):
                 audit.validate_contract(changed)
 
