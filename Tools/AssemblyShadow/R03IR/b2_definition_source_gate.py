@@ -132,7 +132,7 @@ def source_boundary(native:dict[str,bytes])->None:
     must("libil2cpp/vm/AssemblyShadowOwnedConstructedTypeKey.h",
          'Put("generic(",8)', 'Decimal(argument.Bytes())',
          "kMaximumArguments=16",
-         "struct DOES_NOT_EXIST" if False else "AddArgument(")
+         "AddArgument(")
     must("libil2cpp/vm/AssemblyShadow.cpp",
          '#include "AssemblyShadowBoundedDefinitionExecutionLive.h"',
          '#include "vm/GlobalMetadataFileInternals.h"',
