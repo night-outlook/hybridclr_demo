@@ -173,6 +173,9 @@ def validate_contract(m:dict)->None:
             c.get("originalV1FirstEmplaceOwnerJoinSourceImplemented") is True and
             c.get("originalV1OwnerConflictRevokesSource") is True and
             c.get("originalV1ImageInventoryDoubleChecked") is True and
+            c.get("originalV1PhysicalMapForAdmittedHandlesMatchedInSourceMock") is True and
+            c.get("originalV1MetadataOwnerImageCap")==1024 and
+            c.get("originalV1OwnerLookupsCap")==65536 and
             c.get("originalV1JoinHostCases")==12 and
             c.get("originalV1JoinHostAssertions")>=41 and
             c.get("originalV1FullField15ParityProven") is False and
