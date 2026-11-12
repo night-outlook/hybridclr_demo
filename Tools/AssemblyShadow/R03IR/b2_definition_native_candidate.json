@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "B2 source-verified complete original V1 vs bounded frozen JSON serializer bytes over IDENTICAL immutable class/R02 inputs, plus two-pass observed cctor/static drift rejection under initial metadata Reader. Full live Unity class provenance, terminal-safe field14/15 and V2 transport remain blocked.",
+  "objective": "Original V1/R02 execution serializer bytes identical for the SAME immutable host class/counter inputs; native registered AOT class facts double-sampled and checked again during TypeKey formatting; class cctor/static mutation rejects the whole bounded source. No live Unity original field15 completeness, whole-VM epoch or terminal native V2.",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "74c049a8f9d60465e1d656c36306b0e8cd015608",
+  "candidateNative": "e5f8eebca1263181ed3fca49e84a1cf73f40b90b",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
@@ -47,7 +47,7 @@
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "ad8886cde2a109cb44caaea4faf41fd718ecf5aa"
+      "gitBlob": "b6399f0b719163f89550146d129d62fdc41b5b11"
     },
     {
       "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -55,7 +55,7 @@
     },
     {
       "path": ".github/workflows/r03-native-b2-definition-live-source-host.yml",
-      "gitBlob": "991f199640d6183464ce46fe6ce65e5958d2bdb4"
+      "gitBlob": "02b5fad08460bf7204ad6c83a02ea465d3ad371e"
     },
     {
       "path": ".github/workflows/r03-native-b2-constructed-typekey-host.yml",
@@ -63,7 +63,7 @@
     },
     {
       "path": "NativeHostTests/README.md",
-      "gitBlob": "7f183dc59cfd41adcdb97a4c9895a16fc6c3c455"
+      "gitBlob": "a687dc827d8c989d3d29af6555770d408513dc5b"
     },
     {
       "path": "libil2cpp/il2cpp-runtime-metadata.h",
@@ -296,7 +296,7 @@
       "gitBlob": "75fc8717ed3b54b1aeee583e28671e304ab233e0"
     }
   ],
-  "testProof": "Native head 74c049a8f9d60465e1d656c36306b0e8cd015608 .inl synthetic VM CI 43179088289 4/4 Mac/Linux C++11/17 Release/Debug strict/sanitized: 16 executions, 75 scenarios and 1849 assertions per process, including two cctor/static mutation negative tests. ACTUAL legacy execution ostream+live R02 versus bounded frozen record+frozen R02 over identical immutable host rows CI 43178421718 4/4: 10 cases, 91 assertions, 6 exact matching rows per host, zero guarded allocations, plus divergent cctor and R02 tests. Not actual Unity class metadata/Player or complete terminal native V2.",
+  "testProof": "Real original legacy ostream + live R02 vs actual frozen Record + frozen R02 formatter CI 43178421718 4/4, 10 cases/91 assertions/process and 6 exact class rows, zero guarded allocations. Final mock source at e5f8eebca1263181ed3fca49e84a1cf73f40b90b includes 76 physical source cases/1865 assertions per host execution with cctor/static between-pass mutation and cctor-during-TypeKey mutation; native CI 43180369312 to be verified at exact native SHA. No real Unity native TU/Player. Complete original field14/15 and native V2 remain blocked.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -304,7 +304,7 @@
     "metadataReaderEpoch": "initial only",
     "coherentVmEpochProven": false,
     "sourceFirstErrorFence": "Checks B1 Empty before traversal, before record composition, after frozen record",
-    "mockScenarios": 75,
+    "mockScenarios": 76,
     "mockBuildVariants": [
       "release",
       "debug"
@@ -314,7 +314,7 @@
       "sanitized"
     ],
     "physicalClassMembershipScope": "The observed source class must physically match its registration witness; registered AOT images without an observed class may own concrete TypeDef generic arguments; output rows preserve registry-slot order",
-    "mockAssertionsPerExecution": 1849,
+    "mockAssertionsPerExecution": 1865,
     "mockProcessExecutions": 16,
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
     "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup",
@@ -335,7 +335,7 @@
     "crossImageGenericArgumentsSupportedInMock": true,
     "ambiguousMetadataOwnerFailsClosed": true,
     "allPhysicalMetadataImagesEnumerated": false,
-    "nativeSourceCiRun": "43179088289",
+    "nativeSourceCiRun": "43180369312",
     "physicalIteratorSourceBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6",
     "recordOriginalLegacyGrammarUnchanged": true,
     "registeredAotImageLimit": 1024,
@@ -422,7 +422,8 @@
     "observedClassFactsNotCoherentVmEpoch": true,
     "completeObservedClassLifetimeProven": false,
     "actualLegacyFrozenFormatterCiRun": "43178421718",
-    "observedClassFactsFullEpochProven": false
+    "observedClassFactsFullEpochProven": false,
+    "observedClassFactsDuringTypeKeyMutationFailures": 1
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
