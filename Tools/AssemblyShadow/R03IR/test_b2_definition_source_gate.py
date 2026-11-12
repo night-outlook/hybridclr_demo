@@ -427,6 +427,18 @@ class SourceGateTests(unittest.TestCase):
         self.assertGreaterEqual(c["originalV1FormatterHostAssertions"],91)
         self.assertEqual(c["originalV1FormatterGuardedAllocations"],0)
         self.assertEqual(c["observedClassFactsBetweenPassMutationFailures"],2)
+        self.assertEqual(c["observedClassFactsDuringTypeKeyMutationFailures"],1)
+        self.assertGreaterEqual(c["mockScenarios"],76)
+        self.assertGreaterEqual(c["mockAssertionsPerExecution"],1865)
+        for field,val in (
+            ("observedClassFactsDuringTypeKeyMutationFailures",0),
+            ("mockScenarios",75),
+            ("mockAssertionsPerExecution",1849),
+        ):
+            wrong=copy.deepcopy(self.original)
+            wrong["nativeSourceCapabilities"][field]=val
+            with self.subTest(field=field),self.assertRaises(audit.Rejected):
+                audit.validate_contract(wrong)
         self.assertEqual(c["observedClassFactsRegistrySlotLimit"],2048)
         self.assertEqual(c["observedClassFactsBytesPerSlot"],16)
         needed={
