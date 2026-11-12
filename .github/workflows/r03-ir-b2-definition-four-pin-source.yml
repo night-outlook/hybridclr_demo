@@ -44,6 +44,7 @@ jobs:
             libil2cpp/char-conversions.cpp
             libil2cpp/char-conversions.h
             libil2cpp/il2cpp-runtime-metadata.h
+            libil2cpp/il2cpp-class-internals.h
             libil2cpp/il2cpp-api.cpp
             libil2cpp/os/Posix/MutexImpl.h
             libil2cpp/os/Win32/MutexImpl.h
@@ -89,7 +90,7 @@ jobs:
           import json,sys
           r=json.load(open(sys.argv[1],encoding='utf8'))
           assert r['result']=='PassedInactiveSourceOnly_NotFullV2'
-          assert r['verifiedNativeFiles']==40 and r['verifiedDemoPureFiles']==4
+          assert r['verifiedNativeFiles']==41 and r['verifiedDemoPureFiles']==4
           assert r['readyForNativeV2FieldCapture'] is False
           assert r['nativeV2TransportImplemented'] is False
           assert r['runtimeAcceptance'] is False
