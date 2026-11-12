@@ -1,3 +1,11 @@
+# R03 B2 — simple interpreter physical TypeDef source only (2026-11-12 UTC)
+
+Native source commit 90206c7b4abdbf756c8fb1f2c353fcdf78a792e6 adds source-checked plain interpreter CLASS/VALUETYPE TypeDef rows to the inactive B2 subset. Two positive and five negative new cases passed in Ubuntu C++11/17 source-mock CI 43206145229 (88 cases/2389 assertions per process). Exact four-repo source audit 43206474551 Ubuntu Passed at demo anchor; both macOS jobs were queued at review. [Review and limits](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_SIMPLE_INTERPRETER_TYPEDEF_SOURCE_REVIEW_2026-11-12.md).
+
+Original V1/B1 unchanged; no actual Unity build or real field15 byte parity. Interpreter generic/nested/VAR/MVAR, whole-VM metadata/GC lifetime, terminal-safe full field14 and field15, native V2 descriptor artifact/envelope/receipt/first recovery still blocked. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; WEB_TO_LOCAL CLOSED / NO EXECUTION.
+
+---
+
 # R03 B2 Primary — third class-fact end pass, scoped native source-only checkpoint (2026-11-12 UTC)
 
 **Implementation:** il2cpp_plus@04d979fe55cea6b2dee7f5bfc49a71f2f1fb6386 adds a third physical traversal while the initial metadata Reader/g_MetadataLock remains active; compare every admitted class's latest owned-row cctor/static facts; reject end-pass changed/missing/duplicate callbacks. Original V1/B1 paths unchanged. Five new negative cases, actual native .inl host source-mock Ubuntu C++11/C++17 PASS, 81 cases/2,126 assertions/process, [native CI 43199686419](https://github.com/night-outlook/il2cpp_plus/actions/runs/43199686419) (macOS queued at review checkpoint). [Exact four-repo source CI 43200124015](https://github.com/night-outlook/hybridclr_demo/actions/runs/43200124015) 2/2 PASS at demo anchor 74891c675ebcb449b0a65721266d7e1559b12a03. [Review and limits](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_END_OF_COLLECTION_CLASS_FACTS_IMPLEMENTATION_REVIEW_2026-11-12.md).

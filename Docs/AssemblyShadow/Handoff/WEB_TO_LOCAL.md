@@ -1,5 +1,13 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current Primary B2 interpreter simple TypeDef checkpoint — CLOSED / NO EXECUTION (2026-11-12 UTC)
+
+**NO EXECUTION AUTHORITY:** Local must report NoExecutionAuthority without running a Unity build, Player, or tests. Primary native il2cpp_plus@90206c7b4abdbf756c8fb1f2c353fcdf78a792e6 now admits only original physical V1 first-owner-proven simple interpreter CLASS/VALUETYPE TypeDefs. Source-host Ubuntu CI 43206145229 PASS with 88 scenarios/2389 assertions; macOS queued at review. [Scope and evidence](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_SIMPLE_INTERPRETER_TYPEDEF_SOURCE_REVIEW_2026-11-12.md).
+
+Four branch pins: codex/assembly-shadow-r01b-h1 on all; demo actual latest pushed HEAD, hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55, hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de, il2cpp_plus@90206c7b4abdbf756c8fb1f2c353fcdf78a792e6. Exact 63-native/eight-demo source manifest; original V1 getter and B1 unchanged. Full class/GC/VM lifetime, complete terminal field14/15, native V2, real Unity Player and R03 acceptance unproven; H2Passed=false; ReadyForHumanReviewGate=false. B1 oneuse-12 consumed; no H2/M08A/X02/SNAP-01.
+
+---
+
 ## Current R03 B2 Primary native third-pass checkpoint — CLOSED / NO EXECUTION (2026-11-12 UTC)
 
 **NO EXECUTION AUTHORITY.** An inactive native B2 source-only collector has been updated at il2cpp_plus@04d979fe55cea6b2dee7f5bfc49a71f2f1fb6386 to re-enumerate and check all owned per-class cctor/static values at the end of collection. Late mutation, missing callback or duplicate callback revokes owned rows/receipts. [Source/host review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_END_OF_COLLECTION_CLASS_FACTS_IMPLEMENTATION_REVIEW_2026-11-12.md). Native Ubuntu C++11/C++17 source-host CI success and exact four-fork source audit 2/2 success; macOS native jobs still queued at review checkpoint. No real Unity compilation/Player, GC or terminal V2 validation. **Local must report NoExecutionAuthority without running Unity or tests.**
