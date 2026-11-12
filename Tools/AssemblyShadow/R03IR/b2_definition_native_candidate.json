@@ -2,16 +2,16 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "R03 B2 inactive native source admits original pre-existing primitive default types only after Class::FromIl2CppTypeEnum and exact registered AOT physical TypeDef/namespace/name/arity/declaring/generic-container proof; full original execution field15 and native V2 remain blocked",
+  "objective": "Inactive native physical AOT TypeDef source: existing primitive default classes are read via null-safe original-switch-equivalent peek, never asserted Class::FromIl2CppTypeEnum; class/physical metadata owner checks retained; full field15/V2 blocked",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "f6530b221f0ef98ff38436ca8cd2692304d63265",
+  "candidateNative": "68530d7ecb86c9122d9ae5eb20366ccb0ea086b6",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
     {
       "path": "libil2cpp/vm/AssemblyShadow.cpp",
-      "gitBlob": "4384a024191f78084945bdcf0ef07c8ee1ee26de"
+      "gitBlob": "acf8dbaedc6e86253ab5e66d6e93f0d24bbefe04"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadow.h",
@@ -31,7 +31,7 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
-      "gitBlob": "058e4fd3f06657100798e7593ced35fc6e412a9c"
+      "gitBlob": "6cb128edfec16922b8342118058e6bb419690920"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
@@ -47,7 +47,7 @@
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "932d2e234dd467d34d4eedc65720289e08339ae9"
+      "gitBlob": "c0cfe70bebe502e3f8ddd65c74b7e5deca624f15"
     },
     {
       "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -55,7 +55,7 @@
     },
     {
       "path": ".github/workflows/r03-native-b2-definition-live-source-host.yml",
-      "gitBlob": "f5cccafc9288163820727171d448e2bb5f338b96"
+      "gitBlob": "de9d60e24d009046ab6a0671790258a12ee6bf46"
     },
     {
       "path": ".github/workflows/r03-native-b2-constructed-typekey-host.yml",
@@ -63,7 +63,7 @@
     },
     {
       "path": "NativeHostTests/README.md",
-      "gitBlob": "297cd27c907ba7169e613ce29fac6f7c3f297138"
+      "gitBlob": "e1eae5aa15eed889742101e5735f81b30c754be4"
     },
     {
       "path": "libil2cpp/il2cpp-runtime-metadata.h",
@@ -172,6 +172,10 @@
     {
       "path": "libil2cpp/il2cpp-class-internals.h",
       "gitBlob": "3bbef0474179f09ad1fce7b567423d69bbfd3884"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowExistingPrimitiveDefaults.h",
+      "gitBlob": "ad0c77b6ee8e8325d2d9ea6fb4e478f5cf3c9d7e"
     }
   ],
   "demoPureSources": [
@@ -192,7 +196,7 @@
       "gitBlob": "d930418031706006e10a41ade08f70ba6454bc47"
     }
   ],
-  "testProof": "Native real inactive .inl compiled with mock VM, original direct default-class lookup source structurally pinned (not full Class.cpp compiled), 67 synthetic cases and 1,195 assertions per each of 16 Mac/Linux C++11/17 Release/Debug strict/sanitized host executions. Exact run 43139433481 4/4 jobs completed/success at final native source. Full Unity IL2CPP/real primitive metadata/field15/V2/Player NOT run. Native Il2CppClass definition layout/metadata generic container field source independently pinned; does not constitute real Unity compilation.",
+  "testProof": "Actual inactive .inl with fake VM, original 19-case Class.cpp switch vs null-safe Peek; 20 direct null/present host table scenarios and 67 physical source scenarios, 1,236 host assertions per process; dual-OS C++11/17 Release/Debug strict/sanitized CI 43141206112 4/4 at predecessor source (latest README-only source commit to verify separately). Does not compile original full Class.cpp or Unity/Player. Full V2 remains blocked.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -210,7 +214,7 @@
       "sanitized"
     ],
     "physicalClassMembershipScope": "The observed source class must physically match its registration witness; registered AOT images without an observed class may own concrete TypeDef generic arguments; output rows preserve registry-slot order",
-    "mockAssertionsPerExecution": 1195,
+    "mockAssertionsPerExecution": 1236,
     "mockProcessExecutions": 16,
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
     "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup",
@@ -231,7 +235,7 @@
     "crossImageGenericArgumentsSupportedInMock": true,
     "ambiguousMetadataOwnerFailsClosed": true,
     "allPhysicalMetadataImagesEnumerated": false,
-    "nativeSourceCiRun": "43139433481",
+    "nativeSourceCiRun": "43141206112",
     "physicalIteratorSourceBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6",
     "recordOriginalLegacyGrammarUnchanged": true,
     "registeredAotImageLimit": 1024,
@@ -245,7 +249,7 @@
     "runtimeAcceptanceProven": false,
     "unrestrictedCrossImageGenericArgumentsSupported": false,
     "unregisteredAotArgumentFailsClosed": true,
-    "supportedTypeShapeScope": "Original preinitialized il2cpp_defaults primitive classes only with registered physical AOT TypeDef/namespace/name and nongeneric, unnested owner proof; physical AOT TypeDefs plus bounded nested GENERICINST/PTR/SZARRAY/ARRAY/qualifiers using original Unicode assembly folding. No open VAR/MVAR, unmatched default, complete V1 field15, postterminal full fields or V2 transport.",
+    "supportedTypeShapeScope": "Null-safe 19-entry original primitive Class.cpp default table mapping, only for initialized default classes authenticated by registered physical AOT TypeDef and exact class declaration/arity, plus bounded AOT GENERICINST/PTR/SZARRAY/ARRAY/qualifier/Unicode leaves. VAR/MVAR, unsupported or missing defaults, full V1/terminal source, V2 unsupported.",
     "zeroTypeDefinitionRegisteredAotImagesSkipped": true,
     "registeredAotRegistrySource": "original physical Assembly::s_Assemblies under s_assemblyLock; zero-type AOT images skipped",
     "boundedCompositeArgumentShapesInMock": true,
@@ -268,7 +272,10 @@
     "primitiveClassNameAncestryChecked": true,
     "unownedPrimitiveDefaultsRejected": true,
     "realUnityPrimitiveField15ParityProven": false,
-    "primitiveGenericContainerRejected": true
+    "primitiveGenericContainerRejected": true,
+    "assertFreePrimitiveDefaultLookup": true,
+    "primitiveDefaultExactSwitchParity": true,
+    "primitivePeekHostCases": 20
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
