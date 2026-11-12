@@ -150,6 +150,7 @@ def validate_contract(m:dict)->None:
             c.get("primitiveDefaultClassLookupNoAllocationSourcePinned") is True and
             c.get("primitiveArgumentsWithRegisteredAotTypeDefSupportedInMock") is True and
             c.get("primitiveClassNameAncestryChecked") is True and
+            c.get("primitiveGenericContainerRejected") is True and
             c.get("unownedPrimitiveDefaultsRejected") is True and
             c.get("realUnityPrimitiveField15ParityProven") is False and
             c.get("arbitraryPrimitiveGenericArgumentKeys") is False and
@@ -338,6 +339,7 @@ def source_boundary(native:dict[str,bytes])->None:
          "Class::FromIl2CppTypeEnum(value->type)",
          "primitive->typeMetadataHandle",
          "primitive->declaringType",
+         "primitive->genericContainerHandle",
          "primitive->namespaze",
          "context.usedExistingPrimitiveDefault=true",
          "admittedPrimitiveArguments",
@@ -380,6 +382,7 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::PrimitiveGenericArity",
          "Mode::PrimitiveClassNameMismatch",
          "Mode::PrimitiveClassNested",
+         "Mode::PrimitiveClassGenericContainer",
          "Mode::GenericSameImage",
          "Mode::GenericConstructedArgument",
          "Mode::UnicodeAssembly",
