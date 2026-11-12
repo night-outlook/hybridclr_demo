@@ -19,6 +19,7 @@ FIXED_HYBRIDCLR="4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
 FIXED_UNITY="948c0e3b4f8891481301770115e8ba4945eea6de"
 NATIVE_REQUIRED={
     "libil2cpp/il2cpp-runtime-metadata.h",
+    "libil2cpp/il2cpp-class-internals.h",
     "libil2cpp/vm/AssemblyShadow.cpp",
     "libil2cpp/vm/Class.cpp",
     "libil2cpp/vm/Class.h",
@@ -192,6 +193,10 @@ def source_boundary(native:dict[str,bytes])->None:
         txt=native[path].decode("utf8","strict")
         for token in tokens:
             require(token in txt,"Native source drift: "+path+" : "+token)
+    must("libil2cpp/il2cpp-class-internals.h",
+         "typedef struct Il2CppClass", "Il2CppClass* declaringType;",
+         "Il2CppMetadataTypeHandle typeMetadataHandle;",
+         "Il2CppMetadataGenericContainerHandle genericContainerHandle;")
     must("libil2cpp/il2cpp-runtime-metadata.h",
          "typedef struct Il2CppGenericClass",
          "typedef struct Il2CppGenericInst",
