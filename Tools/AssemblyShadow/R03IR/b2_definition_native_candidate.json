@@ -188,7 +188,7 @@
       "gitBlob": "d930418031706006e10a41ade08f70ba6454bc47"
     }
   ],
-  "testProof": "Exact inactive .inl compiled against mocked VM plus original default-Class.cpp source gate; 66 scenarios per host-process and strict Mac/Linux C++11/17 host CI at 43138820306 completed/success (source commit before README-only change). NOT official Unity C++ TU, GameAssembly, Player, real primitive runtime parity, or terminal full V2.",
+  "testProof": "Exact 40-native/four-demo source roster; actual inactive .inl compiled with mock VM and a reference-shaped existing primitive default class at final native e422a70d..., native CI 43139017225 4/4 macOS/Ubuntu C++11/17 jobs completed/success (16 release/debug strict/sanitized host executions, 66 scenarios and 1,186 assertions each). Original Class.cpp direct default lookup source is pinned but NOT compiled in its full Unity native TU; no real Unity class metadata, V1 full field15 parity, complete V2, or Player evidence.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -206,7 +206,7 @@
       "sanitized"
     ],
     "physicalClassMembershipScope": "The observed source class must physically match its registration witness; registered AOT images without an observed class may own concrete TypeDef generic arguments; output rows preserve registry-slot order",
-    "mockAssertionsPerExecution": 0,
+    "mockAssertionsPerExecution": 1186,
     "mockProcessExecutions": 16,
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
     "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup",
@@ -227,7 +227,7 @@
     "crossImageGenericArgumentsSupportedInMock": true,
     "ambiguousMetadataOwnerFailsClosed": true,
     "allPhysicalMetadataImagesEnumerated": false,
-    "nativeSourceCiRun": "43138820306",
+    "nativeSourceCiRun": "43139017225",
     "physicalIteratorSourceBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6",
     "recordOriginalLegacyGrammarUnchanged": true,
     "registeredAotImageLimit": 1024,
