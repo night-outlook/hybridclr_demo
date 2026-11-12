@@ -226,7 +226,7 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(
             {row["path"] for row in self.original["nativeSources"]},
             audit.NATIVE_REQUIRED)
-        self.assertEqual(len(self.original["nativeSources"]),57)
+        self.assertEqual(len(self.original["nativeSources"]),63)
         self.assertEqual(len(self.original["demoPureSources"]),8)
 
     def test_bounded_existing_primitive_defaults_and_noncreating_source_contract(self):
@@ -318,7 +318,7 @@ class SourceGateTests(unittest.TestCase):
             ".github/workflows/r03-native-b2-v1-parity-host.yml",
         }
         self.assertTrue(expected.issubset(audit.NATIVE_REQUIRED))
-        self.assertEqual(len(self.original["nativeSources"]),57)
+        self.assertEqual(len(self.original["nativeSources"]),63)
         self.assertEqual(len(self.original["demoPureSources"]),8)
         self.assertIn(
             "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedObservedExecutionV1ByteParity.h",
@@ -395,6 +395,51 @@ class SourceGateTests(unittest.TestCase):
                          audit.NATIVE_REQUIRED)
         self.assertEqual({r["path"] for r in self.original["demoPureSources"]},
                          audit.DEMO_REQUIRED)
+
+    def test_original_field15_formatter_and_class_fact_scope(self):
+        c=self.original["nativeSourceCapabilities"]
+        required_true=(
+            "originalV1ActualSerializerDifferentialHost",
+            "originalV1SerializerUsesActualLiveR02",
+            "originalV1SerializerUsesActualFrozenR02",
+            "originalV1FormatterSameImmutableRowsOnly",
+            "observedClassFactsTwoPassInNativeSource",
+            "observedClassFactsNotCoherentVmEpoch",
+        )
+        required_false=(
+            "originalV1RuntimeClassMetadataParityProven",
+            "originalV1TerminalField15FormattingProven",
+            "completeObservedClassLifetimeProven",
+        )
+        for key in required_true:
+            self.assertTrue(c[key])
+            wrong=copy.deepcopy(self.original)
+            wrong["nativeSourceCapabilities"][key]=False
+            with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(wrong)
+        for key in required_false:
+            self.assertFalse(c[key])
+            wrong=copy.deepcopy(self.original)
+            wrong["nativeSourceCapabilities"][key]=True
+            with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(wrong)
+        self.assertEqual(c["originalV1FormatterHostCases"],10)
+        self.assertGreaterEqual(c["originalV1FormatterHostAssertions"],91)
+        self.assertEqual(c["originalV1FormatterGuardedAllocations"],0)
+        self.assertEqual(c["observedClassFactsBetweenPassMutationFailures"],2)
+        self.assertEqual(c["observedClassFactsRegistrySlotLimit"],2048)
+        self.assertEqual(c["observedClassFactsBytesPerSlot"],16)
+        needed={
+            "NativeHostTests/AssemblyShadowExecutionV1SerializerParityHost.cpp",
+            ".github/workflows/r03-native-b2-execution-v1-serializer-parity-host.yml",
+            "libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+            "libil2cpp/vm/AssemblyShadowObservationCounters.h",
+            "libil2cpp/vm/AssemblyShadowObservationMemo.h",
+            "libil2cpp/vm/AssemblyShadowDiagnosticsProfile.h",
+        }
+        self.assertTrue(needed.issubset(audit.NATIVE_REQUIRED))
+        self.assertEqual({row["path"] for row in self.original["nativeSources"]},
+                         audit.NATIVE_REQUIRED)
 
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
