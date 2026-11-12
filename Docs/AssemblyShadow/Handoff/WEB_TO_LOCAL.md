@@ -1,5 +1,63 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current Primary R03 B2 — original V1 observational field15 parity probe; NO LOCAL EXECUTION (2026-11-12 UTC)
+
+**AUTHORITY: CLOSED / NO EXECUTION.** Local Agent disposition remains **NoExecutionAuthority**. This is a source/host implementation checkpoint, NOT an executable order to build Unity, start a Player, create one-use roots, replay consumed oneuse-12, start H2/M08A/X02/SNAP-01 or self-approve a Human Review Gate. Nontrivial architecture and implementation remain exclusively with Primary Implementation.
+
+### Exact repository/branch and current source pins
+
+Canonical remotes: https://github.com/night-outlook/<repo>.git; all branches `codex/assembly-shadow-r01b-h1`. The default local paths are reference layout only and were **not inspected** in this web environment. Verify actual remote, branch, clean worktree and SHA in any future authorized Local batch.
+
+| Repository | Expected default Local worktree | Current native/other source SHA |
+| --- | --- | --- |
+| night-outlook/hybridclr_demo | /Users/ah/GitHub/hybridclr/hybridclr_demo | latest pushed GitHub branch HEAD; this handoff changes that commit |
+| night-outlook/hybridclr | /Users/ah/GitHub/hybridclr/hybridclr | 4b2774b066cfc6afd77a8c8aded6bda7ea574f55 |
+| night-outlook/hybridclr_unity | /Users/ah/GitHub/hybridclr/hybridclr_unity | 948c0e3b4f8891481301770115e8ba4945eea6de |
+| night-outlook/il2cpp_plus | /Users/ah/GitHub/hybridclr/il2cpp_plus | 2670b6cfc7006c9483c4c9322808c152efa16772 |
+
+[Exact 53-native/six-demo source manifest](../../Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json) pins all ABI/serializer/source/CI Git blobs, the pure V1 parity header mirror, and the **exact original enabled GetExecutionDiagnosticsJson 5,222-byte reference body** frozen from the prior native 68530d7... source. The current native enabled getter has been byte-compared to that fixture; the separate FeatureDisabled getter definition is not confused with the original enabled implementation. The source audit prohibits silent getter changes.
+
+Future native/SDK build constraints (not yet executed): Unity 2022.3.62f2 macOS ARM64 IL2CPP ON Release/diagnostics2 with verified actual original C++11 Bee/SDK overlay, fixed HybridCLR interpreter and Unity package commits above, generated BridgeTable and GameAssembly UUID/SHA to be measured from a new build. Never substitute the historical B1 oneuse-12 binary/fixture/PID/nonce/roots or a prior CI run for an actual new B2 build.
+
+### Completed Primary implementation and source-only evidence
+
+The new **inactive, healthy-time-only** `AssemblyShadow::TryProbeBoundedExecutionV1ByteParity` calls the unchanged **actual original** `TryGetExecutionDiagnosticsWithMetadataAdmission` wrapper, then separately captures the original physical registered-AOT TypeDef subset into an owned `Record` and compares exact JSON bytes with a C++11 one-shot allocation-free comparator. One outer initial-session metadata Reader covers both calls. On original getter error/exception, missing/over-budget source, failed physical source, different bytes or reused probe, it clears old reference bytes and revokes all positive bounded rows/receipt/record state. On a byte-exact match the result remains `twoIndependentObservationsOnly=true`, with `coherentVmEpochProven=false`, `fullCanonicalTypeKeysProven=false`, `terminalSafeFinalExecutionDiagnostics=false`, `nativeV2TransportImplemented=false`, `runtimeAcceptance=false`. It is **not** a terminal V2 field15 producer and no Player/legacy getter interface was changed.
+
+- [Native actual .inl source + parity wrapper synthetic reference CI 43146273936](https://github.com/night-outlook/il2cpp_plus/actions/runs/43146273936): **4/4 PASS**, Mac/Linux C++11/17, 16 Release/Debug strict/ASan-UBSan processes, each with **67 physical-source cases, three adapter cases and 1,258 assertions**, plus the existing 20 primitive Peek mapping tests. The **fake original** in this host intentionally uses another bounded capture; it cannot prove real V1 parity.
+- [Pure observational parity comparator CI 43146317881](https://github.com/night-outlook/il2cpp_plus/actions/runs/43146317881): **4/4 PASS**, Mac/Linux C++11/17, ten deterministic exact byte/mismatch/length/capacity/reused/failed-input cases, 42 assertions/process in Release/Debug strict/sanitized.
+- [Exact 53-native/six-demo source CI 43147578102](https://github.com/night-outlook/hybridclr_demo/actions/runs/43147578102): **2/2 PASS**, Mac/Linux, **25 negative/admission tests per OS**, frozen original enabled getter source byte identity, exact whole-source Git blob and four branch source SHA pins, original serializer/metadata Reader/R02/diagnostic formatter sources and all full product flags false.
+- [Independent source review, design, evidence, risks and staged one-batch Local matrix](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_OBSERVATIONAL_ORIGINAL_V1_PARITY_PROBE_IMPLEMENTATION_AND_REVIEW.md).
+
+These are verified **host/source** tests. No real official Unity `AssemblyShadow.cpp`/Class.cpp full C++ TU, GameAssembly link, actual original V1 nonempty diagnostics/real-class metadata, Player, postterminal capture, real native V2 binary/envelope/receipt or first independent recovery has executed at the current source revision. Original B1 oneuse-12 focused macOS IL2CPP Player **19/19 PASS** remains immutable, consumed and out of this scope. Original independent R03 full-stage FAIL and High IR-R03-01/IR-R03-02 remain open, PureInterpreter remains disabled.
+
+### Remaining Primary-owned blockers before any executable Local authorization
+
+1. Prove **real original complete nonempty V1 field15 byte/semantic parity** on genuine Unity metadata, including original `Assembly::CaptureShadowEnumeration` **logical image map** versus the new raw registered physical AOT owner map. No source-only mock or dual-read equality can establish a coherent VM epoch or universal TypeKey/class/R02 correctness. Reject unsupported/interpreter/open classes and wrong owner maps rather than constructing a new class or inventing a key.
+2. Produce terminal-safe, source-owned **complete** `finalDiagnostics` field14 and `finalExecutionDiagnostics` field15 matching the actual original V1 field contract. Prove physical observed class allocation/GC/teardown/source lifetime, cctor/static and metadata generation. The current healthy-time admitted getter may allocate and is not a postterminal source; complete field15 cannot be replaced by partial physical rows, the B1 first reason or null.
+3. Integrate the existing pure bounded native V2 codec, preopened descriptor-relative single-owner transaction, artifact-first/envelope-last envelope, independently authenticated external receipt/strict reader and full first-recovery identity/source/provenance. Add typed failure and negative crash/reentry/symlink/partial/duplicate/race tests.
+4. Independently review updated full native design→implementation→tests, source/ABI and four exact pushed Git SHAs; only after all prerequisites pass may Primary write a **new executable** WEB_TO_LOCAL with fresh absent one-use roots, real commands, expected data, exact source, environment and empirical acceptance criteria. Nontrivial fixes never transfer to Local.
+
+### Future consolidated one-batch Local Validation matrix — CONDITIONAL, NOT EXECUTABLE
+
+When a future **explicitly reopened** handoff exists, run **one** exact source-pinned Unity2022.3.62f2 macOS ARM64 IL2CPP build and **three** distinct fresh Players to answer as many independent issues as possible, preserving original-S/host/Player raw custody and not reusing the consumed B1 oneuse-12:
+
+| Batch gate | Proposed combined tests | Required raw evidence |
+| --- | --- | --- |
+| 0. Git/SDK/custody admission | Four clean exact HEAD/source-blobs and 53/6 source audit; original-S immutable custody, official Unity/IL2CPP/Bee source, two spaced disk-capacity samples and absent owner-only 0700 fresh roots | branch/source hashes, OS/SDK/Bee/Original-S receipts, source CI and capacity/ownership checks |
+| 1. Real native compile/link | Full Class.cpp and AssemblyShadow.cpp Unity C++11 TUs, physical AOT/Unicode/primitive ABI, original getter and actual parity wrapper; generated method bridges, no host-only allocator sources in GameAssembly | compiler/link stdout, exact installed native/BridgeTable source roster, BuildReport, GameAssembly UUID/SHA, nm/symbol proof |
+| 2. Three positive Players | Empty, initializer error19, captured generic guard15 with real primitive/Unicode/constructed/qualified types and original logical vs physical owner images; full original V1 field14/field15 byte equality and B1 first reason | distinct PID/nonces/request/fixtures, old and owned exact JSON byte/parity offsets, type-owner and cctor/static flags, original first-error and AOT canaries |
+| 3. Complete native V2 | Full terminal-safe field14+15, original first event, preopened descriptor-relative artifact/envelope transaction and identity-bound external reader/receipt | raw diagnostics.v2.bin, envelope.v2.json, external receipt, SHA/size/dev/inode/source/PID/fixture/SDK and independent first-recovery match |
+| 4. Adversarial/lifetime | Original logical/physical owner discrepancy, malformed Unicode/primitive default, stale metadata epoch or registry revision, B1-during-read, missing/changed/partial/symlink V2, duplicate finalize, GC/teardown | typed rejection, unchanged first-error and AOT canary, no false original/owned equality, GC/crash logs and no false V2 seal |
+| 5. Stability/performance/custody | GC/RSS/first-call budgets, crash-free startup/shutdown, exact raw/host/product provenance and two independent auditors | profilers/Player logs, GC/RSS traces, original-S and regular-only immutable product manifests, LOCAL_VALIDATION.md/RETURN_TO_WEB.md |
+
+No new one-use root/number or executable Local command has been authorized or reserved. All future significant implementation remains Primary-owned.
+
+**Flags:** `readyForNativeV2FieldCapture=false; nativeV2TransportImplemented=false; firstRecoveryAuthenticatedV2=false; runtimeAcceptance=false; qualificationApproved=false; fullLegacyRegressionAcceptance=false; R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; wholeVmEpoch=NotProven; handoffAuthority=CLOSED_NO_LOCAL_EXECUTION`. No H2/M08A/X02/SNAP-01, and no Human Review Gate self-approval. Local reply while closed: **NoExecutionAuthority**.
+
+**Local read-only order:** Docs/AssemblyShadow/README.md → Handoff/WEB_TO_LOCAL.md → B2_OBSERVATIONAL_ORIGINAL_V1_PARITY_PROBE_IMPLEMENTATION_AND_REVIEW.md → exact source manifest → historical Local reports only as background. No Local build or test execution until reopened by Primary.
+
+---
+
 ## Current Primary R03 B2 — assert-free existing primitive default source; NO LOCAL EXECUTION (2026-11-12 UTC)
 
 **AUTHORITY: CLOSED / NO EXECUTION. Local Agent response: NoExecutionAuthority.** This is a Primary-owned **source-only** implementation checkpoint, not a command to run a Player, build Unity, reserve one-use output roots, rerun consumed oneuse-12, approve H2 or begin any later milestone. All nontrivial missing implementations stay with Primary.
