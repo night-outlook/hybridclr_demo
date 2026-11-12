@@ -44,6 +44,10 @@ NATIVE_REQUIRED={
     "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
     "libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
     "libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+    "libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+    "libil2cpp/vm/AssemblyShadowObservationCounters.h",
+    "libil2cpp/vm/AssemblyShadowObservationMemo.h",
+    "libil2cpp/vm/AssemblyShadowDiagnosticsProfile.h",
     "libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
     "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
     "libil2cpp/vm/AssemblyShadowName.h",
@@ -61,6 +65,8 @@ NATIVE_REQUIRED={
     ".github/workflows/r03-native-b2-composite-typekey-host.yml",
     "libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
     "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
+    "NativeHostTests/AssemblyShadowExecutionV1SerializerParityHost.cpp",
+    ".github/workflows/r03-native-b2-execution-v1-serializer-parity-host.yml",
     "NativeHostTests/AssemblyShadowOriginalV1OwnerJoinHost.cpp",
     ".github/workflows/r03-native-b2-original-v1-owner-join-host.yml",
     "NativeHostTests/AssemblyShadowExecutionV1ByteParityHost.cpp",
@@ -179,6 +185,21 @@ def validate_contract(m:dict)->None:
             c.get("originalV1JoinHostCases")==12 and
             c.get("originalV1JoinHostAssertions")>=41 and
             c.get("originalV1FullField15ParityProven") is False and
+            c.get("originalV1ActualSerializerDifferentialHost") is True and
+            c.get("originalV1SerializerUsesActualLiveR02") is True and
+            c.get("originalV1SerializerUsesActualFrozenR02") is True and
+            c.get("originalV1FormatterSameImmutableRowsOnly") is True and
+            c.get("originalV1FormatterHostCases")==10 and
+            c.get("originalV1FormatterHostAssertions")>=91 and
+            c.get("originalV1FormatterGuardedAllocations")==0 and
+            c.get("originalV1RuntimeClassMetadataParityProven") is False and
+            c.get("originalV1TerminalField15FormattingProven") is False and
+            c.get("observedClassFactsTwoPassInNativeSource") is True and
+            c.get("observedClassFactsBetweenPassMutationFailures")==2 and
+            c.get("observedClassFactsRegistrySlotLimit")==2048 and
+            c.get("observedClassFactsBytesPerSlot")==16 and
+            c.get("observedClassFactsNotCoherentVmEpoch") is True and
+            c.get("completeObservedClassLifetimeProven") is False and
             c.get("actualUnityOriginalV1OwnerJoinTested") is False and
             c.get("originalV1ImagesAreLogicalShadowView") is False and
             c.get("observationalOriginalV1ByteProbeImplemented") is True and
@@ -436,6 +457,39 @@ def source_boundary(native:dict[str,bytes])->None:
     must("libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
          "class Reader final", "kInitialEpoch=1",
          "CloseAndDrain() noexcept")
+    must("libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+         "class Snapshot final", "TryCaptureCurrent(",
+         "TryCaptureFrom(", "SnapshotReceipt")
+    must("libil2cpp/vm/AssemblyShadowObservationCounters.h",
+         "enum class Metric", "class ObservationCounters",
+         "ObservationCounter", "kThreadCapacity = 128")
+    must("libil2cpp/vm/AssemblyShadowObservationMemo.h",
+         "class ObservationMemo", "TlsBytesPerThread()")
+    must("libil2cpp/vm/AssemblyShadowDiagnosticsProfile.h",
+         "HYBRIDCLR_R02_DEFAULT_DIAGNOSTICS_LEVEL 2")
+    # Source-level R02 live/frozen field order and Metric mapping must remain
+    # identical. This complements compiling BOTH ACTUAL serializers in host.
+    def r02_fields(path:str):
+        body=native[path].decode("utf8","strict")
+        return re.findall(r'\{"([^"]+)",\s*Metric::(\w+)\}',body)
+    legacy_fields=r02_fields("libil2cpp/vm/AssemblyShadowR02Diagnostics.h")
+    frozen_fields=r02_fields("libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h")
+    require(len(legacy_fields)>=20 and
+            legacy_fields==frozen_fields and
+            len(set(legacy_fields))==len(legacy_fields),
+            "Original live/frozen R02 field/metric sequence drift")
+    must("NativeHostTests/AssemblyShadowExecutionV1SerializerParityHost.cpp",
+         "R03B2OriginalV1ExecutionSerializerParityHost",
+         "r02::AppendDiagnostics(output)",
+         "r02::Snapshot::TryCaptureCurrent(",
+         "record->Freeze()",
+         "DivergentClassFacts()", "DivergentR02Counter()",
+         "actualLegacyR02Formatter", "actualFrozenR02Formatter",
+         "terminalSafeField15", "guardedAllocations")
+    must(".github/workflows/r03-native-b2-execution-v1-serializer-parity-host.yml",
+         "AssemblyShadowExecutionV1SerializerParityHost.cpp",
+         "c++11", "c++17",
+         "sanitized", 'j["cases"]==10')
     must("libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
          "AppendDiagnostics(")
     must("libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
@@ -465,6 +519,10 @@ def source_boundary(native:dict[str,bytes])->None:
          "TryCaptureBoundedDefinitionExecutionLive",
          "Never returns a live class pointer or modifies the original getter.",
          "TryProbeBoundedExecutionV1ByteParity(")
+    must("libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
+         "ObservedClassFactsChanged",
+         "observedClassFactsTwoPassStable",
+         "observedClassFactsMatched=0")
     must("libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
          "assembly_shadow_metadata_lifetime::Gate::Reader admission",
          "il2cpp_class_for_each",
@@ -486,6 +544,10 @@ def source_boundary(native:dict[str,bytes])->None:
          "OriginalV1FirstOwnerConflict",
          "OriginalV1OwnerMissing",
          "originalV1FirstEmplaceOwnerMatched=",
+         "ObservedClassFactsChanged",
+         "ClassFacts::Read(klass)",
+         "firstPassFacts.fill(ClassFacts{})",
+         "receipt.observedClassFactsTwoPassStable=",
          "usedUnobservedAotArgumentImage",
          "resolveOwner",
          "AmbiguousMetadataOwner",
@@ -555,6 +617,8 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::OriginalV1SnapshotChanged",
          "Mode::OriginalV1UnregisteredOwner",
          "Mode::OriginalV1InvalidImage",
+         "Mode::CctorFactsChanged",
+         "Mode::StaticFactsChanged",
          "Mode::GenericSameImage",
          "Mode::GenericConstructedArgument",
          "Mode::UnicodeAssembly",
