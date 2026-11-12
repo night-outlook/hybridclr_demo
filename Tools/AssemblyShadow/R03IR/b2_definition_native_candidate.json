@@ -168,6 +168,10 @@
     {
       "path": "libil2cpp/vm/Class.h",
       "gitBlob": "d4d1253c90f77905aa38ae3341d7c367c5f0fec8"
+    },
+    {
+      "path": "libil2cpp/il2cpp-class-internals.h",
+      "gitBlob": "3bbef0474179f09ad1fce7b567423d69bbfd3884"
     }
   ],
   "demoPureSources": [
@@ -188,7 +192,7 @@
       "gitBlob": "d930418031706006e10a41ade08f70ba6454bc47"
     }
   ],
-  "testProof": "Native real inactive .inl compiled with mock VM, original direct default-class lookup source structurally pinned (not full Class.cpp compiled), 67 synthetic cases and 1,195 assertions per each of 16 Mac/Linux C++11/17 Release/Debug strict/sanitized host executions. Exact run 43139433481 4/4 jobs completed/success at final native source. Full Unity IL2CPP/real primitive metadata/field15/V2/Player NOT run.",
+  "testProof": "Native real inactive .inl compiled with mock VM, original direct default-class lookup source structurally pinned (not full Class.cpp compiled), 67 synthetic cases and 1,195 assertions per each of 16 Mac/Linux C++11/17 Release/Debug strict/sanitized host executions. Exact run 43139433481 4/4 jobs completed/success at final native source. Full Unity IL2CPP/real primitive metadata/field15/V2/Player NOT run. Native Il2CppClass definition layout/metadata generic container field source independently pinned; does not constitute real Unity compilation.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
