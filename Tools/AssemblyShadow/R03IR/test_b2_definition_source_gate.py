@@ -318,8 +318,8 @@ class SourceGateTests(unittest.TestCase):
             ".github/workflows/r03-native-b2-v1-parity-host.yml",
         }
         self.assertTrue(expected.issubset(audit.NATIVE_REQUIRED))
-        self.assertEqual(len(self.original["nativeSources"]),53)
-        self.assertEqual(len(self.original["demoPureSources"]),6)
+        self.assertEqual(len(self.original["nativeSources"]),57)
+        self.assertEqual(len(self.original["demoPureSources"]),8)
         self.assertIn(
             "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedObservedExecutionV1ByteParity.h",
             audit.DEMO_REQUIRED)
