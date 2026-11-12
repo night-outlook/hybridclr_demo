@@ -1,5 +1,13 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current Primary B2 source-inventory checkpoint (2026-11-12 UTC)
+
+**AUTHORITY: CLOSED / NO EXECUTION; Local must return NoExecutionAuthority.** The latest Primary work changed **source-admission infrastructure only**, not Unity/native runtime, Player or native V2. The exact original V1 GetExecutionDiagnosticsJson retains its 5,222-byte frozen body; the source gate now checks the 11 header + 11 class-value mapping expressions/order, original token-valid physical image source, registry, ctor/static/debug pointer and live R02 read boundaries. Four new focused Python tests passed locally; 20 semantic source mutants are rejected. [Review and source inventory](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ORIGINAL_V1_FIELD15_SOURCE_INVENTORY_REVIEW_2026-11-12.md). No new native tests or Local tests are authorized. Verify the final exact 4-repository HEADs before using as provenance; earlier static CI is not automatically transferable.
+
+**Pins:** codex/assembly-shadow-r01b-h1 for all four; demo current latest pushed HEAD, hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55, hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de, il2cpp_plus@e5f8eebca1263181ed3fca49e84a1cf73f40b90b. Native source manifest remains **63-native/eight-demo**. No full field14/field15/GC/epoch or native descriptor V2 has been implemented or proved. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; nativeV2TransportImplemented=false; handoffAuthority=CLOSED_NO_LOCAL_EXECUTION.
+
+---
+
 ## Current Primary R03 B2 — verified original field15 formatter, visible class-fact drift rejection (2026-11-12 UTC)
 
 **AUTHORITY: CLOSED / NO EXECUTION. Local must respond NoExecutionAuthority.** This is a Primary-owned **inactive native source/host** checkpoint. It neither reserves a new one-use batch nor authorizes an official Unity build, Player, GC/profiler run, local implementation, B1 oneuse-12 replay, H2/M08A/X02/SNAP-01 or a Human Review Gate. All nontrivial remaining implementation stays with Primary.

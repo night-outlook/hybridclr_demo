@@ -1,3 +1,11 @@
+# Current Primary — exact original execution V1 field15 source inventory (2026-11-12 UTC)
+
+**Current source-only checkpoint:** [Mapping/source review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ORIGINAL_V1_FIELD15_SOURCE_INVENTORY_REVIEW_2026-11-12.md) records all **11 original V1 field15 header + 11 per-class assignments**, exact producing expressions and ordering; original registry/image/typekey, cctor/static/debug pointer and independent live R02 read boundaries are now fail-closed in b2_definition_source_gate.py. Four new locally run Python tests **PASS** with 20 intentionally divergent source cases rejected; cross-fork CI needs the exact final HEAD result checked separately. The original enabled getter and all three native/package branches are UNCHANGED. This proves source mapping ONLY, not real Unity class capture, lifetime, terminal field14/15, whole-VM epoch or native V2.
+
+**Status:** R03 B2 incomplete; readyForNativeV2FieldCapture=false; nativeV2TransportImplemented=false; R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; PureInterpreter disabled. [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) **CLOSED / NO EXECUTION**. No Local build/Player or Human Review Gate authority.
+
+---
+
 # Current Primary — actual V1 field15 serializer differential and class-fact drift fencing (2026-11-12 UTC)
 
 **Canonical native source:** il2cpp_plus@e5f8eebca1263181ed3fca49e84a1cf73f40b90b, hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55, hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de, all branch codex/assembly-shadow-r01b-h1; demo SHA is latest pushed branch HEAD. [63-native/eight-demo source manifest](../../Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json).

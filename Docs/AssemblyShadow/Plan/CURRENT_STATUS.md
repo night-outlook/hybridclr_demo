@@ -1,3 +1,11 @@
+# R03 B2 Primary — exact original V1 field15 source/value mapping audit (2026-11-12 UTC)
+
+**New source-only implementation:** b2_definition_source_gate.py now verifies **11 original header and 11 original class-row right-hand expressions/order**, the original physical registry/first-emplace image source, typekey, cctor/static/debug pointer and live R02 read boundaries. Exact 5,222-byte original getter remains unchanged; native forks unchanged. Four locally executed focused Python tests PASS with 20 semantic mutations rejected. [Design, source inventory, implementation and review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ORIGINAL_V1_FIELD15_SOURCE_INVENTORY_REVIEW_2026-11-12.md). Final pushed four-fork CI result must be checked independently. No real Unity original getter/Player was run.
+
+**Remaining Primary stage:** source-accurate *complete* nonempty V1 class and interpreter/open-generic metadata/GC/epoch capture, terminal-safe full original field14+15, native descriptor-relative V2 transaction + authenticated external receipt and independent first recovery. All product acceptance flags remain false; WEB_TO_LOCAL CLOSED / NO EXECUTION. No H2/M08A/X02/SNAP-01 or Human Review Gate approval.
+
+---
+
 # R03 B2 Primary — actual legacy/frozen field15 byte formatter PASS; full V2 blocked (2026-11-12 UTC)
 
 **Pinned sources:** il2cpp_plus@e5f8eebca1263181ed3fca49e84a1cf73f40b90b, hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55 and hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de, branch codex/assembly-shadow-r01b-h1; demo latest pushed GitHub HEAD. [63-native/8-demo exact manifest](../../Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json).
