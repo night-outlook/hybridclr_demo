@@ -1,3 +1,11 @@
+# B2 source correction — null-safe original-default mapping (2026-11-12 UTC)
+
+The former direct Class::FromIl2CppTypeEnum call could assert on unavailable defaults in IL2CPP_DEBUG. Primary replaced the call in the inactive TypeKey producer with a new nonallocating, assert-free 19-field Peek under the physical AOT owner metadata Reader, and independently verifies 19/19 mapping equivalence against original Class.cpp through Git-pinned structural CI. Native il2cpp_plus@68530d7ecb86c9122d9ae5eb20366ccb0ea086b6; [new corrected implementation/review](B2_PREEXISTING_PRIMITIVE_DEFAULT_IMPLEMENTATION_AND_REVIEW.md). Source-host CI 4/4 PASS, 67 source scenarios plus 20 lookup cases, 1,236 assertions/process; cross-fork source audit 2/2 PASS, 42-native/four-demo files and 22 negative tests per OS. **No real Unity SDK/Player parity**. Previously described direct-call f6530b... candidate is historical and superseded.
+
+Remaining Primary tasks: complete original full nonempty field15 V1 byte-equivalent source using real metadata, prove terminal-safe full field14/15/GC/class lifetime, integrate authenticated descriptor V2 binary+envelope+independent receipt with no reentry and hardened negative tests, review, then create one fresh exact four-SHA/SDK/unused-root Local batch verifying compiled C++11 Unity, three Players, first-event equality, native V2 provenance, GC/RSS and evidence custody. No local build/execution currently authorized; WEB_TO_LOCAL CLOSED / NO EXECUTION. Full R03/H2/Human Review Gate statuses remain false, PureInterpreter disabled.
+
+---
+
 # B2 implemented bounded primitive defaults — next source parity/terminal work (2026-11-12 UTC)
 
 At source il2cpp_plus@f6530b221f0ef98ff38436ca8cd2692304d63265, Primary implemented and source/mock-tested preexisting primitive default class TypeKey sourcing via original Class::FromIl2CppTypeEnum, registered physical AOT TypeDef owner and class metadata parity. Exact 41 native/four demo source audit is Green (2/2); native 67-case/1195-assertion C++11/17 Release/Debug strict/sanitized source mock is Green (4/4). [Original primitive source design, review, tests and future one-batch Local matrix](B2_PREEXISTING_PRIMITIVE_DEFAULT_IMPLEMENTATION_AND_REVIEW.md). These are source/host results only, not full real Unity V1/V2 acceptance.
