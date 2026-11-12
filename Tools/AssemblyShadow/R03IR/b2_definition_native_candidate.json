@@ -2,20 +2,20 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "Inactive native physical AOT TypeDef source: existing primitive default classes are read via null-safe original-switch-equivalent peek, never asserted Class::FromIl2CppTypeEnum; class/physical metadata owner checks retained; full field15/V2 blocked",
+  "objective": "R03 B2 inactive healthy-time bounded class source now supports a one-shot observational exact-byte probe against the UNMODIFIED original V1 GetExecutionDiagnosticsJson under initial metadata lifetime Reader; mismatches revoke frozen record; not an atomic VM epoch or complete terminal field15/native V2",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "68530d7ecb86c9122d9ae5eb20366ccb0ea086b6",
+  "candidateNative": "2670b6cfc7006c9483c4c9322808c152efa16772",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
     {
       "path": "libil2cpp/vm/AssemblyShadow.cpp",
-      "gitBlob": "acf8dbaedc6e86253ab5e66d6e93f0d24bbefe04"
+      "gitBlob": "9c6fccec06246c343f4e540fffe78a1c1bacb289"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadow.h",
-      "gitBlob": "c4b4cfa9d7267a85f7d52de50e055002cc887eaa"
+      "gitBlob": "d72182f109fb6334658442f1651dfefec6249000"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowTypeKey.cpp",
@@ -47,7 +47,7 @@
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "c0cfe70bebe502e3f8ddd65c74b7e5deca624f15"
+      "gitBlob": "54c1ca3f312d4302e47f05d8ee2140624f485be1"
     },
     {
       "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -55,7 +55,7 @@
     },
     {
       "path": ".github/workflows/r03-native-b2-definition-live-source-host.yml",
-      "gitBlob": "de9d60e24d009046ab6a0671790258a12ee6bf46"
+      "gitBlob": "f94536d84adbc1497d1ba62a2bf560d5caf43d2e"
     },
     {
       "path": ".github/workflows/r03-native-b2-constructed-typekey-host.yml",
@@ -63,7 +63,7 @@
     },
     {
       "path": "NativeHostTests/README.md",
-      "gitBlob": "e1eae5aa15eed889742101e5735f81b30c754be4"
+      "gitBlob": "2c2302713b62de01ff87940d68648e3ca5831162"
     },
     {
       "path": "libil2cpp/il2cpp-runtime-metadata.h",
@@ -176,6 +176,50 @@
     {
       "path": "libil2cpp/vm/AssemblyShadowExistingPrimitiveDefaults.h",
       "gitBlob": "ad0c77b6ee8e8325d2d9ea6fb4e478f5cf3c9d7e"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowExecutionV1ByteParity.h",
+      "gitBlob": "3731bddede5d3cfc6dad228ca0c7d5cfd940c762"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowExecutionV1ByteParitySource.inl",
+      "gitBlob": "77664db51363111257d157618902fdadfdd0c814"
+    },
+    {
+      "path": "NativeHostTests/AssemblyShadowExecutionV1ByteParityHost.cpp",
+      "gitBlob": "9ea696c47c2fce843274c5bdcf5ce96f19f93dbb"
+    },
+    {
+      "path": ".github/workflows/r03-native-b2-v1-parity-host.yml",
+      "gitBlob": "940c9d9d65ea2235bf6a2829097148cb46af8bd7"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+      "gitBlob": "a615a839f5af8614c672a9bfb45be02d12b01a0e"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowExecutionSerializer.h",
+      "gitBlob": "3a0e7b1cc25bdeb16d0f341b67715b3433f04689"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+      "gitBlob": "eeb413f8c8c0f6c1658da68ddd404b9b478e6e70"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+      "gitBlob": "d2fe09dd51debbbbc71d67b21347f5d971a3cafd"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+      "gitBlob": "1c2a43384d03b0369a51b587fc5f5e445d5b58c8"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+      "gitBlob": "ab136038a49a8e6614243677d19e20c6f3fde4c5"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+      "gitBlob": "edef7c2f37978e65c02a8d2008886c6c4af8ae20"
     }
   ],
   "demoPureSources": [
@@ -194,9 +238,13 @@
     {
       "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedCompositeTypeKey.h",
       "gitBlob": "d930418031706006e10a41ade08f70ba6454bc47"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedObservedExecutionV1ByteParity.h",
+      "gitBlob": "3731bddede5d3cfc6dad228ca0c7d5cfd940c762"
     }
   ],
-  "testProof": "Actual inactive .inl compiled with fake VM, actual original Class.cpp switch mechanically mapped to null-safe primitive Peek; 67 source scenarios plus 20 direct null/present/unknown mapping cases, 1,236 assertions per each of 16 Mac/Linux C++11/17 Release/Debug strict/sanitized host executions. Final native CI 43141452521 4/4 completed/success at 68530d...; exact four-repository source CI 43141581601 2/2 completed/success, 42 native/4 demo Git source blobs, 22 negative unit tests per OS. No full original Class.cpp/AssemblyShadow.cpp Unity TU, real primitive metadata/field15 parity, Player or V2 native transport.",
+  "testProof": "Actual inactive parity wrapper compiled in synthetic VM: native CI 43146273936 4/4 Mac/Linux C++11/17, 16 host processes * (67 restricted AOT source scenarios + 3 fake-original parity probe cases), 1258 assertions each; pure exact-byte comparator CI 43146317881 4/4, 10 cases/42 assertions per process. Fake original getter in source mock is NOT real original V1. Original GetExecutionDiagnosticsJson remains unchanged and is pinned; real Unity TUs/Player/field15 full parity and V2 not run. No complete per-source field14, legacy logical assembly parity or record-at-terminal proof.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -214,7 +262,7 @@
       "sanitized"
     ],
     "physicalClassMembershipScope": "The observed source class must physically match its registration witness; registered AOT images without an observed class may own concrete TypeDef generic arguments; output rows preserve registry-slot order",
-    "mockAssertionsPerExecution": 1236,
+    "mockAssertionsPerExecution": 1258,
     "mockProcessExecutions": 16,
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
     "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup",
@@ -235,7 +283,7 @@
     "crossImageGenericArgumentsSupportedInMock": true,
     "ambiguousMetadataOwnerFailsClosed": true,
     "allPhysicalMetadataImagesEnumerated": false,
-    "nativeSourceCiRun": "43141452521",
+    "nativeSourceCiRun": "43146273936",
     "physicalIteratorSourceBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6",
     "recordOriginalLegacyGrammarUnchanged": true,
     "registeredAotImageLimit": 1024,
@@ -275,7 +323,20 @@
     "primitiveGenericContainerRejected": true,
     "assertFreePrimitiveDefaultLookup": true,
     "primitiveDefaultExactSwitchParity": true,
-    "primitivePeekHostCases": 20
+    "primitivePeekHostCases": 20,
+    "observationalOriginalV1ByteProbeImplemented": true,
+    "legacyV1GetterUnchanged": true,
+    "parityMismatchRevokesBoundedSource": true,
+    "paritySourceMockUsesFakeLegacyGetter": true,
+    "parityHostCases": 10,
+    "paritySourceMockCases": 3,
+    "parityMockAssertionsPerExecution": 1258,
+    "observedActualOriginalV1ByteEqualityInUnity": false,
+    "twoObservationsAreOneCoherentVmEpoch": false,
+    "completeNativeField15Proven": false,
+    "parityPureCiRun": "43146317881",
+    "legacyGetterOriginalSourceIncluded": true,
+    "legacyLogicalPhysicalImageMapParityProven": false
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
