@@ -1,3 +1,9 @@
+# Follow-on existing primitive defaults source increment (2026-11-12 UTC)
+
+Original Unicode reference folding and bounded composite keys are retained. The new source at il2cpp_plus@f6530b221f0ef98ff38436ca8cd2692304d63265 adds the original preexisting default primitive class source only when original Class.cpp direct lookup resolves a physically registered AOT TypeDef with exact nongeneric class declaration/owner proof. [New primitive implementation and independent review](B2_PREEXISTING_PRIMITIVE_DEFAULT_IMPLEMENTATION_AND_REVIEW.md). Exact 41 native/four demo pinned source; native mocked .inl 4/4 PASS and four-pin CI 2/2 PASS. This does not prove full V1 execution field15, terminal-safe full field14/15, native V2 transport or official Unity Player. WEB_TO_LOCAL CLOSED / NO EXECUTION.
+
+---
+
 # R03 B2 — original Unicode assembly folding, implementation and source review
 
 Date: 2026-11-11 UTC. Owner: Primary Implementation. **Inactive native source only; no complete V2 or Unity runtime acceptance.**
