@@ -552,8 +552,14 @@ def verify_legacy_getter_unchanged(current:bytes,reference:bytes)->None:
     require(len(reference)>2000 and reference.startswith(start) and
             reference.endswith(b"}"+bytes([10,10])),
             "Untrusted original V1 execution getter reference fixture")
-    require(current.count(start)==1 and current.count(boundary)==1,
+    # Production AssemblyShadow.cpp contains TWO definitions in mutually
+    # exclusive compile branches: one real Shadow-on getter and one
+    # HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW-off FeatureDisabled stub. Only the
+    # first is the V1 reference; both source anchors must stay present.
+    require(current.count(start)==2 and current.count(boundary)==1,
             "Original getter source anchor count")
+    require(current.index(start,current.index(boundary))>current.index(boundary),
+            "Missing expected feature-disabled alternative original getter")
     first=current.index(start)
     end=current.index(boundary,first)
     require(current[first:end]==reference,
