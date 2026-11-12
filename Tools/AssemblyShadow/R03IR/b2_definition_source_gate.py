@@ -205,6 +205,17 @@ def validate_contract(m:dict)->None:
             c.get("observedClassFactsTwoPassInNativeSource") is True and
             c.get("observedClassFactsBetweenPassMutationFailures")==2 and
             c.get("observedClassFactsDuringTypeKeyMutationFailures")==1 and
+            c.get("observedClassRootFactsThreePassInNativeSource") is True and
+            c.get("observedClassRootFields")==["image","definition","typeData","generic","typeCode"] and
+            c.get("observedClassRootMutationNegativeCases")==7 and
+            c.get("observedClassRootFactsSlotCount")==2048 and
+            c.get("observedClassRootFactsMaxBytes64")==98304 and
+            c.get("observedClassRootFactsAdditionalStackBytes64")==65536 and
+            c.get("observedClassRootFactsNotWholeVmEpoch") is True and
+            c.get("observedClassRootGcLifetimeProven") is False and
+            c.get("observedClassRootMetadataContentStableProven") is False and
+            c.get("observedClassRootUnityPlayerVerified") is False and
+            c.get("observedClassRootUnionTagRestricted") is True and
             c.get("observedClassFactsEndPassImplemented") is True and
             c.get("observedClassFactsEndPassMutationFailures")==3 and
             c.get("observedClassFactsEndPassEnumerationFailures")==2 and
@@ -228,8 +239,8 @@ def validate_contract(m:dict)->None:
             c.get("interpreterVarMvarExecutionTypeKeysSupported") is False and
             c.get("actualUnityInterpreterTypeDefParityProven") is False and
             c.get("wholeVmInterpreterClassLifetimeProven") is False and
-            c.get("mockScenarios")>=99 and
-            c.get("mockAssertionsPerExecution")>=2841 and
+            c.get("mockScenarios")>=106 and
+            c.get("mockAssertionsPerExecution")>=3194 and
             c.get("observedClassFactsRegistrySlotLimit")==2048 and
             c.get("observedClassFactsBytesPerSlot")==16 and
             c.get("observedClassFactsNotCoherentVmEpoch") is True and
@@ -587,6 +598,9 @@ def source_boundary(native:dict[str,bytes])->None:
          "originalV1ImageFactsMatched=0",
          "originalV1ImageFactsTwoPassStable=false",
          "OriginalV1ImageFactsChanged",
+         "ObservedClassRootChanged",
+         "observedClassRootFactsMatched=0",
+         "observedClassRootFactsThreePassStable=false",
          "usedSimpleInterpreterDefinition=false",
          "observedClassFactsEndPassMatched=0",
          "observedClassFactsEndPassStable=false")
@@ -625,6 +639,20 @@ def source_boundary(native:dict[str,bytes])->None:
          "originalV1FirstEmplaceOwnerMatched=",
          "ObservedClassFactsChanged",
          "ClassFacts::Read(klass)",
+         "image=reinterpret_cast<uintptr_t>(klass->image)",
+         "definition=reinterpret_cast<uintptr_t>(klass->typeMetadataHandle)",
+         "generic=reinterpret_cast<uintptr_t>(klass->generic_class)",
+         "out.typeCode=static_cast<uint32_t>(type.type)",
+         "out.typeData=reinterpret_cast<uintptr_t>(type.data.typeHandle)",
+         "out.typeData=reinterpret_cast<uintptr_t>(type.data.generic_class)",
+         "bool SameRoot(const ClassFacts& other)",
+         "bool SameClassState(const ClassFacts& other)",
+         "c.firstPassFacts[registration].SameRoot(secondFacts)",
+         "secondFacts.SameRoot(finalFacts)",
+         "end.facts[slot].SameRoot(observed)",
+         "static_assert(sizeof(ClassFacts)<=48",
+         "receipt.observedClassRootFactsMatched=context.classRootFactsMatched",
+         "receipt.observedClassRootFactsThreePassStable=",
          "firstPassFacts.fill(ClassFacts{})",
          "receipt.observedClassFactsTwoPassStable=",
          "receipt.observedClassFactsEndPassMatched=endPass.matched",
@@ -736,6 +764,14 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::CctorFactsChangedAtEnd",
          "Mode::StaticFactsChangedAtEnd",
          "Mode::EarlierClassFactsChangedDuringLaterTypeKey",
+         "Mode::RootDefinitionChangedOnSecond",
+         "Mode::RootImageChangedAtEnd",
+         "Mode::RootDefinitionChangedAtEnd",
+         "Mode::RootTypeCodeChangedAtEnd",
+         "Mode::RootTypeDataChangedAtEnd",
+         "Mode::RootGenericChangedAtEnd",
+         "Mode::EarlierRootChangedDuringLaterTypeKey",
+         "Check(g_changedEarlierRoot)",
          "Mode::MissingEndPass",
          "Mode::DuplicateEndPass",
          "Check(g_physicalPasses==3)",

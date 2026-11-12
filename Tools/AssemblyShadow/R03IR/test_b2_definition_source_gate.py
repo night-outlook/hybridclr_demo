@@ -456,8 +456,8 @@ class SourceGateTests(unittest.TestCase):
     def test_native_endpass_class_facts_acceptance_stays_scoped(self):
         c=self.original["nativeSourceCapabilities"]
         self.assertEqual(c["physicalEnumerationPasses"],3)
-        self.assertEqual(c["mockScenarios"],99)
-        self.assertEqual(c["mockAssertionsPerExecution"],2841)
+        self.assertEqual(c["mockScenarios"],106)
+        self.assertEqual(c["mockAssertionsPerExecution"],3194)
         self.assertTrue(c["observedClassFactsEndPassImplemented"])
         self.assertTrue(c["observedClassFactsEndPassNotVmEpoch"])
         self.assertFalse(c["observedClassFactsEndPassClassCountProvenInRealUnity"])
@@ -465,8 +465,8 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(c["observedClassFactsEndPassEnumerationFailures"],2)
         for key,wrong in (
             ("physicalEnumerationPasses",2),
-            ("mockScenarios",94),
-            ("mockAssertionsPerExecution",2553),
+            ("mockScenarios",99),
+            ("mockAssertionsPerExecution",2841),
             ("observedClassFactsEndPassImplemented",False),
             ("observedClassFactsEndPassMutationFailures",2),
             ("observedClassFactsEndPassEnumerationFailures",1),
@@ -585,6 +585,39 @@ original_join::CheckFirstOwner(
             modified["nativeSourceCapabilities"][key]=value
             with self.subTest(field=key),self.assertRaises(audit.Rejected):
                 audit.validate_contract(modified)
+
+    def test_root_facts_provenance_remains_scoped(self):
+        c=self.original["nativeSourceCapabilities"]
+        self.assertTrue(c["observedClassRootFactsThreePassInNativeSource"])
+        self.assertEqual(c["observedClassRootFields"],
+            ["image","definition","typeData","generic","typeCode"])
+        self.assertEqual(c["observedClassRootMutationNegativeCases"],7)
+        self.assertEqual(c["observedClassRootFactsSlotCount"],2048)
+        self.assertEqual(c["observedClassRootFactsMaxBytes64"],98304)
+        self.assertEqual(c["observedClassRootFactsAdditionalStackBytes64"],65536)
+        self.assertTrue(c["observedClassRootUnionTagRestricted"])
+        self.assertTrue(c["observedClassRootFactsNotWholeVmEpoch"])
+        for field in ("observedClassRootGcLifetimeProven",
+                      "observedClassRootMetadataContentStableProven",
+                      "observedClassRootUnityPlayerVerified"):
+            self.assertFalse(c[field])
+        for field,value in (
+            ("observedClassRootFactsThreePassInNativeSource",False),
+            ("observedClassRootFields",["image","definition"]),
+            ("observedClassRootMutationNegativeCases",6),
+            ("observedClassRootFactsSlotCount",1024),
+            ("observedClassRootFactsMaxBytes64",32768),
+            ("observedClassRootFactsAdditionalStackBytes64",32768),
+            ("observedClassRootFactsNotWholeVmEpoch",False),
+            ("observedClassRootGcLifetimeProven",True),
+            ("observedClassRootMetadataContentStableProven",True),
+            ("observedClassRootUnityPlayerVerified",True),
+            ("observedClassRootUnionTagRestricted",False),
+        ):
+            broken=copy.deepcopy(self.original)
+            broken["nativeSourceCapabilities"][field]=value
+            with self.subTest(field=field),self.assertRaises(audit.Rejected):
+                audit.validate_contract(broken)
 
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
