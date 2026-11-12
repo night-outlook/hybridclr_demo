@@ -204,6 +204,13 @@ def validate_contract(m:dict)->None:
             c.get("observedClassFactsEndPassMaximumCallbacks")==65536 and
             c.get("observedClassFactsEndPassNotVmEpoch") is True and
             c.get("observedClassFactsEndPassClassCountProvenInRealUnity") is False and
+            c.get("interpreterOnlyWithoutAotSourceSupportedInMock") is True and
+            c.get("interpreterOnlyWithoutAotPositiveCases")==2 and
+            c.get("interpreterOnlyWithoutAotNegativeCases")==4 and
+            c.get("registeredAotSourceRequiredPerAotDefinition") is True and
+            c.get("interpreterOnlyOriginalV1PhysicalOwnerStillRequired") is True and
+            c.get("interpreterOnlyUnityPlayerProven") is False and
+            c.get("interpreterOnlyFullField15OrVmEpochProven") is False and
             c.get("simpleInterpreterTypeDefSourceImplemented") is True and
             c.get("simpleInterpreterTypeDefMockPositives")==2 and
             c.get("simpleInterpreterTypeDefMockNegatives")==5 and
@@ -213,8 +220,8 @@ def validate_contract(m:dict)->None:
             c.get("interpreterVarMvarExecutionTypeKeysSupported") is False and
             c.get("actualUnityInterpreterTypeDefParityProven") is False and
             c.get("wholeVmInterpreterClassLifetimeProven") is False and
-            c.get("mockScenarios")>=88 and
-            c.get("mockAssertionsPerExecution")>=2389 and
+            c.get("mockScenarios")>=94 and
+            c.get("mockAssertionsPerExecution")>=2553 and
             c.get("observedClassFactsRegistrySlotLimit")==2048 and
             c.get("observedClassFactsBytesPerSlot")==16 and
             c.get("observedClassFactsNotCoherentVmEpoch") is True and
@@ -278,6 +285,33 @@ def validate_contract(m:dict)->None:
         require(m.get(key) is False,"Illegal product acceptance: "+key)
     require(m.get("handoffAuthority")=="CLOSED_NO_LOCAL_EXECUTION",
             "Cannot authorize Local from source audit")
+
+
+def verify_interpreter_only_aot_gate(source: bytes) -> None:
+    """Enforce the narrow no-AOT-image admission without weakening AOT owners.
+
+    This is a structural admission condition on an exact pinned native source.
+    It cannot prove Unity metadata lifetime, interpreter runtime behavior, or
+    one coherent VM epoch.
+    """
+    text = source.decode("utf8", "strict")
+    required = (
+        "if(!registeredAotImages.Healthy())",
+        "receipt.registeredPhysicalAotImages=registeredAotImages.Count();",
+        "d.registry->Contains(img)",
+        "d.originalV1Images->Contains(img)",
+        "c.originalV1Images->Contains(constrained)",
+        "original_join::CheckFirstOwner(",
+        "!originalV1Images.Count()",
+    )
+    for token in required:
+        require(token in text, "Interpreter-only source contract drift: " + token)
+    for forbidden in (
+        "if(!registeredAotImages.Healthy() || !registeredAotImages.Count())",
+        "if(!registeredAotImages.Count())",
+    ):
+        require(forbidden not in text,
+                "Unrelated nonempty AOT precondition reintroduced")
 
 def source_boundary(native:dict[str,bytes])->None:
     def must(path:str,*tokens:str):
@@ -662,6 +696,12 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::InterpreterNestedDefinition",
          "Mode::InterpreterFirstOwnerAlias",
          "Mode::InterpreterNotRegistered",
+         "Mode::InterpreterOnlySimpleClass",
+         "Mode::InterpreterOnlySimpleValueType",
+         "Mode::InterpreterOnlyMissingTypeHandle",
+         "Mode::InterpreterOnlyGenericDefinition",
+         "Mode::InterpreterOnlyConstructedGeneric",
+         "Mode::InterpreterOnlyNoOriginalImage",
          "Mode::CctorFactsChanged",
          "Mode::StaticFactsChanged",
          "Mode::CctorFactsDuringTypeKey",
@@ -873,6 +913,8 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
     n={r["path"]:verify_file(native,r["path"],r["gitBlob"])
        for r in m["nativeSources"]}
     source_boundary(n)
+    verify_interpreter_only_aot_gate(
+        n["libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl"])
     verify_legacy_getter_unchanged(
         n["libil2cpp/vm/AssemblyShadow.cpp"],
         d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/OriginalV1ExecutionGetter_2026-11-12.txt"])
@@ -914,6 +956,7 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
         "result":"PassedInactiveSourceOnly_NotFullV2",
         "verifiedNativeFiles":len(n),
         "verifiedDemoPureFiles":len(d),
+        "interpreterOnlyNoAotSourceAdmission":True,
         "legacyField15SourceInventory":legacy_inventory,
         "pins":{"hybridclr_demo":expected_demo,"il2cpp_plus":expected_native,
                 "hybridclr":m["hybridclr"],"hybridclr_unity":m["hybridclr_unity"]},

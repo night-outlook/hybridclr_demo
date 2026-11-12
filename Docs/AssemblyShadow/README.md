@@ -1,3 +1,11 @@
+# Current Primary — interpreter-only physical V1 TypeDef source without AOT requirement (2026-11-12 UTC)
+
+**Native source:** il2cpp_plus@f8bf89b42cfb20ab716b7d55a7ce91d20f1875b3 removes the unrelated global requirement for a nonempty registered-AOT TypeDef inventory while retaining per-AOT owner checks and original V1 physical first-owner for plain interpreter CLASS/VALUETYPE. The inactive source now admits interpreter-only physical image inventories in the bounded supported subset. Six new host scenarios (two positives, four negatives) passed in [Ubuntu native CI 43208481081](https://github.com/night-outlook/il2cpp_plus/actions/runs/43208481081), 94 cases/2553 assertions per process; macOS jobs queued at review. [Implementation/source review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_INTERPRETER_ONLY_NO_AOT_SOURCE_REVIEW_2026-11-12.md). All original enabled V1 getter, B1 and active Player code unchanged.
+
+**Still incomplete:** actual Unity/HybridCLR Player metadata, full registered class shape inventory, class/GC/VM epoch, complete terminal field14 and15, native V2 envelope/receipt/recovery. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; PureInterpreter disabled. [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) **CLOSED / NO EXECUTION**; no Local batch is authorized.
+
+---
+
 # Current Primary — restricted simple interpreter TypeDef source (2026-11-12 UTC)
 
 **Implementation:** native il2cpp_plus@90206c7b4abdbf756c8fb1f2c353fcdf78a792e6 extends the inactive B2 field15 source to plain nongeneric/nonnested interpreter CLASS/VALUETYPE definitions with original V1 physical token-valid image and first-emplace metadata-owner proof. Previous AOT generic/composite paths unchanged; interpreter generic/nested/composite/VAR/MVAR fail closed. [Source review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_SIMPLE_INTERPRETER_TYPEDEF_SOURCE_REVIEW_2026-11-12.md). Original enabled V1 getter and native B1 unchanged.

@@ -456,8 +456,8 @@ class SourceGateTests(unittest.TestCase):
     def test_native_endpass_class_facts_acceptance_stays_scoped(self):
         c=self.original["nativeSourceCapabilities"]
         self.assertEqual(c["physicalEnumerationPasses"],3)
-        self.assertEqual(c["mockScenarios"],88)
-        self.assertEqual(c["mockAssertionsPerExecution"],2389)
+        self.assertEqual(c["mockScenarios"],94)
+        self.assertEqual(c["mockAssertionsPerExecution"],2553)
         self.assertTrue(c["observedClassFactsEndPassImplemented"])
         self.assertTrue(c["observedClassFactsEndPassNotVmEpoch"])
         self.assertFalse(c["observedClassFactsEndPassClassCountProvenInRealUnity"])
@@ -509,6 +509,56 @@ class SourceGateTests(unittest.TestCase):
             changed["nativeSourceCapabilities"][field]=mutated
             with self.subTest(field=field),self.assertRaises(audit.Rejected):
                 audit.validate_contract(changed)
+
+
+    def test_interpreter_only_zero_aot_source_scope(self):
+        c = self.original["nativeSourceCapabilities"]
+        self.assertTrue(c["interpreterOnlyWithoutAotSourceSupportedInMock"])
+        self.assertEqual(c["interpreterOnlyWithoutAotPositiveCases"], 2)
+        self.assertEqual(c["interpreterOnlyWithoutAotNegativeCases"], 4)
+        self.assertTrue(c["registeredAotSourceRequiredPerAotDefinition"])
+        self.assertTrue(c["interpreterOnlyOriginalV1PhysicalOwnerStillRequired"])
+        self.assertFalse(c["interpreterOnlyUnityPlayerProven"])
+        self.assertFalse(c["interpreterOnlyFullField15OrVmEpochProven"])
+        for field, wrong in (
+            ("interpreterOnlyWithoutAotSourceSupportedInMock", False),
+            ("interpreterOnlyWithoutAotPositiveCases", 1),
+            ("interpreterOnlyWithoutAotNegativeCases", 3),
+            ("registeredAotSourceRequiredPerAotDefinition", False),
+            ("interpreterOnlyOriginalV1PhysicalOwnerStillRequired", False),
+            ("interpreterOnlyUnityPlayerProven", True),
+            ("interpreterOnlyFullField15OrVmEpochProven", True),
+        ):
+            altered = copy.deepcopy(self.original)
+            altered["nativeSourceCapabilities"][field] = wrong
+            with self.subTest(field=field), self.assertRaises(audit.Rejected):
+                audit.validate_contract(altered)
+
+    def test_interpreter_only_aot_guard_regressions(self):
+        candidate = b"""if(!registeredAotImages.Healthy())
+            return reject(live::Error::UnadmittedMetadataOwner);
+receipt.registeredPhysicalAotImages=registeredAotImages.Count();
+d.registry->Contains(img)
+d.originalV1Images->Contains(img)
+c.originalV1Images->Contains(constrained)
+original_join::CheckFirstOwner(
+!originalV1Images.Count()
+"""
+        audit.verify_interpreter_only_aot_gate(candidate)
+        for before, after in (
+            (b"if(!registeredAotImages.Healthy())",
+             b"if(!registeredAotImages.Healthy() || !registeredAotImages.Count())"),
+            (b"d.registry->Contains(img)", b"d.anyImage->Contains(img)"),
+            (b"d.originalV1Images->Contains(img)", b"d.anyImage->Contains(img)"),
+            (b"c.originalV1Images->Contains(constrained)",
+             b"c.anyImage->Contains(constrained)"),
+            (b"original_join::CheckFirstOwner(", b"AlwaysAcceptOwner("),
+            (b"!originalV1Images.Count()", b"true"),
+        ):
+            self.assertIn(before, candidate)
+            with self.subTest(before=before), self.assertRaises(audit.Rejected):
+                audit.verify_interpreter_only_aot_gate(
+                    candidate.replace(before, after, 1))
 
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")

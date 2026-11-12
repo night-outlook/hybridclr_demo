@@ -1,5 +1,13 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current Primary B2 interpreter-only no-AOT source — CLOSED / NO EXECUTION (2026-11-12 UTC)
+
+**NO LOCAL EXECUTION AUTHORITY.** Current native il2cpp_plus@f8bf89b42cfb20ab716b7d55a7ce91d20f1875b3 changed only the inactive B2 TypeDef source. When a physically registered original-V1 interpreter-only assembly has a supported nonnested/nongeneric CLASS/VALUETYPE, no unrelated AOT TypeDef is required; individual AOT ownership and original V1 physical first-emplace checks remain mandatory. [Native Ubuntu CI 43208481081](https://github.com/night-outlook/il2cpp_plus/actions/runs/43208481081) source-host passed 94/2553, macOS queued at checkpoint. [Reviewed source and tests](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_INTERPRETER_ONLY_NO_AOT_SOURCE_REVIEW_2026-11-12.md).
+
+All four repositories use branch codex/assembly-shadow-r01b-h1: hybridclr_demo latest pushed HEAD, hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55, hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de, il2cpp_plus@f8bf89b42cfb20ab716b7d55a7ce91d20f1875b3. This checkpoint is **source/host only**, not new Unity/Player/GC evidence; no native V2 transport, coherent VM epoch, complete terminal field14/15, R03 acceptance or Human Review Gate. Local must respond NoExecutionAuthority, not reuse consumed B1 oneuse-12, and not enter H2/M08A/X02/SNAP-01.
+
+---
+
 ## Current Primary B2 interpreter simple TypeDef checkpoint — CLOSED / NO EXECUTION (2026-11-12 UTC)
 
 **NO EXECUTION AUTHORITY:** Local must report NoExecutionAuthority without running a Unity build, Player, or tests. Primary native il2cpp_plus@90206c7b4abdbf756c8fb1f2c353fcdf78a792e6 now admits only original physical V1 first-owner-proven simple interpreter CLASS/VALUETYPE TypeDefs. Source-host Ubuntu CI 43206145229 PASS with 88 scenarios/2389 assertions; macOS queued at review. [Scope and evidence](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_SIMPLE_INTERPRETER_TYPEDEF_SOURCE_REVIEW_2026-11-12.md).

@@ -1,3 +1,11 @@
+# R03 B2 — Interpreter-only original V1 TypeDef subset (2026-11-12 UTC)
+
+Native il2cpp_plus@f8bf89b42cfb20ab716b7d55a7ce91d20f1875b3 now admits supported plain interpreter TypeDefs even when no AOT TypeDef images are registered, without relaxing individual AOT source-owner checks or original V1 first-emplace ownership. Six new synthetic VM tests (two positives, four negatives), [native CI 43208481081](https://github.com/night-outlook/il2cpp_plus/actions/runs/43208481081) Ubuntu C++11/17 PASS, 94 cases/2553 assertions/process; macOS pending at report. [Source design, implementation, review and limits](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_INTERPRETER_ONLY_NO_AOT_SOURCE_REVIEW_2026-11-12.md).
+
+**No runtime acceptance:** real Unity Player/type lifetimes/GC and complete interpreter/generic field15 remain unproven; terminal field14/15, descriptor native V2 artifact/envelope/independent receipt/recovery and whole VM epoch missing. Full-stage R03 FAIL/High findings remain, and WEB_TO_LOCAL is CLOSED / NO EXECUTION. Do not open H2/M08A/X02/SNAP-01 or Human Review Gate.
+
+---
+
 # R03 B2 — simple interpreter physical TypeDef source only (2026-11-12 UTC)
 
 Native source commit 90206c7b4abdbf756c8fb1f2c353fcdf78a792e6 adds source-checked plain interpreter CLASS/VALUETYPE TypeDef rows to the inactive B2 subset. Two positive and five negative new cases passed in Ubuntu C++11/17 source-mock CI 43206145229 (88 cases/2389 assertions per process). Exact four-repo source audit 43206474551 Ubuntu Passed at demo anchor; both macOS jobs were queued at review. [Review and limits](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_SIMPLE_INTERPRETER_TYPEDEF_SOURCE_REVIEW_2026-11-12.md).
