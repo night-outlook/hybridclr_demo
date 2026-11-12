@@ -164,6 +164,11 @@ def validate_contract(m:dict)->None:
             c.get("fullLegacyNonemptyExecutionParityProven") is False and
             c.get("observationalOriginalV1ByteProbeImplemented") is True and
             c.get("legacyV1GetterUnchanged") is True and
+            c.get("legacyGetterByteExactFixturePinned") is True and
+            c.get("legacyGetterReferenceCommit")==
+                "68530d7ecb86c9122d9ae5eb20366ccb0ea086b6" and
+            c.get("legacyLogicalPhysicalImageMapParityProven") is False and
+            c.get("realUnityOriginalGetterProbeTested") is False and
             c.get("parityMismatchRevokesBoundedSource") is True and
             c.get("paritySourceMockUsesFakeLegacyGetter") is True and
             c.get("parityHostCases")==10 and
