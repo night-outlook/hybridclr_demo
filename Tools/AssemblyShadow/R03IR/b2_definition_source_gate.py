@@ -694,6 +694,116 @@ def verify_legacy_getter_unchanged(current:bytes,reference:bytes)->None:
     require(current[first:end]==reference,
             "Original GetExecutionDiagnosticsJson implementation was modified")
 
+def inspect_original_v1_field15_contract(reference: bytes) -> dict:
+    """Source-only field15 value/inventory contract, not a VM snapshot proof.
+
+    This verifies the exact original V1 implementation's *mapping* and read
+    boundaries. It cannot establish class allocation, GC, metadata or terminal
+    lifetime, and never marks a native V2/Player acceptance predicate true.
+    """
+    text = reference.decode("utf-8", "strict")
+    require(text.startswith(
+        "AssemblyShadowError AssemblyShadow::GetExecutionDiagnosticsJson(std::string& json)\n{"),
+        "Original V1 execution getter source missing")
+
+    # Match assignments, not just names occurring in comments or declarations.
+    def assignments(name: str) -> list[tuple[str, str]]:
+        return re.findall(r"^\s*" + re.escape(name) +
+                          r"\.(\w+)\s*=\s*([^;\n]+);\s*$", text, re.M)
+
+    header = [
+        ("stateCode", "static_cast<int>(state)"),
+        ("state", "AssemblyShadowDiagnostics::StateName(state)"),
+        ("generation", "active ? active->generation : 0"),
+        ("methodChecks", "methodChecks"),
+        ("shadowMethodChecks", "shadowChecks"),
+        ("rejectedBaselineMethods", "rejectedChecks"),
+        ("baselineClassCctorStarted", "s_baselineClassCctorStarted.load(std::memory_order_relaxed)"),
+        ("shadowClassCctorStarted", "s_shadowClassCctorStarted.load(std::memory_order_relaxed)"),
+        ("interpreterTransformations", "transforms"),
+        ("shadowInterpreterTransformations", "shadowTransforms"),
+        ("droppedClassObservations", "s_droppedClassObservations.load(std::memory_order_relaxed)"),
+    ]
+    rows = [
+        ("logicalAssembly", "assembly_shadow_diagnostic::Quoted(owner->aname.name)"),
+        ("typeKey", "assembly_shadow_diagnostic::Quoted(typeKey)"),
+        ("interpreterShadow", "baseline || shadow"),
+        ("physicalInterpreter", "Interpreter(owner)"),
+        ("isActive", "!baseline"),
+        ("cctorStarted", "started"),
+        ("cctorFinished", "finished"),
+        ("hasInitializationException", "exception"),
+        ("staticStoragePointer", "assembly_shadow_diagnostic::Quoted(pointer)"),
+        ("pointerDetailsAvailable", "details"),
+        ("staticStorageAvailable", "storage != nullptr"),
+    ]
+    require(assignments("heading") == header,
+            "Original V1 execution header assignment or order drift")
+    require(assignments("row") == rows,
+            "Original V1 execution class assignment or order drift")
+
+    for marker in (
+        "std::array<Il2CppClass*, kMaximumExecutionClasses> classes{};",
+        "if (assembly_shadow_r02::ObservationCounters::Level >= 2)",
+        "ExecutionObservationLock lock;",
+        "for (Il2CppClass* klass : s_executionClasses)",
+        "if (klass) classes[count++] = klass;",
+        "if (count) Assembly::CaptureShadowEnumeration(assemblies);",
+        "images.emplace(MetadataCache::GetAssemblyTypeHandle(assembly->image, index), assembly->image);",
+        "const ActiveSnapshot* active = s_active.load(std::memory_order_acquire);",
+        "const AssemblyShadowState state = s_state.load(std::memory_order_acquire);",
+        "const bool baseline = active && active->byAssembly.count(owner);",
+        "const bool shadow = active && active->shadowToBaseline.count(owner);",
+        "try { typeKey = AssemblyShadowTypeKey::FormatMetadataOnly(&klass->byval_arg, images); }",
+        "catch (const ShadowTypeResolutionFailure& failure) { return failure.error; }",
+        "il2cpp::os::FastAutoLock metadataLock(&g_MetadataLock);",
+        "storage = klass->static_fields; // Only already-existing storage.",
+        "const bool started = os::Atomic::LoadRelaxed(reinterpret_cast<const int32_t*>(&klass->cctor_started)) != 0;",
+        "const bool finished = os::Atomic::LoadRelaxed(reinterpret_cast<const int32_t*>(&klass->cctor_finished_or_no_cctor)) != 0;",
+        "const bool exception = os::Atomic::LoadRelaxed(reinterpret_cast<const int32_t*>(&klass->initializationExceptionGCHandle)) != 0;",
+        "#if IL2CPP_DEBUG\n        const bool details = true;",
+        "address << \"0x\" << std::hex << reinterpret_cast<uintptr_t>(storage);",
+        "#else\n        const bool details = false;\n#endif",
+        "assembly_shadow_execution_diagnostic::Begin(output, heading);",
+        "assembly_shadow_execution_diagnostic::AppendClass(output, row, index != 0);",
+        "assembly_shadow_execution_diagnostic::EndClasses(output);",
+        "assembly_shadow_r02::AppendDiagnostics(output);",
+        'output << "}";',
+        "json = output.str();",
+    ):
+        require(marker in text, "Original V1 field15 source boundary drift: " + marker)
+
+    # These source-order checks make sure the registry lock is not falsely
+    # treated as protection for subsequent class/GC reads or the live R02 tail.
+    require(text.index("ExecutionObservationLock lock;") <
+            text.index("if (count) Assembly::CaptureShadowEnumeration(assemblies);") <
+            text.index("try { typeKey = AssemblyShadowTypeKey::FormatMetadataOnly") <
+            text.index("il2cpp::os::FastAutoLock metadataLock(&g_MetadataLock);") <
+            text.index("const bool started = os::Atomic::LoadRelaxed") <
+            text.index("assembly_shadow_r02::AppendDiagnostics(output);"),
+            "Original V1 class-source order changed")
+    require("{\n            il2cpp::os::FastAutoLock metadataLock(&g_MetadataLock);\n"
+            "            storage = klass->static_fields; // Only already-existing storage.\n"
+            "        }" in text,
+            "Original V1 static-storage metadata lock scope changed")
+    return {
+        "sourceContract": "PassedExactOriginalV1Field15ValueInventory",
+        "headerFields": [field for field, _ in header],
+        "classFields": [field for field, _ in rows],
+        "classRegistryOrder": "s_executionClasses_nonnull_slot_order",
+        "physicalImageOrder": "CopyValidAssemblies_token_valid_first_emplace",
+        "typeKeySource": "FormatMetadataOnly_allocating",
+        "staticStorageRead": "short_g_MetadataLock_only",
+        "cctorRead": "three_relaxed_atomic_loads_after_metadata_lock",
+        "r02Source": "live_counters_after_class_rows",
+        "classGcLifetimeProven": False,
+        "completeBoundedField15Proven": False,
+        "terminalSafeField15Proven": False,
+        "coherentVmEpochProven": False,
+        "nativeV2TransportImplemented": False,
+        "runtimeAcceptance": False,
+    }
+
 def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
     demo=demo.resolve(strict=True)
     native=native.resolve(strict=True)
@@ -717,6 +827,8 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
     source_boundary(n)
     verify_legacy_getter_unchanged(
         n["libil2cpp/vm/AssemblyShadow.cpp"],
+        d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/OriginalV1ExecutionGetter_2026-11-12.txt"])
+    legacy_inventory=inspect_original_v1_field15_contract(
         d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/OriginalV1ExecutionGetter_2026-11-12.txt"])
     key=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedDefinitionTypeKey.h"]
     rows=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedExecutionRows.h"]
@@ -754,6 +866,7 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
         "result":"PassedInactiveSourceOnly_NotFullV2",
         "verifiedNativeFiles":len(n),
         "verifiedDemoPureFiles":len(d),
+        "legacyField15SourceInventory":legacy_inventory,
         "pins":{"hybridclr_demo":expected_demo,"il2cpp_plus":expected_native,
                 "hybridclr":m["hybridclr"],"hybridclr_unity":m["hybridclr_unity"]},
         "supportedSubset":"Registered-AOT physical TypeDefs with independently checked ORIGINAL token-valid physical V1 first-emplace owner (all images including interpreter), bounded Unicode/composite/primitive, and inactive healthy-time original-vs-owned byte observation. NOT full original field15, VM epoch, terminal source, Player or native V2",

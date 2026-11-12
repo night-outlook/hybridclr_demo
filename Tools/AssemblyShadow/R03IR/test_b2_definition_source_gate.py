@@ -457,5 +457,89 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
         self.assertEqual(self.original["nativeSourceCapabilities"]["sourceReadsAfterTerminal"],False)
 
+class OriginalV1Field15InventoryTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.reference = (HERE / "NativeDiagnostics" /
+                         "OriginalV1ExecutionGetter_2026-11-12.txt").read_bytes()
+
+    def test_complete_original_header_and_class_field_mapping(self):
+        result = audit.inspect_original_v1_field15_contract(self.reference)
+        self.assertEqual(result["sourceContract"],
+                         "PassedExactOriginalV1Field15ValueInventory")
+        self.assertEqual(len(result["headerFields"]), 11)
+        self.assertEqual(len(result["classFields"]), 11)
+        self.assertEqual(result["classFields"][0], "logicalAssembly")
+        self.assertEqual(result["classFields"][-1], "staticStorageAvailable")
+        self.assertEqual(result["r02Source"], "live_counters_after_class_rows")
+        for key in ("classGcLifetimeProven", "completeBoundedField15Proven",
+                    "terminalSafeField15Proven", "coherentVmEpochProven",
+                    "nativeV2TransportImplemented", "runtimeAcceptance"):
+            self.assertIs(result[key], False, key)
+
+    def test_header_semantics_and_field_order_fail_closed(self):
+        cases = (
+            (b"heading.generation = active ? active->generation : 0;",
+             b"heading.generation = 0;"),
+            (b"heading.methodChecks = methodChecks;",
+             b"heading.methodChecks = shadowChecks;"),
+            (b"heading.shadowClassCctorStarted = s_shadowClassCctorStarted.load(std::memory_order_relaxed);",
+             b"heading.shadowClassCctorStarted = 0;"),
+            (b"heading.droppedClassObservations = s_droppedClassObservations.load(std::memory_order_relaxed);",
+             b"heading.droppedClassObservations = 0;"),
+        )
+        for before, after in cases:
+            self.assertIn(before, self.reference)
+            with self.subTest(before=before), self.assertRaises(audit.Rejected):
+                audit.inspect_original_v1_field15_contract(
+                    self.reference.replace(before, after, 1))
+
+    def test_class_field_semantics_and_completeness_fail_closed(self):
+        cases = (
+            (b"row.logicalAssembly = assembly_shadow_diagnostic::Quoted(owner->aname.name);",
+             b"row.logicalAssembly = assembly_shadow_diagnostic::Quoted(\"constant\");"),
+            (b"row.typeKey = assembly_shadow_diagnostic::Quoted(typeKey);",
+             b"row.typeKey = assembly_shadow_diagnostic::Quoted(\"missing\");"),
+            (b"row.interpreterShadow = baseline || shadow;",
+             b"row.interpreterShadow = baseline;"),
+            (b"row.isActive = !baseline;",
+             b"row.isActive = baseline;"),
+            (b"row.cctorStarted = started;",
+             b"row.cctorStarted = finished;"),
+            (b"row.hasInitializationException = exception;",
+             b"row.hasInitializationException = false;"),
+            (b"row.staticStorageAvailable = storage != nullptr;",
+             b"row.staticStorageAvailable = false;"),
+            (b"row.pointerDetailsAvailable = details;", b""),
+        )
+        for before, after in cases:
+            self.assertIn(before, self.reference)
+            with self.subTest(before=before), self.assertRaises(audit.Rejected):
+                audit.inspect_original_v1_field15_contract(
+                    self.reference.replace(before, after, 1))
+
+    def test_source_identity_lifetime_and_live_r02_fail_closed(self):
+        cases = (
+            (b"for (Il2CppClass* klass : s_executionClasses)",
+             b"for (Il2CppClass* klass : otherClasses)"),
+            (b"Assembly::CaptureShadowEnumeration(assemblies)",
+             b"Assembly::GetAllAssemblies(assemblies)"),
+            (b"images.emplace(MetadataCache::GetAssemblyTypeHandle",
+             b"images.insert(MetadataCache::GetAssemblyTypeHandle"),
+            (b"FormatMetadataOnly(&klass->byval_arg, images)",
+             b"GetName(&klass->byval_arg, images)"),
+            (b"il2cpp::os::FastAutoLock metadataLock(&g_MetadataLock);", b""),
+            (b"os::Atomic::LoadRelaxed(reinterpret_cast<const int32_t*>(&klass->cctor_started))",
+             b"klass->cctor_started"),
+            (b"#if IL2CPP_DEBUG\n        const bool details = true;",
+             b"const bool details = true;"),
+            (b"assembly_shadow_r02::AppendDiagnostics(output);", b""),
+        )
+        for before, after in cases:
+            self.assertIn(before, self.reference)
+            with self.subTest(before=before), self.assertRaises(audit.Rejected):
+                audit.inspect_original_v1_field15_contract(
+                    self.reference.replace(before, after, 1))
+
 if __name__=="__main__":
     unittest.main()

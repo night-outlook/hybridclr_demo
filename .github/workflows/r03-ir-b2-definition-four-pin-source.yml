@@ -94,6 +94,13 @@ jobs:
           r=json.load(open(sys.argv[1],encoding='utf8'))
           assert r['result']=='PassedInactiveSourceOnly_NotFullV2'
           assert r['verifiedNativeFiles']==63 and r['verifiedDemoPureFiles']==8
+          inv=r['legacyField15SourceInventory']
+          assert inv['sourceContract']=='PassedExactOriginalV1Field15ValueInventory'
+          assert len(inv['headerFields'])==11 and len(inv['classFields'])==11
+          for k in ('classGcLifetimeProven','completeBoundedField15Proven',
+                    'terminalSafeField15Proven','coherentVmEpochProven',
+                    'nativeV2TransportImplemented','runtimeAcceptance'):
+              assert inv[k] is False
           assert r['readyForNativeV2FieldCapture'] is False
           assert r['nativeV2TransportImplemented'] is False
           assert r['runtimeAcceptance'] is False
