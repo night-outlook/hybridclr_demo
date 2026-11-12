@@ -35,6 +35,15 @@ NATIVE_REQUIRED={
     "libil2cpp/vm/GlobalMetadataFileInternals.h",
     "libil2cpp/vm/AssemblyShadow.h",
     "libil2cpp/vm/AssemblyShadowTypeKey.cpp",
+    "libil2cpp/vm/AssemblyShadowExecutionV1ByteParity.h",
+    "libil2cpp/vm/AssemblyShadowExecutionV1ByteParitySource.inl",
+    "libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+    "libil2cpp/vm/AssemblyShadowExecutionSerializer.h",
+    "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+    "libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+    "libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+    "libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+    "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
     "libil2cpp/vm/AssemblyShadowName.h",
     "libil2cpp/vm-utils/VmStringUtils.cpp",
     "libil2cpp/vm-utils/VmStringUtils.h",
@@ -50,6 +59,8 @@ NATIVE_REQUIRED={
     ".github/workflows/r03-native-b2-composite-typekey-host.yml",
     "libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
     "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
+    "NativeHostTests/AssemblyShadowExecutionV1ByteParityHost.cpp",
+    ".github/workflows/r03-native-b2-v1-parity-host.yml",
     "NativeHostTests/AssemblyShadowFoldedNameMock.h",
     "NativeHostTests/AssemblyShadowOwnedFoldedDefinitionHost.cpp",
     "NativeHostTests/AssemblyShadowNameReferenceParityHost.cpp",
@@ -63,6 +74,7 @@ NATIVE_REQUIRED={
 }
 DEMO_REQUIRED={
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedDefinitionTypeKey.h",
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedObservedExecutionV1ByteParity.h",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedConstructedTypeKey.h",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedCompositeTypeKey.h",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedExecutionRows.h",
@@ -149,6 +161,16 @@ def validate_contract(m:dict)->None:
             c.get("compositeCoverageReceiptRevokedOnFailure") is True and
             c.get("arbitraryPrimitiveGenericArgumentKeys") is False and
             c.get("fullLegacyNonemptyExecutionParityProven") is False and
+            c.get("observationalOriginalV1ByteProbeImplemented") is True and
+            c.get("legacyV1GetterUnchanged") is True and
+            c.get("parityMismatchRevokesBoundedSource") is True and
+            c.get("paritySourceMockUsesFakeLegacyGetter") is True and
+            c.get("parityHostCases")==10 and
+            c.get("paritySourceMockCases")==3 and
+            c.get("parityMockAssertionsPerExecution")>=1258 and
+            c.get("observedActualOriginalV1ByteEqualityInUnity") is False and
+            c.get("twoObservationsAreOneCoherentVmEpoch") is False and
+            c.get("completeNativeField15Proven") is False and
             c.get("primitiveDefaultClassLookupNoAllocationSourcePinned") is True and
             c.get("primitiveArgumentsWithRegisteredAotTypeDefSupportedInMock") is True and
             c.get("primitiveClassNameAncestryChecked") is True and
@@ -332,14 +354,64 @@ def source_boundary(native:dict[str,bytes])->None:
     require("IL2CPP_ASSERT(" not in peek and "Class::Init(" not in peek and
             "MetadataCache::" not in peek,
             "Primitive peek must not assert or initialize any type")
+    must("libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+         "assembly_shadow_metadata_lifetime::Gate::Reader reader(",
+         "return GetExecutionDiagnosticsJson(json);")
+    must("libil2cpp/vm/AssemblyShadowExecutionV1ByteParity.h",
+         "class Probe final", "bool Fresh() const noexcept",
+         "bool Compare(View legacy,View bounded) noexcept",
+         "kMaximumBytes=3932160",
+         "firstDifferentOffset", "twoIndependentObservationsOnly",
+         "coherentVmEpochProven=false", "fullCanonicalTypeKeysProven=false",
+         "terminalSafeFinalExecutionDiagnostics=false",
+         "nativeV2TransportImplemented=false", "R03Accepted=false")
+    must("libil2cpp/vm/AssemblyShadowExecutionV1ByteParitySource.inl",
+         "TryProbeBoundedExecutionV1ByteParity(",
+         "assembly_shadow_metadata_lifetime::Gate::Reader admission(",
+         "TryGetExecutionDiagnosticsWithMetadataAdmission(originalV1)",
+         "TryCaptureBoundedDefinitionExecutionLive(",
+         "parity.Compare(", "if(!equal)",
+         "sourceReceipt.callbackPhysicalMembershipProven",
+         "sourceReceipt.restrictedTypeDefSubsetProven",
+         "sourceReceipt.observedRegistryAndCounterFenceStable",
+         "originalV1.clear();", "live::Reject(")
+    must("libil2cpp/vm/AssemblyShadowExecutionSerializer.h",
+         "struct Header", "struct ClassRow", "AppendClass(")
+    must("libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+         "class Record final", "bool Freeze() noexcept",
+         "r02::AppendFrozenDiagnostics(")
+    must("libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+         "class Reader final", "kInitialEpoch=1",
+         "CloseAndDrain() noexcept")
+    must("libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+         "AppendDiagnostics(")
+    must("libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+         "AppendFrozenDiagnostics(")
+    must("libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+         "class Writer")
+    must("NativeHostTests/AssemblyShadowExecutionV1ByteParityHost.cpp",
+         "R03B2ObservedExecutionV1ByteParityHost",
+         "DifferentLength()", "MissingLegacy()", "MissingBounded()",
+         "realLegacyGetter")
+    must(".github/workflows/r03-native-b2-v1-parity-host.yml",
+         "AssemblyShadowExecutionV1ByteParityHost.cpp",
+         "c++11", "c++17", "sanitized")
     must("libil2cpp/vm/AssemblyShadow.cpp",
          '#include "AssemblyShadowBoundedDefinitionExecutionLive.h"',
          '#include "vm/GlobalMetadataFileInternals.h"',
          '#include "AssemblyShadowExistingPrimitiveDefaults.h"',
-         '#include "AssemblyShadowBoundedDefinitionExecutionLiveSource.inl"')
+         '#include "AssemblyShadowBoundedDefinitionExecutionLiveSource.inl"',
+         '#include "AssemblyShadowExecutionV1ByteParity.h"',
+         '#include "AssemblyShadowExecutionV1ByteParitySource.inl"',
+         "AssemblyShadowError AssemblyShadow::GetExecutionDiagnosticsJson(",
+         "Assembly::CaptureShadowEnumeration(assemblies)",
+         "AssemblyShadowTypeKey::FormatMetadataOnly(",
+         "assembly_shadow_execution_diagnostic::AppendClass(",
+         "assembly_shadow_r02::AppendDiagnostics(output)")
     must("libil2cpp/vm/AssemblyShadow.h",
          "TryCaptureBoundedDefinitionExecutionLive",
-         "does NOT replace the original live execution diagnostics getter")
+         "does NOT replace the original live execution diagnostics getter",
+         "TryProbeBoundedExecutionV1ByteParity(")
     must("libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
          "assembly_shadow_metadata_lifetime::Gate::Reader admission",
          "il2cpp_class_for_each",
@@ -400,6 +472,9 @@ def source_boundary(native:dict[str,bytes])->None:
          '#include "vm/AssemblyShadowExistingPrimitiveDefaults.h"',
          "TestAssertFreePrimitivePeekMapping",
          "primitivePeekCases",
+         '#include "vm/AssemblyShadowExecutionV1ByteParitySource.inl"',
+         "TestParityProbeMock()", "parityProbeCases",
+         "realLegacyGetter",
          "Mode::StagedNestedIndex",
          "Mode::CyclicNested",
          "Mode::GenericDefinition",
@@ -447,6 +522,8 @@ def source_boundary(native:dict[str,bytes])->None:
          "NoMetadataAdmission")
     for name in (
         "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
+        "libil2cpp/vm/AssemblyShadowExecutionV1ByteParity.h",
+        "libil2cpp/vm/AssemblyShadowExecutionV1ByteParitySource.inl",
         "libil2cpp/vm/AssemblyShadowExistingPrimitiveDefaults.h",
         "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
         "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
@@ -483,6 +560,9 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
     source_boundary(n)
     key=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedDefinitionTypeKey.h"]
     rows=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedExecutionRows.h"]
+    parity=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedObservedExecutionV1ByteParity.h"]
+    require(n["libil2cpp/vm/AssemblyShadowExecutionV1ByteParity.h"]==parity,
+            "Native observational V1 parity source diverged from demo mirror")
     require(n["libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h"]==key,
             "Fork TypeKey diverged from independently tested pure original")
     composed=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedConstructedTypeKey.h"]
@@ -510,7 +590,7 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
         "verifiedDemoPureFiles":len(d),
         "pins":{"hybridclr_demo":expected_demo,"il2cpp_plus":expected_native,
                 "hybridclr":m["hybridclr"],"hybridclr_unity":m["hybridclr_unity"]},
-        "supportedSubset":"Existing primitive default classes with verified registered AOT physical TypeDef and exact class metadata declarations, plus bounded nested GENERICINST/SZARRAY/PTR/ARRAY/qualified arguments; unsupported/unowned primitive, open VAR/MVAR, terminal full V2 excluded",
+        "supportedSubset":"Restricted authenticated AOT TypeDef execution rows with Unicode/composite and bounded null-safe primitive default leaves; inactive healthy-time original V1 getter vs bounded record observational exact-byte probe; NO full field15, terminal source, VM epoch, Player or native V2 authority",
         "liveMetadataReadProvenByUnity":False,
         "readyForNativeV2FieldCapture":False,
         "nativeV2TransportImplemented":False,
