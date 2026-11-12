@@ -27,6 +27,8 @@ NATIVE_REQUIRED={
     "libil2cpp/vm/Assembly.cpp",
     "libil2cpp/vm/Assembly.h",
     "libil2cpp/vm/AssemblyShadowRegisteredAotImageScan.h",
+    "libil2cpp/vm/AssemblyShadowOriginalV1ImageScan.h",
+    "libil2cpp/vm/AssemblyShadowOriginalV1OwnerJoin.h",
     "libil2cpp/vm/AssemblyShadowObservedPhysicalImages.h",
     "libil2cpp/vm/MemoryInformation.cpp",
     "libil2cpp/il2cpp-api.cpp",
@@ -59,6 +61,8 @@ NATIVE_REQUIRED={
     ".github/workflows/r03-native-b2-composite-typekey-host.yml",
     "libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
     "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
+    "NativeHostTests/AssemblyShadowOriginalV1OwnerJoinHost.cpp",
+    ".github/workflows/r03-native-b2-original-v1-owner-join-host.yml",
     "NativeHostTests/AssemblyShadowExecutionV1ByteParityHost.cpp",
     ".github/workflows/r03-native-b2-v1-parity-host.yml",
     "NativeHostTests/AssemblyShadowFoldedNameMock.h",
@@ -75,6 +79,8 @@ NATIVE_REQUIRED={
 DEMO_REQUIRED={
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedDefinitionTypeKey.h",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedObservedExecutionV1ByteParity.h",
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOriginalV1ImageScan.h",
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOriginalV1OwnerJoin.h",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/OriginalV1ExecutionGetter_2026-11-12.txt",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedConstructedTypeKey.h",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedCompositeTypeKey.h",
@@ -162,6 +168,16 @@ def validate_contract(m:dict)->None:
             c.get("compositeCoverageReceiptRevokedOnFailure") is True and
             c.get("arbitraryPrimitiveGenericArgumentKeys") is False and
             c.get("fullLegacyNonemptyExecutionParityProven") is False and
+            c.get("originalV1PhysicalTokenValidEnumeration") is True and
+            c.get("originalV1IncludesInterpreterImages") is True and
+            c.get("originalV1FirstEmplaceOwnerJoinSourceImplemented") is True and
+            c.get("originalV1OwnerConflictRevokesSource") is True and
+            c.get("originalV1ImageInventoryDoubleChecked") is True and
+            c.get("originalV1JoinHostCases")==12 and
+            c.get("originalV1JoinHostAssertions")>=41 and
+            c.get("originalV1FullField15ParityProven") is False and
+            c.get("actualUnityOriginalV1OwnerJoinTested") is False and
+            c.get("originalV1ImagesAreLogicalShadowView") is False and
             c.get("observationalOriginalV1ByteProbeImplemented") is True and
             c.get("legacyV1GetterUnchanged") is True and
             c.get("legacyGetterByteExactFixturePinned") is True and
@@ -255,15 +271,43 @@ def source_boundary(native:dict[str,bytes])->None:
          "assembly->image->assembly!=assembly",
          "if(!image->typeCount)continue;", "visit(image)")
     must("libil2cpp/vm/Assembly.h",
+         "TryVisitOriginalV1ExecutionImages(",
+         "CopyValidAssemblies",
          "TryVisitRegisteredAotImages(",
          "caller MUST hold",
          "g_MetadataLock")
     must("libil2cpp/vm/Assembly.cpp",
+         "static void CopyValidAssemblies(", "if (ass->token)",
+         "dst.push_back(ass);",
+         "CopyValidAssemblies(assemblies, s_Assemblies);",
          "s_Assemblies.begin(),s_Assemblies.end()",
          "assembly_shadow_registered_aot_scan::Scan(",
          "IsInterpreterImage(image)",
+         "assembly_shadow_original_v1_image_scan::Scan(",
+         "TryVisitOriginalV1ExecutionImages(",
          "s_assemblyLock",
          "TryVisitRegisteredAotImages(")
+    must("libil2cpp/vm/AssemblyShadowOriginalV1ImageScan.h",
+         "namespace assembly_shadow_original_v1_image_scan",
+         "bool Scan(", "if(!assembly->token)continue;",
+         "if(!visit(assembly->image))return false;",
+         "assembly->image->assembly!=assembly")
+    must("libil2cpp/vm/AssemblyShadowOriginalV1OwnerJoin.h",
+         "namespace assembly_shadow_original_v1_owner_join",
+         "CheckFirstOwner(", "read(image,j)==handle",
+         "image!=expectedAotImage",
+         "Error::FirstOwnerDifferent", "Error::OwnerNotFound",
+         "Error::LookupBudget", "firstEmplaceOwnerMatched=true",
+         "entireOriginalV1Field15Proven=false",
+         "coherentVmEpochProven=false")
+    must("NativeHostTests/AssemblyShadowOriginalV1OwnerJoinHost.cpp",
+         "R03B2OriginalV1FirstOwnerJoinHost",
+         "InterpreterFirstConflict()", "LaterInterpreterAlias()",
+         "ZeroTypeDefFirst()", "TokenZeroSkipped()", "LookupBudget()",
+         "protectedAllocations")
+    must(".github/workflows/r03-native-b2-original-v1-owner-join-host.yml",
+         "AssemblyShadowOriginalV1OwnerJoinHost.cpp", "c++11", "c++17",
+         "sanitized")
     must("libil2cpp/vm/AssemblyShadowObservedPhysicalImages.h",
          "class Inventory final","AddFromMatchedCallback",
          "AddFromRegisteredAssembly", "SameOrderedImageSet",
@@ -433,6 +477,12 @@ def source_boundary(native:dict[str,bytes])->None:
          "Assembly::TryVisitRegisteredAotImages",
          "registeredAfter.SameOrderedImageSet(registeredAotImages)",
          "registeredImageSetStable=true",
+         "Assembly::TryVisitOriginalV1ExecutionImages(",
+         "originalAfter.SameOrderedImageSet(originalV1Images)",
+         "original_join::CheckFirstOwner(",
+         "OriginalV1FirstOwnerConflict",
+         "OriginalV1OwnerMissing",
+         "originalV1FirstEmplaceOwnerMatched=",
          "usedUnobservedAotArgumentImage",
          "resolveOwner",
          "AmbiguousMetadataOwner",
@@ -496,6 +546,12 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::PrimitiveClassNameMismatch",
          "Mode::PrimitiveClassNested",
          "Mode::PrimitiveClassGenericContainer",
+         "Mode::OriginalV1InterpreterBeforeAot",
+         "Mode::OriginalV1InterpreterAfterAot",
+         "Mode::OriginalV1ZeroTypeDefInterpreter",
+         "Mode::OriginalV1SnapshotChanged",
+         "Mode::OriginalV1UnregisteredOwner",
+         "Mode::OriginalV1InvalidImage",
          "Mode::GenericSameImage",
          "Mode::GenericConstructedArgument",
          "Mode::UnicodeAssembly",
@@ -531,6 +587,8 @@ def source_boundary(native:dict[str,bytes])->None:
         "libil2cpp/vm/AssemblyShadowExecutionV1ByteParity.h",
         "libil2cpp/vm/AssemblyShadowExecutionV1ByteParitySource.inl",
         "libil2cpp/vm/AssemblyShadowExistingPrimitiveDefaults.h",
+        "libil2cpp/vm/AssemblyShadowOriginalV1ImageScan.h",
+        "libil2cpp/vm/AssemblyShadowOriginalV1OwnerJoin.h",
         "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
         "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
         "libil2cpp/vm/AssemblyShadowOwnedConstructedTypeKey.h",
@@ -591,6 +649,12 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
         d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/OriginalV1ExecutionGetter_2026-11-12.txt"])
     key=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedDefinitionTypeKey.h"]
     rows=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedExecutionRows.h"]
+    v1_scan=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOriginalV1ImageScan.h"]
+    require(n["libil2cpp/vm/AssemblyShadowOriginalV1ImageScan.h"]==v1_scan,
+            "Native original V1 image visitor diverged from demo mirror")
+    v1_owner=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOriginalV1OwnerJoin.h"]
+    require(n["libil2cpp/vm/AssemblyShadowOriginalV1OwnerJoin.h"]==v1_owner,
+            "Native original V1 first-owner join diverged from demo mirror")
     parity=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedObservedExecutionV1ByteParity.h"]
     require(n["libil2cpp/vm/AssemblyShadowExecutionV1ByteParity.h"]==parity,
             "Native observational V1 parity source diverged from demo mirror")
@@ -621,7 +685,7 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
         "verifiedDemoPureFiles":len(d),
         "pins":{"hybridclr_demo":expected_demo,"il2cpp_plus":expected_native,
                 "hybridclr":m["hybridclr"],"hybridclr_unity":m["hybridclr_unity"]},
-        "supportedSubset":"Restricted authenticated AOT TypeDef execution rows with Unicode/composite and bounded null-safe primitive default leaves; inactive healthy-time original V1 getter vs bounded record observational exact-byte probe; NO full field15, terminal source, VM epoch, Player or native V2 authority",
+        "supportedSubset":"Registered-AOT physical TypeDefs with independently checked ORIGINAL token-valid physical V1 first-emplace owner (all images including interpreter), bounded Unicode/composite/primitive, and inactive healthy-time original-vs-owned byte observation. NOT full original field15, VM epoch, terminal source, Player or native V2",
         "liveMetadataReadProvenByUnity":False,
         "readyForNativeV2FieldCapture":False,
         "nativeV2TransportImplemented":False,
