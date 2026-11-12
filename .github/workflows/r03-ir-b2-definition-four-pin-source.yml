@@ -1,4 +1,4 @@
-name: R03 B2 observational V1 byte-parity exact four-pin audit (NO Unity)
+name: R03 B2 original V1 getter exact six-demo parity source audit (NO Unity)
 on:
   push:
     branches: [codex/assembly-shadow-r01b-h1]
@@ -8,6 +8,7 @@ on:
       - Tools/AssemblyShadow/R03IR/b2_definition_source_gate.py
       - Tools/AssemblyShadow/R03IR/test_b2_definition_source_gate.py
       - Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md
+      - Tools/AssemblyShadow/R03IR/NativeDiagnostics/OriginalV1ExecutionGetter_2026-11-12.txt
       - Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_REGISTERED_AOT_OWNER_IMPLEMENTATION.md
       - Docs/AssemblyShadow/Plan/CURRENT_STATUS.md
       - Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_PHYSICAL_DEFINITION_LIVE_IMPLEMENTATION.md
@@ -90,7 +91,7 @@ jobs:
           import json,sys
           r=json.load(open(sys.argv[1],encoding='utf8'))
           assert r['result']=='PassedInactiveSourceOnly_NotFullV2'
-          assert r['verifiedNativeFiles']==53 and r['verifiedDemoPureFiles']==5
+          assert r['verifiedNativeFiles']==53 and r['verifiedDemoPureFiles']==6
           assert r['readyForNativeV2FieldCapture'] is False
           assert r['nativeV2TransportImplemented'] is False
           assert r['runtimeAcceptance'] is False
