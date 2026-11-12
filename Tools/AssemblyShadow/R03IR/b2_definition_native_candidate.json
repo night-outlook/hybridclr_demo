@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "The original V1 physical token-valid image map can admit plain nonnested nongeneric interpreter CLASS/VALUETYPE rows even if zero registered AOT TypeDef images exist. The inactive restricted B2 collector removes the unrelated global nonempty AOT owner prerequisite but retains per-AOT owner authentication, physical original-V1 interpreter ownership and the original first-emplace check. No real Unity Player, GC epoch, complete field15 or native V2.",
+  "objective": "Inactive B2 double-samples exact original V1 physical image typeCount/imageToken/assemblyToken primitives in the two existing token-valid image visits, refuses duplicate physical image identities and revokes source on observed drift. The bounded source still covers only admitted AOT/plain interpreter TypeDef subsets; no full original V1 field15, whole-VM class/GC/metadata epoch or terminal native V2.",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "f8bf89b42cfb20ab716b7d55a7ce91d20f1875b3",
+  "candidateNative": "376bcf58bf4728828abab4618f331a9e445450f9",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
@@ -27,11 +27,11 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
-      "gitBlob": "32c56ea3e602c4b383d4c5591db2766fb3734829"
+      "gitBlob": "52dc3b0aeaa29e5974f90df227a3066034345aa1"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
-      "gitBlob": "154fb283bd0c37c0e4560d28695013db828d3c32"
+      "gitBlob": "e917bff12bc35992d11607777fb0d5f8e3b881cc"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
@@ -47,7 +47,7 @@
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "995a97169fe74c5e36d133b2fff1a19c9a282981"
+      "gitBlob": "cbeb1c6c6963c5731f1efcaaefcac81cb441bf8d"
     },
     {
       "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -55,7 +55,7 @@
     },
     {
       "path": ".github/workflows/r03-native-b2-definition-live-source-host.yml",
-      "gitBlob": "0d8df0ef72dc892ea76fe9ca31fdab0394172315"
+      "gitBlob": "95fb8cc30ab190260fd9602442aa600675df5469"
     },
     {
       "path": ".github/workflows/r03-native-b2-constructed-typekey-host.yml",
@@ -296,7 +296,7 @@
       "gitBlob": "75fc8717ed3b54b1aeee583e28671e304ab233e0"
     }
   ],
-  "testProof": "Actual native restricted .inl with synthetic VM host CI 43208481081 at il2cpp_plus@f8bf89b42cfb20ab716b7d55a7ce91d20f1875b3 Ubuntu C++11/C++17 Release/Debug strict/sanitized 2/2 PASS, 94 scenarios/2553 assertions per host process; macOS jobs queued at source-review time. Two interpreter-only positives with zero registered AOT TypeDef image; four negatives for missing handle, generic definition, constructed generic, absent original-V1 physical assembly. Real IL2CPP/Unity source/Player/VM epoch, terminal field14/15 and native V2 NotRun.",
+  "testProof": "Native actual inactive .inl compiled with synthetic VM Ubuntu C++11/C++17 Release/Debug strict/ASan/UBSan CI 43211384982 at il2cpp_plus@376bcf58bf4728828abab4618f331a9e445450f9: 2/2 Ubuntu jobs Passed, 99 cases/2841 assertions per host execution. Four new original V1 image primitive drift failures (AOT typeCount/imageToken/assemblyToken, interpreter image token), one duplicate physical image negative; two macOS jobs were queued at the source review checkpoint. Original V1 getter, real Unity native TUs/Player, class lifetime and native V2 untested.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -304,7 +304,7 @@
     "metadataReaderEpoch": "initial only",
     "coherentVmEpochProven": false,
     "sourceFirstErrorFence": "Checks B1 Empty before traversal, before record composition, after frozen record",
-    "mockScenarios": 94,
+    "mockScenarios": 99,
     "mockBuildVariants": [
       "release",
       "debug"
@@ -314,7 +314,7 @@
       "sanitized"
     ],
     "physicalClassMembershipScope": "The observed source class must physically match its registration witness; registered AOT images without an observed class may own concrete TypeDef generic arguments; output rows preserve registry-slot order",
-    "mockAssertionsPerExecution": 2553,
+    "mockAssertionsPerExecution": 2841,
     "mockProcessExecutions": 16,
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
     "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup",
@@ -329,13 +329,13 @@
     "legacyTypeKeyGrammarSourceBlob": "6b23b4bad66e9a8f36c68717ef82626351018624",
     "realUnityRuntimeIntegrationProven": false,
     "realGenericRuntimeMetadataAbiBlob": "f7f235848209ee331adfd1c2b214b46cc753392e",
-    "physicalImageInventory": "Two token-valid ORIGINAL V1 physical image visits (interpreter images included) plus two registered-AOT visits, which may admit zero AOT TypeDef images if the bounded observed rows are physically registered plain interpreter TypeDefs. Every AOT definition/argument still requires its independently registered AOT owner. Three matched-class passes under initial Reader and g_MetadataLock; no whole VM epoch.",
+    "physicalImageInventory": "Original token-valid physical V1 images (interpreter included) sampled twice for pointer/order AND typeCount/imageToken/assemblyToken primitive equality, no duplicate physical image identity accepted; registered AOT image table also visited twice. Three physically matched class callbacks under g_MetadataLock/initial Reader. One 12-KiB original V1 image facts array plus existing class-fact stack; no VM/GC epoch.",
     "physicalImageLimit": 64,
     "physicalEnumerationPasses": 3,
     "crossImageGenericArgumentsSupportedInMock": true,
     "ambiguousMetadataOwnerFailsClosed": true,
     "allPhysicalMetadataImagesEnumerated": false,
-    "nativeSourceCiRun": "43208481081",
+    "nativeSourceCiRun": "43211384982",
     "physicalIteratorSourceBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6",
     "recordOriginalLegacyGrammarUnchanged": true,
     "registeredAotImageLimit": 1024,
@@ -349,7 +349,7 @@
     "runtimeAcceptanceProven": false,
     "unrestrictedCrossImageGenericArgumentsSupported": false,
     "unregisteredAotArgumentFailsClosed": true,
-    "supportedTypeShapeScope": "AOT physical TypeDef/composite/primitive/Unicode subset and original V1 first-emplace metadata ownership; plain nonnested nongeneric interpreter CLASS/VALUETYPE from physically registered original-V1 images even when the registered-AOT TypeDef inventory is empty. Interpreter open/constructed/nested/generic and unknown metadata fail closed; class/GC lifetime, terminal field14/15 and native V2 are NOT proven.",
+    "supportedTypeShapeScope": "Restricted physical AOT TypeDef/Unicode/primitive/composite subset and plain nonnested nongeneric physical interpreter CLASS/VALUETYPE, including interpreter-only original V1 images; exact first emplace owner of admitted handles and double-observed image typeCount/tokens. Original complete field15 class inventory, live TypeDef handle map, GC/VM metadata lifetime and native terminal V2 remain unproven.",
     "zeroTypeDefinitionRegisteredAotImagesSkipped": true,
     "registeredAotRegistrySource": "original physical Assembly::s_Assemblies under s_assemblyLock; zero-type AOT images skipped",
     "boundedCompositeArgumentShapesInMock": true,
@@ -446,7 +446,19 @@
     "registeredAotSourceRequiredPerAotDefinition": true,
     "interpreterOnlyOriginalV1PhysicalOwnerStillRequired": true,
     "interpreterOnlyUnityPlayerProven": false,
-    "interpreterOnlyFullField15OrVmEpochProven": false
+    "interpreterOnlyFullField15OrVmEpochProven": false,
+    "originalV1ImageFactsTwoPassInNativeSource": true,
+    "originalV1ImageFactsFields": [
+      "typeCount",
+      "imageToken",
+      "assemblyToken"
+    ],
+    "originalV1ImageFactsMaxStackBytes": 12288,
+    "originalV1ImageFactsMutationFailures": 4,
+    "originalV1DuplicatePhysicalImageFailsClosed": true,
+    "originalV1ImageFactsNotWholeVmEpoch": true,
+    "originalV1ImageFactsTestedInUnity": false,
+    "originalV1MetadataHandleMapStableProven": false
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,

@@ -1,0 +1,33 @@
+# R03 B2 — Original V1 physical image primitive consistency fence
+
+**Date:** 2026-11-12 UTC. **Stage:** Primary Implementation, inactive source and synthetic VM host only. **Working branch:** codex/assembly-shadow-r01b-h1. Native source commit night-outlook/il2cpp_plus@376bcf58bf4728828abab4618f331a9e445450f9; demo source manifest and CI pinned at final pushed hybridclr_demo HEAD; hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55 and hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de unchanged.
+
+## Original source and defect
+
+The authentic 5,222-byte enabled V1 GetExecutionDiagnosticsJson builds the TypeDef handle map from token-valid PHYSICAL image iteration (including interpreter and zero-TypeDef images), using unordered_map::emplace / first owner wins. The inactive B2 capture already used two original physical image visits, but SameOrderedImageSet compared **only image pointer identity/order**. A physical image could change typeCount, image token, or token-valid assembly token while retaining the same image address. The existing class-fact and registry/R02 fences do not detect all such changes. A duplicate physical image registration could also be silently collapsed by the bounded pointer-unique Inventory even though original V1 enumerates each registration.
+
+## Implementation and bounded invariants
+
+Inside the existing initial MetadataLifetimeGate Reader and g_MetadataLock scope, B2 now records an exact three-field OriginalV1ImageFacts value for every token-valid physical image visit: typeCount, image->token and image->assembly->token. The already existing second original-V1 assembly visit compares the three values position-by-position; typed failure OriginalV1ImageFactsChanged revokes entire membership, owned rows, frozen record and positive source receipts. The original V1 first-owner receipt additionally depends on successfully comparing those primitive facts. Every original physical registration must have a unique image identity; previously deduped duplicate images now fail closed with OriginalV1ImageSourceUnavailable. A bound of 1,024 physical visits is enforced.
+
+Resource cost: one 1,024 x 12-byte primitive array, **12,288 additional bounded stack bytes**, plus existing ~32KiB class-fact slots and other bounded inventories; no additional image enumeration, dynamic allocation, original getter invocation or active Player integration. Image fact snapshots are cleared inside the original metadata lock before return.
+
+Positive receipts originalV1ImageFactsMatched and originalV1ImageFactsTwoPassStable are issued only after frozen record completion, unchanged execution-registry and R02 fences and first-error/state checks. On any source rejection both are zero/false. The receipt name describes **two observed image primitive samples only**: it cannot prove no ABA, no change after final sample, stable metadata handle *contents*, class/GC object lifetime, coherent whole-VM epoch, or terminal-safe V2.
+
+## Tests and source evidence
+
+Actual production inactive .inl host-synthetic VM [CI 43211384982](https://github.com/night-outlook/il2cpp_plus/actions/runs/43211384982) at native@376bcf58bf4728828abab4618f331a9e445450f9: **Ubuntu 24.04 C++11/17 2/2 PASS** in Release/Debug strict and ASan/UBSan profiles; each host execution reports **99 cases and 2,841 assertions**. New negative modes exercise (1) AOT original image TypeDef count changed, (2) AOT image token changed without changing AOT category, (3) token-valid assembly token changed to another nonzero token, (4) interpreter image token changed without leaving interpreter category, and (5) duplicate original physical image registration. Every negative must produce the corresponding typed source rejection, clear the image primitive receipt, revoke positive owner/class evidence, owned rows and record. Old positive and unsupported AOT/interpreter generic cases remain in the test roster.
+
+The two macOS-15 native host jobs were still queued when the review was written; **do not claim 4/4 until verified**. The final demo four-fork source CI must be inspected at the exact final pushed demo HEAD, not inferred from older runs. Demo source gate now pins all 63 native/eight demo Git blobs, validates the new three-field facts, original first-owner dependency, duplicate rejection, positive/negative host modes, and explicitly false Unity/VM-epoch/handle-map acceptance predicates. These are source/mock results, not real Unity native full translation-unit compilation or Player behavior.
+
+## Source review and remaining blockers
+
+- **IMG-01 / scoped PASS:** exact physical image primitive drift and duplicate image identity are rejected in the checked-in C++11/17 source-mock host without changing original getter, B1 or runtime resolver.
+- **IMG-02 / provenance limitation:** the sampled typeCount/tokens are raw borrowed primitives, not proof of stable original TypeDef handle table contents, pointer identity over multiple VM epochs, type name bytes, image lifetime or Unity MetadataModule access correctness. Original first-emplace ownership remains proven only for the *admitted handles* in the restricted subset.
+- **IMG-03 / resource validation open:** extra 12KiB stack makes actual Unity IL2CPP thread-stack safety/performance a mandatory later Local check; the host test does not demonstrate real allocation/GC/RSS or runtime C++ TU compatibility.
+- **IMG-04 / full original field14/15 and native V2 blocked:** complete original class shapes (interpreter nested/constructed/generic and open VAR/MVAR behavior), class/GC/metadata lifetime/epoch and terminal immutable field14+field15 remain open. Native preopened descriptor-relative artifact/envelope, identity-bound independent receipt/readback and first recovery remain unimplemented. Independent R03 full-stage FAIL/High findings remain.
+- **IMG-05 / test-boundary clarification:** original V1 might accept a duplicate token-valid image registration and simply retain its first TypeDef handle owner; this restricted bounded source rejects duplicates rather than claiming equivalent behavior or substituting incomplete data. Global VM atomicity and product acceptance remain false.
+
+**Next Primary-owned work:** develop an authenticated complete original execution-class shape/inventory and an explicit class/GC/metadata lifetime epoch decision; then implement terminal-safe complete field14/15 and native V2 transport. No H2/M08A/X02/SNAP-01 and no self-approved Human Review Gate.
+
+**Flags:** readyForNativeV2FieldCapture=false; nativeV2TransportImplemented=false; runtimeAcceptance=false; R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; wholeVmEpoch=NotProven; PureInterpreter disabled; WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION.

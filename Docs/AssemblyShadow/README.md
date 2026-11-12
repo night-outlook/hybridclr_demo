@@ -1,3 +1,11 @@
+# Current Primary — original V1 physical image primitive drift fence (2026-11-12 UTC)
+
+**Native source:** il2cpp_plus@376bcf58bf4728828abab4618f331a9e445450f9 now double-samples token-valid original V1 physical image TypeDef count, image token and assembly token (not just pointer/order); a changed primitive or duplicate registration rejects all owned rows and source receipts. Five new negative cases in checked-in actual native .inl synthetic-VM host [CI 43211384982](https://github.com/night-outlook/il2cpp_plus/actions/runs/43211384982) **Ubuntu C++11/17 2/2 PASS**, 99 cases/2841 assertions per process; macOS jobs queued at review. [Source review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ORIGINAL_V1_IMAGE_FACTS_FENCE_REVIEW_2026-11-12.md). Native B1/real V1 getter and other forks unchanged.
+
+**Scope:** adds 12KiB bounded thread stack; no full TypeDef handle-map, class/GC/VM epoch, real Unity native TU/Player, complete field14/15 or native V2 acceptance. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; PureInterpreter disabled. [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) CLOSED / NO EXECUTION.
+
+---
+
 # Current Primary — interpreter-only physical V1 TypeDef source without AOT requirement (2026-11-12 UTC)
 
 **Native source:** il2cpp_plus@f8bf89b42cfb20ab716b7d55a7ce91d20f1875b3 removes the unrelated global requirement for a nonempty registered-AOT TypeDef inventory while retaining per-AOT owner checks and original V1 physical first-owner for plain interpreter CLASS/VALUETYPE. The inactive source now admits interpreter-only physical image inventories in the bounded supported subset. Six new host scenarios (two positives, four negatives) passed in [Ubuntu native CI 43208481081](https://github.com/night-outlook/il2cpp_plus/actions/runs/43208481081), 94 cases/2553 assertions per process; macOS jobs queued at review. [Implementation/source review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_INTERPRETER_ONLY_NO_AOT_SOURCE_REVIEW_2026-11-12.md). All original enabled V1 getter, B1 and active Player code unchanged.

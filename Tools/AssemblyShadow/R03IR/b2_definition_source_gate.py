@@ -179,6 +179,14 @@ def validate_contract(m:dict)->None:
             c.get("originalV1FirstEmplaceOwnerJoinSourceImplemented") is True and
             c.get("originalV1OwnerConflictRevokesSource") is True and
             c.get("originalV1ImageInventoryDoubleChecked") is True and
+            c.get("originalV1ImageFactsTwoPassInNativeSource") is True and
+            c.get("originalV1ImageFactsFields")==["typeCount","imageToken","assemblyToken"] and
+            c.get("originalV1ImageFactsMaxStackBytes")==12288 and
+            c.get("originalV1ImageFactsMutationFailures")==4 and
+            c.get("originalV1DuplicatePhysicalImageFailsClosed") is True and
+            c.get("originalV1ImageFactsNotWholeVmEpoch") is True and
+            c.get("originalV1ImageFactsTestedInUnity") is False and
+            c.get("originalV1MetadataHandleMapStableProven") is False and
             c.get("originalV1PhysicalMapForAdmittedHandlesMatchedInSourceMock") is True and
             c.get("originalV1MetadataOwnerImageCap")==1024 and
             c.get("originalV1OwnerLookupsCap")==65536 and
@@ -220,8 +228,8 @@ def validate_contract(m:dict)->None:
             c.get("interpreterVarMvarExecutionTypeKeysSupported") is False and
             c.get("actualUnityInterpreterTypeDefParityProven") is False and
             c.get("wholeVmInterpreterClassLifetimeProven") is False and
-            c.get("mockScenarios")>=94 and
-            c.get("mockAssertionsPerExecution")>=2553 and
+            c.get("mockScenarios")>=99 and
+            c.get("mockAssertionsPerExecution")>=2841 and
             c.get("observedClassFactsRegistrySlotLimit")==2048 and
             c.get("observedClassFactsBytesPerSlot")==16 and
             c.get("observedClassFactsNotCoherentVmEpoch") is True and
@@ -576,6 +584,9 @@ def source_boundary(native:dict[str,bytes])->None:
          "ObservedClassFactsChanged",
          "observedClassFactsTwoPassStable",
          "observedClassFactsMatched=0",
+         "originalV1ImageFactsMatched=0",
+         "originalV1ImageFactsTwoPassStable=false",
+         "OriginalV1ImageFactsChanged",
          "usedSimpleInterpreterDefinition=false",
          "observedClassFactsEndPassMatched=0",
          "observedClassFactsEndPassStable=false")
@@ -596,6 +607,18 @@ def source_boundary(native:dict[str,bytes])->None:
          "registeredImageSetStable=true",
          "Assembly::TryVisitOriginalV1ExecutionImages(",
          "originalAfter.SameOrderedImageSet(originalV1Images)",
+         "struct OriginalV1ImageFacts",
+         "value.typeCount=static_cast<uint32_t>(image->typeCount)",
+         "value.imageToken=static_cast<uint32_t>(image->token)",
+         "value.assemblyToken=static_cast<uint32_t>(image->assembly->token)",
+         "firstOriginalV1Facts{}",
+         "sink.firstFacts[slot].Same(current)",
+         "sink.images->Count()!=before+1",
+         "originalAfterSink.compareFacts=true",
+         "originalAfterSink.visits!=originalSink.visits",
+         "receipt.originalV1ImageFactsMatched=originalAfterSink.visits",
+         "firstOriginalV1Facts.fill(OriginalV1ImageFacts{})",
+         "receipt.originalV1ImageFactsTwoPassStable=",
          "original_join::CheckFirstOwner(",
          "OriginalV1FirstOwnerConflict",
          "OriginalV1OwnerMissing",
@@ -687,6 +710,11 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::OriginalV1InterpreterAfterAot",
          "Mode::OriginalV1ZeroTypeDefInterpreter",
          "Mode::OriginalV1SnapshotChanged",
+         "Mode::OriginalV1TypeCountChanged",
+         "Mode::OriginalV1ImageTokenChanged",
+         "Mode::OriginalV1AssemblyTokenChanged",
+         "Mode::OriginalV1DuplicatePhysicalImage",
+         "Mode::OriginalV1InterpreterTokenChanged",
          "Mode::OriginalV1UnregisteredOwner",
          "Mode::OriginalV1InvalidImage",
          "Mode::InterpreterSimpleClass",

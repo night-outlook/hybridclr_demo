@@ -1,5 +1,13 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current R03 B2 original V1 image-facts source checkpoint — CLOSED / NO EXECUTION (2026-11-12 UTC)
+
+**NO LOCAL EXECUTION AUTHORITY.** Native il2cpp_plus@376bcf58bf4728828abab4618f331a9e445450f9 now double-samples exact original V1 physical image TypeDef count and tokens and rejects physical duplicate image sources in the inactive bounded field15 collector. [Actual source-mock host 43211384982](https://github.com/night-outlook/il2cpp_plus/actions/runs/43211384982) Ubuntu C++11/17 PASS, 99 cases/2841 assertions; macOS jobs queued at source-review time. [Design/review/limits](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ORIGINAL_V1_IMAGE_FACTS_FENCE_REVIEW_2026-11-12.md).
+
+Exact branch codex/assembly-shadow-r01b-h1 for all four: hybridclr_demo latest pushed HEAD, hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55, hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de and il2cpp_plus@376bcf58bf4728828abab4618f331a9e445450f9. Source roster 63 native/eight demo. Extra 12KiB stack is unvalidated in real Unity; metadata/GC/VM lifetime and whole epoch, complete terminal field14/15 and native V2 remain missing. Original V1/B1 unchanged. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; PureInterpreter disabled. Local must answer NoExecutionAuthority, do not reuse B1 oneuse-12 or enter H2/M08A/X02/SNAP-01.
+
+---
+
 ## Current Primary B2 interpreter-only no-AOT source — CLOSED / NO EXECUTION (2026-11-12 UTC)
 
 **NO LOCAL EXECUTION AUTHORITY.** Current native il2cpp_plus@f8bf89b42cfb20ab716b7d55a7ce91d20f1875b3 changed only the inactive B2 TypeDef source. When a physically registered original-V1 interpreter-only assembly has a supported nonnested/nongeneric CLASS/VALUETYPE, no unrelated AOT TypeDef is required; individual AOT ownership and original V1 physical first-emplace checks remain mandatory. [Native Ubuntu CI 43208481081](https://github.com/night-outlook/il2cpp_plus/actions/runs/43208481081) source-host passed 94/2553, macOS queued at checkpoint. [Reviewed source and tests](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_INTERPRETER_ONLY_NO_AOT_SOURCE_REVIEW_2026-11-12.md).

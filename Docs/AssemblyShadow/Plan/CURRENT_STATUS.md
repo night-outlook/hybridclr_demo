@@ -1,3 +1,11 @@
+# R03 B2 — Original V1 physical image facts double-observed (2026-11-12 UTC)
+
+Native il2cpp_plus@376bcf58bf4728828abab4618f331a9e445450f9: exact original V1 image typeCount/imageToken/assemblyToken sampled and compared over the already existing two physical image visits, plus fail-closed duplicate physical image rejection. Actual source .inl synthetic VM Ubuntu C++11/17 CI 43211384982 2/2 PASS, 99 cases/2841 assertions; macOS jobs queued at source-review checkpoint. [Design/source/host review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ORIGINAL_V1_IMAGE_FACTS_FENCE_REVIEW_2026-11-12.md). Final demo four-repo admission CI must be checked at final pushed SHA.
+
+Remaining Primary: complete real original V1 class shapes, independent stable metadata TypeDef handles/GC/class lifetime and a VM epoch, terminal-safe full field14/15, descriptor-relative native V2 artifact/envelope/receipt/recovery. 12KiB extra native stack requires real Unity validation. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; WEB_TO_LOCAL CLOSED / NO EXECUTION.
+
+---
+
 # R03 B2 — Interpreter-only original V1 TypeDef subset (2026-11-12 UTC)
 
 Native il2cpp_plus@f8bf89b42cfb20ab716b7d55a7ce91d20f1875b3 now admits supported plain interpreter TypeDefs even when no AOT TypeDef images are registered, without relaxing individual AOT source-owner checks or original V1 first-emplace ownership. Six new synthetic VM tests (two positives, four negatives), [native CI 43208481081](https://github.com/night-outlook/il2cpp_plus/actions/runs/43208481081) Ubuntu C++11/17 PASS, 94 cases/2553 assertions/process; macOS pending at report. [Source design, implementation, review and limits](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_INTERPRETER_ONLY_NO_AOT_SOURCE_REVIEW_2026-11-12.md).

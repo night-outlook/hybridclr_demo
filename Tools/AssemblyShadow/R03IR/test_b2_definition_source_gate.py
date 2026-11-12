@@ -456,8 +456,8 @@ class SourceGateTests(unittest.TestCase):
     def test_native_endpass_class_facts_acceptance_stays_scoped(self):
         c=self.original["nativeSourceCapabilities"]
         self.assertEqual(c["physicalEnumerationPasses"],3)
-        self.assertEqual(c["mockScenarios"],94)
-        self.assertEqual(c["mockAssertionsPerExecution"],2553)
+        self.assertEqual(c["mockScenarios"],99)
+        self.assertEqual(c["mockAssertionsPerExecution"],2841)
         self.assertTrue(c["observedClassFactsEndPassImplemented"])
         self.assertTrue(c["observedClassFactsEndPassNotVmEpoch"])
         self.assertFalse(c["observedClassFactsEndPassClassCountProvenInRealUnity"])
@@ -465,8 +465,8 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(c["observedClassFactsEndPassEnumerationFailures"],2)
         for key,wrong in (
             ("physicalEnumerationPasses",2),
-            ("mockScenarios",81),
-            ("mockAssertionsPerExecution",2126),
+            ("mockScenarios",94),
+            ("mockAssertionsPerExecution",2553),
             ("observedClassFactsEndPassImplemented",False),
             ("observedClassFactsEndPassMutationFailures",2),
             ("observedClassFactsEndPassEnumerationFailures",1),
@@ -559,6 +559,32 @@ original_join::CheckFirstOwner(
             with self.subTest(before=before), self.assertRaises(audit.Rejected):
                 audit.verify_interpreter_only_aot_gate(
                     candidate.replace(before, after, 1))
+
+    def test_original_v1_physical_image_primitive_scope(self):
+        c=self.original["nativeSourceCapabilities"]
+        self.assertTrue(c["originalV1ImageFactsTwoPassInNativeSource"])
+        self.assertEqual(c["originalV1ImageFactsFields"],
+                         ["typeCount","imageToken","assemblyToken"])
+        self.assertEqual(c["originalV1ImageFactsMaxStackBytes"],12288)
+        self.assertEqual(c["originalV1ImageFactsMutationFailures"],4)
+        self.assertTrue(c["originalV1DuplicatePhysicalImageFailsClosed"])
+        self.assertTrue(c["originalV1ImageFactsNotWholeVmEpoch"])
+        self.assertFalse(c["originalV1ImageFactsTestedInUnity"])
+        self.assertFalse(c["originalV1MetadataHandleMapStableProven"])
+        for key,value in (
+            ("originalV1ImageFactsTwoPassInNativeSource",False),
+            ("originalV1ImageFactsFields",["typeCount","imageToken"]),
+            ("originalV1ImageFactsMaxStackBytes",8192),
+            ("originalV1ImageFactsMutationFailures",3),
+            ("originalV1DuplicatePhysicalImageFailsClosed",False),
+            ("originalV1ImageFactsNotWholeVmEpoch",False),
+            ("originalV1ImageFactsTestedInUnity",True),
+            ("originalV1MetadataHandleMapStableProven",True),
+        ):
+            modified=copy.deepcopy(self.original)
+            modified["nativeSourceCapabilities"][key]=value
+            with self.subTest(field=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(modified)
 
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
