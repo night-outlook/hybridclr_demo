@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "R03 B2 inactive original V1 CopyValidAssemblies TOKEN-VALID PHYSICAL image ownership reconciliation across all images including interpreter, under bounded first-emplace TypeDef owner join. Exact admitted TypeDef subset only; full V1 field15, VM epoch, terminal-safe fields and native V2 blocked.",
+  "objective": "B2 source-verified complete original V1 vs bounded frozen JSON serializer bytes over IDENTICAL immutable class/R02 inputs, plus two-pass observed cctor/static drift rejection under initial metadata Reader. Full live Unity class provenance, terminal-safe field14/15 and V2 transport remain blocked.",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "648f3b2c5c0d0b86954c339ac3d75fdb96ce1ba2",
+  "candidateNative": "74c049a8f9d60465e1d656c36306b0e8cd015608",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
@@ -27,11 +27,11 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
-      "gitBlob": "208cb855d8bd67ec6f11b2e5a20ff846cb661ddb"
+      "gitBlob": "5ff453d86eb959e833d2b00e742b0ed9b9d1c2b3"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
-      "gitBlob": "4d9b34992e2b621e7e4981457c90c6dcd243a07c"
+      "gitBlob": "76d15f48ae8ee1d4f296eebc1e90d5ea2ee9e631"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
@@ -47,7 +47,7 @@
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "6a9600bfcbe740dfbddc64c10d0d93e205d34275"
+      "gitBlob": "ad8886cde2a109cb44caaea4faf41fd718ecf5aa"
     },
     {
       "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -55,7 +55,7 @@
     },
     {
       "path": ".github/workflows/r03-native-b2-definition-live-source-host.yml",
-      "gitBlob": "2c58bfad274e204b738c6e2ed428960e160817a4"
+      "gitBlob": "991f199640d6183464ce46fe6ce65e5958d2bdb4"
     },
     {
       "path": ".github/workflows/r03-native-b2-constructed-typekey-host.yml",
@@ -63,7 +63,7 @@
     },
     {
       "path": "NativeHostTests/README.md",
-      "gitBlob": "fd2de26b488ffdcaf9061d4365a00899c4483193"
+      "gitBlob": "7f183dc59cfd41adcdb97a4c9895a16fc6c3c455"
     },
     {
       "path": "libil2cpp/il2cpp-runtime-metadata.h",
@@ -236,6 +236,30 @@
     {
       "path": ".github/workflows/r03-native-b2-original-v1-owner-join-host.yml",
       "gitBlob": "5e3ae460dcd363e3dc517e0e59973f20c63c312c"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowObservationCounters.h",
+      "gitBlob": "81689acfe806980b397a0b92d13ed8ade389e115"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowObservationMemo.h",
+      "gitBlob": "689a0710fa78766440b32edf40e3dc06f99b2ef5"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowR02Snapshot.h",
+      "gitBlob": "9f7266014b1514adfd0935948ff417375df274d8"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowDiagnosticsProfile.h",
+      "gitBlob": "f81f76b255490bc8cf5c99e8706a901d68c21795"
+    },
+    {
+      "path": "NativeHostTests/AssemblyShadowExecutionV1SerializerParityHost.cpp",
+      "gitBlob": "e4705584fbd72d7be814a1764d2fdab7b3b8d3a2"
+    },
+    {
+      "path": ".github/workflows/r03-native-b2-execution-v1-serializer-parity-host.yml",
+      "gitBlob": "ec39dbf441feb1c3807bec8c460abda20963c366"
     }
   ],
   "demoPureSources": [
@@ -272,7 +296,7 @@
       "gitBlob": "75fc8717ed3b54b1aeee583e28671e304ab233e0"
     }
   ],
-  "testProof": "Pure first-emplace original V1 owner host CI 43174989182 4/4 Mac/Linux C++11/17 strict/sanitized, 12 cases/41 assertions per process; real inactive source synthetic-VM CI 43175217165 4/4, 73 physical scenarios/1673 assertions per process (plus 3 fake V1 parity adapter and 20 primitive lookup checks). Final native comment-only source 648f3b... current CI may rerun; verify latest. Source review corrects original CopyValidAssemblies physical vs logical misconception; exact source proof applies only to admitted handles and not real Unity full field15.",
+  "testProof": "Native head 74c049a8f9d60465e1d656c36306b0e8cd015608 .inl synthetic VM CI 43179088289 4/4 Mac/Linux C++11/17 Release/Debug strict/sanitized: 16 executions, 75 scenarios and 1849 assertions per process, including two cctor/static mutation negative tests. ACTUAL legacy execution ostream+live R02 versus bounded frozen record+frozen R02 over identical immutable host rows CI 43178421718 4/4: 10 cases, 91 assertions, 6 exact matching rows per host, zero guarded allocations, plus divergent cctor and R02 tests. Not actual Unity class metadata/Player or complete terminal native V2.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -280,7 +304,7 @@
     "metadataReaderEpoch": "initial only",
     "coherentVmEpochProven": false,
     "sourceFirstErrorFence": "Checks B1 Empty before traversal, before record composition, after frozen record",
-    "mockScenarios": 73,
+    "mockScenarios": 75,
     "mockBuildVariants": [
       "release",
       "debug"
@@ -290,7 +314,7 @@
       "sanitized"
     ],
     "physicalClassMembershipScope": "The observed source class must physically match its registration witness; registered AOT images without an observed class may own concrete TypeDef generic arguments; output rows preserve registry-slot order",
-    "mockAssertionsPerExecution": 1673,
+    "mockAssertionsPerExecution": 1849,
     "mockProcessExecutions": 16,
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
     "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup",
@@ -311,7 +335,7 @@
     "crossImageGenericArgumentsSupportedInMock": true,
     "ambiguousMetadataOwnerFailsClosed": true,
     "allPhysicalMetadataImagesEnumerated": false,
-    "nativeSourceCiRun": "43175809258",
+    "nativeSourceCiRun": "43179088289",
     "physicalIteratorSourceBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6",
     "recordOriginalLegacyGrammarUnchanged": true,
     "registeredAotImageLimit": 1024,
@@ -325,7 +349,7 @@
     "runtimeAcceptanceProven": false,
     "unrestrictedCrossImageGenericArgumentsSupported": false,
     "unregisteredAotArgumentFailsClosed": true,
-    "supportedTypeShapeScope": "Admitted physical AOT TypeDef handles must match the FIRST type-handle owner in original V1 token-valid physical image enumeration (interpreter included), under bounded initial Reader, plus original Unicode/constructed/primitive type-subset. This does not prove full V1 field15 rows, source consistency, terminal source or native V2.",
+    "supportedTypeShapeScope": "Authenticated physical AOT TypeDef subset and exact original V1 first-emplace owner, Unicode/composite/primitive; static/cctor facts match in the existing two physical passes plus final per-callback read. Legacy vs frozen execution V1+R02 JSON is byte-identical only for the SAME immutable host rows/counter snapshot. No real Unity runtime full field15, class/GC epoch, terminal capture or native V2.",
     "zeroTypeDefinitionRegisteredAotImagesSkipped": true,
     "registeredAotRegistrySource": "original physical Assembly::s_Assemblies under s_assemblyLock; zero-type AOT images skipped",
     "boundedCompositeArgumentShapesInMock": true,
@@ -381,7 +405,24 @@
     "originalV1PhysicalMapForAdmittedHandlesMatchedInSourceMock": true,
     "originalV1JoinHostCiRun": "43174989182",
     "originalV1MetadataOwnerImageCap": 1024,
-    "originalV1OwnerLookupsCap": 65536
+    "originalV1OwnerLookupsCap": 65536,
+    "originalV1ActualSerializerDifferentialHost": true,
+    "originalV1SerializerUsesActualLiveR02": true,
+    "originalV1SerializerUsesActualFrozenR02": true,
+    "originalV1FormatterSameImmutableRowsOnly": true,
+    "originalV1FormatterHostCases": 10,
+    "originalV1FormatterHostAssertions": 91,
+    "originalV1FormatterGuardedAllocations": 0,
+    "originalV1RuntimeClassMetadataParityProven": false,
+    "originalV1TerminalField15FormattingProven": false,
+    "observedClassFactsTwoPassInNativeSource": true,
+    "observedClassFactsBetweenPassMutationFailures": 2,
+    "observedClassFactsRegistrySlotLimit": 2048,
+    "observedClassFactsBytesPerSlot": 16,
+    "observedClassFactsNotCoherentVmEpoch": true,
+    "completeObservedClassLifetimeProven": false,
+    "actualLegacyFrozenFormatterCiRun": "43178421718",
+    "observedClassFactsFullEpochProven": false
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
