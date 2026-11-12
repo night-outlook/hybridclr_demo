@@ -1,3 +1,11 @@
+# Current Primary — exact observed class root/source consistency (2026-11-12 UTC)
+
+**Source implementation** at il2cpp_plus@c37adc9f7cb610b524ae32b176cbc3e3f67cd35b: the inactive B2 class capture now checks root image, TypeDef handle, byval type/tag/payload and generic pointer in the same physical observations as cctor/static facts; a witnessed change fails closed and revokes rows/receipts. [Native source mock CI 43218731616](https://github.com/night-outlook/il2cpp_plus/actions/runs/43218731616) Ubuntu C++11/17 Release/Debug strict/sanitized **2/2 PASS**, 106 cases/3194 assertions per execution; macOS native jobs queued at checkpoint. [Detailed review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CLASS_ROOT_SOURCE_FENCE_REVIEW_2026-11-12.md).
+
+**Limitations:** ClassFacts buffer now max 96KiB at 64-bit (+64KiB), requiring official Unity native worker-stack validation. Pointer equality is neither metadata/GC provenance nor a whole-VM epoch. Full original field14+15, actual Unity Player parity and authenticated native V2 remain blocked. R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false, PureInterpreter disabled; [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) CLOSED / NO EXECUTION.
+
+---
+
 # Current Primary — original V1 physical image primitive drift fence (2026-11-12 UTC)
 
 **Native source:** il2cpp_plus@376bcf58bf4728828abab4618f331a9e445450f9 now double-samples token-valid original V1 physical image TypeDef count, image token and assembly token (not just pointer/order); a changed primitive or duplicate registration rejects all owned rows and source receipts. Five new negative cases in checked-in actual native .inl synthetic-VM host [CI 43211384982](https://github.com/night-outlook/il2cpp_plus/actions/runs/43211384982) **Ubuntu C++11/17 2/2 PASS**, 99 cases/2841 assertions per process; macOS jobs queued at review. [Source review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ORIGINAL_V1_IMAGE_FACTS_FENCE_REVIEW_2026-11-12.md). Native B1/real V1 getter and other forks unchanged.

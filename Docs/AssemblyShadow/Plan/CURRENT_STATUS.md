@@ -1,3 +1,11 @@
+# R03 B2 — observed class root image/TypeDef/byval facts (2026-11-12 UTC)
+
+Native il2cpp_plus@c37adc9f7cb610b524ae32b176cbc3e3f67cd35b compares class root image, metadata TypeDef, byval tag/payload and generic pointer across the existing three physically matched callbacks, distinguishing ObservedClassRootChanged from prior cctor/static errors. [Native CI 43218731616](https://github.com/night-outlook/il2cpp_plus/actions/runs/43218731616): Ubuntu C++11/17 2/2 PASS (106 cases/3194 assertions per process), macOS queued at review. [Design, code and source-review limits](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CLASS_ROOT_SOURCE_FENCE_REVIEW_2026-11-12.md).
+
+96KiB class root+fact buffer on 64-bit (+64KiB) remains unvalidated in actual Unity worker thread. Complete original V1 class shapes, TypeDef metadata contents, class/GC/VM epoch, terminal full field14/15, authenticated native V2 and real Player are **NotProven**. WEB_TO_LOCAL CLOSED / NO EXECUTION; R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false.
+
+---
+
 # R03 B2 — Original V1 physical image facts double-observed (2026-11-12 UTC)
 
 Native il2cpp_plus@376bcf58bf4728828abab4618f331a9e445450f9: exact original V1 image typeCount/imageToken/assemblyToken sampled and compared over the already existing two physical image visits, plus fail-closed duplicate physical image rejection. Actual source .inl synthetic VM Ubuntu C++11/17 CI 43211384982 2/2 PASS, 99 cases/2841 assertions; macOS jobs queued at source-review checkpoint. [Design/source/host review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ORIGINAL_V1_IMAGE_FACTS_FENCE_REVIEW_2026-11-12.md). Final demo four-repo admission CI must be checked at final pushed SHA.
