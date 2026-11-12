@@ -265,6 +265,50 @@ class SourceGateTests(unittest.TestCase):
         with self.assertRaises(audit.Rejected):
             audit.validate_contract(changed)
 
+    def test_v1_observational_byte_probe_is_not_a_terminal_field(self):
+        caps=self.original["nativeSourceCapabilities"]
+        for flag in ("observationalOriginalV1ByteProbeImplemented",
+                     "legacyV1GetterUnchanged",
+                     "parityMismatchRevokesBoundedSource",
+                     "paritySourceMockUsesFakeLegacyGetter"):
+            self.assertTrue(caps[flag])
+            wrong=copy.deepcopy(self.original)
+            wrong["nativeSourceCapabilities"][flag]=False
+            with self.subTest(flag=flag),self.assertRaises(audit.Rejected):
+                audit.validate_contract(wrong)
+        for flag in ("observedActualOriginalV1ByteEqualityInUnity",
+                     "twoObservationsAreOneCoherentVmEpoch",
+                     "completeNativeField15Proven"):
+            self.assertFalse(caps[flag])
+            wrong=copy.deepcopy(self.original)
+            wrong["nativeSourceCapabilities"][flag]=True
+            with self.subTest(flag=flag),self.assertRaises(audit.Rejected):
+                audit.validate_contract(wrong)
+        self.assertEqual(caps["parityHostCases"],10)
+        self.assertEqual(caps["paritySourceMockCases"],3)
+        self.assertGreaterEqual(caps["parityMockAssertionsPerExecution"],1258)
+
+    def test_original_and_frozen_parity_sources_are_exact_pinned(self):
+        expected={
+            "libil2cpp/vm/AssemblyShadowExecutionV1ByteParity.h",
+            "libil2cpp/vm/AssemblyShadowExecutionV1ByteParitySource.inl",
+            "libil2cpp/vm/AssemblyShadowAdmittedExecutionDiagnosticsSource.inl",
+            "libil2cpp/vm/AssemblyShadowExecutionSerializer.h",
+            "libil2cpp/vm/AssemblyShadowFrozenExecutionRecord.h",
+            "libil2cpp/vm/AssemblyShadowMetadataLifetime.h",
+            "libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+            "libil2cpp/vm/AssemblyShadowFrozenR02Serializer.h",
+            "libil2cpp/vm/AssemblyShadowDiagnosticWriter.h",
+            "NativeHostTests/AssemblyShadowExecutionV1ByteParityHost.cpp",
+            ".github/workflows/r03-native-b2-v1-parity-host.yml",
+        }
+        self.assertTrue(expected.issubset(audit.NATIVE_REQUIRED))
+        self.assertEqual(len(self.original["nativeSources"]),53)
+        self.assertEqual(len(self.original["demoPureSources"]),5)
+        self.assertIn(
+            "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedObservedExecutionV1ByteParity.h",
+            audit.DEMO_REQUIRED)
+
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
         self.assertEqual(self.original["nativeSourceCapabilities"]["sourceReadsAfterTerminal"],False)
