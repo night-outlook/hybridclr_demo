@@ -20,6 +20,8 @@ FIXED_UNITY="948c0e3b4f8891481301770115e8ba4945eea6de"
 NATIVE_REQUIRED={
     "libil2cpp/il2cpp-runtime-metadata.h",
     "libil2cpp/vm/AssemblyShadow.cpp",
+    "libil2cpp/vm/Class.cpp",
+    "libil2cpp/vm/Class.h",
     "libil2cpp/vm/Assembly.cpp",
     "libil2cpp/vm/Assembly.h",
     "libil2cpp/vm/AssemblyShadowRegisteredAotImageScan.h",
@@ -145,6 +147,12 @@ def validate_contract(m:dict)->None:
             c.get("compositeCoverageReceiptRevokedOnFailure") is True and
             c.get("arbitraryPrimitiveGenericArgumentKeys") is False and
             c.get("fullLegacyNonemptyExecutionParityProven") is False and
+            c.get("primitiveDefaultClassLookupNoAllocationSourcePinned") is True and
+            c.get("primitiveArgumentsWithRegisteredAotTypeDefSupportedInMock") is True and
+            c.get("primitiveClassNameAncestryChecked") is True and
+            c.get("unownedPrimitiveDefaultsRejected") is True and
+            c.get("realUnityPrimitiveField15ParityProven") is False and
+            c.get("arbitraryPrimitiveGenericArgumentKeys") is False and
             c.get("originalUnicodeAssemblyFoldBoundInVmSource") is True and
             c.get("originalNameTableParityHostOnly") is True and
             c.get("ownedUtf16FoldNoAllocationHostVerified") is True and
@@ -270,9 +278,34 @@ def source_boundary(native:dict[str,bytes])->None:
          "TestCompositeAndOriginalGrammar",
          "TestFailuresAndNoPartialOutput",
          "TestMaximumArgumentsAndSignedBounds")
+    must("libil2cpp/vm/Class.h",
+         "static Il2CppClass* FromIl2CppTypeEnum(Il2CppTypeEnum type);")
+    must("libil2cpp/vm/Class.cpp",
+         "Il2CppClass* Class::FromIl2CppTypeEnum(Il2CppTypeEnum type)",
+         "#define RETURN_DEFAULT_TYPE(fieldName)",
+         "RETURN_DEFAULT_TYPE(int32_class)",
+         "RETURN_DEFAULT_TYPE(string_class)",
+         "RETURN_DEFAULT_TYPE(systemtype_class)")
+    # The original default lookup must be a pure switch returning initialized
+    # il2cpp_defaults; no metadata class instantiation or cache entry is allowed
+    # in this trusted primitive-source lookup branch.
+    cpp=native["libil2cpp/vm/Class.cpp"].decode("utf8","strict")
+    begin=cpp.index("Il2CppClass* Class::FromIl2CppTypeEnum(Il2CppTypeEnum type)")
+    end=cpp.index("Il2CppClass* Class::FromSystemType(",begin)
+    default_branch=cpp[begin:end]
+    for forbidden in ("MetadataCalloc(", "FromGenericParameter(",
+                      "Class::Init(", "GetPtrClass(", "GetArrayClass(",
+                      "GetBoundedArrayClass(", "MetadataCache::"):
+        require(forbidden not in default_branch,
+                "Default primitive source must not create classes: "+forbidden)
+    require("switch (type)" in default_branch and
+            "return il2cpp_defaults.fieldName;" in default_branch and
+            "return NULL;" in default_branch,
+            "Default primitive direct lookup contract drift")
     must("libil2cpp/vm/AssemblyShadow.cpp",
          '#include "AssemblyShadowBoundedDefinitionExecutionLive.h"',
          '#include "vm/GlobalMetadataFileInternals.h"',
+         '#include "vm/Class.h"',
          '#include "AssemblyShadowBoundedDefinitionExecutionLiveSource.inl"')
     must("libil2cpp/vm/AssemblyShadow.h",
          "TryCaptureBoundedDefinitionExecutionLive",
@@ -302,6 +335,12 @@ def source_boundary(native:dict[str,bytes])->None:
          "assembly_shadow_detail::NextFolded(",
          "BeginCanonicalFolded(",
          "usedUnicodeAssemblyFold",
+         "Class::FromIl2CppTypeEnum(value->type)",
+         "primitive->typeMetadataHandle",
+         "primitive->declaringType",
+         "primitive->namespaze",
+         "context.usedExistingPrimitiveDefault=true",
+         "admittedPrimitiveArguments",
          "generic->context.class_inst",
          "definitionArity!=instance->type_argc",
          "composite_key::Capture genericKey",
@@ -320,6 +359,7 @@ def source_boundary(native:dict[str,bytes])->None:
          "callbackPhysicalMembershipProven",
          "completeArbitraryTypeKeys=false",
          "usedUnicodeAssemblyFold",
+         "usedExistingPrimitiveDefault",
          "completeExecutionDiagnostics=false",
          "coherentVmEpochProven=false",
          "nativeV2TransportImplemented=false",
@@ -329,6 +369,17 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::StagedNestedIndex",
          "Mode::CyclicNested",
          "Mode::GenericDefinition",
+         "Mode::PrimitiveDefault",
+         "Mode::PrimitiveQualified",
+         "Mode::PrimitiveMissingDefault",
+         "Mode::PrimitiveUnregistered",
+         "Mode::PrimitiveWrongHandle",
+         "Mode::PrimitiveWrongImage",
+         "Mode::PrimitiveUnsupportedTag",
+         "Mode::PrimitiveAmbiguousOwner",
+         "Mode::PrimitiveGenericArity",
+         "Mode::PrimitiveClassNameMismatch",
+         "Mode::PrimitiveClassNested",
          "Mode::GenericSameImage",
          "Mode::GenericConstructedArgument",
          "Mode::UnicodeAssembly",
