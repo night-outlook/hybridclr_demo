@@ -226,8 +226,8 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(
             {row["path"] for row in self.original["nativeSources"]},
             audit.NATIVE_REQUIRED)
-        self.assertEqual(len(self.original["nativeSources"]),53)
-        self.assertEqual(len(self.original["demoPureSources"]),6)
+        self.assertEqual(len(self.original["nativeSources"]),57)
+        self.assertEqual(len(self.original["demoPureSources"]),8)
 
     def test_bounded_existing_primitive_defaults_and_noncreating_source_contract(self):
         c=self.original["nativeSourceCapabilities"]
@@ -349,6 +349,52 @@ class SourceGateTests(unittest.TestCase):
             with self.assertRaises(audit.Rejected):
                 audit.verify_legacy_getter_unchanged(
                     corruptSource,corruptFixture)
+
+    def test_original_v1_token_valid_physical_first_owner_contract(self):
+        c=self.original["nativeSourceCapabilities"]
+        for key in (
+            "originalV1PhysicalTokenValidEnumeration",
+            "originalV1IncludesInterpreterImages",
+            "originalV1FirstEmplaceOwnerJoinSourceImplemented",
+            "originalV1OwnerConflictRevokesSource",
+            "originalV1ImageInventoryDoubleChecked",
+        ):
+            self.assertTrue(c[key])
+            changed=copy.deepcopy(self.original)
+            changed["nativeSourceCapabilities"][key]=False
+            with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(changed)
+        for key in (
+            "originalV1FullField15ParityProven",
+            "actualUnityOriginalV1OwnerJoinTested",
+            "originalV1ImagesAreLogicalShadowView",
+        ):
+            self.assertFalse(c[key])
+            changed=copy.deepcopy(self.original)
+            changed["nativeSourceCapabilities"][key]=True
+            with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(changed)
+        self.assertEqual(c["originalV1JoinHostCases"],12)
+        self.assertGreaterEqual(c["originalV1JoinHostAssertions"],41)
+        for key,newValue in (("originalV1JoinHostCases",11),
+                             ("originalV1JoinHostAssertions",0)):
+            changed=copy.deepcopy(self.original)
+            changed["nativeSourceCapabilities"][key]=newValue
+            with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(changed)
+
+    def test_original_v1_image_and_join_sources_exactly_mirrored(self):
+        for filename in ("BoundedOriginalV1ImageScan.h",
+                         "BoundedOriginalV1OwnerJoin.h"):
+            path="Tools/AssemblyShadow/R03IR/NativeDiagnostics/"+filename
+            self.assertIn(path,audit.DEMO_REQUIRED)
+        for filename in ("AssemblyShadowOriginalV1ImageScan.h",
+                         "AssemblyShadowOriginalV1OwnerJoin.h"):
+            self.assertIn("libil2cpp/vm/"+filename,audit.NATIVE_REQUIRED)
+        self.assertEqual({r["path"] for r in self.original["nativeSources"]},
+                         audit.NATIVE_REQUIRED)
+        self.assertEqual({r["path"] for r in self.original["demoPureSources"]},
+                         audit.DEMO_REQUIRED)
 
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
