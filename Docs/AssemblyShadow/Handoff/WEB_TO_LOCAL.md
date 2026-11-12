@@ -17,7 +17,7 @@ All four canonical HTTPS remotes are `https://github.com/night-outlook/<repo>.gi
 
 [Exact 57-native/eight-demo source candidate](../../Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json) pins native C++11 implementation, original V1 enabled getter 5,222-byte independent source fixture, updated Assembly.cpp/Assembly.h, pure original V1 first-owner scan/join and host CI, original metadata ABI/serializer/TypeKey and all six previously reviewed demo sources.
 
-**Historical evidence boundary:** B1 oneuse-12 focused real Unity 2022.3.62f2 macOS ARM64 IL2CPP Player **19/19 PASS** executed against a DIFFERENT demo/native source tuple (demo `2d690bb2f7234ddcbee339f9da7125d687f5ed45`, native `8aa8d09319a89b55b2496bcc2c69ccb57be9`). Its raw roots and source are consumed/immutable. Current B2 changes were NOT tested in a real Unity Player or official C++ native full translation unit.
+**Historical evidence boundary:** B1 oneuse-12 focused real Unity 2022.3.62f2 macOS ARM64 IL2CPP Player **19/19 PASS** executed against a DIFFERENT demo/native source tuple (demo `2d690bb2f7234ddcbee339f9da7125d687f5ed45`, native `8aa8d09319a89b55b2496bcc2c69ccc69cb57be9`). Its raw roots and source are consumed/immutable. Current B2 changes were NOT tested in a real Unity Player or official C++ native full translation unit.
 
 ### Primary implementation, source findings and exact tests
 
