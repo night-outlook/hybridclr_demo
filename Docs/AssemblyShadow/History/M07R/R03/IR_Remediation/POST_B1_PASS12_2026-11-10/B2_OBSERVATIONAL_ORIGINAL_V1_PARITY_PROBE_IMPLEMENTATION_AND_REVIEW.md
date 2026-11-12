@@ -1,3 +1,9 @@
+# Correction to earlier original V1 image-map description (2026-11-12 UTC)
+
+The earlier prose below referred to `Assembly::CaptureShadowEnumeration` as a logical assembly map. **That was incorrect**: original `Assembly.cpp` calls `CopyValidAssemblies`, retaining registered **physical token-valid** assemblies in registration order, including interpreter and zero-TypeDef images. The separate `GetAllAssemblies` uses `CopyLogicalAssemblies` and is NOT used by the execution V1 metadata map. See [current first-emplace physical owner implementation and review](B2_ORIGINAL_V1_FIRST_OWNER_RECONCILIATION_IMPLEMENTATION_AND_REVIEW.md) at native il2cpp_plus@648f3b2c5c0d0b86954c339ac3d75fdb96ce1ba2, exact 57-native/8-demo source gate and new positive-only first-owner receipt. The bounded source now refuses any admitted AOT TypeDef whose FIRST owner in original V1 physical `emplace` order is an earlier interpreter/other image. This is source-subset proof only, not complete real Unity field15 parity, terminal field14/15, VM epoch, V2 writer or Local execution authority.
+
+---
+
 # R03 B2 — inactive original V1 execution field15 observational byte-parity probe
 
 Date: 2026-11-12 UTC. Owner: Primary Implementation. Stage: **source-complete bounded observational probe, not complete original V1 field15 parity, terminal native V2, or executable Local Validation**.
