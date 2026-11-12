@@ -163,7 +163,7 @@ def validate_contract(m:dict)->None:
             c.get("ambiguousMetadataOwnerFailsClosed") is True and
             c.get("allPhysicalMetadataImagesEnumerated") is False and
             c.get("physicalImageLimit")==64 and
-            c.get("physicalEnumerationPasses")==2 and
+            c.get("physicalEnumerationPasses")==3 and
             c.get("realUnityRuntimeIntegrationProven") is False and
             c.get("coherentVmEpochProven") is False and
             c.get("genericArgumentLimit")==16 and
@@ -197,7 +197,14 @@ def validate_contract(m:dict)->None:
             c.get("observedClassFactsTwoPassInNativeSource") is True and
             c.get("observedClassFactsBetweenPassMutationFailures")==2 and
             c.get("observedClassFactsDuringTypeKeyMutationFailures")==1 and
-            c.get("mockScenarios")>=76 and
+            c.get("observedClassFactsEndPassImplemented") is True and
+            c.get("observedClassFactsEndPassMutationFailures")==3 and
+            c.get("observedClassFactsEndPassEnumerationFailures")==2 and
+            c.get("observedClassFactsEndPassVisitedSlotBytes")==2048 and
+            c.get("observedClassFactsEndPassMaximumCallbacks")==65536 and
+            c.get("observedClassFactsEndPassNotVmEpoch") is True and
+            c.get("observedClassFactsEndPassClassCountProvenInRealUnity") is False and
+            c.get("mockScenarios")>=81 and
             c.get("mockAssertionsPerExecution")>=1865 and
             c.get("observedClassFactsRegistrySlotLimit")==2048 and
             c.get("observedClassFactsBytesPerSlot")==16 and
@@ -525,7 +532,9 @@ def source_boundary(native:dict[str,bytes])->None:
     must("libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
          "ObservedClassFactsChanged",
          "observedClassFactsTwoPassStable",
-         "observedClassFactsMatched=0")
+         "observedClassFactsMatched=0",
+         "observedClassFactsEndPassMatched=0",
+         "observedClassFactsEndPassStable=false")
     must("libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
          "assembly_shadow_metadata_lifetime::Gate::Reader admission",
          "il2cpp_class_for_each",
@@ -551,6 +560,13 @@ def source_boundary(native:dict[str,bytes])->None:
          "ClassFacts::Read(klass)",
          "firstPassFacts.fill(ClassFacts{})",
          "receipt.observedClassFactsTwoPassStable=",
+         "receipt.observedClassFactsEndPassMatched=endPass.matched",
+         "receipt.observedClassFactsEndPassStable=",
+         "c.firstPassFacts[registration]=finalFacts;",
+         "std::array<uint8_t,physical::kSlots> seen{}",
+         "endPass.matched!=receipt.registered",
+         "end.seen[slot]=1",
+         "if(!end.facts[slot].Same(ClassFacts::Read(klass)))",
          "usedUnobservedAotArgumentImage",
          "resolveOwner",
          "AmbiguousMetadataOwner",
@@ -623,6 +639,12 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::CctorFactsChanged",
          "Mode::StaticFactsChanged",
          "Mode::CctorFactsDuringTypeKey",
+         "Mode::CctorFactsChangedAtEnd",
+         "Mode::StaticFactsChangedAtEnd",
+         "Mode::EarlierClassFactsChangedDuringLaterTypeKey",
+         "Mode::MissingEndPass",
+         "Mode::DuplicateEndPass",
+         "Check(g_physicalPasses==3)",
          "Mode::GenericSameImage",
          "Mode::GenericConstructedArgument",
          "Mode::UnicodeAssembly",

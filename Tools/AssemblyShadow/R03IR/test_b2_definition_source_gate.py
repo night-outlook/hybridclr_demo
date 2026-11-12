@@ -453,6 +453,31 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual({row["path"] for row in self.original["nativeSources"]},
                          audit.NATIVE_REQUIRED)
 
+    def test_native_endpass_class_facts_acceptance_stays_scoped(self):
+        c=self.original["nativeSourceCapabilities"]
+        self.assertEqual(c["physicalEnumerationPasses"],3)
+        self.assertEqual(c["mockScenarios"],81)
+        self.assertTrue(c["observedClassFactsEndPassImplemented"])
+        self.assertTrue(c["observedClassFactsEndPassNotVmEpoch"])
+        self.assertFalse(c["observedClassFactsEndPassClassCountProvenInRealUnity"])
+        self.assertEqual(c["observedClassFactsEndPassMutationFailures"],3)
+        self.assertEqual(c["observedClassFactsEndPassEnumerationFailures"],2)
+        for key,wrong in (
+            ("physicalEnumerationPasses",2),
+            ("mockScenarios",76),
+            ("observedClassFactsEndPassImplemented",False),
+            ("observedClassFactsEndPassMutationFailures",2),
+            ("observedClassFactsEndPassEnumerationFailures",1),
+            ("observedClassFactsEndPassVisitedSlotBytes",4096),
+            ("observedClassFactsEndPassMaximumCallbacks",0),
+            ("observedClassFactsEndPassNotVmEpoch",False),
+            ("observedClassFactsEndPassClassCountProvenInRealUnity",True),
+        ):
+            broken=copy.deepcopy(self.original)
+            broken["nativeSourceCapabilities"][key]=wrong
+            with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(broken)
+
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
         self.assertEqual(self.original["nativeSourceCapabilities"]["sourceReadsAfterTerminal"],False)

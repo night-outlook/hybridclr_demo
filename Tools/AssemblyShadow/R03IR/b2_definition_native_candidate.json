@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "Original V1/R02 execution serializer bytes identical for the SAME immutable host class/counter inputs; native registered AOT class facts double-sampled and checked again during TypeKey formatting; class cctor/static mutation rejects the whole bounded source. No live Unity original field15 completeness, whole-VM epoch or terminal native V2.",
+  "objective": "Inactive native B2 checks first/second class facts and uses an end-of-collection THIRD physically matched traversal to reject late cctor/static changes to earlier owned rows, third-pass omissions/duplicates and mutations during later TypeKey formatting. The complete original V1 source, terminal field14/15, whole VM/GC epoch and native V2 remain unproven.",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "e5f8eebca1263181ed3fca49e84a1cf73f40b90b",
+  "candidateNative": "04d979fe55cea6b2dee7f5bfc49a71f2f1fb6386",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
@@ -27,11 +27,11 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
-      "gitBlob": "5ff453d86eb959e833d2b00e742b0ed9b9d1c2b3"
+      "gitBlob": "470c846795f1390e958a965f785d9b416230d821"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
-      "gitBlob": "76d15f48ae8ee1d4f296eebc1e90d5ea2ee9e631"
+      "gitBlob": "c910259cff3a56d8b0903597f2cbf7ce11b090b7"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
@@ -47,7 +47,7 @@
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "b6399f0b719163f89550146d129d62fdc41b5b11"
+      "gitBlob": "b62e4a118518d32e48ff3f6afa96e0cefd64e3e6"
     },
     {
       "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -55,7 +55,7 @@
     },
     {
       "path": ".github/workflows/r03-native-b2-definition-live-source-host.yml",
-      "gitBlob": "02b5fad08460bf7204ad6c83a02ea465d3ad371e"
+      "gitBlob": "061a1cb823e2c5deea5af32bca0918cb7c36dc99"
     },
     {
       "path": ".github/workflows/r03-native-b2-constructed-typekey-host.yml",
@@ -296,7 +296,7 @@
       "gitBlob": "75fc8717ed3b54b1aeee583e28671e304ab233e0"
     }
   ],
-  "testProof": "Real original legacy ostream + live R02 vs actual frozen Record + frozen R02 formatter CI 43178421718 4/4, 10 cases/91 assertions/process and 6 exact class rows, zero guarded allocations. Final mock source at e5f8eebca1263181ed3fca49e84a1cf73f40b90b includes 76 physical source cases/1865 assertions per host execution with cctor/static between-pass mutation and cctor-during-TypeKey mutation; native CI 43180369312 completed 4/4 success at exact native SHA. No real Unity native TU/Player. Complete original field14/15 and native V2 remain blocked.",
+  "testProof": "Native actual .inl mock now has at least 81 cases (including 5 new end-of-collection mutation/traversal negatives) and existing 1865+ assertion contract, with exact run status requiring verification at new native commit. Original V1/frozen formatter differential prior CI 43178421718 PASS only for identical synthetic inputs. No real Unity full native TU, Player or complete original field15.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -304,7 +304,7 @@
     "metadataReaderEpoch": "initial only",
     "coherentVmEpochProven": false,
     "sourceFirstErrorFence": "Checks B1 Empty before traversal, before record composition, after frozen record",
-    "mockScenarios": 76,
+    "mockScenarios": 81,
     "mockBuildVariants": [
       "release",
       "debug"
@@ -329,13 +329,13 @@
     "legacyTypeKeyGrammarSourceBlob": "6b23b4bad66e9a8f36c68717ef82626351018624",
     "realUnityRuntimeIntegrationProven": false,
     "realGenericRuntimeMetadataAbiBlob": "f7f235848209ee331adfd1c2b214b46cc753392e",
-    "physicalImageInventory": "Two registered-physical assembly visits under s_assemblyLock plus two matched class enumerations under enclosing g_MetadataLock and initial metadata Reader; 64 matched image identities and 1024 registered AOT image limit",
+    "physicalImageInventory": "Two registered-physical assembly visits plus two original-V1 image visits, THREE matched-class enumerations within original g_MetadataLock/initial Reader; final end-of-collection pass rechecks all admitted class-fact values, while image order and class/GC/VM lifetime are still only observational.",
     "physicalImageLimit": 64,
-    "physicalEnumerationPasses": 2,
+    "physicalEnumerationPasses": 3,
     "crossImageGenericArgumentsSupportedInMock": true,
     "ambiguousMetadataOwnerFailsClosed": true,
     "allPhysicalMetadataImagesEnumerated": false,
-    "nativeSourceCiRun": "43180369312",
+    "nativeSourceCiRun": "PendingExactNativeCI_at_04d979fe55ce",
     "physicalIteratorSourceBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6",
     "recordOriginalLegacyGrammarUnchanged": true,
     "registeredAotImageLimit": 1024,
@@ -423,7 +423,14 @@
     "completeObservedClassLifetimeProven": false,
     "actualLegacyFrozenFormatterCiRun": "43178421718",
     "observedClassFactsFullEpochProven": false,
-    "observedClassFactsDuringTypeKeyMutationFailures": 1
+    "observedClassFactsDuringTypeKeyMutationFailures": 1,
+    "observedClassFactsEndPassImplemented": true,
+    "observedClassFactsEndPassMutationFailures": 3,
+    "observedClassFactsEndPassEnumerationFailures": 2,
+    "observedClassFactsEndPassVisitedSlotBytes": 2048,
+    "observedClassFactsEndPassMaximumCallbacks": 65536,
+    "observedClassFactsEndPassNotVmEpoch": true,
+    "observedClassFactsEndPassClassCountProvenInRealUnity": false
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
