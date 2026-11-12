@@ -284,6 +284,21 @@ class SourceGateTests(unittest.TestCase):
             wrong["nativeSourceCapabilities"][flag]=True
             with self.subTest(flag=flag),self.assertRaises(audit.Rejected):
                 audit.validate_contract(wrong)
+        self.assertTrue(caps["legacyGetterByteExactFixturePinned"])
+        self.assertFalse(caps["legacyLogicalPhysicalImageMapParityProven"])
+        self.assertFalse(caps["realUnityOriginalGetterProbeTested"])
+        self.assertEqual(caps["legacyGetterReferenceCommit"],
+                         "68530d7ecb86c9122d9ae5eb20366ccb0ea086b6")
+        for field,value in (
+            ("legacyGetterByteExactFixturePinned",False),
+            ("legacyLogicalPhysicalImageMapParityProven",True),
+            ("realUnityOriginalGetterProbeTested",True),
+            ("legacyGetterReferenceCommit","0"*40),
+        ):
+            changed=copy.deepcopy(self.original)
+            changed["nativeSourceCapabilities"][field]=value
+            with self.subTest(field=field),self.assertRaises(audit.Rejected):
+                audit.validate_contract(changed)
         self.assertEqual(caps["parityHostCases"],10)
         self.assertEqual(caps["paritySourceMockCases"],3)
         self.assertGreaterEqual(caps["parityMockAssertionsPerExecution"],1258)
