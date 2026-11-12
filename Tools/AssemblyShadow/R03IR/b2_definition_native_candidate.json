@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "Inactive bounded execution TypeKey source admits primitive argument codes ONLY through existing Class::FromIl2CppTypeEnum default classes independently verified against original registered physical AOT TypeDefs, with exact class/declaration identity; full V1 field15 and native V2 remain blocked",
+  "objective": "R03 B2 inactive native source admits original pre-existing primitive default types only after Class::FromIl2CppTypeEnum and exact registered AOT physical TypeDef/namespace/name/arity/declaring/generic-container proof; full original execution field15 and native V2 remain blocked",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "e422a70d381d10d80614f869e30ce83b5eff43c9",
+  "candidateNative": "f6530b221f0ef98ff38436ca8cd2692304d63265",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
@@ -31,7 +31,7 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
-      "gitBlob": "104bb63a48396511e267deba9537910f0e6bb298"
+      "gitBlob": "058e4fd3f06657100798e7593ced35fc6e412a9c"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
@@ -47,7 +47,7 @@
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "fbd9d6962ff3d3d1c9636f57dbc87310b3314f02"
+      "gitBlob": "932d2e234dd467d34d4eedc65720289e08339ae9"
     },
     {
       "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -55,7 +55,7 @@
     },
     {
       "path": ".github/workflows/r03-native-b2-definition-live-source-host.yml",
-      "gitBlob": "6615a00a0017e53c0f687b1b8f9847e207e0ccd6"
+      "gitBlob": "f5cccafc9288163820727171d448e2bb5f338b96"
     },
     {
       "path": ".github/workflows/r03-native-b2-constructed-typekey-host.yml",
@@ -188,7 +188,7 @@
       "gitBlob": "d930418031706006e10a41ade08f70ba6454bc47"
     }
   ],
-  "testProof": "Exact 40-native/four-demo source roster; actual inactive .inl compiled with mock VM and a reference-shaped existing primitive default class at final native e422a70d..., native CI 43139017225 4/4 macOS/Ubuntu C++11/17 jobs completed/success (16 release/debug strict/sanitized host executions, 66 scenarios and 1,186 assertions each). Original Class.cpp direct default lookup source is pinned but NOT compiled in its full Unity native TU; no real Unity class metadata, V1 full field15 parity, complete V2, or Player evidence.",
+  "testProof": "Native real inactive .inl compiled with mock VM, original direct default-class lookup source structurally pinned (not full Class.cpp compiled), 67 synthetic cases and 1,195 assertions per each of 16 Mac/Linux C++11/17 Release/Debug strict/sanitized host executions. Exact run 43139433481 4/4 jobs completed/success at final native source. Full Unity IL2CPP/real primitive metadata/field15/V2/Player NOT run.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -196,7 +196,7 @@
     "metadataReaderEpoch": "initial only",
     "coherentVmEpochProven": false,
     "sourceFirstErrorFence": "Checks B1 Empty before traversal, before record composition, after frozen record",
-    "mockScenarios": 66,
+    "mockScenarios": 67,
     "mockBuildVariants": [
       "release",
       "debug"
@@ -206,7 +206,7 @@
       "sanitized"
     ],
     "physicalClassMembershipScope": "The observed source class must physically match its registration witness; registered AOT images without an observed class may own concrete TypeDef generic arguments; output rows preserve registry-slot order",
-    "mockAssertionsPerExecution": 1186,
+    "mockAssertionsPerExecution": 1195,
     "mockProcessExecutions": 16,
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
     "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup",
@@ -227,7 +227,7 @@
     "crossImageGenericArgumentsSupportedInMock": true,
     "ambiguousMetadataOwnerFailsClosed": true,
     "allPhysicalMetadataImagesEnumerated": false,
-    "nativeSourceCiRun": "43139017225",
+    "nativeSourceCiRun": "43139433481",
     "physicalIteratorSourceBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6",
     "recordOriginalLegacyGrammarUnchanged": true,
     "registeredAotImageLimit": 1024,
@@ -241,7 +241,7 @@
     "runtimeAcceptanceProven": false,
     "unrestrictedCrossImageGenericArgumentsSupported": false,
     "unregisteredAotArgumentFailsClosed": true,
-    "supportedTypeShapeScope": "Existing preinitialized primitive Class::FromIl2CppTypeEnum defaults only if registered physical AOT TypeDef owner, zero arity, class name/namespace/ancestry match; plus AOT concrete TypeDef and bounded nested GENERICINST/PTR/SZARRAY/ARRAY/qualified with original Unicode assembly folding. Open VAR/MVAR, unregistered defaults, full V1 field15 and native V2 remain unavailable.",
+    "supportedTypeShapeScope": "Original preinitialized il2cpp_defaults primitive classes only with registered physical AOT TypeDef/namespace/name and nongeneric, unnested owner proof; physical AOT TypeDefs plus bounded nested GENERICINST/PTR/SZARRAY/ARRAY/qualifiers using original Unicode assembly folding. No open VAR/MVAR, unmatched default, complete V1 field15, postterminal full fields or V2 transport.",
     "zeroTypeDefinitionRegisteredAotImagesSkipped": true,
     "registeredAotRegistrySource": "original physical Assembly::s_Assemblies under s_assemblyLock; zero-type AOT images skipped",
     "boundedCompositeArgumentShapesInMock": true,
@@ -263,7 +263,8 @@
     "primitiveArgumentsWithRegisteredAotTypeDefSupportedInMock": true,
     "primitiveClassNameAncestryChecked": true,
     "unownedPrimitiveDefaultsRejected": true,
-    "realUnityPrimitiveField15ParityProven": false
+    "realUnityPrimitiveField15ParityProven": false,
+    "primitiveGenericContainerRejected": true
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
