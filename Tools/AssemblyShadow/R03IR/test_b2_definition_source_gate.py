@@ -226,7 +226,7 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(
             {row["path"] for row in self.original["nativeSources"]},
             audit.NATIVE_REQUIRED)
-        self.assertEqual(len(self.original["nativeSources"]),41)
+        self.assertEqual(len(self.original["nativeSources"]),42)
         self.assertEqual(len(self.original["demoPureSources"]),4)
 
     def test_bounded_existing_primitive_defaults_and_noncreating_source_contract(self):
@@ -235,6 +235,8 @@ class SourceGateTests(unittest.TestCase):
                     "primitiveArgumentsWithRegisteredAotTypeDefSupportedInMock",
                     "primitiveClassNameAncestryChecked",
                     "primitiveGenericContainerRejected",
+                    "assertFreePrimitiveDefaultLookup",
+                    "primitiveDefaultExactSwitchParity",
                     "unownedPrimitiveDefaultsRejected"):
             self.assertTrue(c[key])
             changed=copy.deepcopy(self.original)
@@ -249,10 +251,19 @@ class SourceGateTests(unittest.TestCase):
             with self.subTest(key=key),self.assertRaises(audit.Rejected):
                 audit.validate_contract(changed)
         self.assertIn("libil2cpp/il2cpp-class-internals.h",audit.NATIVE_REQUIRED)
+        self.assertIn("libil2cpp/vm/AssemblyShadowExistingPrimitiveDefaults.h",audit.NATIVE_REQUIRED)
         self.assertIn("libil2cpp/vm/Class.cpp",audit.NATIVE_REQUIRED)
         self.assertIn("libil2cpp/vm/Class.h",audit.NATIVE_REQUIRED)
         self.assertEqual({e["path"] for e in self.original["nativeSources"]},
                          audit.NATIVE_REQUIRED)
+
+    def test_null_safe_primitive_peek_case_roster_must_remain_complete(self):
+        caps=self.original["nativeSourceCapabilities"]
+        self.assertEqual(caps["primitivePeekHostCases"],20)
+        changed=copy.deepcopy(self.original)
+        changed["nativeSourceCapabilities"]["primitivePeekHostCases"]=19
+        with self.assertRaises(audit.Rejected):
+            audit.validate_contract(changed)
 
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
