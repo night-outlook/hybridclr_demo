@@ -474,7 +474,7 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
         "verifiedDemoPureFiles":len(d),
         "pins":{"hybridclr_demo":expected_demo,"il2cpp_plus":expected_native,
                 "hybridclr":m["hybridclr"],"hybridclr_unity":m["hybridclr_unity"]},
-        "supportedSubset":"Registered physical AOT TypeDef owners; bounded nested GENERICINST/SZARRAY/PTR/ARRAY/qualified arguments with authenticated physical TypeDef leaves; primitive/open/terminal/full V2 excluded",
+        "supportedSubset":"Existing primitive default classes with verified registered AOT physical TypeDef and exact class metadata declarations, plus bounded nested GENERICINST/SZARRAY/PTR/ARRAY/qualified arguments; unsupported/unowned primitive, open VAR/MVAR, terminal full V2 excluded",
         "liveMetadataReadProvenByUnity":False,
         "readyForNativeV2FieldCapture":False,
         "nativeV2TransportImplemented":False,
