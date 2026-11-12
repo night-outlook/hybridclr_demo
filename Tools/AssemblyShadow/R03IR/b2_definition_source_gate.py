@@ -539,12 +539,13 @@ def source_boundary(native:dict[str,bytes])->None:
                 "Standalone allocator/host driver leaked into production vm: "+name)
 
 def verify_legacy_getter_unchanged(current:bytes,reference:bytes)->None:
-    start=b"AssemblyShadowError AssemblyShadow::GetExecutionDiagnosticsJson(std::string& json)\\n{"
+    start=(b"AssemblyShadowError AssemblyShadow::GetExecutionDiagnosticsJson(std::string& json)"
+           +bytes([10])+b"{")
     boundary=b"// P1 inactive reader around the original (unmodified) V1 getter."
-    # The reference is an exact one-source byte fixture, not a paraphrase or
-    # new replacement getter. It contains no source before or after the getter.
+    # This is a byte-for-byte independently pinned V1 fixture, not a
+    # reimplementation, and excludes neighboring source.
     require(len(reference)>2000 and reference.startswith(start) and
-            reference.endswith(b"}\\n\\n"),
+            reference.endswith(b"}"+bytes([10,10])),
             "Untrusted original V1 execution getter reference fixture")
     require(current.count(start)==1 and current.count(boundary)==1,
             "Original getter source anchor count")
