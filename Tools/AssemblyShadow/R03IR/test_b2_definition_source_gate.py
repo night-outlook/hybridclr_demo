@@ -234,6 +234,7 @@ class SourceGateTests(unittest.TestCase):
         for key in ("primitiveDefaultClassLookupNoAllocationSourcePinned",
                     "primitiveArgumentsWithRegisteredAotTypeDefSupportedInMock",
                     "primitiveClassNameAncestryChecked",
+                    "primitiveGenericContainerRejected",
                     "unownedPrimitiveDefaultsRejected"):
             self.assertTrue(c[key])
             changed=copy.deepcopy(self.original)
