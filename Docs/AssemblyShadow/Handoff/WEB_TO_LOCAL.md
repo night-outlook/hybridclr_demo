@@ -1,5 +1,58 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current Primary R03 B2 — verified original field15 formatter, visible class-fact drift rejection (2026-11-12 UTC)
+
+**AUTHORITY: CLOSED / NO EXECUTION. Local must respond NoExecutionAuthority.** This is a Primary-owned **inactive native source/host** checkpoint. It neither reserves a new one-use batch nor authorizes an official Unity build, Player, GC/profiler run, local implementation, B1 oneuse-12 replay, H2/M08A/X02/SNAP-01 or a Human Review Gate. All nontrivial remaining implementation stays with Primary.
+
+### Canonical repository identities
+
+Branch for all four: `codex/assembly-shadow-r01b-h1`; canonical remote `https://github.com/night-outlook/<repo>.git`. Expected default Local checkout root: `/Users/ah/GitHub/hybridclr`; web did not inspect actual Local worktrees.
+
+| Repository | Expected Local worktree | Exact latest native/other source |
+| --- | --- | --- |
+| night-outlook/hybridclr_demo | /Users/ah/GitHub/hybridclr/hybridclr_demo | latest verified pushed HEAD, because updating this document advances it |
+| night-outlook/hybridclr | /Users/ah/GitHub/hybridclr/hybridclr | 4b2774b066cfc6afd77a8c8aded6bda7ea574f55 |
+| night-outlook/hybridclr_unity | /Users/ah/GitHub/hybridclr/hybridclr_unity | 948c0e3b4f8891481301770115e8ba4945eea6de |
+| night-outlook/il2cpp_plus | /Users/ah/GitHub/hybridclr/il2cpp_plus | 74c049a8f9d60465e1d656c36306b0e8cd015608 |
+
+The [63-native/eight-demo exact source manifest](../../Tools/AssemblyShadow/R03IR/b2_definition_native_candidate.json) pins original V1 getter/TypeKey/physical owner/diagnostic code; actual original R02 live and frozen serializers, observation counters, R02 snapshot and diagnostics profile; new field15 serializer differential host and CI; the native ClassFacts source and all class-source host/CI files. Independent original V1 `GetExecutionDiagnosticsJson` body remains byte-identical to its 5,222-byte historical source fixture. Native source/ABI/package SHAs above remain authoritative. A future executable batch MUST additionally pin actual official Unity 2022.3.62f2 macOS arm64 IL2CPP/diagnostics2/Bee C++11 SDK, installed native sources, original-S, BridgeTable, GameAssembly UUID/SHA, fresh Player identities and one-use raw/product custody; none is available as current empirical B2 evidence.
+
+### Primary implementation and exact test results
+
+1. **Full JSON formatter equivalence for immutable inputs.** NativeHostTests/AssemblyShadowExecutionV1SerializerParityHost.cpp compiles the **actual** original V1 execution serializer and live R02 formatter and separately the **actual** bounded frozen Record/Writer and frozen R02 formatter. Exact bytes match for the same caller-owned immutable class rows and R02 counter values, including entire R02 suffix, Unicode/escaping, class cctor/static, 64-bit metrics and empty/nonempty rows. Two cases demonstrate changed cctor input or live R02 counters cause different bytes, not false acceptance. Guarded host allocation remains zero during frozen formatting. [CI 43178421718](https://github.com/night-outlook/il2cpp_plus/actions/runs/43178421718): **4/4 PASS**, Mac/Linux C++11/17 × Release/Debug × strict/ASan-UBSan, **16 host processes × ten cases/91 assertions**, six matching class rows/process. This is real serializer code over synthetic inputs, **not actual Unity class capture or original full field15 semantics**.
+2. **Native class-fact drift detection.** The inactive true source `TryCaptureBoundedDefinitionExecutionLive` now records, after each first physically registered AOT class callback, only the displayed cctorStarted/cctorFinished/initializationException booleans and numeric static_fields address, with a **16-byte per-slot exact primitive snapshot for 2,048 registry slots (32 KiB temporary stack)**. On the second existing physically matched callback it compares these before/after TypeKey formatting; a witnessed change yields `ObservedClassFactsChanged` and revokes all owned rows, frozen record, original-V1 owner/class-fact positive receipts. Temporary address-value storage is cleared while `g_MetadataLock` and initial Reader are alive. [CI 43179088289](https://github.com/night-outlook/il2cpp_plus/actions/runs/43179088289): **4/4 PASS**, 16 Mac/Linux C++11/17 Release/Debug strict/sanitized host processes × **75 cases/1,849 assertions**, including two separate cctor/static drift failures. No global class/GC epoch, terminal safety or official Unity native compilation follows from these mocked source tests.
+3. **Four-repository strict source admission.** [CI 43179431213](https://github.com/night-outlook/hybridclr_demo/actions/runs/43179431213): **2/2 PASS** macOS/Ubuntu, 63 native source/ABI/test files and eight demo independent source mirrors/frozen original getter; original live/frozen R02 field and Metric mapping parity, false full-field/product flags. Final demo HEAD CI may rerun on this handoff update; inspect latest actual run before asserting its outcome.
+
+[Detailed design, independent source review and remaining work](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_EXECUTION_FIELD15_SERIALIZER_AND_CLASS_FACTS_REVIEW.md). The previous [original V1 first-owner review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ORIGINAL_V1_FIRST_OWNER_RECONCILIATION_IMPLEMENTATION_AND_REVIEW.md) remains valid for only its admitted AOT TypeDef subset. The **original** V1 execution getter, B1 native first-event path and active Player behavior are UNMODIFIED.
+
+**Historical boundary:** B1 oneuse-12 executed against different pinned demo/native SHA (`2d690bb2f7234ddcbee339f9da7125d687f5ed45`, `8aa8d09319a89b55b2496bcc2c69ccc69cb57be9`) and yielded focused real Unity Player **19/19 PASS**. Its source/raw evidence/roots are immutable and consumed; not substitute for any B2 field15, native V2 or Player acceptance. Original independent R03 full-stage FAIL and both High IR-R03-01/02 remain unresolved. PureInterpreter disabled.
+
+### Still Primary-owned blockers, NOT Local implementation
+
+- **Full original V1 nonempty field15 source equivalence:** complete observed class registry, interpreter/VAR/MVAR/unsupported types, TypeKey source and actual class/GC/cctor/static metadata lifetime; identical formatter bytes on synthetic rows do not authenticate real class state or prove all-original V1 JSON bytes. Prior healthy-time original-vs-bounded byte probe has not executed in an actual Unity Player.
+- **Complete terminal-safe original field14 and field15:** independent full finalDiagnostics and finalExecutionDiagnostics source values, correct terminal state/counters/class lifetime and one coherent consistency boundary. Two existing physical enumerations and first/final cctor snapshots are observational, allow later mutation/ABA, and cannot be substituted by B1 first-error or partial rows.
+- **Native V2 transport and independent recovery:** existing bounded codec + descriptor-relative single-owner, preopened artifact-first/envelope-last native transaction must be integrated with complete field14/15 and source/ABI/SDK/PID/nonce/fixture identity; independently authenticated external receipt and strict readback, symlink/torn-write/replay/reentry/race negative CI.
+- **Independent source review and exact handoff:** complete the Primary code/host/static CI and separately review full design→implementation→tests, source/VM lifetime, and four exact clean SHA pins, then explicitly reopen an executable WEB_TO_LOCAL. Local only observes real environment and may apply bounded fixes after an authorized cycle.
+
+### Conditional future single-batch Local Validation — NOT RUNNABLE
+
+Only when Primary explicitly authorizes, use one new immutable four-SHA source tuple and previously absent owner-only 0700 one-use roots. Perform **one** official Unity 2022.3.62f2 macOS arm64 IL2CPP Release/diagnostics2 C++11 Bee build and **three** genuinely fresh Players (Empty, initializer error19, captured generic guard15), jointly validating:
+
+- four Git remotes/branch/SHAs/63-native-eight-demo blobs, original-S identity, clean source and two spaced capacity checks;
+- full original Class.cpp/Assembly.cpp/AssemblyShadow.cpp Unity native TUs, 32-KiB temporary class-fact snapshot stack budget, metadata Reader/GC lifecycle, no test-only global allocators in GameAssembly, generated BridgeTable, binary/SDK UUID/SHA;
+- complete original and frozen class/TypeKey/R02/field14/15 JSON bytes from real primitive, Unicode, generic and interpreter/AOT owner fixtures, including class cctor/static mutations and R02 counter drift;
+- full native V2 terminal envelope+artifact+external identity-bound receipt/strict independent recovery and original native B1 first reason equality;
+- negative invalid image/first-owner, missing/changed class source, metadata epoch/ABA, terminal teardown, GC/races, duplicate/partial/symlink/replay, and source/product custody;
+- first-call/GC/RSS/stability and independent raw/host/product verification.
+
+None of this future Local work is authorized at present. Local report now: **NoExecutionAuthority**, without a build or Player.
+
+**Current product flags:** `readyForNativeV2FieldCapture=false; nativeV2TransportImplemented=false; firstRecoveryAuthenticatedV2=false; runtimeAcceptance=false; qualificationApproved=false; fullLegacyRegressionAcceptance=false; R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; wholeVmEpoch=NotProven; handoffAuthority=CLOSED_NO_LOCAL_EXECUTION`. No new oneuse-13, no H2/M08A/X02/SNAP-01, no Human Review Gate self-approval.
+
+**Local read-only order:** Docs/AssemblyShadow/README.md → Handoff/WEB_TO_LOCAL.md → B2_EXECUTION_FIELD15_SERIALIZER_AND_CLASS_FACTS_REVIEW.md → exact source manifest → historical Local reports as background only. Stop and return NoExecutionAuthority.
+
+---
+
 ## Current Primary R03 B2 — original V1 FIRST physical owner reconciliation; NO LOCAL EXECUTION (2026-11-12 UTC)
 
 **Authority: CLOSED / NO EXECUTION. Local Agent response: NoExecutionAuthority.** This is an inactive source/host checkpoint, **not** an executable Local Validation order. Do not create one-use output roots, run Unity, build GameAssembly, launch a Player, replay consumed B1 oneuse-12, modify the native architecture locally or start H2/M08A/X02/SNAP-01. Original independent R03 full-stage FAIL and both High findings remain open; PureInterpreter stays disabled.
