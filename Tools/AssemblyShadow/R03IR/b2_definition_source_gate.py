@@ -75,6 +75,7 @@ NATIVE_REQUIRED={
 DEMO_REQUIRED={
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedDefinitionTypeKey.h",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedObservedExecutionV1ByteParity.h",
+    "Tools/AssemblyShadow/R03IR/NativeDiagnostics/OriginalV1ExecutionGetter_2026-11-12.txt",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedConstructedTypeKey.h",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedCompositeTypeKey.h",
     "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedExecutionRows.h",
@@ -537,6 +538,21 @@ def source_boundary(native:dict[str,bytes])->None:
         require(b"operator new" not in raw and b"int main(" not in raw,
                 "Standalone allocator/host driver leaked into production vm: "+name)
 
+def verify_legacy_getter_unchanged(current:bytes,reference:bytes)->None:
+    start=b"AssemblyShadowError AssemblyShadow::GetExecutionDiagnosticsJson(std::string& json)\\n{"
+    boundary=b"// P1 inactive reader around the original (unmodified) V1 getter."
+    # The reference is an exact one-source byte fixture, not a paraphrase or
+    # new replacement getter. It contains no source before or after the getter.
+    require(len(reference)>2000 and reference.startswith(start) and
+            reference.endswith(b"}\\n\\n"),
+            "Untrusted original V1 execution getter reference fixture")
+    require(current.count(start)==1 and current.count(boundary)==1,
+            "Original getter source anchor count")
+    first=current.index(start)
+    end=current.index(boundary,first)
+    require(current[first:end]==reference,
+            "Original GetExecutionDiagnosticsJson implementation was modified")
+
 def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
     demo=demo.resolve(strict=True)
     native=native.resolve(strict=True)
@@ -558,6 +574,9 @@ def inspect(demo:Path,native:Path,expected_demo:str,expected_native:str)->dict:
     n={r["path"]:verify_file(native,r["path"],r["gitBlob"])
        for r in m["nativeSources"]}
     source_boundary(n)
+    verify_legacy_getter_unchanged(
+        n["libil2cpp/vm/AssemblyShadow.cpp"],
+        d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/OriginalV1ExecutionGetter_2026-11-12.txt"])
     key=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedDefinitionTypeKey.h"]
     rows=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedExecutionRows.h"]
     parity=d["Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedObservedExecutionV1ByteParity.h"]
