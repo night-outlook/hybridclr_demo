@@ -226,8 +226,31 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(
             {row["path"] for row in self.original["nativeSources"]},
             audit.NATIVE_REQUIRED)
-        self.assertEqual(len(self.original["nativeSources"]),38)
+        self.assertEqual(len(self.original["nativeSources"]),40)
         self.assertEqual(len(self.original["demoPureSources"]),4)
+
+    def test_bounded_existing_primitive_defaults_and_noncreating_source_contract(self):
+        c=self.original["nativeSourceCapabilities"]
+        for key in ("primitiveDefaultClassLookupNoAllocationSourcePinned",
+                    "primitiveArgumentsWithRegisteredAotTypeDefSupportedInMock",
+                    "primitiveClassNameAncestryChecked",
+                    "unownedPrimitiveDefaultsRejected"):
+            self.assertTrue(c[key])
+            changed=copy.deepcopy(self.original)
+            changed["nativeSourceCapabilities"][key]=False
+            with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(changed)
+        for key in ("realUnityPrimitiveField15ParityProven",
+                    "arbitraryPrimitiveGenericArgumentKeys"):
+            self.assertFalse(c[key])
+            changed=copy.deepcopy(self.original)
+            changed["nativeSourceCapabilities"][key]=True
+            with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(changed)
+        self.assertIn("libil2cpp/vm/Class.cpp",audit.NATIVE_REQUIRED)
+        self.assertIn("libil2cpp/vm/Class.h",audit.NATIVE_REQUIRED)
+        self.assertEqual({e["path"] for e in self.original["nativeSources"]},
+                         audit.NATIVE_REQUIRED)
 
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
