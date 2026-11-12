@@ -242,9 +242,13 @@
     {
       "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedObservedExecutionV1ByteParity.h",
       "gitBlob": "3731bddede5d3cfc6dad228ca0c7d5cfd940c762"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/OriginalV1ExecutionGetter_2026-11-12.txt",
+      "gitBlob": "7769a1ecde1941d17c055a094dabc5857b2bb163"
     }
   ],
-  "testProof": "Actual inactive parity wrapper compiled in synthetic VM: native CI 43146273936 4/4 Mac/Linux C++11/17, 16 host processes * (67 restricted AOT source scenarios + 3 fake-original parity probe cases), 1258 assertions each; pure exact-byte comparator CI 43146317881 4/4, 10 cases/42 assertions per process. Fake original getter in source mock is NOT real original V1. Original GetExecutionDiagnosticsJson remains unchanged and is pinned; real Unity TUs/Player/field15 full parity and V2 not run. No complete per-source field14, legacy logical assembly parity or record-at-terminal proof.",
+  "testProof": "Actual inactive parity wrapper compiled in synthetic VM: native CI 43146273936 4/4 Mac/Linux C++11/17, 16 host processes * (67 restricted AOT source scenarios + 3 fake-original parity probe cases), 1258 assertions each; pure exact-byte comparator CI 43146317881 4/4, 10 cases/42 assertions per process. Fake original getter in source mock is NOT real original V1. Original GetExecutionDiagnosticsJson remains unchanged and is pinned; real Unity TUs/Player/field15 full parity and V2 not run. No complete per-source field14, legacy logical assembly parity or record-at-terminal proof. Exact original 5,222-byte GetExecutionDiagnosticsJson source body from predecessor 68530d7... retained byte-for-byte in independent demo fixture and compared with current native AssemblyShadow.cpp before source gate passes; no actual Unity runtime original getter execution.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -336,7 +340,10 @@
     "completeNativeField15Proven": false,
     "parityPureCiRun": "43146317881",
     "legacyGetterOriginalSourceIncluded": true,
-    "legacyLogicalPhysicalImageMapParityProven": false
+    "legacyLogicalPhysicalImageMapParityProven": false,
+    "legacyGetterByteExactFixturePinned": true,
+    "realUnityOriginalGetterProbeTested": false,
+    "legacyGetterReferenceCommit": "68530d7ecb86c9122d9ae5eb20366ccb0ea086b6"
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
