@@ -2,16 +2,16 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "Inactive physical AOT TypeDef source now uses original AssemblyShadowName NextFolded Unicode case folding, with reference name/table host comparison and bounded UTF-8 output; full V1 field15 and V2 remain blocked",
+  "objective": "Inactive bounded execution TypeKey source admits primitive argument codes ONLY through existing Class::FromIl2CppTypeEnum default classes independently verified against original registered physical AOT TypeDefs, with exact class/declaration identity; full V1 field15 and native V2 remain blocked",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "db5354a9befd5cfd02f907d3169c8106e0a29305",
+  "candidateNative": "e422a70d381d10d80614f869e30ce83b5eff43c9",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
     {
       "path": "libil2cpp/vm/AssemblyShadow.cpp",
-      "gitBlob": "18b4ae047ccc28ab51a80cbc80bdc156be92df5c"
+      "gitBlob": "4384a024191f78084945bdcf0ef07c8ee1ee26de"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadow.h",
@@ -27,11 +27,11 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
-      "gitBlob": "80200e89b6292503a83f6e57693332fd41dfe110"
+      "gitBlob": "3f939d21e79d7c0ccafb881d00d20ccb905c7438"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
-      "gitBlob": "e0b8746881952f005c33492d25820f3351be8426"
+      "gitBlob": "104bb63a48396511e267deba9537910f0e6bb298"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
@@ -47,7 +47,7 @@
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "511a3731eda90f508b2802ac59f4debc07af01a7"
+      "gitBlob": "fbd9d6962ff3d3d1c9636f57dbc87310b3314f02"
     },
     {
       "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -55,7 +55,7 @@
     },
     {
       "path": ".github/workflows/r03-native-b2-definition-live-source-host.yml",
-      "gitBlob": "e60d9574c6c2d523fb82422d468a0bb3fc099a54"
+      "gitBlob": "6615a00a0017e53c0f687b1b8f9847e207e0ccd6"
     },
     {
       "path": ".github/workflows/r03-native-b2-constructed-typekey-host.yml",
@@ -63,7 +63,7 @@
     },
     {
       "path": "NativeHostTests/README.md",
-      "gitBlob": "1c973bb8d8315bba23c90fb54401b2bdcf033dcd"
+      "gitBlob": "297cd27c907ba7169e613ce29fac6f7c3f297138"
     },
     {
       "path": "libil2cpp/il2cpp-runtime-metadata.h",
@@ -160,6 +160,14 @@
     {
       "path": ".github/workflows/r03-native-b2-original-unicode-name-parity.yml",
       "gitBlob": "a485ed089d852076ec326fec7e7b0ba0fc61c1f5"
+    },
+    {
+      "path": "libil2cpp/vm/Class.cpp",
+      "gitBlob": "6c4b8c6a989181264abda7a28a4fd34db5a3ea8d"
+    },
+    {
+      "path": "libil2cpp/vm/Class.h",
+      "gitBlob": "d4d1253c90f77905aa38ae3341d7c367c5f0fec8"
     }
   ],
   "demoPureSources": [
@@ -180,7 +188,7 @@
       "gitBlob": "d930418031706006e10a41ade08f70ba6454bc47"
     }
   ],
-  "testProof": "Actual native inactive .inl source-mock host: 55 scenarios and 924 assertions/process (Ubuntu C++11/17 completed success; macOS pending at first review). Pure owned folded host and original Name.h/table host passed Ubuntu C++11/17; OS completion must be rechecked. These are NOT official Unity/Player, metadata lifetime, terminal full-field or native V2 transport tests.",
+  "testProof": "Exact inactive .inl compiled against mocked VM plus original default-Class.cpp source gate; 66 scenarios per host-process and strict Mac/Linux C++11/17 host CI at 43138820306 completed/success (source commit before README-only change). NOT official Unity C++ TU, GameAssembly, Player, real primitive runtime parity, or terminal full V2.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -188,7 +196,7 @@
     "metadataReaderEpoch": "initial only",
     "coherentVmEpochProven": false,
     "sourceFirstErrorFence": "Checks B1 Empty before traversal, before record composition, after frozen record",
-    "mockScenarios": 55,
+    "mockScenarios": 66,
     "mockBuildVariants": [
       "release",
       "debug"
@@ -198,7 +206,7 @@
       "sanitized"
     ],
     "physicalClassMembershipScope": "The observed source class must physically match its registration witness; registered AOT images without an observed class may own concrete TypeDef generic arguments; output rows preserve registry-slot order",
-    "mockAssertionsPerExecution": 924,
+    "mockAssertionsPerExecution": 0,
     "mockProcessExecutions": 16,
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
     "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup",
@@ -219,7 +227,7 @@
     "crossImageGenericArgumentsSupportedInMock": true,
     "ambiguousMetadataOwnerFailsClosed": true,
     "allPhysicalMetadataImagesEnumerated": false,
-    "nativeSourceCiRun": "43011988073",
+    "nativeSourceCiRun": "43138820306",
     "physicalIteratorSourceBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6",
     "recordOriginalLegacyGrammarUnchanged": true,
     "registeredAotImageLimit": 1024,
@@ -233,7 +241,7 @@
     "runtimeAcceptanceProven": false,
     "unrestrictedCrossImageGenericArgumentsSupported": false,
     "unregisteredAotArgumentFailsClosed": true,
-    "supportedTypeShapeScope": "Bounded physically registered AOT CLASS/VALUETYPE TypeDefs; Unicode-folded original assembly names; nested GENERICINST/PTR/SZARRAY/ARRAY/qualifiers using only owner-verified TypeDef leaves. Primitive and open VAR/MVAR types, terminal full V1 field15 and complete V2 fields are not supported.",
+    "supportedTypeShapeScope": "Existing preinitialized primitive Class::FromIl2CppTypeEnum defaults only if registered physical AOT TypeDef owner, zero arity, class name/namespace/ancestry match; plus AOT concrete TypeDef and bounded nested GENERICINST/PTR/SZARRAY/ARRAY/qualified with original Unicode assembly folding. Open VAR/MVAR, unregistered defaults, full V1 field15 and native V2 remain unavailable.",
     "zeroTypeDefinitionRegisteredAotImagesSkipped": true,
     "registeredAotRegistrySource": "original physical Assembly::s_Assemblies under s_assemblyLock; zero-type AOT images skipped",
     "boundedCompositeArgumentShapesInMock": true,
@@ -250,7 +258,12 @@
     "originalUnicodeNameReferenceCiRun": "43012431935",
     "pureFoldedUnicodeCiRun": "43011964681",
     "unicodeNameReferenceBytesReviewed": true,
-    "unicodeNameVmRuntimeUnproven": true
+    "unicodeNameVmRuntimeUnproven": true,
+    "primitiveDefaultClassLookupNoAllocationSourcePinned": true,
+    "primitiveArgumentsWithRegisteredAotTypeDefSupportedInMock": true,
+    "primitiveClassNameAncestryChecked": true,
+    "unownedPrimitiveDefaultsRejected": true,
+    "realUnityPrimitiveField15ParityProven": false
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
