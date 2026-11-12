@@ -227,7 +227,7 @@ class SourceGateTests(unittest.TestCase):
             {row["path"] for row in self.original["nativeSources"]},
             audit.NATIVE_REQUIRED)
         self.assertEqual(len(self.original["nativeSources"]),53)
-        self.assertEqual(len(self.original["demoPureSources"]),5)
+        self.assertEqual(len(self.original["demoPureSources"]),6)
 
     def test_bounded_existing_primitive_defaults_and_noncreating_source_contract(self):
         c=self.original["nativeSourceCapabilities"]
@@ -304,10 +304,30 @@ class SourceGateTests(unittest.TestCase):
         }
         self.assertTrue(expected.issubset(audit.NATIVE_REQUIRED))
         self.assertEqual(len(self.original["nativeSources"]),53)
-        self.assertEqual(len(self.original["demoPureSources"]),5)
+        self.assertEqual(len(self.original["demoPureSources"]),6)
         self.assertIn(
             "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedObservedExecutionV1ByteParity.h",
             audit.DEMO_REQUIRED)
+
+    def test_original_execution_getter_must_remain_byte_identical(self):
+        fixture=(HERE/"NativeDiagnostics"/
+                 "OriginalV1ExecutionGetter_2026-11-12.txt").read_bytes()
+        start=b"prefix"+bytes([10])
+        end=(b"// P1 inactive reader around the original "
+             b"(unmodified) V1 getter.")
+        source=start+fixture+end
+        audit.verify_legacy_getter_unchanged(source,fixture)
+        changed=bytearray(fixture)
+        changed[100]=ord("!") if changed[100]!=ord("!") else ord("?")
+        for corruptSource,corruptFixture in (
+            (source,bytes(changed)),
+            (start+bytes(changed)+end,fixture),
+            (start+fixture,fixture),
+            (source+end,fixture),
+        ):
+            with self.assertRaises(audit.Rejected):
+                audit.verify_legacy_getter_unchanged(
+                    corruptSource,corruptFixture)
 
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
