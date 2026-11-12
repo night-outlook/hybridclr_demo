@@ -196,6 +196,9 @@ def validate_contract(m:dict)->None:
             c.get("originalV1TerminalField15FormattingProven") is False and
             c.get("observedClassFactsTwoPassInNativeSource") is True and
             c.get("observedClassFactsBetweenPassMutationFailures")==2 and
+            c.get("observedClassFactsDuringTypeKeyMutationFailures")==1 and
+            c.get("mockScenarios")>=76 and
+            c.get("mockAssertionsPerExecution")>=1865 and
             c.get("observedClassFactsRegistrySlotLimit")==2048 and
             c.get("observedClassFactsBytesPerSlot")==16 and
             c.get("observedClassFactsNotCoherentVmEpoch") is True and
@@ -619,6 +622,7 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::OriginalV1InvalidImage",
          "Mode::CctorFactsChanged",
          "Mode::StaticFactsChanged",
+         "Mode::CctorFactsDuringTypeKey",
          "Mode::GenericSameImage",
          "Mode::GenericConstructedArgument",
          "Mode::UnicodeAssembly",
