@@ -226,8 +226,8 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(
             {row["path"] for row in self.original["nativeSources"]},
             audit.NATIVE_REQUIRED)
-        self.assertEqual(len(self.original["nativeSources"]),42)
-        self.assertEqual(len(self.original["demoPureSources"]),4)
+        self.assertEqual(len(self.original["nativeSources"]),53)
+        self.assertEqual(len(self.original["demoPureSources"]),5)
 
     def test_bounded_existing_primitive_defaults_and_noncreating_source_contract(self):
         c=self.original["nativeSourceCapabilities"]
