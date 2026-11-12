@@ -196,7 +196,7 @@
       "gitBlob": "d930418031706006e10a41ade08f70ba6454bc47"
     }
   ],
-  "testProof": "Actual inactive .inl with fake VM, original 19-case Class.cpp switch vs null-safe Peek; 20 direct null/present host table scenarios and 67 physical source scenarios, 1,236 host assertions per process; dual-OS C++11/17 Release/Debug strict/sanitized CI 43141206112 4/4 at predecessor source (latest README-only source commit to verify separately). Does not compile original full Class.cpp or Unity/Player. Full V2 remains blocked.",
+  "testProof": "Actual inactive .inl compiled with fake VM, actual original Class.cpp switch mechanically mapped to null-safe primitive Peek; 67 source scenarios plus 20 direct null/present/unknown mapping cases, 1,236 assertions per each of 16 Mac/Linux C++11/17 Release/Debug strict/sanitized host executions. Final native CI 43141452521 4/4 completed/success at 68530d...; exact four-repository source CI 43141581601 2/2 completed/success, 42 native/4 demo Git source blobs, 22 negative unit tests per OS. No full original Class.cpp/AssemblyShadow.cpp Unity TU, real primitive metadata/field15 parity, Player or V2 native transport.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -235,7 +235,7 @@
     "crossImageGenericArgumentsSupportedInMock": true,
     "ambiguousMetadataOwnerFailsClosed": true,
     "allPhysicalMetadataImagesEnumerated": false,
-    "nativeSourceCiRun": "43141206112",
+    "nativeSourceCiRun": "43141452521",
     "physicalIteratorSourceBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6",
     "recordOriginalLegacyGrammarUnchanged": true,
     "registeredAotImageLimit": 1024,
