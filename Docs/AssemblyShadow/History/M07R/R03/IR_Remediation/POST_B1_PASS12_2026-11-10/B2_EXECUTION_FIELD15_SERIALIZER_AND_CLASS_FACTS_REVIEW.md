@@ -1,6 +1,6 @@
 # R03 B2 — execution field15 formatter differential and observed class-fact stability
 
-**Stage:** Primary Implementation. **Reviewed native source:** `night-outlook/il2cpp_plus@74c049a8f9d60465e1d656c36306b0e8cd015608`, branch `codex/assembly-shadow-r01b-h1`. Other runtime/Unity forks unchanged at `hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55` and `hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de`. Demo HEAD changes with this report and related docs; use latest remote SHA at handoff. **Date:** 2026-11-12 UTC.
+**Stage:** Primary Implementation. **Reviewed native source:** `night-outlook/il2cpp_plus@e5f8eebca1263181ed3fca49e84a1cf73f40b90b`, branch `codex/assembly-shadow-r01b-h1`. Other runtime/Unity forks unchanged at `hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55` and `hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de`. Demo HEAD changes with this report and related docs; use latest remote SHA at handoff. **Date:** 2026-11-12 UTC.
 
 ## Objective and preserved boundaries
 
@@ -39,7 +39,7 @@ Existing physical class enumeration count remains **two**; no new allocator, man
 | Actual test | Verified result | Claim allowed |
 | --- | --- | --- |
 | [Actual original-vs-frozen field15 serializer host CI 43178421718](https://github.com/night-outlook/il2cpp_plus/actions/runs/43178421718) | **4/4 PASS**, macOS/Ubuntu × C++11/C++17. 16 Release/Debug strict/ASan-UBSan processes, **10 cases/91 assertions and six matching class rows per process**, zero guarded allocation | Exact legacy/frozen **JSON formatter** byte identity for identical immutable host inputs; plus independent counter/ctor divergence behavior |
-| [Final actual inactive class-source .inl host CI 43179088289](https://github.com/night-outlook/il2cpp_plus/actions/runs/43179088289) | **4/4 PASS** at final native source HEAD; 16 Mac/Linux C++11/17 Release/Debug strict/sanitized processes, **75 physical source scenarios/1,849 assertions per process**, two new cctor/static drift negatives | Existing real source .inl compiled against synthetic VM; detects field changes between its two mocked physical class iterations |
+| [Final actual inactive class-source .inl host CI 43180369312](https://github.com/night-outlook/il2cpp_plus/actions/runs/43180369312) | **4/4 PASS** at final native source HEAD; 16 Mac/Linux C++11/17 Release/Debug strict/sanitized processes, **76 physical source scenarios/1,865 assertions per process**, three cctor/static drift negatives, including a mutation during TypeKey formatting | Existing real source .inl compiled against synthetic VM; detects field changes between its two mocked physical class iterations |
 | [Exact 63-native/eight-demo four-repo source CI 43179431213](https://github.com/night-outlook/hybridclr_demo/actions/runs/43179431213) | **2/2 PASS**, macOS/Ubuntu, exact Git blobs, pinned original V1 enabled getter, source-matched live/frozen R02 field/Metric order, manifest false-full-field flags | Static source identity/admission, not official Unity native TUs or real Player |
 | Earlier original owner and Unicode source CI | Prior independently attributed results remain in historical source reports | Necessary bounded source assumptions; no promotion to full field15/VM epoch |
 
