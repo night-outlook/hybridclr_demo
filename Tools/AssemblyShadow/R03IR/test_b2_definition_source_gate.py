@@ -330,14 +330,20 @@ class SourceGateTests(unittest.TestCase):
         start=b"prefix"+bytes([10])
         end=(b"// P1 inactive reader around the original "
              b"(unmodified) V1 getter.")
-        source=start+fixture+end
+        fallback=(b"AssemblyShadowError AssemblyShadow::GetExecutionDiagnosticsJson(std::string& json)"
+                  +bytes([10])+b"{"+bytes([10])
+                  +b"    json.clear();"+bytes([10])
+                  +b"    return AssemblyShadowError::FeatureDisabled;"+bytes([10])
+                  +b"}"+bytes([10]))
+        source=start+fixture+end+bytes([10])+fallback
         audit.verify_legacy_getter_unchanged(source,fixture)
         changed=bytearray(fixture)
         changed[100]=ord("!") if changed[100]!=ord("!") else ord("?")
         for corruptSource,corruptFixture in (
             (source,bytes(changed)),
-            (start+bytes(changed)+end,fixture),
+            (start+bytes(changed)+end+bytes([10])+fallback,fixture),
             (start+fixture,fixture),
+            (start+fixture+end,fixture),
             (source+end,fixture),
         ):
             with self.assertRaises(audit.Rejected):
