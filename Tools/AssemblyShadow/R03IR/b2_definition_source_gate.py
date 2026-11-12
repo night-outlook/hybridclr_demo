@@ -463,7 +463,7 @@ def source_boundary(native:dict[str,bytes])->None:
          "assembly_shadow_r02::AppendDiagnostics(output)")
     must("libil2cpp/vm/AssemblyShadow.h",
          "TryCaptureBoundedDefinitionExecutionLive",
-         "does NOT replace the original live execution diagnostics getter",
+         "Never returns a live class pointer or modifies the original getter.",
          "TryProbeBoundedExecutionV1ByteParity(")
     must("libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
          "assembly_shadow_metadata_lifetime::Gate::Reader admission",
