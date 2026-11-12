@@ -204,8 +204,17 @@ def validate_contract(m:dict)->None:
             c.get("observedClassFactsEndPassMaximumCallbacks")==65536 and
             c.get("observedClassFactsEndPassNotVmEpoch") is True and
             c.get("observedClassFactsEndPassClassCountProvenInRealUnity") is False and
-            c.get("mockScenarios")>=81 and
-            c.get("mockAssertionsPerExecution")>=2126 and
+            c.get("simpleInterpreterTypeDefSourceImplemented") is True and
+            c.get("simpleInterpreterTypeDefMockPositives")==2 and
+            c.get("simpleInterpreterTypeDefMockNegatives")==5 and
+            c.get("simpleInterpreterOwnedViaOriginalV1PhysicalImages") is True and
+            c.get("simpleInterpreterFirstEmplaceOwnerChecked") is True and
+            c.get("interpreterGenericCompositeTypeKeysSupported") is False and
+            c.get("interpreterVarMvarExecutionTypeKeysSupported") is False and
+            c.get("actualUnityInterpreterTypeDefParityProven") is False and
+            c.get("wholeVmInterpreterClassLifetimeProven") is False and
+            c.get("mockScenarios")>=88 and
+            c.get("mockAssertionsPerExecution")>=2389 and
             c.get("observedClassFactsRegistrySlotLimit")==2048 and
             c.get("observedClassFactsBytesPerSlot")==16 and
             c.get("observedClassFactsNotCoherentVmEpoch") is True and
@@ -533,6 +542,7 @@ def source_boundary(native:dict[str,bytes])->None:
          "ObservedClassFactsChanged",
          "observedClassFactsTwoPassStable",
          "observedClassFactsMatched=0",
+         "usedSimpleInterpreterDefinition=false",
          "observedClassFactsEndPassMatched=0",
          "observedClassFactsEndPassStable=false")
     must("libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
@@ -583,6 +593,14 @@ def source_boundary(native:dict[str,bytes])->None:
          "primitive->genericContainerHandle",
          "primitive->namespaze",
          "context.usedExistingPrimitiveDefault=true",
+         "c.usedSimpleInterpreterDefinition=true",
+         "inventoryContext.originalV1Images=&originalV1Images",
+         "d.originalV1Images->Contains(img)",
+         "const bool interpreterRoot=constrained",
+         "c.originalV1Images->Contains(constrained)",
+         "def->genericContainerIndex!=kGenericContainerIndexInvalid",
+         "def->declaringTypeIndex!=kTypeIndexInvalid",
+         "receipt.usedSimpleInterpreterDefinition=context.usedSimpleInterpreterDefinition",
          "admittedPrimitiveArguments",
          "generic->context.class_inst",
          "definitionArity!=instance->type_argc",
@@ -603,6 +621,7 @@ def source_boundary(native:dict[str,bytes])->None:
          "completeArbitraryTypeKeys=false",
          "usedUnicodeAssemblyFold",
          "usedExistingPrimitiveDefault",
+         "usedSimpleInterpreterDefinition",
          "completeExecutionDiagnostics=false",
          "coherentVmEpochProven=false",
          "nativeV2TransportImplemented=false",
@@ -636,6 +655,13 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::OriginalV1SnapshotChanged",
          "Mode::OriginalV1UnregisteredOwner",
          "Mode::OriginalV1InvalidImage",
+         "Mode::InterpreterSimpleClass",
+         "Mode::InterpreterSimpleValueType",
+         "Mode::InterpreterWrongTypeHandle",
+         "Mode::InterpreterGenericDefinition",
+         "Mode::InterpreterNestedDefinition",
+         "Mode::InterpreterFirstOwnerAlias",
+         "Mode::InterpreterNotRegistered",
          "Mode::CctorFactsChanged",
          "Mode::StaticFactsChanged",
          "Mode::CctorFactsDuringTypeKey",

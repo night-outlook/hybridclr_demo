@@ -456,8 +456,8 @@ class SourceGateTests(unittest.TestCase):
     def test_native_endpass_class_facts_acceptance_stays_scoped(self):
         c=self.original["nativeSourceCapabilities"]
         self.assertEqual(c["physicalEnumerationPasses"],3)
-        self.assertEqual(c["mockScenarios"],81)
-        self.assertEqual(c["mockAssertionsPerExecution"],2126)
+        self.assertEqual(c["mockScenarios"],88)
+        self.assertEqual(c["mockAssertionsPerExecution"],2389)
         self.assertTrue(c["observedClassFactsEndPassImplemented"])
         self.assertTrue(c["observedClassFactsEndPassNotVmEpoch"])
         self.assertFalse(c["observedClassFactsEndPassClassCountProvenInRealUnity"])
@@ -465,8 +465,8 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(c["observedClassFactsEndPassEnumerationFailures"],2)
         for key,wrong in (
             ("physicalEnumerationPasses",2),
-            ("mockScenarios",76),
-            ("mockAssertionsPerExecution",1865),
+            ("mockScenarios",81),
+            ("mockAssertionsPerExecution",2126),
             ("observedClassFactsEndPassImplemented",False),
             ("observedClassFactsEndPassMutationFailures",2),
             ("observedClassFactsEndPassEnumerationFailures",1),
@@ -479,6 +479,36 @@ class SourceGateTests(unittest.TestCase):
             broken["nativeSourceCapabilities"][key]=wrong
             with self.subTest(key=key),self.assertRaises(audit.Rejected):
                 audit.validate_contract(broken)
+
+    def test_original_v1_plain_interpreter_definition_only(self):
+        c=self.original["nativeSourceCapabilities"]
+        self.assertTrue(c["simpleInterpreterTypeDefSourceImplemented"])
+        self.assertEqual(c["simpleInterpreterTypeDefMockPositives"],2)
+        self.assertEqual(c["simpleInterpreterTypeDefMockNegatives"],5)
+        self.assertTrue(c["simpleInterpreterOwnedViaOriginalV1PhysicalImages"])
+        self.assertTrue(c["simpleInterpreterFirstEmplaceOwnerChecked"])
+        for field in (
+            "interpreterGenericCompositeTypeKeysSupported",
+            "interpreterVarMvarExecutionTypeKeysSupported",
+            "actualUnityInterpreterTypeDefParityProven",
+            "wholeVmInterpreterClassLifetimeProven",
+        ):
+            self.assertIs(c[field],False,field)
+        for field,mutated in (
+            ("simpleInterpreterTypeDefSourceImplemented",False),
+            ("simpleInterpreterTypeDefMockPositives",1),
+            ("simpleInterpreterTypeDefMockNegatives",4),
+            ("simpleInterpreterOwnedViaOriginalV1PhysicalImages",False),
+            ("simpleInterpreterFirstEmplaceOwnerChecked",False),
+            ("interpreterGenericCompositeTypeKeysSupported",True),
+            ("interpreterVarMvarExecutionTypeKeysSupported",True),
+            ("actualUnityInterpreterTypeDefParityProven",True),
+            ("wholeVmInterpreterClassLifetimeProven",True),
+        ):
+            changed=copy.deepcopy(self.original)
+            changed["nativeSourceCapabilities"][field]=mutated
+            with self.subTest(field=field),self.assertRaises(audit.Rejected):
+                audit.validate_contract(changed)
 
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
