@@ -1,5 +1,13 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current R03 B2 Primary native third-pass checkpoint — CLOSED / NO EXECUTION (2026-11-12 UTC)
+
+**NO EXECUTION AUTHORITY.** An inactive native B2 source-only collector has been updated at il2cpp_plus@04d979fe55cea6b2dee7f5bfc49a71f2f1fb6386 to re-enumerate and check all owned per-class cctor/static values at the end of collection. Late mutation, missing callback or duplicate callback revokes owned rows/receipts. [Source/host review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_END_OF_COLLECTION_CLASS_FACTS_IMPLEMENTATION_REVIEW_2026-11-12.md). Native Ubuntu C++11/C++17 source-host CI success and exact four-fork source audit 2/2 success; macOS native jobs still queued at review checkpoint. No real Unity compilation/Player, GC or terminal V2 validation. **Local must report NoExecutionAuthority without running Unity or tests.**
+
+Four branch pins: codex/assembly-shadow-r01b-h1; demo latest verified remote HEAD, hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55, hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de, il2cpp_plus@04d979fe55cea6b2dee7f5bfc49a71f2f1fb6386. Exact source manifest: 63 native/eight demo. Whole-VM epoch NotProven, nativeV2TransportImplemented=false, R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false. Do not reuse B1 oneuse-12 or begin H2/M08A/X02/SNAP-01.
+
+---
+
 ## Current Primary B2 source-inventory checkpoint (2026-11-12 UTC)
 
 **AUTHORITY: CLOSED / NO EXECUTION; Local must return NoExecutionAuthority.** The latest Primary work changed **source-admission infrastructure only**, not Unity/native runtime, Player or native V2. The exact original V1 GetExecutionDiagnosticsJson retains its 5,222-byte frozen body; the source gate now checks the 11 header + 11 class-value mapping expressions/order, original token-valid physical image source, registry, ctor/static/debug pointer and live R02 read boundaries. Four new focused Python tests passed locally; 20 semantic source mutants are rejected. [Review and source inventory](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ORIGINAL_V1_FIELD15_SOURCE_INVENTORY_REVIEW_2026-11-12.md). No new native tests or Local tests are authorized. Verify the final exact 4-repository HEADs before using as provenance; earlier static CI is not automatically transferable.

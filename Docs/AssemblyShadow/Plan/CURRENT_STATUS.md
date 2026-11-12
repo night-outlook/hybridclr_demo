@@ -1,3 +1,11 @@
+# R03 B2 Primary — third class-fact end pass, scoped native source-only checkpoint (2026-11-12 UTC)
+
+**Implementation:** il2cpp_plus@04d979fe55cea6b2dee7f5bfc49a71f2f1fb6386 adds a third physical traversal while the initial metadata Reader/g_MetadataLock remains active; compare every admitted class's latest owned-row cctor/static facts; reject end-pass changed/missing/duplicate callbacks. Original V1/B1 paths unchanged. Five new negative cases, actual native .inl host source-mock Ubuntu C++11/C++17 PASS, 81 cases/2,126 assertions/process, [native CI 43199686419](https://github.com/night-outlook/il2cpp_plus/actions/runs/43199686419) (macOS queued at review checkpoint). [Exact four-repo source CI 43200124015](https://github.com/night-outlook/hybridclr_demo/actions/runs/43200124015) 2/2 PASS at demo anchor 74891c675ebcb449b0a65721266d7e1559b12a03. [Review and limits](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_END_OF_COLLECTION_CLASS_FACTS_IMPLEMENTATION_REVIEW_2026-11-12.md).
+
+**No acceptance promotion:** first/second/third passes are observational, not a coherent class/GC/VM epoch. Complete interpreter/open-generic/full V1 field15, terminal field14 and field15, native V2 artifact/envelope/independent receipt/recovery and real Unity build/Player are NOT complete. B2 still Primary-owned; WEB_TO_LOCAL CLOSED / NO EXECUTION. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; PureInterpreter disabled.
+
+---
+
 # R03 B2 Primary — exact original V1 field15 source/value mapping audit (2026-11-12 UTC)
 
 **New source-only implementation:** b2_definition_source_gate.py now verifies **11 original header and 11 original class-row right-hand expressions/order**, the original physical registry/first-emplace image source, typekey, cctor/static/debug pointer and live R02 read boundaries. Exact 5,222-byte original getter remains unchanged; native forks unchanged. Four locally executed focused Python tests PASS with 20 semantic mutations rejected. [Design, source inventory, implementation and review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ORIGINAL_V1_FIELD15_SOURCE_INVENTORY_REVIEW_2026-11-12.md). Final pushed four-fork CI result must be checked independently. No real Unity original getter/Player was run.

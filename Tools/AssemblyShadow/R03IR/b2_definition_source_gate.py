@@ -205,7 +205,7 @@ def validate_contract(m:dict)->None:
             c.get("observedClassFactsEndPassNotVmEpoch") is True and
             c.get("observedClassFactsEndPassClassCountProvenInRealUnity") is False and
             c.get("mockScenarios")>=81 and
-            c.get("mockAssertionsPerExecution")>=1865 and
+            c.get("mockAssertionsPerExecution")>=2126 and
             c.get("observedClassFactsRegistrySlotLimit")==2048 and
             c.get("observedClassFactsBytesPerSlot")==16 and
             c.get("observedClassFactsNotCoherentVmEpoch") is True and

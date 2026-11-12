@@ -457,6 +457,7 @@ class SourceGateTests(unittest.TestCase):
         c=self.original["nativeSourceCapabilities"]
         self.assertEqual(c["physicalEnumerationPasses"],3)
         self.assertEqual(c["mockScenarios"],81)
+        self.assertEqual(c["mockAssertionsPerExecution"],2126)
         self.assertTrue(c["observedClassFactsEndPassImplemented"])
         self.assertTrue(c["observedClassFactsEndPassNotVmEpoch"])
         self.assertFalse(c["observedClassFactsEndPassClassCountProvenInRealUnity"])
@@ -465,6 +466,7 @@ class SourceGateTests(unittest.TestCase):
         for key,wrong in (
             ("physicalEnumerationPasses",2),
             ("mockScenarios",76),
+            ("mockAssertionsPerExecution",1865),
             ("observedClassFactsEndPassImplemented",False),
             ("observedClassFactsEndPassMutationFailures",2),
             ("observedClassFactsEndPassEnumerationFailures",1),

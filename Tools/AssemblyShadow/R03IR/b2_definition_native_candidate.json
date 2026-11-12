@@ -296,7 +296,7 @@
       "gitBlob": "75fc8717ed3b54b1aeee583e28671e304ab233e0"
     }
   ],
-  "testProof": "Native actual .inl mock now has at least 81 cases (including 5 new end-of-collection mutation/traversal negatives) and existing 1865+ assertion contract, with exact run status requiring verification at new native commit. Original V1/frozen formatter differential prior CI 43178421718 PASS only for identical synthetic inputs. No real Unity full native TU, Player or complete original field15.",
+  "testProof": "Actual native B2 .inl mock at il2cpp_plus@04d979fe55cea6b2dee7f5bfc49a71f2f1fb6386: 81 cases/2126 assertions per release/debug strict/sanitized Ubuntu execution, independently logged in exact run 43199686419, Ubuntu C++11/17 jobs passed; macOS jobs queued at this review checkpoint. New third physical class enumeration rejects late cctor/static, earlier-row mutation during later TypeKey, and absent/duplicate third callbacks. Four-fork 63-native/8-demo exact source gate 43200124015 2/2 PASS at demo@74891c675ebcb449b0a65721266d7e1559b12a03. No actual Unity native TU/Player, GC epoch, terminal field14/15, native V2 or R03 acceptance.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -314,7 +314,7 @@
       "sanitized"
     ],
     "physicalClassMembershipScope": "The observed source class must physically match its registration witness; registered AOT images without an observed class may own concrete TypeDef generic arguments; output rows preserve registry-slot order",
-    "mockAssertionsPerExecution": 1865,
+    "mockAssertionsPerExecution": 2126,
     "mockProcessExecutions": 16,
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
     "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup",
@@ -335,7 +335,7 @@
     "crossImageGenericArgumentsSupportedInMock": true,
     "ambiguousMetadataOwnerFailsClosed": true,
     "allPhysicalMetadataImagesEnumerated": false,
-    "nativeSourceCiRun": "PendingExactNativeCI_at_04d979fe55ce",
+    "nativeSourceCiRun": "43199686419",
     "physicalIteratorSourceBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6",
     "recordOriginalLegacyGrammarUnchanged": true,
     "registeredAotImageLimit": 1024,
