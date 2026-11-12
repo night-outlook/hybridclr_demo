@@ -22,6 +22,7 @@ NATIVE_REQUIRED={
     "libil2cpp/il2cpp-class-internals.h",
     "libil2cpp/vm/AssemblyShadow.cpp",
     "libil2cpp/vm/Class.cpp",
+    "libil2cpp/vm/AssemblyShadowExistingPrimitiveDefaults.h",
     "libil2cpp/vm/Class.h",
     "libil2cpp/vm/Assembly.cpp",
     "libil2cpp/vm/Assembly.h",
@@ -152,6 +153,9 @@ def validate_contract(m:dict)->None:
             c.get("primitiveArgumentsWithRegisteredAotTypeDefSupportedInMock") is True and
             c.get("primitiveClassNameAncestryChecked") is True and
             c.get("primitiveGenericContainerRejected") is True and
+            c.get("assertFreePrimitiveDefaultLookup") is True and
+            c.get("primitiveDefaultExactSwitchParity") is True and
+            c.get("primitivePeekHostCases")==20 and
             c.get("unownedPrimitiveDefaultsRejected") is True and
             c.get("realUnityPrimitiveField15ParityProven") is False and
             c.get("arbitraryPrimitiveGenericArgumentKeys") is False and
@@ -284,6 +288,9 @@ def source_boundary(native:dict[str,bytes])->None:
          "TestCompositeAndOriginalGrammar",
          "TestFailuresAndNoPartialOutput",
          "TestMaximumArgumentsAndSignedBounds")
+    must("libil2cpp/vm/AssemblyShadowExistingPrimitiveDefaults.h",
+         "inline Il2CppClass* Peek(Il2CppTypeEnum tag) noexcept",
+         "return nullptr;", "il2cpp_defaults.int32_class")
     must("libil2cpp/vm/Class.h",
          "static Il2CppClass* FromIl2CppTypeEnum(Il2CppTypeEnum type);")
     must("libil2cpp/vm/Class.cpp",
@@ -308,10 +315,27 @@ def source_boundary(native:dict[str,bytes])->None:
             "return il2cpp_defaults.fieldName;" in default_branch and
             "return NULL;" in default_branch,
             "Default primitive direct lookup contract drift")
+    # Mechanically establish exact original Class.cpp case-to-default-field
+    # equivalence, including unsupported/default cases. A copied hard-coded
+    # list without this source join must not be admitted as V1 compatible.
+    peek=native["libil2cpp/vm/AssemblyShadowExistingPrimitiveDefaults.h"].decode("utf8","strict")
+    original_pairs=re.findall(
+        r"case\s+(IL2CPP_TYPE_[A-Z0-9_]+):\s*RETURN_DEFAULT_TYPE\((\w+)\);",
+        default_branch)
+    peek_pairs=re.findall(
+        r"case\s+(IL2CPP_TYPE_[A-Z0-9_]+):\s*return\s+il2cpp_defaults\.(\w+);",
+        peek)
+    require(len(original_pairs)==19 and len(peek_pairs)==19 and
+            len(dict(original_pairs))==19 and len(dict(peek_pairs))==19 and
+            dict(original_pairs)==dict(peek_pairs),
+            "Primitive peek field mapping diverges from original Class.cpp switch")
+    require("IL2CPP_ASSERT(" not in peek and "Class::Init(" not in peek and
+            "MetadataCache::" not in peek,
+            "Primitive peek must not assert or initialize any type")
     must("libil2cpp/vm/AssemblyShadow.cpp",
          '#include "AssemblyShadowBoundedDefinitionExecutionLive.h"',
          '#include "vm/GlobalMetadataFileInternals.h"',
-         '#include "vm/Class.h"',
+         '#include "AssemblyShadowExistingPrimitiveDefaults.h"',
          '#include "AssemblyShadowBoundedDefinitionExecutionLiveSource.inl"')
     must("libil2cpp/vm/AssemblyShadow.h",
          "TryCaptureBoundedDefinitionExecutionLive",
@@ -341,7 +365,7 @@ def source_boundary(native:dict[str,bytes])->None:
          "assembly_shadow_detail::NextFolded(",
          "BeginCanonicalFolded(",
          "usedUnicodeAssemblyFold",
-         "Class::FromIl2CppTypeEnum(value->type)",
+         "assembly_shadow_existing_primitive_defaults::Peek(",
          "primitive->typeMetadataHandle",
          "primitive->declaringType",
          "primitive->genericContainerHandle",
@@ -373,6 +397,9 @@ def source_boundary(native:dict[str,bytes])->None:
          "runtimeAcceptance=false")
     must("NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
          '#include "vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl"',
+         '#include "vm/AssemblyShadowExistingPrimitiveDefaults.h"',
+         "TestAssertFreePrimitivePeekMapping",
+         "primitivePeekCases",
          "Mode::StagedNestedIndex",
          "Mode::CyclicNested",
          "Mode::GenericDefinition",
@@ -420,6 +447,7 @@ def source_boundary(native:dict[str,bytes])->None:
          "NoMetadataAdmission")
     for name in (
         "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
+        "libil2cpp/vm/AssemblyShadowExistingPrimitiveDefaults.h",
         "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
         "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
         "libil2cpp/vm/AssemblyShadowOwnedConstructedTypeKey.h",
