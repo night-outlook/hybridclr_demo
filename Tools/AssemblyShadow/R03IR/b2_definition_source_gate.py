@@ -178,6 +178,17 @@ def validate_contract(m:dict)->None:
             c.get("originalV1PhysicalTokenValidEnumeration") is True and
             c.get("originalV1IncludesInterpreterImages") is True and
             c.get("originalV1FirstEmplaceOwnerJoinSourceImplemented") is True and
+            c.get("originalV1RootFirstOwnerRecheckedAtEndPass") is True and
+            c.get("originalV1RootFirstOwnerEndPassLookupLimit")==65536 and
+            c.get("originalV1RootFirstOwnerEndPassMutationFailures")==4 and
+            c.get("originalV1RootFirstOwnerEndPassMatchedObservedOnly") is True and
+            c.get("originalV1RootFirstOwnerEndPassNoExtraClassTraversal") is True and
+            c.get("originalV1RootFirstOwnerEndPassNoAllocationSourceClaim") is True and
+            c.get("originalV1RootFirstOwnerEndPassNotCompleteTypeDefTable") is True and
+            c.get("originalV1RootFirstOwnerEndPassNoVmEpoch") is True and
+            c.get("originalV1RootFirstOwnerEndPassRealUnityProven") is False and
+            c.get("originalV1RootFirstOwnerEndPassClassGcLifetimeProven") is False and
+            c.get("originalV1RootFirstOwnerEndPassWholeTableStableProven") is False and
             c.get("originalV1OwnerConflictRevokesSource") is True and
             c.get("originalV1ImageInventoryDoubleChecked") is True and
             c.get("originalV1ImageFactsTwoPassInNativeSource") is True and
@@ -252,8 +263,8 @@ def validate_contract(m:dict)->None:
             c.get("interpreterVarMvarExecutionTypeKeysSupported") is False and
             c.get("actualUnityInterpreterTypeDefParityProven") is False and
             c.get("wholeVmInterpreterClassLifetimeProven") is False and
-            c.get("mockScenarios")>=111 and
-            c.get("mockAssertionsPerExecution")>=4237 and
+            c.get("mockScenarios")>=115 and
+            c.get("mockAssertionsPerExecution")>=4656 and
             c.get("observedClassFactsRegistrySlotLimit")==2048 and
             c.get("observedClassFactsBytesPerSlot")==2 and
             c.get("observedClassFactsNotCoherentVmEpoch") is True and
@@ -623,6 +634,9 @@ def source_boundary(native:dict[str,bytes])->None:
          "originalV1ImageFactsMatched=0",
          "originalV1ImageFactsTwoPassStable=false",
          "OriginalV1ImageFactsChanged",
+         "originalV1RootOwnerEndPassMatched=0",
+         "originalV1RootOwnerEndPassLookups=0",
+         "originalV1RootOwnerEndPassStable=false",
          "ObservedClassRootChanged",
          "observedClassRootFactsMatched=0",
          "observedClassRootFactsThreePassStable=false",
@@ -662,6 +676,16 @@ def source_boundary(native:dict[str,bytes])->None:
          "OriginalV1FirstOwnerConflict",
          "OriginalV1OwnerMissing",
          "originalV1FirstEmplaceOwnerMatched=",
+         "endPass.originalV1Images=&originalV1Images",
+         "rootOwnerLookups=0,rootOwnerMatched=0",
+         "*end.originalV1Images,klass->image",
+         "klass->typeMetadataHandle",
+         "end.rootOwnerLookups",
+         "++end.rootOwnerMatched",
+         "receipt.originalV1RootOwnerEndPassMatched=endPass.rootOwnerMatched",
+         "receipt.originalV1RootOwnerEndPassLookups=endPass.rootOwnerLookups",
+         "receipt.originalV1RootOwnerEndPassStable=",
+         "receipt.originalV1RootOwnerEndPassMatched==receipt.registered",
          "ObservedClassFactsChanged",
          "ClassFacts::Read(klass)",
          "image=reinterpret_cast<uintptr_t>(klass->image)",
@@ -782,6 +806,11 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::OriginalV1AssemblyTokenChanged",
          "Mode::OriginalV1DuplicatePhysicalImage",
          "Mode::OriginalV1InterpreterTokenChanged",
+         "Mode::RootIndexedOwnerRemovedAtEnd",
+         "Mode::RootEarlierOwnerAppearedAtEnd",
+         "Mode::InterpreterOnlyRootIndexedOwnerRemovedAtEnd",
+         "Mode::EarlierRootIndexedOwnerRemovedDuringLaterTypeKey",
+         "Check(g_changedEarlierIndexedOwner)",
          "Mode::OriginalV1UnregisteredOwner",
          "Mode::OriginalV1InvalidImage",
          "Mode::InterpreterSimpleClass",

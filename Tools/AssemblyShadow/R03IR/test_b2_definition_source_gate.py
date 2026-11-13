@@ -456,8 +456,8 @@ class SourceGateTests(unittest.TestCase):
     def test_native_endpass_class_facts_acceptance_stays_scoped(self):
         c=self.original["nativeSourceCapabilities"]
         self.assertEqual(c["physicalEnumerationPasses"],3)
-        self.assertEqual(c["mockScenarios"],111)
-        self.assertEqual(c["mockAssertionsPerExecution"],4237)
+        self.assertEqual(c["mockScenarios"],115)
+        self.assertEqual(c["mockAssertionsPerExecution"],4656)
         self.assertTrue(c["observedClassFactsEndPassImplemented"])
         self.assertTrue(c["observedClassFactsEndPassNotVmEpoch"])
         self.assertFalse(c["observedClassFactsEndPassClassCountProvenInRealUnity"])
@@ -465,8 +465,8 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(c["observedClassFactsEndPassEnumerationFailures"],2)
         for key,wrong in (
             ("physicalEnumerationPasses",2),
-            ("mockScenarios",106),
-            ("mockAssertionsPerExecution",3194),
+            ("mockScenarios",111),
+            ("mockAssertionsPerExecution",4237),
             ("observedClassFactsEndPassImplemented",False),
             ("observedClassFactsEndPassMutationFailures",2),
             ("observedClassFactsEndPassEnumerationFailures",1),
@@ -652,6 +652,39 @@ original_join::CheckFirstOwner(
             bad["nativeSourceCapabilities"][field]=changedValue
             with self.subTest(field=field),self.assertRaises(audit.Rejected):
                 audit.validate_contract(bad)
+
+    def test_original_v1_root_first_owner_endpass_scope(self):
+        c=self.original["nativeSourceCapabilities"]
+        self.assertTrue(c["originalV1RootFirstOwnerRecheckedAtEndPass"])
+        self.assertEqual(c["originalV1RootFirstOwnerEndPassLookupLimit"],65536)
+        self.assertEqual(c["originalV1RootFirstOwnerEndPassMutationFailures"],4)
+        for key in ("originalV1RootFirstOwnerEndPassMatchedObservedOnly",
+                    "originalV1RootFirstOwnerEndPassNoExtraClassTraversal",
+                    "originalV1RootFirstOwnerEndPassNoAllocationSourceClaim",
+                    "originalV1RootFirstOwnerEndPassNotCompleteTypeDefTable",
+                    "originalV1RootFirstOwnerEndPassNoVmEpoch"):
+            self.assertIs(c[key],True,key)
+        for key in ("originalV1RootFirstOwnerEndPassRealUnityProven",
+                    "originalV1RootFirstOwnerEndPassClassGcLifetimeProven",
+                    "originalV1RootFirstOwnerEndPassWholeTableStableProven"):
+            self.assertIs(c[key],False,key)
+        for field,bad in (
+            ("originalV1RootFirstOwnerRecheckedAtEndPass",False),
+            ("originalV1RootFirstOwnerEndPassLookupLimit",0),
+            ("originalV1RootFirstOwnerEndPassMutationFailures",3),
+            ("originalV1RootFirstOwnerEndPassMatchedObservedOnly",False),
+            ("originalV1RootFirstOwnerEndPassNoExtraClassTraversal",False),
+            ("originalV1RootFirstOwnerEndPassNoAllocationSourceClaim",False),
+            ("originalV1RootFirstOwnerEndPassNotCompleteTypeDefTable",False),
+            ("originalV1RootFirstOwnerEndPassNoVmEpoch",False),
+            ("originalV1RootFirstOwnerEndPassRealUnityProven",True),
+            ("originalV1RootFirstOwnerEndPassClassGcLifetimeProven",True),
+            ("originalV1RootFirstOwnerEndPassWholeTableStableProven",True),
+        ):
+            altered=copy.deepcopy(self.original)
+            altered["nativeSourceCapabilities"][field]=bad
+            with self.subTest(field=field),self.assertRaises(audit.Rejected):
+                audit.validate_contract(altered)
 
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
