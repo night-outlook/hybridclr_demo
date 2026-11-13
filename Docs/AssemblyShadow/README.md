@@ -2,7 +2,7 @@
 
 Inactive B2 `il2cpp_plus@94e5312b8ee167384820f8ab58ee9661dfc7bfb3` now classifies TypeDef root/non-root roles by actual **call site**, not handle equality. One authenticated handle used both ways has both role bits in one pair. New synthetic regression `GenericRootAlsoArgument`; [Primary review and limits](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_EXPLICIT_ROOT_NONROOT_ROLE_REVIEW_2026-11-13.md).
 
-Combined <=128 handles / <=64-byte names / <=24,576-byte scratch unchanged. New native/demo CI at these exact commits **not yet independently verified**. Not a VM/GC epoch, full field14/15, native V2, Unity Player or R03 acceptance. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) CLOSED / NO EXECUTION.
+Combined <=128 handles / <=64-byte names / <=24,576-byte scratch unchanged. Native [exact-source CI 43396033155](https://github.com/night-outlook/il2cpp_plus/actions/runs/43396033155) **4/4 PASS** (134 synthetic-VM scenarios / 6688 checks each); demo exact four-pin source CI pending after repinning its workflow. Not a VM/GC epoch, full field14/15, native V2, Unity Player or R03 acceptance. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) CLOSED / NO EXECUTION.
 
 ---
 

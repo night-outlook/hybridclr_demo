@@ -17,3 +17,11 @@ Native files: `libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.i
 ## Open conditions and stop point
 
 The combined **128-distinct TypeDef** and <=64-byte name-field bounds, <=24,576-byte audit object and <=65,536 metadata lookup budget remain. A defensible real-source TypeDef census, class/GC/metadata lifetime/VM epoch design, full terminal original V1 fields14/15, and descriptor-relative native V2 writer/envelope/receipt/first-recovery are outstanding. Historical independent R03 FAIL/High findings remain. `readyForNativeV2FieldCapture=false`, `nativeV2TransportImplemented=false`, `runtimeAcceptance=false`, `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`, `wholeVmEpoch=NotProven`; PureInterpreter disabled. `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`; no Local batch or later milestone is authorized.
+
+## CI checkpoint after workflow pin reconciliation
+
+- **Native exact SHA `94e5312b8ee167384820f8ab58ee9661dfc7bfb3`:** [workflow 43396033155](https://github.com/night-outlook/il2cpp_plus/actions/runs/43396033155) 4/4 completed/success, Mac/Linux C++11/17; Release/Debug strict/sanitized; 134 scenarios and 6688 assertions per host execution.
+- **Demo initial source gate 43396487900:** 2/2 failed *before source audit* because `.github/workflows/r03-ir-b2-definition-four-pin-source.yml` still checked out and required stale native `f89b9e9323df1234bf1bc59ca7f418533c958246`. No new source check was exercised. The workflow now pins `94e5312b8ee167384820f8ab58ee9661dfc7bfb3` at all four places; rerun via the workflow-file commit. Do not count the original failing gate as source evidence.
+- **Unrelated native R02 workflow 43396030879:** failed its historical `tools/r02/finalize_sources.py --verify` byte-pins for `AssemblyShadowTypeResolver.cpp` and `AssemblyShadow.cpp`, neither changed in this B2 cycle. The targeted B2 source matrix is separately green; do not claim all native CI is green.
+
+The demo source-audit CI at the final doc HEAD must still be inspected. Scope and acceptance flags above are unchanged.
