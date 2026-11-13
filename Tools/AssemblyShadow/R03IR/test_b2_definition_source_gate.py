@@ -456,8 +456,8 @@ class SourceGateTests(unittest.TestCase):
     def test_native_endpass_class_facts_acceptance_stays_scoped(self):
         c=self.original["nativeSourceCapabilities"]
         self.assertEqual(c["physicalEnumerationPasses"],3)
-        self.assertEqual(c["mockScenarios"],120)
-        self.assertEqual(c["mockAssertionsPerExecution"],5221)
+        self.assertEqual(c["mockScenarios"],126)
+        self.assertEqual(c["mockAssertionsPerExecution"],5637)
         self.assertTrue(c["observedClassFactsEndPassImplemented"])
         self.assertTrue(c["observedClassFactsEndPassNotVmEpoch"])
         self.assertFalse(c["observedClassFactsEndPassClassCountProvenInRealUnity"])
@@ -465,8 +465,8 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(c["observedClassFactsEndPassEnumerationFailures"],2)
         for key,wrong in (
             ("physicalEnumerationPasses",2),
-            ("mockScenarios",115),
-            ("mockAssertionsPerExecution",4656),
+            ("mockScenarios",120),
+            ("mockAssertionsPerExecution",5221),
             ("observedClassFactsEndPassImplemented",False),
             ("observedClassFactsEndPassMutationFailures",2),
             ("observedClassFactsEndPassEnumerationFailures",1),
@@ -690,7 +690,7 @@ original_join::CheckFirstOwner(
         c=self.original["nativeSourceCapabilities"]
         self.assertTrue(c["nonRootTypeDefOwnerEndPassImplemented"])
         self.assertEqual(c["nonRootTypeDefOwnerPairsLimit"],128)
-        self.assertEqual(c["nonRootTypeDefOwnerAuditMaxStackBytes"],2064)
+        self.assertEqual(c["nonRootTypeDefOwnerAuditMaxStackBytes"],24576)
         self.assertEqual(c["nonRootTypeDefOwnerEndPassLookupLimit"],65536)
         self.assertEqual(c["nonRootTypeDefOwnerEndPassMutationFailures"],5)
         for key in ("nonRootTypeDefOwnerDeduplicatesSameHandleOwner",
@@ -708,7 +708,7 @@ original_join::CheckFirstOwner(
         for key,bad in (
             ("nonRootTypeDefOwnerEndPassImplemented",False),
             ("nonRootTypeDefOwnerPairsLimit",256),
-            ("nonRootTypeDefOwnerAuditMaxStackBytes",4096),
+            ("nonRootTypeDefOwnerAuditMaxStackBytes",2064),
             ("nonRootTypeDefOwnerEndPassLookupLimit",0),
             ("nonRootTypeDefOwnerEndPassMutationFailures",4),
             ("nonRootTypeDefOwnerDeduplicatesSameHandleOwner",False),
@@ -724,6 +724,51 @@ original_join::CheckFirstOwner(
         ):
             broken=copy.deepcopy(self.original)
             broken["nativeSourceCapabilities"][key]=bad
+            with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(broken)
+
+    def test_bounded_nonroot_decl_content_source_and_first_error(self):
+        c=self.original["nativeSourceCapabilities"]
+        self.assertTrue(c["nonRootTypeDefContentEndPassImplemented"])
+        self.assertEqual(c["nonRootTypeDefContentMaxPairs"],128)
+        self.assertEqual(c["nonRootTypeDefContentExactNameMaxBytes"],64)
+        self.assertEqual(c["nonRootTypeDefContentMaxStackBytes"],24576)
+        self.assertEqual(c["nonRootTypeDefContentMutationFailures"],5)
+        self.assertEqual(c["nonRootTypeDefContentOverBudgetRejectCases"],1)
+        for key in ("nonRootTypeDefContentCopiesExactBytes",
+                    "nonRootTypeDefContentChecksGenericAndDeclaringIndex",
+                    "nonRootTypeDefContentChecksGenericArity",
+                    "nonRootTypeDefContentFirstErrorPreserved",
+                    "nonRootTypeDefContentNoHeapAllocation"):
+            self.assertTrue(c[key],key)
+        for key in ("nonRootTypeDefContentAllRootDeclarationsProven",
+                    "nonRootTypeDefContentFullOriginalTableProven",
+                    "nonRootTypeDefContentGcLifetimeProven",
+                    "nonRootTypeDefContentWholeVmEpochProven",
+                    "nonRootTypeDefContentRealUnityVerified",
+                    "nonRootTypeDefContentSupportsUnboundedNames"):
+            self.assertFalse(c[key],key)
+        for key,wrong in (
+            ("nonRootTypeDefContentEndPassImplemented",False),
+            ("nonRootTypeDefContentMaxPairs",256),
+            ("nonRootTypeDefContentExactNameMaxBytes",128),
+            ("nonRootTypeDefContentMaxStackBytes",2064),
+            ("nonRootTypeDefContentCopiesExactBytes",False),
+            ("nonRootTypeDefContentChecksGenericAndDeclaringIndex",False),
+            ("nonRootTypeDefContentChecksGenericArity",False),
+            ("nonRootTypeDefContentMutationFailures",4),
+            ("nonRootTypeDefContentOverBudgetRejectCases",0),
+            ("nonRootTypeDefContentFirstErrorPreserved",False),
+            ("nonRootTypeDefContentNoHeapAllocation",False),
+            ("nonRootTypeDefContentAllRootDeclarationsProven",True),
+            ("nonRootTypeDefContentFullOriginalTableProven",True),
+            ("nonRootTypeDefContentGcLifetimeProven",True),
+            ("nonRootTypeDefContentWholeVmEpochProven",True),
+            ("nonRootTypeDefContentRealUnityVerified",True),
+            ("nonRootTypeDefContentSupportsUnboundedNames",True),
+        ):
+            broken=copy.deepcopy(self.original)
+            broken["nativeSourceCapabilities"][key]=wrong
             with self.subTest(key=key),self.assertRaises(audit.Rejected):
                 audit.validate_contract(broken)
 
