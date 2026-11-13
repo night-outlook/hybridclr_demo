@@ -226,7 +226,7 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(
             {row["path"] for row in self.original["nativeSources"]},
             audit.NATIVE_REQUIRED)
-        self.assertEqual(len(self.original["nativeSources"]),63)
+        self.assertEqual(len(self.original["nativeSources"]),64)
         self.assertEqual(len(self.original["demoPureSources"]),8)
 
     def test_bounded_existing_primitive_defaults_and_noncreating_source_contract(self):
@@ -318,7 +318,7 @@ class SourceGateTests(unittest.TestCase):
             ".github/workflows/r03-native-b2-v1-parity-host.yml",
         }
         self.assertTrue(expected.issubset(audit.NATIVE_REQUIRED))
-        self.assertEqual(len(self.original["nativeSources"]),63)
+        self.assertEqual(len(self.original["nativeSources"]),64)
         self.assertEqual(len(self.original["demoPureSources"]),8)
         self.assertIn(
             "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedObservedExecutionV1ByteParity.h",
@@ -440,7 +440,7 @@ class SourceGateTests(unittest.TestCase):
             with self.subTest(field=field),self.assertRaises(audit.Rejected):
                 audit.validate_contract(wrong)
         self.assertEqual(c["observedClassFactsRegistrySlotLimit"],2048)
-        self.assertEqual(c["observedClassFactsBytesPerSlot"],16)
+        self.assertEqual(c["observedClassFactsBytesPerSlot"],2)
         needed={
             "NativeHostTests/AssemblyShadowExecutionV1SerializerParityHost.cpp",
             ".github/workflows/r03-native-b2-execution-v1-serializer-parity-host.yml",
@@ -456,8 +456,8 @@ class SourceGateTests(unittest.TestCase):
     def test_native_endpass_class_facts_acceptance_stays_scoped(self):
         c=self.original["nativeSourceCapabilities"]
         self.assertEqual(c["physicalEnumerationPasses"],3)
-        self.assertEqual(c["mockScenarios"],106)
-        self.assertEqual(c["mockAssertionsPerExecution"],3194)
+        self.assertEqual(c["mockScenarios"],111)
+        self.assertEqual(c["mockAssertionsPerExecution"],4237)
         self.assertTrue(c["observedClassFactsEndPassImplemented"])
         self.assertTrue(c["observedClassFactsEndPassNotVmEpoch"])
         self.assertFalse(c["observedClassFactsEndPassClassCountProvenInRealUnity"])
@@ -465,8 +465,8 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(c["observedClassFactsEndPassEnumerationFailures"],2)
         for key,wrong in (
             ("physicalEnumerationPasses",2),
-            ("mockScenarios",99),
-            ("mockAssertionsPerExecution",2841),
+            ("mockScenarios",106),
+            ("mockAssertionsPerExecution",3194),
             ("observedClassFactsEndPassImplemented",False),
             ("observedClassFactsEndPassMutationFailures",2),
             ("observedClassFactsEndPassEnumerationFailures",1),
@@ -593,8 +593,8 @@ original_join::CheckFirstOwner(
             ["image","definition","typeData","generic","typeCode"])
         self.assertEqual(c["observedClassRootMutationNegativeCases"],7)
         self.assertEqual(c["observedClassRootFactsSlotCount"],2048)
-        self.assertEqual(c["observedClassRootFactsMaxBytes64"],98304)
-        self.assertEqual(c["observedClassRootFactsAdditionalStackBytes64"],65536)
+        self.assertEqual(c["observedClassRootFactsMaxBytes64"],53264)
+        self.assertEqual(c["observedClassRootFactsAdditionalStackBytes64"],20496)
         self.assertTrue(c["observedClassRootUnionTagRestricted"])
         self.assertTrue(c["observedClassRootFactsNotWholeVmEpoch"])
         for field in ("observedClassRootGcLifetimeProven",
@@ -606,8 +606,8 @@ original_join::CheckFirstOwner(
             ("observedClassRootFields",["image","definition"]),
             ("observedClassRootMutationNegativeCases",6),
             ("observedClassRootFactsSlotCount",1024),
-            ("observedClassRootFactsMaxBytes64",32768),
-            ("observedClassRootFactsAdditionalStackBytes64",32768),
+            ("observedClassRootFactsMaxBytes64",98304),
+            ("observedClassRootFactsAdditionalStackBytes64",65536),
             ("observedClassRootFactsNotWholeVmEpoch",False),
             ("observedClassRootGcLifetimeProven",True),
             ("observedClassRootMetadataContentStableProven",True),
@@ -618,6 +618,40 @@ original_join::CheckFirstOwner(
             broken["nativeSourceCapabilities"][field]=value
             with self.subTest(field=field),self.assertRaises(audit.Rejected):
                 audit.validate_contract(broken)
+
+    def test_dense_packed_class_facts_source_scope(self):
+        c=self.original["nativeSourceCapabilities"]
+        self.assertTrue(c["packedClassFactsSourceImplemented"])
+        self.assertEqual(c["packedClassFactsCapacity"],1024)
+        self.assertEqual(c["packedClassFactsRegistrySlots"],2048)
+        self.assertEqual(c["packedClassFactsSlotIndexBytes"],2)
+        self.assertEqual(c["packedClassFactsMaxBytes64"],53264)
+        self.assertEqual(c["packedClassFactsSavedStackBytes64AtLeast"],45040)
+        self.assertEqual(c["packedClassFactsPureHostCases"],5)
+        self.assertTrue(c["packedClassFactsEarlyRejectDestructorScrub"])
+        for flag in ("packedClassFactsUsesHeapAllocation",
+                     "packedClassFactsUnityStackVerified",
+                     "packedClassFactsGcLifetimeProven",
+                     "packedClassFactsWholeVmEpochProven"):
+            self.assertIs(c[flag],False,flag)
+        for field,changedValue in (
+            ("packedClassFactsSourceImplemented",False),
+            ("packedClassFactsCapacity",2048),
+            ("packedClassFactsRegistrySlots",1024),
+            ("packedClassFactsSlotIndexBytes",4),
+            ("packedClassFactsMaxBytes64",98304),
+            ("packedClassFactsSavedStackBytes64AtLeast",0),
+            ("packedClassFactsPureHostCases",4),
+            ("packedClassFactsEarlyRejectDestructorScrub",False),
+            ("packedClassFactsUsesHeapAllocation",True),
+            ("packedClassFactsUnityStackVerified",True),
+            ("packedClassFactsGcLifetimeProven",True),
+            ("packedClassFactsWholeVmEpochProven",True),
+        ):
+            bad=copy.deepcopy(self.original)
+            bad["nativeSourceCapabilities"][field]=changedValue
+            with self.subTest(field=field),self.assertRaises(audit.Rejected):
+                audit.validate_contract(bad)
 
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")

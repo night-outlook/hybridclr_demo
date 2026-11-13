@@ -58,6 +58,7 @@ NATIVE_REQUIRED={
     "libil2cpp/char-conversions.h",
     "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
     "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
+    "libil2cpp/vm/AssemblyShadowPackedClassFacts.h",
     "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
     "libil2cpp/vm/AssemblyShadowOwnedConstructedTypeKey.h",
     "libil2cpp/vm/AssemblyShadowOwnedCompositeTypeKey.h",
@@ -209,8 +210,20 @@ def validate_contract(m:dict)->None:
             c.get("observedClassRootFields")==["image","definition","typeData","generic","typeCode"] and
             c.get("observedClassRootMutationNegativeCases")==7 and
             c.get("observedClassRootFactsSlotCount")==2048 and
-            c.get("observedClassRootFactsMaxBytes64")==98304 and
-            c.get("observedClassRootFactsAdditionalStackBytes64")==65536 and
+            c.get("observedClassRootFactsMaxBytes64")==53264 and
+            c.get("observedClassRootFactsAdditionalStackBytes64")==20496 and
+            c.get("packedClassFactsSourceImplemented") is True and
+            c.get("packedClassFactsCapacity")==1024 and
+            c.get("packedClassFactsRegistrySlots")==2048 and
+            c.get("packedClassFactsSlotIndexBytes")==2 and
+            c.get("packedClassFactsMaxBytes64")==53264 and
+            c.get("packedClassFactsSavedStackBytes64AtLeast")==45040 and
+            c.get("packedClassFactsPureHostCases")==5 and
+            c.get("packedClassFactsEarlyRejectDestructorScrub") is True and
+            c.get("packedClassFactsUsesHeapAllocation") is False and
+            c.get("packedClassFactsUnityStackVerified") is False and
+            c.get("packedClassFactsGcLifetimeProven") is False and
+            c.get("packedClassFactsWholeVmEpochProven") is False and
             c.get("observedClassRootFactsNotWholeVmEpoch") is True and
             c.get("observedClassRootGcLifetimeProven") is False and
             c.get("observedClassRootMetadataContentStableProven") is False and
@@ -239,10 +252,10 @@ def validate_contract(m:dict)->None:
             c.get("interpreterVarMvarExecutionTypeKeysSupported") is False and
             c.get("actualUnityInterpreterTypeDefParityProven") is False and
             c.get("wholeVmInterpreterClassLifetimeProven") is False and
-            c.get("mockScenarios")>=106 and
-            c.get("mockAssertionsPerExecution")>=3194 and
+            c.get("mockScenarios")>=111 and
+            c.get("mockAssertionsPerExecution")>=4237 and
             c.get("observedClassFactsRegistrySlotLimit")==2048 and
-            c.get("observedClassFactsBytesPerSlot")==16 and
+            c.get("observedClassFactsBytesPerSlot")==2 and
             c.get("observedClassFactsNotCoherentVmEpoch") is True and
             c.get("completeObservedClassLifetimeProven") is False and
             c.get("actualUnityOriginalV1OwnerJoinTested") is False and
@@ -579,6 +592,7 @@ def source_boundary(native:dict[str,bytes])->None:
          '#include "AssemblyShadowBoundedDefinitionExecutionLive.h"',
          '#include "vm/GlobalMetadataFileInternals.h"',
          '#include "AssemblyShadowExistingPrimitiveDefaults.h"',
+         '#include "AssemblyShadowPackedClassFacts.h"',
          '#include "AssemblyShadowBoundedDefinitionExecutionLiveSource.inl"',
          '#include "AssemblyShadowExecutionV1ByteParity.h"',
          '#include "AssemblyShadowExecutionV1ByteParitySource.inl"',
@@ -591,6 +605,17 @@ def source_boundary(native:dict[str,bytes])->None:
          "TryCaptureBoundedDefinitionExecutionLive",
          "Never returns a live class pointer or modifies the original getter.",
          "TryProbeBoundedExecutionV1ByteParity(")
+    must("libil2cpp/vm/AssemblyShadowPackedClassFacts.h",
+         "namespace assembly_shadow_packed_class_facts",
+         "static_assert(std::is_trivially_copyable<Fact>::value",
+         "std::array<Fact,Capacity> facts_{}",
+         "std::array<uint16_t,Slots> slotToIndexPlusOne_{}",
+         "~Scratch() noexcept {Scrub();}",
+         "bool Insert(size_t slot,const Fact& fact) noexcept",
+         "const Fact* Find(size_t slot) const noexcept",
+         "bool Update(size_t slot,const Fact& fact) noexcept",
+         "void Scrub() noexcept",
+         "slotToIndexPlusOne_[slot]=static_cast<uint16_t>(used_+1)")
     must("libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
          "ObservedClassFactsChanged",
          "observedClassFactsTwoPassStable",
@@ -647,22 +672,29 @@ def source_boundary(native:dict[str,bytes])->None:
          "out.typeData=reinterpret_cast<uintptr_t>(type.data.generic_class)",
          "bool SameRoot(const ClassFacts& other)",
          "bool SameClassState(const ClassFacts& other)",
-         "c.firstPassFacts[registration].SameRoot(secondFacts)",
+         "previous->SameRoot(secondFacts)",
          "secondFacts.SameRoot(finalFacts)",
-         "end.facts[slot].SameRoot(observed)",
+         "previous->SameRoot(observed)",
          "static_assert(sizeof(ClassFacts)<=48",
+         "using PackedFacts=assembly_shadow_packed_class_facts::Scratch<",
+         "static_assert(sizeof(PackedFacts)<=53264",
+         "PackedFacts firstPassFacts{}",
+         "d.firstPassFacts->Insert(slot,sampled)",
+         "d.firstPassFacts->Find(slot)",
+         "c.firstPassFacts->Find(registration)",
+         "end.facts->Find(slot)",
          "receipt.observedClassRootFactsMatched=context.classRootFactsMatched",
          "receipt.observedClassRootFactsThreePassStable=",
-         "firstPassFacts.fill(ClassFacts{})",
+         "firstPassFacts.Scrub()",
          "receipt.observedClassFactsTwoPassStable=",
          "receipt.observedClassFactsEndPassMatched=endPass.matched",
          "receipt.observedClassFactsEndPassStable=",
-         "c.firstPassFacts[registration]=finalFacts;",
+         "c.firstPassFacts->Update(registration,finalFacts)",
          "std::array<uint8_t,physical::kSlots> seen{}",
          "endPass.matched!=receipt.registered",
          "end.seen[slot]=1",
-         "end.facts[slot].SameRoot(observed)",
-         "end.facts[slot].SameClassState(observed)",
+         "previous->SameRoot(observed)",
+         "previous->SameClassState(observed)",
          "usedUnobservedAotArgumentImage",
          "resolveOwner",
          "AmbiguousMetadataOwner",
@@ -717,6 +749,12 @@ def source_boundary(native:dict[str,bytes])->None:
          '#include "vm/AssemblyShadowExistingPrimitiveDefaults.h"',
          "TestAssertFreePrimitivePeekMapping",
          "primitivePeekCases",
+         "TestPackedClassFactsScratch()",
+         "packedFactsCases",
+         "scratch.Insert(2047,value)",
+         "scratch.Count()==1024",
+         "!scratch.Insert(1023,value)",
+         "scratch.Scrub()",
          '#include "vm/AssemblyShadowExecutionV1ByteParitySource.inl"',
          "TestParityProbeMock()", "parityProbeCases",
          "realLegacyGetter",
@@ -808,6 +846,7 @@ def source_boundary(native:dict[str,bytes])->None:
          "NoMetadataAdmission")
     for name in (
         "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
+        "libil2cpp/vm/AssemblyShadowPackedClassFacts.h",
         "libil2cpp/vm/AssemblyShadowExecutionV1ByteParity.h",
         "libil2cpp/vm/AssemblyShadowExecutionV1ByteParitySource.inl",
         "libil2cpp/vm/AssemblyShadowExistingPrimitiveDefaults.h",

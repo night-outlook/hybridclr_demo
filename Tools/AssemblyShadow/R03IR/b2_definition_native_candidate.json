@@ -2,16 +2,16 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "Inactive R03 B2 source now compares physically observed class root image, definition handle, byval type/tag/payload and constructed generic class pointer at first/second/row-final/end-of-collection observations, distinct from cctor/static facts. This detects observed drift only, not metadata contents, GC lifetime, whole VM epoch, complete original V1 field15 or native V2.",
+  "objective": "INACTIVE R03 B2 source now stores exact ClassFacts for at most 1024 physically observed registered classes in a dense primitive array plus 2048-slot uint16 index; duplicate/capacity/missing-slot failures revoke all owned rows. Source scratch destructor clears primitive data on early returns; no runtime/VM epoch/V2 acceptance.",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "c37adc9f7cb610b524ae32b176cbc3e3f67cd35b",
+  "candidateNative": "39ac1a66b906da12825e095de010cae7cf5a8161",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
     {
       "path": "libil2cpp/vm/AssemblyShadow.cpp",
-      "gitBlob": "9c6fccec06246c343f4e540fffe78a1c1bacb289"
+      "gitBlob": "dc941907884b9a7f44ade6085d05f2e4a1a96d9e"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadow.h",
@@ -31,7 +31,7 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
-      "gitBlob": "6b30ba74d6cb3135c2d2281611db66b8d9c6be9b"
+      "gitBlob": "f1b879949cef7631c8b6d862068e46e1a060c330"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
@@ -47,7 +47,7 @@
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "c9aa9e1e5ad1825a253b2248fe6ca5e51ba87b23"
+      "gitBlob": "9a1163841748f83ffbb6b927aea1e366214beab1"
     },
     {
       "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -55,7 +55,7 @@
     },
     {
       "path": ".github/workflows/r03-native-b2-definition-live-source-host.yml",
-      "gitBlob": "9cc917398ba9ad07765a1d3faf25022058b90359"
+      "gitBlob": "058e05d913d9b78949f9753c65889e980fd10b9e"
     },
     {
       "path": ".github/workflows/r03-native-b2-constructed-typekey-host.yml",
@@ -260,6 +260,10 @@
     {
       "path": ".github/workflows/r03-native-b2-execution-v1-serializer-parity-host.yml",
       "gitBlob": "ec39dbf441feb1c3807bec8c460abda20963c366"
+    },
+    {
+      "path": "libil2cpp/vm/AssemblyShadowPackedClassFacts.h",
+      "gitBlob": "820e6bfa546d067173c29a7514c68797ced465de"
     }
   ],
   "demoPureSources": [
@@ -296,7 +300,7 @@
       "gitBlob": "75fc8717ed3b54b1aeee583e28671e304ab233e0"
     }
   ],
-  "testProof": "Actual checked-in B2 source .inl compiled under synthetic VM at il2cpp_plus@c37adc9f7cb610b524ae32b176cbc3e3f67cd35b in native CI 43218731616: Ubuntu C++11/C++17 2/2 PASS Release/Debug strict/sanitized, 106 source cases/3194 assertions per process. Seven new root pointer/type mutations rejected at second, after TypeKey, or end pass. macOS jobs queued at source gate publication; real Unity Player/native TUs/GC/V2 NotRun.",
+  "testProof": "Authentic native inactive .inl compiled with synthetic VM, CI 43346495586 at native 5e2b6287e9e773e2effb8421fdad3e556c38c929: macOS15/Ubuntu24.04 C++11/C++17 4/4 PASS (111 cases/4237 assertions/process, Release/Debug strict/sanitized). Final native@39ac1a66b906da12825e095de010cae7cf5a8161 updated comment only, exact run 43346655116; no Unity compilation/Player/GC/real stack/V2 validation.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -304,7 +308,7 @@
     "metadataReaderEpoch": "initial only",
     "coherentVmEpochProven": false,
     "sourceFirstErrorFence": "Checks B1 Empty before traversal, before record composition, after frozen record",
-    "mockScenarios": 106,
+    "mockScenarios": 111,
     "mockBuildVariants": [
       "release",
       "debug"
@@ -314,7 +318,7 @@
       "sanitized"
     ],
     "physicalClassMembershipScope": "The observed source class must physically match its registration witness; registered AOT images without an observed class may own concrete TypeDef generic arguments; output rows preserve registry-slot order",
-    "mockAssertionsPerExecution": 3194,
+    "mockAssertionsPerExecution": 4237,
     "mockProcessExecutions": 16,
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
     "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup",
@@ -329,13 +333,13 @@
     "legacyTypeKeyGrammarSourceBlob": "6b23b4bad66e9a8f36c68717ef82626351018624",
     "realUnityRuntimeIntegrationProven": false,
     "realGenericRuntimeMetadataAbiBlob": "f7f235848209ee331adfd1c2b214b46cc753392e",
-    "physicalImageInventory": "Two original V1 physical and two registered AOT image visits, plus three matched class callbacks under initial Reader/g_MetadataLock; observed root image/definition/byval data/constructed generic source and cctor/static exact snapshots. 96 KiB class-facts stack + 12 KiB original-image-facts on 64-bit. No VM/GC epoch.",
+    "physicalImageInventory": "3 matched physical class visits and 2 registered-AOT/2 token-valid original V1 image visits under initial Reader/g_MetadataLock, same root/cctor/source checks. At most 1024 dense ClassFacts entries (<=48 bytes each), 2048 x uint16 slot map, 53264 byte static cap vs old 98304 byte class array; no GC/VM epoch.",
     "physicalImageLimit": 64,
     "physicalEnumerationPasses": 3,
     "crossImageGenericArgumentsSupportedInMock": true,
     "ambiguousMetadataOwnerFailsClosed": true,
     "allPhysicalMetadataImagesEnumerated": false,
-    "nativeSourceCiRun": "43218731616",
+    "nativeSourceCiRun": "43346655116",
     "physicalIteratorSourceBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6",
     "recordOriginalLegacyGrammarUnchanged": true,
     "registeredAotImageLimit": 1024,
@@ -349,7 +353,7 @@
     "runtimeAcceptanceProven": false,
     "unrestrictedCrossImageGenericArgumentsSupported": false,
     "unregisteredAotArgumentFailsClosed": true,
-    "supportedTypeShapeScope": "Previously authenticated AOT TypeDef/composite/primitive and plain interpreter TypeDef subset, including interpreter-only V1 physical images. Triple-observed class root image/TypeDef/byval pointer/tag consistency and cctor/static; not complete field15, immutable metadata content, GC lifetime, whole VM epoch or native V2.",
+    "supportedTypeShapeScope": "AOT original TypeDef/composite/primitive and simple interpreter CLASS/VALUETYPE subset, including interpreter-only originals. Exact class root/cctor/static facts through 1024-row dense buffer with sparse slot indexing; no complete class/integral epoch, terminal full field14/15 or native V2.",
     "zeroTypeDefinitionRegisteredAotImagesSkipped": true,
     "registeredAotRegistrySource": "original physical Assembly::s_Assemblies under s_assemblyLock; zero-type AOT images skipped",
     "boundedCompositeArgumentShapesInMock": true,
@@ -418,7 +422,7 @@
     "observedClassFactsTwoPassInNativeSource": true,
     "observedClassFactsBetweenPassMutationFailures": 2,
     "observedClassFactsRegistrySlotLimit": 2048,
-    "observedClassFactsBytesPerSlot": 16,
+    "observedClassFactsBytesPerSlot": 2,
     "observedClassFactsNotCoherentVmEpoch": true,
     "completeObservedClassLifetimeProven": false,
     "actualLegacyFrozenFormatterCiRun": "43178421718",
@@ -469,13 +473,25 @@
     ],
     "observedClassRootMutationNegativeCases": 7,
     "observedClassRootFactsSlotCount": 2048,
-    "observedClassRootFactsMaxBytes64": 98304,
-    "observedClassRootFactsAdditionalStackBytes64": 65536,
+    "observedClassRootFactsMaxBytes64": 53264,
+    "observedClassRootFactsAdditionalStackBytes64": 20496,
     "observedClassRootFactsNotWholeVmEpoch": true,
     "observedClassRootGcLifetimeProven": false,
     "observedClassRootMetadataContentStableProven": false,
     "observedClassRootUnityPlayerVerified": false,
-    "observedClassRootUnionTagRestricted": true
+    "observedClassRootUnionTagRestricted": true,
+    "packedClassFactsSourceImplemented": true,
+    "packedClassFactsCapacity": 1024,
+    "packedClassFactsRegistrySlots": 2048,
+    "packedClassFactsSlotIndexBytes": 2,
+    "packedClassFactsMaxBytes64": 53264,
+    "packedClassFactsSavedStackBytes64AtLeast": 45040,
+    "packedClassFactsPureHostCases": 5,
+    "packedClassFactsEarlyRejectDestructorScrub": true,
+    "packedClassFactsUsesHeapAllocation": false,
+    "packedClassFactsUnityStackVerified": false,
+    "packedClassFactsGcLifetimeProven": false,
+    "packedClassFactsWholeVmEpochProven": false
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
