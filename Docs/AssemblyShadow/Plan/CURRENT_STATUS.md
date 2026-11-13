@@ -1,3 +1,11 @@
+# R03 B2 Primary — end-of-collection original V1 root TypeDef first-owner recheck (2026-11-13 UTC)
+
+Native il2cpp_plus@2ded6fa7deac7a52890aee917516fe9cdb42b128 independently revisits the original token-valid physical first-emplace metadata owner of every admitted class root in the existing third physical callback. A separate total <=65,536 handle lookup budget fails closed on excess; no whole table/VM epoch is claimed. [Native CI 43351671250](https://github.com/night-outlook/il2cpp_plus/actions/runs/43351671250) **4/4 PASS** macOS/Ubuntu C++11/17, 115 cases/4,656 assertions per host execution. [Demo code source audit 43352312987](https://github.com/night-outlook/hybridclr_demo/actions/runs/43352312987) **2/2 PASS** at pre-doc commit. [Design, implementation, review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_FIRST_OWNER_ENDPASS_RECHECK_REVIEW_2026-11-13.md).
+
+**Not product acceptance:** full original V1 class/metadata table, lifetime/GC/whole-VM epoch, real Unity native TU/Player and CPU/lock latency are unproven; terminal-safe complete field14/15, native V2 envelope, external receipt and first recovery remain blocked. WEB_TO_LOCAL CLOSED / NO EXECUTION; R03Accepted=false, H2Passed=false, ReadyForHumanReviewGate=false; no H2/M08A/X02/SNAP-01 or self-approved Human Review Gate.
+
+---
+
 # R03 B2 Primary — packed class-fact scratch (2026-11-12 UTC)
 
 Native il2cpp_plus@39ac1a66b906da12825e095de010cae7cf5a8161 retains exact class root/cctor/state triple-pass comparisons using a dense max-1024 primitive array and uint16 index for the original 2048 registry slots. Max scratch <=53264 bytes vs prior 98304. [Native CI 43346655116](https://github.com/night-outlook/il2cpp_plus/actions/runs/43346655116) 4/4 PASS Mac/Linux C++11/17, 111 source-mock cases/4237 assertions/process; [demo source CI 43347245365](https://github.com/night-outlook/hybridclr_demo/actions/runs/43347245365) 2/2 PASS at code anchor. [Detailed source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_PACKED_CLASS_FACTS_STACK_REVIEW_2026-11-12.md).

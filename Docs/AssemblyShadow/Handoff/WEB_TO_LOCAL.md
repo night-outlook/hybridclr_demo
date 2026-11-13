@@ -1,5 +1,13 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current Primary B2 original V1 root-owner recheck — CLOSED / NO EXECUTION (2026-11-13 UTC)
+
+**NO LOCAL EXECUTION AUTHORITY.** Inactive B2 il2cpp_plus@2ded6fa7deac7a52890aee917516fe9cdb42b128 rechecks each admitted class root's original token-valid physical first-emplace TypeDef owner in the existing third class enumeration. Four new metadata-index drift tests reject changed ownership with stable class/image identities and scrub all positive receipts/rows. [Scoped source and host review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_FIRST_OWNER_ENDPASS_RECHECK_REVIEW_2026-11-13.md). [Native CI 43351671250](https://github.com/night-outlook/il2cpp_plus/actions/runs/43351671250) 4/4 PASS Mac/Linux C++11/17, 115 scenarios/4656 assertions/process. [Demo code source CI 43352312987](https://github.com/night-outlook/hybridclr_demo/actions/runs/43352312987) 2/2 PASS at code commit; final doc-HEAD CI separate.
+
+Four authoritative branch pins: codex/assembly-shadow-r01b-h1 for all; hybridclr_demo latest verified remote HEAD; hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55; hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de; il2cpp_plus@2ded6fa7deac7a52890aee917516fe9cdb42b128. Exact 64-native/eight-demo source roster. This is only mocked VM/source evidence, NOT official Unity TU, GameAssembly, Player or actual GC/metadata lifetime. The extra bounded end-pass source lookups require later profiling. Complete field14/15, native V2, first recovery and R03 acceptance remain false. Local must return NoExecutionAuthority, not repeat B1 oneuse-12, begin H2/M08A/X02/SNAP-01, or enter Human Review Gate.
+
+---
+
 ## Current Primary packed class-fact source checkpoint — CLOSED / NO EXECUTION (2026-11-12 UTC)
 
 **NO LOCAL EXECUTION AUTHORITY.** Inactive native il2cpp_plus@39ac1a66b906da12825e095de010cae7cf5a8161 now packs at most 1024 exact primitive class-fact records with 2048 one-based uint16 hash-slot indices; source scratch bound <=53264 bytes vs old 98304. Original enabled V1 getter, B1 and player behavior unchanged. [Design, implementation, source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_PACKED_CLASS_FACTS_STACK_REVIEW_2026-11-12.md). [Native CI 43346655116](https://github.com/night-outlook/il2cpp_plus/actions/runs/43346655116) 4/4 host PASS Mac/Linux C++11/17, 111 cases/4237 assertions/process. [Demo CI 43347245365](https://github.com/night-outlook/hybridclr_demo/actions/runs/43347245365) 2/2 source PASS at code anchor; final doc-HEAD audit separate.

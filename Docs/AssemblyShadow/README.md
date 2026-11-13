@@ -1,3 +1,11 @@
+# Current Primary — original V1 root-owner end-pass check (2026-11-13 UTC)
+
+**Inactive B2 source:** il2cpp_plus@2ded6fa7deac7a52890aee917516fe9cdb42b128 now rechecks each authenticated class root TypeDef's first-emplace owner against the ORIGINAL physical token-valid V1 image order during the existing third class pass. Four new indexed-handle-table mutation negatives reject stale root ownership even when class pointers and image tokens remain constant. Uses a separate <=65,536 metadata lookup budget; no new class traversal or extra large stack buffer. [Source review and remaining risks](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_FIRST_OWNER_ENDPASS_RECHECK_REVIEW_2026-11-13.md).
+
+**Exact source evidence:** [native CI 43351671250](https://github.com/night-outlook/il2cpp_plus/actions/runs/43351671250) **4/4 PASS** macOS/Ubuntu × C++11/C++17 (115 synthetic-VM scenarios, 4,656 assertions per process); [demo code-anchor CI 43352312987](https://github.com/night-outlook/hybridclr_demo/actions/runs/43352312987) **2/2 PASS** 64-native/eight-demo physical source audit. Final documentation commit CI must be checked separately. No complete original V1 metadata table, GC/class lifetime, coherent VM epoch, real Unity Player, terminal-safe full field14/15 or native V2. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; PureInterpreter disabled; [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) CLOSED / NO EXECUTION.
+
+---
+
 # Current Primary — packed B2 class facts reduce stack bound (2026-11-12 UTC)
 
 Native il2cpp_plus@39ac1a66b906da12825e095de010cae7cf5a8161: inactive B2 root/cctor facts use 1024 dense primitive records plus 2048 uint16 registry-slot indices, <=53264 bytes instead of 98304, saving >=45040 bytes on the reviewed ABI. Source exact slot semantics, three-pass comparisons and fail-closed scrub retained. [Source review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_PACKED_CLASS_FACTS_STACK_REVIEW_2026-11-12.md). [Exact native CI 43346655116](https://github.com/night-outlook/il2cpp_plus/actions/runs/43346655116) 4/4 PASS Mac/Linux C++11/17, 111 cases/4237 assertions per process (synthetic VM). [Demo source anchor CI 43347245365](https://github.com/night-outlook/hybridclr_demo/actions/runs/43347245365) 2/2 PASS 64-native/eight-demo sources; final docs CI separately verified.
