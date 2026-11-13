@@ -1,3 +1,11 @@
+# Current Primary — shared exact root/non-root TypeDef audit (2026-11-13 UTC)
+
+Inactive B2 `il2cpp_plus@f89b9e9323df1234bf1bc59ca7f418533c958246` now copies and rechecks exact names (<=64 bytes per namespace/simple-name), declaration/generic indices and arity for **both admitted root and non-root TypeDefs**, using the same <=24,576-byte scratch object. The **128 distinct-handle capacity is now COMBINED** and can reject B2 inputs previously admitted with >128 root TypeDefs; this requires redesign/real source census before any product activation. Per-role positive receipts and fail-closed source error behavior remain. [Scoped design/source review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_SHARED_ROOT_NONROOT_TYPEDEF_DECLARATION_REVIEW_2026-11-13.md).
+
+[Native source host CI 43373757923](https://github.com/night-outlook/il2cpp_plus/actions/runs/43373757923) **4/4 PASS** Mac/Linux C++11/17, 133 synthetic-VM cases/6,623 assertions per process. [Four-repository code source CI 43374160198](https://github.com/night-outlook/hybridclr_demo/actions/runs/43374160198) **2/2 PASS** Mac/Linux at code anchor, 64-native/eight-demo exact blobs; final documentation HEAD CI checked separately. This is NOT a coherent VM/GC/class lifetime epoch, official Unity Player, full original field14/15, or native V2. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false. [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) CLOSED / NO EXECUTION.
+
+---
+
 # Current Primary — bounded non-root TypeDef declaration consistency (2026-11-13 UTC)
 
 **Inactive native implementation:** il2cpp_plus@bf9b17175b56090ad5ac05f699864b79358204a2 now compares exact captured non-root TypeDef declaration namespace/name bytes (<=64 each), declaring/generic indices and arity at final metadata sampling for <=128 authenticated handles. Late changes reject; a second-pass failure now exits before partial metadata audits can overwrite its first error. [Source design and Primary review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NONROOT_TYPEDEF_DECLARATION_CONTENT_REVIEW_2026-11-13.md).

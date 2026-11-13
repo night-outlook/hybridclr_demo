@@ -1,3 +1,13 @@
+# R03 B2 — root and non-root TypeDef declaration contents (2026-11-13 UTC)
+
+Native `il2cpp_plus@f89b9e9323df1234bf1bc59ca7f418533c958246`: original physical TypeDef first-owner proof now feeds one shared <=128 distinct-handle audit for **all admitted root and non-root** TypeDef declarations. Exact namespace/name bytes (each <=64), declaring/generic indices and arity are compared after the third class and second original physical-image observations. Source class pass count unchanged; audit scratch <=24,576 bytes, but larger previous subsets may now reject on combined 128 capacity. [Source review and limits](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_SHARED_ROOT_NONROOT_TYPEDEF_DECLARATION_REVIEW_2026-11-13.md).
+
+[Native CI 43373757923](https://github.com/night-outlook/il2cpp_plus/actions/runs/43373757923) **4/4 PASS** Mac/Linux C++11/17, 133 cases/6,623 assertions per process (synthetic VM). [Code source CI 43374160198](https://github.com/night-outlook/hybridclr_demo/actions/runs/43374160198) **2/2 PASS** Mac/Linux 64-native/eight-demo source gate, final documentation SHA verified separately.
+
+**Remaining:** complete original V1 image/TypeDef table and interpreter/generic/VAR/MVAR class shapes, GC/class/metadata lifetime and whole-VM epoch, real Unity stack/lock-time and Player evidence, preterminal immutable full field14/15, native descriptor-relative V2 artifact/envelope/identity receipt/first recovery. WEB_TO_LOCAL CLOSED / NO EXECUTION; R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false.
+
+---
+
 # R03 B2 Primary — exact bounded non-root TypeDef metadata content (2026-11-13 UTC)
 
 Inactive il2cpp_plus@bf9b17175b56090ad5ac05f699864b79358204a2: for <=128 admitted non-root TypeDefs, retain namespace/name byte copies (each <=64), declaring and generic container indices, arity, and recheck after root/non-root physical ownership observations. Early TypeKey failure now preserves its first error. Audit scratch <=24,576 bytes; over-budget names/owner cap fail closed. [Native CI 43361925344](https://github.com/night-outlook/il2cpp_plus/actions/runs/43361925344) **4/4 PASS** Mac/Linux C++11/C++17, 126 cases/5,637 assertions/process. [Review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NONROOT_TYPEDEF_DECLARATION_CONTENT_REVIEW_2026-11-13.md). [Demo code-anchor CI 43362278126](https://github.com/night-outlook/hybridclr_demo/actions/runs/43362278126); final docs CI checked separately.
