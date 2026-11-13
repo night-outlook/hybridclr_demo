@@ -1,3 +1,11 @@
+# Current Primary — full root Il2CppType bitfield observation (2026-11-13 UTC)
+
+Inactive B2 `night-outlook/il2cpp_plus@f6584984c2f175f42e1b071cc99007e1d3eef185` now packs all six original `Il2CppType` bitfields into the existing 32-bit root `ClassFacts` signature. Five new end-pass mutation negatives reject changed attrs/modifiers/byref/pinned/valuetype while preserving unchanged <=48-byte fact size and <=53,264-byte packed scratch. [Scoped Primary review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_TYPE_BITFIELD_SOURCE_FENCE_REVIEW_2026-11-13.md).
+
+[Native CI 43429814337](https://github.com/night-outlook/il2cpp_plus/actions/runs/43429814337) **4/4 PASS** Mac/Linux C++11/17, 139 synthetic-VM scenarios / 6,873 assertions per execution; demo exact four-pin source audit must be independently verified at this new code/docs HEAD. No Unity native TU/Player/GC/VM epoch, complete terminal V1 field14/15, native V2 or R03 acceptance. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) CLOSED / NO EXECUTION.
+
+---
+
 # Current Primary — explicit root/non-root TypeDef use-site roles (2026-11-13 UTC)
 
 Inactive B2 `il2cpp_plus@94e5312b8ee167384820f8ab58ee9661dfc7bfb3` now classifies TypeDef root/non-root roles by actual **call site**, not handle equality. One authenticated handle used both ways has both role bits in one pair. New synthetic regression `GenericRootAlsoArgument`; [Primary review and limits](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_EXPLICIT_ROOT_NONROOT_ROLE_REVIEW_2026-11-13.md).

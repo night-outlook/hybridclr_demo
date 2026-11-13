@@ -590,8 +590,12 @@ original_join::CheckFirstOwner(
         c=self.original["nativeSourceCapabilities"]
         self.assertTrue(c["observedClassRootFactsThreePassInNativeSource"])
         self.assertEqual(c["observedClassRootFields"],
-            ["image","definition","typeData","generic","typeCode"])
-        self.assertEqual(c["observedClassRootMutationNegativeCases"],7)
+            ["image","definition","typeData","generic","typeBits"])
+        self.assertEqual(c["observedClassRootMutationNegativeCases"],12)
+        self.assertEqual(c["observedClassRootTypeBitfields"],
+            ["attrs:16","type:8","num_mods:5","byref:1","pinned:1","valuetype:1"])
+        self.assertEqual(c["observedClassRootTypeBitfieldMutationCases"],5)
+        self.assertEqual(c["observedClassRootTypeBitfieldExtraScratchBytes"],0)
         self.assertEqual(c["observedClassRootFactsSlotCount"],2048)
         self.assertEqual(c["observedClassRootFactsMaxBytes64"],53264)
         self.assertEqual(c["observedClassRootFactsAdditionalStackBytes64"],20496)
@@ -604,7 +608,10 @@ original_join::CheckFirstOwner(
         for field,value in (
             ("observedClassRootFactsThreePassInNativeSource",False),
             ("observedClassRootFields",["image","definition"]),
-            ("observedClassRootMutationNegativeCases",6),
+            ("observedClassRootMutationNegativeCases",11),
+            ("observedClassRootTypeBitfields",["type:8"]),
+            ("observedClassRootTypeBitfieldMutationCases",4),
+            ("observedClassRootTypeBitfieldExtraScratchBytes",4),
             ("observedClassRootFactsSlotCount",1024),
             ("observedClassRootFactsMaxBytes64",98304),
             ("observedClassRootFactsAdditionalStackBytes64",65536),

@@ -270,8 +270,11 @@ def validate_contract(m:dict)->None:
             c.get("observedClassFactsBetweenPassMutationFailures")==2 and
             c.get("observedClassFactsDuringTypeKeyMutationFailures")==1 and
             c.get("observedClassRootFactsThreePassInNativeSource") is True and
-            c.get("observedClassRootFields")==["image","definition","typeData","generic","typeCode"] and
-            c.get("observedClassRootMutationNegativeCases")==7 and
+            c.get("observedClassRootFields")==["image","definition","typeData","generic","typeBits"] and
+             c.get("observedClassRootTypeBitfields")==["attrs:16","type:8","num_mods:5","byref:1","pinned:1","valuetype:1"] and
+             c.get("observedClassRootTypeBitfieldMutationCases")==5 and
+             c.get("observedClassRootTypeBitfieldExtraScratchBytes")==0 and
+            c.get("observedClassRootMutationNegativeCases")==12 and
             c.get("observedClassRootFactsSlotCount")==2048 and
             c.get("observedClassRootFactsMaxBytes64")==53264 and
             c.get("observedClassRootFactsAdditionalStackBytes64")==20496 and
@@ -806,7 +809,14 @@ def source_boundary(native:dict[str,bytes])->None:
          "image=reinterpret_cast<uintptr_t>(klass->image)",
          "definition=reinterpret_cast<uintptr_t>(klass->typeMetadataHandle)",
          "generic=reinterpret_cast<uintptr_t>(klass->generic_class)",
-         "out.typeCode=static_cast<uint32_t>(type.type)",
+         "uint32_t typeBits=0",
+         "out.typeBits=static_cast<uint32_t>(type.attrs)",
+         "(static_cast<uint32_t>(type.type)<<16)",
+         "(static_cast<uint32_t>(type.num_mods)<<24)",
+         "(static_cast<uint32_t>(type.byref)<<29)",
+         "(static_cast<uint32_t>(type.pinned)<<30)",
+         "(static_cast<uint32_t>(type.valuetype)<<31)",
+         "typeBits==other.typeBits",
          "out.typeData=reinterpret_cast<uintptr_t>(type.data.typeHandle)",
          "out.typeData=reinterpret_cast<uintptr_t>(type.data.generic_class)",
          "bool SameRoot(const ClassFacts& other)",
@@ -873,6 +883,15 @@ def source_boundary(native:dict[str,bytes])->None:
          "record.Freeze()",
          "r02::Snapshot::TryCaptureCurrent",
          "not an all-VM linearization")
+    # Source-derived exact bitfield widths: packed root facts must change
+    # fail-closed if the original Unity/IL2CPP ABI changes.
+    must("libil2cpp/il2cpp-runtime-metadata.h",
+         "unsigned int attrs    : 16;",
+         "Il2CppTypeEnum type     : 8;",
+         "unsigned int num_mods : 5;",
+         "unsigned int byref    : 1;",
+         "unsigned int pinned   : 1;",
+         "unsigned int valuetype : 1;")
     must("libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
          "callbackPhysicalMembershipProven",
          "completeArbitraryTypeKeys=false",
@@ -976,6 +995,11 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::RootImageChangedAtEnd",
          "Mode::RootDefinitionChangedAtEnd",
          "Mode::RootTypeCodeChangedAtEnd",
+         "Mode::RootAttrsChangedAtEnd",
+         "Mode::RootModsChangedAtEnd",
+         "Mode::RootByrefChangedAtEnd",
+         "Mode::RootPinnedChangedAtEnd",
+         "Mode::RootValuetypeChangedAtEnd",
          "Mode::RootTypeDataChangedAtEnd",
          "Mode::RootGenericChangedAtEnd",
          "Mode::EarlierRootChangedDuringLaterTypeKey",

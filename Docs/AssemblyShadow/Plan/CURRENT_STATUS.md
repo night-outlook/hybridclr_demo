@@ -1,3 +1,11 @@
+# R03 B2 Primary — root Type bitfield drift fence (2026-11-13 UTC)
+
+Inactive native `f6584984c2f175f42e1b071cc99007e1d3eef185` now captures the exact six original `Il2CppType` bitfields in the pre-existing root `ClassFacts` 32-bit slot, rechecking them in three physical observations. Five new isolated post-row mutations reject with `ObservedClassRootChanged`. [Implementation, verification, limitations](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_TYPE_BITFIELD_SOURCE_FENCE_REVIEW_2026-11-13.md). [Native CI 43429814337](https://github.com/night-outlook/il2cpp_plus/actions/runs/43429814337) **4/4 PASS**, 139 synthetic-VM cases / 6,873 assertions per process. Demo four-pin exact audit is pending verification at new HEAD.
+
+ClassFacts <=48 B, PackedFacts <=53,264 B; 128 TypeDef pair and 64-byte name limits unchanged. Still missing real Unity, class/GC/VM epoch, full original V1 fields14/15, authenticated native V2 transport and first recovery. WEB_TO_LOCAL CLOSED / NO EXECUTION; R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false.
+
+---
+
 # R03 B2 Primary — explicit root/non-root TypeDef use-site role (2026-11-13 UTC)
 
 Inactive `night-outlook/il2cpp_plus@94e5312b8ee167384820f8ab58ee9661dfc7bfb3` now classifies a used TypeDef's `root` versus `nonRoot` role from the initial class-definition/child/composite call path rather than comparing it to the class-root handle. The same authenticated handle can be both, while retaining one exact owner/content pair. New `GenericRootAlsoArgument` positive checks **two distinct pairs, one root and two non-root roles**. [Source/design/self-review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_EXPLICIT_ROOT_NONROOT_ROLE_REVIEW_2026-11-13.md).

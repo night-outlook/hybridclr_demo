@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "INACTIVE R03 B2: classify root/non-root TypeDef use by call path, not handle equality. One authenticated TypeDef may carry both role bits. One new same-handle synthetic source-mock regression. No change to combined <=128 distinct handles, <=64-byte name fields or <=24,576-byte audit. Not full original V1 field15, whole-VM/GC/class epoch, terminal native V2 or runtime acceptance.",
+  "objective": "INACTIVE R03 B2 class root exact-shape observation: pack ALL six original Il2CppType bitfields (attrs:16, type:8, num_mods:5, byref:1, pinned:1, valuetype:1) in the existing 32-bit primitive ClassFacts field across three physical observations. Five new post-row negative cases reject a changed qualifier or valuetype bit. ClassFacts <=48 B; packed scratch <=53264 B, combined TypeDef audit <=128 pairs/24576 B remain. Not GC/metadata/whole-VM epoch, full original fields14/15, native V2, or runtime acceptance.",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "94e5312b8ee167384820f8ab58ee9661dfc7bfb3",
+  "candidateNative": "f6584984c2f175f42e1b071cc99007e1d3eef185",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
@@ -31,7 +31,7 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
-      "gitBlob": "de64687527018a20b90c54017adb92ead639aa32"
+      "gitBlob": "cacaa99081fe4b3bb06fdd3c8b23551ee20e38db"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
@@ -47,7 +47,7 @@
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "fac76588e84b2bea7bdf04f2a810a95ad59eb5f9"
+      "gitBlob": "84906e6afa94e080941dc469a0f09260df37b694"
     },
     {
       "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -300,7 +300,7 @@
       "gitBlob": "75fc8717ed3b54b1aeee583e28671e304ab233e0"
     }
   ],
-  "testProof": "Native il2cpp_plus@94e5312b8ee167384820f8ab58ee9661dfc7bfb3 source-host CI 43396033155 4/4 PASS Mac/Linux C++11/17, 134 synthetic-VM scenarios/6688 assertions each (strict/sanitized Release/Debug). Demo four-pin source-gate CI 43396819207 2/2 PASS Mac/Linux, 43 Python tests/OS, 64 exact native and 8 exact demo blobs, at demo ad03a03f5e73f66db42b7c86cf68e07ab5b47ce1. Final docs SHA is verified separately. No official Unity/GameAssembly/Player/GC/VM epoch, complete field14/15 or authenticated native V2 acceptance.",
+  "testProof": "Native synthetic source-host at il2cpp_plus@f6584984c2f175f42e1b071cc99007e1d3eef185: GitHub Actions 43429814337 4/4 PASS Mac/Linux C++11/17, Release/Debug strict/sanitized, 139 scenarios and 6873 assertions per host execution. Five added negative root bitfield drifts. New demo four-pin exact source-audit CI must be independently checked at latest demo HEAD. No real Unity GameAssembly/Player, GC/class lifetime, whole-VM epoch, original complete field14/15 or native V2.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -469,9 +469,9 @@
       "definition",
       "typeData",
       "generic",
-      "typeCode"
+      "typeBits"
     ],
-    "observedClassRootMutationNegativeCases": 7,
+    "observedClassRootMutationNegativeCases": 12,
     "observedClassRootFactsSlotCount": 2048,
     "observedClassRootFactsMaxBytes64": 53264,
     "observedClassRootFactsAdditionalStackBytes64": 20496,
@@ -554,7 +554,17 @@
     "admittedRootTypeDefContentUnityPlayerVerified": false,
     "admittedRootTypeDefContentUnboundedNamesSupported": false,
     "rootAndNonRootRoleClassifiedByCallPath": true,
-    "sameHandleRootAndNonRootSourceMockCases": 1
+    "sameHandleRootAndNonRootSourceMockCases": 1,
+    "observedClassRootTypeBitfields": [
+      "attrs:16",
+      "type:8",
+      "num_mods:5",
+      "byref:1",
+      "pinned:1",
+      "valuetype:1"
+    ],
+    "observedClassRootTypeBitfieldMutationCases": 5,
+    "observedClassRootTypeBitfieldExtraScratchBytes": 0
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
