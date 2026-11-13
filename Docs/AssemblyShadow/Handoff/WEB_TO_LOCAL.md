@@ -1,5 +1,13 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current Primary packed class-fact source checkpoint — CLOSED / NO EXECUTION (2026-11-12 UTC)
+
+**NO LOCAL EXECUTION AUTHORITY.** Inactive native il2cpp_plus@39ac1a66b906da12825e095de010cae7cf5a8161 now packs at most 1024 exact primitive class-fact records with 2048 one-based uint16 hash-slot indices; source scratch bound <=53264 bytes vs old 98304. Original enabled V1 getter, B1 and player behavior unchanged. [Design, implementation, source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_PACKED_CLASS_FACTS_STACK_REVIEW_2026-11-12.md). [Native CI 43346655116](https://github.com/night-outlook/il2cpp_plus/actions/runs/43346655116) 4/4 host PASS Mac/Linux C++11/17, 111 cases/4237 assertions/process. [Demo CI 43347245365](https://github.com/night-outlook/hybridclr_demo/actions/runs/43347245365) 2/2 source PASS at code anchor; final doc-HEAD audit separate.
+
+All four use codex/assembly-shadow-r01b-h1: demo latest verified pushed remote SHA, hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55, hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de, il2cpp_plus@39ac1a66b906da12825e095de010cae7cf5a8161. Exact 64-native/eight-demo Git blobs. No real Unity/IL2CPP Player, class/GC/whole-VM epoch or measured worker-stack evidence, full terminal field14/15 or native descriptor-V2. Local must report NoExecutionAuthority, do not reuse consumed B1 oneuse-12 or enter H2/M08A/X02/SNAP-01 or Human Review Gate.
+
+---
+
 ## Current R03 B2 Primary observed-class-root checkpoint — CLOSED / NO EXECUTION (2026-11-12 UTC)
 
 **NO LOCAL EXECUTION AUTHORITY.** Inactive native source il2cpp_plus@c37adc9f7cb610b524ae32b176cbc3e3f67cd35b now samples and compares class root image, definition, byval tag/payload and generic pointer together with prior cctor/static facts. Seven new negatives in [native source-host CI 43218731616](https://github.com/night-outlook/il2cpp_plus/actions/runs/43218731616) passed Ubuntu C++11/17 (106 cases/3194 assertions per process); macOS native queued at checkpoint. [Source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CLASS_ROOT_SOURCE_FENCE_REVIEW_2026-11-12.md). **96-KiB class-facts buffer** at 64-bit (+64KiB) is not yet tested in official Unity native worker stack, and no Player/GC acceptance is claimed.

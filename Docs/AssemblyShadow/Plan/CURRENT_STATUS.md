@@ -1,3 +1,11 @@
+# R03 B2 Primary — packed class-fact scratch (2026-11-12 UTC)
+
+Native il2cpp_plus@39ac1a66b906da12825e095de010cae7cf5a8161 retains exact class root/cctor/state triple-pass comparisons using a dense max-1024 primitive array and uint16 index for the original 2048 registry slots. Max scratch <=53264 bytes vs prior 98304. [Native CI 43346655116](https://github.com/night-outlook/il2cpp_plus/actions/runs/43346655116) 4/4 PASS Mac/Linux C++11/17, 111 source-mock cases/4237 assertions/process; [demo source CI 43347245365](https://github.com/night-outlook/hybridclr_demo/actions/runs/43347245365) 2/2 PASS at code anchor. [Detailed source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_PACKED_CLASS_FACTS_STACK_REVIEW_2026-11-12.md).
+
+Still blocked: real Unity worker-stack and Player testing, complete class metadata/lifetime/whole-VM epoch, terminal-safe full field14/15 and authenticated native V2 artifact/receipt/recovery. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; WEB_TO_LOCAL CLOSED / NO EXECUTION.
+
+---
+
 # R03 B2 — observed class root image/TypeDef/byval facts (2026-11-12 UTC)
 
 Native il2cpp_plus@c37adc9f7cb610b524ae32b176cbc3e3f67cd35b compares class root image, metadata TypeDef, byval tag/payload and generic pointer across the existing three physically matched callbacks, distinguishing ObservedClassRootChanged from prior cctor/static errors. [Native CI 43218731616](https://github.com/night-outlook/il2cpp_plus/actions/runs/43218731616): Ubuntu C++11/17 2/2 PASS (106 cases/3194 assertions per process), macOS queued at review. [Design, code and source-review limits](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CLASS_ROOT_SOURCE_FENCE_REVIEW_2026-11-12.md).
