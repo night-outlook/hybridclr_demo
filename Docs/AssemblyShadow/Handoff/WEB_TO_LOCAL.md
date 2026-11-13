@@ -1,5 +1,13 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current Primary B2 bounded declaration-content checkpoint — CLOSED / NO EXECUTION (2026-11-13 UTC)
+
+**NO LOCAL EXECUTION AUTHORITY.** Native il2cpp_plus@bf9b17175b56090ad5ac05f699864b79358204a2 extends the inactive B2 non-root TypeDef owner audit with byte-exact names (<=64 each), declaration/generic indices and arity for <=128 previously authenticated non-root handles. A second-pass TypeKey error now returns before final partial audits can overwrite it. [Source review and limits](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NONROOT_TYPEDEF_DECLARATION_CONTENT_REVIEW_2026-11-13.md). [Native host CI 43361925344](https://github.com/night-outlook/il2cpp_plus/actions/runs/43361925344) **4/4 PASS** Mac/Linux C++11/17, 126 scenarios/5,637 assertions/process; [demo code-anchor CI 43362278126](https://github.com/night-outlook/hybridclr_demo/actions/runs/43362278126) 64-native/eight-demo source audit, final doc-HEAD CI separately verified.
+
+Four branch pins `codex/assembly-shadow-r01b-h1`: hybridclr_demo **latest actually pushed HEAD**; hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55; hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de; il2cpp_plus@bf9b17175b56090ad5ac05f699864b79358204a2. Original enabled V1 getter/B1 unchanged; no genuine Unity IL2CPP TU/Player, class/GC/VM epoch, complete terminal field14/15 or native V2 transport. Audit scratch expands to <=24,576 B and requires future **authorized** real worker-stack/metadata-lock profiling. Local must report `NoExecutionAuthority`; do not reuse consumed B1 oneuse-12, start H2/M08A/X02/SNAP-01, or self-approve Human Review Gate.
+
+---
+
 ## Current Primary B2 non-root TypeDef owner audit — CLOSED / NO EXECUTION (2026-11-13 UTC)
 
 **NO LOCAL EXECUTION AUTHORITY.** Inactive source il2cpp_plus@8901942f5d04e97cf8cad59a6dc2922c1d40ceee extends original first-owner end-pass checks from registered class roots to <=128 previously admitted unique non-root TypeDef handles, under the initial metadata Reader and g_MetadataLock. Separate <=65,536 metadata lookups; source stays observational, with no complete TypeDef table, class/GC lifetime or whole-VM epoch. [Independent Primary source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NONROOT_TYPEDEF_ENDPASS_OWNER_REVIEW_2026-11-13.md). [Native CI 43358606294](https://github.com/night-outlook/il2cpp_plus/actions/runs/43358606294) 4/4 Mac/Linux C++11/17 PASS 120 scenarios/5,221 assertions/process, synthetic VM only. [Demo CI 43358990655](https://github.com/night-outlook/hybridclr_demo/actions/runs/43358990655) 2/2 PASS at code anchor, final doc SHA verified separately.

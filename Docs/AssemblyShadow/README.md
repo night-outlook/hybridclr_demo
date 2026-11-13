@@ -1,3 +1,11 @@
+# Current Primary — bounded non-root TypeDef declaration consistency (2026-11-13 UTC)
+
+**Inactive native implementation:** il2cpp_plus@bf9b17175b56090ad5ac05f699864b79358204a2 now compares exact captured non-root TypeDef declaration namespace/name bytes (<=64 each), declaring/generic indices and arity at final metadata sampling for <=128 authenticated handles. Late changes reject; a second-pass failure now exits before partial metadata audits can overwrite its first error. [Source design and Primary review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NONROOT_TYPEDEF_DECLARATION_CONTENT_REVIEW_2026-11-13.md).
+
+[Exact native CI 43361925344](https://github.com/night-outlook/il2cpp_plus/actions/runs/43361925344) **4/4 PASS** macOS/Ubuntu C++11/17, 126 scenarios/5,637 assertions per synthetic-VM process. [Demo code-anchor source CI 43362278126](https://github.com/night-outlook/hybridclr_demo/actions/runs/43362278126) checked 64 native/eight demo files; final docs SHA CI must be verified separately. **Not** complete root/full-V1 metadata, coherent class/GC/VM epoch, actual Unity Player, terminal-safe field14/15, or authenticated native V2. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) **CLOSED / NO EXECUTION**.
+
+---
+
 # Current Primary — bounded non-root TypeDef end-pass owner audit (2026-11-13 UTC)
 
 Native inactive B2 il2cpp_plus@8901942f5d04e97cf8cad59a6dc2922c1d40ceee now rechecks **up to 128 distinct admitted non-root TypeDef handle/physical owner pairs** (nested declarations, generic arguments, primitive defaults) after three class passes and the second original physical V1 image snapshot. Reuses original first-emplace owner policy with a separate <=65,536 lookup limit; no extra class traversal or full metadata/VM epoch claim. [Detailed Primary source review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NONROOT_TYPEDEF_ENDPASS_OWNER_REVIEW_2026-11-13.md).

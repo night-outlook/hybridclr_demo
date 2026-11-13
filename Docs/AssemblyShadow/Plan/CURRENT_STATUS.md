@@ -1,3 +1,11 @@
+# R03 B2 Primary — exact bounded non-root TypeDef metadata content (2026-11-13 UTC)
+
+Inactive il2cpp_plus@bf9b17175b56090ad5ac05f699864b79358204a2: for <=128 admitted non-root TypeDefs, retain namespace/name byte copies (each <=64), declaring and generic container indices, arity, and recheck after root/non-root physical ownership observations. Early TypeKey failure now preserves its first error. Audit scratch <=24,576 bytes; over-budget names/owner cap fail closed. [Native CI 43361925344](https://github.com/night-outlook/il2cpp_plus/actions/runs/43361925344) **4/4 PASS** Mac/Linux C++11/C++17, 126 cases/5,637 assertions/process. [Review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NONROOT_TYPEDEF_DECLARATION_CONTENT_REVIEW_2026-11-13.md). [Demo code-anchor CI 43362278126](https://github.com/night-outlook/hybridclr_demo/actions/runs/43362278126); final docs CI checked separately.
+
+**Still blocked:** root TypeDef contents and complete original field15 source, class/GC/whole-VM lifetime, real Unity native TU/Player and stack/lock profiling, complete terminal field14/15, native V2 artifact/envelope/receipt/recovery and R03 acceptance. WEB_TO_LOCAL **CLOSED / NO EXECUTION**; R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false.
+
+---
+
 # R03 B2 — admitted non-root TypeDef handles rechecked at end (2026-11-13 UTC)
 
 Inactive native il2cpp_plus@8901942f5d04e97cf8cad59a6dc2922c1d40ceee: record <=128 distinct authenticated non-root TypeDef owner pairs and repeat original physical V1 first-owner checks after end-of-collection root pass and second original image observation. Fail-closed on missing/earlier owner, conflict, capacity or separate <=65,536 lookup budget; scratch <=2,064 additional bytes. [Native CI 43358606294](https://github.com/night-outlook/il2cpp_plus/actions/runs/43358606294) **4/4 PASS** Mac/Linux C++11/17 (120 cases/5,221 assertions/process); [demo code source CI 43358990655](https://github.com/night-outlook/hybridclr_demo/actions/runs/43358990655) **2/2 PASS**, final docs HEAD separately checked. [Source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NONROOT_TYPEDEF_ENDPASS_OWNER_REVIEW_2026-11-13.md).
