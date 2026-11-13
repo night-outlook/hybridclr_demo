@@ -1,3 +1,13 @@
+# R03 B2 Primary — explicit root/non-root TypeDef use-site role (2026-11-13 UTC)
+
+Inactive `night-outlook/il2cpp_plus@94e5312b8ee167384820f8ab58ee9661dfc7bfb3` now classifies a used TypeDef's `root` versus `nonRoot` role from the initial class-definition/child/composite call path rather than comparing it to the class-root handle. The same authenticated handle can be both, while retaining one exact owner/content pair. New `GenericRootAlsoArgument` positive checks **two distinct pairs, one root and two non-root roles**. [Source/design/self-review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_EXPLICIT_ROOT_NONROOT_ROLE_REVIEW_2026-11-13.md).
+
+**Verified source/host:** [native CI 43396033155](https://github.com/night-outlook/il2cpp_plus/actions/runs/43396033155) **4/4 PASS** Mac/Linux C++11/17 (134 synthetic-VM scenarios, 6,688 assertions per execution), and [four-pin demo source CI 43396819207](https://github.com/night-outlook/hybridclr_demo/actions/runs/43396819207) **2/2 PASS** Mac/Linux (43 Python cases/OS; 64 native/eight demo exact Git blobs), both at exact code and previous demo HEADs. Final documentation HEAD CI must be checked separately. The native ancillary R02 source-verify workflow reported a historical-source-pin mismatch in two B2-unchanged files; full native CI is not green.
+
+**Limits unchanged:** combined 128 TypeDef handles, <=64-byte name fields, <=24,576-byte audit scratch and <=65,536 lookup budget; no real source census or Unity native TU/Player/worker-stack/GC profiling. No coherent VM/class/GC epoch, full original V1 field14/15, terminal-native V2 artifact/envelope/independent receipt/first recovery or R03 product acceptance. Original V1 getter, B1 and active resolver unchanged. `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`; PureInterpreter disabled; `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`.
+
+---
+
 # R03 B2 — root and non-root TypeDef declaration contents (2026-11-13 UTC)
 
 Native `il2cpp_plus@f89b9e9323df1234bf1bc59ca7f418533c958246`: original physical TypeDef first-owner proof now feeds one shared <=128 distinct-handle audit for **all admitted root and non-root** TypeDef declarations. Exact namespace/name bytes (each <=64), declaring/generic indices and arity are compared after the third class and second original physical-image observations. Source class pass count unchanged; audit scratch <=24,576 bytes, but larger previous subsets may now reject on combined 128 capacity. [Source review and limits](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_SHARED_ROOT_NONROOT_TYPEDEF_DECLARATION_REVIEW_2026-11-13.md).

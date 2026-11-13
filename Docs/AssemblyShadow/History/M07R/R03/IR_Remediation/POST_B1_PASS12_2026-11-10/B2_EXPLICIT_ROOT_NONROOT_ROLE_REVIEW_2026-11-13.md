@@ -25,3 +25,9 @@ The combined **128-distinct TypeDef** and <=64-byte name-field bounds, <=24,576-
 - **Unrelated native R02 workflow 43396030879:** failed its historical `tools/r02/finalize_sources.py --verify` byte-pins for `AssemblyShadowTypeResolver.cpp` and `AssemblyShadow.cpp`, neither changed in this B2 cycle. The targeted B2 source matrix is separately green; do not claim all native CI is green.
 
 The demo source-audit CI at the final doc HEAD must still be inspected. Scope and acceptance flags above are unchanged.
+
+## Exact four-repository source-gate result
+
+[**Demo CI 43396819207**](https://github.com/night-outlook/hybridclr_demo/actions/runs/43396819207): 2/2 completed/success on macOS-15/Ubuntu-24.04 at demo `ad03a03f5e73f66db42b7c86cf68e07ab5b47ce1` and native `94e5312b8ee167384820f8ab58ee9661dfc7bfb3`, with frozen hybridclr/hybridclr_unity branches. Each OS passed 43 source-gate Python tests; verified 64 native and eight demo Git blobs and original V1 getter provenance. Both results report `PassedInactiveSourceOnly_NotFullV2` and keep `handoffAuthority=CLOSED_NO_LOCAL_EXECUTION`. This does not verify the later documentation commit without its own exact-HEAD result.
+
+Primary code review: no new class visitation, native heap allocation, extra audit pair, changed 128/64-byte limits, original enabled getter modification, or premature positive product/VM predicate was introduced. The mock scenario is synthetic and cannot supply GC/type lifetime evidence. This is a scoped Primary review, **not** an independent Human Review Gate.
