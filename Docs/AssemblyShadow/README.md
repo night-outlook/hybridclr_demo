@@ -2,7 +2,7 @@
 
 Inactive B2 `night-outlook/il2cpp_plus@f6584984c2f175f42e1b071cc99007e1d3eef185` now packs all six original `Il2CppType` bitfields into the existing 32-bit root `ClassFacts` signature. Five new end-pass mutation negatives reject changed attrs/modifiers/byref/pinned/valuetype while preserving unchanged <=48-byte fact size and <=53,264-byte packed scratch. [Scoped Primary review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_TYPE_BITFIELD_SOURCE_FENCE_REVIEW_2026-11-13.md).
 
-[Native CI 43429814337](https://github.com/night-outlook/il2cpp_plus/actions/runs/43429814337) **4/4 PASS** Mac/Linux C++11/17, 139 synthetic-VM scenarios / 6,873 assertions per execution; demo exact four-pin source audit must be independently verified at this new code/docs HEAD. No Unity native TU/Player/GC/VM epoch, complete terminal V1 field14/15, native V2 or R03 acceptance. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) CLOSED / NO EXECUTION.
+[Native CI 43429814337](https://github.com/night-outlook/il2cpp_plus/actions/runs/43429814337) **4/4 PASS** Mac/Linux C++11/17, 139 synthetic-VM scenarios / 6,873 assertions per execution; [four-pin exact source audit 43430276852](https://github.com/night-outlook/hybridclr_demo/actions/runs/43430276852) **2/2 PASS** Mac/Linux at demo a6360bd9d629cb0b9597f666a25d158472990dd6 (64 native/eight demo exact blobs, Python gate). The final docs HEAD has its own CI verdict. No Unity native TU/Player/GC/VM epoch, complete terminal V1 field14/15, native V2 or R03 acceptance. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) CLOSED / NO EXECUTION.
 
 ---
 
