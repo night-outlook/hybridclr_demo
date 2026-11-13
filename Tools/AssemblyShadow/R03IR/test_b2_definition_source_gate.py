@@ -456,8 +456,8 @@ class SourceGateTests(unittest.TestCase):
     def test_native_endpass_class_facts_acceptance_stays_scoped(self):
         c=self.original["nativeSourceCapabilities"]
         self.assertEqual(c["physicalEnumerationPasses"],3)
-        self.assertEqual(c["mockScenarios"],115)
-        self.assertEqual(c["mockAssertionsPerExecution"],4656)
+        self.assertEqual(c["mockScenarios"],120)
+        self.assertEqual(c["mockAssertionsPerExecution"],5221)
         self.assertTrue(c["observedClassFactsEndPassImplemented"])
         self.assertTrue(c["observedClassFactsEndPassNotVmEpoch"])
         self.assertFalse(c["observedClassFactsEndPassClassCountProvenInRealUnity"])
@@ -465,8 +465,8 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(c["observedClassFactsEndPassEnumerationFailures"],2)
         for key,wrong in (
             ("physicalEnumerationPasses",2),
-            ("mockScenarios",111),
-            ("mockAssertionsPerExecution",4237),
+            ("mockScenarios",115),
+            ("mockAssertionsPerExecution",4656),
             ("observedClassFactsEndPassImplemented",False),
             ("observedClassFactsEndPassMutationFailures",2),
             ("observedClassFactsEndPassEnumerationFailures",1),
@@ -685,6 +685,47 @@ original_join::CheckFirstOwner(
             altered["nativeSourceCapabilities"][field]=bad
             with self.subTest(field=field),self.assertRaises(audit.Rejected):
                 audit.validate_contract(altered)
+
+    def test_nonroot_typedef_owner_audit_remains_scoped(self):
+        c=self.original["nativeSourceCapabilities"]
+        self.assertTrue(c["nonRootTypeDefOwnerEndPassImplemented"])
+        self.assertEqual(c["nonRootTypeDefOwnerPairsLimit"],128)
+        self.assertEqual(c["nonRootTypeDefOwnerAuditMaxStackBytes"],2064)
+        self.assertEqual(c["nonRootTypeDefOwnerEndPassLookupLimit"],65536)
+        self.assertEqual(c["nonRootTypeDefOwnerEndPassMutationFailures"],5)
+        for key in ("nonRootTypeDefOwnerDeduplicatesSameHandleOwner",
+                    "nonRootTypeDefOwnerOwnerConflictFailsClosed",
+                    "nonRootTypeDefOwnerCapacityFailsClosed",
+                    "nonRootTypeDefOwnerCoversEveryCapturedNonRootTypeDef"):
+            self.assertTrue(c[key],key)
+        for key in ("nonRootTypeDefOwnerScratchHeapAllocation",
+                    "nonRootTypeDefOwnerFullOriginalV1TableProven",
+                    "nonRootTypeDefOwnerClassGcLifetimeProven",
+                    "nonRootTypeDefOwnerUnityPlayerVerified",
+                    "nonRootTypeDefOwnerWholeVmEpochProven",
+                    "nonRootTypeDefOwnerAllInterpreterShapesSupported"):
+            self.assertFalse(c[key],key)
+        for key,bad in (
+            ("nonRootTypeDefOwnerEndPassImplemented",False),
+            ("nonRootTypeDefOwnerPairsLimit",256),
+            ("nonRootTypeDefOwnerAuditMaxStackBytes",4096),
+            ("nonRootTypeDefOwnerEndPassLookupLimit",0),
+            ("nonRootTypeDefOwnerEndPassMutationFailures",4),
+            ("nonRootTypeDefOwnerDeduplicatesSameHandleOwner",False),
+            ("nonRootTypeDefOwnerOwnerConflictFailsClosed",False),
+            ("nonRootTypeDefOwnerCapacityFailsClosed",False),
+            ("nonRootTypeDefOwnerScratchHeapAllocation",True),
+            ("nonRootTypeDefOwnerCoversEveryCapturedNonRootTypeDef",False),
+            ("nonRootTypeDefOwnerFullOriginalV1TableProven",True),
+            ("nonRootTypeDefOwnerClassGcLifetimeProven",True),
+            ("nonRootTypeDefOwnerUnityPlayerVerified",True),
+            ("nonRootTypeDefOwnerWholeVmEpochProven",True),
+            ("nonRootTypeDefOwnerAllInterpreterShapesSupported",True),
+        ):
+            broken=copy.deepcopy(self.original)
+            broken["nativeSourceCapabilities"][key]=bad
+            with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(broken)
 
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")

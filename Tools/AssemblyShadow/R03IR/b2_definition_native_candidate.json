@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "Inactive B2 source rechecks ORIGINAL token-valid physical first-emplace owner for each admitted class ROOT in the already existing third physical traversal, detecting observed indexed metadata-handle table drift despite unchanged class pointer/image tokens. Separate 65536-lookup budget; NOT complete TypeDef table or VM/GC lifetime, original field15, terminal V2.",
+  "objective": "R03 B2 inactive field15 source now rechecks <=128 distinct OTHER physically authenticated original V1 TypeDef handle-owner pairs (nested declarations, composite generic arguments, existing primitive defaults), in addition to the already rechecked class roots, after the final class pass and second physical image observation. Another <=65536 indexed lookup budget; duplicate handles are deduplicated and conflicting or overflowing pairs reject. This is NOT a complete V1 metadata table, whole VM epoch, class/GC lifetime or terminal V2.",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "2ded6fa7deac7a52890aee917516fe9cdb42b128",
+  "candidateNative": "8901942f5d04e97cf8cad59a6dc2922c1d40ceee",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
@@ -27,11 +27,11 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
-      "gitBlob": "cb65e82c32b0c4e8e881004705687e4c3e398f98"
+      "gitBlob": "176f46688a9fbbbf2cfe755395af48761f5325bc"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
-      "gitBlob": "626202c704c27535f6af67b990c794158e87a3e7"
+      "gitBlob": "0662ba5e891ec5470e3458cc98b5cc8995a9f818"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
@@ -47,7 +47,7 @@
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "712f5f54300a8aef4f487429063f4bb28b05635f"
+      "gitBlob": "2f5553cebf12247e36df0139ded4d421a60b2f37"
     },
     {
       "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -55,7 +55,7 @@
     },
     {
       "path": ".github/workflows/r03-native-b2-definition-live-source-host.yml",
-      "gitBlob": "c5bec8764154e2d2a41d274d68be3449d45fa28f"
+      "gitBlob": "1997e7f1a762dcaf4b5bc0cbd684117aa4e9d27f"
     },
     {
       "path": ".github/workflows/r03-native-b2-constructed-typekey-host.yml",
@@ -300,7 +300,7 @@
       "gitBlob": "75fc8717ed3b54b1aeee583e28671e304ab233e0"
     }
   ],
-  "testProof": "Actual inactive native .inl with synthetic VM at il2cpp_plus@2ded6fa7deac7a52890aee917516fe9cdb42b128: exact native CI 43351671250 4/4 PASS macOS15/Ubuntu24.04 C++11/C++17 Release/Debug strict/sanitized, 115 source scenarios and 4656 assertions per host process. Four new negatives: root indexed handle absent, earlier original physical owner appears after row capture, interpreter-only root handle absent, earlier row handle removed during subsequent TypeKey. Initial host run 43351492096 failed because the competing-owner fixture did not enable its mutation; fixed without changing native production path. Genuine Unity native TU/Player, complete metadata map, class lifetime and V2 not run.",
+  "testProof": "Checked-in actual inactive native .inl against synthetic VM GitHub Actions 43358606294 at il2cpp_plus@8901942f5d04e97cf8cad59a6dc2922c1d40ceee: 4/4 PASS macOS-15/Ubuntu-24.04 × C++11/C++17, Release/Debug strict/ASan-UBSan; each host process 120 scenarios/5221 assertions. Five new failure cases remove generic argument source, cross-image unobserved argument, primitive default source and nested declaring-TypeDef source, or introduce earlier interpreter owner of a generic argument after row copy. No official Unity native TU/GameAssembly/Player/GC epoch nor full TypeDef inventory or V2.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -308,7 +308,7 @@
     "metadataReaderEpoch": "initial only",
     "coherentVmEpochProven": false,
     "sourceFirstErrorFence": "Checks B1 Empty before traversal, before record composition, after frozen record",
-    "mockScenarios": 115,
+    "mockScenarios": 120,
     "mockBuildVariants": [
       "release",
       "debug"
@@ -318,7 +318,7 @@
       "sanitized"
     ],
     "physicalClassMembershipScope": "The observed source class must physically match its registration witness; registered AOT images without an observed class may own concrete TypeDef generic arguments; output rows preserve registry-slot order",
-    "mockAssertionsPerExecution": 4656,
+    "mockAssertionsPerExecution": 5221,
     "mockProcessExecutions": 16,
     "firstErrorRaceGuard": "B1 Empty checked pre-entry, after physical rows, and after frozen record; mid-capture publication test rejects",
     "encodedMetadataIndices": "Reject encoded staged declaring-type and generic-container indices before metadata lookup",
@@ -333,13 +333,13 @@
     "legacyTypeKeyGrammarSourceBlob": "6b23b4bad66e9a8f36c68717ef82626351018624",
     "realUnityRuntimeIntegrationProven": false,
     "realGenericRuntimeMetadataAbiBlob": "f7f235848209ee331adfd1c2b214b46cc753392e",
-    "physicalImageInventory": "Two original physical V1 image token/count identity visits, two registered AOT visits, three physically matched class traversals; third pass also revalidates original first physical metadata owner for each admitted root TypeDef, with 65536 independent maximum metadata reads. No global VM/GC metadata epoch.",
+    "physicalImageInventory": "Two original V1 physical image passes and registered-AOT passes plus 3 class callbacks under initial Reader/g_MetadataLock; audit <=128 distinct proven non-root TypeDef handle+image owner pairs after image second read (<=65536 additional indexed lookups), alongside 3rd-pass root rechecks. Does not freeze all metadata TypeDefs or whole VM epoch.",
     "physicalImageLimit": 64,
     "physicalEnumerationPasses": 3,
     "crossImageGenericArgumentsSupportedInMock": true,
     "ambiguousMetadataOwnerFailsClosed": true,
     "allPhysicalMetadataImagesEnumerated": false,
-    "nativeSourceCiRun": "43351671250",
+    "nativeSourceCiRun": "43358606294",
     "physicalIteratorSourceBlob": "f5bf451d3115d02880f8b54cb932c20c4eda60f6",
     "recordOriginalLegacyGrammarUnchanged": true,
     "registeredAotImageLimit": 1024,
@@ -353,7 +353,7 @@
     "runtimeAcceptanceProven": false,
     "unrestrictedCrossImageGenericArgumentsSupported": false,
     "unregisteredAotArgumentFailsClosed": true,
-    "supportedTypeShapeScope": "Previously admitted AOT TypeDef/Unicode/primitive/composite and plain interpreter CLASS/VALUETYPE (including interpreter-only), with original V1 first-emplace owner check for each used TypeKey handle during row construction and another independent original physical root-only first-owner lookup in third class callback. No complete TypeDef table, GC/class/VM epoch, original field15 or terminal V2.",
+    "supportedTypeShapeScope": "Previously admitted AOT TypeDef/Unicode/composite/primitive and plain interpreter CLASS/VALUETYPE subset; every used TypeDef handle is validated during typekey construction and root-only end pass, plus separately >=0 and <=128 DISTINCT non-root metadata handle pairs rechecked after image second pass, failure on capacity or drift. Not full V1, non-root metadata content, class/GC lifetime, complete field14/15, or native V2.",
     "zeroTypeDefinitionRegisteredAotImagesSkipped": true,
     "registeredAotRegistrySource": "original physical Assembly::s_Assemblies under s_assemblyLock; zero-type AOT images skipped",
     "boundedCompositeArgumentShapesInMock": true,
@@ -502,7 +502,22 @@
     "originalV1RootFirstOwnerEndPassNoVmEpoch": true,
     "originalV1RootFirstOwnerEndPassRealUnityProven": false,
     "originalV1RootFirstOwnerEndPassClassGcLifetimeProven": false,
-    "originalV1RootFirstOwnerEndPassWholeTableStableProven": false
+    "originalV1RootFirstOwnerEndPassWholeTableStableProven": false,
+    "nonRootTypeDefOwnerEndPassImplemented": true,
+    "nonRootTypeDefOwnerPairsLimit": 128,
+    "nonRootTypeDefOwnerAuditMaxStackBytes": 2064,
+    "nonRootTypeDefOwnerEndPassLookupLimit": 65536,
+    "nonRootTypeDefOwnerEndPassMutationFailures": 5,
+    "nonRootTypeDefOwnerDeduplicatesSameHandleOwner": true,
+    "nonRootTypeDefOwnerOwnerConflictFailsClosed": true,
+    "nonRootTypeDefOwnerCapacityFailsClosed": true,
+    "nonRootTypeDefOwnerScratchHeapAllocation": false,
+    "nonRootTypeDefOwnerCoversEveryCapturedNonRootTypeDef": true,
+    "nonRootTypeDefOwnerFullOriginalV1TableProven": false,
+    "nonRootTypeDefOwnerClassGcLifetimeProven": false,
+    "nonRootTypeDefOwnerUnityPlayerVerified": false,
+    "nonRootTypeDefOwnerWholeVmEpochProven": false,
+    "nonRootTypeDefOwnerAllInterpreterShapesSupported": false
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,

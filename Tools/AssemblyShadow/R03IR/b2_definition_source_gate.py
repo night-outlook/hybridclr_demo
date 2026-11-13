@@ -179,6 +179,21 @@ def validate_contract(m:dict)->None:
             c.get("originalV1IncludesInterpreterImages") is True and
             c.get("originalV1FirstEmplaceOwnerJoinSourceImplemented") is True and
             c.get("originalV1RootFirstOwnerRecheckedAtEndPass") is True and
+            c.get("nonRootTypeDefOwnerEndPassImplemented") is True and
+            c.get("nonRootTypeDefOwnerPairsLimit")==128 and
+            c.get("nonRootTypeDefOwnerAuditMaxStackBytes")==2064 and
+            c.get("nonRootTypeDefOwnerEndPassLookupLimit")==65536 and
+            c.get("nonRootTypeDefOwnerEndPassMutationFailures")==5 and
+            c.get("nonRootTypeDefOwnerDeduplicatesSameHandleOwner") is True and
+            c.get("nonRootTypeDefOwnerOwnerConflictFailsClosed") is True and
+            c.get("nonRootTypeDefOwnerCapacityFailsClosed") is True and
+            c.get("nonRootTypeDefOwnerScratchHeapAllocation") is False and
+            c.get("nonRootTypeDefOwnerCoversEveryCapturedNonRootTypeDef") is True and
+            c.get("nonRootTypeDefOwnerFullOriginalV1TableProven") is False and
+            c.get("nonRootTypeDefOwnerClassGcLifetimeProven") is False and
+            c.get("nonRootTypeDefOwnerUnityPlayerVerified") is False and
+            c.get("nonRootTypeDefOwnerWholeVmEpochProven") is False and
+            c.get("nonRootTypeDefOwnerAllInterpreterShapesSupported") is False and
             c.get("originalV1RootFirstOwnerEndPassLookupLimit")==65536 and
             c.get("originalV1RootFirstOwnerEndPassMutationFailures")==4 and
             c.get("originalV1RootFirstOwnerEndPassMatchedObservedOnly") is True and
@@ -263,8 +278,8 @@ def validate_contract(m:dict)->None:
             c.get("interpreterVarMvarExecutionTypeKeysSupported") is False and
             c.get("actualUnityInterpreterTypeDefParityProven") is False and
             c.get("wholeVmInterpreterClassLifetimeProven") is False and
-            c.get("mockScenarios")>=115 and
-            c.get("mockAssertionsPerExecution")>=4656 and
+            c.get("mockScenarios")>=120 and
+            c.get("mockAssertionsPerExecution")>=5221 and
             c.get("observedClassFactsRegistrySlotLimit")==2048 and
             c.get("observedClassFactsBytesPerSlot")==2 and
             c.get("observedClassFactsNotCoherentVmEpoch") is True and
@@ -637,6 +652,11 @@ def source_boundary(native:dict[str,bytes])->None:
          "originalV1RootOwnerEndPassMatched=0",
          "originalV1RootOwnerEndPassLookups=0",
          "originalV1RootOwnerEndPassStable=false",
+         "kMaximumNonRootTypeDefOwnerPairs = 128",
+         "originalV1NonRootTypeDefOwnersRecorded=0",
+         "originalV1NonRootTypeDefOwnersRechecked=0",
+         "originalV1NonRootTypeDefOwnerLookups=0",
+         "originalV1NonRootTypeDefOwnersEndPassStable=false",
          "ObservedClassRootChanged",
          "observedClassRootFactsMatched=0",
          "observedClassRootFactsThreePassStable=false",
@@ -676,6 +696,22 @@ def source_boundary(native:dict[str,bytes])->None:
          "OriginalV1FirstOwnerConflict",
          "OriginalV1OwnerMissing",
          "originalV1FirstEmplaceOwnerMatched=",
+         "struct NonRootOwnerAudit",
+         "static_assert(sizeof(NonRootOwnerAudit)<=2064",
+         "NonRootOwnerAudit nonRootOwners{}",
+         "context.nonRootOwners=&nonRootOwners",
+         "handle!=klass->typeMetadataHandle",
+         "c.nonRootOwners->Note(handle,resolved)",
+         "NonRootOwnerAudit::NoteResult::Overflow",
+         "nonRootOwners.pairs[i]",
+         "nonRootOwners.used",
+         "receipt.originalV1NonRootTypeDefOwnersRecorded=nonRootOwners.used",
+         "receipt.originalV1NonRootTypeDefOwnersRechecked=nonRootChecked",
+         "receipt.originalV1NonRootTypeDefOwnerLookups=nonRootLookups",
+         "nonRootOwners.Scrub()",
+         "receipt.originalV1NonRootTypeDefOwnersEndPassStable=",
+         "receipt.originalV1NonRootTypeDefOwnersRecorded==",
+         "receipt.originalV1NonRootTypeDefOwnersRechecked",
          "endPass.originalV1Images=&originalV1Images",
          "rootOwnerLookups=0,rootOwnerMatched=0",
          "*end.originalV1Images,klass->image",
@@ -811,6 +847,13 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::InterpreterOnlyRootIndexedOwnerRemovedAtEnd",
          "Mode::EarlierRootIndexedOwnerRemovedDuringLaterTypeKey",
          "Check(g_changedEarlierIndexedOwner)",
+         "Mode::GenericArgumentOwnerRemovedAtEnd",
+         "Mode::CrossImageUnobservedArgumentOwnerRemovedAtEnd",
+         "Mode::PrimitiveArgumentOwnerRemovedAtEnd",
+         "Mode::NestedDeclarationOwnerRemovedAtEnd",
+         "Mode::EarlierGenericArgumentOwnerAppearedAtEnd",
+         "Check(receipt.originalV1NonRootTypeDefOwnersEndPassStable)",
+         "Check(!receipt.originalV1NonRootTypeDefOwnersEndPassStable)",
          "Mode::OriginalV1UnregisteredOwner",
          "Mode::OriginalV1InvalidImage",
          "Mode::InterpreterSimpleClass",
