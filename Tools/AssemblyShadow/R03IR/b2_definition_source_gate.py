@@ -183,6 +183,24 @@ def validate_contract(m:dict)->None:
             c.get("nonRootTypeDefOwnerPairsLimit")==128 and
             c.get("nonRootTypeDefOwnerAuditMaxStackBytes")==24576 and
             c.get("nonRootTypeDefContentEndPassImplemented") is True and
+            c.get("admittedRootTypeDefContentEndPassImplemented") is True and
+            c.get("auditedTypeDefRootAndNonRootShareBuffer") is True and
+            c.get("auditedTypeDefCombinedDistinctPairLimit")==128 and
+            c.get("auditedTypeDefCombinedMaxStackBytes")==24576 and
+            c.get("auditedTypeDefExactNameByteLimit")==64 and
+            c.get("admittedRootTypeDefContentMutationNegatives")==6 and
+            c.get("admittedRootTypeDefContentOverBudgetCases")==1 and
+            c.get("admittedRootTypeDefContentFirstErrorPreserved") is True and
+            c.get("admittedRootTypeDefContentSeparateReceipts") is True and
+            c.get("admittedRootTypeDefContentNoAdditionalClassPass") is True and
+            c.get("admittedRootTypeDefContentNoSecondAuditBuffer") is True and
+            c.get("admittedRootTypeDefContentNoHeapAllocation") is True and
+            c.get("admittedRootTypeDefContentAllOriginalV1RootsProven") is False and
+            c.get("admittedRootTypeDefContentCompleteMetadataTable") is False and
+            c.get("admittedRootTypeDefContentWholeVmEpochProven") is False and
+            c.get("admittedRootTypeDefContentGcClassLifetimeProven") is False and
+            c.get("admittedRootTypeDefContentUnityPlayerVerified") is False and
+            c.get("admittedRootTypeDefContentUnboundedNamesSupported") is False and
             c.get("nonRootTypeDefContentMaxPairs")==128 and
             c.get("nonRootTypeDefContentExactNameMaxBytes")==64 and
             c.get("nonRootTypeDefContentMaxStackBytes")==24576 and
@@ -295,8 +313,8 @@ def validate_contract(m:dict)->None:
             c.get("interpreterVarMvarExecutionTypeKeysSupported") is False and
             c.get("actualUnityInterpreterTypeDefParityProven") is False and
             c.get("wholeVmInterpreterClassLifetimeProven") is False and
-            c.get("mockScenarios")>=126 and
-            c.get("mockAssertionsPerExecution")>=5637 and
+            c.get("mockScenarios")>=133 and
+            c.get("mockAssertionsPerExecution")>=6623 and
             c.get("observedClassFactsRegistrySlotLimit")==2048 and
             c.get("observedClassFactsBytesPerSlot")==2 and
             c.get("observedClassFactsNotCoherentVmEpoch") is True and
@@ -674,6 +692,12 @@ def source_boundary(native:dict[str,bytes])->None:
          "OriginalV1TypeDefContentChanged",
          "originalV1NonRootTypeDefContentMatched=0",
          "originalV1NonRootTypeDefContentEndPassStable=false",
+         "originalV1AdmittedTypeDefPairsRecorded=0",
+         "originalV1AdmittedTypeDefPairsRechecked=0",
+         "originalV1AdmittedTypeDefOwnerLookups=0",
+         "originalV1RootTypeDefContentRecorded=0",
+         "originalV1RootTypeDefContentMatched=0",
+         "originalV1RootTypeDefContentEndPassStable=false",
          "originalV1NonRootTypeDefOwnersRecorded=0",
          "originalV1NonRootTypeDefOwnersRechecked=0",
          "originalV1NonRootTypeDefOwnerLookups=0",
@@ -736,12 +760,24 @@ def source_boundary(native:dict[str,bytes])->None:
          "static_assert(sizeof(NonRootOwnerAudit)<=24576",
          "NonRootOwnerAudit nonRootOwners{}",
          "context.nonRootOwners=&nonRootOwners",
-         "handle!=klass->typeMetadataHandle",
-         "c.nonRootOwners->Note(handle,resolved)",
+         "handle==klass->typeMetadataHandle",
+         "c.nonRootOwners->Note(",
+         "handle,resolved,handle==klass->typeMetadataHandle",
+         "bool captured=false, root=false, nonRoot=false",
+         "size_t Roots() const noexcept",
+         "size_t NonRoots() const noexcept",
+         "if(isRoot)pairs[i].root=true",
+         "Pair& pair=pairs[used++]",
+         "originalV1AdmittedTypeDefPairsRecorded=nonRootOwners.used",
+         "originalV1AdmittedTypeDefPairsRechecked=admittedChecked",
+         "originalV1AdmittedTypeDefOwnerLookups=auditedLookups",
+         "originalV1RootTypeDefContentRecorded=nonRootOwners.Roots()",
+         "originalV1RootTypeDefContentMatched=rootContentsChecked",
+         "originalV1RootTypeDefContentEndPassStable=",
          "NonRootOwnerAudit::NoteResult::Overflow",
          "nonRootOwners.pairs[i]",
          "nonRootOwners.used",
-         "receipt.originalV1NonRootTypeDefOwnersRecorded=nonRootOwners.used",
+         "receipt.originalV1NonRootTypeDefOwnersRecorded=nonRootOwners.NonRoots()",
          "receipt.originalV1NonRootTypeDefOwnersRechecked=nonRootChecked",
          "receipt.originalV1NonRootTypeDefOwnerLookups=nonRootLookups",
          "nonRootOwners.Scrub()",
@@ -894,6 +930,16 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::NonRootPrimitiveGenericIndexChangedAtEnd",
          "Mode::NonRootArityChangedAtEnd",
          "Mode::NonRootNameBeyondByteBudget",
+         "Mode::RootNameBytesChangedAtEnd",
+         "Mode::RootNamespaceChangedAtEnd",
+         "Mode::RootDeclaringIndexChangedAtEnd",
+         "Mode::RootGenericIndexChangedAtEnd",
+         "Mode::RootGenericArityChangedAtEnd",
+         "Mode::RootNameBeyondByteBudget",
+         "Mode::EarlierRootNameChangedDuringLaterTypeKey",
+         "Check(g_changedEarlierRootName)",
+         "Check(receipt.originalV1RootTypeDefContentEndPassStable)",
+         "Check(!receipt.originalV1RootTypeDefContentEndPassStable)",
          "Check(receipt.originalV1NonRootTypeDefContentEndPassStable)",
          "Check(!receipt.originalV1NonRootTypeDefContentEndPassStable)",
          "Check(receipt.originalV1NonRootTypeDefOwnersEndPassStable)",

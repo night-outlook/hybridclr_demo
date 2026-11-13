@@ -456,8 +456,8 @@ class SourceGateTests(unittest.TestCase):
     def test_native_endpass_class_facts_acceptance_stays_scoped(self):
         c=self.original["nativeSourceCapabilities"]
         self.assertEqual(c["physicalEnumerationPasses"],3)
-        self.assertEqual(c["mockScenarios"],126)
-        self.assertEqual(c["mockAssertionsPerExecution"],5637)
+        self.assertEqual(c["mockScenarios"],133)
+        self.assertEqual(c["mockAssertionsPerExecution"],6623)
         self.assertTrue(c["observedClassFactsEndPassImplemented"])
         self.assertTrue(c["observedClassFactsEndPassNotVmEpoch"])
         self.assertFalse(c["observedClassFactsEndPassClassCountProvenInRealUnity"])
@@ -465,8 +465,8 @@ class SourceGateTests(unittest.TestCase):
         self.assertEqual(c["observedClassFactsEndPassEnumerationFailures"],2)
         for key,wrong in (
             ("physicalEnumerationPasses",2),
-            ("mockScenarios",120),
-            ("mockAssertionsPerExecution",5221),
+            ("mockScenarios",126),
+            ("mockAssertionsPerExecution",5637),
             ("observedClassFactsEndPassImplemented",False),
             ("observedClassFactsEndPassMutationFailures",2),
             ("observedClassFactsEndPassEnumerationFailures",1),
@@ -771,6 +771,57 @@ original_join::CheckFirstOwner(
             broken["nativeSourceCapabilities"][key]=wrong
             with self.subTest(key=key),self.assertRaises(audit.Rejected):
                 audit.validate_contract(broken)
+
+    def test_admitted_root_and_nonroot_share_exact_bounded_audit(self):
+        c=self.original["nativeSourceCapabilities"]
+        self.assertTrue(c["admittedRootTypeDefContentEndPassImplemented"])
+        self.assertEqual(c["auditedTypeDefCombinedDistinctPairLimit"],128)
+        self.assertEqual(c["auditedTypeDefCombinedMaxStackBytes"],24576)
+        self.assertEqual(c["auditedTypeDefExactNameByteLimit"],64)
+        self.assertEqual(c["admittedRootTypeDefContentMutationNegatives"],6)
+        self.assertEqual(c["admittedRootTypeDefContentOverBudgetCases"],1)
+        for flag in (
+            "auditedTypeDefRootAndNonRootShareBuffer",
+            "admittedRootTypeDefContentFirstErrorPreserved",
+            "admittedRootTypeDefContentSeparateReceipts",
+            "admittedRootTypeDefContentNoAdditionalClassPass",
+            "admittedRootTypeDefContentNoSecondAuditBuffer",
+            "admittedRootTypeDefContentNoHeapAllocation",
+        ):
+            self.assertTrue(c[flag],flag)
+        for flag in (
+            "admittedRootTypeDefContentAllOriginalV1RootsProven",
+            "admittedRootTypeDefContentCompleteMetadataTable",
+            "admittedRootTypeDefContentWholeVmEpochProven",
+            "admittedRootTypeDefContentGcClassLifetimeProven",
+            "admittedRootTypeDefContentUnityPlayerVerified",
+            "admittedRootTypeDefContentUnboundedNamesSupported",
+        ):
+            self.assertFalse(c[flag],flag)
+        for field,bad in (
+            ("admittedRootTypeDefContentEndPassImplemented",False),
+            ("auditedTypeDefRootAndNonRootShareBuffer",False),
+            ("auditedTypeDefCombinedDistinctPairLimit",256),
+            ("auditedTypeDefCombinedMaxStackBytes",49152),
+            ("auditedTypeDefExactNameByteLimit",128),
+            ("admittedRootTypeDefContentMutationNegatives",5),
+            ("admittedRootTypeDefContentOverBudgetCases",0),
+            ("admittedRootTypeDefContentFirstErrorPreserved",False),
+            ("admittedRootTypeDefContentSeparateReceipts",False),
+            ("admittedRootTypeDefContentNoAdditionalClassPass",False),
+            ("admittedRootTypeDefContentNoSecondAuditBuffer",False),
+            ("admittedRootTypeDefContentNoHeapAllocation",False),
+            ("admittedRootTypeDefContentAllOriginalV1RootsProven",True),
+            ("admittedRootTypeDefContentCompleteMetadataTable",True),
+            ("admittedRootTypeDefContentWholeVmEpochProven",True),
+            ("admittedRootTypeDefContentGcClassLifetimeProven",True),
+            ("admittedRootTypeDefContentUnityPlayerVerified",True),
+            ("admittedRootTypeDefContentUnboundedNamesSupported",True),
+        ):
+            changed=copy.deepcopy(self.original)
+            changed["nativeSourceCapabilities"][field]=bad
+            with self.subTest(field=field),self.assertRaises(audit.Rejected):
+                audit.validate_contract(changed)
 
     def test_no_execution_authority_transmitted(self):
         self.assertEqual(self.original["handoffAuthority"],"CLOSED_NO_LOCAL_EXECUTION")
