@@ -1,4 +1,11 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
+## Current Primary B2 explicit root/non-root use sites — CLOSED / NO EXECUTION (2026-11-13 UTC)
+
+**NO LOCAL EXECUTION AUTHORITY.** Inactive native `il2cpp_plus@94e5312b8ee167384820f8ab58ee9661dfc7bfb3` now marks both roles when a class-root TypeDef is also an argument leaf, rather than inferring the use role from handle equality. New synthetic `GenericRootAlsoArgument` tests one root and two non-root roles on two owner+content pairs. [Scoped source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_EXPLICIT_ROOT_NONROOT_ROLE_REVIEW_2026-11-13.md). New CI at exact source SHAs must be checked; previous source-host PASS is historical.
+
+All four on `codex/assembly-shadow-r01b-h1`: demo latest verified remote HEAD; hybridclr `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`; hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de`; il2cpp_plus `94e5312b8ee167384820f8ab58ee9661dfc7bfb3`. 128-handle combined-cap regression, real source census, full terminal original V1 fields14/15, GC/VM/class epoch, native V2, and official Unity Player are unresolved. The enabled original V1 getter, B1, and active resolver are unchanged. Local must return `NoExecutionAuthority`; do not repeat consumed B1 oneuse-12, begin H2/M08A/X02/SNAP-01, or self-approve Human Review Gate.
+
+---
 
 ## Current Primary R03 B2 root+nonroot TypeDef declaration audit — CLOSED / NO EXECUTION (2026-11-13 UTC)
 

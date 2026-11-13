@@ -186,6 +186,8 @@ def validate_contract(m:dict)->None:
             c.get("admittedRootTypeDefContentEndPassImplemented") is True and
             c.get("auditedTypeDefRootAndNonRootShareBuffer") is True and
             c.get("auditedTypeDefCombinedDistinctPairLimit")==128 and
+            c.get("rootAndNonRootRoleClassifiedByCallPath") is True and
+            c.get("sameHandleRootAndNonRootSourceMockCases")==1 and
             c.get("auditedTypeDefCombinedMaxStackBytes")==24576 and
             c.get("auditedTypeDefExactNameByteLimit")==64 and
             c.get("admittedRootTypeDefContentMutationNegatives")==6 and
@@ -760,9 +762,14 @@ def source_boundary(native:dict[str,bytes])->None:
          "static_assert(sizeof(NonRootOwnerAudit)<=24576",
          "NonRootOwnerAudit nonRootOwners{}",
          "context.nonRootOwners=&nonRootOwners",
-         "handle==klass->typeMetadataHandle",
+         "bool classRootUse",
+         "bool classRootDefinition",
+         "const bool classRootUse=classRootDefinition && depth==0",
+         "handle,resolved,classRootUse",
+         "definitionArity,definitionOwner,true",
+         "definition,arity,resolved,false",
+         "existingDefault,arity,resolved,false",
          "c.nonRootOwners->Note(",
-         "handle,resolved,handle==klass->typeMetadataHandle",
          "bool captured=false, root=false, nonRoot=false",
          "size_t Roots() const noexcept",
          "size_t NonRoots() const noexcept",
@@ -977,6 +984,10 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::DuplicateEndPass",
          "Check(g_physicalPasses==3)",
          "Mode::GenericSameImage",
+         "Mode::GenericRootAlsoArgument",
+         "fixture.genericArg1.data.typeHandle=&fixture.def",
+         "Check(receipt.originalV1NonRootTypeDefOwnersRecorded==2)",
+         "Check(receipt.originalV1AdmittedTypeDefPairsRecorded==2)",
          "Mode::GenericConstructedArgument",
          "Mode::UnicodeAssembly",
          "Mode::UnicodePathVersionAssembly",

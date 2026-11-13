@@ -1,3 +1,11 @@
+# Current Primary — explicit root/non-root TypeDef use-site roles (2026-11-13 UTC)
+
+Inactive B2 `il2cpp_plus@94e5312b8ee167384820f8ab58ee9661dfc7bfb3` now classifies TypeDef root/non-root roles by actual **call site**, not handle equality. One authenticated handle used both ways has both role bits in one pair. New synthetic regression `GenericRootAlsoArgument`; [Primary review and limits](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_EXPLICIT_ROOT_NONROOT_ROLE_REVIEW_2026-11-13.md).
+
+Combined <=128 handles / <=64-byte names / <=24,576-byte scratch unchanged. New native/demo CI at these exact commits **not yet independently verified**. Not a VM/GC epoch, full field14/15, native V2, Unity Player or R03 acceptance. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) CLOSED / NO EXECUTION.
+
+---
+
 # Current Primary — shared exact root/non-root TypeDef audit (2026-11-13 UTC)
 
 Inactive B2 `il2cpp_plus@f89b9e9323df1234bf1bc59ca7f418533c958246` now copies and rechecks exact names (<=64 bytes per namespace/simple-name), declaration/generic indices and arity for **both admitted root and non-root TypeDefs**, using the same <=24,576-byte scratch object. The **128 distinct-handle capacity is now COMBINED** and can reject B2 inputs previously admitted with >128 root TypeDefs; this requires redesign/real source census before any product activation. Per-role positive receipts and fail-closed source error behavior remain. [Scoped design/source review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_SHARED_ROOT_NONROOT_TYPEDEF_DECLARATION_REVIEW_2026-11-13.md).
