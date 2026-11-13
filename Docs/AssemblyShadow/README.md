@@ -1,3 +1,11 @@
+# Current Primary — bounded non-root TypeDef end-pass owner audit (2026-11-13 UTC)
+
+Native inactive B2 il2cpp_plus@8901942f5d04e97cf8cad59a6dc2922c1d40ceee now rechecks **up to 128 distinct admitted non-root TypeDef handle/physical owner pairs** (nested declarations, generic arguments, primitive defaults) after three class passes and the second original physical V1 image snapshot. Reuses original first-emplace owner policy with a separate <=65,536 lookup limit; no extra class traversal or full metadata/VM epoch claim. [Detailed Primary source review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NONROOT_TYPEDEF_ENDPASS_OWNER_REVIEW_2026-11-13.md).
+
+[Native exact-source host CI 43358606294](https://github.com/night-outlook/il2cpp_plus/actions/runs/43358606294) **4/4 PASS** Mac/Linux C++11/C++17, 120 scenarios/5,221 assertions per synthetic-VM process. [Four-fork source audit 43358990655](https://github.com/night-outlook/hybridclr_demo/actions/runs/43358990655) **2/2 PASS** Mac/Linux at demo code anchor; final docs SHA CI must be checked separately. This still does **not** prove full TypeDef metadata contents/class/GC lifetime/whole-VM epoch, official Unity Player, complete terminal field14/15 or authenticated native V2. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; PureInterpreter disabled; [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) **CLOSED / NO EXECUTION**.
+
+---
+
 # Current Primary — original V1 root-owner end-pass check (2026-11-13 UTC)
 
 **Inactive B2 source:** il2cpp_plus@2ded6fa7deac7a52890aee917516fe9cdb42b128 now rechecks each authenticated class root TypeDef's first-emplace owner against the ORIGINAL physical token-valid V1 image order during the existing third class pass. Four new indexed-handle-table mutation negatives reject stale root ownership even when class pointers and image tokens remain constant. Uses a separate <=65,536 metadata lookup budget; no new class traversal or extra large stack buffer. [Source review and remaining risks](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_FIRST_OWNER_ENDPASS_RECHECK_REVIEW_2026-11-13.md).

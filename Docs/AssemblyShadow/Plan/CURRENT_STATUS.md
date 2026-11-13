@@ -1,3 +1,11 @@
+# R03 B2 — admitted non-root TypeDef handles rechecked at end (2026-11-13 UTC)
+
+Inactive native il2cpp_plus@8901942f5d04e97cf8cad59a6dc2922c1d40ceee: record <=128 distinct authenticated non-root TypeDef owner pairs and repeat original physical V1 first-owner checks after end-of-collection root pass and second original image observation. Fail-closed on missing/earlier owner, conflict, capacity or separate <=65,536 lookup budget; scratch <=2,064 additional bytes. [Native CI 43358606294](https://github.com/night-outlook/il2cpp_plus/actions/runs/43358606294) **4/4 PASS** Mac/Linux C++11/17 (120 cases/5,221 assertions/process); [demo code source CI 43358990655](https://github.com/night-outlook/hybridclr_demo/actions/runs/43358990655) **2/2 PASS**, final docs HEAD separately checked. [Source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NONROOT_TYPEDEF_ENDPASS_OWNER_REVIEW_2026-11-13.md).
+
+**Remaining Primary blockers:** 128 cap and extra metadata lock time, complete original V1 metadata contents/shape and real Unity class/GC/VM epoch, terminal-safe full general field14 and execution field15, native V2 descriptor artifact/envelope/receipt/readback/first recovery. No real Unity Player this cycle. WEB_TO_LOCAL CLOSED / NO EXECUTION; R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false.
+
+---
+
 # R03 B2 Primary — end-of-collection original V1 root TypeDef first-owner recheck (2026-11-13 UTC)
 
 Native il2cpp_plus@2ded6fa7deac7a52890aee917516fe9cdb42b128 independently revisits the original token-valid physical first-emplace metadata owner of every admitted class root in the existing third physical callback. A separate total <=65,536 handle lookup budget fails closed on excess; no whole table/VM epoch is claimed. [Native CI 43351671250](https://github.com/night-outlook/il2cpp_plus/actions/runs/43351671250) **4/4 PASS** macOS/Ubuntu C++11/17, 115 cases/4,656 assertions per host execution. [Demo code source audit 43352312987](https://github.com/night-outlook/hybridclr_demo/actions/runs/43352312987) **2/2 PASS** at pre-doc commit. [Design, implementation, review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_FIRST_OWNER_ENDPASS_RECHECK_REVIEW_2026-11-13.md).

@@ -1,5 +1,13 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current Primary B2 non-root TypeDef owner audit — CLOSED / NO EXECUTION (2026-11-13 UTC)
+
+**NO LOCAL EXECUTION AUTHORITY.** Inactive source il2cpp_plus@8901942f5d04e97cf8cad59a6dc2922c1d40ceee extends original first-owner end-pass checks from registered class roots to <=128 previously admitted unique non-root TypeDef handles, under the initial metadata Reader and g_MetadataLock. Separate <=65,536 metadata lookups; source stays observational, with no complete TypeDef table, class/GC lifetime or whole-VM epoch. [Independent Primary source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NONROOT_TYPEDEF_ENDPASS_OWNER_REVIEW_2026-11-13.md). [Native CI 43358606294](https://github.com/night-outlook/il2cpp_plus/actions/runs/43358606294) 4/4 Mac/Linux C++11/17 PASS 120 scenarios/5,221 assertions/process, synthetic VM only. [Demo CI 43358990655](https://github.com/night-outlook/hybridclr_demo/actions/runs/43358990655) 2/2 PASS at code anchor, final doc SHA verified separately.
+
+Four pinned repositories on codex/assembly-shadow-r01b-h1: demo latest actual verified HEAD, hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55, hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de, il2cpp_plus@8901942f5d04e97cf8cad59a6dc2922c1d40ceee. Exact 64-native/eight-demo source manifest. Original enabled V1 getter and native B1 unchanged. No official Unity TU/GameAssembly/Player, GC or lock-time measurement and no full terminal field14/15 or native V2. Local must return NoExecutionAuthority; do not repeat B1 oneuse-12, start H2/M08A/X02/SNAP-01 or self-approve Human Review Gate.
+
+---
+
 ## Current Primary B2 original V1 root-owner recheck — CLOSED / NO EXECUTION (2026-11-13 UTC)
 
 **NO LOCAL EXECUTION AUTHORITY.** Inactive B2 il2cpp_plus@2ded6fa7deac7a52890aee917516fe9cdb42b128 rechecks each admitted class root's original token-valid physical first-emplace TypeDef owner in the existing third class enumeration. Four new metadata-index drift tests reject changed ownership with stable class/image identities and scrub all positive receipts/rows. [Scoped source and host review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_FIRST_OWNER_ENDPASS_RECHECK_REVIEW_2026-11-13.md). [Native CI 43351671250](https://github.com/night-outlook/il2cpp_plus/actions/runs/43351671250) 4/4 PASS Mac/Linux C++11/17, 115 scenarios/4656 assertions/process. [Demo code source CI 43352312987](https://github.com/night-outlook/hybridclr_demo/actions/runs/43352312987) 2/2 PASS at code commit; final doc-HEAD CI separate.
