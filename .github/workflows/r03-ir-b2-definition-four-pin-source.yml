@@ -37,7 +37,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: night-outlook/il2cpp_plus
-          ref: f6584984c2f175f42e1b071cc99007e1d3eef185
+          ref: dce8c095b53fa28e6ed6a2b825a0c36fe3da5c5a
           path: native
           filter: blob:none
           sparse-checkout: |
@@ -63,13 +63,13 @@ jobs:
           test "$(git -C demo rev-parse HEAD)" = "$GITHUB_SHA"
           grep -Fqx "# Primary Implementation → Local Validation — CLOSED / NO EXECUTION" \
             demo/Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md
-          test "$(git -C native rev-parse HEAD)" = "f6584984c2f175f42e1b071cc99007e1d3eef185"
+          test "$(git -C native rev-parse HEAD)" = "dce8c095b53fa28e6ed6a2b825a0c36fe3da5c5a"
           # Exact branch heads of the two untouched forks and the native fork
           # are checked directly without cloning or mutating their repositories.
           for spec in \
             "hybridclr:4b2774b066cfc6afd77a8c8aded6bda7ea574f55" \
             "hybridclr_unity:948c0e3b4f8891481301770115e8ba4945eea6de" \
-            "il2cpp_plus:f6584984c2f175f42e1b071cc99007e1d3eef185"; do
+            "il2cpp_plus:dce8c095b53fa28e6ed6a2b825a0c36fe3da5c5a"; do
             repo="${spec%%:*}"
             expected="${spec#*:}"
             actual="$(git ls-remote "https://github.com/night-outlook/$repo.git" \
@@ -83,7 +83,7 @@ jobs:
             --demo "$GITHUB_WORKSPACE/demo" \
             --native "$GITHUB_WORKSPACE/native" \
             --expected-demo "$GITHUB_SHA" \
-            --expected-native f6584984c2f175f42e1b071cc99007e1d3eef185 \
+            --expected-native dce8c095b53fa28e6ed6a2b825a0c36fe3da5c5a \
             > "$RUNNER_TEMP/b2-definition-source-result.json" || {
               cat "$RUNNER_TEMP/b2-definition-source-result.json"
               exit 2

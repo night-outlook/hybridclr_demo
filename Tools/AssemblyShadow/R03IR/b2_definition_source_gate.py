@@ -188,6 +188,17 @@ def validate_contract(m:dict)->None:
             c.get("auditedTypeDefCombinedDistinctPairLimit")==128 and
             c.get("rootAndNonRootRoleClassifiedByCallPath") is True and
             c.get("sameHandleRootAndNonRootSourceMockCases")==1 and
+            c.get("logicalAssemblyExactEndPassOwnedRowCheck") is True and
+            c.get("logicalAssemblyNameMaxObservedBytes")==4096 and
+            c.get("logicalAssemblyIndexedSlotLookup") is True and
+            c.get("logicalAssemblyMaxRowStorageIncreaseBytes")==2048 and
+            c.get("logicalAssemblyLateSourceMutationsRejected")==2 and
+            c.get("logicalAssemblyIdenticalBytesNewPointerAccepted")==1 and
+            c.get("logicalAssemblyExtraClassPasses")==0 and
+            c.get("logicalAssemblyNoPerNameHeapAllocation") is True and
+            c.get("logicalAssemblyAllPhysicalImageNamesProven") is False and
+            c.get("logicalAssemblyClassGcLifetimeProven") is False and
+            c.get("logicalAssemblyFullV1ByteParityProven") is False and
             c.get("auditedTypeDefCombinedMaxStackBytes")==24576 and
             c.get("auditedTypeDefExactNameByteLimit")==64 and
             c.get("admittedRootTypeDefContentMutationNegatives")==6 and
@@ -837,6 +848,10 @@ def source_boundary(native:dict[str,bytes])->None:
          "firstPassFacts.Scrub()",
          "receipt.observedClassFactsTwoPassStable=",
          "receipt.observedClassFactsEndPassMatched=endPass.matched",
+         "endPass.rows=&rows",
+         "end.rows->SameCollectingLogicalAssembly(",
+         "sourceNameBytes>key::Capture::kCapacity",
+         "sourceName[sourceNameBytes]",
          "receipt.observedClassFactsEndPassStable=",
          "c.firstPassFacts->Update(registration,finalFacts)",
          "std::array<uint8_t,physical::kSlots> seen{}",
@@ -892,6 +907,14 @@ def source_boundary(native:dict[str,bytes])->None:
          "unsigned int byref    : 1;",
          "unsigned int pinned   : 1;",
          "unsigned int valuetype : 1;")
+    must("libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
+         "std::array<uint16_t,kMaximumRegistrationSlots> slots_{};",
+         "slots_[registrationSlot]=static_cast<uint16_t>(count_+1)",
+         "bool SameCollectingLogicalAssembly(",
+         "stage_!=Stage::Collecting",
+         "entries_[index].slot!=slot",
+         "std::memcmp(saved.data,source.data,saved.size)",
+         "static_assert(sizeof(Rows)<=320u*1024u")
     must("libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
          "callbackPhysicalMembershipProven",
          "completeArbitraryTypeKeys=false",
@@ -1002,6 +1025,11 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::RootValuetypeChangedAtEnd",
          "Mode::RootTypeDataChangedAtEnd",
          "Mode::RootGenericChangedAtEnd",
+         "Mode::LogicalAssemblyNameBytesChangedAtEnd",
+         "Mode::LogicalAssemblyNamePointerChangedAtEnd",
+         "Mode::LogicalAssemblyNameSameBytesNewPointer",
+         "g_mutableAssemblyName[0]='X'",
+         "g_physical->image->assembly->aname.name=g_replacementAssemblyName",
          "Mode::EarlierRootChangedDuringLaterTypeKey",
          "Check(g_changedEarlierRoot)",
          "Mode::MissingEndPass",

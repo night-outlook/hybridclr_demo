@@ -1,3 +1,11 @@
+# R03 B2 Primary — observed logicalAssembly exact-byte end-pass check (2026-11-14 UTC)
+
+Inactive native `dce8c095b53fa28e6ed6a2b825a0c36fe3da5c5a` compares each admitted observed class's copied V1 `logicalAssembly` with its source bytes in the existing third class pass. Two source-name mutation negatives reject; a same-bytes/new-pointer case passes. A uint16 insertion-index map adds 2,048 B within the existing <=320KiB Rows object and avoids O(N) row scanning under the metadata lock. [Source review and limitations](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_LOGICAL_ASSEMBLY_NAME_ENDPASS_REVIEW_2026-11-14.md). [Native CI 43550349351](https://github.com/night-outlook/il2cpp_plus/actions/runs/43550349351) **4/4 PASS**, 142 cases / 7,007 assertions per synthetic-VM execution; exact four-pin demo CI pending this SHA.
+
+Unobserved physical/TypeKey owner assembly names, class/GC/VM epoch, real Unity native TU/Player/stack/lock latency, full original fields14/15 and authenticated native V2 remain open. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION.
+
+---
+
 # R03 B2 Primary — root Type bitfield drift fence (2026-11-13 UTC)
 
 Inactive native `f6584984c2f175f42e1b071cc99007e1d3eef185` now captures the exact six original `Il2CppType` bitfields in the pre-existing root `ClassFacts` 32-bit slot, rechecking them in three physical observations. Five new isolated post-row mutations reject with `ObservedClassRootChanged`. [Implementation, verification, limitations](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_TYPE_BITFIELD_SOURCE_FENCE_REVIEW_2026-11-13.md). [Native CI 43429814337](https://github.com/night-outlook/il2cpp_plus/actions/runs/43429814337) **4/4 PASS**, 139 synthetic-VM cases / 6,873 assertions per process. Demo [four-pin exact source audit 43430276852](https://github.com/night-outlook/hybridclr_demo/actions/runs/43430276852) **2/2 PASS** Mac/Linux at code/docs anchor a6360bd9d629cb0b9597f666a25d158472990dd6; verify final docs HEAD separately.

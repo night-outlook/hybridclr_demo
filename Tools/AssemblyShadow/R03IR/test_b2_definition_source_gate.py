@@ -626,6 +626,38 @@ original_join::CheckFirstOwner(
             with self.subTest(field=field),self.assertRaises(audit.Rejected):
                 audit.validate_contract(broken)
 
+    def test_observed_logical_assembly_owned_row_endpass_scope(self):
+        c=self.original["nativeSourceCapabilities"]
+        self.assertTrue(c["logicalAssemblyExactEndPassOwnedRowCheck"])
+        self.assertTrue(c["logicalAssemblyIndexedSlotLookup"])
+        self.assertEqual(c["logicalAssemblyNameMaxObservedBytes"],4096)
+        self.assertEqual(c["logicalAssemblyMaxRowStorageIncreaseBytes"],2048)
+        self.assertEqual(c["logicalAssemblyLateSourceMutationsRejected"],2)
+        self.assertEqual(c["logicalAssemblyIdenticalBytesNewPointerAccepted"],1)
+        self.assertEqual(c["logicalAssemblyExtraClassPasses"],0)
+        self.assertTrue(c["logicalAssemblyNoPerNameHeapAllocation"])
+        for k in ("logicalAssemblyAllPhysicalImageNamesProven",
+                  "logicalAssemblyClassGcLifetimeProven",
+                  "logicalAssemblyFullV1ByteParityProven"):
+            self.assertFalse(c[k])
+        for k,wrong in (
+            ("logicalAssemblyExactEndPassOwnedRowCheck",False),
+            ("logicalAssemblyIndexedSlotLookup",False),
+            ("logicalAssemblyNameMaxObservedBytes",8192),
+            ("logicalAssemblyMaxRowStorageIncreaseBytes",0),
+            ("logicalAssemblyLateSourceMutationsRejected",1),
+            ("logicalAssemblyIdenticalBytesNewPointerAccepted",0),
+            ("logicalAssemblyExtraClassPasses",1),
+            ("logicalAssemblyNoPerNameHeapAllocation",False),
+            ("logicalAssemblyAllPhysicalImageNamesProven",True),
+            ("logicalAssemblyClassGcLifetimeProven",True),
+            ("logicalAssemblyFullV1ByteParityProven",True),
+        ):
+            modified=copy.deepcopy(self.original)
+            modified["nativeSourceCapabilities"][k]=wrong
+            with self.subTest(field=k),self.assertRaises(audit.Rejected):
+                audit.validate_contract(modified)
+
     def test_dense_packed_class_facts_source_scope(self):
         c=self.original["nativeSourceCapabilities"]
         self.assertTrue(c["packedClassFactsSourceImplemented"])

@@ -1,3 +1,11 @@
+# Current Primary — observed logicalAssembly name bytes at final class pass (2026-11-14 UTC)
+
+Inactive B2 `il2cpp_plus@dce8c095b53fa28e6ed6a2b825a0c36fe3da5c5a` rechecks exact original V1 observed-class `logicalAssembly` source-name bytes against its already owned row during the third physical class pass. A one-based uint16 insertion slot index adds 2,048 B to `Rows` (still <=320KiB) and makes the comparison O(1) per observed class. Two late-mutation negatives and one same-bytes/different-pointer positive pass. [Scoped review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_LOGICAL_ASSEMBLY_NAME_ENDPASS_REVIEW_2026-11-14.md).
+
+[Native CI 43550349351](https://github.com/night-outlook/il2cpp_plus/actions/runs/43550349351) **4/4 PASS** Mac/Linux C++11/17, 142 synthetic-VM cases / 7,007 assertions per execution; new demo exact four-pin CI pending. This proves neither all TypeKey/physical assembly name contents nor a class/GC/VM epoch, real Unity Player, full original field14/15, native V2, or R03 acceptance. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) CLOSED / NO EXECUTION.
+
+---
+
 # Current Primary — full root Il2CppType bitfield observation (2026-11-13 UTC)
 
 Inactive B2 `night-outlook/il2cpp_plus@f6584984c2f175f42e1b071cc99007e1d3eef185` now packs all six original `Il2CppType` bitfields into the existing 32-bit root `ClassFacts` signature. Five new end-pass mutation negatives reject changed attrs/modifiers/byref/pinned/valuetype while preserving unchanged <=48-byte fact size and <=53,264-byte packed scratch. [Scoped Primary review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_TYPE_BITFIELD_SOURCE_FENCE_REVIEW_2026-11-13.md).

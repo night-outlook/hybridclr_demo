@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "INACTIVE R03 B2 class root exact-shape observation: pack ALL six original Il2CppType bitfields (attrs:16, type:8, num_mods:5, byref:1, pinned:1, valuetype:1) in the existing 32-bit primitive ClassFacts field across three physical observations. Five new post-row negative cases reject a changed qualifier or valuetype bit. ClassFacts <=48 B; packed scratch <=53264 B, combined TypeDef audit <=128 pairs/24576 B remain. Not GC/metadata/whole-VM epoch, full original fields14/15, native V2, or runtime acceptance.",
+  "objective": "INACTIVE B2: compare original V1 observed-class logicalAssembly name against owned Rows bytes in third physical class pass. One-based uint16 collecting slot-to-entry index (Rows +2048 B within existing <=320KiB bound), two negative late name changes, one same bytes/new pointer positive. Not all physical image/argument names, class/GC/metadata lifetime, full original V1 field14/15, coherent VM epoch or native V2.",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "f6584984c2f175f42e1b071cc99007e1d3eef185",
+  "candidateNative": "dce8c095b53fa28e6ed6a2b825a0c36fe3da5c5a",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
@@ -31,7 +31,7 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
-      "gitBlob": "cacaa99081fe4b3bb06fdd3c8b23551ee20e38db"
+      "gitBlob": "4e51552f16f2e44f2adc5ad4ce680f73973ce7b0"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
@@ -43,11 +43,11 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
-      "gitBlob": "fbdf27de1ed596e3af2df6c4e6e0b86ca08b3e21"
+      "gitBlob": "50024856492abaea221c0a4a12872e071c9ddb0f"
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "84906e6afa94e080941dc469a0f09260df37b694"
+      "gitBlob": "1bd8103c61660ec1f4bdd548c164819ab181684a"
     },
     {
       "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -277,7 +277,7 @@
     },
     {
       "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedExecutionRows.h",
-      "gitBlob": "cbc7c5217a34a4a8058f9a5e47476761113700d5"
+      "gitBlob": "80dede5fc9908bb3f5a6e9745dd75ae90f61834c"
     },
     {
       "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedCompositeTypeKey.h",
@@ -300,7 +300,7 @@
       "gitBlob": "75fc8717ed3b54b1aeee583e28671e304ab233e0"
     }
   ],
-  "testProof": "Native il2cpp_plus@f6584984c2f175f42e1b071cc99007e1d3eef185 source-host workflow 43429814337: 4/4 PASS Mac/Linux C++11/17, 139 synthetic-VM scenarios/6873 assertions per Release/Debug strict/sanitized execution. Demo four-pin source-audit workflow 43430276852: 2/2 PASS Mac/Linux at exact demo code/docs anchor a6360bd9d629cb0b9597f666a25d158472990dd6, 64 native/eight demo pinned blobs and Python admission tests. Final documentation SHA CI must be verified separately. NOT Unity native TU/GameAssembly/Player, GC/class/metadata lifetime, complete V1 final fields14/15, whole-VM epoch or authenticated native V2.",
+  "testProof": "Native il2cpp_plus@dce8c095b53fa28e6ed6a2b825a0c36fe3da5c5a 43550349351: 4/4 PASS Mac/Linux C++11/17, 142 synthetic-VM scenarios/7007 assertions per Release/Debug strict/sanitized host. 2 late logicalAssembly name negative cases and one same bytes/new-pointer positive. Demo exact source-gate CI pending this new documentation/code HEAD; official Unity Player/GC/whole VM epoch/full original field14/15/native V2 still NotRun.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -564,7 +564,18 @@
       "valuetype:1"
     ],
     "observedClassRootTypeBitfieldMutationCases": 5,
-    "observedClassRootTypeBitfieldExtraScratchBytes": 0
+    "observedClassRootTypeBitfieldExtraScratchBytes": 0,
+    "logicalAssemblyExactEndPassOwnedRowCheck": true,
+    "logicalAssemblyNameMaxObservedBytes": 4096,
+    "logicalAssemblyIndexedSlotLookup": true,
+    "logicalAssemblyMaxRowStorageIncreaseBytes": 2048,
+    "logicalAssemblyLateSourceMutationsRejected": 2,
+    "logicalAssemblyIdenticalBytesNewPointerAccepted": 1,
+    "logicalAssemblyExtraClassPasses": 0,
+    "logicalAssemblyNoPerNameHeapAllocation": true,
+    "logicalAssemblyAllPhysicalImageNamesProven": false,
+    "logicalAssemblyClassGcLifetimeProven": false,
+    "logicalAssemblyFullV1ByteParityProven": false
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
