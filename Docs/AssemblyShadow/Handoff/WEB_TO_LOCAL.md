@@ -1,5 +1,14 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current Primary B2 original V1 owner-role end-pass recheck — CLOSED / NO EXECUTION (2026-11-15 UTC)
+
+**NO LOCAL EXECUTION AUTHORITY.** Inactive native `il2cpp_plus@41f92438bc2c1e76613ddc7e0aa70a5e33f46c29` rechecks the original V1 class-row `interpreterShadow/physicalInterpreter/isActive` against the existing owned Rows slot map in the third physical class callback, and checks the physical owner->image backlink. No new memory or physical class pass. Four synthetic failure modes plus a stable ActiveShadow success. [Scoped review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_V1_OWNER_ROLE_ENDPASS_REVIEW_2026-11-15.md). [Native CI 43727437923](https://github.com/night-outlook/il2cpp_plus/actions/runs/43727437923) **4/4 PASS** Mac/Linux C++11/17, 151 cases/7,390 assertions per host execution. New demo four-pin exact source CI pending independent readback.
+
+All four use `codex/assembly-shadow-r01b-h1`: hybridclr_demo latest verified remote HEAD; hybridclr `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de`, il2cpp_plus `41f92438bc2c1e76613ddc7e0aa70a5e33f46c29`. Original V1 getter, B1/R02 and active resolver unchanged. Complete original field14/15, class/GC/VM source epoch, all-image names, combined TypeDef cap, native V2, independent receipt/recovery and real Unity Player remain unproven. Local must return NoExecutionAuthority; no consumed B1 oneuse-12 repeat, H2/M08A/X02/SNAP-01 or Human Review Gate approval.
+
+---
+
+
 ## Current Primary R03 B2 end-pass admitted class shape — CLOSED / NO EXECUTION (2026-11-15 UTC)
 
 **NO LOCAL EXECUTION AUTHORITY.** Inactive native `il2cpp_plus@0d97e9d1f37863dd89323d3dc8a9aa19bd94d78f` adds final third-pass fail-closed checks for `klass->rank` (all admitted classes) and `genericContainerHandle/declaringType` (plain physical interpreter subset only). Three late mutation negatives and one positive preservation of eligible AOT shapes; original V1/B1/R02 and active resolver untouched. [Review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CLASS_SHAPE_ENDPASS_REVIEW_2026-11-15.md). [Native CI 43701442617](https://github.com/night-outlook/il2cpp_plus/actions/runs/43701442617) **4/4 PASS** Mac/Linux C++11/17, 146 synthetic-VM scenarios/7,178 assertions. [four-pin demo source CI 43701800286](https://github.com/night-outlook/hybridclr_demo/actions/runs/43701800286) **2/2 PASS** Mac/Linux, 64 native/eight demo exact Git blobs and 45 Python source-gate tests per OS, at code commit `a1aeadf908be7ea46ac7b3949cc5e2ec487387f9`; final documentation HEAD verified separately.

@@ -1,3 +1,11 @@
+# R03 B2 Primary — final-pass original V1 owner-role flags (2026-11-15 UTC)
+
+Inactive native `41f92438bc2c1e76613ddc7e0aa70a5e33f46c29` adds exact end-pass comparison of observed class `interpreterShadow`, `physicalInterpreter`, `isActive` and owner-image backlink against second-pass owned values. O(1) per-slot check reuses existing Rows state; four late source-drift negatives and a stable active-shadow positive. [Scoped source/host review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_V1_OWNER_ROLE_ENDPASS_REVIEW_2026-11-15.md). [Native CI 43727437923](https://github.com/night-outlook/il2cpp_plus/actions/runs/43727437923) **4/4 PASS**, 151 synthetic-VM cases / 7,390 assertions per host execution. Demo exact four-repo source CI must be independently checked at the new code SHA.
+
+No new class pass/heap/scratch, no change to original V1/B1/resolver. Combined 128-TypeDef and 64-byte declaration-name limits, class/GC/VM epoch, real Unity Player, full original terminal V1 fields14/15, and native V2 independent receipt/recovery remain blocked. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION.
+
+---
+
 # R03 B2 Primary — final-pass class-shape recheck (2026-11-15 UTC)
 
 Inactive native `0d97e9d1f37863dd89323d3dc8a9aa19bd94d78f` rechecks admitted `klass->rank==0` and the plain interpreter-only `klass->declaringType/genericContainerHandle==nullptr` in the existing third class pass; any late drift fails `ObservedClassRootChanged`. Three new negatives and one AOT preservation positive; [native CI 43701442617](https://github.com/night-outlook/il2cpp_plus/actions/runs/43701442617) **4/4 PASS** Mac/Linux C++11/17 (146 source-mock scenarios / 7,178 assertions per execution). [Design/source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CLASS_SHAPE_ENDPASS_REVIEW_2026-11-15.md). [four-pin demo source CI 43701800286](https://github.com/night-outlook/hybridclr_demo/actions/runs/43701800286) **2/2 PASS** Mac/Linux, 64 native/eight demo exact Git blobs and 45 Python source-gate tests per OS, at code commit `a1aeadf908be7ea46ac7b3949cc5e2ec487387f9`; final documentation HEAD verified separately.

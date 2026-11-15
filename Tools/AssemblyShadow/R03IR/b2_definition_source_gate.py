@@ -195,6 +195,17 @@ def validate_contract(m:dict)->None:
             c.get("observedClassShapeEndPassExtraScratchBytes")==0 and
             c.get("observedClassShapeEndPassRealUnityVerified") is False and
             c.get("observedClassShapeEndPassWholeVmEpochProven") is False and
+            c.get("originalV1ObservedOwnerRoleEndPassImplemented") is True and
+            c.get("originalV1ObservedOwnerRoleFields")==
+                ["interpreterShadow","physicalInterpreter","isActive"] and
+            c.get("originalV1ObservedOwnerRoleDriftNegatives")==3 and
+            c.get("originalV1ObservedOwnerBacklinkDriftNegatives")==1 and
+            c.get("originalV1ObservedOwnerStableShadowPositives")==1 and
+            c.get("originalV1ObservedOwnerRoleExtraClassPasses")==0 and
+            c.get("originalV1ObservedOwnerRoleExtraScratchBytes")==0 and
+            c.get("originalV1ObservedOwnerRoleRealUnityVerified") is False and
+            c.get("originalV1ObservedOwnerRoleVmEpochProven") is False and
+            c.get("originalV1ObservedOwnerRoleFullField15ParityProven") is False and
             c.get("logicalAssemblyExactEndPassOwnedRowCheck") is True and
             c.get("logicalAssemblyNameMaxObservedBytes")==4096 and
             c.get("logicalAssemblyIndexedSlotLookup") is True and
@@ -861,6 +872,10 @@ def source_boundary(native:dict[str,bytes])->None:
          "end.error=live::Error::ObservedClassRootChanged;return;",
          "endPass.rows=&rows",
          "end.rows->SameCollectingLogicalAssembly(",
+         "endPass.active=activeBefore",
+         "owner && owner->image==image",
+         "end.rows->SameCollectingV1OwnerFlags(",
+         "baseline||shadow,Interpreter(owner),!baseline",
          "sourceNameBytes>key::Capture::kCapacity",
          "sourceName[sourceNameBytes]",
          "receipt.observedClassFactsEndPassStable=",
@@ -926,6 +941,11 @@ def source_boundary(native:dict[str,bytes])->None:
          "entries_[index].slot!=slot",
          "std::memcmp(saved.data,source.data,saved.size)",
          "static_assert(sizeof(Rows)<=320u*1024u")
+    must("libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
+         "bool SameCollectingV1OwnerFlags(",
+         "saved.interpreterShadow==interpreterShadow",
+         "saved.physicalInterpreter==physicalInterpreter",
+         "saved.isActive==isActive")
     must("libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
          "callbackPhysicalMembershipProven",
          "completeArbitraryTypeKeys=false",
@@ -1040,6 +1060,11 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::InterpreterDeclaringChangedAtEnd",
          "Mode::InterpreterContainerChangedAtEnd",
          "Mode::AotExistingClassShape",
+         "Mode::OwnerInterpreterFlagChangedAtEnd",
+         "Mode::OwnerBaselineChangedAtEnd",
+         "Mode::OwnerShadowChangedAtEnd",
+         "Mode::OwnerBacklinkChangedAtEnd",
+         "Mode::StableActiveShadowOwner",
          "Mode::LogicalAssemblyNameBytesChangedAtEnd",
          "Mode::LogicalAssemblyNamePointerChangedAtEnd",
          "Mode::LogicalAssemblyNameSameBytesNewPointer",

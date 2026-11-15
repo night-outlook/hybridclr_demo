@@ -681,6 +681,37 @@ original_join::CheckFirstOwner(
             with self.subTest(field=field),self.assertRaises(audit.Rejected):
                 audit.validate_contract(candidate)
 
+    def test_original_v1_owner_role_flags_reobserved_with_exact_rows(self):
+        c=self.original["nativeSourceCapabilities"]
+        self.assertTrue(c["originalV1ObservedOwnerRoleEndPassImplemented"])
+        self.assertEqual(c["originalV1ObservedOwnerRoleFields"],
+                         ["interpreterShadow","physicalInterpreter","isActive"])
+        self.assertEqual(c["originalV1ObservedOwnerRoleDriftNegatives"],3)
+        self.assertEqual(c["originalV1ObservedOwnerBacklinkDriftNegatives"],1)
+        self.assertEqual(c["originalV1ObservedOwnerStableShadowPositives"],1)
+        self.assertEqual(c["originalV1ObservedOwnerRoleExtraClassPasses"],0)
+        self.assertEqual(c["originalV1ObservedOwnerRoleExtraScratchBytes"],0)
+        for field in ("originalV1ObservedOwnerRoleRealUnityVerified",
+                      "originalV1ObservedOwnerRoleVmEpochProven",
+                      "originalV1ObservedOwnerRoleFullField15ParityProven"):
+            self.assertFalse(c[field])
+        for key,bad in (
+            ("originalV1ObservedOwnerRoleEndPassImplemented",False),
+            ("originalV1ObservedOwnerRoleFields",["interpreterShadow","isActive"]),
+            ("originalV1ObservedOwnerRoleDriftNegatives",2),
+            ("originalV1ObservedOwnerBacklinkDriftNegatives",0),
+            ("originalV1ObservedOwnerStableShadowPositives",0),
+            ("originalV1ObservedOwnerRoleExtraClassPasses",1),
+            ("originalV1ObservedOwnerRoleExtraScratchBytes",8),
+            ("originalV1ObservedOwnerRoleRealUnityVerified",True),
+            ("originalV1ObservedOwnerRoleVmEpochProven",True),
+            ("originalV1ObservedOwnerRoleFullField15ParityProven",True),
+        ):
+            mutated=copy.deepcopy(self.original)
+            mutated["nativeSourceCapabilities"][key]=bad
+            with self.subTest(key=key),self.assertRaises(audit.Rejected):
+                audit.validate_contract(mutated)
+
     def test_dense_packed_class_facts_source_scope(self):
         c=self.original["nativeSourceCapabilities"]
         self.assertTrue(c["packedClassFactsSourceImplemented"])

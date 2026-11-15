@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "kind": "R03B2RestrictedPhysicalDefinitionSourceCandidate",
   "branch": "codex/assembly-shadow-r01b-h1",
-  "objective": "INACTIVE R03 B2 final third physical class pass rechecks the class shape admitted when copying each owned row: rank zero for all; null declaringType and genericContainerHandle for original physical plain interpreter subset. Three late-mutation fail-closed tests and one positive AOT shape-retention test. No added stack, heap or physical class pass. Does NOT establish metadata/GC/class lifetime, full V1 field14/15, coherent VM epoch, Unity Player or native V2.",
+  "objective": "INACTIVE R03 B2: exact final-pass re-observation of three original V1 execution class owner-derived flags (interpreterShadow, physicalInterpreter, isActive) with per-slot immutable Rows values, plus physical assembly->image backlink. No new buffers/pass; 3 negative owner-role drifts, 1 backlink negative, and stable active-shadow positive. Not real GC/class lifetime, full original V1 field14/15, all-image/TypeKey name epoch, native V2 or runtime acceptance.",
   "originalB1ExecutionDemo": "2d690bb2f7234ddcbee339f9da7125d687f5ed45",
   "originalB1Native": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
-  "candidateNative": "0d97e9d1f37863dd89323d3dc8a9aa19bd94d78f",
+  "candidateNative": "41f92438bc2c1e76613ddc7e0aa70a5e33f46c29",
   "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
   "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
   "nativeSources": [
@@ -31,7 +31,7 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl",
-      "gitBlob": "79a5d94326e1e2f561246361a51f80f94f20ee3a"
+      "gitBlob": "ea2e31ad29d9c8b452433f71018bd6a94a64ff69"
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedDefinitionTypeKey.h",
@@ -43,11 +43,11 @@
     },
     {
       "path": "libil2cpp/vm/AssemblyShadowOwnedExecutionRows.h",
-      "gitBlob": "50024856492abaea221c0a4a12872e071c9ddb0f"
+      "gitBlob": "86615999c4b7ddfc51d456d57a7c034a72f3a0ee"
     },
     {
       "path": "NativeHostTests/AssemblyShadowBoundedDefinitionExecutionSourceMock.cpp",
-      "gitBlob": "e1c59930d0e0d2e9d31a0ed3ff9c13ad4ad71028"
+      "gitBlob": "ba9c3cbb6e8aeac42f5691faf6025db53b4cfdfc"
     },
     {
       "path": "NativeHostTests/AssemblyShadowOwnedConstructedTypeKeyHost.cpp",
@@ -277,7 +277,7 @@
     },
     {
       "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedExecutionRows.h",
-      "gitBlob": "80dede5fc9908bb3f5a6e9745dd75ae90f61834c"
+      "gitBlob": "e01637eac7e4ffd9d6dc5f0cf0bef5768a7292db"
     },
     {
       "path": "Tools/AssemblyShadow/R03IR/NativeDiagnostics/BoundedOwnedCompositeTypeKey.h",
@@ -300,7 +300,7 @@
       "gitBlob": "75fc8717ed3b54b1aeee583e28671e304ab233e0"
     }
   ],
-  "testProof": "Native source-only actual .inl host il2cpp_plus@0d97e9d1f37863dd89323d3dc8a9aa19bd94d78f CI 43701442617 4/4 PASS Mac/Linux C++11/C++17, 146 synthetic-VM cases/7178 assertions per execution. Demo exact four-fork source CI 43701800286 2/2 PASS Mac/Linux at demo code SHA a1aeadf908be7ea46ac7b3949cc5e2ec487387f9, 64 native/eight demo exact blobs and 45 Python gate tests/OS. Final documentation SHA CI checked separately; no official Unity, real GC/class/metadata/VM epoch, full original field14/15, native V2 or R03 acceptance.",
+  "testProof": "Native il2cpp_plus@41f92438bc2c1e76613ddc7e0aa70a5e33f46c29 GitHub Actions 43727437923 4/4 PASS Mac/Linux C++11/C++17, 151 actual inactive .inl synthetic-VM scenarios / 7390 assertions per Release/Debug strict/sanitized execution. Includes 3 owner flag drift negatives, 1 owner-image backlink negative and 1 stable active-shadow positive. Demo new four-repo exact source CI pending. No genuine Unity Player, class/GC/VM lifetime, complete original field14/15 or native V2.",
   "nativeSourceCapabilities": {
     "boundedPhysicalOwnerJoin": "The observed source class must match the physical iterator; TypeDef owners may additionally originate in the bounded unfiltered registered physical AOT assembly table, including images without observed classes",
     "sourceReadsAfterTerminal": false,
@@ -582,7 +582,21 @@
     "observedClassShapeEndPassAdditionalClassPasses": 0,
     "observedClassShapeEndPassExtraScratchBytes": 0,
     "observedClassShapeEndPassRealUnityVerified": false,
-    "observedClassShapeEndPassWholeVmEpochProven": false
+    "observedClassShapeEndPassWholeVmEpochProven": false,
+    "originalV1ObservedOwnerRoleEndPassImplemented": true,
+    "originalV1ObservedOwnerRoleFields": [
+      "interpreterShadow",
+      "physicalInterpreter",
+      "isActive"
+    ],
+    "originalV1ObservedOwnerRoleDriftNegatives": 3,
+    "originalV1ObservedOwnerBacklinkDriftNegatives": 1,
+    "originalV1ObservedOwnerStableShadowPositives": 1,
+    "originalV1ObservedOwnerRoleExtraClassPasses": 0,
+    "originalV1ObservedOwnerRoleExtraScratchBytes": 0,
+    "originalV1ObservedOwnerRoleRealUnityVerified": false,
+    "originalV1ObservedOwnerRoleVmEpochProven": false,
+    "originalV1ObservedOwnerRoleFullField15ParityProven": false
   },
   "readyForNativeV2FieldCapture": false,
   "nativeV2TransportImplemented": false,
