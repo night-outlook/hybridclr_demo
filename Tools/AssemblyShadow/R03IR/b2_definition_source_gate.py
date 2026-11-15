@@ -188,6 +188,13 @@ def validate_contract(m:dict)->None:
             c.get("auditedTypeDefCombinedDistinctPairLimit")==128 and
             c.get("rootAndNonRootRoleClassifiedByCallPath") is True and
             c.get("sameHandleRootAndNonRootSourceMockCases")==1 and
+            c.get("observedClassShapeEndPassGateImplemented") is True and
+            c.get("observedClassShapeEndPassLateMutationNegatives")==3 and
+            c.get("observedClassShapeEndPassAotPreservationPositives")==1 and
+            c.get("observedClassShapeEndPassAdditionalClassPasses")==0 and
+            c.get("observedClassShapeEndPassExtraScratchBytes")==0 and
+            c.get("observedClassShapeEndPassRealUnityVerified") is False and
+            c.get("observedClassShapeEndPassWholeVmEpochProven") is False and
             c.get("logicalAssemblyExactEndPassOwnedRowCheck") is True and
             c.get("logicalAssemblyNameMaxObservedBytes")==4096 and
             c.get("logicalAssemblyIndexedSlotLookup") is True and
@@ -848,6 +855,10 @@ def source_boundary(native:dict[str,bytes])->None:
          "firstPassFacts.Scrub()",
          "receipt.observedClassFactsTwoPassStable=",
          "receipt.observedClassFactsEndPassMatched=endPass.matched",
+         "if(klass->rank ||",
+         "hybridclr::metadata::IsInterpreterIndex(klass->image->token) &&",
+         "(klass->genericContainerHandle || klass->declaringType)",
+         "end.error=live::Error::ObservedClassRootChanged;return;",
          "endPass.rows=&rows",
          "end.rows->SameCollectingLogicalAssembly(",
          "sourceNameBytes>key::Capture::kCapacity",
@@ -1025,6 +1036,10 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::RootValuetypeChangedAtEnd",
          "Mode::RootTypeDataChangedAtEnd",
          "Mode::RootGenericChangedAtEnd",
+         "Mode::RootRankChangedAtEnd",
+         "Mode::InterpreterDeclaringChangedAtEnd",
+         "Mode::InterpreterContainerChangedAtEnd",
+         "Mode::AotExistingClassShape",
          "Mode::LogicalAssemblyNameBytesChangedAtEnd",
          "Mode::LogicalAssemblyNamePointerChangedAtEnd",
          "Mode::LogicalAssemblyNameSameBytesNewPointer",

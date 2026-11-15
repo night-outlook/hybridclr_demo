@@ -1,5 +1,14 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current Primary R03 B2 end-pass admitted class shape — CLOSED / NO EXECUTION (2026-11-15 UTC)
+
+**NO LOCAL EXECUTION AUTHORITY.** Inactive native `il2cpp_plus@0d97e9d1f37863dd89323d3dc8a9aa19bd94d78f` adds final third-pass fail-closed checks for `klass->rank` (all admitted classes) and `genericContainerHandle/declaringType` (plain physical interpreter subset only). Three late mutation negatives and one positive preservation of eligible AOT shapes; original V1/B1/R02 and active resolver untouched. [Review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CLASS_SHAPE_ENDPASS_REVIEW_2026-11-15.md). [Native CI 43701442617](https://github.com/night-outlook/il2cpp_plus/actions/runs/43701442617) **4/4 PASS** Mac/Linux C++11/17, 146 synthetic-VM scenarios/7,178 assertions. Demo four-pin source-gate CI must be independently checked at new HEAD.
+
+All four on branch `codex/assembly-shadow-r01b-h1`: hybridclr_demo latest verified pushed HEAD; hybridclr `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`; hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de`; il2cpp_plus `0d97e9d1f37863dd89323d3dc8a9aa19bd94d78f`. No new local use/oneuse batch, official Unity Player, real VM/GC epoch, full terminal fields14/15 or native V2 transport. Keep `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`; PureInterpreter disabled. Local must return NoExecutionAuthority; do not replay B1 oneuse-12, enter H2/M08A/X02/SNAP-01 or self-approve Human Review Gate.
+
+---
+
+
 ## Current Primary B2 observed logicalAssembly exact-name end pass — CLOSED / NO EXECUTION (2026-11-14 UTC)
 
 **NO LOCAL EXECUTION AUTHORITY.** Inactive native `il2cpp_plus@dce8c095b53fa28e6ed6a2b825a0c36fe3da5c5a` now rechecks the exact copied `logicalAssembly` bytes of each admitted observed class during the existing third physical callback. uint16 one-based collecting row-slot index costs +2048 B in Rows (<=320KiB), O(1) lookup. Two late-name negatives revoke rows/receipts; same bytes at a different pointer succeed. [Scoped source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_LOGICAL_ASSEMBLY_NAME_ENDPASS_REVIEW_2026-11-14.md). [Native CI 43550349351](https://github.com/night-outlook/il2cpp_plus/actions/runs/43550349351) **4/4 PASS** Mac/Linux C++11/17, 142 synthetic-VM cases and 7,007 checks per execution. [exact four-repository source CI 43551067480](https://github.com/night-outlook/hybridclr_demo/actions/runs/43551067480) **2/2 PASS** Mac/Linux at demo 3b20ffb6c8a01fb7fad80c96cfaf7c9f9db54043; final documentation HEAD CI independently checked.

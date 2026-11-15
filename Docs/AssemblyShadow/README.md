@@ -1,3 +1,11 @@
+# Current Primary — final-pass restricted class-shape fence (2026-11-15 UTC)
+
+Inactive B2 `il2cpp_plus@0d97e9d1f37863dd89323d3dc8a9aa19bd94d78f` now rechecks the second-pass admitted class-shape predicates in its existing third physical callback: `rank==0` for every row and null declaring/generic-container pointers for the plain interpreter subset. Three late shape drift negatives and an AOT nonnull-shape positive are included; no added class pass, heap or scratch. [Scoped source review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CLASS_SHAPE_ENDPASS_REVIEW_2026-11-15.md).
+
+[Native CI 43701442617](https://github.com/night-outlook/il2cpp_plus/actions/runs/43701442617) **4/4 PASS** Mac/Linux C++11/17, 146 synthetic-VM scenarios / 7,178 assertions per process. The new four-repository exact-source CI needs independent verification at the pushed demo HEAD. No Unity Player, metadata/GC/VM epoch, full terminal original V1 field14/15, native V2 or R03 acceptance. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) CLOSED / NO EXECUTION.
+
+---
+
 # Current Primary — observed logicalAssembly name bytes at final class pass (2026-11-14 UTC)
 
 Inactive B2 `il2cpp_plus@dce8c095b53fa28e6ed6a2b825a0c36fe3da5c5a` rechecks exact original V1 observed-class `logicalAssembly` source-name bytes against its already owned row during the third physical class pass. A one-based uint16 insertion slot index adds 2,048 B to `Rows` (still <=320KiB) and makes the comparison O(1) per observed class. Two late-mutation negatives and one same-bytes/different-pointer positive pass. [Scoped review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_LOGICAL_ASSEMBLY_NAME_ENDPASS_REVIEW_2026-11-14.md).

@@ -658,6 +658,29 @@ original_join::CheckFirstOwner(
             with self.subTest(field=k),self.assertRaises(audit.Rejected):
                 audit.validate_contract(modified)
 
+    def test_final_observed_class_shape_admission_remains_scoped(self):
+        c=self.original["nativeSourceCapabilities"]
+        self.assertTrue(c["observedClassShapeEndPassGateImplemented"])
+        self.assertEqual(c["observedClassShapeEndPassLateMutationNegatives"],3)
+        self.assertEqual(c["observedClassShapeEndPassAotPreservationPositives"],1)
+        self.assertEqual(c["observedClassShapeEndPassAdditionalClassPasses"],0)
+        self.assertEqual(c["observedClassShapeEndPassExtraScratchBytes"],0)
+        self.assertFalse(c["observedClassShapeEndPassRealUnityVerified"])
+        self.assertFalse(c["observedClassShapeEndPassWholeVmEpochProven"])
+        for field,bad in (
+            ("observedClassShapeEndPassGateImplemented",False),
+            ("observedClassShapeEndPassLateMutationNegatives",2),
+            ("observedClassShapeEndPassAotPreservationPositives",0),
+            ("observedClassShapeEndPassAdditionalClassPasses",1),
+            ("observedClassShapeEndPassExtraScratchBytes",8),
+            ("observedClassShapeEndPassRealUnityVerified",True),
+            ("observedClassShapeEndPassWholeVmEpochProven",True),
+        ):
+            candidate=copy.deepcopy(self.original)
+            candidate["nativeSourceCapabilities"][field]=bad
+            with self.subTest(field=field),self.assertRaises(audit.Rejected):
+                audit.validate_contract(candidate)
+
     def test_dense_packed_class_facts_source_scope(self):
         c=self.original["nativeSourceCapabilities"]
         self.assertTrue(c["packedClassFactsSourceImplemented"])

@@ -1,3 +1,11 @@
+# R03 B2 Primary — final-pass class-shape recheck (2026-11-15 UTC)
+
+Inactive native `0d97e9d1f37863dd89323d3dc8a9aa19bd94d78f` rechecks admitted `klass->rank==0` and the plain interpreter-only `klass->declaringType/genericContainerHandle==nullptr` in the existing third class pass; any late drift fails `ObservedClassRootChanged`. Three new negatives and one AOT preservation positive; [native CI 43701442617](https://github.com/night-outlook/il2cpp_plus/actions/runs/43701442617) **4/4 PASS** Mac/Linux C++11/17 (146 source-mock scenarios / 7,178 assertions per execution). [Design/source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CLASS_SHAPE_ENDPASS_REVIEW_2026-11-15.md). Four-repo exact source CI pending final pushed demo SHA.
+
+No new stack/scratch/heap or class pass. Original enabled V1, B1 and resolver untouched. Missing original full field14/15, GC/class/whole-VM epoch, genuine Unity TU/Player, authenticated native V2 and first recovery. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION.
+
+---
+
 # R03 B2 Primary — observed logicalAssembly exact-byte end-pass check (2026-11-14 UTC)
 
 Inactive native `dce8c095b53fa28e6ed6a2b825a0c36fe3da5c5a` compares each admitted observed class's copied V1 `logicalAssembly` with its source bytes in the existing third class pass. Two source-name mutation negatives reject; a same-bytes/new-pointer case passes. A uint16 insertion-index map adds 2,048 B within the existing <=320KiB Rows object and avoids O(N) row scanning under the metadata lock. [Source review and limitations](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_LOGICAL_ASSEMBLY_NAME_ENDPASS_REVIEW_2026-11-14.md). [Native CI 43550349351](https://github.com/night-outlook/il2cpp_plus/actions/runs/43550349351) **4/4 PASS**, 142 cases / 7,007 assertions per synthetic-VM execution; [exact four-repository source CI 43551067480](https://github.com/night-outlook/hybridclr_demo/actions/runs/43551067480) **2/2 PASS** Mac/Linux at demo 3b20ffb6c8a01fb7fad80c96cfaf7c9f9db54043; final documentation HEAD CI independently checked.
