@@ -28,3 +28,9 @@ The re-observation detects observed changes between the earlier copied row and t
 Historical independent R03 FAIL/High findings remain open. Native R02 historical source-pin CI has been failing on unrelated preexisting `AssemblyShadow.cpp` and `AssemblyShadowTypeResolver.cpp` pins; do not claim all native workflows green from the targeted source-host PASS. The prior B1 oneuse-12 focused Player result cannot substitute for B2 Player evidence.
 
 **Product flags:** `readyForNativeV2FieldCapture=false`; `nativeV2TransportImplemented=false`; `runtimeAcceptance=false`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`; `wholeVmEpoch=NotProven`. PureInterpreter disabled. `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`. No Local batch or later milestone is authorized.
+
+## Verified source-gate code-anchor CI
+
+[**Demo 43728163513**](https://github.com/night-outlook/hybridclr_demo/actions/runs/43728163513): **2/2 PASS** macOS-15 and Ubuntu-24.04 at demo code `50903662c4dbfdb000efd0bd59ab2cd9db50650c` and native `41f92438bc2c1e76613ddc7e0aa70a5e33f46c29`, with unchanged hybridclr and hybridclr_unity SHAs. Each runner completed 46 Python source-gate tests and verified 64 native/eight demo Git blobs, byte-equal pure Rows mirror (except expected local include spellings), original V1 getter fixture and false acceptance flags. Result `PassedInactiveSourceOnly_NotFullV2`; Local handoff `CLOSED_NO_LOCAL_EXECUTION`. The subsequent documentation-only commit requires its own exact-HEAD CI.
+
+The earlier corrected native 4/4 source-host CI is separate from the historical R02 `primary` byte-pin workflow failure, whose stale baseline source pins were not modified in this B2 cycle. Full native CI must not be described as green. Official Unity/Player and a coherent VM/GC/class lifetime epoch have not been validated.
