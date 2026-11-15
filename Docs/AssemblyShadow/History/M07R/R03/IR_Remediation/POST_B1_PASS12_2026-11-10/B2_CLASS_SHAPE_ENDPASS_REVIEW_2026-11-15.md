@@ -40,3 +40,9 @@ The checked-in **actual inactive .inl** is compiled against a synthetic VM. Thre
 - The ancillary historical R02 source-verify workflow may still reject old source-byte pins; its outcome must be recorded separately from targeted B2 PASS.
 
 **State:** `readyForNativeV2FieldCapture=false`; `nativeV2TransportImplemented=false`; `runtimeAcceptance=false`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`; `wholeVmEpoch=NotProven`; PureInterpreter disabled; `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`. No one-use Local batch or milestone transition is authorized.
+
+## Exact four-repository source CI (code-anchor)
+
+[**Demo 43701800286**](https://github.com/night-outlook/hybridclr_demo/actions/runs/43701800286): **2/2 completed/success**, macOS-15 and Ubuntu-24.04 at demo `a1aeadf908be7ea46ac7b3949cc5e2ec487387f9` and native `0d97e9d1f37863dd89323d3dc8a9aa19bd94d78f`, with unchanged hybridclr and hybridclr_unity pins. Both source-gate jobs verified the 64 native/eight demo source blobs and original V1 getter, and executed **45 Python source-admission unit tests per OS**. The observed full result is `PassedInactiveSourceOnly_NotFullV2` with `handoffAuthority=CLOSED_NO_LOCAL_EXECUTION`. This evidence does not verify a subsequent documentation-only commit until its exact-HEAD CI completes.
+
+[**Native ancillary R02 43701442534**](https://github.com/night-outlook/il2cpp_plus/actions/runs/43701442534): historical `primary` source verification remains **Failed**, separate from target B2 native 4/4 PASS. Do not label all native CI green or promote product acceptance. Neither an official Unity build nor a new Player was run.
