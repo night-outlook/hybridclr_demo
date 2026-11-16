@@ -60,7 +60,7 @@ jobs:
           import json,sys
           with open(sys.argv[1],encoding='utf-8') as f: run=json.load(f)
           assert run['kind']=='R03B2OriginalV1OwnerSourceAdapterHost'
-          assert run['status']=='PassedSyntheticOnly' and run['cases']>=8 and run['checks']>=92
+          assert run['status']=='PassedSyntheticOnly' and run['cases']>=9 and run['checks']>=109
           assert run['realUnity'] is False and run['integratedNativeB2'] is False
           assert run['R03Accepted'] is False
           with open(sys.argv[2],encoding='utf-8') as f: good=json.load(f)
