@@ -46,6 +46,11 @@ class Adapter final {
     }
 public:
     Adapter() noexcept=default;
+    // A forgotten CloseAfterSource/Reset is incomplete too. The producer
+    // must outlive this Adapter, as required by the non-owning pointer above.
+    ~Adapter() noexcept {
+        if(stage_==Stage::Collecting)Fail(Error::UncoveredSource);
+    }
     Adapter(const Adapter&)=delete;
     Adapter& operator=(const Adapter&)=delete;
     Error FirstError() const noexcept{return first_;}
