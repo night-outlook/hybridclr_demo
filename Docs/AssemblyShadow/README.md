@@ -1,3 +1,11 @@
+# Current Primary — deterministic indexed TypeDef capacity prototypes (2026-11-16 UTC)
+
+Two **isolated** C++11 TypeDef storage prototypes now use a **preallocated compressed Patricia trie**, replacing the earlier O(n²) cumulative duplicate-handle scan with a **pointer-width bounded** lookup/insert path. Tested 64-bit bounds: <=65 lookup node visits, <=130 insertion node visits. A 1,024-entry index adds 32,768 B to each model; the fixed slab reserves 196,608 B, compact metadata+32-KiB arena 106,496 B. [Independent source review and exact CI](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CAPACITY_PATRICIA_INDEX_REVIEW_2026-11-16.md).
+
+[Candidate host CI 43798253582](https://github.com/night-outlook/hybridclr_demo/actions/runs/43798253582) **4/4 PASS** Mac/Linux × C++11/C++17, strict and ASan/UBSan (26 synthetic cases / 14,151 assertions per process). **Test-only**: neither candidate is selected/connected to inactive native B2. The actual combined **128 TypeDef** limit and 64-native/eight-demo source manifest remain unchanged. No real Unity, full original V1 fields14/15, coherent class/GC/VM epoch, native V2 or R03 acceptance. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) CLOSED / NO EXECUTION.
+
+---
+
 # Current Primary — isolated TypeDef capacity storage candidates (2026-11-16 UTC)
 
 Test-only C++11 models compare **preallocated fixed-record slabs** against **compact metadata + exact-byte name arenas**, without modifying inactive native B2, its combined **128 TypeDef** limit, original V1 getter, or runtime activation. [Scoped design, actual ABI measurements and open decisions](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CAPACITY_STORAGE_CANDIDATE_COMPARISON_2026-11-16.md).

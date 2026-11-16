@@ -1,3 +1,11 @@
+# R03 B2 Primary — preallocated bounded Patricia index in isolated candidates (2026-11-16 UTC)
+
+`hybridclr_demo@fdbad90d8bed6ba72e4d6329988ff6d255e06745` implements a deterministic MSB-first compressed Patricia index in **both test-only preallocated TypeDef storage models**. It replaces cumulative O(n²) linear handle searches with <=(8*sizeof(uintptr_t)+1) lookup node visits and <=twice that many insertion node visits; 64-bit tested bounds **65/130**. Existing byte-exact name/metadata/owner checks, root/nonroot role merge and first-error scrub behavior are unchanged. [Scoped design/review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CAPACITY_PATRICIA_INDEX_REVIEW_2026-11-16.md). [Host CI 43798253582](https://github.com/night-outlook/hybridclr_demo/actions/runs/43798253582) **4/4 PASS** Mac/Linux C++11/17 strict+ASan/UBSan (26 cases/14,151 checks per execution).
+
+Measured reserved 1,024-entry buffers: index **32,768 B** in both; slab total **196,608 B**, compact total **106,496 B** with 32-KiB name arena. No actual Unity lock-time/allocator/RSS/32-bit result, source high-water census or whole-VM epoch. **No production integration or capacity increase**: live B2 remains 128 combined root+nonroot handles, <=64-byte name fields, <=65,536 metadata lookups. Original V1/B1/R02/resolver and exact native/demo source pins untouched. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION.
+
+---
+
 # R03 B2 Primary — capacity storage alternatives prototyped (2026-11-16 UTC)
 
 At `hybridclr_demo@9aa5dd9e031930ab804f16d37ef0e1ffe6c32650`, two **isolated** preallocated exact-byte TypeDef record models are implemented and host-validated. [Capacity candidate review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CAPACITY_STORAGE_CANDIDATE_COMPARISON_2026-11-16.md); [source-only host CI 43796253756](https://github.com/night-outlook/hybridclr_demo/actions/runs/43796253756) **4/4 PASS** Mac/Linux × C++11/C++17 with ASan/UBSan, 21 cases/4,735 assertions per run. At 1,024 synthetic entries, fixed-slab reserved 163,840 B and compact reserved 73,728 B with a 32,768-byte string arena; worst-case full-length names reverse the advantage. Both still use O(n²) total linear duplicate searches and **are not wired into native B2**.
