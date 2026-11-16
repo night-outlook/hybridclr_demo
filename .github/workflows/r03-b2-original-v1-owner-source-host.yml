@@ -1,0 +1,77 @@
+name: R03 B2 original V1 owner source seam host (NOT Unity)
+on:
+  push:
+    branches:
+      - codex/assembly-shadow-r01b-h1
+    paths:
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/OriginalV1OwnerSourceAdapter.h
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/OriginalV1OwnerSourceAdapterHost.cpp
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/BoundedNativeCensusProducer.h
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/analyze_typedef_census.py
+      - Tools/AssemblyShadow/R03IR/CapacityCandidates/BoundedHandlePatriciaIndex.h
+      - .github/workflows/r03-b2-original-v1-owner-source-host.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-first-owner-source-host:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+        standard: [c++11, c++17]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/TypeDefCensus
+            Tools/AssemblyShadow/R03IR/CapacityCandidates
+          sparse-checkout-cone-mode: true
+      - name: Strict / sanitizer host test and exact offline analyzer
+        shell: bash
+        env:
+          STANDARD: ${{ matrix.standard }}
+        run: |
+          set -euo pipefail
+          if [[ "$RUNNER_OS" == "macOS" ]]; then cxx=clang++; else cxx=g++; fi
+          cd Tools/AssemblyShadow/R03IR/TypeDefCensus
+          for profile in strict sanitizer; do
+            if [[ "$profile" == sanitizer ]]; then
+              "$cxx" -std="$STANDARD" -O1 -g -Wall -Wextra -Werror -pedantic \
+                -fsanitize=address,undefined -fno-omit-frame-pointer \
+                OriginalV1OwnerSourceAdapterHost.cpp -o "$RUNNER_TEMP/original-v1-adapter"
+            else
+              "$cxx" -std="$STANDARD" -O2 -Wall -Wextra -Werror -pedantic \
+                OriginalV1OwnerSourceAdapterHost.cpp -o "$RUNNER_TEMP/original-v1-adapter"
+            fi
+            ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 \
+              "$RUNNER_TEMP/original-v1-adapter" > "$RUNNER_TEMP/test-result.json"
+            ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 \
+              "$RUNNER_TEMP/original-v1-adapter" --fixture > "$RUNNER_TEMP/complete.json"
+            ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 \
+              "$RUNNER_TEMP/original-v1-adapter" --incomplete-fixture > "$RUNNER_TEMP/incomplete.json"
+            python3 analyze_typedef_census.py --input "$RUNNER_TEMP/complete.json" \
+              --output "$RUNNER_TEMP/complete-analysis.json"
+            python3 analyze_typedef_census.py --input "$RUNNER_TEMP/incomplete.json" \
+              --output "$RUNNER_TEMP/incomplete-analysis.json"
+            python3 - "$RUNNER_TEMP/test-result.json" "$RUNNER_TEMP/complete-analysis.json" "$RUNNER_TEMP/incomplete-analysis.json" <<'PY'
+          import json,sys
+          with open(sys.argv[1],encoding='utf-8') as f: run=json.load(f)
+          assert run['kind']=='R03B2OriginalV1OwnerSourceAdapterHost'
+          assert run['status']=='PassedSyntheticOnly' and run['cases']>=8 and run['checks']>=92
+          assert run['realUnity'] is False and run['integratedNativeB2'] is False
+          assert run['R03Accepted'] is False
+          with open(sys.argv[2],encoding='utf-8') as f: good=json.load(f)
+          with open(sys.argv[3],encoding='utf-8') as f: incomplete=json.load(f)
+          for r in (good,incomplete):
+              assert r['captureKind']=='UnverifiedSource'
+              assert r['distinctTypeDefs']=={'union':2,'roots':1,'nonroots':2,'sharedBothRoles':1}
+              assert r['capacityObservations']['capacityDecisionAuthorized'] is False
+              assert not any(r['provenance'].values())
+          assert good['analysisStatus']=='StructurallyCompleteUnverified'
+          assert incomplete['analysisStatus']=='IncompleteLowerBound'
+          print('original-V1 owner source seam synthetic contract PASS')
+          PY
+          done
