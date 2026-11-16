@@ -1,3 +1,11 @@
+# R03 B2 Primary — offline TypeDef census tooling (2026-11-16 UTC)
+
+`hybridclr_demo@521463aff18de1a1efc4d8a179e5c13fc50189d5` adds a deterministic, standalone length-only TypeDef use-event analyzer, 16 synthetic Python tests, an isolated CI workflow and a [future root/nonroot source/lifetime contract](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_NONROOT_CENSUS_CONTRACT_2026-11-16.md). [Primary source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CENSUS_SOURCE_HOST_REVIEW_2026-11-16.md). [CI 43814115586](https://github.com/night-outlook/hybridclr_demo/actions/runs/43814115586) **2/2 completed/success** Mac/Linux at the exact code SHA; 16 synthetic tests per OS. No source recorder or real census exists; the analyzer never authenticates JSON, class/GC/VM epochs or selected capacities.
+
+The original 128-combined TypeDef live B2 bound, 64-byte names, 65,536 owner lookups, native 64-file + demo eight-file source manifest and three unchanged forks remain as before. No Player/native V2/complete original field14/15, real metadata-lock timing or Human Review Gate. `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`.
+
+---
+
 # R03 B2 Primary — preallocated bounded Patricia index in isolated candidates (2026-11-16 UTC)
 
 `hybridclr_demo@fdbad90d8bed6ba72e4d6329988ff6d255e06745` implements a deterministic MSB-first compressed Patricia index in **both test-only preallocated TypeDef storage models**. It replaces cumulative O(n²) linear handle searches with <=(8*sizeof(uintptr_t)+1) lookup node visits and <=twice that many insertion node visits; 64-bit tested bounds **65/130**. Existing byte-exact name/metadata/owner checks, root/nonroot role merge and first-error scrub behavior are unchanged. [Scoped design/review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CAPACITY_PATRICIA_INDEX_REVIEW_2026-11-16.md). [Host CI 43798253582](https://github.com/night-outlook/hybridclr_demo/actions/runs/43798253582) **4/4 PASS** Mac/Linux C++11/17 strict+ASan/UBSan (26 cases/14,151 checks per execution).

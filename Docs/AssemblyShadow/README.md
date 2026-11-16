@@ -1,3 +1,11 @@
+# Current Primary — TypeDef census contract and offline analyzer (2026-11-16 UTC)
+
+A bounded, **offline-only** root+nonroot TypeDef census analyzer and future native lifetime/owner capture contract were added at `hybridclr_demo@521463aff18de1a1efc4d8a179e5c13fc50189d5`. [Source contract](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_NONROOT_CENSUS_CONTRACT_2026-11-16.md) · [Primary source review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CENSUS_SOURCE_HOST_REVIEW_2026-11-16.md) · [exact-code CI 43814115586](https://github.com/night-outlook/hybridclr_demo/actions/runs/43814115586) **2/2 PASS** macOS/Ubuntu, 16 synthetic Python tests per OS. No native producer exists, so **no actual real-game source census, metadata lifetime or lock-latency evidence** was obtained. This code merely analyzes unverified caller-supplied length-only inventories and never authorizes a capacity decision.
+
+Native `il2cpp_plus@cecf4b859d50b128e5c0fc6c90cd89e3a452b96a`, hybridclr `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de` are unchanged. B2 remains inactive with 128 combined root/nonroot TypeDefs, 64-byte name fields and 65,536 indexed owner lookups. No native V2, complete original V1 fields14/15, coherent class/GC/VM epoch or authorized Local Validation. `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`; `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`. No H2/M08A/X02/SNAP-01 or Human Review Gate approval.
+
+---
+
 # Current Primary — deterministic indexed TypeDef capacity prototypes (2026-11-16 UTC)
 
 Two **isolated** C++11 TypeDef storage prototypes now use a **preallocated compressed Patricia trie**, replacing the earlier O(n²) cumulative duplicate-handle scan with a **pointer-width bounded** lookup/insert path. Tested 64-bit bounds: <=65 lookup node visits, <=130 insertion node visits. A 1,024-entry index adds 32,768 B to each model; the fixed slab reserves 196,608 B, compact metadata+32-KiB arena 106,496 B. [Independent source review and exact CI](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CAPACITY_PATRICIA_INDEX_REVIEW_2026-11-16.md).

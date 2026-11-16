@@ -1,0 +1,26 @@
+# R03 B2 — offline TypeDef census analyzer: Primary source review
+
+**Date:** 2026-11-16 UTC. **Scope:** isolated, host-only Python analysis, future source contract and CI. **Exact code commit:** `night-outlook/hybridclr_demo@521463aff18de1a1efc4d8a179e5c13fc50189d5` on `codex/assembly-shadow-r01b-h1`. **Native source unchanged:** `il2cpp_plus@cecf4b859d50b128e5c0fc6c90cd89e3a452b96a`; `hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55`; `hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de`.
+
+## Source-level findings and disposition
+
+1. **Defined and scoped.** `TypeDefCensus/analyze_typedef_census.py` is a length-only, offline event analyzer: it reads no VM memory, uses no IL2CPP calls, does not change native B2, and cannot authenticate caller-supplied fields. Output deliberately never sets source provenance, coherent VM epoch, capacity approval or product acceptance to true. `StructurallyCompleteUnverified` is *not* real-source completeness.
+2. **Handle deduplication.** Distinct handles use a per-capture opaque integer ID; the root and nonroot roles are use-site observations, not inferred from handle equality. A shared handle is counted once in the union and in both role totals. Owner image ordinal, independent first-owner ordinal, name lengths, declaring/generic indices and arity must agree for every repeated handle; conflicts fail closed.
+3. **Capacity reporting.** The analyzer measures a supplied trace's combined distinct count without silently capping at native B2's 128 or candidate 1,024. It separately flags name fields >64 bytes. Its illustrative slab (`192*N`) and compact (`72*N+nameBytes`) buffer estimates use the prior measured 64-bit candidate record/index sizes and exclude allocator overhead, arena slack, lock/stack, GC and original-source observation buffers. There is **no** selected cap or production candidate.
+4. **Parser and failure behavior.** Strict schema keys, duplicate-key rejection, actual event count matching, numeric-width checks, original V1 first-owner ordinal equality, initial-reader epoch and three/two source observation assertions are necessary structural checks, not real attestations. `complete=true` with `droppedEvents>0` fails. A zero-event or incomplete inventory is a lower bound. Input JSON is bounded to 16 MiB and 200,000 events; the tool does not provide input authenticity or independent source-epoch proof.
+5. **Future instrumentation dependency.** There is no native producer. Real root+nonroot TypeDef high-water, unsupported/omitted forms, physical-first-owner overlap, class and metadata lifetime, allocator/metadata-lock time, complete original V1 fields14/15 and independently sealed source evidence are **NotRun/NotProven**. A real-world source plan must acquire these before a capacity change; synthetic data cannot justify the redesign.
+
+## Verification at exact code commit
+
+- Local Primary sandbox: `python3 -m unittest -v test_analyze_typedef_census` — **16/16 Passed** (Linux Python, synthetic input only). This is a source-host test, **not** Local Validation or Unity evidence.
+- GitHub Actions [**43814115586**](https://github.com/night-outlook/hybridclr_demo/actions/runs/43814115586) at **exact code SHA `521463aff18de1a1efc4d8a179e5c13fc50189d5`** — **2/2 completed/success**, `offline-census-source-host (macos-15)` and `offline-census-source-host (ubuntu-24.04)`. These jobs execute the checked-in Python unit tests. No 64/8 four-fork native audit was invoked by this new workflow, and no native source code was changed.
+- Commit diff contains exactly four additions: the analyzer, its 16 synthetic tests, its CI workflow and [census contract](B2_ROOT_NONROOT_CENSUS_CONTRACT_2026-11-16.md). No existing code, manifests, disabled B2 collector, original V1 getter, B1/R02 or active resolver changed.
+
+## Open findings / gates
+
+- **CENSUS-01 (OPEN):** The producer is a proposed protocol only. A future authorized implementation must prove completeness before counting every root, nested, generic, primitive and supported composite TypeDef-use path, including currently rejected paths; it must never rely on B2's 128-cap source for high-water measurement.
+- **CENSUS-02 (OPEN):** The independent first-owner check and all claimed reader/lock callbacks in input JSON are unverified. Epoch=1 is a structural requirement, not a class/GC/whole-VM epoch. Source observation and independent receipt auditing must be designed before the first real run.
+- **CENSUS-03 (OPEN):** No measured real Unity source census, lock/lookup latency, worker-stack allocation or 32-bit ABI. The 64-byte name caps and current 65,536 indexed lookup budget may independently reject population even when a larger storage candidate fits.
+- **CENSUS-04 (OPEN):** Native V2 transport/artifact, independent readback receipt and first recovery, terminal original field14/15, historical R03 FAIL/High findings and ancillary R02 source-pin mismatch remain unresolved.
+
+**Disposition:** `PassedSyntheticOfflineAnalysisOnly`; no real-source population claim, no implementation selection, no runtime or Local Validation authorization. `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`; `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`; PureInterpreter remains disabled. Do not begin H2/M08A/X02/SNAP-01 or self-approve the Human Review Gate.

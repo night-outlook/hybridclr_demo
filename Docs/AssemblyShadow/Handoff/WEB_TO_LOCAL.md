@@ -1,4 +1,13 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
+## Current Primary R03 B2 source-census preparation (2026-11-16 UTC)
+
+**NO LOCAL EXECUTION AUTHORITY OR CURRENT HANDOFF.** Code anchor `hybridclr_demo@521463aff18de1a1efc4d8a179e5c13fc50189d5` adds an **offline-only**, unauthenticated source-inventory TypeDef census analyzer and [proposed owner/metadata-lifetime source contract](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_NONROOT_CENSUS_CONTRACT_2026-11-16.md). [Exact-code host CI 43814115586](https://github.com/night-outlook/hybridclr_demo/actions/runs/43814115586) **2/2 PASS** macOS/Ubuntu; 16 synthetic Python tests per OS. [Review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CENSUS_SOURCE_HOST_REVIEW_2026-11-16.md). No native collector attachment, new Unity build, real metadata census, or Local run. Do not interpret any offline tool result as authenticated original V1 first-owner evidence.
+
+Four-fork active branch `codex/assembly-shadow-r01b-h1`: demo tested code anchor above (docs HEAD verified separately); hybridclr `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`; hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de`; il2cpp_plus `cecf4b859d50b128e5c0fc6c90cd89e3a452b96a`. The native B2 128-combined TypeDef limit, 64-byte name fields, 65,536 owner lookup limit and 64-native/eight-demo manifest are unchanged. Complete original V1 field14/15, coherent class/GC/VM lifetime, real Player performance, native V2/receipt/first recovery remain missing; `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`. Local must return `NoExecutionAuthority`. Do not replay B1 oneuse-12, begin H2/M08A/X02/SNAP-01 or self-approve the Human Review Gate.
+
+---
+
+# Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 ## Current Primary R03 B2 deterministic candidate index — CLOSED / NO EXECUTION (2026-11-16 UTC)
 
 **NO LOCAL EXECUTION AUTHORITY.** The test-only `hybridclr_demo/Tools/AssemblyShadow/R03IR/CapacityCandidates/` prototypes now use preallocated compressed Patricia handle indexing (bounded 64-bit lookup <=65 node visits, insertion <=130). [Source/ABI review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CAPACITY_PATRICIA_INDEX_REVIEW_2026-11-16.md); [host CI 43798253582](https://github.com/night-outlook/hybridclr_demo/actions/runs/43798253582) **4/4 PASS** Mac/Linux C++11/17 strict+sanitizer, 26 synthetic cases/14,151 assertions each. 1,024-record index reserves **32,768 B**, with total counted reservation **196,608 B** fixed slab or **106,496 B** compact at a 32-KiB name arena. Neither storage candidate is selected, integrated, verified in Unity or authorized for Local testing.
