@@ -1,0 +1,72 @@
+name: R03 B2 isolated native census producer (NOT Unity)
+on:
+  push:
+    branches:
+      - codex/assembly-shadow-r01b-h1
+    paths:
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/**
+      - Tools/AssemblyShadow/R03IR/CapacityCandidates/BoundedHandlePatriciaIndex.h
+      - .github/workflows/r03-b2-native-census-producer-host.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-census-host:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+        standard: [c++11, c++17]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/TypeDefCensus
+            Tools/AssemblyShadow/R03IR/CapacityCandidates/BoundedHandlePatriciaIndex.h
+          sparse-checkout-cone-mode: false
+      - name: Build and verify isolated C++ producer; cross-check Python analyzer
+        shell: bash
+        env:
+          STANDARD: ${{ matrix.standard }}
+        run: |
+          set -euo pipefail
+          if [[ "$RUNNER_OS" == "macOS" ]]; then cxx=clang++; else cxx=g++; fi
+          cd Tools/AssemblyShadow/R03IR/TypeDefCensus
+          for profile in strict sanitizer; do
+            if [[ "$profile" == "sanitizer" ]]; then
+              "$cxx" -std="$STANDARD" -Wall -Wextra -Werror -pedantic -O1 -g \
+                -fsanitize=address,undefined -fno-omit-frame-pointer \
+                BoundedNativeCensusProducerHost.cpp -o "$RUNNER_TEMP/r03-census"
+            else
+              "$cxx" -std="$STANDARD" -Wall -Wextra -Werror -pedantic -O2 \
+                BoundedNativeCensusProducerHost.cpp -o "$RUNNER_TEMP/r03-census"
+            fi
+            ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 \
+              UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 \
+              "$RUNNER_TEMP/r03-census" > "$RUNNER_TEMP/r03-census-host.json"
+            "$RUNNER_TEMP/r03-census" --fixture > "$RUNNER_TEMP/r03-census-fixture.json"
+            "$RUNNER_TEMP/r03-census" --incomplete-fixture > "$RUNNER_TEMP/r03-census-incomplete.json"
+            python3 analyze_typedef_census.py --input "$RUNNER_TEMP/r03-census-fixture.json" > "$RUNNER_TEMP/r03-census-complete-analysis.json"
+            python3 analyze_typedef_census.py --input "$RUNNER_TEMP/r03-census-incomplete.json" > "$RUNNER_TEMP/r03-census-incomplete-analysis.json"
+            python3 - "$RUNNER_TEMP" <<'PY'
+          import json, pathlib, sys
+          root=pathlib.Path(sys.argv[1])
+          host=json.loads((root/'r03-census-host.json').read_text())
+          complete=json.loads((root/'r03-census-complete-analysis.json').read_text())
+          incomplete=json.loads((root/'r03-census-incomplete-analysis.json').read_text())
+          assert host['status']=='PassedSyntheticOnly' and host['cases']>=8 and host['checks']>=2000
+          assert host['realUnity'] is False and host['integratedNativeB2'] is False
+          assert host['R03Accepted'] is False
+          assert complete['analysisStatus']=='StructurallyCompleteUnverified'
+          assert complete['distinctTypeDefs']=={'union':130,'roots':130,'nonroots':1,'sharedBothRoles':1}
+          assert complete['capacityObservations']['currentCombined128Exceeded'] is True
+          assert incomplete['analysisStatus']=='IncompleteLowerBound'
+          assert incomplete['events']['dropped']==1
+          for result in (complete,incomplete):
+              assert result['provenance']['inputOriginAuthenticated'] is False
+              assert result['provenance']['R03Accepted'] is False
+              assert result['capacityObservations']['capacityDecisionAuthorized'] is False
+          PY
+          done
