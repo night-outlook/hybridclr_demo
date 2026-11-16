@@ -46,6 +46,14 @@ static void Test1024(size_t arenaBudget,bool compact) {
     CHECK(receipt.roots==512 && receipt.nonRoots==512);
     CHECK(receipt.exactNameBytes==1024*8u);
     CHECK(receipt.reservedBytes==reserved);
+    CHECK(receipt.indexReservedBytes>0);
+    CHECK(receipt.indexNodeCapacity==2048);
+    CHECK(receipt.maximumLookupVisits<=cap::BoundedHandlePatriciaIndex::kMaxLookupVisits);
+    CHECK(receipt.maximumInsertVisits<=cap::BoundedHandlePatriciaIndex::kMaxInsertVisits);
+    CHECK(receipt.totalLookupVisits<=1024u*
+          cap::BoundedHandlePatriciaIndex::kMaxLookupVisits);
+    CHECK(receipt.deterministicLookupVisitBound==
+          cap::BoundedHandlePatriciaIndex::kMaxLookupVisits);
     CHECK(!receipt.realUnity && !receipt.coherentVmEpoch &&
           !receipt.runtimeAcceptance);
     if(compact)CHECK(reserved<1024*160u);
@@ -138,6 +146,103 @@ static void TestNameBudget(size_t arenaBudget) {
     CHECK(!tooLong.Add(V(16,cap::kRoot,oversized,"Leaf")));
     CHECK(tooLong.FirstError()==cap::Error::NameLimit);
 }
+
+static uintptr_t AdversarialHandle(size_t i) {
+    // Identical low bits: intentionally defeats a naive (key>>3)%N table.
+    const uintptr_t top=static_cast<uintptr_t>(1u)
+                        << (cap::BoundedHandlePatriciaIndex::kKeyBits-1u);
+    return top | (static_cast<uintptr_t>(i+1u)<<8u) |
+           static_cast<uintptr_t>(0x80u);
+}
+template<class Census>
+static void TestReverseOrderAdversarialHandles(size_t arenaBudget) {
+    ++cases;
+    Census c;
+    CHECK(c.Prepare(1024,arenaBudget));
+    const size_t allocated=c.ReservedBytes();
+    for(size_t i=0;i<1024;++i)
+        CHECK(c.Add(V(AdversarialHandle(i),cap::kRoot)));
+    // Duplicate role merge in reverse arrival order: no new text records,
+    // no heap growth and no pointer-order dependence.
+    for(size_t i=1024;i>0;--i)
+        CHECK(c.Add(V(AdversarialHandle(i-1),cap::kNonRoot)));
+    CHECK(c.ReservedBytes()==allocated);
+    cap::Receipt receipt{};
+    CHECK(c.Seal(receipt));
+    CHECK(receipt.complete && receipt.pairs==1024);
+    CHECK(receipt.roots==1024 && receipt.nonRoots==1024);
+    CHECK(receipt.exactNameBytes==8192);
+    CHECK(receipt.maximumLookupVisits<=
+          cap::BoundedHandlePatriciaIndex::kMaxLookupVisits);
+    CHECK(receipt.maximumInsertVisits<=
+          cap::BoundedHandlePatriciaIndex::kMaxInsertVisits);
+    CHECK(receipt.totalLookupVisits<=2048u*
+          cap::BoundedHandlePatriciaIndex::kMaxLookupVisits);
+    CHECK(!receipt.realUnity && !receipt.runtimeAcceptance);
+}
+template<class Census>
+static void TestHighBitPrefixAndOwnerConflict(size_t arenaBudget) {
+    ++cases;
+    Census c;
+    CHECK(c.Prepare(128,arenaBudget));
+    const uintptr_t high=static_cast<uintptr_t>(1u)
+                           << (cap::BoundedHandlePatriciaIndex::kKeyBits-1u);
+    CHECK(c.Add(V(high)));
+    for(size_t bit=0;bit+1<cap::BoundedHandlePatriciaIndex::kKeyBits;++bit) {
+        const uintptr_t key=high|(static_cast<uintptr_t>(1u)<<bit);
+        CHECK(c.Add(V(key)));
+    }
+    // The last existing leaf must remain findable regardless of trie splits.
+    const uintptr_t last=high|static_cast<uintptr_t>(1u);
+    CHECK(!c.Add(V(last,cap::kRoot,"Demo","Leaf",0x2000u)));
+    CHECK(c.FirstError()==cap::Error::OwnerConflict);
+    cap::Receipt r{};CHECK(!c.Seal(r));
+    CHECK(!r.complete && r.pairs==0);
+    c.Release();
+    CHECK(c.Prepare(3,arenaBudget));
+    CHECK(c.Add(V(high)));
+    CHECK(c.Add(V(last)));
+    cap::Receipt after{};
+    CHECK(c.Seal(after) && after.complete && after.pairs==2);
+    CHECK(after.maximumLookupVisits<=
+          cap::BoundedHandlePatriciaIndex::kMaxLookupVisits);
+}
+static void TestDirectPatriciaInvariants() {
+    ++cases;
+    cap::BoundedHandlePatriciaIndex idx;
+    CHECK(!idx.Prepare(0));
+    CHECK(idx.Prepare(1024));
+    CHECK(idx.ReservedBytes()>0 && idx.NodeCapacity()==2048);
+    for(size_t i=0;i<1024;++i) {
+        size_t steps=0;
+        CHECK(idx.Insert(AdversarialHandle(i),i,steps));
+        CHECK(steps<=cap::BoundedHandlePatriciaIndex::kMaxInsertVisits);
+    }
+    CHECK(idx.Count()==1024);
+    for(size_t i=1024;i>0;--i) {
+        size_t row=1024,steps=0;
+        CHECK(idx.Find(AdversarialHandle(i-1),row,steps));
+        CHECK(row==i-1);
+        CHECK(steps<=cap::BoundedHandlePatriciaIndex::kMaxLookupVisits);
+    }
+    size_t absent=1024,steps=0;
+    CHECK(!idx.Find(AdversarialHandle(1024),absent,steps));
+    CHECK(absent==0 && steps<=cap::BoundedHandlePatriciaIndex::kMaxLookupVisits);
+    CHECK(!idx.Find(0,absent,steps));
+    CHECK(!idx.Insert(AdversarialHandle(0),0,steps));
+    idx.Clear();
+    CHECK(idx.Count()==0);
+    CHECK(!idx.Find(AdversarialHandle(0),absent,steps));
+    CHECK(idx.Insert(AdversarialHandle(0),0,steps));
+    CHECK(idx.Find(AdversarialHandle(0),absent,steps) && absent==0);
+    idx.Release();
+    CHECK(idx.ReservedBytes()==0 && idx.Count()==0);
+    CHECK(idx.Prepare(1));
+    CHECK(idx.Insert(1,0,steps));
+    CHECK(!idx.Insert(2,0,steps));
+    idx.Release();
+}
+
 static void TestArenaExhaustionAndReuse() {
     ++cases;
     cap::CompactArenaCensus c;
@@ -187,6 +292,11 @@ int main() {
     TestPairCapacity<cap::CompactArenaCensus>(2048);
     TestNameBudget<cap::FixedSlabCensus>(1);
     TestNameBudget<cap::CompactArenaCensus>(128);
+    TestReverseOrderAdversarialHandles<cap::FixedSlabCensus>(1);
+    TestReverseOrderAdversarialHandles<cap::CompactArenaCensus>(32*1024);
+    TestHighBitPrefixAndOwnerConflict<cap::FixedSlabCensus>(1);
+    TestHighBitPrefixAndOwnerConflict<cap::CompactArenaCensus>(1024);
+    TestDirectPatriciaInvariants();
     TestArenaExhaustionAndReuse();
     TestInvalidPrepare();
 
@@ -197,15 +307,22 @@ int main() {
     const size_t slabReserved=slab.ReservedBytes();
     const size_t compactReserved=compact.ReservedBytes();
     CHECK(compactReserved<slabReserved);
+    CHECK(slab.ReservedBytes()==slabReserved &&
+          compact.ReservedBytes()==compactReserved);
     std::printf("{\"kind\":\"R03B2StorageCandidateHost\","
        "\"result\":\"PassedSyntheticStorageOnly\","
        "\"cases\":%u,\"assertions\":%u,"
        "\"capacity\":1024,\"priorLiveCap\":128,"
        "\"slabReservedBytes\":%zu,\"compactReservedBytes\":%zu,"
        "\"compactArenaBudgetBytes\":32768,"
+       "\"indexKind\":\"BoundedPatriciaTrie\","
+       "\"indexMaxLookupVisits\":%zu,"
+       "\"indexMaxInsertVisits\":%zu,"
        "\"realUnity\":false,\"realMetadata\":false,"
        "\"integratedInB2\":false,\"runtimeAcceptance\":false,"
        "\"R03Accepted\":false,\"ReadyForHumanReviewGate\":false}\n",
-       cases,checks,slabReserved,compactReserved);
+       cases,checks,slabReserved,compactReserved,
+       cap::BoundedHandlePatriciaIndex::kMaxLookupVisits,
+       cap::BoundedHandlePatriciaIndex::kMaxInsertVisits);
     return 0;
 }

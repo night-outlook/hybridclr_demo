@@ -3,6 +3,7 @@
 // Caller must authenticate owner/metadata provenance before Add().
 // Prepare() is the ONLY allocating method and MUST run before metadata lock.
 // No class/GC/VM epoch, original V1 parity, or runtime acceptance is claimed.
+#include "BoundedHandlePatriciaIndex.h"
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
@@ -17,7 +18,8 @@ static const uint8_t kRoot=1, kNonRoot=2;
 
 enum class Error : uint8_t {
     None, BadPrepare, AllocationFailed, WrongStage, InvalidInput,
-    NameLimit, OwnerConflict, ContentChanged, PairCapacity, ArenaCapacity
+    NameLimit, OwnerConflict, ContentChanged, PairCapacity, ArenaCapacity,
+    IndexInvariant
 };
 struct View {
     uintptr_t handle=0, owner=0; // opaque values: no dereference
@@ -34,6 +36,9 @@ struct Receipt {
     bool realUnity=false, coherentVmEpoch=false, runtimeAcceptance=false;
     size_t pairs=0, roots=0, nonRoots=0;
     size_t reservedBytes=0, exactNameBytes=0;
+    size_t indexReservedBytes=0,indexNodeCapacity=0;
+    size_t totalLookupVisits=0,maximumLookupVisits=0,maximumInsertVisits=0;
+    size_t deterministicLookupVisitBound=BoundedHandlePatriciaIndex::kMaxLookupVisits;
 };
 inline bool SameBytes(const char* a,const char* b,size_t n) noexcept {
     return !n || std::memcmp(a,b,n)==0;
@@ -179,13 +184,17 @@ public:
 template<class Storage>
 class Census final {
     Storage storage_{};
+    BoundedHandlePatriciaIndex index_{};
     size_t capacity_=0,count_=0,nameBytes_=0;
+    size_t totalLookupVisits_=0,maximumLookupVisits_=0,maximumInsertVisits_=0;
     Error first_=Error::None;
     enum class Stage:uint8_t{New,Collecting,Complete,Failed};
     Stage stage_=Stage::New;
     bool Fail(Error e) noexcept {
         if(first_==Error::None)first_=e;
-        stage_=Stage::Failed;storage_.Clear();count_=nameBytes_=0;
+        stage_=Stage::Failed;storage_.Clear();index_.Clear();
+        count_=nameBytes_=totalLookupVisits_=0;
+        maximumLookupVisits_=maximumInsertVisits_=0;
         return false;
     }
 public:
@@ -193,12 +202,18 @@ public:
     Census(const Census&)=delete;
     Census& operator=(const Census&)=delete;
     Error FirstError() const noexcept{return first_;}
-    size_t ReservedBytes() const noexcept{return storage_.ReservedBytes();}
+    size_t ReservedBytes() const noexcept {
+        return storage_.ReservedBytes()+index_.ReservedBytes();
+    }
     bool Prepare(size_t capacity,size_t arenaBudget=1) noexcept {
         if(stage_!=Stage::New)return Fail(Error::WrongStage);
         if(!capacity || capacity>kMaximumPairs)return Fail(Error::BadPrepare);
         if(!storage_.Prepare(capacity,arenaBudget))
             return Fail(Error::AllocationFailed);
+        if(!index_.Prepare(capacity)) {
+            storage_.Release(); // no partial prepared candidate on OOM
+            return Fail(Error::AllocationFailed);
+        }
         capacity_=capacity;stage_=Stage::Collecting;return true;
     }
     // Add does NOT allocate, dereference handle/owner or keep input strings.
@@ -208,34 +223,67 @@ public:
         if(view.namespaceBytes>kMaximumNameBytes ||
            view.nameBytes>kMaximumNameBytes)return Fail(Error::NameLimit);
         if(!Valid(view))return Fail(Error::InvalidInput);
-        for(size_t i=0;i<count_;++i) {
-            const Metadata& m=storage_.Meta(i);
-            if(m.handle!=view.handle)continue;
+        // Indexed handle lookup is independent of the number and order of
+        // records. The Patricia path has <= pointer-width+1 node visits even
+        // for deliberately adversarial handle bit patterns (no hash attack).
+        size_t existing=0,lookupVisits=0;
+        const bool found=index_.Find(view.handle,existing,lookupVisits);
+        totalLookupVisits_+=lookupVisits;
+        if(lookupVisits>maximumLookupVisits_)
+            maximumLookupVisits_=lookupVisits;
+        if(lookupVisits>BoundedHandlePatriciaIndex::kMaxLookupVisits)
+            return Fail(Error::IndexInvariant);
+        if(found) {
+            if(existing>=count_)return Fail(Error::IndexInvariant);
+            const Metadata& m=storage_.Meta(existing);
+            if(m.handle!=view.handle)return Fail(Error::IndexInvariant);
             if(m.owner!=view.owner)return Fail(Error::OwnerConflict);
-            if(!storage_.Same(i,view))return Fail(Error::ContentChanged);
-            storage_.MergeRole(i,view.roles);return true;
+            if(!storage_.Same(existing,view))
+                return Fail(Error::ContentChanged);
+            storage_.MergeRole(existing,view.roles);return true;
         }
         if(count_==capacity_)return Fail(Error::PairCapacity);
         if(!storage_.Put(count_,view))return Fail(Error::ArenaCapacity);
+        size_t insertVisits=0;
+        if(!index_.Insert(view.handle,count_,insertVisits) ||
+           insertVisits>BoundedHandlePatriciaIndex::kMaxInsertVisits)
+            return Fail(Error::IndexInvariant);
+        if(insertVisits>maximumInsertVisits_)
+            maximumInsertVisits_=insertVisits;
         nameBytes_+=view.namespaceBytes+view.nameBytes;
         ++count_;return true;
     }
     bool Seal(Receipt& receipt) noexcept {
         receipt=Receipt{};
         if(stage_!=Stage::Collecting)return Fail(Error::WrongStage);
-        stage_=Stage::Complete;
-        receipt.complete=true;receipt.pairs=count_;
+        // Validate index invariants BEFORE any positive receipt or
+        // Complete transition. An index failure must never leave a
+        // previously emitted success-like receipt.
+        if(index_.Count()!=count_ ||
+           maximumLookupVisits_>BoundedHandlePatriciaIndex::kMaxLookupVisits ||
+           maximumInsertVisits_>BoundedHandlePatriciaIndex::kMaxInsertVisits)
+            return Fail(Error::IndexInvariant);
+        receipt.pairs=count_;
         receipt.exactNameBytes=nameBytes_;
-        receipt.reservedBytes=storage_.ReservedBytes();
+        receipt.reservedBytes=ReservedBytes();
+        receipt.indexReservedBytes=index_.ReservedBytes();
+        receipt.indexNodeCapacity=index_.NodeCapacity();
+        receipt.totalLookupVisits=totalLookupVisits_;
+        receipt.maximumLookupVisits=maximumLookupVisits_;
+        receipt.maximumInsertVisits=maximumInsertVisits_;
         for(size_t i=0;i<count_;++i) {
             const uint8_t roles=storage_.Meta(i).roles;
             if(roles&kRoot)++receipt.roots;
             if(roles&kNonRoot)++receipt.nonRoots;
         }
+        stage_=Stage::Complete;
+        receipt.complete=true; // publish only after all checks
         return true;
     }
     void Release() noexcept {
-        storage_.Release();capacity_=count_=nameBytes_=0;
+        storage_.Release();index_.Release();
+        capacity_=count_=nameBytes_=totalLookupVisits_=0;
+        maximumLookupVisits_=maximumInsertVisits_=0;
         first_=Error::None;stage_=Stage::New;
     }
 };

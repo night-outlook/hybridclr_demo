@@ -59,8 +59,13 @@ jobs:
           assert r['kind']=='R03B2StorageCandidateHost'
           assert r['result']=='PassedSyntheticStorageOnly'
           assert r['capacity']==1024 and r['priorLiveCap']==128
-          assert r['cases']>=18 and r['assertions']>=2500
+          assert r['cases']>=26 and r['assertions']>=7000
           assert r['compactReservedBytes']<r['slabReservedBytes']
+          assert r['slabReservedBytes']>163840
+          assert r['compactReservedBytes']>73728
+          assert r['indexKind']=='BoundedPatriciaTrie'
+          assert r['indexMaxLookupVisits'] in (33,65)
+          assert r['indexMaxInsertVisits']==2*r['indexMaxLookupVisits']
           assert r['compactArenaBudgetBytes']==32768
           assert r['realUnity'] is False and r['realMetadata'] is False
           assert r['integratedInB2'] is False
