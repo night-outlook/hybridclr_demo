@@ -1,5 +1,14 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current Primary R03 B2 storage candidate study — CLOSED / NO EXECUTION (2026-11-16 UTC)
+
+**NO LOCAL EXECUTION AUTHORITY.** Standalone `hybridclr_demo/Tools/AssemblyShadow/R03IR/CapacityCandidates/` now contains two C++11 **host-only** preallocated exact-byte TypeDef storage candidates (fixed record and compact arena). [Review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CAPACITY_STORAGE_CANDIDATE_COMPARISON_2026-11-16.md) and [host CI 43796253756](https://github.com/night-outlook/hybridclr_demo/actions/runs/43796253756) **4/4 PASS**, 21 synthetic cases/4,735 assertions per Mac/Linux C++11/17 process. For 1,024 synthetic entries, reserved bytes were 163,840 vs 73,728 at a 32 KiB compact arena. These are *not* real Unity memory/latency results; neither candidate is selected or connected to the inactive native B2 collector. The original 128-pair combined cap, source manifest and runtime acceptance flags remain unchanged.
+
+All repositories on `codex/assembly-shadow-r01b-h1`: demo latest verified pushed HEAD; hybridclr `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`; hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de`; il2cpp_plus `cecf4b859d50b128e5c0fc6c90cd89e3a452b96a`. Missing real root+leaf census, owner-lookup and lock latency, GC/class/VM epoch, real Unity Player, complete original V1 field14/15 and native V2/first recovery. Local must return NoExecutionAuthority; do not replay B1 oneuse-12, enter H2/M08A/X02/SNAP-01 or self-approve the Human Review Gate.
+
+---
+
+
 ## Current Primary B2 first-pass root-capacity preflight — CLOSED / NO EXECUTION (2026-11-16 UTC)
 
 **NO LOCAL EXECUTION AUTHORITY.** Inactive native `il2cpp_plus@cecf4b859d50b128e5c0fc6c90cd89e3a452b96a` now derives an early root-only distinct TypeDef census from already copied first-pass ClassFacts. 129 unique roots causes `SourceOutsideBudget` before second-pass owner/TypeKey work and leaves a **diagnostic-only** `originalV1RootDistinctPreflightCapped=129`; success/acceptance receipts remain revoked. 128 unique roots and 129 observed classes sharing a root pass synthetic tests. Added <=2,056 B 64-bit transient stack, no heap/new class pass. [Scoped review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_CAPACITY_PREFLIGHT_REVIEW_2026-11-16.md). [Native CI 43792802567](https://github.com/night-outlook/il2cpp_plus/actions/runs/43792802567) **4/4 PASS** Mac/Linux C++11/17, 158 synthetic-VM cases / 8,711 assertions per process; [demo exact four-repository source CI 43793630092](https://github.com/night-outlook/hybridclr_demo/actions/runs/43793630092) **2/2 PASS** Mac/Linux at code commit `46229153cc1b690bebed875a180c1e72fbba131a` (64 native/eight demo exact blobs, 47 Python gate tests per OS); final documentation HEAD checked separately.

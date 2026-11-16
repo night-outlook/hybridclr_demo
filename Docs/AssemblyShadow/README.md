@@ -1,3 +1,11 @@
+# Current Primary — isolated TypeDef capacity storage candidates (2026-11-16 UTC)
+
+Test-only C++11 models compare **preallocated fixed-record slabs** against **compact metadata + exact-byte name arenas**, without modifying inactive native B2, its combined **128 TypeDef** limit, original V1 getter, or runtime activation. [Scoped design, actual ABI measurements and open decisions](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CAPACITY_STORAGE_CANDIDATE_COMPARISON_2026-11-16.md).
+
+[Host CI 43796253756](https://github.com/night-outlook/hybridclr_demo/actions/runs/43796253756) **4/4 PASS**, Mac/Linux × C++11/C++17, strict + ASan/UBSan (21 synthetic cases/4,735 checks per process). At 1,024 candidate entries and 32 KiB compact text budget, reserved storage was **163,840 B** (fixed slab) vs **73,728 B** (compact). With full 64+64-byte names, compact may use *more* reserved bytes than slab; source census and metadata-lock latency are unmeasured. **No design selected or connected to native B2**. No Unity, class/GC/VM epoch, complete original fields14/15, native V2 or R03 acceptance. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) CLOSED / NO EXECUTION.
+
+---
+
 # Current Primary — first-pass root TypeDef capacity preflight (2026-11-16 UTC)
 
 Inactive B2 `il2cpp_plus@cecf4b859d50b128e5c0fc6c90cd89e3a452b96a` counts distinct nonzero class-root TypeDef handles from copied first-pass class facts. At **129 roots**, the current combined **128 root+nonroot** capacity now rejects early with `SourceOutsideBudget`, preserves a capped diagnostic count, and avoids second-pass TypeKey/owner work. **128 distinct roots** and **129 classes sharing one root** pass synthetic tests. Extra temporary hash scratch <=2,056 B (64-bit), no heap or new traversal. This does **not** enlarge the 128-cap or count non-root leaves. [Source/capacity review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_CAPACITY_PREFLIGHT_REVIEW_2026-11-16.md).

@@ -44,3 +44,29 @@ Use measurements from **the exact CI SHA**, not assumed `sizeof` results. Candid
 **No production integration, cap adjustment or Local Validation handoff is authorized by these prototype results.** Existing `il2cpp_plus` source, the 64-native/eight-demo B2 source manifest, and its original getter/B1/active resolver remain unchanged. The independent R03 full-stage review still has historical FAIL/High items. Full native V2 artifact/envelope/independent receipt/first recovery, real Unity native translation unit/Player, and genuine metadata/GC/VM epoch are not proven.
 
 Acceptance remains `readyForNativeV2FieldCapture=false`, `nativeV2TransportImplemented=false`, `runtimeAcceptance=false`, `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`, `wholeVmEpoch=NotProven`. PureInterpreter stays disabled. `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`. Future selection and product integration require fresh source/host evidence, an exact capacity/latency budget, and the existing Human Review Gate process.
+
+## Verified source-host result and review (candidate code anchor)
+
+[**Capacity candidate CI 43796253756**](https://github.com/night-outlook/hybridclr_demo/actions/runs/43796253756) completed **4/4 PASS** at demo commit `9aa5dd9e031930ab804f16d37ef0e1ffe6c32650`: macOS-15 and Ubuntu-24.04 × C++11/C++17. Every matrix cell ran both `-O2 -Wall -Wextra -Werror -pedantic` and ASan/UBSan builds; **21 synthetic cases and 4,735 assertions per process**. The recorded result was `PassedSyntheticStorageOnly`, `realUnity=false`, `realMetadata=false`, `integratedInB2=false`, `R03Accepted=false`, and `ReadyForHumanReviewGate=false`.
+
+Exact tested source Git blobs: `TypeDefStorageCandidates.h@e48d83272d9207e7d688a59ce44909645f6084e7`; `TypeDefStorageCandidateHost.cpp@75d8017e09a3080cb393373f3d19b329f6deb816`. The workflow checkout was later narrowed to these files at `9aa5dd9e031930ab804f16d37ef0e1ffe6c32650`; the model code was **not changed** by that CI-only optimization.
+
+| 1,024-record host comparison | Fixed slab A | Compact arena B (32 KiB text budget) |
+|---|---:|---:|
+| Preallocated candidate **reserved bytes** | **163,840** | **73,728** |
+| Exact synthetic text consumed (4+4 bytes per distinct pair) | 8,192 | 8,192 |
+| Runtime integrated into native B2? | No | No |
+| Original native B2 combined cap | 128 | 128 |
+
+For these short synthetic names, B reserves **90,112 fewer bytes (~55%)** than A. This is the **candidate's explicitly accounted buffers**, not complete process RSS, allocator overhead, native Unity ABI measurement, or a measured C++ memory high-water mark. The arena B allocation comprises 40,960 bytes of records plus a 32,768-byte name budget.
+
+**Important contrary case:** 1,024 declarations each with both 64-byte fields at the limit require at least **131,072 bytes of exact-name arena**, before record storage; at the observed metadata record size, B would then reserve **172,032 bytes**, which is **8,192 bytes more** than A's 163,840-byte fixed slab (allocator overhead excluded). A fixed 32 KiB arena **fails closed**, rather than magically supporting that worst case. A real-name distribution and expansion headroom are required to choose B.
+
+### Primary static review of the prototype
+
+- `SlabStorage::Prepare` and `ArenaStorage::Prepare` own their allocations and must precede any future metadata lock. The `Add`/role merge path itself contains no explicit allocation; `Release` and error transitions zero owned fields. The synthetic host did **not** instrument global allocator hooks or quantify real lock latency.
+- Both candidates check exact `handle`, `owner`, namespace/simple-name byte length and content, indices, arity and root/nonroot roles. They do **not** perform independently authenticated physical first-owner proof. Every caller's handles are synthetic values. The candidates cannot be plugged into the live source without an explicit owner/metadata-lifetime design and a new separate review.
+- Both use a **linear existing-handle search**. At 1,024 distinct pairs, this is O(1,024²) total comparisons in the worst case, not a bounded production-latency acceptance proof. A preallocated index, caller-side source census, and measured performance remain necessary.
+- The header is not referenced by `il2cpp_plus` or the existing native B2 source manifest. The actual native 128-cap collector and its prior exact four-repository source audit remain untouched. No test-only result promotes the current 128-pair live cap.
+
+**Disposition:** **Two candidate implementations and reproducible host evidence available; no production storage design selected.** Next Primary work is a sourced root+nonroot TypeDef population/name-length census (including generic/nested/primitive references) and owner-lookup/metadata-lock latency budget, then a scoped design selection. Stop at the existing Human Review Gate before any production capacity architecture changes.
