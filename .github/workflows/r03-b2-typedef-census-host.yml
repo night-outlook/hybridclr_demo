@@ -1,0 +1,34 @@
+name: R03 B2 offline TypeDef census tests (NOT Unity)
+on:
+  push:
+    branches:
+      - codex/assembly-shadow-r01b-h1
+    paths:
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/**
+      - .github/workflows/r03-b2-typedef-census-host.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-census-source-host:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/TypeDefCensus
+          sparse-checkout-cone-mode: true
+      - name: Run synthetic-only census contract tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover \
+            -s Tools/AssemblyShadow/R03IR/TypeDefCensus \
+            -p 'test_*.py' -v
