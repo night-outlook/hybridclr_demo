@@ -21,6 +21,11 @@ jobs:
         standard: [c++11, c++17]
     steps:
       - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/CapacityCandidates
+          sparse-checkout-cone-mode: true
       - name: Compile and test both inert storage models
         shell: bash
         env:
