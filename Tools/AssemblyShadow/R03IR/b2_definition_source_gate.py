@@ -188,6 +188,22 @@ def validate_contract(m:dict)->None:
             c.get("auditedTypeDefCombinedDistinctPairLimit")==128 and
             c.get("rootAndNonRootRoleClassifiedByCallPath") is True and
             c.get("sameHandleRootAndNonRootSourceMockCases")==1 and
+            c.get("rootDistinctPreflightFromCopiedFacts") is True and
+            c.get("rootDistinctPreflightMaxDistinct")==128 and
+            c.get("rootDistinctPreflightOverLimitValue")==129 and
+            c.get("rootDistinctPreflightHashBuckets")==257 and
+            c.get("rootDistinctPreflightExtraStackBytes64AtMost")==2056 and
+            c.get("rootDistinctPreflightPureHostCases")==4 and
+            c.get("rootDistinctPreflightBoundaryCases")==3 and
+            c.get("rootDistinctPreflightOverflowBeforeSecondPass") is True and
+            c.get("rootDistinctPreflightMissingHandleDefersToExistingAdmission") is True and
+            c.get("rootDistinctPreflightNoMetadataHandleDereference") is True and
+            c.get("rootDistinctPreflightNoExtraClassPass") is True and
+            c.get("rootDistinctPreflightNoHeapAllocation") is True and
+            c.get("rootDistinctPreflightCensusCompleteForNonRoot") is False and
+            c.get("rootDistinctPreflightSolvesCombinedCapacity") is False and
+            c.get("rootDistinctPreflightProvesWholeVmEpoch") is False and
+            c.get("rootDistinctPreflightRealUnityVerified") is False and
             c.get("observedClassShapeEndPassGateImplemented") is True and
             c.get("observedClassShapeEndPassLateMutationNegatives")==3 and
             c.get("observedClassShapeEndPassAotPreservationPositives")==1 and
@@ -313,7 +329,7 @@ def validate_contract(m:dict)->None:
             c.get("packedClassFactsSlotIndexBytes")==2 and
             c.get("packedClassFactsMaxBytes64")==53264 and
             c.get("packedClassFactsSavedStackBytes64AtLeast")==45040 and
-            c.get("packedClassFactsPureHostCases")==5 and
+            c.get("packedClassFactsPureHostCases")==9 and
             c.get("packedClassFactsEarlyRejectDestructorScrub") is True and
             c.get("packedClassFactsUsesHeapAllocation") is False and
             c.get("packedClassFactsUnityStackVerified") is False and
@@ -710,7 +726,15 @@ def source_boundary(native:dict[str,bytes])->None:
          "const Fact* Find(size_t slot) const noexcept",
          "bool Update(size_t slot,const Fact& fact) noexcept",
          "void Scrub() noexcept",
-         "slotToIndexPlusOne_[slot]=static_cast<uint16_t>(used_+1)")
+         "slotToIndexPlusOne_[slot]=static_cast<uint16_t>(used_+1)",
+         "struct KeyCensus",
+         "CountDistinctKeysCapped(KeyOf keyOf) const noexcept",
+         "std::array<uintptr_t,kBuckets> values{}",
+         "~TemporaryKeys() noexcept {values.fill(0);}",
+         "result.missingKey=true;continue;",
+         "if(result.overLimit)continue;",
+         "++result.distinctCapped",
+         "result.overLimit=true")
     must("libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLive.h",
          "ObservedClassFactsChanged",
          "observedClassFactsTwoPassStable",
@@ -722,6 +746,8 @@ def source_boundary(native:dict[str,bytes])->None:
          "originalV1RootOwnerEndPassLookups=0",
          "originalV1RootOwnerEndPassStable=false",
          "kMaximumNonRootTypeDefOwnerPairs = 128",
+         "originalV1RootDistinctPreflightCapped=0",
+         "Retain only the capped root-count preflight",
          "kMaximumNonRootTypeDefNameBytes = 64",
          "OriginalV1TypeDefContentChanged",
          "originalV1NonRootTypeDefContentMatched=0",
@@ -753,6 +779,10 @@ def source_boundary(native:dict[str,bytes])->None:
          "IL2CPP_TYPE_GENERICINST",
          "physical::Scratch discovery",
          "imageInventory.Count()",
+         "rootCensus=firstPassFacts.CountDistinctKeysCapped<",
+         "live::kMaximumNonRootTypeDefOwnerPairs",
+         "receipt.originalV1RootDistinctPreflightCapped=",
+         "rootCensus.overLimit && !rootCensus.missingKey",
          "registeredAotImages.Count()",
          "Assembly::TryVisitRegisteredAotImages",
          "registeredAfter.SameOrderedImageSet(registeredAotImages)",
@@ -962,6 +992,11 @@ def source_boundary(native:dict[str,bytes])->None:
          "TestAssertFreePrimitivePeekMapping",
          "primitivePeekCases",
          "TestPackedClassFactsScratch()",
+         "auto repeated=scratch.CountDistinctKeysCapped<128>(",
+         "repeated.distinctCapped==1",
+         "within.distinctCapped==128",
+         "overflow.distinctCapped==129",
+         "missing.missingKey",
          "packedFactsCases",
          "scratch.Insert(2047,value)",
          "scratch.Count()==1024",
@@ -1065,6 +1100,12 @@ def source_boundary(native:dict[str,bytes])->None:
          "Mode::OwnerShadowChangedAtEnd",
          "Mode::OwnerBacklinkChangedAtEnd",
          "Mode::StableActiveShadowOwner",
+         "Mode::RootDistinct128",
+         "Mode::RootDistinct129",
+         "Mode::SharedRoot129",
+         "receipt.originalV1RootDistinctPreflightCapped==129",
+         "Check(g_physicalPasses==1)",
+         "fixture.image.extendedHandles=fixture.manyHandles.data()",
          "Mode::LogicalAssemblyNameBytesChangedAtEnd",
          "Mode::LogicalAssemblyNamePointerChangedAtEnd",
          "Mode::LogicalAssemblyNameSameBytesNewPointer",

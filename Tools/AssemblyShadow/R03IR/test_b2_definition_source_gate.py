@@ -712,6 +712,50 @@ original_join::CheckFirstOwner(
             with self.subTest(key=key),self.assertRaises(audit.Rejected):
                 audit.validate_contract(mutated)
 
+    def test_preflight_distinct_roots_does_not_promote_capacity(self):
+        c=self.original["nativeSourceCapabilities"]
+        self.assertTrue(c["rootDistinctPreflightFromCopiedFacts"])
+        self.assertEqual(c["rootDistinctPreflightMaxDistinct"],128)
+        self.assertEqual(c["rootDistinctPreflightOverLimitValue"],129)
+        self.assertEqual(c["rootDistinctPreflightHashBuckets"],257)
+        self.assertEqual(c["rootDistinctPreflightExtraStackBytes64AtMost"],2056)
+        self.assertEqual(c["rootDistinctPreflightPureHostCases"],4)
+        self.assertEqual(c["rootDistinctPreflightBoundaryCases"],3)
+        for flag in ("rootDistinctPreflightOverflowBeforeSecondPass",
+                     "rootDistinctPreflightMissingHandleDefersToExistingAdmission",
+                     "rootDistinctPreflightNoMetadataHandleDereference",
+                     "rootDistinctPreflightNoExtraClassPass",
+                     "rootDistinctPreflightNoHeapAllocation"):
+            self.assertIs(c[flag],True,flag)
+        for flag in ("rootDistinctPreflightCensusCompleteForNonRoot",
+                     "rootDistinctPreflightSolvesCombinedCapacity",
+                     "rootDistinctPreflightProvesWholeVmEpoch",
+                     "rootDistinctPreflightRealUnityVerified"):
+            self.assertIs(c[flag],False,flag)
+        self.assertEqual(c["auditedTypeDefCombinedDistinctPairLimit"],128)
+        for field,bad in (
+            ("rootDistinctPreflightFromCopiedFacts",False),
+            ("rootDistinctPreflightMaxDistinct",1024),
+            ("rootDistinctPreflightOverLimitValue",128),
+            ("rootDistinctPreflightHashBuckets",128),
+            ("rootDistinctPreflightExtraStackBytes64AtMost",0),
+            ("rootDistinctPreflightPureHostCases",3),
+            ("rootDistinctPreflightBoundaryCases",2),
+            ("rootDistinctPreflightOverflowBeforeSecondPass",False),
+            ("rootDistinctPreflightMissingHandleDefersToExistingAdmission",False),
+            ("rootDistinctPreflightNoMetadataHandleDereference",False),
+            ("rootDistinctPreflightNoExtraClassPass",False),
+            ("rootDistinctPreflightNoHeapAllocation",False),
+            ("rootDistinctPreflightCensusCompleteForNonRoot",True),
+            ("rootDistinctPreflightSolvesCombinedCapacity",True),
+            ("rootDistinctPreflightProvesWholeVmEpoch",True),
+            ("rootDistinctPreflightRealUnityVerified",True),
+        ):
+            mutated=copy.deepcopy(self.original)
+            mutated["nativeSourceCapabilities"][field]=bad
+            with self.subTest(field=field),self.assertRaises(audit.Rejected):
+                audit.validate_contract(mutated)
+
     def test_dense_packed_class_facts_source_scope(self):
         c=self.original["nativeSourceCapabilities"]
         self.assertTrue(c["packedClassFactsSourceImplemented"])
@@ -720,7 +764,7 @@ original_join::CheckFirstOwner(
         self.assertEqual(c["packedClassFactsSlotIndexBytes"],2)
         self.assertEqual(c["packedClassFactsMaxBytes64"],53264)
         self.assertEqual(c["packedClassFactsSavedStackBytes64AtLeast"],45040)
-        self.assertEqual(c["packedClassFactsPureHostCases"],5)
+        self.assertEqual(c["packedClassFactsPureHostCases"],9)
         self.assertTrue(c["packedClassFactsEarlyRejectDestructorScrub"])
         for flag in ("packedClassFactsUsesHeapAllocation",
                      "packedClassFactsUnityStackVerified",
@@ -734,7 +778,7 @@ original_join::CheckFirstOwner(
             ("packedClassFactsSlotIndexBytes",4),
             ("packedClassFactsMaxBytes64",98304),
             ("packedClassFactsSavedStackBytes64AtLeast",0),
-            ("packedClassFactsPureHostCases",4),
+            ("packedClassFactsPureHostCases",8),
             ("packedClassFactsEarlyRejectDestructorScrub",False),
             ("packedClassFactsUsesHeapAllocation",True),
             ("packedClassFactsUnityStackVerified",True),

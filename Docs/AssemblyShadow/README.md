@@ -1,3 +1,11 @@
+# Current Primary — first-pass root TypeDef capacity preflight (2026-11-16 UTC)
+
+Inactive B2 `il2cpp_plus@cecf4b859d50b128e5c0fc6c90cd89e3a452b96a` counts distinct nonzero class-root TypeDef handles from copied first-pass class facts. At **129 roots**, the current combined **128 root+nonroot** capacity now rejects early with `SourceOutsideBudget`, preserves a capped diagnostic count, and avoids second-pass TypeKey/owner work. **128 distinct roots** and **129 classes sharing one root** pass synthetic tests. Extra temporary hash scratch <=2,056 B (64-bit), no heap or new traversal. This does **not** enlarge the 128-cap or count non-root leaves. [Source/capacity review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_CAPACITY_PREFLIGHT_REVIEW_2026-11-16.md).
+
+[Native source CI 43792802567](https://github.com/night-outlook/il2cpp_plus/actions/runs/43792802567) **4/4 PASS** Mac/Linux C++11/17; 158 synthetic-VM scenarios/8,711 assertions per execution. Four-repository exact native/demo source CI pending at this code SHA. No original full field14/15, class/GC/VM epoch, native V2 or real Unity Player. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) CLOSED / NO EXECUTION.
+
+---
+
 # Current Primary — exact original V1 owner-role flags at final class pass (2026-11-15 UTC)
 
 Inactive B2 `il2cpp_plus@41f92438bc2c1e76613ddc7e0aa70a5e33f46c29` rechecks the second-pass stored `interpreterShadow`, `physicalInterpreter`, and `isActive` per observed class in the **existing third physical callback**, alongside exact `logicalAssembly` and physical assembly-image backlink. Existing one-based Rows slot mapping is reused: no extra class traversal, heap, or scratch. Four synthetic negative drift cases and one stable ActiveShadow positive. [Scoped review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_V1_OWNER_ROLE_ENDPASS_REVIEW_2026-11-15.md).
