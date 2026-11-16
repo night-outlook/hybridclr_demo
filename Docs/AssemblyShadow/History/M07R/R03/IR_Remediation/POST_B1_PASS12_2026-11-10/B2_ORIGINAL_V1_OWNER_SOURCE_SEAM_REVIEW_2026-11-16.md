@@ -1,5 +1,20 @@
 # R03 B2 — original-V1 first-owner census source seam: design, implementation and review
 
+## Source-host lifecycle correction — 2026-11-16 UTC
+
+**Finding SEAM-07 — corrected in test-only source:** The initial adapter had a default destructor. If a caller let an open `Adapter` go out of scope without `CloseAfterSource()` or `Reset()`, its non-owning producer could remain in `Collecting`. A later, separately invoked `Producer::EndCapture()` could incorrectly mark that abandoned observation complete, despite no explicit source coverage closure. Explicit `Reset()` already rejected abandonment, but normal C++ scope exit did not.
+
+**Fix:** `~Adapter() noexcept` now calls the existing `Fail(Error::UncoveredSource)` path when `stage_==Collecting`. This invokes `Producer::MarkUncovered()`, scrubs its retained opaque handle index and retains a lower-bound incomplete trace. The API explicitly requires that the `Producer` outlive the non-owning adapter. A normally completed `CloseAfterSource()` leaves its completed trace intact. New test `AbandonedScopeDestructorRevokes` covers both cases and checks that a later `EndCapture()` cannot revive failure. The CI assertions now require >=9 tests and >=109 assertions, versus 8/92 in the earlier code anchor.
+
+**Exact corrected code commits (sequential Connector contents writes):** adapter header `31a593c9b2b3a65bd857971473e254650a0cf0f2`, host regression `e1a1f2c462503d1cf85f578ced4a6dc4e1d84a4b`, CI condition `14bd3a42277d4517806cefb13809416cb359ac73`. Final blobs: adapter `1693d04a78874b0a5cfb61c09c0193676ee71ecc`, host `f698cb0a3f4daaf6bc6855b86f2a1c17b8bf9d7c`, workflow `6a08da725c7a99ff6fd075d711a3046698737534`. All were matched against independently compiled source files.
+
+**Exact-code GitHub Actions [43821756148](https://github.com/night-outlook/hybridclr_demo/actions/runs/43821756148): 4/4 completed/success** on macOS-15/Ubuntu-24.04 x C++11/C++17. Each job ran strict and ASan/UBSan test profiles, then the checked-in Python census analyzer on complete/incomplete fixtures. Local Primary Linux checks also passed GCC/Clang x C++11/C++17 x strict/sanitized (8 executions), each reporting 9 scenarios/109 checks; the separate Python suite passed 16/16. No Unity native TU, Player or Local Validation was executed.
+
+**Residual limitations:** the destructor cannot independently authenticate callback coverage, pointer lifetime, metadata lock ownership or original image order; supplied observations remain synthetic/unverified. Nothing can retract bytes already emitted to an external file. The 1,024-handle/4,096-event prototype limits, future real population census, class/GC/VM epoch, complete V1 fields14/15, native V2/first recovery and all full-stage acceptance findings remain OPEN. `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`, `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`.
+
+---
+
+
 **Date:** 2026-11-16 UTC. **Stage:** Primary Implementation; one scoped host-only source experiment, NOT production collector integration or Local Validation. **Branch:** `codex/assembly-shadow-r01b-h1`.
 
 **Code commit:** `night-outlook/hybridclr_demo@162c62ba128fb87445d867d16c03e98cbf085a0b`. Pinned unchanged source forks: `night-outlook/hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, `night-outlook/hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de`, `night-outlook/il2cpp_plus@cecf4b859d50b128e5c0fc6c90cd89e3a452b96a`. Local Validation / Human Review Gate remain closed.
