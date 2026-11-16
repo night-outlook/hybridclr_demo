@@ -166,6 +166,36 @@ static void FailedOpenAndAbandonedCapture() {
     std::string json;CHECK(p.EmitJson(Stamp(1),json));
     CHECK(json.find("\"complete\":false")!=std::string::npos);
 }
+static void AbandonedScopeDestructorRevokes() {
+    ++cases;c::Producer p;
+    CHECK(p.Prepare(3,4));
+    const uintptr_t handles[]={10,20};
+    const s::ImageView images[]={{handles,2,1,1}};
+    {
+        s::Adapter a;
+        CHECK(a.Open(p,1,20));
+        CHECK(a.AddUse(images,1,Use(10,0)));
+        CHECK(p.FirstError()==c::Error::None);
+        // No explicit CloseAfterSource or Reset: RAII must fail closed.
+    }
+    CHECK(p.FirstError()==c::Error::MissingCoverage);
+    CHECK(!p.Complete() && p.RawHandlesScrubbed());
+    CHECK(!p.EndCapture());
+    std::string json;CHECK(p.EmitJson(Stamp(1),json));
+    CHECK(json.find("\"complete\":false")!=std::string::npos);
+    CHECK(json.find("\"declaredEvents\":1")!=std::string::npos);
+    p.Release();CHECK(p.Prepare(3,4));
+    {
+        s::Adapter a;
+        CHECK(a.Open(p,1,20));
+        CHECK(a.AddUse(images,1,Use(20,0)));
+        CHECK(a.CloseAfterSource());
+    }
+    // A normally closed adapter's destructor must preserve the healthy trace.
+    CHECK(p.FirstError()==c::Error::None && p.Complete());
+    CHECK(p.EmitJson(Stamp(1),json));
+    CHECK(json.find("\"complete\":true")!=std::string::npos);
+}
 static void Fixture(bool incomplete) {
     c::Producer p;s::Adapter a;
     CHECK(p.Prepare(4,8));CHECK(a.Open(p,2,40));
@@ -192,6 +222,7 @@ int main(int argc,char** argv) {
     MissingAndBudgetAreIncomplete();BadImageAndWrongStage();
     UnsupportedPathAndLateMissingCoverage();EventProducerOverflowRetainsLowerBound();
     InvalidTailAndEmptyPhysicalImage();FailedOpenAndAbandonedCapture();
+    AbandonedScopeDestructorRevokes();
     std::printf("{\"kind\":\"R03B2OriginalV1OwnerSourceAdapterHost\",\"status\":\"PassedSyntheticOnly\",\"cases\":%zu,\"checks\":%zu,\"realUnity\":false,\"integratedNativeB2\":false,\"R03Accepted\":false}\n",cases,checks);
     return 0;
 }
