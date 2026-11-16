@@ -1,4 +1,13 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
+## R03 B2 original first-owner source seam — test-only (2026-11-16 UTC)
+
+**NO LOCAL EXECUTION AUTHORITY OR HANDOFF.** `hybridclr_demo@162c62ba128fb87445d867d16c03e98cbf085a0b` adds a source-only C++11 mock original-V1 first-owner adapter over the unintegrated census producer, a host driver and CI. [Source-grounded design/review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ORIGINAL_V1_OWNER_SOURCE_SEAM_REVIEW_2026-11-16.md); [exact-code CI 43820841563](https://github.com/night-outlook/hybridclr_demo/actions/runs/43820841563) **4/4 PASS** macOS/Ubuntu C++11/17 strict+sanitizer and Python analyzer cross-check. **No actual original V1 metadata source callback integration**, independent TypeDef/class/GC/VM epoch, exhaustive rejected-path coverage, or real-game capacity data. Local must report `NoExecutionAuthority` and must not start Unity/SDK/Player testing from this entry.
+
+All four use `codex/assembly-shadow-r01b-h1`: demo code anchor above (final documentation HEAD verified separately), hybridclr `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de`, il2cpp_plus `cecf4b859d50b128e5c0fc6c90cd89e3a452b96a`. Existing inactive native B2 128-combined TypeDef, 64-byte declaration field and 65,536 owner lookup limits, 64-native/eight-demo source manifest, B1/R02/V1 and resolver unchanged. Missing full original field14/15, native V2 independent receipt/recovery, real Player and historical acceptance evidence. `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`; no B1 oneuse-12 replay, H2/M08A/X02/SNAP-01 or self-approved Human Review Gate.
+
+---
+
+# Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 ## Current R03 B2 source-only native census consistency (2026-11-16 UTC)
 
 **NO LOCAL EXECUTION AUTHORITY OR CURRENT HANDOFF.** Final prototype code `hybridclr_demo@6f5be6894fc2b151cd54d6b32cc2c7b65376e8c7` adds exact source-image-count consistency and post-`EndCapture` omitted-source revocation to the existing **test-only** TypeDef census header. [Reviewed contract and evidence](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NATIVE_CENSUS_PRODUCER_REVIEW_2026-11-16.md). [Source-only CI 43816524904](https://github.com/night-outlook/hybridclr_demo/actions/runs/43816524904) **4/4 PASS** Mac/Linux × C++11/C++17 strict+sanitizers, 9 synthetic cases / 2,399 checks and offline analyzer cross-check; [offline Python 43816524909](https://github.com/night-outlook/hybridclr_demo/actions/runs/43816524909) 2/2 PASS. The code never connects to Unity or captures real metadata and does not justify relaxing B2 storage, class or lifetime limitations.
