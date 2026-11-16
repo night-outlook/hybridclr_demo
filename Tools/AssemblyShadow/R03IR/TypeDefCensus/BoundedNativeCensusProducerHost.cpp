@@ -117,6 +117,26 @@ static void BadStampCannotEmit() {
     CHECK(!p.EmitJson(s,out));
     s=Stamp();s.demoCommit="invalid";CHECK(!p.EmitJson(s,out));
 }
+static void SourceImageCountAndLateMissingCoverage() {
+    ++cases;c::Producer p;CHECK(p.Prepare(4,8));
+    CHECK(p.Add(E(1),2));
+    std::string out;c::SourceStamp wrong=Stamp();
+    wrong.originalV1ImageCount=1;
+    CHECK(!p.EmitJson(wrong,out)); // no serialize until EndCapture
+    c::Observation valid=E(2);
+    CHECK(!p.Add(valid,3) && p.FirstError()==c::Error::InvalidInput);
+    CHECK(p.RawHandlesScrubbed());
+    p.Release();CHECK(p.Prepare(4,8));
+    CHECK(p.Add(E(1),2));CHECK(p.EndCapture());
+    CHECK(!p.EmitJson(wrong,out)); // source stamp must match capture source
+    CHECK(p.EmitJson(Stamp(),out));
+    CHECK(out.find("\"complete\":true")!=std::string::npos);
+    p.MarkUncovered(); // late-discovered omission must revoke completeness
+    CHECK(p.FirstError()==c::Error::MissingCoverage);
+    CHECK(!p.Complete() && p.RawHandlesScrubbed());
+    CHECK(p.EmitJson(Stamp(),out));
+    CHECK(out.find("\"complete\":false")!=std::string::npos);
+}
 static void EmptyCaptureIsNotCompleteEvidence() {
     ++cases;c::Producer p;CHECK(p.Prepare(2,2));
     CHECK(p.EndCapture());std::string out;
@@ -137,7 +157,8 @@ int main(int argc,char** argv) {
     if(argc==2 && std::strcmp(argv[1],"--incomplete-fixture")==0) {Fixture(true);return 0;}
     RootAndNonroot();SharedRoot();AbovePreviousPrototypeAndOverflow();
     ConflictAndMissingCoverage();OwnerAndNameLimit();EventCapacityAndBadStages();
-    BadStampCannotEmit();EmptyCaptureIsNotCompleteEvidence();
+    BadStampCannotEmit();SourceImageCountAndLateMissingCoverage();
+    EmptyCaptureIsNotCompleteEvidence();
     std::printf("{\"kind\":\"R03B2NativeCensusProducerHost\",\"status\":\"PassedSyntheticOnly\",\"cases\":%zu,\"checks\":%zu,\"realUnity\":false,\"integratedNativeB2\":false,\"R03Accepted\":false}\n",cases,checks);
     return 0;
 }

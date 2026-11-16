@@ -58,6 +58,7 @@ class Producer final {
     std::unique_ptr<UniqueRecord[]> unique_{};
     std::unique_ptr<RecordedEvent[]> events_{};
     size_t uniqueLimit_=0,eventLimit_=0,uniques_=0,eventsUsed_=0;
+    uint32_t sourceImageCount_=0;
     uint32_t dropped_=0;
     Error first_=Error::None;
     enum class State { New, Collecting, Complete, Incomplete };
@@ -133,6 +134,9 @@ public:
             value.firstOwnerImageOrdinal>=imageCount ||
             value.namespaceBytes>kMaxNameLength ||
             value.simpleNameBytes>kMaxNameLength){Fail(Error::InvalidInput);return false;}
+        if(sourceImageCount_ && sourceImageCount_!=imageCount){
+            Fail(Error::InvalidInput);return false;
+        }
         if(value.ownerImageOrdinal!=value.firstOwnerImageOrdinal){
             Fail(Error::FirstOwnerMismatch);return false;
         }
@@ -155,6 +159,7 @@ public:
             u.declaring=value.declaringIndex;u.generic=value.genericIndex;
             u.arity=value.arity;
         }
+        sourceImageCount_=imageCount;
         RecordedEvent& r=events_[eventsUsed_++];
         r.handleId=static_cast<uint32_t>(row+1u);
         r.ownerImageOrdinal=value.ownerImageOrdinal;
@@ -166,7 +171,8 @@ public:
     }
     // Missing/unsupported type path: cannot claim a complete census.
     void MarkUncovered() noexcept {
-        if(state_==State::Collecting)Fail(Error::MissingCoverage);
+        if(state_==State::Collecting || state_==State::Complete)
+            Fail(Error::MissingCoverage);
     }
     // Invoke after the source callback/metadata lock has exited. Counts
     // remain an unauthenticated population observation, not VM acceptance.
@@ -184,7 +190,9 @@ public:
            !Sha(stamp.demoCommit) || stamp.originalV1ImageCount==0 ||
            stamp.originalV1ImageCount>65536u || stamp.observedClasses>200000u ||
            stamp.metadataReaderEpoch!=1 || !stamp.metadataLockHeldDuringAdd ||
-           stamp.classPasses!=3 || stamp.originalV1ImagePasses!=2)return false;
+           stamp.classPasses!=3 || stamp.originalV1ImagePasses!=2 ||
+           (eventsUsed_ && stamp.originalV1ImageCount!=sourceImageCount_))
+           return false;
         out="{\"schema\":\"R03B2TypeDefCensusV1\",\"captureKind\":\"UnverifiedSource\",\"source\":{\"branch\":\"codex/assembly-shadow-r01b-h1\",\"nativeCommit\":\"";
         out+=stamp.nativeCommit;out+="\",\"demoCommit\":\"";out+=stamp.demoCommit;
         out+="\",\"metadataReaderEpoch\":1,\"metadataLockHeld\":true,\"originalV1ImageCount\":";
@@ -216,7 +224,7 @@ public:
         if(unique_)for(size_t i=0;i<uniqueLimit_;++i)unique_[i]=UniqueRecord{};
         if(events_)for(size_t i=0;i<eventLimit_;++i)events_[i]=RecordedEvent{};
         unique_.reset();events_.reset();
-        uniqueLimit_=eventLimit_=uniques_=eventsUsed_=0;
+        uniqueLimit_=eventLimit_=uniques_=eventsUsed_=0;sourceImageCount_=0;
         dropped_=0;first_=Error::None;state_=State::New;
     }
 };
