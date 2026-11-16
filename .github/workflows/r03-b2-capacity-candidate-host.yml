@@ -61,8 +61,10 @@ jobs:
           assert r['capacity']==1024 and r['priorLiveCap']==128
           assert r['cases']>=26 and r['assertions']>=7000
           assert r['compactReservedBytes']<r['slabReservedBytes']
-          assert r['slabReservedBytes']>163840
-          assert r['compactReservedBytes']>73728
+          assert r['indexReservedBytes']>0
+          assert r['indexNodeCapacity']==2048
+          assert r['slabReservedBytes']-r['indexReservedBytes']==163840
+          assert r['compactReservedBytes']-r['indexReservedBytes']==73728
           assert r['indexKind']=='BoundedPatriciaTrie'
           assert r['indexMaxLookupVisits'] in (33,65)
           assert r['indexMaxInsertVisits']==2*r['indexMaxLookupVisits']

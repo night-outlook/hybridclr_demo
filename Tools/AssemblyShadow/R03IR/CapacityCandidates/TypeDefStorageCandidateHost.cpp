@@ -309,12 +309,20 @@ int main() {
     CHECK(compactReserved<slabReserved);
     CHECK(slab.ReservedBytes()==slabReserved &&
           compact.ReservedBytes()==compactReserved);
+    cap::BoundedHandlePatriciaIndex indexProbe;
+    CHECK(indexProbe.Prepare(1024));
+    const size_t indexReserved=indexProbe.ReservedBytes();
+    const size_t indexNodes=indexProbe.NodeCapacity();
+    CHECK(indexNodes==2048 && indexReserved>0);
+    CHECK(slabReserved>indexReserved && compactReserved>indexReserved);
+    indexProbe.Release();
     std::printf("{\"kind\":\"R03B2StorageCandidateHost\","
        "\"result\":\"PassedSyntheticStorageOnly\","
        "\"cases\":%u,\"assertions\":%u,"
        "\"capacity\":1024,\"priorLiveCap\":128,"
        "\"slabReservedBytes\":%zu,\"compactReservedBytes\":%zu,"
        "\"compactArenaBudgetBytes\":32768,"
+       "\"indexReservedBytes\":%zu,\"indexNodeCapacity\":%zu,"
        "\"indexKind\":\"BoundedPatriciaTrie\","
        "\"indexMaxLookupVisits\":%zu,"
        "\"indexMaxInsertVisits\":%zu,"
@@ -322,6 +330,7 @@ int main() {
        "\"integratedInB2\":false,\"runtimeAcceptance\":false,"
        "\"R03Accepted\":false,\"ReadyForHumanReviewGate\":false}\n",
        cases,checks,slabReserved,compactReserved,
+       indexReserved,indexNodes,
        cap::BoundedHandlePatriciaIndex::kMaxLookupVisits,
        cap::BoundedHandlePatriciaIndex::kMaxInsertVisits);
     return 0;
