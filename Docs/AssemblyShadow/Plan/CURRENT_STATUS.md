@@ -1,3 +1,11 @@
+# R03 B2 Primary — source cardinality and late-omission closure (2026-11-16 UTC)
+
+Final corrected **test-only** `hybridclr_demo@6f5be6894fc2b151cd54d6b32cc2c7b65376e8c7` adds two fail-closed fences to the bounded host C++ producer: consistent physical original-V1-image count across accepted events and output metadata, plus `MarkUncovered` revocation after `EndCapture` before JSON export. [Review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NATIVE_CENSUS_PRODUCER_REVIEW_2026-11-16.md), exact [native source CI 43816524904](https://github.com/night-outlook/hybridclr_demo/actions/runs/43816524904) **4/4 PASS** Mac/Linux C++11/17 strict and ASan/UBSan, **9 synthetic tests / 2,399 checks**, using the original Python analyzer on emitted complete/incomplete fixtures. [Offline Python CI 43816524909](https://github.com/night-outlook/hybridclr_demo/actions/runs/43816524909) 2/2 PASS.
+
+**No real source census or Local execution authority.** 1,024 distinct / 4,096 event prototype limits are not real population bounds. Original inactive B2 128-combined cap and native `il2cpp_plus@cecf4b859d50b128e5c0fc6c90cd89e3a452b96a` remain unchanged; source epoch/first owner, real Unity Player, full field14/15, native V2/receipt and Human Review Gate are not proven. `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`.
+
+---
+
 # R03 B2 Primary — host-only bounded C++ census recorder (2026-11-16 UTC)
 
 `hybridclr_demo@bda4ae19f959fc70f7f65929b95abe8dc59ef32f` adds a **test-only** C++11 scalar/length native trace producer, isolated C++ host driver and source-only CI workflow. It preallocates <=1,024 distinct handle IDs and <=4,096 occurrence slots, reuses a deterministic Patricia index, fails closed on overflow/drift and emits only unverified JSON outside source protection. [Source review and limits](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NATIVE_CENSUS_PRODUCER_REVIEW_2026-11-16.md). [CI 43815943121](https://github.com/night-outlook/hybridclr_demo/actions/runs/43815943121) **4/4 completed/success** Mac/Linux × C++11/17 strict/sanitized with Python analyzer cross-check; 8 synthetic C++ cases / 2,384 assertions per execution.

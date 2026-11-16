@@ -1,4 +1,13 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
+## Current R03 B2 source-only native census consistency (2026-11-16 UTC)
+
+**NO LOCAL EXECUTION AUTHORITY OR CURRENT HANDOFF.** Final prototype code `hybridclr_demo@6f5be6894fc2b151cd54d6b32cc2c7b65376e8c7` adds exact source-image-count consistency and post-`EndCapture` omitted-source revocation to the existing **test-only** TypeDef census header. [Reviewed contract and evidence](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NATIVE_CENSUS_PRODUCER_REVIEW_2026-11-16.md). [Source-only CI 43816524904](https://github.com/night-outlook/hybridclr_demo/actions/runs/43816524904) **4/4 PASS** Mac/Linux × C++11/C++17 strict+sanitizers, 9 synthetic cases / 2,399 checks and offline analyzer cross-check; [offline Python 43816524909](https://github.com/night-outlook/hybridclr_demo/actions/runs/43816524909) 2/2 PASS. The code never connects to Unity or captures real metadata and does not justify relaxing B2 storage, class or lifetime limitations.
+
+All four branch pins `codex/assembly-shadow-r01b-h1`: demo code SHA above (documentation HEAD verified separately), hybridclr `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de`, il2cpp_plus `cecf4b859d50b128e5c0fc6c90cd89e3a452b96a`. Native 128 combined TypeDef handles, 64-byte names and 65,536 original owner lookups remain unchanged. No real-world population/metadata lock timing, fully authenticated first owner/GC/VM epoch, original fields14/15, native V2/receipt/recovery or Player. Local must return `NoExecutionAuthority`; no B1 oneuse-12 replay, H2/M08A/X02/SNAP-01 or self-approval. `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`.
+
+---
+
+# Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 ## Current Primary R03 B2 host-only bounded native census (2026-11-16 UTC)
 
 **NO LOCAL EXECUTION AUTHORITY OR CURRENT HANDOFF.** `hybridclr_demo@bda4ae19f959fc70f7f65929b95abe8dc59ef32f` adds only `Tools/AssemblyShadow/R03IR/TypeDefCensus/BoundedNativeCensusProducer.h`, a standalone **host-only C++11** test file and CI workflow. [Primary source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NATIVE_CENSUS_PRODUCER_REVIEW_2026-11-16.md); [exact code CI 43815943121](https://github.com/night-outlook/hybridclr_demo/actions/runs/43815943121) **4/4 PASS** Mac/Linux C++11/17, synthetic only. This is **not an authorized real Unity source census or acceptance**. An explicit missing TypeKey event, original V1 first-owner mismatch, 1,025th distinct handle or 4,097th event makes an incomplete lower-bound output. Absence of a reported missed callback does not prove real class/GC/VM coverage.

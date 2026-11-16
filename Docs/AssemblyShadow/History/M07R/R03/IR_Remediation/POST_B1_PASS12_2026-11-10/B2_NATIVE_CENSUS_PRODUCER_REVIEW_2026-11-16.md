@@ -1,5 +1,16 @@
 # R03 B2 — isolated bounded native TypeDef census producer: Primary source review
 
+## Subsequent fail-closed source correctness review (2026-11-16 UTC)
+
+Independent static review of the test-only producer found two cases where a caller could emit an internally consistent but misleading trace: (a) the caller could vary the claimed original physical-image count between `Add` invocations or the later `SourceStamp`; and (b) a missing-use signal delivered after `EndCapture` would be silently ignored. Neither establishes a genuine source provenance bug in the production VM, because the recorder is still disconnected from Unity.
+
+**Corrected implementation:** `night-outlook/hybridclr_demo@6f5be6894fc2b151cd54d6b32cc2c7b65376e8c7` stores the source-image count on the first successfully accepted event, rejects any conflicting later count, rejects any mismatching output stamp, and permits `MarkUncovered` to revoke `Complete` before the trace is emitted. Both preserve first-error/fail-closed lower-bound behavior and scrub opaque pointer keys. Tests add contradictory image cardinality and late missing coverage. Exact post-fix blobs: header `1bcd9dece2674f299bc1bbe453e15919ffe46c22`, C++ host `c137be5a6b5325e09cf946b64f516dced166a092`; the CI workflow and index are unchanged.
+
+[**Exact corrected code CI 43816524904**](https://github.com/night-outlook/hybridclr_demo/actions/runs/43816524904): **4/4 completed/success** on macOS-15/Ubuntu-24.04 × C++11/C++17, strict and ASan/UBSan, **9 synthetic cases/2,399 checks per execution**, with actual `analyze_typedef_census.py` cross-check for complete/incomplete fixture output. [Offline Python CI 43816524909](https://github.com/night-outlook/hybridclr_demo/actions/runs/43816524909) **2/2 completed/success**. Primary local source/hash verification matched all corrected pushed blobs. The source-only prototype remains **unattached**, `realUnity=false`, `R03Accepted=false`, `ReadyForHumanReviewGate=false`, `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`. Independent source owner/epoch completeness, real high-water counts, cap/latency decisions and all product/runtime work remain open.
+
+---
+
+
 **Date:** 2026-11-16 UTC. **Milestone:** R03 B2 source-only preparation, no native runtime integration. **Code:** `night-outlook/hybridclr_demo@bda4ae19f959fc70f7f65929b95abe8dc59ef32f` on `codex/assembly-shadow-r01b-h1`. Other exact remote pins: `hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, `hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de`, `il2cpp_plus@cecf4b859d50b128e5c0fc6c90cd89e3a452b96a`.
 
 ## Objective and implementation
