@@ -1,4 +1,13 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
+## Current Primary R03 B2 host-only bounded native census (2026-11-16 UTC)
+
+**NO LOCAL EXECUTION AUTHORITY OR CURRENT HANDOFF.** `hybridclr_demo@bda4ae19f959fc70f7f65929b95abe8dc59ef32f` adds only `Tools/AssemblyShadow/R03IR/TypeDefCensus/BoundedNativeCensusProducer.h`, a standalone **host-only C++11** test file and CI workflow. [Primary source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NATIVE_CENSUS_PRODUCER_REVIEW_2026-11-16.md); [exact code CI 43815943121](https://github.com/night-outlook/hybridclr_demo/actions/runs/43815943121) **4/4 PASS** Mac/Linux C++11/17, synthetic only. This is **not an authorized real Unity source census or acceptance**. An explicit missing TypeKey event, original V1 first-owner mismatch, 1,025th distinct handle or 4,097th event makes an incomplete lower-bound output. Absence of a reported missed callback does not prove real class/GC/VM coverage.
+
+All four use `codex/assembly-shadow-r01b-h1`: demo code pin above (final docs HEAD checked separately); hybridclr `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`; hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de`; il2cpp_plus `cecf4b859d50b128e5c0fc6c90cd89e3a452b96a`. Native 128 combined root+nonroot TypeDef, 64-byte name, 65,536 owner lookup and 64-native/eight-demo manifest remain unchanged. No native source callback integration, real population/lock benchmark, full original V1 fields14/15, coherent VM epoch, Player/native V2/receipt/recovery. Local must report `NoExecutionAuthority`. `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`. No B1 oneuse-12 replay, H2/M08A/X02/SNAP-01 or self-approved Human Review Gate.
+
+---
+
+# Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 ## Current Primary R03 B2 source-census preparation (2026-11-16 UTC)
 
 **NO LOCAL EXECUTION AUTHORITY OR CURRENT HANDOFF.** Code anchor `hybridclr_demo@521463aff18de1a1efc4d8a179e5c13fc50189d5` adds an **offline-only**, unauthenticated source-inventory TypeDef census analyzer and [proposed owner/metadata-lifetime source contract](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_NONROOT_CENSUS_CONTRACT_2026-11-16.md). [Exact-code host CI 43814115586](https://github.com/night-outlook/hybridclr_demo/actions/runs/43814115586) **2/2 PASS** macOS/Ubuntu; 16 synthetic Python tests per OS. [Review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CENSUS_SOURCE_HOST_REVIEW_2026-11-16.md). No native collector attachment, new Unity build, real metadata census, or Local run. Do not interpret any offline tool result as authenticated original V1 first-owner evidence.

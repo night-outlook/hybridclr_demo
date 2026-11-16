@@ -1,3 +1,11 @@
+# R03 B2 Primary — host-only bounded C++ census recorder (2026-11-16 UTC)
+
+`hybridclr_demo@bda4ae19f959fc70f7f65929b95abe8dc59ef32f` adds a **test-only** C++11 scalar/length native trace producer, isolated C++ host driver and source-only CI workflow. It preallocates <=1,024 distinct handle IDs and <=4,096 occurrence slots, reuses a deterministic Patricia index, fails closed on overflow/drift and emits only unverified JSON outside source protection. [Source review and limits](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NATIVE_CENSUS_PRODUCER_REVIEW_2026-11-16.md). [CI 43815943121](https://github.com/night-outlook/hybridclr_demo/actions/runs/43815943121) **4/4 completed/success** Mac/Linux × C++11/17 strict/sanitized with Python analyzer cross-check; 8 synthetic C++ cases / 2,384 assertions per execution.
+
+**Not yet a real census:** no actual Unity source callback/first-owner/lifetime binding, no complete admitted/rejected TypeKey coverage, and hitting 1,024 gives only `IncompleteLowerBound`. Native B2's combined 128 cap, name and lookup limits, original source pins and 64-native/eight-demo exact manifest unchanged. No real Unity Player, VM epoch, native V2/full field14+15 or Human Review Gate. `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`.
+
+---
+
 # R03 B2 Primary — offline TypeDef census tooling (2026-11-16 UTC)
 
 `hybridclr_demo@521463aff18de1a1efc4d8a179e5c13fc50189d5` adds a deterministic, standalone length-only TypeDef use-event analyzer, 16 synthetic Python tests, an isolated CI workflow and a [future root/nonroot source/lifetime contract](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_NONROOT_CENSUS_CONTRACT_2026-11-16.md). [Primary source review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CENSUS_SOURCE_HOST_REVIEW_2026-11-16.md). [CI 43814115586](https://github.com/night-outlook/hybridclr_demo/actions/runs/43814115586) **2/2 completed/success** Mac/Linux at the exact code SHA; 16 synthetic tests per OS. No source recorder or real census exists; the analyzer never authenticates JSON, class/GC/VM epochs or selected capacities.

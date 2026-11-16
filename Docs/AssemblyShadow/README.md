@@ -1,3 +1,11 @@
+# Current Primary — host-only native TypeDef census producer (2026-11-16 UTC)
+
+An **isolated C++11 native trace producer** was added in `hybridclr_demo@bda4ae19f959fc70f7f65929b95abe8dc59ef32f`, using the existing test-only bounded Patricia index to collect up to 1,024 distinct opaque TypeDef handles / 4,096 root+nonroot use events, then serialize **only after handle-index scrub** into the previous offline analyzer schema. [Source review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NATIVE_CENSUS_PRODUCER_REVIEW_2026-11-16.md) · [exact-code CI 43815943121](https://github.com/night-outlook/hybridclr_demo/actions/runs/43815943121) **4/4 PASS** Mac/Linux C++11/C++17 strict+sanitizers+Python cross-check. Synthetic source only; source stamps/first-owner ordinals are unverified caller assertions. There is **no `il2cpp_plus`/Unity collector attachment**, real population/lock-cost/epoch proof or authorized Local batch. The 1,024 cap is only an overflow-fail test bound, **not a claimed uncapped real-game census**.
+
+The actual B2 combined 128-TypeDef cap, <=64-byte name fields, <=65,536 owner lookups, original V1/B1/R02/resolver and 64-native/eight-demo source manifest remain unchanged. `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`; `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`; PureInterpreter disabled. No H2/M08A/X02/SNAP-01 or Human Review Gate approval.
+
+---
+
 # Current Primary — TypeDef census contract and offline analyzer (2026-11-16 UTC)
 
 A bounded, **offline-only** root+nonroot TypeDef census analyzer and future native lifetime/owner capture contract were added at `hybridclr_demo@521463aff18de1a1efc4d8a179e5c13fc50189d5`. [Source contract](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ROOT_NONROOT_CENSUS_CONTRACT_2026-11-16.md) · [Primary source review](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_CENSUS_SOURCE_HOST_REVIEW_2026-11-16.md) · [exact-code CI 43814115586](https://github.com/night-outlook/hybridclr_demo/actions/runs/43814115586) **2/2 PASS** macOS/Ubuntu, 16 synthetic Python tests per OS. No native producer exists, so **no actual real-game source census, metadata lifetime or lock-latency evidence** was obtained. This code merely analyzes unverified caller-supplied length-only inventories and never authorizes a capacity decision.
