@@ -1,0 +1,124 @@
+name: R03 B2 pinned publication failure boundary (NOT Unity)
+on:
+  push:
+    branches:
+      - codex/assembly-shadow-r01b-h1
+    paths:
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/verify_publication_failure_boundary.py
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/test_verify_publication_failure_boundary.py
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/PublicationFailureBoundaryCandidate.h
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/PublicationFailureBoundaryCandidateHost.cpp
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/PublicationUsageLeaseCandidate.h
+      - .github/workflows/r03-b2-publication-failure-boundary-host.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pinned-failure-boundary:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+        standard: [c++11, c++17]
+    steps:
+      - name: Checkout source-host proof only
+        uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/TypeDefCensus
+          sparse-checkout-cone-mode: true
+      - name: Checkout pinned native source read-only
+        uses: actions/checkout@v4
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: cecf4b859d50b128e5c0fc6c90cd89e3a452b96a
+          path: _native_pinned
+          filter: blob:none
+          sparse-checkout: |
+            libil2cpp/vm/AssemblyShadow.cpp
+          sparse-checkout-cone-mode: false
+      - name: Checkout pinned HybridCLR source read-only
+        uses: actions/checkout@v4
+        with:
+          repository: night-outlook/hybridclr
+          ref: 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+          path: _hybridclr_pinned
+          filter: blob:none
+          sparse-checkout: |
+            hybridclr/metadata/StagedAssembly.cpp
+            hybridclr/metadata/InterpreterImage.cpp
+            hybridclr/metadata/InterpreterMetadataIndexRuntime.cpp
+            hybridclr/metadata/InterpreterMetadataIndexCodec.h
+          sparse-checkout-cone-mode: false
+      - name: Validate pinned normal-return ordering, source mutations and closed gates
+        shell: bash
+        env:
+          R03_B2_PINNED_NATIVE_ROOT: _native_pinned
+          R03_B2_PINNED_HYBRIDCLR_ROOT: _hybridclr_pinned
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s Tools/AssemblyShadow/R03IR/TypeDefCensus \
+            -p 'test_verify_publication_failure_boundary.py' -v \
+            2>&1 | tee "$RUNNER_TEMP/failure-source-tests.log"
+          if grep -Eq 'skipped=[1-9]|FAILED|ERROR' "$RUNNER_TEMP/failure-source-tests.log"; then
+            echo 'Pinned source test must run without skips or errors'; exit 1
+          fi
+          python3 Tools/AssemblyShadow/R03IR/TypeDefCensus/verify_publication_failure_boundary.py \
+            --native-root _native_pinned --hybridclr-root _hybridclr_pinned \
+            --output "$RUNNER_TEMP/publication-boundary.json"
+          python3 - "$RUNNER_TEMP/publication-boundary.json" <<'PY'
+          import json,sys
+          with open(sys.argv[1],encoding='utf8') as f: r=json.load(f)
+          assert r['schema']=='R03B2PublicationFailureBoundaryV1'
+          assert r['result']=='PinnedNormalReturnIrreversibilityBoundaryOnly'
+          assert r['nativeCommit']=='cecf4b859d50b128e5c0fc6c90cd89e3a452b96a'
+          assert r['hybridclrCommit']=='4b2774b066cfc6afd77a8c8aded6bda7ea574f55'
+          assert r['pinnedNativeCount']==1 and r['pinnedHybridclrCount']==4
+          assert len(r['exactGitBlobs']['il2cpp_plus'])==1
+          assert len(r['exactGitBlobs']['hybridclr'])==4
+          assert len(r['observedPhases'])==4
+          assert r['nativeNormalFailureResetsValidated'] is True
+          assert r['nativeManualUsageLockAcrossCallbacks'] is True
+          for k in ('normalCodecErrorReturnsAfterLifecycleWritesObserved',
+                    'exceptionFreePublicationProven','rollbackAfterCodecPublishProven',
+                    'safeRetryAfterUnknownExceptionProven','terminalRestartPolicyIntegrated',
+                    'wholeVmEpochProven','nativeCollectorIntegrated','realUnityEvidence',
+                    'R03Accepted','H2Passed','ReadyForHumanReviewGate'):
+              assert r[k] is False,k
+          assert r['handoffAuthority']=='CLOSED_NO_LOCAL_EXECUTION'
+          print('Exact pinned source publication ordering only; NO runtime acceptance')
+          PY
+      - name: Strict and sanitizer synthetic C++11/C++17 failure state matrix
+        shell: bash
+        env:
+          STANDARD: ${{ matrix.standard }}
+        run: |
+          set -euo pipefail
+          if [[ "$RUNNER_OS" == macOS ]]; then cxx=clang++; else cxx=g++; fi
+          source=Tools/AssemblyShadow/R03IR/TypeDefCensus/PublicationFailureBoundaryCandidateHost.cpp
+          for profile in strict sanitizer; do
+            if [[ "$profile" == sanitizer ]]; then
+              "$cxx" -std="$STANDARD" -O1 -g -Wall -Wextra -Werror -pedantic \
+                -fsanitize=address,undefined -fno-omit-frame-pointer \
+                "$source" -o "$RUNNER_TEMP/boundary-host"
+            else
+              "$cxx" -std="$STANDARD" -O2 -Wall -Wextra -Werror -pedantic \
+                "$source" -o "$RUNNER_TEMP/boundary-host"
+            fi
+            ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 \
+              UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 \
+              "$RUNNER_TEMP/boundary-host" > "$RUNNER_TEMP/boundary-host.json"
+            python3 - "$RUNNER_TEMP/boundary-host.json" <<'PY'
+          import json,sys
+          with open(sys.argv[1],encoding='utf8') as f: r=json.load(f)
+          assert r['kind']=='R03B2PublicationFailureBoundaryHost'
+          assert r['status']=='PassedSyntheticOnly'
+          assert r['cases']==20 and r['checks']>=114
+          for k in ('productionIntegrated','exceptionSafetyProven',
+                    'realUnity','R03Accepted','ReadyForHumanReviewGate'):
+              assert r[k] is False,k
+          print('Synthetic publication failure-state policy PASS; NOT native integration')
+          PY
+          done
