@@ -1,0 +1,72 @@
+name: R03 B2 actual standalone codec batch semantics (NOT Unity)
+on:
+  push:
+    branches:
+      - codex/assembly-shadow-r01b-h1
+    paths:
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/ActualCodecPublishBatchHost.cpp
+      - .github/workflows/r03-b2-actual-codec-batch-host.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  codec-batch-host:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+        standard: [c++11, c++17]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/TypeDefCensus
+          sparse-checkout-cone-mode: true
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/hybridclr
+          ref: 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+          path: _hybridclr_pinned
+          filter: blob:none
+          sparse-checkout: |
+            hybridclr/metadata/InterpreterMetadataIndexCodec.h
+          sparse-checkout-cone-mode: false
+      - name: Exact code pin and host tests (strict / sanitizer)
+        shell: bash
+        env:
+          STANDARD: ${{ matrix.standard }}
+        run: |
+          set -euo pipefail
+          test "$(git -C _hybridclr_pinned rev-parse HEAD)" = '4b2774b066cfc6afd77a8c8aded6bda7ea574f55'
+          test "$(git -C _hybridclr_pinned rev-parse HEAD:hybridclr/metadata/InterpreterMetadataIndexCodec.h)" = '2020d4e2da6dea8601525203e7ab307d21c40a73'
+          test "$(git -C _hybridclr_pinned hash-object hybridclr/metadata/InterpreterMetadataIndexCodec.h)" = '2020d4e2da6dea8601525203e7ab307d21c40a73'
+          if [[ "$RUNNER_OS" == macOS ]]; then cxx=clang++; else cxx=g++; fi
+          source=Tools/AssemblyShadow/R03IR/TypeDefCensus/ActualCodecPublishBatchHost.cpp
+          for profile in strict sanitized; do
+            if [[ "$profile" == strict ]]; then
+              "$cxx" -std="$STANDARD" -O2 -Wall -Wextra -Werror -pedantic -pthread \
+                -I _hybridclr_pinned "$source" -o "$RUNNER_TEMP/actual-codec"
+            else
+              "$cxx" -std="$STANDARD" -O1 -g -Wall -Wextra -Werror -pedantic -pthread \
+                -fsanitize=address,undefined -fno-omit-frame-pointer \
+                -I _hybridclr_pinned "$source" -o "$RUNNER_TEMP/actual-codec"
+            fi
+            ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 \
+              UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 \
+              "$RUNNER_TEMP/actual-codec" > "$RUNNER_TEMP/actual-codec.json"
+            python3 - "$RUNNER_TEMP/actual-codec.json" <<'PY'
+          import json,sys
+          with open(sys.argv[1],encoding='utf8') as f:r=json.load(f)
+          assert r['kind']=='R03B2ActualStandaloneCodecPublishBatch'
+          assert r['result']=='PassedActualCodecHostOnly'
+          assert r['scenarios']==10 and r['checks']>=48
+          assert r['sourcePinRequired'] is True
+          for key in ('unityNativeIntegrated','exceptionFreedomProven',
+                      'runtimeGroupVisibilityProven','rollbackAfterPublicationPossible',
+                      'realUnity','R03Accepted','ReadyForHumanReviewGate'):
+              assert r[key] is False,key
+          print('Pinned actual codec PublishBatch host semantics PASS; NOT Unity')
+          PY
+          done
