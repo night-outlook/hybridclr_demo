@@ -126,6 +126,7 @@ def sources() -> dict[str,str]:
                 if(!MetadataCache::PublishInterpreterAssembliesBatch(assemblies,a,b,&p))return fail;
                 lock.unlock();
             }
+            AssemblyShadowError AssemblyShadow::CommitTransaction() { return AssemblyShadowError::FeatureDisabled; }
         ''',
         GLOBAL: '''
             Il2CppClass* il2cpp::vm::GlobalMetadata::GetInitializedTypeInfoFromAssembly() {
@@ -247,6 +248,14 @@ class ContractTests(unittest.TestCase):
         self.reject(mutate('rollback(context);','return;',ASSEMBLY))
         x=sources(); pos=x[ASSEMBLY].find('bool Assembly::PublishInterpreterPlaceholder()')
         x[ASSEMBLY]=x[ASSEMBLY][:pos]+x[ASSEMBLY][pos:].replace('os::FastAutoLock lock(&s_assemblyLock);','',1)
+        self.reject(x)
+
+    def test_compile_time_disabled_stub_is_distinguished_from_active_commit(self):
+        self.reject(mutate('return AssemblyShadowError::FeatureDisabled;',
+                           'return AssemblyShadowError::Success;',SHADOW))
+        x=sources()
+        x[SHADOW]=x[SHADOW].replace(
+            'AssemblyShadowError AssemblyShadow::CommitTransaction() { return AssemblyShadowError::FeatureDisabled; }','')
         self.reject(x)
 
     def test_transaction_mutex_must_remain_around_publish(self):
