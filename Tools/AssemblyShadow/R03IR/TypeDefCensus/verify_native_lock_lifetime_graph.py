@@ -69,7 +69,18 @@ def check_lock_graph(sources: dict[str, str]) -> dict:
     shadow_batch = compact(sources[ASSEMBLY], r'\bbool\s+Assembly::PublishShadowBatch\s*\(', 'shadow batch')
     placeholder = compact(sources[ASSEMBLY], r'\bbool\s+Assembly::PublishInterpreterPlaceholder\s*\(', 'placeholder')
     publisher = compact(sources[METADATA], r'\bbool\s+il2cpp::vm::MetadataCache::PublishInterpreterAssembliesBatch\s*\(', 'MetadataCache publisher')
-    commit = compact(sources[SHADOW], r'\bAssemblyShadowError\s+AssemblyShadow::CommitTransaction\s*\(', 'CommitTransaction')
+    # The TU has both the enabled method and a FeatureDisabled source stub.
+    # Check both rather than arbitrarily selecting one lexical occurrence.
+    shadow_code=code_only(sources[SHADOW])
+    commit_anchor=r'\bAssemblyShadowError\s+AssemblyShadow::CommitTransaction\s*\('
+    occurrences=list(re.finditer(commit_anchor,shadow_code))
+    require(len(occurrences)==2,'enabled CommitTransaction and disabled stub changed')
+    commit=''.join(scope(shadow_code[:occurrences[1].start()],commit_anchor,
+                         'enabled CommitTransaction').split())
+    disabled=''.join(scope(shadow_code[occurrences[1].start():],commit_anchor,
+                           'disabled CommitTransaction').split())
+    require_part(disabled,'returnAssemblyShadowError::FeatureDisabled;',
+                 'explicit disabled branch stub')
     begin = compact(sources[SHADOW], r'\bbool\s+TryBeginPublication\s*\(', 'TryBeginPublication callback')
     active = compact(sources[SHADOW], r'\bbool\s+PublishActive\s*\(', 'PublishActive callback')
     registry_publisher = compact(sources[METADATA], r'\bbool\s+PublishShadowRegistries\s*\(', 'PublishShadowRegistries callback')
