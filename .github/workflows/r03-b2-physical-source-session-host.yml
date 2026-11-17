@@ -1,0 +1,106 @@
+name: R03 B2 pinned native Reader and physical source session (NOT Unity)
+on:
+  push:
+    branches:
+      - codex/assembly-shadow-r01b-h1
+    paths:
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/PhysicalSlotSourceSession.h
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/PhysicalSlotSourceSessionHost.cpp
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/PhysicalTypeDefSlotUpperBound.h
+      - .github/workflows/r03-b2-physical-source-session-host.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-reader-physical-source-session-host:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+        standard: [c++11, c++17]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/TypeDefCensus
+          sparse-checkout-cone-mode: true
+      - name: Checkout exact native Gate and physical scanner (read-only)
+        uses: actions/checkout@v4
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: cecf4b859d50b128e5c0fc6c90cd89e3a452b96a
+          path: _native_pinned
+          filter: blob:none
+          sparse-checkout: |
+            libil2cpp/vm/AssemblyShadowMetadataLifetime.h
+            libil2cpp/vm/AssemblyShadowOriginalV1ImageScan.h
+            libil2cpp/vm/Assembly.cpp
+            libil2cpp/vm/Runtime.cpp
+          sparse-checkout-cone-mode: false
+      - name: Verify exact source pins and ordered native entry/exit contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C _native_pinned rev-parse HEAD)" = 'cecf4b859d50b128e5c0fc6c90cd89e3a452b96a'
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          expected = {
+              'libil2cpp/vm/AssemblyShadowMetadataLifetime.h':'d2fe09dd51debbbbc71d67b21347f5d971a3cafd',
+              'libil2cpp/vm/AssemblyShadowOriginalV1ImageScan.h':'41cdb90776f1f68f3fc7cbff85045965e29b99b0',
+              'libil2cpp/vm/Runtime.cpp':'1b176ee5fd3e2127a0237877e5c9c32bc53058b3',
+              'libil2cpp/vm/Assembly.cpp':'df1acbfdaf054067720d2e7c1545e49100ad93ec',
+          }
+          for path,sha in expected.items():
+              for args in (['rev-parse','HEAD:'+path],['hash-object',path]):
+                  actual = subprocess.check_output(['git','-C','_native_pinned',*args],text=True).strip()
+                  assert actual==sha,(path,args,actual,sha)
+          runtime = Path('_native_pinned/libil2cpp/vm/Runtime.cpp').read_text()
+          init = runtime.index('bool Runtime::Init(')
+          startup = runtime.index('AssemblyShadowStartup::MarkCoreReady();',init)
+          gate_open = runtime.index('g_MetadataLifetimeGate.OpenAfterInit();',init)
+          assert init < gate_open < startup
+          shutdown = runtime.index('void Runtime::Shutdown()')
+          gate_drain = runtime.index('g_MetadataLifetimeGate.CloseAndDrain();',shutdown)
+          abort = runtime.index('Thread::AbortAllThreads();',shutdown)
+          assert shutdown < gate_drain < abort
+          assembly = Path('_native_pinned/libil2cpp/vm/Assembly.cpp').read_text()
+          original = assembly.index('bool Assembly::TryVisitOriginalV1ExecutionImages(')
+          next_fn = assembly.index('bool Assembly::TryVisitRegisteredAotImages(',original)
+          scoped = assembly[original:next_fn]
+          assert scoped.index('os::FastAutoLock lock(&s_assemblyLock);') < scoped.index('assembly_shadow_original_v1_image_scan::Scan(')
+          print('Pinned real native gate, assembly visitor and runtime ordering checked — source only')
+          PY
+      - name: Compile and exercise native Gate/Scan with mock metadata lock
+        shell: bash
+        env:
+          STANDARD: ${{ matrix.standard }}
+        run: |
+          set -euo pipefail
+          if [[ "$RUNNER_OS" == macOS ]]; then cxx=clang++; else cxx=g++; fi
+          src=Tools/AssemblyShadow/R03IR/TypeDefCensus/PhysicalSlotSourceSessionHost.cpp
+          for profile in strict sanitizer; do
+            if [[ "$profile" == sanitizer ]]; then
+              "$cxx" -std="$STANDARD" -O1 -g -Wall -Wextra -Werror -pedantic -pthread \
+                -fsanitize=address,undefined -fno-omit-frame-pointer \
+                -I _native_pinned/libil2cpp "$src" -o "$RUNNER_TEMP/physical-source-session"
+            else
+              "$cxx" -std="$STANDARD" -O2 -Wall -Wextra -Werror -pedantic -pthread \
+                -I _native_pinned/libil2cpp "$src" -o "$RUNNER_TEMP/physical-source-session"
+            fi
+            ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 \
+              "$RUNNER_TEMP/physical-source-session" > "$RUNNER_TEMP/session-result.json"
+            python3 - "$RUNNER_TEMP/session-result.json" <<'PY'
+          import json,sys
+          with open(sys.argv[1],encoding='utf8') as f: r=json.load(f)
+          assert r['kind']=='R03B2PhysicalSlotSourceSessionHost'
+          assert r['result']=='PassedSyntheticReaderLockScopeOnly'
+          assert r['cases']==12 and r['checks']>=102
+          for key in ('realUnity','realMetadataLock','nativeSourceIntegrated',
+                      'coherentVmEpochProven','R03Accepted','ReadyForHumanReviewGate'):
+              assert r[key] is False,key
+          print('Exact native Gate and Scan mock-source mechanics PASS; NOT Unity')
+          PY
+          done
