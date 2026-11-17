@@ -1,0 +1,80 @@
+name: R03 B2 pinned native lock/lifetime graph (NOT Unity)
+on:
+  push:
+    branches:
+      - codex/assembly-shadow-r01b-h1
+    paths:
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/verify_native_lock_lifetime_graph.py
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/test_verify_native_lock_lifetime_graph.py
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/verify_native_source_path_boundary.py
+      - .github/workflows/r03-b2-native-lock-lifetime-graph.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pinned-native-lock-order:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    steps:
+      - name: Checkout Primary test-only sources
+        uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/TypeDefCensus
+          sparse-checkout-cone-mode: true
+      - name: Checkout exact native source pin, read-only
+        uses: actions/checkout@v4
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: cecf4b859d50b128e5c0fc6c90cd89e3a452b96a
+          path: _native_pinned
+          filter: blob:none
+          sparse-checkout: |
+            libil2cpp/vm/AssemblyShadowBoundedDefinitionExecutionLiveSource.inl
+            libil2cpp/vm/Assembly.cpp
+            libil2cpp/vm/MetadataCache.cpp
+            libil2cpp/vm/Runtime.cpp
+            libil2cpp/vm/AssemblyShadowMetadataLifetime.h
+            libil2cpp/vm/AssemblyShadowOriginalV1ImageScan.h
+            libil2cpp/vm/AssemblyShadow.cpp
+            libil2cpp/vm/GlobalMetadata.cpp
+            libil2cpp/vm/MemoryInformation.cpp
+          sparse-checkout-cone-mode: false
+      - name: Verify pinned lock ordering and fail-closed mutations
+        shell: bash
+        env:
+          R03_B2_PINNED_NATIVE_ROOT: _native_pinned
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover \
+            -s Tools/AssemblyShadow/R03IR/TypeDefCensus \
+            -p 'test_verify_native_lock_lifetime_graph.py' -v \
+            2>&1 | tee "$RUNNER_TEMP/lock-tests.log"
+          if grep -Eq 'skipped=[1-9]|FAILED|ERROR' "$RUNNER_TEMP/lock-tests.log"; then
+            echo 'Native source regression cannot skip or fail'; exit 1
+          fi
+          python3 Tools/AssemblyShadow/R03IR/TypeDefCensus/verify_native_lock_lifetime_graph.py \
+            --native-root _native_pinned --output "$RUNNER_TEMP/lock-report.json"
+          python3 - "$RUNNER_TEMP/lock-report.json" <<'PY'
+          import json,sys
+          with open(sys.argv[1],encoding='utf-8') as f: r=json.load(f)
+          assert r['result']=='PinnedLockOrderObservationsOnly'
+          assert r['nativeCommit']=='cecf4b859d50b128e5c0fc6c90cd89e3a452b96a'
+          assert r['pinnedNativeFileCount']==9
+          assert len(r['exactNativeGitBlobs'])==9
+          assert len(r['reviewedDirectOrdering'])==5
+          assert r['knownNestedPublicationUsageLock'] is True
+          assert len(r['remainingOpaqueWorkUnderAssemblyAndUsageLocks'])==4
+          assert r['handoffAuthority']=='CLOSED_NO_LOCAL_EXECUTION'
+          for name in ('deadlockFreedomProven','transitivePublicationCallbackLocksAudited',
+                       'shutdownDrainHasProvenFiniteTimeout','metadataImageAllocationEpochProven',
+                       'classGcVmEpochProven','originalPhysicalRegistryAtomicallyProven',
+                       'nativeCollectorIntegrated','realUnityEvidence','R03Accepted',
+                       'H2Passed','ReadyForHumanReviewGate'):
+              assert r[name] is False,name
+          print('Pinned exact-source lock graph passed; no deadlock/Unity acceptance')
+          PY
