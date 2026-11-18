@@ -79,7 +79,7 @@ jobs:
           for profile in strict sanitized no-exceptions; do
             flags=(-O2)
             if [[ "$profile" == sanitized ]]; then flags=(-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer); fi
-            scenarios=(used-denial normal-false normal-success cli-append-exception usage-acquired-exception staged-exception post-stage-exception)
+            scenarios=(used-denial normal-false normal-success cli-append-exception usage-acquired-exception staged-exception post-stage-exception prior-first-error)
             if [[ "$profile" == no-exceptions ]]; then
               flags=(-O2 -DD2_NO_EXCEPTIONS -fno-exceptions -fno-rtti)
               scenarios=(used-denial normal-false normal-success)
