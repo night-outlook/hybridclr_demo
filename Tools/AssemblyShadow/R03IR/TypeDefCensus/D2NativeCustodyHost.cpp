@@ -105,7 +105,6 @@ static FakeFirstError s_firstFailureV2;
 static std::atomic<bool> s_unexpectedFailure{false};
 static std::atomic<AssemblyShadowState> s_state{AssemblyShadowState::Validated};
 
-static std::mutex shadowStateLock;
 class Assembly
 {
 public:
