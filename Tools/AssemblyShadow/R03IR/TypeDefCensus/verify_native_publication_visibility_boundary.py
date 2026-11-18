@@ -129,8 +129,7 @@ def check_source(sources: dict[str, str]) -> dict:
             "publication.runtimePublicationFailed=true;",
             "for(constauto&member:publication.transaction->closure)",
             "s_active.store(publication.snapshot,std::memory_order_release);",
-            "UnlockUsage();",
-            "returntrue;")
+            "UnlockUsage();returntrue;")
     location(active, "publication.runtimePublicationFailed=true;UnlockUsage();returnfalse;",
              "normal runtime false case")
     ordered(commit, "ownership and failure reset",
@@ -163,7 +162,7 @@ def check_source(sources: dict[str, str]) -> dict:
             "AssemblyShadowBridge::IsPublicImage(record->reservation.imageId,image)")
     ordered(bridge, "Bridge assembly identity and VM gate",
             "image->GetIndex()==imageIndex",
-            "image->GetIl2CppImage()->assembly",
+            "image->GetIl2CppImage()->assembly&&",
             "il2cpp::vm::AssemblyShadow::IsActiveShadow(image->GetIl2CppImage()->assembly)")
     ordered(is_active, "acquire active snapshot and map member check",
             "s_active.load(std::memory_order_acquire)",
