@@ -234,8 +234,11 @@ static void CheckScopeClean(const Fixture& f, bool expectedPublished)
 #if defined(D2_REAL_CLI)
     // The exact Unity dynamic_array was reserved before any registry write.
     // Shrink-to-previousSize must neither grow nor discard its retained capacity.
-    CHECK(s_cliAssemblies.capacity() >= 2);
+    CHECK(s_cliAssemblies.capacity() == 2);
     CHECK(s_cliAssemblies.data() != nullptr);
+    // Exact pinned dynamic_array uses one pre-publication capacity grow.
+    // Its destructor-time resize_uninitialized(previousSize) must not grow.
+    CHECK(d2HostReallocationCount == 1u);
 #endif
     CHECK(s_assemblyVersion == (expectedPublished ? 1 : 0));
     CHECK((s_active.load(std::memory_order_acquire) == &f.snapshot) == expectedPublished);
@@ -323,6 +326,10 @@ static void NormalSuccess()
     CHECK(!UsageHeld());
     CHECK(!f.publication.usageHeld);
     CHECK(s_assemblyVersion == 1);
+#if defined(D2_REAL_CLI)
+    CHECK(s_cliAssemblies.capacity() == 2);
+    CHECK(d2HostReallocationCount == 1u);
+#endif
     CHECK(s_active.load(std::memory_order_acquire) == &f.snapshot);
     CHECK(f.staged.published);
     CheckTerminal(false);
