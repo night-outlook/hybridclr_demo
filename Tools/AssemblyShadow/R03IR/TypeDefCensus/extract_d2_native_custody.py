@@ -70,8 +70,15 @@ def extract(sources):
             "ReleasePublicationUsage(context);" in shadowBody,
             "idempotent native usage custody contract changed")
     require("exceptionalExit.returned=true;" in shadowBody and
-            "s_unexpectedFailure.store(true,std::memory_order_release);" in shadowBody,
-            "native terminal-on-exception contract changed")
+            "s_unexpectedFailure.store(true,std::memory_order_release);" in shadowBody and
+            "ReleasePublicationUsage,&publication);" in shadowBody,
+            "native terminal-on-exception/usage call site changed")
+    published="".join(code_only(extract_literal(
+        sources[N_SHADOW],r"\bbool\s+PublishActive\s*\(",
+        "native publish active",False)).split())
+    require("publication.runtimePublicationFailed=true;ReleasePublicationUsage(context);returnfalse;" in published and
+            "s_active.store(publication.snapshot,std::memory_order_release);ReleasePublicationUsage(context);returntrue;" in published,
+            "native normal-return usage custody changed")
     shadow=code_only(sources[N_SHADOW])
     enabled=r"\bAssemblyShadowError\s+AssemblyShadow::CommitTransaction\s*\("
     require(len(list(re.finditer(enabled,shadow)))==2,"native enabled+disabled commit must remain")
