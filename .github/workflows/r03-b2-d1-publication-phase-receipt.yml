@@ -43,7 +43,8 @@ jobs:
           test "$(git -C "$repo" rev-parse HEAD)" = 'c9a772a52d4757281eba63296376c7875a01ae34'
           test "$(git -C "$repo" rev-parse "HEAD:$header")" = 'acd360895ec619749ea5c184f1949d64fd0123e4'
           test "$(git -C "$repo" hash-object "$header")" = 'acd360895ec619749ea5c184f1949d64fd0123e4'
-          test "$(git -C "$repo" diff-tree --no-commit-id --name-only -r HEAD)" = "$header"
+          # The sparse checkout can be shallow: diff-tree HEAD has no parent
+          # in that view. Exact HEAD and tree/on-disk blobs are verified above.
           if [[ "$RUNNER_OS" == macOS ]]; then cxx=clang++; else cxx=g++; fi
           dir=Tools/AssemblyShadow/R03IR/TypeDefCensus
           for profile in strict sanitized no-exceptions; do
