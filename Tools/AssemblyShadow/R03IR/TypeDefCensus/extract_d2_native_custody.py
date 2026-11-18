@@ -38,7 +38,7 @@ BLOCKS=(
  ("releasePublicationUsage",N_SHADOW,r"\bvoid\s+ReleasePublicationUsage\s*\(",False),
  ("beginPublication",N_SHADOW,r"\bbool\s+TryBeginPublication\s*\(",False),
  ("publishActive",N_SHADOW,r"\bbool\s+PublishActive\s*\(",False),
- ("exceptionTerminal",N_SHADOW,r"\bstruct\s+ScopedUnexpectedPublicationExit\s*\{",True),
+ ("exceptionTerminal",N_SHADOW,r"\bstruct\s+ScopedUnexpectedPublicationExit\s*\{",False),
  ("metadataContext",N_METADATA,r"\bstruct\s+ShadowPublicationContext\s*\{",True),
  ("metadataBegin",N_METADATA,r"\bbool\s+BeginShadowPublication\s*\(",False),
  ("metadataAbandon",N_METADATA,r"\bvoid\s+AbandonShadowPublication\s*\(",False),
@@ -88,6 +88,13 @@ def extract(sources):
     receipt=[]
     for label,path,anchor,is_struct in BLOCKS:
         exact=extract_literal(sources[path],anchor,label,is_struct)
+        if label=="exceptionTerminal":
+            # The production function uses 'struct {...} exceptionalExit;'
+            # as a local declaration. Retain the exact struct body; append
+            # only a host declaration semicolon instead of a local variable.
+            require("} exceptionalExit;" in sources[path],
+                    "native terminal guard local declarator changed")
+            exact += ";"
         blocks[label]=exact
         receipt.append({"label":label,"path":path,
                         "sha256":hashlib.sha256(exact.encode()).hexdigest(),
