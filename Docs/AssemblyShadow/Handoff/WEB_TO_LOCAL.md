@@ -1,4 +1,13 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
+## Current R03 B2 native publication source boundary (2026-11-18 UTC)
+
+**NO LOCAL EXECUTION AUTHORITY OR NEW HANDOFF.** Test-only demo code @7d23259daf8b61481117d33b52a8be21a201d450 authenticates three native and four HybridCLR Git blobs for normal-return physical/CLI registry rollbacks, actual Runtime/Codec group ordering, and real Bridge→VM active-map visibility. [Reviewed findings](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_NATIVE_PUBLICATION_VISIBILITY_BOUNDARY_REVIEW_2026-11-18.md) · [exact-code CI 44228362237](https://github.com/night-outlook/hybridclr_demo/actions/runs/44228362237) **2/2 PASS** macOS 15/Ubuntu 24.04, **26/26 pinned source/mutation tests per OS**, zero skips. This is **not** actual native callback execution, exception-safe UsageLock, terminal rollback, whole-VM/GC/class epoch, native V2/readback/first recovery, Unity Player or R03 acceptance.
+
+All four pinned branches codex/assembly-shadow-r01b-h1: demo tested code SHA above (**latest docs HEAD verified separately**), hybridclr@4b2774b066cfc6afd77a8c8aded6bda7ea574f55, hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de, il2cpp_plus@cecf4b859d50b128e5c0fc6c90cd89e3a452b96a. Inactive B2 128-combined-TypeDef/64-byte names/65,536 owner lookups, original V1/B1/R02/resolver, PureInterpreter and source roster unchanged. **Local must report NoExecutionAuthority**. Do not replay B1 oneuse-12, run Unity/SDK/IL2CPP/Player, modify native source, start H2/M08A/X02/SNAP-01 or approve a Human Review Gate. **R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false.** Native failure custody requires a separate explicit reviewed/approved design.
+
+---
+
+# Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 ## Current R03 B2 actual Runtime publication-group source-host evidence (2026-11-18 UTC)
 
 **NO LOCAL EXECUTION AUTHORITY OR NEW HANDOFF.** Primary tested code hybridclr_demo@0b2971c6509451151afb6d5f6e329875b0e417ad compiles actual Runtime.cpp and Codec.h with only a *mock* Shadow Bridge. [Reviewed evidence](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/B2_ACTUAL_RUNTIME_PUBLICATION_GROUP_REVIEW_2026-11-18.md) · [CI 44223227500](https://github.com/night-outlook/hybridclr_demo/actions/runs/44223227500) **4/4 PASS**, macOS/Ubuntu × C++11/17 strict/sanitized, **12 scenarios / 95 assertions per execution**. GCC retains one nonfatal potential-uninitialized source warning in optimized strict Ubuntu runs. There is no Unity, actual native active snapshot, GC/class/whole-VM epoch, exception-safe transaction or rollback proof, native V2, recovery or product acceptance.
