@@ -1,0 +1,102 @@
+name: R03 B2 D1 inert publication-phase receipt (NOT Unity)
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/PublicationPhaseReceiptHost.cpp
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/PublicationPhaseReceiptFaultHost.cpp
+      - .github/workflows/r03-b2-d1-publication-phase-receipt.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  d1-phase-receipt-host:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+        standard: [c++11, c++17]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: Tools/AssemblyShadow/R03IR/TypeDefCensus
+          sparse-checkout-cone-mode: true
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: c9a772a52d4757281eba63296376c7875a01ae34
+          path: _native_d1
+          filter: blob:none
+          sparse-checkout: |
+            libil2cpp/vm/AssemblyShadowPublicationPhaseReceipt.h
+          sparse-checkout-cone-mode: false
+      - name: Verify exact inert header provenance and run strict and sanitizer
+        shell: bash
+        env:
+          STANDARD: ${{ matrix.standard }}
+        run: |
+          set -euo pipefail
+          repo=_native_d1
+          header=libil2cpp/vm/AssemblyShadowPublicationPhaseReceipt.h
+          test "$(git -C "$repo" rev-parse HEAD)" = 'c9a772a52d4757281eba63296376c7875a01ae34'
+          test "$(git -C "$repo" rev-parse "HEAD:$header")" = 'acd360895ec619749ea5c184f1949d64fd0123e4'
+          test "$(git -C "$repo" hash-object "$header")" = 'acd360895ec619749ea5c184f1949d64fd0123e4'
+          test "$(git -C "$repo" diff-tree --no-commit-id --name-only -r HEAD)" = "$header"
+          if [[ "$RUNNER_OS" == macOS ]]; then cxx=clang++; else cxx=g++; fi
+          dir=Tools/AssemblyShadow/R03IR/TypeDefCensus
+          for profile in strict sanitized no-exceptions; do
+            flags=(-O2)
+            if [[ "$profile" == sanitized ]]; then flags=(-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer); fi
+            if [[ "$profile" == no-exceptions ]]; then flags=(-O2 -fno-exceptions -fno-rtti); fi
+            "$cxx" -std="$STANDARD" "${flags[@]}" -Wall -Wextra -Werror -pedantic -pthread \
+              -I "$repo/libil2cpp" "$dir/PublicationPhaseReceiptHost.cpp" -o "$RUNNER_TEMP/receipt-host"
+            ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 \
+              "$RUNNER_TEMP/receipt-host" > "$RUNNER_TEMP/receipt.json"
+            cat "$RUNNER_TEMP/receipt.json"
+            python3 - "$RUNNER_TEMP/receipt.json" <<'PY'
+          import json,sys
+          with open(sys.argv[1],encoding='utf8') as f: d=json.load(f)
+          assert d['schema']=='R03B2D1PublicationPhaseReceiptHostV1'
+          assert d['result']=='PassedInertPhaseReceiptHostOnly'
+          assert d['scenarios']==17 and d['checks']>=160
+          for key in ('phaseReceiptNoexcept','preCodecProofCallerSupplied','singleAtomicWordSnapshot'): assert d[key] is True,key
+          for key in ('actualNativePublisherWired','actualRuntimeBridgeWired','nativeVmEpochProven','fullExceptionCustodyProven','realUnity','R03Accepted','H2Passed','ReadyForHumanReviewGate'): assert d[key] is False,key
+          print('R03 B2 D1 inert receipt verified; not native integration')
+          PY
+          done
+          for profile in strict sanitized; do
+            flags=(-O2)
+            if [[ "$profile" == sanitized ]]; then flags=(-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer); fi
+            "$cxx" -std="$STANDARD" "${flags[@]}" -Wall -Wextra -Werror -pedantic -pthread \
+              -I "$repo/libil2cpp" "$dir/PublicationPhaseReceiptFaultHost.cpp" -o "$RUNNER_TEMP/fault-host"
+            for scenario in preflight-clean usage-clean registries-clean registry-cleanup-unverified codec-unknown-throw post-group-throw post-active-throw initializer-throw completed; do
+              ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 \
+                "$RUNNER_TEMP/fault-host" "$scenario" > "$RUNNER_TEMP/fault.json"
+              cat "$RUNNER_TEMP/fault.json"
+              python3 - "$RUNNER_TEMP/fault.json" "$scenario" <<'PY'
+          import json,sys
+          with open(sys.argv[1],encoding='utf8') as f:d=json.load(f)
+          name=sys.argv[2]
+          expected={
+            'preflight-clean':(0,1,1,True,False),
+            'usage-clean':(1,1,1,True,False),
+            'registries-clean':(2,1,1,True,False),
+            'registry-cleanup-unverified':(2,2,2,False,True),
+            'codec-unknown-throw':(3,2,4,False,True),
+            'post-group-throw':(4,2,5,False,True),
+            'post-active-throw':(5,2,7,False,True),
+            'initializer-throw':(6,2,6,False,True),
+            'completed':(6,3,0,False,False),
+          }
+          assert d['schema']=='R03B2D1PublicationPhaseFaultHostV1'
+          assert d['result']=='PassedInertFaultScenarioOnly' and d['case']==name
+          assert (d['phase'],d['outcome'],d['reason'],d['canReturnValidated'],d['terminal'])==expected[name]
+          assert d['checks']>=6
+          assert d['simulatedNativeStateOnly'] is True
+          for k in ('actualCodecAttempted','nativeIntegration','realUnity','R03Accepted','H2Passed','ReadyForHumanReviewGate'): assert d[k] is False,k
+          print('D1 isolated phase-fault scenario PASS, test-only')
+          PY
+            done
+          done
