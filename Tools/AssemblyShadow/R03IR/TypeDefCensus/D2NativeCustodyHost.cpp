@@ -331,6 +331,28 @@ static void FailedException(Mode newMode, bool failCli, bool throwBegin)
     CHECK(!f.staged.published);
     CheckTerminal(true); // exact native CommitTransaction exceptional guard
 }
+static void PriorFirstFailurePreserved()
+{
+    Fixture f;
+    mode = Mode::StageException;
+    s_firstFailureV2.frozen = true;
+    s_firstFailureV2.calls = 1;
+    std::strcpy(s_firstFailureV2.reason, "earlier independent first failure");
+    bool escaped = false;
+    CHECK(!Invoke(f, escaped));
+    CHECK(escaped);
+    CHECK(f.RegistriesEmpty());
+    CHECK(!UsageHeld());
+    CHECK(!f.publication.usageHeld);
+    CHECK(heldLocks.load(std::memory_order_relaxed) == 0);
+    CHECK(wrongUnlockOrder.load(std::memory_order_relaxed) == 0);
+    CHECK(s_assemblyVersion == 0);
+    CHECK(s_unexpectedFailure.load(std::memory_order_acquire));
+    CHECK(s_state.load(std::memory_order_acquire) == AssemblyShadowState::Failed);
+    CHECK(s_firstFailureV2.frozen);
+    CHECK(s_firstFailureV2.calls == 2);
+    CHECK(std::strcmp(s_firstFailureV2.reason, "earlier independent first failure") == 0);
+}
 #endif
 
 int main(int argc, char** argv)
@@ -349,6 +371,8 @@ int main(int argc, char** argv)
         FailedException(Mode::StageException, false, false);
     else if (std::strcmp(scenario, "post-stage-exception") == 0)
         FailedException(Mode::PostStageException, false, false);
+    else if (std::strcmp(scenario, "prior-first-error") == 0)
+        PriorFirstFailurePreserved();
 #endif
     else { std::fputs("Unknown native D2 host case\n", stderr); return 2; }
     std::printf("{\"schema\":\"R03B2D2NativeCustodyHostV1\","
