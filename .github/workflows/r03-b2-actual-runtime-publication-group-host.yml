@@ -58,10 +58,12 @@ jobs:
           # GCC -O2 conservatively warns about FootprintStats.sealed even though
           # GetFootprintStats returns None only after assigning every field.
           # Keep the warning visible; do not silently edit the pinned runtime.
+          # macOS ships Bash 3.2; keep this array nonempty under set -u.
+          extra_flags=(-Wall)
           if [[ "$RUNNER_OS" == macOS ]]; then
-            cxx=clang++; extra_flags=()
+            cxx=clang++
           else
-            cxx=g++; extra_flags=(-Wno-error=maybe-uninitialized)
+            cxx=g++; extra_flags+=(-Wno-error=maybe-uninitialized)
           fi
           host=Tools/AssemblyShadow/R03IR/TypeDefCensus/ActualRuntimePublicationGroupHost.cpp
           runtime="$root/hybridclr/metadata/InterpreterMetadataIndexRuntime.cpp"
