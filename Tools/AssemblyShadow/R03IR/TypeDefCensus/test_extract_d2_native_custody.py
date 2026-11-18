@@ -85,7 +85,7 @@ class D2ExactCustodySourceTest(unittest.TestCase):
         self.reject(N_SHADOW,"exceptionalExit.returned = true;",
                     "/* terminal-on-exception guard not disarmed */")
 
-    def test_16_omitted_native_usage callback_call(self):
+    def test_16_omitted_native_usage_callback_call(self):
         self.reject(N_SHADOW,"ReleasePublicationUsage, &publication);",
                     "nullptr, &publication);")
 
