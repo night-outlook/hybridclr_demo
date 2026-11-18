@@ -103,6 +103,8 @@ int main()
     }
     mockShadowId = reservations[2].imageId;
     mockShadowImage = images[2];
+    // Snapshot the ledger AFTER test construction/Encode, before publication.
+    CHECK(Runtime::GetStats(before) == Error::None);
 
     // Scenario 3: association, even when finalized, is not public admission.
     ++scenarios;
