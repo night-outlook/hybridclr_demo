@@ -62,8 +62,8 @@ class NativePublicationVisibilityBoundaryTests(unittest.TestCase):
 
     def test_03_metadata_lock_must_remain(self):
         self.mutation(N_METADATA,
-                      "os::FastAutoLock lock(&il2cpp::vm::g_MetadataLock);",
-                      "/* removed metadata lock */")
+                      "os::FastAutoLock lock(&il2cpp::vm::g_MetadataLock);\n    s_cliAssemblies.reserve",
+                      "/* removed metadata lock */\n    s_cliAssemblies.reserve")
 
     def test_04_metadata_preallocation_must_remain(self):
         self.mutation(N_METADATA,
@@ -110,8 +110,8 @@ class NativePublicationVisibilityBoundaryTests(unittest.TestCase):
 
     def test_13_commit_precommit_reset_must_remain(self):
         self.mutation(N_SHADOW,
-                      "s_state.store(AssemblyShadowState::Validated, std::memory_order_release);",
-                      "s_state.store(AssemblyShadowState::Committed, std::memory_order_release);")
+                      "if (!MetadataCache::PublishInterpreterAssembliesBatch(assemblies, TryBeginPublication, PublishActive, &publication))\n    {\n        s_state.store(AssemblyShadowState::Validated, std::memory_order_release);",
+                      "if (!MetadataCache::PublishInterpreterAssembliesBatch(assemblies, TryBeginPublication, PublishActive, &publication))\n    {\n        s_state.store(AssemblyShadowState::Committed, std::memory_order_release);")
 
     def test_14_ownership_release_must_remain_after_active(self):
         self.mutation(N_SHADOW,
@@ -157,8 +157,8 @@ class NativePublicationVisibilityBoundaryTests(unittest.TestCase):
 
     def test_23_no_new_exception_conversion_without_review(self):
         self.mutation(N_REGISTRY,
-                      "if (!publish(context))",
-                      "try { publish(context); } catch (...) { return true; }\n        if (!publish(context))")
+                      "for (const Il2CppAssembly* assembly : assemblies) s_Assemblies.push_back(assembly);\n        if (!publish(context))",
+                      "for (const Il2CppAssembly* assembly : assemblies) s_Assemblies.push_back(assembly);\n        try { publish(context); } catch (...) { return true; }\n        if (!publish(context))")
 
     def test_24_no_error_after_runtime_group_active(self):
         self.mutation(H_RUNTIME, "++current->nextPublicationGroup;\n    return Error::None;",
