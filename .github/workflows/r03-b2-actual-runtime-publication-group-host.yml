@@ -55,7 +55,14 @@ jobs:
           check_blob hybridclr/metadata/AssemblyShadowBridge.h 5340c0bf9e4c4c211b4379929f3f79133661505a
           mkdir -p "$RUNNER_TEMP/r03-b2-stub"
           printf '#pragma once\n#define HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW 1\n' > "$RUNNER_TEMP/r03-b2-stub/il2cpp-config.h"
-          if [[ "$RUNNER_OS" == macOS ]]; then cxx=clang++; else cxx=g++; fi
+          # GCC -O2 conservatively warns about FootprintStats.sealed even though
+          # GetFootprintStats returns None only after assigning every field.
+          # Keep the warning visible; do not silently edit the pinned runtime.
+          if [[ "$RUNNER_OS" == macOS ]]; then
+            cxx=clang++; extra_flags=()
+          else
+            cxx=g++; extra_flags=(-Wno-error=maybe-uninitialized)
+          fi
           host=Tools/AssemblyShadow/R03IR/TypeDefCensus/ActualRuntimePublicationGroupHost.cpp
           runtime="$root/hybridclr/metadata/InterpreterMetadataIndexRuntime.cpp"
           for profile in strict sanitized; do
@@ -64,7 +71,7 @@ jobs:
             else
               flags=(-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer)
             fi
-            "$cxx" -std="$STANDARD" "${flags[@]}" -Wall -Wextra -Werror -pedantic -pthread \
+            "$cxx" -std="$STANDARD" "${flags[@]}" "${extra_flags[@]}" -Wall -Wextra -Werror -pedantic -pthread \
               -I "$RUNNER_TEMP/r03-b2-stub" -I "$root" \
               "$host" "$runtime" -o "$RUNNER_TEMP/actual-runtime-group"
             ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 \
