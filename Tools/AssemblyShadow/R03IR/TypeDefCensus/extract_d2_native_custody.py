@@ -51,6 +51,27 @@ def extract(sources):
     for name,decl in ((N_ASSEMBLY_H,"void (*onAbandon)(void*)"),
                       (N_METADATA_H,"void (*onAbandon)(void*)")):
         require(decl in sources[name],"D2 native header callback signature missing "+name)
+    # Fail closed on a source mutation that removes any exception-custody step.
+    compact=lambda path:"".join(code_only(sources[path]).split())
+    assembly=compact(N_ASSEMBLY)
+    metadata=compact(N_METADATA)
+    shadowBody=compact(N_SHADOW)
+    require("~ScopedPhysicalRollback()noexcept" in assembly and
+            "abandon(context);" in assembly and
+            "entries.resize(previousSize);" in assembly and
+            "rollback.committed=true;" in assembly,
+            "physical registry exceptional cleanup contract changed")
+    require("~ScopedCliRollback()noexcept" in metadata and
+            "s_cliAssemblies.resize_uninitialized(previousSize);" in metadata and
+            "AbandonShadowPublication,&publication" in metadata,
+            "CLI registry exceptional cleanup contract changed")
+    require("if(!publication.usageHeld)return;" in shadowBody and
+            "publication.usageHeld=true;" in shadowBody and
+            "ReleasePublicationUsage(context);" in shadowBody,
+            "idempotent native usage custody contract changed")
+    require("exceptionalExit.returned=true;" in shadowBody and
+            "s_unexpectedFailure.store(true,std::memory_order_release);" in shadowBody,
+            "native terminal-on-exception contract changed")
     shadow=code_only(sources[N_SHADOW])
     enabled=r"\bAssemblyShadowError\s+AssemblyShadow::CommitTransaction\s*\("
     require(len(list(re.finditer(enabled,shadow)))==2,"native enabled+disabled commit must remain")
