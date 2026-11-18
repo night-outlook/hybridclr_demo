@@ -18,7 +18,9 @@ struct Il2CppAssembly { int token; };
 static std::atomic<int> heldLocks(0);
 static std::atomic<int> wrongUnlockOrder(0);
 static std::atomic_flag* watchedUsage = nullptr;
+#if !defined(D2_NO_EXCEPTIONS)
 static bool failCliAppend = false;
+#endif
 static unsigned cliAppendCount = 0;
 
 namespace il2cpp { namespace os {
