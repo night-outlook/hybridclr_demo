@@ -10,6 +10,9 @@
 #include <mutex>
 #include <thread>
 #include <vector>
+#if defined(D2_REAL_CLI)
+#include "PinnedNativeDynamicArray.h" // copied byte-for-byte from Git-pinned native source
+#endif
 #if !defined(D2_NO_EXCEPTIONS)
 #include <stdexcept>
 #endif
@@ -18,10 +21,12 @@ struct Il2CppAssembly { int token; };
 static std::atomic<int> heldLocks(0);
 static std::atomic<int> wrongUnlockOrder(0);
 static std::atomic_flag* watchedUsage = nullptr;
+#if !defined(D2_REAL_CLI)
 #if !defined(D2_NO_EXCEPTIONS)
 static bool failCliAppend = false;
 #endif
 static unsigned cliAppendCount = 0;
+#endif
 
 namespace il2cpp { namespace os {
 class FastAutoLock
@@ -52,6 +57,9 @@ private:
 };
 }}
 
+#if defined(D2_REAL_CLI)
+template<class T> using TestDynamicArray = il2cpp::utils::dynamic_array<T>;
+#else
 template<class T>
 class TestDynamicArray : public std::vector<T>
 {
@@ -67,6 +75,7 @@ public:
         std::vector<T>::push_back(item);
     }
 };
+#endif
 static TestDynamicArray<Il2CppAssembly*> s_cliAssemblies;
 
 namespace il2cpp { namespace vm {
@@ -222,6 +231,12 @@ static void CheckScopeClean(const Fixture& f, bool expectedPublished)
     CHECK(!UsageHeld());
     CHECK(!f.publication.usageHeld);
     CHECK(f.RegistriesEmpty() != expectedPublished);
+#if defined(D2_REAL_CLI)
+    // The exact Unity dynamic_array was reserved before any registry write.
+    // Shrink-to-previousSize must neither grow nor discard its retained capacity.
+    CHECK(s_cliAssemblies.capacity() >= 2);
+    CHECK(s_cliAssemblies.data() != nullptr);
+#endif
     CHECK(s_assemblyVersion == (expectedPublished ? 1 : 0));
     CHECK((s_active.load(std::memory_order_acquire) == &f.snapshot) == expectedPublished);
     CHECK(f.staged.published == expectedPublished);
@@ -317,7 +332,11 @@ static void FailedException(Mode newMode, bool failCli, bool throwBegin)
 {
     Fixture f;
     mode = newMode;
+#if defined(D2_REAL_CLI)
+    (void)failCli; // native pointer append is pre-reserved; mock-only injected append failure
+#else
     failCliAppend = failCli;
+#endif
     bool escaped = false;
     CHECK(!Invoke(f, escaped, throwBegin ? BeginThenThrow : TryBeginPublication));
     CHECK(escaped);
@@ -382,6 +401,12 @@ int main(int argc, char** argv)
                 "\"usageReleasedBeforeAssemblyUnlock\":true,"
                 "\"sourceNativeCommit\":\"b86a97e1dcca18163df5ac2d5f268bf6de18bbdf\","
                 "\"mockNativeDependencies\":true,"
+                "\"realCliDynamicArraySource\":"
+#if defined(D2_REAL_CLI)
+                "true,"
+#else
+                "false,"
+#endif
                 "\"nativeRuntimeCodecActual\":false,"
                 "\"nativeProductionSourceChanged\":true,"
                 "\"unityPlayerExecuted\":false,"
