@@ -36,6 +36,7 @@ jobs:
             libil2cpp/vm/AssemblyShadow.cpp
             libil2cpp/vm/Assembly.h
             libil2cpp/vm/MetadataCache.h
+            libil2cpp/utils/dynamic_array.h
           sparse-checkout-cone-mode: false
       - uses: actions/setup-python@v5
         with:
@@ -102,6 +103,72 @@ jobs:
           assert d['mockNativeDependencies'] is True and d['nativeProductionSourceChanged'] is True
           for k in ('nativeRuntimeCodecActual','unityPlayerExecuted','postCodecRollbackProven','R03Accepted','H2Passed','ReadyForHumanReviewGate'): assert d[k] is False,k
           print('D2 literal native custody host PASS, NOT Player acceptance')
+          PY
+            done
+          done
+
+      - name: Compile D2 publisher with exact pinned native CLI dynamic_array header
+        shell: bash
+        env:
+          STANDARD: ${{ matrix.standard }}
+        run: |
+          set -euo pipefail
+          root=_native_d2
+          source=libil2cpp/utils/dynamic_array.h
+          expected=0e6653e6e7efe93f023f63893c1a3b94f347a1d0
+          test "$(git -C "$root" rev-parse HEAD)" = 'b86a97e1dcca18163df5ac2d5f268bf6de18bbdf'
+          test "$(git -C "$root" rev-parse "HEAD:$source")" = "$expected"
+          test "$(git -C "$root" hash-object "$source")" = "$expected"
+          cp "$root/$source" "$RUNNER_TEMP/PinnedNativeDynamicArray.h"
+          # Only allocator macros and C++ assertions are host stand-ins.
+          # The tested dynamic_array template source remains byte-for-byte native.
+          cat > "$RUNNER_TEMP/Memory.h" <<'SHIM'
+          #pragma once
+          #include <cstddef>
+          #include <cstdlib>
+          #include <cstring>
+          #include <cassert>
+          #define ALIGN_OF(T) alignof(T)
+          #define Assert(expr) assert(expr)
+          #define IL2CPP_DEBUG 0
+          static unsigned d2HostReallocationCount = 0;
+          inline void* D2HostAlignedRealloc(void* p, size_t n, size_t) {
+              ++d2HostReallocationCount;
+              return std::realloc(p,n);
+          }
+          #define IL2CPP_MALLOC_ALIGNED(bytes,alignment) std::malloc(bytes)
+          #define IL2CPP_FREE_ALIGNED(ptr) std::free(ptr)
+          #define IL2CPP_REALLOC_ALIGNED(ptr,bytes,alignment) D2HostAlignedRealloc(ptr,bytes,alignment)
+          SHIM
+          if [[ "$RUNNER_OS" == macOS ]]; then cxx=clang++; else cxx=g++; fi
+          dir=Tools/AssemblyShadow/R03IR/TypeDefCensus
+          for profile in strict sanitized no-exceptions; do
+            flags=(-O2 -DD2_REAL_CLI)
+            scenarios=(used-denial normal-false normal-success usage-acquired-exception staged-exception post-stage-exception prior-first-error)
+            if [[ "$profile" == sanitized ]]; then
+              flags=(-O1 -g -DD2_REAL_CLI -fsanitize=address,undefined -fno-omit-frame-pointer)
+            fi
+            if [[ "$profile" == no-exceptions ]]; then
+              flags=(-O2 -DD2_REAL_CLI -DD2_NO_EXCEPTIONS -fno-exceptions -fno-rtti)
+              scenarios=(used-denial normal-false normal-success)
+            fi
+            "$cxx" -std="$STANDARD" "${flags[@]}" -Wall -Wextra -Werror -pedantic -pthread \
+              -I "$RUNNER_TEMP" "$dir/D2NativeCustodyHost.cpp" -o "$RUNNER_TEMP/d2-realcli-host"
+            for scenario in "${scenarios[@]}"; do
+              ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 \
+                "$RUNNER_TEMP/d2-realcli-host" "$scenario" > "$RUNNER_TEMP/realcli.json"
+              cat "$RUNNER_TEMP/realcli.json"
+              python3 - "$RUNNER_TEMP/realcli.json" "$scenario" <<'PY'
+          import json,sys
+          with open(sys.argv[1],encoding='utf8') as f:d=json.load(f)
+          assert d['schema']=='R03B2D2NativeCustodyHostV1'
+          assert d['result']=='PassedPinnedD2CustodyHostOnly' and d['case']==sys.argv[2]
+          assert d['realCliDynamicArraySource'] is True
+          assert d['checks']>=15 and d['compiledPinnedNativeBodies'] is True
+          assert d['sourceNativeCommit']=='b86a97e1dcca18163df5ac2d5f268bf6de18bbdf'
+          assert d['usageReleasedBeforeAssemblyUnlock'] is True
+          for k in ('nativeRuntimeCodecActual','unityPlayerExecuted','postCodecRollbackProven','R03Accepted','H2Passed','ReadyForHumanReviewGate'): assert d[k] is False,k
+          print('Pinned real CLI dynamic_array + D2 native bodies: PASS, no Unity')
           PY
             done
           done
