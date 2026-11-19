@@ -44,6 +44,12 @@ HYBRID={
     H_CODEC:"2020d4e2da6dea8601525203e7ab307d21c40a73",
     H_BRIDGE:"5340c0bf9e4c4c211b4379929f3f79133661505a",
 }
+HYBRID_BLOCKS=(
+    ("imagePublisher",H_IMAGE,
+        r"\bInterpreterMetadataIndexRuntime::Error\s+InterpreterImage::RegisterImagesBatch\s*\(",False),
+    ("stagedPublisher",H_STAGED,
+        r"\bbool\s+Assembly::PublishStagedImagesBatch\s*\(",False),
+)
 BLOCKS=(
     ("lockUsage",r"\bvoid\s+LockUsage\s*\(",False),
     ("unlockUsage",r"\bvoid\s+UnlockUsage\s*\(",False),
@@ -133,6 +139,14 @@ def extract(native:dict[str,str],hybrid:dict[str,str]):
     result+="namespace il2cpp { namespace vm { namespace {\n"
     result+="\n".join(blocks[label] for label,_,__ in BLOCKS)
     result+="\n}}}\n"
+    result+="namespace hybridclr { namespace metadata {\n"
+    for label,path,anchor,is_struct in HYBRID_BLOCKS:
+        body=extract_literal(hybrid[path],anchor,label,is_struct)
+        result+=body+"\n"
+        items.append({"label":label,
+                      "sha256":hashlib.sha256(body.encode()).hexdigest(),
+                      "bytes":len(body.encode())})
+    result+="}}\n"
     return result,items
 
 def main():
