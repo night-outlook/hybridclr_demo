@@ -80,7 +80,7 @@ jobs:
           with open(sys.argv[1],encoding='utf8') as f:d=json.load(f)
           assert d['schema']=='R03B2D3SourceReceiptV1'
           assert d['result']=='PassedPinnedD3SourceAndExtractionOnly'
-          assert d['bodyCount']==9 and len(d['nativeBlobs'])==3
+          assert d['bodyCount']==11 and len(d['nativeBlobs'])==3
           assert len(d['hybridBlobs'])==8
           assert d['handoffAuthority']=='CLOSED_NO_LOCAL_EXECUTION'
           for k in ('realVmBridge','unityPlayerExecuted','fullNativeTranslationUnitsCompiled',
@@ -120,6 +120,7 @@ jobs:
           assert r['result']=='PassedExactRuntimeAndNativeCallbacksHostOnly'
           assert r['scenario']==sys.argv[2] and r['checks']>=8
           assert r['actualRuntimeCodec'] and r['nativeCallbacksExtracted']
+          assert r['exactForwardingBodiesCompiled']
           assert r['vmAndStagedAdapterMock']
           assert not any(r[k] for k in ('postCodecRollbackProven','unityPlayerExecuted','R03Accepted','D4Complete'))
           PY
