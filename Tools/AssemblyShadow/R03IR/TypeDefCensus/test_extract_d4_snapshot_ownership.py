@@ -61,8 +61,8 @@ class D4ExactOwnership(unittest.TestCase):
 
     def test_06_p5_must_not_precede_owner_transfer(self):
         self.reject("native",N_SHADOW,
-                    "*publication.pendingSnapshot, s_active))",
-                    "*publication.pendingSnapshot, s_active) /* missed owner */)")
+                    "publication.transaction->activeOwner.TryPublish(",
+                    "publication.transaction->activeOwner.TrySkipPublish(")
 
     def test_07_p5_actual_phase_required(self):
         self.reject("native",N_SHADOW,
@@ -85,8 +85,8 @@ class D4ExactOwnership(unittest.TestCase):
 
     def test_11_p6_phase_before_initializers(self):
         self.reject("native",N_SHADOW,
-                    "assembly_shadow_publication::Phase::InitializersRunning",
-                    "assembly_shadow_publication::Phase::ActiveSnapshotPublished")
+                    "if (!publicationPhase.Advance(\n            assembly_shadow_publication::Phase::InitializersRunning))",
+                    "if (!publicationPhase.Advance(\n            assembly_shadow_publication::Phase::ActiveSnapshotPublished))"
 
     def test_12_completion_required(self):
         self.reject("native",N_SHADOW,
