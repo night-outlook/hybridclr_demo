@@ -30,7 +30,7 @@ using CodecError = Runtime::Error;
 namespace phase = il2cpp::vm::assembly_shadow_publication;
 namespace first = il2cpp::vm::assembly_shadow_first_failure_v2;
 
-static unsigned checks = 0;
+static std::atomic<unsigned> checks{0};
 static void Check(bool accepted, const char* expression, int line)
 {
     ++checks;
@@ -450,6 +450,6 @@ int main(int argc,char**argv)
         "\"hostLockAndVmStandIns\":true,\"unityPlayerExecuted\":false,"
         "\"postCodecRollbackProven\":false,\"R03Accepted\":false,"
         "\"D3IndependentReviewPassed\":false,\"D4Started\":false}\n",
-        scenario,checks,pausedInAssemblyUnlock.load()?"true":"false");
+        scenario,checks.load(std::memory_order_relaxed),pausedInAssemblyUnlock.load()?"true":"false");
     return 0;
 }
