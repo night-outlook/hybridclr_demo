@@ -245,8 +245,6 @@ struct Fixture
     }
     bool Publish(bool synchronizeBegin)
     {
-        const bool (*ignored)(void*)=nullptr;
-        (void)ignored;
         return MetadataCache::PublishInterpreterAssembliesBatch(
             assemblies,synchronizeBegin ? BeginWithProbe : TryBeginPublication,
             PublishActive,ReleasePublicationUsage,&publication);
