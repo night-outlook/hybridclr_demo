@@ -29,10 +29,12 @@ class D3ExactRuntimeBridgeSource(unittest.TestCase):
 
     def test_01_exact_sources(self):
         code,items=extract(self.native,self.hybrid)
-        self.assertEqual(len(items),9)
+        self.assertEqual(len(items),11)
         self.assertIn("ObserveCodecAttempt",code)
         self.assertIn("ObserveRuntimeGroupPublished",code)
         self.assertIn("PublishActive",code)
+        self.assertIn("InterpreterImage::RegisterImagesBatch",code)
+        self.assertIn("Assembly::PublishStagedImagesBatch",code)
 
     def test_02_authority_and_inventory(self):
         self.assertEqual(len(NATIVE),3)
