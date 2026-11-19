@@ -37,6 +37,21 @@ using Image=hybridclr::metadata::InterpreterImage;
 using Error=Runtime::Error;
 namespace phase=il2cpp::vm::assembly_shadow_publication;
 
+// Minimal host class declarations for the exact two production forwarding
+// method bodies appended to D3ExactNativeCallbacks.inc by the source extractor.
+namespace hybridclr { namespace metadata {
+class InterpreterImage {
+public:
+    static Runtime::Error RegisterImagesBatch(const uint32_t*,size_t,
+        const Runtime::PublicationObserver*);
+};
+class Assembly {
+public:
+    static bool PublishStagedImagesBatch(const std::vector<uint32_t>&,
+        const Runtime::PublicationObserver*);
+};
+}}
+
 static unsigned checks=0;
 static void Check(bool b,const char* e,int line)
 {
@@ -67,9 +82,13 @@ struct InterpreterAssembly
     {
         // Test shim for the source-verified StagedAssembly.cpp ->
         // InterpreterImage.cpp forwarding, not a compiled staged assembly TU.
+        if (!poisonGroupCallback)
+            return hybridclr::metadata::Assembly::PublishStagedImagesBatch(ids,observer);
+        // Test-only fault adapter: the normal path above executes BOTH
+        // literal production forwarding bodies, while this one poisons the
+        // observer only to test real Runtime behavior after a group store.
         Runtime::PublicationObserver wrapped=*observer;
-        if (poisonGroupCallback)
-            wrapped.beforeCodec=BeforeCodecThenSeal;
+        wrapped.beforeCodec=BeforeCodecThenSeal;
         return !ids.empty() && Runtime::PublishBatch(
             ids.data(),ids.size(),&wrapped)==Error::None;
     }
@@ -266,7 +285,7 @@ int main(int argc,char** argv)
     else{std::fprintf(stderr,"Unknown D3 scenario\n");return 2;}
     std::printf("{\"schema\":\"R03B2D3ActualRuntimeHostV1\",\"result\":\"PassedExactRuntimeAndNativeCallbacksHostOnly\","
         "\"scenario\":\"%s\",\"checks\":%u,\"actualRuntimeCodec\":true,\"nativeCallbacksExtracted\":true,"
-        "\"vmAndStagedAdapterMock\":true,\"postCodecRollbackProven\":false,"
+        "\"exactForwardingBodiesCompiled\":true,\"vmAndStagedAdapterMock\":true,\"postCodecRollbackProven\":false,"
         "\"unityPlayerExecuted\":false,\"R03Accepted\":false,\"D4Complete\":false}\n",
         name,checks);
     return 0;
