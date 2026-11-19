@@ -30,6 +30,7 @@ N_METADATA="libil2cpp/vm/MetadataCache.cpp"
 N_METADATA_H="libil2cpp/vm/MetadataCache.h"
 N_FIRST="libil2cpp/vm/AssemblyShadowFirstFailureV2.h"
 N_TERMINAL="libil2cpp/vm/AssemblyShadowTerminalExecution.h"
+N_TYPES="libil2cpp/vm/AssemblyShadowTypes.h"
 N_ARRAY="libil2cpp/utils/dynamic_array.h"
 NATIVE={
     N_SHADOW:"5e5fb4b094ae8111e5f674dfc534d411bf597690",
@@ -41,6 +42,7 @@ NATIVE={
     N_METADATA_H:"1f99a863e80a692053e57781648dba1bcc50f80c",
     N_FIRST:"85683f06f966725e55891ed08d12b961c9685e56",
     N_TERMINAL:"33258986c31b2e6ae3af17b8553030482a83aef7",
+    N_TYPES:"6d1379bc33300e4682468705942721d355481ca7",
     N_ARRAY:"0e6653e6e7efe93f023f63893c1a3b94f347a1d0",
 }
 
