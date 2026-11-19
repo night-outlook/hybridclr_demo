@@ -129,7 +129,8 @@ def verify(native:dict[str,str],hybrid:dict[str,str])->None:
             publish.index("publication.leaseExit=PublicationLeaseExit::ActivePublished;") <
             publish.rindex("ReleasePublicationUsage(context);"),
             "P5 was not witnessed AFTER process-owned active pointer release store")
-    require("retained_=std::move(pending);" in owner and
+    require("if(!pending||retained_||published.load(std::memory_order_acquire))returnfalse;" in owner and
+            "retained_=std::move(pending);" in owner and
             "published.store(retained_.get(),std::memory_order_release);" in owner and
             owner.index("retained_=std::move(pending);") <
                 owner.index("published.store(retained_.get(),std::memory_order_release);"),
