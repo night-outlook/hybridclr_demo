@@ -1,3 +1,9 @@
+# D3 independent re-review disposition — PassD3ForD4 (2026-11-19 UTC)
+
+**Independent D3 re-review COMPLETED: `PassD3ForD4` (D3 checkpoint only).** See [D3_INDEPENDENT_REREVIEW_2026-11-19.md](D3_INDEPENDENT_REREVIEW_2026-11-19.md). The earlier independent `ReturnRequired` and this request's `ReadyForIndependentReview` status below are **historical pre-decision states**. IR-D3-01 is **closed at exact source-host scope** after independently verifying one-file native repair, all four CI job logs at test commit `b2e39532718d8bb80ce3089b7374015befbdab37`, 76 passing Python source tests, 64 host scenario receipts / 1,688 assertions and four expected-failing broken-order negative controls. **D4 Primary Implementation alone is now eligible to begin in a separately assigned task**; its ActiveSnapshot lifetime defect remains critical/open. No Local Validation/Unity Player/R03/H2/Human Review authorization. `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`. The original re-review request is retained below unchanged for provenance.
+
+---
+
 # R03 B2 D3 — IR-D3-01 independent re-review request (CI complete; review pending)
 
 **State:** `ReadyForIndependentReview` (CI host gate complete, NOT independent acceptance). The prior [independent D3 review](D3_INDEPENDENT_REVIEW_2026-11-19.md) remains **ReturnRequired** until a new independent reviewer evaluates the **corrected exact production tuple and completed evidence**, not the Primary self-review. **D4 not authorized.**
