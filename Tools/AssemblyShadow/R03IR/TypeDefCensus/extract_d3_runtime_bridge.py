@@ -76,6 +76,9 @@ def verify_source(native:dict[str,str],hybrid:dict[str,str])->None:
         "publication.phaseReceipt->Read().phase!=assembly_shadow_publication::Phase::RuntimeGroupPublished" in native_publish,
         "native PublishActive does not bind required phases"
     )
+    require("ClassifyFailedNativeBatch(publicationPhase," in n and
+            "snapshot.release();" in n,
+            "missing native D3 classifier / post-publication boundary")
     failure=n[n.index("ClassifyFailedNativeBatch(publicationPhase,"):
               n.index("snapshot.release();")]
     require(
