@@ -1,3 +1,9 @@
+# Independent D2 review disposition (2026-11-18 UTC)
+
+**Completed: PassD2ForD3.** See [D2_INDEPENDENT_REVIEW_2026-11-18.md](D2_INDEPENDENT_REVIEW_2026-11-18.md). This independent source/evidence review verified the scoped native rollback and usage-lease custody against the five pinned files and 4/4 successful final CI jobs; it does not approve product behavior. D3 normal false/CodecAttempted classification and D4 ActiveSnapshot lifetime remain critical open work. **No Local execution, R03 acceptance, H2 or Human Review Gate approval.** The material below is the original pre-review request, retained verbatim for audit.
+
+---
+
 ## D2 additional exact native CLI container evidence (2026-11-18 UTC)
 
 **New input for the independent reviewer:** [real native dynamic_array source-host review](D2_REAL_CLI_DYNAMIC_ARRAY_SOURCE_HOST_REVIEW_2026-11-18.md). The D2 actual native production source pin remains **il2cpp_plus@b86a97e1dcca18163df5ac2d5f268bf6de18bbdf**, now with the exact unmodified libil2cpp/utils/dynamic_array.h Git blob **0e6653e6e7efe93f023f63893c1a3b94f347a1d0** compiled in a separate host profile. Tested demo code **6362aa3469abd3baa15b97b8e5cb169f602c27d1**. [CI 44278898831](https://github.com/night-outlook/hybridclr_demo/actions/runs/44278898831) **4/4 PASS** macOS/Ubuntu C++11/C++17: each job 18 source mutation tests, 19 mock-CLI receipts plus 17 actual-template receipts, **36 scenarios / 568 checks per job**. The first enhanced run 44278777181 had a CI assertion-count mismatch (the prior-first-error host case has 13 checks), corrected without native production edits. The template itself is exact, but allocator/VM/locks remain host stand-ins.
