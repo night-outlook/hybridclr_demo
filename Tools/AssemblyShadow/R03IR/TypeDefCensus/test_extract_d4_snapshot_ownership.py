@@ -86,7 +86,7 @@ class D4ExactOwnership(unittest.TestCase):
     def test_11_p6_phase_before_initializers(self):
         self.reject("native",N_SHADOW,
                     "if (!publicationPhase.Advance(\n            assembly_shadow_publication::Phase::InitializersRunning))",
-                    "if (!publicationPhase.Advance(\n            assembly_shadow_publication::Phase::ActiveSnapshotPublished))"
+                    "if (!publicationPhase.Advance(\n            assembly_shadow_publication::Phase::ActiveSnapshotPublished))")
 
     def test_12_completion_required(self):
         self.reject("native",N_SHADOW,
