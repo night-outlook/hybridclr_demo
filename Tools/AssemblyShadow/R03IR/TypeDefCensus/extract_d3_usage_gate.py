@@ -93,9 +93,10 @@ def verify(native:dict[str,str],hybrid:dict[str,str])->None:
     publish=block["publishActive"]
     require("publication.phaseReceipt->MarkTerminal(" in seal and
             "s_firstFailureV2.TryFreeze(" in seal and
+            "publication.normalFailure?assembly_shadow_first_failure_v2::Origin::TransactionTerminal:assembly_shadow_first_failure_v2::Origin::UnexpectedFailure" in seal and
             "s_unexpectedFailure.store(true,std::memory_order_release);" in seal and
             "s_state.store(" in seal,
-            "D3 failure seal incomplete")
+            "D3 failure seal / first-error origin incomplete")
     positions=("SealFailedPublicationBeforeUsageUnlock(publication);",
                "publication.usageHeld=false;","UnlockUsage();")
     require(all(item in release for item in positions),
