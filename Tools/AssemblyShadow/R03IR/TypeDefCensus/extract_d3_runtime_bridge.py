@@ -76,17 +76,25 @@ def verify_source(native:dict[str,str],hybrid:dict[str,str])->None:
         "publication.phaseReceipt->Read().phase!=assembly_shadow_publication::Phase::RuntimeGroupPublished" in native_publish,
         "native PublishActive does not bind required phases"
     )
+    failure=n[n.index("ClassifyFailedNativeBatch(publicationPhase,"):
+              n.index("snapshot.release();")]
     require(
         "ClassifyFailedNativeBatch(publicationPhase,publication.used!=nullptr,publication.usageHeld,publication.runtimePublicationFailed)" in n and
-        "D3Disposition::ProvenUsedRejection" in n and
-        "s_unexpectedFailure.store(true,std::memory_order_release)" in n and
+        "D3Disposition::ProvenUsedRejection" in failure and
+        "s_unexpectedFailure.store(true,std::memory_order_release)" in failure and
+        "s_state.store(s_active.load(std::memory_order_acquire)?" in failure and
         "publication.phaseReceipt=&publicationPhase" in n,
         "native fail-closed classification or receipt lifetime changed"
     )
-    a=r.index("observer->beforeCodec(observer->context)")
-    b=r.index("current->codec.PublishBatch(current->publishScratch,count)")
-    c=r.index("current->groups[group].active.store(1,std::memory_order_release)")
-    d=r.index("observer->afterRuntimeGroup(observer->context)")
+    required=(
+        "observer->beforeCodec(observer->context)",
+        "current->codec.PublishBatch(current->publishScratch,count)",
+        "current->groups[group].active.store(1,std::memory_order_release)",
+        "observer->afterRuntimeGroup(observer->context)",
+    )
+    require(all(item in r for item in required),
+            "missing real Runtime Codec/group callback boundary")
+    a,b,c,d=(r.index(item) for item in required)
     require(a<b<c<d, "Runtime callbacks are not at real irreversible boundaries")
     require("if(observer&&(!observer->beforeCodec||!observer->afterRuntimeGroup))" in r,
             "invalid observer contract admitted")
