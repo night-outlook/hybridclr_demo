@@ -12,7 +12,7 @@ permissions:
   contents: read
 jobs:
   source-pinned-usage-custody:
-    runs-on: \${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
@@ -64,8 +64,8 @@ jobs:
           python-version: '3.11'
       - name: Authenticate exact D2+D3 production sources and negative mutations
         env:
-          R03_D3_LEASE_NATIVE_ROOT: \${{ github.workspace }}/_native_d3_lease
-          R03_D3_LEASE_HYBRID_ROOT: \${{ github.workspace }}/_hybrid_d3_lease
+          R03_D3_LEASE_NATIVE_ROOT: ${{ github.workspace }}/_native_d3_lease
+          R03_D3_LEASE_HYBRID_ROOT: ${{ github.workspace }}/_hybrid_d3_lease
         shell: bash
         run: |
           set -euo pipefail
@@ -98,7 +98,7 @@ jobs:
           PY
       - name: Compile exact native dynamic_array plus D2/D3 lease and real Runtime/Codec
         env:
-          STANDARD: \${{ matrix.standard }}
+          STANDARD: ${{ matrix.standard }}
         shell: bash
         run: |
           set -euo pipefail
@@ -136,10 +136,10 @@ jobs:
             if [[ "$profile" == sanitized ]]; then
               flags=(-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer)
             fi
-            "$cxx" -std="$STANDARD" "\${flags[@]}" "\${extra[@]}" -Wall -Wextra -Werror -pedantic -pthread \
+            "$cxx" -std="$STANDARD" "${flags[@]}" "${extra[@]}" -Wall -Wextra -Werror -pedantic -pthread \
               -I "$RUNNER_TEMP" -I "$native" -I "$hybrid" "$host" "$runtime" \
               -o "$RUNNER_TEMP/d3-lease-host"
-            for scenario in "\${scenarios[@]}"; do
+            for scenario in "${scenarios[@]}"; do
               ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 \
                 "$RUNNER_TEMP/d3-lease-host" "$scenario" > "$RUNNER_TEMP/d3-lease-host.json"
               cat "$RUNNER_TEMP/d3-lease-host.json"
@@ -162,7 +162,7 @@ jobs:
           done
       - name: Negative control - original unlock-before-terminal sequence is rejected
         env:
-          STANDARD: \${{ matrix.standard }}
+          STANDARD: ${{ matrix.standard }}
         shell: bash
         run: |
           set -euo pipefail
@@ -184,7 +184,7 @@ jobs:
             cxx=g++; extra=(-Wall -Wno-error=maybe-uninitialized); fi
           host=Tools/AssemblyShadow/R03IR/TypeDefCensus/D3UsageGateRaceHost.cpp
           hybrid=_hybrid_d3_lease
-          "$cxx" -std="$STANDARD" -O2 "\${extra[@]}" -Wall -Wextra -Werror -pedantic -pthread \
+          "$cxx" -std="$STANDARD" -O2 "${extra[@]}" -Wall -Wextra -Werror -pedantic -pthread \
             -I "$RUNNER_TEMP/broken" -I "$RUNNER_TEMP" -I "$root/libil2cpp/vm" -I "$hybrid" \
             "$host" "$hybrid/hybridclr/metadata/InterpreterMetadataIndexRuntime.cpp" \
             -o "$RUNNER_TEMP/d3-broken-control"
