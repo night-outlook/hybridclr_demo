@@ -96,9 +96,12 @@ def verify(native:dict[str,str],hybrid:dict[str,str])->None:
             "s_unexpectedFailure.store(true,std::memory_order_release);" in seal and
             "s_state.store(" in seal,
             "D3 failure seal incomplete")
-    require(release.index("SealFailedPublicationBeforeUsageUnlock(publication);") <
-            release.index("publication.usageHeld=false;") <
-            release.index("UnlockUsage();"),
+    positions=("SealFailedPublicationBeforeUsageUnlock(publication);",
+               "publication.usageHeld=false;","UnlockUsage();")
+    require(all(item in release for item in positions),
+            "terminal seal / usage release step missing")
+    require(release.index(positions[0]) < release.index(positions[1]) <
+            release.index(positions[2]),
             "terminal seal must precede usage release")
     require("if(!publication.usageHeld)return;" in release and
             "publication.leaseExit==PublicationLeaseExit::Unknown" in release,
