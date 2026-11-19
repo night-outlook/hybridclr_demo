@@ -81,8 +81,8 @@ class D3ExactRuntimeBridgeSource(unittest.TestCase):
 
     def test_11_removed_terminal_latch(self):
         self.mutated("native",N_SHADOW,
-                     "s_unexpectedFailure.store(true, std::memory_order_release);",
-                     "s_unexpectedFailure.store(false, std::memory_order_release);")
+                     "        s_unexpectedFailure.store(true, std::memory_order_release);\n        s_state.store(s_active.load(std::memory_order_acquire)",
+                     "        s_unexpectedFailure.store(false, std::memory_order_release);\n        s_state.store(s_active.load(std::memory_order_acquire)")
 
     def test_12_lost_phase_receipt(self):
         self.mutated("native",N_SHADOW,
@@ -91,8 +91,8 @@ class D3ExactRuntimeBridgeSource(unittest.TestCase):
 
     def test_13_missing_group_verification(self):
         self.mutated("native",N_SHADOW,
-                     "assembly_shadow_publication::Phase::RuntimeGroupPublished",
-                     "assembly_shadow_publication::Phase::RegistriesAppended")
+                     "publication.phaseReceipt->Read().phase !=\n                assembly_shadow_publication::Phase::RuntimeGroupPublished",
+                     "publication.phaseReceipt->Read().phase !=\n                assembly_shadow_publication::Phase::RegistriesAppended")
 
     def test_14_missing_classifier(self):
         self.mutated("native",N_DECISION,
