@@ -89,7 +89,7 @@ jobs:
           assert r["schema"]=="R03D4SnapshotOwnerSourceV1"
           assert r["result"]=="PinnedD4SnapshotOwnershipBodiesExtractedOnly"
           assert r["bodyCount"]==22 and len(r["nativeBlobs"])==12
-          assert len(r["hybridBlobs"])==8 and len(r["bodies"])==21
+          assert len(r["hybridBlobs"])==8 and len(r["bodies"])==22
           assert r["nativeCommit"]=="3e3d2ab9c0f7cd68f0a98c6f6677a4ab0e64a699"
           assert r["hybridCommit"]=="c3c232023724cbad565b85e9b2c3beea8ce2789a"
           assert not r["compileFullNativeTUs"] and not r["unityPlayerExecuted"]
