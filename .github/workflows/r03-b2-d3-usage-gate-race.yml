@@ -175,8 +175,8 @@ jobs:
                     "            SealFailedPublicationBeforeUsageUnlock(publication);")
           assert original.count(fragment)==1, "source negative control anchor missing"
           broken=original.replace(fragment,
-              "if (publication.leaseExit == PublicationLeaseExit::Unknown)\n"
-              "            (void)publication;",1)
+              "if (publication.leaseExit == PublicationLeaseExit::ActivePublished)\n"
+              "            SealFailedPublicationBeforeUsageUnlock(publication);",1)
           Path(sys.argv[2]).write_text(broken)
           PY
           root=_native_d3_lease
