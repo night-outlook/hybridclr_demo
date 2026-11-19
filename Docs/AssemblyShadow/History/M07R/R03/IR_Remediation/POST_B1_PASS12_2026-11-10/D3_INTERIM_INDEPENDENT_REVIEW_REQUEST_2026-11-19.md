@@ -1,3 +1,9 @@
+# D3 independent review disposition — ReturnRequired (2026-11-19 UTC)
+
+**Independent D3 review completed: ReturnRequired, NOT PassD3ForD4.** See [D3_INDEPENDENT_REVIEW_2026-11-19.md](D3_INDEPENDENT_REVIEW_2026-11-19.md). Critical **IR-D3-01**: on failed post-Codec publication, native `PublishActive` releases UsageLock before `CommitTransaction` publishes its durable terminal flag. A concurrent method-entry check can observe `Committing + no durable failure + null active`, acquire the released UsageLock and admit baseline execution during the unsealed interval. This is a source-derived permitted interleaving, **not** a real Player observation. Focused Primary repair + deterministic two-thread regression + new independent D3 review are required. D4 and Local Validation remain closed. Earlier request text below is retained unchanged as the historical pre-review request.
+
+---
+
 # R03 B2 D3 — request for independent review (NOT YET COMPLETED)
 
 **Requested decision:** `PassD3ForD4`, `ReturnRequired` or `Blocked`. **Do not issue an independent decision from the Primary self-review.** Scope is D3: actual HybridCLR Runtime/Codec publication-phase witness, native false-return terminal policy, and proof limits. Do not begin D4, D5, H2, M08A, X02, SNAP-01, Local Validation or a Human Review Gate.
