@@ -1,6 +1,6 @@
-# R03 B2 D3 — IR-D3-01 independent re-review request (pending CI gate)
+# R03 B2 D3 — IR-D3-01 independent re-review request (CI complete; review pending)
 
-**State:** `PreparedNotYetEligible`. The prior [independent D3 review](D3_INDEPENDENT_REVIEW_2026-11-19.md) remains **ReturnRequired** until a new independent reviewer evaluates the **corrected exact production tuple and completed evidence**, not the Primary self-review. **D4 not authorized.**
+**State:** `ReadyForIndependentReview` (CI host gate complete, NOT independent acceptance). The prior [independent D3 review](D3_INDEPENDENT_REVIEW_2026-11-19.md) remains **ReturnRequired** until a new independent reviewer evaluates the **corrected exact production tuple and completed evidence**, not the Primary self-review. **D4 not authorized.**
 
 ## Exact source tuple
 
@@ -17,7 +17,7 @@ Read first [Primary IR-D3-01 remediation](D3_IR_D3_01_PRIMARY_REMEDIATION_2026-1
 
 ## New exact source / test evidence
 
-[GitHub Actions run 44496297788](https://github.com/night-outlook/hybridclr_demo/actions/runs/44496297788) is the **fixed workflow-expression** run at exact test source `b2e39532718d8bb80ce3089b7374015befbdab37`. Its matrix is Ubuntu 24.04 + macOS 15 × C++11/C++17. At the initial re-review preparation checkpoint **three jobs had completed/succeeded** (Ubuntu C++11, Ubuntu C++17, macOS C++11), each with 19 source tests, 16 strict/sanitized host receipts, 422 checks and an expected-failing historical negative control. **macOS C++17 remained queued**; no 4/4 completion or final re-review eligibility is claimed. Superseded workflow runs using escaped YAML `\${{ ... }}` and shell arrays must not be promoted.
+[GitHub Actions run 44496297788](https://github.com/night-outlook/hybridclr_demo/actions/runs/44496297788) is the **fixed workflow-expression** run at exact test source `b2e39532718d8bb80ce3089b7374015befbdab37`. Its matrix is Ubuntu 24.04 + macOS 15 × C++11/C++17. **Final independent evidence readback (2026-11-19 UTC): all four jobs completed/success**, including macOS C++17. Each job produced 19 passing Python source/mutation tests, 16 passing exact-source host receipts / 422 assertions, and one expected-failing old-behavior negative-control execution. Total: **76 source tests, 64 passing host receipts, 1,688 assertions, and four expected-failing negative controls**; 40 host receipts specifically exercised the deterministic two-thread barrier. All four raw logs were read; no host assertions or ASan/UBSan diagnostics failed. The prior **3/4** status was an intermediate observation, superseded by this completed CI run. Earlier workflow variants with escaped YAML expressions or different test SHAs are not acceptance evidence.
 
 The new test source lives in `hybridclr_demo/Tools/AssemblyShadow/R03IR/TypeDefCensus/`:
 - `extract_d3_usage_gate.py` — authenticates exactly pinned native, Runtime, Codec, D2 vector scopes, phase receipt and FirstError headers, compiles 21 literal bodies with a host adapter.
@@ -39,4 +39,4 @@ The new test source lives in `hybridclr_demo/Tools/AssemblyShadow/R03IR/TypeDefC
 
 **Requested decision (only after CI is complete and independently assessed):** `PassD3ForD4`, `ReturnRequired` or `Blocked`. A pass would permit D4 Primary Implementation **only**. It must not be interpreted as D4 implementation, Unity/IL2CPP/Player acceptance, Local Validation authorization, R03 acceptance, or project Human Review Gate approval.
 
-**Current authority:** `D3IndependentReview=ReturnRequired` (existing decision), `D3Remediation=SourcePushedCIPartial`, `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`, `D4=NotStarted`, `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`.
+**Current authority:** `D3IndependentReview=ReturnRequired` (existing decision pending re-review), `D3Remediation=PrimaryHostValidationComplete`, `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`, `D4=NotStarted`, `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`.
