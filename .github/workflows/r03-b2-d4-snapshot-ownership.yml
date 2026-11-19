@@ -1,0 +1,228 @@
+name: R03 B2 D4 process-owned ActiveSnapshot P5/P6 (NOT Unity)
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/extract_d4_snapshot_ownership.py
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/test_extract_d4_snapshot_ownership.py
+      - Tools/AssemblyShadow/R03IR/TypeDefCensus/D4SnapshotOwnershipHost.cpp
+      - .github/workflows/r03-b2-d4-snapshot-ownership.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-pinned-usage-custody:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+        standard: [c++11, c++17]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: Tools/AssemblyShadow/R03IR/TypeDefCensus
+          sparse-checkout-cone-mode: true
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/hybridclr
+          ref: c3c232023724cbad565b85e9b2c3beea8ce2789a
+          path: _hybrid_d3_lease
+          filter: blob:none
+          sparse-checkout: |
+            hybridclr/metadata/InterpreterMetadataIndexRuntime.h
+            hybridclr/metadata/InterpreterMetadataIndexRuntime.cpp
+            hybridclr/metadata/InterpreterMetadataIndexCodec.h
+            hybridclr/metadata/InterpreterImage.h
+            hybridclr/metadata/InterpreterImage.cpp
+            hybridclr/metadata/Assembly.h
+            hybridclr/metadata/StagedAssembly.cpp
+            hybridclr/metadata/AssemblyShadowBridge.h
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 760fe3e7a11ac8cf053714f933e90d26533a9644
+          path: _native_d3_lease
+          filter: blob:none
+          sparse-checkout: |
+            libil2cpp/vm/Assembly.cpp
+            libil2cpp/vm/Assembly.h
+            libil2cpp/vm/AssemblyShadow.cpp
+            libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h
+            libil2cpp/vm/AssemblyShadowFirstFailureV2.h
+            libil2cpp/vm/AssemblyShadowTerminalExecution.h
+            libil2cpp/vm/AssemblyShadowTypes.h
+            libil2cpp/vm/AssemblyShadowPublicationPhaseReceipt.h
+            libil2cpp/vm/AssemblyShadowPublicationD3Decision.h
+            libil2cpp/vm/MetadataCache.cpp
+            libil2cpp/vm/MetadataCache.h
+            libil2cpp/utils/dynamic_array.h
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Authenticate exact D2+D3 production sources and negative mutations
+        env:
+          R03_D4_NATIVE_ROOT: ${{ github.workspace }}/_native_d3_lease
+          R03_D4_HYBRID_ROOT: ${{ github.workspace }}/_hybrid_d3_lease
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C "$R03_D4_NATIVE_ROOT" rev-parse HEAD)" = 760fe3e7a11ac8cf053714f933e90d26533a9644
+          test "$(git -C "$R03_D4_HYBRID_ROOT" rev-parse HEAD)" = c3c232023724cbad565b85e9b2c3beea8ce2789a
+          dir=Tools/AssemblyShadow/R03IR/TypeDefCensus
+          python3 "$dir/test_extract_d4_snapshot_ownership.py" -v 2>&1 | tee "$RUNNER_TEMP/d4-tests.log"
+          grep -q 'Ran 20 tests' "$RUNNER_TEMP/d4-tests.log"
+          grep -q '^OK$' "$RUNNER_TEMP/d4-tests.log"
+          if grep -E 'skipped=|FAILED|ERROR:' "$RUNNER_TEMP/d4-tests.log"; then exit 1; fi
+          python3 "$dir/extract_d4_snapshot_ownership.py" \
+            --native-root "$R03_D4_NATIVE_ROOT" \
+            --hybrid-root "$R03_D4_HYBRID_ROOT" \
+            --output "$RUNNER_TEMP/D4ExactNativeSources.inc" \
+            --receipt "$RUNNER_TEMP/d4-source.json"
+          cat "$RUNNER_TEMP/d4-source.json"
+          python3 - "$RUNNER_TEMP/d4-source.json" <<'PY'
+          import json,sys
+          with open(sys.argv[1],encoding='utf8') as f:r=json.load(f)
+          assert r["schema"]=="R03D4SnapshotOwnerSourceV1"
+          assert r["result"]=="PinnedD4SnapshotOwnershipBodiesExtractedOnly"
+          assert r["bodyCount"]==22 and len(r["nativeBlobs"])==12
+          assert len(r["hybridBlobs"])==8 and len(r["bodies"])==21
+          assert r["nativeCommit"]=="760fe3e7a11ac8cf053714f933e90d26533a9644"
+          assert r["hybridCommit"]=="c3c232023724cbad565b85e9b2c3beea8ce2789a"
+          assert not r["compileFullNativeTUs"] and not r["unityPlayerExecuted"]
+          assert not r["gcVmEpochProven"] and not r["postCodecRollbackProven"]
+          assert r["D3IndependentReview"]=="PassD3ForD4" and r["D4IndependentReview"]=="Pending"
+          assert r["handoffAuthority"]=="CLOSED_NO_LOCAL_EXECUTION"
+          PY
+      - name: Compile exact native dynamic_array plus D2/D3 lease and real Runtime/Codec
+        env:
+          STANDARD: ${{ matrix.standard }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=_native_d3_lease
+          src=libil2cpp/utils/dynamic_array.h
+          expect=0e6653e6e7efe93f023f63893c1a3b94f347a1d0
+          test "$(git -C "$root" rev-parse "HEAD:$src")" = "$expect"
+          test "$(git -C "$root" hash-object "$src")" = "$expect"
+          cp "$root/$src" "$RUNNER_TEMP/PinnedNativeDynamicArray.h"
+          cat > "$RUNNER_TEMP/Memory.h" <<'SHIM'
+          #pragma once
+          #include <cstddef>
+          #include <cstdlib>
+          #include <cstring>
+          #include <cassert>
+          #define ALIGN_OF(T) alignof(T)
+          #define Assert(expr) assert(expr)
+          #define IL2CPP_DEBUG 0
+          #define IL2CPP_MALLOC_ALIGNED(bytes,alignment) std::malloc(bytes)
+          #define IL2CPP_FREE_ALIGNED(ptr) std::free(ptr)
+          #define IL2CPP_REALLOC_ALIGNED(ptr,bytes,alignment) std::realloc(ptr,bytes)
+          SHIM
+          printf '#pragma once\n#define HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW 1\n' > "$RUNNER_TEMP/il2cpp-config.h"
+          if [[ "$RUNNER_OS" == macOS ]]; then cxx=clang++; extra=(-Wall); else
+            cxx=g++; extra=(-Wall -Wno-error=maybe-uninitialized); fi
+          native="$root/libil2cpp/vm"
+          hybrid=_hybrid_d3_lease
+          host=Tools/AssemblyShadow/R03IR/TypeDefCensus/D4SnapshotOwnershipHost.cpp
+          runtime="$hybrid/hybridclr/metadata/InterpreterMetadataIndexRuntime.cpp"
+          scenarios=(p0-used-denial normal-success runtime-precheck-race codec-validation-race
+                     postgroup-rejection-race exception-precodec-race
+                     exception-postgroup-race prior-first-error post-active-store-throw
+                     pending-owner-null pending-owner-mismatch post-active-event-throw
+                     post-active-initializer-throw post-active-first-error
+                     post-active-handled-failure post-active-committed)
+          for profile in strict sanitized; do
+            flags=(-O2)
+            if [[ "$profile" == sanitized ]]; then
+              flags=(-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer)
+            fi
+            "$cxx" -std="$STANDARD" "${flags[@]}" "${extra[@]}" -Wall -Wextra -Werror -pedantic -pthread \
+              -I "$RUNNER_TEMP" -I "$native" -I "$hybrid" "$host" "$runtime" \
+              -o "$RUNNER_TEMP/d4-host"
+            for scenario in "${scenarios[@]}"; do
+              ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 \
+                "$RUNNER_TEMP/d4-host" "$scenario" > "$RUNNER_TEMP/d4-host.json"
+              cat "$RUNNER_TEMP/d4-host.json"
+              python3 - "$RUNNER_TEMP/d4-host.json" "$scenario" <<'PY'
+          import json,sys
+          with open(sys.argv[1],encoding='utf8') as f:r=json.load(f)
+          assert r["schema"]=="R03D4ProcessOwnedSnapshotHostV1"
+          assert r["result"]=="PassedExactD4AndRuntimeHostOnly"
+          assert r["case"]==sys.argv[2] and r["checks"]>=12
+          for key in ("actualD2RegistryScopes","actualD3NativeCallbacks",
+                      "actualRuntimeCodec","realCliDynamicArraySource",
+                      "actualTerminalMethodPredicate","hostLockAndVmStandIns"):
+              assert r[key] is True,key
+          for key in ("exactD4OwnerHeader","exactPostActiveGuard"):
+              assert r[key] is True,key
+          if "race" in r["case"]: assert r["deterministicTwoThreadBarrier"] is True
+          for key in ("unityPlayerExecuted","postCodecRollbackProven","R03Accepted",
+                      "D4IndependentReviewPassed","D5Started"):
+              assert r[key] is False,key
+          PY
+            done
+          done
+      - name: Owner negative control — omitted ownership move must fail
+        env:
+          STANDARD: ${{ matrix.standard }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/broken"
+          python3 - "_native_d3_lease/libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h" "$RUNNER_TEMP/broken/AssemblyShadowProcessSnapshotOwner.h" <<'PY'
+          import sys
+          from pathlib import Path
+          source=Path(sys.argv[1]).read_text()
+          original="retained_ = std::move(pending); // std::unique_ptr default deleter, noexcept"
+          assert source.count(original)==1
+          Path(sys.argv[2]).write_text(source.replace(original,
+              "(void)pending; // TEST ONLY: omit ownership transfer",1))
+          PY
+          if [[ "$RUNNER_OS" == macOS ]]; then cxx=clang++; extra=(-Wall); else
+            cxx=g++; extra=(-Wall -Wno-error=maybe-uninitialized); fi
+          host=Tools/AssemblyShadow/R03IR/TypeDefCensus/D4SnapshotOwnershipHost.cpp
+          hybrid=_hybrid_d3_lease
+          "$cxx" -std="$STANDARD" -O2 "${extra[@]}" -Wall -Wextra -Werror -pedantic -pthread \
+            -I "$RUNNER_TEMP/broken" -I "$RUNNER_TEMP" -I "_native_d3_lease/libil2cpp/vm" -I "$hybrid" \
+            "$host" "$hybrid/hybridclr/metadata/InterpreterMetadataIndexRuntime.cpp" -o "$RUNNER_TEMP/d4-broken"
+          ulimit -c 0 || true
+          set +e
+          "$RUNNER_TEMP/d4-broken" normal-success > "$RUNNER_TEMP/broken.json" 2> "$RUNNER_TEMP/broken.stderr"
+          code=$?
+          set -e
+          test "$code" -ne 0
+          grep -q 'IR-D3-01 HOST FAIL' "$RUNNER_TEMP/broken.stderr"
+          echo '{"result":"ExpectedMissingD4OwnerRejected","scope":"host-only","productionChanged":false}'
+      - name: D4 process owner and D1 receipt without exceptions
+        env:
+          STANDARD: ${{ matrix.standard }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$RUNNER_OS" == macOS ]]; then cxx=clang++; else cxx=g++; fi
+          host=Tools/AssemblyShadow/R03IR/TypeDefCensus/D4SnapshotOwnerNoExceptionsHost.cpp
+          for profile in strict sanitized no-exceptions; do
+            flags=(-O2)
+            if [[ "$profile" == sanitized ]]; then flags=(-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer); fi
+            if [[ "$profile" == no-exceptions ]]; then flags=(-O2 -fno-exceptions -fno-rtti); fi
+            "$cxx" -std="$STANDARD" "${flags[@]}" -Wall -Wextra -Werror -pedantic \
+              -I "_native_d3_lease/libil2cpp/vm" "$host" -o "$RUNNER_TEMP/d4-owner"
+            for case_id in 0 1 2 3; do
+              ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 \
+                "$RUNNER_TEMP/d4-owner" "$case_id" > "$RUNNER_TEMP/owner.json"
+              cat "$RUNNER_TEMP/owner.json"
+              python3 - "$RUNNER_TEMP/owner.json" "$case_id" <<'PY'
+          import json,sys
+          with open(sys.argv[1],encoding='utf8') as f:r=json.load(f)
+          assert r["schema"]=="R03D4OwnerHeaderNoExceptionsV1"
+          assert r["result"]=="PassedExactD4OwnerNoExceptionsHostOnly"
+          assert r["case"]==sys.argv[2] and r["checks"]>=8
+          assert r["actualNativeD4Header"] and r["actualD1Receipt"]
+          assert not r["unityPlayerExecuted"] and not r["R03Accepted"]
+          PY
+            done
+          done
