@@ -507,7 +507,6 @@ static void PostActiveException(bool afterP6, bool preservePrior)
         if (afterP6)
             CHECK(f.receipt.Advance(phase::Phase::InitializersRunning));
         throw std::runtime_error("synthetic post-active diagnostic or initializer exception");
-        guard.handled=true;
     }
     catch(const std::runtime_error&) {escaped=true;}
     CHECK(escaped);
