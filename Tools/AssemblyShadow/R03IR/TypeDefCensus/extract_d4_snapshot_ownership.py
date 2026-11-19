@@ -22,7 +22,7 @@ from verify_publication_failure_boundary import (
 from extract_native_registry_publication import extract_literal
 
 BRANCH="codex/assembly-shadow-r01b-h1"
-NATIVE_HEAD="760fe3e7a11ac8cf053714f933e90d26533a9644"
+NATIVE_HEAD="3e3d2ab9c0f7cd68f0a98c6f6677a4ab0e64a699"
 N_ASSEMBLY="libil2cpp/vm/Assembly.cpp"
 N_ASSEMBLY_H="libil2cpp/vm/Assembly.h"
 N_METADATA="libil2cpp/vm/MetadataCache.cpp"
@@ -33,9 +33,9 @@ N_TYPES="libil2cpp/vm/AssemblyShadowTypes.h"
 N_ARRAY="libil2cpp/utils/dynamic_array.h"
 N_OWNER="libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h"
 NATIVE={
-    N_SHADOW:"19fb95655c56bd8307e247207f7c333ff6a14545",
+    N_SHADOW:"d1493c2d04b71a5ab99da94f21c13052a6cef2b1",
     N_OWNER:"ccd10ea0a1d273f5fe31f52d346d090b0a5af79c",
-    N_D1:"a7edf954bfefeafa1c46ccc9a0ab411b5077cb22",
+    N_D1:"e465434511b5896973db2a04c23bd8a11ef3cd4b",
     N_DECISION:"f398ef34f050102472db7d8bc93d84b5f00e311a",
     N_ASSEMBLY:"e46ece727d5f03a914a4a6ba147cc69bc4e0a427",
     N_ASSEMBLY_H:"934de0826582339878dc7a70c53f966327c6ef69",
