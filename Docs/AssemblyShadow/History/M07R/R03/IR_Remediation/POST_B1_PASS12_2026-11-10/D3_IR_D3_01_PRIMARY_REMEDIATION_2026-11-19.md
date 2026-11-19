@@ -1,3 +1,5 @@
+> **CI follow-up, 2026-11-19 UTC:** [44496297788](https://github.com/night-outlook/hybridclr_demo/actions/runs/44496297788) at test code `b2e39532718d8bb80ce3089b7374015befbdab37` has **3/4 jobs completed/success**: Ubuntu 24.04 C++11, Ubuntu 24.04 C++17 and macOS 15 C++11. Raw logs were independently read: each has 19/19 Python tests, 16 source-host receipts / 422 checks, and the expected-failing old-behavior control. Aggregate so far: **57 passing source tests, 48 host receipts, 1,266 checks, three verified negative controls**. **macOS 15 C++17 remains Queued/NotRun**. Do not claim full CI PASS or independent D3 acceptance. The failed-to-schedule earlier YAML escape variants remain non-acceptance evidence. The text below preserves evidence as of initial report creation.
+
 # R03 B2 D3 — IR-D3-01 pre-unlock terminal custody remediation (Primary)
 
 **Date:** 2026-11-19 UTC. **Role:** Primary Implementation, not independent review. **Status:** native correction and focused test sources pushed; **new CI queued / no successful execution receipt yet**. Do not regard the repair as independent D3 acceptance or authorize D4 or Local Validation.
