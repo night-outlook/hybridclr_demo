@@ -19,7 +19,10 @@ class D5BSourceCustody(unittest.TestCase):
         cls.proposal=gate.require_proposal(gate.read_json(gate.PREP_FILE.read_bytes()))
         profile=cls.demo_root/"Tools/AssemblyShadow/R03IR/D5Admission/d5a_candidate_v1.json"
         cls.d5a_manifest=gate.read_json(profile.read_bytes())
-        cls.native_blobs=cls.d5a_manifest["sourceGitBlobs"]["il2cpp_plus"]
+        cls.native_blobs = {
+            name:cls.d5a_manifest["sourceGitBlobs"]["il2cpp_plus"][name]
+            for name in gate.NATIVE
+        }
 
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory()
