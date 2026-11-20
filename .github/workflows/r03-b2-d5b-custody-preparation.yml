@@ -85,7 +85,7 @@ jobs:
           set -euo pipefail
           source=Tools/AssemblyShadow/R03IR/D5Admission
           python3 -B "_d5demo/$source/test_d5b_custody_authority.py" -v 2>&1 | tee "$RUNNER_TEMP/d5b-tests.log"
-          grep -q 'Ran 43 tests in' "$RUNNER_TEMP/d5b-tests.log"
+          grep -q 'Ran 50 tests in' "$RUNNER_TEMP/d5b-tests.log"
           grep -q '^OK$' "$RUNNER_TEMP/d5b-tests.log"
           if grep -E 'FAILED|ERROR:|skipped=' "$RUNNER_TEMP/d5b-tests.log"; then exit 1; fi
       - name: D5-B CLI may only preview, never issue Local authority
