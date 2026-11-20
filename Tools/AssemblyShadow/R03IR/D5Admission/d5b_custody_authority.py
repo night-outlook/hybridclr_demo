@@ -236,29 +236,59 @@ def canonical_remote(url: str, role: str) -> bool:
     )
 
 
-def verify_live_source_heads(
-        roots: Mapping[str, Path],
-        independent_reviewed_pins: Mapping[str, str],
-) -> dict:
-    """Remote readback is required, but this function NEVER grants Local rights.
+def read_independently_approved_handoff(raw: bytes) -> dict:
+    """Source identity only; a separately reviewed immutable blob is mandatory.
 
-    The pins must come from an independently reviewed immutable handoff record.
-    Current *preparation* metadata does not supply such a record; callers may
-    use this primitive in synthetic tests, not for D5-B execution.
+    Neither a self-reported JSON status nor a CLI-supplied SHA is an approval.
+    APPROVED_LOCAL_HANDOFF_BLOB is deliberately None until a later *human*
+    Local authorization and source-reviewed revision pins it in this code.
     """
     require(APPROVED_LOCAL_HANDOFF_BLOB is not None,
             "No independently reviewed approved D5-B Local handoff exists")
-    require(set(roots) == set(ROLES) and
-            set(independent_reviewed_pins) == set(ROLES),
-            "Four independent approved pins and roots required")
+    require(type(raw) is bytes and
+            git_blob(raw) == APPROVED_LOCAL_HANDOFF_BLOB,
+            "Approved handoff bytes do not match the reviewed Git blob")
+    record = read_json(raw)
+    require(record.get("schemaVersion") == 1 and
+            record.get("kind") == "R03B2D5BReviewedLocalHandoffV1" and
+            record.get("branch") == BRANCH and
+            record.get("independentReview") == "Passed" and
+            record.get("userD5BExecutionApproval") == "ExplicitlyApproved" and
+            record.get("WEB_TO_LOCAL") == "OPEN_FOR_EXACT_D5B_LOCAL_ONLY",
+            "Reviewed Local execution approval is absent")
+    pins = record.get("sourcePins")
+    require(type(pins) is dict and set(pins) == set(ROLES),
+            "Reviewed four-repo source tuple required")
+    for role in ROLES:
+        commit = pins[role]
+        require(type(commit) is str and SHA40.fullmatch(commit) and
+                (role == "hybridclr_demo" or commit == PINNED[role]),
+                "Unreviewed or incomplete immutable source SHA: "+role)
+    historical = record.get("historicalRoots")
+    require(type(historical) is dict and set(historical) == set(HISTORY) and
+            all(type(v) is str and v.startswith("/")
+                for v in historical.values()),
+            "Approved handoff must bind every historical evidence root")
+    return record
+
+
+def verify_live_source_heads(
+        roots: Mapping[str, Path],
+        independently_reviewed_handoff_bytes: bytes,
+) -> dict:
+    """Strict checkout + live-ref identity, NOT an execution permission.
+
+    A later separately reviewed Local coordinator must call this together
+    with the mandatory history-root and real installation gates.
+    """
+    record = read_independently_approved_handoff(
+        independently_reviewed_handoff_bytes)
+    independent_reviewed_pins = record["sourcePins"]
+    require(set(roots) == set(ROLES), "Four physical source roots required")
     result = {}
     for role in ROLES:
         root = checked_directory(roots[role], role)
         reviewed = independent_reviewed_pins[role]
-        require(type(reviewed) is str and SHA40.fullmatch(reviewed),
-                "Independently reviewed full SHA required for " + role)
-        require(role == "hybridclr_demo" or reviewed == PINNED[role],
-                "Unreviewed native/HybridCLR source transition forbidden")
         require(run_git(root,"rev-parse","--show-toplevel") == str(root),
                 "Exact Git root check failed for " + role)
         require(run_git(root,"rev-parse","HEAD") == reviewed,
@@ -269,14 +299,14 @@ def verify_live_source_heads(
         require(not run_git(root,"status","--porcelain=v1",
                             "--untracked-files=all"),
                 "Dirty source tree " + role)
-        remote_head = run_git(
-            root, "ls-remote", "--exit-code", "origin",
-            "refs/heads/" + BRANCH)
+        remote_head = run_git(root,"ls-remote","--exit-code","origin",
+                              "refs/heads/" + BRANCH)
         parse_remote_ref(remote_head,reviewed)
         result[role] = {
             "repository":"night-outlook/"+role,
             "reviewedCommit":reviewed,"remoteBranchMatched":True,
             "localHeadMatched":True,"sourceClean":True,
+            "approvalBlobAuthenticated":True,
         }
     return result
 
