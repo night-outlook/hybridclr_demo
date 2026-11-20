@@ -18,7 +18,7 @@ PINS = {
 REPOS = ("hybridclr_demo", "hybridclr", "hybridclr_unity", "il2cpp_plus")
 COUNTS = {"hybridclr_demo": 7, "hybridclr": 9,
           "hybridclr_unity": 4, "il2cpp_plus": 13}
-PROFILE_BLOB = "4f871e1818adc1056652857546658ff94062a221"
+PROFILE_BLOB = "e15bdbff02de2dbb7adef42c39f363fe2d1f3b37"
 FIXTURE_BLOB = "dbdfd51b85b1a8dfc9caedd9916842e1b0d042fc"
 LEGACY_NATIVE = "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9"
 LEGACY_HYBRID = "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
@@ -86,8 +86,7 @@ def validate_profile(p):
          "libil2cpp/vm/AssemblyShadow.cpp" in native and
          "NativeHostTests/AssemblyShadowFirstFailureV2Host.cpp" in native,
          "Required exact D4 owner/host sources absent")
-    allowed = set(native) - {"libil2cpp/vm/AssemblyShadow.h",
-        "libil2cpp/utils/dynamic_array.h",
+    allowed = set(native) - {
         "NativeHostTests/AssemblyShadowFirstFailureV2Host.cpp"}
     need(set(p.get("nativeInstallSources",[])) == allowed and
          p.get("forbiddenInstalledSourcePrefixes") ==
