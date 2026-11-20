@@ -1,0 +1,109 @@
+name: R03 B2 D5-B source custody preparation (NO LOCAL)
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - Tools/AssemblyShadow/R03IR/D5Admission/d5b_*
+      - .github/workflows/r03-b2-d5b-custody-preparation.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  d5b-source-only:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: _d5demo
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/D5Admission/
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 3e3d2ab9c0f7cd68f0a98c6f6677a4ab0e64a699
+          path: _d5native
+          filter: blob:none
+          sparse-checkout: |
+            libil2cpp/utils/dynamic_array.h
+            libil2cpp/vm/Assembly.cpp
+            libil2cpp/vm/AssemblyShadow.cpp
+            libil2cpp/vm/AssemblyShadow.h
+            libil2cpp/vm/AssemblyShadowFirstFailureV2.h
+            libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h
+            libil2cpp/vm/AssemblyShadowPublicationD3Decision.h
+            libil2cpp/vm/AssemblyShadowPublicationPhaseReceipt.h
+            libil2cpp/vm/AssemblyShadowTerminalExecution.h
+            libil2cpp/vm/AssemblyShadowTypes.h
+            libil2cpp/vm/MetadataCache.cpp
+            libil2cpp/vm/Runtime.cpp
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/hybridclr
+          ref: c3c232023724cbad565b85e9b2c3beea8ce2789a
+          path: _d5hybrid
+          filter: blob:none
+          sparse-checkout: |
+            hybridclr/metadata/InterpreterMetadataIndexRuntime.cpp
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: _d5package
+          filter: blob:none
+          sparse-checkout: |
+            package.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Authenticate exact four source heads (not the live remote handoff)
+        env:
+          DEMO_HEAD: ${{ github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C _d5demo rev-parse HEAD)" = "$DEMO_HEAD"
+          test "$(git -C _d5native rev-parse HEAD)" = 3e3d2ab9c0f7cd68f0a98c6f6677a4ab0e64a699
+          test "$(git -C _d5hybrid rev-parse HEAD)" = c3c232023724cbad565b85e9b2c3beea8ce2789a
+          test "$(git -C _d5package rev-parse HEAD)" = 948c0e3b4f8891481301770115e8ba4945eea6de
+      - name: D5-B read-only custody, remote-ref parser and synthetic source-copy tests
+        env:
+          R03_D5B_DEMO_ROOT: ${{ github.workspace }}/_d5demo
+          R03_D5B_NATIVE_ROOT: ${{ github.workspace }}/_d5native
+          PYTHONDONTWRITEBYTECODE: "1"
+        shell: bash
+        run: |
+          set -euo pipefail
+          source=Tools/AssemblyShadow/R03IR/D5Admission
+          python3 -B "_d5demo/$source/test_d5b_custody_authority.py" -v 2>&1 | tee "$RUNNER_TEMP/d5b-tests.log"
+          grep -q 'Ran 43 tests in' "$RUNNER_TEMP/d5b-tests.log"
+          grep -q '^OK$' "$RUNNER_TEMP/d5b-tests.log"
+          if grep -E 'FAILED|ERROR:|skipped=' "$RUNNER_TEMP/d5b-tests.log"; then exit 1; fi
+      - name: D5-B CLI may only preview, never issue Local authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B _d5demo/Tools/AssemblyShadow/R03IR/D5Admission/d5b_custody_authority.py \
+            --source-preview-only | tee "$RUNNER_TEMP/d5b-preview.json"
+          python3 - "$RUNNER_TEMP/d5b-preview.json" <<'PY'
+          import json,sys
+          with open(sys.argv[1],encoding="utf-8") as f:r=json.load(f)
+          assert r["schema"]=="R03B2D5BPreparationV1"
+          assert r["result"]=="PreparedSourceOnly_NoLocalExecution"
+          assert r["remoteSourceVerification"]=="NotRun"
+          assert r["historicalRootAdmission"]=="NotRun"
+          assert r["nativeUnityInstallation"]=="NotRun"
+          assert r["realPlayerCellsPassed"]==0 and r["realPlayerCellsNoCoverage"]==18
+          assert r["D5BLocalExecution"]=="NotAuthorized"
+          assert r["WEB_TO_LOCAL"]=="CLOSED_NO_LOCAL_EXECUTION"
+          assert r["R03Accepted"] is False and r["H2Passed"] is False
+          PY
+          echo '{"schema":"R03D5BSourceCustodyGateV1","result":"SourceTestsOnly","UnityOrPlayerExecuted":false,"D5BLocalExecution":"NotAuthorized","WEB_TO_LOCAL":"CLOSED_NO_LOCAL_EXECUTION","R03Accepted":false}'
