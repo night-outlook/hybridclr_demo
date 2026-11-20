@@ -7,6 +7,7 @@ from pathlib import Path
 import shutil
 import tempfile
 import unittest
+from unittest import mock
 
 import d5b_custody_authority as gate
 
@@ -285,6 +286,100 @@ class D5BSourceCustody(unittest.TestCase):
         self.assertNotIn("LocalValidationPassed",str(a))
         self.assertEqual(a["remoteSourceVerification"],"NotRun")
         self.assertEqual(a["historicalRootAdmission"],"NotRun")
+
+
+    def _synthetic_handoff_bytes(self, transform=None):
+        record={
+            "schemaVersion":1,
+            "kind":"R03B2D5BReviewedLocalHandoffV1",
+            "branch":gate.BRANCH,
+            "independentReview":"Passed",
+            "userD5BExecutionApproval":"ExplicitlyApproved",
+            "WEB_TO_LOCAL":"OPEN_FOR_EXACT_D5B_LOCAL_ONLY",
+            "sourcePins":{"hybridclr_demo":"b9776f7dc87170ba08bfed9021c0ee8546bceccf",
+                          **gate.PINNED},
+            "historicalRoots":{k:str(v) for k,v in self.history.items()},
+        }
+        if transform:
+            transform(record)
+        return json.dumps(record,sort_keys=True).encode("utf-8")
+
+    def test_44_unapproved_live_handoff_fails_closed(self):
+        with self.assertRaises(gate.Rejected):
+            gate.read_independently_approved_handoff(self._synthetic_handoff_bytes())
+
+    def test_45_synthetic_frozen_reviewed_blob_is_required(self):
+        raw=self._synthetic_handoff_bytes()
+        # TEST-ONLY fake approval anchor. Production anchor remains None.
+        with mock.patch.object(gate,"APPROVED_LOCAL_HANDOFF_BLOB",gate.git_blob(raw)):
+            r=gate.read_independently_approved_handoff(raw)
+        self.assertEqual(len(r["sourcePins"]),4)
+        self.assertIsNone(gate.APPROVED_LOCAL_HANDOFF_BLOB)
+
+    def test_46_changed_approved_bytes_rejected(self):
+        raw=self._synthetic_handoff_bytes()
+        with mock.patch.object(gate,"APPROVED_LOCAL_HANDOFF_BLOB",gate.git_blob(raw)):
+            with self.assertRaises(gate.Rejected):
+                gate.read_independently_approved_handoff(raw+b" ")
+
+    def test_47_wrong_native_approved_pin_rejected(self):
+        raw=self._synthetic_handoff_bytes(
+            lambda obj:obj["sourcePins"].__setitem__("il2cpp_plus","a"*40))
+        with mock.patch.object(gate,"APPROVED_LOCAL_HANDOFF_BLOB",gate.git_blob(raw)):
+            with self.assertRaises(gate.Rejected):
+                gate.read_independently_approved_handoff(raw)
+
+    def test_48_missing_approved_history_roots_rejected(self):
+        raw=self._synthetic_handoff_bytes(
+            lambda obj:obj["historicalRoots"].pop("b1Oneuse12"))
+        with mock.patch.object(gate,"APPROVED_LOCAL_HANDOFF_BLOB",gate.git_blob(raw)):
+            with self.assertRaises(gate.Rejected):
+                gate.read_independently_approved_handoff(raw)
+
+    def _simulated_remote(self,stale_demo=False):
+        pins={"hybridclr_demo":"b9776f7dc87170ba08bfed9021c0ee8546bceccf",
+              **gate.PINNED}
+        calls=[]
+        def read(root,*args):
+            role=root.name
+            calls.append((role,args))
+            if args==("rev-parse","--show-toplevel"):
+                return str(root)
+            if args==("rev-parse","HEAD"):
+                return pins[role]
+            if args==("remote","get-url","origin"):
+                return "https://github.com/night-outlook/"+role+".git"
+            if args==("status","--porcelain=v1","--untracked-files=all"):
+                return ""
+            if args==("ls-remote","--exit-code","origin","refs/heads/"+gate.BRANCH):
+                remote=pins[role]
+                if stale_demo and role=="hybridclr_demo":
+                    remote="a"*40
+                return remote+"\trefs/heads/"+gate.BRANCH
+            raise AssertionError("Unexpected Git call: "+str((root,args)))
+        return read,calls
+
+    def test_49_synthetic_remote_check_reads_four_exact_branch_refs(self):
+        raw=self._synthetic_handoff_bytes()
+        git,calls=self._simulated_remote()
+        # Test mocks are not a real GitHub branch readback or Local admission.
+        with mock.patch.object(gate,"APPROVED_LOCAL_HANDOFF_BLOB",gate.git_blob(raw)), \
+             mock.patch.object(gate,"run_git",side_effect=git):
+            out=gate.verify_live_source_heads(self.roots,raw)
+        self.assertEqual(len(out),4)
+        self.assertTrue(all(v["remoteBranchMatched"] for v in out.values()))
+        self.assertEqual(sum(args[0]=="ls-remote" for _,args in calls),4)
+        self.assertIsNone(gate.APPROVED_LOCAL_HANDOFF_BLOB)
+
+    def test_50_synthetic_stale_demo_remote_ref_is_rejected(self):
+        raw=self._synthetic_handoff_bytes()
+        git,calls=self._simulated_remote(stale_demo=True)
+        with mock.patch.object(gate,"APPROVED_LOCAL_HANDOFF_BLOB",gate.git_blob(raw)), \
+             mock.patch.object(gate,"run_git",side_effect=git):
+            with self.assertRaises(gate.Rejected):
+                gate.verify_live_source_heads(self.roots,raw)
+        self.assertTrue(any(role=="hybridclr_demo" and
+                            args[0]=="ls-remote" for role,args in calls))
 
 
 if __name__=="__main__":
