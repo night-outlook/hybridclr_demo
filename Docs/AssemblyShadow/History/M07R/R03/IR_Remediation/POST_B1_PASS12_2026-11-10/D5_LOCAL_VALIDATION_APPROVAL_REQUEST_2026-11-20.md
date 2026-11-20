@@ -1,3 +1,9 @@
+# D5-A approval received; Primary source/CI complete — D5-B still unapproved (2026-11-20 UTC)
+
+**The user explicitly APPROVED D5-A Primary Implementation**, recorded in [D5A_PRIMARY_IMPLEMENTATION_USER_APPROVAL_2026-11-20.md](D5A_PRIMARY_IMPLEMENTATION_USER_APPROVAL_2026-11-20.md). D5-A source-only code, 47-case mutation suite, profile, 18-case `NoCoverage` fixture registry and read-only cross-platform CI are published. [Primary D5-A report](D5A_SOURCE_ADMISSION_PRIMARY_IMPLEMENTATION_REVIEW_2026-11-20.md) · [Independent D5-A review request — PENDING](D5A_INDEPENDENT_SOURCE_REVIEW_REQUEST_2026-11-20.md) · [GitHub CI 44701514587](https://github.com/night-outlook/hybridclr_demo/actions/runs/44701514587) **2/2 PASS** at test source demo `6b3990e9bd6c0e7008f987ad93308b7d92d736a8`. **D5-B Local Validation was not approved**; its decision remains deferred until an independent D5-A review and new exact-source Player test producers/Local handoff. `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`; no Unity/IL2CPP/Player commands executed. This section supersedes only the D5-A approval status below; the original request and rationale are preserved for history.
+
+---
+
 # R03 B2 D5 — Approval request and stop point
 
 **Decision status: `PendingUserApproval`.** Date: 2026-11-20 UTC. This is an approval request from Primary Implementation, **not** permission granted by this document or by an AI reviewer. No D5 local run/handoff, Unity/IL2CPP build, Player, H2, R03 release or Human Review Gate is authorized.
