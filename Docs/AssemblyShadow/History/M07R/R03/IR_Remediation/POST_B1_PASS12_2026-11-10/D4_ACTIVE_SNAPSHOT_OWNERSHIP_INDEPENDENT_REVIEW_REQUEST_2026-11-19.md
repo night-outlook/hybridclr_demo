@@ -1,3 +1,13 @@
+# D4 review request: complete exact CI now available (2026-11-20 UTC)
+
+**`ReadyForIndependentD4Review`**, not independent approval. [GitHub Actions run 44517874612](https://github.com/night-outlook/hybridclr_demo/actions/runs/44517874612) **attempt 2 completed/success, 4/4 jobs** at exact demo code `c3307abacaaaec9db2a0f866b726e2ae5df1108b`; original cancelled macOS C++17 in attempt 1 remains historical failure. Actual rerun macOS C++17 job `136149124210` succeeded. Four current job logs have been fetched and checked: **80 Python tests, 176 host receipts / 3,580 assertions, four expected-failing no-owner controls**, no unexpected native assertion/sanitizer reports. Use the [updated Primary evidence](D4_ACTIVE_SNAPSHOT_OWNERSHIP_PRIMARY_REVIEW_2026-11-19.md), then independently read actual pinned native/HybridCLR source and host logs; do not merely endorse Primary's report.
+
+**Source tuple:** `hybridclr_demo@c3307abacaaaec9db2a0f866b726e2ae5df1108b` **tested code** (later docs-only branch HEAD separate); `hybridclr@c3c232023724cbad565b85e9b2c3beea8ce2789a`; `hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de`; `il2cpp_plus@3e3d2ab9c0f7cd68f0a98c6f6677a4ab0e64a699`. D1 waived (not Passed), D2 passed, D3 independent `PassD3ForD4`. **Only choose `PassD4ForNextGate`, `ReturnRequired`, or `Blocked` after independent source/host review.** No D5/Local/Player/H2/Human Review authorization, `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`, `R03Accepted=false`.
+
+**Original pre-CI-completion request retained below for provenance.**
+
+---
+
 # R03 B2 D4 — independent review request: process-owned snapshot/P5/P6
 
 **Status: PreparedAwaitingFullSourceHostCI; no independent D4 decision yet.** Date 2026-11-19 UTC. Review only D4. Do not start D5, Local Validation, H2, M08A, X02, SNAP-01 or the Human Review Gate.
