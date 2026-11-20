@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03B2D5BSourceCustodyPreparationV1",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "sourceAuthority": {
+    "d5AIndependentReview": "PassD5AForD5BPreparation",
+    "demoReviewedBaseline": "b9776f7dc87170ba08bfed9021c0ee8546bceccf",
+    "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "3e3d2ab9c0f7cd68f0a98c6f6677a4ab0e64a699",
+    "sourceCommitPolicy": "reviewedImmutableTuplePlusExactRemoteBranchReadback_NotCallerSuppliedLatest",
+    "demoBaselineRole": "ReviewBootstrapOnly_NotFutureLocalHandoff"
+  },
+  "historicalRootRoles": [
+    "originalS",
+    "b1EvidenceBase",
+    "b1Oneuse12",
+    "b1NativeHostRaw",
+    "b1B2HostRaw",
+    "b1Preflight"
+  ],
+  "requiredNativeInputs": [
+    "libil2cpp/utils/dynamic_array.h",
+    "libil2cpp/vm/Assembly.cpp",
+    "libil2cpp/vm/AssemblyShadow.cpp",
+    "libil2cpp/vm/AssemblyShadow.h",
+    "libil2cpp/vm/AssemblyShadowFirstFailureV2.h",
+    "libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h",
+    "libil2cpp/vm/AssemblyShadowPublicationD3Decision.h",
+    "libil2cpp/vm/AssemblyShadowPublicationPhaseReceipt.h",
+    "libil2cpp/vm/AssemblyShadowTerminalExecution.h",
+    "libil2cpp/vm/AssemblyShadowTypes.h",
+    "libil2cpp/vm/MetadataCache.cpp",
+    "libil2cpp/vm/Runtime.cpp"
+  ],
+  "forbiddenNativeInputs": [
+    "NativeHostTests/AssemblyShadowFirstFailureV2Host.cpp"
+  ],
+  "requiredCompiledTranslationUnits": [
+    "libil2cpp/vm/AssemblyShadow.cpp",
+    "libil2cpp/vm/Assembly.cpp",
+    "libil2cpp/vm/MetadataCache.cpp",
+    "libil2cpp/vm/Runtime.cpp"
+  ],
+  "expectedLocalTarget": {
+    "unity": "2022.3.62f2",
+    "os": "macOS",
+    "architecture": "arm64",
+    "scriptingBackend": "IL2CPP",
+    "featureOnRelease": true,
+    "featureOffRelease": true
+  },
+  "reviewedHandoff": {
+    "status": "NotCreated",
+    "expectedGitBlob": null,
+    "approvedCommitTuple": null,
+    "remoteAtReview": null,
+    "version": "D5B-ExecutionApprovalV1",
+    "userLocalApproval": "NotAuthorized"
+  },
+  "evidenceRoot": {
+    "status": "ProposalOnly",
+    "requireAbsent": true,
+    "requireCanonical": true,
+    "requireNonSymlinkAncestors": true,
+    "requireAllHistoricalRoles": true,
+    "requireOutsideFullWorkspace": true,
+    "createOrReserve": false
+  },
+  "testCoverage": {
+    "D5PlayerCases": 18,
+    "D5PlayerCasesCompleted": 0,
+    "D5PlayerCasesNoCoverage": 18,
+    "nativeBuildAndLink": "NotRun",
+    "historicalS": "ComparatorOnly",
+    "realConcurrency": "NotRun",
+    "fullNativeInstall": "NotRun"
+  },
+  "authority": {
+    "D5BPreparation": "PrimaryScoped",
+    "D5BLocalExecution": "NotAuthorized",
+    "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false,
+    "allowUnityOrPlayer": false
+  },
+  "mode": "sourceOnly_NotAPlayerOrLocalExecutionGate"
+}
