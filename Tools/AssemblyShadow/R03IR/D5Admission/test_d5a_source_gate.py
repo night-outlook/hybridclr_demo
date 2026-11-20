@@ -226,7 +226,7 @@ class D5ASourceAdmission(unittest.TestCase):
 
     def test_45_clean_synthetic_output_path_checks_only(self):
         with tempfile.TemporaryDirectory() as temp:
-            candidate=Path(temp)/"R03-B2-D5-clean-proposed"
+            candidate=Path(temp).resolve(strict=True)/"R03-B2-D5-clean-proposed"
             self.assertTrue(gate.read_only_output_guard(self.roots,candidate))
             self.assertFalse(candidate.exists()) # read-only; never created
 
