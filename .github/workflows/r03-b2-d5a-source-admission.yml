@@ -1,0 +1,154 @@
+name: R03 B2 D5-A four-repository source admission (NO UNITY)
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - Tools/AssemblyShadow/R03IR/D5Admission/**
+      - .github/workflows/r03-b2-d5a-source-admission.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  d5a-pinned-source-only:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: _d5demo
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/D5Admission/
+            Tools/AssemblyShadow/R03IR/current_native_candidate.json
+            Tools/AssemblyShadow/R03IR/current_native_source_gate.py
+            Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py
+            Tools/AssemblyShadow/R03IR/run_captured_generic_local.py
+            Tools/AssemblyShadow/R03IR/native_b1_build_roster.py
+            Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs
+            Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/hybridclr
+          ref: c3c232023724cbad565b85e9b2c3beea8ce2789a
+          path: _d5hybrid
+          filter: blob:none
+          sparse-checkout: |
+            hybridclr/metadata/InterpreterMetadataIndexRuntime.h
+            hybridclr/metadata/InterpreterMetadataIndexRuntime.cpp
+            hybridclr/metadata/InterpreterMetadataIndexCodec.h
+            hybridclr/metadata/InterpreterImage.h
+            hybridclr/metadata/InterpreterImage.cpp
+            hybridclr/metadata/Assembly.h
+            hybridclr/metadata/StagedAssembly.cpp
+            hybridclr/metadata/AssemblyShadowBridge.h
+            hybridclr/interpreter/Interpreter_Execute.cpp
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: _d5package
+          filter: blob:none
+          sparse-checkout: |
+            package.json
+            Editor/Settings/HybridCLRSettings.cs
+            Editor/Commands/PrebuildCommand.cs
+            Editor/Installer/InstallerController.cs
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 3e3d2ab9c0f7cd68f0a98c6f6677a4ab0e64a699
+          path: _d5native
+          filter: blob:none
+          sparse-checkout: |
+            libil2cpp/vm/AssemblyShadow.cpp
+            libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h
+            libil2cpp/vm/AssemblyShadowPublicationPhaseReceipt.h
+            libil2cpp/vm/AssemblyShadowFirstFailureV2.h
+            libil2cpp/vm/AssemblyShadowPublicationD3Decision.h
+            libil2cpp/vm/AssemblyShadowTerminalExecution.h
+            libil2cpp/vm/AssemblyShadowTypes.h
+            libil2cpp/vm/AssemblyShadow.h
+            libil2cpp/vm/Assembly.cpp
+            libil2cpp/vm/MetadataCache.cpp
+            libil2cpp/vm/Runtime.cpp
+            libil2cpp/utils/dynamic_array.h
+            NativeHostTests/AssemblyShadowFirstFailureV2Host.cpp
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run D5-A exact-source and negative mutation tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+          R03_D5A_DEMO_ROOT: ${{ github.workspace }}/_d5demo
+          R03_D5A_HYBRID_ROOT: ${{ github.workspace }}/_d5hybrid
+          R03_D5A_PACKAGE_ROOT: ${{ github.workspace }}/_d5package
+          R03_D5A_NATIVE_ROOT: ${{ github.workspace }}/_d5native
+        shell: bash
+        run: |
+          set -euo pipefail
+          base=_d5demo/Tools/AssemblyShadow/R03IR/D5Admission
+          python3 -B "$base/test_d5a_source_gate.py" -v 2>&1 | tee "$RUNNER_TEMP/d5a-mut.log"
+          grep -q 'Ran 47 tests' "$RUNNER_TEMP/d5a-mut.log"
+          grep -q '^OK$' "$RUNNER_TEMP/d5a-mut.log"
+          if grep -E 'FAILED|ERROR:|skipped=' "$RUNNER_TEMP/d5a-mut.log"; then exit 1; fi
+      - name: Verify four checked-out source pins and native publication order
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+          EXPECTED_DEMO_HEAD: ${{ github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B _d5demo/Tools/AssemblyShadow/R03IR/D5Admission/d5a_source_gate.py \
+            --demo-root "$GITHUB_WORKSPACE/_d5demo" \
+            --hybridclr-root "$GITHUB_WORKSPACE/_d5hybrid" \
+            --package-root "$GITHUB_WORKSPACE/_d5package" \
+            --native-root "$GITHUB_WORKSPACE/_d5native" \
+            --expected-demo-head "$EXPECTED_DEMO_HEAD" > "$RUNNER_TEMP/d5a-source.json"
+          cat "$RUNNER_TEMP/d5a-source.json"
+          python3 - "$RUNNER_TEMP/d5a-source.json" "$EXPECTED_DEMO_HEAD" <<'PY'
+          import json,sys
+          with open(sys.argv[1],encoding='utf-8') as stream:d=json.load(stream)
+          assert d["kind"]=="R03B2D5AReadOnlySourceGateReceiptV1"
+          assert d["result"]=="PassedD5ASourceOnly_NoUnityOrLocal"
+          assert d["sourceFilesVerified"]==33
+          assert d["sourceRoles"]=={"hybridclr_demo":7,"hybridclr":9,"hybridclr_unity":4,"il2cpp_plus":13}
+          assert d["repositories"]["hybridclr_demo"]["commit"]==sys.argv[2]
+          assert all(r["clean"] and r["canonicalRemote"] for r in d["repositories"].values())
+          assert d["historicalB1Preserved"] and d["sourceOnlyNativeRosterAuthenticated"]
+          assert not d["installedUnityNativeSourceValidated"]
+          assert not d["UnityOrPlayerExecuted"]
+          assert d["realD5PlayerCellsPassed"]==0 and d["D5PlayerCellsNoCoverage"]==18
+          assert d["D5A"]=="ApprovedByUser" and d["D5B"]=="NotAuthorized"
+          assert d["WEB_TO_LOCAL"]=="CLOSED_NO_LOCAL_EXECUTION"
+          assert not d["R03Accepted"] and not d["ReadyForHumanReviewGate"]
+          PY
+      - name: Negative - wrong demo SHA must be blocked
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e
+          python3 -B _d5demo/Tools/AssemblyShadow/R03IR/D5Admission/d5a_source_gate.py \
+            --demo-root "$GITHUB_WORKSPACE/_d5demo" \
+            --hybridclr-root "$GITHUB_WORKSPACE/_d5hybrid" \
+            --package-root "$GITHUB_WORKSPACE/_d5package" \
+            --native-root "$GITHUB_WORKSPACE/_d5native" \
+            --expected-demo-head 0000000000000000000000000000000000000000 \
+            > "$RUNNER_TEMP/rejected.stdout" 2> "$RUNNER_TEMP/rejected.stderr"
+          code=$?
+          set -e
+          test "$code" -eq 2
+          grep -q 'BlockedBeforeAnyUnityOrLocalExecution' "$RUNNER_TEMP/rejected.stderr"
+          test ! -s "$RUNNER_TEMP/rejected.stdout"
+          echo '{"schema":"R03B2D5ANegativeV1","result":"ExpectedWrongDemoPinRejected","UnityOrPlayerExecuted":false,"D5B":"NotAuthorized"}'
+      - name: Confirm no Unity or Local commands were executed
+        run: |
+          echo '{"schema":"R03B2D5ACompleteSourceOnlyV1","result":"SourceTestsOnly","UnityOrPlayerExecuted":false,"D5LocalValidation":"NotAuthorized","WEB_TO_LOCAL":"CLOSED_NO_LOCAL_EXECUTION","R03Accepted":false}'
