@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03B2D5LocalValidationPreapprovalPinset",
+  "dateUtc": "2026-11-20",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "status": "ProposalOnly_PendingUserD5Approval",
+  "authority": {
+    "D4IndependentReview": "PassD4ForNextGate",
+    "D5A": "NotAuthorized",
+    "D5B": "NotAuthorized",
+    "D5LocalValidation": "NotAuthorized",
+    "webToLocal": "CLOSED_NO_LOCAL_EXECUTION",
+    "localCommandsAuthorized": false,
+    "unityOrPlayerExecuted": false,
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false
+  },
+  "repositories": [
+    {
+      "repo": "night-outlook/hybridclr_demo",
+      "d4CiTestedCodeCommit": "c3307abacaaaec9db2a0f866b726e2ae5df1108b",
+      "d5ProposalBaseHead": "3b639e50a812ee7120fc9cd39aff23cf2b50adb5",
+      "formalLocalHandoffCommit": null
+    },
+    {
+      "repo": "night-outlook/hybridclr",
+      "sourceCommit": "c3c232023724cbad565b85e9b2c3beea8ce2789a"
+    },
+    {
+      "repo": "night-outlook/hybridclr_unity",
+      "sourceCommit": "948c0e3b4f8891481301770115e8ba4945eea6de"
+    },
+    {
+      "repo": "night-outlook/il2cpp_plus",
+      "sourceCommit": "3e3d2ab9c0f7cd68f0a98c6f6677a4ab0e64a699"
+    }
+  ],
+  "d4SourceHostEvidence": {
+    "githubActionsRunId": 44517874612,
+    "attempt": 2,
+    "runHead": "c3307abacaaaec9db2a0f866b726e2ae5df1108b",
+    "conclusion": "success",
+    "jobsPassed": 4,
+    "sourceTests": 80,
+    "hostReceipts": 176,
+    "hostAssertions": 3580,
+    "expectedFailingControls": 4,
+    "evidenceClass": "ExactSourceHost_NotRealUnityPlayer"
+  },
+  "plannedFirstLocalTarget": {
+    "unityVersion": "2022.3.62f2",
+    "hostOS": "macOS",
+    "architecture": "arm64",
+    "buildTarget": "StandaloneOSX",
+    "scriptingBackend": "IL2CPP",
+    "cppConfiguration": "Release",
+    "featureOnControl": true,
+    "featureOffControl": true,
+    "approvalRequired": true
+  },
+  "historicalComparators": {
+    "originalSCommit": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+    "previousLocalResult": "NativeB1_oneuse12_PassedFocusedB1V1Only",
+    "previousNativeCurrentPin": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
+    "previousHybridclrCurrentPin": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "previousNativeSourceCount": 14,
+    "previousVmDeltaCount": 46,
+    "previousAdmissionReusableForD5": false,
+    "historicalResultsEligibleAsD5RealPlayerEvidence": false
+  },
+  "requiredBeforeHandoff": [
+    "Explicit user approval of D5-A Primary-only source-admission tooling",
+    "New versioned D5 source candidate and admission contract; do not edit old B1 CURRENT profile in place",
+    "Source-pinned D5 real-Player fixture/producers implemented and independently validated for relevant fault cells",
+    "Fresh four-repo Git connector write/readback and then-current remote HEAD verification",
+    "Explicit user approval of D5-B Local execution and fresh WEB_TO_LOCAL document",
+    "New physically disjoint absent one-use evidence root and verified macOS Unity IL2CPP toolchain"
+  ],
+  "sourceDocuments": [
+    "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5_LOCAL_VALIDATION_PREAPPROVAL_DESIGN_2026-11-20.md",
+    "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5_LOCAL_VALIDATION_MATRIX_2026-11-20.md",
+    "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5_LOCAL_VALIDATION_APPROVAL_REQUEST_2026-11-20.md"
+  ]
+}
