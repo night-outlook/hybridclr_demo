@@ -210,10 +210,12 @@ def validate_native_boundary(inventory):
     build=code(demo["Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs"])
     for term in ('Application.unityVersion != "2022.3.62f2"',
                  "ScriptingImplementation.IL2CPP",
-                 "BuildPipeline.BuildPlayer(", "BuildOptions.Development",
+                 "BuildOptions.Development",
                  "PrebuildCommand.GenerateAll();",
                  "HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW="):
         need(term in build,"Real Unity builder baseline changed: "+term)
+    need(re.search(r"(?<![A-Za-z0-9_])BuildPipeline\.BuildPlayer\s*\(", build)
+         is not None, "Exact Unity BuildPipeline.BuildPlayer entry point replaced")
     old=read_json(demo["Tools/AssemblyShadow/R03IR/current_native_candidate.json"].encode())
     gate=demo["Tools/AssemblyShadow/R03IR/current_native_source_gate.py"]
     runner=demo["Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py"]
