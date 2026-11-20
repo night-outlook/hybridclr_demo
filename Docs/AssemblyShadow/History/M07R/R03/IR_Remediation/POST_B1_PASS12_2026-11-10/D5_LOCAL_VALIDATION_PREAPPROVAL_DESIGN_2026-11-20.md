@@ -54,7 +54,7 @@ The executable planned validation matrix is specified separately in [D5_LOCAL_VA
 
 ## 5. Evidence custody and stop conditions
 
-All artifacts should be under a **new absent** absolute root outside all repo/worktree roots, proposed pattern `/Users/ah/GitHub/hybridclr/r03-local-validation/R03-B2-D5-<unique-oneuse-id>`. The pattern is illustrative; the Local agent must prove that the chosen path is physically canonical, does not exist and is disjoint from source/historical roots. Reusing historical `oneuse-12`, prior product roots, symlinked aliases or existing Player outputs is prohibited.
+All artifacts should be under a **new absent** absolute root outside the entire four-repo workspace and every repo/worktree root, proposed pattern `/Users/ah/GitHub/r03-local-validation/R03-B2-D5-<unique-oneuse-id>`. The pattern is illustrative; the Local agent must prove that the chosen path is physically canonical, does not exist and is disjoint from source/historical roots. Reusing historical `oneuse-12`, prior product roots, symlinked aliases or existing Player outputs is prohibited.
 
 Every test cell must report `Passed`, `Failed`, `Blocked`, `NotRun`, `Unavailable` or `NoCoverage` with exact condition, source/Player SHA, PID/exit where applicable, phase and reason, first error, native registry/codec/owner state (where observable), evidence files and source type (`RealPlayer`, `ExactNativeHost`, `Synthetic`, `SourceOnly`, `HistoricalComparator`). **Never promote `Unavailable`, `Blocked`, reused historical data or a synthetic stand-in to a real-Player `Passed` result.** Evidence products must reject unexpected symlinks and mutable replacement; use explicit raw material/ledger and no overwriting receipts.
 
