@@ -27,6 +27,7 @@ CASES = tuple("D5-C%02d" % n for n in range(1, 19))
 HEX = re.compile(r"^[0-9a-f]{40}$")
 PROFILE = "Tools/AssemblyShadow/R03IR/D5Admission/d5a_candidate_v1.json"
 FIXTURES = "Tools/AssemblyShadow/R03IR/D5Admission/d5a_fixture_registry_v1.json"
+ROOT = Path(__file__).resolve().parent
 
 class Rejected(ValueError): pass
 
