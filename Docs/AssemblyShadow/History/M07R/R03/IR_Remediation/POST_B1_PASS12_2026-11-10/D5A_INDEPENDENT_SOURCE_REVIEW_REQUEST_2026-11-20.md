@@ -1,3 +1,11 @@
+# Independent D5-A review decision — PassD5AForD5BPreparation (2026-11-20 UTC)
+
+[**Completed independent D5-A review**](D5A_INDEPENDENT_SOURCE_REVIEW_2026-11-20.md): **`D5AIndependentReview=PassD5AForD5BPreparation`, source-only**. Independently verified the exact demo implementation at `6b3990e9bd6c0e7008f987ad93308b7d92d736a8`, 33/33 Git source blobs, 94 Python source/mutation tests, two expected-failing wrong-pinned-demo controls, and [CI 44701514587](https://github.com/night-outlook/hybridclr_demo/actions/runs/44701514587) 2/2 actual job logs. The new `D5Admission/` sources remain isolated; production repositories and historical B1 source/oneuse-12 records were not changed.
+
+**Mandatory before D5-B Local:** protect new evidence roots against **nested historical roots** rather than accepting an optional empty historical-root argument; bind demo commit to an independently reviewed handoff/remote authority rather than trusting a caller-supplied HEAD; implement real linked native/managed fault producers, complete native installation/Bee provenance and 18-cell D5 Player coverage. These are recorded as [IR-D5A-04, IR-D5A-05 and IR-D5A-06](D5A_INDEPENDENT_SOURCE_REVIEW_2026-11-20.md), **not passed as Player evidence**. Review permits **only separately scoped D5-B preparation**; `D5B=NotAuthorized`, `D5LocalValidation=NotAuthorized`, **`WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`**, `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`. Previous independent review request below is retained as a historical pre-decision document.
+
+---
+
 # R03 B2 D5-A — independent source/CI review request
 
 **Decision status: `D5AIndependentReview=Pending`.** This is a **request**, not an independent acceptance report or Primary self-approval. D5-A was explicitly approved by the user for source-only preparation. The review scope is only new D5-A source admissions, test-fixture provenance, old B1 isolation, and exact CI evidence. It must not authorize D5-B, real Unity/IL2CPP Player execution, R03 acceptance, H2 or Human Review Gate.
