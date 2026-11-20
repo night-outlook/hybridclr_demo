@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03B2D5APinnedSourceAdmissionV1",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "predecessorGate": "PassD4ForNextGate",
+  "authority": {
+    "D5A": "ApprovedByUser",
+    "D5B": "NotAuthorized",
+    "D5LocalValidation": "NotAuthorized",
+    "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false,
+    "allowUnityOrPlayerExecution": false
+  },
+  "pins": {
+    "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "3e3d2ab9c0f7cd68f0a98c6f6677a4ab0e64a699",
+    "hybridclr_demo": "EXPECTED_DEMO_HEAD_ARGUMENT_REQUIRED"
+  },
+  "historicalReadOnly": {
+    "originalS": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+    "oldNative": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
+    "oldHybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "oldB1SourceCount": 14,
+    "oldB1VmDeltaCount": 46,
+    "allowHistoricalEvidenceForD5": false,
+    "allowReplacingOldCandidate": false
+  },
+  "sourceGitBlobs": {
+    "hybridclr_demo": {
+      "Tools/AssemblyShadow/R03IR/current_native_candidate.json": "efc4f7fa45fad394f156ed8d115bad727771c8a6",
+      "Tools/AssemblyShadow/R03IR/current_native_source_gate.py": "92aaa6f523eee026a83223595147f5a79882a12f",
+      "Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py": "80100158732267ff36e37b0fa5c3b2d5bbe96d56",
+      "Tools/AssemblyShadow/R03IR/run_captured_generic_local.py": "74117c36e1e53426e82a3fcc2e7029b3f05f7907",
+      "Tools/AssemblyShadow/R03IR/native_b1_build_roster.py": "b605a8eb06a4b85a077a4a099f620acf2f6492f7",
+      "Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs": "71c685f419d157bf3774996f28f2d075246cf4e4",
+      "Tools/AssemblyShadow/R03IR/PlayerProject/R03TerminalPlayer.cs": "e2f650ad95b290620aa52949b43a1866272ac6bf"
+    },
+    "hybridclr": {
+      "hybridclr/metadata/InterpreterMetadataIndexRuntime.h": "48dd3b9d188634633d96e86550b21dd04aa3ef34",
+      "hybridclr/metadata/InterpreterMetadataIndexRuntime.cpp": "5906b741d16d050f27e3633bc428edae3183a81a",
+      "hybridclr/metadata/InterpreterMetadataIndexCodec.h": "2020d4e2da6dea8601525203e7ab307d21c40a73",
+      "hybridclr/metadata/InterpreterImage.h": "3f22af3dcbbb097232d4805ac1f3a5a0e72b1214",
+      "hybridclr/metadata/InterpreterImage.cpp": "00d20cdb6d0ecda2ffc493f6a5782ae9c6c7a020",
+      "hybridclr/metadata/Assembly.h": "09e71be1743472ef5353a9bec0952f1f278530a4",
+      "hybridclr/metadata/StagedAssembly.cpp": "b0676dd1454c1b2d02c69c22cfc4dc5581982f6e",
+      "hybridclr/metadata/AssemblyShadowBridge.h": "5340c0bf9e4c4c211b4379929f3f79133661505a",
+      "hybridclr/interpreter/Interpreter_Execute.cpp": "2dbdb7527afee7f2546e45f20e6ef93e1bca237a"
+    },
+    "hybridclr_unity": {
+      "package.json": "271285794d3ad03b2b8e7a8a1f883353c7c597a1",
+      "Editor/Settings/HybridCLRSettings.cs": "f577a95a479e37c68caa99d96b79376ab8318e30",
+      "Editor/Commands/PrebuildCommand.cs": "327880264cb08101fb5eee9e382b778e93be1136",
+      "Editor/Installer/InstallerController.cs": "5383401902ba80a758161f2e376000641e119999"
+    },
+    "il2cpp_plus": {
+      "libil2cpp/vm/AssemblyShadow.cpp": "d1493c2d04b71a5ab99da94f21c13052a6cef2b1",
+      "libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h": "ccd10ea0a1d273f5fe31f52d346d090b0a5af79c",
+      "libil2cpp/vm/AssemblyShadowPublicationPhaseReceipt.h": "e465434511b5896973db2a04c23bd8a11ef3cd4b",
+      "libil2cpp/vm/AssemblyShadowFirstFailureV2.h": "85683f06f966725e55891ed08d12b961c9685e56",
+      "libil2cpp/vm/AssemblyShadowPublicationD3Decision.h": "f398ef34f050102472db7d8bc93d84b5f00e311a",
+      "libil2cpp/vm/AssemblyShadowTerminalExecution.h": "33258986c31b2e6ae3af17b8553030482a83aef7",
+      "libil2cpp/vm/AssemblyShadowTypes.h": "6d1379bc33300e4682468705942721d355481ca7",
+      "libil2cpp/vm/AssemblyShadow.h": "17d6dafa70d21e395c4290fed2bbea2ab6429448",
+      "libil2cpp/vm/Assembly.cpp": "e46ece727d5f03a914a4a6ba147cc69bc4e0a427",
+      "libil2cpp/vm/MetadataCache.cpp": "f0f8124ee979d563fdd170fc13c8d90ea29bf702",
+      "libil2cpp/vm/Runtime.cpp": "1b176ee5fd3e2127a0237877e5c9c32bc53058b3",
+      "libil2cpp/utils/dynamic_array.h": "0e6653e6e7efe93f023f63893c1a3b94f347a1d0",
+      "NativeHostTests/AssemblyShadowFirstFailureV2Host.cpp": "672be4e4eda4ccfe419af936050ed2ad2a31c366"
+    }
+  },
+  "nativeInstallSources": [
+    "libil2cpp/vm/AssemblyShadow.cpp",
+    "libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h",
+    "libil2cpp/vm/AssemblyShadowPublicationPhaseReceipt.h",
+    "libil2cpp/vm/AssemblyShadowFirstFailureV2.h",
+    "libil2cpp/vm/AssemblyShadowPublicationD3Decision.h",
+    "libil2cpp/vm/AssemblyShadowTerminalExecution.h",
+    "libil2cpp/vm/AssemblyShadowTypes.h",
+    "libil2cpp/vm/Assembly.cpp",
+    "libil2cpp/vm/MetadataCache.cpp",
+    "libil2cpp/vm/Runtime.cpp"
+  ],
+  "forbiddenInstalledSourcePrefixes": [
+    "NativeHostTests/",
+    "Tests/"
+  ],
+  "sourceOnlyBuildRosterEvidence": "ReviewedSourceInventoryOnly_NotInstalledUnityCompilation",
+  "fixtureRegistryPath": "Tools/AssemblyShadow/R03IR/D5Admission/d5a_fixture_registry_v1.json",
+  "targetPreview": {
+    "unity": "2022.3.62f2",
+    "platform": "macOS",
+    "arch": "arm64",
+    "scriptingBackend": "IL2CPP",
+    "cppMode": "Release",
+    "featureOn": true,
+    "featureOffControl": true,
+    "actualHostVerified": false
+  },
+  "readOnlyOutputOnly": true,
+  "ciTestedDemoHeadMustMatchCheckout": true
+}
