@@ -1,4 +1,15 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
+## D5 proposed plan published; D5-A/B awaiting explicit approval (2026-11-20 UTC)
+
+**THIS IS NOT A LOCAL HANDOFF. DO NOT START UNITY/IL2CPP/PLAYER OR D5 LOCAL PREFLIGHT.** Following [independent D4 `PassD4ForNextGate`](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D4_ACTIVE_SNAPSHOT_OWNERSHIP_INDEPENDENT_REVIEW_2026-11-20.md), Primary prepared [D5 preapproval design](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5_LOCAL_VALIDATION_PREAPPROVAL_DESIGN_2026-11-20.md), [D5 validation matrix](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5_LOCAL_VALIDATION_MATRIX_2026-11-20.md), [approval request](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5_LOCAL_VALIDATION_APPROVAL_REQUEST_2026-11-20.md), and [proposal-only source pinset](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5_LOCAL_VALIDATION_PROPOSED_PINSET_2026-11-20.json).
+
+**Review tuple:** D4 tested demo `c3307abacaaaec9db2a0f866b726e2ae5df1108b` (later D5 proposal documentation commits are not the D4 CI-tested source), `hybridclr@c3c232023724cbad565b85e9b2c3beea8ce2789a`, `hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de`, `il2cpp_plus@3e3d2ab9c0f7cd68f0a98c6f6677a4ab0e64a699`, branch `codex/assembly-shadow-r01b-h1`. A later **authorized** handoff must record all **then-latest pushed** 40-char HEADs, exact absolute checkout roots, environment/toolchain, newly reviewed D5 source profile, cells, fresh oneuse root, positive/negative test command lines and raw evidence custody. Current B1 `current_native_source_gate.CURRENT` and `run_captured_generic_local.py` are pinned to old B1 and **cannot authenticate D4**.
+
+**Next permitted action:** explicit approval of `D5-A` allows Primary-only new source-admission and test infrastructure; `D5-B` Local execution remains separately unapproved until reviewed tooling and a new fresh handoff. Local agent must report `NoExecutionAuthority`; existing `LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md` historical evidence are not modified. `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`; `D5LocalValidation=NotAuthorized`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`. Previous entries below retain their at-the-time status.
+
+---
+
+# Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 ## Independent D4 PassD4ForNextGate; D5/Local separately authorized only (2026-11-20 UTC)
 
 **NO LOCAL EXECUTION AUTHORITY OR NEW D5 HANDOFF.** [Independent D4 review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D4_ACTIVE_SNAPSHOT_OWNERSHIP_INDEPENDENT_REVIEW_2026-11-20.md) assigned **`PassD4ForNextGate`** limited to native source-host proof of process-owned snapshot before public `s_active` store and P5/P6 success/exception paths. [Final D4 CI 44517874612](https://github.com/night-outlook/hybridclr_demo/actions/runs/44517874612) **attempt 2 4/4 successful**: 80 source tests, 176 host receipts / 3,580 checks, four old-owner negative controls. Original attempt 1 remains failed/cancelled in its macOS C++17 job, which was retried at unchanged source.
