@@ -18,7 +18,11 @@ from typing import Mapping
 
 BRANCH = "codex/assembly-shadow-r01b-h1"
 PREP_FILE = Path(__file__).resolve().with_name("d5b_preparation_v1.json")
-PREP_BLOB = "TO_BE_BOUND_TO_REMOTE_GIT_BLOB"
+PREP_BLOB = "202c7847e4ae741902162391a4e4bd7a66e33c2c"
+# No reviewed executable Local handoff exists. A future, independent source
+# review must replace this anchor with the Git blob of an explicitly approved
+# Local handoff before verify_live_source_heads can return a positive receipt.
+APPROVED_LOCAL_HANDOFF_BLOB = None
 PINNED = {
     "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
     "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
@@ -242,6 +246,8 @@ def verify_live_source_heads(
     Current *preparation* metadata does not supply such a record; callers may
     use this primitive in synthetic tests, not for D5-B execution.
     """
+    require(APPROVED_LOCAL_HANDOFF_BLOB is not None,
+            "No independently reviewed approved D5-B Local handoff exists")
     require(set(roots) == set(ROLES) and
             set(independent_reviewed_pins) == set(ROLES),
             "Four independent approved pins and roots required")
