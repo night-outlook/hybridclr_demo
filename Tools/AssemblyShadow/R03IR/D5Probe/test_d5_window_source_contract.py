@@ -145,5 +145,39 @@ class D5C10SourceContracts(unittest.TestCase):
         self.assertIn("AssemblyShadowState::Committing",core)
 
 
+    def test_26_builder_pinned_commit_changed(self):
+        self.mutated("demo",D+"R03D5Build.cs",
+            '"8eeb3cc53a451a6925b490d623c81753822cb1d4"',
+            '"0000000000000000000000000000000000000000"')
+
+    def test_27_builder_missing_native_install(self):
+        self.mutated("demo",D+"R03D5Build.cs",
+            "PinnedSourceInstaller.Install();","/* no actual install */")
+
+    def test_28_builder_overlay_not_copied(self):
+        self.mutated("demo",D+"R03D5Build.cs",
+            "File.Copy(config.overlayPath, overlayDestination, false);",
+            "/* unlinked D5 overlay */")
+
+    def test_29_builder_loses_test_only_macro(self):
+        self.mutated("demo",D+"R03D5Build.cs",
+            '" -DHYBRIDCLR_R03_D5_WINDOW_PROBE="',
+            '" -DHYBRIDCLR_R03_OLD_PROBE="')
+
+    def test_30_builder_forges_binary_proof(self):
+        self.mutated("demo",D+"R03D5Build.cs",
+            "independentLinkedBinaryProof = false",
+            "independentLinkedBinaryProof = true")
+
+    def test_31_builder_reuses_output(self):
+        self.mutated("demo",D+"R03D5Build.cs",
+            "FileMode.CreateNew","FileMode.Create")
+
+    def test_32_builder_without_buildpipeline(self):
+        self.mutated("demo",D+"R03D5Build.cs",
+            "BuildPipeline.BuildPlayer(new BuildPlayerOptions",
+            "FakeBuildPipeline.BuildPlayer(new BuildPlayerOptions")
+
+
 if __name__=="__main__":
     unittest.main()
