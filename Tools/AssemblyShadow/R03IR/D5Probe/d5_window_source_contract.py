@@ -170,6 +170,8 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
         "PrebuildCommand.GenerateAll();",
         "BuildPipeline.BuildPlayer(new BuildPlayerOptions",
     ],"Isolated Unity Builder installation/generation/BuildPipeline")
+    require(re.search(r"(?<![A-Za-z0-9_])BuildPipeline\\.BuildPlayer\\s*\\(", builder) is not None,
+            "Real Unity BuildPipeline entrypoint replaced")
     require("public static class R03D5Build" in builder and
             'Application.unityVersion != "2022.3.62f2"' in builder and
             '"8eeb3cc53a451a6925b490d623c81753822cb1d4"' in builder and
