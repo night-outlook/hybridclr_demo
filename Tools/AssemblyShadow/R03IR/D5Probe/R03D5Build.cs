@@ -70,6 +70,8 @@ namespace AssemblyShadow.R03.D5.Editor
             "vm/AssemblyShadowPublicationPhaseReceipt.h",
             "vm/AssemblyShadowPublicationD3Decision.h",
             "vm/AssemblyShadowFirstFailureV2.h",
+            "vm/AssemblyShadowTerminalExecution.h",
+            "vm/AssemblyShadowTypes.h",
             "vm/Assembly.cpp",
             "vm/MetadataCache.cpp",
             "vm/Runtime.cpp",
