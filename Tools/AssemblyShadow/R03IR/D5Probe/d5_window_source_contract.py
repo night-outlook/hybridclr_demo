@@ -23,6 +23,7 @@ NATIVE_FILES = {
 DEMO_FILES = {
     "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp":"2e16ba677f961066cb068bc8199480f642845d0c",
     "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs":"851b2fc602185219780dea636a6acac39ae3128a",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs":"454d983fae4cce9a0cd9da632327d28b69c90a59",
 }
 BRANCH = "codex/assembly-shadow-r01b-h1"
 MACRO = "HYBRIDCLR_R03_D5_WINDOW_PROBE"
@@ -75,6 +76,7 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
     owner=native["libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h"]
     overlay=demo["Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp"]
     managed=demo["Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs"]
+    builder=demo["Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs"]
 
     require("#include \"AssemblyShadowD5WindowProbe.h\"" in cpp and
             cpp.count("#if defined("+MACRO+") && "+MACRO) >= 7,
@@ -161,6 +163,26 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "Application.platform != RuntimePlatform.OSXPlayer" in managed and
             "AssemblyShadowRuntime.CommitTransaction()" in managed,
             "Player fixture pinned Unity build/real commit call missing")
+
+    ordered(builder,[
+        "PinnedSourceInstaller.Install();",
+        "File.Copy(config.overlayPath, overlayDestination, false);",
+        "PrebuildCommand.GenerateAll();",
+        "BuildPipeline.BuildPlayer(new BuildPlayerOptions",
+    ],"Isolated Unity Builder installation/generation/BuildPipeline")
+    require("public static class R03D5Build" in builder and
+            'Application.unityVersion != "2022.3.62f2"' in builder and
+            '"8eeb3cc53a451a6925b490d623c81753822cb1d4"' in builder and
+            "ScriptingImplementation.IL2CPP" in builder and
+            "BuildOptions.Development | BuildOptions.DetailedBuildReport" in builder and
+            "HYBRIDCLR_R03_D5_WINDOW_PROBE=" in builder and
+            "FileMode.CreateNew" in builder and
+            "independentLinkedBinaryProof = false" in builder and
+            "actualD5PlayerRun = false" in builder and
+            'File.Exists(Path.Combine(project, ".r03-d5-isolated-project"))' in builder and
+            "BuildResult.Succeeded" in builder and
+            "receipt.compilerFlags = PlayerSettings.GetAdditionalIl2CppArgs();" in builder,
+            "Test-only Unity build source binding or native build receipt lost")
 
     return {"schema":"R03D5C10SourceCandidateV1",
             "result":"PassedActualSourceContractOnly_NotUnityPlayer",
