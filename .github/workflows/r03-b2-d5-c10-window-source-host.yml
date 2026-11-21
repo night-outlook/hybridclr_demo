@@ -1,0 +1,91 @@
+name: R03 B2 D5 C10 window native source-host (NO UNITY)
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - Tools/AssemblyShadow/R03IR/D5Probe/**
+      - .github/workflows/r03-b2-d5-c10-window-source-host.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-d5-window-host:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+        cpp: [c++11, c++17]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: _d5demo
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/D5Probe/
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 8eeb3cc53a451a6925b490d623c81753822cb1d4
+          path: _d5native
+          filter: blob:none
+          sparse-checkout: |
+            libil2cpp/vm/AssemblyShadow.cpp
+            libil2cpp/vm/AssemblyShadowD5WindowProbe.h
+            libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run pinned source/mutation checks
+        env:
+          R03_D5C10_NATIVE_ROOT: ${{ github.workspace }}/_d5native
+          R03_D5C10_DEMO_ROOT: ${{ github.workspace }}/_d5demo
+          PYTHONDONTWRITEBYTECODE: "1"
+        shell: bash
+        run: |
+          set -euo pipefail
+          tool=_d5demo/Tools/AssemblyShadow/R03IR/D5Probe
+          python3 -B "$tool/test_d5_window_source_contract.py" -v 2>&1 | tee "$RUNNER_TEMP/d5-c10-source-tests.log"
+          grep -q 'Ran 25 tests in' "$RUNNER_TEMP/d5-c10-source-tests.log"
+          grep -q '^OK$' "$RUNNER_TEMP/d5-c10-source-tests.log"
+          python3 -B "$tool/d5_window_source_contract.py" \
+            --native-root "$GITHUB_WORKSPACE/_d5native" \
+            --demo-root "$GITHUB_WORKSPACE/_d5demo" \
+            --expected-native-head 8eeb3cc53a451a6925b490d623c81753822cb1d4 \
+            --expected-demo-head "$GITHUB_SHA" | tee "$RUNNER_TEMP/d5-c10-source.json"
+          grep -q 'PassedActualSourceContractOnly_NotUnityPlayer' "$RUNNER_TEMP/d5-c10-source.json"
+      - name: Build exact C++11/17 native witness and real overlay (source host only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          source=_d5demo/Tools/AssemblyShadow/R03IR/D5Probe
+          native=_d5native/libil2cpp
+          mkdir -p "$RUNNER_TEMP/d5-c10-host"
+          base=(-std=${{ matrix.cpp }} -Wall -Wextra -Werror -pedantic -pthread \
+            -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 \
+            -DHYBRIDCLR_R03_D5_WINDOW_PROBE=1 \
+            -I "$native" -I "$source/NativeHostStubs")
+          clang++ "\${base[@]}" -fno-exceptions -fno-rtti \
+            "$source/D5WindowSourceHost.cpp" "$source/D5WindowOtherTU.cpp" \
+            "$source/R03D5WindowOverlay.cpp" -o "$RUNNER_TEMP/d5-c10-host/strict"
+          for case in unarmed denied allowed timeout raced invalid; do
+            "$RUNNER_TEMP/d5-c10-host/strict" "$case" | tee -a "$RUNNER_TEMP/d5-c10-host/strict.log"
+          done
+          test "$(grep -c 'PassedExactNativeWindowHeaderAndOverlayHostOnly' "$RUNNER_TEMP/d5-c10-host/strict.log")" -eq 6
+          clang++ "\${base[@]}" -O1 -g -fno-omit-frame-pointer -fsanitize=address,undefined \
+            "$source/D5WindowSourceHost.cpp" "$source/D5WindowOtherTU.cpp" \
+            "$source/R03D5WindowOverlay.cpp" -o "$RUNNER_TEMP/d5-c10-host/sanitized"
+          export ASAN_OPTIONS=detect_leaks=0
+          for case in unarmed denied allowed timeout raced invalid; do
+            "$RUNNER_TEMP/d5-c10-host/sanitized" "$case" | tee -a "$RUNNER_TEMP/d5-c10-host/sanitized.log"
+          done
+          test "$(grep -c 'PassedExactNativeWindowHeaderAndOverlayHostOnly' "$RUNNER_TEMP/d5-c10-host/sanitized.log")" -eq 6
+          # Feature OFF: no witness may be exported as an enabled probe.
+          clang++ "\${base[@]}" -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=0 \
+            -DHYBRIDCLR_R03_D5_WINDOW_PROBE=0 \
+            "$source/D5WindowFeatureOffHost.cpp" "$source/R03D5WindowOverlay.cpp" \
+            -o "$RUNNER_TEMP/d5-c10-host/feature-off"
+          "$RUNNER_TEMP/d5-c10-host/feature-off" | tee "$RUNNER_TEMP/d5-c10-host/feature-off.log"
+          echo '{"schema":"R03D5C10HostMatrixV1","result":"HostOnly","nativeStrictCases":6,"nativeSanitizedCases":6,"featureOffCases":1,"realUnityPlayerExecuted":false,"actualIL2CPPCompiled":false,"D5BLocalExecution":"NotAuthorized","WEB_TO_LOCAL":"CLOSED_NO_LOCAL_EXECUTION","R03Accepted":false}'
