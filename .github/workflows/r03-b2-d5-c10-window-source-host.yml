@@ -67,14 +67,14 @@ jobs:
             -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 \
             -DHYBRIDCLR_R03_D5_WINDOW_PROBE=1 \
             -I "$native" -I "$source/NativeHostStubs")
-          clang++ "\${base[@]}" -fno-exceptions -fno-rtti \
+          clang++ "${base[@]}" -fno-exceptions -fno-rtti \
             "$source/D5WindowSourceHost.cpp" "$source/D5WindowOtherTU.cpp" \
             "$source/R03D5WindowOverlay.cpp" -o "$RUNNER_TEMP/d5-c10-host/strict"
           for case in unarmed denied allowed timeout raced invalid; do
             "$RUNNER_TEMP/d5-c10-host/strict" "$case" | tee -a "$RUNNER_TEMP/d5-c10-host/strict.log"
           done
           test "$(grep -c 'PassedExactNativeWindowHeaderAndOverlayHostOnly' "$RUNNER_TEMP/d5-c10-host/strict.log")" -eq 6
-          clang++ "\${base[@]}" -O1 -g -fno-omit-frame-pointer -fsanitize=address,undefined \
+          clang++ "${base[@]}" -O1 -g -fno-omit-frame-pointer -fsanitize=address,undefined \
             "$source/D5WindowSourceHost.cpp" "$source/D5WindowOtherTU.cpp" \
             "$source/R03D5WindowOverlay.cpp" -o "$RUNNER_TEMP/d5-c10-host/sanitized"
           export ASAN_OPTIONS=detect_leaks=0
@@ -83,9 +83,6 @@ jobs:
           done
           test "$(grep -c 'PassedExactNativeWindowHeaderAndOverlayHostOnly' "$RUNNER_TEMP/d5-c10-host/sanitized.log")" -eq 6
           # Feature OFF: no witness may be exported as an enabled probe.
-          clang++ "\${base[@]}" -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=0 \
-            -DHYBRIDCLR_R03_D5_WINDOW_PROBE=0 \
-            "$source/D5WindowFeatureOffHost.cpp" "$source/R03D5WindowOverlay.cpp" \
-            -o "$RUNNER_TEMP/d5-c10-host/feature-off"
+          clang++ -std=${{ matrix.cpp }} -Wall -Wextra -Werror -pedantic -pthread -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=0 -DHYBRIDCLR_R03_D5_WINDOW_PROBE=0 -I "$native" -I "$source/NativeHostStubs" "$source/D5WindowFeatureOffHost.cpp" "$source/R03D5WindowOverlay.cpp" -o "$RUNNER_TEMP/d5-c10-host/feature-off"
           "$RUNNER_TEMP/d5-c10-host/feature-off" | tee "$RUNNER_TEMP/d5-c10-host/feature-off.log"
           echo '{"schema":"R03D5C10HostMatrixV1","result":"HostOnly","nativeStrictCases":6,"nativeSanitizedCases":6,"featureOffCases":1,"realUnityPlayerExecuted":false,"actualIL2CPPCompiled":false,"D5BLocalExecution":"NotAuthorized","WEB_TO_LOCAL":"CLOSED_NO_LOCAL_EXECUTION","R03Accepted":false}'
