@@ -91,6 +91,14 @@ namespace AssemblyShadow.R03.D5.Editor
             if (Application.unityVersion != "2022.3.62f2" ||
                 EditorUserBuildSettings.activeBuildTarget != BuildTarget.StandaloneOSX)
                 throw new BuildFailedException("D5 must use Unity 2022.3.62f2 StandaloneOSX");
+            // This build entry is source-pinned to its reviewed D5 C10
+            // native candidate. The demo head is additionally bound by the
+            // future independent Local handoff, not by this self-reported field.
+            if (config.expectedNativeCommit !=
+                    "8eeb3cc53a451a6925b490d623c81753822cb1d4" ||
+                string.IsNullOrEmpty(config.expectedDemoCommit) ||
+                config.expectedDemoCommit.Length != 40)
+                throw new BuildFailedException("D5 source revision is not the reviewed candidate");
             if (config.diagnosticsLevel != 2 ||
                 (config.cppConfiguration != "Release" && config.cppConfiguration != "Debug") ||
                 !File.Exists(config.overlayPath) || File.Exists(config.receiptPath) ||
