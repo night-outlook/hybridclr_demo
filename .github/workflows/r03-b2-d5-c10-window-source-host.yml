@@ -34,6 +34,16 @@ jobs:
             libil2cpp/vm/AssemblyShadow.cpp
             libil2cpp/vm/AssemblyShadowD5WindowProbe.h
             libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h
+            libil2cpp/vm/AssemblyShadow.h
+            libil2cpp/vm/AssemblyShadowFirstFailureV2.h
+            libil2cpp/vm/AssemblyShadowPublicationD3Decision.h
+            libil2cpp/vm/AssemblyShadowPublicationPhaseReceipt.h
+            libil2cpp/vm/AssemblyShadowTerminalExecution.h
+            libil2cpp/vm/AssemblyShadowTypes.h
+            libil2cpp/vm/Assembly.cpp
+            libil2cpp/vm/MetadataCache.cpp
+            libil2cpp/vm/Runtime.cpp
+            libil2cpp/utils/dynamic_array.h
           sparse-checkout-cone-mode: false
       - uses: actions/setup-python@v5
         with:
@@ -56,6 +66,50 @@ jobs:
             --expected-native-head 8eeb3cc53a451a6925b490d623c81753822cb1d4 \
             --expected-demo-head "$GITHUB_SHA" | tee "$RUNNER_TEMP/d5-c10-source.json"
           grep -q 'PassedActualSourceContractOnly_NotUnityPlayer' "$RUNNER_TEMP/d5-c10-source.json"
+      - name: Audit synthetic source-to-compiler/object/link materials (NOT Unity)
+        env:
+          R03_D5C10_NATIVE_ROOT: ${{ github.workspace }}/_d5native
+          R03_D5C10_DEMO_ROOT: ${{ github.workspace }}/_d5demo
+          PYTHONDONTWRITEBYTECODE: "1"
+        shell: bash
+        run: |
+          set -euo pipefail
+          tool=_d5demo/Tools/AssemblyShadow/R03IR/D5Probe
+          python3 -B "$tool/test_d5_link_materials.py" -v 2>&1 | tee "$RUNNER_TEMP/d5-c10-link-tests.log"
+          grep -q 'Ran 25 tests in' "$RUNNER_TEMP/d5-c10-link-tests.log"
+          grep -q '^OK
+        shell: bash
+        run: |
+          set -euo pipefail
+          source=_d5demo/Tools/AssemblyShadow/R03IR/D5Probe
+          native=_d5native/libil2cpp
+          mkdir -p "$RUNNER_TEMP/d5-c10-host"
+          base=(-std=${{ matrix.cpp }} -Wall -Wextra -Werror -pedantic -pthread \
+            -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 \
+            -DHYBRIDCLR_R03_D5_WINDOW_PROBE=1 \
+            -I "$native" -I "$source/NativeHostStubs")
+          clang++ "${base[@]}" -fno-exceptions -fno-rtti \
+            "$source/D5WindowSourceHost.cpp" "$source/D5WindowOtherTU.cpp" \
+            "$source/R03D5WindowOverlay.cpp" -o "$RUNNER_TEMP/d5-c10-host/strict"
+          for case in unarmed denied allowed timeout raced invalid; do
+            "$RUNNER_TEMP/d5-c10-host/strict" "$case" | tee -a "$RUNNER_TEMP/d5-c10-host/strict.log"
+          done
+          test "$(grep -c 'PassedExactNativeWindowHeaderAndOverlayHostOnly' "$RUNNER_TEMP/d5-c10-host/strict.log")" -eq 6
+          clang++ "${base[@]}" -O1 -g -fno-omit-frame-pointer -fsanitize=address,undefined \
+            "$source/D5WindowSourceHost.cpp" "$source/D5WindowOtherTU.cpp" \
+            "$source/R03D5WindowOverlay.cpp" -o "$RUNNER_TEMP/d5-c10-host/sanitized"
+          export ASAN_OPTIONS=detect_leaks=0
+          for case in unarmed denied allowed timeout raced invalid; do
+            "$RUNNER_TEMP/d5-c10-host/sanitized" "$case" | tee -a "$RUNNER_TEMP/d5-c10-host/sanitized.log"
+          done
+          test "$(grep -c 'PassedExactNativeWindowHeaderAndOverlayHostOnly' "$RUNNER_TEMP/d5-c10-host/sanitized.log")" -eq 6
+          # Feature OFF: no witness may be exported as an enabled probe.
+          clang++ -std=${{ matrix.cpp }} -Wall -Wextra -Werror -pedantic -pthread -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=0 -DHYBRIDCLR_R03_D5_WINDOW_PROBE=0 -I "$native" -I "$source/NativeHostStubs" "$source/D5WindowFeatureOffHost.cpp" "$source/R03D5WindowOverlay.cpp" -o "$RUNNER_TEMP/d5-c10-host/feature-off"
+          "$RUNNER_TEMP/d5-c10-host/feature-off" | tee "$RUNNER_TEMP/d5-c10-host/feature-off.log"
+          echo '{"schema":"R03D5C10HostMatrixV1","result":"HostOnly","nativeStrictCases":6,"nativeSanitizedCases":6,"featureOffCases":1,"realUnityPlayerExecuted":false,"actualIL2CPPCompiled":false,"D5BLocalExecution":"NotAuthorized","WEB_TO_LOCAL":"CLOSED_NO_LOCAL_EXECUTION","R03Accepted":false}'
+ "$RUNNER_TEMP/d5-c10-link-tests.log"
+          python3 -B "$tool/d5_link_materials.py" --source-preview-only | tee "$RUNNER_TEMP/d5-c10-link-preview.json"
+          grep -q 'SourceOnlyProvenanceContract_NotRun' "$RUNNER_TEMP/d5-c10-link-preview.json"
       - name: Build exact C++11/17 native witness and real overlay (source host only)
         shell: bash
         run: |
