@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03D5C10NativeLinkSourcePinsetV1",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "sourcePins": {
+    "hybridclr_demo": "DEMO_HEAD_FROM_GITHUB_ACTIONS_AND_FUTURE_APPROVED_HANDOFF",
+    "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "8eeb3cc53a451a6925b490d623c81753822cb1d4"
+  },
+  "nativeInstalledSources": {
+    "utils/dynamic_array.h": "0e6653e6e7efe93f023f63893c1a3b94f347a1d0",
+    "vm/Assembly.cpp": "e46ece727d5f03a914a4a6ba147cc69bc4e0a427",
+    "vm/AssemblyShadow.cpp": "8db5fed1ee2e6bf6b95597707a2fa9cdf43807a1",
+    "vm/AssemblyShadow.h": "17d6dafa70d21e395c4290fed2bbea2ab6429448",
+    "vm/AssemblyShadowFirstFailureV2.h": "85683f06f966725e55891ed08d12b961c9685e56",
+    "vm/AssemblyShadowD5WindowProbe.h": "bb958c44ae11f47160cd306cadc0c3edf56501f9",
+    "vm/AssemblyShadowProcessSnapshotOwner.h": "ccd10ea0a1d273f5fe31f52d346d090b0a5af79c",
+    "vm/AssemblyShadowPublicationD3Decision.h": "f398ef34f050102472db7d8bc93d84b5f00e311a",
+    "vm/AssemblyShadowPublicationPhaseReceipt.h": "e465434511b5896973db2a04c23bd8a11ef3cd4b",
+    "vm/AssemblyShadowTerminalExecution.h": "33258986c31b2e6ae3af17b8553030482a83aef7",
+    "vm/AssemblyShadowTypes.h": "6d1379bc33300e4682468705942721d355481ca7",
+    "vm/MetadataCache.cpp": "f0f8124ee979d563fdd170fc13c8d90ea29bf702",
+    "vm/Runtime.cpp": "1b176ee5fd3e2127a0237877e5c9c32bc53058b"
+  },
+  "isolatedOverlaySource": {
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp": "2e16ba677f961066cb068bc8199480f642845d0c",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs": "851b2fc602185219780dea636a6acac39ae3128a",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs": "cb4a56cdb8b910fc06721941e92db6165543a38d"
+  },
+  "compiledTranslationUnits": [
+    "vm/Assembly.cpp",
+    "vm/AssemblyShadow.cpp",
+    "vm/MetadataCache.cpp",
+    "vm/Runtime.cpp",
+    "vm/AssemblyShadowD5WindowOverlay.cpp"
+  ],
+  "overlayInstallDestination": "vm/AssemblyShadowD5WindowOverlay.cpp",
+  "expectedExportSymbols": [
+    "R03_D5_WindowProtocolVersion",
+    "R03_D5_ArmP5Window",
+    "R03_D5_ReleaseP5Window",
+    "R03_D5_ReadP5Window"
+  ],
+  "excludedSource": [
+    "NativeHostTests/AssemblyShadowFirstFailureV2Host.cpp"
+  ],
+  "target": {
+    "unity": "2022.3.62f2",
+    "os": "macOS",
+    "arch": "arm64",
+    "cppMode": "Release",
+    "featureOn": true,
+    "featureOffControl": true
+  },
+  "unverified": {
+    "actualInstalledNativeCompilation": "NotRun",
+    "beeDAG": "NotRun",
+    "linkedMachO": "NotRun",
+    "realPlayerC10": "NoCoverage",
+    "realGC": "NotRun",
+    "otherPlatforms": "NotRun"
+  },
+  "authority": {
+    "D5BLocalExecution": "NotAuthorized",
+    "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false
+  }
+}
