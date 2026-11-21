@@ -1,3 +1,11 @@
+# Independent D5-B source-custody decision — PassD5BCustodyForProducerPreparation (2026-11-20)
+
+[**Independent D5-B review completed**](D5B_SOURCE_CUSTODY_INDEPENDENT_REVIEW_2026-11-20.md): **`D5BSourceCustodyIndependentReview=PassD5BCustodyForProducerPreparation`**, strictly source-only/synthetic custody. Actual [D5-B CI 44725519765](https://github.com/night-outlook/hybridclr_demo/actions/runs/44725519765) independently verified **2/2 success**, 100 passing Python/source/synthetic tests, tested demo code `2843c545ef1597f866ebd329ff27d4f73d58ba90`; 12/12 native Git blobs matched, no production/legacy B1 modifications. **The completed review supersedes the pending request below**, which is retained unchanged for provenance.
+
+Mandatory before any Local execution: authenticate the actual six historical roots against a reviewed handoff rather than a caller-supplied role map; atomically reserve a new one-use output after read-only admission; pin and independently review real approved handoff bytes and test actual four-remote `git ls-remote` identities; verify real native source installation/Bee/compiler/linker including host allocator exclusion; add actual Player fault producers and source-to-binary→PID evidence. Currently `APPROVED_LOCAL_HANDOFF_BLOB=None` and all 18 D5-Cxx Player cases remain `NoCoverage`. **No approved D5-B Local handoff exists.** The decision permits **only separately scoped Primary producer/native-link preparation**; `D5BLocalExecution=NotAuthorized`, `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`, `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`.
+
+---
+
 # R03 B2 D5-B — independent source-custody review request
 
 **Status: `D5BSourceCustodyIndependentReview=Pending`.** This is a separate review request, **not a Primary self-approval or an executable Local handoff**. Scope: the bounded D5-B **source/remote and historical evidence-custody preparation slice** following independent D5-A `PassD5AForD5BPreparation`. Do **not** authorize Unity/IL2CPP, native/player builds, P3–P6 fault execution, D5-B Local Validation, D6, H2/M08A/X02/SNAP-01 or Human Review Gate.
