@@ -23,7 +23,7 @@ NATIVE_FILES = {
 DEMO_FILES = {
     "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp":"2e16ba677f961066cb068bc8199480f642845d0c",
     "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs":"851b2fc602185219780dea636a6acac39ae3128a",
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs":"454d983fae4cce9a0cd9da632327d28b69c90a59",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs":"cb4a56cdb8b910fc06721941e92db6165543a38d",
 }
 BRANCH = "codex/assembly-shadow-r01b-h1"
 MACRO = "HYBRIDCLR_R03_D5_WINDOW_PROBE"
