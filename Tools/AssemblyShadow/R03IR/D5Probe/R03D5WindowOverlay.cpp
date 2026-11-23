@@ -60,8 +60,11 @@ static const off_t kFirstErrorOffset = static_cast<off_t>(sizeof(Header) + kSlot
 static std::atomic<int32_t> stage{0}; // 0 unused, 1 opening, 2 open, 3 sealed, -1 failed
 static std::atomic<uint32_t> slots{0};
 static int fd = -1;
-static int32_t canaryBefore = -1, canaryOffset = -1;
+static int32_t canaryBefore = -1;
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined(HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE) && HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE
+static int32_t canaryOffset = -1;
 static uint32_t pinnedObject = 0;
+#endif
 
 static bool AsciiId(const char* raw) noexcept
 {
