@@ -58,7 +58,7 @@ jobs:
           set -euo pipefail
           tool=_d5demo/Tools/AssemblyShadow/R03IR/D5Probe
           python3 -B "$tool/test_d5_window_source_contract.py" -v 2>&1 | tee "$RUNNER_TEMP/source-tests.log"
-          grep -q 'Ran 47 tests in' "$RUNNER_TEMP/source-tests.log"
+          grep -q 'Ran 50 tests in' "$RUNNER_TEMP/source-tests.log"
           grep -q '^OK$' "$RUNNER_TEMP/source-tests.log"
           python3 -B "$tool/d5_window_source_contract.py" \
             --native-root "$GITHUB_WORKSPACE/_d5native" \

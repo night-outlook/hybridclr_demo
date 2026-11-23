@@ -170,7 +170,12 @@ static int32_t FinishNativeReceipt(int32_t stateCode, int32_t decision) noexcept
     valid = hostBound.load(std::memory_order_acquire) == 1 ? 1 : 0;
     after = valid ? hostAfter.load(std::memory_order_acquire) : -1;
 #else
-    valid = ReadCanary(after) ? 1 : 0;
+    // A timed-out admitted/raced method may still be writing stable.
+    // Do not read its memory concurrently: only a guard-denied body or an
+    // admitted body whose worker release was witnessed is a safe canary read.
+    const bool canRead = decision == 2 ||
+        (decision == 1 && window.releaseCount == 1);
+    valid = canRead && ReadCanary(after) ? 1 : 0;
 #endif
     if (Record(9, canaryBefore, after, valid, 0) != 1)
         return -3;
@@ -219,12 +224,20 @@ static void* NativeCollector(void*) noexcept
     WindowProbe& probe = WindowProbe::Instance();
     bool sawP5 = false, sawCanary = false, sawAttempt = false, sawGuard = false;
     const auto start = std::chrono::steady_clock::now();
+    auto armStart = start;
+    bool armObserved = false;
     for (;;)
     {
         const auto now = std::chrono::steady_clock::now();
-        const auto elapsedMs = std::chrono::duration_cast<
-            std::chrono::milliseconds>(now - start).count();
         const auto witness = probe.Read();
+        if (!armObserved && witness.armed == 1)
+        {
+            armObserved = true;
+            armStart = now;
+        }
+        const auto elapsedMs = std::chrono::duration_cast<
+            std::chrono::milliseconds>(
+                now - (armObserved ? armStart : start)).count();
         if (!sawP5 && witness.p5Count == 1)
         {
             sawP5 = Record(2, 2, witness.p5Count, 0, 0) == 1;
@@ -273,7 +286,7 @@ static void* NativeCollector(void*) noexcept
 #if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
                 500
 #else
-                8000
+                (armObserved ? 8000 : 60000)
 #endif
             )
         {
@@ -282,12 +295,14 @@ static void* NativeCollector(void*) noexcept
             const int32_t sealed = FinishNativeReceipt(stateCode, decision);
             // Never report an authenticated Player pass from a source-only
             // fixture. The actual binary/PID must be externally checked.
-            // 42 denotes an admitted P5 guard; 0 is only a native receipt
-            // candidate, and 2 means incomplete/failing source material.
+            // All exit codes are NONZERO, including a coherent denied
+            // *source-material candidate*, so generic process-exit==0
+            // logic cannot misclassify this isolated probe as a Player pass.
+            // 42=admitted P5 guard, 20=denied native candidate, 2=incomplete.
             const int32_t status = sealed == 1 &&
                 decision == 1 ? 42 :
                 sealed == 1 && terminalDenied && sawP5 && sawCanary &&
-                sawAttempt && sawGuard ? 0 : 2;
+                sawAttempt && sawGuard ? 20 : 2;
 #if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
             (void)status;
             hostCompleted.store(1, std::memory_order_release);

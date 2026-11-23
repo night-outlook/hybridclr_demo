@@ -256,6 +256,21 @@ class D5C10SourceContracts(unittest.TestCase):
             "using System;", "using System;\n// R03_D5_ReceiptSeal(postpoison)")
 
 
+    def test_48_postterminal_canary_read_guarded_by_method_outcome(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "const bool canRead = decision == 2 ||",
+            "const bool canRead = true ||")
+
+    def test_49_unarmed_staging_has_separate_bounded_deadline(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "armObserved ? 8000 : 60000",
+            "armObserved ? 0 : 0")
+
+    def test_50_denied_candidate_must_not_exit_zero(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "sawAttempt && sawGuard ? 20 : 2;",
+            "sawAttempt && sawGuard ? 0 : 2;")
+
 
 if __name__=="__main__":
     unittest.main()

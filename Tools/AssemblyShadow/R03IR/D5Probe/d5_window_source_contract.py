@@ -21,7 +21,7 @@ NATIVE_FILES = {
     "libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h":"ccd10ea0a1d273f5fe31f52d346d090b0a5af79c",
 }
 DEMO_FILES = {
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp":"79026619e4c63dfcac2dfaf895268456c1269a2e",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp":"30ca8ed1b60b7fa05ed41960111c5f9b91229b06",
     "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs":"b54d4df59e498a5eb5fb6ac59d3a17ac47505110",
     "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs":"31ca04858aa00c5d1db1678d784a804ed076e159",
 }
@@ -167,6 +167,9 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "NativeCollector(void*)" in overlay and
             "::pthread_create(" in overlay and
             "::pthread_detach(" in overlay and
+            "armObserved ? 8000 : 60000" in overlay and
+            "const bool canRead = decision == 2 ||" in overlay and
+            "sawAttempt && sawGuard ? 20 : 2;" in overlay and
             "::usleep(1000)" in overlay and
             "::_exit(status)" in overlay and
             "FinishNativeReceipt(stateCode, decision)" in overlay and
