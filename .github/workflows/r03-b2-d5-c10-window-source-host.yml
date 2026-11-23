@@ -128,7 +128,7 @@ jobs:
           "$RUNNER_TEMP/d5-c10-host/receipt-sanitized" "$RUNNER_TEMP/d5-c10-host/native-receipt-sanitized.bin"
           # Pure source-host auto-collector exercises the real background
           # writer loop with synthetic state/field/first-error adapters.
-          clang++ "\${args[@]}" -DHYBRIDCLR_R03_D5_SOURCE_HOST_AUTO=1 \
+          clang++ "${args[@]}" -DHYBRIDCLR_R03_D5_SOURCE_HOST_AUTO=1 \
             -fno-exceptions -fno-rtti \
             "$source/D5AutoReceiptHost.cpp" "$source/R03D5WindowOverlay.cpp" \
             -o "$RUNNER_TEMP/d5-c10-host/auto-strict"
@@ -138,7 +138,7 @@ jobs:
               tee -a "$RUNNER_TEMP/d5-c10-host/auto-strict.log"
           done
           test "$(grep -c 'PassedD5NativeAutoCollectorHostOnly' "$RUNNER_TEMP/d5-c10-host/auto-strict.log")" -eq 6
-          clang++ "\${args[@]}" -DHYBRIDCLR_R03_D5_SOURCE_HOST_AUTO=1 \
+          clang++ "${args[@]}" -DHYBRIDCLR_R03_D5_SOURCE_HOST_AUTO=1 \
             -O1 -g -fno-omit-frame-pointer -fsanitize=address,undefined \
             "$source/D5AutoReceiptHost.cpp" "$source/R03D5WindowOverlay.cpp" \
             -o "$RUNNER_TEMP/d5-c10-host/auto-sanitized"
