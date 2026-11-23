@@ -183,7 +183,7 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "::pthread_create(" in overlay and
             "::pthread_detach(" in overlay and
             "armObserved ? 8000 : 60000" in overlay and
-            "const bool canRead = decision == 2 ||" in overlay and
+            "const bool canRead = hasReady && (decision == 2 || completedBody);" in overlay and
             "sawAttempt && sawGuard ? 20 : 2;" in overlay and
             "hostIoFault.load(std::memory_order_acquire) == 1" in overlay and
             "hostIoFault.load(std::memory_order_acquire) == 2" in overlay and
