@@ -191,6 +191,7 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "sawAttempt = Record(4, 1, 1," in overlay and
             "targetStateAtEntry == 5 /* Committing */" in overlay and
             "firstErrorAtEntry == 0 /* Empty */" in overlay and
+            "const int32_t releaseObserved =" in overlay and
             "Record(6, -1, stateCode, releaseObserved," in overlay and
             "HasWorkerCompletedP5Acquire() ? 1 : 0;" in overlay and
             "ReadCanary(after)" in overlay and
