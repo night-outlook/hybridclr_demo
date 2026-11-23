@@ -15,7 +15,7 @@ import re
 import sys
 
 PINSET = Path(__file__).resolve().with_name("d5c10_link_source_pinset_v1.json")
-PINSET_BLOB = "213f967dd62b9c1140e8e61629fd00f118e7a50c"
+PINSET_BLOB = "bf6db56240e7331df18cfdc064337daf54ff7f7f"
 BRANCH = "codex/assembly-shadow-r01b-h1"
 NATIVE = "84f9435628b8ff4cc675409f6b4d76dd2753d8a8"
 HEX40 = re.compile(r"^[0-9a-f]{40}$")
