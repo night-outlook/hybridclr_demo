@@ -151,7 +151,7 @@ class D5C10SourceContracts(unittest.TestCase):
 
     def test_26_builder_pinned_commit_changed(self):
         self.mutated("demo",D+"R03D5Build.cs",
-            '"87a34bbea39930dab96cf4703756d8da79d54684"',
+            '"c741fb32a2b770856f211f47305c4f86b51f54ce"',
             '"0000000000000000000000000000000000000000"')
 
     def test_27_builder_missing_native_install(self):
@@ -270,6 +270,52 @@ class D5C10SourceContracts(unittest.TestCase):
         self.mutated("demo",D+"R03D5WindowOverlay.cpp",
             "sawAttempt && sawGuard ? 20 : 2;",
             "sawAttempt && sawGuard ? 0 : 2;")
+
+    def test_51_early_terminal_guard_result_mandatory(self):
+        self.mutated("native",N+"AssemblyShadow.cpp",
+            "c10.MethodResult(d5EntryPhase,",
+            "c10.EarlyTerminalResultDisabled(d5EntryPhase,")
+
+    def test_52_early_terminal_guard_must_be_exact_target(self):
+        self.mutated("native",N+"AssemblyShadow.cpp",
+            "c10.MatchesTargetOnCurrentThread(method), false",
+            "true, false")
+
+    def test_53_real_worker_release_requires_acquire(self):
+        self.mutated("native",N+"AssemblyShadowD5WindowProbe.h",
+            "release_.load(std::memory_order_acquire)",
+            "release_.load(std::memory_order_relaxed)")
+
+    def test_54_timeout_must_not_read_unpublished_canary_before(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "if (hasReady) before = canaryBefore;",
+            "before = canaryBefore;")
+
+    def test_55_final_native_receipt_only_after_link(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "::link(pendingPath, finalPath)",
+            "::rename(pendingPath, finalPath)")
+
+    def test_56_private_native_evidence_name_cannot_be_removed(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            'static const char kSuffix[] = ".pending";',
+            'static const char kSuffix[] = "";')
+
+    def test_57_directory_sync_mandatory(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "const int dirSync = failDirSync ? -1 : ::fsync(dir);",
+            "const int dirSync = 0;")
+
+    def test_58_synthetic_pwrite_fault_path_mandatory(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "hostIoFault.load(std::memory_order_acquire) == 1",
+            "hostIoFault.load(std::memory_order_acquire) == 777")
+
+    def test_59_file_close_must_be_checked_before_publish(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "const int actualClose = ::close(currentFd);",
+            "const int actualClose = 0;")
+
 
 
 if __name__=="__main__":

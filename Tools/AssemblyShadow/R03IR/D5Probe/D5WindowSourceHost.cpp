@@ -141,6 +141,39 @@ int main(int argc,char**argv)
         REQUIRE(w.TargetArmCount()==1);
         REQUIRE(w.Read().shadowMethodAttemptsInP5==1);
     }
+    else if(!std::strcmp(c,"early_terminal"))
+    {
+        REQUIRE(w.Arm(200));
+        w.AtP5();
+        const int32_t begun=w.MethodBegin();
+        REQUIRE(w.ArmTargetForCurrentThread(&w));
+        // Same test-only sequence as AssemblyShadow.cpp's early-return
+        // branch; no metadata/VM allocation is performed here.
+        w.MethodResult(begun,w.MatchesTargetOnCurrentThread(&w),false);
+        REQUIRE(w.TargetDecision()==2);
+        REQUIRE(w.Read().shadowMethodDeniedInP5==1);
+        REQUIRE(!w.MatchesTargetOnCurrentThread(&w));
+        // A second/baseline attempt cannot create a second denied event.
+        w.MethodResult(begun,w.MatchesTargetOnCurrentThread(&w),false);
+        REQUIRE(w.Read().shadowMethodAttemptsInP5==1);
+    }
+    else if(!std::strcmp(c,"canary_happens_before"))
+    {
+        REQUIRE(w.Arm(200));
+        w.AtP5();
+        REQUIRE(!w.HasWorkerCompletedP5Acquire());
+        int32_t stable=0;
+        std::thread writer([&] {
+            stable=42;
+            // A release CAS publishes the ordinary field write.
+            if(!w.ReleaseP5()) std::abort();
+        });
+        while(!w.HasWorkerCompletedP5Acquire())
+            std::this_thread::yield();
+        REQUIRE(stable==42); // acquire synchronizes with writer
+        writer.join();
+        REQUIRE(w.Read().releaseCount==1);
+    }
     else if(!std::strcmp(c,"invalid"))
     {
         REQUIRE(R03_D5_ArmP5Window(0)==-1);

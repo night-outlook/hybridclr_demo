@@ -8,6 +8,7 @@
 #include <cstring>
 #include <fcntl.h>
 #include <unistd.h>
+#include <sys/stat.h>
 #include <pthread.h>
 #include <chrono>
 
@@ -62,11 +63,15 @@ static const off_t kFirstErrorOffset = static_cast<off_t>(sizeof(Header) + kSlot
 static std::atomic<int32_t> stage{0}; // 0 unused, 1 opening, 2 open, 3 sealed, -1 failed
 static std::atomic<uint32_t> slots{0};
 static int fd = -1;
+static char finalPath[4096] = {};
+static char pendingPath[4096] = {};
 static int32_t canaryBefore = -1;
 #if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
 // Explicitly SYNTHETIC source-host inputs, never a real IL2CPP VM source.
 static std::atomic<int32_t> hostState{5}, hostAfter{0}, hostBound{0};
 static std::atomic<int32_t> hostFrozen{0}, hostCompleted{0};
+static std::atomic<int32_t> hostIoFault{0};  // 0=none, 1=pwrite, 2=fsync, 3=close, 4=dirsync
+static std::atomic<int32_t> hostSealResult{0}, hostExitCode{2};
 #endif
 #if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined(HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE) && HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE
 static int32_t canaryOffset = -1;
@@ -104,6 +109,13 @@ static bool PWriteAll(off_t offset, const void* source, size_t bytes) noexcept
     unsigned interrupts = 0;
     while (bytes)
     {
+#if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
+        // Fault injection only in synthetic CI. Prevent the final event from
+        // reaching the private pending file; never publish on failed write.
+        if (hostIoFault.load(std::memory_order_acquire) == 1 &&
+            offset == static_cast<off_t>(sizeof(Header) + 9 * sizeof(Event)))
+            return false;
+#endif
         const ssize_t n = ::pwrite(fd, data, bytes, offset);
         if (n < 0 && errno == EINTR && ++interrupts < 8) continue;
         if (n <= 0 || static_cast<size_t>(n) > bytes) return false;
@@ -127,6 +139,54 @@ static int32_t Record(int32_t slot, int32_t a, int32_t b, int32_t c, int32_t d) 
     const off_t offset = static_cast<off_t>(sizeof(Header) + (slot - 1) * sizeof(Event));
     return PWriteAll(offset, &record, sizeof record) && ::fsync(fd) == 0 ? 1 : -3;
 }
+// Do not expose the final evidence path until all payload bytes and the
+// seal event have survived file fsync + close. The private .pending file is
+// exclusively created; link() is an atomic no-clobber final publication.
+// A post-link directory fsync failure may leave an exposed file, but the
+// independent PID + actual process exit must then reject exit 2.
+static int32_t PublishClosedReceipt() noexcept
+{
+#if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
+    if (hostIoFault.load(std::memory_order_acquire) == 2)
+        return -5;  // synthetic fsync failure, never expose final path
+#endif
+    if (::fsync(fd) != 0) return -5;
+#if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
+    const bool failClose = hostIoFault.load(std::memory_order_acquire) == 3;
+#else
+    const bool failClose = false;
+#endif
+    const int currentFd = fd;
+    fd = -1;
+    const int actualClose = ::close(currentFd);
+    if (actualClose != 0 || failClose) return -6;
+    if (::link(pendingPath, finalPath) != 0) return -7;
+    if (::unlink(pendingPath) != 0) return -8;
+    // Flush the parent directory entry as well as the inode data.
+    const char* slash = std::strrchr(finalPath, '/');
+    if (!slash) return -9;
+    char directory[4096] = {};
+    const size_t dirLen = static_cast<size_t>(slash - finalPath);
+    if (dirLen == 0) std::memcpy(directory, "/", 2);
+    else
+    {
+        std::memcpy(directory, finalPath, dirLen);
+        directory[dirLen] = 0;
+    }
+    const int dir = ::open(directory, O_RDONLY | O_DIRECTORY | O_CLOEXEC);
+    if (dir < 0) return -10;
+#if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
+    const bool failDirSync = hostIoFault.load(std::memory_order_acquire) == 4;
+#else
+    const bool failDirSync = false;
+#endif
+    const int dirSync = failDirSync ? -1 : ::fsync(dir);
+    const int dirClose = ::close(dir);
+    if (dirSync != 0 || dirClose != 0) return -11;
+    stage.store(3, std::memory_order_release);
+    return 1;
+}
+
 #if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined(HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE) && HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE
 static bool ReadCanary(int32_t& value) noexcept
 {
@@ -164,20 +224,25 @@ static int32_t FinishNativeReceipt(int32_t stateCode, int32_t decision) noexcept
         Record(8, window.p5Count, window.p6Count,
                window.timedOut, window.releaseCount) != 1)
         return -2;
-    int32_t after = -1;
-    int32_t valid = 0;
+    int32_t before = -1, after = -1, valid = 0;
 #if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
+    // Mock canary belongs solely to this synthetic collector thread.
+    before = canaryBefore;
     valid = hostBound.load(std::memory_order_acquire) == 1 ? 1 : 0;
     after = valid ? hostAfter.load(std::memory_order_acquire) : -1;
 #else
-    // A timed-out admitted/raced method may still be writing stable.
-    // Do not read its memory concurrently: only a guard-denied body or an
-    // admitted body whose worker release was witnessed is a safe canary read.
-    const bool canRead = decision == 2 ||
-        (decision == 1 && window.releaseCount == 1);
+    // A timeout before BindKeepCanary publishes canaryReady MUST NOT read
+    // the non-atomic canaryBefore. Acquire also publishes pinnedInstance
+    // and the field offset. A stable field write from an admitted body must
+    // happen-before this native read via the worker's ReleaseP5 CAS.
+    const bool hasReady = canaryReady.load(std::memory_order_acquire) == 1;
+    if (hasReady) before = canaryBefore;
+    const bool completedBody = decision == 1 &&
+        WindowProbe::Instance().HasWorkerCompletedP5Acquire();
+    const bool canRead = hasReady && (decision == 2 || completedBody);
     valid = canRead && ReadCanary(after) ? 1 : 0;
 #endif
-    if (Record(9, canaryBefore, after, valid, 0) != 1)
+    if (Record(9, before, after, valid, 0) != 1)
         return -3;
     FirstErrorDisk error{};
     error.magic = kMagic;
@@ -209,12 +274,10 @@ static int32_t FinishNativeReceipt(int32_t stateCode, int32_t decision) noexcept
     }
 #endif
     if (!PWriteAll(kFirstErrorOffset, &error, sizeof error) ||
-        Record(10, 1, valid, decision, 1) != 1 ||
-        ::fsync(fd) != 0)
+        Record(10, 1, valid, decision, 1) != 1)
         return -5;
-    stage.store(3, std::memory_order_release);
-    const int savedFd = fd;
-    return ::close(savedFd) == 0 ? 1 : -6;
+    // Only publish the final path after successful file fsync and close.
+    return PublishClosedReceipt();
 }
 
 static void* NativeCollector(void*) noexcept
@@ -279,7 +342,10 @@ static void* NativeCollector(void*) noexcept
             witness.p6Count != 0 ||
             witness.phase >= static_cast<int32_t>(WindowPhase::AtP6);
         const bool terminalDenied = decision == 2 && terminal;
-        const bool allowedCompleted = decision == 1 && released;
+        // Both VM and synthetic host must acquire the actual ReleaseP5
+        // worker CAS. The relaxed count is metrics, not a body-write fence.
+        const bool allowedCompleted = decision == 1 &&
+            probe.HasWorkerCompletedP5Acquire();
         const bool racedCompleted = decision == 3 && released;
         if (terminalDenied || allowedCompleted || racedCompleted ||
             elapsedMs >=
@@ -304,7 +370,8 @@ static void* NativeCollector(void*) noexcept
                 sealed == 1 && terminalDenied && sawP5 && sawCanary &&
                 sawAttempt && sawGuard ? 20 : 2;
 #if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
-            (void)status;
+            hostSealResult.store(sealed, std::memory_order_release);
+            hostExitCode.store(status, std::memory_order_release);
             hostCompleted.store(1, std::memory_order_release);
             return nullptr; // host test binary continues to verify exact file
 #else
@@ -369,10 +436,20 @@ extern "C" IL2CPP_EXPORT int32_t R03_D5_ReceiptOpen(
     using namespace r03_d5_evidence;
     int32_t expected = 0;
     if (!stage.compare_exchange_strong(expected, 1, std::memory_order_acq_rel)) return -1;
-    if (!path || path[0] != '/' || ::strnlen(path, 4096) >= 4096 ||
+    static const char kSuffix[] = ".pending";
+    const size_t pathLen = path ? ::strnlen(path, sizeof(finalPath)) : 0;
+    if (!path || path[0] != '/' ||
+        pathLen == 0 || pathLen + sizeof(kSuffix) > sizeof(pendingPath) ||
         !AsciiId(runId) || !Hex64(requestSha256) || !Hex64(fixtureSha256))
     { stage.store(-1, std::memory_order_release); return -2; }
-    fd = ::open(path, O_WRONLY | O_CREAT | O_EXCL | O_CLOEXEC | O_NOFOLLOW, 0600);
+    struct stat existing{};
+    if (::lstat(path, &existing) == 0 || errno != ENOENT)
+    { stage.store(-1, std::memory_order_release); return -2; }
+    std::memcpy(finalPath, path, pathLen + 1);
+    std::memcpy(pendingPath, path, pathLen);
+    std::memcpy(pendingPath + pathLen, kSuffix, sizeof kSuffix);
+    // Neither a preexisting final result nor a stale pending file is reused.
+    fd = ::open(pendingPath, O_WRONLY | O_CREAT | O_EXCL | O_CLOEXEC | O_NOFOLLOW, 0600);
     if (fd < 0) { stage.store(-1, std::memory_order_release); return -3; }
     Header header{};
     std::memcpy(header.magic, "D5C10E1!", sizeof header.magic);
@@ -467,14 +544,24 @@ extern "C" IL2CPP_EXPORT int32_t R03_D5_BindKeepCanary(void* handle)
 // deliberately never compiled into a Unity Player and cannot claim VM data.
 #if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
 extern "C" IL2CPP_EXPORT int32_t R03_D5_SourceHostAutoConfigure(
-    int32_t state, int32_t after, int32_t bound, int32_t frozen)
+    int32_t state, int32_t after, int32_t bound, int32_t frozen, int32_t ioFault)
 {
     using namespace r03_d5_evidence;
+    if (ioFault < 0 || ioFault > 4) return -1;
+    hostIoFault.store(ioFault, std::memory_order_release);
     hostAfter.store(after, std::memory_order_release);
     hostBound.store(bound, std::memory_order_release);
     hostFrozen.store(frozen, std::memory_order_release);
     hostState.store(state, std::memory_order_release);
     return 1;
+}
+extern "C" IL2CPP_EXPORT int32_t R03_D5_SourceHostAutoSealStatus()
+{
+    return r03_d5_evidence::hostSealResult.load(std::memory_order_acquire);
+}
+extern "C" IL2CPP_EXPORT int32_t R03_D5_SourceHostAutoExitCode()
+{
+    return r03_d5_evidence::hostExitCode.load(std::memory_order_acquire);
 }
 extern "C" IL2CPP_EXPORT int32_t R03_D5_SourceHostAutoDone()
 {
@@ -547,9 +634,8 @@ extern "C" IL2CPP_EXPORT int32_t R03_D5_ReceiptSeal(
     }
 #endif
     if (!PWriteAll(kFirstErrorOffset, &error, sizeof error) ||
-        Record(10, 1, valid, 0, 0) != 1 || ::fsync(fd) != 0) return -5;
-    stage.store(3, std::memory_order_release);
-    return ::close(fd) == 0 ? 1 : -6;
+        Record(10, 1, valid, 0, 0) != 1) return -5;
+    return PublishClosedReceipt();
 #else
     (void)commitCode; (void)stateCode; (void)workerFinished; (void)keepAttempted;
     return 0;

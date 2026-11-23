@@ -14,16 +14,16 @@ import re
 import subprocess
 import sys
 
-NATIVE_COMMIT = "87a34bbea39930dab96cf4703756d8da79d54684"
+NATIVE_COMMIT = "c741fb32a2b770856f211f47305c4f86b51f54ce"
 NATIVE_FILES = {
-    "libil2cpp/vm/AssemblyShadow.cpp":"a5e7e654a2b1ede83ae18b8f15fcb4ee51f96490",
-    "libil2cpp/vm/AssemblyShadowD5WindowProbe.h":"d89d457ba73685b9505185f1d788f0bbf6a6d216",
+    "libil2cpp/vm/AssemblyShadow.cpp":"8cafbe5450e7188d7fc236319210701a18c7f2b4",
+    "libil2cpp/vm/AssemblyShadowD5WindowProbe.h":"27c56976549590275ea2b8d86d321d41458b4978",
     "libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h":"ccd10ea0a1d273f5fe31f52d346d090b0a5af79c",
 }
 DEMO_FILES = {
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp":"30ca8ed1b60b7fa05ed41960111c5f9b91229b06",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp":"d910c71756b8fb388c17b0571e7a3791b0317019",
     "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs":"b54d4df59e498a5eb5fb6ac59d3a17ac47505110",
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs":"31ca04858aa00c5d1db1678d784a804ed076e159",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs":"5444f366899e66cab33f7ce425314230b705d5b6",
 }
 BRANCH = "codex/assembly-shadow-r01b-h1"
 MACRO = "HYBRIDCLR_R03_D5_WINDOW_PROBE"
@@ -115,6 +115,9 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             'std::strcmp(method->name, "Keep")' in method and
             "active->shadowToBaseline.count(d5Owner)" in method and
             "MatchesTargetOnCurrentThread(method)" in method and
+            "if (TerminalMethodDenied(method))" in method and
+            "c10.MethodResult(d5EntryPhase," in method and
+            "c10.MatchesTargetOnCurrentThread(method), false" in method and
             method.count("WindowProbe::Instance().MethodResult(")==2 and
             "return allowed;" in method and "return false;" in method,
             "Actual shadow MethodInfo admission witness incomplete")
@@ -135,6 +138,8 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "ThreadAttempt& CurrentThreadAttempt()" in header and
             "token.active = 0;" in header and
             "targetDecision_.store" in header and
+            "HasWorkerCompletedP5Acquire() const noexcept" in header and
+            "release_.load(std::memory_order_acquire)" in header and
             header.count("std::atomic<int32_t>")>=10 and
             "new " not in header and "delete " not in header and
             "std::mutex" not in header and "throw " not in header,
@@ -154,13 +159,23 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "operator new(" not in overlay and "operator delete(" not in overlay,
             "Fixed wire protocol, feature-OFF or allocator purity changed")
     require("O_EXCL | O_CLOEXEC | O_NOFOLLOW" in overlay and
+            "::lstat(path, &existing)" in overlay and
+            'static const char kSuffix[] = ".pending";' in overlay and
+            "::link(pendingPath, finalPath)" in overlay and
+            "::unlink(pendingPath)" in overlay and
+            "const int actualClose = ::close(currentFd);" in overlay and
+            "const int dirSync = failDirSync ? -1 : ::fsync(dir);" in overlay and
+            "return PublishClosedReceipt();" in overlay and
             "::pwrite(fd" in overlay and "::fsync(fd)" in overlay and
             "kSlots = 10" in overlay and
             "sizeof(Event) == 32" in overlay and
             "sizeof(FirstErrorDisk) == 4120" in overlay and
             "TryReadFirstFailureV2(snapshot)" in overlay and
             "ReadCanary(after)" in overlay and
-            "Record(9, canaryBefore, after, valid, 0)" in overlay and
+            "hasReady = canaryReady.load(std::memory_order_acquire)" in overlay and
+            "if (hasReady) before = canaryBefore;" in overlay and
+            "WindowProbe::Instance().HasWorkerCompletedP5Acquire()" in overlay and
+            "Record(9, before, after, valid, 0)" in overlay and
             "GCHandle::New(object, true)" in overlay and
             'Class::GetFieldFromName(object->klass, "stable")' in overlay and
             "R03_D5_NATIVE_VM_EVIDENCE" in overlay and
@@ -170,6 +185,10 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "armObserved ? 8000 : 60000" in overlay and
             "const bool canRead = decision == 2 ||" in overlay and
             "sawAttempt && sawGuard ? 20 : 2;" in overlay and
+            "hostIoFault.load(std::memory_order_acquire) == 1" in overlay and
+            "hostIoFault.load(std::memory_order_acquire) == 2" in overlay and
+            "hostIoFault.load(std::memory_order_acquire) == 3" in overlay and
+            "hostIoFault.load(std::memory_order_acquire) == 4" in overlay and
             "::usleep(1000)" in overlay and
             "::_exit(status)" in overlay and
             "FinishNativeReceipt(stateCode, decision)" in overlay and
@@ -184,7 +203,8 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
     auto_end=overlay.find("static void* NativeCollector(",auto_start)
     require(auto_start>=0 and auto_end>auto_start and
             "TryReadFirstFailureV2(snapshot)" in overlay[auto_start:auto_end] and
-            "Record(9, canaryBefore, after, valid, 0)" in overlay[auto_start:auto_end],
+            "Record(9, before, after, valid, 0)" in overlay[auto_start:auto_end] and
+            "return PublishClosedReceipt();" in overlay[auto_start:auto_end],
             "Native autonomous seal must preserve actual first-error/canary")
 
     checks=[
@@ -229,7 +249,7 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "Real Unity BuildPipeline entrypoint replaced")
     require("public static class R03D5Build" in builder and
             'Application.unityVersion != "2022.3.62f2"' in builder and
-            '"87a34bbea39930dab96cf4703756d8da79d54684"' in builder and
+            '"c741fb32a2b770856f211f47305c4f86b51f54ce"' in builder and
             "ScriptingImplementation.IL2CPP" in builder and
             "BuildOptions.Development | BuildOptions.DetailedBuildReport" in builder and
             "HYBRIDCLR_R03_D5_WINDOW_PROBE=" in builder and

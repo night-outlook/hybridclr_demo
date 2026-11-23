@@ -38,7 +38,15 @@ def extract_text(raw: bytes) -> str:
     return raw[:end].decode("ascii", errors="strict")
 
 
-def parse_material(raw: bytes) -> dict:
+def parse_material(raw: bytes, *, externally_observed_pid: int | None = None,
+                   externally_observed_exit_code: int | None = None) -> dict:
+    """Fail closed without an independently supplied process PID and exit.
+
+    This parser does not verify the external source of those arguments.
+    Synthetic host tests explicitly label their fabricated process joins.
+    A real Local validator must supply process-monitor evidence bound to the
+    actual binary and argv, not merely copy the PID from this raw file.
+    """
     need(len(raw) == RECEIPT_BYTES,
          "Truncated/overlong native evidence cannot be an observation")
     magic, version, pid, run_raw, request_raw, fixture_raw, reserved = HEADER.unpack_from(raw)
@@ -102,13 +110,21 @@ def parse_material(raw: bytes) -> dict:
               observed[10][0] == 1 and observed[10][1] == 1 and
               observed[10][2] == decision and observed[10][3] == 1 and
               bound == 1 and before == 0)
+    process_joined = (type(externally_observed_pid) is int and
+                      externally_observed_pid == pid and
+                      type(externally_observed_exit_code) is int and
+                      externally_observed_exit_code in (20, 42))
     permitted_guard = (joined and decision in (1, 2) and
                        guard[1] + guard[2] == 1 and guard[3] == 0 and
                        (decision != 1 or guard[1] == 1) and
                        (decision != 2 or guard[2] == 1))
-    if permitted_guard and (body == "BodyExecuted" or decision == 1):
+    if permitted_guard and process_joined and (
+            (decision == 1 and externally_observed_exit_code == 42) or
+            (decision == 2 and body == "BodyExecuted" and
+             externally_observed_exit_code == 20)):
         result = "UnsafeEarlyMethodAdmissionObserved_SourceMaterial"
-    elif (permitted_guard and decision == 2 and
+    elif (permitted_guard and process_joined and
+          externally_observed_exit_code == 20 and decision == 2 and
           observed[6][1] == 9 and status == 2 and
           body == "BodyNotExecuted"):
         result = "CandidateObservedDeniedInP5_RequiresIndependentBinaryProof"
@@ -121,6 +137,10 @@ def parse_material(raw: bytes) -> dict:
         "runIdAsClaimed": run,
         "requestSha256AsClaimed": request,
         "fixtureSha256AsClaimed": fixture,
+        "externallyObservedPidAsSupplied": externally_observed_pid,
+        "externallyObservedExitCodeAsSupplied": externally_observed_exit_code,
+        "externalProcessJoinMatched": process_joined,
+        "externalProcessProvenanceIndependentlyVerified": False,
         "eventSlots": sorted(observed),
         "methodGuard": method,
         "methodBodySideEffect": body,

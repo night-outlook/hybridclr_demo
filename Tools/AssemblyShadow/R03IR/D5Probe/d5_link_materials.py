@@ -15,9 +15,9 @@ import re
 import sys
 
 PINSET = Path(__file__).resolve().with_name("d5c10_link_source_pinset_v1.json")
-PINSET_BLOB = "fe531a9ab5a585a4b2e0217a1db236fb9ae0b4a0"
+PINSET_BLOB = "cfca8eecb339fdbc16777efee42465c762f0462b"
 BRANCH = "codex/assembly-shadow-r01b-h1"
-NATIVE = "87a34bbea39930dab96cf4703756d8da79d54684"
+NATIVE = "c741fb32a2b770856f211f47305c4f86b51f54ce"
 HEX40 = re.compile(r"^[0-9a-f]{40}$")
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 ROLES = ("hybridclr_demo", "hybridclr", "hybridclr_unity", "il2cpp_plus")
