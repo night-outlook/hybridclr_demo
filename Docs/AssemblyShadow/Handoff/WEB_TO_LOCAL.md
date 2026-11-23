@@ -1,4 +1,11 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
+## D5-B C10 independent source review ReturnRequired (2026-11-22)
+
+**THIS IS NOT A LOCAL HANDOFF. NO UNITY/IL2CPP/PLAYER EXECUTION AUTHORITY.** [Independent C10 review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_C10_PRODUCER_INDEPENDENT_REVIEW_2026-11-22.md) = `ReturnRequired`: target `Keep` method guard/canary identity and terminal-safe evidence capture need focused Primary correction, new source-host CI and independent rereview. Raw host CI [44854825948](https://github.com/night-outlook/hybridclr_demo/actions/runs/44854825948) remains 4/4 PASS **only in source-host scope**. Existing demo tested `a833d22487352135a88d6b245eea7f2d103af48b`, native `8eeb3cc53a451a6925b490d623c81753822cb1d4`, hybridclr `c3c232023724cbad565b85e9b2c3beea8ce2789a`, hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de`; latest feature HEAD is independently verified separately and does not become CI-tested by this documentation-only update. All 18 D5 real Player cases `NoCoverage`. `D5BLocalExecution=NotAuthorized`, `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`, `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`. Do not alter `LOCAL_VALIDATION.md` or `RETURN_TO_WEB.md`. Previous entries below are historical.
+
+---
+
+# Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 ## D5-B C10 test producer source/host evidence complete; independent review pending (2026-11-21 UTC)
 
 **NO LOCAL UNITY/IL2CPP/PLAYER EXECUTION AUTHORITY. THIS IS NOT A D5-B HANDOFF.** [C10 Primary source/host report](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_C10_PRODUCER_PRIMARY_IMPLEMENTATION_REVIEW_2026-11-21.md) · [independent C10 review request (PENDING)](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_C10_PRODUCER_INDEPENDENT_REVIEW_REQUEST_2026-11-21.md). Source tuple `codex/assembly-shadow-r01b-h1`: demo tested CI `a833d22487352135a88d6b245eea7f2d103af48b` (later docs-only commits separately checked), native `il2cpp_plus@8eeb3cc53a451a6925b490d623c81753822cb1d4` (new C++11 bounded P5/P6 test-only witness and `AssemblyShadow.cpp` guarded probe), unchanged `hybridclr@c3c232023724cbad565b85e9b2c3beea8ce2789a` and `hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de`.
