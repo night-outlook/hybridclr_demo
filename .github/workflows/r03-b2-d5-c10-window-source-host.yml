@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: night-outlook/il2cpp_plus
-          ref: 8eeb3cc53a451a6925b490d623c81753822cb1d4
+          ref: 84f9435628b8ff4cc675409f6b4d76dd2753d8a8
           path: _d5native
           filter: blob:none
           sparse-checkout: |
@@ -63,7 +63,7 @@ jobs:
           python3 -B "$tool/d5_window_source_contract.py" \
             --native-root "$GITHUB_WORKSPACE/_d5native" \
             --demo-root "$GITHUB_WORKSPACE/_d5demo" \
-            --expected-native-head 8eeb3cc53a451a6925b490d623c81753822cb1d4 \
+            --expected-native-head 84f9435628b8ff4cc675409f6b4d76dd2753d8a8 \
             --expected-demo-head "$GITHUB_SHA" | tee "$RUNNER_TEMP/source-receipt.json"
           grep -q 'PassedActualSourceContractOnly_NotUnityPlayer' "$RUNNER_TEMP/source-receipt.json"
       - name: Synthetic native install, object and link material checks
@@ -82,7 +82,9 @@ jobs:
           grep -q 'SourceOnlyProvenanceContract_NotRun' "$RUNNER_TEMP/link-preview.json"
           python3 -B "$tool/test_d5_c10_native_receipt.py" -v 2>&1 | tee "$RUNNER_TEMP/evidence-tests.log"
           grep -q 'Ran 20 tests in' "$RUNNER_TEMP/evidence-tests.log"
-          grep -q '^OK
+          grep -q '^OK$' "$RUNNER_TEMP/evidence-tests.log"
+          python3 -B "$tool/d5_c10_native_receipt.py" | tee "$RUNNER_TEMP/evidence-preview.json"
+          grep -q 'SourceHostOnly_NoRealPlayerEvidence' "$RUNNER_TEMP/evidence-preview.json"
       - name: Compile exact C++11/17 native witness, test overlay and OFF control
         shell: bash
         run: |
@@ -125,40 +127,3 @@ jobs:
             -o "$RUNNER_TEMP/d5-c10-host/receipt-sanitized"
           "$RUNNER_TEMP/d5-c10-host/receipt-sanitized" "$RUNNER_TEMP/d5-c10-host/native-receipt-sanitized.bin"
           echo '{"schema":"R03D5C10HostMatrixV1","result":"HostOnly","nativeStrictCases":6,"nativeSanitizedCases":6,"nativeReceiptStrictCases":1,"nativeReceiptSanitizedCases":1,"featureOffCases":1,"realUnityPlayerExecuted":false,"actualIL2CPPCompiled":false,"D5BLocalExecution":"NotAuthorized","WEB_TO_LOCAL":"CLOSED_NO_LOCAL_EXECUTION","R03Accepted":false}'
- "$RUNNER_TEMP/evidence-tests.log"
-          python3 -B "$tool/d5_c10_native_receipt.py" | tee "$RUNNER_TEMP/evidence-preview.json"
-          grep -q 'SourceHostOnly_NoRealPlayerEvidence' "$RUNNER_TEMP/evidence-preview.json"
-      - name: Compile exact C++11/17 native witness, test overlay and OFF control
-        shell: bash
-        run: |
-          set -euo pipefail
-          source=_d5demo/Tools/AssemblyShadow/R03IR/D5Probe
-          native=_d5native/libil2cpp
-          mkdir -p "$RUNNER_TEMP/d5-c10-host"
-          args=(-std=${{ matrix.cpp }} -Wall -Wextra -Werror -pedantic -pthread \
-            -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 \
-            -DHYBRIDCLR_R03_D5_WINDOW_PROBE=1 \
-            -I "$native" -I "$source/NativeHostStubs")
-          clang++ "${args[@]}" -fno-exceptions -fno-rtti \
-            "$source/D5WindowSourceHost.cpp" "$source/D5WindowOtherTU.cpp" \
-            "$source/R03D5WindowOverlay.cpp" -o "$RUNNER_TEMP/d5-c10-host/strict"
-          for case in unarmed denied allowed timeout raced invalid; do
-            "$RUNNER_TEMP/d5-c10-host/strict" "$case" | tee -a "$RUNNER_TEMP/d5-c10-host/strict.log"
-          done
-          test "$(grep -c 'PassedExactNativeWindowHeaderAndOverlayHostOnly' "$RUNNER_TEMP/d5-c10-host/strict.log")" -eq 6
-          clang++ "${args[@]}" -O1 -g -fno-omit-frame-pointer -fsanitize=address,undefined \
-            "$source/D5WindowSourceHost.cpp" "$source/D5WindowOtherTU.cpp" \
-            "$source/R03D5WindowOverlay.cpp" -o "$RUNNER_TEMP/d5-c10-host/sanitized"
-          export ASAN_OPTIONS=detect_leaks=0
-          for case in unarmed denied allowed timeout raced invalid; do
-            "$RUNNER_TEMP/d5-c10-host/sanitized" "$case" | tee -a "$RUNNER_TEMP/d5-c10-host/sanitized.log"
-          done
-          test "$(grep -c 'PassedExactNativeWindowHeaderAndOverlayHostOnly' "$RUNNER_TEMP/d5-c10-host/sanitized.log")" -eq 6
-          clang++ -std=${{ matrix.cpp }} -Wall -Wextra -Werror -pedantic -pthread \
-            -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=0 \
-            -DHYBRIDCLR_R03_D5_WINDOW_PROBE=0 \
-            -I "$native" -I "$source/NativeHostStubs" \
-            "$source/D5WindowFeatureOffHost.cpp" "$source/R03D5WindowOverlay.cpp" \
-            -o "$RUNNER_TEMP/d5-c10-host/feature-off"
-          "$RUNNER_TEMP/d5-c10-host/feature-off" | tee "$RUNNER_TEMP/d5-c10-host/feature-off.log"
-          echo '{"schema":"R03D5C10HostMatrixV1","result":"HostOnly","nativeStrictCases":6,"nativeSanitizedCases":6,"featureOffCases":1,"realUnityPlayerExecuted":false,"actualIL2CPPCompiled":false,"D5BLocalExecution":"NotAuthorized","WEB_TO_LOCAL":"CLOSED_NO_LOCAL_EXECUTION","R03Accepted":false}'
