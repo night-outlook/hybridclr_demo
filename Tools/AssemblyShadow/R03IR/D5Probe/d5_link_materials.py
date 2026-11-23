@@ -15,9 +15,9 @@ import re
 import sys
 
 PINSET = Path(__file__).resolve().with_name("d5c10_link_source_pinset_v1.json")
-PINSET_BLOB = "c709a15e27b6b3b7fa0091d36ef3fc514df4a4ba"
+PINSET_BLOB = "213f967dd62b9c1140e8e61629fd00f118e7a50c"
 BRANCH = "codex/assembly-shadow-r01b-h1"
-NATIVE = "8eeb3cc53a451a6925b490d623c81753822cb1d4"
+NATIVE = "84f9435628b8ff4cc675409f6b4d76dd2753d8a8"
 HEX40 = re.compile(r"^[0-9a-f]{40}$")
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 ROLES = ("hybridclr_demo", "hybridclr", "hybridclr_unity", "il2cpp_plus")
@@ -29,7 +29,9 @@ EXPECTED_TUS = (
     "vm/AssemblyShadowD5WindowOverlay.cpp",
 )
 EXPORTS = ("R03_D5_WindowProtocolVersion","R03_D5_ArmP5Window",
-           "R03_D5_ReleaseP5Window","R03_D5_ReadP5Window")
+           "R03_D5_ReleaseP5Window","R03_D5_ReadP5Window",
+           "R03_D5_ReceiptOpen","R03_D5_ReceiptEvent",
+           "R03_D5_BindKeepCanary","R03_D5_ReceiptSeal")
 ALLOWED_STATES = ("SyntheticSourceHost",)  # NO real-Player claims under D5-B prep
 
 
@@ -190,7 +192,8 @@ def check_submitted_link_material(
             "Submitted BuildReport claims/bound identities inconsistent")
     flags=record.get("compilerFlags","")
     require("-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1" in flags and
-            "-DHYBRIDCLR_R03_D5_WINDOW_PROBE=1" in flags,
+            "-DHYBRIDCLR_R03_D5_WINDOW_PROBE=1" in flags and
+            "-DHYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE=1" in flags,
             "Compiled-source probe feature flags missing")
     observations=record.get("requiredNativeFileHashes")
     require(type(observations) is list and
@@ -217,7 +220,8 @@ def check_submitted_link_material(
             encoding="utf-8")
         require(src in command and obj_path in command and
                 "-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1" in command and
-                "-DHYBRIDCLR_R03_D5_WINDOW_PROBE=1" in command,
+                "-DHYBRIDCLR_R03_D5_WINDOW_PROBE=1" in command and
+                 "-DHYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE=1" in command,
                 "Raw compiler command does not bind input/object/feature: "+src)
         require("NativeHostTests/" not in command,
                 "Standalone global allocator test compiled")
@@ -247,6 +251,8 @@ def check_submitted_link_material(
         "compiledInputRecordsMatched":len(compiled),
         "linkedBinarySha256":sha(raw),
         "exportSymbolsMatched":len(EXPORTS),
+        "nativeEvidenceWriterCompileVerified":False,
+        "nativeVMEvidenceCaptureVerified":False,
         "rawCompilerCommandHashes":expected_commands,
         "actualUnityOrIL2CPPExecutionVerified":False,
         "actualBeeCompilerCommandExecutionVerified":False,

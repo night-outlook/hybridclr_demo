@@ -78,7 +78,8 @@ class D5C10SourceContracts(unittest.TestCase):
 
     def test_11_actual_shadow_method_selection_missing(self):
         self.mutated("native",N+"AssemblyShadow.cpp",
-            "d5ShadowMethod = true;","d5ShadowMethod = false; /* no real shadow */")
+            'std::strcmp(method->name, "Keep") == 0',
+            'std::strcmp(method->name, "GenericBody") == 0')
 
     def test_12_shadow_result_source_removed(self):
         self.mutated("native",N+"AssemblyShadow.cpp",
@@ -112,13 +113,15 @@ class D5C10SourceContracts(unittest.TestCase):
         self.mutated("demo",D+"R03D5P5WindowPlayer.cs",
             "method.Invoke(instance, null)","42")
 
-    def test_19_managed_no_unsafe_alert_missing(self):
+    def test_19_managed_no_native_seal_missing(self):
         self.mutated("demo",D+"R03D5P5WindowPlayer.cs",
-            '"UnsafeEarlyMethodAdmissionObserved"','"Passed"')
+            "R03_D5_ReceiptSeal(commit, stateCode, finish, keep)",
+            "FakeReceiptSeal(commit, stateCode, finish, keep)")
 
     def test_20_managed_r03_acceptance_forged(self):
         self.mutated("demo",D+"R03D5P5WindowPlayer.cs",
-            "R03Accepted = false","R03Accepted = true")
+            "using System;",
+            "using System;\n// R03Accepted = true")
 
     def test_21_native_d4_process_owner_source_missing(self):
         self.mutated("native",N+"AssemblyShadowProcessSnapshotOwner.h",
@@ -136,7 +139,8 @@ class D5C10SourceContracts(unittest.TestCase):
 
     def test_24_managed_reuses_output_path(self):
         self.mutated("demo",D+"R03D5P5WindowPlayer.cs",
-            "FileMode.CreateNew","FileMode.Create")
+            "R03_D5_ReceiptOpen(outputPath, req.runId,",
+            'R03_D5_ReceiptOpen("/tmp/shared", req.runId,')
 
     def test_25_native_production_method_checks_unmodified(self):
         core=self.ns[N+"AssemblyShadow.cpp"]
@@ -147,7 +151,7 @@ class D5C10SourceContracts(unittest.TestCase):
 
     def test_26_builder_pinned_commit_changed(self):
         self.mutated("demo",D+"R03D5Build.cs",
-            '"8eeb3cc53a451a6925b490d623c81753822cb1d4"',
+            '"84f9435628b8ff4cc675409f6b4d76dd2753d8a8"',
             '"0000000000000000000000000000000000000000"')
 
     def test_27_builder_missing_native_install(self):
@@ -177,6 +181,40 @@ class D5C10SourceContracts(unittest.TestCase):
         self.mutated("demo",D+"R03D5Build.cs",
             "BuildPipeline.BuildPlayer(new BuildPlayerOptions",
             "FakeBuildPipeline.BuildPlayer(new BuildPlayerOptions")
+
+
+    def test_33_constructor_denial_not_keep_method(self):
+        self.mutated("native",N+"AssemblyShadow.cpp",
+            'std::strcmp(method->klass->name, "Node") == 0',
+            'std::strcmp(method->klass->name, "AnyNode") == 0')
+
+    def test_34_native_first_error_custody_must_stay(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "TryReadFirstFailureV2(snapshot)", "NoRealFirstError(snapshot)")
+
+    def test_35_native_exclusive_evidence_must_stay(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "O_EXCL | O_CLOEXEC | O_NOFOLLOW",
+            "O_TRUNC | O_CLOEXEC")
+
+    def test_36_managed_target_canary_bind_must_stay(self):
+        self.mutated("demo",D+"R03D5P5WindowPlayer.cs",
+            "nativeBindSucceeded = R03_D5_BindKeepCanary(",
+            "nativeBindSucceeded = PretendBindCanary(")
+
+    def test_37_managed_post_terminal_json_is_forbidden(self):
+        self.mutated("demo",D+"R03D5P5WindowPlayer.cs",
+            "using System;", "using System;\n// JsonUtility.ToJson would be unsafe")
+
+    def test_38_builder_real_vm_evidence_macro_must_stay(self):
+        self.mutated("demo",D+"R03D5Build.cs",
+            '" -DHYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE="',
+            '" -DHYBRIDCLR_R03_D5_DUMMY_VM="')
+
+    def test_39_canary_after_snapshot_is_mandatory(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "Record(9, canaryBefore, after, valid, 0)",
+            "Record(9, -1, -1, 0, 0)")
 
 
 if __name__=="__main__":

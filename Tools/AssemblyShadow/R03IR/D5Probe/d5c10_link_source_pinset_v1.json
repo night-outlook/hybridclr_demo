@@ -6,15 +6,15 @@
     "hybridclr_demo": "DEMO_HEAD_FROM_GITHUB_ACTIONS_AND_FUTURE_APPROVED_HANDOFF",
     "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
     "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
-    "il2cpp_plus": "8eeb3cc53a451a6925b490d623c81753822cb1d4"
+    "il2cpp_plus": "84f9435628b8ff4cc675409f6b4d76dd2753d8a8"
   },
   "nativeInstalledSources": {
     "utils/dynamic_array.h": "0e6653e6e7efe93f023f63893c1a3b94f347a1d0",
     "vm/Assembly.cpp": "e46ece727d5f03a914a4a6ba147cc69bc4e0a427",
-    "vm/AssemblyShadow.cpp": "8db5fed1ee2e6bf6b95597707a2fa9cdf43807a1",
+    "vm/AssemblyShadow.cpp": "3fc229b967ade9f3836dd5e498c31e33d5fa3291",
     "vm/AssemblyShadow.h": "17d6dafa70d21e395c4290fed2bbea2ab6429448",
     "vm/AssemblyShadowFirstFailureV2.h": "85683f06f966725e55891ed08d12b961c9685e56",
-    "vm/AssemblyShadowD5WindowProbe.h": "bb958c44ae11f47160cd306cadc0c3edf56501f9",
+    "vm/AssemblyShadowD5WindowProbe.h": "675fd65c00352c6cafae3f7ce337d331a67f89c2",
     "vm/AssemblyShadowProcessSnapshotOwner.h": "ccd10ea0a1d273f5fe31f52d346d090b0a5af79c",
     "vm/AssemblyShadowPublicationD3Decision.h": "f398ef34f050102472db7d8bc93d84b5f00e311a",
     "vm/AssemblyShadowPublicationPhaseReceipt.h": "e465434511b5896973db2a04c23bd8a11ef3cd4b",
@@ -24,9 +24,9 @@
     "vm/Runtime.cpp": "1b176ee5fd3e2127a0237877e5c9c32bc53058b3"
   },
   "isolatedOverlaySource": {
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp": "2e16ba677f961066cb068bc8199480f642845d0c",
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs": "851b2fc602185219780dea636a6acac39ae3128a",
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs": "cb4a56cdb8b910fc06721941e92db6165543a38d"
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp": "f1f786b01606862e9b2a7c1f4b02120e919d747e",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs": "d107bf2c80ad0cb008efe533d56b07bf0f7eb03d",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs": "b589c4232896e3f5e9915ad24198f1986d27b20d"
   },
   "compiledTranslationUnits": [
     "vm/Assembly.cpp",
@@ -40,7 +40,11 @@
     "R03_D5_WindowProtocolVersion",
     "R03_D5_ArmP5Window",
     "R03_D5_ReleaseP5Window",
-    "R03_D5_ReadP5Window"
+    "R03_D5_ReadP5Window",
+    "R03_D5_ReceiptOpen",
+    "R03_D5_ReceiptEvent",
+    "R03_D5_BindKeepCanary",
+    "R03_D5_ReceiptSeal"
   ],
   "excludedSource": [
     "NativeHostTests/AssemblyShadowFirstFailureV2Host.cpp"
@@ -66,6 +70,7 @@
     "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
     "R03Accepted": false,
     "H2Passed": false,
-    "ReadyForHumanReviewGate": false
+    "ReadyForHumanReviewGate": false,
+    "D5BC10IndependentReview": "ReturnRequired"
   }
 }

@@ -39,7 +39,8 @@ class LinkMaterialSourceOnly(unittest.TestCase):
             cmd="raw-commands/"+src.rsplit("/",1)[-1]+".txt"
             self._write(obj, b"synthetic-object-binary-"+src.encode())
             self._write(cmd,("clang++ -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 "
-                "-DHYBRIDCLR_R03_D5_WINDOW_PROBE=1 -c "+src+" -o "+obj).encode())
+                "-DHYBRIDCLR_R03_D5_WINDOW_PROBE=1 "
+                 "-DHYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE=1 -c "+src+" -o "+obj).encode())
             self.objects[src]={"source":src,"object":obj,
                 "objectSha256":gate.sha(self._path(obj).read_bytes()),
                 "command":cmd}
@@ -60,7 +61,7 @@ class LinkMaterialSourceOnly(unittest.TestCase):
             "independentLinkedBinaryProof":False,
             "actualD5PlayerRun":False,"R03Accepted":False,
             "nativeCommit":gate.NATIVE,
-            "compilerFlags":"-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 -DHYBRIDCLR_R03_D5_WINDOW_PROBE=1",
+            "compilerFlags":"-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 -DHYBRIDCLR_R03_D5_WINDOW_PROBE=1 -DHYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE=1",
             "requiredNativeFileHashes":[{"path":p,"sha256":v}
                                         for p,v in self.native_hashes.items()],
             "overlayInstalledSha256":gate.sha(self.overlay.read_bytes()),
@@ -116,7 +117,7 @@ class LinkMaterialSourceOnly(unittest.TestCase):
         r=self.verify()
         self.assertEqual(r["nativeSourcesMatched"],13)
         self.assertEqual(r["compiledInputRecordsMatched"],5)
-        self.assertEqual(r["exportSymbolsMatched"],4)
+        self.assertEqual(r["exportSymbolsMatched"],8)
         self.assertFalse(r["realPlayerC10Passed"])
         self.assertFalse(r["actualBeeCompilerCommandExecutionVerified"])
 
@@ -216,6 +217,18 @@ class LinkMaterialSourceOnly(unittest.TestCase):
 
     def test_24_reused_build_output_role_rejected(self):
         self.envelope["buildRole"]="OFF-Release"
+        self.rejected()
+
+    def test_26_missing_native_vm_evidence_flag_in_receipt(self):
+        self.build["compilerFlags"]=self.build["compilerFlags"].replace(
+            "-DHYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE=1", "-DHYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE=0")
+        self._save_receipt()
+        self.rejected()
+
+    def test_27_missing_native_vm_evidence_flag_in_actual_command(self):
+        path=self._path(next(iter(self.objects.values()))["command"])
+        path.write_text(path.read_text().replace(
+            "-DHYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE=1", "-DHYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE=0"))
         self.rejected()
 
     def test_25_host_allocator_in_link_command_rejected(self):

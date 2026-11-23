@@ -97,7 +97,7 @@ namespace AssemblyShadow.R03.D5.Editor
             // native candidate. The demo head is additionally bound by the
             // future independent Local handoff, not by this self-reported field.
             if (config.expectedNativeCommit !=
-                    "8eeb3cc53a451a6925b490d623c81753822cb1d4" ||
+                    "84f9435628b8ff4cc675409f6b4d76dd2753d8a8" ||
                 string.IsNullOrEmpty(config.expectedDemoCommit) ||
                 config.expectedDemoCommit.Length != 40)
                 throw new BuildFailedException("D5 source revision is not the reviewed candidate");
@@ -213,7 +213,8 @@ namespace AssemblyShadow.R03.D5.Editor
                 (config.featureEnabled ? "1" : "0") +
                 " -DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=2" +
                 " -DHYBRIDCLR_R03_RUNTIME_PROBE=1" +
-                " -DHYBRIDCLR_R03_D5_WINDOW_PROBE=" + (config.featureEnabled ? "1" : "0") + "\"";
+                " -DHYBRIDCLR_R03_D5_WINDOW_PROBE=" + (config.featureEnabled ? "1" : "0") +
+                " -DHYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE=" + (config.featureEnabled ? "1" : "0") + "\"";
             PlayerSettings.SetAdditionalIl2CppArgs(args);
             EditorUserBuildSettings.development = true;
             EditorUserBuildSettings.allowDebugging = false;

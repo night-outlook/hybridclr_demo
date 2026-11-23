@@ -14,16 +14,16 @@ import re
 import subprocess
 import sys
 
-NATIVE_COMMIT = "8eeb3cc53a451a6925b490d623c81753822cb1d4"
+NATIVE_COMMIT = "84f9435628b8ff4cc675409f6b4d76dd2753d8a8"
 NATIVE_FILES = {
-    "libil2cpp/vm/AssemblyShadow.cpp":"8db5fed1ee2e6bf6b95597707a2fa9cdf43807a1",
-    "libil2cpp/vm/AssemblyShadowD5WindowProbe.h":"bb958c44ae11f47160cd306cadc0c3edf56501f9",
+    "libil2cpp/vm/AssemblyShadow.cpp":"3fc229b967ade9f3836dd5e498c31e33d5fa3291",
+    "libil2cpp/vm/AssemblyShadowD5WindowProbe.h":"675fd65c00352c6cafae3f7ce337d331a67f89c2",
     "libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h":"ccd10ea0a1d273f5fe31f52d346d090b0a5af79c",
 }
 DEMO_FILES = {
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp":"2e16ba677f961066cb068bc8199480f642845d0c",
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs":"851b2fc602185219780dea636a6acac39ae3128a",
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs":"cb4a56cdb8b910fc06721941e92db6165543a38d",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp":"f1f786b01606862e9b2a7c1f4b02120e919d747e",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs":"d107bf2c80ad0cb008efe533d56b07bf0f7eb03d",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs":"b589c4232896e3f5e9915ad24198f1986d27b20d",
 }
 BRANCH = "codex/assembly-shadow-r01b-h1"
 MACRO = "HYBRIDCLR_R03_D5_WINDOW_PROBE"
@@ -109,7 +109,11 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
     require(method.startswith("bool AssemblyShadow::AssertMethodIsActive(") and
             "WindowProbe::Instance().MethodBegin()" in method and
             "active->shadowToBaseline.count(owners[0])" in method and
-            "d5ShadowMethod = true;" in method and
+            'std::strcmp(d5Owner->aname.name, "Methods")' in method and
+            'std::strcmp(method->klass->namespaze, "R03")' in method and
+            'std::strcmp(method->klass->name, "Node")' in method and
+            'std::strcmp(method->name, "Keep")' in method and
+            "active->shadowToBaseline.count(d5Owner)" in method and
             method.count("WindowProbe::Instance().MethodResult(")==2 and
             "return allowed;" in method and "return false;" in method,
             "Actual shadow MethodInfo admission witness incomplete")
@@ -124,45 +128,63 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "std::memory_order_release" in header and
             "methodResultRacedP6_.fetch_add" in header,
             "Native fixed-field bounded C++11 witness changed")
-    require(header.count("std::atomic<int32_t>")>=10 and
+    require("C10 counters are scoped" in header and
+            header.count("std::atomic<int32_t>")>=10 and
             "new " not in header and "delete " not in header and
             "std::mutex" not in header and "throw " not in header,
             "Native witness must not allocate, throw or acquire a mutex")
 
     exports=["R03_D5_WindowProtocolVersion","R03_D5_ArmP5Window",
-             "R03_D5_ReleaseP5Window","R03_D5_ReadP5Window"]
+             "R03_D5_ReleaseP5Window","R03_D5_ReadP5Window",
+             "R03_D5_ReceiptOpen","R03_D5_ReceiptEvent",
+             "R03_D5_BindKeepCanary","R03_D5_ReceiptSeal"]
     for sym in exports:
         require("IL2CPP_EXPORT int32_t "+sym in overlay,
-                "Test-only overlay is missing the native export: "+sym)
+                "Test-only overlay is missing native export: "+sym)
     require("static_assert(sizeof(WindowSnapshot) == sizeof(int32_t) * 11" in overlay and
             "std::memcpy(destination, &value, sizeof value);" in overlay and
-            "return 0;" in overlay and
-            "#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined("+MACRO+") && "+MACRO in overlay,
-            "Fixed-size overlay wire protocol or feature-OFF path absent")
-    require("operator new(" not in overlay and
-            "operator delete(" not in overlay,
-            "Host-only global allocator must not enter native player overlay")
+            "#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined("+MACRO+") && "+MACRO in overlay and
+            "operator new(" not in overlay and "operator delete(" not in overlay,
+            "Fixed wire protocol, feature-OFF or allocator purity changed")
+    require("O_EXCL | O_CLOEXEC | O_NOFOLLOW" in overlay and
+            "::pwrite(fd" in overlay and "::fsync(fd)" in overlay and
+            "kSlots = 10" in overlay and
+            "sizeof(Event) == 32" in overlay and
+            "sizeof(FirstErrorDisk) == 4120" in overlay and
+            "TryReadFirstFailureV2(snapshot)" in overlay and
+            "ReadCanary(after)" in overlay and
+            "Record(9, canaryBefore, after, valid, 0)" in overlay and
+            "GCHandle::New(object, true)" in overlay and
+            'Class::GetFieldFromName(object->klass, "stable")' in overlay and
+            "R03_D5_NATIVE_VM_EVIDENCE" in overlay,
+            "Native exclusive output/canary/first-error source contract changed")
 
     checks=[
        "R03_D5_ArmP5Window(req.maximumWaitMilliseconds)",
        "Thread thread = new Thread(worker.Run)",
        'Type.GetType("R03.Node, Methods", true)',
-       'method.Invoke(instance, null)',
-       "R03_D5_ReleaseP5Window()",
-       "R03_D5_ReadP5Window(obs.nativeWindowFields, 11)",
-       '"UnsafeEarlyMethodAdmissionObserved"',
-       '"CandidateObservedDeniedInP5_RequiresIndependentBinaryProof"',
-       "obs.result = \"NoCoverage\"",
-       "FileMode.CreateNew",
-       "actualLinkAndBinaryIdentityExternallyAuthenticated = false",
-       "R03Accepted = false",
+       "method.Invoke(instance, null)",
+       "R03_D5_ReceiptOpen(outputPath, req.runId,",
+       "GCHandle.ToIntPtr(handle)",
+       "nativeBindSucceeded = R03_D5_BindKeepCanary(",
+       "keepAttempted = R03_D5_ReceiptEvent(4, 1, 0, 0, 0) == 1;",
+       "R03_D5_ReceiptSeal(commit, stateCode, finish, keep)",
+       "Application.Quit(sealedResult == 1 && finish == 1 ? 0 : 2)",
     ]
     for needle in checks:
-        require(needle in managed,"Managed real-Player candidate lost binding: "+needle)
-    require("Application.unityVersion != \"2022.3.62f2\"" in managed and
-            "Application.platform != RuntimePlatform.OSXPlayer" in managed and
+        require(needle in managed,"Managed exact Keep/native receipt contract missing: "+needle)
+    require("JsonUtility.ToJson" not in managed and
+            "FileStream(" not in managed and
+            "FileMode.Create" not in managed and
+            "R03Accepted = true" not in managed and
+            "nativeBindSucceeded" in managed and
+            "finally { handle.Free(); }" in managed and
+            "keepAttempted = " in managed,
+            "Managed post-terminal source wrote JSON/I/O or lost target evidence")
+    require('Application.unityVersion != "2022.3.62f2"' in managed and
+            'Application.platform != RuntimePlatform.OSXPlayer' in managed and
             "AssemblyShadowRuntime.CommitTransaction()" in managed,
-            "Player fixture pinned Unity build/real commit call missing")
+            "Player fixture pinned real commit/Unity source missing")
 
     ordered(builder,[
         "PinnedSourceInstaller.Install();",
@@ -174,10 +196,11 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "Real Unity BuildPipeline entrypoint replaced")
     require("public static class R03D5Build" in builder and
             'Application.unityVersion != "2022.3.62f2"' in builder and
-            '"8eeb3cc53a451a6925b490d623c81753822cb1d4"' in builder and
+            '"84f9435628b8ff4cc675409f6b4d76dd2753d8a8"' in builder and
             "ScriptingImplementation.IL2CPP" in builder and
             "BuildOptions.Development | BuildOptions.DetailedBuildReport" in builder and
             "HYBRIDCLR_R03_D5_WINDOW_PROBE=" in builder and
+            "HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE=" in builder and
             "FileMode.CreateNew" in builder and
             "independentLinkedBinaryProof = false" in builder and
             "actualD5PlayerRun = false" in builder and
@@ -191,6 +214,7 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "actualNativeD5ProductionHeader":True,
             "actualMethodGuardSourceInstrumented":True,
             "nativeProbeExportsDeclared":len(exports),
+            "nativeEvidenceAndCanaryRealPlayerVerified":False,
             "realPlayerC10Completed":False,
             "compiledUnityNativeTranslationUnit":False,
             "realPlayerFaultProducerLinked":False,
