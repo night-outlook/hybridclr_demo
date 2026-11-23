@@ -283,8 +283,8 @@ class D5C10SourceContracts(unittest.TestCase):
 
     def test_53_real_worker_release_requires_acquire(self):
         self.mutated("native",N+"AssemblyShadowD5WindowProbe.h",
-            "release_.load(std::memory_order_acquire)",
-            "release_.load(std::memory_order_relaxed)")
+            "return release_.load(std::memory_order_acquire) != 0;",
+            "return release_.load(std::memory_order_relaxed) != 0;")
 
     def test_54_timeout_must_not_read_unpublished_canary_before(self):
         self.mutated("demo",D+"R03D5WindowOverlay.cpp",

@@ -139,7 +139,7 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "token.active = 0;" in header and
             "targetDecision_.store" in header and
             "HasWorkerCompletedP5Acquire() const noexcept" in header and
-            "release_.load(std::memory_order_acquire)" in header and
+            "return release_.load(std::memory_order_acquire) != 0;" in header and
             header.count("std::atomic<int32_t>")>=10 and
             "new " not in header and "delete " not in header and
             "std::mutex" not in header and "throw " not in header,
