@@ -151,7 +151,7 @@ class D5C10SourceContracts(unittest.TestCase):
 
     def test_26_builder_pinned_commit_changed(self):
         self.mutated("demo",D+"R03D5Build.cs",
-            '"84f9435628b8ff4cc675409f6b4d76dd2753d8a8"',
+            '"87a34bbea39930dab96cf4703756d8da79d54684"',
             '"0000000000000000000000000000000000000000"')
 
     def test_27_builder_missing_native_install(self):
