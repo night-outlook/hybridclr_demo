@@ -161,7 +161,7 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
 
     checks=[
        "R03_D5_ArmP5Window(req.maximumWaitMilliseconds)",
-       "Thread thread = new Thread(worker.Run)",
+       "thread = new Thread(worker.Run)",
        'Type.GetType("R03.Node, Methods", true)',
        "method.Invoke(instance, null)",
        "R03_D5_ReceiptOpen(outputPath, req.runId,",
