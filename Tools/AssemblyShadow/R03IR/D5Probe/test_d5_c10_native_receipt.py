@@ -14,10 +14,10 @@ spec.loader.exec_module(gate)
 def material(events=None, *, first=2, change=None, first_reason="Keep target guard refused"):
     rows = {
         1: (1, 0, 0, 0), 2: (2, 1, 0, 0),
-        3: (0, 32, 1, 0), 4: (1, 0, 0, 0),
-        5: (2, -1, 0, 0), 6: (19, 9, 1, 1),
-        7: (1, 0, 1, 0), 8: (1, 1, 0, 1),
-        9: (0, 0, 1, 0), 10: (1, 1, 0, 0),
+        3: (0, 32, 1, 0), 4: (1, 1, 0, 0),
+        5: (2, 1, 1, 0), 6: (-1, 9, 1, 1),
+        7: (1, 0, 1, 0), 8: (1, 0, 0, 0),
+        9: (0, 0, 1, 0), 10: (1, 1, 2, 1),
     }
     if change:
         rows.update(change)
@@ -57,7 +57,7 @@ class D5C10NativeReceipt(unittest.TestCase):
 
     def test_03_constructor_guard_no_keep_attempt(self):
         # Constructor may have a guard receipt but target Keep was never invoked.
-        d=gate.parse_material(material(events=[4],change={6:(19,9,1,0)}))
+        d=gate.parse_material(material(events=[4],change={6:(-1,9,1,0)}))
         self.assertEqual(d["result"], "NoCoverage")
 
     def test_04_missing_target_guard_receipt(self):
@@ -74,16 +74,16 @@ class D5C10NativeReceipt(unittest.TestCase):
         self.assertEqual(d["result"], "UnsafeEarlyMethodAdmissionObserved_SourceMaterial")
 
     def test_07_allowed_method_guard_without_body_effect_is_critical_material(self):
-        d=gate.parse_material(material(first=0,change={7:(1,1,0,0),6:(0,6,1,1),9:(0,0,1,0)}))
+        d=gate.parse_material(material(first=0,change={5:(1,1,1,0),7:(1,1,0,0),6:(-1,6,1,1),9:(0,0,1,0),10:(1,1,1,1)}))
         self.assertEqual(d["methodGuard"], "AllowedGuard")
         self.assertEqual(d["result"], "UnsafeEarlyMethodAdmissionObserved_SourceMaterial")
 
     def test_08_target_raced_p6_is_not_candidate(self):
-        self.assertEqual(gate.parse_material(material(change={7:(0,0,0,1)}))["result"],
+        self.assertEqual(gate.parse_material(material(change={5:(3,1,1,0),7:(0,0,0,1),10:(1,1,3,1)}))["result"],
                          "NoCoverage")
 
     def test_09_timeout_not_candidate(self):
-        self.assertEqual(gate.parse_material(material(change={8:(1,1,1,0)}))["result"],
+        self.assertEqual(gate.parse_material(material(change={8:(1,0,1,0)}))["result"],
                          "NoCoverage")
 
     def test_10_no_immutable_first_error_for_denial(self):
@@ -116,16 +116,51 @@ class D5C10NativeReceipt(unittest.TestCase):
             gate.parse_material(bytes(b))
 
     def test_17_worker_unfinished_not_denial_proof(self):
-        self.assertEqual(gate.parse_material(material(change={6:(19,9,0,1)}))["result"],
+        self.assertEqual(gate.parse_material(material(change={6:(-1,9,0,1)}))["result"],
                          "NoCoverage")
 
     def test_18_inconsistent_keep_attempt_not_denial_proof(self):
-        self.assertEqual(gate.parse_material(material(change={6:(19,9,1,0)}))["result"],
+        self.assertEqual(gate.parse_material(material(change={6:(-1,9,1,0)}))["result"],
                          "NoCoverage")
 
     def test_19_nonterminal_denial_not_enough(self):
-        self.assertEqual(gate.parse_material(material(change={6:(0,6,1,1)}))["result"],
+        self.assertEqual(gate.parse_material(material(change={6:(-1,6,1,1)}))["result"],
                          "NoCoverage")
+
+    def test_21_missing_native_guard_completion_slot5(self):
+        # This is the exact prior independent RR-03 false positive.
+        self.assertEqual(gate.parse_material(material(events=[5]))["result"],
+                         "NoCoverage")
+
+    def test_22_wrong_worker_attempt_token_cannot_claim_denial(self):
+        self.assertEqual(gate.parse_material(material(change={4:(1,2,0,0)}))["result"],
+                         "NoCoverage")
+
+    def test_23_guard_event_must_match_native_counter(self):
+        self.assertEqual(gate.parse_material(material(change={5:(2,1,1,0),7:(1,1,0,0)}))["result"],
+                         "NoCoverage")
+
+    def test_24_seal_must_be_native_autocollector(self):
+        self.assertEqual(gate.parse_material(material(change={10:(1,1,2,0)}))["result"],
+                         "NoCoverage")
+
+    def test_25_completed_target_result_cannot_be_inferred_from_arm(self):
+        self.assertEqual(gate.parse_material(material(change={5:(0,1,1,0)}))["result"],
+                         "NoCoverage")
+
+    def test_26_canary_mutation_is_unsafe_even_if_denied_guard(self):
+        x=gate.parse_material(material(change={9:(0,17,1,0)}))
+        self.assertEqual(x["result"],"UnsafeEarlyMethodAdmissionObserved_SourceMaterial")
+
+    def test_27_missing_native_P5_event_does_not_promote(self):
+        self.assertEqual(gate.parse_material(material(events=[2]))["result"],"NoCoverage")
+
+    def test_28_native_auto_writer_without_finished_managed_worker(self):
+        # No managed Join is required: native guard + pinned field + frozen B1
+        # first-error source prove only a *candidate material*, never a Player.
+        x=gate.parse_material(material())
+        self.assertEqual(x["result"],"CandidateObservedDeniedInP5_RequiresIndependentBinaryProof")
+        self.assertFalse(x["actualLinkedBinaryAndPidAuthenticated"])
 
     def test_20_no_false_acceptance(self):
         x=gate.parse_material(material())

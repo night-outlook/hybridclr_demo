@@ -42,7 +42,7 @@ namespace AssemblyShadow.R03.D5
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern int R03_D5_BindKeepCanary(IntPtr liveGcHandle);
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int R03_D5_ReceiptSeal(int commit, int state, int workerFinished, int keepAttempted);
+        private static extern int R03_D5_BeginKeepAttempt();
 
         private sealed class P5Worker
         {
@@ -66,7 +66,8 @@ namespace AssemblyShadow.R03.D5
                             snapshot[1] == 2)
                         {
                             observed = true;
-                            R03_D5_ReceiptEvent(2, snapshot[1], snapshot[3], snapshot[4], 0);
+                            // NativeCollector owns disk/phase recording, no
+                            // fsync on this time-critical managed worker.
                             break;
                         }
                         Thread.Sleep(1);
@@ -85,37 +86,34 @@ namespace AssemblyShadow.R03.D5
                     GCHandle handle = GCHandle.Alloc(instance, GCHandleType.Normal);
                     try
                     {
-                        // Native binds its own pinned strong root and reads
-                        // the real private R03.Node.stable int field.
+                        // Exact object + native MethodInfo identity is bound
+                        // before the invocation. Release the *managed* handle
+                        // here while the process is healthy: a separate pinned
+                        // native GC root retains the actual instance to exit.
                         nativeBindSucceeded = R03_D5_BindKeepCanary(
                             GCHandle.ToIntPtr(handle)) == 1;
-                        if (!nativeBindSucceeded ||
-                            R03_D5_ReadP5Window(snapshot, snapshot.Length) != 1 ||
-                            snapshot[1] != 2)
-                            return;
-                        // Mark the EXACT intended method call before Invoke.
-                        keepAttempted = R03_D5_ReceiptEvent(4, 1, 0, 0, 0) == 1;
-                        if (!keepAttempted) return;
-                        try
-                        {
-                            object output = method.Invoke(instance, null);
-                            keepReturned = output is int && (int)output == 42;
-                        }
-                        catch (Exception)
-                        {
-                            // Do not inspect/walk a managed exception after a
-                            // terminal method guard. B1 native first error is
-                            // authoritative; missing receipt stays NoCoverage.
-                        }
-                        finally
-                        {
-                            // A failed P/Invoke here is not proof of denial;
-                            // native method guard and canary remain authoritative.
-                            R03_D5_ReceiptEvent(5, keepReturned ? 1 : 2,
-                                keepReturned ? 42 : -1, 0, 0);
-                        }
                     }
                     finally { handle.Free(); }
+                    if (!nativeBindSucceeded ||
+                        R03_D5_ReadP5Window(snapshot, snapshot.Length) != 1 ||
+                        snapshot[1] != 2)
+                        return;
+
+                    // Set the one-shot TLS method/worker token immediately
+                    // before Invoke. All disk I/O, completion and first-error
+                    // capture are owned by prestarted native collector.
+                    keepAttempted = R03_D5_BeginKeepAttempt() == 1;
+                    if (!keepAttempted) return;
+                    try
+                    {
+                        object output = method.Invoke(instance, null);
+                        keepReturned = output is int && (int)output == 42;
+                    }
+                    catch (Exception)
+                    {
+                        // No managed exception inspect/format or postterminal
+                        // calls; native guard and first-error evidence win.
+                    }
                 }
                 catch (Exception)
                 {
@@ -140,10 +138,8 @@ namespace AssemblyShadow.R03.D5
             string requestPath = Arg("-r03D5Request");
             if (string.IsNullOrEmpty(requestPath)) return;
             string outputPath = Arg("-r03D5Output");
-            int commit = -1, stateCode = -1, finish = 0, keep = 0;
             bool receiptOpened = false;
-            Thread thread = null;
-            P5Worker worker = null;
+            bool committedOrTerminal = false;
             try
             {
                 if (string.IsNullOrEmpty(outputPath) ||
@@ -184,45 +180,29 @@ namespace AssemblyShadow.R03.D5
                 if (R03_D5_ReceiptEvent(1, 1, 0, 0, 0) != 1 ||
                     R03_D5_ArmP5Window(req.maximumWaitMilliseconds) != 1)
                     throw new InvalidOperationException("Native C10 arming failed");
-                worker = new P5Worker();
-                thread = new Thread(worker.Run) { IsBackground = true };
+                P5Worker worker = new P5Worker();
+                Thread thread = new Thread(worker.Run) { IsBackground = true };
                 thread.Start();
-                commit = (int)AssemblyShadowRuntime.CommitTransaction();
+                // NativeCollector will finalize and exit this disposable
+                // Player even if the managed caller is terminal-poisoned.
+                // Never wait/join/get state/write receipts from managed after
+                // the real P5 method entry.
+                committedOrTerminal = true;
+                AssemblyShadowRuntime.CommitTransaction();
             }
             catch (Exception)
             {
-                // All post-commit factual error provenance belongs to the
-                // native first-error source, not managed exception messages.
+                // No managed reporting after Commit, no assumed completed
+                // outcome. The native collector has a finite native deadline.
+                if (!receiptOpened)
+                    Application.Quit(2); // only before the native sink exists
             }
-            finally
-            {
-                try
-                {
-                    if (thread != null && thread.Join(5000))
-                    {
-                        finish = 1;
-                        keep = worker != null && worker.keepAttempted ? 1 : 0;
-                    }
-                }
-                catch (Exception) { finish = 0; }
-                try
-                {
-                    AssemblyShadowState state;
-                    if (AssemblyShadowRuntime.GetState(out state) == AssemblyShadowErrorCode.Success)
-                        stateCode = (int)state;
-                }
-                catch (Exception) { stateCode = -1; }
-                int sealedResult = -1;
-                try
-                {
-                    if (receiptOpened)
-                        sealedResult = R03_D5_ReceiptSeal(commit, stateCode, finish, keep);
-                }
-                catch (Exception) { sealedResult = -1; }
-                // A complete native file is only a *candidate*. Real binary/PID
-                // admission and independent C10 classification remain required.
-                Application.Quit(sealedResult == 1 && finish == 1 ? 0 : 2);
-            }
+            // No finally/Join/GetState/ReceiptSeal or Application.Quit here.
+            // NativeCollector publishes a bounded native-only receipt and
+            // _exit()s this isolated C10 Player. Post-Commit managed code
+            // is not a correctness dependency.
+            if (!committedOrTerminal && !receiptOpened)
+                Application.Quit(2);
         }
 
         private static string Arg(string key)

@@ -117,7 +117,7 @@ class LinkMaterialSourceOnly(unittest.TestCase):
         r=self.verify()
         self.assertEqual(r["nativeSourcesMatched"],13)
         self.assertEqual(r["compiledInputRecordsMatched"],5)
-        self.assertEqual(r["exportSymbolsMatched"],8)
+        self.assertEqual(r["exportSymbolsMatched"],9)
         self.assertFalse(r["realPlayerC10Passed"])
         self.assertFalse(r["actualBeeCompilerCommandExecutionVerified"])
 

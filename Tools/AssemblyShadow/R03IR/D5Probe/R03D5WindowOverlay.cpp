@@ -8,6 +8,8 @@
 #include <cstring>
 #include <fcntl.h>
 #include <unistd.h>
+#include <pthread.h>
+#include <chrono>
 
 #if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined(HYBRIDCLR_R03_D5_WINDOW_PROBE) && HYBRIDCLR_R03_D5_WINDOW_PROBE
 #include "vm/AssemblyShadowD5WindowProbe.h"
@@ -61,9 +63,17 @@ static std::atomic<int32_t> stage{0}; // 0 unused, 1 opening, 2 open, 3 sealed, 
 static std::atomic<uint32_t> slots{0};
 static int fd = -1;
 static int32_t canaryBefore = -1;
+#if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
+// Explicitly SYNTHETIC source-host inputs, never a real IL2CPP VM source.
+static std::atomic<int32_t> hostState{5}, hostAfter{0}, hostBound{0};
+static std::atomic<int32_t> hostFrozen{0}, hostCompleted{0};
+#endif
 #if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined(HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE) && HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE
 static int32_t canaryOffset = -1;
-static uint32_t pinnedObject = 0;
+static uint32_t pinnedObject = 0; // never freed before isolated test process exit
+static Il2CppObject* pinnedInstance = nullptr;
+static const MethodInfo* boundKeepMethod = nullptr;
+static std::atomic<int32_t> canaryReady{0};
 #endif
 
 static bool AsciiId(const char* raw) noexcept
@@ -120,13 +130,174 @@ static int32_t Record(int32_t slot, int32_t a, int32_t b, int32_t c, int32_t d) 
 #if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined(HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE) && HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE
 static bool ReadCanary(int32_t& value) noexcept
 {
-    if (!pinnedObject || canaryOffset < static_cast<int32_t>(sizeof(Il2CppObject))) return false;
-    Il2CppObject* object = il2cpp::gc::GCHandle::GetTarget(pinnedObject);
-    if (!object || !object->klass ||
+    if (canaryReady.load(std::memory_order_acquire) != 1)
+        return false;
+    // The prior pinned native GC root and release/acquire boundReady ordering
+    // make this a fixed primitive memory read: no GetTarget/GC/VM callback after
+    // a possible terminal guard or during the detached writer's finalization.
+    const Il2CppObject* object = pinnedInstance;
+    if (!pinnedObject || !object ||
+        canaryOffset < static_cast<int32_t>(sizeof(Il2CppObject)) ||
         static_cast<uint64_t>(canaryOffset) + sizeof(int32_t) > object->klass->instance_size)
         return false;
     std::memcpy(&value, reinterpret_cast<const uint8_t*>(object) + canaryOffset, sizeof value);
     return true;
+}
+#endif
+
+// D5-C10-only native-owned terminal receipt. The collector thread is started
+// exactly once, before Configure/Stage/Commit, when managed runtime is healthy.
+// It does not acquire transaction, metadata or usage locks, allocate managed
+// objects, invoke callbacks, or wait inside a method guard. After a finite
+// deadline it writes a complete source-material record (NoCoverage on missing
+// phase/attempt/guard), then terminates this isolated test Player natively.
+// The full VM/GC branch remains uncompiled in source-host CI.
+#if (HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined(HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE) && HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE) || (defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO)
+static int32_t FinishNativeReceipt(int32_t stateCode, int32_t decision) noexcept
+{
+    using il2cpp::vm::assembly_shadow_d5::WindowProbe;
+    const auto window = WindowProbe::Instance().Read();
+    if (Record(6, -1, stateCode, 1, WindowProbe::Instance().TargetArmCount()) != 1 ||
+        Record(7, window.shadowMethodAttemptsInP5,
+               window.shadowMethodAllowedInP5,
+               window.shadowMethodDeniedInP5, window.methodResultRacedP6) != 1 ||
+        Record(8, window.p5Count, window.p6Count,
+               window.timedOut, window.releaseCount) != 1)
+        return -2;
+    int32_t after = -1;
+    int32_t valid = 0;
+#if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
+    valid = hostBound.load(std::memory_order_acquire) == 1 ? 1 : 0;
+    after = valid ? hostAfter.load(std::memory_order_acquire) : -1;
+#else
+    valid = ReadCanary(after) ? 1 : 0;
+#endif
+    if (Record(9, canaryBefore, after, valid, 0) != 1)
+        return -3;
+    FirstErrorDisk error{};
+    error.magic = kMagic;
+#if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
+    // Explicit mock first-error bytes to test native writer serialization
+    // with ZERO claim to VM origin, terminal behavior or real Player.
+    if (hostFrozen.load(std::memory_order_acquire) == 1)
+    {
+        static const char text[] = "synthetic Keep terminal source host";
+        error.status = 2; error.code = 21; error.origin = 1;
+        error.reasonLength = static_cast<int32_t>(sizeof text - 1);
+        std::memcpy(error.reason, text, sizeof text);
+    }
+#else
+    using il2cpp::vm::assembly_shadow_first_failure_v2::State;
+    using il2cpp::vm::assembly_shadow_first_failure_v2::Snapshot;
+    const State nativeError = il2cpp::vm::AssemblyShadow::FirstFailureV2Status();
+    error.status = static_cast<int32_t>(nativeError);
+    if (nativeError == State::Frozen)
+    {
+        Snapshot snapshot{};
+        if (!il2cpp::vm::AssemblyShadow::TryReadFirstFailureV2(snapshot) ||
+            snapshot.length > 4096)
+            return -4;
+        error.code = snapshot.code;
+        error.origin = static_cast<int32_t>(snapshot.origin);
+        error.reasonLength = static_cast<int32_t>(snapshot.length);
+        std::memcpy(error.reason, snapshot.reason, snapshot.length + 1);
+    }
+#endif
+    if (!PWriteAll(kFirstErrorOffset, &error, sizeof error) ||
+        Record(10, 1, valid, decision, 1) != 1 ||
+        ::fsync(fd) != 0)
+        return -5;
+    stage.store(3, std::memory_order_release);
+    const int savedFd = fd;
+    return ::close(savedFd) == 0 ? 1 : -6;
+}
+
+static void* NativeCollector(void*) noexcept
+{
+    using il2cpp::vm::assembly_shadow_d5::WindowProbe;
+    using il2cpp::vm::assembly_shadow_d5::WindowPhase;
+    WindowProbe& probe = WindowProbe::Instance();
+    bool sawP5 = false, sawCanary = false, sawAttempt = false, sawGuard = false;
+    const auto start = std::chrono::steady_clock::now();
+    for (;;)
+    {
+        const auto now = std::chrono::steady_clock::now();
+        const auto elapsedMs = std::chrono::duration_cast<
+            std::chrono::milliseconds>(now - start).count();
+        const auto witness = probe.Read();
+        if (!sawP5 && witness.p5Count == 1)
+        {
+            sawP5 = Record(2, 2, witness.p5Count, 0, 0) == 1;
+        }
+#if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
+        if (!sawCanary && hostBound.load(std::memory_order_acquire) == 1)
+        {
+            canaryBefore = 0; // synthetic only
+            sawCanary = Record(3, canaryBefore, 32, 1, 0) == 1;
+        }
+#else
+        if (!sawCanary && canaryReady.load(std::memory_order_acquire) == 1)
+        {
+            sawCanary = Record(3, canaryBefore, canaryOffset, 1, 0) == 1;
+        }
+#endif
+        if (!sawAttempt && probe.TargetArmCount() == 1)
+        {
+            sawAttempt = Record(4, 1, 1, 0, 0) == 1;
+        }
+        const int32_t decision = probe.TargetDecision();
+        if (!sawGuard && decision != 0)
+        {
+            // Slot 5 is the *native same-thread method-guard completion*,
+            // not a managed Invoke return (which may be terminal-denied).
+            sawGuard = Record(5, decision, 1, 1, 0) == 1;
+        }
+#if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
+        const int32_t stateCode = hostState.load(std::memory_order_acquire);
+#else
+        il2cpp::vm::AssemblyShadowState state{};
+        const int32_t stateCode =
+            il2cpp::vm::AssemblyShadow::GetState(state) ==
+                il2cpp::vm::AssemblyShadowError::Success
+                ? static_cast<int32_t>(state) : -1;
+#endif
+        const bool terminal = stateCode == 8 || stateCode == 9;
+        const bool released = witness.releaseCount != 0 ||
+            witness.p6Count != 0 ||
+            witness.phase >= static_cast<int32_t>(WindowPhase::AtP6);
+        const bool terminalDenied = decision == 2 && terminal;
+        const bool allowedCompleted = decision == 1 && released;
+        const bool racedCompleted = decision == 3 && released;
+        if (terminalDenied || allowedCompleted || racedCompleted ||
+            elapsedMs >=
+#if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
+                500
+#else
+                8000
+#endif
+            )
+        {
+            // All disk work is from THIS prestarted independent native thread,
+            // outside the publication and method-entry critical locks.
+            const int32_t sealed = FinishNativeReceipt(stateCode, decision);
+            // Never report an authenticated Player pass from a source-only
+            // fixture. The actual binary/PID must be externally checked.
+            // 42 denotes an admitted P5 guard; 0 is only a native receipt
+            // candidate, and 2 means incomplete/failing source material.
+            const int32_t status = sealed == 1 &&
+                decision == 1 ? 42 :
+                sealed == 1 && terminalDenied && sawP5 && sawCanary &&
+                sawAttempt && sawGuard ? 0 : 2;
+#if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
+            (void)status;
+            hostCompleted.store(1, std::memory_order_release);
+            return nullptr; // host test binary continues to verify exact file
+#else
+            ::_exit(status); // isolated C10-only disposable Player
+#endif
+        }
+        ::usleep(1000); // outside all VM critical locks, finite 8s deadline
+    }
 }
 #endif
 } // namespace r03_d5_evidence
@@ -198,6 +369,18 @@ extern "C" IL2CPP_EXPORT int32_t R03_D5_ReceiptOpen(
     if (!PWriteAll(0, &header, sizeof header) || ::fsync(fd) != 0)
     { ::close(fd); fd = -1; stage.store(-1, std::memory_order_release); return -4; }
     stage.store(2, std::memory_order_release);
+#if (HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined(HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE) && HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE) || (defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO)
+    pthread_t nativeCollector{}
+    const int threadResult = ::pthread_create(
+        &nativeCollector, nullptr, &r03_d5_evidence::NativeCollector, nullptr);
+    if (threadResult != 0)
+    {
+        stage.store(-1, std::memory_order_release);
+        ::close(fd);
+        return -5; // precommit failure, no fallback to managed postterminal I/O
+    }
+    ::pthread_detach(nativeCollector);
+#endif
     return 1;
 #else
     (void)path; (void)runId; (void)requestSha256; (void)fixtureSha256;
@@ -244,14 +427,62 @@ extern "C" IL2CPP_EXPORT int32_t R03_D5_BindKeepCanary(void* handle)
         return -3;
     const uint32_t rooted = il2cpp::gc::GCHandle::New(object, true);
     if (!rooted) return -4;
-    pinnedObject = rooted; canaryOffset = stable->offset;
+    const MethodInfo* keep = il2cpp::vm::Class::GetMethodFromName(
+        object->klass, "Keep", 0);
+    if (!keep || keep->klass != object->klass) return -5;
+    pinnedObject = rooted;
+    pinnedInstance = object;
+    boundKeepMethod = keep;
+    canaryOffset = stable->offset;
     int32_t value = -1;
-    if (!ReadCanary(value) || value != 0) return -5;
+    std::memcpy(&value, reinterpret_cast<const uint8_t*>(object) +
+        canaryOffset, sizeof value);
+    if (value != 0) return -6;
     canaryBefore = value;
-    return Record(3, value, canaryOffset, 1, 0);
+    canaryReady.store(1, std::memory_order_release);
+    return 1; // disk event 3 belongs to the prestarted native collector
 #else
     (void)handle;
     return 0; // host and feature-OFF cannot claim a real native VM canary
+#endif
+}
+
+
+// Source-host-only C ABI for deterministic native autoseal tests. These are
+// deliberately never compiled into a Unity Player and cannot claim VM data.
+#if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
+extern "C" IL2CPP_EXPORT int32_t R03_D5_SourceHostAutoConfigure(
+    int32_t state, int32_t after, int32_t bound, int32_t frozen)
+{
+    using namespace r03_d5_evidence;
+    hostAfter.store(after, std::memory_order_release);
+    hostBound.store(bound, std::memory_order_release);
+    hostFrozen.store(frozen, std::memory_order_release);
+    hostState.store(state, std::memory_order_release);
+    return 1;
+}
+extern "C" IL2CPP_EXPORT int32_t R03_D5_SourceHostAutoDone()
+{
+    return r03_d5_evidence::hostCompleted.load(std::memory_order_acquire);
+}
+#endif
+
+// Called once on the C10 worker thread immediately before MethodInfo.Invoke.
+// The bound native method pointer and TLS live in the exact header shared
+// with AssemblyShadow::AssertMethodIsActive. No syscall, managed callback,
+// allocation or VM lock is performed here.
+extern "C" IL2CPP_EXPORT int32_t R03_D5_BeginKeepAttempt()
+{
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined(HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE) && HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE
+    using namespace r03_d5_evidence;
+    if (stage.load(std::memory_order_acquire) != 2 ||
+        canaryReady.load(std::memory_order_acquire) != 1 ||
+        !boundKeepMethod)
+        return -1;
+    return il2cpp::vm::assembly_shadow_d5::WindowProbe::Instance().
+        ArmTargetForCurrentThread(boundKeepMethod) ? 1 : -2;
+#else
+    return 0;
 #endif
 }
 
@@ -262,7 +493,14 @@ extern "C" IL2CPP_EXPORT int32_t R03_D5_ReceiptSeal(
 {
 #if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined(HYBRIDCLR_R03_D5_WINDOW_PROBE) && HYBRIDCLR_R03_D5_WINDOW_PROBE
     using namespace r03_d5_evidence;
+#if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined(HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE) && HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE
+    // A real Player never seals from managed code after potential poison.
+    // NativeCollector is the only owner of the evidence finish/exit.
+    (void)commitCode; (void)stateCode; (void)workerFinished; (void)keepAttempted;
+    return -7;
+#else
     if (stage.load(std::memory_order_acquire) != 2 || workerFinished != 1) return -1;
+#endif
     using il2cpp::vm::assembly_shadow_d5::WindowProbe;
     const auto native = WindowProbe::Instance().Read();
     if (Record(6, commitCode, stateCode, workerFinished, keepAttempted) != 1 ||

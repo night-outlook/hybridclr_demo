@@ -14,16 +14,16 @@ import re
 import subprocess
 import sys
 
-NATIVE_COMMIT = "84f9435628b8ff4cc675409f6b4d76dd2753d8a8"
+NATIVE_COMMIT = "87a34bbea39930dab96cf4703756d8da79d54684"
 NATIVE_FILES = {
-    "libil2cpp/vm/AssemblyShadow.cpp":"3fc229b967ade9f3836dd5e498c31e33d5fa3291",
-    "libil2cpp/vm/AssemblyShadowD5WindowProbe.h":"675fd65c00352c6cafae3f7ce337d331a67f89c2",
+    "libil2cpp/vm/AssemblyShadow.cpp":"a5e7e654a2b1ede83ae18b8f15fcb4ee51f96490",
+    "libil2cpp/vm/AssemblyShadowD5WindowProbe.h":"d89d457ba73685b9505185f1d788f0bbf6a6d216",
     "libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h":"ccd10ea0a1d273f5fe31f52d346d090b0a5af79c",
 }
 DEMO_FILES = {
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp":"e0bd7199f64336676198f4940adf9a5a923c9de9",
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs":"d107bf2c80ad0cb008efe533d56b07bf0f7eb03d",
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs":"b589c4232896e3f5e9915ad24198f1986d27b20d",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp":"c7fbc81c25e42e93c8dd318a5dd2d05455d33993",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs":"b54d4df59e498a5eb5fb6ac59d3a17ac47505110",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs":"31ca04858aa00c5d1db1678d784a804ed076e159",
 }
 BRANCH = "codex/assembly-shadow-r01b-h1"
 MACRO = "HYBRIDCLR_R03_D5_WINDOW_PROBE"
@@ -114,6 +114,7 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             'std::strcmp(method->klass->name, "Node")' in method and
             'std::strcmp(method->name, "Keep")' in method and
             "active->shadowToBaseline.count(d5Owner)" in method and
+            "MatchesTargetOnCurrentThread(method)" in method and
             method.count("WindowProbe::Instance().MethodResult(")==2 and
             "return allowed;" in method and "return false;" in method,
             "Actual shadow MethodInfo admission witness incomplete")
@@ -129,6 +130,11 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "methodResultRacedP6_.fetch_add" in header,
             "Native fixed-field bounded C++11 witness changed")
     require("C10 counters are scoped" in header and
+            "ArmTargetForCurrentThread" in header and
+            "MatchesTargetOnCurrentThread" in header and
+            "ThreadAttempt& CurrentThreadAttempt()" in header and
+            "token.active = 0;" in header and
+            "targetDecision_.store" in header and
             header.count("std::atomic<int32_t>")>=10 and
             "new " not in header and "delete " not in header and
             "std::mutex" not in header and "throw " not in header,
@@ -137,7 +143,8 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
     exports=["R03_D5_WindowProtocolVersion","R03_D5_ArmP5Window",
              "R03_D5_ReleaseP5Window","R03_D5_ReadP5Window",
              "R03_D5_ReceiptOpen","R03_D5_ReceiptEvent",
-             "R03_D5_BindKeepCanary","R03_D5_ReceiptSeal"]
+             "R03_D5_BindKeepCanary","R03_D5_ReceiptSeal",
+             "R03_D5_BeginKeepAttempt"]
     for sym in exports:
         require("IL2CPP_EXPORT int32_t "+sym in overlay,
                 "Test-only overlay is missing native export: "+sym)
@@ -156,20 +163,39 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "Record(9, canaryBefore, after, valid, 0)" in overlay and
             "GCHandle::New(object, true)" in overlay and
             'Class::GetFieldFromName(object->klass, "stable")' in overlay and
-            "R03_D5_NATIVE_VM_EVIDENCE" in overlay,
+            "R03_D5_NATIVE_VM_EVIDENCE" in overlay and
+            "NativeCollector(void*)" in overlay and
+            "::pthread_create(" in overlay and
+            "::pthread_detach(" in overlay and
+            "::usleep(1000)" in overlay and
+            "::_exit(status)" in overlay and
+            "FinishNativeReceipt(stateCode, decision)" in overlay and
+            "Record(5, decision, 1, 1, 0)" in overlay and
+            "R03_D5_SOURCE_HOST_AUTO" in overlay and
+            "R03_D5_SourceHostAutoConfigure" in overlay and
+            "Class::GetMethodFromName(" in overlay and
+            "ArmTargetForCurrentThread(boundKeepMethod)" in overlay,
             "Native exclusive output/canary/first-error source contract changed")
+
+    auto_start=overlay.find("static int32_t FinishNativeReceipt(")
+    auto_end=overlay.find("static void* NativeCollector(",auto_start)
+    require(auto_start>=0 and auto_end>auto_start and
+            "TryReadFirstFailureV2(snapshot)" in overlay[auto_start:auto_end] and
+            "Record(9, canaryBefore, after, valid, 0)" in overlay[auto_start:auto_end],
+            "Native autonomous seal must preserve actual first-error/canary")
 
     checks=[
        "R03_D5_ArmP5Window(req.maximumWaitMilliseconds)",
-       "thread = new Thread(worker.Run)",
+       "Thread thread = new Thread(worker.Run)",
        'Type.GetType("R03.Node, Methods", true)',
        "method.Invoke(instance, null)",
        "R03_D5_ReceiptOpen(outputPath, req.runId,",
        "GCHandle.ToIntPtr(handle)",
        "nativeBindSucceeded = R03_D5_BindKeepCanary(",
-       "keepAttempted = R03_D5_ReceiptEvent(4, 1, 0, 0, 0) == 1;",
-       "R03_D5_ReceiptSeal(commit, stateCode, finish, keep)",
-       "Application.Quit(sealedResult == 1 && finish == 1 ? 0 : 2)",
+       "keepAttempted = R03_D5_BeginKeepAttempt() == 1;",
+       "AssemblyShadowRuntime.CommitTransaction();",
+       "NativeCollector publishes a bounded native-only receipt",
+       "finally { handle.Free(); }",
     ]
     for needle in checks:
         require(needle in managed,"Managed exact Keep/native receipt contract missing: "+needle)
@@ -179,7 +205,11 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "R03Accepted = true" not in managed and
             "nativeBindSucceeded" in managed and
             "finally { handle.Free(); }" in managed and
-            "keepAttempted = " in managed,
+            "keepAttempted = " in managed and
+            "R03_D5_ReceiptSeal(" not in managed and
+            "Thread.Join(" not in managed and
+            "GetState(out state)" not in managed and
+            'R03_D5_ReceiptEvent(5' not in managed,
             "Managed post-terminal source wrote JSON/I/O or lost target evidence")
     require('Application.unityVersion != "2022.3.62f2"' in managed and
             'Application.platform != RuntimePlatform.OSXPlayer' in managed and
@@ -196,7 +226,7 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "Real Unity BuildPipeline entrypoint replaced")
     require("public static class R03D5Build" in builder and
             'Application.unityVersion != "2022.3.62f2"' in builder and
-            '"84f9435628b8ff4cc675409f6b4d76dd2753d8a8"' in builder and
+            '"87a34bbea39930dab96cf4703756d8da79d54684"' in builder and
             "ScriptingImplementation.IL2CPP" in builder and
             "BuildOptions.Development | BuildOptions.DetailedBuildReport" in builder and
             "HYBRIDCLR_R03_D5_WINDOW_PROBE=" in builder and
@@ -214,6 +244,8 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "actualNativeD5ProductionHeader":True,
             "actualMethodGuardSourceInstrumented":True,
             "nativeProbeExportsDeclared":len(exports),
+            "nativeAutoCollectorSourcePresent":True,
+            "nativeWorkerTargetIdentityBoundSourceOnly":True,
             "nativeEvidenceAndCanaryRealPlayerVerified":False,
             "realPlayerC10Completed":False,
             "compiledUnityNativeTranslationUnit":False,

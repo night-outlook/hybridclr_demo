@@ -15,9 +15,9 @@ import re
 import sys
 
 PINSET = Path(__file__).resolve().with_name("d5c10_link_source_pinset_v1.json")
-PINSET_BLOB = "d1321daa11d6a3a56fa38645eb00b4262ae1c70b"
+PINSET_BLOB = "80ebb9f2e9fbf9bb76c61d28ad373d3c8a0e1a11"
 BRANCH = "codex/assembly-shadow-r01b-h1"
-NATIVE = "84f9435628b8ff4cc675409f6b4d76dd2753d8a8"
+NATIVE = "87a34bbea39930dab96cf4703756d8da79d54684"
 HEX40 = re.compile(r"^[0-9a-f]{40}$")
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 ROLES = ("hybridclr_demo", "hybridclr", "hybridclr_unity", "il2cpp_plus")
@@ -31,7 +31,8 @@ EXPECTED_TUS = (
 EXPORTS = ("R03_D5_WindowProtocolVersion","R03_D5_ArmP5Window",
            "R03_D5_ReleaseP5Window","R03_D5_ReadP5Window",
            "R03_D5_ReceiptOpen","R03_D5_ReceiptEvent",
-           "R03_D5_BindKeepCanary","R03_D5_ReceiptSeal")
+           "R03_D5_BindKeepCanary","R03_D5_ReceiptSeal",
+           "R03_D5_BeginKeepAttempt")
 ALLOWED_STATES = ("SyntheticSourceHost",)  # NO real-Player claims under D5-B prep
 
 

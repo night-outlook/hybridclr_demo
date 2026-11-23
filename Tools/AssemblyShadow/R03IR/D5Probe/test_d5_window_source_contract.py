@@ -113,10 +113,10 @@ class D5C10SourceContracts(unittest.TestCase):
         self.mutated("demo",D+"R03D5P5WindowPlayer.cs",
             "method.Invoke(instance, null)","42")
 
-    def test_19_managed_no_native_seal_missing(self):
+    def test_19_managed_no_native_tls_begin_missing(self):
         self.mutated("demo",D+"R03D5P5WindowPlayer.cs",
-            "R03_D5_ReceiptSeal(commit, stateCode, finish, keep)",
-            "FakeReceiptSeal(commit, stateCode, finish, keep)")
+            "keepAttempted = R03_D5_BeginKeepAttempt() == 1;",
+            "keepAttempted = FakeBeginKeepAttempt() == 1;")
 
     def test_20_managed_r03_acceptance_forged(self):
         self.mutated("demo",D+"R03D5P5WindowPlayer.cs",
@@ -213,8 +213,48 @@ class D5C10SourceContracts(unittest.TestCase):
 
     def test_39_canary_after_snapshot_is_mandatory(self):
         self.mutated("demo",D+"R03D5WindowOverlay.cpp",
-            "Record(9, canaryBefore, after, valid, 0)",
-            "Record(9, -1, -1, 0, 0)")
+            "static int32_t FinishNativeReceipt(",
+            "static int32_t FinishNativeReceiptRemoved(")
+
+    def test_40_native_tls_pointer_join_cannot_be_removed(self):
+        self.mutated("native",N+"AssemblyShadow.cpp",
+            "MatchesTargetOnCurrentThread(method)",
+            "AnyThreadKeep(method)")
+
+    def test_41_one_shot_worker_token_must_be_preserved(self):
+        self.mutated("native",N+"AssemblyShadowD5WindowProbe.h",
+            "token.active = 0;",
+            "token.active = 1;")
+
+    def test_42_native_autoseal_thread_start_required(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "::pthread_create(",
+            "::DoNotStartNativeCollector(")
+
+    def test_43_native_autoseal_outside_managed_control(self):
+        self.mutated("demo",D+"R03D5P5WindowPlayer.cs",
+            "NativeCollector publishes a bounded native-only receipt",
+            "ManagedFinalizerWillPublish")
+
+    def test_44_native_completion_slot5_required(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "Record(5, decision, 1, 1, 0)",
+            "Record(5, 0, 0, 0, 0)")
+
+    def test_45_host_autocollector_path_present(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "R03_D5_SourceHostAutoConfigure",
+            "R03_D5_HostStubDeleted")
+
+    def test_46_native_guard_TLStoken_starts_at_worker(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "ArmTargetForCurrentThread(boundKeepMethod)",
+            "ArmTargetForAllThreads(boundKeepMethod)")
+
+    def test_47_test_enabled_native_collector_cannot_call_managed_seal(self):
+        self.mutated("demo",D+"R03D5P5WindowPlayer.cs",
+            "using System;", "using System;\n// R03_D5_ReceiptSeal(postpoison)")
+
 
 
 if __name__=="__main__":

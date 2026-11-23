@@ -6,15 +6,15 @@
     "hybridclr_demo": "DEMO_HEAD_FROM_GITHUB_ACTIONS_AND_FUTURE_APPROVED_HANDOFF",
     "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
     "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
-    "il2cpp_plus": "84f9435628b8ff4cc675409f6b4d76dd2753d8a8"
+    "il2cpp_plus": "87a34bbea39930dab96cf4703756d8da79d54684"
   },
   "nativeInstalledSources": {
     "utils/dynamic_array.h": "0e6653e6e7efe93f023f63893c1a3b94f347a1d0",
     "vm/Assembly.cpp": "e46ece727d5f03a914a4a6ba147cc69bc4e0a427",
-    "vm/AssemblyShadow.cpp": "3fc229b967ade9f3836dd5e498c31e33d5fa3291",
+    "vm/AssemblyShadow.cpp": "a5e7e654a2b1ede83ae18b8f15fcb4ee51f96490",
     "vm/AssemblyShadow.h": "17d6dafa70d21e395c4290fed2bbea2ab6429448",
     "vm/AssemblyShadowFirstFailureV2.h": "85683f06f966725e55891ed08d12b961c9685e56",
-    "vm/AssemblyShadowD5WindowProbe.h": "675fd65c00352c6cafae3f7ce337d331a67f89c2",
+    "vm/AssemblyShadowD5WindowProbe.h": "d89d457ba73685b9505185f1d788f0bbf6a6d216",
     "vm/AssemblyShadowProcessSnapshotOwner.h": "ccd10ea0a1d273f5fe31f52d346d090b0a5af79c",
     "vm/AssemblyShadowPublicationD3Decision.h": "f398ef34f050102472db7d8bc93d84b5f00e311a",
     "vm/AssemblyShadowPublicationPhaseReceipt.h": "e465434511b5896973db2a04c23bd8a11ef3cd4b",
@@ -24,9 +24,9 @@
     "vm/Runtime.cpp": "1b176ee5fd3e2127a0237877e5c9c32bc53058b3"
   },
   "isolatedOverlaySource": {
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp": "e0bd7199f64336676198f4940adf9a5a923c9de9",
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs": "d107bf2c80ad0cb008efe533d56b07bf0f7eb03d",
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs": "b589c4232896e3f5e9915ad24198f1986d27b20d"
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp": "c7fbc81c25e42e93c8dd318a5dd2d05455d33993",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs": "b54d4df59e498a5eb5fb6ac59d3a17ac47505110",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs": "31ca04858aa00c5d1db1678d784a804ed076e159"
   },
   "compiledTranslationUnits": [
     "vm/Assembly.cpp",
@@ -44,7 +44,8 @@
     "R03_D5_ReceiptOpen",
     "R03_D5_ReceiptEvent",
     "R03_D5_BindKeepCanary",
-    "R03_D5_ReceiptSeal"
+    "R03_D5_ReceiptSeal",
+    "R03_D5_BeginKeepAttempt"
   ],
   "excludedSource": [
     "NativeHostTests/AssemblyShadowFirstFailureV2Host.cpp"
@@ -63,7 +64,8 @@
     "linkedMachO": "NotRun",
     "realPlayerC10": "NoCoverage",
     "realGC": "NotRun",
-    "otherPlatforms": "NotRun"
+    "otherPlatforms": "NotRun",
+    "realNativeAutoCollector": "NotRun"
   },
   "authority": {
     "D5BLocalExecution": "NotAuthorized",

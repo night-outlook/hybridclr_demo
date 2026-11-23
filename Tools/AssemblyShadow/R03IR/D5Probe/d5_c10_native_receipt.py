@@ -16,7 +16,7 @@ EVENT = struct.Struct("<IiiiiiII")
 FIRST_ERROR = struct.Struct("<Iiiii4097s3x")
 RECEIPT_BYTES = HEADER.size + EVENT.size * 10 + FIRST_ERROR.size
 assert HEADER.size == 212 and EVENT.size == 32 and FIRST_ERROR.size == 4120
-REQUIRED = (1, 2, 3, 4, 6, 7, 8, 9, 10)
+REQUIRED = tuple(range(1, 11))  # slot 5: native same-worker guard completion
 HEX = re.compile("^[0-9a-f]{64}$")
 IDENT = re.compile("^[A-Za-z0-9_-]{1,63}$")
 
@@ -80,22 +80,37 @@ def parse_material(raw: bytes) -> dict:
     body = ("BodyExecuted" if bound == 1 and before == 0 and after != 0 else
             "BodyNotExecuted" if bound == 1 and before == 0 and after == 0 else "Unknown")
     guard = observed.get(7)
-    method = ("AllowedGuard" if guard and guard[1] > 0 else
-              "DeniedGuard" if guard and guard[2] > 0 else
-              "RacedP6" if guard and guard[3] > 0 else "NotAttempted")
+    target = observed.get(5)
+    decision = target[0] if target else 0  # native single TLS worker token
+    method = ("AllowedGuard" if decision == 1 else
+              "DeniedGuard" if decision == 2 else
+              "RacedP6" if decision == 3 else "NotAttempted")
     required = all(slot in observed for slot in REQUIRED)
-    clean_c10 = (required and observed[1][0] == 1 and
-                 observed[2][0] == 2 and observed[3][0] == 0 and
-                 observed[3][2] == 1 and observed[4][0] == 1 and
-                 observed[6][2] == 1 and observed[6][3] == 1 and
-                 observed[7][0] == 1 and observed[8][0] == 1 and
-                 observed[8][2] == 0 and observed[10][0] == 1 and
-                 bound == 1 and before == 0)
-    if clean_c10 and (body == "BodyExecuted" or method == "AllowedGuard"):
+    # Every slot has a concrete producer: 1=healthy arm, 2=P5 native,
+    # 3=native pinned instance, 4=native TLS attempt, 5=native method
+    # guard completion, 6=native collector state, 7=guard counters,
+    # 8=window, 9=pinned raw field after, 10=native fsynced seal.
+    # Slot 5 is never inferred from a managed exception or an unrelated Keep.
+    joined = (required and observed[1][0] == 1 and
+              observed[2][0] == 2 and observed[2][1] == 1 and
+              observed[3][0] == 0 and observed[3][2] == 1 and
+              observed[4][0] == 1 and observed[4][1] == 1 and
+              observed[5][1] == 1 and observed[5][2] == 1 and
+              observed[6][0] == -1 and observed[6][2] == 1 and
+              observed[6][3] == 1 and observed[7][0] == 1 and
+              observed[8][0] == 1 and observed[8][2] == 0 and
+              observed[10][0] == 1 and observed[10][1] == 1 and
+              observed[10][2] == decision and observed[10][3] == 1 and
+              bound == 1 and before == 0)
+    permitted_guard = (joined and decision in (1, 2) and
+                       guard[1] + guard[2] == 1 and guard[3] == 0 and
+                       (decision != 1 or guard[1] == 1) and
+                       (decision != 2 or guard[2] == 1))
+    if permitted_guard and (body == "BodyExecuted" or decision == 1):
         result = "UnsafeEarlyMethodAdmissionObserved_SourceMaterial"
-    elif (clean_c10 and method == "DeniedGuard" and body == "BodyNotExecuted" and
-          guard[2] == 1 and guard[1] == 0 and guard[3] == 0 and
-          observed[6][1] == 9 and status == 2):
+    elif (permitted_guard and decision == 2 and
+          observed[6][1] == 9 and status == 2 and
+          body == "BodyNotExecuted"):
         result = "CandidateObservedDeniedInP5_RequiresIndependentBinaryProof"
     else:
         result = "NoCoverage"

@@ -2,6 +2,7 @@
 // This is NOT Unity/IL2CPP Player, MethodInfo execution, or GC/ABI proof.
 #include "vm/AssemblyShadowD5WindowProbe.h"
 #include <atomic>
+#include <cstdlib>
 #include <cassert>
 #include <cstdio>
 #include <cstring>
@@ -52,7 +53,10 @@ int main(int argc,char**argv)
             int32_t stage=0;
             while((stage=w.MethodBegin())!=2)
                 std::this_thread::yield();
-            w.MethodResult(stage,true,allow);
+            const bool armed=w.ArmTargetForCurrentThread(&w);
+            const bool matched=w.MatchesTargetOnCurrentThread(&w);
+            if(!armed || !matched)std::abort();
+            w.MethodResult(stage,matched,allow);
             workerDone.store(true,std::memory_order_release);
             R03_D5_ReleaseP5Window();
         });
@@ -83,10 +87,59 @@ int main(int argc,char**argv)
         REQUIRE(R03_D5_ArmP5Window(100)==1);
         w.AtP5();
         const int32_t started=w.MethodBegin();
+        REQUIRE(w.ArmTargetForCurrentThread(&w));
+        const bool matched=w.MatchesTargetOnCurrentThread(&w);
         w.AtP6();
-        w.MethodResult(started,true,true);
+        w.MethodResult(started,matched,true);
         REQUIRE(R03_D5_ReadP5Window(raw,11)==1);
         REQUIRE(raw[7]==0&&raw[8]==0&&raw[10]==1);
+    }
+    else if(!std::strcmp(c,"foreign"))
+    {
+        REQUIRE(w.Arm(100)==true);
+        w.AtP5();
+        REQUIRE(w.ArmTargetForCurrentThread(&w));
+        std::atomic<bool> otherMatched{true};
+        std::thread other([&] {
+            const bool match=w.MatchesTargetOnCurrentThread(&w);
+            otherMatched.store(match,std::memory_order_release);
+            w.MethodResult(2,match,false);
+        });
+        other.join();
+        REQUIRE(!otherMatched.load(std::memory_order_acquire));
+        REQUIRE(w.Read().shadowMethodAttemptsInP5==0);
+        const bool match=w.MatchesTargetOnCurrentThread(&w);
+        REQUIRE(match);
+        w.MethodResult(2,match,true);
+        REQUIRE(w.Read().shadowMethodAttemptsInP5==1);
+        REQUIRE(w.TargetDecision()==1);
+    }
+    else if(!std::strcmp(c,"wrongmethod"))
+    {
+        REQUIRE(w.Arm(100)==true);
+        w.AtP5();
+        int otherMethod=0;
+        REQUIRE(w.ArmTargetForCurrentThread(&w));
+        REQUIRE(!w.MatchesTargetOnCurrentThread(&otherMethod));
+        w.MethodResult(2,w.MatchesTargetOnCurrentThread(&otherMethod),true);
+        REQUIRE(w.Read().shadowMethodAttemptsInP5==0);
+        REQUIRE(w.MatchesTargetOnCurrentThread(&w));
+        w.MethodResult(2,true,false);
+        REQUIRE(w.TargetDecision()==2);
+        REQUIRE(w.Read().shadowMethodDeniedInP5==1);
+    }
+    else if(!std::strcmp(c,"duplicate"))
+    {
+        REQUIRE(w.Arm(100)==true);
+        w.AtP5();
+        REQUIRE(w.ArmTargetForCurrentThread(&w));
+        REQUIRE(!w.ArmTargetForCurrentThread(&w));
+        REQUIRE(w.MatchesTargetOnCurrentThread(&w));
+        w.MethodResult(2,true,false);
+        REQUIRE(!w.MatchesTargetOnCurrentThread(&w));
+        w.MethodResult(2,true,true);
+        REQUIRE(w.TargetArmCount()==1);
+        REQUIRE(w.Read().shadowMethodAttemptsInP5==1);
     }
     else if(!std::strcmp(c,"invalid"))
     {
