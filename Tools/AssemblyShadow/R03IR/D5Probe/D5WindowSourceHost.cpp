@@ -30,7 +30,7 @@ int main(int argc,char**argv)
     REQUIRE(R03_D5_ReadP5Window(raw,10)==-2);
     REQUIRE(R03_D5_ReadP5Window(raw,11)==1);
     REQUIRE(raw[0]==1&&raw[1]==0);
-    REQUIRE(R03_D5_WindowProtocolVersion()==1);
+    REQUIRE(R03_D5_WindowProtocolVersion()==2);
 
     if(!std::strcmp(c,"unarmed"))
     {
@@ -56,6 +56,7 @@ int main(int argc,char**argv)
             const bool armed=w.ArmTargetForCurrentThread(&w);
             const bool matched=w.MatchesTargetOnCurrentThread(&w);
             if(!armed || !matched)std::abort();
+            w.TargetGuardEntry(stage,&w,5,0);
             w.MethodResult(stage,matched,allow);
             workerDone.store(true,std::memory_order_release);
             R03_D5_ReleaseP5Window();
@@ -147,8 +148,12 @@ int main(int argc,char**argv)
         w.AtP5();
         const int32_t begun=w.MethodBegin();
         REQUIRE(w.ArmTargetForCurrentThread(&w));
-        // Same test-only sequence as AssemblyShadow.cpp's early-return
-        // branch; no metadata/VM allocation is performed here.
+        // Actual production source samples state and first-error immediately
+        // before the first terminal decision. Host simulates *that* source.
+        w.TargetGuardEntry(begun,&w,5,0);
+        int32_t before=-1,error=-1;
+        REQUIRE(w.TryReadTargetGuardEntry(before,error));
+        REQUIRE(before==5&&error==0);
         w.MethodResult(begun,w.MatchesTargetOnCurrentThread(&w),false);
         REQUIRE(w.TargetDecision()==2);
         REQUIRE(w.Read().shadowMethodDeniedInP5==1);
@@ -156,6 +161,77 @@ int main(int argc,char**argv)
         // A second/baseline attempt cannot create a second denied event.
         w.MethodResult(begun,w.MatchesTargetOnCurrentThread(&w),false);
         REQUIRE(w.Read().shadowMethodAttemptsInP5==1);
+    }
+    else if(!std::strcmp(c,"entry_preterminal"))
+    {
+        REQUIRE(w.Arm(200));
+        w.AtP5();
+        REQUIRE(w.ArmTargetForCurrentThread(&w));
+        const int32_t begun=w.MethodBegin();
+        w.TargetGuardEntry(begun,&w,9,2); // already FailedAfterCommit
+        int32_t state=-1,first=-1;
+        REQUIRE(w.TryReadTargetGuardEntry(state,first));
+        REQUIRE(state==9 && first==2);
+        w.MethodResult(begun,w.MatchesTargetOnCurrentThread(&w),false);
+        REQUIRE(w.TargetDecision()==2);
+    }
+    else if(!std::strcmp(c,"entry_prior_error"))
+    {
+        REQUIRE(w.Arm(200));
+        w.AtP5();
+        REQUIRE(w.ArmTargetForCurrentThread(&w));
+        w.TargetGuardEntry(w.MethodBegin(),&w,5,2);
+        int32_t state=-1,first=-1;
+        REQUIRE(w.TryReadTargetGuardEntry(state,first));
+        REQUIRE(state==5 && first==2);
+        w.MethodResult(2,w.MatchesTargetOnCurrentThread(&w),false);
+        REQUIRE(w.TargetDecision()==2);
+    }
+    else if(!std::strcmp(c,"entry_no_token"))
+    {
+        REQUIRE(w.Arm(200));
+        w.AtP5();
+        w.TargetGuardEntry(w.MethodBegin(),&w,5,0);
+        int32_t state=-1,first=-1;
+        REQUIRE(!w.TryReadTargetGuardEntry(state,first));
+        REQUIRE(w.TargetArmCount()==0);
+    }
+    else if(!std::strcmp(c,"entry_competing_thread"))
+    {
+        REQUIRE(w.Arm(200));
+        w.AtP5();
+        REQUIRE(w.ArmTargetForCurrentThread(&w));
+        std::thread other([&] { w.TargetGuardEntry(2,&w,5,0); });
+        other.join();
+        int32_t state=-1,first=-1;
+        REQUIRE(!w.TryReadTargetGuardEntry(state,first));
+        w.TargetGuardEntry(2,&w,5,0);
+        REQUIRE(w.TryReadTargetGuardEntry(state,first));
+        REQUIRE(state==5 && first==0);
+    }
+    else if(!std::strcmp(c,"entry_wrong_method"))
+    {
+        REQUIRE(w.Arm(200));
+        w.AtP5();
+        REQUIRE(w.ArmTargetForCurrentThread(&w));
+        int wrong=0;
+        w.TargetGuardEntry(2,&wrong,5,0);
+        int32_t state=-1,first=-1;
+        REQUIRE(!w.TryReadTargetGuardEntry(state,first));
+        w.TargetGuardEntry(2,&w,5,0);
+        w.TargetGuardEntry(2,&w,9,2); // first native entry must stay frozen
+        REQUIRE(w.TryReadTargetGuardEntry(state,first));
+        REQUIRE(state==5 && first==0);
+    }
+    else if(!std::strcmp(c,"entry_after_p6"))
+    {
+        REQUIRE(w.Arm(200));
+        w.AtP5();
+        REQUIRE(w.ArmTargetForCurrentThread(&w));
+        w.AtP6();
+        w.TargetGuardEntry(w.MethodBegin(),&w,5,0);
+        int32_t state=-1,first=-1;
+        REQUIRE(!w.TryReadTargetGuardEntry(state,first));
     }
     else if(!std::strcmp(c,"canary_happens_before"))
     {
@@ -183,6 +259,6 @@ int main(int argc,char**argv)
         REQUIRE(R03_D5_ReadP5Window(raw,11)==1&&raw[1]==1);
     }
     else return 2;
-    std::printf("{\"schema\":\"R03D5WindowSourceHostV1\",\"case\":\"%s\",\"result\":\"PassedExactNativeWindowHeaderAndOverlayHostOnly\",\"assertions\":%u,\"actualProductionMethodInfoExercised\":false,\"unityOrPlayerExecuted\":false,\"C10RealPlayerPassed\":false}\n",c,assertions);
+    std::printf("{\"schema\":\"R03D5WindowSourceHostV2\",\"case\":\"%s\",\"result\":\"PassedExactNativeWindowHeaderAndOverlayHostOnly\",\"assertions\":%u,\"actualProductionMethodInfoExercised\":false,\"unityOrPlayerExecuted\":false,\"C10RealPlayerPassed\":false}\n",c,assertions);
     return 0;
 }

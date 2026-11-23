@@ -28,8 +28,9 @@ int main(int argc,char**argv)
     REQUIRE(R03_D5_ReceiptEvent(1,1,0,0,0)==-2);
     REQUIRE(R03_D5_ReceiptEvent(2,2,1,0,0)==1);
     REQUIRE(R03_D5_BindKeepCanary(nullptr)==0); // NO VM on host
-    REQUIRE(R03_D5_ReceiptEvent(4,1,0,0,0)==1);
-    REQUIRE(R03_D5_ReceiptEvent(5,1,42,0,0)==1);
+    // Manual host only; no actual VM guard (semantic v2 facts are synthetic).
+    REQUIRE(R03_D5_ReceiptEvent(4,1,1,5,0)==1);
+    REQUIRE(R03_D5_ReceiptEvent(5,1,1,1,0)==1);
     auto& probe=il2cpp::vm::assembly_shadow_d5::WindowProbe::Instance();
     REQUIRE(probe.Arm(100));
     probe.AtP5();
@@ -38,7 +39,7 @@ int main(int argc,char**argv)
     probe.AtP6();
     probe.Complete();
     REQUIRE(R03_D5_ReceiptSeal(0,6,1,1)==1);
-    REQUIRE(R03_D5_ReceiptEvent(5,1,42,0,0)==-1);
+    REQUIRE(R03_D5_ReceiptEvent(5,1,1,1,0)==-1);
     struct stat st{};
     REQUIRE(::stat(argv[1],&st)==0 && st.st_size==4652);
     int fd=::open(argv[1],O_RDONLY);
@@ -46,6 +47,9 @@ int main(int argc,char**argv)
     char magic[8]={};
     REQUIRE(::pread(fd,magic,8,0)==8);
     REQUIRE(std::memcmp(magic,"D5C10E1!",8)==0);
+    int32_t version=0;
+    REQUIRE(::pread(fd,&version,sizeof version,8)==static_cast<ssize_t>(sizeof version));
+    REQUIRE(version==2);
     Event e{};
     REQUIRE(::pread(fd,&e,sizeof e,212+9*32)==static_cast<ssize_t>(sizeof e));
     REQUIRE(e.magic==0xC105D5E1u && e.slot==10 && e.a==1 && e.size==32);

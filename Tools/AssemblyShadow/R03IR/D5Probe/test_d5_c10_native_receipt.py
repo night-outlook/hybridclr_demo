@@ -14,8 +14,8 @@ spec.loader.exec_module(gate)
 def material(events=None, *, first=2, change=None, first_reason="Keep target guard refused"):
     rows = {
         1: (1, 0, 0, 0), 2: (2, 1, 0, 0),
-        3: (0, 32, 1, 0), 4: (1, 1, 0, 0),
-        5: (2, 1, 1, 0), 6: (-1, 9, 1, 1),
+        3: (0, 32, 1, 0), 4: (1, 1, 5, 0),
+        5: (2, 1, 1, 0), 6: (-1, 9, 0, 1),
         7: (1, 0, 1, 0), 8: (1, 0, 0, 0),
         9: (0, 0, 1, 0), 10: (1, 1, 2, 1),
     }
@@ -25,7 +25,7 @@ def material(events=None, *, first=2, change=None, first_reason="Keep target gua
         for slot in events:
             rows.pop(slot, None)
     output = bytearray(gate.RECEIPT_BYTES)
-    gate.HEADER.pack_into(output, 0, b"D5C10E1!", 1, 4242,
+    gate.HEADER.pack_into(output, 0, b"D5C10E1!", 2, 4242,
                           b"synthetic-case", b"a"*64, b"b"*64, 0)
     for slot, (a,b,c,d) in rows.items():
         checksum = gate.MAGIC ^ slot ^ (a & 0xffffffff) ^ (b & 0xffffffff) ^ (c & 0xffffffff) ^ (d & 0xffffffff)
@@ -121,9 +121,14 @@ class D5C10NativeReceipt(unittest.TestCase):
         with self.assertRaises(gate.InvalidReceipt):
             parse_mock(bytes(b))
 
-    def test_17_worker_unfinished_not_denial_proof(self):
-        self.assertEqual(parse_mock(material(change={6:(-1,9,0,1)}))["result"],
-                         "NoCoverage")
+    def test_17_no_managed_completion_is_required_for_native_denial(self):
+        # Native Keep guard completed; terminal poison may prevent managed
+        # finally/Join, and ReleaseP5 may be absent. Never forge that fact.
+        actual = parse_mock(material())
+        self.assertEqual(actual["result"],
+                         "CandidateObservedDeniedInP5_RequiresIndependentBinaryProof")
+        self.assertFalse(actual["nativeWorkerP5ReleaseObserved"])
+        self.assertEqual(actual["managedWorkerCompletion"], "Unknown_NotJoined")
 
     def test_18_inconsistent_keep_attempt_not_denial_proof(self):
         self.assertEqual(parse_mock(material(change={6:(-1,9,1,0)}))["result"],
@@ -161,11 +166,12 @@ class D5C10NativeReceipt(unittest.TestCase):
     def test_27_missing_native_P5_event_does_not_promote(self):
         self.assertEqual(parse_mock(material(events=[2]))["result"],"NoCoverage")
 
-    def test_28_native_auto_writer_without_finished_managed_worker(self):
-        # No managed Join is required: native guard + pinned field + frozen B1
-        # first-error source prove only a *candidate material*, never a Player.
+    def test_28_native_guard_complete_without_managed_join(self):
+        # Guard's immutable same-token event, not a made-up workerFinished=1.
         x=parse_mock(material())
         self.assertEqual(x["result"],"CandidateObservedDeniedInP5_RequiresIndependentBinaryProof")
+        self.assertFalse(x["nativeWorkerP5ReleaseObserved"])
+        self.assertEqual(x["managedWorkerCompletion"],"Unknown_NotJoined")
         self.assertFalse(x["actualLinkedBinaryAndPidAuthenticated"])
 
     def test_29_missing_external_process_join_rejected(self):
@@ -190,6 +196,51 @@ class D5C10NativeReceipt(unittest.TestCase):
         self.assertTrue(result["externalProcessJoinMatched"])
         self.assertFalse(result["externalProcessProvenanceIndependentlyVerified"])
         self.assertFalse(result["actualLinkedBinaryAndPidAuthenticated"])
+
+    def test_35_preexisting_terminal_before_keep_is_not_healthy_p5(self):
+        x=parse_mock(material(change={4:(1,1,9,2)}), exit_code=2)
+        self.assertEqual(x["result"], "NoCoverage")
+        self.assertEqual(x["guardEntryPrecondition"], "PreexistingTerminalOrFirstError")
+        self.assertEqual(x["guardEntryState"], 9)
+        self.assertEqual(x["guardEntryFirstFailureStatus"], 2)
+
+    def test_36_preexisting_first_failure_writing_rejected(self):
+        x=parse_mock(material(change={4:(1,1,5,1)}), exit_code=2)
+        self.assertEqual(x["result"], "NoCoverage")
+        self.assertEqual(x["guardEntryPrecondition"], "PreexistingTerminalOrFirstError")
+
+    def test_37_preexisting_frozen_first_error_in_committing_rejected(self):
+        self.assertEqual(parse_mock(material(change={4:(1,1,5,2)}))["result"],
+                         "NoCoverage")
+
+    def test_38_target_armed_but_actual_guard_entry_absent(self):
+        self.assertEqual(parse_mock(material(events=[4]))["result"], "NoCoverage")
+
+    def test_39_not_committing_at_actual_guard_entry_rejected(self):
+        x=parse_mock(material(change={4:(1,1,3,0)}))
+        self.assertEqual(x["result"], "NoCoverage")
+        self.assertEqual(x["guardEntryPrecondition"], "MissingOrUnexpectedGuardEntry")
+
+    def test_40_v1_receipt_cannot_be_interpreted_under_v2_semantics(self):
+        b=bytearray(material())
+        struct.pack_into("<i",b,8,1)
+        with self.assertRaises(gate.InvalidReceipt):
+            parse_mock(bytes(b))
+
+    def test_41_admitted_guard_without_native_worker_release_rejected(self):
+        raw=material(first=0,change={5:(1,1,1,0),7:(1,1,0,0),
+            6:(-1,6,0,1),9:(0,0,1,0),10:(1,1,1,1)})
+        self.assertEqual(parse_mock(raw,exit_code=42)["result"],"NoCoverage")
+
+    def test_42_malformed_native_worker_release_observation_rejected(self):
+        self.assertEqual(parse_mock(material(change={6:(-1,9,2,1)}))["result"],
+                         "NoCoverage")
+
+    def test_43_healthy_p5_entry_then_terminal_failure_is_bounded_candidate(self):
+        x=parse_mock(material())
+        self.assertEqual(x["guardEntryPrecondition"],"HealthyP5CommittingFirstErrorEmpty")
+        self.assertEqual(x["result"],"CandidateObservedDeniedInP5_RequiresIndependentBinaryProof")
+        self.assertFalse(x["realPlayerC10Passed"])
 
     def test_20_no_false_acceptance(self):
         x=parse_mock(material())

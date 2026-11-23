@@ -97,7 +97,7 @@ namespace AssemblyShadow.R03.D5.Editor
             // native candidate. The demo head is additionally bound by the
             // future independent Local handoff, not by this self-reported field.
             if (config.expectedNativeCommit !=
-                    "c741fb32a2b770856f211f47305c4f86b51f54ce" ||
+                    "e9aee83345aa9df90085de50162a7aa9172e8263" ||
                 string.IsNullOrEmpty(config.expectedDemoCommit) ||
                 config.expectedDemoCommit.Length != 40)
                 throw new BuildFailedException("D5 source revision is not the reviewed candidate");

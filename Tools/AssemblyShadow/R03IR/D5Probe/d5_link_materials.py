@@ -15,9 +15,9 @@ import re
 import sys
 
 PINSET = Path(__file__).resolve().with_name("d5c10_link_source_pinset_v1.json")
-PINSET_BLOB = "cfca8eecb339fdbc16777efee42465c762f0462b"
+PINSET_BLOB = "b218aa1140432d35230350cb7361a5a5b496c812"
 BRANCH = "codex/assembly-shadow-r01b-h1"
-NATIVE = "c741fb32a2b770856f211f47305c4f86b51f54ce"
+NATIVE = "e9aee83345aa9df90085de50162a7aa9172e8263"
 HEX40 = re.compile(r"^[0-9a-f]{40}$")
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 ROLES = ("hybridclr_demo", "hybridclr", "hybridclr_unity", "il2cpp_plus")
@@ -84,6 +84,9 @@ def source_pinset(raw: bytes) -> dict:
             all(type(k) is str and type(v) is str and
                 HEX40.fullmatch(v) for k,v in inputs.items()),
             "All 13 actual native source/header Git blobs required")
+    require(x.get("receiptWireSchemaVersion")==2 and
+            x.get("nativeWindowProtocolVersion")==2,
+            "C10 receipt/managed/native protocol v2 is mandatory")
     require(x.get("compiledTranslationUnits")==list(EXPECTED_TUS) and
             x.get("overlayInstallDestination")==EXPECTED_TUS[-1] and
             x.get("expectedExportSymbols")==list(EXPORTS),

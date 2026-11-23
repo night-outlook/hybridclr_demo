@@ -151,7 +151,7 @@ class D5C10SourceContracts(unittest.TestCase):
 
     def test_26_builder_pinned_commit_changed(self):
         self.mutated("demo",D+"R03D5Build.cs",
-            '"c741fb32a2b770856f211f47305c4f86b51f54ce"',
+            '"e9aee83345aa9df90085de50162a7aa9172e8263"',
             '"0000000000000000000000000000000000000000"')
 
     def test_27_builder_missing_native_install(self):
@@ -316,6 +316,71 @@ class D5C10SourceContracts(unittest.TestCase):
             "const int actualClose = ::close(currentFd);",
             "const int actualClose = 0;")
 
+
+    def test_60_guard_entry_before_terminal(self):
+        self.mutated("native",N+"AssemblyShadow.cpp",
+            "WindowProbe::Instance().TargetGuardEntry(",
+            "WindowProbe::Instance().UnboundGuardEntry(")
+
+    def test_61_first_error_not_fabricated(self):
+        self.mutated("native",N+"AssemblyShadow.cpp",
+            "static_cast<int32_t>(s_firstFailureV2.status())",
+            "0 /* fake first-error at entry */")
+
+    def test_62_guard_entry_release(self):
+        self.mutated("native",N+"AssemblyShadowD5WindowProbe.h",
+            "targetEntryReady_.store(1, std::memory_order_release)",
+            "targetEntryReady_.store(1, std::memory_order_relaxed)")
+
+    def test_63_guard_entry_acquire(self):
+        self.mutated("native",N+"AssemblyShadowD5WindowProbe.h",
+            "targetEntryReady_.load(std::memory_order_acquire)",
+            "targetEntryReady_.load(std::memory_order_relaxed)")
+
+    def test_64_exact_tls_pointer(self):
+        self.mutated("native",N+"AssemblyShadowD5WindowProbe.h",
+            "!MatchesTargetOnCurrentThread(methodIdentity)",
+            "false /* no TLS identity */")
+
+    def test_65_slot4_not_arm_only(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "sawAttempt = Record(4, 1, 1,",
+            "sawAttempt = Record(4, 1, 0,")
+
+    def test_66_no_fake_worker_finished(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "Record(6, -1, stateCode, releaseObserved,",
+            "Record(6, -1, stateCode, 1,")
+
+    def test_67_early_terminal_no_candidate(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "targetStateAtEntry == 5 /* Committing */",
+            "targetStateAtEntry == 9 /* FailedAfterCommit */")
+
+    def test_68_managed_protocol_v2(self):
+        self.mutated("demo",D+"R03D5P5WindowPlayer.cs",
+            "R03_D5_WindowProtocolVersion() != 2",
+            "R03_D5_WindowProtocolVersion() != 1")
+
+    def test_69_collector_entry_not_arming(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "probe.TryReadTargetGuardEntry(",
+            "probe.TargetArmCount(")
+
+    def test_70_native_receipt_schema_v2(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "header.schema = 2;",
+            "header.schema = 1;")
+
+    def test_71_first_error_empty_at_entry(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "firstErrorAtEntry == 0 /* Empty */",
+            "firstErrorAtEntry == 2 /* Frozen */")
+
+    def test_72_actual_release_evidence(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "const int32_t releaseObserved =",
+            "const int32_t releaseObservedUnverified =")
 
 
 if __name__=="__main__":

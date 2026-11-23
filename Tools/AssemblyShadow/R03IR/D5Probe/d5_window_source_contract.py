@@ -14,16 +14,16 @@ import re
 import subprocess
 import sys
 
-NATIVE_COMMIT = "c741fb32a2b770856f211f47305c4f86b51f54ce"
+NATIVE_COMMIT = "e9aee83345aa9df90085de50162a7aa9172e8263"
 NATIVE_FILES = {
-    "libil2cpp/vm/AssemblyShadow.cpp":"8cafbe5450e7188d7fc236319210701a18c7f2b4",
-    "libil2cpp/vm/AssemblyShadowD5WindowProbe.h":"27c56976549590275ea2b8d86d321d41458b4978",
+    "libil2cpp/vm/AssemblyShadow.cpp":"624a9bb1d75c8b389caaf9b3f084553476ee47e0",
+    "libil2cpp/vm/AssemblyShadowD5WindowProbe.h":"0000f7fcbb9c851b7738eb08eb04d839bb0b80e0",
     "libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h":"ccd10ea0a1d273f5fe31f52d346d090b0a5af79c",
 }
 DEMO_FILES = {
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp":"d910c71756b8fb388c17b0571e7a3791b0317019",
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs":"b54d4df59e498a5eb5fb6ac59d3a17ac47505110",
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs":"5444f366899e66cab33f7ce425314230b705d5b6",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp":"b5ca37bbe00051754ef895db7a53fead43c5a4a8",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs":"70a3c148f4c66b5db30533fb325a3ab5a068c2b2",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs":"a96e2699734903847c16aee15d9a365d25dc9494",
 }
 BRANCH = "codex/assembly-shadow-r01b-h1"
 MACRO = "HYBRIDCLR_R03_D5_WINDOW_PROBE"
@@ -106,7 +106,14 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "P6 and completed native witness annotations absent")
     method=cpp[cpp.find("bool AssemblyShadow::AssertMethodIsActive("):
                cpp.find("void AssemblyShadow::RequireActiveMethod(")]
+    ordered(method, [
+        "WindowProbe::Instance().MethodBegin();",
+        "WindowProbe::Instance().TargetGuardEntry(",
+        "if (TerminalMethodDenied(method))",
+    ], "C10 native target state/first error sampled at actual method entry")
     require(method.startswith("bool AssemblyShadow::AssertMethodIsActive(") and
+            "static_cast<int32_t>(s_state.load(std::memory_order_acquire))" in method and
+            "static_cast<int32_t>(s_firstFailureV2.status())" in method and
             "WindowProbe::Instance().MethodBegin()" in method and
             "active->shadowToBaseline.count(owners[0])" in method and
             'std::strcmp(d5Owner->aname.name, "Methods")' in method and
@@ -138,6 +145,13 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "ThreadAttempt& CurrentThreadAttempt()" in header and
             "token.active = 0;" in header and
             "targetDecision_.store" in header and
+            "TargetGuardEntry(int32_t begunPhase, const void* methodIdentity," in header and
+            "!MatchesTargetOnCurrentThread(methodIdentity)" in header and
+            "targetEntryState_.store(stateAtEntry, std::memory_order_relaxed)" in header and
+            "targetEntryFirstError_.store(firstErrorAtEntry, std::memory_order_relaxed)" in header and
+            "targetEntryReady_.store(1, std::memory_order_release)" in header and
+            "targetEntryReady_.load(std::memory_order_acquire)" in header and
+            "TryReadTargetGuardEntry(int32_t& stateAtEntry," in header and
             "HasWorkerCompletedP5Acquire() const noexcept" in header and
             "return release_.load(std::memory_order_acquire) != 0;" in header and
             header.count("std::atomic<int32_t>")>=10 and
@@ -171,6 +185,14 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "sizeof(Event) == 32" in overlay and
             "sizeof(FirstErrorDisk) == 4120" in overlay and
             "TryReadFirstFailureV2(snapshot)" in overlay and
+            "header.schema = 2;" in overlay and
+            "return 2; // C10 protocol v2" in overlay and
+            "TryReadTargetGuardEntry(" in overlay and
+            "sawAttempt = Record(4, 1, 1," in overlay and
+            "targetStateAtEntry == 5 /* Committing */" in overlay and
+            "firstErrorAtEntry == 0 /* Empty */" in overlay and
+            "Record(6, -1, stateCode, releaseObserved," in overlay and
+            "HasWorkerCompletedP5Acquire() ? 1 : 0;" in overlay and
             "ReadCanary(after)" in overlay and
             "hasReady = canaryReady.load(std::memory_order_acquire)" in overlay and
             "if (hasReady) before = canaryBefore;" in overlay and
@@ -236,7 +258,8 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "Managed post-terminal source wrote JSON/I/O or lost target evidence")
     require('Application.unityVersion != "2022.3.62f2"' in managed and
             'Application.platform != RuntimePlatform.OSXPlayer' in managed and
-            "AssemblyShadowRuntime.CommitTransaction()" in managed,
+            "AssemblyShadowRuntime.CommitTransaction()" in managed and
+            "R03_D5_WindowProtocolVersion() != 2" in managed,
             "Player fixture pinned real commit/Unity source missing")
 
     ordered(builder,[
@@ -249,7 +272,7 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "Real Unity BuildPipeline entrypoint replaced")
     require("public static class R03D5Build" in builder and
             'Application.unityVersion != "2022.3.62f2"' in builder and
-            '"c741fb32a2b770856f211f47305c4f86b51f54ce"' in builder and
+            '"e9aee83345aa9df90085de50162a7aa9172e8263"' in builder and
             "ScriptingImplementation.IL2CPP" in builder and
             "BuildOptions.Development | BuildOptions.DetailedBuildReport" in builder and
             "HYBRIDCLR_R03_D5_WINDOW_PROBE=" in builder and
@@ -267,6 +290,9 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "actualNativeD5ProductionHeader":True,
             "actualMethodGuardSourceInstrumented":True,
             "nativeProbeExportsDeclared":len(exports),
+            "wireReceiptSchemaVersion":2,
+            "actualTargetGuardEntrySourceInstrumented":True,
+            "nativeWorkerReleaseNotManagedJoin":True,
             "nativeAutoCollectorSourcePresent":True,
             "nativeWorkerTargetIdentityBoundSourceOnly":True,
             "nativeEvidenceAndCanaryRealPlayerVerified":False,

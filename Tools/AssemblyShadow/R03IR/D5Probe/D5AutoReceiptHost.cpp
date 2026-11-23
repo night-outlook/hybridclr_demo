@@ -45,13 +45,17 @@ int main(int argc,char** argv)
     const bool wrong = !std::strcmp(test,"wrongmethod");
     const bool race = !std::strcmp(test,"raced");
     const bool noattempt = !std::strcmp(test,"noattempt");
+    const bool preterminal = !std::strcmp(test,"entry_preterminal");
+    const bool priorerror = !std::strcmp(test,"entry_prior_error");
+    const bool noentry = !std::strcmp(test,"entry_missing_guard");
     const bool ioPwrite = !std::strcmp(test,"io_pwrite");
     const bool ioFsync = !std::strcmp(test,"io_fsync");
     const bool ioClose = !std::strcmp(test,"io_close");
     const bool ioDir = !std::strcmp(test,"io_dirsync");
     const int32_t fault = ioPwrite ? 1 : ioFsync ? 2 : ioClose ? 3 : ioDir ? 4 : 0;
     const bool faulted = fault != 0;
-    REQUIRE(deny||allow||foreign||wrong||race||noattempt||faulted);
+    REQUIRE(deny||allow||foreign||wrong||race||noattempt||faulted||
+            preterminal||priorerror||noentry);
     if (!noattempt)
     {
         REQUIRE(probe.ArmTargetForCurrentThread(&probe));
@@ -59,6 +63,7 @@ int main(int argc,char** argv)
         {
             std::atomic<bool> match{true};
             std::thread competitor([&] {
+                probe.TargetGuardEntry(2,&probe,5,0); // wrong TLS must fail
                 bool found=probe.MatchesTargetOnCurrentThread(&probe);
                 match.store(found,std::memory_order_release);
                 probe.MethodResult(2,found,false);
@@ -70,17 +75,23 @@ int main(int argc,char** argv)
         {
             int otherMethod=0;
             REQUIRE(!probe.MatchesTargetOnCurrentThread(&otherMethod));
+            probe.TargetGuardEntry(2,&otherMethod,5,0);
             probe.MethodResult(2,probe.MatchesTargetOnCurrentThread(&otherMethod),false);
         }
         else if (race)
         {
             REQUIRE(probe.MatchesTargetOnCurrentThread(&probe));
+            probe.TargetGuardEntry(2,&probe,5,0);
             probe.AtP6();
             probe.MethodResult(2,true,false);
         }
         else
         {
             REQUIRE(probe.MatchesTargetOnCurrentThread(&probe));
+            if (!noentry)
+                probe.TargetGuardEntry(2,&probe,
+                    preterminal ? 9 : 5,
+                    (preterminal || priorerror) ? 2 : 0);
             probe.MethodResult(2,true,allow);
         }
     }
@@ -88,10 +99,12 @@ int main(int argc,char** argv)
     if (race) REQUIRE(probe.TargetDecision()==3);
     // Every mock state is explicitly synthetic. The actual native VM branch
     // obtains state/first error independently from AssemblyShadow.
+    const bool terminalNegative = deny || faulted || preterminal ||
+        priorerror || noentry;
     REQUIRE(R03_D5_SourceHostAutoConfigure(
-        allow ? 6 : (deny||faulted) ? 9 : 5,
+        allow ? 6 : terminalNegative ? 9 : 5,
         allow ? 1 : 0, noattempt ? 0 : 1,
-        deny||faulted ? 1 : 0, fault)==1);
+        terminalNegative ? 1 : 0, fault)==1);
     bool done=false;
     for (int t=0;t<4000;++t)
     {
@@ -102,7 +115,8 @@ int main(int argc,char** argv)
     const int32_t seal=R03_D5_SourceHostAutoSealStatus();
     const int32_t observedExit=R03_D5_SourceHostAutoExitCode();
     REQUIRE((seal==1)==!faulted);
-    REQUIRE(observedExit==(faulted ? 2 : allow ? 42 : deny ? 20 : 2));
+    REQUIRE(observedExit==((faulted||preterminal||priorerror||noentry) ?
+                           2 : allow ? 42 : deny ? 20 : 2));
     struct stat info{};
     // The final path exists ONLY after a successful sync and close.
     if (faulted && !ioDir)
@@ -125,11 +139,28 @@ int main(int argc,char** argv)
     RawEvent guard{};
     REQUIRE(::pread(fd,&guard,sizeof guard,212+4*32)==
         static_cast<ssize_t>(sizeof guard));
-    if (deny) REQUIRE(guard.slot==5 && guard.a==2);
+    if (deny || preterminal || priorerror || noentry)
+        REQUIRE(guard.slot==5 && guard.a==2);
     if (allow) REQUIRE(guard.slot==5 && guard.a==1);
     if (race) REQUIRE(guard.slot==5 && guard.a==3);
     if (foreign || wrong || noattempt) REQUIRE(guard.magic==0 && guard.slot==0);
     if (faulted) REQUIRE(guard.slot==5 && guard.a==2);
+    RawEvent entry{};
+    REQUIRE(::pread(fd,&entry,sizeof entry,212+3*32)==
+        static_cast<ssize_t>(sizeof entry));
+    const bool actualEntry = !(foreign || wrong || noattempt || noentry);
+    if (actualEntry)
+    {
+        REQUIRE(entry.slot==4 && entry.a==1 && entry.b==1);
+        REQUIRE(entry.c==(preterminal ? 9 : 5));
+        REQUIRE(entry.d==((preterminal || priorerror) ? 2 : 0));
+    }
+    else REQUIRE(entry.magic==0 && entry.slot==0);
+    RawEvent release{};
+    REQUIRE(::pread(fd,&release,sizeof release,212+5*32)==
+        static_cast<ssize_t>(sizeof release));
+    REQUIRE(release.slot==6);
+    REQUIRE(release.c==(allow ? 1 : 0)); // native release only, never Join
     ::close(fd);
     std::printf("{\"result\":\"PassedD5NativeAutoCollectorHostOnly\",\"scenario\":\"%s\",\"expectedFailure\":%s,\"mockExitCode\":%d,\"realPlayerExecuted\":false,\"canaryFromRealVM\":false,\"firstErrorFromRealVM\":false}\n",test,faulted?"true":"false",observedExit);
     return 0;

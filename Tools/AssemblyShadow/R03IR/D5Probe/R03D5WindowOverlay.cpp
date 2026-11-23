@@ -217,7 +217,13 @@ static int32_t FinishNativeReceipt(int32_t stateCode, int32_t decision) noexcept
 {
     using il2cpp::vm::assembly_shadow_d5::WindowProbe;
     const auto window = WindowProbe::Instance().Read();
-    if (Record(6, -1, stateCode, 1, WindowProbe::Instance().TargetArmCount()) != 1 ||
+    // C10 receipt schema v2: slot 6.c is a *native observed P5 release*
+    // (0=not observed, 1=release/acquire observed), NEVER a fabricated
+    // managed worker-finished/joined fact. Native guard result is slot 5.
+    const int32_t releaseObserved =
+        WindowProbe::Instance().HasWorkerCompletedP5Acquire() ? 1 : 0;
+    if (Record(6, -1, stateCode, releaseObserved,
+               WindowProbe::Instance().TargetArmCount()) != 1 ||
         Record(7, window.shadowMethodAttemptsInP5,
                window.shadowMethodAllowedInP5,
                window.shadowMethodDeniedInP5, window.methodResultRacedP6) != 1 ||
@@ -317,9 +323,16 @@ static void* NativeCollector(void*) noexcept
             sawCanary = Record(3, canaryBefore, canaryOffset, 1, 0) == 1;
         }
 #endif
-        if (!sawAttempt && probe.TargetArmCount() == 1)
+        // Slot 4 v2 is the actual same-TLS method *guard entry*, not
+        // BeginKeepAttempt arming. The exact first native guard samples state
+        // and immutable first-error before consulting TerminalMethodDenied.
+        int32_t targetStateAtEntry = -1, firstErrorAtEntry = -1;
+        const bool hasGuardEntry = probe.TryReadTargetGuardEntry(
+            targetStateAtEntry, firstErrorAtEntry);
+        if (!sawAttempt && hasGuardEntry)
         {
-            sawAttempt = Record(4, 1, 1, 0, 0) == 1;
+            sawAttempt = Record(4, 1, 1,
+                                targetStateAtEntry, firstErrorAtEntry) == 1;
         }
         const int32_t decision = probe.TargetDecision();
         if (!sawGuard && decision != 0)
@@ -365,9 +378,17 @@ static void* NativeCollector(void*) noexcept
             // *source-material candidate*, so generic process-exit==0
             // logic cannot misclassify this isolated probe as a Player pass.
             // 42=admitted P5 guard, 20=denied native candidate, 2=incomplete.
-            const int32_t status = sealed == 1 &&
+            // A terminal decision made after an ALREADY poisoned guard-entry
+            // is a separate terminal-negative, not healthy P5 policy proof.
+            // This test-only exit is fail-closed even before Python parses.
+            const bool healthyP5AtGuardEntry = hasGuardEntry &&
+                targetStateAtEntry == 5 /* Committing */ &&
+                firstErrorAtEntry == 0 /* Empty */;
+            const int32_t status =
+                sealed == 1 && healthyP5AtGuardEntry &&
                 decision == 1 ? 42 :
-                sealed == 1 && terminalDenied && sawP5 && sawCanary &&
+                sealed == 1 && healthyP5AtGuardEntry &&
+                terminalDenied && sawP5 && sawCanary &&
                 sawAttempt && sawGuard ? 20 : 2;
 #if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
             hostSealResult.store(sealed, std::memory_order_release);
@@ -388,7 +409,7 @@ static void* NativeCollector(void*) noexcept
 extern "C" IL2CPP_EXPORT int32_t R03_D5_WindowProtocolVersion()
 {
 #if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined(HYBRIDCLR_R03_D5_WINDOW_PROBE) && HYBRIDCLR_R03_D5_WINDOW_PROBE
-    return 1;
+    return 2; // C10 protocol v2, separate from WindowSnapshot schema 1
 #else
     return 0;
 #endif
@@ -453,7 +474,7 @@ extern "C" IL2CPP_EXPORT int32_t R03_D5_ReceiptOpen(
     if (fd < 0) { stage.store(-1, std::memory_order_release); return -3; }
     Header header{};
     std::memcpy(header.magic, "D5C10E1!", sizeof header.magic);
-    header.schema = 1;
+    header.schema = 2; // C10 native receipt v2: entry facts and release truth
     header.pid = static_cast<int32_t>(::getpid());
     std::memcpy(header.runId, runId, std::strlen(runId));
     std::memcpy(header.requestSha256, requestSha256, 64);
@@ -605,7 +626,11 @@ extern "C" IL2CPP_EXPORT int32_t R03_D5_ReceiptSeal(
 #endif
     using il2cpp::vm::assembly_shadow_d5::WindowProbe;
     const auto native = WindowProbe::Instance().Read();
-    if (Record(6, commitCode, stateCode, workerFinished, keepAttempted) != 1 ||
+    // Manual host writer only: do not copy an asserted managed workerFinished
+    // value into the v2 observed-release slot; source of truth is native CAS.
+    const int32_t releaseSeen = WindowProbe::Instance().
+        HasWorkerCompletedP5Acquire() ? 1 : 0;
+    if (Record(6, commitCode, stateCode, releaseSeen, keepAttempted) != 1 ||
         Record(7, native.shadowMethodAttemptsInP5, native.shadowMethodAllowedInP5,
                native.shadowMethodDeniedInP5, native.methodResultRacedP6) != 1 ||
         Record(8, native.p5Count, native.p6Count, native.timedOut, native.releaseCount) != 1)

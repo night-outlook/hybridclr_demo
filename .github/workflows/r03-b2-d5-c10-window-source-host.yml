@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: night-outlook/il2cpp_plus
-          ref: c741fb32a2b770856f211f47305c4f86b51f54ce
+          ref: e9aee83345aa9df90085de50162a7aa9172e8263
           path: _d5native
           filter: blob:none
           sparse-checkout: |
@@ -58,12 +58,12 @@ jobs:
           set -euo pipefail
           tool=_d5demo/Tools/AssemblyShadow/R03IR/D5Probe
           python3 -B "$tool/test_d5_window_source_contract.py" -v 2>&1 | tee "$RUNNER_TEMP/source-tests.log"
-          grep -q 'Ran 59 tests in' "$RUNNER_TEMP/source-tests.log"
+          grep -q 'Ran 72 tests in' "$RUNNER_TEMP/source-tests.log"
           grep -q '^OK$' "$RUNNER_TEMP/source-tests.log"
           python3 -B "$tool/d5_window_source_contract.py" \
             --native-root "$GITHUB_WORKSPACE/_d5native" \
             --demo-root "$GITHUB_WORKSPACE/_d5demo" \
-            --expected-native-head c741fb32a2b770856f211f47305c4f86b51f54ce \
+            --expected-native-head e9aee83345aa9df90085de50162a7aa9172e8263 \
             --expected-demo-head "$GITHUB_SHA" | tee "$RUNNER_TEMP/source-receipt.json"
           grep -q 'PassedActualSourceContractOnly_NotUnityPlayer' "$RUNNER_TEMP/source-receipt.json"
       - name: Synthetic native install, object and link material checks
@@ -81,7 +81,7 @@ jobs:
           python3 -B "$tool/d5_link_materials.py" --source-preview-only | tee "$RUNNER_TEMP/link-preview.json"
           grep -q 'SourceOnlyProvenanceContract_NotRun' "$RUNNER_TEMP/link-preview.json"
           python3 -B "$tool/test_d5_c10_native_receipt.py" -v 2>&1 | tee "$RUNNER_TEMP/evidence-tests.log"
-          grep -q 'Ran 34 tests in' "$RUNNER_TEMP/evidence-tests.log"
+          grep -q 'Ran 43 tests in' "$RUNNER_TEMP/evidence-tests.log"
           grep -q '^OK$' "$RUNNER_TEMP/evidence-tests.log"
           python3 -B "$tool/d5_c10_native_receipt.py" | tee "$RUNNER_TEMP/evidence-preview.json"
           grep -q 'SourceHostOnly_NoRealPlayerEvidence' "$RUNNER_TEMP/evidence-preview.json"
@@ -99,18 +99,18 @@ jobs:
           clang++ "${args[@]}" -fno-exceptions -fno-rtti \
             "$source/D5WindowSourceHost.cpp" "$source/D5WindowOtherTU.cpp" \
             "$source/R03D5WindowOverlay.cpp" -o "$RUNNER_TEMP/d5-c10-host/strict"
-          for case in unarmed denied allowed timeout raced invalid foreign wrongmethod duplicate early_terminal canary_happens_before; do
+          for case in unarmed denied allowed timeout raced invalid foreign wrongmethod duplicate early_terminal canary_happens_before entry_preterminal entry_prior_error entry_no_token entry_competing_thread entry_wrong_method entry_after_p6; do
             "$RUNNER_TEMP/d5-c10-host/strict" "$case" | tee -a "$RUNNER_TEMP/d5-c10-host/strict.log"
           done
-          test "$(grep -c 'PassedExactNativeWindowHeaderAndOverlayHostOnly' "$RUNNER_TEMP/d5-c10-host/strict.log")" -eq 11
+          test "$(grep -c 'PassedExactNativeWindowHeaderAndOverlayHostOnly' "$RUNNER_TEMP/d5-c10-host/strict.log")" -eq 17
           clang++ "${args[@]}" -O1 -g -fno-omit-frame-pointer -fsanitize=address,undefined \
             "$source/D5WindowSourceHost.cpp" "$source/D5WindowOtherTU.cpp" \
             "$source/R03D5WindowOverlay.cpp" -o "$RUNNER_TEMP/d5-c10-host/sanitized"
           export ASAN_OPTIONS=detect_leaks=0
-          for case in unarmed denied allowed timeout raced invalid foreign wrongmethod duplicate early_terminal canary_happens_before; do
+          for case in unarmed denied allowed timeout raced invalid foreign wrongmethod duplicate early_terminal canary_happens_before entry_preterminal entry_prior_error entry_no_token entry_competing_thread entry_wrong_method entry_after_p6; do
             "$RUNNER_TEMP/d5-c10-host/sanitized" "$case" | tee -a "$RUNNER_TEMP/d5-c10-host/sanitized.log"
           done
-          test "$(grep -c 'PassedExactNativeWindowHeaderAndOverlayHostOnly' "$RUNNER_TEMP/d5-c10-host/sanitized.log")" -eq 11
+          test "$(grep -c 'PassedExactNativeWindowHeaderAndOverlayHostOnly' "$RUNNER_TEMP/d5-c10-host/sanitized.log")" -eq 17
           clang++ -std=${{ matrix.cpp }} -Wall -Wextra -Werror -pedantic -pthread \
             -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=0 \
             -DHYBRIDCLR_R03_D5_WINDOW_PROBE=0 \
@@ -132,22 +132,22 @@ jobs:
             -fno-exceptions -fno-rtti \
             "$source/D5AutoReceiptHost.cpp" "$source/R03D5WindowOverlay.cpp" \
             -o "$RUNNER_TEMP/d5-c10-host/auto-strict"
-          for case in denied allowed foreign wrongmethod raced noattempt io_pwrite io_fsync io_close io_dirsync; do
+          for case in denied allowed foreign wrongmethod raced noattempt io_pwrite io_fsync io_close io_dirsync entry_preterminal entry_prior_error entry_missing_guard; do
             "$RUNNER_TEMP/d5-c10-host/auto-strict" "$case" \
               "$RUNNER_TEMP/d5-c10-host/auto-strict-$case.bin" |
               tee -a "$RUNNER_TEMP/d5-c10-host/auto-strict.log"
           done
-          test "$(grep -c 'PassedD5NativeAutoCollectorHostOnly' "$RUNNER_TEMP/d5-c10-host/auto-strict.log")" -eq 10
+          test "$(grep -c 'PassedD5NativeAutoCollectorHostOnly' "$RUNNER_TEMP/d5-c10-host/auto-strict.log")" -eq 13
           clang++ "${args[@]}" -DHYBRIDCLR_R03_D5_SOURCE_HOST_AUTO=1 \
             -O1 -g -fno-omit-frame-pointer -fsanitize=address,undefined \
             "$source/D5AutoReceiptHost.cpp" "$source/R03D5WindowOverlay.cpp" \
             -o "$RUNNER_TEMP/d5-c10-host/auto-sanitized"
-          for case in denied allowed foreign wrongmethod raced noattempt io_pwrite io_fsync io_close io_dirsync; do
+          for case in denied allowed foreign wrongmethod raced noattempt io_pwrite io_fsync io_close io_dirsync entry_preterminal entry_prior_error entry_missing_guard; do
             "$RUNNER_TEMP/d5-c10-host/auto-sanitized" "$case" \
               "$RUNNER_TEMP/d5-c10-host/auto-sanitized-$case.bin" |
               tee -a "$RUNNER_TEMP/d5-c10-host/auto-sanitized.log"
           done
-          test "$(grep -c 'PassedD5NativeAutoCollectorHostOnly' "$RUNNER_TEMP/d5-c10-host/auto-sanitized.log")" -eq 10
+          test "$(grep -c 'PassedD5NativeAutoCollectorHostOnly' "$RUNNER_TEMP/d5-c10-host/auto-sanitized.log")" -eq 13
           export D5_SOURCE_HOST_TOOL="$source"
           export D5_SOURCE_HOST_OUTPUT="$RUNNER_TEMP/d5-c10-host"
           python3 -B - <<'PY'
@@ -170,6 +170,9 @@ jobs:
               "io_fsync": None,     # never published
               "io_close": None,     # never published
               "io_dirsync": "NoCoverage", # final exists, exit 2 must reject
+              "entry_preterminal": "NoCoverage", # prior terminal before Keep
+              "entry_prior_error": "NoCoverage", # pre-existing failure record
+              "entry_missing_guard": "NoCoverage", # token alone is not entry
           }
           for profile in ("strict", "sanitized"):
               records = [json.loads(line) for line in
@@ -196,4 +199,4 @@ jobs:
                       assert not value["externalProcessProvenanceIndependentlyVerified"]
                   print("PassedSyntheticNativeAutoCollectorReceipt", profile, case, expected or "UnpublishedFailure")
           PY
-          echo '{"schema":"R03D5C10HostMatrixV1","result":"HostOnly","nativeStrictCases":11,"nativeSanitizedCases":11,"nativeReceiptStrictCases":1,"nativeReceiptSanitizedCases":1,"nativeAutoStrictCases":10,"nativeAutoSanitizedCases":10,"featureOffCases":1,"realUnityPlayerExecuted":false,"actualIL2CPPCompiled":false,"D5BLocalExecution":"NotAuthorized","WEB_TO_LOCAL":"CLOSED_NO_LOCAL_EXECUTION","R03Accepted":false}'
+          echo '{"schema":"R03D5C10HostMatrixV1","result":"HostOnly","nativeStrictCases":17,"nativeSanitizedCases":17,"nativeReceiptStrictCases":1,"nativeReceiptSanitizedCases":1,"nativeAutoStrictCases":13,"nativeAutoSanitizedCases":13,"featureOffCases":1,"realUnityPlayerExecuted":false,"actualIL2CPPCompiled":false,"D5BLocalExecution":"NotAuthorized","WEB_TO_LOCAL":"CLOSED_NO_LOCAL_EXECUTION","R03Accepted":false}'

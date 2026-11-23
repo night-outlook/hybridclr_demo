@@ -161,7 +161,7 @@ namespace AssemblyShadow.R03.D5
                 byte[] dll = File.ReadAllBytes(req.dllPath);
                 if (!string.Equals(Sha(dll), req.dllSha256, StringComparison.OrdinalIgnoreCase))
                     throw new InvalidOperationException("Methods.dll exact SHA mismatch");
-                if (R03_D5_WindowProtocolVersion() != 1)
+                if (R03_D5_WindowProtocolVersion() != 2)
                     throw new InvalidOperationException("Native D5 witness is not linked");
                 // Open once, before registration/staging/commit/possible poison.
                 receiptOpened = R03_D5_ReceiptOpen(outputPath, req.runId,
