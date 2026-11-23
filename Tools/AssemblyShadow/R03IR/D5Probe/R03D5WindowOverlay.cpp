@@ -370,7 +370,7 @@ extern "C" IL2CPP_EXPORT int32_t R03_D5_ReceiptOpen(
     { ::close(fd); fd = -1; stage.store(-1, std::memory_order_release); return -4; }
     stage.store(2, std::memory_order_release);
 #if (HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined(HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE) && HYBRIDCLR_R03_D5_NATIVE_VM_EVIDENCE) || (defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO)
-    pthread_t nativeCollector{}
+    pthread_t nativeCollector{};
     const int threadResult = ::pthread_create(
         &nativeCollector, nullptr, &r03_d5_evidence::NativeCollector, nullptr);
     if (threadResult != 0)
