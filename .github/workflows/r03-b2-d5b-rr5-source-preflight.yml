@@ -4,6 +4,13 @@ on:
     branches: [codex/assembly-shadow-r01b-h1]
     paths:
       - Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_*
+      - Tools/AssemblyShadow/R03IR/D5Admission/d5a_candidate_v1.json
+      - Tools/AssemblyShadow/R03IR/D5Admission/d5b_preparation_v1.json
+      - Tools/AssemblyShadow/R03IR/D5Probe/**
+      - Tools/AssemblyShadow/R03IR/current_native_candidate.json
+      - Tools/AssemblyShadow/R03IR/current_native_source_gate.py
+      - Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py
+      - .github/workflows/r03-b2-d5-c10-window-source-host.yml
       - .github/workflows/r03-b2-d5b-rr5-source-preflight.yml
   workflow_dispatch:
 permissions:
@@ -22,6 +29,7 @@ jobs:
             Tools/AssemblyShadow/R03IR/current_native_candidate.json
             Tools/AssemblyShadow/R03IR/current_native_source_gate.py
             Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py
+            .github/workflows/r03-b2-d5-c10-window-source-host.yml
           sparse-checkout-cone-mode: false
       - uses: actions/checkout@v4
         with:
@@ -68,13 +76,14 @@ jobs:
       - name: RR5 immutable proposal and negative regression contracts
         env:
           PYTHONDONTWRITEBYTECODE: "1"
+          R03_D5B_RR5_NATIVE_ROOT: ${{ github.workspace }}/_native
         shell: bash
         run: |
           set -euo pipefail
           source=_demo/Tools/AssemblyShadow/R03IR/D5Admission
           python3 -B "$source/test_d5b_rr5_source_preflight.py" -v 2>&1 |
             tee "$RUNNER_TEMP/d5b-rr5-tests.log"
-          grep -q 'Ran 27 tests in' "$RUNNER_TEMP/d5b-rr5-tests.log"
+          grep -q 'Ran 36 tests in' "$RUNNER_TEMP/d5b-rr5-tests.log"
           grep -q '^OK$' "$RUNNER_TEMP/d5b-rr5-tests.log"
       - name: Verify four pinned Git source trees without local admission
         env:
@@ -96,4 +105,10 @@ jobs:
           grep -q '"D5BLocalExecution": "NotAuthorized"' \
             "$RUNNER_TEMP/d5b-rr5-source-only.json"
           grep -q '"actualIl2CppNativeLink": "NotRun"' \
+            "$RUNNER_TEMP/d5b-rr5-source-only.json"
+          grep -q '"checkedEvidenceProducerFiles": 14' \
+            "$RUNNER_TEMP/d5b-rr5-source-only.json"
+          grep -q '"receiptProducerBlobsMatched": true' \
+            "$RUNNER_TEMP/d5b-rr5-source-only.json"
+          grep -q '"linkSourceBlobsMatched": true' \
             "$RUNNER_TEMP/d5b-rr5-source-only.json"
