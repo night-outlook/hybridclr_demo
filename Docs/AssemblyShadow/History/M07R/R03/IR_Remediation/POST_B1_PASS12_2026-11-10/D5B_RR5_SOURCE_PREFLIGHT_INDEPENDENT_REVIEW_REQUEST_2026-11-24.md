@@ -1,6 +1,9 @@
+> **Review completed: `ReturnRequired` (2026-11-24 UTC).** [Read the independent evidence-based report](D5B_RR5_SOURCE_PREFLIGHT_INDEPENDENT_REVIEW_2026-11-24.md). The two source-preflight blockers return to Primary Implementation; the request and source tuple below are retained as the immutable original review scope. Real Local Validation remains unauthorized.
+
+---
 # Independent request — D5-B RR5 read-only source preflight
 
-**Status: PENDING.** Review this new Primary-owned *source-only admission proposal*, not D5-B Local execution. Review separately from Primary and Local Validation. No Unity/IL2CPP/Player, no Local-owned document changes, no D6/H2/M08A/X02/SNAP-01/Human Review Gate.
+**Status at request publication: PENDING; now resolved `ReturnRequired` (see linked report).** Review this new Primary-owned *source-only admission proposal*, not D5-B Local execution. Review separately from Primary and Local Validation. No Unity/IL2CPP/Player, no Local-owned document changes, no D6/H2/M08A/X02/SNAP-01/Human Review Gate.
 
 ## Exact source to review
 
