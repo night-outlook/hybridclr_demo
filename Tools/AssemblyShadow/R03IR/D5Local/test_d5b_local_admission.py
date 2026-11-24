@@ -246,7 +246,7 @@ class D5BLocalSourceOnly(unittest.TestCase):
             with self.assertRaises(gate.Rejected):
                 gate.inspect_machine(self.unity, self.evidence, min_free_gib=0)
 
-    def _fake_xcode_read(self, argv):
+    def _fake_xcode_read(self, argv, *, allow_empty=False):
         if argv == ["xcodebuild", "-version"]:
             return "Xcode 15.4\nBuild version 15F31d"
         if argv[-1] == "--show-sdk-path":
@@ -472,7 +472,7 @@ class D5BLocalSourceOnly(unittest.TestCase):
                 gate.inspect_machine(self.unity, self.evidence, min_free_gib=20)
 
     def test_43_xcode_license_rejection_fails_closed(self):
-        def no_license(argv):
+        def no_license(argv, *, allow_empty=False):
             if argv == ["xcodebuild", "-license", "check"]:
                 raise gate.Rejected("License not accepted")
             return self._fake_xcode_read(argv)
@@ -499,6 +499,24 @@ class D5BLocalSourceOnly(unittest.TestCase):
                                side_effect=AssertionError("Must not inspect")):
             with self.assertRaises(gate.Rejected):
                 gate.inspect(data)
+
+    def test_46_standard_sdk_symlink_is_resolved_not_rejected(self):
+        link = self.parent / "MacOSX-current.sdk"
+        link.symlink_to(self.sdk, target_is_directory=True)
+        def xcode(argv, *, allow_empty=False):
+            if argv[-1] == "--show-sdk-path":
+                return str(link)
+            return self._fake_xcode_read(argv, allow_empty=allow_empty)
+        with mock.patch.object(gate.sys, "platform", "darwin"), \
+             mock.patch.object(gate.platform, "machine", return_value="arm64"), \
+             mock.patch.object(gate.shutil, "which", return_value="/usr/bin/tool"), \
+             mock.patch.object(gate.shutil, "disk_usage",
+                               return_value=SimpleNamespace(free=25 * 1024**3)), \
+             mock.patch.object(gate, "read_only_host_tool", side_effect=xcode):
+            result = gate.inspect_machine(
+                self.unity, self.evidence, min_free_gib=20)
+        self.assertEqual(result["macosSdkPath"], str(self.sdk))
+        self.assertTrue(result["xcodeLicenseChecked"])
 
 
 if __name__ == "__main__":
