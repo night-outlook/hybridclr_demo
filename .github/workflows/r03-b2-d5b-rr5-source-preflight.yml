@@ -1,0 +1,99 @@
+name: R03 D5-B RR5 source preflight (NO UNITY OR PLAYER)
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_*
+      - .github/workflows/r03-b2-d5b-rr5-source-preflight.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  rr5-source-only:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: _demo
+          filter: blob:none
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/D5Admission/
+            Tools/AssemblyShadow/R03IR/D5Probe/
+            Tools/AssemblyShadow/R03IR/current_native_candidate.json
+            Tools/AssemblyShadow/R03IR/current_native_source_gate.py
+            Tools/AssemblyShadow/R03IR/run_current_native_validation_cycle.py
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 1268dd417ffe9090fcd9ea2d49542c97ed3cccb3
+          path: _native
+          filter: blob:none
+          sparse-checkout: |
+            libil2cpp/utils/dynamic_array.h
+            libil2cpp/vm/Assembly.cpp
+            libil2cpp/vm/AssemblyShadow.cpp
+            libil2cpp/vm/AssemblyShadow.h
+            libil2cpp/vm/AssemblyShadowFirstFailureV2.h
+            libil2cpp/vm/AssemblyShadowD5WindowProbe.h
+            libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h
+            libil2cpp/vm/AssemblyShadowPublicationD3Decision.h
+            libil2cpp/vm/AssemblyShadowPublicationPhaseReceipt.h
+            libil2cpp/vm/AssemblyShadowTerminalExecution.h
+            libil2cpp/vm/AssemblyShadowTypes.h
+            libil2cpp/vm/MetadataCache.cpp
+            libil2cpp/vm/Runtime.cpp
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/hybridclr
+          ref: c3c232023724cbad565b85e9b2c3beea8ce2789a
+          path: _hybrid
+          filter: blob:none
+          sparse-checkout: |
+            hybridclr/metadata/InterpreterImage.cpp
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: _package
+          filter: blob:none
+          sparse-checkout: |
+            package.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: RR5 immutable proposal and negative regression contracts
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        shell: bash
+        run: |
+          set -euo pipefail
+          source=_demo/Tools/AssemblyShadow/R03IR/D5Admission
+          python3 -B "$source/test_d5b_rr5_source_preflight.py" -v 2>&1 |
+            tee "$RUNNER_TEMP/d5b-rr5-tests.log"
+          grep -q 'Ran 27 tests in' "$RUNNER_TEMP/d5b-rr5-tests.log"
+          grep -q '^OK$' "$RUNNER_TEMP/d5b-rr5-tests.log"
+      - name: Verify four pinned Git source trees without local admission
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B _demo/Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight.py \
+            --hybridclr-demo-root "$GITHUB_WORKSPACE/_demo" \
+            --hybridclr-root "$GITHUB_WORKSPACE/_hybrid" \
+            --hybridclr-unity-root "$GITHUB_WORKSPACE/_package" \
+            --il2cpp-plus-root "$GITHUB_WORKSPACE/_native" \
+            --expected-demo-head "$GITHUB_SHA" |
+            tee "$RUNNER_TEMP/d5b-rr5-source-only.json"
+          grep -q '"result": "RR5PinnedGitSourceVerified_NoLocalExecution"' \
+            "$RUNNER_TEMP/d5b-rr5-source-only.json"
+          grep -q '"realPlayerCellsNoCoverage": 18' \
+            "$RUNNER_TEMP/d5b-rr5-source-only.json"
+          grep -q '"D5BLocalExecution": "NotAuthorized"' \
+            "$RUNNER_TEMP/d5b-rr5-source-only.json"
+          grep -q '"actualIl2CppNativeLink": "NotRun"' \
+            "$RUNNER_TEMP/d5b-rr5-source-only.json"
