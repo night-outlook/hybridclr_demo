@@ -457,6 +457,11 @@ class D5BLocalSourceOnly(unittest.TestCase):
             "roots": self.roots,
             "candidate": self.evidence / self.oneuse,
             "historicalRootsChecked": 6,
+            "evidenceParentIdentity": gate.directory_identity(self.evidence),
+            "historicalRootIdentities": {
+                k: gate.directory_identity(p) for k, p in self.historical.items()},
+            "sourceRootIdentities": {
+                k: gate.directory_identity(p) for k, p in self.roots.items()},
         }
         with mock.patch.object(gate, "check_custody", return_value=custody), \
              mock.patch.object(gate, "inspect_original_s",
