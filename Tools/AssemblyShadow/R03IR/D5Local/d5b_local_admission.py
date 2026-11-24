@@ -176,11 +176,19 @@ def check_custody(workspace: Path, historical: Mapping[str, Path],
     need(len(set(roots.values())) == 4, "Duplicate source checkout")
     for role, root in historical.items():
         canonical_dir(root, "historical " + role)
+    need(len(set(historical.values())) == len(HISTORY),
+         "Distinct physical roots required for all six historical roles")
     base = historical["b1EvidenceBase"]
     for role in ("b1Oneuse12", "b1NativeHostRaw",
                  "b1B2HostRaw", "b1Preflight"):
         need(base in historical[role].parents and historical[role] != base,
              "Original B1 custody subtree mismatch: " + role)
+    b1_children = [historical[role] for role in
+                   ("b1Oneuse12", "b1NativeHostRaw",
+                    "b1B2HostRaw", "b1Preflight")]
+    need(all(separate(a, b) for i, a in enumerate(b1_children)
+             for b in b1_children[i + 1:]),
+         "Historical B1 child roles cannot overlap or alias")
     need(separate(workspace, historical["originalS"]),
          "Original S must be physically disjoint from active sources")
     canonical_dir(evidence_parent, "external evidence parent")
@@ -306,6 +314,10 @@ def inspect(request: dict) -> dict:
         "workspace", "historicalRoots", "evidenceParent",
         "oneuseName", "unity", "sourcePins",
     }, "D5-B inspection requires one complete structured request")
+    need(all(type(request[k]) is str and request[k].startswith("/")
+             for k in ("workspace", "evidenceParent", "unity")) and
+         type(request["oneuseName"]) is str,
+         "Canonical absolute paths and a string one-use ID are mandatory")
     pins = request["sourcePins"]
     need(type(pins) is dict and set(pins) == set(ROLES) and
          type(pins["hybridclr_demo"]) is str and
@@ -315,6 +327,9 @@ def inspect(request: dict) -> dict:
     historic = request["historicalRoots"]
     need(type(historic) is dict and set(historic) == set(HISTORY),
          "Complete six historical evidence roles required")
+    need(all(type(v) is str and v.startswith("/")
+             for v in historic.values()),
+         "Historical paths must be absolute strings")
     history_paths = {k: Path(v) for k, v in historic.items()}
     custody = check_custody(
         Path(request["workspace"]), history_paths,
@@ -333,6 +348,7 @@ def inspect(request: dict) -> dict:
         "workspace": custody["workspace"],
         "candidate": str(custody["candidate"]),
         "historicalRootCount": custody["historicalRootsChecked"],
+        "historicalRoots": {role: str(history_paths[role]) for role in HISTORY},
         "host": machine,
         "outputCreated": False, "UnityOrPlayerExecuted": False,
         "approvedEnvelopeGitBlob": None,
@@ -397,8 +413,9 @@ def oneuse_receipt(approved: dict, admission: dict) -> dict:
     for key in ("historicalRoots", "evidenceParent", "unity"):
         if key == "historicalRoots":
             expected = approved[key]
-            need(expected["originalS"] == admission["originalS"]["path"],
-                 "Approved Original S root mismatch")
+            need(expected == admission["historicalRoots"] and
+                 expected["originalS"] == admission["originalS"]["path"],
+                 "Every approved historical root must match actual custody")
         elif key == "evidenceParent":
             need(str(Path(admission["candidate"]).parent) == approved[key],
                  "Approved external evidence parent mismatch")
