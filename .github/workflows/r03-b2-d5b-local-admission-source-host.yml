@@ -34,7 +34,7 @@ jobs:
           tool=_demo/Tools/AssemblyShadow/R03IR/D5Local
           python3 -B "$tool/test_d5b_local_admission.py" -v 2>&1 |
             tee "$RUNNER_TEMP/d5b-admission-tests.log"
-          grep -q 'Ran 45 tests in' "$RUNNER_TEMP/d5b-admission-tests.log"
+          grep -q 'Ran 46 tests in' "$RUNNER_TEMP/d5b-admission-tests.log"
           grep -q '^OK$' "$RUNNER_TEMP/d5b-admission-tests.log"
       - name: Verify no immutable user approval or Unity execution can be asserted
         shell: bash
@@ -56,4 +56,4 @@ jobs:
           grep -q '"outputCreated": false' "$RUNNER_TEMP/blocked-execution.json"
           test ! -e "$RUNNER_TEMP/unapproved-d5b-envelope.json"
           cat "$RUNNER_TEMP/blocked-execution.json"
-          echo '{"schema":"R03D5BLocalAdmissionSourceHostV1","sourceTests":45,"approvedEnvelope":false,"localExecution":false,"unityOrPlayer":false,"R03Accepted":false,"result":"SourceOnlyDeniedLocalExecution"}'
+          echo '{"schema":"R03D5BLocalAdmissionSourceHostV1","sourceTests":46,"approvedEnvelope":false,"localExecution":false,"unityOrPlayer":false,"R03Accepted":false,"result":"SourceOnlyDeniedLocalExecution"}'
