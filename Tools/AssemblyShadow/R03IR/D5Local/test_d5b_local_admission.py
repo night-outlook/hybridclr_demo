@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import io
 import json
 import os
@@ -765,7 +766,18 @@ class D5BLocalSourceOnly(unittest.TestCase):
         self.assertEqual(message["result"], "FailedAfterPartialOutput")
         self.assertTrue(message["outputCreated"])
         self.assertFalse(message["retryAllowed"])
+        self.assertTrue(message["failureMarkerAvailable"])
         self.assertTrue((self.evidence / self.oneuse).exists())
+        root = self.evidence / self.oneuse
+        self.assertEqual(
+            set(message["observedFiles"]),
+            {x["path"] for x in message["observedLedger"]})
+        for row in message["observedLedger"]:
+            file = root / row["path"]
+            self.assertEqual(file.stat().st_size, row["bytes"])
+            self.assertEqual(
+                hashlib.sha256(file.read_bytes()).hexdigest(),
+                row["sha256"])
         self.assertFalse((self.evidence / self.oneuse /
                           "LOCAL_BATCH_RESULT.json").exists())
 
@@ -787,6 +799,60 @@ class D5BLocalSourceOnly(unittest.TestCase):
         self.assertTrue((self.evidence / self.oneuse / "FAILURE.json").exists())
         self.assertFalse((self.evidence / self.oneuse /
                           "LOCAL_BATCH_RESULT.json").exists())
+
+    def test_63_final_commit_marker_refuses_last_minute_source_drift(self):
+        raw, before = self._synthetic_approved_bytes(), self.fake_admission()
+        calls = []
+        def inspect(request, *, expect_output_present=False):
+            calls.append(expect_output_present)
+            if len(calls) == 4:
+                raise gate.Rejected("Synthetic post-manifest source drift")
+            return copy.deepcopy(before)
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)), \
+             mock.patch.object(gate, "inspect", side_effect=inspect):
+            with self.assertRaises(gate.PartialOutput):
+                gate.seal_oneuse_dry_admission(raw, before)
+        root = self.evidence / self.oneuse
+        self.assertEqual(calls, [False, True, True, True])
+        self.assertTrue((root / "MANIFEST.json").is_file())
+        self.assertTrue((root / "FAILURE.json").is_file())
+        self.assertFalse((root / "LOCAL_BATCH_RESULT.json").exists())
+
+    def test_64_precreation_parent_symlink_race_is_blocked(self):
+        raw, before = self._synthetic_approved_bytes(), self.fake_admission()
+        moved = self.parent / "renamed-parent-before-mkdir"
+        def altered(request, *, expect_output_present=False):
+            os.rename(self.evidence, moved)
+            self.evidence.symlink_to(
+                self.historical["b1Oneuse12"], target_is_directory=True)
+            return copy.deepcopy(before)
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)), \
+             mock.patch.object(gate, "inspect", side_effect=altered):
+            with self.assertRaises(OSError):
+                gate.seal_oneuse_dry_admission(raw, before)
+        self.assertFalse((moved / self.oneuse).exists())
+        self.assertFalse((self.historical["b1Oneuse12"] /
+                          self.oneuse).exists())
+
+    def test_65_failed_failure_marker_still_reports_created_root(self):
+        raw, before = self._synthetic_approved_bytes(), self.fake_admission()
+        saved = gate._write_locked
+        def no_space(root_fd, name, data):
+            if name in ("ADMISSION.json", "FAILURE.json"):
+                raise OSError("Simulated disk full even for failure marker")
+            return saved(root_fd, name, data)
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)), \
+             mock.patch.object(gate, "inspect", return_value=before), \
+             mock.patch.object(gate, "_write_locked", side_effect=no_space):
+            with self.assertRaises(gate.PartialOutput) as raised:
+                gate.seal_oneuse_dry_admission(raw, before)
+        self.assertTrue((self.evidence / self.oneuse).is_dir())
+        self.assertFalse((self.evidence / self.oneuse /
+                          "LOCAL_BATCH_RESULT.json").exists())
+        self.assertNotIn("FAILURE.json", raised.exception.files)
 
 
 if __name__ == "__main__":
