@@ -1,4 +1,12 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
+## Independent D5-B RR5 preflight review ReturnRequired (2026-11-24 UTC)
+
+**NOT AN EXECUTABLE LOCAL HANDOFF.** [Independent D5-B RR5 source-preflight review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RR5_SOURCE_PREFLIGHT_INDEPENDENT_REVIEW_2026-11-24.md) assigned `D5BRR5IndependentReview=ReturnRequired`. [Source-only CI 45342478424](https://github.com/night-outlook/hybridclr_demo/actions/runs/45342478424), exact preflight source `9962d7463e2200a81856bfb8cb3bbde4dbb7216d`, remains a real 1/1 host/Python PASS (27 tests; 16 C10 source blobs; five historical comparators), but two source-admission gaps remain: the C10 receipt-parser/test-producer inventory+workflow trigger is not pinned here, and negative tests do not exercise direct source-byte rejection. This is a Primary remediation request **only**; do not reuse or rewrite the old Local handoff or the older B1/D5-A/B source admission.
+
+**Hard stop:** `APPROVED_LOCAL_HANDOFF_BLOB=None`, `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`, `D5BLocalExecution=NotAuthorized`, `D5LocalValidation=NotAuthorized`, `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`; 18/18 real D5 Player cases `NoCoverage`; actual Unity/IL2CPP/full native VM/Bee/GC/linked Mach-O/PID/Player `NotRun`. Only focused Primary D5-B RR5 source-preflight corrections, new exact CI and independent rereview are permitted. No Local commands, D6/H2/M08A/X02/SNAP-01 or Human Review Gate. All older entries below are historical.
+
+---
+# Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 ## RR5 D5-B source-preflight CI PASS; separate independent review PENDING (2026-11-24 UTC)
 
 **NOT AN EXECUTABLE LOCAL HANDOFF.** New source-only D5-B RR5 preflight at immutable demo code `9962d7463e2200a81856bfb8cb3bbde4dbb7216d` passed [GitHub Actions 45342478424](https://github.com/night-outlook/hybridclr_demo/actions/runs/45342478424), 1/1 job; raw job `138269154590` verifies 27 Python tests, 16 C10 native/demo source Git blobs and five historic admission comparator Git blobs. See [Primary report](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RR5_SOURCE_PREFLIGHT_PRIMARY_2026-11-24.md) and [independent D5-B RR5 review request (PENDING)](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RR5_SOURCE_PREFLIGHT_INDEPENDENT_REVIEW_REQUEST_2026-11-24.md). No executable Unity/IL2CPP/Player runner is admitted by this read-only source test.
