@@ -481,6 +481,8 @@ def seal_oneuse_dry_admission(approved: dict, admission: dict) -> dict:
     Caller must have obtained approved_envelope() BEFORE inspecting sources.
     This function never calls Unity, dotnet, a Player, or a native compiler.
     """
+    need(APPROVED_EXECUTION_ENVELOPE_BLOB is not None,
+         "No reviewed Local D5-B execution envelope: sealing is disabled")
     result = oneuse_receipt(approved, admission)
     root = Path(admission["candidate"])
     need(not root.exists() and not root.is_symlink(),
