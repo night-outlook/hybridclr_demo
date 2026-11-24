@@ -518,6 +518,78 @@ class D5BLocalSourceOnly(unittest.TestCase):
         self.assertEqual(result["macosSdkPath"], str(self.sdk))
         self.assertTrue(result["xcodeLicenseChecked"])
 
+    def _synthetic_approved_bytes(self, mutate=None):
+        # These are temporary, mocked independent-review inputs for tests.
+        # Current production APPROVED_EXECUTION_ENVELOPE_BLOB remains None.
+        e = {
+            **self.fake_approval(),
+            "schemaVersion": 1,
+            "kind": "R03D5BApprovedDryAdmissionEnvelopeV1",
+            "branch": gate.BRANCH,
+            "independentExecutableAdmissionReview":
+                "PassedForD5BLocalDryAdmissionOnly",
+            "userLocalExecutionApproval": "ExplicitlyApproved",
+            "WEB_TO_LOCAL": "OPEN_FOR_EXACT_D5B_DRY_ADMISSION_ONLY",
+            "scope": "NoUnityOrPlayerLaunch",
+            "R03Accepted": False,
+        }
+        if mutate:
+            mutate(e)
+        return json.dumps(e, sort_keys=True).encode("utf-8")
+
+    def test_47_test_only_frozen_envelope_semantics(self):
+        raw = self._synthetic_approved_bytes()
+        with mock.patch.object(
+                gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                gate.git_blob(raw)):
+            parsed = gate.approved_envelope(raw)
+        self.assertEqual(parsed["sourcePins"], self.pins)
+        self.assertIsNone(gate.APPROVED_EXECUTION_ENVELOPE_BLOB)
+
+    def test_48_approved_envelope_one_byte_drift_rejected(self):
+        raw = self._synthetic_approved_bytes()
+        with mock.patch.object(
+                gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                gate.git_blob(raw)):
+            with self.assertRaises(gate.Rejected):
+                gate.approved_envelope(raw + b" ")
+
+    def test_49_test_only_approval_cannot_skip_user_review(self):
+        raw = self._synthetic_approved_bytes(
+            lambda e: e.__setitem__("userLocalExecutionApproval", "Pending"))
+        with mock.patch.object(
+                gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                gate.git_blob(raw)):
+            with self.assertRaises(gate.Rejected):
+                gate.approved_envelope(raw)
+
+    def test_50_test_only_approval_cannot_change_native_pin(self):
+        raw = self._synthetic_approved_bytes(
+            lambda e: e["sourcePins"].__setitem__("il2cpp_plus", "0" * 40))
+        with mock.patch.object(
+                gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                gate.git_blob(raw)):
+            with self.assertRaises(gate.Rejected):
+                gate.approved_envelope(raw)
+
+    def test_51_test_only_approval_cannot_omit_historical_root(self):
+        raw = self._synthetic_approved_bytes(
+            lambda e: e["historicalRoots"].pop("b1Preflight"))
+        with mock.patch.object(
+                gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                gate.git_blob(raw)):
+            with self.assertRaises(gate.Rejected):
+                gate.approved_envelope(raw)
+
+    def test_52_test_only_approval_cannot_claim_player_scope(self):
+        raw = self._synthetic_approved_bytes(
+            lambda e: e.__setitem__("scope", "BuildAndRunUnityPlayer"))
+        with mock.patch.object(
+                gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                gate.git_blob(raw)):
+            with self.assertRaises(gate.Rejected):
+                gate.approved_envelope(raw)
+
 
 if __name__ == "__main__":
     unittest.main()
