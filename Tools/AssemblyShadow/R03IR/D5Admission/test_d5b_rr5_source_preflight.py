@@ -2,7 +2,10 @@
 """Adversarial RR5 source-only custody tests; cannot authorize a Local run."""
 import copy
 import json
+import os
 from pathlib import Path
+import shutil
+import subprocess
 import tempfile
 import unittest
 from unittest import mock
@@ -201,6 +204,164 @@ class RR5SourcePreflight(unittest.TestCase):
             self.proposal["authority"]["approvedLocalHandoffGitBlob"])
         self.assertFalse(
             self.proposal["authority"]["allowUnityOrPlayerExecution"])
+
+    # All Git fixtures below are TEMPORARY synthetic repositories, not an
+    # authenticated real checkout or a Local Validation product.
+    def _git_fixture(self, files: dict[str, bytes]):
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        root = Path(temp.name).resolve(strict=True) / "repo"
+        root.mkdir()
+        for name, raw in files.items():
+            p = root / name
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_bytes(raw)
+        subprocess.run(["git", "init", "-q", str(root)],
+                       check=True, capture_output=True, text=True)
+        subprocess.run(["git", "-C", str(root), "add", "."],
+                       check=True, capture_output=True, text=True)
+        subprocess.run(["git", "-C", str(root),
+                        "-c", "user.name=RR5 Source Host",
+                        "-c", "user.email=rr5-host@example.invalid",
+                        "commit", "-q", "-m", "synthetic Git source fixture"],
+                       check=True, capture_output=True, text=True)
+        return root
+
+    def _all_pinned_git_fixtures(self):
+        # This copies reviewed CI checkout bytes into isolated temporary Git
+        # repositories, then exercises the REAL checked_source_blob and
+        # HEAD:path Git-blob join. Only pinned HEAD/remote admission is mocked.
+        demo = gate.ROOT.parents[3]
+        native_env = os.environ.get("R03_D5B_RR5_NATIVE_ROOT")
+        if not native_env:
+            raise RuntimeError("Set R03_D5B_RR5_NATIVE_ROOT to a reviewed source checkout")
+        native = Path(native_env).resolve(strict=True)
+        wanted = {role: {} for role in gate.ROLES}
+        for path, blob in self.c10["nativeInstalledSources"].items():
+            rel = "libil2cpp/" + path
+            wanted["il2cpp_plus"][rel] = (native / rel, blob)
+        for path, blob in self.c10["isolatedOverlaySource"].items():
+            wanted["hybridclr_demo"][path] = (demo / path, blob)
+        for path, blob in gate.EVIDENCE_PRODUCER_BLOBS.items():
+            wanted["hybridclr_demo"][path] = (demo / path, blob)
+        for path, blob in gate.HIST.items():
+            wanted["hybridclr_demo"][path] = (demo / path, blob)
+        for path, blob in (
+                ("Tools/AssemblyShadow/R03IR/D5Admission/" + gate.PROFILE.name,
+                 gate.PROFILE_BLOB),
+                (self.proposal["exactSourceManifests"]["c10Path"],
+                 gate.MANIFEST_BLOB)):
+            wanted["hybridclr_demo"][path] = (demo / path, blob)
+        roots = {}
+        for role in gate.ROLES:
+            material = {}
+            for path, (src, blob) in wanted[role].items():
+                raw = src.read_bytes()
+                self.assertEqual(gate.git_blob(raw), blob,
+                                 "Wrong source fixture blob: " + role + "/" + path)
+                material[path] = raw
+            # Empty hybridclr/package fixtures are deliberate: these test
+            # source-file authentication, not real remote admission.
+            if material:
+                roots[role] = self._git_fixture(material)
+            else:
+                temp = tempfile.TemporaryDirectory()
+                self.addCleanup(temp.cleanup)
+                roots[role] = Path(temp.name).resolve(strict=True)
+        return roots
+
+    def test_28_real_git_blob_positive(self):
+        content = b"rr5 exact source bytes\n"
+        root = self._git_fixture({"source/probe.txt": content})
+        actual = gate.git_blob(content)
+        self.assertEqual(gate.checked_source_blob(
+            root, "source/probe.txt", actual), actual)
+
+    def test_29_real_git_blob_dirty_worktree_rejected(self):
+        content = b"pinned source\n"
+        root = self._git_fixture({"source/probe.txt": content})
+        (root / "source/probe.txt").write_bytes(content + b"mutated\n")
+        with self.assertRaises(gate.Rejected):
+            gate.checked_source_blob(
+                root, "source/probe.txt", gate.git_blob(content))
+
+    def test_30_real_git_head_blob_mismatch_rejected(self):
+        original = b"recorded HEAD source\n"
+        changed = b"different working tree source\n"
+        root = self._git_fixture({"source/probe.txt": original})
+        (root / "source/probe.txt").write_bytes(changed)
+        with self.assertRaises(gate.Rejected):
+            # The worktree matches this caller's hash but HEAD:path does not.
+            gate.checked_source_blob(
+                root, "source/probe.txt", gate.git_blob(changed))
+
+    def test_31_real_git_symlink_and_path_escape_rejected(self):
+        content = b"exact bytes\n"
+        root = self._git_fixture({"source/probe.txt": content})
+        (root / "source/link.txt").symlink_to(
+            root / "source/probe.txt")
+        for path in ("source/link.txt", "../probe.txt",
+                     str(root / "source/probe.txt")):
+            with self.subTest(path=path):
+                with self.assertRaises(gate.Rejected):
+                    gate.checked_source_blob(root, path, gate.git_blob(content))
+
+    def test_32_full_inspect_positive_then_native_mutation_rejected(self):
+        roots = self._all_pinned_git_fixtures()
+        # Deliberately bypass only remote/canonical checkout identity:
+        # these temporary repos have test SHAs, never source acceptance.
+        with mock.patch.object(gate, "checked_checkout"):
+            result = gate.inspect(roots, "a" * 40)
+            self.assertEqual(result["checkedNativeAndOverlayFiles"], 16)
+            self.assertEqual(result["checkedEvidenceProducerFiles"], 14)
+            self.assertTrue(result["linkSourceBlobsMatched"])
+            self.assertTrue(result["receiptProducerBlobsMatched"])
+            self.assertEqual(result["D5BLocalExecution"], "NotAuthorized")
+            source = roots["il2cpp_plus"] / "libil2cpp/vm/AssemblyShadow.cpp"
+            source.write_bytes(source.read_bytes() + b"\n// mutated native source\n")
+            with self.assertRaises(gate.Rejected):
+                gate.inspect(roots, "a" * 40)
+
+    def test_33_full_inspect_parser_drift_rejected(self):
+        roots = self._all_pinned_git_fixtures()
+        with mock.patch.object(gate, "checked_checkout"):
+            self.assertEqual(gate.inspect(
+                roots, "a" * 40)["checkedEvidenceProducerFiles"], 14)
+            parser = roots["hybridclr_demo"] / (
+                "Tools/AssemblyShadow/R03IR/D5Probe/d5_c10_native_receipt.py")
+            parser.write_bytes(parser.read_bytes() + b"\n# changed receipt logic\n")
+            with self.assertRaises(gate.Rejected):
+                gate.inspect(roots, "a" * 40)
+
+    def test_34_full_inspect_host_workflow_drift_rejected(self):
+        roots = self._all_pinned_git_fixtures()
+        with mock.patch.object(gate, "checked_checkout"):
+            self.assertTrue(gate.inspect(
+                roots, "a" * 40)["receiptProducerBlobsMatched"])
+            workflow = roots["hybridclr_demo"] / (
+                ".github/workflows/r03-b2-d5-c10-window-source-host.yml")
+            workflow.write_bytes(workflow.read_bytes() + b"\n# changed producer\n")
+            with self.assertRaises(gate.Rejected):
+                gate.inspect(roots, "a" * 40)
+
+    def test_35_verifier_noop_does_not_fake_a_full_inspect(self):
+        roots = self._all_pinned_git_fixtures()
+        with mock.patch.object(gate, "checked_checkout"), mock.patch.object(
+                gate, "checked_source_blob", return_value=None):
+            with self.assertRaises(gate.Rejected):
+                gate.inspect(roots, "a" * 40)
+
+    def test_36_mutant_source_verifier_kills_negative_test(self):
+        # Mutation testing: the *test runner* must observe a FAILURE when
+        # checked_source_blob is artificially disabled, not a success count.
+        mutant = RR5SourcePreflight(
+            "test_29_real_git_blob_dirty_worktree_rejected")
+        result = unittest.TestResult()
+        with mock.patch.object(gate, "checked_source_blob", return_value=None):
+            mutant.run(result)
+        self.assertFalse(result.wasSuccessful())
+        self.assertEqual(len(result.failures), 1)
+        self.assertFalse(result.errors)
 
 
 if __name__ == "__main__":
