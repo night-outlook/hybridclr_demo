@@ -44,7 +44,7 @@ jobs:
           set -euo pipefail
           tool=_demo/Tools/AssemblyShadow/R03IR/D5Local
           set +e
-          python3 -B "$tool/d5b_local_admission.py" \
+          python3 -B "$tool/run_d5_local.py" \
             --mode execute \
             --approved-envelope "$RUNNER_TEMP/unapproved-d5b-envelope.json" \
             > "$RUNNER_TEMP/blocked-execution.json"
