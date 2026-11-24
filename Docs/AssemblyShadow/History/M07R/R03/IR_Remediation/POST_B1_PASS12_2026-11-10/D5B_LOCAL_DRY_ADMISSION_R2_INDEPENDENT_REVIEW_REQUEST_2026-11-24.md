@@ -1,6 +1,9 @@
+> **Independent R2 rereview completed: `ReturnRequired` (2026-11-24 UTC).** [Read independent exact-source and raw-CI report](D5B_LOCAL_DRY_ADMISSION_R2_INDEPENDENT_REREVIEW_2026-11-24.md). The two new final-receipt/descriptor-close defects go back to Primary Implementation for focused R3 remediation. The immutable source tuple and original review criteria below remain historical. This decision does **not** open Local Validation.
+
+---
 # Independent review request — D5-B physical dry-admission R2 remediation
 
-**Status: PENDING, separate independent reviewer required.** Evaluate the revised **D5-B prospective dry-admission writer** against the three findings of [prior independent `ReturnRequired`](D5B_LOCAL_DRY_ADMISSION_INDEPENDENT_REVIEW_2026-11-24.md). Read [R2 design amendment](D5B_LOCAL_DRY_ADMISSION_R2_DESIGN_2026-11-24.md) and [Primary R2 code/CI report](D5B_LOCAL_DRY_ADMISSION_R2_PRIMARY_2026-11-24.md) only as context; independently read actual pinned code, test bodies and raw GitHub Actions logs. Scope is **source/design/host-only**. Do not modify Primary's code, execute Local Unity/Player, open `WEB_TO_LOCAL`, or authorize D5-C/D/other milestones.
+**Status at request publication: PENDING; now resolved `ReturnRequired` by independent rereview.** Evaluate the revised **D5-B prospective dry-admission writer** against the three findings of [prior independent `ReturnRequired`](D5B_LOCAL_DRY_ADMISSION_INDEPENDENT_REVIEW_2026-11-24.md). Read [R2 design amendment](D5B_LOCAL_DRY_ADMISSION_R2_DESIGN_2026-11-24.md) and [Primary R2 code/CI report](D5B_LOCAL_DRY_ADMISSION_R2_PRIMARY_2026-11-24.md) only as context; independently read actual pinned code, test bodies and raw GitHub Actions logs. Scope is **source/design/host-only**. Do not modify Primary's code, execute Local Unity/Player, open `WEB_TO_LOCAL`, or authorize D5-C/D/other milestones.
 
 ## Fixed source tuple
 
