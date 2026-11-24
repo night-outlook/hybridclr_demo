@@ -54,11 +54,15 @@ class Rejected(ValueError):
 class PartialOutput(Rejected):
     """A one-use root was created; do not retry or report outputCreated=false."""
 
-    def __init__(self, root: Path, reason: str, files: list[str]):
+    def __init__(self, root: Path, reason: str, files: list[dict], *,
+                 commit_visible: bool = False,
+                 cleanup_errors: tuple[str, ...] = ()):
         super().__init__(reason)
         self.root = root
         self.files = tuple(item["path"] for item in files)
         self.ledger = tuple(files)
+        self.commit_visible = commit_visible
+        self.cleanup_errors = cleanup_errors
 
 
 
@@ -570,33 +574,109 @@ def _same_admission(before: dict, after: dict) -> None:
              "Unity or macOS toolchain identity drifted: " + key)
 
 
+def _read_locked(root_fd: int, name: str) -> bytes:
+    need(re.fullmatch(r"[A-Z_]+\.json", name) is not None,
+         "Fixed dry-receipt filename required")
+    fd = os.open(name, os.O_RDONLY | os.O_NOFOLLOW, dir_fd=root_fd)
+    with os.fdopen(fd, "rb") as stream:
+        return stream.read()
+
+
+def _committed_receipt_structure(root_fd: int) -> dict:
+    """Physical receipt evidence only. Never an approval or real Unity PASS.
+
+    INCOMPLETE.json is a durable veto: its presence makes any complete-
+    looking final receipt invalid, even if its hash matches MANIFEST.json.
+    """
+    ledger = _locked_file_ledger(root_fd)
+    actual = {entry["path"]: entry for entry in ledger}
+    required = {
+        "ADMISSION.json", "CELLS.json", "POSTFLIGHT.json",
+        "MANIFEST.json", "LOCAL_BATCH_RESULT.json",
+    }
+    need(set(actual) == required,
+         "Dry receipt unsealed, incomplete, failed or contains extra files")
+    manifest = parse_json(_read_locked(root_fd, "MANIFEST.json"))
+    need(manifest.get("schemaVersion") == 1 and
+         manifest.get("kind") == "R03D5BDryAdmissionLedgerV3" and
+         manifest.get("finalReceiptIsExclusiveAndLast") is True and
+         manifest.get("realPlayerEvidence") is False and
+         manifest.get("R03Accepted") is False,
+         "Wrong final dry-admission seal schema")
+    files = manifest.get("files")
+    need(type(files) is list and len(files) == 4 and
+         all(type(x) is dict for x in files),
+         "Unreviewed final dry-admission receipt roster")
+    for item in files:
+        name = item.get("path")
+        need(name in required - {"MANIFEST.json"} and
+             type(item.get("sha256")) is str and
+             len(item["sha256"]) == 64 and
+             type(item.get("bytes")) is int and
+             name in actual and
+             actual[name]["sha256"] == item["sha256"] and
+             actual[name]["bytes"] == item["bytes"],
+             "Dry-admission receipt hash, size or identity mismatch")
+    need({x["path"] for x in files} == required - {"MANIFEST.json"},
+         "Duplicate or missing sealed dry receipt entry")
+    final = parse_json(_read_locked(root_fd, "LOCAL_BATCH_RESULT.json"))
+    need(final.get("schemaVersion") == 1 and
+         final.get("kind") == "R03D5BDryAdmissionReceiptV1" and
+         final.get("result") == "DryAdmissionRecorded_NoUnityOrPlayer" and
+         final.get("realUnityBuild") == "NotRun" and
+         final.get("realPlayerCellsPassed") == 0 and
+         final.get("realPlayerCellsNoCoverage") == 18 and
+         final.get("R03Accepted") is False,
+         "Final dry receipt cannot assert real Player or R03 acceptance")
+    return {"result": "SealedDryReceiptStructureOnly_NotLocalAuthorization",
+            "filesChecked": len(required),
+            "manifestSha256": actual["MANIFEST.json"]["sha256"],
+            "realPlayerCellsPassed": 0,
+            "realPlayerCellsNoCoverage": 18,
+            "R03Accepted": False}
+
+
+def inspect_dry_receipt_structure(root: Path) -> dict:
+    """Read-only structural verification, not an approved Local workflow."""
+    canonical_dir(root, "sealed dry-admission candidate")
+    fd = os.open(root, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+    try:
+        return _committed_receipt_structure(fd)
+    finally:
+        os.close(fd)
+
+
 def seal_oneuse_dry_admission(approved_raw: bytes,
                               admission: dict) -> dict:
-    """Future approved one-use dry receipt; cannot start Unity or Player.
+    """Future dry-only one-use writer; production approval is still None.
 
-    Always authenticate *raw reviewed envelope bytes* in this writer.
-    Re-check the real source/live refs/root identities before mkdir, and
-    again after preliminary writes but BEFORE success is emitted. No direct
-    dict-only call can bypass the approval provenance.
+    The one-use product is NOT complete while INCOMPLETE.json exists. All
+    preparatory files and the success-file staging bytes are fsynced before
+    the atomic final rename. After the rename, fsync the directory while
+    the durable incomplete marker still vetoes acceptance. The last
+    visibility change is removing INCOMPLETE.json; if power fails before
+    that unlink persists, the marker reappears and fails closed.
     """
-    approved = approved_envelope(approved_raw)  # fails with current None pin
+    approved = approved_envelope(approved_raw)
     request = _request_from_approval(approved)
     need(type(admission) is dict and
          admission.get("result") ==
             "ReadOnlyLocalAdmissionInspected_ExecutionStillUnauthorized",
          "Actual previously inspected D5-B admission required")
-    observed = inspect(request)  # full physical/source/live-remote recheck
+    observed = inspect(request)
     _same_admission(admission, observed)
     result = oneuse_receipt(approved, observed)
     root = Path(observed["candidate"])
     parent = root.parent
     expected_parent = observed["custodyIdentity"]["parent"]
-    # Path validation is not sufficient alone. Open with NOFOLLOW and bind
-    # the descriptor to the exact preflight device/inode for mkdirat/openat.
     flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
     parent_fd = os.open(parent, flags)
     root_fd = None
     root_created = False
+    committed = False
+    problem = None
+    cleanup_errors = []
+    ledger = []
     try:
         pstat = os.fstat(parent_fd)
         need(pstat.st_dev == expected_parent["device"] and
@@ -608,6 +688,13 @@ def seal_oneuse_dry_admission(approved_raw: bytes,
         root_created = True
         root_fd = os.open(root.name, flags, dir_fd=parent_fd)
         _assert_open_path(parent_fd, root_fd, root, expected_parent)
+        _write_locked(root_fd, "INCOMPLETE.json", {
+            "schemaVersion": 1,
+            "kind": "R03D5BUncommittedDryAdmissionV1",
+            "result": "NotCommitted", "retryAllowed": False,
+            "R03Accepted": False})
+        # Durably install the veto before generating any positive receipt.
+        os.fsync(root_fd)
         _write_locked(root_fd, "ADMISSION.json", {
             "sourceAndHost": observed,
             "approvalEnvelopeGitBlob": git_blob(approved_raw),
@@ -621,78 +708,117 @@ def seal_oneuse_dry_admission(approved_raw: bytes,
                  "reason": "No Unity/IL2CPP Player or case producer executed"}
                 for i in range(1, 19)],
             "D5LocalValidation": "NotAuthorized"})
-        # Re-inspect real source/live remotes and *the now existing* physical
-        # output. This may fail closed after root creation; it cannot pass by
-        # trusting the earlier source snapshot.
         postflight = inspect(request, expect_output_present=True)
         _same_admission(observed, postflight)
         _assert_open_path(parent_fd, root_fd, root, expected_parent)
         _write_locked(root_fd, "POSTFLIGHT.json", {
             "result": "ReadOnlyPostflightPassed_NotUnityValidation",
             "sourcePins": observed["sourcePins"],
-            "candidate": str(root), "remoteHeads": postflight["source"]["remoteHeads"],
+            "candidate": str(root),
+            "remoteHeads": postflight["source"]["remoteHeads"],
             "historicalRootCount": 6, "R03Accepted": False})
-        # All non-success files are durable before the final source/parent
-        # recheck. The final success receipt is written LAST.
         _assert_open_path(parent_fd, root_fd, root, expected_parent)
         final_check = inspect(request, expect_output_present=True)
         _same_admission(observed, final_check)
         _assert_open_path(parent_fd, root_fd, root, expected_parent)
-        files = _locked_file_ledger(root_fd)
-        need({row["path"] for row in files} ==
-             {"ADMISSION.json", "CELLS.json", "POSTFLIGHT.json"},
-             "Unexpected preliminary output material")
-        # MANIFEST commits preliminary files and the planned exact success
-        # bytes. An absent final receipt is NOT a successful product.
+        existing = _locked_file_ledger(root_fd)
+        need({entry["path"] for entry in existing} == {
+             "INCOMPLETE.json", "ADMISSION.json", "CELLS.json",
+             "POSTFLIGHT.json"}, "Unexpected precommit material")
+        final_bytes = _json_bytes(result)
+        files = [entry for entry in existing if entry["path"] != "INCOMPLETE.json"]
         files.append({"path": "LOCAL_BATCH_RESULT.json",
-                      "sha256": hashlib.sha256(_json_bytes(result)).hexdigest(),
-                      "bytes": len(_json_bytes(result)),
-                      "expectedOnlyUntilFinalWrite": True})
+                      "sha256": hashlib.sha256(final_bytes).hexdigest(),
+                      "bytes": len(final_bytes),
+                      "expectedOnlyUntilAtomicCommit": True})
         _write_locked(root_fd, "MANIFEST.json", {
-            "schemaVersion": 1, "kind": "R03D5BDryAdmissionLedgerV2",
+            "schemaVersion": 1,
+            "kind": "R03D5BDryAdmissionLedgerV3",
             "files": files, "realPlayerEvidence": False,
-            "R03Accepted": False,
-            "finalReceiptIsExclusiveAndLast": True})
+            "R03Accepted": False, "finalReceiptIsExclusiveAndLast": True,
+            "commitProtocol": "DurableIncompleteVeto_AtomicFinalRename"})
         _assert_open_path(parent_fd, root_fd, root, expected_parent)
-        # The commit marker is LAST: revalidate source refs and history once
-        # more after MANIFEST fsync and immediately before success receipt.
         final_source = inspect(request, expect_output_present=True)
         _same_admission(observed, final_source)
         _assert_open_path(parent_fd, root_fd, root, expected_parent)
-        _write_locked(root_fd, "LOCAL_BATCH_RESULT.json", result)
-        return result
+
+        # The only writer of positive bytes creates a non-accepting staging
+        # filename. An fsync/close failure here cannot leave a final marker.
+        _write_locked(root_fd, "LOCAL_BATCH_STAGING.json", result)
+        staging = _read_locked(root_fd, "LOCAL_BATCH_STAGING.json")
+        need(staging == final_bytes and
+             hashlib.sha256(staging).hexdigest() == files[-1]["sha256"],
+             "Staged final dry receipt does not match the reviewed bytes")
+        # All preliminary writes and the stage become directory-durable.
+        os.fsync(root_fd)
+        _assert_open_path(parent_fd, root_fd, root, expected_parent)
+        final_source = inspect(request, expect_output_present=True)
+        _same_admission(observed, final_source)
+        _assert_open_path(parent_fd, root_fd, root, expected_parent)
+
+        # Finish all other descriptor closes BEFORE the final commit.
+        closing_parent = parent_fd
+        parent_fd = None  # Never double-close after an error.
+        os.close(closing_parent)
+
+        # Single atomic visibility change for the final positive file.
+        # INCOMPLETE.json still vetoes this state until directory fsync.
+        os.rename("LOCAL_BATCH_STAGING.json", "LOCAL_BATCH_RESULT.json",
+                  src_dir_fd=root_fd, dst_dir_fd=root_fd)
+        os.fsync(root_fd)
+        # Last on-disk action: remove the veto only after durable final.
+        # Never perform another fallible disk write after this commit point.
+        os.unlink("INCOMPLETE.json", dir_fd=root_fd)
+        committed = True
     except BaseException as error:
-        if root_created:
-            # Retain the consumed one-use root. A failed write cannot be
-            # retried or misreported as outputCreated=false.
-            existing = []
-            try:
-                if root_fd is not None:
-                    existing = _locked_file_ledger(root_fd)
-                    if not any(x["path"] == "FAILURE.json" for x in existing):
-                        try:
-                            _write_locked(root_fd, "FAILURE.json", {
-                                "schemaVersion": 1,
-                                "kind": "R03D5BPartialOutputFailureV1",
-                                "result": "FailedAfterPartialOutput",
-                                "candidate": str(root),
-                                "reason": repr(error),
-                                "observedFiles": existing,
-                                "R03Accepted": False,
-                                "retryAllowed": False})
-                            existing = _locked_file_ledger(root_fd)
-                        except BaseException:
-                            # ENOSPC/permissions may make a marker impossible.
-                            # The exception still reports truthful output state.
-                            pass
-            except BaseException:
-                pass
-            raise PartialOutput(root, str(error), existing) from error
-        raise
-    finally:
-        if root_fd is not None:
+        problem = error
+
+    # Cleanup is deliberately part of the same root-created accounting,
+    # not a finally block that could override PartialOutput or claim no root.
+    if problem is not None and root_created and not committed:
+        try:
+            if root_fd is not None:
+                ledger = _locked_file_ledger(root_fd)
+                if not any(x["path"] == "FAILURE.json" for x in ledger):
+                    try:
+                        _write_locked(root_fd, "FAILURE.json", {
+                            "schemaVersion": 1,
+                            "kind": "R03D5BPartialOutputFailureV1",
+                            "result": "FailedAfterPartialOutput",
+                            "candidate": str(root), "reason": repr(problem),
+                            "observedFiles": ledger, "R03Accepted": False,
+                            "retryAllowed": False})
+                        ledger = _locked_file_ledger(root_fd)
+                    except BaseException:
+                        # Disk exhaustion may make the failure marker
+                        # unavailable; the durable veto still rejects it.
+                        pass
+        except BaseException:
+            pass
+    if root_fd is not None:
+        try:
             os.close(root_fd)
-        os.close(parent_fd)
+        except BaseException as error:
+            cleanup_errors.append("rootFd: " + repr(error))
+    if parent_fd is not None:
+        try:
+            os.close(parent_fd)
+        except BaseException as error:
+            cleanup_errors.append("parentFd: " + repr(error))
+    if problem is not None or cleanup_errors:
+        explanation = "; ".join(
+            [repr(problem)] if problem is not None else [])
+        if cleanup_errors:
+            explanation += ("; " if explanation else "") + "; ".join(cleanup_errors)
+        if root_created:
+            # After the final veto unlink, close errors are indeterminate
+            # cleanup outcomes, not evidence that the committed bytes failed.
+            raise PartialOutput(root, explanation, ledger,
+                                commit_visible=committed,
+                                cleanup_errors=tuple(cleanup_errors))
+        raise Rejected(explanation) from problem
+    return result
+
 
 
 def main(argv=None) -> int:
