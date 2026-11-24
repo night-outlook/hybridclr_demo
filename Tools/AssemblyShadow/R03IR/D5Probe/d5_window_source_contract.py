@@ -146,6 +146,11 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
         "const auto observed = ReadMethodTerminalPolicy();",
         "assembly_shadow_terminal::TerminalForBusiness(state, durable)")),
         "Probe and production must share all four durable terminal inputs")
+    release = header[header.find("bool ReleaseP5()"):header.find("void AtP6()")]
+    entry_reader = header[header.find("bool TryReadTargetGuardEntry("):header.find("int32_t TargetArmCount()")]
+    require("targetEntryReady_.load(std::memory_order_acquire) != 1 ||" in release and
+            "if (targetEntryReady_.load(std::memory_order_acquire) != 1)" in entry_reader,
+            "Both completion and receipt reader must acquire published guard entry")
     require("before.state != after.state || before.firstError != after.firstError" in header and
             "before.durable != after.durable" in header and
             "assembly_shadow_terminal::TerminalForBusiness(before.state, before.durable)" in header and

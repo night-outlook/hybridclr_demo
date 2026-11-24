@@ -334,8 +334,8 @@ class D5C10SourceContracts(unittest.TestCase):
 
     def test_63_guard_entry_acquire(self):
         self.mutated("native",N+"AssemblyShadowD5WindowProbe.h",
-            "targetEntryReady_.load(std::memory_order_acquire)",
-            "targetEntryReady_.load(std::memory_order_relaxed)")
+            "if (targetEntryReady_.load(std::memory_order_acquire) != 1)",
+            "if (targetEntryReady_.load(std::memory_order_relaxed) != 1)")
 
     def test_64_exact_tls_pointer(self):
         self.mutated("native",N+"AssemblyShadowD5WindowProbe.h",
@@ -417,6 +417,11 @@ class D5C10SourceContracts(unittest.TestCase):
         self.mutated("demo",D+"R03D5WindowOverlay.cpp",
             "entryPolicy == 1 /* observed nonterminal */",
             "true")
+
+    def test_80_release_checks_acquired_entry(self):
+        self.mutated("native",N+"AssemblyShadowD5WindowProbe.h",
+            "targetEntryReady_.load(std::memory_order_acquire) != 1 ||",
+            "targetEntryReady_.load(std::memory_order_relaxed) != 1 ||")
 
 if __name__=="__main__":
     unittest.main()
