@@ -1,6 +1,6 @@
 # R03 B2 D5-B C10 — RR4 Primary Implementation: native guard-entry preconditions and truthful release receipt
 
-**Primary status (2026-11-23 UTC): SourceCodeCommitted_UbuntuHostPass_MacOSJobsQueued.** This is a bounded **Primary Implementation**, not independent review approval and not Unity/IL2CPP/Player evidence. Two new source changes correct [RR3 independent ReturnRequired](D5B_C10_RR3_INDEPENDENT_REREVIEW_2026-11-23.md) findings `IR-D5BC10-RR3-01` and `IR-D5BC10-RR3-02`. **Until independently approved: `D5BC10IndependentReview=ReturnRequired`.**
+**Primary status (CI verified 2026-11-24 UTC): SourceHostComplete_PendingIndependentRereview.** This is a bounded **Primary Implementation**, not independent review approval and not Unity/IL2CPP/Player evidence. Two new source changes correct [RR3 independent ReturnRequired](D5B_C10_RR3_INDEPENDENT_REREVIEW_2026-11-23.md) findings `IR-D5BC10-RR3-01` and `IR-D5BC10-RR3-02`. **Until independently approved: `D5BC10IndependentReview=ReturnRequired`.**
 
 ## 1. Exact four-repository source tuple and scoped changes
 
@@ -39,20 +39,21 @@ The fixed native binary record layout remains **4,652 bytes**, but **`Header.sch
 
 Earlier contradictory parser tests are reconciled: old "worker unfinished not denial proof" has become "no managed completion required for immutable native denial", with both native-release status and managed unknown explicitly tested; case 28 also checks the same boundary. Added v1 rejection, preterminal/pre-error/incorrect state, no guard-entry, invalid observed-release value and admitted-without-release negatives. **43 receipt-parser tests** per host job.
 
-## 4. Source-host CI and raw evidence status
+## 4. Final exact-source host CI — completed 4/4, full raw logs verified
 
-**[GitHub Actions run 45166349875](https://github.com/night-outlook/hybridclr_demo/actions/runs/45166349875)**, demo `54cd6c3d6c8cc313d00c542d15f0bb409aafbe09`, native `e9aee83345aa9df90085de50162a7aa9172e8263`, attempt 1. The verified per-job matrix is:
+**[GitHub Actions run 45166349875](https://github.com/night-outlook/hybridclr_demo/actions/runs/45166349875)**, attempt 1, exact **demo source `54cd6c3d6c8cc313d00c542d15f0bb409aafbe09`** and **native `e9aee83345aa9df90085de50162a7aa9172e8263`**, completed **success (4/4 jobs)** at 2026-11-23 12:06 UTC. The two previously queued macOS jobs completed successfully. Primary independently fetched **all four raw GitHub job logs**, counted the actual test-output markers and checked for unexpected AddressSanitizer/UndefinedBehaviorSanitizer diagnostics and failures.
 
-| OS / C++ | Actual raw job ID | Latest known result | Python tests if complete | Native ON host cases if complete |
-|---|---|---|---:|---:|
-| Ubuntu 24.04 C++11 | `137664181102` | **PASS** | 72 source + 27 link + 43 receipt | 34 window + 2 manual + 26 auto |
-| Ubuntu 24.04 C++17 | `137664181290` | **PASS** | 72 source + 27 link + 43 receipt | 34 window + 2 manual + 26 auto |
-| macOS 15 C++11 | `137664180859` | **QUEUED as of this report draft** | Pending | Pending |
-| macOS 15 C++17 | `137664181683` | **QUEUED as of this report draft** | Pending | Pending |
+| Runner / C++ standard | Exact raw job ID | Source Python | Synthetic link Python | Receipt Python | C++ witness strict/sanitized | C++ manual writer | C++ auto writer | Feature-OFF | Synthetic receipt checks |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Ubuntu 24.04 C++11 | `137664181102` | 72 | 27 | 43 | 34 | 2 | 26 | 1 | 26 |
+| Ubuntu 24.04 C++17 | `137664181290` | 72 | 27 | 43 | 34 | 2 | 26 | 1 | 26 |
+| macOS 15 C++11 | `137664180859` | 72 | 27 | 43 | 34 | 2 | 26 | 1 | 26 |
+| macOS 15 C++17 | `137664181683` | 72 | 27 | 43 | 34 | 2 | 26 | 1 | 26 |
+| **Total** | | **288** | **108** | **172** | **136** | **8** | **104** | **4** | **104** |
 
-Both full Ubuntu raw logs were independently fetched: **142/142 Python tests, 62/62 native strict/sanitized ON cases, 1 feature-OFF control and 26 synthetic receipt checks per job**, with no unexpected ASan/UBSan or failures. Each Ubuntu job includes preterminal/prior-error/missing-entry source-host negative receipts classified as `NoCoverage`. **The four-job matrix must not be claimed 4/4 successful until both macOS jobs finish and their raw logs are inspected.**
+**Verified totals: 568 Python tests, 248 strict/sanitized C++ host cases, four feature-OFF controls, 104 synthetic auto-receipt classification checks; zero reported host test failures or unexpected sanitizer diagnostics.** The native writer checks are only synthetic host data, not actual source→Bee→IL2CPP compiler/link proofs, VM execution, GC or Player evidence. Each job's preterminal/prior-first-error/missing-native-entry scenarios was classified `NoCoverage`. Both previously queued macOS jobs passed independently and are no longer pending.
 
-The initial [run 45166141846](https://github.com/night-outlook/hybridclr_demo/actions/runs/45166141846) failed a source-contract mutation that did not catch removal of the native-release evidence variable. The narrowly repaired source-only checker was committed in demo `54cd6c3d6c8cc313d00c542d15f0bb409aafbe09` and retested. Keep the failed earlier run FAILED, not promoted.
+The initial [run 45166141846](https://github.com/night-outlook/hybridclr_demo/actions/runs/45166141846) **remains FAILED**: it exposed a source-contract mutation test that failed to reject a deleted native-release evidence variable. The subsequently repaired source-only contract, committed in exact tested demo source `54cd6c3d6c8cc313d00c542d15f0bb409aafbe09`, passed in run `45166349875`. Never promote the failed run or infer that four green host jobs mean the full native VM/Unity code was compiled.
 
 ## 5. Explicit unknowns, gates and next stop
 
@@ -60,4 +61,4 @@ These are only C++11/C++17 exact-source/synthetic host tests. **NotRun:** real U
 
 **Authority remains:** `D5BC10IndependentReview=ReturnRequired` pending a **separate** independent rereview, `D5BLocalExecution=NotAuthorized`, `D5LocalValidation=NotAuthorized`, `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`, `APPROVED_LOCAL_HANDOFF_BLOB=None`, `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`. Six historical custody roots remain mandatory and unbound for D5; no local one-use output or user Local execution permission.
 
-**Next permitted step:** complete/authenticate raw macOS CI job outcomes, then request a separate **independent C10 RR4 source/design/CI rereview** of the fixed exact four-repo tuple, not a Local Validation handoff or a product/Human Review Gate. Stop at that review.
+**Next permitted step:** a separately initiated **independent C10 RR4 source/design/raw-CI rereview** of the fixed exact four-repository tuple, including independently fetching all four raw job logs. Primary stops here without self-approval. This is **not** a Local Validation handoff, product/Human Review Gate or authorization for Unity/IL2CPP/Player execution.
