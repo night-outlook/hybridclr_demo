@@ -427,6 +427,9 @@ class D5BLocalSourceOnly(unittest.TestCase):
              "LOCAL_BATCH_RESULT.json"})
         self.assertFalse((root / "FAILURE.json").exists())
         self.assertTrue((root / "LOCAL_BATCH_RESULT.json").exists())
+        self.assertFalse((root / "LOCAL_BATCH_STAGING.json").exists())
+        self.assertFalse((root / "INCOMPLETE.json").exists())
+        self.assertEqual(gate.inspect_dry_receipt_structure(root)["filesChecked"], 5)
 
     def test_36_execute_cli_denied_before_envelope_or_filesystem(self):
         missing = self.parent / "missing-envelope.json"
@@ -720,11 +723,12 @@ class D5BLocalSourceOnly(unittest.TestCase):
 
     def test_60_faults_at_each_exclusive_receipt_are_partial(self):
         targets = ("ADMISSION.json", "CELLS.json", "POSTFLIGHT.json",
-                   "MANIFEST.json", "LOCAL_BATCH_RESULT.json")
+                   "MANIFEST.json", "LOCAL_BATCH_STAGING.json")
         real = gate._write_locked
         for target in targets:
             with self.subTest(target=target):
-                self.oneuse = "R03-B2-D5-failure-" + target.split(".")[0]
+                self.oneuse = ("R03-B2-D5-failure-" +
+                               target.split(".")[0].replace("_", "-"))
                 raw, before = self._synthetic_approved_bytes(), self.fake_admission()
                 def failing(root_fd, name, data):
                     if name == target:
@@ -743,6 +747,9 @@ class D5BLocalSourceOnly(unittest.TestCase):
                 self.assertTrue((root / "FAILURE.json").is_file())
                 self.assertFalse(raised.exception.files == ())
                 self.assertIn("FAILURE.json", raised.exception.files)
+                self.assertTrue((root / "INCOMPLETE.json").is_file())
+                with self.assertRaises(gate.Rejected):
+                    gate.inspect_dry_receipt_structure(root)
 
     def test_61_public_cli_reports_partial_root_truthfully(self):
         raw, prior = self._synthetic_approved_bytes(), self.fake_admission()
