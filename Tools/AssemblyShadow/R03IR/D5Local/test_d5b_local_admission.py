@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+import io
 import json
 import os
 from pathlib import Path
@@ -69,14 +70,31 @@ class D5BLocalSourceOnly(unittest.TestCase):
 
     def fake_admission(self):
         return {
+            "schemaVersion": 1,
             "kind": "R03D5BLocalAdmissionInspectionV1",
+            "result": "ReadOnlyLocalAdmissionInspected_ExecutionStillUnauthorized",
             "sourcePins": dict(self.pins),
             "candidate": str(self.evidence / self.oneuse),
             "workspace": str(self.workspace),
+            "source": {"remoteHeads": dict(self.pins), "result":
+                       "LocalExactGitAndLiveRemoteSourceOnly"},
             "host": {"unitySha256": gate.sha256(self.unity),
-                     "unityExecutable": str(self.unity)},
+                     "unityExecutable": str(self.unity),
+                     "platform": "macOS", "architecture": "arm64",
+                     "xcodeVersionOutput": "Xcode 15.4",
+                     "macosSdkPath": str(self.sdk),
+                     "macosClangPath": str(self.clang),
+                     "xcodeLicenseChecked": True},
             "originalS": {"path": str(self.historical["originalS"])},
+            "historicalRootCount": 6,
             "historicalRoots": {k: str(v) for k, v in self.historical.items()},
+            "custodyIdentity": {
+                "parent": gate.directory_identity(self.evidence),
+                "history": {k: gate.directory_identity(v)
+                            for k, v in self.historical.items()},
+                "sources": {k: gate.directory_identity(v)
+                            for k, v in self.roots.items()},
+            },
         }
 
     def fake_approval(self):
@@ -383,30 +401,31 @@ class D5BLocalSourceOnly(unittest.TestCase):
             gate.oneuse_receipt(approved, self.fake_admission())
 
     def test_35_oneuse_output_exclusivity_and_no_player(self):
-        fake_approval = self.fake_approval()
-        fake_admission = self.fake_admission()
-        self.assertFalse((self.evidence / self.oneuse).exists())
-        # A test-only temporarily patched approval anchor permits checking
-        # exclusive I/O. The production anchor remains None on return.
-        with mock.patch.object(
-                gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
-                gate.git_blob(self._synthetic_approved_bytes())):
-            receipt = gate.seal_oneuse_dry_admission(
-                fake_approval, fake_admission)
-            with self.assertRaises(gate.Rejected):
-                gate.seal_oneuse_dry_admission(
-                    fake_approval, fake_admission)
-        self.assertIsNone(gate.APPROVED_EXECUTION_ENVELOPE_BLOB)
+        raw = self._synthetic_approved_bytes()
+        observed = self.fake_admission()
         root = self.evidence / self.oneuse
-        self.assertTrue(root.is_dir())
+        self.assertFalse(root.exists())
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)), \
+             mock.patch.object(gate, "inspect", return_value=observed) as check:
+            receipt = gate.seal_oneuse_dry_admission(raw, observed)
+            with self.assertRaises(gate.Rejected):
+                gate.seal_oneuse_dry_admission(raw, observed)
+        self.assertIsNone(gate.APPROVED_EXECUTION_ENVELOPE_BLOB)
+        self.assertGreaterEqual(check.call_count, 3)
         self.assertEqual(receipt["realPlayerCellsPassed"], 0)
         self.assertEqual(receipt["realPlayerCellsNoCoverage"], 18)
         cells = json.loads((root / "CELLS.json").read_text())
         self.assertEqual(len(cells["cells"]), 18)
-        self.assertTrue(all(c["result"] == "NoCoverage"
-                            for c in cells["cells"]))
-        self.assertEqual(len(json.loads(
-            (root / "MANIFEST.json").read_text())["files"]), 3)
+        self.assertTrue(all(x["result"] == "NoCoverage" for x in cells["cells"]))
+        manifest = json.loads((root / "MANIFEST.json").read_text())
+        self.assertEqual(len(manifest["files"]), 4)
+        self.assertEqual(
+            {x["path"] for x in manifest["files"]},
+            {"ADMISSION.json", "CELLS.json", "POSTFLIGHT.json",
+             "LOCAL_BATCH_RESULT.json"})
+        self.assertFalse((root / "FAILURE.json").exists())
+        self.assertTrue((root / "LOCAL_BATCH_RESULT.json").exists())
 
     def test_36_execute_cli_denied_before_envelope_or_filesystem(self):
         missing = self.parent / "missing-envelope.json"
