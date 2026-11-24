@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03B2D5BRR5SourcePreflightV1",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "reviewed": {
+    "d5a": "PassD5AForD5BPreparation",
+    "c10": "PassSourceProducerOnly",
+    "hybridclr_demo_reviewed_code": "a8f9cb31cd51aed97a65d84e555ec7f4d3f2e328",
+    "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3",
+    "demoExecutionPolicy": "ExactCurrentBranchHeadPlusReviewedC10SourceBlobs"
+  },
+  "exactSourceManifests": {
+    "c10Path": "Tools/AssemblyShadow/R03IR/D5Probe/d5c10_link_source_pinset_v1.json",
+    "c10GitBlob": "66b2e83f8cab4debb71af36d4bcd5eecd80b5629",
+    "nativeSources": 13,
+    "isolatedDemoSources": 3,
+    "d5aHistoricalPath": "Tools/AssemblyShadow/R03IR/D5Admission/d5a_candidate_v1.json",
+    "d5aHistoricalGitBlob": "e15bdbff02de2dbb7adef42c39f363fe2d1f3b37",
+    "d5bHistoricalPath": "Tools/AssemblyShadow/R03IR/D5Admission/d5b_preparation_v1.json",
+    "d5bHistoricalGitBlob": "202c7847e4ae741902162391a4e4bd7a66e33c2c",
+    "b1HistoricalPath": "Tools/AssemblyShadow/R03IR/current_native_candidate.json",
+    "b1HistoricalGitBlob": "efc4f7fa45fad394f156ed8d115bad727771c8a6"
+  },
+  "nativeSourceRoster": {
+    "translationUnits": [
+      "vm/Assembly.cpp",
+      "vm/AssemblyShadow.cpp",
+      "vm/MetadataCache.cpp",
+      "vm/Runtime.cpp",
+      "vm/AssemblyShadowD5WindowOverlay.cpp"
+    ],
+    "cExports": [
+      "R03_D5_WindowProtocolVersion",
+      "R03_D5_ArmP5Window",
+      "R03_D5_ReleaseP5Window",
+      "R03_D5_ReadP5Window",
+      "R03_D5_ReceiptOpen",
+      "R03_D5_ReceiptEvent",
+      "R03_D5_BindKeepCanary",
+      "R03_D5_ReceiptSeal",
+      "R03_D5_BeginKeepAttempt"
+    ],
+    "forbiddenNativeInputs": [
+      "NativeHostTests/AssemblyShadowFirstFailureV2Host.cpp"
+    ],
+    "compiledTranslationUnitsObserved": 0,
+    "linkedBinaryObserved": false
+  },
+  "historicalBaseline": {
+    "originalS": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+    "b1NativePin": "8aa8d09319a89b55b2496bcc2c69ccc69cb57be9",
+    "d5aNativePin": "3e3d2ab9c0f7cd68f0a98c6f6677a4ab0e64a699",
+    "oldB1SourceCount": 14,
+    "oldB1VmDeltaCount": 46,
+    "historicalEvidenceAsComparatorOnly": true,
+    "allowAlterLegacyAdmission": false
+  },
+  "expectedLocalTarget": {
+    "unity": "2022.3.62f2",
+    "platform": "macOS",
+    "architecture": "arm64",
+    "scriptingBackend": "IL2CPP",
+    "cppMode": "Release",
+    "featureOn": true,
+    "featureOffControl": true,
+    "actualTargetToolchainVerified": false
+  },
+  "requiredHistoricalRootRoles": [
+    "originalS",
+    "b1EvidenceBase",
+    "b1Oneuse12",
+    "b1NativeHostRaw",
+    "b1B2HostRaw",
+    "b1Preflight"
+  ],
+  "evidence": {
+    "d5PlayerCells": 18,
+    "d5PlayerPassed": 0,
+    "d5PlayerNoCoverage": 18,
+    "actualUnityBuild": "NotRun",
+    "actualIl2CppNativeLink": "NotRun",
+    "realMethodAndGc": "NotRun",
+    "realProcessPidAndExit": "NotRun",
+    "originalOneuse12": "HistoricalComparatorOnly"
+  },
+  "authority": {
+    "stage": "PrimaryRR5SourcePreflightOnly",
+    "approvedLocalHandoffGitBlob": null,
+    "d5bLocalExecution": "NotAuthorized",
+    "d5LocalValidation": "NotAuthorized",
+    "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false,
+    "allowUnityOrPlayerExecution": false
+  }
+}
