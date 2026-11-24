@@ -454,6 +454,52 @@ class D5BLocalSourceOnly(unittest.TestCase):
         with self.assertRaises(gate.Rejected):
             gate.inspect(sample)
 
+    def test_41_wrong_second_historical_root_blocks_receipt(self):
+        approved = self.fake_approval()
+        approved["historicalRoots"]["b1NativeHostRaw"] = "/different/root"
+        with self.assertRaises(gate.Rejected):
+            gate.oneuse_receipt(approved, self.fake_admission())
+
+    def test_42_unparseable_xcode_version_rejected(self):
+        with mock.patch.object(gate.sys, "platform", "darwin"), \
+             mock.patch.object(gate.platform, "machine", return_value="arm64"), \
+             mock.patch.object(gate.shutil, "which", return_value="/usr/bin/tool"), \
+             mock.patch.object(gate.shutil, "disk_usage",
+                               return_value=SimpleNamespace(free=25 * 1024**3)), \
+             mock.patch.object(gate, "read_only_host_tool",
+                               return_value="not a real Xcode version"):
+            with self.assertRaises(gate.Rejected):
+                gate.inspect_machine(self.unity, self.evidence, min_free_gib=20)
+
+    def test_43_xcode_license_rejection_fails_closed(self):
+        def no_license(argv):
+            if argv == ["xcodebuild", "-license", "check"]:
+                raise gate.Rejected("License not accepted")
+            return self._fake_xcode_read(argv)
+        with mock.patch.object(gate.sys, "platform", "darwin"), \
+             mock.patch.object(gate.platform, "machine", return_value="arm64"), \
+             mock.patch.object(gate.shutil, "which", return_value="/usr/bin/tool"), \
+             mock.patch.object(gate.shutil, "disk_usage",
+                               return_value=SimpleNamespace(free=25 * 1024**3)), \
+             mock.patch.object(gate, "read_only_host_tool", side_effect=no_license):
+            with self.assertRaises(gate.Rejected):
+                gate.inspect_machine(self.unity, self.evidence, min_free_gib=20)
+
+    def test_44_non_string_historical_path_rejected_before_custody(self):
+        data = self.request()
+        data["historicalRoots"]["b1NativeHostRaw"] = 17
+        with mock.patch.object(gate, "check_custody",
+                               side_effect=AssertionError("Must not inspect")):
+            with self.assertRaises(gate.Rejected):
+                gate.inspect(data)
+
+    def test_45_non_string_workspace_rejected_before_custody(self):
+        data = self.request(workspace=1234)
+        with mock.patch.object(gate, "check_custody",
+                               side_effect=AssertionError("Must not inspect")):
+            with self.assertRaises(gate.Rejected):
+                gate.inspect(data)
+
 
 if __name__ == "__main__":
     unittest.main()
