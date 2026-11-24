@@ -1,4 +1,12 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
+## RR5 D5-B source-preflight CI PASS; separate independent review PENDING (2026-11-24 UTC)
+
+**NOT AN EXECUTABLE LOCAL HANDOFF.** New source-only D5-B RR5 preflight at immutable demo code `9962d7463e2200a81856bfb8cb3bbde4dbb7216d` passed [GitHub Actions 45342478424](https://github.com/night-outlook/hybridclr_demo/actions/runs/45342478424), 1/1 job; raw job `138269154590` verifies 27 Python tests, 16 C10 native/demo source Git blobs and five historic admission comparator Git blobs. See [Primary report](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RR5_SOURCE_PREFLIGHT_PRIMARY_2026-11-24.md) and [independent D5-B RR5 review request (PENDING)](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RR5_SOURCE_PREFLIGHT_INDEPENDENT_REVIEW_REQUEST_2026-11-24.md). No executable Unity/IL2CPP/Player runner is admitted by this read-only source test.
+
+**Authority remains closed:** `D5BRR5PreflightCI=PassedExactSourceHostOnly`, `APPROVED_LOCAL_HANDOFF_BLOB=None`, `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`, `D5BLocalExecution=NotAuthorized`, `D5LocalValidation=NotAuthorized`, `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`. All 18 D5 real Player cases `NoCoverage`; real Unity/IL2CPP/full native VM/GC/Bee/Mach-O/authenticated PID/Player `NotRun`. No Local instructions, no D6/H2/M08A/X02/SNAP-01/Human Review Gate. Older sections below are historical, not execution authority.
+
+---
+# Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 ## D5-B RR5 source-only preflight prepared; new exact-code CI and independent review pending (2026-11-24 UTC)
 
 **NOT AN EXECUTABLE HANDOFF; NO UNITY/IL2CPP/PLAYER AUTHORITY.** The independent [C10 RR5 source-producer review](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_C10_RR5_INDEPENDENT_REREVIEW_2026-11-24.md) issued `D5BC10IndependentReview=PassSourceProducerOnly`. Primary next added an [RR5-specific D5-B source-preflight proposal and regression suite](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RR5_SOURCE_PREFLIGHT_PRIMARY_2026-11-24.md) without changing the historical B1/D5-A/D5-B admission authority or production code. This is proposed Git-source preparation only; newly configured preflight CI still requires exact-code raw-log verification and a separate independent D5-B source admission decision. Do not substitute historic C10 CI 45337986472 for the new script's execution evidence.
