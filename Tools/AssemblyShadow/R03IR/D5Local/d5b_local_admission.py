@@ -497,51 +497,196 @@ def oneuse_receipt(approved: dict, admission: dict) -> dict:
     }
 
 
-def write_exclusive(path: Path, value: dict) -> None:
-    with path.open("x", encoding="utf-8") as output:
-        json.dump(value, output, indent=2, sort_keys=True,
-                  ensure_ascii=True, allow_nan=False)
-        output.write("\n")
+def _json_bytes(value: dict) -> bytes:
+    return (json.dumps(value, indent=2, sort_keys=True,
+                       ensure_ascii=True, allow_nan=False) + "\n").encode("utf-8")
 
 
-def seal_oneuse_dry_admission(approved: dict, admission: dict) -> dict:
-    """Future executable D5-B scope: records only an admission, no Unity.
+def _write_locked(root_fd: int, name: str, value: dict) -> None:
+    """Exclusive regular file in the already-open one-use directory.
 
-    Caller must have obtained approved_envelope() BEFORE inspecting sources.
-    This function never calls Unity, dotnet, a Player, or a native compiler.
+    No child path is resolved through a mutable parent string. On-disk
+    partial writes remain consumed evidence, never an accepted receipt.
     """
-    need(APPROVED_EXECUTION_ENVELOPE_BLOB is not None,
-         "No reviewed Local D5-B execution envelope: sealing is disabled")
-    result = oneuse_receipt(approved, admission)
-    root = Path(admission["candidate"])
-    need(not root.exists() and not root.is_symlink(),
-         "Approved one-use destination was already consumed")
-    root.mkdir(mode=0o700, exist_ok=False)
-    write_exclusive(root / "ADMISSION.json", {
-        "sourceAndHost": admission, "approvalEnvelopeGitBlob":
-            APPROVED_EXECUTION_ENVELOPE_BLOB,
-        "result": "RecordedReadOnlyBeforeAnyBuild",
-        "R03Accepted": False})
-    write_exclusive(root / "CELLS.json", {
-        "kind": "R03D5BInitialNoCoverageCellsV1",
-        "cells": [
-            {"id": "D5-C%02d" % i, "result": "NoCoverage",
-             "evidenceClass": "NotRun",
-             "reason": "No real Unity/IL2CPP Player or case producer executed"}
-            for i in range(1, 19)],
-        "D5LocalValidation": "NotAuthorized",
-    })
-    write_exclusive(root / "LOCAL_BATCH_RESULT.json", result)
-    hashes = []
-    for name in ("ADMISSION.json", "CELLS.json", "LOCAL_BATCH_RESULT.json"):
-        p = root / name
-        hashes.append({"path": name, "sha256": sha256(p),
-                       "bytes": p.stat().st_size})
-    write_exclusive(root / "MANIFEST.json", {
-        "schemaVersion": 1, "kind": "R03D5BDryAdmissionLedgerV1",
-        "files": hashes, "realPlayerEvidence": False,
-        "R03Accepted": False})
-    return result
+    need(re.fullmatch(r"[A-Z_]+\.json", name) is not None,
+         "Only fixed one-use receipt filenames may be written")
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW
+    fd = os.open(name, flags, 0o600, dir_fd=root_fd)
+    with os.fdopen(fd, "wb") as stream:
+        stream.write(_json_bytes(value))
+        stream.flush()
+        os.fsync(stream.fileno())
+
+
+def _locked_file_ledger(root_fd: int) -> list[dict]:
+    """Read actual completed bytes, through the bound directory descriptor."""
+    rows = []
+    for name in sorted(os.listdir(root_fd)):
+        stat = os.stat(name, dir_fd=root_fd, follow_symlinks=False)
+        need(name.endswith(".json") and stat.st_size >= 0 and
+             not os.path.islink("/proc/self/fd/%d/%s" % (root_fd, name)),
+             "Unexpected one-use output entry")
+        fd = os.open(name, os.O_RDONLY | os.O_NOFOLLOW, dir_fd=root_fd)
+        with os.fdopen(fd, "rb") as stream:
+            raw = stream.read()
+        rows.append({"path": name, "sha256": hashlib.sha256(raw).hexdigest(),
+                     "bytes": len(raw)})
+    return rows
+
+
+def _assert_open_path(parent_fd: int, root_fd: int, root: Path,
+                      expected_parent: dict) -> None:
+    """Bind the string paths back to the previously opened physical inodes."""
+    pstat = os.fstat(parent_fd)
+    rstat = os.fstat(root_fd)
+    need(not root.is_symlink() and root.is_dir() and
+         directory_identity(root.parent) == expected_parent and
+         pstat.st_dev == expected_parent["device"] and
+         pstat.st_ino == expected_parent["inode"] and
+         root.stat().st_dev == rstat.st_dev and
+         root.stat().st_ino == rstat.st_ino,
+         "Bound D5-B physical parent/root identity changed")
+
+
+def _request_from_approval(approved: dict) -> dict:
+    return {key: approved[key] for key in (
+        "workspace", "historicalRoots", "evidenceParent",
+        "oneuseName", "unity", "sourcePins")}
+
+
+def _same_admission(before: dict, after: dict) -> None:
+    """Compare stable physical/source facts, not free disk byte fluctuations."""
+    for key in ("sourcePins", "source", "originalS", "workspace",
+                "candidate", "historicalRootCount", "historicalRoots",
+                "custodyIdentity"):
+        need(after.get(key) == before.get(key),
+             "D5-B custody or source changed: " + key)
+    for key in ("unityExecutable", "unitySha256", "platform",
+                "architecture", "xcodeVersionOutput", "macosSdkPath",
+                "macosClangPath", "xcodeLicenseChecked"):
+        need(after["host"].get(key) == before["host"].get(key),
+             "Unity or macOS toolchain identity drifted: " + key)
+
+
+def seal_oneuse_dry_admission(approved_raw: bytes,
+                              admission: dict) -> dict:
+    """Future approved one-use dry receipt; cannot start Unity or Player.
+
+    Always authenticate *raw reviewed envelope bytes* in this writer.
+    Re-check the real source/live refs/root identities before mkdir, and
+    again after preliminary writes but BEFORE success is emitted. No direct
+    dict-only call can bypass the approval provenance.
+    """
+    approved = approved_envelope(approved_raw)  # fails with current None pin
+    request = _request_from_approval(approved)
+    need(type(admission) is dict and
+         admission.get("result") ==
+            "ReadOnlyLocalAdmissionInspected_ExecutionStillUnauthorized",
+         "Actual previously inspected D5-B admission required")
+    observed = inspect(request)  # full physical/source/live-remote recheck
+    _same_admission(admission, observed)
+    result = oneuse_receipt(approved, observed)
+    root = Path(observed["candidate"])
+    parent = root.parent
+    expected_parent = observed["custodyIdentity"]["parent"]
+    # Path validation is not sufficient alone. Open with NOFOLLOW and bind
+    # the descriptor to the exact preflight device/inode for mkdirat/openat.
+    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+    parent_fd = os.open(parent, flags)
+    root_fd = None
+    root_created = False
+    try:
+        pstat = os.fstat(parent_fd)
+        need(pstat.st_dev == expected_parent["device"] and
+             pstat.st_ino == expected_parent["inode"] and
+             directory_identity(parent) == expected_parent and
+             not root.exists() and not root.is_symlink(),
+             "D5-B output parent replaced or candidate consumed")
+        os.mkdir(root.name, 0o700, dir_fd=parent_fd)
+        root_created = True
+        root_fd = os.open(root.name, flags, dir_fd=parent_fd)
+        _assert_open_path(parent_fd, root_fd, root, expected_parent)
+        _write_locked(root_fd, "ADMISSION.json", {
+            "sourceAndHost": observed,
+            "approvalEnvelopeGitBlob": git_blob(approved_raw),
+            "result": "ReadOnlyAdmissionBeforeAnyBuild",
+            "R03Accepted": False})
+        _write_locked(root_fd, "CELLS.json", {
+            "kind": "R03D5BInitialNoCoverageCellsV1",
+            "cells": [
+                {"id": "D5-C%02d" % i, "result": "NoCoverage",
+                 "evidenceClass": "NotRun",
+                 "reason": "No Unity/IL2CPP Player or case producer executed"}
+                for i in range(1, 19)],
+            "D5LocalValidation": "NotAuthorized"})
+        # Re-inspect real source/live remotes and *the now existing* physical
+        # output. This may fail closed after root creation; it cannot pass by
+        # trusting the earlier source snapshot.
+        postflight = inspect(request, expect_output_present=True)
+        _same_admission(observed, postflight)
+        _assert_open_path(parent_fd, root_fd, root, expected_parent)
+        _write_locked(root_fd, "POSTFLIGHT.json", {
+            "result": "ReadOnlyPostflightPassed_NotUnityValidation",
+            "sourcePins": observed["sourcePins"],
+            "candidate": str(root), "remoteHeads": postflight["source"]["remoteHeads"],
+            "historicalRootCount": 6, "R03Accepted": False})
+        # All non-success files are durable before the final source/parent
+        # recheck. The final success receipt is written LAST.
+        _assert_open_path(parent_fd, root_fd, root, expected_parent)
+        final_check = inspect(request, expect_output_present=True)
+        _same_admission(observed, final_check)
+        _assert_open_path(parent_fd, root_fd, root, expected_parent)
+        files = _locked_file_ledger(root_fd)
+        need({row["path"] for row in files} ==
+             {"ADMISSION.json", "CELLS.json", "POSTFLIGHT.json"},
+             "Unexpected preliminary output material")
+        # MANIFEST commits preliminary files and the planned exact success
+        # bytes. An absent final receipt is NOT a successful product.
+        files.append({"path": "LOCAL_BATCH_RESULT.json",
+                      "sha256": hashlib.sha256(_json_bytes(result)).hexdigest(),
+                      "bytes": len(_json_bytes(result)),
+                      "expectedOnlyUntilFinalWrite": True})
+        _write_locked(root_fd, "MANIFEST.json", {
+            "schemaVersion": 1, "kind": "R03D5BDryAdmissionLedgerV2",
+            "files": files, "realPlayerEvidence": False,
+            "R03Accepted": False,
+            "finalReceiptIsExclusiveAndLast": True})
+        _assert_open_path(parent_fd, root_fd, root, expected_parent)
+        _write_locked(root_fd, "LOCAL_BATCH_RESULT.json", result)
+        return result
+    except BaseException as error:
+        if root_created:
+            # Retain the consumed one-use root. A failed write cannot be
+            # retried or misreported as outputCreated=false.
+            existing = []
+            try:
+                if root_fd is not None:
+                    existing = _locked_file_ledger(root_fd)
+                    if not any(x["path"] == "FAILURE.json" for x in existing):
+                        try:
+                            _write_locked(root_fd, "FAILURE.json", {
+                                "schemaVersion": 1,
+                                "kind": "R03D5BPartialOutputFailureV1",
+                                "result": "FailedAfterPartialOutput",
+                                "candidate": str(root),
+                                "reason": repr(error),
+                                "observedFiles": existing,
+                                "R03Accepted": False,
+                                "retryAllowed": False})
+                            existing = _locked_file_ledger(root_fd)
+                        except BaseException:
+                            # ENOSPC/permissions may make a marker impossible.
+                            # The exception still reports truthful output state.
+                            pass
+            except BaseException:
+                pass
+            raise PartialOutput(root, str(error),
+                                [x["path"] for x in existing]) from error
+        raise
+    finally:
+        if root_fd is not None:
+            os.close(root_fd)
+        os.close(parent_fd)
 
 
 def main(argv=None) -> int:
