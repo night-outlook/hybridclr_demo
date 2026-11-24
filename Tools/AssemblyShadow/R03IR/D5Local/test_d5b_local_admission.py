@@ -49,6 +49,11 @@ class D5BLocalSourceOnly(unittest.TestCase):
         self.unity = self.parent / "Unity"
         self.unity.write_bytes(b"synthetic test-only Unity executable")
         self.unity.chmod(0o755)
+        self.sdk = self.parent / "MacOSX.sdk"
+        self.sdk.mkdir()
+        self.clang = self.parent / "clang"
+        self.clang.write_bytes(b"synthetic clang executable")
+        self.clang.chmod(0o755)
 
     def request(self, **changes):
         data = {
@@ -71,6 +76,7 @@ class D5BLocalSourceOnly(unittest.TestCase):
             "host": {"unitySha256": gate.sha256(self.unity),
                      "unityExecutable": str(self.unity)},
             "originalS": {"path": str(self.historical["originalS"])},
+            "historicalRoots": {k: str(v) for k, v in self.historical.items()},
         }
 
     def fake_approval(self):
