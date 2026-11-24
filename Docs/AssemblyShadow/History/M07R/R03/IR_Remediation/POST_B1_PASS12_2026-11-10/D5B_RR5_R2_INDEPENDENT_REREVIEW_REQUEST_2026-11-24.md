@@ -1,0 +1,24 @@
+# Independent rereview request — D5-B RR5 source-preflight remediation R2
+
+**Status: PENDING — separate independent reviewer required.** Read [original independent ReturnRequired](D5B_RR5_SOURCE_PREFLIGHT_INDEPENDENT_REVIEW_2026-11-24.md) and [focused Primary R2 remediation report](D5B_RR5_PRIMARY_REMEDIATION_R2_2026-11-24.md). Restrict review to F1 and F2, their scope preservation, source provenance and fresh CI. Do not simply endorse Primary's claims. Do not run Unity/IL2CPP/Player, modify Local-owned handoff docs, open Local Validation, or advance D6/H2/M08A/X02/SNAP-01/Human Review Gate.
+
+## Immutable source tuple and evidence
+
+All on branch `codex/assembly-shadow-r01b-h1`: `hybridclr_demo@54780df40bddfc9d050b87f64fcd259475d99ba4` (**exact new code/workflow source**, not later docs HEAD), `hybridclr@c3c232023724cbad565b85e9b2c3beea8ce2789a`, `hybridclr_unity@948c0e3b4f8891481301770115e8ba4945eea6de`, `il2cpp_plus@1268dd417ffe9090fcd9ea2d49542c97ed3cccb3`.
+
+New Git blobs: D5-B proposal `9956ea49656dc8337f9ab177c40faf29ea20c397`, verifier `81e7c3a2eaccb77bff2515c91b173558e4eeba2f`, regression suite `d5e8ca47861470db84d7a46221b2d340bfc602aa`, workflow `c70125684856806e329fd92e633eb9a8d0f8d921`. Original C10 v3 pinset `66b2e83f8cab4debb71af36d4bcd5eecd80b5629` unchanged. Source compare from original independent review HEAD demo `fd74c739151d77c94a4f53ddcacd5f01710380eb` to exact R2 code changes **only four preflight source/workflow files**, not native, old admission or C10 producer.
+
+**Fresh CI:** [run 45347447165](https://github.com/night-outlook/hybridclr_demo/actions/runs/45347447165) attempt 1, job `138285343137`, expected final success and 36 Python tests. First two intermediate runs **failed** and must remain failed: [45347228693](https://github.com/night-outlook/hybridclr_demo/actions/runs/45347228693) (old proposal anchor) and [45347326839](https://github.com/night-outlook/hybridclr_demo/actions/runs/45347326839) (missing C10 workflow sparse file). Independently fetch and inspect all relevant raw logs, check exact checkouts, negative test outcomes and explicit source-only classification.
+
+## Mandatory independent checks
+
+1. **F1 producer custody:** verify all 16 original C10 link-source Git blobs (13 native, three isolated demo) and **14 separately pinned C10 evidence-producer blobs**, including receipt parser/regressions, source-contract/link-material analyzers and tests, C++ host scenarios/stubs, C10 pinset and workflow. Read actual files at exact source SHA and independently compare all blob identities. Check there are no gaps between the relevant reviewed C10 producer roster and `EVIDENCE_PRODUCER_BLOBS`. Ensure both new counters/flags are only emitted after successful exact byte+HEAD checks. Verify `D5Probe/**` and the C10 workflow trigger a rerun; examine any unchanged files beyond review scope.
+2. **F2 mutation testing:** read `checked_source_blob`, `verified_source_blob`, `inspect` and new tests 28–36, not merely their names. Confirm a modified worktree, wrong HEAD blob, symlink/path escape, altered native source, altered v3 parser, altered C10 workflow and a disabled verifier are rejected by actual code. Confirm the nested mutation kill is a genuine expected test failure and that test fixtures use real temporary Git commits/HEAD:path while mocking only *claimed* remote/HEAD authorization. Look for alternative bypasses, tautologies or false CI acceptance.
+3. **Source/protocol non-escalation:** inspect proposal `authority` and C10 pinset; the verdict may only qualify Git-source preflight, not native installed files, actual Unity/IL2CPP compilation, PID provenance, Player method-guard behavior or six historical physical custody roots. Preserve original D5-A/B and B1 14/46 constraints; never silently promote a fake demo `--expected-demo-head` to an authenticated live remote branch.
+4. **Exact raw CI and prior failures:** independently retrieve job `138285343137` for final run, check all four actual checkout SHAs, `Ran 36 tests...OK`, detailed mutation tests, source material receipt `16/14/5`, no runner source drift, and no false claim of real compilation. Retain both earlier failed workflows as failed.
+
+## Independent decision and hard stop
+
+Return a separately published **`PassSourcePreflightOnly`** or **`ReturnRequired`** verdict with concrete sources/reproductions and exact immutable CI evidence. A PASS in this **new R2 preflight scope** must not open WEB_TO_LOCAL or grant executable D5-B/Local Validation; a ReturnRequired routes focused findings back to Primary.
+
+`D5BRR5IndependentReview=ReturnRequired` remains pending separate rereview; `APPROVED_LOCAL_HANDOFF_BLOB=None`; `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`; `D5BLocalExecution=NotAuthorized`; `D5LocalValidation=NotAuthorized`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`; all 18 D5 Player cases `NoCoverage`. No Local commands, later milestones or Human Review Gate.
