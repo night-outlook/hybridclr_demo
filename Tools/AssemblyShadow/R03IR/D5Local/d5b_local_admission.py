@@ -860,12 +860,17 @@ def main(argv=None) -> int:
         print(json.dumps({
             "schemaVersion": 1,
             "kind": "R03D5BLocalAdmissionFailureV1",
-            "result": "FailedAfterPartialOutput",
+            "result": ("IndeterminateAfterCommit" if exc.commit_visible
+                       else "FailedAfterPartialOutput"),
             "reason": str(exc),
             "candidate": str(exc.root),
             "observedFiles": list(exc.files),
             "observedLedger": list(exc.ledger),
             "failureMarkerAvailable": "FAILURE.json" in exc.files,
+            "commitVisible": exc.commit_visible,
+            "cleanupErrors": list(exc.cleanup_errors),
+            "requiresPhysicalReconciliation": exc.commit_visible or
+                bool(exc.cleanup_errors),
             "outputCreated": True,
             "retryAllowed": False,
             "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
