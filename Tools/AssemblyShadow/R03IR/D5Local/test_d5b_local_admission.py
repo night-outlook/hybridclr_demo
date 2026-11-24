@@ -246,18 +246,33 @@ class D5BLocalSourceOnly(unittest.TestCase):
             with self.assertRaises(gate.Rejected):
                 gate.inspect_machine(self.unity, self.evidence, min_free_gib=0)
 
+    def _fake_xcode_read(self, argv):
+        if argv == ["xcodebuild", "-version"]:
+            return "Xcode 15.4\nBuild version 15F31d"
+        if argv[-1] == "--show-sdk-path":
+            return str(self.sdk)
+        if argv[-1] == "clang":
+            return str(self.clang)
+        if argv == ["xcodebuild", "-license", "check"]:
+            return "Xcode license accepted"
+        raise AssertionError("Unexpected Xcode read-only query: " + str(argv))
+
     def test_25_machine_preview_does_not_launch_unity(self):
         with mock.patch.object(gate.sys, "platform", "darwin"), \
              mock.patch.object(gate.platform, "machine", return_value="arm64"), \
              mock.patch.object(gate.shutil, "which", return_value="/usr/bin/tool"), \
              mock.patch.object(gate.shutil, "disk_usage",
                                return_value=SimpleNamespace(free=25 * 1024**3)), \
+             mock.patch.object(gate, "read_only_host_tool",
+                               side_effect=self._fake_xcode_read), \
              mock.patch.object(gate.subprocess, "Popen",
                                side_effect=AssertionError("Unity must not launch")):
             report = gate.inspect_machine(
                 self.unity, self.evidence, min_free_gib=20)
         self.assertEqual(report["unitySha256"], gate.sha256(self.unity))
         self.assertEqual(report["actualUnityVersionVerified"], "NotRun")
+        self.assertEqual(report["macosSdkPath"], str(self.sdk))
+        self.assertTrue(report["xcodeLicenseChecked"])
 
     def test_26_machine_disk_threshold_rejected(self):
         with mock.patch.object(gate.sys, "platform", "darwin"), \
