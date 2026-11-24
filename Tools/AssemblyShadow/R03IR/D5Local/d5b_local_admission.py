@@ -9,7 +9,6 @@ Current APPROVED_EXECUTION_ENVELOPE_BLOB=None makes execution impossible.
 from __future__ import annotations
 
 import argparse
-from datetime import datetime, timezone
 import hashlib
 import json
 import os
@@ -49,6 +48,16 @@ APPROVED_EXECUTION_ENVELOPE_BLOB = None
 
 class Rejected(ValueError):
     """Admission failure. No local execution permission was granted."""
+
+
+class PartialOutput(Rejected):
+    """A one-use root was created; do not retry or report outputCreated=false."""
+
+    def __init__(self, root: Path, reason: str, files: list[str]):
+        super().__init__(reason)
+        self.root = root
+        self.files = tuple(files)
+
 
 
 def need(ok: bool, why: str) -> None:
@@ -163,8 +172,14 @@ def separate(a: Path, b: Path) -> bool:
     return a != b and a not in b.parents and b not in a.parents
 
 
+def directory_identity(path: Path) -> dict:
+    stat = path.stat()
+    return {"device": stat.st_dev, "inode": stat.st_ino}
+
+
 def check_custody(workspace: Path, historical: Mapping[str, Path],
-                  evidence_parent: Path, oneuse_name: str) -> dict:
+                  evidence_parent: Path, oneuse_name: str, *,
+                  expect_output_present: bool = False) -> dict:
     workspace = canonical_dir(workspace, "four-repo workspace")
     need(type(historical) is dict and set(historical) == set(HISTORY),
          "Exactly six named historical roots are mandatory")
@@ -195,9 +210,12 @@ def check_custody(workspace: Path, historical: Mapping[str, Path],
     need(type(oneuse_name) is str and NAME.fullmatch(oneuse_name) is not None,
          "Unique D5-B output ID is malformed")
     candidate = evidence_parent / oneuse_name
-    need(not candidate.exists() and not candidate.is_symlink() and
-         candidate.resolve(strict=False) == candidate,
-         "D5-B one-use output must be fresh, absent and canonical")
+    if expect_output_present:
+        canonical_dir(candidate, "existing one-use output")
+    else:
+        need(not candidate.exists() and not candidate.is_symlink() and
+             candidate.resolve(strict=False) == candidate,
+             "D5-B one-use output must be fresh, absent and canonical")
     protected = [workspace, *roots.values(), *historical.values()]
     need(all(separate(evidence_parent, p) and separate(candidate, p)
              for p in protected),
@@ -207,6 +225,11 @@ def check_custody(workspace: Path, historical: Mapping[str, Path],
         "candidate": candidate, "historical": historical,
         "result": "ReadOnlyRootCustodyChecked_NoOutputCreated",
         "historicalRootsChecked": len(historical),
+        "evidenceParentIdentity": directory_identity(evidence_parent),
+        "historicalRootIdentities": {
+            role: directory_identity(historical[role]) for role in HISTORY},
+        "sourceRootIdentities": {
+            role: directory_identity(roots[role]) for role in ROLES},
     }
 
 
@@ -338,8 +361,8 @@ def inspect_source_and_remote(roots: Mapping[str, Path],
     }
 
 
-def inspect(request: dict) -> dict:
-    """Read-only prospective admission. No mkdir, file write or Unity launch."""
+def inspect(request: dict, *, expect_output_present: bool = False) -> dict:
+    """Read-only admission, including optional existing output postflight."""
     plan = read_plan()
     need(type(request) is dict and set(request) == {
         "workspace", "historicalRoots", "evidenceParent",
@@ -364,7 +387,8 @@ def inspect(request: dict) -> dict:
     history_paths = {k: Path(v) for k, v in historic.items()}
     custody = check_custody(
         Path(request["workspace"]), history_paths,
-        Path(request["evidenceParent"]), request["oneuseName"])
+        Path(request["evidenceParent"]), request["oneuseName"],
+        expect_output_present=expect_output_present)
     original = inspect_original_s(history_paths["originalS"])
     sources = inspect_source_and_remote(custody["roots"],
                                         pins["hybridclr_demo"])
@@ -380,6 +404,11 @@ def inspect(request: dict) -> dict:
         "candidate": str(custody["candidate"]),
         "historicalRootCount": custody["historicalRootsChecked"],
         "historicalRoots": {role: str(history_paths[role]) for role in HISTORY},
+        "custodyIdentity": {
+            "parent": custody["evidenceParentIdentity"],
+            "history": custody["historicalRootIdentities"],
+            "sources": custody["sourceRootIdentities"],
+        },
         "host": machine,
         "outputCreated": False, "UnityOrPlayerExecuted": False,
         "approvedEnvelopeGitBlob": None,
