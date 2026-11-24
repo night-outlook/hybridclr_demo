@@ -16,6 +16,7 @@ from pathlib import Path
 import platform
 import re
 import shutil
+import stat
 import subprocess
 import sys
 from typing import Mapping
@@ -524,7 +525,7 @@ def _locked_file_ledger(root_fd: int) -> list[dict]:
     for name in sorted(os.listdir(root_fd)):
         stat = os.stat(name, dir_fd=root_fd, follow_symlinks=False)
         need(name.endswith(".json") and stat.st_size >= 0 and
-             not os.path.islink("/proc/self/fd/%d/%s" % (root_fd, name)),
+             stat.S_ISREG(stat.st_mode),
              "Unexpected one-use output entry")
         fd = os.open(name, os.O_RDONLY | os.O_NOFOLLOW, dir_fd=root_fd)
         with os.fdopen(fd, "rb") as stream:
@@ -703,7 +704,8 @@ def main(argv=None) -> int:
                  "D5-B Local execution is not authorized")
             need(args.approved_envelope is not None,
                  "Separately approved immutable envelope required")
-            approved = approved_envelope(args.approved_envelope.read_bytes())
+            approved_raw = args.approved_envelope.read_bytes()
+            approved = approved_envelope(approved_raw)
             request = {
                 "workspace": approved["workspace"],
                 "historicalRoots": approved["historicalRoots"],
@@ -713,7 +715,7 @@ def main(argv=None) -> int:
                 "sourcePins": approved["sourcePins"],
             }
             observation = inspect(request)
-            result = seal_oneuse_dry_admission(approved, observation)
+            result = seal_oneuse_dry_admission(approved_raw, observation)
         else:
             need(args.approved_envelope is None,
                  "Read-only preview must not accept approval-like inputs")
@@ -723,6 +725,21 @@ def main(argv=None) -> int:
             result = inspect(parse_json(args.request.read_bytes()))
         print(json.dumps(result, sort_keys=True, allow_nan=False))
         return 0
+    except PartialOutput as exc:
+        print(json.dumps({
+            "schemaVersion": 1,
+            "kind": "R03D5BLocalAdmissionFailureV1",
+            "result": "FailedAfterPartialOutput",
+            "reason": str(exc),
+            "candidate": str(exc.root),
+            "observedFiles": list(exc.files),
+            "outputCreated": True,
+            "retryAllowed": False,
+            "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+            "D5BLocalExecution": "NotAuthorized",
+            "R03Accepted": False,
+        }, sort_keys=True))
+        return 2
     except (Rejected, source.Rejected, OSError, ValueError,
             subprocess.TimeoutExpired) as exc:
         print(json.dumps({
