@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03B2D5BLocalDryAdmissionPlanV1",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "sourceAuthority": {
+    "sourcePreflightIndependentReview": "PassSourcePreflightOnly",
+    "sourcePreflightCodeCommit": "54780df40bddfc9d050b87f64fcd259475d99ba4",
+    "sourcePreflightProposalGitBlob": "9956ea49656dc8337f9ab177c40faf29ea20c397",
+    "sourcePreflightReviewGitBlob": "5a1e3690de6f44494bc718284315b8d9d9ced12a",
+    "c10PinsetGitBlob": "66b2e83f8cab4debb71af36d4bcd5eecd80b5629",
+    "hybridclr_demo": "LATEST_PUSHED_HEAD_IN_SEPARATELY_APPROVED_ENVELOPE",
+    "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"
+  },
+  "target": {
+    "platform": "macOS",
+    "architecture": "arm64",
+    "unity": "2022.3.62f2",
+    "scriptingBackend": "IL2CPP",
+    "cppConfiguration": "Release",
+    "featureOn": true,
+    "featureOffControl": true,
+    "diagnosticsLevel": 2,
+    "managedStripping": "Low",
+    "developerPlayerMode": true,
+    "minFreeGiB": 20,
+    "actualUnityVersionObserved": "NotRun"
+  },
+  "custody": {
+    "workspaceLayout": "four-sibling-repositories",
+    "originalSCommit": "fc55d8b8ce1738fda465c06cd97dc2a8f95ce34b",
+    "historicalRootRoles": [
+      "originalS",
+      "b1EvidenceBase",
+      "b1Oneuse12",
+      "b1NativeHostRaw",
+      "b1B2HostRaw",
+      "b1Preflight"
+    ],
+    "historicalDataUse": "ReadOnlyComparator",
+    "evidenceNamePattern": "R03-B2-D5-<unique-oneuse-id>",
+    "requireAbsentExternalCanonicalOutput": true,
+    "requireSourceClean": true,
+    "requireLiveRemoteBranchExactHeads": true,
+    "forbidSourceAndHistoricalOverlap": true,
+    "outputCreationBeforeAdmission": false,
+    "oldB1SourceCount": 14,
+    "oldB1VmDeltaCount": 46
+  },
+  "producerScope": {
+    "c10": "SourceProducerCandidate_NotLinkedPlayer",
+    "nativeBuildAndLink": "NotRun",
+    "c10RealPlayer": "NoCoverage",
+    "originalS": "HistoricalComparatorOnly",
+    "d5PlayerCells": [
+      "D5-C01",
+      "D5-C02",
+      "D5-C03",
+      "D5-C04",
+      "D5-C05",
+      "D5-C06",
+      "D5-C07",
+      "D5-C08",
+      "D5-C09",
+      "D5-C10",
+      "D5-C11",
+      "D5-C12",
+      "D5-C13",
+      "D5-C14",
+      "D5-C15",
+      "D5-C16",
+      "D5-C17",
+      "D5-C18"
+    ],
+    "d5PlayerCellsPassed": 0,
+    "d5PlayerCellsNoCoverage": 18
+  },
+  "authorization": {
+    "approvedEnvelopeGitBlob": null,
+    "independentlyReviewedExecutableAdmission": "Pending",
+    "explicitUserLocalApproval": "NotAuthorized",
+    "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+    "D5BLocalExecution": "NotAuthorized",
+    "D5LocalValidation": "NotAuthorized",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false,
+    "allowNativeBuild": false,
+    "allowPlayerLaunch": false
+  },
+  "mode": "PrimarySourceOnly_ExecutableLocalAdmissionNotAuthorized"
+}
