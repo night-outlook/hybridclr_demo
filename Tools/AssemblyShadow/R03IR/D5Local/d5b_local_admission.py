@@ -57,7 +57,8 @@ class PartialOutput(Rejected):
     def __init__(self, root: Path, reason: str, files: list[str]):
         super().__init__(reason)
         self.root = root
-        self.files = tuple(files)
+        self.files = tuple(item["path"] for item in files)
+        self.ledger = tuple(files)
 
 
 
@@ -653,6 +654,11 @@ def seal_oneuse_dry_admission(approved_raw: bytes,
             "R03Accepted": False,
             "finalReceiptIsExclusiveAndLast": True})
         _assert_open_path(parent_fd, root_fd, root, expected_parent)
+        # The commit marker is LAST: revalidate source refs and history once
+        # more after MANIFEST fsync and immediately before success receipt.
+        final_source = inspect(request, expect_output_present=True)
+        _same_admission(observed, final_source)
+        _assert_open_path(parent_fd, root_fd, root, expected_parent)
         _write_locked(root_fd, "LOCAL_BATCH_RESULT.json", result)
         return result
     except BaseException as error:
@@ -681,8 +687,7 @@ def seal_oneuse_dry_admission(approved_raw: bytes,
                             pass
             except BaseException:
                 pass
-            raise PartialOutput(root, str(error),
-                                [x["path"] for x in existing]) from error
+            raise PartialOutput(root, str(error), existing) from error
         raise
     finally:
         if root_fd is not None:
@@ -733,6 +738,8 @@ def main(argv=None) -> int:
             "reason": str(exc),
             "candidate": str(exc.root),
             "observedFiles": list(exc.files),
+            "observedLedger": list(exc.ledger),
+            "failureMarkerAvailable": "FAILURE.json" in exc.files,
             "outputCreated": True,
             "retryAllowed": False,
             "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
