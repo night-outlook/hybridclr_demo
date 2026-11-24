@@ -1,6 +1,9 @@
+> **Request completed — `PassSourcePreflightOnly` (2026-11-24 UTC).** [Independent R2 design → source → raw-CI report](D5B_RR5_R2_INDEPENDENT_REREVIEW_2026-11-24.md). The two previous source-preflight findings were closed within Git-source-only scope. This result does **not** authorize Local Validation or D5 execution. The source tuple and original request below remain historical and unmodified.
+
+---
 # Independent rereview request — D5-B RR5 source-preflight remediation R2
 
-**Status: PENDING — separate independent reviewer required.** Read [original independent ReturnRequired](D5B_RR5_SOURCE_PREFLIGHT_INDEPENDENT_REVIEW_2026-11-24.md) and [focused Primary R2 remediation report](D5B_RR5_PRIMARY_REMEDIATION_R2_2026-11-24.md). Restrict review to F1 and F2, their scope preservation, source provenance and fresh CI. Do not simply endorse Primary's claims. Do not run Unity/IL2CPP/Player, modify Local-owned handoff docs, open Local Validation, or advance D6/H2/M08A/X02/SNAP-01/Human Review Gate.
+**Status at request publication: PENDING; now resolved `PassSourcePreflightOnly` by separate independent review.** Read [original independent ReturnRequired](D5B_RR5_SOURCE_PREFLIGHT_INDEPENDENT_REVIEW_2026-11-24.md) and [focused Primary R2 remediation report](D5B_RR5_PRIMARY_REMEDIATION_R2_2026-11-24.md). Restrict review to F1 and F2, their scope preservation, source provenance and fresh CI. Do not simply endorse Primary's claims. Do not run Unity/IL2CPP/Player, modify Local-owned handoff docs, open Local Validation, or advance D6/H2/M08A/X02/SNAP-01/Human Review Gate.
 
 ## Immutable source tuple and evidence
 
