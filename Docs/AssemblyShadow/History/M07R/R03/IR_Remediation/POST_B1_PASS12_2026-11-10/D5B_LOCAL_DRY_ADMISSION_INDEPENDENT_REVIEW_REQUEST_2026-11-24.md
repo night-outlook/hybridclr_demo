@@ -1,6 +1,9 @@
+> **Independent review completed — `ReturnRequired` (2026-11-24 UTC).** [Read full design → source → 53-test → raw-CI report](D5B_LOCAL_DRY_ADMISSION_INDEPENDENT_REVIEW_2026-11-24.md). Three future one-use receipt-writer findings return to Primary Implementation. Current approval anchor remains None and Local remains CLOSED. The original source tuple and review request are preserved below for provenance.
+
+---
 # Independent review request — D5-B prospective physical dry-admission source/tooling
 
-**Status: PENDING.** Independent reviewer (separate from Primary and Local), please perform an evidence-based review of the **new physical D5-B dry-admission design → source → 53 tests → exact raw CI**. Do not merely endorse Primary's report. Do not invoke Local Unity/IL2CPP/Player, open `WEB_TO_LOCAL`, authorize execution, begin D5-C/D or later milestones, or approve a Human Review Gate.
+**Status at request publication: PENDING; now resolved `ReturnRequired` (see independent report).** Independent reviewer (separate from Primary and Local), please perform an evidence-based review of the **new physical D5-B dry-admission design → source → 53 tests → exact raw CI**. Do not merely endorse Primary's report. Do not invoke Local Unity/IL2CPP/Player, open `WEB_TO_LOCAL`, authorize execution, begin D5-C/D or later milestones, or approve a Human Review Gate.
 
 ## 1. Required read order and immutable source tuple
 
