@@ -523,9 +523,9 @@ def _locked_file_ledger(root_fd: int) -> list[dict]:
     """Read actual completed bytes, through the bound directory descriptor."""
     rows = []
     for name in sorted(os.listdir(root_fd)):
-        stat = os.stat(name, dir_fd=root_fd, follow_symlinks=False)
-        need(name.endswith(".json") and stat.st_size >= 0 and
-             stat.S_ISREG(stat.st_mode),
+        entry_stat = os.stat(name, dir_fd=root_fd, follow_symlinks=False)
+        need(name.endswith(".json") and entry_stat.st_size >= 0 and
+             stat.S_ISREG(entry_stat.st_mode),
              "Unexpected one-use output entry")
         fd = os.open(name, os.O_RDONLY | os.O_NOFOLLOW, dir_fd=root_fd)
         with os.fdopen(fd, "rb") as stream:
