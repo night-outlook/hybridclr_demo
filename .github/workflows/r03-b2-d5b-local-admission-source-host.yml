@@ -1,0 +1,59 @@
+name: R03 D5-B future Local dry admission source-host (NO LOCAL EXECUTION)
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - Tools/AssemblyShadow/R03IR/D5Local/**
+      - Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_*
+      - Tools/AssemblyShadow/R03IR/D5Probe/**
+      - .github/workflows/r03-b2-d5b-local-admission-source-host.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  future-admission-source-host:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: _demo
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03IR/D5Local/
+            Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight.py
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Proposed D5-B physical admission contracts and no-execution controls
+        shell: bash
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+          GIT_TERMINAL_PROMPT: "0"
+        run: |
+          set -euo pipefail
+          tool=_demo/Tools/AssemblyShadow/R03IR/D5Local
+          python3 -B "$tool/test_d5b_local_admission.py" -v 2>&1 |
+            tee "$RUNNER_TEMP/d5b-admission-tests.log"
+          grep -q 'Ran 45 tests in' "$RUNNER_TEMP/d5b-admission-tests.log"
+          grep -q '^OK$' "$RUNNER_TEMP/d5b-admission-tests.log"
+      - name: Verify no immutable user approval or Unity execution can be asserted
+        shell: bash
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          set -euo pipefail
+          tool=_demo/Tools/AssemblyShadow/R03IR/D5Local
+          set +e
+          python3 -B "$tool/d5b_local_admission.py" \
+            --mode execute \
+            --approved-envelope "$RUNNER_TEMP/unapproved-d5b-envelope.json" \
+            > "$RUNNER_TEMP/blocked-execution.json"
+          code=$?
+          set -e
+          test "$code" -eq 2
+          grep -q '"result": "NotAuthorized"' "$RUNNER_TEMP/blocked-execution.json"
+          grep -q '"WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION"' "$RUNNER_TEMP/blocked-execution.json"
+          grep -q '"outputCreated": false' "$RUNNER_TEMP/blocked-execution.json"
+          test ! -e "$RUNNER_TEMP/unapproved-d5b-envelope.json"
+          cat "$RUNNER_TEMP/blocked-execution.json"
+          echo '{"schema":"R03D5BLocalAdmissionSourceHostV1","sourceTests":45,"approvedEnvelope":false,"localExecution":false,"unityOrPlayer":false,"R03Accepted":false,"result":"SourceOnlyDeniedLocalExecution"}'
