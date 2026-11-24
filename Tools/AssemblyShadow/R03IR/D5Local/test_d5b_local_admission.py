@@ -861,6 +861,233 @@ class D5BLocalSourceOnly(unittest.TestCase):
                           "LOCAL_BATCH_RESULT.json").exists())
         self.assertNotIn("FAILURE.json", raised.exception.files)
 
+    def _seal_for_r3(self, *, write_side_effect=None, fsync_side_effect=None,
+                     rename_side_effect=None, unlink_side_effect=None,
+                     close_side_effect=None):
+        """Isolated, test-only approval anchor; never a live Local handoff."""
+        raw, prior = self._synthetic_approved_bytes(), self.fake_admission()
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)), \
+             mock.patch.object(gate, "inspect", return_value=prior):
+            from contextlib import ExitStack
+            with ExitStack() as stack:
+                if write_side_effect is not None:
+                    stack.enter_context(mock.patch.object(
+                        gate, "_write_locked", side_effect=write_side_effect))
+                if fsync_side_effect is not None:
+                    stack.enter_context(mock.patch.object(
+                        gate.os, "fsync", side_effect=fsync_side_effect))
+                if rename_side_effect is not None:
+                    stack.enter_context(mock.patch.object(
+                        gate.os, "rename", side_effect=rename_side_effect))
+                if unlink_side_effect is not None:
+                    stack.enter_context(mock.patch.object(
+                        gate.os, "unlink", side_effect=unlink_side_effect))
+                if close_side_effect is not None:
+                    stack.enter_context(mock.patch.object(
+                        gate.os, "close", side_effect=close_side_effect))
+                return gate.seal_oneuse_dry_admission(raw, prior)
+
+    def test_66_structurally_sealed_receipt_has_no_veto_or_stage(self):
+        result = self._seal_for_r3()
+        root = self.evidence / self.oneuse
+        self.assertEqual(result["result"], "DryAdmissionRecorded_NoUnityOrPlayer")
+        self.assertEqual(
+            set(x.name for x in root.iterdir()),
+            {"ADMISSION.json", "CELLS.json", "POSTFLIGHT.json",
+             "MANIFEST.json", "LOCAL_BATCH_RESULT.json"})
+        evidence = gate.inspect_dry_receipt_structure(root)
+        self.assertEqual(evidence["filesChecked"], 5)
+        self.assertEqual(evidence["realPlayerCellsNoCoverage"], 18)
+        self.assertFalse(evidence["R03Accepted"])
+
+    def test_67_after_flush_stage_fsync_error_never_publishes_final(self):
+        real_write, real_fsync = gate._write_locked, gate.os.fsync
+        failed = [False]
+        def write_staging(fd, name, value):
+            if name == "LOCAL_BATCH_STAGING.json":
+                def bad_fsync(file_fd):
+                    info = os.fstat(file_fd)
+                    if stat.S_ISREG(info.st_mode) and not failed[0]:
+                        failed[0] = True
+                        raise OSError(28, "after-flush staged receipt fsync failed")
+                    return real_fsync(file_fd)
+                with mock.patch.object(gate.os, "fsync",
+                                       side_effect=bad_fsync):
+                    return real_write(fd, name, value)
+            return real_write(fd, name, value)
+        with self.assertRaises(gate.PartialOutput) as raised:
+            self._seal_for_r3(write_side_effect=write_staging)
+        root = self.evidence / self.oneuse
+        self.assertTrue(failed[0])
+        self.assertFalse(raised.exception.commit_visible)
+        self.assertTrue((root / "LOCAL_BATCH_STAGING.json").is_file())
+        self.assertEqual(json.loads(
+            (root / "LOCAL_BATCH_STAGING.json").read_text())["result"],
+            "DryAdmissionRecorded_NoUnityOrPlayer")
+        self.assertTrue((root / "INCOMPLETE.json").is_file())
+        self.assertFalse((root / "LOCAL_BATCH_RESULT.json").exists())
+        with self.assertRaises(gate.Rejected):
+            gate.inspect_dry_receipt_structure(root)
+
+    def test_68_post_rename_directory_fsync_error_keeps_durable_veto(self):
+        real_fsync, real_write = gate.os.fsync, gate._write_locked
+        dirs = [0]
+        def fsync_with_postrename_failure(fd):
+            info = os.fstat(fd)
+            if stat.S_ISDIR(info.st_mode):
+                dirs[0] += 1
+                if dirs[0] == 3:
+                    raise OSError(5, "final directory fsync failed")
+            return real_fsync(fd)
+        def disallow_failure_marker(fd, name, value):
+            if name == "FAILURE.json":
+                raise OSError(28, "failure marker disk full")
+            return real_write(fd, name, value)
+        with self.assertRaises(gate.PartialOutput) as raised:
+            self._seal_for_r3(fsync_side_effect=fsync_with_postrename_failure,
+                              write_side_effect=disallow_failure_marker)
+        root = self.evidence / self.oneuse
+        self.assertEqual(dirs[0], 3)
+        self.assertFalse(raised.exception.commit_visible)
+        self.assertTrue((root / "LOCAL_BATCH_RESULT.json").exists())
+        self.assertEqual(json.loads((root / "LOCAL_BATCH_RESULT.json").read_text())[
+            "result"], "DryAdmissionRecorded_NoUnityOrPlayer")
+        self.assertTrue((root / "INCOMPLETE.json").exists())
+        self.assertFalse((root / "FAILURE.json").exists())
+        # The on-disk final bytes and manifest MAY match, but the durable
+        # incomplete veto makes this an invalid physical product.
+        with self.assertRaises(gate.Rejected):
+            gate.inspect_dry_receipt_structure(root)
+
+    def test_69_atomic_rename_failure_does_not_publish_final(self):
+        def denied(*args, **kwargs):
+            raise OSError(5, "atomic final rename failed")
+        with self.assertRaises(gate.PartialOutput):
+            self._seal_for_r3(rename_side_effect=denied)
+        root = self.evidence / self.oneuse
+        self.assertTrue((root / "LOCAL_BATCH_STAGING.json").exists())
+        self.assertTrue((root / "INCOMPLETE.json").exists())
+        self.assertFalse((root / "LOCAL_BATCH_RESULT.json").exists())
+        with self.assertRaises(gate.Rejected):
+            gate.inspect_dry_receipt_structure(root)
+
+    def test_70_final_veto_unlink_failure_never_seals_product(self):
+        def fail_unlink(name, **kwargs):
+            if name == "INCOMPLETE.json":
+                raise OSError(5, "atomic final veto unlink failed")
+            raise AssertionError("Unexpected unlink")
+        with self.assertRaises(gate.PartialOutput) as raised:
+            self._seal_for_r3(unlink_side_effect=fail_unlink)
+        root = self.evidence / self.oneuse
+        self.assertFalse(raised.exception.commit_visible)
+        self.assertTrue((root / "LOCAL_BATCH_RESULT.json").exists())
+        self.assertTrue((root / "INCOMPLETE.json").exists())
+        with self.assertRaises(gate.Rejected):
+            gate.inspect_dry_receipt_structure(root)
+
+    def test_71_parent_close_failure_is_partial_before_commit(self):
+        real_close = gate.os.close
+        handled = [False]
+        def fail_parent(fd):
+            fdinfo = os.fstat(fd)
+            if (stat.S_ISDIR(fdinfo.st_mode) and
+                fdinfo.st_ino == self.evidence.stat().st_ino and
+                not handled[0]):
+                handled[0] = True
+                real_close(fd)
+                raise OSError(5, "parent descriptor close failed")
+            return real_close(fd)
+        with self.assertRaises(gate.PartialOutput) as raised:
+            self._seal_for_r3(close_side_effect=fail_parent)
+        root = self.evidence / self.oneuse
+        self.assertTrue(handled[0])
+        self.assertTrue(root.exists())
+        self.assertFalse(raised.exception.commit_visible)
+        self.assertTrue((root / "INCOMPLETE.json").exists())
+        self.assertFalse((root / "LOCAL_BATCH_RESULT.json").exists())
+        with self.assertRaises(gate.Rejected):
+            gate.inspect_dry_receipt_structure(root)
+
+    def test_72_root_close_failure_is_indeterminate_after_commit(self):
+        real_close = gate.os.close
+        handled = [False]
+        def fail_root(fd):
+            fdinfo = os.fstat(fd)
+            root = self.evidence / self.oneuse
+            if (root.is_dir() and stat.S_ISDIR(fdinfo.st_mode) and
+                fdinfo.st_ino == root.stat().st_ino and not handled[0]):
+                handled[0] = True
+                real_close(fd)
+                raise OSError(5, "root descriptor close failed")
+            return real_close(fd)
+        with self.assertRaises(gate.PartialOutput) as raised:
+            self._seal_for_r3(close_side_effect=fail_root)
+        root = self.evidence / self.oneuse
+        self.assertTrue(handled[0])
+        self.assertTrue(raised.exception.commit_visible)
+        self.assertTrue(raised.exception.cleanup_errors)
+        self.assertTrue(root.is_dir())
+        self.assertFalse((root / "INCOMPLETE.json").exists())
+        self.assertEqual(gate.inspect_dry_receipt_structure(root)[
+            "result"], "SealedDryReceiptStructureOnly_NotLocalAuthorization")
+
+    def test_73_cli_reports_root_close_error_as_indeterminate(self):
+        raw, prior = self._synthetic_approved_bytes(), self.fake_admission()
+        file = self.parent / "test-only-reviewed-envelope.json"
+        file.write_bytes(raw)
+        real_close = gate.os.close
+        def fail_root(fd):
+            root = self.evidence / self.oneuse
+            if root.is_dir():
+                info = os.fstat(fd)
+                if stat.S_ISDIR(info.st_mode) and (
+                        info.st_ino == root.stat().st_ino):
+                    real_close(fd)
+                    raise OSError(5, "post-commit root descriptor close failed")
+            return real_close(fd)
+        stream = io.StringIO()
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)), \
+             mock.patch.object(gate, "inspect", return_value=prior), \
+             mock.patch.object(gate.os, "close", side_effect=fail_root), \
+             mock.patch("sys.stdout", stream):
+            code = gate.main([
+                "--mode", "execute", "--approved-envelope", str(file)])
+        self.assertEqual(code, 2)
+        response = json.loads(stream.getvalue())
+        self.assertEqual(response["result"], "IndeterminateAfterCommit")
+        self.assertTrue(response["outputCreated"])
+        self.assertFalse(response["retryAllowed"])
+        self.assertTrue(response["requiresPhysicalReconciliation"])
+        self.assertTrue(response["commitVisible"])
+        self.assertTrue(response["cleanupErrors"])
+        self.assertFalse(response["R03Accepted"])
+
+    def test_74_committed_receipt_with_incomplete_marker_is_rejected(self):
+        self._seal_for_r3()
+        root = self.evidence / self.oneuse
+        self.assertEqual(gate.inspect_dry_receipt_structure(root)["filesChecked"], 5)
+        (root / "INCOMPLETE.json").write_text(
+            '{"result":"NotCommitted"}\n', encoding="utf-8")
+        with self.assertRaises(gate.Rejected):
+            gate.inspect_dry_receipt_structure(root)
+
+    def test_75_manifest_only_or_missing_final_receipt_is_rejected(self):
+        self._seal_for_r3()
+        root = self.evidence / self.oneuse
+        (root / "LOCAL_BATCH_RESULT.json").unlink()
+        with self.assertRaises(gate.Rejected):
+            gate.inspect_dry_receipt_structure(root)
+
+    def test_76_failure_marker_vetoes_otherwise_matching_receipts(self):
+        self._seal_for_r3()
+        root = self.evidence / self.oneuse
+        (root / "FAILURE.json").write_text(
+            '{"result":"FailedAfterPartialOutput"}\n', encoding="utf-8")
+        with self.assertRaises(gate.Rejected):
+            gate.inspect_dry_receipt_structure(root)
+
 
 if __name__ == "__main__":
     unittest.main()
