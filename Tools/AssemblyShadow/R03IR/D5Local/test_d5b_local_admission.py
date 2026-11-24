@@ -386,10 +386,17 @@ class D5BLocalSourceOnly(unittest.TestCase):
         fake_approval = self.fake_approval()
         fake_admission = self.fake_admission()
         self.assertFalse((self.evidence / self.oneuse).exists())
-        # Synthetic receipt writer called *directly* in a temp directory.
-        # The public execute CLI still rejects: its approval pin is None.
-        receipt = gate.seal_oneuse_dry_admission(
-            fake_approval, fake_admission)
+        # A test-only temporarily patched approval anchor permits checking
+        # exclusive I/O. The production anchor remains None on return.
+        with mock.patch.object(
+                gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                gate.git_blob(self._synthetic_approved_bytes())):
+            receipt = gate.seal_oneuse_dry_admission(
+                fake_approval, fake_admission)
+            with self.assertRaises(gate.Rejected):
+                gate.seal_oneuse_dry_admission(
+                    fake_approval, fake_admission)
+        self.assertIsNone(gate.APPROVED_EXECUTION_ENVELOPE_BLOB)
         root = self.evidence / self.oneuse
         self.assertTrue(root.is_dir())
         self.assertEqual(receipt["realPlayerCellsPassed"], 0)
@@ -400,9 +407,6 @@ class D5BLocalSourceOnly(unittest.TestCase):
                             for c in cells["cells"]))
         self.assertEqual(len(json.loads(
             (root / "MANIFEST.json").read_text())["files"]), 3)
-        with self.assertRaises(gate.Rejected):
-            gate.seal_oneuse_dry_admission(
-                fake_approval, fake_admission)
 
     def test_36_execute_cli_denied_before_envelope_or_filesystem(self):
         missing = self.parent / "missing-envelope.json"
@@ -589,6 +593,14 @@ class D5BLocalSourceOnly(unittest.TestCase):
                 gate.git_blob(raw)):
             with self.assertRaises(gate.Rejected):
                 gate.approved_envelope(raw)
+
+    def test_53_direct_seal_helper_denied_without_reviewed_envelope(self):
+        self.assertIsNone(gate.APPROVED_EXECUTION_ENVELOPE_BLOB)
+        root = self.evidence / self.oneuse
+        with self.assertRaises(gate.Rejected):
+            gate.seal_oneuse_dry_admission(
+                self.fake_approval(), self.fake_admission())
+        self.assertFalse(root.exists())
 
 
 if __name__ == "__main__":
