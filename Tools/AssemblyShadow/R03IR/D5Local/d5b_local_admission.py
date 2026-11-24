@@ -249,6 +249,16 @@ def inspect_original_s(original: Path) -> dict:
             "actualPlayerProof": False}
 
 
+def read_only_host_tool(argv: list[str]) -> str:
+    """Query Xcode tooling without compiling, running Unity or creating files."""
+    out = subprocess.run(argv, capture_output=True, text=True,
+                         check=False, timeout=45)
+    need(out.returncode == 0 and bool(out.stdout.strip()),
+         "Required macOS Xcode/SDK check failed: " + " ".join(argv) +
+         " " + out.stderr[-180:])
+    return out.stdout.strip()
+
+
 def inspect_machine(unity: Path, evidence_parent: Path, *,
                     min_free_gib: int = 20) -> dict:
     need(sys.platform == "darwin" and
@@ -262,12 +272,27 @@ def inspect_machine(unity: Path, evidence_parent: Path, *,
     free = shutil.disk_usage(evidence_parent).free
     need(free >= min_free_gib * (1024 ** 3),
          "Insufficient available disk space for fresh D5 native builds")
-    # Merely checking the executable identity is NOT proof of Unity version,
-    # installed IL2CPP, SDK license or BuildPipeline success.
+    xcode = read_only_host_tool(["xcodebuild", "-version"])
+    need(re.search(r"^Xcode [0-9]", xcode, re.MULTILINE) is not None,
+         "Actual Xcode toolchain version is unavailable")
+    sdk = Path(read_only_host_tool(
+        ["xcrun", "--sdk", "macosx", "--show-sdk-path"]))
+    canonical_dir(sdk, "macOS SDK")
+    clang = Path(read_only_host_tool(
+        ["xcrun", "--sdk", "macosx", "--find", "clang"]))
+    need(clang.is_file() and os.access(clang, os.X_OK),
+         "Xcode macOS SDK clang compiler not installed")
+    # A license probe is metadata admission, NOT Unity or native compilation.
+    read_only_host_tool(["xcodebuild", "-license", "check"])
+    # Unity version and the IL2CPP module must be proved by a fresh Unity
+    # BuildPipeline receipt, not inferred from a plausible executable path.
     return {
         "platform": "macOS", "architecture": platform.machine(),
         "unityExecutable": str(unity), "unitySha256": sha256(unity),
         "availableBytes": free, "minimumGiB": min_free_gib,
+        "xcodeVersionOutput": xcode,
+        "macosSdkPath": str(sdk), "macosClangPath": str(clang),
+        "xcodeLicenseChecked": True,
         "xcodeExecutableFound": True, "xcrunExecutableFound": True,
         "actualUnityVersionVerified": "NotRun",
         "actualIl2CppBuildVerified": False,
