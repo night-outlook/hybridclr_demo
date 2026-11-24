@@ -626,6 +626,168 @@ class D5BLocalSourceOnly(unittest.TestCase):
                 self.fake_approval(), self.fake_admission())
         self.assertFalse(root.exists())
 
+    # R3 independent dry-admission review findings: test the actual inner
+    # receipt boundary, not merely the current public null-approval guard.
+    def test_54_inner_seal_rejects_different_approval_dict(self):
+        raw = self._synthetic_approved_bytes()
+        fake = self.fake_admission()
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)):
+            with self.assertRaises(gate.Rejected):
+                gate.seal_oneuse_dry_admission(self.fake_approval(), fake)
+        self.assertFalse((self.evidence / self.oneuse).exists())
+
+    def test_55_inner_seal_rejects_tampered_envelope_bytes(self):
+        raw = self._synthetic_approved_bytes()
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)):
+            with self.assertRaises(gate.Rejected):
+                gate.seal_oneuse_dry_admission(raw + b" ", self.fake_admission())
+        self.assertFalse((self.evidence / self.oneuse).exists())
+
+    def test_56_prewrite_source_drift_refuses_output(self):
+        raw = self._synthetic_approved_bytes()
+        prior = self.fake_admission()
+        changed = copy.deepcopy(prior)
+        changed["source"]["remoteHeads"]["hybridclr_demo"] = "f" * 40
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)), \
+             mock.patch.object(gate, "inspect", return_value=changed):
+            with self.assertRaises(gate.Rejected):
+                gate.seal_oneuse_dry_admission(raw, prior)
+        self.assertFalse((self.evidence / self.oneuse).exists())
+
+    def test_57_postflight_remote_drift_consumes_root_no_success(self):
+        raw, before = self._synthetic_approved_bytes(), self.fake_admission()
+        def inspect(request, *, expect_output_present=False):
+            if expect_output_present:
+                raise gate.Rejected("synthetic remote HEAD changed")
+            return copy.deepcopy(before)
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)), \
+             mock.patch.object(gate, "inspect", side_effect=inspect):
+            with self.assertRaises(gate.PartialOutput) as cm:
+                gate.seal_oneuse_dry_admission(raw, before)
+        root = self.evidence / self.oneuse
+        self.assertTrue(root.exists())
+        self.assertTrue(cm.exception.files)
+        self.assertIn("ADMISSION.json", cm.exception.files)
+        self.assertFalse((root / "LOCAL_BATCH_RESULT.json").exists())
+        self.assertEqual(json.loads((root / "FAILURE.json").read_text())[
+            "result"], "FailedAfterPartialOutput")
+
+    def test_58_final_source_drift_has_no_positive_receipt(self):
+        raw, before = self._synthetic_approved_bytes(), self.fake_admission()
+        count = []
+        def inspect(request, *, expect_output_present=False):
+            count.append(expect_output_present)
+            if len(count) == 3:
+                raise gate.Rejected("synthetic last-moment Git worktree drift")
+            return copy.deepcopy(before)
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)), \
+             mock.patch.object(gate, "inspect", side_effect=inspect):
+            with self.assertRaises(gate.PartialOutput):
+                gate.seal_oneuse_dry_admission(raw, before)
+        root = self.evidence / self.oneuse
+        self.assertEqual(count, [False, True, True])
+        self.assertTrue((root / "FAILURE.json").is_file())
+        self.assertFalse((root / "LOCAL_BATCH_RESULT.json").exists())
+
+    def test_59_parent_alias_swap_cannot_write_to_history(self):
+        raw, before = self._synthetic_approved_bytes(), self.fake_admission()
+        real = gate._write_locked
+        moved = self.parent / "moved-external-results"
+        swapped = [False]
+        def swap_parent(root_fd, name, value):
+            if name == "ADMISSION.json" and not swapped[0]:
+                swapped[0] = True
+                os.rename(self.evidence, moved)
+                self.evidence.symlink_to(
+                    self.historical["b1Oneuse12"], target_is_directory=True)
+            return real(root_fd, name, value)
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)), \
+             mock.patch.object(gate, "inspect", return_value=before), \
+             mock.patch.object(gate, "_write_locked", side_effect=swap_parent):
+            with self.assertRaises(gate.PartialOutput):
+                gate.seal_oneuse_dry_admission(raw, before)
+        self.assertTrue(swapped[0])
+        self.assertTrue((moved / self.oneuse / "ADMISSION.json").exists())
+        self.assertTrue((moved / self.oneuse / "FAILURE.json").exists())
+        self.assertFalse((self.historical["b1Oneuse12"] / self.oneuse).exists())
+
+    def test_60_faults_at_each_exclusive_receipt_are_partial(self):
+        targets = ("ADMISSION.json", "CELLS.json", "POSTFLIGHT.json",
+                   "MANIFEST.json", "LOCAL_BATCH_RESULT.json")
+        real = gate._write_locked
+        for target in targets:
+            with self.subTest(target=target):
+                self.oneuse = "R03-B2-D5-failure-" + target.split(".")[0]
+                raw, before = self._synthetic_approved_bytes(), self.fake_admission()
+                def failing(root_fd, name, data):
+                    if name == target:
+                        raise OSError("Synthetic ENOSPC at " + target)
+                    return real(root_fd, name, data)
+                with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                                       gate.git_blob(raw)), \
+                     mock.patch.object(gate, "inspect", return_value=before), \
+                     mock.patch.object(gate, "_write_locked", side_effect=failing):
+                    with self.assertRaises(gate.PartialOutput) as raised:
+                        gate.seal_oneuse_dry_admission(raw, before)
+                root = self.evidence / self.oneuse
+                self.assertTrue(root.exists())
+                self.assertFalse((root / "LOCAL_BATCH_RESULT.json").exists())
+                self.assertIn("Synthetic ENOSPC", str(raised.exception))
+                self.assertTrue((root / "FAILURE.json").is_file())
+                self.assertFalse(raised.exception.files == ())
+                self.assertIn("FAILURE.json", raised.exception.files)
+
+    def test_61_public_cli_reports_partial_root_truthfully(self):
+        raw, prior = self._synthetic_approved_bytes(), self.fake_admission()
+        file = self.parent / "reviewed-synthetic-envelope.json"
+        file.write_bytes(raw)
+        real = gate._write_locked
+        def fault(root_fd, name, data):
+            if name == "CELLS.json":
+                raise OSError("Simulated mid-admission disk failure")
+            return real(root_fd, name, data)
+        stream = io.StringIO()
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)), \
+             mock.patch.object(gate, "inspect", return_value=prior), \
+             mock.patch.object(gate, "_write_locked", side_effect=fault), \
+             mock.patch("sys.stdout", stream):
+            code = gate.main(["--mode", "execute",
+                              "--approved-envelope", str(file)])
+        self.assertEqual(code, 2)
+        message = json.loads(stream.getvalue())
+        self.assertEqual(message["result"], "FailedAfterPartialOutput")
+        self.assertTrue(message["outputCreated"])
+        self.assertFalse(message["retryAllowed"])
+        self.assertTrue((self.evidence / self.oneuse).exists())
+        self.assertFalse((self.evidence / self.oneuse /
+                          "LOCAL_BATCH_RESULT.json").exists())
+
+    def test_62_source_history_identity_drift_after_mkdir(self):
+        raw, before = self._synthetic_approved_bytes(), self.fake_admission()
+        changes = []
+        def inspect(request, *, expect_output_present=False):
+            changes.append(expect_output_present)
+            got = copy.deepcopy(before)
+            if expect_output_present:
+                got["custodyIdentity"]["history"]["b1NativeHostRaw"]["inode"] += 1
+            return got
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)), \
+             mock.patch.object(gate, "inspect", side_effect=inspect):
+            with self.assertRaises(gate.PartialOutput):
+                gate.seal_oneuse_dry_admission(raw, before)
+        self.assertEqual(changes, [False, True])
+        self.assertTrue((self.evidence / self.oneuse / "FAILURE.json").exists())
+        self.assertFalse((self.evidence / self.oneuse /
+                          "LOCAL_BATCH_RESULT.json").exists())
+
 
 if __name__ == "__main__":
     unittest.main()
