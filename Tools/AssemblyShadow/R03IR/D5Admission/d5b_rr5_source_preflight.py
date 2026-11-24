@@ -18,7 +18,7 @@ import sys
 BRANCH = "codex/assembly-shadow-r01b-h1"
 ROOT = Path(__file__).resolve().parent
 PROFILE = ROOT / "d5b_rr5_source_preflight_v1.json"
-PROFILE_BLOB = "35ac430e32623e796ccd8bdf0af0052e3dc7fd18"
+PROFILE_BLOB = "9956ea49656dc8337f9ab177c40faf29ea20c397"
 MANIFEST_BLOB = "66b2e83f8cab4debb71af36d4bcd5eecd80b5629"
 REVIEWED_DEMO_CODE = "a8f9cb31cd51aed97a65d84e555ec7f4d3f2e328"
 PINS = {
@@ -35,6 +35,23 @@ EXPORTS = ("R03_D5_WindowProtocolVersion", "R03_D5_ArmP5Window",
            "R03_D5_ReceiptOpen", "R03_D5_ReceiptEvent",
            "R03_D5_BindKeepCanary", "R03_D5_ReceiptSeal",
            "R03_D5_BeginKeepAttempt")
+EVIDENCE_PRODUCER_BLOBS = {
+    ".github/workflows/r03-b2-d5-c10-window-source-host.yml": "f565018f908c43892ebfc00816088797310349aa",
+    "Tools/AssemblyShadow/R03IR/D5Probe/d5_c10_native_receipt.py": "44094a2e6ddc5a16238d287c956eb483995dd847",
+    "Tools/AssemblyShadow/R03IR/D5Probe/d5_link_materials.py": "7ac9195191b00cf5f8930282381f7b324be99891",
+    "Tools/AssemblyShadow/R03IR/D5Probe/d5_window_source_contract.py": "c00ed0d81b343cb375f7105e1aafe4e09647dfe1",
+    "Tools/AssemblyShadow/R03IR/D5Probe/D5AutoReceiptHost.cpp": "f0bdc640183cb0311e81d49255e74a30e1dff43e",
+    "Tools/AssemblyShadow/R03IR/D5Probe/d5c10_link_source_pinset_v1.json": "66b2e83f8cab4debb71af36d4bcd5eecd80b5629",
+    "Tools/AssemblyShadow/R03IR/D5Probe/D5NativeReceiptHost.cpp": "a710dd5243cd868ae3d5debcddf2caa1c27da661",
+    "Tools/AssemblyShadow/R03IR/D5Probe/D5WindowFeatureOffHost.cpp": "8f8d7235329e2132aee5b746024daa3c9a42afe5",
+    "Tools/AssemblyShadow/R03IR/D5Probe/D5WindowOtherTU.cpp": "16de160427dd7fcd6566492229621aac0551bcdb",
+    "Tools/AssemblyShadow/R03IR/D5Probe/D5WindowSourceHost.cpp": "abb273264851ecdda1f756e257898e970d5ea56d",
+    "Tools/AssemblyShadow/R03IR/D5Probe/NativeHostStubs/il2cpp-config.h": "1d078cf09fcc6a33182ce1fdfc8a88e778e766eb",
+    "Tools/AssemblyShadow/R03IR/D5Probe/test_d5_c10_native_receipt.py": "9323650c60e693a3faafdf75f250cc2fdc185189",
+    "Tools/AssemblyShadow/R03IR/D5Probe/test_d5_link_materials.py": "a09596892620a86c4b34f5e04bc6f61f61ab5121",
+    "Tools/AssemblyShadow/R03IR/D5Probe/test_d5_window_source_contract.py": "f874e31a1e751d2d8427b3bdefb093458601014e"
+}
+
 OLD_B1 = {
     "Tools/AssemblyShadow/R03IR/current_native_candidate.json":
         "efc4f7fa45fad394f156ed8d115bad727771c8a6",
@@ -161,6 +178,10 @@ def checked_profile(raw: bytes, *, check_blob: bool = True) -> dict:
         "ReadyForHumanReviewGate": False,
         "allowUnityOrPlayerExecution": False,
     }, "RR5 preflight cannot authorize Local or Player")
+    require(p.get("evidenceProducerRole") ==
+            "ReviewedC10ReceiptParserTestsHostAndWorkflow_GitSourceOnly" and
+            p.get("evidenceProducerSourceBlobs") == EVIDENCE_PRODUCER_BLOBS,
+            "Unreviewed C10 receipt/host evidence-producer bytes or roster")
     return p
 
 
@@ -237,7 +258,7 @@ def checked_checkout(root: Path, role: str, expected_head: str) -> None:
             "Dirty source tree: " + role)
 
 
-def checked_source_blob(root: Path, path: str, sha: str) -> None:
+def checked_source_blob(root: Path, path: str, sha: str) -> str:
     require(type(path) is str and path and
             not path.startswith("/") and "\\" not in path and
             ".." not in Path(path).parts, "Invalid relative source path")
@@ -249,6 +270,14 @@ def checked_source_blob(root: Path, path: str, sha: str) -> None:
     actual = git_blob(source.read_bytes())
     require(actual == sha and git(root, "rev-parse", "HEAD:" + path) == sha,
             "Unreviewed source bytes: " + path)
+    return actual  # a verified byte identity, never just a loop iteration
+
+
+def verified_source_blob(root: Path, path: str, sha: str) -> str:
+    # A disabled/no-op verifier must never let loop counters become custody proof.
+    verified = checked_source_blob(root, path, sha)
+    require(verified == sha, "Source verifier did not authenticate: " + path)
+    return verified
 
 
 def inspect(roots: dict[str, Path], demo_head: str) -> dict:
@@ -265,19 +294,25 @@ def inspect(roots: dict[str, Path], demo_head: str) -> dict:
     for role in ROLES:
         checked_checkout(roots[role], role,
                          demo_head if role == "hybridclr_demo" else PINS[role])
-    checked_source_blob(roots["hybridclr_demo"], pinset_path, MANIFEST_BLOB)
+    verified_source_blob(roots["hybridclr_demo"], pinset_path, MANIFEST_BLOB)
     count = 0
     for path, sha in c10["nativeInstalledSources"].items():
-        checked_source_blob(roots["il2cpp_plus"], "libil2cpp/" + path, sha)
+        verified_source_blob(roots["il2cpp_plus"], "libil2cpp/" + path, sha)
         count += 1
     for path, sha in c10["isolatedOverlaySource"].items():
-        checked_source_blob(roots["hybridclr_demo"], path, sha)
+        verified_source_blob(roots["hybridclr_demo"], path, sha)
         count += 1
+    producer_count = 0
+    for path, sha in EVIDENCE_PRODUCER_BLOBS.items():
+        verified_source_blob(roots["hybridclr_demo"], path, sha)
+        producer_count += 1
+    require(producer_count == 14 and count == 16,
+            "Incomplete reviewed C10 link-source/evidence-producer inventory")
     for path, sha in HIST.items():
-        checked_source_blob(roots["hybridclr_demo"], path, sha)
-    checked_source_blob(roots["hybridclr_demo"],
-                        "Tools/AssemblyShadow/R03IR/D5Admission/" + PROFILE.name,
-                        PROFILE_BLOB)
+        verified_source_blob(roots["hybridclr_demo"], path, sha)
+    verified_source_blob(roots["hybridclr_demo"],
+                         "Tools/AssemblyShadow/R03IR/D5Admission/" + PROFILE.name,
+                         PROFILE_BLOB)
     historical_b1 = read_object(
         (roots["hybridclr_demo"] /
          "Tools/AssemblyShadow/R03IR/current_native_candidate.json").read_bytes())
@@ -293,6 +328,9 @@ def inspect(roots: dict[str, Path], demo_head: str) -> dict:
         "currentDemoHead": demo_head,
         "reviewedC10CodeHead": REVIEWED_DEMO_CODE,
         "checkedNativeAndOverlayFiles": count,
+        "linkSourceBlobsMatched": True,
+        "checkedEvidenceProducerFiles": producer_count,
+        "receiptProducerBlobsMatched": True,
         "checkedHistoricalComparators": len(HIST),
         "checkedSourceManifest": True,
         "compiledTranslationUnits": 0,
