@@ -1,0 +1,21 @@
+# Independent request — D5-B RR5 read-only source preflight
+
+**Status: PENDING.** Review this new Primary-owned *source-only admission proposal*, not D5-B Local execution. Review separately from Primary and Local Validation. No Unity/IL2CPP/Player, no Local-owned document changes, no D6/H2/M08A/X02/SNAP-01/Human Review Gate.
+
+## Exact source to review
+
+All repositories use branch `codex/assembly-shadow-r01b-h1`. The immutable RR5 preflight source commit in demo is **`9962d7463e2200a81856bfb8cb3bbde4dbb7216d`** (the workflow-file commit with all four new source files). Subsequent demo commits add documentation only; review source by the immutable code SHA, and separately reverify the live demo HEAD. Other fixed source pins: hybridclr `c3c232023724cbad565b85e9b2c3beea8ce2789a`, hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de`, native il2cpp_plus `1268dd417ffe9090fcd9ea2d49542c97ed3cccb3`. Prior approved C10 **code** SHA was `a8f9cb31cd51aed97a65d84e555ec7f4d3f2e328`.
+
+**Read first:** `Docs/AssemblyShadow/README.md`; [bounded independent C10 RR5 PASS](D5B_C10_RR5_INDEPENDENT_REREVIEW_2026-11-24.md); [Primary implementation note](D5B_RR5_SOURCE_PREFLIGHT_PRIMARY_2026-11-24.md); `Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md` (must remain CLOSED). Read all four new files from [source commit 9962d...](https://github.com/night-outlook/hybridclr_demo/tree/9962d7463e2200a81856bfb8cb3bbde4dbb7216d/Tools/AssemblyShadow/R03IR/D5Admission) plus `.github/workflows/r03-b2-d5b-rr5-source-preflight.yml` at that commit.
+
+## Mandatory independent checks
+
+1. Readback exact new proposal Git blob `35ac430e32623e796ccd8bdf0af0052e3dc7fd18`, verify hardcoded `PROFILE_BLOB` and existing C10 pinset blob `66b2e83f8cab4debb71af36d4bcd5eecd80b5629`. Independently compare **all 13 native and three isolated demo blob IDs**, native intended five TU/nine export roster and excluded host allocator. Keep this source roster separate from real installed/Bee/linked provenance.
+2. Examine Python `checked_profile`, `checked_c10_manifest`, `checked_checkout`, `checked_source_blob` and `inspect` for paths, canonical roots, symlinks, dirty checkouts, stale heads/branches, old B1 14/46 and historical D5-A/D5-B immutability, caller-supplied demo SHA, duplicate/invalid JSON, and any way to return success without the exact source tuple. Evaluate when `git` commands perform a real source check versus merely read caller-controlled data.
+3. Inspect all **27 negative regression tests**; check assertions really fail on relevant source/custody/authority mutations and do not only test tautologies. Test-only mocks must not count as a successful real checkout, real remote authentication or Unity build.
+4. Independently identify and inspect the **actual new GitHub Actions workflow run and raw job logs** at demo source `9962d7463e2200a81856bfb8cb3bbde4dbb7216d`. Do **not** use prior C10 source-host run `45337986472` to claim the new preflight passed. If no new run is available, report CI `NotVerified` and do not issue a full source-preflight PASS. Retain failed runs as failures.
+5. Confirm authority remains `APPROVED_LOCAL_HANDOFF_BLOB=None`, `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`, `D5BLocalExecution=NotAuthorized`, `D5LocalValidation=NotAuthorized`, `R03Accepted=false`, `H2Passed=false`, `ReadyForHumanReviewGate=false`; all 18 D5 real Player cells `NoCoverage`. No code or document in this packet can independently authorize Local execution.
+
+## Verdict
+
+Issue a separate evidence-based **`PassSourcePreflightOnly`** or **`ReturnRequired`**, with exact code/blobs/CI job IDs, reproduction paths and bounded findings. A `PassSourcePreflightOnly` does **not** authorize Local Validation or imply an accepted R03. Nontrivial findings go back to Primary. No self-approval of D5-B executable Local or Human Review Gate.
