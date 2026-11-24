@@ -30,7 +30,7 @@ int main(int argc,char**argv)
     REQUIRE(R03_D5_ReadP5Window(raw,10)==-2);
     REQUIRE(R03_D5_ReadP5Window(raw,11)==1);
     REQUIRE(raw[0]==1&&raw[1]==0);
-    REQUIRE(R03_D5_WindowProtocolVersion()==2);
+    REQUIRE(R03_D5_WindowProtocolVersion()==3);
 
     if(!std::strcmp(c,"unarmed"))
     {
@@ -56,7 +56,7 @@ int main(int argc,char**argv)
             const bool armed=w.ArmTargetForCurrentThread(&w);
             const bool matched=w.MatchesTargetOnCurrentThread(&w);
             if(!armed || !matched)std::abort();
-            w.TargetGuardEntry(stage,&w,5,0);
+            w.TargetGuardEntry(stage,&w,5,0,1);
             w.MethodResult(stage,matched,allow);
             workerDone.store(true,std::memory_order_release);
             R03_D5_ReleaseP5Window();
@@ -150,9 +150,9 @@ int main(int argc,char**argv)
         REQUIRE(w.ArmTargetForCurrentThread(&w));
         // Actual production source samples state and first-error immediately
         // before the first terminal decision. Host simulates *that* source.
-        w.TargetGuardEntry(begun,&w,5,0);
-        int32_t before=-1,error=-1;
-        REQUIRE(w.TryReadTargetGuardEntry(before,error));
+        w.TargetGuardEntry(begun,&w,5,0,1);
+        int32_t before=-1,error=-1,policy=0;
+        REQUIRE(w.TryReadTargetGuardEntry(before,error,policy));
         REQUIRE(before==5&&error==0);
         w.MethodResult(begun,w.MatchesTargetOnCurrentThread(&w),false);
         REQUIRE(w.TargetDecision()==2);
@@ -168,9 +168,9 @@ int main(int argc,char**argv)
         w.AtP5();
         REQUIRE(w.ArmTargetForCurrentThread(&w));
         const int32_t begun=w.MethodBegin();
-        w.TargetGuardEntry(begun,&w,9,2); // already FailedAfterCommit
-        int32_t state=-1,first=-1;
-        REQUIRE(w.TryReadTargetGuardEntry(state,first));
+        w.TargetGuardEntry(begun,&w,9,2,2); // already FailedAfterCommit
+        int32_t state=-1,first=-1,policy=0;
+        REQUIRE(w.TryReadTargetGuardEntry(state,first,policy));
         REQUIRE(state==9 && first==2);
         w.MethodResult(begun,w.MatchesTargetOnCurrentThread(&w),false);
         REQUIRE(w.TargetDecision()==2);
@@ -180,9 +180,9 @@ int main(int argc,char**argv)
         REQUIRE(w.Arm(200));
         w.AtP5();
         REQUIRE(w.ArmTargetForCurrentThread(&w));
-        w.TargetGuardEntry(w.MethodBegin(),&w,5,2);
-        int32_t state=-1,first=-1;
-        REQUIRE(w.TryReadTargetGuardEntry(state,first));
+        w.TargetGuardEntry(w.MethodBegin(),&w,5,2,2);
+        int32_t state=-1,first=-1,policy=0;
+        REQUIRE(w.TryReadTargetGuardEntry(state,first,policy));
         REQUIRE(state==5 && first==2);
         w.MethodResult(2,w.MatchesTargetOnCurrentThread(&w),false);
         REQUIRE(w.TargetDecision()==2);
@@ -191,9 +191,9 @@ int main(int argc,char**argv)
     {
         REQUIRE(w.Arm(200));
         w.AtP5();
-        w.TargetGuardEntry(w.MethodBegin(),&w,5,0);
-        int32_t state=-1,first=-1;
-        REQUIRE(!w.TryReadTargetGuardEntry(state,first));
+        w.TargetGuardEntry(w.MethodBegin(),&w,5,0,1);
+        int32_t state=-1,first=-1,policy=0;
+        REQUIRE(!w.TryReadTargetGuardEntry(state,first,policy));
         REQUIRE(w.TargetArmCount()==0);
     }
     else if(!std::strcmp(c,"entry_competing_thread"))
@@ -201,12 +201,12 @@ int main(int argc,char**argv)
         REQUIRE(w.Arm(200));
         w.AtP5();
         REQUIRE(w.ArmTargetForCurrentThread(&w));
-        std::thread other([&] { w.TargetGuardEntry(2,&w,5,0); });
+        std::thread other([&] { w.TargetGuardEntry(2,&w,5,0,1); });
         other.join();
-        int32_t state=-1,first=-1;
-        REQUIRE(!w.TryReadTargetGuardEntry(state,first));
-        w.TargetGuardEntry(2,&w,5,0);
-        REQUIRE(w.TryReadTargetGuardEntry(state,first));
+        int32_t state=-1,first=-1,policy=0;
+        REQUIRE(!w.TryReadTargetGuardEntry(state,first,policy));
+        w.TargetGuardEntry(2,&w,5,0,1);
+        REQUIRE(w.TryReadTargetGuardEntry(state,first,policy));
         REQUIRE(state==5 && first==0);
     }
     else if(!std::strcmp(c,"entry_wrong_method"))
@@ -215,12 +215,12 @@ int main(int argc,char**argv)
         w.AtP5();
         REQUIRE(w.ArmTargetForCurrentThread(&w));
         int wrong=0;
-        w.TargetGuardEntry(2,&wrong,5,0);
-        int32_t state=-1,first=-1;
-        REQUIRE(!w.TryReadTargetGuardEntry(state,first));
-        w.TargetGuardEntry(2,&w,5,0);
-        w.TargetGuardEntry(2,&w,9,2); // first native entry must stay frozen
-        REQUIRE(w.TryReadTargetGuardEntry(state,first));
+        w.TargetGuardEntry(2,&wrong,5,0,1);
+        int32_t state=-1,first=-1,policy=0;
+        REQUIRE(!w.TryReadTargetGuardEntry(state,first,policy));
+        w.TargetGuardEntry(2,&w,5,0,1);
+        w.TargetGuardEntry(2,&w,9,2,2); // first native entry must stay frozen
+        REQUIRE(w.TryReadTargetGuardEntry(state,first,policy));
         REQUIRE(state==5 && first==0);
     }
     else if(!std::strcmp(c,"entry_after_p6"))
@@ -229,9 +229,9 @@ int main(int argc,char**argv)
         w.AtP5();
         REQUIRE(w.ArmTargetForCurrentThread(&w));
         w.AtP6();
-        w.TargetGuardEntry(w.MethodBegin(),&w,5,0);
-        int32_t state=-1,first=-1;
-        REQUIRE(!w.TryReadTargetGuardEntry(state,first));
+        w.TargetGuardEntry(w.MethodBegin(),&w,5,0,1);
+        int32_t state=-1,first=-1,policy=0;
+        REQUIRE(!w.TryReadTargetGuardEntry(state,first,policy));
     }
     else if(!std::strcmp(c,"canary_happens_before"))
     {
@@ -240,8 +240,11 @@ int main(int argc,char**argv)
         REQUIRE(!w.HasWorkerCompletedP5Acquire());
         int32_t stable=0;
         std::thread writer([&] {
+            if (!w.ArmTargetForCurrentThread(&w)) std::abort();
+            w.TargetGuardEntry(2,&w,5,0,1);
+            w.MethodResult(2,true,true);
             stable=42;
-            // A release CAS publishes the ordinary field write.
+            // The exact worker release CAS publishes the ordinary field write.
             if(!w.ReleaseP5()) std::abort();
         });
         while(!w.HasWorkerCompletedP5Acquire())
@@ -249,6 +252,64 @@ int main(int argc,char**argv)
         REQUIRE(stable==42); // acquire synchronizes with writer
         writer.join();
         REQUIRE(w.Read().releaseCount==1);
+    }
+    else if(!std::strcmp(c,"entry_durable_before_error") ||
+            !std::strcmp(c,"entry_policy_raced"))
+    {
+        using il2cpp::vm::assembly_shadow_d5::ClassifyGuardEntry;
+        REQUIRE(w.Arm(200));
+        w.AtP5();
+        REQUIRE(w.ArmTargetForCurrentThread(&w));
+        std::atomic<bool> durable{false}, proceed{false}, published{false};
+        std::atomic<int32_t> state{5}, first{0};
+        const bool mixed = !std::strcmp(c,"entry_policy_raced");
+        const bool firstDurable = durable.load(std::memory_order_acquire);
+        std::thread failure([&] {
+            durable.store(true,std::memory_order_release);
+            published.store(true,std::memory_order_release);
+            while (!proceed.load(std::memory_order_acquire)) std::this_thread::yield();
+            first.store(2,std::memory_order_release);
+            state.store(9,std::memory_order_release);
+        });
+        while (!published.load(std::memory_order_acquire)) std::this_thread::yield();
+        const int32_t entry = ClassifyGuardEntry(
+            {state.load(),first.load(),mixed ? firstDurable : durable.load()},
+            {state.load(),first.load(),durable.load()});
+        w.TargetGuardEntry(2,&w,5,0,entry);
+        proceed.store(true,std::memory_order_release);
+        failure.join();
+        REQUIRE(entry==(mixed ? 3 : 2));
+        int32_t observedState=-1,observedFirst=-1,policy=0;
+        REQUIRE(w.TryReadTargetGuardEntry(observedState,observedFirst,policy));
+        REQUIRE(observedState==5 && observedFirst==0 && policy==entry);
+        w.MethodResult(2,true,false,1);
+        REQUIRE(w.TargetDecision()==2 && w.TargetDenialKind()==1);
+    }
+    else if(!std::strcmp(c,"foreign_release_during_body"))
+    {
+        REQUIRE(w.Arm(900));
+        w.AtP5();
+        std::atomic<bool> admitted{false}, finish{false};
+        int32_t stable=0;
+        std::thread worker([&] {
+            if (!w.ArmTargetForCurrentThread(&w)) std::abort();
+            if (w.ReleaseP5()) std::abort(); // before guard completion
+            w.TargetGuardEntry(2,&w,5,0,1);
+            w.MethodResult(2,true,true);
+            admitted.store(true,std::memory_order_release);
+            while(!finish.load(std::memory_order_acquire)) std::this_thread::yield();
+            stable=42;
+            if(!w.ReleaseP5()) std::abort();
+        });
+        while(!admitted.load(std::memory_order_acquire)) std::this_thread::yield();
+        const bool foreignRelease = R03_D5_ReleaseP5Window()==1;
+        const bool earlyCompletion = w.HasWorkerCompletedP5Acquire();
+        finish.store(true,std::memory_order_release);
+        while(!w.HasWorkerCompletedP5Acquire()) std::this_thread::yield();
+        const int32_t observedStable = stable;
+        worker.join();
+        REQUIRE(!foreignRelease && !earlyCompletion);
+        REQUIRE(observedStable==42 && w.Read().releaseCount==1);
     }
     else if(!std::strcmp(c,"invalid"))
     {
@@ -259,6 +320,6 @@ int main(int argc,char**argv)
         REQUIRE(R03_D5_ReadP5Window(raw,11)==1&&raw[1]==1);
     }
     else return 2;
-    std::printf("{\"schema\":\"R03D5WindowSourceHostV2\",\"case\":\"%s\",\"result\":\"PassedExactNativeWindowHeaderAndOverlayHostOnly\",\"assertions\":%u,\"actualProductionMethodInfoExercised\":false,\"unityOrPlayerExecuted\":false,\"C10RealPlayerPassed\":false}\n",c,assertions);
+    std::printf("{\"schema\":\"R03D5WindowSourceHostV3\",\"case\":\"%s\",\"result\":\"PassedExactNativeWindowHeaderAndOverlayHostOnly\",\"assertions\":%u,\"actualProductionMethodInfoExercised\":false,\"unityOrPlayerExecuted\":false,\"C10RealPlayerPassed\":false}\n",c,assertions);
     return 0;
 }

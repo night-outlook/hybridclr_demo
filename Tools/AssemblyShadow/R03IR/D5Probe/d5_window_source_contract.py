@@ -14,16 +14,16 @@ import re
 import subprocess
 import sys
 
-NATIVE_COMMIT = "e9aee83345aa9df90085de50162a7aa9172e8263"
+NATIVE_COMMIT = "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"
 NATIVE_FILES = {
-    "libil2cpp/vm/AssemblyShadow.cpp":"624a9bb1d75c8b389caaf9b3f084553476ee47e0",
-    "libil2cpp/vm/AssemblyShadowD5WindowProbe.h":"0000f7fcbb9c851b7738eb08eb04d839bb0b80e0",
+    "libil2cpp/vm/AssemblyShadow.cpp":"728acbc9e93857a5211b6f2ced12d21a42b16194",
+    "libil2cpp/vm/AssemblyShadowD5WindowProbe.h":"d18aeb996ce4cf1b1abecf5377b6b6e3ff967ed0",
     "libil2cpp/vm/AssemblyShadowProcessSnapshotOwner.h":"ccd10ea0a1d273f5fe31f52d346d090b0a5af79c",
 }
 DEMO_FILES = {
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp":"b5ca37bbe00051754ef895db7a53fead43c5a4a8",
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs":"70a3c148f4c66b5db30533fb325a3ab5a068c2b2",
-    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs":"a96e2699734903847c16aee15d9a365d25dc9494",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5WindowOverlay.cpp":"e8643e242bdac6929c786d7ac994bbf0daa99469",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5P5WindowPlayer.cs":"64371a90278849f05afbe39c196dbc7eea82f934",
+    "Tools/AssemblyShadow/R03IR/D5Probe/R03D5Build.cs":"7d26f1924ddc6dcddd00515f6d58540ba6dfddfd",
 }
 BRANCH = "codex/assembly-shadow-r01b-h1"
 MACRO = "HYBRIDCLR_R03_D5_WINDOW_PROBE"
@@ -112,8 +112,16 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
         "if (TerminalMethodDenied(method))",
     ], "C10 native target state/first error sampled at actual method entry")
     require(method.startswith("bool AssemblyShadow::AssertMethodIsActive(") and
-            "static_cast<int32_t>(s_state.load(std::memory_order_acquire))" in method and
-            "static_cast<int32_t>(s_firstFailureV2.status())" in method and
+            "const auto before = ReadMethodTerminalPolicy();" in method and
+            "const auto after = ReadMethodTerminalPolicy();" in method and
+            "const int32_t first = static_cast<int32_t>(s_firstFailureV2.status());" in method and
+            "const int32_t firstAfter = static_cast<int32_t>(s_firstFailureV2.status());" in method and
+            "MatchesTargetOnCurrentThread(method))" in method and
+            "assembly_shadow_d5::ClassifyGuardEntry(" in method and
+            "{before.state, first, before.durable}" in method and
+            "{after.state, firstAfter, after.durable}" in method and
+            "d5OwnFrozenFailure = RecordFirstGuardFailure(error, detail);" in method and
+            "d5OwnDenial ? 0 : 2" in method and
             "WindowProbe::Instance().MethodBegin()" in method and
             "active->shadowToBaseline.count(owners[0])" in method and
             'std::strcmp(d5Owner->aname.name, "Methods")' in method and
@@ -129,6 +137,23 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "return allowed;" in method and "return false;" in method,
             "Actual shadow MethodInfo admission witness incomplete")
 
+    terminal = cpp[cpp.find("MethodTerminalPolicy ReadMethodTerminalPolicy()"):cpp.find("void RaiseTerminalExecutionRejected()")]
+    require(all(x in terminal for x in (
+        "s_typeFailure.load(std::memory_order_acquire) != nullptr",
+        "s_unexpectedFailure.load(std::memory_order_acquire)",
+        "s_lateBaselineUse.load(std::memory_order_acquire)",
+        "s_referenceViolation.load(std::memory_order_acquire)",
+        "const auto observed = ReadMethodTerminalPolicy();",
+        "assembly_shadow_terminal::TerminalForBusiness(state, durable)")),
+        "Probe and production must share all four durable terminal inputs")
+    require("before.state != after.state || before.firstError != after.firstError" in header and
+            "before.durable != after.durable" in header and
+            "assembly_shadow_terminal::TerminalForBusiness(before.state, before.durable)" in header and
+            "targetEntryPolicy_.store(entryPolicy, std::memory_order_relaxed)" in header and
+            "token.owner != this || token.active != 0 || !token.method" in header and
+            "(decision != 1 && decision != 2)" in header and
+            "targetDenialKind_.store(denialKind, std::memory_order_relaxed)" in header,
+            "Native policy snapshot and exact completion ownership mandatory")
     require("enum class WindowPhase" in header and
             "AtP5 = 2" in header and "AtP6 = 3" in header and
             "Complete = 4" in header and
@@ -185,11 +210,14 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "sizeof(Event) == 32" in overlay and
             "sizeof(FirstErrorDisk) == 4120" in overlay and
             "TryReadFirstFailureV2(snapshot)" in overlay and
-            "header.schema = 2;" in overlay and
-            "return 2; // C10 protocol v2" in overlay and
+            "header.schema = 3;" in overlay and
+            "return 3; // C10 protocol v3" in overlay and
             "TryReadTargetGuardEntry(" in overlay and
-            "sawAttempt = Record(4, 1, 1," in overlay and
+            "sawAttempt = Record(4, 1, entryPolicy," in overlay and
+            "entryPolicy == 1 /* observed nonterminal */" in overlay and
             "targetStateAtEntry == 5 /* Committing */" in overlay and
+            "terminalDenied && probe.TargetDenialKind() == 0" in overlay and
+            "const bool completedBody = decision == 1 && releaseObserved == 1;" in overlay and
             "firstErrorAtEntry == 0 /* Empty */" in overlay and
             "const int32_t releaseObserved =" in overlay and
             "Record(6, -1, stateCode, releaseObserved," in overlay and
@@ -215,7 +243,7 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "::usleep(1000)" in overlay and
             "::_exit(status)" in overlay and
             "FinishNativeReceipt(stateCode, decision)" in overlay and
-            "Record(5, decision, 1, 1, 0)" in overlay and
+            "Record(5, decision, 1, 1, probe.TargetDenialKind())" in overlay and
             "R03_D5_SOURCE_HOST_AUTO" in overlay and
             "R03_D5_SourceHostAutoConfigure" in overlay and
             "Class::GetMethodFromName(" in overlay and
@@ -230,6 +258,11 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "return PublishClosedReceipt();" in overlay[auto_start:auto_end],
             "Native autonomous seal must preserve actual first-error/canary")
 
+    require(managed.count("R03_D5_ReleaseP5Window();") == 2 and
+            managed.find("method.Invoke(instance, null)") <
+            managed.find("R03_D5_ReleaseP5Window();", managed.find("method.Invoke(instance, null)")) and
+            "R03_D5_ReleaseP5Window();\n                    }" in managed,
+            "Native completion must be the isolated worker's post-invoke finally")
     checks=[
        "R03_D5_ArmP5Window(req.maximumWaitMilliseconds)",
        "Thread thread = new Thread(worker.Run)",
@@ -260,7 +293,7 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
     require('Application.unityVersion != "2022.3.62f2"' in managed and
             'Application.platform != RuntimePlatform.OSXPlayer' in managed and
             "AssemblyShadowRuntime.CommitTransaction()" in managed and
-            "R03_D5_WindowProtocolVersion() != 2" in managed,
+            "R03_D5_WindowProtocolVersion() != 3" in managed,
             "Player fixture pinned real commit/Unity source missing")
 
     ordered(builder,[
@@ -273,7 +306,7 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "Real Unity BuildPipeline entrypoint replaced")
     require("public static class R03D5Build" in builder and
             'Application.unityVersion != "2022.3.62f2"' in builder and
-            '"e9aee83345aa9df90085de50162a7aa9172e8263"' in builder and
+            '"1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"' in builder and
             "ScriptingImplementation.IL2CPP" in builder and
             "BuildOptions.Development | BuildOptions.DetailedBuildReport" in builder and
             "HYBRIDCLR_R03_D5_WINDOW_PROBE=" in builder and
@@ -291,7 +324,7 @@ def verify_sources(native: dict[str,str], demo: dict[str,str]) -> dict:
             "actualNativeD5ProductionHeader":True,
             "actualMethodGuardSourceInstrumented":True,
             "nativeProbeExportsDeclared":len(exports),
-            "wireReceiptSchemaVersion":2,
+            "wireReceiptSchemaVersion":3,
             "actualTargetGuardEntrySourceInstrumented":True,
             "nativeWorkerReleaseNotManagedJoin":True,
             "nativeAutoCollectorSourcePresent":True,

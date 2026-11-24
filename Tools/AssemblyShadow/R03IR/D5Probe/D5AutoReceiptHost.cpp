@@ -40,7 +40,11 @@ int main(int argc,char** argv)
     REQUIRE(probe.Arm(200));
     probe.AtP5();
     const bool deny = !std::strcmp(test,"denied");
-    const bool allow = !std::strcmp(test,"allowed");
+    const bool unknownCanary = !std::strcmp(test,"allowed_canary_unknown");
+    const bool allow = !std::strcmp(test,"allowed") || unknownCanary;
+    const bool durableBefore = !std::strcmp(test,"entry_durable_before_error");
+    const bool mixedEntry = !std::strcmp(test,"entry_policy_raced");
+    const bool racedDenial = !std::strcmp(test,"terminal_policy_raced");
     const bool foreign = !std::strcmp(test,"foreign");
     const bool wrong = !std::strcmp(test,"wrongmethod");
     const bool race = !std::strcmp(test,"raced");
@@ -55,7 +59,8 @@ int main(int argc,char** argv)
     const int32_t fault = ioPwrite ? 1 : ioFsync ? 2 : ioClose ? 3 : ioDir ? 4 : 0;
     const bool faulted = fault != 0;
     REQUIRE(deny||allow||foreign||wrong||race||noattempt||faulted||
-            preterminal||priorerror||noentry);
+            preterminal||priorerror||noentry||durableBefore||mixedEntry||racedDenial);
+    REQUIRE(R03_D5_SourceHostAutoConfigure(5,0,noattempt ? 0 : 1,0,0)==1);
     if (!noattempt)
     {
         REQUIRE(probe.ArmTargetForCurrentThread(&probe));
@@ -63,7 +68,7 @@ int main(int argc,char** argv)
         {
             std::atomic<bool> match{true};
             std::thread competitor([&] {
-                probe.TargetGuardEntry(2,&probe,5,0); // wrong TLS must fail
+                probe.TargetGuardEntry(2,&probe,5,0,1); // wrong TLS must fail
                 bool found=probe.MatchesTargetOnCurrentThread(&probe);
                 match.store(found,std::memory_order_release);
                 probe.MethodResult(2,found,false);
@@ -75,13 +80,13 @@ int main(int argc,char** argv)
         {
             int otherMethod=0;
             REQUIRE(!probe.MatchesTargetOnCurrentThread(&otherMethod));
-            probe.TargetGuardEntry(2,&otherMethod,5,0);
+            probe.TargetGuardEntry(2,&otherMethod,5,0,1);
             probe.MethodResult(2,probe.MatchesTargetOnCurrentThread(&otherMethod),false);
         }
         else if (race)
         {
             REQUIRE(probe.MatchesTargetOnCurrentThread(&probe));
-            probe.TargetGuardEntry(2,&probe,5,0);
+            probe.TargetGuardEntry(2,&probe,5,0,1);
             probe.AtP6();
             probe.MethodResult(2,true,false);
         }
@@ -91,20 +96,22 @@ int main(int argc,char** argv)
             if (!noentry)
                 probe.TargetGuardEntry(2,&probe,
                     preterminal ? 9 : 5,
-                    (preterminal || priorerror) ? 2 : 0);
-            probe.MethodResult(2,true,allow);
+                    (preterminal || priorerror) ? 2 : 0,
+                    mixedEntry ? 3 : (preterminal || priorerror || durableBefore) ? 2 : 1);
+            probe.MethodResult(2,true,allow,
+                (preterminal || durableBefore || mixedEntry || racedDenial) ? 1 : 0);
         }
     }
-    if (allow) REQUIRE(probe.ReleaseP5());
     if (race) REQUIRE(probe.TargetDecision()==3);
     // Every mock state is explicitly synthetic. The actual native VM branch
     // obtains state/first error independently from AssemblyShadow.
     const bool terminalNegative = deny || faulted || preterminal ||
-        priorerror || noentry;
+        priorerror || noentry || durableBefore || mixedEntry || racedDenial;
     REQUIRE(R03_D5_SourceHostAutoConfigure(
         allow ? 6 : terminalNegative ? 9 : 5,
-        allow ? 1 : 0, noattempt ? 0 : 1,
+        unknownCanary ? -1 : allow ? 1 : 0, noattempt ? 0 : 1,
         terminalNegative ? 1 : 0, fault)==1);
+    if (allow) REQUIRE(probe.ReleaseP5());
     bool done=false;
     for (int t=0;t<4000;++t)
     {
@@ -115,7 +122,7 @@ int main(int argc,char** argv)
     const int32_t seal=R03_D5_SourceHostAutoSealStatus();
     const int32_t observedExit=R03_D5_SourceHostAutoExitCode();
     REQUIRE((seal==1)==!faulted);
-    REQUIRE(observedExit==((faulted||preterminal||priorerror||noentry) ?
+    REQUIRE(observedExit==((faulted||preterminal||priorerror||noentry||durableBefore||mixedEntry||racedDenial) ?
                            2 : allow ? 42 : deny ? 20 : 2));
     struct stat info{};
     // The final path exists ONLY after a successful sync and close.
@@ -139,9 +146,11 @@ int main(int argc,char** argv)
     RawEvent guard{};
     REQUIRE(::pread(fd,&guard,sizeof guard,212+4*32)==
         static_cast<ssize_t>(sizeof guard));
-    if (deny || preterminal || priorerror || noentry)
+    if (deny || preterminal || priorerror || noentry || durableBefore || mixedEntry || racedDenial)
         REQUIRE(guard.slot==5 && guard.a==2);
     if (allow) REQUIRE(guard.slot==5 && guard.a==1);
+    if (racedDenial) REQUIRE(guard.d==1);
+    if (unknownCanary) REQUIRE(end.b==0);
     if (race) REQUIRE(guard.slot==5 && guard.a==3);
     if (foreign || wrong || noattempt) REQUIRE(guard.magic==0 && guard.slot==0);
     if (faulted) REQUIRE(guard.slot==5 && guard.a==2);
@@ -151,7 +160,8 @@ int main(int argc,char** argv)
     const bool actualEntry = !(foreign || wrong || noattempt || noentry);
     if (actualEntry)
     {
-        REQUIRE(entry.slot==4 && entry.a==1 && entry.b==1);
+        REQUIRE(entry.slot==4 && entry.a==1 &&
+            entry.b==(mixedEntry ? 3 : (preterminal || priorerror || durableBefore) ? 2 : 1));
         REQUIRE(entry.c==(preterminal ? 9 : 5));
         REQUIRE(entry.d==((preterminal || priorerror) ? 2 : 0));
     }

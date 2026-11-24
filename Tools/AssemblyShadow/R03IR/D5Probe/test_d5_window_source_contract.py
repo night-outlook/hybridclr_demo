@@ -151,7 +151,7 @@ class D5C10SourceContracts(unittest.TestCase):
 
     def test_26_builder_pinned_commit_changed(self):
         self.mutated("demo",D+"R03D5Build.cs",
-            '"e9aee83345aa9df90085de50162a7aa9172e8263"',
+            '"1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"',
             '"0000000000000000000000000000000000000000"')
 
     def test_27_builder_missing_native_install(self):
@@ -238,7 +238,7 @@ class D5C10SourceContracts(unittest.TestCase):
 
     def test_44_native_completion_slot5_required(self):
         self.mutated("demo",D+"R03D5WindowOverlay.cpp",
-            "Record(5, decision, 1, 1, 0)",
+            "Record(5, decision, 1, 1, probe.TargetDenialKind())",
             "Record(5, 0, 0, 0, 0)")
 
     def test_45_host_autocollector_path_present(self):
@@ -324,8 +324,8 @@ class D5C10SourceContracts(unittest.TestCase):
 
     def test_61_first_error_not_fabricated(self):
         self.mutated("native",N+"AssemblyShadow.cpp",
-            "static_cast<int32_t>(s_firstFailureV2.status())",
-            "0 /* fake first-error at entry */")
+            "const int32_t first = static_cast<int32_t>(s_firstFailureV2.status());",
+            "const int32_t first = 0;")
 
     def test_62_guard_entry_release(self):
         self.mutated("native",N+"AssemblyShadowD5WindowProbe.h",
@@ -344,7 +344,7 @@ class D5C10SourceContracts(unittest.TestCase):
 
     def test_65_slot4_not_arm_only(self):
         self.mutated("demo",D+"R03D5WindowOverlay.cpp",
-            "sawAttempt = Record(4, 1, 1,",
+            "sawAttempt = Record(4, 1, entryPolicy,",
             "sawAttempt = Record(4, 1, 0,")
 
     def test_66_no_fake_worker_finished(self):
@@ -357,9 +357,9 @@ class D5C10SourceContracts(unittest.TestCase):
             "targetStateAtEntry == 5 /* Committing */",
             "targetStateAtEntry == 9 /* FailedAfterCommit */")
 
-    def test_68_managed_protocol_v2(self):
+    def test_68_managed_protocol_v3(self):
         self.mutated("demo",D+"R03D5P5WindowPlayer.cs",
-            "R03_D5_WindowProtocolVersion() != 2",
+            "R03_D5_WindowProtocolVersion() != 3",
             "R03_D5_WindowProtocolVersion() != 1")
 
     def test_69_collector_entry_not_arming(self):
@@ -367,9 +367,9 @@ class D5C10SourceContracts(unittest.TestCase):
             "probe.TryReadTargetGuardEntry(",
             "probe.TargetArmCount(")
 
-    def test_70_native_receipt_schema_v2(self):
+    def test_70_native_receipt_schema_v3(self):
         self.mutated("demo",D+"R03D5WindowOverlay.cpp",
-            "header.schema = 2;",
+            "header.schema = 3;",
             "header.schema = 1;")
 
     def test_71_first_error_empty_at_entry(self):
@@ -382,6 +382,41 @@ class D5C10SourceContracts(unittest.TestCase):
             "const int32_t releaseObserved =",
             "const int32_t releaseObservedUnverified =")
 
+
+    def test_73_durable_predicate_all_latches(self):
+        self.mutated("native",N+"AssemblyShadow.cpp",
+            "s_lateBaselineUse.load(std::memory_order_acquire) ||\n            s_referenceViolation.load(std::memory_order_acquire);",
+            "s_lateBaselineUse.load(std::memory_order_acquire) ||\n            false;")
+
+    def test_74_entry_mixed_latch_observation_must_fail_closed(self):
+        self.mutated("native",N+"AssemblyShadowD5WindowProbe.h",
+            "before.durable != after.durable",
+            "false")
+
+    def test_75_exact_release_worker_required(self):
+        self.mutated("native",N+"AssemblyShadowD5WindowProbe.h",
+            "token.owner != this || token.active != 0 || !token.method",
+            "false")
+
+    def test_76_terminal_raced_denial_not_candidate(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "terminalDenied && probe.TargetDenialKind() == 0",
+            "terminalDenied")
+
+    def test_77_worker_release_after_invoke_required(self):
+        self.mutated("demo",D+"R03D5P5WindowPlayer.cs",
+            "R03_D5_ReleaseP5Window();\n                    }",
+            "/* no completion */\n                    }")
+
+    def test_78_canary_uses_recorded_acquire(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "const bool completedBody = decision == 1 && releaseObserved == 1;",
+            "const bool completedBody = decision == 1;")
+
+    def test_79_entry_policy_in_receipt(self):
+        self.mutated("demo",D+"R03D5WindowOverlay.cpp",
+            "entryPolicy == 1 /* observed nonterminal */",
+            "true")
 
 if __name__=="__main__":
     unittest.main()

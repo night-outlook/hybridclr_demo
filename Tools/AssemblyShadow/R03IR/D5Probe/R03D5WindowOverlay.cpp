@@ -217,7 +217,7 @@ static int32_t FinishNativeReceipt(int32_t stateCode, int32_t decision) noexcept
 {
     using il2cpp::vm::assembly_shadow_d5::WindowProbe;
     const auto window = WindowProbe::Instance().Read();
-    // C10 receipt schema v2: slot 6.c is a *native observed P5 release*
+    // C10 receipt schema v3: slot 6.c is a *native observed P5 release*
     // (0=not observed, 1=release/acquire observed), NEVER a fabricated
     // managed worker-finished/joined fact. Native guard result is slot 5.
     const int32_t releaseObserved =
@@ -234,8 +234,10 @@ static int32_t FinishNativeReceipt(int32_t stateCode, int32_t decision) noexcept
 #if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
     // Mock canary belongs solely to this synthetic collector thread.
     before = canaryBefore;
-    valid = hostBound.load(std::memory_order_acquire) == 1 ? 1 : 0;
-    after = valid ? hostAfter.load(std::memory_order_acquire) : -1;
+    const int32_t hostValue = hostAfter.load(std::memory_order_acquire);
+    valid = hostBound.load(std::memory_order_acquire) == 1 &&
+        hostValue >= 0 && (decision == 2 || (decision == 1 && releaseObserved == 1)) ? 1 : 0;
+    after = valid ? hostValue : -1;
 #else
     // A timeout before BindKeepCanary publishes canaryReady MUST NOT read
     // the non-atomic canaryBefore. Acquire also publishes pinnedInstance
@@ -243,10 +245,10 @@ static int32_t FinishNativeReceipt(int32_t stateCode, int32_t decision) noexcept
     // happen-before this native read via the worker's ReleaseP5 CAS.
     const bool hasReady = canaryReady.load(std::memory_order_acquire) == 1;
     if (hasReady) before = canaryBefore;
-    const bool completedBody = decision == 1 &&
-        WindowProbe::Instance().HasWorkerCompletedP5Acquire();
+    const bool completedBody = decision == 1 && releaseObserved == 1;
     const bool canRead = hasReady && (decision == 2 || completedBody);
     valid = canRead && ReadCanary(after) ? 1 : 0;
+    if (!valid) after = -1;
 #endif
     if (Record(9, before, after, valid, 0) != 1)
         return -3;
@@ -323,15 +325,15 @@ static void* NativeCollector(void*) noexcept
             sawCanary = Record(3, canaryBefore, canaryOffset, 1, 0) == 1;
         }
 #endif
-        // Slot 4 v2 is the actual same-TLS method *guard entry*, not
+        // Slot 4 v3 is the actual same-TLS method *guard entry*, not
         // BeginKeepAttempt arming. The exact first native guard samples state
         // and immutable first-error before consulting TerminalMethodDenied.
-        int32_t targetStateAtEntry = -1, firstErrorAtEntry = -1;
+        int32_t targetStateAtEntry = -1, firstErrorAtEntry = -1, entryPolicy = 0;
         const bool hasGuardEntry = probe.TryReadTargetGuardEntry(
-            targetStateAtEntry, firstErrorAtEntry);
+            targetStateAtEntry, firstErrorAtEntry, entryPolicy);
         if (!sawAttempt && hasGuardEntry)
         {
-            sawAttempt = Record(4, 1, 1,
+            sawAttempt = Record(4, 1, entryPolicy,
                                 targetStateAtEntry, firstErrorAtEntry) == 1;
         }
         const int32_t decision = probe.TargetDecision();
@@ -339,7 +341,7 @@ static void* NativeCollector(void*) noexcept
         {
             // Slot 5 is the *native same-thread method-guard completion*,
             // not a managed Invoke return (which may be terminal-denied).
-            sawGuard = Record(5, decision, 1, 1, 0) == 1;
+            sawGuard = Record(5, decision, 1, 1, probe.TargetDenialKind()) == 1;
         }
 #if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
         const int32_t stateCode = hostState.load(std::memory_order_acquire);
@@ -360,7 +362,8 @@ static void* NativeCollector(void*) noexcept
         const bool allowedCompleted = decision == 1 &&
             probe.HasWorkerCompletedP5Acquire();
         const bool racedCompleted = decision == 3 && released;
-        if (terminalDenied || allowedCompleted || racedCompleted ||
+        const bool guardRecorded = sawP5 && sawCanary && sawAttempt && sawGuard;
+        if (((terminalDenied || allowedCompleted) && guardRecorded) || racedCompleted ||
             elapsedMs >=
 #if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
                 500
@@ -382,13 +385,15 @@ static void* NativeCollector(void*) noexcept
             // is a separate terminal-negative, not healthy P5 policy proof.
             // This test-only exit is fail-closed even before Python parses.
             const bool healthyP5AtGuardEntry = hasGuardEntry &&
+                entryPolicy == 1 /* observed nonterminal */ &&
                 targetStateAtEntry == 5 /* Committing */ &&
                 firstErrorAtEntry == 0 /* Empty */;
             const int32_t status =
                 sealed == 1 && healthyP5AtGuardEntry &&
-                decision == 1 ? 42 :
+                decision == 1 && guardRecorded ? 42 :
                 sealed == 1 && healthyP5AtGuardEntry &&
-                terminalDenied && sawP5 && sawCanary &&
+                terminalDenied && probe.TargetDenialKind() == 0 &&
+                sawP5 && sawCanary &&
                 sawAttempt && sawGuard ? 20 : 2;
 #if defined(HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO) && HYBRIDCLR_R03_D5_SOURCE_HOST_AUTO
             hostSealResult.store(sealed, std::memory_order_release);
@@ -409,7 +414,7 @@ static void* NativeCollector(void*) noexcept
 extern "C" IL2CPP_EXPORT int32_t R03_D5_WindowProtocolVersion()
 {
 #if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW && defined(HYBRIDCLR_R03_D5_WINDOW_PROBE) && HYBRIDCLR_R03_D5_WINDOW_PROBE
-    return 2; // C10 protocol v2, separate from WindowSnapshot schema 1
+    return 3; // C10 protocol v3, separate from WindowSnapshot schema 1
 #else
     return 0;
 #endif
@@ -474,7 +479,7 @@ extern "C" IL2CPP_EXPORT int32_t R03_D5_ReceiptOpen(
     if (fd < 0) { stage.store(-1, std::memory_order_release); return -3; }
     Header header{};
     std::memcpy(header.magic, "D5C10E1!", sizeof header.magic);
-    header.schema = 2; // C10 native receipt v2: entry facts and release truth
+    header.schema = 3; // C10 native receipt v3: entry policy and same-worker release
     header.pid = static_cast<int32_t>(::getpid());
     std::memcpy(header.runId, runId, std::strlen(runId));
     std::memcpy(header.requestSha256, requestSha256, 64);
@@ -627,7 +632,7 @@ extern "C" IL2CPP_EXPORT int32_t R03_D5_ReceiptSeal(
     using il2cpp::vm::assembly_shadow_d5::WindowProbe;
     const auto native = WindowProbe::Instance().Read();
     // Manual host writer only: do not copy an asserted managed workerFinished
-    // value into the v2 observed-release slot; source of truth is native CAS.
+    // value into the v3 observed-release slot; source of truth is native CAS.
     const int32_t releaseSeen = WindowProbe::Instance().
         HasWorkerCompletedP5Acquire() ? 1 : 0;
     if (Record(6, commitCode, stateCode, releaseSeen, keepAttempted) != 1 ||

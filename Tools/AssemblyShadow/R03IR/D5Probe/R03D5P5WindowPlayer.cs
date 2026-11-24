@@ -114,6 +114,12 @@ namespace AssemblyShadow.R03.D5
                         // No managed exception inspect/format or postterminal
                         // calls; native guard and first-error evidence win.
                     }
+                    finally
+                    {
+                        // Only this exact worker, after Invoke returned or
+                        // unwound, can publish its native completion.
+                        R03_D5_ReleaseP5Window();
+                    }
                 }
                 catch (Exception)
                 {
@@ -122,8 +128,7 @@ namespace AssemblyShadow.R03.D5
                 }
                 finally
                 {
-                    R03_D5_ReleaseP5Window(); // native timer is also bounded
-                    done = true;
+                    done = true; // no native completion for pre-Invoke errors
                 }
             }
         }
@@ -161,7 +166,7 @@ namespace AssemblyShadow.R03.D5
                 byte[] dll = File.ReadAllBytes(req.dllPath);
                 if (!string.Equals(Sha(dll), req.dllSha256, StringComparison.OrdinalIgnoreCase))
                     throw new InvalidOperationException("Methods.dll exact SHA mismatch");
-                if (R03_D5_WindowProtocolVersion() != 2)
+                if (R03_D5_WindowProtocolVersion() != 3)
                     throw new InvalidOperationException("Native D5 witness is not linked");
                 // Open once, before registration/staging/commit/possible poison.
                 receiptOpened = R03_D5_ReceiptOpen(outputPath, req.runId,

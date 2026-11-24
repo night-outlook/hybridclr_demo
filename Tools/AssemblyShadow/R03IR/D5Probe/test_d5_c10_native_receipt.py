@@ -25,7 +25,7 @@ def material(events=None, *, first=2, change=None, first_reason="Keep target gua
         for slot in events:
             rows.pop(slot, None)
     output = bytearray(gate.RECEIPT_BYTES)
-    gate.HEADER.pack_into(output, 0, b"D5C10E1!", 2, 4242,
+    gate.HEADER.pack_into(output, 0, b"D5C10E1!", 3, 4242,
                           b"synthetic-case", b"a"*64, b"b"*64, 0)
     for slot, (a,b,c,d) in rows.items():
         checksum = gate.MAGIC ^ slot ^ (a & 0xffffffff) ^ (b & 0xffffffff) ^ (c & 0xffffffff) ^ (d & 0xffffffff)
@@ -221,16 +221,16 @@ class D5C10NativeReceipt(unittest.TestCase):
         self.assertEqual(x["result"], "NoCoverage")
         self.assertEqual(x["guardEntryPrecondition"], "MissingOrUnexpectedGuardEntry")
 
-    def test_40_v1_receipt_cannot_be_interpreted_under_v2_semantics(self):
+    def test_40_v1_receipt_cannot_be_interpreted_under_v3_semantics(self):
         b=bytearray(material())
         struct.pack_into("<i",b,8,1)
         with self.assertRaises(gate.InvalidReceipt):
             parse_mock(bytes(b))
 
-    def test_41_admitted_guard_without_native_worker_release_rejected(self):
+    def test_41_admitted_guard_without_native_worker_release_preserved_as_unknown(self):
         raw=material(first=0,change={5:(1,1,1,0),7:(1,1,0,0),
             6:(-1,6,0,1),9:(0,0,1,0),10:(1,1,1,1)})
-        self.assertEqual(parse_mock(raw,exit_code=42)["result"],"NoCoverage")
+        self.assertEqual(parse_mock(raw,exit_code=42)["result"],"AllowedGuardAtP5_CanaryUnknown")
 
     def test_42_malformed_native_worker_release_observation_rejected(self):
         self.assertEqual(parse_mock(material(change={6:(-1,9,2,1)}))["result"],
@@ -238,9 +238,42 @@ class D5C10NativeReceipt(unittest.TestCase):
 
     def test_43_healthy_p5_entry_then_terminal_failure_is_bounded_candidate(self):
         x=parse_mock(material())
-        self.assertEqual(x["guardEntryPrecondition"],"HealthyP5CommittingFirstErrorEmpty")
+        self.assertEqual(x["guardEntryPrecondition"],"HealthyP5ObservedNonterminal")
         self.assertEqual(x["result"],"CandidateObservedDeniedInP5_RequiresIndependentBinaryProof")
         self.assertFalse(x["realPlayerC10Passed"])
+
+    def test_44_durable_failure_before_first_error_is_not_healthy(self):
+        x = parse_mock(material(change={4:(1,2,5,0),5:(2,1,1,1)}))
+        self.assertEqual(x["result"], "NoCoverage")
+        self.assertEqual(x["guardEntryPrecondition"], "PreexistingTerminalOrFirstError")
+
+    def test_45_mixed_entry_snapshot_is_not_healthy(self):
+        x = parse_mock(material(change={4:(1,3,5,0)}))
+        self.assertEqual(x["result"], "NoCoverage")
+        self.assertEqual(x["guardEntryPrecondition"], "RacedOrUnknownGuardEntry")
+
+    def test_46_terminal_denial_raced_healthy_entry(self):
+        x = parse_mock(material(change={5:(2,1,1,1)}))
+        self.assertEqual(x["result"], "NoCoverage")
+        self.assertEqual(x["guardDenialKind"], 1)
+
+    def test_47_unowned_failure_denial_is_not_candidate(self):
+        self.assertEqual(parse_mock(material(change={5:(2,1,1,2)}))["result"], "NoCoverage")
+
+    def test_48_allowed_guard_canary_unreadable_is_critical(self):
+        raw = material(first=0,change={5:(1,1,1,0),6:(-1,6,1,1),
+            7:(1,1,0,0),9:(0,-1,0,0),10:(1,0,1,1)})
+        x = parse_mock(raw,exit_code=42)
+        self.assertEqual(x["result"], "AllowedGuardAtP5_CanaryUnknown")
+        self.assertEqual(x["methodBodySideEffect"], "Unknown")
+        self.assertFalse(x["realPlayerC10Passed"])
+        self.assertEqual(parse_mock(raw,pid=4243,exit_code=42)["result"],"NoCoverage")
+
+    def test_49_v2_receipt_rejected(self):
+        b = bytearray(material())
+        struct.pack_into("<i",b,8,2)
+        with self.assertRaises(gate.InvalidReceipt):
+            parse_mock(bytes(b))
 
     def test_20_no_false_acceptance(self):
         x=parse_mock(material())
