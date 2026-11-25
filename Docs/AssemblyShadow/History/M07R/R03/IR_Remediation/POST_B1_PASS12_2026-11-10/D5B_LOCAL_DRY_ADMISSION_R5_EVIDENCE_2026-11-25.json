@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03D5BDryAdmissionR5PrimarySourceEvidenceV1",
+  "date": "2026-11-25 America/Los_Angeles",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "bootstrapHead": "83ceb2ba9868d96bd35628908919978e16cc5d2f",
+  "sourcePins": {
+    "hybridclr_demo": "eaca19c08f41245c46dfacbf605cd80480bc3a92",
+    "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"
+  },
+  "sourceFiles": [
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission.py",
+      "gitBlob": "99746fe64976da313cbd0e1625f0fcc5a67bca62",
+      "bytes": 50512
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_local_admission.py",
+      "gitBlob": "06aaf4f3ef4df3cc7306fe8d83d56f35ce1e0e0c",
+      "bytes": 85467
+    },
+    {
+      "path": ".github/workflows/r03-b2-d5b-local-admission-source-host.yml",
+      "gitBlob": "8c83ab812c64caf0bf7d14bca52b889add784036",
+      "bytes": 2528
+    },
+    {
+      "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_DESIGN_2026-11-25.md",
+      "gitBlob": "ac6ffc51fb32b1db2a48061e8368d269826aeab9",
+      "bytes": 14851
+    }
+  ],
+  "unchangedFiles": [
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Local/run_d5_local.py",
+      "sha": "519e6a4a8a11e3c821adb02fe1bf9e9d5b685b39"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission_plan_v1.json",
+      "sha": "5c0ab7a6d788ebd5adf57f1fddc567ba700632e9"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight.py",
+      "sha": "81e7c3a2eaccb77bff2515c91b173558e4eeba2f"
+    }
+  ],
+  "ci": {
+    "runId": 45609355991,
+    "jobId": 139188536483,
+    "attempt": 1,
+    "event": "push",
+    "headSha": "eaca19c08f41245c46dfacbf605cd80480bc3a92",
+    "conclusion": "success",
+    "jobsPassed": 1,
+    "jobsTotal": 1,
+    "stepsPassed": 8,
+    "stepsTotal": 8,
+    "testMethods": 94,
+    "rawTestIds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94
+    ],
+    "elapsedTestSeconds": 0.191,
+    "deniedExecutionExitCode": 2,
+    "deniedExecutionResult": "NotAuthorized",
+    "deniedExecutionOutputCreated": false,
+    "artifactCount": 0,
+    "rawLogPath": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_CI_JOB_139188536483_2026-11-25.log",
+    "rawLogSha256": "fea6866d830090d7717cd221b1a738f336e61454fe1600d6494df18ace1e97c9",
+    "rawLogBytes": 32641,
+    "rawLogGitBlob": "4baa247eb4913ad1746ea2a9b2119b4e5d0efb5a",
+    "otherAutomaticallyTriggeredRuns": [
+      {
+        "runId": 45609356164,
+        "conclusion": "success",
+        "scope": "Native B1; metadata inspected only"
+      },
+      {
+        "runId": 45609356133,
+        "conclusion": "cancelled"
+      },
+      {
+        "runId": 45609356171,
+        "conclusion": "cancelled"
+      },
+      {
+        "runId": 45609356120,
+        "conclusion": "cancelled"
+      },
+      {
+        "runId": 45609355979,
+        "conclusion": "cancelled"
+      }
+    ]
+  },
+  "primaryHost": {
+    "platform": "Linux x86_64",
+    "python": "3.12.14",
+    "testMethods": 94,
+    "elapsedTestSeconds": 0.123,
+    "conclusion": "PassedSourceHostOnly",
+    "oldTestMethodsPreserved": 81,
+    "oldHelperMethodsPreserved": 7,
+    "baselineNegativeControls": {
+      "writerGitBlob": "654ced61b75d1d5fca448fce756b9c9bb9ca0799",
+      "selectedTestMethods": [
+        82,
+        85
+      ],
+      "testMethodsRun": 2,
+      "assertionFailuresIncludingSubtests": 3,
+      "errors": 0,
+      "result": "ExpectedBaselineRegressionFailures"
+    }
+  },
+  "connectorSmokeTests": [
+    {
+      "repository": "night-outlook/hybridclr_demo",
+      "baseBranch": "codex/assembly-shadow-r01b-h1",
+      "baseCommit": "83ceb2ba9868d96bd35628908919978e16cc5d2f",
+      "smokeBranch": "codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0",
+      "commit": "a0c30160de9697d42223310bece86cd96c796d93",
+      "remoteVerified": true,
+      "cleanup": "Unavailable: Connector exposes no branch/ref deletion tool; branch retained"
+    },
+    {
+      "repository": "night-outlook/hybridclr",
+      "baseBranch": "codex/assembly-shadow-r01b-h1",
+      "baseCommit": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+      "smokeBranch": "codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0",
+      "commit": "c4197a1c19353ef4c6bf9f670bbb234dc8afc086",
+      "remoteVerified": true,
+      "cleanup": "Unavailable: Connector has no branch/ref deletion tool; branch retained"
+    },
+    {
+      "repository": "night-outlook/hybridclr_unity",
+      "baseBranch": "codex/assembly-shadow-r01b-h1",
+      "baseCommit": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "smokeBranch": "codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0",
+      "commit": "9a7da758fcad50f81708202d0a5ad30aa2f64ee1",
+      "remoteVerified": true,
+      "cleanup": "Unavailable: Connector has no branch/ref deletion tool; branch retained"
+    },
+    {
+      "repository": "night-outlook/il2cpp_plus",
+      "baseBranch": "codex/assembly-shadow-r01b-h1",
+      "baseCommit": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3",
+      "smokeBranch": "codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0",
+      "commit": "ecf7c731b3bd2f20719b9363cf897ed6cf7304d8",
+      "remoteVerified": true,
+      "cleanup": "Unavailable: Connector has no branch/ref deletion tool; branch retained"
+    }
+  ],
+  "authority": {
+    "D5BDryAdmissionR5Primary": "SourceOnlyCIComplete_PendingIndependentR5Review",
+    "D5BDryAdmissionR4IndependentReview": "ReturnRequired",
+    "D5BDryAdmissionR5IndependentReview": "Pending",
+    "APPROVED_EXECUTION_ENVELOPE_BLOB": null,
+    "APPROVED_LOCAL_HANDOFF_BLOB": null,
+    "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+    "D5BLocalExecution": "NotAuthorized",
+    "D5LocalValidation": "NotAuthorized",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false,
+    "realPlayerCellsPassed": 0,
+    "realPlayerCellsNoCoverage": 18,
+    "realMacUnityIl2CppValidation": "NotRun"
+  }
+}

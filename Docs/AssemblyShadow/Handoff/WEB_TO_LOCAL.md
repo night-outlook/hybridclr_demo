@@ -1,4 +1,24 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
+## R5 source-only correction and focused CI complete; separate independent review and Local authority missing (2026-11-25 America/Los_Angeles)
+
+**NOT AN EXECUTABLE LOCAL HANDOFF. NO LOCAL COMMANDS.** Primary addressed the [independent R4 ReturnRequired](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R4_INDEPENDENT_REREVIEW_2026-11-25.md) findings through [R5 design](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_DESIGN_2026-11-25.md), [implementation/evidence](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_PRIMARY_2026-11-25.md) and a [separate independent R5 review request — PENDING](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_INDEPENDENT_REVIEW_REQUEST_2026-11-25.md). The focused correction retains completed-output state across reporting failures and represents unrecorded creation/caller-return effects as unknown. It does not supply an approved envelope or Local execution permission.
+
+Exact **CI-tested source tuple**, not later documentation HEAD, all on `codex/assembly-shadow-r01b-h1`:
+
+| Repository | Source commit |
+|---|---|
+| night-outlook/hybridclr_demo | `eaca19c08f41245c46dfacbf605cd80480bc3a92` |
+| night-outlook/hybridclr | `c3c232023724cbad565b85e9b2c3beea8ce2789a` |
+| night-outlook/hybridclr_unity | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| night-outlook/il2cpp_plus | `1268dd417ffe9090fcd9ea2d49542c97ed3cccb3` |
+
+[Source-only Actions **45609355991**](https://github.com/night-outlook/hybridclr_demo/actions/runs/45609355991), job **139188536483**, **94/94 Python tests, 1/1 focused job PASS**. Public execution still refuses the null approval before envelope reads or output creation. This is not real macOS admission or Unity/Player evidence.
+
+**Still CLOSED:** `APPROVED_EXECUTION_ENVELOPE_BLOB=None`; `APPROVED_LOCAL_HANDOFF_BLOB=None`; **`WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`**; `D5BLocalExecution=NotAuthorized`; `D5LocalValidation=NotAuthorized`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`. Real Player cases remain **18 NoCoverage**; actual macOS/Unity/IL2CPP/Bee/full VM/Mach-O/GC/PID/Player `NotRun`. Next only **independent R5 source/design/test/raw-CI review**. R4 ReturnRequired is not cleared by Primary or CI. A future Local decision can be considered only after separate review and a concrete approved envelope and fresh exact pushed handoff. No Local preview/dry admission, D5-C/D, D6/H2/M08A/X02/SNAP-01 or Human Review Gate. Earlier sections cannot grant execution permission.
+
+---
+
+# Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 ## D5-B R4 focused source-only remediation CI PASS; separate independent review and Local approval MISSING (2026-11-25 UTC)
 
 **NOT AN EXECUTABLE LOCAL HANDOFF. NO LOCAL COMMANDS.** The [independent R3 `ReturnRequired`](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R3_INDEPENDENT_REREVIEW_2026-11-24.md) motivated focused [R4 design](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R4_DESIGN_2026-11-25.md) and [Primary code/CI](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R4_PRIMARY_2026-11-25.md); [independent R4 review request PENDING](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R4_INDEPENDENT_REVIEW_REQUEST_2026-11-25.md). Exact **CI-tested source**, not later documentation HEAD: demo `55f3eaf5bb87f717d02e2ad81c9ea448397d71ab`, hybridclr `c3c232023724cbad565b85e9b2c3beea8ce2789a`, hybridclr_unity `948c0e3b4f8891481301770115e8ba4945eea6de`, il2cpp_plus `1268dd417ffe9090fcd9ea2d49542c97ed3cccb3`, all on `codex/assembly-shadow-r01b-h1`. [Source-only GitHub Actions 45532666894](https://github.com/night-outlook/hybridclr_demo/actions/runs/45532666894), job `138931561379`, **81/81 Python host tests PASS, 1/1**, public `--mode execute` `NotAuthorized` with `outputCreated=false`. No actual macOS filesystem/SDK/Unity/Player command was executed.
