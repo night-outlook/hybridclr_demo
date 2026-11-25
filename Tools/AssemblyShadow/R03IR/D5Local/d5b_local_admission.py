@@ -51,17 +51,25 @@ class Rejected(ValueError):
     """Admission failure. No local execution permission was granted."""
 
 
+class PathIdentityMismatch(Rejected):
+    """The approved output pathname no longer names the open evidence root."""
+
+
 class PartialOutput(Rejected):
     """A one-use root was created; do not retry or report outputCreated=false."""
 
     def __init__(self, root: Path, reason: str, files: list[dict], *,
                  commit_visible: bool = False,
+                 commit_uncertain: bool = False,
+                 path_identity_uncertain: bool = False,
                  cleanup_errors: tuple[str, ...] = ()):
         super().__init__(reason)
         self.root = root
         self.files = tuple(item["path"] for item in files)
         self.ledger = tuple(files)
         self.commit_visible = commit_visible
+        self.commit_uncertain = commit_uncertain
+        self.path_identity_uncertain = path_identity_uncertain
         self.cleanup_errors = cleanup_errors
 
 
@@ -554,6 +562,35 @@ def _assert_open_path(parent_fd: int, root_fd: int, root: Path,
          "Bound D5-B physical parent/root identity changed")
 
 
+def _assert_final_path_identity(root_fd: int, root: Path,
+                                expected_parent: dict) -> None:
+    """Rebind the approved pathname to the open output inode after parent close.
+
+    This is a point-in-time check, not a cross-process namespace lock.
+    A final read-only check also runs after the last visibility-changing write.
+    """
+    try:
+        canonical_dir(root.parent, "approved D5-B finalization parent")
+        parent = os.stat(root.parent, follow_symlinks=False)
+        named_root = os.stat(root, follow_symlinks=False)
+        opened_root = os.fstat(root_fd)
+        valid = (
+            stat.S_ISDIR(parent.st_mode) and
+            parent.st_dev == expected_parent["device"] and
+            parent.st_ino == expected_parent["inode"] and
+            stat.S_ISDIR(named_root.st_mode) and
+            named_root.st_dev == opened_root.st_dev and
+            named_root.st_ino == opened_root.st_ino
+        )
+    except (Rejected, OSError, RuntimeError) as error:
+        raise PathIdentityMismatch(
+            "Approved output path could not be rebound to its open directory"
+        ) from error
+    if not valid:
+        raise PathIdentityMismatch(
+            "Approved output path no longer names the bound evidence directory")
+
+
 def _request_from_approval(approved: dict) -> dict:
     return {key: approved[key] for key in (
         "workspace", "historicalRoots", "evidenceParent",
@@ -674,6 +711,7 @@ def seal_oneuse_dry_admission(approved_raw: bytes,
     root_fd = None
     root_created = False
     committed = False
+    final_unlink_attempted = False
     problem = None
     cleanup_errors = []
     ledger = []
@@ -761,21 +799,31 @@ def seal_oneuse_dry_admission(approved_raw: bytes,
         parent_fd = None  # Never double-close after an error.
         os.close(closing_parent)
 
-        # Single atomic visibility change for the final positive file.
-        # INCOMPLETE.json still vetoes this state until directory fsync.
+        # Recheck the original path after closing the parent descriptor.
+        # Descriptor-relative writes alone do not prove the approved pathname
+        # still names this directory if another process moved the child.
+        _assert_final_path_identity(root_fd, root, expected_parent)
         os.rename("LOCAL_BATCH_STAGING.json", "LOCAL_BATCH_RESULT.json",
                   src_dir_fd=root_fd, dst_dir_fd=root_fd)
         os.fsync(root_fd)
-        # Last on-disk action: remove the veto only after durable final.
-        # Never perform another fallible disk write after this commit point.
+        _assert_final_path_identity(root_fd, root, expected_parent)
+
+        # Unlink is the LAST visibility-changing operation. An error after
+        # the unlink may mean it took effect; never claim a definite
+        # precommit failure or attempt to write a FAILURE marker afterward.
+        final_unlink_attempted = True
         os.unlink("INCOMPLETE.json", dir_fd=root_fd)
         committed = True
+        # Read-only custody check after publication: any path drift must
+        # become IndeterminateAfterCommit, not a success at the wrong path.
+        _assert_final_path_identity(root_fd, root, expected_parent)
     except BaseException as error:
         problem = error
 
     # Cleanup is deliberately part of the same root-created accounting,
     # not a finally block that could override PartialOutput or claim no root.
-    if problem is not None and root_created and not committed:
+    if (problem is not None and root_created and not committed
+            and not final_unlink_attempted):
         try:
             if root_fd is not None:
                 ledger = _locked_file_ledger(root_fd)
@@ -815,6 +863,10 @@ def seal_oneuse_dry_admission(approved_raw: bytes,
             # cleanup outcomes, not evidence that the committed bytes failed.
             raise PartialOutput(root, explanation, ledger,
                                 commit_visible=committed,
+                                commit_uncertain=(final_unlink_attempted
+                                                  and not committed),
+                                path_identity_uncertain=isinstance(
+                                    problem, PathIdentityMismatch),
                                 cleanup_errors=tuple(cleanup_errors))
         raise Rejected(explanation) from problem
     return result
@@ -860,7 +912,8 @@ def main(argv=None) -> int:
         print(json.dumps({
             "schemaVersion": 1,
             "kind": "R03D5BLocalAdmissionFailureV1",
-            "result": ("IndeterminateAfterCommit" if exc.commit_visible
+            "result": ("IndeterminateAfterCommit"
+                       if exc.commit_visible or exc.commit_uncertain
                        else "FailedAfterPartialOutput"),
             "reason": str(exc),
             "candidate": str(exc.root),
@@ -868,9 +921,15 @@ def main(argv=None) -> int:
             "observedLedger": list(exc.ledger),
             "failureMarkerAvailable": "FAILURE.json" in exc.files,
             "commitVisible": exc.commit_visible,
+            "commitOutcome": ("Visible" if exc.commit_visible else
+                              "UnknownAfterFinalUnlink" if exc.commit_uncertain
+                              else "NotCommitted"),
+            "finalUnlinkOutcomeUncertain": exc.commit_uncertain,
+            "outputPathIdentityUncertain": exc.path_identity_uncertain,
             "cleanupErrors": list(exc.cleanup_errors),
-            "requiresPhysicalReconciliation": exc.commit_visible or
-                bool(exc.cleanup_errors),
+            "requiresPhysicalReconciliation": (
+                exc.commit_visible or exc.commit_uncertain or
+                exc.path_identity_uncertain or bool(exc.cleanup_errors)),
             "outputCreated": True,
             "retryAllowed": False,
             "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",

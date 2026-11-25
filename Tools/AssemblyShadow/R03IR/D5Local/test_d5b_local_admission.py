@@ -1090,5 +1090,107 @@ class D5BLocalSourceOnly(unittest.TestCase):
             gate.inspect_dry_receipt_structure(root)
 
 
+    def test_77_after_effect_veto_unlink_error_requires_reconciliation(self):
+        real_unlink, real_write = gate.os.unlink, gate._write_locked
+        failure_writes = []
+        def after_unlink(name, **kwargs):
+            real_unlink(name, **kwargs)
+            raise OSError(5, "synthetic error after veto was removed")
+        def no_failure(fd, name, value):
+            if name == "FAILURE.json":
+                failure_writes.append(name)
+                raise OSError(28, "no space for failure marker")
+            return real_write(fd, name, value)
+        with self.assertRaises(gate.PartialOutput) as raised:
+            self._seal_for_r3(unlink_side_effect=after_unlink,
+                              write_side_effect=no_failure)
+        root = self.evidence / self.oneuse
+        self.assertFalse(raised.exception.commit_visible)
+        self.assertTrue(raised.exception.commit_uncertain)
+        self.assertFalse(raised.exception.path_identity_uncertain)
+        self.assertEqual(failure_writes, [])
+        self.assertFalse((root / "FAILURE.json").exists())
+        self.assertFalse((root / "INCOMPLETE.json").exists())
+        # Physical structure can be positive even though command outcome is
+        # ambiguous. Structural inspection alone never authorizes Local.
+        self.assertEqual(gate.inspect_dry_receipt_structure(root)["result"],
+                         "SealedDryReceiptStructureOnly_NotLocalAuthorization")
+
+    def test_78_cli_after_effect_unlink_error_never_claims_precommit(self):
+        raw, prior = self._synthetic_approved_bytes(), self.fake_admission()
+        envelope = self.parent / "synthetic-unlink-envelope.json"
+        envelope.write_bytes(raw)
+        real_unlink = gate.os.unlink
+        def after_unlink(name, **kwargs):
+            real_unlink(name, **kwargs)
+            raise OSError(5, "synthetic post-effect unlink error")
+        stream = io.StringIO()
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)), \
+             mock.patch.object(gate, "inspect", return_value=prior), \
+             mock.patch.object(gate.os, "unlink", side_effect=after_unlink), \
+             mock.patch("sys.stdout", stream):
+            code = gate.main(["--mode", "execute",
+                              "--approved-envelope", str(envelope)])
+        self.assertEqual(code, 2)
+        response = json.loads(stream.getvalue())
+        self.assertEqual(response["result"], "IndeterminateAfterCommit")
+        self.assertFalse(response["commitVisible"])
+        self.assertTrue(response["finalUnlinkOutcomeUncertain"])
+        self.assertEqual(response["commitOutcome"],
+                         "UnknownAfterFinalUnlink")
+        self.assertTrue(response["requiresPhysicalReconciliation"])
+        self.assertTrue(response["outputCreated"])
+        self.assertFalse(response["retryAllowed"])
+        self.assertFalse(response["R03Accepted"])
+
+    def test_79_root_relocated_after_parent_close_is_not_success(self):
+        real_close = gate.os.close
+        moved = self.evidence / (self.oneuse + "-moved")
+        swapped = [False]
+        def close_then_move(fd):
+            info = os.fstat(fd)
+            if (not swapped[0] and stat.S_ISDIR(info.st_mode) and
+                    info.st_ino == self.evidence.stat().st_ino):
+                swapped[0] = True
+                real_close(fd)
+                (self.evidence / self.oneuse).rename(moved)
+                (self.evidence / self.oneuse).mkdir()
+                return
+            return real_close(fd)
+        with self.assertRaises(gate.PartialOutput) as raised:
+            self._seal_for_r3(close_side_effect=close_then_move)
+        self.assertTrue(swapped[0])
+        self.assertTrue(raised.exception.path_identity_uncertain)
+        self.assertFalse(raised.exception.commit_visible)
+        self.assertFalse(raised.exception.commit_uncertain)
+        self.assertTrue((moved / "INCOMPLETE.json").exists())
+        self.assertFalse((moved / "LOCAL_BATCH_RESULT.json").exists())
+        self.assertEqual(list((self.evidence / self.oneuse).iterdir()), [])
+        with self.assertRaises(gate.Rejected):
+            gate.inspect_dry_receipt_structure(moved)
+
+    def test_80_root_relocated_after_final_unlink_is_indeterminate(self):
+        real_unlink = gate.os.unlink
+        moved = self.evidence / (self.oneuse + "-after-commit")
+        swapped = [False]
+        def unlink_then_move(name, **kwargs):
+            real_unlink(name, **kwargs)
+            if name == "INCOMPLETE.json":
+                swapped[0] = True
+                (self.evidence / self.oneuse).rename(moved)
+                (self.evidence / self.oneuse).mkdir()
+        with self.assertRaises(gate.PartialOutput) as raised:
+            self._seal_for_r3(unlink_side_effect=unlink_then_move)
+        self.assertTrue(swapped[0])
+        self.assertTrue(raised.exception.commit_visible)
+        self.assertFalse(raised.exception.commit_uncertain)
+        self.assertTrue(raised.exception.path_identity_uncertain)
+        self.assertEqual(list((self.evidence / self.oneuse).iterdir()), [])
+        self.assertEqual(gate.inspect_dry_receipt_structure(moved)["result"],
+                         "SealedDryReceiptStructureOnly_NotLocalAuthorization")
+
+
+
 if __name__ == "__main__":
     unittest.main()
