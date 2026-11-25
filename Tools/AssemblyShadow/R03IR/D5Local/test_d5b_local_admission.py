@@ -1192,5 +1192,45 @@ class D5BLocalSourceOnly(unittest.TestCase):
 
 
 
+    def test_81_cli_relocated_parent_closed_root_requires_reconciliation(self):
+        raw, prior = self._synthetic_approved_bytes(), self.fake_admission()
+        envelope = self.parent / "synthetic-path-identity-envelope.json"
+        envelope.write_bytes(raw)
+        real_close = gate.os.close
+        moved = self.evidence / (self.oneuse + "-cli-relocated")
+        changed = [False]
+        def close_then_relocate(fd):
+            info = os.fstat(fd)
+            if (not changed[0] and stat.S_ISDIR(info.st_mode) and
+                    info.st_ino == self.evidence.stat().st_ino):
+                changed[0] = True
+                real_close(fd)
+                (self.evidence / self.oneuse).rename(moved)
+                (self.evidence / self.oneuse).mkdir()
+                return
+            return real_close(fd)
+        stream = io.StringIO()
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)), \
+             mock.patch.object(gate, "inspect", return_value=prior), \
+             mock.patch.object(gate.os, "close", side_effect=close_then_relocate), \
+             mock.patch("sys.stdout", stream):
+            code = gate.main(["--mode", "execute",
+                              "--approved-envelope", str(envelope)])
+        response = json.loads(stream.getvalue())
+        self.assertTrue(changed[0])
+        self.assertEqual(code, 2)
+        self.assertEqual(response["result"], "FailedAfterPartialOutput")
+        self.assertEqual(response["commitOutcome"], "NotCommitted")
+        self.assertTrue(response["outputPathIdentityUncertain"])
+        self.assertTrue(response["requiresPhysicalReconciliation"])
+        self.assertTrue(response["outputCreated"])
+        self.assertFalse(response["retryAllowed"])
+        self.assertFalse(response["R03Accepted"])
+        self.assertTrue((moved / "INCOMPLETE.json").exists())
+        self.assertFalse((moved / "LOCAL_BATCH_RESULT.json").exists())
+
+
+
 if __name__ == "__main__":
     unittest.main()
