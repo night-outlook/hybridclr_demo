@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import copy
 import hashlib
+import inspect as source_inspect
 import io
 import json
 import os
 import stat
+import sys
 from pathlib import Path
 from types import SimpleNamespace
 import tempfile
@@ -15,6 +17,30 @@ import unittest
 from unittest import mock
 
 import d5b_local_admission as gate
+
+
+class _R5DeliveryFaultStream(io.StringIO):
+    """Synthetic response sink; filesystem writes still use the real writer."""
+
+    def __init__(self, *, write_fault=None, flush_fault=False):
+        super().__init__()
+        self.write_fault = write_fault
+        self.flush_fault = flush_fault
+        self.write_attempts = 0
+        self.flush_attempts = 0
+
+    def write(self, value):
+        self.write_attempts += 1
+        if (self.write_fault == "always" or
+                self.write_fault == "first" and self.write_attempts == 1):
+            raise OSError(5, "synthetic response write failure")
+        return super().write(value)
+
+    def flush(self):
+        self.flush_attempts += 1
+        if self.flush_fault:
+            raise OSError(5, "synthetic response flush failure after bytes")
+        return super().flush()
 
 
 class D5BLocalSourceOnly(unittest.TestCase):
@@ -1230,6 +1256,421 @@ class D5BLocalSourceOnly(unittest.TestCase):
         self.assertTrue((moved / "INCOMPLETE.json").exists())
         self.assertFalse((moved / "LOCAL_BATCH_RESULT.json").exists())
 
+
+
+    # R5 regressions for R4-IR-01/02. All approvals and host observations
+    # below are synthetic process-local fixtures, never Local validation.
+    def _r5_cli_fixture(self, suffix):
+        self.oneuse = "R03-B2-D5-r5-" + suffix
+        raw, prior = self._synthetic_approved_bytes(), self.fake_admission()
+        envelope = self.parent / (suffix + "-synthetic-envelope.json")
+        envelope.write_bytes(raw)
+        return raw, prior, envelope, self.evidence / self.oneuse
+
+    def _r5_execute(self, raw, prior, envelope, stdout, stderr):
+        with mock.patch.object(gate, "APPROVED_EXECUTION_ENVELOPE_BLOB",
+                               gate.git_blob(raw)), \
+             mock.patch.object(gate, "inspect", return_value=prior), \
+             mock.patch("sys.stdout", stdout), \
+             mock.patch("sys.stderr", stderr):
+            code = gate.main(["--mode", "execute",
+                              "--approved-envelope", str(envelope)])
+        self.assertIsNone(gate.APPROVED_EXECUTION_ENVELOPE_BLOB)
+        return code
+
+    def _r5_assert_closed(self, response):
+        self.assertEqual(response["WEB_TO_LOCAL"], "CLOSED_NO_LOCAL_EXECUTION")
+        self.assertEqual(response["D5BLocalExecution"], "NotAuthorized")
+        self.assertIs(response["R03Accepted"], False)
+
+    def _r5_assert_sealed_structure(self, root):
+        self.assertEqual({p.name for p in root.iterdir()}, {
+            "ADMISSION.json", "CELLS.json", "POSTFLIGHT.json",
+            "MANIFEST.json", "LOCAL_BATCH_RESULT.json"})
+        structure = gate.inspect_dry_receipt_structure(root)
+        self.assertEqual(structure["result"],
+                         "SealedDryReceiptStructureOnly_NotLocalAuthorization")
+        self.assertEqual(structure["filesChecked"], 5)
+        self.assertEqual(structure["realPlayerCellsPassed"], 0)
+        self.assertEqual(structure["realPlayerCellsNoCoverage"], 18)
+        self.assertIs(structure["R03Accepted"], False)
+
+    def _r5_assert_committed_delivery_failure(self, response, root):
+        self._r5_assert_closed(response)
+        self.assertEqual(response["result"], "IndeterminateAfterCommit")
+        self.assertEqual(response["candidate"], str(root))
+        self.assertIs(response["outputCreated"], True)
+        self.assertIs(response["commitVisible"], True)
+        self.assertEqual(response["commitOutcome"], "Visible")
+        self.assertIs(response["retryAllowed"], False)
+        self.assertIs(response["requiresPhysicalReconciliation"], True)
+        self.assertEqual(response["responseDelivery"], "Failed")
+        self._r5_assert_sealed_structure(root)
+
+    def _r5_assert_unknown_creation(self, response, root,
+                                    outcome="UnknownAfterMkdirAttempt"):
+        self._r5_assert_closed(response)
+        self.assertEqual(response["result"], "IndeterminateOutputCreation")
+        self.assertEqual(response["candidate"], str(root))
+        self.assertIsNone(response["outputCreated"])
+        self.assertEqual(response["creationOutcome"], outcome)
+        self.assertEqual(response["candidateOwnership"], "Unproven")
+        self.assertEqual(response["commitOutcome"], "NotCommitted")
+        self.assertIs(response["retryAllowed"], False)
+        self.assertIs(response["requiresPhysicalReconciliation"], True)
+
+    def _r5_writer_line(self, statement):
+        lines, start = source_inspect.getsourcelines(
+            gate.seal_oneuse_dry_admission)
+        matches = [start + offset for offset, line in enumerate(lines)
+                   if line.strip().startswith(statement)]
+        self.assertEqual(len(matches), 1,
+                         "Expected one writer boundary: " + statement)
+        return matches[0]
+
+    def test_82_cli_completed_seal_first_stdout_write_failure_preserves_commit(self):
+        raw, prior, envelope, root = self._r5_cli_fixture("first-write")
+        stdout = _R5DeliveryFaultStream(write_fault="first")
+        stderr = io.StringIO()
+        code = self._r5_execute(raw, prior, envelope, stdout, stderr)
+        self.assertEqual(code, 2)
+        self.assertEqual(stdout.write_attempts, 1)
+        self.assertEqual(stdout.getvalue(), "")
+        self._r5_assert_committed_delivery_failure(
+            json.loads(stderr.getvalue()), root)
+
+    def test_83_cli_completed_seal_stdout_flush_failure_preserves_commit(self):
+        raw, prior, envelope, root = self._r5_cli_fixture("flush")
+        stdout = _R5DeliveryFaultStream(flush_fault=True)
+        stderr = io.StringIO()
+        code = self._r5_execute(raw, prior, envelope, stdout, stderr)
+        self.assertEqual(code, 2)
+        self.assertEqual(stdout.flush_attempts, 1)
+        # Bytes may have escaped before flush failed. They are not a
+        # successful terminal command outcome and must not trigger a retry.
+        self.assertEqual(json.loads(stdout.getvalue())["result"],
+                         "DryAdmissionRecorded_NoUnityOrPlayer")
+        self._r5_assert_committed_delivery_failure(
+            json.loads(stderr.getvalue()), root)
+
+    def test_84_cli_completed_seal_both_failed_streams_returns_two(self):
+        raw, prior, envelope, root = self._r5_cli_fixture("both-streams")
+        stdout = _R5DeliveryFaultStream(write_fault="always", flush_fault=True)
+        stderr = _R5DeliveryFaultStream(write_fault="always", flush_fault=True)
+        code = self._r5_execute(raw, prior, envelope, stdout, stderr)
+        self.assertEqual(code, 2)
+        self.assertEqual(stdout.write_attempts, 1)
+        self.assertEqual(stderr.write_attempts, 1)
+        self.assertEqual(stdout.getvalue(), "")
+        self.assertEqual(stderr.getvalue(), "")
+        self._r5_assert_sealed_structure(root)
+
+
+    def test_85_cli_after_effect_mkdir_faults_report_unknown_creation(self):
+        real_mkdir = gate.os.mkdir
+        for error_type in (OSError, KeyboardInterrupt):
+            with self.subTest(error=error_type.__name__):
+                raw, prior, envelope, root = self._r5_cli_fixture(
+                    "mkdir-after-" + error_type.__name__)
+                stdout, stderr = io.StringIO(), io.StringIO()
+                created = []
+                def create_then_interrupt(name, mode=0o777, **kwargs):
+                    real_mkdir(name, mode, **kwargs)
+                    created.append(gate.directory_identity(root))
+                    raise error_type("synthetic failure after real mkdir")
+                with mock.patch.object(gate.os, "mkdir",
+                                       side_effect=create_then_interrupt) as mkdir, \
+                     mock.patch.object(gate, "_write_locked") as write:
+                    code = self._r5_execute(
+                        raw, prior, envelope, stdout, stderr)
+                self.assertEqual(code, 2)
+                mkdir.assert_called_once()
+                write.assert_not_called()
+                self.assertEqual(created, [gate.directory_identity(root)])
+                self.assertEqual(list(root.iterdir()), [])
+                self.assertEqual(stderr.getvalue(), "")
+                self._r5_assert_unknown_creation(
+                    json.loads(stdout.getvalue()), root)
+        self.assertIs(gate.os.mkdir, real_mkdir)
+
+    def test_86_cli_real_mkdir_trace_interruption_reports_unknown_creation(self):
+        raw, prior, envelope, root = self._r5_cli_fixture("trace-after-mkdir")
+        writer_code = gate.seal_oneuse_dry_admission.__code__
+        boundary = self._r5_writer_line("root_created = True")
+        real_mkdir, previous_trace = gate.os.mkdir, sys.gettrace()
+        seen = []
+        def interrupt_before_recorded_creation(frame, event, arg):
+            if (event == "line" and frame.f_code is writer_code and
+                    frame.f_lineno == boundary):
+                seen.append({
+                    "rootCreated": frame.f_locals["root_created"],
+                    "creationAttempted": frame.f_locals["creation_attempted"],
+                    "candidateExists": root.is_dir(),
+                    "mkdirUnmodified": gate.os.mkdir is real_mkdir,
+                })
+                raise KeyboardInterrupt("after real mkdir, before assignment")
+            return interrupt_before_recorded_creation
+        stdout, stderr = io.StringIO(), io.StringIO()
+        with mock.patch.object(gate, "_write_locked") as write:
+            try:
+                sys.settrace(interrupt_before_recorded_creation)
+                code = self._r5_execute(raw, prior, envelope, stdout, stderr)
+            finally:
+                sys.settrace(previous_trace)
+        self.assertEqual(code, 2)
+        self.assertEqual(seen, [{"rootCreated": False, "creationAttempted": True,
+                                 "candidateExists": True,
+                                 "mkdirUnmodified": True}])
+        self.assertIs(sys.gettrace(), previous_trace)
+        self.assertIs(gate.os.mkdir, real_mkdir)
+        write.assert_not_called()
+        self.assertEqual(list(root.iterdir()), [])
+        self._r5_assert_unknown_creation(json.loads(stdout.getvalue()), root)
+
+    def test_87_cli_preexisting_candidate_preserves_unrelated_sentinel(self):
+        raw, prior, envelope, root = self._r5_cli_fixture("preexisting")
+        root.mkdir()
+        sentinel = root / "UNRELATED.txt"
+        sentinel.write_bytes(b"pre-existing data must survive admission denial")
+        identity = gate.directory_identity(root)
+        stdout, stderr = io.StringIO(), io.StringIO()
+        with mock.patch.object(gate.os, "mkdir") as mkdir, \
+             mock.patch.object(gate, "_write_locked") as write:
+            code = self._r5_execute(raw, prior, envelope, stdout, stderr)
+        self.assertEqual(code, 2)
+        mkdir.assert_not_called()
+        write.assert_not_called()
+        response = json.loads(stdout.getvalue())
+        self._r5_assert_closed(response)
+        self.assertIs(response["outputCreated"], False)
+        self.assertEqual(response["creationOutcome"], "PreexistingCandidate")
+        self.assertEqual(gate.directory_identity(root), identity)
+        self.assertEqual(list(root.iterdir()), [sentinel])
+        self.assertEqual(sentinel.read_bytes(),
+                         b"pre-existing data must survive admission denial")
+
+    def test_88_cli_raced_mkdir_collision_preserves_unrelated_sentinel(self):
+        raw, prior, envelope, root = self._r5_cli_fixture("raced-collision")
+        real_mkdir = gate.os.mkdir
+        sentinel = root / "UNRELATED.txt"
+        identity = []
+        def race_then_collide(name, mode=0o777, **kwargs):
+            # The first creation represents another actor consuming the
+            # candidate. The writer's actual call then raises FileExistsError.
+            real_mkdir(name, mode, **kwargs)
+            sentinel.write_bytes(b"unrelated racing owner")
+            identity.append(gate.directory_identity(root))
+            return real_mkdir(name, mode, **kwargs)
+        stdout, stderr = io.StringIO(), io.StringIO()
+        with mock.patch.object(gate.os, "mkdir",
+                               side_effect=race_then_collide) as mkdir, \
+             mock.patch.object(gate, "_write_locked") as write:
+            code = self._r5_execute(raw, prior, envelope, stdout, stderr)
+        self.assertEqual(code, 2)
+        mkdir.assert_called_once()
+        write.assert_not_called()
+        self._r5_assert_unknown_creation(json.loads(stdout.getvalue()), root,
+                                         "CollisionReported")
+        self.assertEqual(identity, [gate.directory_identity(root)])
+        self.assertEqual(list(root.iterdir()), [sentinel])
+        self.assertEqual(sentinel.read_bytes(), b"unrelated racing owner")
+
+    def test_89_cli_mkdir_pre_effect_error_does_not_claim_proven_absence(self):
+        raw, prior, envelope, root = self._r5_cli_fixture("mkdir-before-effect")
+        stdout, stderr = io.StringIO(), io.StringIO()
+        with mock.patch.object(gate.os, "mkdir", side_effect=OSError(
+                5, "synthetic error before mkdir has any effect")) as mkdir, \
+             mock.patch.object(gate, "_write_locked") as write:
+            code = self._r5_execute(raw, prior, envelope, stdout, stderr)
+        self.assertEqual(code, 2)
+        mkdir.assert_called_once()
+        write.assert_not_called()
+        self.assertFalse(root.exists())
+        self._r5_assert_unknown_creation(json.loads(stdout.getvalue()), root)
+
+    def test_90_cli_sealer_return_boundary_fault_requires_reconciliation(self):
+        real_sealer = gate.seal_oneuse_dry_admission
+        for error_type in (OSError, RuntimeError, KeyboardInterrupt):
+            with self.subTest(error=error_type.__name__):
+                raw, prior, envelope, root = self._r5_cli_fixture(
+                    "writer-return-" + error_type.__name__)
+                completed = []
+                def seal_then_interrupt(approved_raw, observation):
+                    result = real_sealer(approved_raw, observation)
+                    completed.append(result["result"])
+                    raise error_type("real sealer returned before wrapper fault")
+                stdout, stderr = io.StringIO(), io.StringIO()
+                with mock.patch.object(gate, "seal_oneuse_dry_admission",
+                                       side_effect=seal_then_interrupt):
+                    code = self._r5_execute(
+                        raw, prior, envelope, stdout, stderr)
+                self.assertEqual(code, 2)
+                self.assertEqual(completed,
+                                 ["DryAdmissionRecorded_NoUnityOrPlayer"])
+                response = json.loads(stdout.getvalue())
+                self._r5_assert_closed(response)
+                self.assertEqual(response["candidate"], str(root))
+                self.assertIsNone(response["outputCreated"])
+                self.assertEqual(response["result"], "IndeterminateWriterOutcome")
+                self.assertEqual(response["commitOutcome"],
+                                 "UnknownAfterWriterInvocation")
+                self.assertIs(response["retryAllowed"], False)
+                self.assertIs(response["requiresPhysicalReconciliation"], True)
+                self._r5_assert_sealed_structure(root)
+        self.assertIs(gate.seal_oneuse_dry_admission, real_sealer)
+
+
+    def test_91_cli_partial_output_delivery_failure_retains_partial_accounting(self):
+        real_write = gate._write_locked
+        for fault in ("first-write", "flush", "both-streams"):
+            with self.subTest(fault=fault):
+                raw, prior, envelope, root = self._r5_cli_fixture(
+                    "partial-report-" + fault)
+                def fail_cells(fd, name, value):
+                    if name == "CELLS.json":
+                        raise OSError(28, "synthetic partial-output failure")
+                    return real_write(fd, name, value)
+                stdout = _R5DeliveryFaultStream(
+                    write_fault=None if fault == "flush" else "always",
+                    flush_fault=fault == "flush")
+                stderr = (_R5DeliveryFaultStream(write_fault="always")
+                          if fault == "both-streams" else io.StringIO())
+                with mock.patch.object(gate, "_write_locked",
+                                       side_effect=fail_cells):
+                    code = self._r5_execute(
+                        raw, prior, envelope, stdout, stderr)
+                self.assertEqual(code, 2)
+                self.assertTrue((root / "INCOMPLETE.json").is_file())
+                self.assertTrue((root / "FAILURE.json").is_file())
+                self.assertFalse((root / "LOCAL_BATCH_RESULT.json").exists())
+                with self.assertRaises(gate.Rejected):
+                    gate.inspect_dry_receipt_structure(root)
+                if fault == "both-streams":
+                    self.assertEqual(stdout.write_attempts, 1)
+                    self.assertEqual(stderr.write_attempts, 1)
+                else:
+                    response = json.loads(stderr.getvalue())
+                    self._r5_assert_closed(response)
+                    self.assertEqual(response["result"], "FailedAfterPartialOutput")
+                    self.assertIs(response["outputCreated"], True)
+                    self.assertEqual(response["commitOutcome"], "NotCommitted")
+                    self.assertIs(response["retryAllowed"], False)
+                    self.assertIs(response["failureMarkerAvailable"], True)
+                    self.assertEqual(response["responseDelivery"], "Failed")
+                    self.assertIn("FAILURE.json", response["observedFiles"])
+                if fault == "flush":
+                    self.assertEqual(stdout.flush_attempts, 1)
+                    self.assertEqual(json.loads(stdout.getvalue())["result"],
+                                     "FailedAfterPartialOutput")
+                else:
+                    self.assertEqual(stdout.write_attempts, 1)
+                    self.assertEqual(stdout.getvalue(), "")
+
+    def test_92_cli_null_approval_delivery_failure_remains_prewrite_denial(self):
+        self.assertIsNone(gate.APPROVED_EXECUTION_ENVELOPE_BLOB)
+        for fault in ("first-write", "flush", "both-streams"):
+            with self.subTest(fault=fault):
+                root = self.evidence / ("R03-B2-D5-r5-denied-" + fault)
+                envelope = self.parent / (fault + "-missing-envelope.json")
+                stdout = _R5DeliveryFaultStream(
+                    write_fault=None if fault == "flush" else "always",
+                    flush_fault=fault == "flush")
+                stderr = (_R5DeliveryFaultStream(write_fault="always")
+                          if fault == "both-streams" else io.StringIO())
+                with mock.patch.object(Path, "read_bytes") as read, \
+                     mock.patch.object(gate, "approved_envelope") as approve, \
+                     mock.patch.object(gate, "inspect") as inspect, \
+                     mock.patch.object(gate, "seal_oneuse_dry_admission") as seal, \
+                     mock.patch.object(gate.os, "mkdir") as mkdir, \
+                     mock.patch("sys.stdout", stdout), \
+                     mock.patch("sys.stderr", stderr):
+                    code = gate.main(["--mode", "execute",
+                                      "--approved-envelope", str(envelope)])
+                self.assertEqual(code, 2)
+                for operation in (read, approve, inspect, seal, mkdir):
+                    operation.assert_not_called()
+                self.assertFalse(root.exists())
+                self.assertFalse(envelope.exists())
+                if fault == "both-streams":
+                    self.assertEqual(stderr.write_attempts, 1)
+                else:
+                    response = json.loads(stderr.getvalue())
+                    self._r5_assert_closed(response)
+                    self.assertEqual(response["result"], "NotAuthorized")
+                    self.assertIs(response["outputCreated"], False)
+                    self.assertEqual(response["responseDelivery"], "Failed")
+                if fault == "flush":
+                    self.assertEqual(stdout.flush_attempts, 1)
+                    self.assertEqual(json.loads(stdout.getvalue())["result"],
+                                     "NotAuthorized")
+                else:
+                    self.assertEqual(stdout.write_attempts, 1)
+                    self.assertEqual(stdout.getvalue(), "")
+        self.assertIsNone(gate.APPROVED_EXECUTION_ENVELOPE_BLOB)
+
+    def test_93_cli_trace_before_mkdir_retains_attempt_uncertainty(self):
+        raw, prior, envelope, root = self._r5_cli_fixture("trace-before-mkdir")
+        writer_code = gate.seal_oneuse_dry_admission.__code__
+        boundary = self._r5_writer_line("os.mkdir(")
+        real_mkdir, previous_trace = gate.os.mkdir, sys.gettrace()
+        seen = []
+        def interrupt_before_mkdir(frame, event, arg):
+            if (event == "line" and frame.f_code is writer_code and
+                    frame.f_lineno == boundary):
+                seen.append({
+                    "rootCreated": frame.f_locals["root_created"],
+                    "creationAttempted": frame.f_locals["creation_attempted"],
+                    "candidateExists": root.exists(),
+                    "mkdirUnmodified": gate.os.mkdir is real_mkdir,
+                })
+                raise KeyboardInterrupt("attempt recorded before real mkdir")
+            return interrupt_before_mkdir
+        stdout, stderr = io.StringIO(), io.StringIO()
+        with mock.patch.object(gate, "_write_locked") as write:
+            try:
+                sys.settrace(interrupt_before_mkdir)
+                code = self._r5_execute(raw, prior, envelope, stdout, stderr)
+            finally:
+                sys.settrace(previous_trace)
+        self.assertEqual(code, 2)
+        self.assertEqual(seen, [{"rootCreated": False, "creationAttempted": True,
+                                 "candidateExists": False,
+                                 "mkdirUnmodified": True}])
+        self.assertIs(sys.gettrace(), previous_trace)
+        self.assertIs(gate.os.mkdir, real_mkdir)
+        write.assert_not_called()
+        self.assertFalse(root.exists())
+        self._r5_assert_unknown_creation(json.loads(stdout.getvalue()), root)
+
+    def test_94_cli_after_mkdir_replacement_preserves_both_unowned_roots(self):
+        raw, prior, envelope, root = self._r5_cli_fixture("mkdir-replacement")
+        real_mkdir = gate.os.mkdir
+        moved = self.evidence / (self.oneuse + "-relocated")
+        sentinel = root / "UNRELATED.txt"
+        identities = []
+        def create_move_replace_then_interrupt(name, mode=0o777, **kwargs):
+            real_mkdir(name, mode, **kwargs)
+            root.rename(moved)
+            real_mkdir(name, mode, **kwargs)
+            sentinel.write_bytes(b"replacement owner must not be adopted")
+            identities.append((gate.directory_identity(moved),
+                               gate.directory_identity(root)))
+            raise OSError(5, "synthetic fault after unrecorded root replacement")
+        stdout, stderr = io.StringIO(), io.StringIO()
+        with mock.patch.object(gate.os, "mkdir",
+                               side_effect=create_move_replace_then_interrupt), \
+             mock.patch.object(gate, "_write_locked") as write:
+            code = self._r5_execute(raw, prior, envelope, stdout, stderr)
+        self.assertEqual(code, 2)
+        write.assert_not_called()
+        self._r5_assert_unknown_creation(json.loads(stdout.getvalue()), root)
+        self.assertEqual(identities, [(gate.directory_identity(moved),
+                                       gate.directory_identity(root))])
+        self.assertNotEqual(moved.stat().st_ino, root.stat().st_ino)
+        self.assertEqual(list(moved.iterdir()), [])
+        self.assertEqual(list(root.iterdir()), [sentinel])
+        self.assertEqual(sentinel.read_bytes(),
+                         b"replacement owner must not be adopted")
 
 
 if __name__ == "__main__":

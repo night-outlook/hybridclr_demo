@@ -55,6 +55,24 @@ class PathIdentityMismatch(Rejected):
     """The approved output pathname no longer names the open evidence root."""
 
 
+class CreationFailure(Rejected):
+    """Creation was not recorded; an armed mkdir may already have taken effect.
+
+    No candidate ownership is recovered from a pathname after a fault.
+    An attempted creation is unknown, even when a collision was reported.
+    """
+
+    def __init__(self, root: Path, reason: str, *, attempted: bool,
+                 preexisting: bool = False, collision_reported: bool = False,
+                 cleanup_errors: tuple[str, ...] = ()):
+        super().__init__(reason)
+        self.root = root
+        self.attempted = attempted
+        self.preexisting = preexisting
+        self.collision_reported = collision_reported
+        self.cleanup_errors = cleanup_errors
+
+
 class PartialOutput(Rejected):
     """A one-use root was created; do not retry or report outputCreated=false."""
 
@@ -709,6 +727,8 @@ def seal_oneuse_dry_admission(approved_raw: bytes,
     flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
     parent_fd = os.open(parent, flags)
     root_fd = None
+    creation_attempted = False
+    candidate_preexisting = False
     root_created = False
     committed = False
     final_unlink_attempted = False
@@ -719,9 +739,14 @@ def seal_oneuse_dry_admission(approved_raw: bytes,
         pstat = os.fstat(parent_fd)
         need(pstat.st_dev == expected_parent["device"] and
              pstat.st_ino == expected_parent["inode"] and
-             directory_identity(parent) == expected_parent and
-             not root.exists() and not root.is_symlink(),
+             directory_identity(parent) == expected_parent,
              "D5-B output parent replaced or candidate consumed")
+        candidate_preexisting = root.exists() or root.is_symlink()
+        need(not candidate_preexisting, "D5-B candidate already consumed")
+        # Arm BEFORE the syscall. A caught interruption after real mkdir but
+        # before root_created is recorded must not assert either ownership or
+        # absence. In that state cleanup only closes the parent descriptor.
+        creation_attempted = True
         os.mkdir(root.name, 0o700, dir_fd=parent_fd)
         root_created = True
         root_fd = os.open(root.name, flags, dir_fd=parent_fd)
@@ -868,9 +893,71 @@ def seal_oneuse_dry_admission(approved_raw: bytes,
                                 path_identity_uncertain=isinstance(
                                     problem, PathIdentityMismatch),
                                 cleanup_errors=tuple(cleanup_errors))
-        raise Rejected(explanation) from problem
+        raise CreationFailure(
+            root, explanation, attempted=creation_attempted,
+            preexisting=candidate_preexisting,
+            collision_reported=isinstance(problem, FileExistsError),
+            cleanup_errors=tuple(cleanup_errors)) from problem
     return result
 
+
+
+def _failure_record(result: str, reason: str) -> dict:
+    return {
+        "schemaVersion": 1, "kind": "R03D5BLocalAdmissionFailureV1",
+        "result": result, "reason": reason, "outputCreated": False,
+        "retryAllowed": False,
+        "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+        "D5BLocalExecution": "NotAuthorized", "R03Accepted": False,
+    }
+
+
+def _completed_seal_failure(receipt: dict, reason: str) -> dict:
+    """Preserve the observed writer return across a command/reporting fault."""
+    return {
+        **_failure_record("IndeterminateAfterCommit", reason),
+        "candidate": receipt["candidate"], "outputCreated": True,
+        "creationOutcome": "Created", "commitVisible": True,
+        "commitOutcome": "Visible", "finalUnlinkOutcomeUncertain": False,
+        "writerReturnedSuccessfully": True,
+        "requiresPhysicalReconciliation": True,
+    }
+
+
+def _emit_cli_response(result: dict, code: int) -> int:
+    """Reporting cannot turn consumed/unknown output into a no-output denial.
+
+    Flush before returning success. A failed stdout may already contain a
+    partial or complete response, so never retry it. Diagnostics go only to
+    stderr, best effort, without another filesystem operation. If neither
+    stream works, the missing terminal outcome requires external resolution.
+    """
+    try:
+        print(json.dumps(result, sort_keys=True, allow_nan=False), flush=True)
+    except BaseException as error:
+        if code == 0 and result.get("kind") == "R03D5BDryAdmissionReceiptV1":
+            failure = _completed_seal_failure(
+                result, "Completed dry seal; terminal response delivery failed")
+        elif code == 0:
+            failure = _failure_record(
+                "BlockedBeforeBuild", "Read-only response delivery failed")
+        else:
+            # Preserve all creation, commit, pathname and cleanup observations
+            # from the failure already classified by the operation boundary.
+            failure = dict(result)
+        failure["responseDelivery"] = "Failed"
+        failure["reportingError"] = repr(error)
+        if failure.get("outputCreated") is not False:
+            failure["requiresPhysicalReconciliation"] = True
+            failure["retryAllowed"] = False
+        try:
+            print(json.dumps(failure, sort_keys=True, allow_nan=False),
+                  file=sys.stderr, flush=True)
+        except BaseException:
+            # No delivered diagnostic is not evidence of absent output.
+            pass
+        return 2
+    return code
 
 
 def main(argv=None) -> int:
@@ -879,6 +966,10 @@ def main(argv=None) -> int:
     parser.add_argument("--request", type=Path)
     parser.add_argument("--approved-envelope", type=Path)
     args = parser.parse_args(argv)
+    writer_started = False
+    candidate = None
+    result = None
+    code = 0
     try:
         if args.mode == "execute":
             # Stop BEFORE reading user paths or performing any read-only Git
@@ -898,6 +989,10 @@ def main(argv=None) -> int:
                 "sourcePins": approved["sourcePins"],
             }
             observation = inspect(request)
+            candidate = observation["candidate"]
+            # Arm before entering the writer. An unexpected exception at its
+            # return boundary must not lose an unrecorded filesystem effect.
+            writer_started = True
             result = seal_oneuse_dry_admission(approved_raw, observation)
         else:
             need(args.approved_envelope is None,
@@ -906,10 +1001,8 @@ def main(argv=None) -> int:
                  not args.request.is_symlink(),
                  "Read-only preview requires one external JSON request")
             result = inspect(parse_json(args.request.read_bytes()))
-        print(json.dumps(result, sort_keys=True, allow_nan=False))
-        return 0
     except PartialOutput as exc:
-        print(json.dumps({
+        result = {
             "schemaVersion": 1,
             "kind": "R03D5BLocalAdmissionFailureV1",
             "result": ("IndeterminateAfterCommit"
@@ -931,24 +1024,53 @@ def main(argv=None) -> int:
                 exc.commit_visible or exc.commit_uncertain or
                 exc.path_identity_uncertain or bool(exc.cleanup_errors)),
             "outputCreated": True,
+            "creationOutcome": "Created",
             "retryAllowed": False,
             "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
             "D5BLocalExecution": "NotAuthorized",
             "R03Accepted": False,
-        }, sort_keys=True))
-        return 2
-    except (Rejected, source.Rejected, OSError, ValueError,
-            subprocess.TimeoutExpired) as exc:
-        print(json.dumps({
-            "schemaVersion": 1, "kind": "R03D5BLocalAdmissionFailureV1",
-            "result": "NotAuthorized" if args.mode == "execute" else "BlockedBeforeBuild",
-            "reason": str(exc),
-            "outputCreated": False,
-            "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
-            "D5BLocalExecution": "NotAuthorized",
-            "R03Accepted": False,
-        }, sort_keys=True))
-        return 2
+        }
+        code = 2
+    except CreationFailure as exc:
+        result = {
+            **_failure_record("IndeterminateOutputCreation" if exc.attempted
+                              else "NotAuthorized", str(exc)),
+            "candidate": str(exc.root),
+            "outputCreated": None if exc.attempted else False,
+            "creationOutcome": (
+                "CollisionReported" if exc.attempted and exc.collision_reported
+                else "UnknownAfterMkdirAttempt" if exc.attempted
+                else "PreexistingCandidate" if exc.preexisting
+                else "NotAttempted"),
+            "candidateOwnership": "Unproven" if exc.attempted else "NotAcquired",
+            "commitVisible": False, "commitOutcome": "NotCommitted",
+            "cleanupErrors": list(exc.cleanup_errors),
+            "requiresPhysicalReconciliation": (
+                exc.attempted or exc.preexisting or bool(exc.cleanup_errors)),
+        }
+        code = 2
+    except BaseException as exc:
+        if writer_started:
+            if (type(result) is dict and
+                    result.get("kind") == "R03D5BDryAdmissionReceiptV1"):
+                result = _completed_seal_failure(result, repr(exc))
+            else:
+                result = {
+                    **_failure_record("IndeterminateWriterOutcome", repr(exc)),
+                    "candidate": candidate, "outputCreated": None,
+                    "creationOutcome": "UnknownAfterWriterInvocation",
+                    "candidateOwnership": "Unproven", "commitVisible": False,
+                    "commitOutcome": "UnknownAfterWriterInvocation",
+                    "requiresPhysicalReconciliation": True,
+                }
+        else:
+            result = _failure_record(
+                "NotAuthorized" if args.mode == "execute" else "BlockedBeforeBuild",
+                str(exc))
+        code = 2
+    # Response serialization/write/flush is deliberately OUTSIDE the operation
+    # handler. It cannot fall back to the precreation no-output error path.
+    return _emit_cli_response(result, code)
 
 
 if __name__ == "__main__":
