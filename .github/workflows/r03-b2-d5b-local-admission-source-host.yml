@@ -36,6 +36,19 @@ jobs:
             tee "$RUNNER_TEMP/d5b-admission-tests.log"
           grep -q 'Ran 94 tests in' "$RUNNER_TEMP/d5b-admission-tests.log"
           grep -q '^OK$' "$RUNNER_TEMP/d5b-admission-tests.log"
+      - name: AP1 closed publication proposals using real temporary Git objects
+        shell: bash
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+          GIT_TERMINAL_PROMPT: "0"
+        run: |
+          set -euo pipefail
+          tool=_demo/Tools/AssemblyShadow/R03IR/D5Local
+          python3 -B "$tool/test_d5b_activation_publication.py" -v 2>&1 |
+            tee "$RUNNER_TEMP/d5b-ap1-publication-tests.log"
+          grep -q 'Ran 18 tests in' "$RUNNER_TEMP/d5b-ap1-publication-tests.log"
+          grep -q '^OK$' "$RUNNER_TEMP/d5b-ap1-publication-tests.log"
+          echo '{"schema":"R03D5BActivationPublicationSourceHostV1","publicationTests":18,"fixtureClass":"TemporaryGitObjects","executionAuthority":false,"liveRemoteHeadsVerified":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyProposalStructureTestsPassed"}'
       - name: Verify no immutable user approval or Unity execution can be asserted
         shell: bash
         env:
