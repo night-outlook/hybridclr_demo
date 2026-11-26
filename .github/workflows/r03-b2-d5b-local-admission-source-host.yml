@@ -20,6 +20,7 @@ jobs:
           sparse-checkout: |
             Tools/AssemblyShadow/R03IR/D5Local/
             Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight.py
+            Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight_v1.json
           sparse-checkout-cone-mode: false
       - uses: actions/setup-python@v5
         with:
@@ -61,6 +62,19 @@ jobs:
           grep -q 'Ran 22 tests in' "$RUNNER_TEMP/d5b-ap1-publication-tests.log"
           grep -q '^OK$' "$RUNNER_TEMP/d5b-ap1-publication-tests.log"
           echo '{"schema":"R03D5BActivationPublicationSourceHostV1","publicationTests":22,"fixtureClass":"TemporaryGitObjects","executionAuthority":false,"liveRemoteHeadsVerified":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyProposalStructureTestsPassed"}'
+      - name: AP2 inert runner artifact closure and bounded checkout observations
+        shell: bash
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+          GIT_TERMINAL_PROMPT: "0"
+        run: |
+          set -euo pipefail
+          tool=_demo/Tools/AssemblyShadow/R03IR/D5Local
+          python3 -B "$tool/test_d5b_runner_closure.py" -v 2>&1 |
+            tee "$RUNNER_TEMP/d5b-ap2-runner-closure-tests.log"
+          grep -q 'Ran 25 tests in' "$RUNNER_TEMP/d5b-ap2-runner-closure-tests.log"
+          grep -q '^OK$' "$RUNNER_TEMP/d5b-ap2-runner-closure-tests.log"
+          echo '{"schema":"R03D5BRunnerClosureSourceHostV1","closureTests":25,"fixtureClass":"TemporaryGitObjectsAndSyntheticLocations","candidateCodeExecuted":false,"runtimeImportIsolationVerified":false,"continuousCustodyVerified":false,"executionAuthority":false,"liveRemoteHeadsVerified":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyArtifactClosureTestsPassed"}'
       - name: Verify no immutable user approval or Unity execution can be asserted
         shell: bash
         env:
