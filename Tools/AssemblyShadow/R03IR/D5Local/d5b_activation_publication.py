@@ -259,21 +259,55 @@ class _Git:
         return raw
 
     def commit(self, oid: str) -> tuple[str, tuple[str, ...]]:
+        """Read an unambiguous topology prefix, then check Git's parent view.
+
+        Git takes the first tree and its immediately contiguous parent lines
+        as topology. A later top-level parent-named header is not an edge.
+        AP1 rejects misplaced structural headers instead of interpreting that
+        permissive metadata form. Metadata values and the message stay bytes.
+        """
         raw = self.object(oid, "commit")
         headers, separator, _message = raw.partition(b"\n\n")
         need(separator == b"\n\n", "Commit has no complete header block")
-        trees = []
+        lines = headers.split(b"\n")
+        need(lines[0].startswith(b"tree "),
+             "Commit must begin with its exact tree header")
         parents = []
+        metadata_started = False
         try:
-            for line in headers.split(b"\n"):
-                if line.startswith(b"tree "):
-                    trees.append(_sha(line[5:].decode("ascii"), "Commit tree"))
-                elif line.startswith(b"parent "):
+            tree = _sha(lines[0][5:].decode("ascii"), "Commit tree")
+            for line in lines[1:]:
+                if line.startswith(b"parent "):
+                    need(not metadata_started,
+                         "Commit parent headers must be contiguous after the tree")
                     parents.append(_sha(line[7:].decode("ascii"), "Commit parent"))
+                    continue
+                if line.startswith(b" "):
+                    need(metadata_started,
+                         "Commit continuation must follow a metadata header")
+                    continue
+                name, space, _value = line.partition(b" ")
+                need(space == b" " and name and
+                     all(33 <= byte <= 126 for byte in name),
+                     "Unsupported commit metadata header syntax")
+                need(name not in (b"tree", b"parent"),
+                     "Commit topology headers cannot occur in metadata")
+                metadata_started = True
         except UnicodeError as error:
             raise Rejected("Commit object IDs must be ASCII") from error
-        need(len(trees) == 1, "Commit must name exactly one tree")
-        return trees[0], tuple(parents)
+        # No history walk, signature verification, candidate execution or
+        # network operation. Reject an effective local parent view that
+        # differs from these immutable bytes, including shallow/graft views.
+        native = self.read("rev-list", "--no-walk", "--parents", oid, "--")
+        native_rows = native.splitlines()
+        need(len(native_rows) == 1, "Git parent view must contain exactly one row")
+        try:
+            observed = native_rows[0].decode("ascii").split()
+        except UnicodeError as error:
+            raise Rejected("Git parent view must contain ASCII object IDs") from error
+        need(observed == [oid, *parents],
+             "Parsed commit parents differ from Git's local parent view")
+        return tree, tuple(parents)
 
     def tree(self, oid: str) -> Mapping[bytes, tuple[str, str]]:
         if oid not in self.trees:

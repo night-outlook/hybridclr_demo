@@ -44,11 +44,23 @@ jobs:
         run: |
           set -euo pipefail
           tool=_demo/Tools/AssemblyShadow/R03IR/D5Local
+          python3 - <<'PY'
+          import json, os, platform, shutil, subprocess
+          git_tools = {}
+          for role, path in (("fixtureGit", shutil.which("git")),
+                             ("auditorGit", shutil.which("git", path=os.defpath))):
+              git_tools[role] = {
+                  "path": path,
+                  "version": subprocess.check_output([path, "--version"], text=True).strip(),
+              }
+          print(json.dumps({"schema": "R03AP1GitToolVersionsV1",
+                            "python": platform.python_version(), **git_tools}, sort_keys=True))
+          PY
           python3 -B "$tool/test_d5b_activation_publication.py" -v 2>&1 |
             tee "$RUNNER_TEMP/d5b-ap1-publication-tests.log"
-          grep -q 'Ran 18 tests in' "$RUNNER_TEMP/d5b-ap1-publication-tests.log"
+          grep -q 'Ran 22 tests in' "$RUNNER_TEMP/d5b-ap1-publication-tests.log"
           grep -q '^OK$' "$RUNNER_TEMP/d5b-ap1-publication-tests.log"
-          echo '{"schema":"R03D5BActivationPublicationSourceHostV1","publicationTests":18,"fixtureClass":"TemporaryGitObjects","executionAuthority":false,"liveRemoteHeadsVerified":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyProposalStructureTestsPassed"}'
+          echo '{"schema":"R03D5BActivationPublicationSourceHostV1","publicationTests":22,"fixtureClass":"TemporaryGitObjects","executionAuthority":false,"liveRemoteHeadsVerified":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyProposalStructureTestsPassed"}'
       - name: Verify no immutable user approval or Unity execution can be asserted
         shell: bash
         env:

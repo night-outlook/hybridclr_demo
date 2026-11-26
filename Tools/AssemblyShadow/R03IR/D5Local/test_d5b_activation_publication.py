@@ -553,5 +553,214 @@ class D5BActivationPublicationSourceOnly(unittest.TestCase):
         self.assertIsNone(gate.APPROVED_EXECUTION_ENVELOPE_BLOB)
 
 
+    # AP1 R2 object-format controls. Candidate writer bytes remain inert;
+    # every mutating Git command is confined to the temporary repository.
+    def _r2_identity_headers(self):
+        return [
+            b"author AP1 R2 Fixture <ap1-r2@example.invalid> 1795651200 +0000",
+            b"committer AP1 R2 Fixture <ap1-r2@example.invalid> 1795651200 +0000",
+        ]
+
+    def _r2_store_commit(self, headers, *, message=b"AP1 R2 format fixture.\n",
+                         literal=False):
+        raw = b"\n".join(headers) + b"\n\n" + message
+        arguments = ["hash-object", "-w", "-t", "commit", "--stdin"]
+        if literal:
+            # Only malformed, rejection-only fixtures bypass ordinary
+            # hash-object's format validation; their actual bytes are kept.
+            arguments.append("--literally")
+        oid = self._git(*arguments, data=raw).decode().strip()
+        self.assertEqual(self._git("cat-file", "commit", oid), raw)
+        return oid
+
+    def _r2_git_topology(self, oid):
+        shown = self._git("show", "--no-patch", "--format=%T%n%P", oid, "--")
+        rows = shown.decode("ascii").splitlines()
+        self.assertEqual(len(rows), 2)
+        tree, parents = rows[0], tuple(rows[1].split())
+        listed = self._git("rev-list", "--no-walk", "--parents", oid, "--")
+        self.assertEqual(listed.decode("ascii").split(), [oid, *parents])
+        # The auditor's sanitized system Git can differ from the fixture
+        # constructor's installed Git; both must expose the same topology.
+        native = publication._Git(self.repo).read(
+            "rev-list", "--no-walk", "--parents", oid, "--")
+        self.assertEqual(native.decode("ascii").split(), [oid, *parents])
+        return tree, parents
+
+    def _r2_assert_topology(self, oid, tree, parents):
+        expected = (tree, tuple(parents))
+        self.assertEqual(self._r2_git_topology(oid), expected)
+        self.assertEqual(publication._Git(self.repo).commit(oid), expected)
+
+
+    def _r2_pair_for_role(self, role, oid):
+        if role == "source":
+            runner, _, _, _ = self._runner(source_commit=oid)
+            return oid, runner
+        self.assertEqual(role, "runner")
+        return self.source_commit, oid
+
+    def _r2_assert_publication(self, source, runner, *, accepted):
+        self._git("update-ref", self.source_ref, source)
+        self._git("update-ref", self.runner_ref, runner)
+        before = self._refs()
+        if accepted:
+            report = self._audit(source_commit=source, runner_commit=runner)
+            self.assertEqual(report["result"],
+                             "ProposalPublicationStructureVerified_NoExecutionAuthority")
+            self.assertEqual(report["sourceCommit"], source)
+            self.assertEqual(report["runnerCommit"], runner)
+            self.assertIs(report["runnerSoleParentIsSource"], True)
+            self.assertIs(report["executionAuthorityVerified"], False)
+            self.assertIs(report["outputCreated"], False)
+            self.assertIs(report["R03Accepted"], False)
+        else:
+            with self.assertRaises(publication.Rejected):
+                self._audit(source_commit=source, runner_commit=runner)
+        self.assertEqual(self._refs(), before)
+
+    def test_19_standard_commit_prefixes_match_git_topology(self):
+        other = self._commit(self.source_entries)
+        for role, entries in (("source", self.source_entries),
+                              ("runner", self.runner_entries)):
+            tree = self._tree(entries)
+            for shape, parents in (
+                ("root", ()), ("single", (self.source_commit,)),
+                ("merge", (self.source_commit, other)),
+                ("duplicate-parent", (self.source_commit, self.source_commit)),
+            ):
+                with self.subTest(role=role, shape=shape):
+                    headers = [b"tree " + tree.encode()]
+                    headers.extend(b"parent " + oid.encode() for oid in parents)
+                    oid = self._r2_store_commit(headers + self._r2_identity_headers())
+                    self._r2_assert_topology(oid, tree, parents)
+                    source, runner = self._r2_pair_for_role(role, oid)
+                    self._r2_assert_publication(
+                        source, runner, accepted=(role == "source" or shape == "single"))
+            with self.subTest(role=role, local_view="shallow"):
+                oid = self._r2_store_commit([
+                    b"tree " + tree.encode(),
+                    b"parent " + self.source_commit.encode(),
+                    *self._r2_identity_headers(),
+                ])
+                self._r2_assert_topology(oid, tree, (self.source_commit,))
+                source, runner = self._r2_pair_for_role(role, oid)
+                shallow = self.repo / ".git" / "shallow"
+                try:
+                    shallow.write_text(oid + "\n", encoding="ascii")
+                    self.assertEqual(self._r2_git_topology(oid), (tree, ()))
+                    with self.assertRaisesRegex(publication.Rejected,
+                                                "local parent view"):
+                        publication._Git(self.repo).commit(oid)
+                    self._r2_assert_publication(source, runner, accepted=False)
+                finally:
+                    shallow.unlink()
+
+
+    def test_20_metadata_continuations_and_messages_do_not_add_topology(self):
+        decoy_parent = self._commit(self.source_entries).encode()
+        decoy_tree = self._tree({}).encode()
+        variants = (
+            ("metadata", [
+                b"encoding UTF-8",
+                b"parent-hint " + decoy_parent,
+                b"tree-hint " + decoy_tree,
+                b"x-note parent " + decoy_parent + b" tree " + decoy_tree,
+            ], b"Ordinary metadata is not topology.\n"),
+            ("continuations", [
+                b"gpgsig synthetic unverified signature fixture",
+                b" parent " + decoy_parent,
+                b" tree " + decoy_tree,
+            ], b"Continuation values are opaque metadata.\n"),
+            ("message", [], b"tree " + decoy_tree + b"\nparent " + decoy_parent +
+             b"\n\nparent " + decoy_parent + b"\n"),
+        )
+        for role, entries in (("source", self.source_entries),
+                              ("runner", self.runner_entries)):
+            tree = self._tree(entries)
+            for label, metadata, message in variants:
+                with self.subTest(role=role, field=label):
+                    oid = self._r2_store_commit([
+                        b"tree " + tree.encode(),
+                        b"parent " + self.source_commit.encode(),
+                        *self._r2_identity_headers(), *metadata,
+                    ], message=message)
+                    self._r2_assert_topology(oid, tree, (self.source_commit,))
+                    source, runner = self._r2_pair_for_role(role, oid)
+                    self._r2_assert_publication(source, runner, accepted=True)
+
+    def test_21_ordinary_stored_late_parents_reject_source_and_runner(self):
+        other = self._commit(self.source_entries)
+        for role, entries in (("source", self.source_entries),
+                              ("runner", self.runner_entries)):
+            tree = self._tree(entries)
+            for layout, prefix, git_parents in (
+                ("late-only", [], ()),
+                ("split-parent-block", [b"parent " + other.encode()], (other,)),
+            ):
+                with self.subTest(role=role, layout=layout):
+                    oid = self._r2_store_commit([
+                        b"tree " + tree.encode(), *prefix,
+                        *self._r2_identity_headers(),
+                        b"parent " + self.source_commit.encode(),
+                    ])
+                    self.assertEqual(self._r2_git_topology(oid), (tree, git_parents))
+                    if layout == "late-only":
+                        self._git("fsck", "--strict", "--no-dangling", oid)
+                    if role == "runner":
+                        for path in (WRITER_PATH, ENVELOPE_PATH):
+                            self.assertEqual(
+                                self._git("cat-file", "blob", oid + ":" + path),
+                                self._git("cat-file", "blob",
+                                          self.runner_commit + ":" + path))
+                    with self.subTest(boundary="shared-parser"):
+                        with self.assertRaises(publication.Rejected):
+                            publication._Git(self.repo).commit(oid)
+                    with self.subTest(boundary="publication-audit"):
+                        source, runner = self._r2_pair_for_role(role, oid)
+                        self._r2_assert_publication(source, runner, accepted=False)
+
+
+    def test_22_late_duplicate_and_misordered_topology_headers_are_rejected(self):
+        other_tree = self._tree({}).encode()
+        parent = b"parent " + self.source_commit.encode()
+        identities = self._r2_identity_headers()
+        for role, entries in (("source", self.source_entries),
+                              ("runner", self.runner_entries)):
+            tree = self._tree(entries)
+            initial = b"tree " + tree.encode()
+            layouts = (
+                ("late-tree", [initial, *identities, b"tree " + other_tree],
+                 False, True),
+                ("duplicate-initial-tree", [initial, initial, *identities],
+                 True, True),
+                ("parent-before-tree", [parent, initial, *identities],
+                 True, False),
+                ("metadata-before-tree", [identities[0], initial, identities[1]],
+                 True, False),
+                ("missing-tree", identities, True, False),
+                ("continuation-before-metadata",
+                 [initial, b" " + parent, *identities], True, False),
+                ("tab-separated-parent",
+                 [initial, b"parent\t" + self.source_commit.encode(), *identities],
+                 True, False),
+            )
+            for label, headers, literal, auditable in layouts:
+                with self.subTest(role=role, layout=label, literal_storage=literal):
+                    oid = self._r2_store_commit(headers, literal=literal)
+                    if not literal:
+                        self.assertEqual(self._r2_git_topology(oid), (tree, ()))
+                    with self.subTest(boundary="shared-parser"):
+                        with self.assertRaises(publication.Rejected):
+                            publication._Git(self.repo).commit(oid)
+                    if auditable:
+                        with self.subTest(boundary="publication-audit"):
+                            source, runner = self._r2_pair_for_role(role, oid)
+                            self._r2_assert_publication(source, runner, accepted=False)
+                    # Some literal-only invalid prefixes cannot be installed
+                    # by Git update-ref. Their source/runner trees still reach
+                    # the shared object parser directly; no ref check is mocked.
+
+
 if __name__ == "__main__":
     unittest.main()
