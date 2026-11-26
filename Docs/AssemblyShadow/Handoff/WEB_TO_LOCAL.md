@@ -1,3 +1,64 @@
+# Primary Implementation → Independent AP4 Review — LOCAL CLOSED / NO EXECUTION
+
+## Current AP4 checkpoint: source-only implementation and CI complete; independent review Pending (2026-11-26 America/Los_Angeles)
+
+**NOT AN EXECUTABLE LOCAL HANDOFF. NO LOCAL COMMANDS.** The objective is independent assessment of the two captured-configuration consumers. AP3 already passed as `PassRunnerImportBootstrapSourceOnly` for implementation `bcf3a9470a12758b210738476d18f80bf60d2eaf`, with independent publication `77fe1c174eb44c2d14a26cc9b057671541efe2a3`. AP2, AP1 R2 and R5 source-only acceptances and `D5B-AP1-IR-01=ClosedInCorrectedSource` remain preserved. Older AP3-pending checkpoints below are history.
+
+[**AP4 design**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CONFIGURATION_AP4_DESIGN_2026-11-26.md) · [**Primary report**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CONFIGURATION_AP4_PRIMARY_2026-11-26.md) · [**Independent review request**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CONFIGURATION_AP4_INDEPENDENT_REVIEW_REQUEST_2026-11-26.md) · [**Machine evidence**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CONFIGURATION_AP4_EVIDENCE_2026-11-26.json).
+
+### Source tuple, exact paths and publication identity
+
+| Repository | Branch | Exact source commit for this review | Historical candidate path — physical state Unverified |
+|---|---|---|---|
+| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | `000e72941f74e52aa18bcd17553e8929acc69167` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` |
+| `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` | `c3c232023724cbad565b85e9b2c3beea8ce2789a` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` |
+| `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `948c0e3b4f8891481301770115e8ba4945eea6de` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` |
+| `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `1268dd417ffe9090fcd9ea2d49542c97ed3cccb3` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` |
+
+This table names the source qualified by the evidence. The containing commit is a documentation/evidence-only child of `000e72941f74e52aa18bcd17553e8929acc69167`; resolve its actual latest pushed SHA through the feature ref and record that publication separately in the independent review. Neither is an approved execution tuple. All four repository identities, refs and Connector pull/push permissions were checked. Sibling pins are unchanged. No physical Mac checkout was inspected.
+
+Primary source snapshot: `/workspace/scratch/a6fad0908883/ap4_source`, derived through the Connector rather than a physical Local Git checkout. Source/package/overlay/native/build pins remain preserved reviewed or historical inputs; no Unity package, native output or build was regenerated or qualified. Same-conversation Connector smoke proof was freshly read back as four exact refs and four commit objects. The Primary report and evidence record its branch, original bases, commits and retained-branch reason; this is operational proof only.
+
+### Implementation and changed files
+
+The five-path source increment adds `Tools/AssemblyShadow/R03IR/D5Local/d5b_runner_configuration.py`, `test_d5b_runner_configuration.py`, and the AP4 design; modifies the private initializer in `d5b_runner_imports.py`; and adds AP4 coverage to `.github/workflows/r03-b2-d5b-local-admission-source-host.yml`. Twelve protected writer/wrapper/plan/preflight/profile/custody/AP1/AP2/retained-AP3-test files remain byte-identical to baseline. No observer is integrated into a Local execution path.
+
+AP4 requires actual `-I -S -B`, exact externally pinned immutable closure bytes, an authenticated adjacent AP3 helper, fresh AP2 verification and one private initialized context. The refactor moves the existing initializer into `_initialize_snapshot_context`, returning `_InitializedSnapshot`; compatibility `_initialize_snapshot` still returns its observation dictionary. The public AP3 observer invokes no candidate function. Helper blob `2bff794380f77b61dbbd84058fcba94d5ee4d9d2` becomes `22ad93598131a59b2d5c46174a45187aede848a6`; AP4's pin matches. Prior AP3 approval covers the predecessor, so the changed helper is included in AP4 review.
+
+The import graph retains twenty-three direct requests: nineteen trusted preloaded standard-library references, two requests to one private path-only `sys` facade and two private project bindings. Candidate top-level Python executes. AP4 checks the writer/preflight binding and consumer global dictionaries, then adapts only `writer.PLAN` and `preflight.PROFILE`. It invokes the original `read_plan(verify_blob=True)` and `checked_profile(profile_raw, check_blob=True)`, preserving their functions, parsing and hash checks.
+
+The actual operations are plan `is_file`, plan `is_symlink`, plan `read_bytes`, profile `read_bytes`. Metadata describes captured artifacts; reads return captured bytes even if a pathname changes. Views have no path-protocol or filesystem fallback. Selected consumers/their pure helpers execute; the AP4 observer calls no candidate `inspect`, `main`, admission, preview or receipt producer. Retained synthetic tests and the separate wrapper-denial gate intentionally exercise existing functions.
+
+Before configuration binding/calls, AP4 freezes the earlier AP3 report as `AP3BeforeConfigurationBindingAndConsumerCallsOnly`; nested AP2 remains `AP2BeforeCandidateModuleInitializationOnly`. The outer report records actual attempted/completed consumers. Profile argument-read failure does not claim validator entry, and completed plan progress survives later ordinary failures. Public output contains JSON observations and fresh copies, with no module, callable or adapter handles.
+
+### Completed validation and required independent evidence
+
+[Actions 45803071282 / job 139851042426](https://github.com/night-outlook/hybridclr_demo/actions/runs/45803071282/job/139851042426), attempt **1**, passed **94 R5 / 22 AP1 R2 / 25 AP2 / 20 AP3 / 18 AP4 methods** at `000e72941f74e52aa18bcd17553e8929acc69167`: **one successful job / twelve successful returned steps**. Host passed the same **179** methods before publication, with exact bytes subsequently verified remotely. Host footer seconds: **0.153 / 10.100 / 14.532 / 8.752 / 8.725**. CI footer seconds: **0.186 / 4.107 / 6.656 / 4.202 / 4.140**.
+
+The [machine evidence](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CONFIGURATION_AP4_EVIDENCE_2026-11-26.json) records source/tree/blob identities, eighteen actual AP4 method names, exact commands, Python versions and distinct fixture/auditor Git roles. [Host transcript](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CONFIGURATION_AP4_SOURCE_HOST_2026-11-26.log) and [CI transcript](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CONFIGURATION_AP4_CI_45803071282_JOB_139851042426.log) preserve the recorded UTF-8 representations, including CI BOM. No uploaded artifacts were returned. Host Python 3.12.14 and CI Python 3.11.18 cover the inlined and separate-frame forms of the plan comprehension.
+
+Both environments retain the old-wrapper denial: exit 2, `NotAuthorized`, `outputCreated=false`, unapproved-envelope path absent. Host static checks cover three Python ASTs, workflow YAML, six Bash run blocks, whitespace, exact new helper pin, original initializer and other existing AP3 top-level AST preservation. Source hashes remained stable. Twelve-file preservation is supported by host checks and exact remote readback/compare; CI checks out that same source, without a separately claimed twelve-hash CI audit.
+
+Required next validation is **independent source review and bounded synthetic source-host fixtures only**, following the companion request's commands. Confirm helper authentication before execution, fresh snapshot acquisition, one context, unchanged public AP3 behavior, private bindings, original enabled blob checks, four actual operations and no content/process I/O during bounded consumption. Check malformed private-record consistency, ordinary-exception partial progress, helper cleanup, JSON-copy isolation and closed authority.
+
+The independent record must distinguish tested source from containing documentation publication, verify all four refs/protected blobs, check log digests and method inventories, and issue a separately scoped verdict. A material finding returns to Primary with exact source identities, concrete defect/claim and reproducing source-only evidence. Synthetic fixtures do not qualify Mac, Unity, IL2CPP or a Player.
+
+### Remaining boundaries, ownership and stop conditions
+
+Only these two fixed consumers are bound. Broad runtime/future configuration, `inspect`/`main`/admission integration, other data inputs, live-ref/source admission, plan or adapter authority, Q/user decisions/revocation and complete executable closure remain separate work. Captured metadata does not attest current paths. AP2's bounded checkout observation precedes initialization; AP4 adds no later checkout check, continuous/exclusive custody, raw-index qualification, namespace lock or ABA exclusion. `Path.resolve()` during initialization may read filesystem metadata.
+
+Interpreter/stdlib, verifier installation, selected Git and OS remain trusted. Isolation flags are preconditions, not process-history or standard-library attestation. Private contexts are not public provenance boundaries or Python sandboxes. Structured rejection covers ordinary `Exception`, without guaranteed JSON after `BaseException`, termination, resource exhaustion, serialization or output failure. Argparse retains exit 2/stderr; inherited compilation progress describes whole-batch completion.
+
+No real-environment Local validation or Local fix is authorized. Preserve Local-owned `LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md` and their recorded blobs. Non-trivial findings return to Primary. Independent review may publish its bounded report/evidence under the existing history directory. No reset/clean, dependency regeneration, source/approval repinning, production activation, plan change, Unity/native build or Player launch is authorized.
+
+The sole AP4 candidate is this companion observer. Removal, if needed, uses a separately reviewed forward revert preserving predecessor evidence. AP4 design, Primary report, review request, machine JSON and raw logs are under `Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/`; new independent evidence belongs beside them. No candidate execution output directory is created or authorized. Historical Native B1 results remain historical.
+
+**All gates remain closed:** production `APPROVED_EXECUTION_ENVELOPE_BLOB=None`; `APPROVED_LOCAL_HANDOFF_BLOB=None`; `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`; `D5BLocalExecution=NotAuthorized`; `D5LocalValidation=NotAuthorized`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`. The initialized candidate proposal literal is not approval and is not assumed null. Q and explicit user Local approval remain unauthorized. Real Unity/native/Player work is **NotRun**; **18 Player cells remain NoCoverage / 0 passed**.
+
+Next-agent read order: **README → this checkpoint → accepted AP3 independent report → AP4 design → Primary report and raw evidence → independent AP4 request → pinned source**. Return **`PassRunnerConfigurationBindingSourceOnly`** or **`ReturnRequired`**. Stop after independent publication/readback; no automatic Local integration or execution.
+
+---
+
 # Primary Implementation → Independent AP3 Review — LOCAL CLOSED / NO EXECUTION
 
 ## Current AP3 checkpoint: source-only implementation and CI complete; independent review Pending (2026-11-26 America/Los_Angeles)
