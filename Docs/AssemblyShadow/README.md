@@ -1,3 +1,19 @@
+# Current independent — D5-B AP1 R2 PassActivationPublicationProposalOnly (2026-11-25 America/Los_Angeles)
+
+[**Complete independent R2 report**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_INDEPENDENT_REVIEW_2026-11-25.md) · [**Independent machine evidence and raw reviewer rerun**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_INDEPENDENT_EVIDENCE_2026-11-25.json).
+
+**`D5BActivationPublicationAP1R2IndependentReview=PassActivationPublicationProposalOnly`** for exact implementation **`hybridclr_demo@2a0053bbe350bc52b189ca4201542b2c93b5eca7`**. **D5B-AP1-IR-01 is ClosedInCorrectedSource.** Independent source review confirms the shared H/A parser requires the initial tree and contiguous ordered parent prefix, rejects late/resumed parent and duplicate/misordered tree headers, and checks bounded native parent agreement. The runner still requires exactly H as its sole parent. No new in-scope blocker was established.
+
+Fresh raw [Actions **45751527263**](https://github.com/night-outlook/hybridclr_demo/actions/runs/45751527263) / job **139680200608**, attempt **1**, confirms **94/94 retained R5 methods + 22/22 AP1 methods**, **1/1 job and 9/9 returned steps successful**, with source/checkout identity verified and the decoded log matching its committed archive exactly. An independent isolated Linux AP1 rerun also passed **22/22**; its complete raw log is embedded in the companion evidence. The original **18 AP1 methods, 13 helpers and all five R5 blobs** are preserved. These source-host observations do not qualify a physical Local checkout.
+
+The subsequent Primary documentation/evidence HEAD **`0332fb12e12df134049eaefade6a6dbf99ca0967`** and this independent publication are distinct from the tested source. The original AP1 **`ReturnRequired`** remains the historical verdict against **`25551bca385c5af20c417110ad1ee27593a3eefc`**; this successor decision closes its finding for R2 only. R5's **`PassDryAdmissionSourceOnly`** and its existing namespace/custody limits remain preserved. Earlier pending sections below and pending labels in the unchanged closed WEB_TO_LOCAL checkpoint are historical and do not override this current R2 decision.
+
+**Local remains CLOSED:** `APPROVED_EXECUTION_ENVELOPE_BLOB=None`; `APPROVED_LOCAL_HANDOFF_BLOB=None`; **`WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`**; `D5BLocalExecution=NotAuthorized`; `D5LocalValidation=NotAuthorized`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`. All **18 real D5 Player cases remain NoCoverage**. Historical Mac paths remain physically **Unverified**; candidate Local/macOS, Unity, IL2CPP, Bee, full VM, Mach-O, GC, PID and Player work remains **NotRun**. Runner/import closure, plan/adapter authorization, Q authority and physical qualification remain deferred. No executable activation, Human Review Gate or later milestone is authorized.
+
+Publication is limited to the independent report, companion evidence and these README/CURRENT_STATUS updates. Implementation, tests, workflow, WEB_TO_LOCAL, Local-owned validation/return records and sibling repositories are preserved. **Stop after independent publication and remote readback.**
+
+---
+
 # Current Primary — D5-B AP1 R2 topology correction complete; independent rereview PENDING (2026-11-25 America/Los_Angeles)
 
 [**R2 design**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_DESIGN_2026-11-25.md) · [**Primary report**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_PRIMARY_2026-11-25.md) · [**Independent R2 review request**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_INDEPENDENT_REVIEW_REQUEST_2026-11-25.md) · [**Machine evidence**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_EVIDENCE_2026-11-25.json).
