@@ -1,3 +1,13 @@
+# Independent D5-B R5 source review — PassDryAdmissionSourceOnly (2026-11-25 America/Los_Angeles)
+
+[**Complete independent R5 report**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_INDEPENDENT_REREVIEW_2026-11-25.md) · [**Independent machine evidence**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_INDEPENDENT_EVIDENCE_2026-11-25.json).
+
+**`D5BDryAdmissionR5IndependentReview=PassDryAdmissionSourceOnly`** for exact implementation **`hybridclr_demo@eaca19c08f41245c46dfacbf605cd80480bc3a92`**. The independent review closes **R4-IR-01** (completed-seal response accounting) and **R4-IR-02** (unrecorded creation accounting) within the R5 contract, with no new blocking finding. It independently verifies retained **81 tests and seven helpers unchanged**, all **94/94 source-host tests**, raw [Actions **45609355991**](https://github.com/night-outlook/hybridclr_demo/actions/runs/45609355991) / job **139188536483**, and **45 additional completed reviewer checks**. The report records excluded exploratory-harness results and the retained namespace/termination limits. The later documentation HEAD `8d201830ebfb8f907e55d83d74238fcd4b7419a1` and this publication are not the CI-tested source SHA.
+
+**Local execution remains CLOSED:** `APPROVED_EXECUTION_ENVELOPE_BLOB=None`; `APPROVED_LOCAL_HANDOFF_BLOB=None`; **`WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`**; `D5BLocalExecution=NotAuthorized`; `D5LocalValidation=NotAuthorized`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`. All **18 real D5 Player cases remain NoCoverage**; actual macOS/Unity/IL2CPP/Bee/full native VM/Mach-O/GC/PID/Player work for this candidate remains **NotRun**. No Local execution, Human Review Gate or later milestone is approved. **Review complete; stop after publication.** Earlier entries below are historical; their pending labels do not override this bounded independent source verdict.
+
+---
+
 # Current Primary — D5-B R5 source-only 94-test CI PASS; independent review PENDING (2026-11-25 America/Los_Angeles)
 
 [**R5 design and plan**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_DESIGN_2026-11-25.md) · [**Primary R5 implementation and raw evidence**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_PRIMARY_2026-11-25.md) · [**Separate independent R5 review request — PENDING**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_INDEPENDENT_REVIEW_REQUEST_2026-11-25.md).

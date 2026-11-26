@@ -1,0 +1,1401 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03D5BDryAdmissionR5IndependentSourceReviewEvidenceV1",
+  "date": "2026-11-25 America/Los_Angeles",
+  "reviewRole": "Independent source reviewer, separate from Primary Implementation and Local Validation",
+  "verdict": "PassDryAdmissionSourceOnly",
+  "D5BDryAdmissionR5IndependentReview": "PassDryAdmissionSourceOnly",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "reviewedSourceCommit": "eaca19c08f41245c46dfacbf605cd80480bc3a92",
+  "documentationHeadBeforePublication": "8d201830ebfb8f907e55d83d74238fcd4b7419a1",
+  "sourcePins": {
+    "hybridclr_demo": "eaca19c08f41245c46dfacbf605cd80480bc3a92",
+    "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"
+  },
+  "remoteHeadsVerified": {
+    "hybridclr_demo": "8d201830ebfb8f907e55d83d74238fcd4b7419a1",
+    "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"
+  },
+  "sourceFiles": [
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission.py",
+      "gitBlob": "99746fe64976da313cbd0e1625f0fcc5a67bca62",
+      "bytes": 50512,
+      "sha256": "0c84aed04306e5c1161dfd114cd00c9766cb5fc4af35a9d000dfec077a9feb60"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_local_admission.py",
+      "gitBlob": "06aaf4f3ef4df3cc7306fe8d83d56f35ce1e0e0c",
+      "bytes": 85467,
+      "sha256": "91ef72a19d33e1259aefde0d0bf3efeec2cb265b1f7c10c4d0f12fabbd44007a"
+    },
+    {
+      "path": ".github/workflows/r03-b2-d5b-local-admission-source-host.yml",
+      "gitBlob": "8c83ab812c64caf0bf7d14bca52b889add784036",
+      "bytes": 2528,
+      "sha256": "dfa381d89d9bf5e4528762616f74dfe13e2c5a56a456b5e3e2797faf5af387a0"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission_plan_v1.json",
+      "gitBlob": "5c0ab7a6d788ebd5adf57f1fddc567ba700632e9",
+      "bytes": 2948,
+      "sha256": "5f9b95430d5f163b24aa6bca222ac7fffe54835e110bad21bbb60f8fc48068d5"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Local/run_d5_local.py",
+      "gitBlob": "519e6a4a8a11e3c821adb02fe1bf9e9d5b685b39",
+      "bytes": 460,
+      "sha256": "158c3ccfaf334ad108487571347257df3f4581ecf1ce74e726827f0a98c5db08"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight.py",
+      "gitBlob": "81e7c3a2eaccb77bff2515c91b173558e4eeba2f",
+      "bytes": 17360,
+      "sha256": "de00a8b3fbdfd772bb5d932df9c55963b0616cefd2b6cd36a2accb2e370d8797"
+    }
+  ],
+  "sourceToDocumentation": {
+    "commitsAhead": 1,
+    "documentationOnly": true,
+    "changedPaths": [
+      "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md",
+      "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_CI_JOB_139188536483_2026-11-25.log",
+      "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_EVIDENCE_2026-11-25.json",
+      "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_INDEPENDENT_REVIEW_REQUEST_2026-11-25.md",
+      "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_PRIMARY_2026-11-25.md",
+      "Docs/AssemblyShadow/Plan/CURRENT_STATUS.md",
+      "Docs/AssemblyShadow/README.md"
+    ]
+  },
+  "findingDispositions": [
+    {
+      "id": "D5B-DRY-R4-IR-01",
+      "disposition": "ClosedForSpecifiedCompletedSealResponseAccountingDefect"
+    },
+    {
+      "id": "D5B-DRY-R4-IR-02",
+      "disposition": "ClosedForSpecifiedUnrecordedCreationAccountingDefect"
+    }
+  ],
+  "newBlockingFindings": [],
+  "retainedTests": {
+    "priorTests": 81,
+    "priorHelpers": 7,
+    "helpers": [
+      "setUp",
+      "request",
+      "fake_admission",
+      "fake_approval",
+      "_fake_xcode_read",
+      "_synthetic_approved_bytes",
+      "_seal_for_r3"
+    ],
+    "sourceTextIdentical": true,
+    "astIdentical": true,
+    "removedMethods": [],
+    "newTestCount": 13,
+    "newTests": [
+      {
+        "name": "test_82_cli_completed_seal_first_stdout_write_failure_preserves_commit",
+        "startLine": 1331,
+        "endLine": 1340,
+        "coverage": "Completed seal: first stdout write error preserves visible commit; exit 2; stderr fallback; exactly five sealed files."
+      },
+      {
+        "name": "test_83_cli_completed_seal_stdout_flush_failure_preserves_commit",
+        "startLine": 1342,
+        "endLine": 1354,
+        "coverage": "Completed seal: stdout flush error after success bytes escaped; exit 2; stderr reports indeterminate commit; sealed files intact."
+      },
+      {
+        "name": "test_84_cli_completed_seal_both_failed_streams_returns_two",
+        "startLine": 1356,
+        "endLine": 1366,
+        "coverage": "Completed seal: both output streams fail; exit 2; no output retry; sealed files intact."
+      },
+      {
+        "name": "test_85_cli_after_effect_mkdir_faults_report_unknown_creation",
+        "startLine": 1369,
+        "endLine": 1394,
+        "coverage": "After-effect mkdir faults, OSError and KeyboardInterrupt; real directory exists but no writes; unknown creation and unproven ownership."
+      },
+      {
+        "name": "test_86_cli_real_mkdir_trace_interruption_reports_unknown_creation",
+        "startLine": 1396,
+        "endLine": 1428,
+        "coverage": "Unmodified real mkdir followed by Python trace interruption before root_created assignment; unknown creation; no receipt writes."
+      },
+      {
+        "name": "test_87_cli_preexisting_candidate_preserves_unrelated_sentinel",
+        "startLine": 1430,
+        "endLine": 1450,
+        "coverage": "Preexisting candidate and sentinel remain unchanged; no mkdir or receipt writer call; outputCreated false only for this nonattempted branch."
+      },
+      {
+        "name": "test_88_cli_raced_mkdir_collision_preserves_unrelated_sentinel",
+        "startLine": 1452,
+        "endLine": 1476,
+        "coverage": "Raced directory collision preserves unrelated sentinel and inode; no receipt writes; CollisionReported and unknown ownership."
+      },
+      {
+        "name": "test_89_cli_mkdir_pre_effect_error_does_not_claim_proven_absence",
+        "startLine": 1478,
+        "endLine": 1489,
+        "coverage": "Injected error before mkdir effect still reports uncertainty after attempted call; absent root is not promoted to proven global absence."
+      },
+      {
+        "name": "test_90_cli_sealer_return_boundary_fault_requires_reconciliation",
+        "startLine": 1491,
+        "endLine": 1520,
+        "coverage": "Real sealer completes, then wrapper throws OSError, RuntimeError, or KeyboardInterrupt; outputCreated null, unknown writer outcome, no retry, sealed files intact."
+      },
+      {
+        "name": "test_91_cli_partial_output_delivery_failure_retains_partial_accounting",
+        "startLine": 1523,
+        "endLine": 1567,
+        "coverage": "Partial output plus stdout first-write, stdout flush, or both-stream failures preserves partial accounting; INCOMPLETE and FAILURE remain, final receipt absent."
+      },
+      {
+        "name": "test_92_cli_null_approval_delivery_failure_remains_prewrite_denial",
+        "startLine": 1569,
+        "endLine": 1609,
+        "coverage": "Actual null approval with response failures denies before envelope bytes, approval parsing, inspection, sealer or mkdir; no envelope or root; outputCreated false."
+      },
+      {
+        "name": "test_93_cli_trace_before_mkdir_retains_attempt_uncertainty",
+        "startLine": 1611,
+        "endLine": 1643,
+        "coverage": "Python trace before real mkdir after creation_attempted assignment; absent candidate conservatively reported as unknown creation."
+      },
+      {
+        "name": "test_94_cli_after_mkdir_replacement_preserves_both_unowned_roots",
+        "startLine": 1645,
+        "endLine": 1673,
+        "coverage": "After-effect mkdir creates then relocates root and installs unrelated replacement before failure; both root identities and replacement sentinel preserved without receipt writes."
+      }
+    ]
+  },
+  "writerDefinitionComparison": {
+    "retainedDefinitions": 34,
+    "unchanged": [
+      "Rejected",
+      "PathIdentityMismatch",
+      "PartialOutput",
+      "need",
+      "git_blob",
+      "sha256",
+      "parse_json",
+      "read_plan",
+      "canonical_dir",
+      "canonical_file",
+      "separate",
+      "directory_identity",
+      "check_custody",
+      "git",
+      "exact_remote_head",
+      "inspect_original_s",
+      "read_only_host_tool",
+      "inspect_machine",
+      "inspect_source_and_remote",
+      "inspect",
+      "approved_envelope",
+      "oneuse_receipt",
+      "_json_bytes",
+      "_write_locked",
+      "_locked_file_ledger",
+      "_assert_open_path",
+      "_assert_final_path_identity",
+      "_request_from_approval",
+      "_same_admission",
+      "_read_locked",
+      "_committed_receipt_structure",
+      "inspect_dry_receipt_structure"
+    ],
+    "changed": [
+      "seal_oneuse_dry_admission",
+      "main"
+    ],
+    "removed": [],
+    "added": [
+      "CreationFailure",
+      "_failure_record",
+      "_completed_seal_failure",
+      "_emit_cli_response"
+    ]
+  },
+  "ci": {
+    "run": {
+      "id": 45609355991,
+      "head_sha": "eaca19c08f41245c46dfacbf605cd80480bc3a92",
+      "head_branch": "codex/assembly-shadow-r01b-h1",
+      "path": ".github/workflows/r03-b2-d5b-local-admission-source-host.yml",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "created_at": "2026-11-25T11:58:34Z",
+      "run_started_at": "2026-11-25T11:58:34Z",
+      "updated_at": "2026-11-25T11:58:53Z",
+      "html_url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/45609355991"
+    },
+    "job": {
+      "id": 139188536483,
+      "run_id": 45609355991,
+      "workflow_name": "R03 D5-B future Local dry admission source-host (NO LOCAL EXECUTION)",
+      "head_branch": "codex/assembly-shadow-r01b-h1",
+      "run_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/runs/45609355991",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUFsAuM8AAAAgaEiEow",
+      "head_sha": "eaca19c08f41245c46dfacbf605cd80480bc3a92",
+      "url": "https://api.github.com/repos/night-outlook/hybridclr_demo/actions/jobs/139188536483",
+      "html_url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/45609355991/job/139188536483",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-25T11:58:35Z",
+      "started_at": "2026-11-25T11:58:37Z",
+      "completed_at": "2026-11-25T11:58:52Z",
+      "name": "future-admission-source-host",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-25T11:58:38Z",
+          "completed_at": "2026-11-25T11:58:40Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-25T11:58:40Z",
+          "completed_at": "2026-11-25T11:58:46Z"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-25T11:58:46Z",
+          "completed_at": "2026-11-25T11:58:46Z"
+        },
+        {
+          "name": "Proposed D5-B physical admission contracts and no-execution controls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-25T11:58:46Z",
+          "completed_at": "2026-11-25T11:58:49Z"
+        },
+        {
+          "name": "Verify no immutable user approval or Unity execution can be asserted",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-25T11:58:49Z",
+          "completed_at": "2026-11-25T11:58:49Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-25T11:58:49Z",
+          "completed_at": "2026-11-25T11:58:49Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-25T11:58:49Z",
+          "completed_at": "2026-11-25T11:58:49Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-25T11:58:49Z",
+          "completed_at": "2026-11-25T11:58:49Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/night-outlook/hybridclr_demo/check-runs/139188536483",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000020766,
+      "runner_name": "GitHub Actions 1000020766",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    "rawLog": {
+      "bytes": 32641,
+      "sha256": "fea6866d830090d7717cd221b1a738f336e61454fe1600d6494df18ace1e97c9",
+      "checkedInLogIdentical": true,
+      "individuallyObservedTests": 94,
+      "uniqueTests": 94,
+      "contiguousNumericRoster": "1-94",
+      "allTerminalStatuses": "ok",
+      "summary": "Ran 94 tests in 0.191s; OK",
+      "roster": [
+        "test_01_exact_plan_git_blob",
+        "test_02_plan_source_provenance_and_r2_gate",
+        "test_03_all_18_real_player_cases_no_coverage",
+        "test_04_no_approval_authority_in_any_plan_or_code",
+        "test_05_duplicate_plan_json_key_rejected",
+        "test_06_valid_proposed_root_custody_read_only",
+        "test_07_missing_history_role_rejected",
+        "test_08_historical_base_relationship_rejected",
+        "test_09_duplicate_historical_role_rejected",
+        "test_10_workspace_symlink_alias_rejected",
+        "test_11_evidence_parent_under_old_b1_rejected",
+        "test_12_evidence_parent_under_source_rejected",
+        "test_13_existing_oneuse_output_rejected",
+        "test_14_symlink_oneuse_output_rejected",
+        "test_15_noncanonical_output_name_rejected",
+        "test_16_original_s_must_be_outside_active_checkout",
+        "test_17_parse_exact_single_remote_ref",
+        "test_18_stale_remote_ref_rejected",
+        "test_19_wrong_remote_branch_rejected",
+        "test_20_ambiguous_remote_ref_lines_rejected",
+        "test_21_malformed_remote_sha_rejected",
+        "test_22_original_s_clean_source_record",
+        "test_23_original_s_wrong_sha_rejected",
+        "test_24_host_must_be_macos_arm64",
+        "test_25_machine_preview_does_not_launch_unity",
+        "test_26_machine_disk_threshold_rejected",
+        "test_27_live_source_join_uses_four_exact_refs",
+        "test_28_live_remote_sha_drift_rejected",
+        "test_29_reject_source_gate_missing_receipt_producer",
+        "test_30_approval_requires_immutable_compile_time_blob",
+        "test_31_approved_envelope_fake_status_cannot_open",
+        "test_32_oneuse_receipt_binds_exact_paths_and_unity",
+        "test_33_oneuse_receipt_wrong_unity_hash_rejected",
+        "test_34_oneuse_receipt_wrong_historical_s_rejected",
+        "test_35_oneuse_output_exclusivity_and_no_player",
+        "test_36_execute_cli_denied_before_envelope_or_filesystem",
+        "test_37_preview_rejects_spurious_approval_envelope",
+        "test_38_preview_requires_complete_request",
+        "test_39_read_only_inspect_preview_no_output",
+        "test_40_extra_source_pin_or_wrong_hybridclr_rejected",
+        "test_41_wrong_second_historical_root_blocks_receipt",
+        "test_42_unparseable_xcode_version_rejected",
+        "test_43_xcode_license_rejection_fails_closed",
+        "test_44_non_string_historical_path_rejected_before_custody",
+        "test_45_non_string_workspace_rejected_before_custody",
+        "test_46_standard_sdk_symlink_is_resolved_not_rejected",
+        "test_47_test_only_frozen_envelope_semantics",
+        "test_48_approved_envelope_one_byte_drift_rejected",
+        "test_49_test_only_approval_cannot_skip_user_review",
+        "test_50_test_only_approval_cannot_change_native_pin",
+        "test_51_test_only_approval_cannot_omit_historical_root",
+        "test_52_test_only_approval_cannot_claim_player_scope",
+        "test_53_direct_seal_helper_denied_without_reviewed_envelope",
+        "test_54_inner_seal_rejects_different_approval_dict",
+        "test_55_inner_seal_rejects_tampered_envelope_bytes",
+        "test_56_prewrite_source_drift_refuses_output",
+        "test_57_postflight_remote_drift_consumes_root_no_success",
+        "test_58_final_source_drift_has_no_positive_receipt",
+        "test_59_parent_alias_swap_cannot_write_to_history",
+        "test_60_faults_at_each_exclusive_receipt_are_partial",
+        "test_61_public_cli_reports_partial_root_truthfully",
+        "test_62_source_history_identity_drift_after_mkdir",
+        "test_63_final_commit_marker_refuses_last_minute_source_drift",
+        "test_64_precreation_parent_symlink_race_is_blocked",
+        "test_65_failed_failure_marker_still_reports_created_root",
+        "test_66_structurally_sealed_receipt_has_no_veto_or_stage",
+        "test_67_after_flush_stage_fsync_error_never_publishes_final",
+        "test_68_post_rename_directory_fsync_error_keeps_durable_veto",
+        "test_69_atomic_rename_failure_does_not_publish_final",
+        "test_70_final_veto_unlink_failure_never_seals_product",
+        "test_71_parent_close_failure_is_partial_before_commit",
+        "test_72_root_close_failure_is_indeterminate_after_commit",
+        "test_73_cli_reports_root_close_error_as_indeterminate",
+        "test_74_committed_receipt_with_incomplete_marker_is_rejected",
+        "test_75_manifest_only_or_missing_final_receipt_is_rejected",
+        "test_76_failure_marker_vetoes_otherwise_matching_receipts",
+        "test_77_after_effect_veto_unlink_error_requires_reconciliation",
+        "test_78_cli_after_effect_unlink_error_never_claims_precommit",
+        "test_79_root_relocated_after_parent_close_is_not_success",
+        "test_80_root_relocated_after_final_unlink_is_indeterminate",
+        "test_81_cli_relocated_parent_closed_root_requires_reconciliation",
+        "test_82_cli_completed_seal_first_stdout_write_failure_preserves_commit",
+        "test_83_cli_completed_seal_stdout_flush_failure_preserves_commit",
+        "test_84_cli_completed_seal_both_failed_streams_returns_two",
+        "test_85_cli_after_effect_mkdir_faults_report_unknown_creation",
+        "test_86_cli_real_mkdir_trace_interruption_reports_unknown_creation",
+        "test_87_cli_preexisting_candidate_preserves_unrelated_sentinel",
+        "test_88_cli_raced_mkdir_collision_preserves_unrelated_sentinel",
+        "test_89_cli_mkdir_pre_effect_error_does_not_claim_proven_absence",
+        "test_90_cli_sealer_return_boundary_fault_requires_reconciliation",
+        "test_91_cli_partial_output_delivery_failure_retains_partial_accounting",
+        "test_92_cli_null_approval_delivery_failure_remains_prewrite_denial",
+        "test_93_cli_trace_before_mkdir_retains_attempt_uncertainty",
+        "test_94_cli_after_mkdir_replacement_preserves_both_unowned_roots"
+      ],
+      "note": "Tests 36 and 37 print diagnostic JSON between test prefix and next-line ok; they are genuine passed entries, not missing.",
+      "archivedPath": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_CI_JOB_139188536483_2026-11-25.log",
+      "gitBlob": "4baa247eb4913ad1746ea2a9b2119b4e5d0efb5a"
+    },
+    "artifactCount": 0,
+    "workflow": {
+      "sourceBlob": "8c83ab812c64caf0bf7d14bca52b889add784036",
+      "r4Blob": "a8362ab889c29fa7befc0b56e03abe3ad53af3d7",
+      "onlyR4Change": "81 to 94 in unittest summary guard and informational sourceTests JSON",
+      "pipefailEnabled": true,
+      "suiteCommand": "python3 -B \"$tool/test_d5b_local_admission.py\" -v 2>&1 | tee \"$RUNNER_TEMP/d5b-admission-tests.log\"",
+      "countNotOnlyEcho": true,
+      "denialStepExit2Checked": true,
+      "runtime": "Ubuntu 24.04.5, CPython 3.11.18",
+      "declaredRunner": "ubuntu-24.04"
+    },
+    "nullApproval": {
+      "constantIsNone": true,
+      "sourceLine": 47,
+      "guardLine": 977,
+      "observedResult": {
+        "D5BLocalExecution": "NotAuthorized",
+        "R03Accepted": false,
+        "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+        "outputCreated": false,
+        "result": "NotAuthorized",
+        "retryAllowed": false
+      },
+      "testsCoverNoReadNoInspectNoSealNoMkdir": true
+    },
+    "exitCode2Evidence": "Successful workflow assertion; numeric exit code not separately printed"
+  },
+  "reviewerHost": {
+    "platform": "Linux x86_64",
+    "python": "3.12.14",
+    "command": "python -B Tools/AssemblyShadow/R03IR/D5Local/test_d5b_local_admission.py -v",
+    "testsRun": 94,
+    "seconds": 0.189,
+    "result": "OK",
+    "scope": "Synthetic source-host only, separate from Actions and Local Validation"
+  },
+  "independentR4NegativeControls": {
+    "kind": "IndependentR4NegativeControlOnly",
+    "writerBlob": "654ced61b75d1d5fca448fce756b9c9bb9ca0799",
+    "selectedTests": [
+      "test_82_cli_completed_seal_first_stdout_write_failure_preserves_commit",
+      "test_85_cli_after_effect_mkdir_faults_report_unknown_creation"
+    ],
+    "methodsRun": 2,
+    "failuresIncludingSubtests": 3,
+    "errors": 0,
+    "expectedBaselineFailureObserved": true,
+    "productionApprovalRestored": true,
+    "scope": "Synthetic source-host only; no Local execution"
+  },
+  "additionalCompletedReviewerChecks": {
+    "total": 45,
+    "creationBoundaryChecks": {
+      "scope": "Isolated synthetic Python source-host only; no Local, Unity, SDK, Git, Player, or external process invocation",
+      "verifiedBlobs": {
+        "d5b_local_admission.py": "99746fe64976da313cbd0e1625f0fcc5a67bca62",
+        "test_d5b_local_admission.py": "06aaf4f3ef4df3cc7306fe8d83d56f35ce1e0e0c"
+      },
+      "assertionsPassed": 18,
+      "boundaryChecks": [
+        {
+          "line": 749,
+          "error": "OSError",
+          "seen": {
+            "attempted": false,
+            "recorded": false,
+            "candidateExists": false,
+            "mkdirUnmodified": true
+          },
+          "result": "NotAuthorized",
+          "outputCreated": false,
+          "creationOutcome": "NotAttempted",
+          "requiresPhysicalReconciliation": false,
+          "files": [],
+          "descriptorCount": 1,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 749,
+          "error": "KeyboardInterrupt",
+          "seen": {
+            "attempted": false,
+            "recorded": false,
+            "candidateExists": false,
+            "mkdirUnmodified": true
+          },
+          "result": "NotAuthorized",
+          "outputCreated": false,
+          "creationOutcome": "NotAttempted",
+          "requiresPhysicalReconciliation": false,
+          "files": [],
+          "descriptorCount": 1,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 749,
+          "error": "SystemExit",
+          "seen": {
+            "attempted": false,
+            "recorded": false,
+            "candidateExists": false,
+            "mkdirUnmodified": true
+          },
+          "result": "NotAuthorized",
+          "outputCreated": false,
+          "creationOutcome": "NotAttempted",
+          "requiresPhysicalReconciliation": false,
+          "files": [],
+          "descriptorCount": 1,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 750,
+          "error": "OSError",
+          "seen": {
+            "attempted": true,
+            "recorded": false,
+            "candidateExists": false,
+            "mkdirUnmodified": true
+          },
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "UnknownAfterMkdirAttempt",
+          "requiresPhysicalReconciliation": true,
+          "files": [],
+          "descriptorCount": 1,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 750,
+          "error": "KeyboardInterrupt",
+          "seen": {
+            "attempted": true,
+            "recorded": false,
+            "candidateExists": false,
+            "mkdirUnmodified": true
+          },
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "UnknownAfterMkdirAttempt",
+          "requiresPhysicalReconciliation": true,
+          "files": [],
+          "descriptorCount": 1,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 750,
+          "error": "SystemExit",
+          "seen": {
+            "attempted": true,
+            "recorded": false,
+            "candidateExists": false,
+            "mkdirUnmodified": true
+          },
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "UnknownAfterMkdirAttempt",
+          "requiresPhysicalReconciliation": true,
+          "files": [],
+          "descriptorCount": 1,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 751,
+          "error": "OSError",
+          "seen": {
+            "attempted": true,
+            "recorded": false,
+            "candidateExists": true,
+            "mkdirUnmodified": true
+          },
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "UnknownAfterMkdirAttempt",
+          "requiresPhysicalReconciliation": true,
+          "files": [],
+          "descriptorCount": 1,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 751,
+          "error": "KeyboardInterrupt",
+          "seen": {
+            "attempted": true,
+            "recorded": false,
+            "candidateExists": true,
+            "mkdirUnmodified": true
+          },
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "UnknownAfterMkdirAttempt",
+          "requiresPhysicalReconciliation": true,
+          "files": [],
+          "descriptorCount": 1,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 751,
+          "error": "SystemExit",
+          "seen": {
+            "attempted": true,
+            "recorded": false,
+            "candidateExists": true,
+            "mkdirUnmodified": true
+          },
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "UnknownAfterMkdirAttempt",
+          "requiresPhysicalReconciliation": true,
+          "files": [],
+          "descriptorCount": 1,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 752,
+          "error": "OSError",
+          "seen": {
+            "attempted": true,
+            "recorded": true,
+            "candidateExists": true,
+            "mkdirUnmodified": true
+          },
+          "result": "FailedAfterPartialOutput",
+          "outputCreated": true,
+          "creationOutcome": "Created",
+          "requiresPhysicalReconciliation": false,
+          "files": [],
+          "descriptorCount": 1,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 752,
+          "error": "KeyboardInterrupt",
+          "seen": {
+            "attempted": true,
+            "recorded": true,
+            "candidateExists": true,
+            "mkdirUnmodified": true
+          },
+          "result": "FailedAfterPartialOutput",
+          "outputCreated": true,
+          "creationOutcome": "Created",
+          "requiresPhysicalReconciliation": false,
+          "files": [],
+          "descriptorCount": 1,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 752,
+          "error": "SystemExit",
+          "seen": {
+            "attempted": true,
+            "recorded": true,
+            "candidateExists": true,
+            "mkdirUnmodified": true
+          },
+          "result": "FailedAfterPartialOutput",
+          "outputCreated": true,
+          "creationOutcome": "Created",
+          "requiresPhysicalReconciliation": false,
+          "files": [],
+          "descriptorCount": 1,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 753,
+          "error": "OSError",
+          "seen": {
+            "attempted": true,
+            "recorded": true,
+            "candidateExists": true,
+            "mkdirUnmodified": true
+          },
+          "result": "FailedAfterPartialOutput",
+          "outputCreated": true,
+          "creationOutcome": "Created",
+          "requiresPhysicalReconciliation": false,
+          "files": [
+            "FAILURE.json"
+          ],
+          "descriptorCount": 4,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 753,
+          "error": "KeyboardInterrupt",
+          "seen": {
+            "attempted": true,
+            "recorded": true,
+            "candidateExists": true,
+            "mkdirUnmodified": true
+          },
+          "result": "FailedAfterPartialOutput",
+          "outputCreated": true,
+          "creationOutcome": "Created",
+          "requiresPhysicalReconciliation": false,
+          "files": [
+            "FAILURE.json"
+          ],
+          "descriptorCount": 4,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 753,
+          "error": "SystemExit",
+          "seen": {
+            "attempted": true,
+            "recorded": true,
+            "candidateExists": true,
+            "mkdirUnmodified": true
+          },
+          "result": "FailedAfterPartialOutput",
+          "outputCreated": true,
+          "creationOutcome": "Created",
+          "requiresPhysicalReconciliation": false,
+          "files": [
+            "FAILURE.json"
+          ],
+          "descriptorCount": 4,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 754,
+          "error": "OSError",
+          "seen": {
+            "attempted": true,
+            "recorded": true,
+            "candidateExists": true,
+            "mkdirUnmodified": true
+          },
+          "result": "FailedAfterPartialOutput",
+          "outputCreated": true,
+          "creationOutcome": "Created",
+          "requiresPhysicalReconciliation": false,
+          "files": [
+            "FAILURE.json"
+          ],
+          "descriptorCount": 4,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 754,
+          "error": "KeyboardInterrupt",
+          "seen": {
+            "attempted": true,
+            "recorded": true,
+            "candidateExists": true,
+            "mkdirUnmodified": true
+          },
+          "result": "FailedAfterPartialOutput",
+          "outputCreated": true,
+          "creationOutcome": "Created",
+          "requiresPhysicalReconciliation": false,
+          "files": [
+            "FAILURE.json"
+          ],
+          "descriptorCount": 4,
+          "allTrackedDescriptorsClosed": true
+        },
+        {
+          "line": 754,
+          "error": "SystemExit",
+          "seen": {
+            "attempted": true,
+            "recorded": true,
+            "candidateExists": true,
+            "mkdirUnmodified": true
+          },
+          "result": "FailedAfterPartialOutput",
+          "outputCreated": true,
+          "creationOutcome": "Created",
+          "requiresPhysicalReconciliation": false,
+          "files": [
+            "FAILURE.json"
+          ],
+          "descriptorCount": 4,
+          "allTrackedDescriptorsClosed": true
+        }
+      ]
+    },
+    "cleanupAndOwnershipChecks": {
+      "scope": "Isolated synthetic source-host cleanup and ownership checks",
+      "checksPassed": 19,
+      "checks": [
+        {
+          "creationMode": "preexisting",
+          "closeFaultPoint": "before",
+          "error": "OSError",
+          "result": "NotAuthorized",
+          "outputCreated": false,
+          "creationOutcome": "PreexistingCandidate",
+          "cleanupErrors": [
+            "parentFd: OSError('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "preexisting",
+          "closeFaultPoint": "before",
+          "error": "KeyboardInterrupt",
+          "result": "NotAuthorized",
+          "outputCreated": false,
+          "creationOutcome": "PreexistingCandidate",
+          "cleanupErrors": [
+            "parentFd: KeyboardInterrupt('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "preexisting",
+          "closeFaultPoint": "before",
+          "error": "SystemExit",
+          "result": "NotAuthorized",
+          "outputCreated": false,
+          "creationOutcome": "PreexistingCandidate",
+          "cleanupErrors": [
+            "parentFd: SystemExit('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "preexisting",
+          "closeFaultPoint": "after",
+          "error": "OSError",
+          "result": "NotAuthorized",
+          "outputCreated": false,
+          "creationOutcome": "PreexistingCandidate",
+          "cleanupErrors": [
+            "parentFd: OSError('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "preexisting",
+          "closeFaultPoint": "after",
+          "error": "KeyboardInterrupt",
+          "result": "NotAuthorized",
+          "outputCreated": false,
+          "creationOutcome": "PreexistingCandidate",
+          "cleanupErrors": [
+            "parentFd: KeyboardInterrupt('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "preexisting",
+          "closeFaultPoint": "after",
+          "error": "SystemExit",
+          "result": "NotAuthorized",
+          "outputCreated": false,
+          "creationOutcome": "PreexistingCandidate",
+          "cleanupErrors": [
+            "parentFd: SystemExit('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "after-effect-unknown",
+          "closeFaultPoint": "before",
+          "error": "OSError",
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "UnknownAfterMkdirAttempt",
+          "cleanupErrors": [
+            "parentFd: OSError('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "after-effect-unknown",
+          "closeFaultPoint": "before",
+          "error": "KeyboardInterrupt",
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "UnknownAfterMkdirAttempt",
+          "cleanupErrors": [
+            "parentFd: KeyboardInterrupt('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "after-effect-unknown",
+          "closeFaultPoint": "before",
+          "error": "SystemExit",
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "UnknownAfterMkdirAttempt",
+          "cleanupErrors": [
+            "parentFd: SystemExit('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "after-effect-unknown",
+          "closeFaultPoint": "after",
+          "error": "OSError",
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "UnknownAfterMkdirAttempt",
+          "cleanupErrors": [
+            "parentFd: OSError('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "after-effect-unknown",
+          "closeFaultPoint": "after",
+          "error": "KeyboardInterrupt",
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "UnknownAfterMkdirAttempt",
+          "cleanupErrors": [
+            "parentFd: KeyboardInterrupt('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "after-effect-unknown",
+          "closeFaultPoint": "after",
+          "error": "SystemExit",
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "UnknownAfterMkdirAttempt",
+          "cleanupErrors": [
+            "parentFd: SystemExit('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "collision-reported",
+          "closeFaultPoint": "before",
+          "error": "OSError",
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "CollisionReported",
+          "cleanupErrors": [
+            "parentFd: OSError('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "collision-reported",
+          "closeFaultPoint": "before",
+          "error": "KeyboardInterrupt",
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "CollisionReported",
+          "cleanupErrors": [
+            "parentFd: KeyboardInterrupt('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "collision-reported",
+          "closeFaultPoint": "before",
+          "error": "SystemExit",
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "CollisionReported",
+          "cleanupErrors": [
+            "parentFd: SystemExit('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "collision-reported",
+          "closeFaultPoint": "after",
+          "error": "OSError",
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "CollisionReported",
+          "cleanupErrors": [
+            "parentFd: OSError('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "collision-reported",
+          "closeFaultPoint": "after",
+          "error": "KeyboardInterrupt",
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "CollisionReported",
+          "cleanupErrors": [
+            "parentFd: KeyboardInterrupt('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "creationMode": "collision-reported",
+          "closeFaultPoint": "after",
+          "error": "SystemExit",
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "creationOutcome": "CollisionReported",
+          "cleanupErrors": [
+            "parentFd: SystemExit('reviewer parent-close interruption')"
+          ],
+          "requiresPhysicalReconciliation": true,
+          "noCandidateOpenOrWrite": true,
+          "singleParentCloseAttempt": true
+        },
+        {
+          "case": "unmodified-mkdir-trace-relocation-before-record",
+          "line": 751,
+          "mkdirUnmodified": true,
+          "observedState": {
+            "creationAttempted": true,
+            "rootCreated": false
+          },
+          "result": "IndeterminateOutputCreation",
+          "outputCreated": null,
+          "noCandidateOpenOrWrite": true,
+          "bothRootsPreserved": true
+        }
+      ]
+    },
+    "responseAndReturnChecks": {
+      "scope": "Independent synthetic source-host response and unrecorded-return checks; no Local validation",
+      "sourceCommit": "eaca19c08f41245c46dfacbf605cd80480bc3a92",
+      "writerGitBlob": "99746fe64976da313cbd0e1625f0fcc5a67bca62",
+      "testsGitBlob": "06aaf4f3ef4df3cc7306fe8d83d56f35ce1e0e0c",
+      "python": "3.12.14",
+      "individuallyCompletedProbeCount": 8,
+      "conclusion": "R4-IR-01 closed within R5 stated response contract; no additional scoped blocker found",
+      "checks": [
+        {
+          "case": "partial-write-oserror",
+          "assertionsPassed": true,
+          "exitCode": 2,
+          "writerUnmodified": true,
+          "physicalFileCount": 5,
+          "structureResult": "SealedDryReceiptStructureOnly_NotLocalAuthorization",
+          "observedResponse": {
+            "result": "IndeterminateAfterCommit",
+            "outputCreated": true,
+            "creationOutcome": "Created",
+            "commitVisible": true,
+            "commitOutcome": "Visible",
+            "finalUnlinkOutcomeUncertain": false,
+            "writerReturnedSuccessfully": true,
+            "responseDelivery": "Failed",
+            "retryAllowed": false,
+            "requiresPhysicalReconciliation": true,
+            "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+            "D5BLocalExecution": "NotAuthorized",
+            "R03Accepted": false
+          },
+          "evidence": "57 characters were accepted before stdout write raised OSError; no stdout retry",
+          "assertions": [
+            "exit 2",
+            "created and visible commit state retained",
+            "no retry",
+            "reconciliation required",
+            "real five-file structural verifier positive"
+          ]
+        },
+        {
+          "case": "newline-write-oserror",
+          "assertionsPassed": true,
+          "exitCode": 2,
+          "writerUnmodified": true,
+          "physicalFileCount": 5,
+          "structureResult": "SealedDryReceiptStructureOnly_NotLocalAuthorization",
+          "observedResponse": {
+            "result": "IndeterminateAfterCommit",
+            "outputCreated": true,
+            "creationOutcome": "Created",
+            "commitVisible": true,
+            "commitOutcome": "Visible",
+            "finalUnlinkOutcomeUncertain": false,
+            "writerReturnedSuccessfully": true,
+            "responseDelivery": "Failed",
+            "retryAllowed": false,
+            "requiresPhysicalReconciliation": true,
+            "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+            "D5BLocalExecution": "NotAuthorized",
+            "R03Accepted": false
+          },
+          "evidence": "Complete JSON body was accepted before the second print write raised OSError; no stdout retry",
+          "assertions": [
+            "exit 2",
+            "created and visible commit state retained",
+            "no retry",
+            "reconciliation required",
+            "real five-file structural verifier positive"
+          ]
+        },
+        {
+          "case": "flush-keyboardinterrupt",
+          "assertionsPassed": true,
+          "exitCode": 2,
+          "writerUnmodified": true,
+          "physicalFileCount": 5,
+          "structureResult": "SealedDryReceiptStructureOnly_NotLocalAuthorization",
+          "observedResponse": {
+            "result": "IndeterminateAfterCommit",
+            "outputCreated": true,
+            "creationOutcome": "Created",
+            "commitVisible": true,
+            "commitOutcome": "Visible",
+            "finalUnlinkOutcomeUncertain": false,
+            "writerReturnedSuccessfully": true,
+            "responseDelivery": "Failed",
+            "retryAllowed": false,
+            "requiresPhysicalReconciliation": true,
+            "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+            "D5BLocalExecution": "NotAuthorized",
+            "R03Accepted": false
+          },
+          "evidence": "Complete JSON was written and the first stdout flush raised KeyboardInterrupt",
+          "assertions": [
+            "exit 2",
+            "created and visible commit state retained",
+            "no retry",
+            "reconciliation required",
+            "real five-file structural verifier positive"
+          ]
+        },
+        {
+          "case": "write-systemexit",
+          "assertionsPassed": true,
+          "exitCode": 2,
+          "writerUnmodified": true,
+          "physicalFileCount": 5,
+          "structureResult": "SealedDryReceiptStructureOnly_NotLocalAuthorization",
+          "observedResponse": {
+            "result": "IndeterminateAfterCommit",
+            "outputCreated": true,
+            "creationOutcome": "Created",
+            "commitVisible": true,
+            "commitOutcome": "Visible",
+            "finalUnlinkOutcomeUncertain": false,
+            "writerReturnedSuccessfully": true,
+            "responseDelivery": "Failed",
+            "retryAllowed": false,
+            "requiresPhysicalReconciliation": true,
+            "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+            "D5BLocalExecution": "NotAuthorized",
+            "R03Accepted": false
+          },
+          "evidence": "The first stdout write raised SystemExit and response emission returned exit 2",
+          "assertions": [
+            "exit 2",
+            "created and visible commit state retained",
+            "no retry",
+            "reconciliation required",
+            "real five-file structural verifier positive"
+          ]
+        },
+        {
+          "case": "response-serialization-valueerror",
+          "assertionsPassed": true,
+          "exitCode": 2,
+          "writerUnmodified": true,
+          "physicalFileCount": 5,
+          "structureResult": "SealedDryReceiptStructureOnly_NotLocalAuthorization",
+          "observedResponse": {
+            "result": "IndeterminateAfterCommit",
+            "outputCreated": true,
+            "creationOutcome": "Created",
+            "commitVisible": true,
+            "commitOutcome": "Visible",
+            "finalUnlinkOutcomeUncertain": false,
+            "writerReturnedSuccessfully": true,
+            "responseDelivery": "Failed",
+            "retryAllowed": false,
+            "requiresPhysicalReconciliation": true,
+            "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+            "D5BLocalExecution": "NotAuthorized",
+            "R03Accepted": false
+          },
+          "evidence": "Only compact terminal receipt serialization raised ValueError; on-disk serialization completed; stdout remained empty",
+          "assertions": [
+            "exit 2",
+            "created and visible commit state retained",
+            "no retry",
+            "reconciliation required",
+            "real five-file structural verifier positive"
+          ]
+        },
+        {
+          "case": "unknown-creation-plus-partial-stdout-failure",
+          "assertionsPassed": true,
+          "exitCode": 2,
+          "writerUnmodified": true,
+          "physicalFileCount": 0,
+          "candidateExists": true,
+          "observedResponse": {
+            "result": "IndeterminateOutputCreation",
+            "outputCreated": null,
+            "creationOutcome": "UnknownAfterMkdirAttempt",
+            "candidateOwnership": "Unproven",
+            "commitOutcome": "NotCommitted",
+            "responseDelivery": "Failed",
+            "retryAllowed": false,
+            "requiresPhysicalReconciliation": true,
+            "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+            "D5BLocalExecution": "NotAuthorized",
+            "R03Accepted": false
+          },
+          "evidence": "Real mkdir completed, then raised OSError. Stdout accepted 47 characters before raising OSError. Stderr retained creation uncertainty.",
+          "assertions": [
+            "exit 2",
+            "empty candidate exists",
+            "receipt/failure-marker writer not called",
+            "null creation state retained",
+            "one stdout write attempt",
+            "no retry",
+            "reconciliation required"
+          ]
+        },
+        {
+          "case": "after-unlink-systemexit-plus-stdout-failure",
+          "assertionsPassed": true,
+          "exitCode": 2,
+          "writerUnmodified": true,
+          "physicalFileCount": 5,
+          "structureResult": "SealedDryReceiptStructureOnly_NotLocalAuthorization",
+          "observedResponse": {
+            "result": "IndeterminateAfterCommit",
+            "outputCreated": true,
+            "commitVisible": false,
+            "commitOutcome": "UnknownAfterFinalUnlink",
+            "finalUnlinkOutcomeUncertain": true,
+            "responseDelivery": "Failed",
+            "retryAllowed": false,
+            "requiresPhysicalReconciliation": true,
+            "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+            "D5BLocalExecution": "NotAuthorized",
+            "R03Accepted": false
+          },
+          "evidence": "Real veto unlink completed, then raised SystemExit; first stdout write failed. Stderr retained the unknown unlink outcome.",
+          "assertions": [
+            "exit 2",
+            "created output retained",
+            "commitVisible false is retained observation",
+            "unknown final-unlink state retained",
+            "one stdout write attempt",
+            "real five-file structural verifier positive",
+            "no retry",
+            "reconciliation required"
+          ]
+        },
+        {
+          "case": "unmodified-writer-return-trace",
+          "assertionsPassed": true,
+          "exitCode": 2,
+          "writerUnmodified": true,
+          "physicalFileCount": 5,
+          "structureResult": "SealedDryReceiptStructureOnly_NotLocalAuthorization",
+          "observedResponse": {
+            "result": "IndeterminateWriterOutcome",
+            "outputCreated": null,
+            "creationOutcome": "UnknownAfterWriterInvocation",
+            "candidateOwnership": "Unproven",
+            "commitVisible": false,
+            "commitOutcome": "UnknownAfterWriterInvocation",
+            "retryAllowed": false,
+            "requiresPhysicalReconciliation": true,
+            "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+            "D5BLocalExecution": "NotAuthorized",
+            "R03Accepted": false
+          },
+          "traceObservation": {
+            "receiptRecorded": false,
+            "writerUnmodified": true,
+            "physicalFileCount": 5
+          },
+          "evidence": "sys.settrace raised KeyboardInterrupt on the real unmodified sealer return event, after a complete seal and before main recorded the returned receipt.",
+          "assertions": [
+            "exit 2",
+            "return event supplied a dry-admission receipt",
+            "caller result not recorded",
+            "writer function unchanged",
+            "null creation and unknown writer/commit outcome",
+            "stderr empty",
+            "real five-file structural verifier positive",
+            "no retry",
+            "reconciliation required"
+          ]
+        }
+      ],
+      "accountingNote": "These eight probes completed their individual assertions during exploratory drivers. An additional opcode-injection target did not trigger in a later driver, so that driver ended with a harness assertion and is not represented as an all-pass suite. The unsuccessful injection is excluded from this eight-probe evidence. A separately observed recorded-return opcode injection did produce created/visible IndeterminateAfterCommit, but is also excluded from this count.",
+      "limits": [
+        "Source-host synthetic Linux fixtures only; no real host inspection, Unity, SDK, native, or Player execution",
+        "A failed or missing terminal response does not imply absent output; external reconciliation remains necessary",
+        "Visible is an observed publication state, not a later namespace-identity or command-delivery guarantee",
+        "No hard-termination, power-loss, APFS, real macOS syscall, or future authorization conclusion"
+      ]
+    },
+    "countsAreNotCommittedTestsOrCiRuns": true
+  },
+  "nonblockingSourceObservation": {
+    "name": "InitialRootAcquisitionRequiresControlledNamespace",
+    "writerLines": [
+      751,
+      752
+    ],
+    "basis": "Static source inspection, not an executed additional replacement test",
+    "detail": "Normal recorded creation precedes pathname-based root descriptor acquisition; replacement in that gap is not covered by the no-adoption claim for unresolved creation. Retained R4/R5 point-in-time and controlled-namespace limits apply."
+  },
+  "authority": {
+    "APPROVED_EXECUTION_ENVELOPE_BLOB": null,
+    "APPROVED_LOCAL_HANDOFF_BLOB": null,
+    "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+    "D5BLocalExecution": "NotAuthorized",
+    "D5LocalValidation": "NotAuthorized",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false,
+    "realD5PlayerCasesNoCoverage": 18,
+    "actualMacUnityIl2cppBeeFullVmMachOGcPidPlayer": "NotRun"
+  },
+  "report": {
+    "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_INDEPENDENT_REREVIEW_2026-11-25.md",
+    "sha256": "f7536b2b449e48e78c9e434e9874155eff9c264a3ae4b80dcc1a4680e9ecbace"
+  },
+  "publicationScope": "Report, companion evidence, README and CURRENT_STATUS links only. No implementation, test, workflow, Local handoff or sibling repository changes.",
+  "stop": "Stop after publication; no Local authorization, Human Review Gate approval or later milestone work"
+}
