@@ -1,3 +1,21 @@
+# Current independent — D5-B AP2 PassRunnerArtifactClosureSourceOnly (2026-11-26 America/Los_Angeles)
+
+[**Complete independent AP2 report**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CLOSURE_AP2_INDEPENDENT_REVIEW_2026-11-26.md) · [**Independent machine evidence and raw reviewer rerun**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CLOSURE_AP2_INDEPENDENT_EVIDENCE_2026-11-26.json).
+
+**`D5BRunnerClosureAP2IndependentReview=PassRunnerArtifactClosureSourceOnly`** for exact implementation **`hybridclr_demo@8a856ab6b50fd29ece0b17c86cd3fd359fc9ba3a`**. Independent source review accepts the six-artifact policy, authenticated AP1 helper loading, inert candidate bytes, immutable snapshots and bounded checkout observations. No material in-scope defect was established. The verifier compares committed-tree/index metadata and its own raw-byte filesystem inventory; runtime import isolation and complete executable closure remain false.
+
+Fresh raw [Actions **45774292828**](https://github.com/night-outlook/hybridclr_demo/actions/runs/45774292828) / job **139754092541**, attempt **1**, confirms **94/94 R5 + 22/22 AP1 R2 + 25/25 AP2 methods**, **1/1 job and 10/10 returned steps successful**, at the exact source/checkout. The decoded raw log matches its archive byte-for-byte, including BOM. The independent isolated Linux AP2 rerun passed **25/25** in **15.418s**, exit **0**, with downloaded source bytes unchanged; its complete raw output is embedded in the companion JSON. All **nine baseline files** and the retained 94/22 suites are preserved.
+
+The later Primary documentation/evidence HEAD **`b762c12be15e3d0d1c32658b194f541c945fa7be`** and this independent publication are distinct from the tested source. R5 **`PassDryAdmissionSourceOnly`**, AP1 R2 **`PassActivationPublicationProposalOnly`**, and **D5B-AP1-IR-01=ClosedInCorrectedSource** remain preserved. Earlier AP2-pending sections and the unchanged closed WEB_TO_LOCAL checkpoint are historical and do not override this current independent decision.
+
+**Local remains CLOSED:** `APPROVED_EXECUTION_ENVELOPE_BLOB=None`; `APPROVED_LOCAL_HANDOFF_BLOB=None`; **`WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`**; `D5BLocalExecution=NotAuthorized`; `D5LocalValidation=NotAuthorized`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`. All **18 real Player cases remain NoCoverage / 0 passed**. Historical Mac paths remain physically **Unverified**; candidate Local/macOS, Unity, IL2CPP, Bee, full VM, Mach-O, GC, PID and Player work remains **NotRun**.
+
+The accepted observations provide no complete administrative-file custody, raw index-format qualification, namespace lock, ABA exclusion, runtime loader isolation, source/live-ref admission, plan/adapter authority or Q approval. Per-scan limits are not a process resource sandbox. Those boundaries and R5's namespace/custody limits remain. No Local integration, production activation, approval repinning, Human Review Gate or later milestone is authorized.
+
+Publication is limited to the independent report/evidence and README/CURRENT_STATUS updates. Implementation, tests, workflow, WEB_TO_LOCAL, Local-owned validation/return records and sibling repositories are preserved. **Stop after independent publication and remote readback.**
+
+---
+
 # Current Primary — D5-B AP2 runner artifact closure complete; independent review PENDING (2026-11-25 America/Los_Angeles)
 
 [**AP2 design**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CLOSURE_AP2_DESIGN_2026-11-25.md) · [**Primary report**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CLOSURE_AP2_PRIMARY_2026-11-25.md) · [**Independent review request**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CLOSURE_AP2_INDEPENDENT_REVIEW_REQUEST_2026-11-25.md) · [**Machine evidence**](History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CLOSURE_AP2_EVIDENCE_2026-11-25.json).
