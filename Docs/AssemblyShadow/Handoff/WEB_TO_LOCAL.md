@@ -1,4 +1,38 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
+
+## R5 independent source review complete; AP1 publication proposal awaits independent protocol review (2026-11-25 America/Los_Angeles)
+
+**NOT AN EXECUTABLE LOCAL HANDOFF. NO LOCAL COMMANDS.** R5 is independently `PassDryAdmissionSourceOnly`; its former pending-review labels below are historical. The newly completed [AP1 proposal design](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_DESIGN_2026-11-25.md), [Primary implementation/evidence](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_PRIMARY_2026-11-25.md) and [independent review request](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_INDEPENDENT_REVIEW_REQUEST_2026-11-25.md) address the separate source/envelope/runner publication dependency.
+
+AP1 supplies a read-only local Git proposal auditor and a constructibility test with closed proposal bytes. The actual runner identity/import closure, plan authority transition, Q review/user-decision validation, live refs and physical custody are not implemented by this auditor. It cannot authorize an execution. No production envelope, activation branch, runner path, output parent or one-use name has been approved.
+
+Exact **CI-tested implementation source**, not later documentation HEAD and not a Local authorization tuple; all on `codex/assembly-shadow-r01b-h1`:
+
+| Repository | Exact implementation source commit |
+|---|---|
+| night-outlook/hybridclr_demo | `25551bca385c5af20c417110ad1ee27593a3eefc` |
+| night-outlook/hybridclr | `c3c232023724cbad565b85e9b2c3beea8ce2789a` |
+| night-outlook/hybridclr_unity | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| night-outlook/il2cpp_plus | `1268dd417ffe9090fcd9ea2d49542c97ed3cccb3` |
+
+[Focused source-only CI **45743817742**](https://github.com/night-outlook/hybridclr_demo/actions/runs/45743817742), job **139654943143**, passed **94/94 retained R5 tests and 18/18 AP1 tests**, 1/1 job and 9/9 returned steps. Both production approval constants remain **None**; the public execution command exits **2**, `NotAuthorized`, `outputCreated=false`. R5 writer/plan/test/preflight/wrapper bytes are unchanged.
+
+Historical candidate source paths remain:
+
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus`
+
+Their current physical state is **Unverified**. The design records six historical custody roots and the historical Unity path/hash with provenance; these are not fresh admission results. A future runner needs its own canonical disjoint path. A future evidence parent must be outside the workspace, runner and every historical base/root, with controlled namespace custody. Nothing in the historical oneuse-12 success qualifies current D5 execution.
+
+**Current state:** `D5BActivationPublicationAP1IndependentReview=Pending`; **`WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`**; `D5BLocalExecution=NotAuthorized`; `D5LocalValidation=NotAuthorized`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`. All 18 real D5 Player cases remain **NoCoverage**; candidate macOS admission/Unity/IL2CPP/Bee/native VM/Mach-O/GC/PID/Player validation remains **NotRun**.
+
+**Next-agent read order:** README → AP1 design → AP1 Primary report/machine evidence → AP1 independent review request → retained R5 independent report. Only separate source/protocol review is next. Further runner/authority implementation belongs to Primary after that review. Actual Local preview/dry admission, builds, Player, D5-C/D and later milestones remain unauthorized. No Local execution prompt is issued while this gate is closed; preserve Local-owned validation/return documents.
+
+---
+
+# Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 ## R5 source-only correction and focused CI complete; separate independent review and Local authority missing (2026-11-25 America/Los_Angeles)
 
 **NOT AN EXECUTABLE LOCAL HANDOFF. NO LOCAL COMMANDS.** Primary addressed the [independent R4 ReturnRequired](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R4_INDEPENDENT_REREVIEW_2026-11-25.md) findings through [R5 design](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_DESIGN_2026-11-25.md), [implementation/evidence](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_PRIMARY_2026-11-25.md) and a [separate independent R5 review request — PENDING](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_INDEPENDENT_REVIEW_REQUEST_2026-11-25.md). The focused correction retains completed-output state across reporting failures and represents unrecorded creation/caller-return effects as unknown. It does not supply an approved envelope or Local execution permission.

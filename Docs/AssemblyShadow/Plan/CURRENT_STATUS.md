@@ -1,3 +1,15 @@
+# Current Primary — D5-B AP1 publication proposal source/CI complete; independent protocol review PENDING (2026-11-25 America/Los_Angeles)
+
+[**AP1 design and input inventory**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_DESIGN_2026-11-25.md) · [**Primary implementation and evidence**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_PRIMARY_2026-11-25.md) · [**Independent AP1 protocol/source review request**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_INDEPENDENT_REVIEW_REQUEST_2026-11-25.md) · [**Machine evidence**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_EVIDENCE_2026-11-25.json).
+
+**`D5BActivationPublicationAP1Primary=SourceOnlyCIComplete_PendingIndependentProtocolReview`.** The separate activation-publication step had a same-revision hash dependency between envelope and source commit. AP1 proposes distinct frozen source H, envelope E, runner A and later approval/handoff publication Q. The new auditor checks actual local Git proposal objects and exact refs, rejects extra source changes and authority promotion, and returns only `ProposalPublicationStructureVerified_NoExecutionAuthority`. Its closed proposal kind cannot serve as an executable envelope. No production runner or activation ref was created.
+
+**Exact tested source `hybridclr_demo@25551bca385c5af20c417110ad1ee27593a3eefc`**, unchanged three sibling pins, [Actions **45743817742**](https://github.com/night-outlook/hybridclr_demo/actions/runs/45743817742) / job **139654943143**: **94/94 retained R5 tests + 18/18 AP1 tests**, **1/1 focused job, 9/9 returned steps successful**. Counts come from the actual raw test footers. Later evidence/documentation HEADs are not the tested source SHA. R5's independent **`PassDryAdmissionSourceOnly`** remains in force within its own scope; all five R5 source/plan/test files retain their exact reviewed blobs.
+
+**Local execution remains CLOSED:** both approval constants None; **`WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`**; `D5BLocalExecution=NotAuthorized`; `D5LocalValidation=NotAuthorized`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`. All **18 real D5 Player cells remain NoCoverage**; candidate macOS/Unity/IL2CPP/Bee/full VM/Mach-O/GC/PID/Player work is **NotRun**. AP1 independent review is **Pending**. Fifth runner identity/import closure, plan authorization semantics, Q authority/custody and physical qualification remain further Primary work after protocol review. No executable Local handoff or later milestone is authorized. Older entries below are historical.
+
+---
+
 # Independent D5-B R5 source review — PassDryAdmissionSourceOnly (2026-11-25 America/Los_Angeles)
 
 [**Complete independent R5 report**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_INDEPENDENT_REREVIEW_2026-11-25.md) · [**Independent machine evidence**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_LOCAL_DRY_ADMISSION_R5_INDEPENDENT_EVIDENCE_2026-11-25.json).

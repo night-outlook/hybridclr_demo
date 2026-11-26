@@ -1,0 +1,397 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03D5BActivationPublicationAP1PrimaryEvidenceV1",
+  "date": "2026-11-25",
+  "timezone": "America/Los_Angeles",
+  "bootstrap": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "repositories": [
+      {
+        "repository": "night-outlook/hybridclr_demo",
+        "branch": "codex/assembly-shadow-r01b-h1",
+        "head": "e63732d755c0ed283138e72d3e612609ea73a565",
+        "permissions": {
+          "read": true,
+          "write": true
+        },
+        "smoke": {
+          "branch": "codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0",
+          "commit": "a0c30160de9697d42223310bece86cd96c796d93",
+          "result": "PreviouslyWrittenAndFreshlyReadBack",
+          "cleanup": "BranchRetained_NoConnectorDeleteCapability",
+          "baseCommit": "83ceb2ba9868d96bd35628908919978e16cc5d2f"
+        }
+      },
+      {
+        "repository": "night-outlook/hybridclr",
+        "branch": "codex/assembly-shadow-r01b-h1",
+        "head": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+        "permissions": {
+          "read": true,
+          "write": true
+        },
+        "smoke": {
+          "branch": "codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0",
+          "commit": "c4197a1c19353ef4c6bf9f670bbb234dc8afc086",
+          "result": "PreviouslyWrittenAndFreshlyReadBack",
+          "cleanup": "BranchRetained_NoConnectorDeleteCapability",
+          "baseCommit": "c3c232023724cbad565b85e9b2c3beea8ce2789a"
+        }
+      },
+      {
+        "repository": "night-outlook/hybridclr_unity",
+        "branch": "codex/assembly-shadow-r01b-h1",
+        "head": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "permissions": {
+          "read": true,
+          "write": true
+        },
+        "smoke": {
+          "branch": "codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0",
+          "commit": "9a7da758fcad50f81708202d0a5ad30aa2f64ee1",
+          "result": "PreviouslyWrittenAndFreshlyReadBack",
+          "cleanup": "BranchRetained_NoConnectorDeleteCapability",
+          "baseCommit": "948c0e3b4f8891481301770115e8ba4945eea6de"
+        }
+      },
+      {
+        "repository": "night-outlook/il2cpp_plus",
+        "branch": "codex/assembly-shadow-r01b-h1",
+        "head": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3",
+        "permissions": {
+          "read": true,
+          "write": true
+        },
+        "smoke": {
+          "branch": "codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0",
+          "commit": "ecf7c731b3bd2f20719b9363cf897ed6cf7304d8",
+          "result": "PreviouslyWrittenAndFreshlyReadBack",
+          "cleanup": "BranchRetained_NoConnectorDeleteCapability",
+          "baseCommit": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"
+        }
+      }
+    ]
+  },
+  "priorReview": {
+    "verdict": "PassDryAdmissionSourceOnly",
+    "codeCommit": "eaca19c08f41245c46dfacbf605cd80480bc3a92",
+    "reviewPublicationCommit": "e63732d755c0ed283138e72d3e612609ea73a565",
+    "reviewGitBlob": "ba52c572f3761a687ee99dcec0bf187a99398157",
+    "evidenceGitBlob": "8a9fbefca1f82a561f61032687b014802745fa28"
+  },
+  "historicalInputProvenance": {
+    "observedAt": "2026-11-10",
+    "publicationReadAtCommit": "e63732d755c0ed283138e72d3e612609ea73a565",
+    "currentPhysicalStatus": "Unverified",
+    "admissionGitBlob": "e7954bf837429cacc71bf82565071c0693580e22",
+    "localResultGitBlob": "83d155301a83b98306048bb62b83eab17b6771fd",
+    "commandGitBlob": "a6f599e2e71bcb56a0dabc5570c4f99c745183a2",
+    "publishedRawMapGitBlob": "083e9348e1dd3e947b2ea4e62a42a117c7f8b7cb"
+  },
+  "authority": {
+    "AP1IndependentReview": "Pending",
+    "APPROVED_EXECUTION_ENVELOPE_BLOB": null,
+    "APPROVED_LOCAL_HANDOFF_BLOB": null,
+    "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+    "D5BLocalExecution": "NotAuthorized",
+    "D5LocalValidation": "NotAuthorized",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false,
+    "UnityOrPlayerExecuted": false,
+    "D5PlayerCellsNoCoverage": 18,
+    "D5BDryAdmissionR5IndependentReview": "PassDryAdmissionSourceOnly"
+  },
+  "status": "SourceOnlyCIComplete_PendingIndependentProtocolReview",
+  "implementationSource": {
+    "repository": "night-outlook/hybridclr_demo",
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "baseCommit": "e63732d755c0ed283138e72d3e612609ea73a565",
+    "commit": "25551bca385c5af20c417110ad1ee27593a3eefc",
+    "tree": "6ddaee379193bf586f19c2f6231134f205984945",
+    "exactRemoteReadback": true
+  },
+  "sourcePins": {
+    "hybridclr_demo": "25551bca385c5af20c417110ad1ee27593a3eefc",
+    "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"
+  },
+  "changedSourceFiles": [
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Local/d5b_activation_publication.py",
+      "bytes": 20623,
+      "gitBlob": "e4508a201081dfb87fc77a0b097fd92ce143beb6",
+      "sha256": "db29d46768d647bb6a464432808e6db23a062d96e551f133f5ab1b980d90c086"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_activation_publication.py",
+      "bytes": 27367,
+      "gitBlob": "0b8cc3ad6a3c31e949be4296f2314777a6454e86",
+      "sha256": "cd5cbeacfabb48bef3f5a9432bb536d182bc5234d708c4a72589855a6e822d97"
+    },
+    {
+      "path": ".github/workflows/r03-b2-d5b-local-admission-source-host.yml",
+      "bytes": 3368,
+      "gitBlob": "426e80ceb3f157ddb9c909fbaa409cd8e1db7904",
+      "sha256": "070d0a5c74529db1f900cb16a9868c74fd384383ab93adbd0905f0dae114ce5c"
+    },
+    {
+      "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_DESIGN_2026-11-25.md",
+      "bytes": 13761,
+      "gitBlob": "c972b5f5894edc0d289ca88b326991cea640ec42",
+      "sha256": "8d98fa2b789bc4f9633935df78727468aa32760a7137d8e392067b3729f95332"
+    }
+  ],
+  "preservedR5Files": [
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission.py",
+      "bytes": 50512,
+      "gitBlob": "99746fe64976da313cbd0e1625f0fcc5a67bca62",
+      "sha256": "0c84aed04306e5c1161dfd114cd00c9766cb5fc4af35a9d000dfec077a9feb60"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_local_admission.py",
+      "bytes": 85467,
+      "gitBlob": "06aaf4f3ef4df3cc7306fe8d83d56f35ce1e0e0c",
+      "sha256": "91ef72a19d33e1259aefde0d0bf3efeec2cb265b1f7c10c4d0f12fabbd44007a"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission_plan_v1.json",
+      "bytes": 2948,
+      "gitBlob": "5c0ab7a6d788ebd5adf57f1fddc567ba700632e9",
+      "sha256": "5f9b95430d5f163b24aa6bca222ac7fffe54835e110bad21bbb60f8fc48068d5"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Local/run_d5_local.py",
+      "bytes": 460,
+      "gitBlob": "519e6a4a8a11e3c821adb02fe1bf9e9d5b685b39",
+      "sha256": "158c3ccfaf334ad108487571347257df3f4581ecf1ce74e726827f0a98c5db08"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight.py",
+      "bytes": 17360,
+      "gitBlob": "81e7c3a2eaccb77bff2515c91b173558e4eeba2f",
+      "sha256": "de00a8b3fbdfd772bb5d932df9c55963b0616cefd2b6cd36a2accb2e370d8797"
+    }
+  ],
+  "sourceHostValidation": {
+    "startUtc": "2026-11-26T02:38:11.603601+00:00",
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "git": "git version 2.56.1",
+    "sourceSha256": {
+      "Tools/AssemblyShadow/R03IR/D5Local/d5b_activation_publication.py": "db29d46768d647bb6a464432808e6db23a062d96e551f133f5ab1b980d90c086",
+      "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_activation_publication.py": "cd5cbeacfabb48bef3f5a9432bb536d182bc5234d708c4a72589855a6e822d97",
+      ".github/workflows/r03-b2-d5b-local-admission-source-host.yml": "070d0a5c74529db1f900cb16a9868c74fd384383ab93adbd0905f0dae114ce5c",
+      "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_DESIGN_2026-11-25.md": "8d98fa2b789bc4f9633935df78727468aa32760a7137d8e392067b3729f95332"
+    },
+    "suites": [
+      {
+        "file": "test_d5b_local_admission.py",
+        "exitCode": 0,
+        "tests": 94,
+        "seconds": 0.155,
+        "result": "Passed",
+        "subtestsCountedAsSeparateTests": false
+      },
+      {
+        "file": "test_d5b_activation_publication.py",
+        "exitCode": 0,
+        "tests": 18,
+        "seconds": 7.826,
+        "result": "Passed",
+        "subtestsCountedAsSeparateTests": false
+      }
+    ],
+    "publicExecutionGate": {
+      "exitCode": 2,
+      "response": {
+        "D5BLocalExecution": "NotAuthorized",
+        "R03Accepted": false,
+        "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+        "kind": "R03D5BLocalAdmissionFailureV1",
+        "outputCreated": false,
+        "reason": "D5-B Local execution is not authorized",
+        "result": "NotAuthorized",
+        "retryAllowed": false,
+        "schemaVersion": 1
+      },
+      "envelopeFileCreated": false
+    },
+    "endUtc": "2026-11-26T02:38:20.038890+00:00",
+    "log": {
+      "bytes": 18037,
+      "sha256": "e3ecbca7b4a39ea564c658023494ef07c9c4bf8d6cdc2d1e23fc53cdd3647797",
+      "publishedPath": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_SOURCE_HOST_2026-11-25.log"
+    },
+    "preservedR5FilesVerified": 5,
+    "pythonAstParsed": true,
+    "changedFilesWhitespaceCheck": "Passed"
+  },
+  "ci": {
+    "runId": 45743817742,
+    "jobId": 139654943143,
+    "attempt": 1,
+    "event": "push",
+    "workflow": ".github/workflows/r03-b2-d5b-local-admission-source-host.yml",
+    "headSha": "25551bca385c5af20c417110ad1ee27593a3eefc",
+    "headBranch": "codex/assembly-shadow-r01b-h1",
+    "status": "completed",
+    "conclusion": "success",
+    "jobsPassed": 1,
+    "jobsTotal": 1,
+    "returnedStepsPassed": 9,
+    "returnedStepsTotal": 9,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Proposed D5-B physical admission contracts and no-execution controls",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "AP1 closed publication proposals using real temporary Git objects",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Verify no immutable user approval or Unity execution can be asserted",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13
+      }
+    ],
+    "createdAtUtc": "2026-11-26T02:38:58Z",
+    "updatedAtUtc": "2026-11-26T02:39:16Z",
+    "runnerImage": "ubuntu-24.04",
+    "os": "Ubuntu 24.04.5",
+    "python": "3.11.18",
+    "git": "2.56.1",
+    "actualTestFooters": [
+      {
+        "tests": 94,
+        "seconds": 0.189
+      },
+      {
+        "tests": 18,
+        "seconds": 2.899
+      }
+    ],
+    "actualOkFooters": 2,
+    "sourceTests": 94,
+    "publicationTests": 18,
+    "subtestsCountedAsSeparateTests": false,
+    "decodedJobLog": {
+      "bytes": 38408,
+      "characters": 38406,
+      "sha256": "86890d4b25c7f3825c0efc29ae6e456656239f2e05f18a65349d9f4f231fb6d2",
+      "gitBlob": "8c14eb672e2576aee49eff37ebe3bfb8f91d770e",
+      "bomRetained": true,
+      "publishedPath": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_CI_JOB_139654943143_2026-11-25.log"
+    }
+  },
+  "otherAutomaticallyTriggeredRuns": [
+    {
+      "id": 45743817869,
+      "name": "R03 K terminal observation host contracts",
+      "path": ".github/workflows/r03-k-host-contracts.yml",
+      "head": "25551bca385c5af20c417110ad1ee27593a3eefc",
+      "statusAtEvidenceRead": "completed",
+      "conclusionAtEvidenceRead": "cancelled",
+      "evidenceClass": "MetadataOnly_NotAP1ReviewedEvidence"
+    },
+    {
+      "id": 45743817718,
+      "name": "R03 K source-bound contracts",
+      "path": ".github/workflows/r03-k-sourcecheck.yml",
+      "head": "25551bca385c5af20c417110ad1ee27593a3eefc",
+      "statusAtEvidenceRead": "completed",
+      "conclusionAtEvidenceRead": "cancelled",
+      "evidenceClass": "MetadataOnly_NotAP1ReviewedEvidence"
+    },
+    {
+      "id": 45743817759,
+      "name": "R03 L factory and receipt contracts",
+      "path": ".github/workflows/r03-l-contracts.yml",
+      "head": "25551bca385c5af20c417110ad1ee27593a3eefc",
+      "statusAtEvidenceRead": "completed",
+      "conclusionAtEvidenceRead": "cancelled",
+      "evidenceClass": "MetadataOnly_NotAP1ReviewedEvidence"
+    },
+    {
+      "id": 45743817757,
+      "name": "R03 independent-review terminal host contracts",
+      "path": ".github/workflows/r03-ir-host.yml",
+      "head": "25551bca385c5af20c417110ad1ee27593a3eefc",
+      "statusAtEvidenceRead": "completed",
+      "conclusionAtEvidenceRead": "cancelled",
+      "evidenceClass": "MetadataOnly_NotAP1ReviewedEvidence"
+    },
+    {
+      "id": 45743817704,
+      "name": "R03 Native B1 first error source/host qualification (not Unity)",
+      "path": ".github/workflows/r03-ir-native-b1-source-and-host.yml",
+      "head": "25551bca385c5af20c417110ad1ee27593a3eefc",
+      "statusAtEvidenceRead": "completed",
+      "conclusionAtEvidenceRead": "success",
+      "evidenceClass": "MetadataOnly_NotAP1ReviewedEvidence"
+    }
+  ],
+  "primaryPeerReview": {
+    "scope": "PrimaryPeerReview_NotIndependentProjectApproval",
+    "canonicalSourceRefFinding": "CorrectedBeforePublication",
+    "correction": "Require source_ref equal refs/heads/codex/assembly-shadow-r01b-h1; alias and symbolic-ref regressions in test03.",
+    "remainingBlockingFindingsWithinProposalScope": 0,
+    "reviewedAuditorGitBlob": "e4508a201081dfb87fc77a0b097fd92ce143beb6",
+    "reviewedTestGitBlob": "0b8cc3ad6a3c31e949be4296f2314777a6454e86"
+  },
+  "protocol": {
+    "selectedProposal": "SeparateSourceRunnerAndApprovalPublication_H_E_A_Q",
+    "currentAuditorScope": "LocalGitProposalObjectsAndRefsOnly",
+    "productionRunnerCreated": false,
+    "activationRefCreated": false,
+    "approvedExecutionEnvelopeCreated": false,
+    "QAuthorityImplemented": false,
+    "runnerIdentityAndCustodyImplemented": false,
+    "liveRemoteRefAuditImplemented": false,
+    "currentPhysicalInputsVerified": false
+  }
+}
