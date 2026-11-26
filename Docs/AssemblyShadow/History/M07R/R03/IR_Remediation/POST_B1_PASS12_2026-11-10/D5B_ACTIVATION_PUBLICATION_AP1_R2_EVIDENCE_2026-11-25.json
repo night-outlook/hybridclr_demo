@@ -1,0 +1,535 @@
+{
+  "schema": "R03D5BActivationPublicationAP1R2PrimaryEvidenceV1",
+  "clientDate": "2026-11-25",
+  "clientTimezone": "America/Los_Angeles",
+  "status": "SourceOnlyCIComplete_PendingIndependentRereview",
+  "currentIndependentVerdict": "ReturnRequired",
+  "reviewReturn": {
+    "publicationCommit": "6d0a5d1613c483119b41d774765ef9752adb7732",
+    "reviewedSourceCommit": "25551bca385c5af20c417110ad1ee27593a3eefc",
+    "reportBlob": "9065580fc26868b1c76b773348657564150c6741",
+    "machineEvidenceBlob": "47802b473a4c2982af936fcf3e0e303c7e6b4679",
+    "finding": "D5B-AP1-IR-01",
+    "primaryDisposition": "CorrectionImplemented_PendingIndependentRereview"
+  },
+  "sourcePublication": {
+    "repository": "night-outlook/hybridclr_demo",
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "commit": "2a0053bbe350bc52b189ca4201542b2c93b5eca7",
+    "parent": "6d0a5d1613c483119b41d774765ef9752adb7732",
+    "tree": "a2b1a7ea55a2b20a7e80312b0300eb6bf6b955b9",
+    "remoteReadbackMatched": true,
+    "exactFourPathScopeVerified": true,
+    "files": {
+      "Tools/AssemblyShadow/R03IR/D5Local/d5b_activation_publication.py": {
+        "sha256": "a2a7260a4c8a0d72f2e37e50ba13fb18a191bb7634c0f2533e8d6da9beddfe09",
+        "gitBlob": "ecf36a7a51f1750c6e8425ee79e9ac8938102b54",
+        "bytes": 22533
+      },
+      "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_activation_publication.py": {
+        "sha256": "c50db5031b0e450b25267e4fb4e1fee2bb4d881756a8c93e632540d136d3113a",
+        "gitBlob": "ef0b562951afd5deb49528e5b8acf013a015eadb",
+        "bytes": 38488
+      },
+      ".github/workflows/r03-b2-d5b-local-admission-source-host.yml": {
+        "sha256": "07435ed2e503470c6600062c10997ae31e56fe76d6feba4081bd4a5c69d1a634",
+        "gitBlob": "f9782fa9f78f65c9ac6a3fac81f2bde2c0d30bb0",
+        "bytes": 3976
+      },
+      "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_DESIGN_2026-11-25.md": {
+        "sha256": "5d4520d1b30768ef2dba39e0d8add4bfd3583c43a06d9b684ee138119b932e35",
+        "gitBlob": "3c0f077c1b6e08ef91841fd4e22b3f38b1532c0e",
+        "bytes": 7552
+      }
+    }
+  },
+  "implementationSourceTuple": [
+    {
+      "repository": "night-outlook/hybridclr_demo",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "commit": "2a0053bbe350bc52b189ca4201542b2c93b5eca7",
+      "historicalLocalPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "currentPhysicalState": "Unverified"
+    },
+    {
+      "repository": "night-outlook/hybridclr",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "commit": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+      "historicalLocalPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "currentPhysicalState": "Unverified"
+    },
+    {
+      "repository": "night-outlook/hybridclr_unity",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "commit": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "historicalLocalPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "currentPhysicalState": "Unverified"
+    },
+    {
+      "repository": "night-outlook/il2cpp_plus",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "commit": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3",
+      "historicalLocalPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "currentPhysicalState": "Unverified"
+    }
+  ],
+  "commitInterpretation": {
+    "initialTreeRequired": true,
+    "contiguousParentPrefixOnly": true,
+    "parentOrderAndCardinalityPreserved": true,
+    "lateStructuralHeaders": "Rejected",
+    "metadataValues": "OpaqueBytes",
+    "messageTopology": "Ignored",
+    "appliedTo": [
+      "source",
+      "runner"
+    ],
+    "runnerParentsRequired": "Exactly source commit as sole parent",
+    "nativeComparison": [
+      "rev-list",
+      "--no-walk",
+      "--parents",
+      "<verified-commit-id>",
+      "--"
+    ],
+    "nativeComparisonTraversal": "No history walk; one supplied commit",
+    "nativeMismatch": "Rejected; includes temporary shallow-view regression"
+  },
+  "primaryHost": {
+    "schema": "R03AP1R2PrimarySourceHostValidationV1",
+    "startedUtc": "2026-11-26T03:50:40.194030+00:00",
+    "completedUtc": "2026-11-26T03:50:52.776933+00:00",
+    "environment": {
+      "python": "3.12.14",
+      "pythonExecutable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+      "fixtureGit": {
+        "path": "/usr/local/bin/git",
+        "version": "git version 2.56.1"
+      },
+      "auditorGit": {
+        "path": "/bin/git",
+        "version": "git version 2.47.3"
+      }
+    },
+    "sourceFiles": {
+      "Tools/AssemblyShadow/R03IR/D5Local/d5b_activation_publication.py": {
+        "sha256": "a2a7260a4c8a0d72f2e37e50ba13fb18a191bb7634c0f2533e8d6da9beddfe09",
+        "gitBlob": "ecf36a7a51f1750c6e8425ee79e9ac8938102b54",
+        "bytes": 22533
+      },
+      "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_activation_publication.py": {
+        "sha256": "c50db5031b0e450b25267e4fb4e1fee2bb4d881756a8c93e632540d136d3113a",
+        "gitBlob": "ef0b562951afd5deb49528e5b8acf013a015eadb",
+        "bytes": 38488
+      },
+      ".github/workflows/r03-b2-d5b-local-admission-source-host.yml": {
+        "sha256": "07435ed2e503470c6600062c10997ae31e56fe76d6feba4081bd4a5c69d1a634",
+        "gitBlob": "f9782fa9f78f65c9ac6a3fac81f2bde2c0d30bb0",
+        "bytes": 3976
+      },
+      "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_DESIGN_2026-11-25.md": {
+        "sha256": "5d4520d1b30768ef2dba39e0d8add4bfd3583c43a06d9b684ee138119b932e35",
+        "gitBlob": "3c0f077c1b6e08ef91841fd4e22b3f38b1532c0e",
+        "bytes": 7552
+      }
+    },
+    "staticChecks": {
+      "pythonAstFiles": 2,
+      "workflowYaml": "Parsed",
+      "bashSyntaxRunBlocks": 3,
+      "trailingWhitespace": false,
+      "sourceBytesUnchangedAfterTests": true
+    },
+    "tests": {
+      "R5": {
+        "testMethods": 94,
+        "footerSeconds": "0.242",
+        "elapsedSeconds": 0.505,
+        "exitCode": 0,
+        "result": "OK"
+      },
+      "AP1R2": {
+        "testMethods": 22,
+        "footerSeconds": "11.797",
+        "elapsedSeconds": 11.975,
+        "exitCode": 0,
+        "result": "OK"
+      }
+    },
+    "closedGateReceipt": {
+      "D5BLocalExecution": "NotAuthorized",
+      "R03Accepted": false,
+      "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+      "kind": "R03D5BLocalAdmissionFailureV1",
+      "outputCreated": false,
+      "reason": "D5-B Local execution is not authorized",
+      "result": "NotAuthorized",
+      "retryAllowed": false,
+      "schemaVersion": 1
+    },
+    "rawLog": {
+      "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_SOURCE_HOST_2026-11-25.log",
+      "bytes": 19186,
+      "sha256": "27544339c8929e3b460538eaa398c0ca2d35cf396b06e02f6a1e96b5a2b04eb1"
+    },
+    "preservation": {
+      "existingTestMethodsUnchanged": 18,
+      "existingHelpersUnchanged": 13,
+      "newMethods": [
+        "_r2_assert_publication",
+        "_r2_assert_topology",
+        "_r2_git_topology",
+        "_r2_identity_headers",
+        "_r2_pair_for_role",
+        "_r2_store_commit",
+        "test_19_standard_commit_prefixes_match_git_topology",
+        "test_20_metadata_continuations_and_messages_do_not_add_topology",
+        "test_21_ordinary_stored_late_parents_reject_source_and_runner",
+        "test_22_late_duplicate_and_misordered_topology_headers_are_rejected"
+      ],
+      "totalTestMethods": 22,
+      "r5FilesPreserved": {
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission.py": "99746fe64976da313cbd0e1625f0fcc5a67bca62",
+        "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_local_admission.py": "06aaf4f3ef4df3cc7306fe8d83d56f35ce1e0e0c",
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission_plan_v1.json": "5c0ab7a6d788ebd5adf57f1fddc567ba700632e9",
+        "Tools/AssemblyShadow/R03IR/D5Local/run_d5_local.py": "519e6a4a8a11e3c821adb02fe1bf9e9d5b685b39",
+        "Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight.py": "81e7c3a2eaccb77bff2515c91b173558e4eeba2f"
+      }
+    }
+  },
+  "focusedCI": {
+    "schema": "R03AP1R2FocusedCIEvidenceV1",
+    "testedSourceCommit": "2a0053bbe350bc52b189ca4201542b2c93b5eca7",
+    "runId": 45751527263,
+    "jobId": 139680200608,
+    "runAttempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "createdUtc": "2026-11-26T03:51:16Z",
+    "updatedUtc": "2026-11-26T03:51:40Z",
+    "htmlUrl": "https://github.com/night-outlook/hybridclr_demo/actions/runs/45751527263",
+    "workflow": ".github/workflows/r03-b2-d5b-local-admission-source-host.yml",
+    "os": "Ubuntu 24.04.5",
+    "gitTools": {
+      "auditorGit": {
+        "path": "/bin/git",
+        "version": "git version 2.56.1"
+      },
+      "fixtureGit": {
+        "path": "/usr/bin/git",
+        "version": "git version 2.56.1"
+      },
+      "python": "3.11.18",
+      "schema": "R03AP1GitToolVersionsV1"
+    },
+    "tests": {
+      "R5": {
+        "testMethods": 94,
+        "footerSeconds": "0.191"
+      },
+      "AP1R2": {
+        "testMethods": 22,
+        "footerSeconds": "4.230"
+      }
+    },
+    "jobsPassed": 1,
+    "jobsReturned": 1,
+    "stepsPassed": 9,
+    "stepsReturned": 9,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Proposed D5-B physical admission contracts and no-execution controls",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "AP1 closed publication proposals using real temporary Git objects",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Verify no immutable user approval or Unity execution can be asserted",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13
+      }
+    ],
+    "publicationReceipt": {
+      "schema": "R03D5BActivationPublicationSourceHostV1",
+      "publicationTests": 22,
+      "fixtureClass": "TemporaryGitObjects",
+      "executionAuthority": false,
+      "liveRemoteHeadsVerified": false,
+      "UnityOrPlayerExecuted": false,
+      "result": "SourceOnlyProposalStructureTestsPassed"
+    },
+    "closedGateSummary": {
+      "schema": "R03D5BLocalAdmissionSourceHostV1",
+      "sourceTests": 94,
+      "approvedEnvelope": false,
+      "localExecution": false,
+      "unityOrPlayer": false,
+      "R03Accepted": false,
+      "result": "SourceOnlyDeniedLocalExecution"
+    },
+    "artifacts": {
+      "artifacts": []
+    },
+    "rawLog": {
+      "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_CI_JOB_139680200608_2026-11-25.log",
+      "bytes": 40426,
+      "sha256": "689a9416b5e9839973b400c86aa5e3a77e9146a164654dc1b481f6b053c9ce9d",
+      "gitBlob": "d17a51962bdf7de1e1cf3d506d0bca0b11bb6ea2",
+      "utf8BomRetained": true
+    },
+    "event": "push",
+    "headBranch": "codex/assembly-shadow-r01b-h1"
+  },
+  "regressionInventory": {
+    "retainedAP1Methods": 18,
+    "retainedAP1Helpers": 13,
+    "appendedAP1Methods": 4,
+    "appendedHelpers": 6,
+    "totalAP1Methods": 22,
+    "totalR5Methods": 94,
+    "combinedMethods": 116,
+    "newTestNames": [
+      "test_19_standard_commit_prefixes_match_git_topology",
+      "test_20_metadata_continuations_and_messages_do_not_add_topology",
+      "test_21_ordinary_stored_late_parents_reject_source_and_runner",
+      "test_22_late_duplicate_and_misordered_topology_headers_are_rejected"
+    ],
+    "normalStoredObjectCases": true,
+    "literalOnlyObjects": "Explicitly labelled rejection-only malformed fixtures",
+    "gitChecks": "Accepted source/runner topology compared with Git native observation; late-only ordinary stored object accepted by strict fsck but rejected by auditor"
+  },
+  "oldAuditorComparison": {
+    "evidenceClass": "ToolTranscriptObservation_NoRetainedRawLog",
+    "auditorBlob": "e4508a201081dfb87fc77a0b097fd92ce143beb6",
+    "newMethodsRun": 4,
+    "failedSubcaseAssertions": 17,
+    "errors": 0,
+    "failingMethods": [
+      19,
+      21,
+      22
+    ],
+    "positiveControlMethod": 20,
+    "excludedFromR2PassingMethodTotals": true
+  },
+  "preservedR5": {
+    "independentVerdict": "PassDryAdmissionSourceOnly",
+    "reviewPublicationCommit": "e63732d755c0ed283138e72d3e612609ea73a565",
+    "reviewedSourceCommit": "eaca19c08f41245c46dfacbf605cd80480bc3a92",
+    "remoteReadbackBlobs": {
+      "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission.py": "99746fe64976da313cbd0e1625f0fcc5a67bca62",
+      "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_local_admission.py": "06aaf4f3ef4df3cc7306fe8d83d56f35ce1e0e0c",
+      "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission_plan_v1.json": "5c0ab7a6d788ebd5adf57f1fddc567ba700632e9",
+      "Tools/AssemblyShadow/R03IR/D5Local/run_d5_local.py": "519e6a4a8a11e3c821adb02fe1bf9e9d5b685b39",
+      "Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight.py": "81e7c3a2eaccb77bff2515c91b173558e4eeba2f"
+    },
+    "namespaceLimit": "No-adoption proof only for unresolved mkdir; normal successful mkdir-to-open name replacement gap and later namespace mutation remain outside the guarantee. Controlled future parent custody is still required."
+  },
+  "approvalAndLocalGate": {
+    "APPROVED_EXECUTION_ENVELOPE_BLOB": null,
+    "APPROVED_LOCAL_HANDOFF_BLOB": null,
+    "custodySourceBlob": "185c1bd6603a8c43e4222d30ed8bb057ab94824a",
+    "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+    "D5BLocalExecution": "NotAuthorized",
+    "D5LocalValidation": "NotAuthorized",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false,
+    "realD5PlayerCases": {
+      "total": 18,
+      "NoCoverage": 18,
+      "Passed": 0
+    },
+    "candidateMacUnityIL2CPPBeeNativeMachOGCPIDPlayer": "NotRun",
+    "executableLocalHandoffIssued": false
+  },
+  "deferredPrimary": [
+    "Runner identity/custody and imported-module closure",
+    "Production plan and adapter authorization semantics",
+    "Q review/user-approval and custody validation",
+    "Live remote qualification and physical admission"
+  ],
+  "preservedLocalOwnedRecords": {
+    "Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md": "cbc4141a1f79c16c920d1723a81c5507b87b7e5f",
+    "Docs/AssemblyShadow/Handoff/RETURN_TO_WEB.md": "411948c65d0ab04a36ed0f43a8944b6c8291ed30"
+  },
+  "references": {
+    "gitCommitParser": "https://github.com/git/git/blob/v2.51.0/commit.c",
+    "gitCommitParserBlob": "d1e1061214b9ab410f0619d3d4f92ccc6cb98b58",
+    "gitNoWalkDocumentation": "https://github.com/git/git/blob/v2.51.0/Documentation/rev-list-options.adoc",
+    "gitNoWalkDocumentationBlob": "d9665d82c8dfbe051fc0c22ff816b272e45e73bd"
+  },
+  "artifacts": {
+    "primary": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_PRIMARY_2026-11-25.md",
+    "request": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_INDEPENDENT_REVIEW_REQUEST_2026-11-25.md",
+    "design": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_DESIGN_2026-11-25.md",
+    "evidence": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_EVIDENCE_2026-11-25.json",
+    "ci": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_CI_JOB_139680200608_2026-11-25.log",
+    "host": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_SOURCE_HOST_2026-11-25.log"
+  },
+  "publicationNote": "This evidence is published after the exact CI-tested source commit. Resolve the containing documentation commit from Git; do not relabel the later documentation HEAD as CI-tested.",
+  "otherWorkflowObservations": [
+    {
+      "id": 45751527339,
+      "path": ".github/workflows/r03-ir-host.yml",
+      "head": "2a0053bbe350bc52b189ca4201542b2c93b5eca7",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 45751527384,
+      "path": ".github/workflows/r03-k-host-contracts.yml",
+      "head": "2a0053bbe350bc52b189ca4201542b2c93b5eca7",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 45751527220,
+      "path": ".github/workflows/r03-k-sourcecheck.yml",
+      "head": "2a0053bbe350bc52b189ca4201542b2c93b5eca7",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 45751527225,
+      "path": ".github/workflows/r03-l-contracts.yml",
+      "head": "2a0053bbe350bc52b189ca4201542b2c93b5eca7",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 45751527251,
+      "path": ".github/workflows/r03-ir-native-b1-source-and-host.yml",
+      "head": "2a0053bbe350bc52b189ca4201542b2c93b5eca7",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "otherWorkflowQualification": "Recorded as observed metadata only; not counted as AP1 qualification.",
+  "connectorBootstrap": [
+    {
+      "repository": "night-outlook/hybridclr_demo",
+      "permissions": {
+        "admin": true,
+        "maintain": true,
+        "pull": true,
+        "push": true,
+        "triage": true
+      },
+      "featureHeadAtBootstrap": "6d0a5d1613c483119b41d774765ef9752adb7732",
+      "smoke": {
+        "branch": "codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0",
+        "base": "83ceb2ba9868d96bd35628908919978e16cc5d2f",
+        "commit": "a0c30160de9697d42223310bece86cd96c796d93",
+        "readbackMatched": true,
+        "execution": "Earlier in same conversation; exact remote ref freshly rechecked this cycle",
+        "cleanup": "Retained; Connector branch-delete capability unavailable"
+      }
+    },
+    {
+      "repository": "night-outlook/hybridclr",
+      "permissions": {
+        "admin": true,
+        "maintain": true,
+        "pull": true,
+        "push": true,
+        "triage": true
+      },
+      "featureHeadAtBootstrap": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+      "smoke": {
+        "branch": "codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0",
+        "base": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+        "commit": "c4197a1c19353ef4c6bf9f670bbb234dc8afc086",
+        "readbackMatched": true,
+        "execution": "Earlier in same conversation; exact remote ref freshly rechecked this cycle",
+        "cleanup": "Retained; Connector branch-delete capability unavailable"
+      }
+    },
+    {
+      "repository": "night-outlook/hybridclr_unity",
+      "permissions": {
+        "admin": true,
+        "maintain": true,
+        "pull": true,
+        "push": true,
+        "triage": true
+      },
+      "featureHeadAtBootstrap": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "smoke": {
+        "branch": "codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0",
+        "base": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "commit": "9a7da758fcad50f81708202d0a5ad30aa2f64ee1",
+        "readbackMatched": true,
+        "execution": "Earlier in same conversation; exact remote ref freshly rechecked this cycle",
+        "cleanup": "Retained; Connector branch-delete capability unavailable"
+      }
+    },
+    {
+      "repository": "night-outlook/il2cpp_plus",
+      "permissions": {
+        "admin": true,
+        "maintain": true,
+        "pull": true,
+        "push": true,
+        "triage": true
+      },
+      "featureHeadAtBootstrap": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3",
+      "smoke": {
+        "branch": "codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0",
+        "base": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3",
+        "commit": "ecf7c731b3bd2f20719b9363cf897ed6cf7304d8",
+        "readbackMatched": true,
+        "execution": "Earlier in same conversation; exact remote ref freshly rechecked this cycle",
+        "cleanup": "Retained; Connector branch-delete capability unavailable"
+      }
+    }
+  ],
+  "internalPrimaryPeerReview": {
+    "result": "NoConcreteRemainingContradictionFound",
+    "scope": "Read-only parser/test/workflow/design consistency; no additional test execution or independent project verdict"
+  }
+}

@@ -1,3 +1,17 @@
+# Current Primary — D5-B AP1 R2 topology correction complete; independent rereview PENDING (2026-11-25 America/Los_Angeles)
+
+[**R2 design**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_DESIGN_2026-11-25.md) · [**Primary report**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_PRIMARY_2026-11-25.md) · [**Independent R2 review request**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_INDEPENDENT_REVIEW_REQUEST_2026-11-25.md) · [**Machine evidence**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_EVIDENCE_2026-11-25.json).
+
+**`D5BActivationPublicationAP1R2Primary=SourceOnlyCIComplete_PendingIndependentRereview`.** Primary implemented the focused return for **D5B-AP1-IR-01**. The shared source/runner parser requires the initial tree and contiguous ordered parent prefix, rejects misplaced structural headers, and checks agreement with Git's bounded native parent observation. Four appended stored-object methods cover topology, metadata/messages, late headers and shallow-view disagreement.
+
+**Exact CI-tested source `hybridclr_demo@2a0053bbe350bc52b189ca4201542b2c93b5eca7`**, [Actions **45751527263**](https://github.com/night-outlook/hybridclr_demo/actions/runs/45751527263) / job **139680200608**, attempt **1**: **94/94 R5 methods + 22/22 AP1 methods**, **1/1 focused job and 9/9 returned steps successful**. Counts are taken from actual raw-log footers. All original **18 AP1 methods and 13 helpers** and the five R5 files remain unchanged. R5's independent **`PassDryAdmissionSourceOnly`** remains in force within its own scope. The later evidence/documentation HEAD is distinct from this tested source.
+
+**`D5BActivationPublicationAP1IndependentReview=ReturnRequired` remains the existing independent verdict.** Primary and CI do not close it. **`D5BActivationPublicationAP1R2IndependentReview=Pending`**; separate adjudication of D5B-AP1-IR-01 is next. Earlier pending checkpoints are historical; the prior independent return itself is preserved.
+
+**Local remains CLOSED:** both approval constants **None**; **`WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`**; `D5BLocalExecution=NotAuthorized`; `D5LocalValidation=NotAuthorized`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`. All **18 real D5 Player cases remain NoCoverage**; candidate macOS/Unity/IL2CPP/Bee/full VM/Mach-O/GC/PID/Player work remains **NotRun**. Runner identity/import closure, production plan authorization, Q authority/custody and physical qualification remain further Primary work after review. No executable Local handoff or later milestone is authorized.
+
+---
+
 # Independent D5-B AP1 proposal review — ReturnRequired (2026-11-25 America/Los_Angeles)
 
 [**Complete independent AP1 report**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_INDEPENDENT_REVIEW_2026-11-25.md) · [**Independent machine evidence**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_INDEPENDENT_EVIDENCE_2026-11-25.json).

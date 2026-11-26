@@ -1,5 +1,62 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## AP1 R2 topology correction awaits independent rereview (2026-11-25 America/Los_Angeles)
+
+**NOT AN EXECUTABLE LOCAL HANDOFF. NO LOCAL COMMANDS.** This checkpoint records the focused Primary correction for **D5B-AP1-IR-01**. Read the [R2 design](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_DESIGN_2026-11-25.md), [Primary report](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_PRIMARY_2026-11-25.md), [machine evidence](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_EVIDENCE_2026-11-25.json) and [independent R2 review request](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_INDEPENDENT_REVIEW_REQUEST_2026-11-25.md).
+
+The shared source/runner parser requires the initial tree and contiguous ordered parent prefix, rejects misplaced structural headers, and compares parentage with a bounded native Git observation. Four added stored-object methods cover normal topology, metadata/messages, late headers and unsupported layouts. The original 18 AP1 methods, 13 helpers and five R5 files are preserved exactly. Source changes are limited to the AP1 auditor, appended tests, focused workflow and R2 design.
+
+### Implementation tuple and historical paths
+
+All repositories use **`codex/assembly-shadow-r01b-h1`**. The table records the implementation tuple qualified by source-only evidence. Its later evidence/documentation publication is a separate commit: resolve the containing commit from the verified remote branch for the review handoff, and do not label that documentation HEAD as CI-tested or Local-authorized.
+
+| Repository | Implementation source commit | Historical candidate path — current physical state Unverified |
+|---|---|---|
+| night-outlook/hybridclr_demo | `2a0053bbe350bc52b189ca4201542b2c93b5eca7` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` |
+| night-outlook/hybridclr | `c3c232023724cbad565b85e9b2c3beea8ce2789a` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` |
+| night-outlook/hybridclr_unity | `948c0e3b4f8891481301770115e8ba4945eea6de` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` |
+| night-outlook/il2cpp_plus | `1268dd417ffe9090fcd9ea2d49542c97ed3cccb3` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` |
+
+Repository identity, feature refs and Connector pull/push permissions were verified. The three sibling commits are unchanged. Existing four-repository disposable Connector smoke refs were read back again; the Primary report records the retained branches and commits. Package/native/build pins are unchanged; historical Unity/toolchain/base-root pins remain provenance without fresh physical qualification.
+
+### Completed checks and next review
+
+[Focused Actions **45751527263**](https://github.com/night-outlook/hybridclr_demo/actions/runs/45751527263), job **139680200608**, attempt **1**, passed **94 R5 and 22 AP1 methods**, **1/1 job and 9/9 returned steps** on **`2a0053bbe350bc52b189ca4201542b2c93b5eca7`**. The retained Primary host run passed the same 116 methods. Both Git executable selections are recorded. The public execution wrapper exits **2**, returns **`NotAuthorized`**, and creates no output.
+
+The existing **AP1 ReturnRequired** remains binding pending separate R2 adjudication. R5's **`PassDryAdmissionSourceOnly`** remains within its reviewed source scope. An internal Primary peer check is not the independent project decision.
+
+The next agent performs independent source/design/test/raw-CI review only: adjudicate D5B-AP1-IR-01 for both roles; inspect actual stored-object/native parent agreement and accepted metadata/messages; verify preserved test bytes and exact-source CI provenance. Any new finding should record exact commit/blob, object-layout class, native parent observation, parser/full-auditor disposition and retained source-host logs where executed.
+
+Expected outputs are an R2 independent report and machine evidence in the existing `Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/` directory, plus README/CURRENT_STATUS verdict links. Review publication must preserve implementation, approval constants, sibling repos and Local-owned validation/return records. Non-trivial corrections return to Primary.
+
+**Known limits:** strict parsing rejects unsupported header layouts or effective shallow/graft disagreement. A bounded native observation is not a namespace lock or live remote qualification. R5 retains the normal successful mkdir-to-open name replacement gap. Runner identity/import closure, production plan/adapter authorization, Q review/user-decision validation and fresh physical qualification remain subsequent Primary work.
+
+**Actual Local validation remains deferred.** macOS admission, preview/dry admission, Unity/IL2CPP/Bee/native builds and Player work require later approved authority and a freshly qualified exact handoff. No bounded Local fix or candidate execution is permitted at this checkpoint.
+
+### Binding state and read order
+
+```text
+D5BActivationPublicationAP1IndependentReview=ReturnRequired
+D5BActivationPublicationAP1R2IndependentReview=Pending
+D5BDryAdmissionR5IndependentReview=PassDryAdmissionSourceOnly
+APPROVED_EXECUTION_ENVELOPE_BLOB=None
+APPROVED_LOCAL_HANDOFF_BLOB=None
+WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION
+D5BLocalExecution=NotAuthorized
+D5LocalValidation=NotAuthorized
+R03Accepted=false
+H2Passed=false
+ReadyForHumanReviewGate=false
+```
+
+All **18 real D5 Player cases remain NoCoverage**. Candidate macOS/Unity/IL2CPP/Bee/full VM/Mach-O/GC/PID/Player work remains **NotRun**. Historical native B1 oneuse-12 evidence does not qualify this D5 candidate. No production E/A/Q publication, activation ref, approved runner, output parent or one-use name is supplied.
+
+**Read order:** README → existing AP1 independent ReturnRequired report → R2 design → R2 Primary report/machine evidence/raw logs → R2 independent request → retained R5 independent report. Earlier sections below are historical and cannot authorize execution. Stop after separate independent review publication; no Local work, Human Review Gate or later milestone is authorized.
+
+---
+
+# Primary Implementation → Local Validation — CLOSED / NO EXECUTION
+
 ## R5 independent source review complete; AP1 publication proposal awaits independent protocol review (2026-11-25 America/Los_Angeles)
 
 **NOT AN EXECUTABLE LOCAL HANDOFF. NO LOCAL COMMANDS.** R5 is independently `PassDryAdmissionSourceOnly`; its former pending-review labels below are historical. The newly completed [AP1 proposal design](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_DESIGN_2026-11-25.md), [Primary implementation/evidence](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_PRIMARY_2026-11-25.md) and [independent review request](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_INDEPENDENT_REVIEW_REQUEST_2026-11-25.md) address the separate source/envelope/runner publication dependency.
