@@ -1,5 +1,56 @@
 # Primary Implementation → Local Validation — CLOSED / NO EXECUTION
 
+## Current AP2 checkpoint: source-only complete; independent AP2 review Pending (2026-11-25 America/Los_Angeles)
+
+**NOT AN EXECUTABLE LOCAL HANDOFF. NO LOCAL COMMANDS.** The current objective is independent assessment of AP2's runner artifact closure and bounded checkout observations. AP1 R2 already passed independent review as `PassActivationPublicationProposalOnly` at `653930479b37230d757ed8a089e320b0ac53998b`, closing `D5B-AP1-IR-01`; R5 remains `PassDryAdmissionSourceOnly`. The older pending checkpoints below are preserved history and do not supersede those decisions.
+
+Read the [AP2 design](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CLOSURE_AP2_DESIGN_2026-11-25.md), [Primary report](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CLOSURE_AP2_PRIMARY_2026-11-25.md), [machine evidence](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CLOSURE_AP2_EVIDENCE_2026-11-25.json) and [independent AP2 request](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_RUNNER_CLOSURE_AP2_INDEPENDENT_REVIEW_REQUEST_2026-11-25.md).
+
+### Source tuple, paths and publication identity
+
+| Repository | Branch | Exact source commit for this review | Historical candidate path — physical state Unverified |
+|---|---|---|---|
+| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | `8a856ab6b50fd29ece0b17c86cd3fd359fc9ba3a` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` |
+| `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` | `c3c232023724cbad565b85e9b2c3beea8ce2789a` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` |
+| `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `948c0e3b4f8891481301770115e8ba4945eea6de` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` |
+| `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `1268dd417ffe9090fcd9ea2d49542c97ed3cccb3` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` |
+
+This table identifies the source qualified by the reported host/CI evidence. The later commit containing this checkpoint is a documentation/evidence-only successor; resolve its latest pushed SHA through the feature ref and use that exact publication HEAD in the independent review handoff. Do not label the successor as this CI-tested source or an approved H/A tuple. Connector identity, branch and pull/push access were verified for all four repositories; the sibling source pins are unchanged. No physical Mac checkout was inspected.
+
+Source snapshot used by Primary: `/workspace/scratch/a6fad0908883/ap2_source`. Package, overlay, native and build pins remain the preserved reviewed/historical inputs. No Unity package/native/build outputs were regenerated or qualified. Existing same-conversation four-repository Connector smoke refs were read back; retained branch/commit details are in the Primary report. Smoke proof is operational only.
+
+### Implementation and files
+
+The four-path source increment adds `Tools/AssemblyShadow/R03IR/D5Local/d5b_runner_closure.py`, `test_d5b_runner_closure.py`, the AP2 design, and updates `.github/workflows/r03-b2-d5b-local-admission-source-host.yml`. The nine baseline writer/wrapper/plan/preflight/profile/custody/AP1 implementation-and-test files remain exact.
+
+C follows A externally and binds H/A/E, the six-artifact roster, canonical repository identity/ref and location literals. Candidate modules remain inert. AP2 checks fixed reviewed bytes, ordinary checkout identity, full raw tree/index/worktree equality, strict artifact descriptors and protected-root separation. An internal peer finding led to removal of Git worktree-conversion commands; verifier-owned inventory/hash reads now establish the checkout observation.
+
+Supported observations require UTF-8 paths, single-link leaves, owner-execute-bit equality for general tracked regular files, literal tracked-symlink bytes without following targets, and raw Git materialization. Each scan is bounded by **256 MiB/regular file, 4 GiB total bytes, 100,000 entries and depth 64**. The six artifact files additionally require **100644**, no execute bits and **1 MiB each**. These are scan limits, not a process sandbox or continuous custody.
+
+### Completed verification and expected review evidence
+
+Focused [Actions 45774292828, job 139754092541](https://github.com/night-outlook/hybridclr_demo/actions/runs/45774292828/job/139754092541), attempt **1**, passed **94 R5 / 22 AP1 R2 / 25 AP2 methods** on `8a856ab6b50fd29ece0b17c86cd3fd359fc9ba3a`, with **1 successful job / 10 successful returned steps**. Primary host passed the same methods. Host seconds: **0.189 / 11.934 / 19.305**; CI seconds: **0.188 / 4.220 / 6.797**. Both exact raw logs, method names, blobs and tool versions are archived with the machine evidence.
+
+The existing wrapper execution gate exits **2**, returns `NotAuthorized`, reports `outputCreated=false`, and leaves the unapproved-envelope path absent. Static checks cover the two new Python files, workflow YAML, all four Bash run blocks and whitespace. Source hashes remain stable across tests. Outer suites use `-B`; AP2 tests 19/20 directly exercise the production CLI's required `-I -S -B`.
+
+Required next validation is **independent source review and bounded synthetic source-host fixtures only**, as specified in the request. Its report should bind the exact source, publication HEAD, all four repository refs, raw evidence, method inventory and a scoped verdict. A material finding returns to Primary with the concrete defect, source identities and reproducing fixture evidence. Do not reinterpret temporary synthetic fixtures as Mac/Unity/Player qualification.
+
+### Limits, ownership, permitted work and stop conditions
+
+Artifact equality does not establish a future candidate's runtime imports, executable closure, full source admission, live refs or exclusive custody. The verifier installation, Python/stdlib, selected Git executable and OS remain trusted infrastructure. Snapshot/recheck and ABA limitations remain. C's external blob pin is byte identity; it grants no authority.
+
+No real-environment Local validation is authorized by this checkpoint. No Local fixes, builds, Player launch, checkout reset/clean, dependency regeneration, source/approval repinning, activation publication or plan changes are permitted. Preserve Local-owned `LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md`. Non-trivial source changes return to Primary; independent review writes its own bounded verdict/evidence.
+
+Required evidence locations are the AP2 report/evidence/raw-log files under `Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/`; a new independent review record belongs beside them. No candidate evidence output directory is created or authorized. Historical B1 evidence remains historical. No candidate selection is offered: AP2 is an unintegrated companion and an independently reviewed forward revert is the recovery path if this increment must be removed.
+
+**All gates remain closed:** `APPROVED_EXECUTION_ENVELOPE_BLOB=None`; `APPROVED_LOCAL_HANDOFF_BLOB=None`; `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`; `D5BLocalExecution=NotAuthorized`; `D5LocalValidation=NotAuthorized`; `R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`. Current real Unity/native/Player work is **NotRun**, and **18 Player cells remain NoCoverage / 0 passed**.
+
+Next-agent read order: **README → this current checkpoint → AP2 design → Primary report and exact raw evidence → AP2 independent review request → pinned source**. Requested verdict: `PassRunnerArtifactClosureSourceOnly` or `ReturnRequired`. Stop after independent publication/readback; no Local integration or execution follows automatically.
+
+---
+
+# Primary Implementation → Local Validation — CLOSED / NO EXECUTION
+
 ## AP1 R2 topology correction awaits independent rereview (2026-11-25 America/Los_Angeles)
 
 **NOT AN EXECUTABLE LOCAL HANDOFF. NO LOCAL COMMANDS.** This checkpoint records the focused Primary correction for **D5B-AP1-IR-01**. Read the [R2 design](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_DESIGN_2026-11-25.md), [Primary report](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_PRIMARY_2026-11-25.md), [machine evidence](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_EVIDENCE_2026-11-25.json) and [independent R2 review request](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_ACTIVATION_PUBLICATION_AP1_R2_INDEPENDENT_REVIEW_REQUEST_2026-11-25.md).
