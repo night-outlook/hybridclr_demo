@@ -1,0 +1,449 @@
+﻿2026-11-26T09:15:01.0999312Z Current runner version: '2.338.2'
+2026-11-26T09:15:01.1015756Z ##[group]Runner Image Provisioner
+2026-11-26T09:15:01.1016413Z Hosted Compute Agent
+2026-11-26T09:15:01.1016853Z Version: 20261111.635
+2026-11-26T09:15:01.1017346Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+2026-11-26T09:15:01.1017880Z Build Date: 2026-11-11T01:49:01Z
+2026-11-26T09:15:01.1018404Z Worker ID: {e826c375-1176-47a4-b8d5-cac807df1113}
+2026-11-26T09:15:01.1018890Z Region: us-west-2
+2026-11-26T09:15:01.1019348Z Cloud: AWS
+2026-11-26T09:15:01.1019712Z ##[endgroup]
+2026-11-26T09:15:01.1020771Z ##[group]Operating System
+2026-11-26T09:15:01.1021199Z Ubuntu
+2026-11-26T09:15:01.1021545Z 24.04.5
+2026-11-26T09:15:01.1021948Z LTS
+2026-11-26T09:15:01.1022312Z ##[endgroup]
+2026-11-26T09:15:01.1022693Z ##[group]Runner Image
+2026-11-26T09:15:01.1023117Z Image: ubuntu-24.04
+2026-11-26T09:15:01.1023507Z Version: 20261116.133.1
+2026-11-26T09:15:01.1024716Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261116.133/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-26T09:15:01.1025860Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261116.133
+2026-11-26T09:15:01.1026560Z ##[endgroup]
+2026-11-26T09:15:01.1027373Z ##[group]GITHUB_TOKEN Permissions
+2026-11-26T09:15:01.1029019Z Contents: read
+2026-11-26T09:15:01.1029488Z Metadata: read
+2026-11-26T09:15:01.1029904Z ##[endgroup]
+2026-11-26T09:15:01.1031463Z Secret source: Actions
+2026-11-26T09:15:01.1032124Z Cache mode: write
+2026-11-26T09:15:01.1032605Z Prepare workflow directory
+2026-11-26T09:15:01.1257105Z Prepare all required actions
+2026-11-26T09:15:01.1292643Z Getting action download info
+2026-11-26T09:15:01.4883107Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-26T09:15:02.7133591Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-26T09:15:02.9750481Z Complete job name: future-admission-source-host
+2026-11-26T09:15:03.0381991Z ##[group]Run actions/checkout@v4
+2026-11-26T09:15:03.0382699Z with:
+2026-11-26T09:15:03.0383193Z   path: _demo
+2026-11-26T09:15:03.0384719Z   sparse-checkout: Tools/AssemblyShadow/R03IR/D5Local/
+Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight.py
+Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight_v1.json
+
+2026-11-26T09:15:03.0386109Z   sparse-checkout-cone-mode: false
+2026-11-26T09:15:03.0386668Z   repository: night-outlook/hybridclr_demo
+2026-11-26T09:15:03.0390148Z   token: ***
+2026-11-26T09:15:03.0390571Z   ssh-strict: true
+2026-11-26T09:15:03.0390983Z   ssh-user: git
+2026-11-26T09:15:03.0391396Z   persist-credentials: true
+2026-11-26T09:15:03.0391868Z   clean: true
+2026-11-26T09:15:03.0392281Z   fetch-depth: 1
+2026-11-26T09:15:03.0392694Z   fetch-tags: false
+2026-11-26T09:15:03.0393125Z   show-progress: true
+2026-11-26T09:15:03.0393553Z   lfs: false
+2026-11-26T09:15:03.0394152Z   submodules: false
+2026-11-26T09:15:03.0394882Z   set-safe-directory: true
+2026-11-26T09:15:03.0395385Z   allow-unsafe-pr-checkout: false
+2026-11-26T09:15:03.0396181Z ##[endgroup]
+2026-11-26T09:15:05.3427621Z Syncing repository: night-outlook/hybridclr_demo
+2026-11-26T09:15:05.3429203Z ##[group]Getting Git version info
+2026-11-26T09:15:05.3429635Z Working directory is '/home/runner/work/hybridclr_demo/hybridclr_demo/_demo'
+2026-11-26T09:15:05.3430281Z [command]/usr/bin/git version
+2026-11-26T09:15:05.5983396Z git version 2.56.1
+2026-11-26T09:15:05.5997752Z ##[endgroup]
+2026-11-26T09:15:05.6007619Z Temporarily overriding HOME='/home/runner/work/_temp/b38940e3-93da-4476-9a6e-a7d3def13cb2' before making global git config changes
+2026-11-26T09:15:05.6008368Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-26T09:15:05.6011756Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hybridclr_demo/hybridclr_demo/_demo
+2026-11-26T09:15:05.6389096Z ##[group]Initializing the repository
+2026-11-26T09:15:05.6392772Z [command]/usr/bin/git init /home/runner/work/hybridclr_demo/hybridclr_demo/_demo
+2026-11-26T09:15:05.7138450Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-26T09:15:05.7139273Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-26T09:15:05.7139857Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-26T09:15:05.7140287Z hint: call:
+2026-11-26T09:15:05.7140777Z hint:
+2026-11-26T09:15:05.7141255Z hint: 	git config --global init.defaultBranch <name>
+2026-11-26T09:15:05.7141617Z hint:
+2026-11-26T09:15:05.7142045Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-26T09:15:05.7142532Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-26T09:15:05.7142959Z hint:
+2026-11-26T09:15:05.7143257Z hint: 	git branch -m <name>
+2026-11-26T09:15:05.7143553Z hint:
+2026-11-26T09:15:05.7143963Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-26T09:15:05.7147539Z Initialized empty Git repository in /home/runner/work/hybridclr_demo/hybridclr_demo/_demo/.git/
+2026-11-26T09:15:05.7155486Z [command]/usr/bin/git remote add origin https://github.com/night-outlook/hybridclr_demo
+2026-11-26T09:15:05.7187418Z ##[endgroup]
+2026-11-26T09:15:05.7187890Z ##[group]Disabling automatic garbage collection
+2026-11-26T09:15:05.7189463Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-26T09:15:05.7211721Z ##[endgroup]
+2026-11-26T09:15:05.7212178Z ##[group]Setting up auth
+2026-11-26T09:15:05.7216267Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-26T09:15:05.7241194Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-26T09:15:05.9737871Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-26T09:15:05.9762448Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-26T09:15:05.9909893Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-26T09:15:05.9934691Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-26T09:15:06.0083581Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-26T09:15:06.0108581Z ##[endgroup]
+2026-11-26T09:15:06.0108958Z ##[group]Fetching the repository
+2026-11-26T09:15:06.0118831Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +bcf3a9470a12758b210738476d18f80bf60d2eaf:refs/remotes/origin/codex/assembly-shadow-r01b-h1
+2026-11-26T09:15:07.0815772Z From https://github.com/night-outlook/hybridclr_demo
+2026-11-26T09:15:07.0816574Z  * [new ref]           bcf3a9470a12758b210738476d18f80bf60d2eaf -> origin/codex/assembly-shadow-r01b-h1
+2026-11-26T09:15:07.0819517Z ##[endgroup]
+2026-11-26T09:15:07.0822169Z ##[group]Determining the checkout info
+2026-11-26T09:15:07.0822746Z ##[endgroup]
+2026-11-26T09:15:07.0823353Z ##[group]Setting up sparse checkout
+2026-11-26T09:15:07.0828603Z [command]/usr/bin/git config core.sparseCheckout true
+2026-11-26T09:15:07.0857394Z [command]/usr/bin/git rev-parse --git-path info/sparse-checkout
+2026-11-26T09:15:07.0876028Z .git/info/sparse-checkout
+2026-11-26T09:15:07.0881869Z ##[endgroup]
+2026-11-26T09:15:07.0882309Z ##[group]Checking out the ref
+2026-11-26T09:15:07.0922893Z [command]/usr/bin/git checkout --progress --force -B codex/assembly-shadow-r01b-h1 refs/remotes/origin/codex/assembly-shadow-r01b-h1
+2026-11-26T09:15:07.9524047Z Switched to a new branch 'codex/assembly-shadow-r01b-h1'
+2026-11-26T09:15:07.9527038Z branch 'codex/assembly-shadow-r01b-h1' set up to track 'origin/codex/assembly-shadow-r01b-h1'.
+2026-11-26T09:15:07.9551735Z ##[endgroup]
+2026-11-26T09:15:07.9589091Z [command]/usr/bin/git log -1 --format=%H
+2026-11-26T09:15:07.9610083Z bcf3a9470a12758b210738476d18f80bf60d2eaf
+2026-11-26T09:15:07.9803335Z ##[group]Run actions/setup-python@v5
+2026-11-26T09:15:07.9803592Z with:
+2026-11-26T09:15:07.9803851Z   python-version: 3.11
+2026-11-26T09:15:07.9804121Z   check-latest: false
+2026-11-26T09:15:07.9806377Z   token: ***
+2026-11-26T09:15:07.9806651Z   update-environment: true
+2026-11-26T09:15:07.9806900Z   allow-prereleases: false
+2026-11-26T09:15:07.9807154Z   freethreaded: false
+2026-11-26T09:15:07.9807392Z ##[endgroup]
+2026-11-26T09:15:08.0782565Z ##[group]Installed versions
+2026-11-26T09:15:08.1856872Z (node:2157) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-26T09:15:08.1857605Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-26T09:15:08.1858153Z Successfully set up CPython (3.11.18)
+2026-11-26T09:15:08.1858773Z ##[endgroup]
+2026-11-26T09:15:08.1977233Z ##[group]Run set -euo pipefail
+2026-11-26T09:15:08.1977712Z [36;1mset -euo pipefail[0m
+2026-11-26T09:15:08.1978265Z [36;1mtool=_demo/Tools/AssemblyShadow/R03IR/D5Local[0m
+2026-11-26T09:15:08.1978825Z [36;1mpython3 -B "$tool/test_d5b_local_admission.py" -v 2>&1 |[0m
+2026-11-26T09:15:08.1979337Z [36;1m  tee "$RUNNER_TEMP/d5b-admission-tests.log"[0m
+2026-11-26T09:15:08.1979893Z [36;1mgrep -q 'Ran 94 tests in' "$RUNNER_TEMP/d5b-admission-tests.log"[0m
+2026-11-26T09:15:08.1980460Z [36;1mgrep -q '^OK$' "$RUNNER_TEMP/d5b-admission-tests.log"[0m
+2026-11-26T09:15:08.4515069Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-26T09:15:08.4515561Z env:
+2026-11-26T09:15:08.4515855Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:08.4516282Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-26T09:15:08.4516755Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:08.4517223Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:08.4517643Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:08.4517978Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-26T09:15:08.4518369Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-26T09:15:08.4518618Z   GIT_TERMINAL_PROMPT: 0
+2026-11-26T09:15:08.4518848Z ##[endgroup]
+2026-11-26T09:15:09.8130016Z test_01_exact_plan_git_blob (__main__.D5BLocalSourceOnly.test_01_exact_plan_git_blob) ... ok
+2026-11-26T09:15:09.8133151Z test_02_plan_source_provenance_and_r2_gate (__main__.D5BLocalSourceOnly.test_02_plan_source_provenance_and_r2_gate) ... ok
+2026-11-26T09:15:09.8138521Z test_03_all_18_real_player_cases_no_coverage (__main__.D5BLocalSourceOnly.test_03_all_18_real_player_cases_no_coverage) ... ok
+2026-11-26T09:15:09.8143468Z test_04_no_approval_authority_in_any_plan_or_code (__main__.D5BLocalSourceOnly.test_04_no_approval_authority_in_any_plan_or_code) ... ok
+2026-11-26T09:15:09.8149122Z test_05_duplicate_plan_json_key_rejected (__main__.D5BLocalSourceOnly.test_05_duplicate_plan_json_key_rejected) ... ok
+2026-11-26T09:15:09.8160570Z test_06_valid_proposed_root_custody_read_only (__main__.D5BLocalSourceOnly.test_06_valid_proposed_root_custody_read_only) ... ok
+2026-11-26T09:15:09.8166345Z test_07_missing_history_role_rejected (__main__.D5BLocalSourceOnly.test_07_missing_history_role_rejected) ... ok
+2026-11-26T09:15:09.8173978Z test_08_historical_base_relationship_rejected (__main__.D5BLocalSourceOnly.test_08_historical_base_relationship_rejected) ... ok
+2026-11-26T09:15:09.8181124Z test_09_duplicate_historical_role_rejected (__main__.D5BLocalSourceOnly.test_09_duplicate_historical_role_rejected) ... ok
+2026-11-26T09:15:09.8186701Z test_10_workspace_symlink_alias_rejected (__main__.D5BLocalSourceOnly.test_10_workspace_symlink_alias_rejected) ... ok
+2026-11-26T09:15:09.8205895Z test_11_evidence_parent_under_old_b1_rejected (__main__.D5BLocalSourceOnly.test_11_evidence_parent_under_old_b1_rejected) ... ok
+2026-11-26T09:15:09.8207183Z test_12_evidence_parent_under_source_rejected (__main__.D5BLocalSourceOnly.test_12_evidence_parent_under_source_rejected) ... ok
+2026-11-26T09:15:09.8213945Z test_13_existing_oneuse_output_rejected (__main__.D5BLocalSourceOnly.test_13_existing_oneuse_output_rejected) ... ok
+2026-11-26T09:15:09.8222282Z test_14_symlink_oneuse_output_rejected (__main__.D5BLocalSourceOnly.test_14_symlink_oneuse_output_rejected) ... ok
+2026-11-26T09:15:09.8236536Z test_15_noncanonical_output_name_rejected (__main__.D5BLocalSourceOnly.test_15_noncanonical_output_name_rejected) ... ok
+2026-11-26T09:15:09.8244941Z test_16_original_s_must_be_outside_active_checkout (__main__.D5BLocalSourceOnly.test_16_original_s_must_be_outside_active_checkout) ... ok
+2026-11-26T09:15:09.8249924Z test_17_parse_exact_single_remote_ref (__main__.D5BLocalSourceOnly.test_17_parse_exact_single_remote_ref) ... ok
+2026-11-26T09:15:09.8255005Z test_18_stale_remote_ref_rejected (__main__.D5BLocalSourceOnly.test_18_stale_remote_ref_rejected) ... ok
+2026-11-26T09:15:09.8260135Z test_19_wrong_remote_branch_rejected (__main__.D5BLocalSourceOnly.test_19_wrong_remote_branch_rejected) ... ok
+2026-11-26T09:15:09.8265225Z test_20_ambiguous_remote_ref_lines_rejected (__main__.D5BLocalSourceOnly.test_20_ambiguous_remote_ref_lines_rejected) ... ok
+2026-11-26T09:15:09.8270547Z test_21_malformed_remote_sha_rejected (__main__.D5BLocalSourceOnly.test_21_malformed_remote_sha_rejected) ... ok
+2026-11-26T09:15:09.8278526Z test_22_original_s_clean_source_record (__main__.D5BLocalSourceOnly.test_22_original_s_clean_source_record) ... ok
+2026-11-26T09:15:09.8286038Z test_23_original_s_wrong_sha_rejected (__main__.D5BLocalSourceOnly.test_23_original_s_wrong_sha_rejected) ... ok
+2026-11-26T09:15:09.8291093Z test_24_host_must_be_macos_arm64 (__main__.D5BLocalSourceOnly.test_24_host_must_be_macos_arm64) ... ok
+2026-11-26T09:15:09.8305797Z test_25_machine_preview_does_not_launch_unity (__main__.D5BLocalSourceOnly.test_25_machine_preview_does_not_launch_unity) ... ok
+2026-11-26T09:15:09.8315344Z test_26_machine_disk_threshold_rejected (__main__.D5BLocalSourceOnly.test_26_machine_disk_threshold_rejected) ... ok
+2026-11-26T09:15:09.8325860Z test_27_live_source_join_uses_four_exact_refs (__main__.D5BLocalSourceOnly.test_27_live_source_join_uses_four_exact_refs) ... ok
+2026-11-26T09:15:09.8334889Z test_28_live_remote_sha_drift_rejected (__main__.D5BLocalSourceOnly.test_28_live_remote_sha_drift_rejected) ... ok
+2026-11-26T09:15:09.8341445Z test_29_reject_source_gate_missing_receipt_producer (__main__.D5BLocalSourceOnly.test_29_reject_source_gate_missing_receipt_producer) ... ok
+2026-11-26T09:15:09.8347300Z test_30_approval_requires_immutable_compile_time_blob (__main__.D5BLocalSourceOnly.test_30_approval_requires_immutable_compile_time_blob) ... ok
+2026-11-26T09:15:09.8352766Z test_31_approved_envelope_fake_status_cannot_open (__main__.D5BLocalSourceOnly.test_31_approved_envelope_fake_status_cannot_open) ... ok
+2026-11-26T09:15:09.8358457Z test_32_oneuse_receipt_binds_exact_paths_and_unity (__main__.D5BLocalSourceOnly.test_32_oneuse_receipt_binds_exact_paths_and_unity) ... ok
+2026-11-26T09:15:09.8364389Z test_33_oneuse_receipt_wrong_unity_hash_rejected (__main__.D5BLocalSourceOnly.test_33_oneuse_receipt_wrong_unity_hash_rejected) ... ok
+2026-11-26T09:15:09.8370024Z test_34_oneuse_receipt_wrong_historical_s_rejected (__main__.D5BLocalSourceOnly.test_34_oneuse_receipt_wrong_historical_s_rejected) ... ok
+2026-11-26T09:15:09.8417911Z test_35_oneuse_output_exclusivity_and_no_player (__main__.D5BLocalSourceOnly.test_35_oneuse_output_exclusivity_and_no_player) ... ok
+2026-11-26T09:15:09.8427024Z test_36_execute_cli_denied_before_envelope_or_filesystem (__main__.D5BLocalSourceOnly.test_36_execute_cli_denied_before_envelope_or_filesystem) ... {"D5BLocalExecution": "NotAuthorized", "R03Accepted": false, "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION", "kind": "R03D5BLocalAdmissionFailureV1", "outputCreated": false, "reason": "D5-B Local execution is not authorized", "result": "NotAuthorized", "retryAllowed": false, "schemaVersion": 1}
+2026-11-26T09:15:09.8428412Z ok
+2026-11-26T09:15:09.8436125Z test_37_preview_rejects_spurious_approval_envelope (__main__.D5BLocalSourceOnly.test_37_preview_rejects_spurious_approval_envelope) ... {"D5BLocalExecution": "NotAuthorized", "R03Accepted": false, "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION", "kind": "R03D5BLocalAdmissionFailureV1", "outputCreated": false, "reason": "Read-only preview must not accept approval-like inputs", "result": "BlockedBeforeBuild", "retryAllowed": false, "schemaVersion": 1}
+2026-11-26T09:15:09.8437339Z ok
+2026-11-26T09:15:09.8465076Z test_38_preview_requires_complete_request (__main__.D5BLocalSourceOnly.test_38_preview_requires_complete_request) ... ok
+2026-11-26T09:15:09.8465743Z test_39_read_only_inspect_preview_no_output (__main__.D5BLocalSourceOnly.test_39_read_only_inspect_preview_no_output) ... ok
+2026-11-26T09:15:09.8466558Z test_40_extra_source_pin_or_wrong_hybridclr_rejected (__main__.D5BLocalSourceOnly.test_40_extra_source_pin_or_wrong_hybridclr_rejected) ... ok
+2026-11-26T09:15:09.8467252Z test_41_wrong_second_historical_root_blocks_receipt (__main__.D5BLocalSourceOnly.test_41_wrong_second_historical_root_blocks_receipt) ... ok
+2026-11-26T09:15:09.8477237Z test_42_unparseable_xcode_version_rejected (__main__.D5BLocalSourceOnly.test_42_unparseable_xcode_version_rejected) ... ok
+2026-11-26T09:15:09.8488826Z test_43_xcode_license_rejection_fails_closed (__main__.D5BLocalSourceOnly.test_43_xcode_license_rejection_fails_closed) ... ok
+2026-11-26T09:15:09.8496052Z test_44_non_string_historical_path_rejected_before_custody (__main__.D5BLocalSourceOnly.test_44_non_string_historical_path_rejected_before_custody) ... ok
+2026-11-26T09:15:09.8502952Z test_45_non_string_workspace_rejected_before_custody (__main__.D5BLocalSourceOnly.test_45_non_string_workspace_rejected_before_custody) ... ok
+2026-11-26T09:15:09.8514171Z test_46_standard_sdk_symlink_is_resolved_not_rejected (__main__.D5BLocalSourceOnly.test_46_standard_sdk_symlink_is_resolved_not_rejected) ... ok
+2026-11-26T09:15:09.8520137Z test_47_test_only_frozen_envelope_semantics (__main__.D5BLocalSourceOnly.test_47_test_only_frozen_envelope_semantics) ... ok
+2026-11-26T09:15:09.8526065Z test_48_approved_envelope_one_byte_drift_rejected (__main__.D5BLocalSourceOnly.test_48_approved_envelope_one_byte_drift_rejected) ... ok
+2026-11-26T09:15:09.8531632Z test_49_test_only_approval_cannot_skip_user_review (__main__.D5BLocalSourceOnly.test_49_test_only_approval_cannot_skip_user_review) ... ok
+2026-11-26T09:15:09.8537383Z test_50_test_only_approval_cannot_change_native_pin (__main__.D5BLocalSourceOnly.test_50_test_only_approval_cannot_change_native_pin) ... ok
+2026-11-26T09:15:09.8542741Z test_51_test_only_approval_cannot_omit_historical_root (__main__.D5BLocalSourceOnly.test_51_test_only_approval_cannot_omit_historical_root) ... ok
+2026-11-26T09:15:09.8548347Z test_52_test_only_approval_cannot_claim_player_scope (__main__.D5BLocalSourceOnly.test_52_test_only_approval_cannot_claim_player_scope) ... ok
+2026-11-26T09:15:09.8553611Z test_53_direct_seal_helper_denied_without_reviewed_envelope (__main__.D5BLocalSourceOnly.test_53_direct_seal_helper_denied_without_reviewed_envelope) ... ok
+2026-11-26T09:15:09.8559567Z test_54_inner_seal_rejects_different_approval_dict (__main__.D5BLocalSourceOnly.test_54_inner_seal_rejects_different_approval_dict) ... ok
+2026-11-26T09:15:09.8566116Z test_55_inner_seal_rejects_tampered_envelope_bytes (__main__.D5BLocalSourceOnly.test_55_inner_seal_rejects_tampered_envelope_bytes) ... ok
+2026-11-26T09:15:09.8574117Z test_56_prewrite_source_drift_refuses_output (__main__.D5BLocalSourceOnly.test_56_prewrite_source_drift_refuses_output) ... ok
+2026-11-26T09:15:09.8599547Z test_57_postflight_remote_drift_consumes_root_no_success (__main__.D5BLocalSourceOnly.test_57_postflight_remote_drift_consumes_root_no_success) ... ok
+2026-11-26T09:15:09.8626964Z test_58_final_source_drift_has_no_positive_receipt (__main__.D5BLocalSourceOnly.test_58_final_source_drift_has_no_positive_receipt) ... ok
+2026-11-26T09:15:09.8651016Z test_59_parent_alias_swap_cannot_write_to_history (__main__.D5BLocalSourceOnly.test_59_parent_alias_swap_cannot_write_to_history) ... ok
+2026-11-26T09:15:09.8759298Z test_60_faults_at_each_exclusive_receipt_are_partial (__main__.D5BLocalSourceOnly.test_60_faults_at_each_exclusive_receipt_are_partial) ... ok
+2026-11-26T09:15:09.8789968Z test_61_public_cli_reports_partial_root_truthfully (__main__.D5BLocalSourceOnly.test_61_public_cli_reports_partial_root_truthfully) ... ok
+2026-11-26T09:15:09.8818558Z test_62_source_history_identity_drift_after_mkdir (__main__.D5BLocalSourceOnly.test_62_source_history_identity_drift_after_mkdir) ... ok
+2026-11-26T09:15:09.8853665Z test_63_final_commit_marker_refuses_last_minute_source_drift (__main__.D5BLocalSourceOnly.test_63_final_commit_marker_refuses_last_minute_source_drift) ... ok
+2026-11-26T09:15:09.8863550Z test_64_precreation_parent_symlink_race_is_blocked (__main__.D5BLocalSourceOnly.test_64_precreation_parent_symlink_race_is_blocked) ... ok
+2026-11-26T09:15:09.8879297Z test_65_failed_failure_marker_still_reports_created_root (__main__.D5BLocalSourceOnly.test_65_failed_failure_marker_still_reports_created_root) ... ok
+2026-11-26T09:15:09.8912154Z test_66_structurally_sealed_receipt_has_no_veto_or_stage (__main__.D5BLocalSourceOnly.test_66_structurally_sealed_receipt_has_no_veto_or_stage) ... ok
+2026-11-26T09:15:09.8949481Z test_67_after_flush_stage_fsync_error_never_publishes_final (__main__.D5BLocalSourceOnly.test_67_after_flush_stage_fsync_error_never_publishes_final) ... ok
+2026-11-26T09:15:09.8986638Z test_68_post_rename_directory_fsync_error_keeps_durable_veto (__main__.D5BLocalSourceOnly.test_68_post_rename_directory_fsync_error_keeps_durable_veto) ... ok
+2026-11-26T09:15:09.9023079Z test_69_atomic_rename_failure_does_not_publish_final (__main__.D5BLocalSourceOnly.test_69_atomic_rename_failure_does_not_publish_final) ... ok
+2026-11-26T09:15:09.9059212Z test_70_final_veto_unlink_failure_never_seals_product (__main__.D5BLocalSourceOnly.test_70_final_veto_unlink_failure_never_seals_product) ... ok
+2026-11-26T09:15:09.9096990Z test_71_parent_close_failure_is_partial_before_commit (__main__.D5BLocalSourceOnly.test_71_parent_close_failure_is_partial_before_commit) ... ok
+2026-11-26T09:15:09.9131256Z test_72_root_close_failure_is_indeterminate_after_commit (__main__.D5BLocalSourceOnly.test_72_root_close_failure_is_indeterminate_after_commit) ... ok
+2026-11-26T09:15:09.9169101Z test_73_cli_reports_root_close_error_as_indeterminate (__main__.D5BLocalSourceOnly.test_73_cli_reports_root_close_error_as_indeterminate) ... ok
+2026-11-26T09:15:09.9207689Z test_74_committed_receipt_with_incomplete_marker_is_rejected (__main__.D5BLocalSourceOnly.test_74_committed_receipt_with_incomplete_marker_is_rejected) ... ok
+2026-11-26T09:15:09.9239352Z test_75_manifest_only_or_missing_final_receipt_is_rejected (__main__.D5BLocalSourceOnly.test_75_manifest_only_or_missing_final_receipt_is_rejected) ... ok
+2026-11-26T09:15:09.9272223Z test_76_failure_marker_vetoes_otherwise_matching_receipts (__main__.D5BLocalSourceOnly.test_76_failure_marker_vetoes_otherwise_matching_receipts) ... ok
+2026-11-26T09:15:09.9307930Z test_77_after_effect_veto_unlink_error_requires_reconciliation (__main__.D5BLocalSourceOnly.test_77_after_effect_veto_unlink_error_requires_reconciliation) ... ok
+2026-11-26T09:15:09.9344212Z test_78_cli_after_effect_unlink_error_never_claims_precommit (__main__.D5BLocalSourceOnly.test_78_cli_after_effect_unlink_error_never_claims_precommit) ... ok
+2026-11-26T09:15:09.9382988Z test_79_root_relocated_after_parent_close_is_not_success (__main__.D5BLocalSourceOnly.test_79_root_relocated_after_parent_close_is_not_success) ... ok
+2026-11-26T09:15:09.9417495Z test_80_root_relocated_after_final_unlink_is_indeterminate (__main__.D5BLocalSourceOnly.test_80_root_relocated_after_final_unlink_is_indeterminate) ... ok
+2026-11-26T09:15:09.9460040Z test_81_cli_relocated_parent_closed_root_requires_reconciliation (__main__.D5BLocalSourceOnly.test_81_cli_relocated_parent_closed_root_requires_reconciliation) ... ok
+2026-11-26T09:15:09.9498103Z test_82_cli_completed_seal_first_stdout_write_failure_preserves_commit (__main__.D5BLocalSourceOnly.test_82_cli_completed_seal_first_stdout_write_failure_preserves_commit) ... ok
+2026-11-26T09:15:09.9534242Z test_83_cli_completed_seal_stdout_flush_failure_preserves_commit (__main__.D5BLocalSourceOnly.test_83_cli_completed_seal_stdout_flush_failure_preserves_commit) ... ok
+2026-11-26T09:15:09.9571335Z test_84_cli_completed_seal_both_failed_streams_returns_two (__main__.D5BLocalSourceOnly.test_84_cli_completed_seal_both_failed_streams_returns_two) ... ok
+2026-11-26T09:15:09.9594678Z test_85_cli_after_effect_mkdir_faults_report_unknown_creation (__main__.D5BLocalSourceOnly.test_85_cli_after_effect_mkdir_faults_report_unknown_creation) ... ok
+2026-11-26T09:15:09.9655188Z test_86_cli_real_mkdir_trace_interruption_reports_unknown_creation (__main__.D5BLocalSourceOnly.test_86_cli_real_mkdir_trace_interruption_reports_unknown_creation) ... ok
+2026-11-26T09:15:09.9670096Z test_87_cli_preexisting_candidate_preserves_unrelated_sentinel (__main__.D5BLocalSourceOnly.test_87_cli_preexisting_candidate_preserves_unrelated_sentinel) ... ok
+2026-11-26T09:15:09.9683880Z test_88_cli_raced_mkdir_collision_preserves_unrelated_sentinel (__main__.D5BLocalSourceOnly.test_88_cli_raced_mkdir_collision_preserves_unrelated_sentinel) ... ok
+2026-11-26T09:15:09.9697267Z test_89_cli_mkdir_pre_effect_error_does_not_claim_proven_absence (__main__.D5BLocalSourceOnly.test_89_cli_mkdir_pre_effect_error_does_not_claim_proven_absence) ... ok
+2026-11-26T09:15:09.9803438Z test_90_cli_sealer_return_boundary_fault_requires_reconciliation (__main__.D5BLocalSourceOnly.test_90_cli_sealer_return_boundary_fault_requires_reconciliation) ... ok
+2026-11-26T09:15:09.9874002Z test_91_cli_partial_output_delivery_failure_retains_partial_accounting (__main__.D5BLocalSourceOnly.test_91_cli_partial_output_delivery_failure_retains_partial_accounting) ... ok
+2026-11-26T09:15:09.9902222Z test_92_cli_null_approval_delivery_failure_remains_prewrite_denial (__main__.D5BLocalSourceOnly.test_92_cli_null_approval_delivery_failure_remains_prewrite_denial) ... ok
+2026-11-26T09:15:09.9943573Z test_93_cli_trace_before_mkdir_retains_attempt_uncertainty (__main__.D5BLocalSourceOnly.test_93_cli_trace_before_mkdir_retains_attempt_uncertainty) ... ok
+2026-11-26T09:15:09.9963725Z test_94_cli_after_mkdir_replacement_preserves_both_unowned_roots (__main__.D5BLocalSourceOnly.test_94_cli_after_mkdir_replacement_preserves_both_unowned_roots) ... ok
+2026-11-26T09:15:09.9964382Z 
+2026-11-26T09:15:09.9964582Z ----------------------------------------------------------------------
+2026-11-26T09:15:09.9964966Z Ran 94 tests in 0.185s
+2026-11-26T09:15:09.9965115Z 
+2026-11-26T09:15:09.9965194Z OK
+2026-11-26T09:15:10.0149284Z ##[group]Run set -euo pipefail
+2026-11-26T09:15:10.0149620Z [36;1mset -euo pipefail[0m
+2026-11-26T09:15:10.0149904Z [36;1mtool=_demo/Tools/AssemblyShadow/R03IR/D5Local[0m
+2026-11-26T09:15:10.0150217Z [36;1mpython3 - <<'PY'[0m
+2026-11-26T09:15:10.0150470Z [36;1mimport json, os, platform, shutil, subprocess[0m
+2026-11-26T09:15:10.0150771Z [36;1mgit_tools = {}[0m
+2026-11-26T09:15:10.0151054Z [36;1mfor role, path in (("fixtureGit", shutil.which("git")),[0m
+2026-11-26T09:15:10.0151418Z [36;1m                   ("auditorGit", shutil.which("git", path=os.defpath))):[0m
+2026-11-26T09:15:10.0151791Z [36;1m    git_tools[role] = {[0m
+2026-11-26T09:15:10.0152029Z [36;1m        "path": path,[0m
+2026-11-26T09:15:10.0152405Z [36;1m        "version": subprocess.check_output([path, "--version"], text=True).strip(),[0m
+2026-11-26T09:15:10.0152743Z [36;1m    }[0m
+2026-11-26T09:15:10.0153006Z [36;1mprint(json.dumps({"schema": "R03AP1GitToolVersionsV1",[0m
+2026-11-26T09:15:10.0153558Z [36;1m                  "python": platform.python_version(), **git_tools}, sort_keys=True))[0m
+2026-11-26T09:15:10.0153893Z [36;1mPY[0m
+2026-11-26T09:15:10.0154182Z [36;1mpython3 -B "$tool/test_d5b_activation_publication.py" -v 2>&1 |[0m
+2026-11-26T09:15:10.0154852Z [36;1m  tee "$RUNNER_TEMP/d5b-ap1-publication-tests.log"[0m
+2026-11-26T09:15:10.0155294Z [36;1mgrep -q 'Ran 22 tests in' "$RUNNER_TEMP/d5b-ap1-publication-tests.log"[0m
+2026-11-26T09:15:10.0155683Z [36;1mgrep -q '^OK$' "$RUNNER_TEMP/d5b-ap1-publication-tests.log"[0m
+2026-11-26T09:15:10.0156523Z [36;1mecho '{"schema":"R03D5BActivationPublicationSourceHostV1","publicationTests":22,"fixtureClass":"TemporaryGitObjects","executionAuthority":false,"liveRemoteHeadsVerified":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyProposalStructureTestsPassed"}'[0m
+2026-11-26T09:15:10.0183653Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-26T09:15:10.0184040Z env:
+2026-11-26T09:15:10.0184484Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:10.0184913Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-26T09:15:10.0185306Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:10.0185648Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:10.0186010Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:10.0186350Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-26T09:15:10.0186661Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-26T09:15:10.0186936Z   GIT_TERMINAL_PROMPT: 0
+2026-11-26T09:15:10.0187166Z ##[endgroup]
+2026-11-26T09:15:10.0422266Z {"auditorGit": {"path": "/bin/git", "version": "git version 2.56.1"}, "fixtureGit": {"path": "/usr/bin/git", "version": "git version 2.56.1"}, "python": "3.11.18", "schema": "R03AP1GitToolVersionsV1"}
+2026-11-26T09:15:10.2002434Z test_01_separate_refs_construct_real_closed_publication_chain (__main__.D5BActivationPublicationSourceOnly.test_01_separate_refs_construct_real_closed_publication_chain) ... ok
+2026-11-26T09:15:10.2424684Z test_02_same_ref_publication_leaves_old_source_pin_stale (__main__.D5BActivationPublicationSourceOnly.test_02_same_ref_publication_leaves_old_source_pin_stale) ... ok
+2026-11-26T09:15:10.3168685Z test_03_moved_or_missing_source_and_runner_refs_are_rejected (__main__.D5BActivationPublicationSourceOnly.test_03_moved_or_missing_source_and_runner_refs_are_rejected) ... ok
+2026-11-26T09:15:10.4076122Z test_04_missing_or_noncommit_objects_are_rejected (__main__.D5BActivationPublicationSourceOnly.test_04_missing_or_noncommit_objects_are_rejected) ... ok
+2026-11-26T09:15:10.4681585Z test_05_runner_pin_must_equal_exact_proposal_blob (__main__.D5BActivationPublicationSourceOnly.test_05_runner_pin_must_equal_exact_proposal_blob) ... ok
+2026-11-26T09:15:10.6865674Z test_06_runner_rejects_extra_source_helper_or_plan_changes (__main__.D5BActivationPublicationSourceOnly.test_06_runner_rejects_extra_source_helper_or_plan_changes) ... ok
+2026-11-26T09:15:10.7554388Z test_07_source_writer_must_be_exact_reviewed_closed_blob (__main__.D5BActivationPublicationSourceOnly.test_07_source_writer_must_be_exact_reviewed_closed_blob) ... ok
+2026-11-26T09:15:10.8812121Z test_08_runner_writer_allows_only_one_exact_pin_substitution (__main__.D5BActivationPublicationSourceOnly.test_08_runner_writer_allows_only_one_exact_pin_substitution) ... ok
+2026-11-26T09:15:11.2450030Z test_09_writer_and_proposal_mode_type_substitutions_are_rejected (__main__.D5BActivationPublicationSourceOnly.test_09_writer_and_proposal_mode_type_substitutions_are_rejected) ... ok
+2026-11-26T09:15:11.3393893Z test_10_proposal_must_be_new_and_present_in_runner (__main__.D5BActivationPublicationSourceOnly.test_10_proposal_must_be_new_and_present_in_runner) ... ok
+2026-11-26T09:15:11.4571278Z test_11_duplicate_json_keys_are_rejected_at_every_level (__main__.D5BActivationPublicationSourceOnly.test_11_duplicate_json_keys_are_rejected_at_every_level) ... ok
+2026-11-26T09:15:12.1530600Z test_12_proposal_schema_and_field_types_are_exact (__main__.D5BActivationPublicationSourceOnly.test_12_proposal_schema_and_field_types_are_exact) ... ok
+2026-11-26T09:15:12.3845167Z test_13_proposal_requires_exact_source_and_other_repository_pins (__main__.D5BActivationPublicationSourceOnly.test_13_proposal_requires_exact_source_and_other_repository_pins) ... ok
+2026-11-26T09:15:12.7335296Z test_14_authority_promotions_are_rejected (__main__.D5BActivationPublicationSourceOnly.test_14_authority_promotions_are_rejected) ... ok
+2026-11-26T09:15:12.8563680Z test_15_runner_has_exactly_one_parent_equal_to_source (__main__.D5BActivationPublicationSourceOnly.test_15_runner_has_exactly_one_parent_equal_to_source) ... ok
+2026-11-26T09:15:12.8853420Z test_16_proposal_cannot_become_production_execution_envelope (__main__.D5BActivationPublicationSourceOnly.test_16_proposal_cannot_become_production_execution_envelope) ... ok
+2026-11-26T09:15:12.9723945Z test_17_cli_audits_objects_without_changing_refs_or_authority (__main__.D5BActivationPublicationSourceOnly.test_17_cli_audits_objects_without_changing_refs_or_authority) ... ok
+2026-11-26T09:15:13.1277046Z test_18_cli_exposes_no_execution_or_authority_override (__main__.D5BActivationPublicationSourceOnly.test_18_cli_exposes_no_execution_or_authority_override) ... ok
+2026-11-26T09:15:13.5654458Z test_19_standard_commit_prefixes_match_git_topology (__main__.D5BActivationPublicationSourceOnly.test_19_standard_commit_prefixes_match_git_topology) ... ok
+2026-11-26T09:15:13.8846295Z test_20_metadata_continuations_and_messages_do_not_add_topology (__main__.D5BActivationPublicationSourceOnly.test_20_metadata_continuations_and_messages_do_not_add_topology) ... ok
+2026-11-26T09:15:14.0706879Z test_21_ordinary_stored_late_parents_reject_source_and_runner (__main__.D5BActivationPublicationSourceOnly.test_21_ordinary_stored_late_parents_reject_source_and_runner) ... ok
+2026-11-26T09:15:14.2679189Z test_22_late_duplicate_and_misordered_topology_headers_are_rejected (__main__.D5BActivationPublicationSourceOnly.test_22_late_duplicate_and_misordered_topology_headers_are_rejected) ... ok
+2026-11-26T09:15:14.2679984Z 
+2026-11-26T09:15:14.2680131Z ----------------------------------------------------------------------
+2026-11-26T09:15:14.2680567Z Ran 22 tests in 4.133s
+2026-11-26T09:15:14.2680707Z 
+2026-11-26T09:15:14.2680780Z OK
+2026-11-26T09:15:14.2845955Z {"schema":"R03D5BActivationPublicationSourceHostV1","publicationTests":22,"fixtureClass":"TemporaryGitObjects","executionAuthority":false,"liveRemoteHeadsVerified":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyProposalStructureTestsPassed"}
+2026-11-26T09:15:14.2871679Z ##[group]Run set -euo pipefail
+2026-11-26T09:15:14.2871979Z [36;1mset -euo pipefail[0m
+2026-11-26T09:15:14.2872300Z [36;1mtool=_demo/Tools/AssemblyShadow/R03IR/D5Local[0m
+2026-11-26T09:15:14.2872710Z [36;1mpython3 -B "$tool/test_d5b_runner_closure.py" -v 2>&1 |[0m
+2026-11-26T09:15:14.2873073Z [36;1m  tee "$RUNNER_TEMP/d5b-ap2-runner-closure-tests.log"[0m
+2026-11-26T09:15:14.2873468Z [36;1mgrep -q 'Ran 25 tests in' "$RUNNER_TEMP/d5b-ap2-runner-closure-tests.log"[0m
+2026-11-26T09:15:14.2873883Z [36;1mgrep -q '^OK$' "$RUNNER_TEMP/d5b-ap2-runner-closure-tests.log"[0m
+2026-11-26T09:15:14.2875210Z [36;1mecho '{"schema":"R03D5BRunnerClosureSourceHostV1","closureTests":25,"fixtureClass":"TemporaryGitObjectsAndSyntheticLocations","candidateCodeExecuted":false,"runtimeImportIsolationVerified":false,"continuousCustodyVerified":false,"executionAuthority":false,"liveRemoteHeadsVerified":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyArtifactClosureTestsPassed"}'[0m
+2026-11-26T09:15:14.2902914Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-26T09:15:14.2903314Z env:
+2026-11-26T09:15:14.2903610Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:14.2904013Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-26T09:15:14.2904528Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:14.2904866Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:14.2905235Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:14.2905690Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-26T09:15:14.2906002Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-26T09:15:14.2906291Z   GIT_TERMINAL_PROMPT: 0
+2026-11-26T09:15:14.2906507Z ##[endgroup]
+2026-11-26T09:15:14.5845377Z test_01_six_file_snapshot_is_immutable_and_closed (__main__.D5BRunnerClosureSourceOnly.test_01_six_file_snapshot_is_immutable_and_closed) ... ok
+2026-11-26T09:15:14.8903920Z test_02_verification_never_imports_or_executes_candidate_modules (__main__.D5BRunnerClosureSourceOnly.test_02_verification_never_imports_or_executes_candidate_modules) ... ok
+2026-11-26T09:15:14.9692465Z test_03_manifest_requires_external_exact_bytes_pin (__main__.D5BRunnerClosureSourceOnly.test_03_manifest_requires_external_exact_bytes_pin) ... ok
+2026-11-26T09:15:16.0112157Z test_04_manifest_schema_types_authority_and_roster_are_exact (__main__.D5BRunnerClosureSourceOnly.test_04_manifest_schema_types_authority_and_roster_are_exact) ... ok
+2026-11-26T09:15:16.4222168Z test_05_changed_reviewed_objects_reject_after_valid_ap1_publication (__main__.D5BRunnerClosureSourceOnly.test_05_changed_reviewed_objects_reject_after_valid_ap1_publication) ... ok
+2026-11-26T09:15:16.7243843Z test_06_closure_git_objects_require_regular_nonexecutable_modes (__main__.D5BRunnerClosureSourceOnly.test_06_closure_git_objects_require_regular_nonexecutable_modes) ... ok
+2026-11-26T09:15:16.8975049Z test_07_tracked_untracked_and_ignored_changes_are_rejected (__main__.D5BRunnerClosureSourceOnly.test_07_tracked_untracked_and_ignored_changes_are_rejected) ... ok
+2026-11-26T09:15:17.0499238Z test_08_assumed_and_skipped_index_entries_are_rejected (__main__.D5BRunnerClosureSourceOnly.test_08_assumed_and_skipped_index_entries_are_rejected) ... ok
+2026-11-26T09:15:17.1994005Z test_09_working_files_reject_symlinks_hardlinks_and_executable_bits (__main__.D5BRunnerClosureSourceOnly.test_09_working_files_reject_symlinks_hardlinks_and_executable_bits) ... ok
+2026-11-26T09:15:17.3017561Z test_10_directory_aliases_reject_for_runner_and_file_ancestors (__main__.D5BRunnerClosureSourceOnly.test_10_directory_aliases_reject_for_runner_and_file_ancestors) ... ok
+2026-11-26T09:15:17.4754421Z test_11_checkout_branch_head_and_origin_are_exact (__main__.D5BRunnerClosureSourceOnly.test_11_checkout_branch_head_and_origin_are_exact) ... ok
+2026-11-26T09:15:17.6535062Z test_12_filters_rewrites_and_hidden_status_configuration_reject (__main__.D5BRunnerClosureSourceOnly.test_12_filters_rewrites_and_hidden_status_configuration_reject) ... ok
+2026-11-26T09:15:17.7673643Z test_13_shared_and_modified_git_administration_reject (__main__.D5BRunnerClosureSourceOnly.test_13_shared_and_modified_git_administration_reject) ... ok
+2026-11-26T09:15:17.8948126Z test_14_locations_require_complete_canonical_disjoint_directories (__main__.D5BRunnerClosureSourceOnly.test_14_locations_require_complete_canonical_disjoint_directories) ... ok
+2026-11-26T09:15:18.0869742Z test_15_file_bytes_and_identity_changes_between_reads_reject (__main__.D5BRunnerClosureSourceOnly.test_15_file_bytes_and_identity_changes_between_reads_reject) ... ok
+2026-11-26T09:15:18.4173396Z test_16_real_ref_and_checkout_config_changes_during_snapshot_reject (__main__.D5BRunnerClosureSourceOnly.test_16_real_ref_and_checkout_config_changes_during_snapshot_reject) ... ok
+2026-11-26T09:15:18.5180047Z test_17_identical_ancestor_replacement_during_actual_read_rejects (__main__.D5BRunnerClosureSourceOnly.test_17_identical_ancestor_replacement_during_actual_read_rejects) ... ok
+2026-11-26T09:15:18.9444567Z test_18_protected_directory_identity_change_between_observations_rejects (__main__.D5BRunnerClosureSourceOnly.test_18_protected_directory_identity_change_between_observations_rejects) ... ok
+2026-11-26T09:15:19.1808812Z test_19_isolated_cli_returns_closed_json_without_mutating_runner (__main__.D5BRunnerClosureSourceOnly.test_19_isolated_cli_returns_closed_json_without_mutating_runner) ... ok
+2026-11-26T09:15:19.5400730Z test_20_cli_requires_isolation_pin_and_rejects_execution_overrides (__main__.D5BRunnerClosureSourceOnly.test_20_cli_requires_isolation_pin_and_rejects_execution_overrides) ... ok
+2026-11-26T09:15:19.7365845Z test_21_verification_uses_only_object_and_metadata_git_commands (__main__.D5BRunnerClosureSourceOnly.test_21_verification_uses_only_object_and_metadata_git_commands) ... ok
+2026-11-26T09:15:19.9999089Z test_22_unrelated_tracked_executable_and_literal_symlink_are_valid (__main__.D5BRunnerClosureSourceOnly.test_22_unrelated_tracked_executable_and_literal_symlink_are_valid) ... ok
+2026-11-26T09:15:20.2227481Z test_23_full_inventory_rejects_unrelated_changes_and_extra_empty_directories (__main__.D5BRunnerClosureSourceOnly.test_23_full_inventory_rejects_unrelated_changes_and_extra_empty_directories) ... ok
+2026-11-26T09:15:20.7690333Z test_24_full_inventory_enforces_per_file_and_aggregate_byte_bounds (__main__.D5BRunnerClosureSourceOnly.test_24_full_inventory_enforces_per_file_and_aggregate_byte_bounds) ... ok
+2026-11-26T09:15:21.1021860Z test_25_full_inventory_enforces_entry_count_and_depth_bounds (__main__.D5BRunnerClosureSourceOnly.test_25_full_inventory_enforces_entry_count_and_depth_bounds) ... ok
+2026-11-26T09:15:21.1023130Z 
+2026-11-26T09:15:21.1023496Z ----------------------------------------------------------------------
+2026-11-26T09:15:21.1024125Z Ran 25 tests in 6.721s
+2026-11-26T09:15:21.1024606Z 
+2026-11-26T09:15:21.1024746Z OK
+2026-11-26T09:15:21.1186535Z {"schema":"R03D5BRunnerClosureSourceHostV1","closureTests":25,"fixtureClass":"TemporaryGitObjectsAndSyntheticLocations","candidateCodeExecuted":false,"runtimeImportIsolationVerified":false,"continuousCustodyVerified":false,"executionAuthority":false,"liveRemoteHeadsVerified":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyArtifactClosureTestsPassed"}
+2026-11-26T09:15:21.1222206Z ##[group]Run set -euo pipefail
+2026-11-26T09:15:21.1222647Z [36;1mset -euo pipefail[0m
+2026-11-26T09:15:21.1223080Z [36;1mtool=_demo/Tools/AssemblyShadow/R03IR/D5Local[0m
+2026-11-26T09:15:21.1223622Z [36;1mpython3 -I -S -B "$tool/test_d5b_runner_imports.py" -v 2>&1 |[0m
+2026-11-26T09:15:21.1224179Z [36;1m  tee "$RUNNER_TEMP/d5b-ap3-runner-import-tests.log"[0m
+2026-11-26T09:15:21.1225547Z [36;1mgrep -q 'Ran 20 tests in' "$RUNNER_TEMP/d5b-ap3-runner-import-tests.log"[0m
+2026-11-26T09:15:21.1226149Z [36;1mgrep -q '^OK$' "$RUNNER_TEMP/d5b-ap3-runner-import-tests.log"[0m
+2026-11-26T09:15:21.1227945Z [36;1mecho '{"schema":"R03D5BRunnerImportSourceHostV1","importTests":20,"fixtureClass":"TemporaryGitObjectsAndSyntheticLocations","reviewedCandidateInitializationTested":true,"candidateEntryPointsInvoked":false,"runtimeConfigurationReadsBound":false,"runnerExecutableClosureVerified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyImportBindingTestsPassed"}'[0m
+2026-11-26T09:15:21.1267427Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-26T09:15:21.1267884Z env:
+2026-11-26T09:15:21.1268395Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:21.1268952Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-26T09:15:21.1269538Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:21.1270040Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:21.1270562Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:21.1271103Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-26T09:15:21.1271531Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-26T09:15:21.1271852Z   GIT_TERMINAL_PROMPT: 0
+2026-11-26T09:15:21.1272192Z ##[endgroup]
+2026-11-26T09:15:21.4669622Z test_01_real_ap2_snapshot_initializes_three_private_bindings (__main__.D5BRunnerImportsSourceOnly.test_01_real_ap2_snapshot_initializes_three_private_bindings) ... ok
+2026-11-26T09:15:21.6722037Z test_02_report_matches_actual_ordered_direct_import_requests (__main__.D5BRunnerImportsSourceOnly.test_02_report_matches_actual_ordered_direct_import_requests) ... ok
+2026-11-26T09:15:21.8830845Z test_03_ambient_candidate_module_cache_entries_are_never_selected (__main__.D5BRunnerImportsSourceOnly.test_03_ambient_candidate_module_cache_entries_are_never_selected) ... ok
+2026-11-26T09:15:22.0869195Z test_04_ambient_meta_path_and_path_cache_are_not_consulted (__main__.D5BRunnerImportsSourceOnly.test_04_ambient_meta_path_and_path_cache_are_not_consulted) ... ok
+2026-11-26T09:15:22.2927317Z test_05_ambient_source_and_opaque_bytecode_fixtures_are_not_read (__main__.D5BRunnerImportsSourceOnly.test_05_ambient_source_and_opaque_bytecode_fixtures_are_not_read) ... ok
+2026-11-26T09:15:22.5005127Z test_06_real_sys_path_is_unchanged_during_writer_initialization (__main__.D5BRunnerImportsSourceOnly.test_06_real_sys_path_is_unchanged_during_writer_initialization) ... ok
+2026-11-26T09:15:22.7040475Z test_07_import_phase_calls_no_candidate_function_or_content_reader (__main__.D5BRunnerImportsSourceOnly.test_07_import_phase_calls_no_candidate_function_or_content_reader) ... ok
+2026-11-26T09:15:22.9078844Z test_08_after_snapshot_source_change_does_not_replace_captured_bytes (__main__.D5BRunnerImportsSourceOnly.test_08_after_snapshot_source_change_does_not_replace_captured_bytes) ... ok
+2026-11-26T09:15:22.9860957Z test_09_invalid_external_pin_or_raw_input_rejects_before_helper (__main__.D5BRunnerImportsSourceOnly.test_09_invalid_external_pin_or_raw_input_rejects_before_helper) ... ok
+2026-11-26T09:15:23.0612290Z test_10_changed_trusted_helper_bytes_reject_before_compilation (__main__.D5BRunnerImportsSourceOnly.test_10_changed_trusted_helper_bytes_reject_before_compilation) ... ok
+2026-11-26T09:15:23.2618481Z test_11_malformed_private_snapshot_records_reject_before_compilation (__main__.D5BRunnerImportsSourceOnly.test_11_malformed_private_snapshot_records_reject_before_compilation) ... ok
+2026-11-26T09:15:23.4620674Z test_12_private_snapshot_requires_consistent_roster_and_closed_ap2_report (__main__.D5BRunnerImportsSourceOnly.test_12_private_snapshot_requires_consistent_roster_and_closed_ap2_report) ... ok
+2026-11-26T09:15:23.5363386Z test_13_import_requests_outside_reviewed_direct_forms_are_denied (__main__.D5BRunnerImportsSourceOnly.test_13_import_requests_outside_reviewed_direct_forms_are_denied) ... ok
+2026-11-26T09:15:23.7420738Z test_14_public_result_is_frozen_json_data_with_fresh_report_copies (__main__.D5BRunnerImportsSourceOnly.test_14_public_result_is_frozen_json_data_with_fresh_report_copies) ... ok
+2026-11-26T09:15:24.2005456Z test_15_rejections_report_partial_initialization_truthfully (__main__.D5BRunnerImportsSourceOnly.test_15_rejections_report_partial_initialization_truthfully) ... ok
+2026-11-26T09:15:24.3986641Z test_16_compilation_interruption_reports_no_candidate_initialization (__main__.D5BRunnerImportsSourceOnly.test_16_compilation_interruption_reports_no_candidate_initialization) ... ok
+2026-11-26T09:15:24.6688794Z test_17_temporary_trusted_helper_registration_is_always_removed (__main__.D5BRunnerImportsSourceOnly.test_17_temporary_trusted_helper_registration_is_always_removed) ... ok
+2026-11-26T09:15:24.9206219Z test_18_real_isolated_cli_preserves_checkout_and_creates_no_output (__main__.D5BRunnerImportsSourceOnly.test_18_real_isolated_cli_preserves_checkout_and_creates_no_output) ... ok
+2026-11-26T09:15:25.1121498Z test_19_cli_requires_actual_isolation_no_site_and_no_bytecode_flags (__main__.D5BRunnerImportsSourceOnly.test_19_cli_requires_actual_isolation_no_site_and_no_bytecode_flags) ... ok
+2026-11-26T09:15:25.4865189Z test_20_cli_rejects_bad_pins_and_execution_arguments_without_output (__main__.D5BRunnerImportsSourceOnly.test_20_cli_rejects_bad_pins_and_execution_arguments_without_output) ... ok
+2026-11-26T09:15:25.4866299Z 
+2026-11-26T09:15:25.4867083Z ----------------------------------------------------------------------
+2026-11-26T09:15:25.4867752Z Ran 20 tests in 4.260s
+2026-11-26T09:15:25.4868098Z 
+2026-11-26T09:15:25.4868255Z OK
+2026-11-26T09:15:25.5048746Z {"schema":"R03D5BRunnerImportSourceHostV1","importTests":20,"fixtureClass":"TemporaryGitObjectsAndSyntheticLocations","reviewedCandidateInitializationTested":true,"candidateEntryPointsInvoked":false,"runtimeConfigurationReadsBound":false,"runnerExecutableClosureVerified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyImportBindingTestsPassed"}
+2026-11-26T09:15:25.5082116Z ##[group]Run set -euo pipefail
+2026-11-26T09:15:25.5082569Z [36;1mset -euo pipefail[0m
+2026-11-26T09:15:25.5082987Z [36;1mtool=_demo/Tools/AssemblyShadow/R03IR/D5Local[0m
+2026-11-26T09:15:25.5083394Z [36;1mset +e[0m
+2026-11-26T09:15:25.5083704Z [36;1mpython3 -B "$tool/run_d5_local.py" \[0m
+2026-11-26T09:15:25.5084118Z [36;1m  --mode execute \[0m
+2026-11-26T09:15:25.5084838Z [36;1m  --approved-envelope "$RUNNER_TEMP/unapproved-d5b-envelope.json" \[0m
+2026-11-26T09:15:25.5085377Z [36;1m  > "$RUNNER_TEMP/blocked-execution.json"[0m
+2026-11-26T09:15:25.5085754Z [36;1mcode=$?[0m
+2026-11-26T09:15:25.5086022Z [36;1mset -e[0m
+2026-11-26T09:15:25.5086336Z [36;1mtest "$code" -eq 2[0m
+2026-11-26T09:15:25.5086790Z [36;1mgrep -q '"result": "NotAuthorized"' "$RUNNER_TEMP/blocked-execution.json"[0m
+2026-11-26T09:15:25.5087434Z [36;1mgrep -q '"WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION"' "$RUNNER_TEMP/blocked-execution.json"[0m
+2026-11-26T09:15:25.5088303Z [36;1mgrep -q '"outputCreated": false' "$RUNNER_TEMP/blocked-execution.json"[0m
+2026-11-26T09:15:25.5088847Z [36;1mtest ! -e "$RUNNER_TEMP/unapproved-d5b-envelope.json"[0m
+2026-11-26T09:15:25.5089347Z [36;1mcat "$RUNNER_TEMP/blocked-execution.json"[0m
+2026-11-26T09:15:25.5090267Z [36;1mecho '{"schema":"R03D5BLocalAdmissionSourceHostV1","sourceTests":94,"approvedEnvelope":false,"localExecution":false,"unityOrPlayer":false,"R03Accepted":false,"result":"SourceOnlyDeniedLocalExecution"}'[0m
+2026-11-26T09:15:25.5129156Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-26T09:15:25.5129571Z env:
+2026-11-26T09:15:25.5130049Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:25.5130591Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-26T09:15:25.5131150Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:25.5131666Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:25.5132161Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-26T09:15:25.5132667Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-26T09:15:25.5133141Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-26T09:15:25.5133479Z ##[endgroup]
+2026-11-26T09:15:25.5603906Z {"D5BLocalExecution": "NotAuthorized", "R03Accepted": false, "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION", "kind": "R03D5BLocalAdmissionFailureV1", "outputCreated": false, "reason": "D5-B Local execution is not authorized", "result": "NotAuthorized", "retryAllowed": false, "schemaVersion": 1}
+2026-11-26T09:15:25.5605820Z {"schema":"R03D5BLocalAdmissionSourceHostV1","sourceTests":94,"approvedEnvelope":false,"localExecution":false,"unityOrPlayer":false,"R03Accepted":false,"result":"SourceOnlyDeniedLocalExecution"}
+2026-11-26T09:15:25.5678077Z Post job cleanup.
+2026-11-26T09:15:25.6557722Z (node:18403) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-26T09:15:25.6558500Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-26T09:15:25.6672182Z Post job cleanup.
+2026-11-26T09:15:25.7379756Z [command]/usr/bin/git version
+2026-11-26T09:15:25.7414416Z git version 2.56.1
+2026-11-26T09:15:25.7443414Z Temporarily overriding HOME='/home/runner/work/_temp/3a31b97e-ac97-4d33-aa3a-38ec931fb5f1' before making global git config changes
+2026-11-26T09:15:25.7444253Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-26T09:15:25.7448005Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hybridclr_demo/hybridclr_demo/_demo
+2026-11-26T09:15:25.7479828Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-26T09:15:25.7510261Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-26T09:15:25.8064643Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-26T09:15:25.8084967Z http.https://github.com/.extraheader
+2026-11-26T09:15:25.8092207Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-26T09:15:25.8119082Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-26T09:15:25.8643001Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-26T09:15:25.8667531Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-26T09:15:25.9293057Z Cleaning up orphan processes
+2026-11-26T09:15:25.9553442Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
