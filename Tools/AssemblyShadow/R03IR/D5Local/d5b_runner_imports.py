@@ -223,7 +223,16 @@ def _private_importer(requester: str, modules: dict, sys_view: ModuleType, trace
     return import_module
 
 
-def _initialize_snapshot(closure: dict, records: tuple, artifact_report: dict, progress: dict) -> dict:
+class _InitializedSnapshot(NamedTuple):
+    """Internal state for reviewed companions; never returned by the public API."""
+
+    files: dict
+    modules: dict
+    observation: dict
+
+
+def _initialize_snapshot_context(closure: dict, records: tuple, artifact_report: dict,
+                                 progress: dict) -> _InitializedSnapshot:
     files = _validate_snapshot(closure, records, artifact_report)
     progress["verifiedArtifactCount"] = len(files)
     root = Path(closure["locations"]["runnerRoot"])
@@ -264,7 +273,7 @@ def _initialize_snapshot(closure: dict, records: tuple, artifact_report: dict, p
           "Initialized constants differ from the closed snapshot policy")
     _need(sys_view.path == [str(root / ADMISSION.rstrip("/"))],
           "Unexpected private sys.path initialization")
-    return {
+    observation = {
         "moduleSources": [{"name": name, "path": relative,
                            "gitBlob": files[relative].git_blob,
                            "sha256": hashlib.sha256(files[relative].raw).hexdigest(),
@@ -280,6 +289,11 @@ def _initialize_snapshot(closure: dict, records: tuple, artifact_report: dict, p
         "privateSysPath": list(sys_view.path),
         "candidateLiteralProposalBlob": closure["proposalEnvelopeGitBlob"],
     }
+    return _InitializedSnapshot(files, modules, observation)
+
+
+def _initialize_snapshot(closure: dict, records: tuple, artifact_report: dict, progress: dict) -> dict:
+    return _initialize_snapshot_context(closure, records, artifact_report, progress).observation
 
 
 def _progress() -> dict:
