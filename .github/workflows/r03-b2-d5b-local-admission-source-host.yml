@@ -75,6 +75,19 @@ jobs:
           grep -q 'Ran 25 tests in' "$RUNNER_TEMP/d5b-ap2-runner-closure-tests.log"
           grep -q '^OK$' "$RUNNER_TEMP/d5b-ap2-runner-closure-tests.log"
           echo '{"schema":"R03D5BRunnerClosureSourceHostV1","closureTests":25,"fixtureClass":"TemporaryGitObjectsAndSyntheticLocations","candidateCodeExecuted":false,"runtimeImportIsolationVerified":false,"continuousCustodyVerified":false,"executionAuthority":false,"liveRemoteHeadsVerified":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyArtifactClosureTestsPassed"}'
+      - name: AP3 private imports from verified snapshots without runner invocation
+        shell: bash
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+          GIT_TERMINAL_PROMPT: "0"
+        run: |
+          set -euo pipefail
+          tool=_demo/Tools/AssemblyShadow/R03IR/D5Local
+          python3 -I -S -B "$tool/test_d5b_runner_imports.py" -v 2>&1 |
+            tee "$RUNNER_TEMP/d5b-ap3-runner-import-tests.log"
+          grep -q 'Ran 20 tests in' "$RUNNER_TEMP/d5b-ap3-runner-import-tests.log"
+          grep -q '^OK$' "$RUNNER_TEMP/d5b-ap3-runner-import-tests.log"
+          echo '{"schema":"R03D5BRunnerImportSourceHostV1","importTests":20,"fixtureClass":"TemporaryGitObjectsAndSyntheticLocations","reviewedCandidateInitializationTested":true,"candidateEntryPointsInvoked":false,"runtimeConfigurationReadsBound":false,"runnerExecutableClosureVerified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyImportBindingTestsPassed"}'
       - name: Verify no immutable user approval or Unity execution can be asserted
         shell: bash
         env:
