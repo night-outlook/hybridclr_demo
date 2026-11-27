@@ -1,3 +1,51 @@
+# Primary Implementation → Independent AP5 Review — LOCAL CLOSED / NO EXECUTION
+
+## Current AP5 checkpoint: source-only implementation and CI complete; independent review Pending (2026-11-26 America/Los_Angeles)
+
+**NOT AN EXECUTABLE LOCAL HANDOFF. NO LOCAL COMMANDS.** The objective is independent review of the standalone five-identity physical-checkout/exact-ref observer. AP4 has passed independently; earlier retained pending checkpoints are historical.
+
+[**AP5 design**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_FIVE_IDENTITY_AP5_DESIGN_2026-11-26.md) · [**Primary report**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_FIVE_IDENTITY_AP5_PRIMARY_2026-11-26.md) · [**Independent review request**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_FIVE_IDENTITY_AP5_INDEPENDENT_REVIEW_REQUEST_2026-11-26.md) · [**Machine evidence**](../History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_FIVE_IDENTITY_AP5_EVIDENCE_2026-11-26.json)
+
+**D5BFiveIdentityAP5Primary=SourceOnlyCIComplete_PendingIndependentReview.** AP5 adds a standalone observer of four exact source checkouts and a separate demo runner checkout, together with ten exact ref queries in two passes. It authenticates strict externally pinned proposal bytes, canonical separated roots, 15 distinct observed `.git`/`objects`/`refs` directory identities, supported Git administration, exact attached branches/commits, logical index/tree equality and complete raw worktree bytes. The runner's sole parent must equal the proposed demo source. Fresh local readers and repeated ref/location observations must agree.
+
+Dynamic proposal pins identify what was observed; they are not AP1 approval. The narrow sole-parent fact does not establish AP1's publication delta. AP1 accepted-tuple verification, AP2/AP4 compatibility, AP4 composition, semantic source admission, executable closure and execution authority remain false. AP5 imports only pinned verifier helpers and invokes no candidate writer/preflight/entry point. All **15** accepted Python/configuration files remain byte-identical.
+
+AP4 is accepted as `PassRunnerConfigurationBindingSourceOnly` for exact source `000e72941f74e52aa18bcd17553e8929acc69167`, including the changed AP3 helper `22ad93598131a59b2d5c46174a45187aede848a6`, with independent publication `911d8f96f44430124c487698dde53183d7a75dd2`. AP3 `PassRunnerImportBootstrapSourceOnly`, AP2 `PassRunnerArtifactClosureSourceOnly`, AP1 R2 `PassActivationPublicationProposalOnly`, `D5B-AP1-IR-01=ClosedInCorrectedSource`, and R5 `PassDryAdmissionSourceOnly` remain preserved in their accepted scopes. Retained earlier AP4-pending labels are historical and do not override the independent AP4 decision.
+
+**Exact CI-tested implementation: `hybridclr_demo@0dff80b0fffb37d8c13ff08ad955454a60dde5d6`**, tree `d43a6ca553ad009b656b7691df89cf34f0508280`. [Actions 45929766326 / job 140279429052](https://github.com/night-outlook/hybridclr_demo/actions/runs/45929766326/job/140279429052), attempt **1**, passed **94 R5 + 22 AP1 R2 + 25 AP2 + 20 AP3 + 18 AP4 + 31 AP5 = 210 methods**: **one successful job and 13 successful returned steps**. The Connector-derived host snapshot passed the same methods before publication; exact source blobs were then read back. Both environments retained the closed old-wrapper denial. Host/CI raw transcripts, method identities, versions, commands and hash ledgers are committed in the packet.
+
+The AP5 positives use five real temporary checkouts and real temporary bare refs through a private test transport. The fixed production HTTPS arguments/environment are tested separately. Actual production HTTPS reachability and production five-checkout state remain unqualified. Observations are sequential, without ref freezing, atomicity, continuous custody or recursive administrative-storage ownership. Output-size checks occur after subprocess capture; hard process-memory/network-byte/global filesystem-time bounds are not claimed.
+
+The containing documentation/evidence-only publication is distinct from the tested implementation. Resolve its latest pushed SHA separately through the feature ref. The independent AP5 verdict must be **PassFiveIdentityObservationSourceOnly** or **ReturnRequired**; internal review and passing fixtures do not supply it.
+
+Production `APPROVED_EXECUTION_ENVELOPE_BLOB=None` and `APPROVED_LOCAL_HANDOFF_BLOB=None` remain unchanged. `WEB_TO_LOCAL=CLOSED_NO_LOCAL_EXECUTION`; `D5BLocalExecution` and `D5LocalValidation` remain `NotAuthorized`; `R03Accepted`, `H2Passed`, and `ReadyForHumanReviewGate` remain false. Q, explicit user Local approval, native/Player permission and production activation remain unauthorized. Current real Unity/native/Player work remains `NotRun`; all 18 real Player cells remain `NoCoverage`, with zero passed. Historical Mac paths are physically `Unverified`. The candidate proposal literal is not an approval and is not assumed null.
+
+Stop after Primary publication and final remote readback, awaiting independent AP5 source review. The historical Local-owned Native B1 oneuse-12 result is not AP5 qualification. No Local/Mac validation or production activation is requested.
+
+
+### Exact tuple, paths and source provenance
+
+| Repository | Branch | Exact source commit for review | Historical candidate path — physical state Unverified |
+| --- | --- | --- | --- |
+| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | `0dff80b0fffb37d8c13ff08ad955454a60dde5d6` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` |
+| `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` | `c3c232023724cbad565b85e9b2c3beea8ce2789a` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` |
+| `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `948c0e3b4f8891481301770115e8ba4945eea6de` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` |
+| `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `1268dd417ffe9090fcd9ea2d49542c97ed3cccb3` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` |
+
+The containing publication is a documentation/evidence-only child of `0dff80b0fffb37d8c13ff08ad955454a60dde5d6`. Identify its exact latest pushed SHA from the branch and record that separately from the tested source. No physical Mac path was inspected. Primary source directory: `/workspace/scratch/a6fad0908883/ap5_source`, assembled through the Connector and not a Git checkout. Source/package/overlay/native/build pins retain their reviewed or historical scope; no package, native output or build has been regenerated or qualified. Connector smoke refs and commit objects were freshly read back for all four repositories; the report records exact original bases and retained disposable branches.
+
+### Changed files, validation and next-agent instructions
+
+The source increment adds `Tools/AssemblyShadow/R03IR/D5Local/d5b_five_identity.py`, `test_d5b_five_identity.py`, and the AP5 design, and modifies `.github/workflows/r03-b2-d5b-local-admission-source-host.yml`. The Primary publication adds this checkpoint, README/CURRENT_STATUS prefixes, the report/request, machine evidence and two raw logs. All preceding canonical history is retained exactly. Local-owned `LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md` remain unchanged.
+
+Read README, this handoff, AP5 design, Primary report, independent request, evidence JSON, exact source/test/workflow files and raw transcripts. Required validation is an independent source review of the strict dynamic-identity proposal, pinned helper loading, role-aware five-checkout checks, all-15 root separation, sole-parent scope, fixed HTTPS invocation, exact responses, fresh repeated readers, partial progress and closed reporting. Compare exact source and publication identities, 15 preserved blobs, both raw-log digests, CI checkout/method inventory and four remote refs. The evidence records reproducible source-host commands; no Local/Mac command is issued here.
+
+Expected evidence is a separate independent report and machine record under `Docs/AssemblyShadow`, with exact reviewed source/publication commits, source/CI/log readbacks, scoped findings, any exact-source rerun and either `PassFiveIdentityObservationSourceOnly` or `ReturnRequired`. For a defect, record the responsible file/function, observed versus expected behavior, smallest reproduction, command/tool versions if run, raw output/hash and the required Primary correction.
+
+Known limits are the temporary-fixture transport, unqualified production HTTPS/physical Mac state, sequential observations, trusted Python/Git/OS dependence, post-capture resource limits and unimplemented composition/activation. Bounded Local fixes are not applicable while Local remains closed. Do not modify accepted files, approval pins, production refs, Local-owned records, historical evidence or source/runner tuples; return nontrivial corrections to Primary. Stop at the independent source verdict and remote readback. No later milestone or Human Review Gate is opened.
+
+---
+
 # Primary Implementation → Independent AP4 Review — LOCAL CLOSED / NO EXECUTION
 
 ## Current AP4 checkpoint: source-only implementation and CI complete; independent review Pending (2026-11-26 America/Los_Angeles)
