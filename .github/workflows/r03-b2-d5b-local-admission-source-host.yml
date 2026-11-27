@@ -101,6 +101,26 @@ jobs:
           grep -q 'Ran 18 tests in' "$RUNNER_TEMP/d5b-ap4-runner-configuration-tests.log"
           grep -q '^OK$' "$RUNNER_TEMP/d5b-ap4-runner-configuration-tests.log"
           echo '{"schema":"R03D5BRunnerConfigurationSourceHostV1","configurationTests":18,"fixtureClass":"TemporaryGitObjectsAndSyntheticLocations","candidateConfigurationConsumersTested":true,"candidateEntryPointsInvoked":false,"runtimeConfigurationReadsBound":false,"runnerExecutableClosureVerified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyConfigurationBindingTestsPassed"}'
+      - name: AP5 five checkout identities and exact temporary remote refs
+        shell: bash
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+          GIT_TERMINAL_PROMPT: "0"
+        run: |
+          set -euo pipefail
+          tool=_demo/Tools/AssemblyShadow/R03IR/D5Local
+          python3 -I -S -B - <<'VERSIONS'
+          import json, os, platform, shutil, subprocess
+          path = shutil.which("git", path=os.defpath)
+          selected_git = {"path": path, "version": subprocess.check_output([path, "--version"], text=True).strip()}
+          print(json.dumps({"schema": "R03AP5GitToolVersionsV1", "python": platform.python_version(),
+                            "AP5FixtureGit": selected_git, "AP5ObserverGit": selected_git}, sort_keys=True))
+          VERSIONS
+          python3 -I -S -B "$tool/test_d5b_five_identity.py" -v 2>&1 |
+            tee "$RUNNER_TEMP/d5b-ap5-five-identity-tests.log"
+          grep -q 'Ran 31 tests in' "$RUNNER_TEMP/d5b-ap5-five-identity-tests.log"
+          grep -q '^OK$' "$RUNNER_TEMP/d5b-ap5-five-identity-tests.log"
+          echo '{"schema":"R03D5BFiveIdentitySourceHostV1","fiveIdentityTests":31,"fixtureClass":"FiveTemporaryCheckoutsAndRealBareRefs","privateFileTransportOnly":true,"productionHttpsReachabilityQualified":false,"productionLiveRemoteHeadsVerified":false,"candidateEntryPointsInvoked":false,"AP4CompositionVerified":false,"runnerPublicationRelationVerified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyFiveIdentityObservationTestsPassed"}'
       - name: Verify no immutable user approval or Unity execution can be asserted
         shell: bash
         env:
