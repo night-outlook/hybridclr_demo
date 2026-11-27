@@ -121,6 +121,57 @@ jobs:
           grep -q 'Ran 31 tests in' "$RUNNER_TEMP/d5b-ap5-five-identity-tests.log"
           grep -q '^OK$' "$RUNNER_TEMP/d5b-ap5-five-identity-tests.log"
           echo '{"schema":"R03D5BFiveIdentitySourceHostV1","fiveIdentityTests":31,"fixtureClass":"FiveTemporaryCheckoutsAndRealBareRefs","privateFileTransportOnly":true,"productionHttpsReachabilityQualified":false,"productionLiveRemoteHeadsVerified":false,"candidateEntryPointsInvoked":false,"AP4CompositionVerified":false,"runnerPublicationRelationVerified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyFiveIdentityObservationTestsPassed"}'
+      - name: AP6 sequential composition with an explicit identity-stage double
+        shell: bash
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+          GIT_TERMINAL_PROMPT: "0"
+        run: |
+          set -euo pipefail
+          tool=_demo/Tools/AssemblyShadow/R03IR/D5Local
+          python3 -I -S -B "$tool/test_d5b_identity_configuration.py" -v 2>&1 |
+            tee "$RUNNER_TEMP/d5b-ap6-composition-unit-tests.log"
+          grep -q 'Ran 20 tests in' "$RUNNER_TEMP/d5b-ap6-composition-unit-tests.log"
+          grep -q '^OK$' "$RUNNER_TEMP/d5b-ap6-composition-unit-tests.log"
+          echo '{"schema":"R03D5BIdentityConfigurationUnitSourceHostV1","compositionTests":20,"AP5StageDoubled":true,"realAP4Consumers":true,"fullFiveIdentityIntegrationVerified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyCompositionUnitTestsPassed"}'
+      - name: Read pinned hybridclr source for AP6 integration
+        uses: actions/checkout@v4
+        with:
+          repository: night-outlook/hybridclr
+          ref: c3c232023724cbad565b85e9b2c3beea8ce2789a
+          path: _ap6_siblings/hybridclr
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Read pinned hybridclr_unity source for AP6 integration
+        uses: actions/checkout@v4
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: _ap6_siblings/hybridclr_unity
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Read pinned il2cpp_plus source for AP6 integration
+        uses: actions/checkout@v4
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 1268dd417ffe9090fcd9ea2d49542c97ed3cccb3
+          path: _ap6_siblings/il2cpp_plus
+          fetch-depth: 0
+          persist-credentials: false
+      - name: AP6 required integration with actual pinned sibling sources and real bare refs
+        shell: bash
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+          GIT_TERMINAL_PROMPT: "0"
+          AP6_PINNED_SIBLINGS: ${{ github.workspace }}/_ap6_siblings
+        run: |
+          set -euo pipefail
+          tool=_demo/Tools/AssemblyShadow/R03IR/D5Local
+          python3 -I -S -B "$tool/integration_d5b_identity_configuration.py" -v 2>&1 |
+            tee "$RUNNER_TEMP/d5b-ap6-composition-integration-tests.log"
+          grep -q 'Ran 1 test in' "$RUNNER_TEMP/d5b-ap6-composition-integration-tests.log"
+          grep -q '^OK$' "$RUNNER_TEMP/d5b-ap6-composition-integration-tests.log"
+          echo '{"schema":"R03D5BIdentityConfigurationIntegrationSourceHostV1","integrationTests":1,"fixedAP1SiblingSources":true,"privateFileTransportOnly":true,"realAP5AndAP4Observers":true,"productionHttpsReachabilityQualified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlySequentialIdentityConfigurationTestsPassed"}'
       - name: Verify no immutable user approval or Unity execution can be asserted
         shell: bash
         env:
