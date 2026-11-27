@@ -1,0 +1,314 @@
+AP6 Primary source-host validation
+Started UTC: 2026-11-27T10:44:41.705204+00:00
+Source provenance: Connector-derived files; this directory is not a Git checkout.
+Baseline commit: 943040c310808065751a26caf00c80e43d87f388
+{"AP5FixtureGit": {"path": "/bin/git", "version": "git version 2.47.3"}, "AP5ObserverGit": {"path": "/bin/git", "version": "git version 2.47.3"}, "AP6IntegrationCloneAndRefGit": {"path": "/bin/git", "version": "git version 2.47.3"}, "AP6IntegrationGitScope": "Selection described from source; integration not executed on this host.", "AP6IntegrationInitialFixtureGit": {"path": "/usr/local/bin/git", "version": "git version 2.56.1"}, "AP6ObserverGit": {"path": "/bin/git", "version": "git version 2.47.3"}, "AP6UnitInitialFixtureGit": {"path": "/usr/local/bin/git", "version": "git version 2.56.1"}, "auditorGit": {"path": "/bin/git", "version": "git version 2.47.3"}, "fixtureGit": {"path": "/usr/local/bin/git", "version": "git version 2.56.1"}, "fixtureGitScope": "Retained fixtures and AP6 initial unit/integration fixture setup use ambient PATH.", "platform": "Linux-6.18.57-x86_64-with-glibc2.41", "python": "3.12.14", "pythonExecutable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "systemGitScope": "AP5 fixtures, AP6 integration clone/ref operations, and accepted observers use system PATH."}
+Source files before tests: {".github/workflows/r03-b2-d5b-local-admission-source-host.yml": {"bytes": 11467, "gitBlob": "63ac6dcbe2881429ebf2177104c9ad4f15ef5f5e", "sha256": "fc63d7da5229e66f63411e3c4e3494b0e16a99fa4fe4c3d41ef29067596ad02c"}, "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_IDENTITY_CONFIGURATION_AP6_DESIGN_2026-11-27.md": {"bytes": 25710, "gitBlob": "6de97f0da257cd7433eb550221137037e1b83513", "sha256": "f0453b05cd705c48c4ea17beb68baecb783694803e473d94694e6449a0140d36"}, "Tools/AssemblyShadow/R03IR/D5Local/d5b_identity_configuration.py": {"bytes": 18633, "gitBlob": "94f1e30a51c1165b54b0392801853bcb7b9e3557", "sha256": "8fb3618a438a5f5de8363b4ea74230590022b0d31d374dc291ee88179bd9a8d8"}, "Tools/AssemblyShadow/R03IR/D5Local/integration_d5b_identity_configuration.py": {"bytes": 11500, "gitBlob": "0119bb0bd4d471f456fd400a3f46abdf78d69810", "sha256": "41a28ddf784f3d1ef7da47578245e912727f3f11e6aeb819d0458c5407a4d6e3"}, "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_identity_configuration.py": {"bytes": 32373, "gitBlob": "fdb81d073c9da09e7313568e32833102e09b7a8a", "sha256": "6352ee78d820037b4fbabd43ab3d5afc204efd68f47b835bfdc879eeadd6ba14"}}
+
+COMMAND ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "-B", "/workspace/scratch/a6fad0908883/ap6_source/Tools/AssemblyShadow/R03IR/D5Local/test_d5b_local_admission.py", "-v"]
+test_01_exact_plan_git_blob (__main__.D5BLocalSourceOnly.test_01_exact_plan_git_blob) ... ok
+test_02_plan_source_provenance_and_r2_gate (__main__.D5BLocalSourceOnly.test_02_plan_source_provenance_and_r2_gate) ... ok
+test_03_all_18_real_player_cases_no_coverage (__main__.D5BLocalSourceOnly.test_03_all_18_real_player_cases_no_coverage) ... ok
+test_04_no_approval_authority_in_any_plan_or_code (__main__.D5BLocalSourceOnly.test_04_no_approval_authority_in_any_plan_or_code) ... ok
+test_05_duplicate_plan_json_key_rejected (__main__.D5BLocalSourceOnly.test_05_duplicate_plan_json_key_rejected) ... ok
+test_06_valid_proposed_root_custody_read_only (__main__.D5BLocalSourceOnly.test_06_valid_proposed_root_custody_read_only) ... ok
+test_07_missing_history_role_rejected (__main__.D5BLocalSourceOnly.test_07_missing_history_role_rejected) ... ok
+test_08_historical_base_relationship_rejected (__main__.D5BLocalSourceOnly.test_08_historical_base_relationship_rejected) ... ok
+test_09_duplicate_historical_role_rejected (__main__.D5BLocalSourceOnly.test_09_duplicate_historical_role_rejected) ... ok
+test_10_workspace_symlink_alias_rejected (__main__.D5BLocalSourceOnly.test_10_workspace_symlink_alias_rejected) ... ok
+test_11_evidence_parent_under_old_b1_rejected (__main__.D5BLocalSourceOnly.test_11_evidence_parent_under_old_b1_rejected) ... ok
+test_12_evidence_parent_under_source_rejected (__main__.D5BLocalSourceOnly.test_12_evidence_parent_under_source_rejected) ... ok
+test_13_existing_oneuse_output_rejected (__main__.D5BLocalSourceOnly.test_13_existing_oneuse_output_rejected) ... ok
+test_14_symlink_oneuse_output_rejected (__main__.D5BLocalSourceOnly.test_14_symlink_oneuse_output_rejected) ... ok
+test_15_noncanonical_output_name_rejected (__main__.D5BLocalSourceOnly.test_15_noncanonical_output_name_rejected) ... ok
+test_16_original_s_must_be_outside_active_checkout (__main__.D5BLocalSourceOnly.test_16_original_s_must_be_outside_active_checkout) ... ok
+test_17_parse_exact_single_remote_ref (__main__.D5BLocalSourceOnly.test_17_parse_exact_single_remote_ref) ... ok
+test_18_stale_remote_ref_rejected (__main__.D5BLocalSourceOnly.test_18_stale_remote_ref_rejected) ... ok
+test_19_wrong_remote_branch_rejected (__main__.D5BLocalSourceOnly.test_19_wrong_remote_branch_rejected) ... ok
+test_20_ambiguous_remote_ref_lines_rejected (__main__.D5BLocalSourceOnly.test_20_ambiguous_remote_ref_lines_rejected) ... ok
+test_21_malformed_remote_sha_rejected (__main__.D5BLocalSourceOnly.test_21_malformed_remote_sha_rejected) ... ok
+test_22_original_s_clean_source_record (__main__.D5BLocalSourceOnly.test_22_original_s_clean_source_record) ... ok
+test_23_original_s_wrong_sha_rejected (__main__.D5BLocalSourceOnly.test_23_original_s_wrong_sha_rejected) ... ok
+test_24_host_must_be_macos_arm64 (__main__.D5BLocalSourceOnly.test_24_host_must_be_macos_arm64) ... ok
+test_25_machine_preview_does_not_launch_unity (__main__.D5BLocalSourceOnly.test_25_machine_preview_does_not_launch_unity) ... ok
+test_26_machine_disk_threshold_rejected (__main__.D5BLocalSourceOnly.test_26_machine_disk_threshold_rejected) ... ok
+test_27_live_source_join_uses_four_exact_refs (__main__.D5BLocalSourceOnly.test_27_live_source_join_uses_four_exact_refs) ... ok
+test_28_live_remote_sha_drift_rejected (__main__.D5BLocalSourceOnly.test_28_live_remote_sha_drift_rejected) ... ok
+test_29_reject_source_gate_missing_receipt_producer (__main__.D5BLocalSourceOnly.test_29_reject_source_gate_missing_receipt_producer) ... ok
+test_30_approval_requires_immutable_compile_time_blob (__main__.D5BLocalSourceOnly.test_30_approval_requires_immutable_compile_time_blob) ... ok
+test_31_approved_envelope_fake_status_cannot_open (__main__.D5BLocalSourceOnly.test_31_approved_envelope_fake_status_cannot_open) ... ok
+test_32_oneuse_receipt_binds_exact_paths_and_unity (__main__.D5BLocalSourceOnly.test_32_oneuse_receipt_binds_exact_paths_and_unity) ... ok
+test_33_oneuse_receipt_wrong_unity_hash_rejected (__main__.D5BLocalSourceOnly.test_33_oneuse_receipt_wrong_unity_hash_rejected) ... ok
+test_34_oneuse_receipt_wrong_historical_s_rejected (__main__.D5BLocalSourceOnly.test_34_oneuse_receipt_wrong_historical_s_rejected) ... ok
+test_35_oneuse_output_exclusivity_and_no_player (__main__.D5BLocalSourceOnly.test_35_oneuse_output_exclusivity_and_no_player) ... ok
+test_36_execute_cli_denied_before_envelope_or_filesystem (__main__.D5BLocalSourceOnly.test_36_execute_cli_denied_before_envelope_or_filesystem) ... {"D5BLocalExecution": "NotAuthorized", "R03Accepted": false, "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION", "kind": "R03D5BLocalAdmissionFailureV1", "outputCreated": false, "reason": "D5-B Local execution is not authorized", "result": "NotAuthorized", "retryAllowed": false, "schemaVersion": 1}
+ok
+test_37_preview_rejects_spurious_approval_envelope (__main__.D5BLocalSourceOnly.test_37_preview_rejects_spurious_approval_envelope) ... {"D5BLocalExecution": "NotAuthorized", "R03Accepted": false, "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION", "kind": "R03D5BLocalAdmissionFailureV1", "outputCreated": false, "reason": "Read-only preview must not accept approval-like inputs", "result": "BlockedBeforeBuild", "retryAllowed": false, "schemaVersion": 1}
+ok
+test_38_preview_requires_complete_request (__main__.D5BLocalSourceOnly.test_38_preview_requires_complete_request) ... ok
+test_39_read_only_inspect_preview_no_output (__main__.D5BLocalSourceOnly.test_39_read_only_inspect_preview_no_output) ... ok
+test_40_extra_source_pin_or_wrong_hybridclr_rejected (__main__.D5BLocalSourceOnly.test_40_extra_source_pin_or_wrong_hybridclr_rejected) ... ok
+test_41_wrong_second_historical_root_blocks_receipt (__main__.D5BLocalSourceOnly.test_41_wrong_second_historical_root_blocks_receipt) ... ok
+test_42_unparseable_xcode_version_rejected (__main__.D5BLocalSourceOnly.test_42_unparseable_xcode_version_rejected) ... ok
+test_43_xcode_license_rejection_fails_closed (__main__.D5BLocalSourceOnly.test_43_xcode_license_rejection_fails_closed) ... ok
+test_44_non_string_historical_path_rejected_before_custody (__main__.D5BLocalSourceOnly.test_44_non_string_historical_path_rejected_before_custody) ... ok
+test_45_non_string_workspace_rejected_before_custody (__main__.D5BLocalSourceOnly.test_45_non_string_workspace_rejected_before_custody) ... ok
+test_46_standard_sdk_symlink_is_resolved_not_rejected (__main__.D5BLocalSourceOnly.test_46_standard_sdk_symlink_is_resolved_not_rejected) ... ok
+test_47_test_only_frozen_envelope_semantics (__main__.D5BLocalSourceOnly.test_47_test_only_frozen_envelope_semantics) ... ok
+test_48_approved_envelope_one_byte_drift_rejected (__main__.D5BLocalSourceOnly.test_48_approved_envelope_one_byte_drift_rejected) ... ok
+test_49_test_only_approval_cannot_skip_user_review (__main__.D5BLocalSourceOnly.test_49_test_only_approval_cannot_skip_user_review) ... ok
+test_50_test_only_approval_cannot_change_native_pin (__main__.D5BLocalSourceOnly.test_50_test_only_approval_cannot_change_native_pin) ... ok
+test_51_test_only_approval_cannot_omit_historical_root (__main__.D5BLocalSourceOnly.test_51_test_only_approval_cannot_omit_historical_root) ... ok
+test_52_test_only_approval_cannot_claim_player_scope (__main__.D5BLocalSourceOnly.test_52_test_only_approval_cannot_claim_player_scope) ... ok
+test_53_direct_seal_helper_denied_without_reviewed_envelope (__main__.D5BLocalSourceOnly.test_53_direct_seal_helper_denied_without_reviewed_envelope) ... ok
+test_54_inner_seal_rejects_different_approval_dict (__main__.D5BLocalSourceOnly.test_54_inner_seal_rejects_different_approval_dict) ... ok
+test_55_inner_seal_rejects_tampered_envelope_bytes (__main__.D5BLocalSourceOnly.test_55_inner_seal_rejects_tampered_envelope_bytes) ... ok
+test_56_prewrite_source_drift_refuses_output (__main__.D5BLocalSourceOnly.test_56_prewrite_source_drift_refuses_output) ... ok
+test_57_postflight_remote_drift_consumes_root_no_success (__main__.D5BLocalSourceOnly.test_57_postflight_remote_drift_consumes_root_no_success) ... ok
+test_58_final_source_drift_has_no_positive_receipt (__main__.D5BLocalSourceOnly.test_58_final_source_drift_has_no_positive_receipt) ... ok
+test_59_parent_alias_swap_cannot_write_to_history (__main__.D5BLocalSourceOnly.test_59_parent_alias_swap_cannot_write_to_history) ... ok
+test_60_faults_at_each_exclusive_receipt_are_partial (__main__.D5BLocalSourceOnly.test_60_faults_at_each_exclusive_receipt_are_partial) ... ok
+test_61_public_cli_reports_partial_root_truthfully (__main__.D5BLocalSourceOnly.test_61_public_cli_reports_partial_root_truthfully) ... ok
+test_62_source_history_identity_drift_after_mkdir (__main__.D5BLocalSourceOnly.test_62_source_history_identity_drift_after_mkdir) ... ok
+test_63_final_commit_marker_refuses_last_minute_source_drift (__main__.D5BLocalSourceOnly.test_63_final_commit_marker_refuses_last_minute_source_drift) ... ok
+test_64_precreation_parent_symlink_race_is_blocked (__main__.D5BLocalSourceOnly.test_64_precreation_parent_symlink_race_is_blocked) ... ok
+test_65_failed_failure_marker_still_reports_created_root (__main__.D5BLocalSourceOnly.test_65_failed_failure_marker_still_reports_created_root) ... ok
+test_66_structurally_sealed_receipt_has_no_veto_or_stage (__main__.D5BLocalSourceOnly.test_66_structurally_sealed_receipt_has_no_veto_or_stage) ... ok
+test_67_after_flush_stage_fsync_error_never_publishes_final (__main__.D5BLocalSourceOnly.test_67_after_flush_stage_fsync_error_never_publishes_final) ... ok
+test_68_post_rename_directory_fsync_error_keeps_durable_veto (__main__.D5BLocalSourceOnly.test_68_post_rename_directory_fsync_error_keeps_durable_veto) ... ok
+test_69_atomic_rename_failure_does_not_publish_final (__main__.D5BLocalSourceOnly.test_69_atomic_rename_failure_does_not_publish_final) ... ok
+test_70_final_veto_unlink_failure_never_seals_product (__main__.D5BLocalSourceOnly.test_70_final_veto_unlink_failure_never_seals_product) ... ok
+test_71_parent_close_failure_is_partial_before_commit (__main__.D5BLocalSourceOnly.test_71_parent_close_failure_is_partial_before_commit) ... ok
+test_72_root_close_failure_is_indeterminate_after_commit (__main__.D5BLocalSourceOnly.test_72_root_close_failure_is_indeterminate_after_commit) ... ok
+test_73_cli_reports_root_close_error_as_indeterminate (__main__.D5BLocalSourceOnly.test_73_cli_reports_root_close_error_as_indeterminate) ... ok
+test_74_committed_receipt_with_incomplete_marker_is_rejected (__main__.D5BLocalSourceOnly.test_74_committed_receipt_with_incomplete_marker_is_rejected) ... ok
+test_75_manifest_only_or_missing_final_receipt_is_rejected (__main__.D5BLocalSourceOnly.test_75_manifest_only_or_missing_final_receipt_is_rejected) ... ok
+test_76_failure_marker_vetoes_otherwise_matching_receipts (__main__.D5BLocalSourceOnly.test_76_failure_marker_vetoes_otherwise_matching_receipts) ... ok
+test_77_after_effect_veto_unlink_error_requires_reconciliation (__main__.D5BLocalSourceOnly.test_77_after_effect_veto_unlink_error_requires_reconciliation) ... ok
+test_78_cli_after_effect_unlink_error_never_claims_precommit (__main__.D5BLocalSourceOnly.test_78_cli_after_effect_unlink_error_never_claims_precommit) ... ok
+test_79_root_relocated_after_parent_close_is_not_success (__main__.D5BLocalSourceOnly.test_79_root_relocated_after_parent_close_is_not_success) ... ok
+test_80_root_relocated_after_final_unlink_is_indeterminate (__main__.D5BLocalSourceOnly.test_80_root_relocated_after_final_unlink_is_indeterminate) ... ok
+test_81_cli_relocated_parent_closed_root_requires_reconciliation (__main__.D5BLocalSourceOnly.test_81_cli_relocated_parent_closed_root_requires_reconciliation) ... ok
+test_82_cli_completed_seal_first_stdout_write_failure_preserves_commit (__main__.D5BLocalSourceOnly.test_82_cli_completed_seal_first_stdout_write_failure_preserves_commit) ... ok
+test_83_cli_completed_seal_stdout_flush_failure_preserves_commit (__main__.D5BLocalSourceOnly.test_83_cli_completed_seal_stdout_flush_failure_preserves_commit) ... ok
+test_84_cli_completed_seal_both_failed_streams_returns_two (__main__.D5BLocalSourceOnly.test_84_cli_completed_seal_both_failed_streams_returns_two) ... ok
+test_85_cli_after_effect_mkdir_faults_report_unknown_creation (__main__.D5BLocalSourceOnly.test_85_cli_after_effect_mkdir_faults_report_unknown_creation) ... ok
+test_86_cli_real_mkdir_trace_interruption_reports_unknown_creation (__main__.D5BLocalSourceOnly.test_86_cli_real_mkdir_trace_interruption_reports_unknown_creation) ... ok
+test_87_cli_preexisting_candidate_preserves_unrelated_sentinel (__main__.D5BLocalSourceOnly.test_87_cli_preexisting_candidate_preserves_unrelated_sentinel) ... ok
+test_88_cli_raced_mkdir_collision_preserves_unrelated_sentinel (__main__.D5BLocalSourceOnly.test_88_cli_raced_mkdir_collision_preserves_unrelated_sentinel) ... ok
+test_89_cli_mkdir_pre_effect_error_does_not_claim_proven_absence (__main__.D5BLocalSourceOnly.test_89_cli_mkdir_pre_effect_error_does_not_claim_proven_absence) ... ok
+test_90_cli_sealer_return_boundary_fault_requires_reconciliation (__main__.D5BLocalSourceOnly.test_90_cli_sealer_return_boundary_fault_requires_reconciliation) ... ok
+test_91_cli_partial_output_delivery_failure_retains_partial_accounting (__main__.D5BLocalSourceOnly.test_91_cli_partial_output_delivery_failure_retains_partial_accounting) ... ok
+test_92_cli_null_approval_delivery_failure_remains_prewrite_denial (__main__.D5BLocalSourceOnly.test_92_cli_null_approval_delivery_failure_remains_prewrite_denial) ... ok
+test_93_cli_trace_before_mkdir_retains_attempt_uncertainty (__main__.D5BLocalSourceOnly.test_93_cli_trace_before_mkdir_retains_attempt_uncertainty) ... ok
+test_94_cli_after_mkdir_replacement_preserves_both_unowned_roots (__main__.D5BLocalSourceOnly.test_94_cli_after_mkdir_replacement_preserves_both_unowned_roots) ... ok
+
+----------------------------------------------------------------------
+Ran 94 tests in 0.122s
+
+OK
+
+EXIT 0
+
+COMMAND ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "-B", "/workspace/scratch/a6fad0908883/ap6_source/Tools/AssemblyShadow/R03IR/D5Local/test_d5b_activation_publication.py", "-v"]
+test_01_separate_refs_construct_real_closed_publication_chain (__main__.D5BActivationPublicationSourceOnly.test_01_separate_refs_construct_real_closed_publication_chain) ... ok
+test_02_same_ref_publication_leaves_old_source_pin_stale (__main__.D5BActivationPublicationSourceOnly.test_02_same_ref_publication_leaves_old_source_pin_stale) ... ok
+test_03_moved_or_missing_source_and_runner_refs_are_rejected (__main__.D5BActivationPublicationSourceOnly.test_03_moved_or_missing_source_and_runner_refs_are_rejected) ... ok
+test_04_missing_or_noncommit_objects_are_rejected (__main__.D5BActivationPublicationSourceOnly.test_04_missing_or_noncommit_objects_are_rejected) ... ok
+test_05_runner_pin_must_equal_exact_proposal_blob (__main__.D5BActivationPublicationSourceOnly.test_05_runner_pin_must_equal_exact_proposal_blob) ... ok
+test_06_runner_rejects_extra_source_helper_or_plan_changes (__main__.D5BActivationPublicationSourceOnly.test_06_runner_rejects_extra_source_helper_or_plan_changes) ... ok
+test_07_source_writer_must_be_exact_reviewed_closed_blob (__main__.D5BActivationPublicationSourceOnly.test_07_source_writer_must_be_exact_reviewed_closed_blob) ... ok
+test_08_runner_writer_allows_only_one_exact_pin_substitution (__main__.D5BActivationPublicationSourceOnly.test_08_runner_writer_allows_only_one_exact_pin_substitution) ... ok
+test_09_writer_and_proposal_mode_type_substitutions_are_rejected (__main__.D5BActivationPublicationSourceOnly.test_09_writer_and_proposal_mode_type_substitutions_are_rejected) ... ok
+test_10_proposal_must_be_new_and_present_in_runner (__main__.D5BActivationPublicationSourceOnly.test_10_proposal_must_be_new_and_present_in_runner) ... ok
+test_11_duplicate_json_keys_are_rejected_at_every_level (__main__.D5BActivationPublicationSourceOnly.test_11_duplicate_json_keys_are_rejected_at_every_level) ... ok
+test_12_proposal_schema_and_field_types_are_exact (__main__.D5BActivationPublicationSourceOnly.test_12_proposal_schema_and_field_types_are_exact) ... ok
+test_13_proposal_requires_exact_source_and_other_repository_pins (__main__.D5BActivationPublicationSourceOnly.test_13_proposal_requires_exact_source_and_other_repository_pins) ... ok
+test_14_authority_promotions_are_rejected (__main__.D5BActivationPublicationSourceOnly.test_14_authority_promotions_are_rejected) ... ok
+test_15_runner_has_exactly_one_parent_equal_to_source (__main__.D5BActivationPublicationSourceOnly.test_15_runner_has_exactly_one_parent_equal_to_source) ... ok
+test_16_proposal_cannot_become_production_execution_envelope (__main__.D5BActivationPublicationSourceOnly.test_16_proposal_cannot_become_production_execution_envelope) ... ok
+test_17_cli_audits_objects_without_changing_refs_or_authority (__main__.D5BActivationPublicationSourceOnly.test_17_cli_audits_objects_without_changing_refs_or_authority) ... ok
+test_18_cli_exposes_no_execution_or_authority_override (__main__.D5BActivationPublicationSourceOnly.test_18_cli_exposes_no_execution_or_authority_override) ... ok
+test_19_standard_commit_prefixes_match_git_topology (__main__.D5BActivationPublicationSourceOnly.test_19_standard_commit_prefixes_match_git_topology) ... ok
+test_20_metadata_continuations_and_messages_do_not_add_topology (__main__.D5BActivationPublicationSourceOnly.test_20_metadata_continuations_and_messages_do_not_add_topology) ... ok
+test_21_ordinary_stored_late_parents_reject_source_and_runner (__main__.D5BActivationPublicationSourceOnly.test_21_ordinary_stored_late_parents_reject_source_and_runner) ... ok
+test_22_late_duplicate_and_misordered_topology_headers_are_rejected (__main__.D5BActivationPublicationSourceOnly.test_22_late_duplicate_and_misordered_topology_headers_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 6.387s
+
+OK
+
+EXIT 0
+
+COMMAND ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "-B", "/workspace/scratch/a6fad0908883/ap6_source/Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_closure.py", "-v"]
+test_01_six_file_snapshot_is_immutable_and_closed (__main__.D5BRunnerClosureSourceOnly.test_01_six_file_snapshot_is_immutable_and_closed) ... ok
+test_02_verification_never_imports_or_executes_candidate_modules (__main__.D5BRunnerClosureSourceOnly.test_02_verification_never_imports_or_executes_candidate_modules) ... ok
+test_03_manifest_requires_external_exact_bytes_pin (__main__.D5BRunnerClosureSourceOnly.test_03_manifest_requires_external_exact_bytes_pin) ... ok
+test_04_manifest_schema_types_authority_and_roster_are_exact (__main__.D5BRunnerClosureSourceOnly.test_04_manifest_schema_types_authority_and_roster_are_exact) ... ok
+test_05_changed_reviewed_objects_reject_after_valid_ap1_publication (__main__.D5BRunnerClosureSourceOnly.test_05_changed_reviewed_objects_reject_after_valid_ap1_publication) ... ok
+test_06_closure_git_objects_require_regular_nonexecutable_modes (__main__.D5BRunnerClosureSourceOnly.test_06_closure_git_objects_require_regular_nonexecutable_modes) ... ok
+test_07_tracked_untracked_and_ignored_changes_are_rejected (__main__.D5BRunnerClosureSourceOnly.test_07_tracked_untracked_and_ignored_changes_are_rejected) ... ok
+test_08_assumed_and_skipped_index_entries_are_rejected (__main__.D5BRunnerClosureSourceOnly.test_08_assumed_and_skipped_index_entries_are_rejected) ... ok
+test_09_working_files_reject_symlinks_hardlinks_and_executable_bits (__main__.D5BRunnerClosureSourceOnly.test_09_working_files_reject_symlinks_hardlinks_and_executable_bits) ... ok
+test_10_directory_aliases_reject_for_runner_and_file_ancestors (__main__.D5BRunnerClosureSourceOnly.test_10_directory_aliases_reject_for_runner_and_file_ancestors) ... ok
+test_11_checkout_branch_head_and_origin_are_exact (__main__.D5BRunnerClosureSourceOnly.test_11_checkout_branch_head_and_origin_are_exact) ... ok
+test_12_filters_rewrites_and_hidden_status_configuration_reject (__main__.D5BRunnerClosureSourceOnly.test_12_filters_rewrites_and_hidden_status_configuration_reject) ... ok
+test_13_shared_and_modified_git_administration_reject (__main__.D5BRunnerClosureSourceOnly.test_13_shared_and_modified_git_administration_reject) ... ok
+test_14_locations_require_complete_canonical_disjoint_directories (__main__.D5BRunnerClosureSourceOnly.test_14_locations_require_complete_canonical_disjoint_directories) ... ok
+test_15_file_bytes_and_identity_changes_between_reads_reject (__main__.D5BRunnerClosureSourceOnly.test_15_file_bytes_and_identity_changes_between_reads_reject) ... ok
+test_16_real_ref_and_checkout_config_changes_during_snapshot_reject (__main__.D5BRunnerClosureSourceOnly.test_16_real_ref_and_checkout_config_changes_during_snapshot_reject) ... ok
+test_17_identical_ancestor_replacement_during_actual_read_rejects (__main__.D5BRunnerClosureSourceOnly.test_17_identical_ancestor_replacement_during_actual_read_rejects) ... ok
+test_18_protected_directory_identity_change_between_observations_rejects (__main__.D5BRunnerClosureSourceOnly.test_18_protected_directory_identity_change_between_observations_rejects) ... ok
+test_19_isolated_cli_returns_closed_json_without_mutating_runner (__main__.D5BRunnerClosureSourceOnly.test_19_isolated_cli_returns_closed_json_without_mutating_runner) ... ok
+test_20_cli_requires_isolation_pin_and_rejects_execution_overrides (__main__.D5BRunnerClosureSourceOnly.test_20_cli_requires_isolation_pin_and_rejects_execution_overrides) ... ok
+test_21_verification_uses_only_object_and_metadata_git_commands (__main__.D5BRunnerClosureSourceOnly.test_21_verification_uses_only_object_and_metadata_git_commands) ... ok
+test_22_unrelated_tracked_executable_and_literal_symlink_are_valid (__main__.D5BRunnerClosureSourceOnly.test_22_unrelated_tracked_executable_and_literal_symlink_are_valid) ... ok
+test_23_full_inventory_rejects_unrelated_changes_and_extra_empty_directories (__main__.D5BRunnerClosureSourceOnly.test_23_full_inventory_rejects_unrelated_changes_and_extra_empty_directories) ... ok
+test_24_full_inventory_enforces_per_file_and_aggregate_byte_bounds (__main__.D5BRunnerClosureSourceOnly.test_24_full_inventory_enforces_per_file_and_aggregate_byte_bounds) ... ok
+test_25_full_inventory_enforces_entry_count_and_depth_bounds (__main__.D5BRunnerClosureSourceOnly.test_25_full_inventory_enforces_entry_count_and_depth_bounds) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 10.775s
+
+OK
+
+EXIT 0
+
+COMMAND ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "-I", "-S", "-B", "/workspace/scratch/a6fad0908883/ap6_source/Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_imports.py", "-v"]
+test_01_real_ap2_snapshot_initializes_three_private_bindings (__main__.D5BRunnerImportsSourceOnly.test_01_real_ap2_snapshot_initializes_three_private_bindings) ... ok
+test_02_report_matches_actual_ordered_direct_import_requests (__main__.D5BRunnerImportsSourceOnly.test_02_report_matches_actual_ordered_direct_import_requests) ... ok
+test_03_ambient_candidate_module_cache_entries_are_never_selected (__main__.D5BRunnerImportsSourceOnly.test_03_ambient_candidate_module_cache_entries_are_never_selected) ... ok
+test_04_ambient_meta_path_and_path_cache_are_not_consulted (__main__.D5BRunnerImportsSourceOnly.test_04_ambient_meta_path_and_path_cache_are_not_consulted) ... ok
+test_05_ambient_source_and_opaque_bytecode_fixtures_are_not_read (__main__.D5BRunnerImportsSourceOnly.test_05_ambient_source_and_opaque_bytecode_fixtures_are_not_read) ... ok
+test_06_real_sys_path_is_unchanged_during_writer_initialization (__main__.D5BRunnerImportsSourceOnly.test_06_real_sys_path_is_unchanged_during_writer_initialization) ... ok
+test_07_import_phase_calls_no_candidate_function_or_content_reader (__main__.D5BRunnerImportsSourceOnly.test_07_import_phase_calls_no_candidate_function_or_content_reader) ... ok
+test_08_after_snapshot_source_change_does_not_replace_captured_bytes (__main__.D5BRunnerImportsSourceOnly.test_08_after_snapshot_source_change_does_not_replace_captured_bytes) ... ok
+test_09_invalid_external_pin_or_raw_input_rejects_before_helper (__main__.D5BRunnerImportsSourceOnly.test_09_invalid_external_pin_or_raw_input_rejects_before_helper) ... ok
+test_10_changed_trusted_helper_bytes_reject_before_compilation (__main__.D5BRunnerImportsSourceOnly.test_10_changed_trusted_helper_bytes_reject_before_compilation) ... ok
+test_11_malformed_private_snapshot_records_reject_before_compilation (__main__.D5BRunnerImportsSourceOnly.test_11_malformed_private_snapshot_records_reject_before_compilation) ... ok
+test_12_private_snapshot_requires_consistent_roster_and_closed_ap2_report (__main__.D5BRunnerImportsSourceOnly.test_12_private_snapshot_requires_consistent_roster_and_closed_ap2_report) ... ok
+test_13_import_requests_outside_reviewed_direct_forms_are_denied (__main__.D5BRunnerImportsSourceOnly.test_13_import_requests_outside_reviewed_direct_forms_are_denied) ... ok
+test_14_public_result_is_frozen_json_data_with_fresh_report_copies (__main__.D5BRunnerImportsSourceOnly.test_14_public_result_is_frozen_json_data_with_fresh_report_copies) ... ok
+test_15_rejections_report_partial_initialization_truthfully (__main__.D5BRunnerImportsSourceOnly.test_15_rejections_report_partial_initialization_truthfully) ... ok
+test_16_compilation_interruption_reports_no_candidate_initialization (__main__.D5BRunnerImportsSourceOnly.test_16_compilation_interruption_reports_no_candidate_initialization) ... ok
+test_17_temporary_trusted_helper_registration_is_always_removed (__main__.D5BRunnerImportsSourceOnly.test_17_temporary_trusted_helper_registration_is_always_removed) ... ok
+test_18_real_isolated_cli_preserves_checkout_and_creates_no_output (__main__.D5BRunnerImportsSourceOnly.test_18_real_isolated_cli_preserves_checkout_and_creates_no_output) ... ok
+test_19_cli_requires_actual_isolation_no_site_and_no_bytecode_flags (__main__.D5BRunnerImportsSourceOnly.test_19_cli_requires_actual_isolation_no_site_and_no_bytecode_flags) ... ok
+test_20_cli_rejects_bad_pins_and_execution_arguments_without_output (__main__.D5BRunnerImportsSourceOnly.test_20_cli_rejects_bad_pins_and_execution_arguments_without_output) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 6.799s
+
+OK
+
+EXIT 0
+
+COMMAND ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "-I", "-S", "-B", "/workspace/scratch/a6fad0908883/ap6_source/Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_configuration.py", "-v"]
+test_01_actual_consumers_keep_private_function_identity_and_enabled_checks (__main__.D5BRunnerConfigurationSourceOnly.test_01_actual_consumers_keep_private_function_identity_and_enabled_checks) ... ok
+test_02_each_public_call_uses_one_fresh_snapshot_and_initialization (__main__.D5BRunnerConfigurationSourceOnly.test_02_each_public_call_uses_one_fresh_snapshot_and_initialization) ... ok
+test_03_report_matches_four_actual_captured_file_operations (__main__.D5BRunnerConfigurationSourceOnly.test_03_report_matches_four_actual_captured_file_operations) ... ok
+test_04_actual_candidate_call_graph_and_consumption_use_no_io (__main__.D5BRunnerConfigurationSourceOnly.test_04_actual_candidate_call_graph_and_consumption_use_no_io) ... ok
+test_05_configuration_pathname_changes_after_capture_use_captured_bytes (__main__.D5BRunnerConfigurationSourceOnly.test_05_configuration_pathname_changes_after_capture_use_captured_bytes) ... ok
+test_06_invalid_public_inputs_reject_before_helper_code (__main__.D5BRunnerConfigurationSourceOnly.test_06_invalid_public_inputs_reject_before_helper_code) ... ok
+test_07_pinned_helper_drift_rejects_before_compilation (__main__.D5BRunnerConfigurationSourceOnly.test_07_pinned_helper_drift_rejects_before_compilation) ... ok
+test_08_private_captured_records_require_consistent_immutable_bytes (__main__.D5BRunnerConfigurationSourceOnly.test_08_private_captured_records_require_consistent_immutable_bytes) ... ok
+test_09_private_adapters_are_narrow_frozen_snapshot_views (__main__.D5BRunnerConfigurationSourceOnly.test_09_private_adapters_are_narrow_frozen_snapshot_views) ... ok
+test_10_private_binding_and_blob_mismatches_reject_before_consumer_calls (__main__.D5BRunnerConfigurationSourceOnly.test_10_private_binding_and_blob_mismatches_reject_before_consumer_calls) ... ok
+test_11_real_consumers_reject_changed_read_bytes_with_truthful_progress (__main__.D5BRunnerConfigurationSourceOnly.test_11_real_consumers_reject_changed_read_bytes_with_truthful_progress) ... ok
+test_12_profile_read_interruption_does_not_claim_profile_invocation (__main__.D5BRunnerConfigurationSourceOnly.test_12_profile_read_interruption_does_not_claim_profile_invocation) ... ok
+test_13_earlier_reports_remain_frozen_preconsumer_observations (__main__.D5BRunnerConfigurationSourceOnly.test_13_earlier_reports_remain_frozen_preconsumer_observations) ... ok
+test_14_private_helper_registrations_are_removed_for_all_outcomes (__main__.D5BRunnerConfigurationSourceOnly.test_14_private_helper_registrations_are_removed_for_all_outcomes) ... ok
+test_15_public_observations_are_immutable_json_with_a_narrow_signature (__main__.D5BRunnerConfigurationSourceOnly.test_15_public_observations_are_immutable_json_with_a_narrow_signature) ... ok
+test_16_real_isolated_cli_preserves_checkout_and_creates_no_output (__main__.D5BRunnerConfigurationSourceOnly.test_16_real_isolated_cli_preserves_checkout_and_creates_no_output) ... ok
+test_17_cli_requires_all_three_real_interpreter_flags (__main__.D5BRunnerConfigurationSourceOnly.test_17_cli_requires_all_three_real_interpreter_flags) ... ok
+test_18_cli_requires_both_arguments_and_rejects_execution_options (__main__.D5BRunnerConfigurationSourceOnly.test_18_cli_requires_both_arguments_and_rejects_execution_options) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 6.201s
+
+OK
+
+EXIT 0
+
+COMMAND ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "-I", "-S", "-B", "/workspace/scratch/a6fad0908883/ap6_source/Tools/AssemblyShadow/R03IR/D5Local/test_d5b_five_identity.py", "-v"]
+test_01_real_five_checkouts_and_ten_remote_reads_remain_closed (__main__.D5BFiveIdentityFocused.test_01_real_five_checkouts_and_ten_remote_reads_remain_closed) ... ok
+test_02_pin_and_immutable_byte_type_reject_before_helper_or_transport (__main__.D5BFiveIdentityFocused.test_02_pin_and_immutable_byte_type_reject_before_helper_or_transport) ... ok
+test_03_closed_schema_types_roles_authority_and_endpoint_controls (__main__.D5BFiveIdentityFocused.test_03_closed_schema_types_roles_authority_and_endpoint_controls) ... ok
+test_04_strict_json_rejects_duplicates_nonfinite_invalid_and_nonobject (__main__.D5BFiveIdentityFocused.test_04_strict_json_rejects_duplicates_nonfinite_invalid_and_nonobject) ... ok
+test_05_exact_runner_ref_spelling_rejects_patterns_and_aliases (__main__.D5BFiveIdentityFocused.test_05_exact_runner_ref_spelling_rejects_patterns_and_aliases) ... ok
+test_06_missing_untracked_ignored_and_raw_modified_files_reject (__main__.D5BFiveIdentityFocused.test_06_missing_untracked_ignored_and_raw_modified_files_reject) ... ok
+test_07_staged_assumed_skipped_and_submodule_index_reject (__main__.D5BFiveIdentityFocused.test_07_staged_assumed_skipped_and_submodule_index_reject) ... ok
+test_08_modes_hardlinks_symlink_replacement_and_special_files_reject (__main__.D5BFiveIdentityFocused.test_08_modes_hardlinks_symlink_replacement_and_special_files_reject) ... ok
+test_09_tracked_symlink_literal_is_observed_without_target_read (__main__.D5BFiveIdentityFocused.test_09_tracked_symlink_literal_is_observed_without_target_read) ... ok
+test_10_origins_and_unsupported_local_configuration_reject (__main__.D5BFiveIdentityFocused.test_10_origins_and_unsupported_local_configuration_reject) ... ok
+test_11_shallow_grafted_alternate_gitfiles_and_bare_layout_reject (__main__.D5BFiveIdentityFocused.test_11_shallow_grafted_alternate_gitfiles_and_bare_layout_reject) ... ok
+test_12_detached_wrong_branch_symbolic_ref_and_wrong_head_reject (__main__.D5BFiveIdentityFocused.test_12_detached_wrong_branch_symbolic_ref_and_wrong_head_reject) ... ok
+test_13_locations_reject_aliases_overlap_missing_and_duplicate_history (__main__.D5BFiveIdentityFocused.test_13_locations_reject_aliases_overlap_missing_and_duplicate_history) ... ok
+test_14_all_fifteen_administrative_roots_must_have_unique_identities (__main__.D5BFiveIdentityFocused.test_14_all_fifteen_administrative_roots_must_have_unique_identities) ... ok
+test_15_runner_requires_the_demo_source_as_its_only_parent (__main__.D5BFiveIdentityFocused.test_15_runner_requires_the_demo_source_as_its_only_parent) ... ok
+test_16_exact_remote_parser_rejects_ambiguous_malformed_and_changed_rows (__main__.D5BFiveIdentityFocused.test_16_exact_remote_parser_rejects_ambiguous_malformed_and_changed_rows) ... ok
+test_17_real_bare_remote_missing_and_drifted_refs_reject (__main__.D5BFiveIdentityFocused.test_17_real_bare_remote_missing_and_drifted_refs_reject) ... ok
+test_18_remote_subprocess_errors_bounds_and_no_fallback_keep_progress (__main__.D5BFiveIdentityFocused.test_18_remote_subprocess_errors_bounds_and_no_fallback_keep_progress) ... ok
+test_19_production_remote_arguments_and_environment_are_fixed (__main__.D5BFiveIdentityFocused.test_19_production_remote_arguments_and_environment_are_fixed) ... ok
+test_20_null_gitdir_blocks_benign_cwd_rewrite_without_any_network (__main__.D5BFiveIdentityFocused.test_20_null_gitdir_blocks_benign_cwd_rewrite_without_any_network) ... ok
+test_21_second_pass_uses_ten_fresh_local_readers_and_order (__main__.D5BFiveIdentityFocused.test_21_second_pass_uses_ten_fresh_local_readers_and_order) ... ok
+test_22_second_pass_rejects_changed_config_index_worktree_and_local_ref (__main__.D5BFiveIdentityFocused.test_22_second_pass_rejects_changed_config_index_worktree_and_local_ref) ... ok
+test_23_second_pass_rejects_changed_checkout_and_admin_directory_identity (__main__.D5BFiveIdentityFocused.test_23_second_pass_rejects_changed_checkout_and_admin_directory_identity) ... ok
+test_24_final_location_recheck_rejects_changed_historical_identity (__main__.D5BFiveIdentityFocused.test_24_final_location_recheck_rejects_changed_historical_identity) ... ok
+test_25_response_bytes_are_rechecked_even_when_parsed_head_is_unchanged (__main__.D5BFiveIdentityFocused.test_25_response_bytes_are_rechecked_even_when_parsed_head_is_unchanged) ... ok
+test_26_helper_pins_authenticate_original_bytes_and_cleanup_all_outcomes (__main__.D5BFiveIdentityFocused.test_26_helper_pins_authenticate_original_bytes_and_cleanup_all_outcomes) ... ok
+test_27_candidate_modules_remain_inert_and_process_and_files_unchanged (__main__.D5BFiveIdentityFocused.test_27_candidate_modules_remain_inert_and_process_and_files_unchanged) ... ok
+test_28_public_api_and_report_are_narrow_and_frozen (__main__.D5BFiveIdentityFocused.test_28_public_api_and_report_are_narrow_and_frozen) ... ok
+test_29_real_cli_requires_all_isolation_flags_before_transport (__main__.D5BFiveIdentityFocused.test_29_real_cli_requires_all_isolation_flags_before_transport) ... ok
+test_30_real_cli_argument_and_pretransport_rejections (__main__.D5BFiveIdentityFocused.test_30_real_cli_argument_and_pretransport_rejections) ... ok
+test_31_real_cli_input_symlinks_hardlinks_and_executable_files_reject (__main__.D5BFiveIdentityFocused.test_31_real_cli_input_symlinks_hardlinks_and_executable_files_reject) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 14.311s
+
+OK
+
+EXIT 0
+
+COMMAND ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "-I", "-S", "-B", "/workspace/scratch/a6fad0908883/ap6_source/Tools/AssemblyShadow/R03IR/D5Local/test_d5b_identity_configuration.py", "-v"]
+test_01_public_api_is_four_exact_inputs_and_has_no_execution_mode (__main__.D5BIdentityConfigurationComposition.test_01_public_api_is_four_exact_inputs_and_has_no_execution_mode) ... ok
+test_02_stage_order_preserves_raw_inputs_and_real_ap4_consumers (__main__.D5BIdentityConfigurationComposition.test_02_stage_order_preserves_raw_inputs_and_real_ap4_consumers) ... ok
+test_03_bad_external_pins_reject_before_helper_loading (__main__.D5BIdentityConfigurationComposition.test_03_bad_external_pins_reject_before_helper_loading) ... ok
+test_04_changed_raw_bytes_reject_before_stages (__main__.D5BIdentityConfigurationComposition.test_04_changed_raw_bytes_reject_before_stages) ... ok
+test_05_strict_json_rejects_duplicates_nonfinite_and_nonobjects (__main__.D5BIdentityConfigurationComposition.test_05_strict_json_rejects_duplicates_nonfinite_and_nonobjects) ... ok
+test_06_each_shared_proposal_field_must_match_before_stages (__main__.D5BIdentityConfigurationComposition.test_06_each_shared_proposal_field_must_match_before_stages) ... ok
+test_07_matching_arbitrary_sibling_pins_do_not_replace_the_ap1_tuple (__main__.D5BIdentityConfigurationComposition.test_07_matching_arbitrary_sibling_pins_do_not_replace_the_ap1_tuple) ... ok
+test_08_exact_schema_and_closed_authority_types_are_required (__main__.D5BIdentityConfigurationComposition.test_08_exact_schema_and_closed_authority_types_are_required) ... ok
+test_09_both_installed_helper_pins_are_checked_before_stages (__main__.D5BIdentityConfigurationComposition.test_09_both_installed_helper_pins_are_checked_before_stages) ... ok
+test_10_identity_rejection_preserves_child_progress_and_stops_configuration (__main__.D5BIdentityConfigurationComposition.test_10_identity_rejection_preserves_child_progress_and_stops_configuration) ... ok
+test_11_real_ap4_partial_consumption_survives_in_composition_rejection (__main__.D5BIdentityConfigurationComposition.test_11_real_ap4_partial_consumption_survives_in_composition_rejection) ... ok
+test_12_generic_child_failure_does_not_fabricate_child_observation (__main__.D5BIdentityConfigurationComposition.test_12_generic_child_failure_does_not_fabricate_child_observation) ... ok
+test_13_every_common_runner_field_participates_in_the_stage_comparison (__main__.D5BIdentityConfigurationComposition.test_13_every_common_runner_field_participates_in_the_stage_comparison) ... ok
+test_14_location_drift_and_boolean_integer_aliases_reject (__main__.D5BIdentityConfigurationComposition.test_14_location_drift_and_boolean_integer_aliases_reject) ... ok
+test_15_comparison_uses_ap5_final_and_ap4_preinitialization_observations (__main__.D5BIdentityConfigurationComposition.test_15_comparison_uses_ap5_final_and_ap4_preinitialization_observations) ... ok
+test_16_success_and_rejection_reports_are_fresh_detached_json (__main__.D5BIdentityConfigurationComposition.test_16_success_and_rejection_reports_are_fresh_detached_json) ... ok
+test_17_private_helpers_and_ambient_candidate_slots_are_restored (__main__.D5BIdentityConfigurationComposition.test_17_private_helpers_and_ambient_candidate_slots_are_restored) ... ok
+test_18_real_cli_pre_stage_denials_do_not_claim_observation (__main__.D5BIdentityConfigurationComposition.test_18_real_cli_pre_stage_denials_do_not_claim_observation) ... ok
+test_19_real_runner_directory_change_between_stages_rejects_comparison (__main__.D5BIdentityConfigurationComposition.test_19_real_runner_directory_change_between_stages_rejects_comparison) ... ok
+test_20_real_path_change_after_capture_preserves_bounded_consumer_semantics (__main__.D5BIdentityConfigurationComposition.test_20_real_path_change_after_capture_preserves_bounded_consumer_semantics) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 14.223s
+
+OK
+
+EXIT 0
+
+AP6 integration: {"methodIdentities": ["D5BIdentityConfigurationPinnedSources.test_real_pinned_sources_and_unchanged_helpers_compose"], "reason": "The three required pinned sibling checkouts are unavailable on this source host.", "requiredAP1SiblingPins": {"hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a", "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de", "il2cpp_plus": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"}, "requiredInCI": true, "requiredPositiveExecuted": false, "result": "NotRun_RequiredPinnedSiblingCheckoutsUnavailable", "testMethodsExpected": 1, "unitCoverageScope": "AP5 stage doubles establish orchestration only; real AP4 consumers execute."}
+
+COMMAND ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "-B", "/workspace/scratch/a6fad0908883/ap6_source/Tools/AssemblyShadow/R03IR/D5Local/run_d5_local.py", "--mode", "execute", "--approved-envelope", "/workspace/scratch/a6fad0908883/ap6_evidence/unapproved-ap6-envelope.json"]
+{"D5BLocalExecution": "NotAuthorized", "R03Accepted": false, "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION", "kind": "R03D5BLocalAdmissionFailureV1", "outputCreated": false, "reason": "D5-B Local execution is not authorized", "result": "NotAuthorized", "retryAllowed": false, "schemaVersion": 1}
+
+EXIT 2
+CHECK unapprovedEnvelopePathAbsent=true
+
+Completed UTC: 2026-11-27T10:45:41.616931+00:00
+Five changed source files unchanged after tests: true
+Seventeen accepted Python/configuration files unchanged: true
+Required pinned-source integration was not run on this host.

@@ -1,0 +1,1951 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03D5BIdentityConfigurationAP6PrimaryEvidenceV1",
+  "date": "2026-11-27",
+  "dateTimezone": "America/Los_Angeles",
+  "assembledAtUtc": "2026-11-27T10:52:48.032657+00:00",
+  "primaryResult": "SourceOnlyCIComplete_PendingIndependentReview",
+  "independentReview": "Pending",
+  "requestedIndependentVerdicts": [
+    "PassIdentityConfigurationCompositionSourceOnly",
+    "ReturnRequired"
+  ],
+  "baseline": {
+    "baselineCommit": "943040c310808065751a26caf00c80e43d87f388",
+    "baselineTree": "32a05b01e37954e3f9bcf878851384902c8ab68c",
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "acceptedAP5": {
+      "verdict": "PassFiveIdentityObservationSourceOnly",
+      "sourceCommit": "0dff80b0fffb37d8c13ff08ad955454a60dde5d6",
+      "sourceTree": "d43a6ca553ad009b656b7691df89cf34f0508280",
+      "primaryPacketCommit": "02eb120f68d9ecee436c6269220d5d974a2bc769",
+      "independentPublication": "943040c310808065751a26caf00c80e43d87f388",
+      "reportPath": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_FIVE_IDENTITY_AP5_INDEPENDENT_REVIEW_2026-11-26.md",
+      "reportBlob": "fc45afadc6bbe14221d6b5b8d2d5db19cd9eca9f",
+      "evidenceBlob": "d1f6f01e7311aea62fc94549b3ad37f4c60b13e6",
+      "priorDecisionsPreserved": {
+        "R5": "PassDryAdmissionSourceOnly",
+        "AP1R2": "PassActivationPublicationProposalOnly",
+        "D5B-AP1-IR-01": "ClosedInCorrectedSource",
+        "AP2": "PassRunnerArtifactClosureSourceOnly",
+        "AP3": "PassRunnerImportBootstrapSourceOnly",
+        "AP4": "PassRunnerConfigurationBindingSourceOnly"
+      }
+    },
+    "bootstrap": [
+      {
+        "repository": "night-outlook/hybridclr_demo",
+        "branch": "codex/assembly-shadow-r01b-h1",
+        "initialObservedHead": "943040c310808065751a26caf00c80e43d87f388",
+        "permissions": {
+          "admin": true,
+          "maintain": true,
+          "pull": true,
+          "push": true,
+          "triage": true
+        }
+      },
+      {
+        "repository": "night-outlook/hybridclr",
+        "branch": "codex/assembly-shadow-r01b-h1",
+        "initialObservedHead": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+        "permissions": {
+          "admin": true,
+          "maintain": true,
+          "pull": true,
+          "push": true,
+          "triage": true
+        }
+      },
+      {
+        "repository": "night-outlook/hybridclr_unity",
+        "branch": "codex/assembly-shadow-r01b-h1",
+        "initialObservedHead": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "permissions": {
+          "admin": true,
+          "maintain": true,
+          "pull": true,
+          "push": true,
+          "triage": true
+        }
+      },
+      {
+        "repository": "night-outlook/il2cpp_plus",
+        "branch": "codex/assembly-shadow-r01b-h1",
+        "initialObservedHead": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3",
+        "permissions": {
+          "admin": true,
+          "maintain": true,
+          "pull": true,
+          "push": true,
+          "triage": true
+        }
+      }
+    ],
+    "canonicalDocuments": {
+      "readme": {
+        "path": "Docs/AssemblyShadow/README.md",
+        "blob": "001d56b3994f89d5cbd786fb47ed639631c660fa"
+      },
+      "status": {
+        "path": "Docs/AssemblyShadow/Plan/CURRENT_STATUS.md",
+        "blob": "5373535cfd192e769225fffc33ba638e82767b2a"
+      },
+      "handoff": {
+        "path": "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md",
+        "blob": "62f13e81db74436c9f1601884d864c9def1bd72b"
+      }
+    },
+    "localOwnedRecords": {
+      "localValidationBlob": "cbc4141a1f79c16c920d1723a81c5507b87b7e5f",
+      "returnToWebBlob": "411948c65d0ab04a36ed0f43a8944b6c8291ed30",
+      "latestLocalResult": "Historical Native B1 oneuse-12 focused PASS; not AP6 qualification",
+      "currentPhysicalMacState": "Unverified"
+    },
+    "preservedSourceFiles": {
+      "Tools/AssemblyShadow/R03IR/D5Admission/d5b_custody_authority.py": "185c1bd6603a8c43e4222d30ed8bb057ab94824a",
+      "Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight.py": "81e7c3a2eaccb77bff2515c91b173558e4eeba2f",
+      "Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight_v1.json": "9956ea49656dc8337f9ab177c40faf29ea20c397",
+      "Tools/AssemblyShadow/R03IR/D5Local/d5b_activation_publication.py": "ecf36a7a51f1750c6e8425ee79e9ac8938102b54",
+      "Tools/AssemblyShadow/R03IR/D5Local/d5b_five_identity.py": "ab4e9cbf796d4ab91602a14a9294d3773e75879c",
+      "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission.py": "99746fe64976da313cbd0e1625f0fcc5a67bca62",
+      "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission_plan_v1.json": "5c0ab7a6d788ebd5adf57f1fddc567ba700632e9",
+      "Tools/AssemblyShadow/R03IR/D5Local/d5b_runner_closure.py": "2535bc14c31f1ff2d73fdb8c7be1d7dab605d990",
+      "Tools/AssemblyShadow/R03IR/D5Local/d5b_runner_configuration.py": "5263742017950a28bd9750eeeaefe50df4f4fa49",
+      "Tools/AssemblyShadow/R03IR/D5Local/d5b_runner_imports.py": "22ad93598131a59b2d5c46174a45187aede848a6",
+      "Tools/AssemblyShadow/R03IR/D5Local/run_d5_local.py": "519e6a4a8a11e3c821adb02fe1bf9e9d5b685b39",
+      "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_activation_publication.py": "ef0b562951afd5deb49528e5b8acf013a015eadb",
+      "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_five_identity.py": "28945bc7bd29ac5404996f2c40cf81e2600917f4",
+      "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_local_admission.py": "06aaf4f3ef4df3cc7306fe8d83d56f35ce1e0e0c",
+      "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_closure.py": "ed503a5d5eeeeff07a2e5c11be38bf7aba6b5976",
+      "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_configuration.py": "595ba10093825d4d1c3940587ede8aa66bc6ac83",
+      "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_imports.py": "86840e72285b99ea885469390b66c42d1f3d681f"
+    },
+    "smokeProof": {
+      "branch": "codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0",
+      "sameConversationProofReused": true,
+      "allFourRefsAndCommitObjectsReadBackThisCycle": true,
+      "operationalOnly": true,
+      "retainedBecauseNoDeleteRefCapability": true,
+      "originalBases": {
+        "hybridclr_demo": "83ceb2ba9868d96bd35628908919978e16cc5d2f",
+        "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"
+      },
+      "commits": {
+        "hybridclr_demo": "a0c30160de9697d42223310bece86cd96c796d93",
+        "hybridclr": "c4197a1c19353ef4c6bf9f670bbb234dc8afc086",
+        "hybridclr_unity": "9a7da758fcad50f81708202d0a5ad30aa2f64ee1",
+        "il2cpp_plus": "ecf7c731b3bd2f20719b9363cf897ed6cf7304d8"
+      }
+    }
+  },
+  "sourcePublication": {
+    "repository": "night-outlook/hybridclr_demo",
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "baseCommit": "943040c310808065751a26caf00c80e43d87f388",
+    "sourceCommit": "c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb",
+    "sourceTree": "a45681435483e4561917547f18f957e557002a9c",
+    "updateRefSuccess": true,
+    "exactFilesReadBack": [
+      {
+        "path": "Tools/AssemblyShadow/R03IR/D5Local/d5b_identity_configuration.py",
+        "bytes": 18633,
+        "sha256": "8fb3618a438a5f5de8363b4ea74230590022b0d31d374dc291ee88179bd9a8d8",
+        "gitBlob": "94f1e30a51c1165b54b0392801853bcb7b9e3557"
+      },
+      {
+        "path": "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_identity_configuration.py",
+        "bytes": 32373,
+        "sha256": "6352ee78d820037b4fbabd43ab3d5afc204efd68f47b835bfdc879eeadd6ba14",
+        "gitBlob": "fdb81d073c9da09e7313568e32833102e09b7a8a"
+      },
+      {
+        "path": "Tools/AssemblyShadow/R03IR/D5Local/integration_d5b_identity_configuration.py",
+        "bytes": 11500,
+        "sha256": "41a28ddf784f3d1ef7da47578245e912727f3f11e6aeb819d0458c5407a4d6e3",
+        "gitBlob": "0119bb0bd4d471f456fd400a3f46abdf78d69810"
+      },
+      {
+        "path": ".github/workflows/r03-b2-d5b-local-admission-source-host.yml",
+        "bytes": 11467,
+        "sha256": "fc63d7da5229e66f63411e3c4e3494b0e16a99fa4fe4c3d41ef29067596ad02c",
+        "gitBlob": "63ac6dcbe2881429ebf2177104c9ad4f15ef5f5e"
+      },
+      {
+        "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_IDENTITY_CONFIGURATION_AP6_DESIGN_2026-11-27.md",
+        "bytes": 25710,
+        "sha256": "f0453b05cd705c48c4ea17beb68baecb783694803e473d94694e6449a0140d36",
+        "gitBlob": "6de97f0da257cd7433eb550221137037e1b83513"
+      }
+    ],
+    "sourceCompare": {
+      "totalCommits": 1,
+      "changedFiles": 5
+    },
+    "remoteHeadVerified": "c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb"
+  },
+  "sourceHost": {
+    "schema": "R03AP6PrimarySourceHostValidationV1",
+    "startedUtc": "2026-11-27T10:44:41.705204+00:00",
+    "completedUtc": "2026-11-27T10:45:41.616931+00:00",
+    "environment": {
+      "python": "3.12.14",
+      "pythonExecutable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+      "fixtureGit": {
+        "path": "/usr/local/bin/git",
+        "version": "git version 2.56.1"
+      },
+      "auditorGit": {
+        "path": "/bin/git",
+        "version": "git version 2.47.3"
+      },
+      "fixtureGitScope": "Retained fixtures and AP6 initial unit/integration fixture setup use ambient PATH.",
+      "systemGitScope": "AP5 fixtures, AP6 integration clone/ref operations, and accepted observers use system PATH.",
+      "AP5FixtureGit": {
+        "path": "/bin/git",
+        "version": "git version 2.47.3"
+      },
+      "AP5ObserverGit": {
+        "path": "/bin/git",
+        "version": "git version 2.47.3"
+      },
+      "AP6UnitInitialFixtureGit": {
+        "path": "/usr/local/bin/git",
+        "version": "git version 2.56.1"
+      },
+      "AP6IntegrationInitialFixtureGit": {
+        "path": "/usr/local/bin/git",
+        "version": "git version 2.56.1"
+      },
+      "AP6IntegrationCloneAndRefGit": {
+        "path": "/bin/git",
+        "version": "git version 2.47.3"
+      },
+      "AP6ObserverGit": {
+        "path": "/bin/git",
+        "version": "git version 2.47.3"
+      },
+      "AP6IntegrationGitScope": "Selection described from source; integration not executed on this host."
+    },
+    "sourceProvenance": "ConnectorDerivedPrepublicationBytes_NotAGitCheckout",
+    "baselineCommit": "943040c310808065751a26caf00c80e43d87f388",
+    "sourceFiles": {
+      "Tools/AssemblyShadow/R03IR/D5Local/d5b_identity_configuration.py": {
+        "sha256": "8fb3618a438a5f5de8363b4ea74230590022b0d31d374dc291ee88179bd9a8d8",
+        "gitBlob": "94f1e30a51c1165b54b0392801853bcb7b9e3557",
+        "bytes": 18633
+      },
+      "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_identity_configuration.py": {
+        "sha256": "6352ee78d820037b4fbabd43ab3d5afc204efd68f47b835bfdc879eeadd6ba14",
+        "gitBlob": "fdb81d073c9da09e7313568e32833102e09b7a8a",
+        "bytes": 32373
+      },
+      "Tools/AssemblyShadow/R03IR/D5Local/integration_d5b_identity_configuration.py": {
+        "sha256": "41a28ddf784f3d1ef7da47578245e912727f3f11e6aeb819d0458c5407a4d6e3",
+        "gitBlob": "0119bb0bd4d471f456fd400a3f46abdf78d69810",
+        "bytes": 11500
+      },
+      ".github/workflows/r03-b2-d5b-local-admission-source-host.yml": {
+        "sha256": "fc63d7da5229e66f63411e3c4e3494b0e16a99fa4fe4c3d41ef29067596ad02c",
+        "gitBlob": "63ac6dcbe2881429ebf2177104c9ad4f15ef5f5e",
+        "bytes": 11467
+      },
+      "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_IDENTITY_CONFIGURATION_AP6_DESIGN_2026-11-27.md": {
+        "sha256": "f0453b05cd705c48c4ea17beb68baecb783694803e473d94694e6449a0140d36",
+        "gitBlob": "6de97f0da257cd7433eb550221137037e1b83513",
+        "bytes": 25710
+      }
+    },
+    "staticChecks": {
+      "pythonAstFiles": 3,
+      "workflowYaml": "Parsed",
+      "bashSyntaxRunBlocks": 9,
+      "trailingWhitespace": false,
+      "sourceBytesUnchangedAfterTests": true,
+      "AP4AP5HelperPinsMatchPreservedAcceptedBytes": true,
+      "AP6HelperPins": {
+        "identity": [
+          "d5b_five_identity.py",
+          "ab4e9cbf796d4ab91602a14a9294d3773e75879c"
+        ],
+        "configuration": [
+          "d5b_runner_configuration.py",
+          "5263742017950a28bd9750eeeaefe50df4f4fa49"
+        ]
+      },
+      "AP1SiblingPinsUnchanged": true,
+      "pinnedSiblingCheckoutCommits": {
+        "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"
+      },
+      "allSuiteMethodNamesMatchExecutedInventory": true,
+      "AP6UnitCountDerivedFromAst": true
+    },
+    "tests": {
+      "R5": {
+        "testMethods": 94,
+        "footerSeconds": "0.122",
+        "elapsedSeconds": 0.285,
+        "exitCode": 0,
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "-B",
+          "/workspace/scratch/a6fad0908883/ap6_source/Tools/AssemblyShadow/R03IR/D5Local/test_d5b_local_admission.py",
+          "-v"
+        ],
+        "result": "OK"
+      },
+      "AP1R2": {
+        "testMethods": 22,
+        "footerSeconds": "6.387",
+        "elapsedSeconds": 6.526,
+        "exitCode": 0,
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "-B",
+          "/workspace/scratch/a6fad0908883/ap6_source/Tools/AssemblyShadow/R03IR/D5Local/test_d5b_activation_publication.py",
+          "-v"
+        ],
+        "result": "OK"
+      },
+      "AP2": {
+        "testMethods": 25,
+        "footerSeconds": "10.775",
+        "elapsedSeconds": 10.866,
+        "exitCode": 0,
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "-B",
+          "/workspace/scratch/a6fad0908883/ap6_source/Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_closure.py",
+          "-v"
+        ],
+        "result": "OK"
+      },
+      "AP3": {
+        "testMethods": 20,
+        "footerSeconds": "6.799",
+        "elapsedSeconds": 6.904,
+        "exitCode": 0,
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "-I",
+          "-S",
+          "-B",
+          "/workspace/scratch/a6fad0908883/ap6_source/Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_imports.py",
+          "-v"
+        ],
+        "result": "OK"
+      },
+      "AP4": {
+        "testMethods": 18,
+        "footerSeconds": "6.201",
+        "elapsedSeconds": 6.317,
+        "exitCode": 0,
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "-I",
+          "-S",
+          "-B",
+          "/workspace/scratch/a6fad0908883/ap6_source/Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_configuration.py",
+          "-v"
+        ],
+        "result": "OK"
+      },
+      "AP5": {
+        "testMethods": 31,
+        "footerSeconds": "14.311",
+        "elapsedSeconds": 14.422,
+        "exitCode": 0,
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "-I",
+          "-S",
+          "-B",
+          "/workspace/scratch/a6fad0908883/ap6_source/Tools/AssemblyShadow/R03IR/D5Local/test_d5b_five_identity.py",
+          "-v"
+        ],
+        "result": "OK"
+      },
+      "AP6Unit": {
+        "testMethods": 20,
+        "footerSeconds": "14.223",
+        "elapsedSeconds": 14.365,
+        "exitCode": 0,
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "-I",
+          "-S",
+          "-B",
+          "/workspace/scratch/a6fad0908883/ap6_source/Tools/AssemblyShadow/R03IR/D5Local/test_d5b_identity_configuration.py",
+          "-v"
+        ],
+        "result": "OK"
+      }
+    },
+    "ap6UnitTestMethodNames": [
+      "test_01_public_api_is_four_exact_inputs_and_has_no_execution_mode",
+      "test_02_stage_order_preserves_raw_inputs_and_real_ap4_consumers",
+      "test_03_bad_external_pins_reject_before_helper_loading",
+      "test_04_changed_raw_bytes_reject_before_stages",
+      "test_05_strict_json_rejects_duplicates_nonfinite_and_nonobjects",
+      "test_06_each_shared_proposal_field_must_match_before_stages",
+      "test_07_matching_arbitrary_sibling_pins_do_not_replace_the_ap1_tuple",
+      "test_08_exact_schema_and_closed_authority_types_are_required",
+      "test_09_both_installed_helper_pins_are_checked_before_stages",
+      "test_10_identity_rejection_preserves_child_progress_and_stops_configuration",
+      "test_11_real_ap4_partial_consumption_survives_in_composition_rejection",
+      "test_12_generic_child_failure_does_not_fabricate_child_observation",
+      "test_13_every_common_runner_field_participates_in_the_stage_comparison",
+      "test_14_location_drift_and_boolean_integer_aliases_reject",
+      "test_15_comparison_uses_ap5_final_and_ap4_preinitialization_observations",
+      "test_16_success_and_rejection_reports_are_fresh_detached_json",
+      "test_17_private_helpers_and_ambient_candidate_slots_are_restored",
+      "test_18_real_cli_pre_stage_denials_do_not_claim_observation",
+      "test_19_real_runner_directory_change_between_stages_rejects_comparison",
+      "test_20_real_path_change_after_capture_preserves_bounded_consumer_semantics"
+    ],
+    "allSuiteMethodIdentities": {
+      "R5": [
+        "D5BLocalSourceOnly.test_01_exact_plan_git_blob",
+        "D5BLocalSourceOnly.test_02_plan_source_provenance_and_r2_gate",
+        "D5BLocalSourceOnly.test_03_all_18_real_player_cases_no_coverage",
+        "D5BLocalSourceOnly.test_04_no_approval_authority_in_any_plan_or_code",
+        "D5BLocalSourceOnly.test_05_duplicate_plan_json_key_rejected",
+        "D5BLocalSourceOnly.test_06_valid_proposed_root_custody_read_only",
+        "D5BLocalSourceOnly.test_07_missing_history_role_rejected",
+        "D5BLocalSourceOnly.test_08_historical_base_relationship_rejected",
+        "D5BLocalSourceOnly.test_09_duplicate_historical_role_rejected",
+        "D5BLocalSourceOnly.test_10_workspace_symlink_alias_rejected",
+        "D5BLocalSourceOnly.test_11_evidence_parent_under_old_b1_rejected",
+        "D5BLocalSourceOnly.test_12_evidence_parent_under_source_rejected",
+        "D5BLocalSourceOnly.test_13_existing_oneuse_output_rejected",
+        "D5BLocalSourceOnly.test_14_symlink_oneuse_output_rejected",
+        "D5BLocalSourceOnly.test_15_noncanonical_output_name_rejected",
+        "D5BLocalSourceOnly.test_16_original_s_must_be_outside_active_checkout",
+        "D5BLocalSourceOnly.test_17_parse_exact_single_remote_ref",
+        "D5BLocalSourceOnly.test_18_stale_remote_ref_rejected",
+        "D5BLocalSourceOnly.test_19_wrong_remote_branch_rejected",
+        "D5BLocalSourceOnly.test_20_ambiguous_remote_ref_lines_rejected",
+        "D5BLocalSourceOnly.test_21_malformed_remote_sha_rejected",
+        "D5BLocalSourceOnly.test_22_original_s_clean_source_record",
+        "D5BLocalSourceOnly.test_23_original_s_wrong_sha_rejected",
+        "D5BLocalSourceOnly.test_24_host_must_be_macos_arm64",
+        "D5BLocalSourceOnly.test_25_machine_preview_does_not_launch_unity",
+        "D5BLocalSourceOnly.test_26_machine_disk_threshold_rejected",
+        "D5BLocalSourceOnly.test_27_live_source_join_uses_four_exact_refs",
+        "D5BLocalSourceOnly.test_28_live_remote_sha_drift_rejected",
+        "D5BLocalSourceOnly.test_29_reject_source_gate_missing_receipt_producer",
+        "D5BLocalSourceOnly.test_30_approval_requires_immutable_compile_time_blob",
+        "D5BLocalSourceOnly.test_31_approved_envelope_fake_status_cannot_open",
+        "D5BLocalSourceOnly.test_32_oneuse_receipt_binds_exact_paths_and_unity",
+        "D5BLocalSourceOnly.test_33_oneuse_receipt_wrong_unity_hash_rejected",
+        "D5BLocalSourceOnly.test_34_oneuse_receipt_wrong_historical_s_rejected",
+        "D5BLocalSourceOnly.test_35_oneuse_output_exclusivity_and_no_player",
+        "D5BLocalSourceOnly.test_36_execute_cli_denied_before_envelope_or_filesystem",
+        "D5BLocalSourceOnly.test_37_preview_rejects_spurious_approval_envelope",
+        "D5BLocalSourceOnly.test_38_preview_requires_complete_request",
+        "D5BLocalSourceOnly.test_39_read_only_inspect_preview_no_output",
+        "D5BLocalSourceOnly.test_40_extra_source_pin_or_wrong_hybridclr_rejected",
+        "D5BLocalSourceOnly.test_41_wrong_second_historical_root_blocks_receipt",
+        "D5BLocalSourceOnly.test_42_unparseable_xcode_version_rejected",
+        "D5BLocalSourceOnly.test_43_xcode_license_rejection_fails_closed",
+        "D5BLocalSourceOnly.test_44_non_string_historical_path_rejected_before_custody",
+        "D5BLocalSourceOnly.test_45_non_string_workspace_rejected_before_custody",
+        "D5BLocalSourceOnly.test_46_standard_sdk_symlink_is_resolved_not_rejected",
+        "D5BLocalSourceOnly.test_47_test_only_frozen_envelope_semantics",
+        "D5BLocalSourceOnly.test_48_approved_envelope_one_byte_drift_rejected",
+        "D5BLocalSourceOnly.test_49_test_only_approval_cannot_skip_user_review",
+        "D5BLocalSourceOnly.test_50_test_only_approval_cannot_change_native_pin",
+        "D5BLocalSourceOnly.test_51_test_only_approval_cannot_omit_historical_root",
+        "D5BLocalSourceOnly.test_52_test_only_approval_cannot_claim_player_scope",
+        "D5BLocalSourceOnly.test_53_direct_seal_helper_denied_without_reviewed_envelope",
+        "D5BLocalSourceOnly.test_54_inner_seal_rejects_different_approval_dict",
+        "D5BLocalSourceOnly.test_55_inner_seal_rejects_tampered_envelope_bytes",
+        "D5BLocalSourceOnly.test_56_prewrite_source_drift_refuses_output",
+        "D5BLocalSourceOnly.test_57_postflight_remote_drift_consumes_root_no_success",
+        "D5BLocalSourceOnly.test_58_final_source_drift_has_no_positive_receipt",
+        "D5BLocalSourceOnly.test_59_parent_alias_swap_cannot_write_to_history",
+        "D5BLocalSourceOnly.test_60_faults_at_each_exclusive_receipt_are_partial",
+        "D5BLocalSourceOnly.test_61_public_cli_reports_partial_root_truthfully",
+        "D5BLocalSourceOnly.test_62_source_history_identity_drift_after_mkdir",
+        "D5BLocalSourceOnly.test_63_final_commit_marker_refuses_last_minute_source_drift",
+        "D5BLocalSourceOnly.test_64_precreation_parent_symlink_race_is_blocked",
+        "D5BLocalSourceOnly.test_65_failed_failure_marker_still_reports_created_root",
+        "D5BLocalSourceOnly.test_66_structurally_sealed_receipt_has_no_veto_or_stage",
+        "D5BLocalSourceOnly.test_67_after_flush_stage_fsync_error_never_publishes_final",
+        "D5BLocalSourceOnly.test_68_post_rename_directory_fsync_error_keeps_durable_veto",
+        "D5BLocalSourceOnly.test_69_atomic_rename_failure_does_not_publish_final",
+        "D5BLocalSourceOnly.test_70_final_veto_unlink_failure_never_seals_product",
+        "D5BLocalSourceOnly.test_71_parent_close_failure_is_partial_before_commit",
+        "D5BLocalSourceOnly.test_72_root_close_failure_is_indeterminate_after_commit",
+        "D5BLocalSourceOnly.test_73_cli_reports_root_close_error_as_indeterminate",
+        "D5BLocalSourceOnly.test_74_committed_receipt_with_incomplete_marker_is_rejected",
+        "D5BLocalSourceOnly.test_75_manifest_only_or_missing_final_receipt_is_rejected",
+        "D5BLocalSourceOnly.test_76_failure_marker_vetoes_otherwise_matching_receipts",
+        "D5BLocalSourceOnly.test_77_after_effect_veto_unlink_error_requires_reconciliation",
+        "D5BLocalSourceOnly.test_78_cli_after_effect_unlink_error_never_claims_precommit",
+        "D5BLocalSourceOnly.test_79_root_relocated_after_parent_close_is_not_success",
+        "D5BLocalSourceOnly.test_80_root_relocated_after_final_unlink_is_indeterminate",
+        "D5BLocalSourceOnly.test_81_cli_relocated_parent_closed_root_requires_reconciliation",
+        "D5BLocalSourceOnly.test_82_cli_completed_seal_first_stdout_write_failure_preserves_commit",
+        "D5BLocalSourceOnly.test_83_cli_completed_seal_stdout_flush_failure_preserves_commit",
+        "D5BLocalSourceOnly.test_84_cli_completed_seal_both_failed_streams_returns_two",
+        "D5BLocalSourceOnly.test_85_cli_after_effect_mkdir_faults_report_unknown_creation",
+        "D5BLocalSourceOnly.test_86_cli_real_mkdir_trace_interruption_reports_unknown_creation",
+        "D5BLocalSourceOnly.test_87_cli_preexisting_candidate_preserves_unrelated_sentinel",
+        "D5BLocalSourceOnly.test_88_cli_raced_mkdir_collision_preserves_unrelated_sentinel",
+        "D5BLocalSourceOnly.test_89_cli_mkdir_pre_effect_error_does_not_claim_proven_absence",
+        "D5BLocalSourceOnly.test_90_cli_sealer_return_boundary_fault_requires_reconciliation",
+        "D5BLocalSourceOnly.test_91_cli_partial_output_delivery_failure_retains_partial_accounting",
+        "D5BLocalSourceOnly.test_92_cli_null_approval_delivery_failure_remains_prewrite_denial",
+        "D5BLocalSourceOnly.test_93_cli_trace_before_mkdir_retains_attempt_uncertainty",
+        "D5BLocalSourceOnly.test_94_cli_after_mkdir_replacement_preserves_both_unowned_roots"
+      ],
+      "AP1R2": [
+        "D5BActivationPublicationSourceOnly.test_01_separate_refs_construct_real_closed_publication_chain",
+        "D5BActivationPublicationSourceOnly.test_02_same_ref_publication_leaves_old_source_pin_stale",
+        "D5BActivationPublicationSourceOnly.test_03_moved_or_missing_source_and_runner_refs_are_rejected",
+        "D5BActivationPublicationSourceOnly.test_04_missing_or_noncommit_objects_are_rejected",
+        "D5BActivationPublicationSourceOnly.test_05_runner_pin_must_equal_exact_proposal_blob",
+        "D5BActivationPublicationSourceOnly.test_06_runner_rejects_extra_source_helper_or_plan_changes",
+        "D5BActivationPublicationSourceOnly.test_07_source_writer_must_be_exact_reviewed_closed_blob",
+        "D5BActivationPublicationSourceOnly.test_08_runner_writer_allows_only_one_exact_pin_substitution",
+        "D5BActivationPublicationSourceOnly.test_09_writer_and_proposal_mode_type_substitutions_are_rejected",
+        "D5BActivationPublicationSourceOnly.test_10_proposal_must_be_new_and_present_in_runner",
+        "D5BActivationPublicationSourceOnly.test_11_duplicate_json_keys_are_rejected_at_every_level",
+        "D5BActivationPublicationSourceOnly.test_12_proposal_schema_and_field_types_are_exact",
+        "D5BActivationPublicationSourceOnly.test_13_proposal_requires_exact_source_and_other_repository_pins",
+        "D5BActivationPublicationSourceOnly.test_14_authority_promotions_are_rejected",
+        "D5BActivationPublicationSourceOnly.test_15_runner_has_exactly_one_parent_equal_to_source",
+        "D5BActivationPublicationSourceOnly.test_16_proposal_cannot_become_production_execution_envelope",
+        "D5BActivationPublicationSourceOnly.test_17_cli_audits_objects_without_changing_refs_or_authority",
+        "D5BActivationPublicationSourceOnly.test_18_cli_exposes_no_execution_or_authority_override",
+        "D5BActivationPublicationSourceOnly.test_19_standard_commit_prefixes_match_git_topology",
+        "D5BActivationPublicationSourceOnly.test_20_metadata_continuations_and_messages_do_not_add_topology",
+        "D5BActivationPublicationSourceOnly.test_21_ordinary_stored_late_parents_reject_source_and_runner",
+        "D5BActivationPublicationSourceOnly.test_22_late_duplicate_and_misordered_topology_headers_are_rejected"
+      ],
+      "AP2": [
+        "D5BRunnerClosureSourceOnly.test_01_six_file_snapshot_is_immutable_and_closed",
+        "D5BRunnerClosureSourceOnly.test_02_verification_never_imports_or_executes_candidate_modules",
+        "D5BRunnerClosureSourceOnly.test_03_manifest_requires_external_exact_bytes_pin",
+        "D5BRunnerClosureSourceOnly.test_04_manifest_schema_types_authority_and_roster_are_exact",
+        "D5BRunnerClosureSourceOnly.test_05_changed_reviewed_objects_reject_after_valid_ap1_publication",
+        "D5BRunnerClosureSourceOnly.test_06_closure_git_objects_require_regular_nonexecutable_modes",
+        "D5BRunnerClosureSourceOnly.test_07_tracked_untracked_and_ignored_changes_are_rejected",
+        "D5BRunnerClosureSourceOnly.test_08_assumed_and_skipped_index_entries_are_rejected",
+        "D5BRunnerClosureSourceOnly.test_09_working_files_reject_symlinks_hardlinks_and_executable_bits",
+        "D5BRunnerClosureSourceOnly.test_10_directory_aliases_reject_for_runner_and_file_ancestors",
+        "D5BRunnerClosureSourceOnly.test_11_checkout_branch_head_and_origin_are_exact",
+        "D5BRunnerClosureSourceOnly.test_12_filters_rewrites_and_hidden_status_configuration_reject",
+        "D5BRunnerClosureSourceOnly.test_13_shared_and_modified_git_administration_reject",
+        "D5BRunnerClosureSourceOnly.test_14_locations_require_complete_canonical_disjoint_directories",
+        "D5BRunnerClosureSourceOnly.test_15_file_bytes_and_identity_changes_between_reads_reject",
+        "D5BRunnerClosureSourceOnly.test_16_real_ref_and_checkout_config_changes_during_snapshot_reject",
+        "D5BRunnerClosureSourceOnly.test_17_identical_ancestor_replacement_during_actual_read_rejects",
+        "D5BRunnerClosureSourceOnly.test_18_protected_directory_identity_change_between_observations_rejects",
+        "D5BRunnerClosureSourceOnly.test_19_isolated_cli_returns_closed_json_without_mutating_runner",
+        "D5BRunnerClosureSourceOnly.test_20_cli_requires_isolation_pin_and_rejects_execution_overrides",
+        "D5BRunnerClosureSourceOnly.test_21_verification_uses_only_object_and_metadata_git_commands",
+        "D5BRunnerClosureSourceOnly.test_22_unrelated_tracked_executable_and_literal_symlink_are_valid",
+        "D5BRunnerClosureSourceOnly.test_23_full_inventory_rejects_unrelated_changes_and_extra_empty_directories",
+        "D5BRunnerClosureSourceOnly.test_24_full_inventory_enforces_per_file_and_aggregate_byte_bounds",
+        "D5BRunnerClosureSourceOnly.test_25_full_inventory_enforces_entry_count_and_depth_bounds"
+      ],
+      "AP3": [
+        "D5BRunnerImportsSourceOnly.test_01_real_ap2_snapshot_initializes_three_private_bindings",
+        "D5BRunnerImportsSourceOnly.test_02_report_matches_actual_ordered_direct_import_requests",
+        "D5BRunnerImportsSourceOnly.test_03_ambient_candidate_module_cache_entries_are_never_selected",
+        "D5BRunnerImportsSourceOnly.test_04_ambient_meta_path_and_path_cache_are_not_consulted",
+        "D5BRunnerImportsSourceOnly.test_05_ambient_source_and_opaque_bytecode_fixtures_are_not_read",
+        "D5BRunnerImportsSourceOnly.test_06_real_sys_path_is_unchanged_during_writer_initialization",
+        "D5BRunnerImportsSourceOnly.test_07_import_phase_calls_no_candidate_function_or_content_reader",
+        "D5BRunnerImportsSourceOnly.test_08_after_snapshot_source_change_does_not_replace_captured_bytes",
+        "D5BRunnerImportsSourceOnly.test_09_invalid_external_pin_or_raw_input_rejects_before_helper",
+        "D5BRunnerImportsSourceOnly.test_10_changed_trusted_helper_bytes_reject_before_compilation",
+        "D5BRunnerImportsSourceOnly.test_11_malformed_private_snapshot_records_reject_before_compilation",
+        "D5BRunnerImportsSourceOnly.test_12_private_snapshot_requires_consistent_roster_and_closed_ap2_report",
+        "D5BRunnerImportsSourceOnly.test_13_import_requests_outside_reviewed_direct_forms_are_denied",
+        "D5BRunnerImportsSourceOnly.test_14_public_result_is_frozen_json_data_with_fresh_report_copies",
+        "D5BRunnerImportsSourceOnly.test_15_rejections_report_partial_initialization_truthfully",
+        "D5BRunnerImportsSourceOnly.test_16_compilation_interruption_reports_no_candidate_initialization",
+        "D5BRunnerImportsSourceOnly.test_17_temporary_trusted_helper_registration_is_always_removed",
+        "D5BRunnerImportsSourceOnly.test_18_real_isolated_cli_preserves_checkout_and_creates_no_output",
+        "D5BRunnerImportsSourceOnly.test_19_cli_requires_actual_isolation_no_site_and_no_bytecode_flags",
+        "D5BRunnerImportsSourceOnly.test_20_cli_rejects_bad_pins_and_execution_arguments_without_output"
+      ],
+      "AP4": [
+        "D5BRunnerConfigurationSourceOnly.test_01_actual_consumers_keep_private_function_identity_and_enabled_checks",
+        "D5BRunnerConfigurationSourceOnly.test_02_each_public_call_uses_one_fresh_snapshot_and_initialization",
+        "D5BRunnerConfigurationSourceOnly.test_03_report_matches_four_actual_captured_file_operations",
+        "D5BRunnerConfigurationSourceOnly.test_04_actual_candidate_call_graph_and_consumption_use_no_io",
+        "D5BRunnerConfigurationSourceOnly.test_05_configuration_pathname_changes_after_capture_use_captured_bytes",
+        "D5BRunnerConfigurationSourceOnly.test_06_invalid_public_inputs_reject_before_helper_code",
+        "D5BRunnerConfigurationSourceOnly.test_07_pinned_helper_drift_rejects_before_compilation",
+        "D5BRunnerConfigurationSourceOnly.test_08_private_captured_records_require_consistent_immutable_bytes",
+        "D5BRunnerConfigurationSourceOnly.test_09_private_adapters_are_narrow_frozen_snapshot_views",
+        "D5BRunnerConfigurationSourceOnly.test_10_private_binding_and_blob_mismatches_reject_before_consumer_calls",
+        "D5BRunnerConfigurationSourceOnly.test_11_real_consumers_reject_changed_read_bytes_with_truthful_progress",
+        "D5BRunnerConfigurationSourceOnly.test_12_profile_read_interruption_does_not_claim_profile_invocation",
+        "D5BRunnerConfigurationSourceOnly.test_13_earlier_reports_remain_frozen_preconsumer_observations",
+        "D5BRunnerConfigurationSourceOnly.test_14_private_helper_registrations_are_removed_for_all_outcomes",
+        "D5BRunnerConfigurationSourceOnly.test_15_public_observations_are_immutable_json_with_a_narrow_signature",
+        "D5BRunnerConfigurationSourceOnly.test_16_real_isolated_cli_preserves_checkout_and_creates_no_output",
+        "D5BRunnerConfigurationSourceOnly.test_17_cli_requires_all_three_real_interpreter_flags",
+        "D5BRunnerConfigurationSourceOnly.test_18_cli_requires_both_arguments_and_rejects_execution_options"
+      ],
+      "AP5": [
+        "D5BFiveIdentityFocused.test_01_real_five_checkouts_and_ten_remote_reads_remain_closed",
+        "D5BFiveIdentityFocused.test_02_pin_and_immutable_byte_type_reject_before_helper_or_transport",
+        "D5BFiveIdentityFocused.test_03_closed_schema_types_roles_authority_and_endpoint_controls",
+        "D5BFiveIdentityFocused.test_04_strict_json_rejects_duplicates_nonfinite_invalid_and_nonobject",
+        "D5BFiveIdentityFocused.test_05_exact_runner_ref_spelling_rejects_patterns_and_aliases",
+        "D5BFiveIdentityFocused.test_06_missing_untracked_ignored_and_raw_modified_files_reject",
+        "D5BFiveIdentityFocused.test_07_staged_assumed_skipped_and_submodule_index_reject",
+        "D5BFiveIdentityFocused.test_08_modes_hardlinks_symlink_replacement_and_special_files_reject",
+        "D5BFiveIdentityFocused.test_09_tracked_symlink_literal_is_observed_without_target_read",
+        "D5BFiveIdentityFocused.test_10_origins_and_unsupported_local_configuration_reject",
+        "D5BFiveIdentityFocused.test_11_shallow_grafted_alternate_gitfiles_and_bare_layout_reject",
+        "D5BFiveIdentityFocused.test_12_detached_wrong_branch_symbolic_ref_and_wrong_head_reject",
+        "D5BFiveIdentityFocused.test_13_locations_reject_aliases_overlap_missing_and_duplicate_history",
+        "D5BFiveIdentityFocused.test_14_all_fifteen_administrative_roots_must_have_unique_identities",
+        "D5BFiveIdentityFocused.test_15_runner_requires_the_demo_source_as_its_only_parent",
+        "D5BFiveIdentityFocused.test_16_exact_remote_parser_rejects_ambiguous_malformed_and_changed_rows",
+        "D5BFiveIdentityFocused.test_17_real_bare_remote_missing_and_drifted_refs_reject",
+        "D5BFiveIdentityFocused.test_18_remote_subprocess_errors_bounds_and_no_fallback_keep_progress",
+        "D5BFiveIdentityFocused.test_19_production_remote_arguments_and_environment_are_fixed",
+        "D5BFiveIdentityFocused.test_20_null_gitdir_blocks_benign_cwd_rewrite_without_any_network",
+        "D5BFiveIdentityFocused.test_21_second_pass_uses_ten_fresh_local_readers_and_order",
+        "D5BFiveIdentityFocused.test_22_second_pass_rejects_changed_config_index_worktree_and_local_ref",
+        "D5BFiveIdentityFocused.test_23_second_pass_rejects_changed_checkout_and_admin_directory_identity",
+        "D5BFiveIdentityFocused.test_24_final_location_recheck_rejects_changed_historical_identity",
+        "D5BFiveIdentityFocused.test_25_response_bytes_are_rechecked_even_when_parsed_head_is_unchanged",
+        "D5BFiveIdentityFocused.test_26_helper_pins_authenticate_original_bytes_and_cleanup_all_outcomes",
+        "D5BFiveIdentityFocused.test_27_candidate_modules_remain_inert_and_process_and_files_unchanged",
+        "D5BFiveIdentityFocused.test_28_public_api_and_report_are_narrow_and_frozen",
+        "D5BFiveIdentityFocused.test_29_real_cli_requires_all_isolation_flags_before_transport",
+        "D5BFiveIdentityFocused.test_30_real_cli_argument_and_pretransport_rejections",
+        "D5BFiveIdentityFocused.test_31_real_cli_input_symlinks_hardlinks_and_executable_files_reject"
+      ],
+      "AP6Unit": [
+        "D5BIdentityConfigurationComposition.test_01_public_api_is_four_exact_inputs_and_has_no_execution_mode",
+        "D5BIdentityConfigurationComposition.test_02_stage_order_preserves_raw_inputs_and_real_ap4_consumers",
+        "D5BIdentityConfigurationComposition.test_03_bad_external_pins_reject_before_helper_loading",
+        "D5BIdentityConfigurationComposition.test_04_changed_raw_bytes_reject_before_stages",
+        "D5BIdentityConfigurationComposition.test_05_strict_json_rejects_duplicates_nonfinite_and_nonobjects",
+        "D5BIdentityConfigurationComposition.test_06_each_shared_proposal_field_must_match_before_stages",
+        "D5BIdentityConfigurationComposition.test_07_matching_arbitrary_sibling_pins_do_not_replace_the_ap1_tuple",
+        "D5BIdentityConfigurationComposition.test_08_exact_schema_and_closed_authority_types_are_required",
+        "D5BIdentityConfigurationComposition.test_09_both_installed_helper_pins_are_checked_before_stages",
+        "D5BIdentityConfigurationComposition.test_10_identity_rejection_preserves_child_progress_and_stops_configuration",
+        "D5BIdentityConfigurationComposition.test_11_real_ap4_partial_consumption_survives_in_composition_rejection",
+        "D5BIdentityConfigurationComposition.test_12_generic_child_failure_does_not_fabricate_child_observation",
+        "D5BIdentityConfigurationComposition.test_13_every_common_runner_field_participates_in_the_stage_comparison",
+        "D5BIdentityConfigurationComposition.test_14_location_drift_and_boolean_integer_aliases_reject",
+        "D5BIdentityConfigurationComposition.test_15_comparison_uses_ap5_final_and_ap4_preinitialization_observations",
+        "D5BIdentityConfigurationComposition.test_16_success_and_rejection_reports_are_fresh_detached_json",
+        "D5BIdentityConfigurationComposition.test_17_private_helpers_and_ambient_candidate_slots_are_restored",
+        "D5BIdentityConfigurationComposition.test_18_real_cli_pre_stage_denials_do_not_claim_observation",
+        "D5BIdentityConfigurationComposition.test_19_real_runner_directory_change_between_stages_rejects_comparison",
+        "D5BIdentityConfigurationComposition.test_20_real_path_change_after_capture_preserves_bounded_consumer_semantics"
+      ]
+    },
+    "integration": {
+      "result": "NotRun_RequiredPinnedSiblingCheckoutsUnavailable",
+      "requiredInCI": true,
+      "requiredPositiveExecuted": false,
+      "testMethodsExpected": 1,
+      "methodIdentities": [
+        "D5BIdentityConfigurationPinnedSources.test_real_pinned_sources_and_unchanged_helpers_compose"
+      ],
+      "requiredAP1SiblingPins": {
+        "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"
+      },
+      "reason": "The three required pinned sibling checkouts are unavailable on this source host.",
+      "unitCoverageScope": "AP5 stage doubles establish orchestration only; real AP4 consumers execute."
+    },
+    "closedGateReceipt": {
+      "D5BLocalExecution": "NotAuthorized",
+      "R03Accepted": false,
+      "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+      "kind": "R03D5BLocalAdmissionFailureV1",
+      "outputCreated": false,
+      "reason": "D5-B Local execution is not authorized",
+      "result": "NotAuthorized",
+      "retryAllowed": false,
+      "schemaVersion": 1
+    },
+    "closedGateExitCode": 2,
+    "productionApprovalConstants": [
+      {
+        "path": "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission.py",
+        "constant": "APPROVED_EXECUTION_ENVELOPE_BLOB",
+        "line": 47,
+        "value": null
+      },
+      {
+        "path": "Tools/AssemblyShadow/R03IR/D5Admission/d5b_custody_authority.py",
+        "constant": "APPROVED_LOCAL_HANDOFF_BLOB",
+        "line": 25,
+        "value": null
+      }
+    ],
+    "totalTestMethods": 230,
+    "unapprovedEnvelopePathAbsent": true,
+    "rawLog": {
+      "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_IDENTITY_CONFIGURATION_AP6_SOURCE_HOST_2026-11-27.log",
+      "sha256": "f2369c69529782678c211e265dff71a8839a08229a8c579b5ea761bcf8e0f741",
+      "gitBlob": "957ad5b6cc15cc7cb7b998f15eb3e4d5be87b8c9",
+      "bytes": 43902,
+      "representation": "Exact captured suite-output bytes with UTF-8 validator metadata."
+    },
+    "preservation": {
+      "preservedFiles": 17,
+      "preservedFileBlobs": {
+        "Tools/AssemblyShadow/R03IR/D5Admission/d5b_custody_authority.py": "185c1bd6603a8c43e4222d30ed8bb057ab94824a",
+        "Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight.py": "81e7c3a2eaccb77bff2515c91b173558e4eeba2f",
+        "Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight_v1.json": "9956ea49656dc8337f9ab177c40faf29ea20c397",
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_activation_publication.py": "ecf36a7a51f1750c6e8425ee79e9ac8938102b54",
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_five_identity.py": "ab4e9cbf796d4ab91602a14a9294d3773e75879c",
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission.py": "99746fe64976da313cbd0e1625f0fcc5a67bca62",
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission_plan_v1.json": "5c0ab7a6d788ebd5adf57f1fddc567ba700632e9",
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_runner_closure.py": "2535bc14c31f1ff2d73fdb8c7be1d7dab605d990",
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_runner_configuration.py": "5263742017950a28bd9750eeeaefe50df4f4fa49",
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_runner_imports.py": "22ad93598131a59b2d5c46174a45187aede848a6",
+        "Tools/AssemblyShadow/R03IR/D5Local/run_d5_local.py": "519e6a4a8a11e3c821adb02fe1bf9e9d5b685b39",
+        "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_activation_publication.py": "ef0b562951afd5deb49528e5b8acf013a015eadb",
+        "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_five_identity.py": "28945bc7bd29ac5404996f2c40cf81e2600917f4",
+        "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_local_admission.py": "06aaf4f3ef4df3cc7306fe8d83d56f35ce1e0e0c",
+        "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_closure.py": "ed503a5d5eeeeff07a2e5c11be38bf7aba6b5976",
+        "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_configuration.py": "595ba10093825d4d1c3940587ede8aa66bc6ac83",
+        "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_imports.py": "86840e72285b99ea885469390b66c42d1f3d681f"
+      }
+    },
+    "scope": {
+      "sourceOnly": true,
+      "fixtureRemoteRefsOnly": true,
+      "AP6UnitAP5ObservationDoublesUsed": true,
+      "requiredPinnedSourceIntegrationExecuted": false,
+      "productionHttpsReachabilityQualified": false,
+      "productionRunnerRefCreated": false,
+      "approvalConstantsChanged": false,
+      "currentMacInputsVerified": false,
+      "LocalExecutionAuthorized": false,
+      "UnityOrPlayerExecuted": false
+    }
+  },
+  "githubActions": {
+    "schema": "R03AP6PrimaryGitHubActionsValidationV1",
+    "run": {
+      "id": 45984884119,
+      "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/45984884119",
+      "path": ".github/workflows/r03-b2-d5b-local-admission-source-host.yml",
+      "headCommit": "c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb",
+      "headTree": "a45681435483e4561917547f18f957e557002a9c",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "createdAtUtc": "2026-11-27T10:46:13Z",
+      "updatedAtUtc": "2026-11-27T10:47:20Z",
+      "event": "push",
+      "headBranch": "codex/assembly-shadow-r01b-h1"
+    },
+    "jobs": [
+      {
+        "id": 140457825344,
+        "name": "future-admission-source-host",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 45984884119,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Proposed D5-B physical admission contracts and no-execution controls",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "AP1 closed publication proposals using real temporary Git objects",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "AP2 inert runner artifact closure and bounded checkout observations",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "AP3 private imports from verified snapshots without runner invocation",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "AP4 captured configuration consumers without admission",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "AP5 five checkout identities and exact temporary remote refs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "AP6 sequential composition with an explicit identity-stage double",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Read pinned hybridclr source for AP6 integration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Read pinned hybridclr_unity source for AP6 integration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Read pinned il2cpp_plus source for AP6 integration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "AP6 required integration with actual pinned sibling sources and real bare refs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Verify no immutable user approval or Unity execution can be asserted",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Read pinned il2cpp_plus source for AP6 integration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 26
+          },
+          {
+            "name": "Post Read pinned hybridclr_unity source for AP6 integration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 27
+          },
+          {
+            "name": "Post Read pinned hybridclr source for AP6 integration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 28
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 29
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 30
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 31
+          }
+        ]
+      }
+    ],
+    "successfulJobCount": 1,
+    "returnedStepCount": 21,
+    "allReturnedStepsSuccessful": true,
+    "tests": {
+      "R5": {
+        "testMethods": 94,
+        "footerSeconds": "0.191",
+        "result": "OK"
+      },
+      "AP1R2": {
+        "testMethods": 22,
+        "footerSeconds": "4.238",
+        "result": "OK"
+      },
+      "AP2": {
+        "testMethods": 25,
+        "footerSeconds": "6.816",
+        "result": "OK"
+      },
+      "AP3": {
+        "testMethods": 20,
+        "footerSeconds": "4.342",
+        "result": "OK"
+      },
+      "AP4": {
+        "testMethods": 18,
+        "footerSeconds": "4.323",
+        "result": "OK"
+      },
+      "AP5": {
+        "testMethods": 31,
+        "footerSeconds": "10.211",
+        "result": "OK"
+      },
+      "AP6Unit": {
+        "testMethods": 20,
+        "footerSeconds": "9.463",
+        "result": "OK"
+      },
+      "AP6Integration": {
+        "testMethods": 1,
+        "footerSeconds": "2.593",
+        "result": "OK"
+      }
+    },
+    "totalTestMethods": 231,
+    "actualOKFooters": 8,
+    "actualTestFooters": 8,
+    "ap6UnitTestMethodNames": [
+      "test_01_public_api_is_four_exact_inputs_and_has_no_execution_mode",
+      "test_02_stage_order_preserves_raw_inputs_and_real_ap4_consumers",
+      "test_03_bad_external_pins_reject_before_helper_loading",
+      "test_04_changed_raw_bytes_reject_before_stages",
+      "test_05_strict_json_rejects_duplicates_nonfinite_and_nonobjects",
+      "test_06_each_shared_proposal_field_must_match_before_stages",
+      "test_07_matching_arbitrary_sibling_pins_do_not_replace_the_ap1_tuple",
+      "test_08_exact_schema_and_closed_authority_types_are_required",
+      "test_09_both_installed_helper_pins_are_checked_before_stages",
+      "test_10_identity_rejection_preserves_child_progress_and_stops_configuration",
+      "test_11_real_ap4_partial_consumption_survives_in_composition_rejection",
+      "test_12_generic_child_failure_does_not_fabricate_child_observation",
+      "test_13_every_common_runner_field_participates_in_the_stage_comparison",
+      "test_14_location_drift_and_boolean_integer_aliases_reject",
+      "test_15_comparison_uses_ap5_final_and_ap4_preinitialization_observations",
+      "test_16_success_and_rejection_reports_are_fresh_detached_json",
+      "test_17_private_helpers_and_ambient_candidate_slots_are_restored",
+      "test_18_real_cli_pre_stage_denials_do_not_claim_observation",
+      "test_19_real_runner_directory_change_between_stages_rejects_comparison",
+      "test_20_real_path_change_after_capture_preserves_bounded_consumer_semantics"
+    ],
+    "allSuiteMethodIdentities": {
+      "R5": [
+        "D5BLocalSourceOnly.test_01_exact_plan_git_blob",
+        "D5BLocalSourceOnly.test_02_plan_source_provenance_and_r2_gate",
+        "D5BLocalSourceOnly.test_03_all_18_real_player_cases_no_coverage",
+        "D5BLocalSourceOnly.test_04_no_approval_authority_in_any_plan_or_code",
+        "D5BLocalSourceOnly.test_05_duplicate_plan_json_key_rejected",
+        "D5BLocalSourceOnly.test_06_valid_proposed_root_custody_read_only",
+        "D5BLocalSourceOnly.test_07_missing_history_role_rejected",
+        "D5BLocalSourceOnly.test_08_historical_base_relationship_rejected",
+        "D5BLocalSourceOnly.test_09_duplicate_historical_role_rejected",
+        "D5BLocalSourceOnly.test_10_workspace_symlink_alias_rejected",
+        "D5BLocalSourceOnly.test_11_evidence_parent_under_old_b1_rejected",
+        "D5BLocalSourceOnly.test_12_evidence_parent_under_source_rejected",
+        "D5BLocalSourceOnly.test_13_existing_oneuse_output_rejected",
+        "D5BLocalSourceOnly.test_14_symlink_oneuse_output_rejected",
+        "D5BLocalSourceOnly.test_15_noncanonical_output_name_rejected",
+        "D5BLocalSourceOnly.test_16_original_s_must_be_outside_active_checkout",
+        "D5BLocalSourceOnly.test_17_parse_exact_single_remote_ref",
+        "D5BLocalSourceOnly.test_18_stale_remote_ref_rejected",
+        "D5BLocalSourceOnly.test_19_wrong_remote_branch_rejected",
+        "D5BLocalSourceOnly.test_20_ambiguous_remote_ref_lines_rejected",
+        "D5BLocalSourceOnly.test_21_malformed_remote_sha_rejected",
+        "D5BLocalSourceOnly.test_22_original_s_clean_source_record",
+        "D5BLocalSourceOnly.test_23_original_s_wrong_sha_rejected",
+        "D5BLocalSourceOnly.test_24_host_must_be_macos_arm64",
+        "D5BLocalSourceOnly.test_25_machine_preview_does_not_launch_unity",
+        "D5BLocalSourceOnly.test_26_machine_disk_threshold_rejected",
+        "D5BLocalSourceOnly.test_27_live_source_join_uses_four_exact_refs",
+        "D5BLocalSourceOnly.test_28_live_remote_sha_drift_rejected",
+        "D5BLocalSourceOnly.test_29_reject_source_gate_missing_receipt_producer",
+        "D5BLocalSourceOnly.test_30_approval_requires_immutable_compile_time_blob",
+        "D5BLocalSourceOnly.test_31_approved_envelope_fake_status_cannot_open",
+        "D5BLocalSourceOnly.test_32_oneuse_receipt_binds_exact_paths_and_unity",
+        "D5BLocalSourceOnly.test_33_oneuse_receipt_wrong_unity_hash_rejected",
+        "D5BLocalSourceOnly.test_34_oneuse_receipt_wrong_historical_s_rejected",
+        "D5BLocalSourceOnly.test_35_oneuse_output_exclusivity_and_no_player",
+        "D5BLocalSourceOnly.test_36_execute_cli_denied_before_envelope_or_filesystem",
+        "D5BLocalSourceOnly.test_37_preview_rejects_spurious_approval_envelope",
+        "D5BLocalSourceOnly.test_38_preview_requires_complete_request",
+        "D5BLocalSourceOnly.test_39_read_only_inspect_preview_no_output",
+        "D5BLocalSourceOnly.test_40_extra_source_pin_or_wrong_hybridclr_rejected",
+        "D5BLocalSourceOnly.test_41_wrong_second_historical_root_blocks_receipt",
+        "D5BLocalSourceOnly.test_42_unparseable_xcode_version_rejected",
+        "D5BLocalSourceOnly.test_43_xcode_license_rejection_fails_closed",
+        "D5BLocalSourceOnly.test_44_non_string_historical_path_rejected_before_custody",
+        "D5BLocalSourceOnly.test_45_non_string_workspace_rejected_before_custody",
+        "D5BLocalSourceOnly.test_46_standard_sdk_symlink_is_resolved_not_rejected",
+        "D5BLocalSourceOnly.test_47_test_only_frozen_envelope_semantics",
+        "D5BLocalSourceOnly.test_48_approved_envelope_one_byte_drift_rejected",
+        "D5BLocalSourceOnly.test_49_test_only_approval_cannot_skip_user_review",
+        "D5BLocalSourceOnly.test_50_test_only_approval_cannot_change_native_pin",
+        "D5BLocalSourceOnly.test_51_test_only_approval_cannot_omit_historical_root",
+        "D5BLocalSourceOnly.test_52_test_only_approval_cannot_claim_player_scope",
+        "D5BLocalSourceOnly.test_53_direct_seal_helper_denied_without_reviewed_envelope",
+        "D5BLocalSourceOnly.test_54_inner_seal_rejects_different_approval_dict",
+        "D5BLocalSourceOnly.test_55_inner_seal_rejects_tampered_envelope_bytes",
+        "D5BLocalSourceOnly.test_56_prewrite_source_drift_refuses_output",
+        "D5BLocalSourceOnly.test_57_postflight_remote_drift_consumes_root_no_success",
+        "D5BLocalSourceOnly.test_58_final_source_drift_has_no_positive_receipt",
+        "D5BLocalSourceOnly.test_59_parent_alias_swap_cannot_write_to_history",
+        "D5BLocalSourceOnly.test_60_faults_at_each_exclusive_receipt_are_partial",
+        "D5BLocalSourceOnly.test_61_public_cli_reports_partial_root_truthfully",
+        "D5BLocalSourceOnly.test_62_source_history_identity_drift_after_mkdir",
+        "D5BLocalSourceOnly.test_63_final_commit_marker_refuses_last_minute_source_drift",
+        "D5BLocalSourceOnly.test_64_precreation_parent_symlink_race_is_blocked",
+        "D5BLocalSourceOnly.test_65_failed_failure_marker_still_reports_created_root",
+        "D5BLocalSourceOnly.test_66_structurally_sealed_receipt_has_no_veto_or_stage",
+        "D5BLocalSourceOnly.test_67_after_flush_stage_fsync_error_never_publishes_final",
+        "D5BLocalSourceOnly.test_68_post_rename_directory_fsync_error_keeps_durable_veto",
+        "D5BLocalSourceOnly.test_69_atomic_rename_failure_does_not_publish_final",
+        "D5BLocalSourceOnly.test_70_final_veto_unlink_failure_never_seals_product",
+        "D5BLocalSourceOnly.test_71_parent_close_failure_is_partial_before_commit",
+        "D5BLocalSourceOnly.test_72_root_close_failure_is_indeterminate_after_commit",
+        "D5BLocalSourceOnly.test_73_cli_reports_root_close_error_as_indeterminate",
+        "D5BLocalSourceOnly.test_74_committed_receipt_with_incomplete_marker_is_rejected",
+        "D5BLocalSourceOnly.test_75_manifest_only_or_missing_final_receipt_is_rejected",
+        "D5BLocalSourceOnly.test_76_failure_marker_vetoes_otherwise_matching_receipts",
+        "D5BLocalSourceOnly.test_77_after_effect_veto_unlink_error_requires_reconciliation",
+        "D5BLocalSourceOnly.test_78_cli_after_effect_unlink_error_never_claims_precommit",
+        "D5BLocalSourceOnly.test_79_root_relocated_after_parent_close_is_not_success",
+        "D5BLocalSourceOnly.test_80_root_relocated_after_final_unlink_is_indeterminate",
+        "D5BLocalSourceOnly.test_81_cli_relocated_parent_closed_root_requires_reconciliation",
+        "D5BLocalSourceOnly.test_82_cli_completed_seal_first_stdout_write_failure_preserves_commit",
+        "D5BLocalSourceOnly.test_83_cli_completed_seal_stdout_flush_failure_preserves_commit",
+        "D5BLocalSourceOnly.test_84_cli_completed_seal_both_failed_streams_returns_two",
+        "D5BLocalSourceOnly.test_85_cli_after_effect_mkdir_faults_report_unknown_creation",
+        "D5BLocalSourceOnly.test_86_cli_real_mkdir_trace_interruption_reports_unknown_creation",
+        "D5BLocalSourceOnly.test_87_cli_preexisting_candidate_preserves_unrelated_sentinel",
+        "D5BLocalSourceOnly.test_88_cli_raced_mkdir_collision_preserves_unrelated_sentinel",
+        "D5BLocalSourceOnly.test_89_cli_mkdir_pre_effect_error_does_not_claim_proven_absence",
+        "D5BLocalSourceOnly.test_90_cli_sealer_return_boundary_fault_requires_reconciliation",
+        "D5BLocalSourceOnly.test_91_cli_partial_output_delivery_failure_retains_partial_accounting",
+        "D5BLocalSourceOnly.test_92_cli_null_approval_delivery_failure_remains_prewrite_denial",
+        "D5BLocalSourceOnly.test_93_cli_trace_before_mkdir_retains_attempt_uncertainty",
+        "D5BLocalSourceOnly.test_94_cli_after_mkdir_replacement_preserves_both_unowned_roots"
+      ],
+      "AP1R2": [
+        "D5BActivationPublicationSourceOnly.test_01_separate_refs_construct_real_closed_publication_chain",
+        "D5BActivationPublicationSourceOnly.test_02_same_ref_publication_leaves_old_source_pin_stale",
+        "D5BActivationPublicationSourceOnly.test_03_moved_or_missing_source_and_runner_refs_are_rejected",
+        "D5BActivationPublicationSourceOnly.test_04_missing_or_noncommit_objects_are_rejected",
+        "D5BActivationPublicationSourceOnly.test_05_runner_pin_must_equal_exact_proposal_blob",
+        "D5BActivationPublicationSourceOnly.test_06_runner_rejects_extra_source_helper_or_plan_changes",
+        "D5BActivationPublicationSourceOnly.test_07_source_writer_must_be_exact_reviewed_closed_blob",
+        "D5BActivationPublicationSourceOnly.test_08_runner_writer_allows_only_one_exact_pin_substitution",
+        "D5BActivationPublicationSourceOnly.test_09_writer_and_proposal_mode_type_substitutions_are_rejected",
+        "D5BActivationPublicationSourceOnly.test_10_proposal_must_be_new_and_present_in_runner",
+        "D5BActivationPublicationSourceOnly.test_11_duplicate_json_keys_are_rejected_at_every_level",
+        "D5BActivationPublicationSourceOnly.test_12_proposal_schema_and_field_types_are_exact",
+        "D5BActivationPublicationSourceOnly.test_13_proposal_requires_exact_source_and_other_repository_pins",
+        "D5BActivationPublicationSourceOnly.test_14_authority_promotions_are_rejected",
+        "D5BActivationPublicationSourceOnly.test_15_runner_has_exactly_one_parent_equal_to_source",
+        "D5BActivationPublicationSourceOnly.test_16_proposal_cannot_become_production_execution_envelope",
+        "D5BActivationPublicationSourceOnly.test_17_cli_audits_objects_without_changing_refs_or_authority",
+        "D5BActivationPublicationSourceOnly.test_18_cli_exposes_no_execution_or_authority_override",
+        "D5BActivationPublicationSourceOnly.test_19_standard_commit_prefixes_match_git_topology",
+        "D5BActivationPublicationSourceOnly.test_20_metadata_continuations_and_messages_do_not_add_topology",
+        "D5BActivationPublicationSourceOnly.test_21_ordinary_stored_late_parents_reject_source_and_runner",
+        "D5BActivationPublicationSourceOnly.test_22_late_duplicate_and_misordered_topology_headers_are_rejected"
+      ],
+      "AP2": [
+        "D5BRunnerClosureSourceOnly.test_01_six_file_snapshot_is_immutable_and_closed",
+        "D5BRunnerClosureSourceOnly.test_02_verification_never_imports_or_executes_candidate_modules",
+        "D5BRunnerClosureSourceOnly.test_03_manifest_requires_external_exact_bytes_pin",
+        "D5BRunnerClosureSourceOnly.test_04_manifest_schema_types_authority_and_roster_are_exact",
+        "D5BRunnerClosureSourceOnly.test_05_changed_reviewed_objects_reject_after_valid_ap1_publication",
+        "D5BRunnerClosureSourceOnly.test_06_closure_git_objects_require_regular_nonexecutable_modes",
+        "D5BRunnerClosureSourceOnly.test_07_tracked_untracked_and_ignored_changes_are_rejected",
+        "D5BRunnerClosureSourceOnly.test_08_assumed_and_skipped_index_entries_are_rejected",
+        "D5BRunnerClosureSourceOnly.test_09_working_files_reject_symlinks_hardlinks_and_executable_bits",
+        "D5BRunnerClosureSourceOnly.test_10_directory_aliases_reject_for_runner_and_file_ancestors",
+        "D5BRunnerClosureSourceOnly.test_11_checkout_branch_head_and_origin_are_exact",
+        "D5BRunnerClosureSourceOnly.test_12_filters_rewrites_and_hidden_status_configuration_reject",
+        "D5BRunnerClosureSourceOnly.test_13_shared_and_modified_git_administration_reject",
+        "D5BRunnerClosureSourceOnly.test_14_locations_require_complete_canonical_disjoint_directories",
+        "D5BRunnerClosureSourceOnly.test_15_file_bytes_and_identity_changes_between_reads_reject",
+        "D5BRunnerClosureSourceOnly.test_16_real_ref_and_checkout_config_changes_during_snapshot_reject",
+        "D5BRunnerClosureSourceOnly.test_17_identical_ancestor_replacement_during_actual_read_rejects",
+        "D5BRunnerClosureSourceOnly.test_18_protected_directory_identity_change_between_observations_rejects",
+        "D5BRunnerClosureSourceOnly.test_19_isolated_cli_returns_closed_json_without_mutating_runner",
+        "D5BRunnerClosureSourceOnly.test_20_cli_requires_isolation_pin_and_rejects_execution_overrides",
+        "D5BRunnerClosureSourceOnly.test_21_verification_uses_only_object_and_metadata_git_commands",
+        "D5BRunnerClosureSourceOnly.test_22_unrelated_tracked_executable_and_literal_symlink_are_valid",
+        "D5BRunnerClosureSourceOnly.test_23_full_inventory_rejects_unrelated_changes_and_extra_empty_directories",
+        "D5BRunnerClosureSourceOnly.test_24_full_inventory_enforces_per_file_and_aggregate_byte_bounds",
+        "D5BRunnerClosureSourceOnly.test_25_full_inventory_enforces_entry_count_and_depth_bounds"
+      ],
+      "AP3": [
+        "D5BRunnerImportsSourceOnly.test_01_real_ap2_snapshot_initializes_three_private_bindings",
+        "D5BRunnerImportsSourceOnly.test_02_report_matches_actual_ordered_direct_import_requests",
+        "D5BRunnerImportsSourceOnly.test_03_ambient_candidate_module_cache_entries_are_never_selected",
+        "D5BRunnerImportsSourceOnly.test_04_ambient_meta_path_and_path_cache_are_not_consulted",
+        "D5BRunnerImportsSourceOnly.test_05_ambient_source_and_opaque_bytecode_fixtures_are_not_read",
+        "D5BRunnerImportsSourceOnly.test_06_real_sys_path_is_unchanged_during_writer_initialization",
+        "D5BRunnerImportsSourceOnly.test_07_import_phase_calls_no_candidate_function_or_content_reader",
+        "D5BRunnerImportsSourceOnly.test_08_after_snapshot_source_change_does_not_replace_captured_bytes",
+        "D5BRunnerImportsSourceOnly.test_09_invalid_external_pin_or_raw_input_rejects_before_helper",
+        "D5BRunnerImportsSourceOnly.test_10_changed_trusted_helper_bytes_reject_before_compilation",
+        "D5BRunnerImportsSourceOnly.test_11_malformed_private_snapshot_records_reject_before_compilation",
+        "D5BRunnerImportsSourceOnly.test_12_private_snapshot_requires_consistent_roster_and_closed_ap2_report",
+        "D5BRunnerImportsSourceOnly.test_13_import_requests_outside_reviewed_direct_forms_are_denied",
+        "D5BRunnerImportsSourceOnly.test_14_public_result_is_frozen_json_data_with_fresh_report_copies",
+        "D5BRunnerImportsSourceOnly.test_15_rejections_report_partial_initialization_truthfully",
+        "D5BRunnerImportsSourceOnly.test_16_compilation_interruption_reports_no_candidate_initialization",
+        "D5BRunnerImportsSourceOnly.test_17_temporary_trusted_helper_registration_is_always_removed",
+        "D5BRunnerImportsSourceOnly.test_18_real_isolated_cli_preserves_checkout_and_creates_no_output",
+        "D5BRunnerImportsSourceOnly.test_19_cli_requires_actual_isolation_no_site_and_no_bytecode_flags",
+        "D5BRunnerImportsSourceOnly.test_20_cli_rejects_bad_pins_and_execution_arguments_without_output"
+      ],
+      "AP4": [
+        "D5BRunnerConfigurationSourceOnly.test_01_actual_consumers_keep_private_function_identity_and_enabled_checks",
+        "D5BRunnerConfigurationSourceOnly.test_02_each_public_call_uses_one_fresh_snapshot_and_initialization",
+        "D5BRunnerConfigurationSourceOnly.test_03_report_matches_four_actual_captured_file_operations",
+        "D5BRunnerConfigurationSourceOnly.test_04_actual_candidate_call_graph_and_consumption_use_no_io",
+        "D5BRunnerConfigurationSourceOnly.test_05_configuration_pathname_changes_after_capture_use_captured_bytes",
+        "D5BRunnerConfigurationSourceOnly.test_06_invalid_public_inputs_reject_before_helper_code",
+        "D5BRunnerConfigurationSourceOnly.test_07_pinned_helper_drift_rejects_before_compilation",
+        "D5BRunnerConfigurationSourceOnly.test_08_private_captured_records_require_consistent_immutable_bytes",
+        "D5BRunnerConfigurationSourceOnly.test_09_private_adapters_are_narrow_frozen_snapshot_views",
+        "D5BRunnerConfigurationSourceOnly.test_10_private_binding_and_blob_mismatches_reject_before_consumer_calls",
+        "D5BRunnerConfigurationSourceOnly.test_11_real_consumers_reject_changed_read_bytes_with_truthful_progress",
+        "D5BRunnerConfigurationSourceOnly.test_12_profile_read_interruption_does_not_claim_profile_invocation",
+        "D5BRunnerConfigurationSourceOnly.test_13_earlier_reports_remain_frozen_preconsumer_observations",
+        "D5BRunnerConfigurationSourceOnly.test_14_private_helper_registrations_are_removed_for_all_outcomes",
+        "D5BRunnerConfigurationSourceOnly.test_15_public_observations_are_immutable_json_with_a_narrow_signature",
+        "D5BRunnerConfigurationSourceOnly.test_16_real_isolated_cli_preserves_checkout_and_creates_no_output",
+        "D5BRunnerConfigurationSourceOnly.test_17_cli_requires_all_three_real_interpreter_flags",
+        "D5BRunnerConfigurationSourceOnly.test_18_cli_requires_both_arguments_and_rejects_execution_options"
+      ],
+      "AP5": [
+        "D5BFiveIdentityFocused.test_01_real_five_checkouts_and_ten_remote_reads_remain_closed",
+        "D5BFiveIdentityFocused.test_02_pin_and_immutable_byte_type_reject_before_helper_or_transport",
+        "D5BFiveIdentityFocused.test_03_closed_schema_types_roles_authority_and_endpoint_controls",
+        "D5BFiveIdentityFocused.test_04_strict_json_rejects_duplicates_nonfinite_invalid_and_nonobject",
+        "D5BFiveIdentityFocused.test_05_exact_runner_ref_spelling_rejects_patterns_and_aliases",
+        "D5BFiveIdentityFocused.test_06_missing_untracked_ignored_and_raw_modified_files_reject",
+        "D5BFiveIdentityFocused.test_07_staged_assumed_skipped_and_submodule_index_reject",
+        "D5BFiveIdentityFocused.test_08_modes_hardlinks_symlink_replacement_and_special_files_reject",
+        "D5BFiveIdentityFocused.test_09_tracked_symlink_literal_is_observed_without_target_read",
+        "D5BFiveIdentityFocused.test_10_origins_and_unsupported_local_configuration_reject",
+        "D5BFiveIdentityFocused.test_11_shallow_grafted_alternate_gitfiles_and_bare_layout_reject",
+        "D5BFiveIdentityFocused.test_12_detached_wrong_branch_symbolic_ref_and_wrong_head_reject",
+        "D5BFiveIdentityFocused.test_13_locations_reject_aliases_overlap_missing_and_duplicate_history",
+        "D5BFiveIdentityFocused.test_14_all_fifteen_administrative_roots_must_have_unique_identities",
+        "D5BFiveIdentityFocused.test_15_runner_requires_the_demo_source_as_its_only_parent",
+        "D5BFiveIdentityFocused.test_16_exact_remote_parser_rejects_ambiguous_malformed_and_changed_rows",
+        "D5BFiveIdentityFocused.test_17_real_bare_remote_missing_and_drifted_refs_reject",
+        "D5BFiveIdentityFocused.test_18_remote_subprocess_errors_bounds_and_no_fallback_keep_progress",
+        "D5BFiveIdentityFocused.test_19_production_remote_arguments_and_environment_are_fixed",
+        "D5BFiveIdentityFocused.test_20_null_gitdir_blocks_benign_cwd_rewrite_without_any_network",
+        "D5BFiveIdentityFocused.test_21_second_pass_uses_ten_fresh_local_readers_and_order",
+        "D5BFiveIdentityFocused.test_22_second_pass_rejects_changed_config_index_worktree_and_local_ref",
+        "D5BFiveIdentityFocused.test_23_second_pass_rejects_changed_checkout_and_admin_directory_identity",
+        "D5BFiveIdentityFocused.test_24_final_location_recheck_rejects_changed_historical_identity",
+        "D5BFiveIdentityFocused.test_25_response_bytes_are_rechecked_even_when_parsed_head_is_unchanged",
+        "D5BFiveIdentityFocused.test_26_helper_pins_authenticate_original_bytes_and_cleanup_all_outcomes",
+        "D5BFiveIdentityFocused.test_27_candidate_modules_remain_inert_and_process_and_files_unchanged",
+        "D5BFiveIdentityFocused.test_28_public_api_and_report_are_narrow_and_frozen",
+        "D5BFiveIdentityFocused.test_29_real_cli_requires_all_isolation_flags_before_transport",
+        "D5BFiveIdentityFocused.test_30_real_cli_argument_and_pretransport_rejections",
+        "D5BFiveIdentityFocused.test_31_real_cli_input_symlinks_hardlinks_and_executable_files_reject"
+      ],
+      "AP6Unit": [
+        "D5BIdentityConfigurationComposition.test_01_public_api_is_four_exact_inputs_and_has_no_execution_mode",
+        "D5BIdentityConfigurationComposition.test_02_stage_order_preserves_raw_inputs_and_real_ap4_consumers",
+        "D5BIdentityConfigurationComposition.test_03_bad_external_pins_reject_before_helper_loading",
+        "D5BIdentityConfigurationComposition.test_04_changed_raw_bytes_reject_before_stages",
+        "D5BIdentityConfigurationComposition.test_05_strict_json_rejects_duplicates_nonfinite_and_nonobjects",
+        "D5BIdentityConfigurationComposition.test_06_each_shared_proposal_field_must_match_before_stages",
+        "D5BIdentityConfigurationComposition.test_07_matching_arbitrary_sibling_pins_do_not_replace_the_ap1_tuple",
+        "D5BIdentityConfigurationComposition.test_08_exact_schema_and_closed_authority_types_are_required",
+        "D5BIdentityConfigurationComposition.test_09_both_installed_helper_pins_are_checked_before_stages",
+        "D5BIdentityConfigurationComposition.test_10_identity_rejection_preserves_child_progress_and_stops_configuration",
+        "D5BIdentityConfigurationComposition.test_11_real_ap4_partial_consumption_survives_in_composition_rejection",
+        "D5BIdentityConfigurationComposition.test_12_generic_child_failure_does_not_fabricate_child_observation",
+        "D5BIdentityConfigurationComposition.test_13_every_common_runner_field_participates_in_the_stage_comparison",
+        "D5BIdentityConfigurationComposition.test_14_location_drift_and_boolean_integer_aliases_reject",
+        "D5BIdentityConfigurationComposition.test_15_comparison_uses_ap5_final_and_ap4_preinitialization_observations",
+        "D5BIdentityConfigurationComposition.test_16_success_and_rejection_reports_are_fresh_detached_json",
+        "D5BIdentityConfigurationComposition.test_17_private_helpers_and_ambient_candidate_slots_are_restored",
+        "D5BIdentityConfigurationComposition.test_18_real_cli_pre_stage_denials_do_not_claim_observation",
+        "D5BIdentityConfigurationComposition.test_19_real_runner_directory_change_between_stages_rejects_comparison",
+        "D5BIdentityConfigurationComposition.test_20_real_path_change_after_capture_preserves_bounded_consumer_semantics"
+      ],
+      "AP6Integration": [
+        "D5BIdentityConfigurationPinnedSources.test_real_pinned_sources_and_unchanged_helpers_compose"
+      ]
+    },
+    "sourceAndCIMethodInventoryMatches": true,
+    "sourceHostPlusIntegrationMatchesCIMethodInventory": true,
+    "methodInventoryRelation": "CI = SourceHost + RequiredPinnedSourceIntegration",
+    "checkoutCommitFromActualLog": "c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb",
+    "sourceBlobReadbackMatchesHost": true,
+    "checkoutCommitsFromActualLog": [
+      "c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb",
+      "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+      "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"
+    ],
+    "checkoutRolesInOrder": [
+      "hybridclr_demo",
+      "hybridclr",
+      "hybridclr_unity",
+      "il2cpp_plus"
+    ],
+    "requiredAP1SiblingPins": {
+      "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+      "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "il2cpp_plus": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"
+    },
+    "preservationBasis": "Exact source readback and five-path baseline-to-source compare preserve the seventeen accepted blobs; CI checkout is that exact source. No separate seventeen-file hash audit is claimed from the job transcript.",
+    "preservation": {
+      "preservedFiles": 17,
+      "preservedFileBlobs": {
+        "Tools/AssemblyShadow/R03IR/D5Admission/d5b_custody_authority.py": "185c1bd6603a8c43e4222d30ed8bb057ab94824a",
+        "Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight.py": "81e7c3a2eaccb77bff2515c91b173558e4eeba2f",
+        "Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight_v1.json": "9956ea49656dc8337f9ab177c40faf29ea20c397",
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_activation_publication.py": "ecf36a7a51f1750c6e8425ee79e9ac8938102b54",
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_five_identity.py": "ab4e9cbf796d4ab91602a14a9294d3773e75879c",
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission.py": "99746fe64976da313cbd0e1625f0fcc5a67bca62",
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_local_admission_plan_v1.json": "5c0ab7a6d788ebd5adf57f1fddc567ba700632e9",
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_runner_closure.py": "2535bc14c31f1ff2d73fdb8c7be1d7dab605d990",
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_runner_configuration.py": "5263742017950a28bd9750eeeaefe50df4f4fa49",
+        "Tools/AssemblyShadow/R03IR/D5Local/d5b_runner_imports.py": "22ad93598131a59b2d5c46174a45187aede848a6",
+        "Tools/AssemblyShadow/R03IR/D5Local/run_d5_local.py": "519e6a4a8a11e3c821adb02fe1bf9e9d5b685b39",
+        "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_activation_publication.py": "ef0b562951afd5deb49528e5b8acf013a015eadb",
+        "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_five_identity.py": "28945bc7bd29ac5404996f2c40cf81e2600917f4",
+        "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_local_admission.py": "06aaf4f3ef4df3cc7306fe8d83d56f35ce1e0e0c",
+        "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_closure.py": "ed503a5d5eeeeff07a2e5c11be38bf7aba6b5976",
+        "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_configuration.py": "595ba10093825d4d1c3940587ede8aa66bc6ac83",
+        "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_imports.py": "86840e72285b99ea885469390b66c42d1f3d681f"
+      }
+    },
+    "environment": {
+      "auditorGit": {
+        "path": "/bin/git",
+        "version": "git version 2.56.1"
+      },
+      "fixtureGit": {
+        "path": "/usr/bin/git",
+        "version": "git version 2.56.1"
+      },
+      "python": "3.11.18",
+      "schema": "R03AP1GitToolVersionsV1",
+      "fixtureGitScope": "Retained fixtures and AP6 initial unit/integration fixture setup use ambient PATH.",
+      "systemGitScope": "AP5 fixtures, AP6 integration clone/ref operations, and accepted observers use system PATH.",
+      "AP5FixtureGit": {
+        "path": "/bin/git",
+        "version": "git version 2.56.1"
+      },
+      "AP5ObserverGit": {
+        "path": "/bin/git",
+        "version": "git version 2.56.1"
+      },
+      "AP6UnitInitialFixtureGit": {
+        "path": "/usr/bin/git",
+        "version": "git version 2.56.1"
+      },
+      "AP6IntegrationInitialFixtureGit": {
+        "path": "/usr/bin/git",
+        "version": "git version 2.56.1"
+      },
+      "AP6IntegrationCloneAndRefGit": {
+        "path": "/bin/git",
+        "version": "git version 2.56.1"
+      },
+      "AP6ObserverGit": {
+        "path": "/bin/git",
+        "version": "git version 2.56.1"
+      }
+    },
+    "integrationReceipt": {
+      "actualAP1SiblingPins": {
+        "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+        "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "il2cpp_plus": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"
+      },
+      "closedAuthority": {
+        "D5BLocalExecution": "NotAuthorized",
+        "D5LocalValidation": "NotAuthorized",
+        "H2Passed": false,
+        "R03Accepted": false,
+        "ReadyForHumanReviewGate": false,
+        "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+        "allowNativeBuild": false,
+        "allowPlayerLaunch": false,
+        "approvedEnvelopeGitBlob": null,
+        "executionAuthorityVerified": false,
+        "explicitUserLocalApproval": "NotAuthorized",
+        "independentlyReviewedExecutableAdmission": "Pending"
+      },
+      "completedRealAP4Consumers": [
+        "d5b_local_admission.read_plan",
+        "d5b_rr5_source_preflight.checked_profile"
+      ],
+      "fileRefCalls": [
+        {
+          "actualTransport": "file",
+          "head": "b826f155ddfae8356c30e3d717d93de3ca26a270",
+          "pass": "before",
+          "ref": "refs/heads/codex/assembly-shadow-r01b-h1",
+          "repository": "night-outlook/hybridclr_demo",
+          "role": "hybridclr_demo"
+        },
+        {
+          "actualTransport": "file",
+          "head": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+          "pass": "before",
+          "ref": "refs/heads/codex/assembly-shadow-r01b-h1",
+          "repository": "night-outlook/hybridclr",
+          "role": "hybridclr"
+        },
+        {
+          "actualTransport": "file",
+          "head": "948c0e3b4f8891481301770115e8ba4945eea6de",
+          "pass": "before",
+          "ref": "refs/heads/codex/assembly-shadow-r01b-h1",
+          "repository": "night-outlook/hybridclr_unity",
+          "role": "hybridclr_unity"
+        },
+        {
+          "actualTransport": "file",
+          "head": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3",
+          "pass": "before",
+          "ref": "refs/heads/codex/assembly-shadow-r01b-h1",
+          "repository": "night-outlook/il2cpp_plus",
+          "role": "il2cpp_plus"
+        },
+        {
+          "actualTransport": "file",
+          "head": "05ca23fbb43f2c206952f7f17c191721c87a65ea",
+          "pass": "before",
+          "ref": "refs/heads/codex/ap6-fixture",
+          "repository": "night-outlook/hybridclr_demo",
+          "role": "runner"
+        },
+        {
+          "actualTransport": "file",
+          "head": "b826f155ddfae8356c30e3d717d93de3ca26a270",
+          "pass": "after",
+          "ref": "refs/heads/codex/assembly-shadow-r01b-h1",
+          "repository": "night-outlook/hybridclr_demo",
+          "role": "hybridclr_demo"
+        },
+        {
+          "actualTransport": "file",
+          "head": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+          "pass": "after",
+          "ref": "refs/heads/codex/assembly-shadow-r01b-h1",
+          "repository": "night-outlook/hybridclr",
+          "role": "hybridclr"
+        },
+        {
+          "actualTransport": "file",
+          "head": "948c0e3b4f8891481301770115e8ba4945eea6de",
+          "pass": "after",
+          "ref": "refs/heads/codex/assembly-shadow-r01b-h1",
+          "repository": "night-outlook/hybridclr_unity",
+          "role": "hybridclr_unity"
+        },
+        {
+          "actualTransport": "file",
+          "head": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3",
+          "pass": "after",
+          "ref": "refs/heads/codex/assembly-shadow-r01b-h1",
+          "repository": "night-outlook/il2cpp_plus",
+          "role": "il2cpp_plus"
+        },
+        {
+          "actualTransport": "file",
+          "head": "05ca23fbb43f2c206952f7f17c191721c87a65ea",
+          "pass": "after",
+          "ref": "refs/heads/codex/ap6-fixture",
+          "repository": "night-outlook/hybridclr_demo",
+          "role": "runner"
+        }
+      ],
+      "fixedAP1SiblingPinsMatched": true,
+      "fixtureDemoH": "b826f155ddfae8356c30e3d717d93de3ca26a270",
+      "fixtureRunnerA": "05ca23fbb43f2c206952f7f17c191721c87a65ea",
+      "kind": "R03AP6PinnedSourceIntegrationReceiptV1",
+      "observationDoublesUsed": false,
+      "privateAP5FileTransportOnly": true,
+      "productionHttpsExercised": false,
+      "proposalFieldsMatched": true,
+      "realAP4PublicAPIUsed": true,
+      "realAP5PublicAPIUsed": true,
+      "result": "IdentityConfigurationObserved_NoExecutionAuthority",
+      "schemaVersion": 1,
+      "sharedObservationsMatched": true,
+      "stageCallsCompleted": [
+        "identity",
+        "configuration"
+      ],
+      "systemGit": {
+        "path": "/bin/git",
+        "version": "git version 2.56.1"
+      }
+    },
+    "closedGateReceipt": {
+      "D5BLocalExecution": "NotAuthorized",
+      "R03Accepted": false,
+      "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+      "kind": "R03D5BLocalAdmissionFailureV1",
+      "outputCreated": false,
+      "reason": "D5-B Local execution is not authorized",
+      "result": "NotAuthorized",
+      "retryAllowed": false,
+      "schemaVersion": 1
+    },
+    "closedGateExitCode": 2,
+    "closedGateExitCodeBasis": "Successful workflow step includes an explicit shell assertion for status 2.",
+    "unapprovedEnvelopePathAbsent": true,
+    "unapprovedEnvelopePathBasis": "Successful workflow step asserts the path is absent.",
+    "artifacts": {
+      "returnedCount": 0,
+      "scope": "First page returned by Connector; no claim about an unobserved page."
+    },
+    "rawLog": {
+      "path": "Docs/AssemblyShadow/History/M07R/R03/IR_Remediation/POST_B1_PASS12_2026-11-10/D5B_IDENTITY_CONFIGURATION_AP6_CI_45984884119_JOB_140457825344.log",
+      "bytes": 164391,
+      "sha256": "4e94a7b48c7409915cce5702d1f970228f876b244e83220ad1d7dc16f1834298",
+      "gitBlob": "66ed93a81c77948bd45178c184304b7d4db77c93",
+      "utf8BomPreserved": true,
+      "representation": "Exact UTF-8 encoding of Connector-decoded job log text, including its leading BOM if present; no original ZIP/archive-byte attestation."
+    },
+    "scope": {
+      "sourceOnly": true,
+      "fixtureRemoteRefsOnly": true,
+      "requiredPinnedSourceIntegrationExecuted": true,
+      "integrationObservationDoublesUsed": false,
+      "privateAP5FileTransportOnly": true,
+      "productionHttpsReachabilityQualified": false,
+      "productionLiveRemoteHeadsVerified": false,
+      "productionRunnerRefCreated": false,
+      "approvalConstantsChanged": false,
+      "currentMacInputsVerified": false,
+      "LocalExecutionAuthorized": false,
+      "UnityOrPlayerExecuted": false
+    },
+    "otherWorkflowMetadataScope": "Not AP6 qualification evidence; per-run states are observations only.",
+    "otherWorkflowRuns": [
+      {
+        "id": 45984884130,
+        "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/45984884130",
+        "path": ".github/workflows/r03-l-contracts.yml",
+        "headCommit": "c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "attempt": 1
+      },
+      {
+        "id": 45984884147,
+        "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/45984884147",
+        "path": ".github/workflows/r03-k-sourcecheck.yml",
+        "headCommit": "c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "attempt": 1
+      },
+      {
+        "id": 45984884206,
+        "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/45984884206",
+        "path": ".github/workflows/r03-ir-native-b1-source-and-host.yml",
+        "headCommit": "c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1
+      },
+      {
+        "id": 45984884105,
+        "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/45984884105",
+        "path": ".github/workflows/r03-k-host-contracts.yml",
+        "headCommit": "c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "attempt": 1
+      },
+      {
+        "id": 45984884097,
+        "url": "https://github.com/night-outlook/hybridclr_demo/actions/runs/45984884097",
+        "path": ".github/workflows/r03-ir-host.yml",
+        "headCommit": "c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "attempt": 1
+      }
+    ]
+  },
+  "internalReview": {
+    "scope": "Static read-only AP6 source, direct AP5/AP4 and bounded AP2/AP1 paths plus design; no tests",
+    "independentApproval": false,
+    "findings": [
+      {
+        "id": "AP6-PRIMARY-01",
+        "issue": "Separate runner/location comparison attempt and completion progress missing",
+        "correction": "comparisonCallsAttempted and comparisonCallsCompleted record each operation before entry and after exact equality",
+        "status": "ClosedByBoundedReadback"
+      },
+      {
+        "id": "AP6-PRIMARY-02",
+        "issue": "Exact five-field matched proposal projection omitted from report",
+        "correction": "matchedProposalProjection stored as detached JSON after relation and fixed sibling pins pass",
+        "status": "ClosedByBoundedReadback"
+      }
+    ],
+    "remainingMaterialFindingInAssignedScope": null,
+    "limits": [
+      "No independent AP6 verdict",
+      "No full AP3 internals review",
+      "No integration or CI qualification",
+      "No seventeen-file preservation audit by delegated reviewer"
+    ]
+  },
+  "sourceContract": {
+    "publicAPI": "observe_identity_configuration(closure_raw, expected_closure_blob, identity_raw, expected_identity_blob)",
+    "inputPinsCheckedBeforeInterpretation": [
+      "closure",
+      "identity"
+    ],
+    "sharedProposalFields": [
+      "sourcePins",
+      "sourceRef",
+      "runner",
+      "locations",
+      "authorization"
+    ],
+    "fullIdentitySchemaValidatedBeforeStages": true,
+    "fullClosureSchemaValidatedBeforeAP5": false,
+    "fullClosureValidationOwner": "AP4 through its own fresh AP2 chain after AP5",
+    "fixedAP1SiblingPinsRequiredBeforeStages": {
+      "hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+      "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "il2cpp_plus": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"
+    },
+    "matchedProposalProjectionRetained": true,
+    "plannedStageOrder": [
+      "proposalRelation",
+      "identity",
+      "configuration",
+      "comparePriorObservations"
+    ],
+    "publicObserverCallsPerSuccessfulComposition": {
+      "AP5": 1,
+      "AP4": 1
+    },
+    "directHelperPins": {
+      "identity": {
+        "file": "d5b_five_identity.py",
+        "gitBlob": "ab4e9cbf796d4ab91602a14a9294d3773e75879c"
+      },
+      "configuration": {
+        "file": "d5b_runner_configuration.py",
+        "gitBlob": "5263742017950a28bd9750eeeaefe50df4f4fa49"
+      }
+    },
+    "comparisonScope": "AP5AfterObservation_VersusAP2BeforeCandidateInitializationOnly",
+    "comparedRunnerFields": [
+      "head",
+      "branch",
+      "origin",
+      "gitDir",
+      "commonDir",
+      "configSha256",
+      "indexFlagsSha256",
+      "indexStagesSha256",
+      "worktreeInventorySha256",
+      "worktreeFiles",
+      "worktreeEntries",
+      "worktreeBytes"
+    ],
+    "completeLocationObservationMapCompared": true,
+    "historicalLocationRoles": [
+      "originalS",
+      "b1EvidenceBase",
+      "b1Oneuse12",
+      "b1NativeHostRaw",
+      "b1B2HostRaw",
+      "b1Preflight"
+    ],
+    "checkoutRecheckedAfterConfigurationConsumers": false,
+    "lateComparisonCanRejectAfterActualConsumers": true,
+    "partialProgressRetained": true,
+    "comparisonProgressFields": [
+      "comparisonCallsAttempted",
+      "comparisonCallsCompleted"
+    ]
+  },
+  "coverageSummary": {
+    "host": {
+      "suiteCount": 7,
+      "retainedMethods": 210,
+      "AP6UnitMethods": 20,
+      "totalActualMethods": 230,
+      "AP6UnitAP5StageDoubled": true,
+      "AP6UnitRealAP4Consumers": true,
+      "requiredIntegrationExecuted": false
+    },
+    "CI": {
+      "suiteCount": 8,
+      "sharedMethods": 230,
+      "requiredIntegrationMethods": 1,
+      "totalActualMethods": 231,
+      "actualOKFooters": 8,
+      "requiredIntegrationExecuted": true,
+      "actualFixedAP1SiblingSources": true,
+      "realAP5AndAP4Observers": true,
+      "privateFileTransportOnly": true,
+      "productionHttpsExercised": false
+    },
+    "sharedSuiteMethodInventoriesMatch": true,
+    "hostAndCITotalsEqual": false,
+    "AP6UnitMethodNamesFromSource": [
+      "test_01_public_api_is_four_exact_inputs_and_has_no_execution_mode",
+      "test_02_stage_order_preserves_raw_inputs_and_real_ap4_consumers",
+      "test_03_bad_external_pins_reject_before_helper_loading",
+      "test_04_changed_raw_bytes_reject_before_stages",
+      "test_05_strict_json_rejects_duplicates_nonfinite_and_nonobjects",
+      "test_06_each_shared_proposal_field_must_match_before_stages",
+      "test_07_matching_arbitrary_sibling_pins_do_not_replace_the_ap1_tuple",
+      "test_08_exact_schema_and_closed_authority_types_are_required",
+      "test_09_both_installed_helper_pins_are_checked_before_stages",
+      "test_10_identity_rejection_preserves_child_progress_and_stops_configuration",
+      "test_11_real_ap4_partial_consumption_survives_in_composition_rejection",
+      "test_12_generic_child_failure_does_not_fabricate_child_observation",
+      "test_13_every_common_runner_field_participates_in_the_stage_comparison",
+      "test_14_location_drift_and_boolean_integer_aliases_reject",
+      "test_15_comparison_uses_ap5_final_and_ap4_preinitialization_observations",
+      "test_16_success_and_rejection_reports_are_fresh_detached_json",
+      "test_17_private_helpers_and_ambient_candidate_slots_are_restored",
+      "test_18_real_cli_pre_stage_denials_do_not_claim_observation",
+      "test_19_real_runner_directory_change_between_stages_rejects_comparison",
+      "test_20_real_path_change_after_capture_preserves_bounded_consumer_semantics"
+    ],
+    "AP6IntegrationMethodNamesFromSource": [
+      "test_real_pinned_sources_and_unchanged_helpers_compose"
+    ],
+    "locationObservationNegativeScope": "Recorded location drift and JSON type cases; no exhaustive per-field negative matrix claimed"
+  },
+  "downloadedExactSourceRerun": {
+    "scope": "Downloaded exact-source host tests and temporary fixtures only; no Local/Mac/Unity/Player work",
+    "sourceCommitT": "c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb",
+    "sourceTree": "a45681435483e4561917547f18f957e557002a9c",
+    "prerequisites": [
+      "Download exact source T and verify the five source digests and seventeen accepted preserved blobs before and after tests.",
+      "Use trusted POSIX Python and Git; retain actual executables, versions, commands, method identities, exits and output.",
+      "Run argv from the downloaded source root; AP3 through AP6 require actual -I -S -B.",
+      "Set AP6_PINNED_SIBLINGS to the absolute parent of ordinary full-object-store checkouts of the three named siblings at the exact fixed commits; shallow/alternate-store/substitute inputs are not accepted.",
+      "Missing required integration inputs fail and must not become a successful skip.",
+      "Construction and negative mutations affect new temporary fixtures only; production refs/approvals and historical Mac paths are outside this rerun."
+    ],
+    "requiredSiblingInputs": [
+      {
+        "repository": "night-outlook/hybridclr",
+        "directory": "hybridclr",
+        "commit": "c3c232023724cbad565b85e9b2c3beea8ce2789a",
+        "fullObjectStoreRequired": true
+      },
+      {
+        "repository": "night-outlook/hybridclr_unity",
+        "directory": "hybridclr_unity",
+        "commit": "948c0e3b4f8891481301770115e8ba4945eea6de",
+        "fullObjectStoreRequired": true
+      },
+      {
+        "repository": "night-outlook/il2cpp_plus",
+        "directory": "il2cpp_plus",
+        "commit": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3",
+        "fullObjectStoreRequired": true
+      }
+    ],
+    "commands": [
+      {
+        "suite": "R5",
+        "workingDirectory": "Downloaded exact AP6 source T root",
+        "argv": [
+          "python3",
+          "-B",
+          "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_local_admission.py",
+          "-v"
+        ],
+        "expectedActualMethodCount": 94,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "GIT_TERMINAL_PROMPT": "0"
+        }
+      },
+      {
+        "suite": "AP1R2",
+        "workingDirectory": "Downloaded exact AP6 source T root",
+        "argv": [
+          "python3",
+          "-B",
+          "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_activation_publication.py",
+          "-v"
+        ],
+        "expectedActualMethodCount": 22,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "GIT_TERMINAL_PROMPT": "0"
+        }
+      },
+      {
+        "suite": "AP2",
+        "workingDirectory": "Downloaded exact AP6 source T root",
+        "argv": [
+          "python3",
+          "-B",
+          "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_closure.py",
+          "-v"
+        ],
+        "expectedActualMethodCount": 25,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "GIT_TERMINAL_PROMPT": "0"
+        }
+      },
+      {
+        "suite": "AP3",
+        "workingDirectory": "Downloaded exact AP6 source T root",
+        "argv": [
+          "python3",
+          "-I",
+          "-S",
+          "-B",
+          "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_imports.py",
+          "-v"
+        ],
+        "expectedActualMethodCount": 20,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "GIT_TERMINAL_PROMPT": "0"
+        }
+      },
+      {
+        "suite": "AP4",
+        "workingDirectory": "Downloaded exact AP6 source T root",
+        "argv": [
+          "python3",
+          "-I",
+          "-S",
+          "-B",
+          "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_runner_configuration.py",
+          "-v"
+        ],
+        "expectedActualMethodCount": 18,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "GIT_TERMINAL_PROMPT": "0"
+        }
+      },
+      {
+        "suite": "AP5",
+        "workingDirectory": "Downloaded exact AP6 source T root",
+        "argv": [
+          "python3",
+          "-I",
+          "-S",
+          "-B",
+          "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_five_identity.py",
+          "-v"
+        ],
+        "expectedActualMethodCount": 31,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "GIT_TERMINAL_PROMPT": "0"
+        }
+      },
+      {
+        "suite": "AP6Unit",
+        "workingDirectory": "Downloaded exact AP6 source T root",
+        "argv": [
+          "python3",
+          "-I",
+          "-S",
+          "-B",
+          "Tools/AssemblyShadow/R03IR/D5Local/test_d5b_identity_configuration.py",
+          "-v"
+        ],
+        "expectedActualMethodCount": 20,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "GIT_TERMINAL_PROMPT": "0"
+        }
+      },
+      {
+        "suite": "AP6Integration",
+        "workingDirectory": "Downloaded exact AP6 source T root",
+        "argv": [
+          "python3",
+          "-I",
+          "-S",
+          "-B",
+          "Tools/AssemblyShadow/R03IR/D5Local/integration_d5b_identity_configuration.py",
+          "-v"
+        ],
+        "expectedActualMethodCount": 1,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "GIT_TERMINAL_PROMPT": "0",
+          "AP6_PINNED_SIBLINGS": "Absolute path to downloaded full-object-store sibling parent"
+        },
+        "required": true,
+        "missingInputsMaySkip": false
+      }
+    ],
+    "historicalHostAttestation": false
+  },
+  "historicalMacPaths": [
+    {
+      "repository": "night-outlook/hybridclr_demo",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "physicalState": "Unverified",
+      "inspectedThisCycle": false
+    },
+    {
+      "repository": "night-outlook/hybridclr",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "physicalState": "Unverified",
+      "inspectedThisCycle": false
+    },
+    {
+      "repository": "night-outlook/hybridclr_unity",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "physicalState": "Unverified",
+      "inspectedThisCycle": false
+    },
+    {
+      "repository": "night-outlook/il2cpp_plus",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "physicalState": "Unverified",
+      "inspectedThisCycle": false
+    }
+  ],
+  "claimLimits": {
+    "sequentialCompositionSourceOnly": true,
+    "dynamicProposalPinsAreApproval": false,
+    "childFixtureProposalPinIsApproval": false,
+    "identityObservationCurrentThroughoutConfiguration": false,
+    "postConsumerCheckoutRecheck": false,
+    "AP5AdministrativeRootsRecheckedByAP4": false,
+    "atomicOrSimultaneousFiveIdentitySnapshot": false,
+    "continuousCustody": false,
+    "exclusiveCustody": false,
+    "remoteRefsFrozen": false,
+    "completeGitAdministrativeCustody": false,
+    "rawGitIndexBytesVerified": false,
+    "sourceSemanticPreflightVerified": false,
+    "sourceDataInputsVerified": false,
+    "acceptedAP1SourceTupleApproved": false,
+    "productionHttpsReachabilityQualified": false,
+    "productionFiveCheckoutsObserved": false,
+    "runnerExecutableClosureVerified": false,
+    "generalRuntimeConfigurationReadsBound": false,
+    "futureRuntimeConfigurationReadsBound": false,
+    "generalRuntimeImportIsolationVerified": false,
+    "pythonSandboxProvided": false,
+    "standardLibraryIdentityVerified": false,
+    "hardProcessMemoryBound": false,
+    "hardNetworkByteBound": false,
+    "globalFilesystemWallClockBound": false,
+    "unconditionalJsonDeliveryGuaranteed": false,
+    "productionCandidateIntegrationPerformed": false
+  },
+  "closedAuthority": {
+    "approvedEnvelopeGitBlob": null,
+    "independentlyReviewedExecutableAdmission": "Pending",
+    "explicitUserLocalApproval": "NotAuthorized",
+    "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION",
+    "D5BLocalExecution": "NotAuthorized",
+    "D5LocalValidation": "NotAuthorized",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "ReadyForHumanReviewGate": false,
+    "allowNativeBuild": false,
+    "allowPlayerLaunch": false,
+    "APPROVED_EXECUTION_ENVELOPE_BLOB": null,
+    "APPROVED_LOCAL_HANDOFF_BLOB": null,
+    "independentlyReviewedIdentityConfigurationComposition": "Pending",
+    "QExecutionAuthorized": false,
+    "executionAuthorityVerified": false,
+    "realUnityBuild": "NotRun",
+    "realNativeBuild": "NotRun",
+    "realPlayerRun": "NotRun",
+    "realPlayerCellsPassed": 0,
+    "realPlayerCellsNoCoverage": 18,
+    "productionRunnerRefCreated": false,
+    "productionApprovalRefCreated": false
+  },
+  "documentationPublication": {
+    "sourceIdentityT": "c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb",
+    "sourceTree": "a45681435483e4561917547f18f957e557002a9c",
+    "containingPublicationIdentityM": "Resolve the containing documentation/evidence-only commit through the feature ref; record separately",
+    "expectedSoleParent": "c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb",
+    "selfCommitNotEmbedded": true,
+    "finalReadbackGateStatus": "Planned_AfterDocumentationPublication_NotSelfAttested",
+    "finalReadbackCompletedInThisRecord": false,
+    "requiredFinalReadback": [
+      "Exact M, sole parent T and documentation-only delta",
+      "Five exact history packet files and three canonical-document blobs",
+      "Five source identities, seventeen preserved blobs and both Local-owned records",
+      "All four feature refs; demo M recorded separately from source T"
+    ],
+    "canonicalPrefixApplication": {
+      "owner": "Primary publication owner outside this assembler",
+      "baselineCanonicalDocuments": {
+        "readme": {
+          "path": "Docs/AssemblyShadow/README.md",
+          "blob": "001d56b3994f89d5cbd786fb47ed639631c660fa"
+        },
+        "status": {
+          "path": "Docs/AssemblyShadow/Plan/CURRENT_STATUS.md",
+          "blob": "5373535cfd192e769225fffc33ba638e82767b2a"
+        },
+        "handoff": {
+          "path": "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md",
+          "blob": "62f13e81db74436c9f1601884d864c9def1bd72b"
+        }
+      },
+      "preserveCompleteBaselineSuffixBytes": true,
+      "assemblerWritesCanonicalDocuments": false
+    }
+  }
+}

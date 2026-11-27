@@ -1,0 +1,1413 @@
+﻿2026-11-27T10:46:17.2137548Z Current runner version: '2.338.2'
+2026-11-27T10:46:17.2155344Z ##[group]Runner Image Provisioner
+2026-11-27T10:46:17.2156340Z Hosted Compute Agent
+2026-11-27T10:46:17.2156779Z Version: 20261111.635
+2026-11-27T10:46:17.2157295Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+2026-11-27T10:46:17.2157856Z Build Date: 2026-11-11T01:49:01Z
+2026-11-27T10:46:17.2158360Z Worker ID: {51d09ff6-6be3-4a5e-8661-c83d3def9000}
+2026-11-27T10:46:17.2158923Z Region: us-west-2
+2026-11-27T10:46:17.2159328Z Cloud: AWS
+2026-11-27T10:46:17.2159737Z ##[endgroup]
+2026-11-27T10:46:17.2160711Z ##[group]Operating System
+2026-11-27T10:46:17.2161183Z Ubuntu
+2026-11-27T10:46:17.2161574Z 24.04.5
+2026-11-27T10:46:17.2161942Z LTS
+2026-11-27T10:46:17.2162302Z ##[endgroup]
+2026-11-27T10:46:17.2162722Z ##[group]Runner Image
+2026-11-27T10:46:17.2163161Z Image: ubuntu-24.04
+2026-11-27T10:46:17.2163696Z Version: 20261122.23.1
+2026-11-27T10:46:17.2164750Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261122.23/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-27T10:46:17.2166267Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261122.23
+2026-11-27T10:46:17.2167053Z ##[endgroup]
+2026-11-27T10:46:17.2167966Z ##[group]GITHUB_TOKEN Permissions
+2026-11-27T10:46:17.2169723Z Contents: read
+2026-11-27T10:46:17.2170182Z Metadata: read
+2026-11-27T10:46:17.2170583Z ##[endgroup]
+2026-11-27T10:46:17.2172065Z Secret source: Actions
+2026-11-27T10:46:17.2172743Z Cache mode: write
+2026-11-27T10:46:17.2173239Z Prepare workflow directory
+2026-11-27T10:46:17.2399722Z Prepare all required actions
+2026-11-27T10:46:17.2434943Z Getting action download info
+2026-11-27T10:46:17.6077771Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-27T10:46:18.8444301Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-27T10:46:19.0329185Z Complete job name: future-admission-source-host
+2026-11-27T10:46:19.0992749Z ##[group]Run actions/checkout@v4
+2026-11-27T10:46:19.0993516Z with:
+2026-11-27T10:46:19.0993986Z   path: _demo
+2026-11-27T10:46:19.0995374Z   sparse-checkout: Tools/AssemblyShadow/R03IR/D5Local/
+Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight.py
+Tools/AssemblyShadow/R03IR/D5Admission/d5b_rr5_source_preflight_v1.json
+
+2026-11-27T10:46:19.0997181Z   sparse-checkout-cone-mode: false
+2026-11-27T10:46:19.0997792Z   repository: night-outlook/hybridclr_demo
+2026-11-27T10:46:19.1001619Z   token: ***
+2026-11-27T10:46:19.1002043Z   ssh-strict: true
+2026-11-27T10:46:19.1002488Z   ssh-user: git
+2026-11-27T10:46:19.1002929Z   persist-credentials: true
+2026-11-27T10:46:19.1003440Z   clean: true
+2026-11-27T10:46:19.1003993Z   fetch-depth: 1
+2026-11-27T10:46:19.1004452Z   fetch-tags: false
+2026-11-27T10:46:19.1004919Z   show-progress: true
+2026-11-27T10:46:19.1005363Z   lfs: false
+2026-11-27T10:46:19.1005967Z   submodules: false
+2026-11-27T10:46:19.1006533Z   set-safe-directory: true
+2026-11-27T10:46:19.1007074Z   allow-unsafe-pr-checkout: false
+2026-11-27T10:46:19.1007849Z ##[endgroup]
+2026-11-27T10:46:22.4196675Z Syncing repository: night-outlook/hybridclr_demo
+2026-11-27T10:46:22.4197983Z ##[group]Getting Git version info
+2026-11-27T10:46:22.4198484Z Working directory is '/home/runner/work/hybridclr_demo/hybridclr_demo/_demo'
+2026-11-27T10:46:22.4199098Z [command]/usr/bin/git version
+2026-11-27T10:46:22.7222895Z git version 2.56.1
+2026-11-27T10:46:22.7244167Z ##[endgroup]
+2026-11-27T10:46:22.7258031Z Temporarily overriding HOME='/home/runner/work/_temp/5fe12ce5-7f86-461f-8e5e-f385439e8884' before making global git config changes
+2026-11-27T10:46:22.7258881Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-27T10:46:22.7261873Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hybridclr_demo/hybridclr_demo/_demo
+2026-11-27T10:46:22.7638319Z ##[group]Initializing the repository
+2026-11-27T10:46:22.7642269Z [command]/usr/bin/git init /home/runner/work/hybridclr_demo/hybridclr_demo/_demo
+2026-11-27T10:46:22.8047311Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-27T10:46:22.8047948Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-27T10:46:22.8048780Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-27T10:46:22.8049195Z hint: call:
+2026-11-27T10:46:22.8049472Z hint:
+2026-11-27T10:46:22.8049837Z hint: 	git config --global init.defaultBranch <name>
+2026-11-27T10:46:22.8050161Z hint:
+2026-11-27T10:46:22.8050509Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-27T10:46:22.8050971Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-27T10:46:22.8051375Z hint:
+2026-11-27T10:46:22.8051637Z hint: 	git branch -m <name>
+2026-11-27T10:46:22.8051932Z hint:
+2026-11-27T10:46:22.8052336Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-27T10:46:22.8057987Z Initialized empty Git repository in /home/runner/work/hybridclr_demo/hybridclr_demo/_demo/.git/
+2026-11-27T10:46:22.8065760Z [command]/usr/bin/git remote add origin https://github.com/night-outlook/hybridclr_demo
+2026-11-27T10:46:22.8113516Z ##[endgroup]
+2026-11-27T10:46:22.8114052Z ##[group]Disabling automatic garbage collection
+2026-11-27T10:46:22.8116424Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-27T10:46:22.8139748Z ##[endgroup]
+2026-11-27T10:46:22.8140241Z ##[group]Setting up auth
+2026-11-27T10:46:22.8144805Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-27T10:46:22.8172462Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-27T10:46:23.1803736Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-27T10:46:23.1831020Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-27T10:46:23.1985267Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-27T10:46:23.2009304Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-27T10:46:23.2156993Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-27T10:46:23.2182276Z ##[endgroup]
+2026-11-27T10:46:23.2182746Z ##[group]Fetching the repository
+2026-11-27T10:46:23.2193167Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb:refs/remotes/origin/codex/assembly-shadow-r01b-h1
+2026-11-27T10:46:24.1838931Z From https://github.com/night-outlook/hybridclr_demo
+2026-11-27T10:46:24.1839588Z  * [new ref]           c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb -> origin/codex/assembly-shadow-r01b-h1
+2026-11-27T10:46:24.1857069Z ##[endgroup]
+2026-11-27T10:46:24.1857641Z ##[group]Determining the checkout info
+2026-11-27T10:46:24.1858133Z ##[endgroup]
+2026-11-27T10:46:24.1858674Z ##[group]Setting up sparse checkout
+2026-11-27T10:46:24.1859031Z [command]/usr/bin/git config core.sparseCheckout true
+2026-11-27T10:46:24.1878969Z [command]/usr/bin/git rev-parse --git-path info/sparse-checkout
+2026-11-27T10:46:24.1905402Z .git/info/sparse-checkout
+2026-11-27T10:46:24.1945692Z ##[endgroup]
+2026-11-27T10:46:24.1946183Z ##[group]Checking out the ref
+2026-11-27T10:46:24.1949142Z [command]/usr/bin/git checkout --progress --force -B codex/assembly-shadow-r01b-h1 refs/remotes/origin/codex/assembly-shadow-r01b-h1
+2026-11-27T10:46:25.1616978Z Switched to a new branch 'codex/assembly-shadow-r01b-h1'
+2026-11-27T10:46:25.1625460Z branch 'codex/assembly-shadow-r01b-h1' set up to track 'origin/codex/assembly-shadow-r01b-h1'.
+2026-11-27T10:46:25.1664787Z ##[endgroup]
+2026-11-27T10:46:25.1703794Z [command]/usr/bin/git log -1 --format=%H
+2026-11-27T10:46:25.1723318Z c4abb8ec7ab32ba0579c8a3686fa33b4487a37cb
+2026-11-27T10:46:25.1929489Z ##[group]Run actions/setup-python@v5
+2026-11-27T10:46:25.1929786Z with:
+2026-11-27T10:46:25.1930048Z   python-version: 3.11
+2026-11-27T10:46:25.1930294Z   check-latest: false
+2026-11-27T10:46:25.1932272Z   token: ***
+2026-11-27T10:46:25.1932577Z   update-environment: true
+2026-11-27T10:46:25.1932830Z   allow-prereleases: false
+2026-11-27T10:46:25.1933089Z   freethreaded: false
+2026-11-27T10:46:25.1933303Z ##[endgroup]
+2026-11-27T10:46:25.2933355Z ##[group]Installed versions
+2026-11-27T10:46:25.4645261Z (node:2154) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-27T10:46:25.4646397Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-27T10:46:25.4646971Z Successfully set up CPython (3.11.18)
+2026-11-27T10:46:25.4647767Z ##[endgroup]
+2026-11-27T10:46:25.4758086Z ##[group]Run set -euo pipefail
+2026-11-27T10:46:25.4758485Z [36;1mset -euo pipefail[0m
+2026-11-27T10:46:25.4758819Z [36;1mtool=_demo/Tools/AssemblyShadow/R03IR/D5Local[0m
+2026-11-27T10:46:25.4759225Z [36;1mpython3 -B "$tool/test_d5b_local_admission.py" -v 2>&1 |[0m
+2026-11-27T10:46:25.4759575Z [36;1m  tee "$RUNNER_TEMP/d5b-admission-tests.log"[0m
+2026-11-27T10:46:25.4759921Z [36;1mgrep -q 'Ran 94 tests in' "$RUNNER_TEMP/d5b-admission-tests.log"[0m
+2026-11-27T10:46:25.4760311Z [36;1mgrep -q '^OK$' "$RUNNER_TEMP/d5b-admission-tests.log"[0m
+2026-11-27T10:46:25.8417438Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-27T10:46:25.8417919Z env:
+2026-11-27T10:46:25.8418234Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:25.8418642Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-27T10:46:25.8419064Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:25.8419565Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:25.8419924Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:25.8420264Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-27T10:46:25.8420617Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-27T10:46:25.8420870Z   GIT_TERMINAL_PROMPT: 0
+2026-11-27T10:46:25.8421094Z ##[endgroup]
+2026-11-27T10:46:27.4556960Z test_01_exact_plan_git_blob (__main__.D5BLocalSourceOnly.test_01_exact_plan_git_blob) ... ok
+2026-11-27T10:46:27.4562529Z test_02_plan_source_provenance_and_r2_gate (__main__.D5BLocalSourceOnly.test_02_plan_source_provenance_and_r2_gate) ... ok
+2026-11-27T10:46:27.4568369Z test_03_all_18_real_player_cases_no_coverage (__main__.D5BLocalSourceOnly.test_03_all_18_real_player_cases_no_coverage) ... ok
+2026-11-27T10:46:27.4573604Z test_04_no_approval_authority_in_any_plan_or_code (__main__.D5BLocalSourceOnly.test_04_no_approval_authority_in_any_plan_or_code) ... ok
+2026-11-27T10:46:27.4579297Z test_05_duplicate_plan_json_key_rejected (__main__.D5BLocalSourceOnly.test_05_duplicate_plan_json_key_rejected) ... ok
+2026-11-27T10:46:27.4592165Z test_06_valid_proposed_root_custody_read_only (__main__.D5BLocalSourceOnly.test_06_valid_proposed_root_custody_read_only) ... ok
+2026-11-27T10:46:27.4597664Z test_07_missing_history_role_rejected (__main__.D5BLocalSourceOnly.test_07_missing_history_role_rejected) ... ok
+2026-11-27T10:46:27.4605857Z test_08_historical_base_relationship_rejected (__main__.D5BLocalSourceOnly.test_08_historical_base_relationship_rejected) ... ok
+2026-11-27T10:46:27.4613077Z test_09_duplicate_historical_role_rejected (__main__.D5BLocalSourceOnly.test_09_duplicate_historical_role_rejected) ... ok
+2026-11-27T10:46:27.4618728Z test_10_workspace_symlink_alias_rejected (__main__.D5BLocalSourceOnly.test_10_workspace_symlink_alias_rejected) ... ok
+2026-11-27T10:46:27.4629705Z test_11_evidence_parent_under_old_b1_rejected (__main__.D5BLocalSourceOnly.test_11_evidence_parent_under_old_b1_rejected) ... ok
+2026-11-27T10:46:27.4639464Z test_12_evidence_parent_under_source_rejected (__main__.D5BLocalSourceOnly.test_12_evidence_parent_under_source_rejected) ... ok
+2026-11-27T10:46:27.4648491Z test_13_existing_oneuse_output_rejected (__main__.D5BLocalSourceOnly.test_13_existing_oneuse_output_rejected) ... ok
+2026-11-27T10:46:27.4657121Z test_14_symlink_oneuse_output_rejected (__main__.D5BLocalSourceOnly.test_14_symlink_oneuse_output_rejected) ... ok
+2026-11-27T10:46:27.4671835Z test_15_noncanonical_output_name_rejected (__main__.D5BLocalSourceOnly.test_15_noncanonical_output_name_rejected) ... ok
+2026-11-27T10:46:27.4680013Z test_16_original_s_must_be_outside_active_checkout (__main__.D5BLocalSourceOnly.test_16_original_s_must_be_outside_active_checkout) ... ok
+2026-11-27T10:46:27.4685217Z test_17_parse_exact_single_remote_ref (__main__.D5BLocalSourceOnly.test_17_parse_exact_single_remote_ref) ... ok
+2026-11-27T10:46:27.4691101Z test_18_stale_remote_ref_rejected (__main__.D5BLocalSourceOnly.test_18_stale_remote_ref_rejected) ... ok
+2026-11-27T10:46:27.4696616Z test_19_wrong_remote_branch_rejected (__main__.D5BLocalSourceOnly.test_19_wrong_remote_branch_rejected) ... ok
+2026-11-27T10:46:27.4702210Z test_20_ambiguous_remote_ref_lines_rejected (__main__.D5BLocalSourceOnly.test_20_ambiguous_remote_ref_lines_rejected) ... ok
+2026-11-27T10:46:27.4707767Z test_21_malformed_remote_sha_rejected (__main__.D5BLocalSourceOnly.test_21_malformed_remote_sha_rejected) ... ok
+2026-11-27T10:46:27.4716757Z test_22_original_s_clean_source_record (__main__.D5BLocalSourceOnly.test_22_original_s_clean_source_record) ... ok
+2026-11-27T10:46:27.4727080Z test_23_original_s_wrong_sha_rejected (__main__.D5BLocalSourceOnly.test_23_original_s_wrong_sha_rejected) ... ok
+2026-11-27T10:46:27.4730868Z test_24_host_must_be_macos_arm64 (__main__.D5BLocalSourceOnly.test_24_host_must_be_macos_arm64) ... ok
+2026-11-27T10:46:27.4745876Z test_25_machine_preview_does_not_launch_unity (__main__.D5BLocalSourceOnly.test_25_machine_preview_does_not_launch_unity) ... ok
+2026-11-27T10:46:27.4755684Z test_26_machine_disk_threshold_rejected (__main__.D5BLocalSourceOnly.test_26_machine_disk_threshold_rejected) ... ok
+2026-11-27T10:46:27.4766227Z test_27_live_source_join_uses_four_exact_refs (__main__.D5BLocalSourceOnly.test_27_live_source_join_uses_four_exact_refs) ... ok
+2026-11-27T10:46:27.4775907Z test_28_live_remote_sha_drift_rejected (__main__.D5BLocalSourceOnly.test_28_live_remote_sha_drift_rejected) ... ok
+2026-11-27T10:46:27.4783572Z test_29_reject_source_gate_missing_receipt_producer (__main__.D5BLocalSourceOnly.test_29_reject_source_gate_missing_receipt_producer) ... ok
+2026-11-27T10:46:27.4789054Z test_30_approval_requires_immutable_compile_time_blob (__main__.D5BLocalSourceOnly.test_30_approval_requires_immutable_compile_time_blob) ... ok
+2026-11-27T10:46:27.4793978Z test_31_approved_envelope_fake_status_cannot_open (__main__.D5BLocalSourceOnly.test_31_approved_envelope_fake_status_cannot_open) ... ok
+2026-11-27T10:46:27.4801007Z test_32_oneuse_receipt_binds_exact_paths_and_unity (__main__.D5BLocalSourceOnly.test_32_oneuse_receipt_binds_exact_paths_and_unity) ... ok
+2026-11-27T10:46:27.4806756Z test_33_oneuse_receipt_wrong_unity_hash_rejected (__main__.D5BLocalSourceOnly.test_33_oneuse_receipt_wrong_unity_hash_rejected) ... ok
+2026-11-27T10:46:27.4812438Z test_34_oneuse_receipt_wrong_historical_s_rejected (__main__.D5BLocalSourceOnly.test_34_oneuse_receipt_wrong_historical_s_rejected) ... ok
+2026-11-27T10:46:27.4866653Z test_35_oneuse_output_exclusivity_and_no_player (__main__.D5BLocalSourceOnly.test_35_oneuse_output_exclusivity_and_no_player) ... ok
+2026-11-27T10:46:27.4876366Z test_36_execute_cli_denied_before_envelope_or_filesystem (__main__.D5BLocalSourceOnly.test_36_execute_cli_denied_before_envelope_or_filesystem) ... {"D5BLocalExecution": "NotAuthorized", "R03Accepted": false, "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION", "kind": "R03D5BLocalAdmissionFailureV1", "outputCreated": false, "reason": "D5-B Local execution is not authorized", "result": "NotAuthorized", "retryAllowed": false, "schemaVersion": 1}
+2026-11-27T10:46:27.4877980Z ok
+2026-11-27T10:46:27.4885129Z test_37_preview_rejects_spurious_approval_envelope (__main__.D5BLocalSourceOnly.test_37_preview_rejects_spurious_approval_envelope) ... {"D5BLocalExecution": "NotAuthorized", "R03Accepted": false, "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION", "kind": "R03D5BLocalAdmissionFailureV1", "outputCreated": false, "reason": "Read-only preview must not accept approval-like inputs", "result": "BlockedBeforeBuild", "retryAllowed": false, "schemaVersion": 1}
+2026-11-27T10:46:27.4886546Z ok
+2026-11-27T10:46:27.4897138Z test_38_preview_requires_complete_request (__main__.D5BLocalSourceOnly.test_38_preview_requires_complete_request) ... ok
+2026-11-27T10:46:27.4907916Z test_39_read_only_inspect_preview_no_output (__main__.D5BLocalSourceOnly.test_39_read_only_inspect_preview_no_output) ... ok
+2026-11-27T10:46:27.4914249Z test_40_extra_source_pin_or_wrong_hybridclr_rejected (__main__.D5BLocalSourceOnly.test_40_extra_source_pin_or_wrong_hybridclr_rejected) ... ok
+2026-11-27T10:46:27.4919967Z test_41_wrong_second_historical_root_blocks_receipt (__main__.D5BLocalSourceOnly.test_41_wrong_second_historical_root_blocks_receipt) ... ok
+2026-11-27T10:46:27.4930140Z test_42_unparseable_xcode_version_rejected (__main__.D5BLocalSourceOnly.test_42_unparseable_xcode_version_rejected) ... ok
+2026-11-27T10:46:27.4942452Z test_43_xcode_license_rejection_fails_closed (__main__.D5BLocalSourceOnly.test_43_xcode_license_rejection_fails_closed) ... ok
+2026-11-27T10:46:27.4950125Z test_44_non_string_historical_path_rejected_before_custody (__main__.D5BLocalSourceOnly.test_44_non_string_historical_path_rejected_before_custody) ... ok
+2026-11-27T10:46:27.4957531Z test_45_non_string_workspace_rejected_before_custody (__main__.D5BLocalSourceOnly.test_45_non_string_workspace_rejected_before_custody) ... ok
+2026-11-27T10:46:27.4969664Z test_46_standard_sdk_symlink_is_resolved_not_rejected (__main__.D5BLocalSourceOnly.test_46_standard_sdk_symlink_is_resolved_not_rejected) ... ok
+2026-11-27T10:46:27.4975724Z test_47_test_only_frozen_envelope_semantics (__main__.D5BLocalSourceOnly.test_47_test_only_frozen_envelope_semantics) ... ok
+2026-11-27T10:46:27.4981421Z test_48_approved_envelope_one_byte_drift_rejected (__main__.D5BLocalSourceOnly.test_48_approved_envelope_one_byte_drift_rejected) ... ok
+2026-11-27T10:46:27.4987257Z test_49_test_only_approval_cannot_skip_user_review (__main__.D5BLocalSourceOnly.test_49_test_only_approval_cannot_skip_user_review) ... ok
+2026-11-27T10:46:27.4992881Z test_50_test_only_approval_cannot_change_native_pin (__main__.D5BLocalSourceOnly.test_50_test_only_approval_cannot_change_native_pin) ... ok
+2026-11-27T10:46:27.4998692Z test_51_test_only_approval_cannot_omit_historical_root (__main__.D5BLocalSourceOnly.test_51_test_only_approval_cannot_omit_historical_root) ... ok
+2026-11-27T10:46:27.5004545Z test_52_test_only_approval_cannot_claim_player_scope (__main__.D5BLocalSourceOnly.test_52_test_only_approval_cannot_claim_player_scope) ... ok
+2026-11-27T10:46:27.5010716Z test_53_direct_seal_helper_denied_without_reviewed_envelope (__main__.D5BLocalSourceOnly.test_53_direct_seal_helper_denied_without_reviewed_envelope) ... ok
+2026-11-27T10:46:27.5016905Z test_54_inner_seal_rejects_different_approval_dict (__main__.D5BLocalSourceOnly.test_54_inner_seal_rejects_different_approval_dict) ... ok
+2026-11-27T10:46:27.5022796Z test_55_inner_seal_rejects_tampered_envelope_bytes (__main__.D5BLocalSourceOnly.test_55_inner_seal_rejects_tampered_envelope_bytes) ... ok
+2026-11-27T10:46:27.5031189Z test_56_prewrite_source_drift_refuses_output (__main__.D5BLocalSourceOnly.test_56_prewrite_source_drift_refuses_output) ... ok
+2026-11-27T10:46:27.5058028Z test_57_postflight_remote_drift_consumes_root_no_success (__main__.D5BLocalSourceOnly.test_57_postflight_remote_drift_consumes_root_no_success) ... ok
+2026-11-27T10:46:27.5087226Z test_58_final_source_drift_has_no_positive_receipt (__main__.D5BLocalSourceOnly.test_58_final_source_drift_has_no_positive_receipt) ... ok
+2026-11-27T10:46:27.5113355Z test_59_parent_alias_swap_cannot_write_to_history (__main__.D5BLocalSourceOnly.test_59_parent_alias_swap_cannot_write_to_history) ... ok
+2026-11-27T10:46:27.5224012Z test_60_faults_at_each_exclusive_receipt_are_partial (__main__.D5BLocalSourceOnly.test_60_faults_at_each_exclusive_receipt_are_partial) ... ok
+2026-11-27T10:46:27.5251960Z test_61_public_cli_reports_partial_root_truthfully (__main__.D5BLocalSourceOnly.test_61_public_cli_reports_partial_root_truthfully) ... ok
+2026-11-27T10:46:27.5283202Z test_62_source_history_identity_drift_after_mkdir (__main__.D5BLocalSourceOnly.test_62_source_history_identity_drift_after_mkdir) ... ok
+2026-11-27T10:46:27.5314438Z test_63_final_commit_marker_refuses_last_minute_source_drift (__main__.D5BLocalSourceOnly.test_63_final_commit_marker_refuses_last_minute_source_drift) ... ok
+2026-11-27T10:46:27.5323863Z test_64_precreation_parent_symlink_race_is_blocked (__main__.D5BLocalSourceOnly.test_64_precreation_parent_symlink_race_is_blocked) ... ok
+2026-11-27T10:46:27.5339822Z test_65_failed_failure_marker_still_reports_created_root (__main__.D5BLocalSourceOnly.test_65_failed_failure_marker_still_reports_created_root) ... ok
+2026-11-27T10:46:27.5374810Z test_66_structurally_sealed_receipt_has_no_veto_or_stage (__main__.D5BLocalSourceOnly.test_66_structurally_sealed_receipt_has_no_veto_or_stage) ... ok
+2026-11-27T10:46:27.5411927Z test_67_after_flush_stage_fsync_error_never_publishes_final (__main__.D5BLocalSourceOnly.test_67_after_flush_stage_fsync_error_never_publishes_final) ... ok
+2026-11-27T10:46:27.5449553Z test_68_post_rename_directory_fsync_error_keeps_durable_veto (__main__.D5BLocalSourceOnly.test_68_post_rename_directory_fsync_error_keeps_durable_veto) ... ok
+2026-11-27T10:46:27.5487459Z test_69_atomic_rename_failure_does_not_publish_final (__main__.D5BLocalSourceOnly.test_69_atomic_rename_failure_does_not_publish_final) ... ok
+2026-11-27T10:46:27.5525704Z test_70_final_veto_unlink_failure_never_seals_product (__main__.D5BLocalSourceOnly.test_70_final_veto_unlink_failure_never_seals_product) ... ok
+2026-11-27T10:46:27.5564346Z test_71_parent_close_failure_is_partial_before_commit (__main__.D5BLocalSourceOnly.test_71_parent_close_failure_is_partial_before_commit) ... ok
+2026-11-27T10:46:27.5599205Z test_72_root_close_failure_is_indeterminate_after_commit (__main__.D5BLocalSourceOnly.test_72_root_close_failure_is_indeterminate_after_commit) ... ok
+2026-11-27T10:46:27.5637192Z test_73_cli_reports_root_close_error_as_indeterminate (__main__.D5BLocalSourceOnly.test_73_cli_reports_root_close_error_as_indeterminate) ... ok
+2026-11-27T10:46:27.5672701Z test_74_committed_receipt_with_incomplete_marker_is_rejected (__main__.D5BLocalSourceOnly.test_74_committed_receipt_with_incomplete_marker_is_rejected) ... ok
+2026-11-27T10:46:27.5707420Z test_75_manifest_only_or_missing_final_receipt_is_rejected (__main__.D5BLocalSourceOnly.test_75_manifest_only_or_missing_final_receipt_is_rejected) ... ok
+2026-11-27T10:46:27.5744248Z test_76_failure_marker_vetoes_otherwise_matching_receipts (__main__.D5BLocalSourceOnly.test_76_failure_marker_vetoes_otherwise_matching_receipts) ... ok
+2026-11-27T10:46:27.5781589Z test_77_after_effect_veto_unlink_error_requires_reconciliation (__main__.D5BLocalSourceOnly.test_77_after_effect_veto_unlink_error_requires_reconciliation) ... ok
+2026-11-27T10:46:27.5826701Z test_78_cli_after_effect_unlink_error_never_claims_precommit (__main__.D5BLocalSourceOnly.test_78_cli_after_effect_unlink_error_never_claims_precommit) ... ok
+2026-11-27T10:46:27.5863109Z test_79_root_relocated_after_parent_close_is_not_success (__main__.D5BLocalSourceOnly.test_79_root_relocated_after_parent_close_is_not_success) ... ok
+2026-11-27T10:46:27.5899597Z test_80_root_relocated_after_final_unlink_is_indeterminate (__main__.D5BLocalSourceOnly.test_80_root_relocated_after_final_unlink_is_indeterminate) ... ok
+2026-11-27T10:46:27.5944312Z test_81_cli_relocated_parent_closed_root_requires_reconciliation (__main__.D5BLocalSourceOnly.test_81_cli_relocated_parent_closed_root_requires_reconciliation) ... ok
+2026-11-27T10:46:27.5986209Z test_82_cli_completed_seal_first_stdout_write_failure_preserves_commit (__main__.D5BLocalSourceOnly.test_82_cli_completed_seal_first_stdout_write_failure_preserves_commit) ... ok
+2026-11-27T10:46:27.6022703Z test_83_cli_completed_seal_stdout_flush_failure_preserves_commit (__main__.D5BLocalSourceOnly.test_83_cli_completed_seal_stdout_flush_failure_preserves_commit) ... ok
+2026-11-27T10:46:27.6061184Z test_84_cli_completed_seal_both_failed_streams_returns_two (__main__.D5BLocalSourceOnly.test_84_cli_completed_seal_both_failed_streams_returns_two) ... ok
+2026-11-27T10:46:27.6086254Z test_85_cli_after_effect_mkdir_faults_report_unknown_creation (__main__.D5BLocalSourceOnly.test_85_cli_after_effect_mkdir_faults_report_unknown_creation) ... ok
+2026-11-27T10:46:27.6147959Z test_86_cli_real_mkdir_trace_interruption_reports_unknown_creation (__main__.D5BLocalSourceOnly.test_86_cli_real_mkdir_trace_interruption_reports_unknown_creation) ... ok
+2026-11-27T10:46:27.6160955Z test_87_cli_preexisting_candidate_preserves_unrelated_sentinel (__main__.D5BLocalSourceOnly.test_87_cli_preexisting_candidate_preserves_unrelated_sentinel) ... ok
+2026-11-27T10:46:27.6177824Z test_88_cli_raced_mkdir_collision_preserves_unrelated_sentinel (__main__.D5BLocalSourceOnly.test_88_cli_raced_mkdir_collision_preserves_unrelated_sentinel) ... ok
+2026-11-27T10:46:27.6191993Z test_89_cli_mkdir_pre_effect_error_does_not_claim_proven_absence (__main__.D5BLocalSourceOnly.test_89_cli_mkdir_pre_effect_error_does_not_claim_proven_absence) ... ok
+2026-11-27T10:46:27.6294687Z test_90_cli_sealer_return_boundary_fault_requires_reconciliation (__main__.D5BLocalSourceOnly.test_90_cli_sealer_return_boundary_fault_requires_reconciliation) ... ok
+2026-11-27T10:46:27.6361127Z test_91_cli_partial_output_delivery_failure_retains_partial_accounting (__main__.D5BLocalSourceOnly.test_91_cli_partial_output_delivery_failure_retains_partial_accounting) ... ok
+2026-11-27T10:46:27.6390087Z test_92_cli_null_approval_delivery_failure_remains_prewrite_denial (__main__.D5BLocalSourceOnly.test_92_cli_null_approval_delivery_failure_remains_prewrite_denial) ... ok
+2026-11-27T10:46:27.6433286Z test_93_cli_trace_before_mkdir_retains_attempt_uncertainty (__main__.D5BLocalSourceOnly.test_93_cli_trace_before_mkdir_retains_attempt_uncertainty) ... ok
+2026-11-27T10:46:27.6454563Z test_94_cli_after_mkdir_replacement_preserves_both_unowned_roots (__main__.D5BLocalSourceOnly.test_94_cli_after_mkdir_replacement_preserves_both_unowned_roots) ... ok
+2026-11-27T10:46:27.6455324Z 
+2026-11-27T10:46:27.6455784Z ----------------------------------------------------------------------
+2026-11-27T10:46:27.6456639Z Ran 94 tests in 0.191s
+2026-11-27T10:46:27.6456910Z 
+2026-11-27T10:46:27.6457095Z OK
+2026-11-27T10:46:27.6646701Z ##[group]Run set -euo pipefail
+2026-11-27T10:46:27.6647038Z [36;1mset -euo pipefail[0m
+2026-11-27T10:46:27.6647561Z [36;1mtool=_demo/Tools/AssemblyShadow/R03IR/D5Local[0m
+2026-11-27T10:46:27.6647882Z [36;1mpython3 - <<'PY'[0m
+2026-11-27T10:46:27.6648155Z [36;1mimport json, os, platform, shutil, subprocess[0m
+2026-11-27T10:46:27.6648446Z [36;1mgit_tools = {}[0m
+2026-11-27T10:46:27.6648730Z [36;1mfor role, path in (("fixtureGit", shutil.which("git")),[0m
+2026-11-27T10:46:27.6649106Z [36;1m                   ("auditorGit", shutil.which("git", path=os.defpath))):[0m
+2026-11-27T10:46:27.6649450Z [36;1m    git_tools[role] = {[0m
+2026-11-27T10:46:27.6649732Z [36;1m        "path": path,[0m
+2026-11-27T10:46:27.6650095Z [36;1m        "version": subprocess.check_output([path, "--version"], text=True).strip(),[0m
+2026-11-27T10:46:27.6650452Z [36;1m    }[0m
+2026-11-27T10:46:27.6650724Z [36;1mprint(json.dumps({"schema": "R03AP1GitToolVersionsV1",[0m
+2026-11-27T10:46:27.6651209Z [36;1m                  "python": platform.python_version(), **git_tools}, sort_keys=True))[0m
+2026-11-27T10:46:27.6651557Z [36;1mPY[0m
+2026-11-27T10:46:27.6651874Z [36;1mpython3 -B "$tool/test_d5b_activation_publication.py" -v 2>&1 |[0m
+2026-11-27T10:46:27.6652316Z [36;1m  tee "$RUNNER_TEMP/d5b-ap1-publication-tests.log"[0m
+2026-11-27T10:46:27.6652734Z [36;1mgrep -q 'Ran 22 tests in' "$RUNNER_TEMP/d5b-ap1-publication-tests.log"[0m
+2026-11-27T10:46:27.6653155Z [36;1mgrep -q '^OK$' "$RUNNER_TEMP/d5b-ap1-publication-tests.log"[0m
+2026-11-27T10:46:27.6654039Z [36;1mecho '{"schema":"R03D5BActivationPublicationSourceHostV1","publicationTests":22,"fixtureClass":"TemporaryGitObjects","executionAuthority":false,"liveRemoteHeadsVerified":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyProposalStructureTestsPassed"}'[0m
+2026-11-27T10:46:27.6678907Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-27T10:46:27.6679215Z env:
+2026-11-27T10:46:27.6679489Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:27.6679884Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-27T10:46:27.6680250Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:27.6680608Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:27.6680936Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:27.6681259Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-27T10:46:27.6681587Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-27T10:46:27.6681834Z   GIT_TERMINAL_PROMPT: 0
+2026-11-27T10:46:27.6682063Z ##[endgroup]
+2026-11-27T10:46:27.6918293Z {"auditorGit": {"path": "/bin/git", "version": "git version 2.56.1"}, "fixtureGit": {"path": "/usr/bin/git", "version": "git version 2.56.1"}, "python": "3.11.18", "schema": "R03AP1GitToolVersionsV1"}
+2026-11-27T10:46:27.8573185Z test_01_separate_refs_construct_real_closed_publication_chain (__main__.D5BActivationPublicationSourceOnly.test_01_separate_refs_construct_real_closed_publication_chain) ... ok
+2026-11-27T10:46:27.8986094Z test_02_same_ref_publication_leaves_old_source_pin_stale (__main__.D5BActivationPublicationSourceOnly.test_02_same_ref_publication_leaves_old_source_pin_stale) ... ok
+2026-11-27T10:46:27.9735497Z test_03_moved_or_missing_source_and_runner_refs_are_rejected (__main__.D5BActivationPublicationSourceOnly.test_03_moved_or_missing_source_and_runner_refs_are_rejected) ... ok
+2026-11-27T10:46:28.0634192Z test_04_missing_or_noncommit_objects_are_rejected (__main__.D5BActivationPublicationSourceOnly.test_04_missing_or_noncommit_objects_are_rejected) ... ok
+2026-11-27T10:46:28.1262006Z test_05_runner_pin_must_equal_exact_proposal_blob (__main__.D5BActivationPublicationSourceOnly.test_05_runner_pin_must_equal_exact_proposal_blob) ... ok
+2026-11-27T10:46:28.3452002Z test_06_runner_rejects_extra_source_helper_or_plan_changes (__main__.D5BActivationPublicationSourceOnly.test_06_runner_rejects_extra_source_helper_or_plan_changes) ... ok
+2026-11-27T10:46:28.4143447Z test_07_source_writer_must_be_exact_reviewed_closed_blob (__main__.D5BActivationPublicationSourceOnly.test_07_source_writer_must_be_exact_reviewed_closed_blob) ... ok
+2026-11-27T10:46:28.5404775Z test_08_runner_writer_allows_only_one_exact_pin_substitution (__main__.D5BActivationPublicationSourceOnly.test_08_runner_writer_allows_only_one_exact_pin_substitution) ... ok
+2026-11-27T10:46:28.9108588Z test_09_writer_and_proposal_mode_type_substitutions_are_rejected (__main__.D5BActivationPublicationSourceOnly.test_09_writer_and_proposal_mode_type_substitutions_are_rejected) ... ok
+2026-11-27T10:46:29.0098419Z test_10_proposal_must_be_new_and_present_in_runner (__main__.D5BActivationPublicationSourceOnly.test_10_proposal_must_be_new_and_present_in_runner) ... ok
+2026-11-27T10:46:29.1306180Z test_11_duplicate_json_keys_are_rejected_at_every_level (__main__.D5BActivationPublicationSourceOnly.test_11_duplicate_json_keys_are_rejected_at_every_level) ... ok
+2026-11-27T10:46:29.8431544Z test_12_proposal_schema_and_field_types_are_exact (__main__.D5BActivationPublicationSourceOnly.test_12_proposal_schema_and_field_types_are_exact) ... ok
+2026-11-27T10:46:30.0800569Z test_13_proposal_requires_exact_source_and_other_repository_pins (__main__.D5BActivationPublicationSourceOnly.test_13_proposal_requires_exact_source_and_other_repository_pins) ... ok
+2026-11-27T10:46:30.4386565Z test_14_authority_promotions_are_rejected (__main__.D5BActivationPublicationSourceOnly.test_14_authority_promotions_are_rejected) ... ok
+2026-11-27T10:46:30.5633853Z test_15_runner_has_exactly_one_parent_equal_to_source (__main__.D5BActivationPublicationSourceOnly.test_15_runner_has_exactly_one_parent_equal_to_source) ... ok
+2026-11-27T10:46:30.5935076Z test_16_proposal_cannot_become_production_execution_envelope (__main__.D5BActivationPublicationSourceOnly.test_16_proposal_cannot_become_production_execution_envelope) ... ok
+2026-11-27T10:46:30.6827269Z test_17_cli_audits_objects_without_changing_refs_or_authority (__main__.D5BActivationPublicationSourceOnly.test_17_cli_audits_objects_without_changing_refs_or_authority) ... ok
+2026-11-27T10:46:30.8441512Z test_18_cli_exposes_no_execution_or_authority_override (__main__.D5BActivationPublicationSourceOnly.test_18_cli_exposes_no_execution_or_authority_override) ... ok
+2026-11-27T10:46:31.3184294Z test_19_standard_commit_prefixes_match_git_topology (__main__.D5BActivationPublicationSourceOnly.test_19_standard_commit_prefixes_match_git_topology) ... ok
+2026-11-27T10:46:31.6387615Z test_20_metadata_continuations_and_messages_do_not_add_topology (__main__.D5BActivationPublicationSourceOnly.test_20_metadata_continuations_and_messages_do_not_add_topology) ... ok
+2026-11-27T10:46:31.8258609Z test_21_ordinary_stored_late_parents_reject_source_and_runner (__main__.D5BActivationPublicationSourceOnly.test_21_ordinary_stored_late_parents_reject_source_and_runner) ... ok
+2026-11-27T10:46:32.0244172Z test_22_late_duplicate_and_misordered_topology_headers_are_rejected (__main__.D5BActivationPublicationSourceOnly.test_22_late_duplicate_and_misordered_topology_headers_are_rejected) ... ok
+2026-11-27T10:46:32.0245793Z 
+2026-11-27T10:46:32.0246139Z ----------------------------------------------------------------------
+2026-11-27T10:46:32.0246990Z Ran 22 tests in 4.238s
+2026-11-27T10:46:32.0247327Z 
+2026-11-27T10:46:32.0247514Z OK
+2026-11-27T10:46:32.0414270Z {"schema":"R03D5BActivationPublicationSourceHostV1","publicationTests":22,"fixtureClass":"TemporaryGitObjects","executionAuthority":false,"liveRemoteHeadsVerified":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyProposalStructureTestsPassed"}
+2026-11-27T10:46:32.0445904Z ##[group]Run set -euo pipefail
+2026-11-27T10:46:32.0446277Z [36;1mset -euo pipefail[0m
+2026-11-27T10:46:32.0446582Z [36;1mtool=_demo/Tools/AssemblyShadow/R03IR/D5Local[0m
+2026-11-27T10:46:32.0446957Z [36;1mpython3 -B "$tool/test_d5b_runner_closure.py" -v 2>&1 |[0m
+2026-11-27T10:46:32.0447325Z [36;1m  tee "$RUNNER_TEMP/d5b-ap2-runner-closure-tests.log"[0m
+2026-11-27T10:46:32.0447756Z [36;1mgrep -q 'Ran 25 tests in' "$RUNNER_TEMP/d5b-ap2-runner-closure-tests.log"[0m
+2026-11-27T10:46:32.0448188Z [36;1mgrep -q '^OK$' "$RUNNER_TEMP/d5b-ap2-runner-closure-tests.log"[0m
+2026-11-27T10:46:32.0449382Z [36;1mecho '{"schema":"R03D5BRunnerClosureSourceHostV1","closureTests":25,"fixtureClass":"TemporaryGitObjectsAndSyntheticLocations","candidateCodeExecuted":false,"runtimeImportIsolationVerified":false,"continuousCustodyVerified":false,"executionAuthority":false,"liveRemoteHeadsVerified":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyArtifactClosureTestsPassed"}'[0m
+2026-11-27T10:46:32.0472986Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-27T10:46:32.0473379Z env:
+2026-11-27T10:46:32.0473643Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:32.0474009Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-27T10:46:32.0474383Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:32.0474736Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:32.0475107Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:32.0475862Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-27T10:46:32.0476496Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-27T10:46:32.0476764Z   GIT_TERMINAL_PROMPT: 0
+2026-11-27T10:46:32.0477024Z ##[endgroup]
+2026-11-27T10:46:32.3473828Z test_01_six_file_snapshot_is_immutable_and_closed (__main__.D5BRunnerClosureSourceOnly.test_01_six_file_snapshot_is_immutable_and_closed) ... ok
+2026-11-27T10:46:32.6697044Z test_02_verification_never_imports_or_executes_candidate_modules (__main__.D5BRunnerClosureSourceOnly.test_02_verification_never_imports_or_executes_candidate_modules) ... ok
+2026-11-27T10:46:32.7472604Z test_03_manifest_requires_external_exact_bytes_pin (__main__.D5BRunnerClosureSourceOnly.test_03_manifest_requires_external_exact_bytes_pin) ... ok
+2026-11-27T10:46:33.7917053Z test_04_manifest_schema_types_authority_and_roster_are_exact (__main__.D5BRunnerClosureSourceOnly.test_04_manifest_schema_types_authority_and_roster_are_exact) ... ok
+2026-11-27T10:46:34.2059808Z test_05_changed_reviewed_objects_reject_after_valid_ap1_publication (__main__.D5BRunnerClosureSourceOnly.test_05_changed_reviewed_objects_reject_after_valid_ap1_publication) ... ok
+2026-11-27T10:46:34.5088262Z test_06_closure_git_objects_require_regular_nonexecutable_modes (__main__.D5BRunnerClosureSourceOnly.test_06_closure_git_objects_require_regular_nonexecutable_modes) ... ok
+2026-11-27T10:46:34.6807977Z test_07_tracked_untracked_and_ignored_changes_are_rejected (__main__.D5BRunnerClosureSourceOnly.test_07_tracked_untracked_and_ignored_changes_are_rejected) ... ok
+2026-11-27T10:46:34.8339332Z test_08_assumed_and_skipped_index_entries_are_rejected (__main__.D5BRunnerClosureSourceOnly.test_08_assumed_and_skipped_index_entries_are_rejected) ... ok
+2026-11-27T10:46:34.9856698Z test_09_working_files_reject_symlinks_hardlinks_and_executable_bits (__main__.D5BRunnerClosureSourceOnly.test_09_working_files_reject_symlinks_hardlinks_and_executable_bits) ... ok
+2026-11-27T10:46:35.0874738Z test_10_directory_aliases_reject_for_runner_and_file_ancestors (__main__.D5BRunnerClosureSourceOnly.test_10_directory_aliases_reject_for_runner_and_file_ancestors) ... ok
+2026-11-27T10:46:35.2574299Z test_11_checkout_branch_head_and_origin_are_exact (__main__.D5BRunnerClosureSourceOnly.test_11_checkout_branch_head_and_origin_are_exact) ... ok
+2026-11-27T10:46:35.4360254Z test_12_filters_rewrites_and_hidden_status_configuration_reject (__main__.D5BRunnerClosureSourceOnly.test_12_filters_rewrites_and_hidden_status_configuration_reject) ... ok
+2026-11-27T10:46:35.5535029Z test_13_shared_and_modified_git_administration_reject (__main__.D5BRunnerClosureSourceOnly.test_13_shared_and_modified_git_administration_reject) ... ok
+2026-11-27T10:46:35.6812284Z test_14_locations_require_complete_canonical_disjoint_directories (__main__.D5BRunnerClosureSourceOnly.test_14_locations_require_complete_canonical_disjoint_directories) ... ok
+2026-11-27T10:46:35.8789187Z test_15_file_bytes_and_identity_changes_between_reads_reject (__main__.D5BRunnerClosureSourceOnly.test_15_file_bytes_and_identity_changes_between_reads_reject) ... ok
+2026-11-27T10:46:36.2151235Z test_16_real_ref_and_checkout_config_changes_during_snapshot_reject (__main__.D5BRunnerClosureSourceOnly.test_16_real_ref_and_checkout_config_changes_during_snapshot_reject) ... ok
+2026-11-27T10:46:36.3158097Z test_17_identical_ancestor_replacement_during_actual_read_rejects (__main__.D5BRunnerClosureSourceOnly.test_17_identical_ancestor_replacement_during_actual_read_rejects) ... ok
+2026-11-27T10:46:36.7491428Z test_18_protected_directory_identity_change_between_observations_rejects (__main__.D5BRunnerClosureSourceOnly.test_18_protected_directory_identity_change_between_observations_rejects) ... ok
+2026-11-27T10:46:36.9916311Z test_19_isolated_cli_returns_closed_json_without_mutating_runner (__main__.D5BRunnerClosureSourceOnly.test_19_isolated_cli_returns_closed_json_without_mutating_runner) ... ok
+2026-11-27T10:46:37.3602338Z test_20_cli_requires_isolation_pin_and_rejects_execution_overrides (__main__.D5BRunnerClosureSourceOnly.test_20_cli_requires_isolation_pin_and_rejects_execution_overrides) ... ok
+2026-11-27T10:46:37.5585474Z test_21_verification_uses_only_object_and_metadata_git_commands (__main__.D5BRunnerClosureSourceOnly.test_21_verification_uses_only_object_and_metadata_git_commands) ... ok
+2026-11-27T10:46:37.8248807Z test_22_unrelated_tracked_executable_and_literal_symlink_are_valid (__main__.D5BRunnerClosureSourceOnly.test_22_unrelated_tracked_executable_and_literal_symlink_are_valid) ... ok
+2026-11-27T10:46:38.0611628Z test_23_full_inventory_rejects_unrelated_changes_and_extra_empty_directories (__main__.D5BRunnerClosureSourceOnly.test_23_full_inventory_rejects_unrelated_changes_and_extra_empty_directories) ... ok
+2026-11-27T10:46:38.6197523Z test_24_full_inventory_enforces_per_file_and_aggregate_byte_bounds (__main__.D5BRunnerClosureSourceOnly.test_24_full_inventory_enforces_per_file_and_aggregate_byte_bounds) ... ok
+2026-11-27T10:46:38.9562216Z test_25_full_inventory_enforces_entry_count_and_depth_bounds (__main__.D5BRunnerClosureSourceOnly.test_25_full_inventory_enforces_entry_count_and_depth_bounds) ... ok
+2026-11-27T10:46:38.9563321Z 
+2026-11-27T10:46:38.9563956Z ----------------------------------------------------------------------
+2026-11-27T10:46:38.9564681Z Ran 25 tests in 6.816s
+2026-11-27T10:46:38.9564985Z 
+2026-11-27T10:46:38.9565150Z OK
+2026-11-27T10:46:38.9732901Z {"schema":"R03D5BRunnerClosureSourceHostV1","closureTests":25,"fixtureClass":"TemporaryGitObjectsAndSyntheticLocations","candidateCodeExecuted":false,"runtimeImportIsolationVerified":false,"continuousCustodyVerified":false,"executionAuthority":false,"liveRemoteHeadsVerified":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyArtifactClosureTestsPassed"}
+2026-11-27T10:46:38.9759772Z ##[group]Run set -euo pipefail
+2026-11-27T10:46:38.9760110Z [36;1mset -euo pipefail[0m
+2026-11-27T10:46:38.9760448Z [36;1mtool=_demo/Tools/AssemblyShadow/R03IR/D5Local[0m
+2026-11-27T10:46:38.9760804Z [36;1mpython3 -I -S -B "$tool/test_d5b_runner_imports.py" -v 2>&1 |[0m
+2026-11-27T10:46:38.9761208Z [36;1m  tee "$RUNNER_TEMP/d5b-ap3-runner-import-tests.log"[0m
+2026-11-27T10:46:38.9761615Z [36;1mgrep -q 'Ran 20 tests in' "$RUNNER_TEMP/d5b-ap3-runner-import-tests.log"[0m
+2026-11-27T10:46:38.9762041Z [36;1mgrep -q '^OK$' "$RUNNER_TEMP/d5b-ap3-runner-import-tests.log"[0m
+2026-11-27T10:46:38.9763338Z [36;1mecho '{"schema":"R03D5BRunnerImportSourceHostV1","importTests":20,"fixtureClass":"TemporaryGitObjectsAndSyntheticLocations","reviewedCandidateInitializationTested":true,"candidateEntryPointsInvoked":false,"runtimeConfigurationReadsBound":false,"runnerExecutableClosureVerified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyImportBindingTestsPassed"}'[0m
+2026-11-27T10:46:38.9789266Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-27T10:46:38.9789630Z env:
+2026-11-27T10:46:38.9789935Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:38.9790340Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-27T10:46:38.9790728Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:38.9791074Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:38.9791430Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:38.9791795Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-27T10:46:38.9792101Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-27T10:46:38.9792373Z   GIT_TERMINAL_PROMPT: 0
+2026-11-27T10:46:38.9792605Z ##[endgroup]
+2026-11-27T10:46:39.3230813Z test_01_real_ap2_snapshot_initializes_three_private_bindings (__main__.D5BRunnerImportsSourceOnly.test_01_real_ap2_snapshot_initializes_three_private_bindings) ... ok
+2026-11-27T10:46:39.5320512Z test_02_report_matches_actual_ordered_direct_import_requests (__main__.D5BRunnerImportsSourceOnly.test_02_report_matches_actual_ordered_direct_import_requests) ... ok
+2026-11-27T10:46:39.7460159Z test_03_ambient_candidate_module_cache_entries_are_never_selected (__main__.D5BRunnerImportsSourceOnly.test_03_ambient_candidate_module_cache_entries_are_never_selected) ... ok
+2026-11-27T10:46:39.9544382Z test_04_ambient_meta_path_and_path_cache_are_not_consulted (__main__.D5BRunnerImportsSourceOnly.test_04_ambient_meta_path_and_path_cache_are_not_consulted) ... ok
+2026-11-27T10:46:40.1635927Z test_05_ambient_source_and_opaque_bytecode_fixtures_are_not_read (__main__.D5BRunnerImportsSourceOnly.test_05_ambient_source_and_opaque_bytecode_fixtures_are_not_read) ... ok
+2026-11-27T10:46:40.3717379Z test_06_real_sys_path_is_unchanged_during_writer_initialization (__main__.D5BRunnerImportsSourceOnly.test_06_real_sys_path_is_unchanged_during_writer_initialization) ... ok
+2026-11-27T10:46:40.5813414Z test_07_import_phase_calls_no_candidate_function_or_content_reader (__main__.D5BRunnerImportsSourceOnly.test_07_import_phase_calls_no_candidate_function_or_content_reader) ... ok
+2026-11-27T10:46:40.7868559Z test_08_after_snapshot_source_change_does_not_replace_captured_bytes (__main__.D5BRunnerImportsSourceOnly.test_08_after_snapshot_source_change_does_not_replace_captured_bytes) ... ok
+2026-11-27T10:46:40.8661241Z test_09_invalid_external_pin_or_raw_input_rejects_before_helper (__main__.D5BRunnerImportsSourceOnly.test_09_invalid_external_pin_or_raw_input_rejects_before_helper) ... ok
+2026-11-27T10:46:40.9408228Z test_10_changed_trusted_helper_bytes_reject_before_compilation (__main__.D5BRunnerImportsSourceOnly.test_10_changed_trusted_helper_bytes_reject_before_compilation) ... ok
+2026-11-27T10:46:41.1431080Z test_11_malformed_private_snapshot_records_reject_before_compilation (__main__.D5BRunnerImportsSourceOnly.test_11_malformed_private_snapshot_records_reject_before_compilation) ... ok
+2026-11-27T10:46:41.3451486Z test_12_private_snapshot_requires_consistent_roster_and_closed_ap2_report (__main__.D5BRunnerImportsSourceOnly.test_12_private_snapshot_requires_consistent_roster_and_closed_ap2_report) ... ok
+2026-11-27T10:46:41.4213335Z test_13_import_requests_outside_reviewed_direct_forms_are_denied (__main__.D5BRunnerImportsSourceOnly.test_13_import_requests_outside_reviewed_direct_forms_are_denied) ... ok
+2026-11-27T10:46:41.6312385Z test_14_public_result_is_frozen_json_data_with_fresh_report_copies (__main__.D5BRunnerImportsSourceOnly.test_14_public_result_is_frozen_json_data_with_fresh_report_copies) ... ok
+2026-11-27T10:46:42.1031339Z test_15_rejections_report_partial_initialization_truthfully (__main__.D5BRunnerImportsSourceOnly.test_15_rejections_report_partial_initialization_truthfully) ... ok
+2026-11-27T10:46:42.3045246Z test_16_compilation_interruption_reports_no_candidate_initialization (__main__.D5BRunnerImportsSourceOnly.test_16_compilation_interruption_reports_no_candidate_initialization) ... ok
+2026-11-27T10:46:42.5777970Z test_17_temporary_trusted_helper_registration_is_always_removed (__main__.D5BRunnerImportsSourceOnly.test_17_temporary_trusted_helper_registration_is_always_removed) ... ok
+2026-11-27T10:46:42.8388228Z test_18_real_isolated_cli_preserves_checkout_and_creates_no_output (__main__.D5BRunnerImportsSourceOnly.test_18_real_isolated_cli_preserves_checkout_and_creates_no_output) ... ok
+2026-11-27T10:46:43.0333036Z test_19_cli_requires_actual_isolation_no_site_and_no_bytecode_flags (__main__.D5BRunnerImportsSourceOnly.test_19_cli_requires_actual_isolation_no_site_and_no_bytecode_flags) ... ok
+2026-11-27T10:46:43.4210250Z test_20_cli_rejects_bad_pins_and_execution_arguments_without_output (__main__.D5BRunnerImportsSourceOnly.test_20_cli_rejects_bad_pins_and_execution_arguments_without_output) ... ok
+2026-11-27T10:46:43.4210925Z 
+2026-11-27T10:46:43.4211072Z ----------------------------------------------------------------------
+2026-11-27T10:46:43.4211429Z Ran 20 tests in 4.342s
+2026-11-27T10:46:43.4211539Z 
+2026-11-27T10:46:43.4211665Z OK
+2026-11-27T10:46:43.4395197Z {"schema":"R03D5BRunnerImportSourceHostV1","importTests":20,"fixtureClass":"TemporaryGitObjectsAndSyntheticLocations","reviewedCandidateInitializationTested":true,"candidateEntryPointsInvoked":false,"runtimeConfigurationReadsBound":false,"runnerExecutableClosureVerified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyImportBindingTestsPassed"}
+2026-11-27T10:46:43.4423595Z ##[group]Run set -euo pipefail
+2026-11-27T10:46:43.4423945Z [36;1mset -euo pipefail[0m
+2026-11-27T10:46:43.4424247Z [36;1mtool=_demo/Tools/AssemblyShadow/R03IR/D5Local[0m
+2026-11-27T10:46:43.4424650Z [36;1mpython3 -I -S -B "$tool/test_d5b_runner_configuration.py" -v 2>&1 |[0m
+2026-11-27T10:46:43.4425081Z [36;1m  tee "$RUNNER_TEMP/d5b-ap4-runner-configuration-tests.log"[0m
+2026-11-27T10:46:43.4425699Z [36;1mgrep -q 'Ran 18 tests in' "$RUNNER_TEMP/d5b-ap4-runner-configuration-tests.log"[0m
+2026-11-27T10:46:43.4426176Z [36;1mgrep -q '^OK$' "$RUNNER_TEMP/d5b-ap4-runner-configuration-tests.log"[0m
+2026-11-27T10:46:43.4427677Z [36;1mecho '{"schema":"R03D5BRunnerConfigurationSourceHostV1","configurationTests":18,"fixtureClass":"TemporaryGitObjectsAndSyntheticLocations","candidateConfigurationConsumersTested":true,"candidateEntryPointsInvoked":false,"runtimeConfigurationReadsBound":false,"runnerExecutableClosureVerified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyConfigurationBindingTestsPassed"}'[0m
+2026-11-27T10:46:43.4452592Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-27T10:46:43.4452898Z env:
+2026-11-27T10:46:43.4453256Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:43.4453644Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-27T10:46:43.4454020Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:43.4454398Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:43.4454723Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:43.4455121Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-27T10:46:43.4455436Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-27T10:46:43.4455848Z   GIT_TERMINAL_PROMPT: 0
+2026-11-27T10:46:43.4456088Z ##[endgroup]
+2026-11-27T10:46:43.7759939Z test_01_actual_consumers_keep_private_function_identity_and_enabled_checks (__main__.D5BRunnerConfigurationSourceOnly.test_01_actual_consumers_keep_private_function_identity_and_enabled_checks) ... ok
+2026-11-27T10:46:44.1334349Z test_02_each_public_call_uses_one_fresh_snapshot_and_initialization (__main__.D5BRunnerConfigurationSourceOnly.test_02_each_public_call_uses_one_fresh_snapshot_and_initialization) ... ok
+2026-11-27T10:46:44.3489507Z test_03_report_matches_four_actual_captured_file_operations (__main__.D5BRunnerConfigurationSourceOnly.test_03_report_matches_four_actual_captured_file_operations) ... ok
+2026-11-27T10:46:44.5618905Z test_04_actual_candidate_call_graph_and_consumption_use_no_io (__main__.D5BRunnerConfigurationSourceOnly.test_04_actual_candidate_call_graph_and_consumption_use_no_io) ... ok
+2026-11-27T10:46:44.7766374Z test_05_configuration_pathname_changes_after_capture_use_captured_bytes (__main__.D5BRunnerConfigurationSourceOnly.test_05_configuration_pathname_changes_after_capture_use_captured_bytes) ... ok
+2026-11-27T10:46:44.8563391Z test_06_invalid_public_inputs_reject_before_helper_code (__main__.D5BRunnerConfigurationSourceOnly.test_06_invalid_public_inputs_reject_before_helper_code) ... ok
+2026-11-27T10:46:44.9329614Z test_07_pinned_helper_drift_rejects_before_compilation (__main__.D5BRunnerConfigurationSourceOnly.test_07_pinned_helper_drift_rejects_before_compilation) ... ok
+2026-11-27T10:46:45.1474375Z test_08_private_captured_records_require_consistent_immutable_bytes (__main__.D5BRunnerConfigurationSourceOnly.test_08_private_captured_records_require_consistent_immutable_bytes) ... ok
+2026-11-27T10:46:45.3604994Z test_09_private_adapters_are_narrow_frozen_snapshot_views (__main__.D5BRunnerConfigurationSourceOnly.test_09_private_adapters_are_narrow_frozen_snapshot_views) ... ok
+2026-11-27T10:46:45.5743321Z test_10_private_binding_and_blob_mismatches_reject_before_consumer_calls (__main__.D5BRunnerConfigurationSourceOnly.test_10_private_binding_and_blob_mismatches_reject_before_consumer_calls) ... ok
+2026-11-27T10:46:45.9282280Z test_11_real_consumers_reject_changed_read_bytes_with_truthful_progress (__main__.D5BRunnerConfigurationSourceOnly.test_11_real_consumers_reject_changed_read_bytes_with_truthful_progress) ... ok
+2026-11-27T10:46:46.1684662Z test_12_profile_read_interruption_does_not_claim_profile_invocation (__main__.D5BRunnerConfigurationSourceOnly.test_12_profile_read_interruption_does_not_claim_profile_invocation) ... ok
+2026-11-27T10:46:46.3850150Z test_13_earlier_reports_remain_frozen_preconsumer_observations (__main__.D5BRunnerConfigurationSourceOnly.test_13_earlier_reports_remain_frozen_preconsumer_observations) ... ok
+2026-11-27T10:46:46.8083615Z test_14_private_helper_registrations_are_removed_for_all_outcomes (__main__.D5BRunnerConfigurationSourceOnly.test_14_private_helper_registrations_are_removed_for_all_outcomes) ... ok
+2026-11-27T10:46:47.0247597Z test_15_public_observations_are_immutable_json_with_a_narrow_signature (__main__.D5BRunnerConfigurationSourceOnly.test_15_public_observations_are_immutable_json_with_a_narrow_signature) ... ok
+2026-11-27T10:46:47.2881754Z test_16_real_isolated_cli_preserves_checkout_and_creates_no_output (__main__.D5BRunnerConfigurationSourceOnly.test_16_real_isolated_cli_preserves_checkout_and_creates_no_output) ... ok
+2026-11-27T10:46:47.4681509Z test_17_cli_requires_all_three_real_interpreter_flags (__main__.D5BRunnerConfigurationSourceOnly.test_17_cli_requires_all_three_real_interpreter_flags) ... ok
+2026-11-27T10:46:47.8779217Z test_18_cli_requires_both_arguments_and_rejects_execution_options (__main__.D5BRunnerConfigurationSourceOnly.test_18_cli_requires_both_arguments_and_rejects_execution_options) ... ok
+2026-11-27T10:46:47.8779800Z 
+2026-11-27T10:46:47.8779949Z ----------------------------------------------------------------------
+2026-11-27T10:46:47.8780350Z Ran 18 tests in 4.323s
+2026-11-27T10:46:47.8780516Z 
+2026-11-27T10:46:47.8780599Z OK
+2026-11-27T10:46:47.8983303Z {"schema":"R03D5BRunnerConfigurationSourceHostV1","configurationTests":18,"fixtureClass":"TemporaryGitObjectsAndSyntheticLocations","candidateConfigurationConsumersTested":true,"candidateEntryPointsInvoked":false,"runtimeConfigurationReadsBound":false,"runnerExecutableClosureVerified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyConfigurationBindingTestsPassed"}
+2026-11-27T10:46:47.9011245Z ##[group]Run set -euo pipefail
+2026-11-27T10:46:47.9011590Z [36;1mset -euo pipefail[0m
+2026-11-27T10:46:47.9011869Z [36;1mtool=_demo/Tools/AssemblyShadow/R03IR/D5Local[0m
+2026-11-27T10:46:47.9012184Z [36;1mpython3 -I -S -B - <<'VERSIONS'[0m
+2026-11-27T10:46:47.9012481Z [36;1mimport json, os, platform, shutil, subprocess[0m
+2026-11-27T10:46:47.9012827Z [36;1mpath = shutil.which("git", path=os.defpath)[0m
+2026-11-27T10:46:47.9013338Z [36;1mselected_git = {"path": path, "version": subprocess.check_output([path, "--version"], text=True).strip()}[0m
+2026-11-27T10:46:47.9013908Z [36;1mprint(json.dumps({"schema": "R03AP5GitToolVersionsV1", "python": platform.python_version(),[0m
+2026-11-27T10:46:47.9014432Z [36;1m                  "AP5FixtureGit": selected_git, "AP5ObserverGit": selected_git}, sort_keys=True))[0m
+2026-11-27T10:46:47.9014811Z [36;1mVERSIONS[0m
+2026-11-27T10:46:47.9015121Z [36;1mpython3 -I -S -B "$tool/test_d5b_five_identity.py" -v 2>&1 |[0m
+2026-11-27T10:46:47.9015747Z [36;1m  tee "$RUNNER_TEMP/d5b-ap5-five-identity-tests.log"[0m
+2026-11-27T10:46:47.9016163Z [36;1mgrep -q 'Ran 31 tests in' "$RUNNER_TEMP/d5b-ap5-five-identity-tests.log"[0m
+2026-11-27T10:46:47.9016574Z [36;1mgrep -q '^OK$' "$RUNNER_TEMP/d5b-ap5-five-identity-tests.log"[0m
+2026-11-27T10:46:47.9018030Z [36;1mecho '{"schema":"R03D5BFiveIdentitySourceHostV1","fiveIdentityTests":31,"fixtureClass":"FiveTemporaryCheckoutsAndRealBareRefs","privateFileTransportOnly":true,"productionHttpsReachabilityQualified":false,"productionLiveRemoteHeadsVerified":false,"candidateEntryPointsInvoked":false,"AP4CompositionVerified":false,"runnerPublicationRelationVerified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyFiveIdentityObservationTestsPassed"}'[0m
+2026-11-27T10:46:47.9044122Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-27T10:46:47.9044494Z env:
+2026-11-27T10:46:47.9044800Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:47.9045231Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-27T10:46:47.9045729Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:47.9046072Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:47.9046446Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:47.9046808Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-27T10:46:47.9047126Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-27T10:46:47.9047386Z   GIT_TERMINAL_PROMPT: 0
+2026-11-27T10:46:47.9047624Z ##[endgroup]
+2026-11-27T10:46:47.9272240Z {"AP5FixtureGit": {"path": "/bin/git", "version": "git version 2.56.1"}, "AP5ObserverGit": {"path": "/bin/git", "version": "git version 2.56.1"}, "python": "3.11.18", "schema": "R03AP5GitToolVersionsV1"}
+2026-11-27T10:46:48.3341282Z test_01_real_five_checkouts_and_ten_remote_reads_remain_closed (__main__.D5BFiveIdentityFocused.test_01_real_five_checkouts_and_ten_remote_reads_remain_closed) ... ok
+2026-11-27T10:46:48.4424674Z test_02_pin_and_immutable_byte_type_reject_before_helper_or_transport (__main__.D5BFiveIdentityFocused.test_02_pin_and_immutable_byte_type_reject_before_helper_or_transport) ... ok
+2026-11-27T10:46:48.7790382Z test_03_closed_schema_types_roles_authority_and_endpoint_controls (__main__.D5BFiveIdentityFocused.test_03_closed_schema_types_roles_authority_and_endpoint_controls) ... ok
+2026-11-27T10:46:48.9592377Z test_04_strict_json_rejects_duplicates_nonfinite_invalid_and_nonobject (__main__.D5BFiveIdentityFocused.test_04_strict_json_rejects_duplicates_nonfinite_invalid_and_nonobject) ... ok
+2026-11-27T10:46:49.1628768Z test_05_exact_runner_ref_spelling_rejects_patterns_and_aliases (__main__.D5BFiveIdentityFocused.test_05_exact_runner_ref_spelling_rejects_patterns_and_aliases) ... ok
+2026-11-27T10:46:49.4826698Z test_06_missing_untracked_ignored_and_raw_modified_files_reject (__main__.D5BFiveIdentityFocused.test_06_missing_untracked_ignored_and_raw_modified_files_reject) ... ok
+2026-11-27T10:46:49.8718452Z test_07_staged_assumed_skipped_and_submodule_index_reject (__main__.D5BFiveIdentityFocused.test_07_staged_assumed_skipped_and_submodule_index_reject) ... ok
+2026-11-27T10:46:50.3319129Z test_08_modes_hardlinks_symlink_replacement_and_special_files_reject (__main__.D5BFiveIdentityFocused.test_08_modes_hardlinks_symlink_replacement_and_special_files_reject) ... ok
+2026-11-27T10:46:50.6354305Z test_09_tracked_symlink_literal_is_observed_without_target_read (__main__.D5BFiveIdentityFocused.test_09_tracked_symlink_literal_is_observed_without_target_read) ... ok
+2026-11-27T10:46:51.2064645Z test_10_origins_and_unsupported_local_configuration_reject (__main__.D5BFiveIdentityFocused.test_10_origins_and_unsupported_local_configuration_reject) ... ok
+2026-11-27T10:46:51.4914523Z test_11_shallow_grafted_alternate_gitfiles_and_bare_layout_reject (__main__.D5BFiveIdentityFocused.test_11_shallow_grafted_alternate_gitfiles_and_bare_layout_reject) ... ok
+2026-11-27T10:46:51.7489196Z test_12_detached_wrong_branch_symbolic_ref_and_wrong_head_reject (__main__.D5BFiveIdentityFocused.test_12_detached_wrong_branch_symbolic_ref_and_wrong_head_reject) ... ok
+2026-11-27T10:46:52.0115975Z test_13_locations_reject_aliases_overlap_missing_and_duplicate_history (__main__.D5BFiveIdentityFocused.test_13_locations_reject_aliases_overlap_missing_and_duplicate_history) ... ok
+2026-11-27T10:46:52.4565821Z test_14_all_fifteen_administrative_roots_must_have_unique_identities (__main__.D5BFiveIdentityFocused.test_14_all_fifteen_administrative_roots_must_have_unique_identities) ... ok
+2026-11-27T10:46:52.8258331Z test_15_runner_requires_the_demo_source_as_its_only_parent (__main__.D5BFiveIdentityFocused.test_15_runner_requires_the_demo_source_as_its_only_parent) ... ok
+2026-11-27T10:46:52.9308596Z test_16_exact_remote_parser_rejects_ambiguous_malformed_and_changed_rows (__main__.D5BFiveIdentityFocused.test_16_exact_remote_parser_rejects_ambiguous_malformed_and_changed_rows) ... ok
+2026-11-27T10:46:53.2271298Z test_17_real_bare_remote_missing_and_drifted_refs_reject (__main__.D5BFiveIdentityFocused.test_17_real_bare_remote_missing_and_drifted_refs_reject) ... ok
+2026-11-27T10:46:54.0152144Z test_18_remote_subprocess_errors_bounds_and_no_fallback_keep_progress (__main__.D5BFiveIdentityFocused.test_18_remote_subprocess_errors_bounds_and_no_fallback_keep_progress) ... ok
+2026-11-27T10:46:54.1217610Z test_19_production_remote_arguments_and_environment_are_fixed (__main__.D5BFiveIdentityFocused.test_19_production_remote_arguments_and_environment_are_fixed) ... ok
+2026-11-27T10:46:54.2322585Z test_20_null_gitdir_blocks_benign_cwd_rewrite_without_any_network (__main__.D5BFiveIdentityFocused.test_20_null_gitdir_blocks_benign_cwd_rewrite_without_any_network) ... ok
+2026-11-27T10:46:54.5258664Z test_21_second_pass_uses_ten_fresh_local_readers_and_order (__main__.D5BFiveIdentityFocused.test_21_second_pass_uses_ten_fresh_local_readers_and_order) ... ok
+2026-11-27T10:46:55.2256371Z test_22_second_pass_rejects_changed_config_index_worktree_and_local_ref (__main__.D5BFiveIdentityFocused.test_22_second_pass_rejects_changed_config_index_worktree_and_local_ref) ... ok
+2026-11-27T10:46:55.6952881Z test_23_second_pass_rejects_changed_checkout_and_admin_directory_identity (__main__.D5BFiveIdentityFocused.test_23_second_pass_rejects_changed_checkout_and_admin_directory_identity) ... ok
+2026-11-27T10:46:55.9878420Z test_24_final_location_recheck_rejects_changed_historical_identity (__main__.D5BFiveIdentityFocused.test_24_final_location_recheck_rejects_changed_historical_identity) ... ok
+2026-11-27T10:46:56.2062324Z test_25_response_bytes_are_rechecked_even_when_parsed_head_is_unchanged (__main__.D5BFiveIdentityFocused.test_25_response_bytes_are_rechecked_even_when_parsed_head_is_unchanged) ... ok
+2026-11-27T10:46:56.5097456Z test_26_helper_pins_authenticate_original_bytes_and_cleanup_all_outcomes (__main__.D5BFiveIdentityFocused.test_26_helper_pins_authenticate_original_bytes_and_cleanup_all_outcomes) ... ok
+2026-11-27T10:46:56.8217462Z test_27_candidate_modules_remain_inert_and_process_and_files_unchanged (__main__.D5BFiveIdentityFocused.test_27_candidate_modules_remain_inert_and_process_and_files_unchanged) ... ok
+2026-11-27T10:46:57.1207012Z test_28_public_api_and_report_are_narrow_and_frozen (__main__.D5BFiveIdentityFocused.test_28_public_api_and_report_are_narrow_and_frozen) ... ok
+2026-11-27T10:46:57.3419142Z test_29_real_cli_requires_all_isolation_flags_before_transport (__main__.D5BFiveIdentityFocused.test_29_real_cli_requires_all_isolation_flags_before_transport) ... ok
+2026-11-27T10:46:58.0145833Z test_30_real_cli_argument_and_pretransport_rejections (__main__.D5BFiveIdentityFocused.test_30_real_cli_argument_and_pretransport_rejections) ... ok
+2026-11-27T10:46:58.2284435Z test_31_real_cli_input_symlinks_hardlinks_and_executable_files_reject (__main__.D5BFiveIdentityFocused.test_31_real_cli_input_symlinks_hardlinks_and_executable_files_reject) ... ok
+2026-11-27T10:46:58.2285106Z 
+2026-11-27T10:46:58.2285319Z ----------------------------------------------------------------------
+2026-11-27T10:46:58.2285941Z Ran 31 tests in 10.211s
+2026-11-27T10:46:58.2286072Z 
+2026-11-27T10:46:58.2286183Z OK
+2026-11-27T10:46:58.2490478Z {"schema":"R03D5BFiveIdentitySourceHostV1","fiveIdentityTests":31,"fixtureClass":"FiveTemporaryCheckoutsAndRealBareRefs","privateFileTransportOnly":true,"productionHttpsReachabilityQualified":false,"productionLiveRemoteHeadsVerified":false,"candidateEntryPointsInvoked":false,"AP4CompositionVerified":false,"runnerPublicationRelationVerified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyFiveIdentityObservationTestsPassed"}
+2026-11-27T10:46:58.2527721Z ##[group]Run set -euo pipefail
+2026-11-27T10:46:58.2528201Z [36;1mset -euo pipefail[0m
+2026-11-27T10:46:58.2528630Z [36;1mtool=_demo/Tools/AssemblyShadow/R03IR/D5Local[0m
+2026-11-27T10:46:58.2529138Z [36;1mpython3 -I -S -B "$tool/test_d5b_identity_configuration.py" -v 2>&1 |[0m
+2026-11-27T10:46:58.2529688Z [36;1m  tee "$RUNNER_TEMP/d5b-ap6-composition-unit-tests.log"[0m
+2026-11-27T10:46:58.2530249Z [36;1mgrep -q 'Ran 20 tests in' "$RUNNER_TEMP/d5b-ap6-composition-unit-tests.log"[0m
+2026-11-27T10:46:58.2530834Z [36;1mgrep -q '^OK$' "$RUNNER_TEMP/d5b-ap6-composition-unit-tests.log"[0m
+2026-11-27T10:46:58.2532217Z [36;1mecho '{"schema":"R03D5BIdentityConfigurationUnitSourceHostV1","compositionTests":20,"AP5StageDoubled":true,"realAP4Consumers":true,"fullFiveIdentityIntegrationVerified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyCompositionUnitTestsPassed"}'[0m
+2026-11-27T10:46:58.2564631Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-27T10:46:58.2565037Z env:
+2026-11-27T10:46:58.2565457Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:58.2566112Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-27T10:46:58.2566679Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:58.2567127Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:58.2567489Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:46:58.2567898Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-27T10:46:58.2568223Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-27T10:46:58.2568599Z   GIT_TERMINAL_PROMPT: 0
+2026-11-27T10:46:58.2568834Z ##[endgroup]
+2026-11-27T10:46:58.4875258Z test_01_public_api_is_four_exact_inputs_and_has_no_execution_mode (__main__.D5BIdentityConfigurationComposition.test_01_public_api_is_four_exact_inputs_and_has_no_execution_mode) ... ok
+2026-11-27T10:46:58.8871659Z test_02_stage_order_preserves_raw_inputs_and_real_ap4_consumers (__main__.D5BIdentityConfigurationComposition.test_02_stage_order_preserves_raw_inputs_and_real_ap4_consumers) ... ok
+2026-11-27T10:46:59.0103009Z test_03_bad_external_pins_reject_before_helper_loading (__main__.D5BIdentityConfigurationComposition.test_03_bad_external_pins_reject_before_helper_loading) ... ok
+2026-11-27T10:46:59.1359995Z test_04_changed_raw_bytes_reject_before_stages (__main__.D5BIdentityConfigurationComposition.test_04_changed_raw_bytes_reject_before_stages) ... ok
+2026-11-27T10:46:59.3272897Z test_05_strict_json_rejects_duplicates_nonfinite_and_nonobjects (__main__.D5BIdentityConfigurationComposition.test_05_strict_json_rejects_duplicates_nonfinite_and_nonobjects) ... ok
+2026-11-27T10:46:59.8500349Z test_06_each_shared_proposal_field_must_match_before_stages (__main__.D5BIdentityConfigurationComposition.test_06_each_shared_proposal_field_must_match_before_stages) ... ok
+2026-11-27T10:47:00.0179311Z test_07_matching_arbitrary_sibling_pins_do_not_replace_the_ap1_tuple (__main__.D5BIdentityConfigurationComposition.test_07_matching_arbitrary_sibling_pins_do_not_replace_the_ap1_tuple) ... ok
+2026-11-27T10:47:00.1991648Z test_08_exact_schema_and_closed_authority_types_are_required (__main__.D5BIdentityConfigurationComposition.test_08_exact_schema_and_closed_authority_types_are_required) ... ok
+2026-11-27T10:47:00.3275040Z test_09_both_installed_helper_pins_are_checked_before_stages (__main__.D5BIdentityConfigurationComposition.test_09_both_installed_helper_pins_are_checked_before_stages) ... ok
+2026-11-27T10:47:00.4653669Z test_10_identity_rejection_preserves_child_progress_and_stops_configuration (__main__.D5BIdentityConfigurationComposition.test_10_identity_rejection_preserves_child_progress_and_stops_configuration) ... ok
+2026-11-27T10:47:00.8628570Z test_11_real_ap4_partial_consumption_survives_in_composition_rejection (__main__.D5BIdentityConfigurationComposition.test_11_real_ap4_partial_consumption_survives_in_composition_rejection) ... ok
+2026-11-27T10:47:01.1352088Z test_12_generic_child_failure_does_not_fabricate_child_observation (__main__.D5BIdentityConfigurationComposition.test_12_generic_child_failure_does_not_fabricate_child_observation) ... ok
+2026-11-27T10:47:04.5946022Z test_13_every_common_runner_field_participates_in_the_stage_comparison (__main__.D5BIdentityConfigurationComposition.test_13_every_common_runner_field_participates_in_the_stage_comparison) ... ok
+2026-11-27T10:47:05.2720112Z test_14_location_drift_and_boolean_integer_aliases_reject (__main__.D5BIdentityConfigurationComposition.test_14_location_drift_and_boolean_integer_aliases_reject) ... ok
+2026-11-27T10:47:05.6712778Z test_15_comparison_uses_ap5_final_and_ap4_preinitialization_observations (__main__.D5BIdentityConfigurationComposition.test_15_comparison_uses_ap5_final_and_ap4_preinitialization_observations) ... ok
+2026-11-27T10:47:06.0851620Z test_16_success_and_rejection_reports_are_fresh_detached_json (__main__.D5BIdentityConfigurationComposition.test_16_success_and_rejection_reports_are_fresh_detached_json) ... ok
+2026-11-27T10:47:06.7731343Z test_17_private_helpers_and_ambient_candidate_slots_are_restored (__main__.D5BIdentityConfigurationComposition.test_17_private_helpers_and_ambient_candidate_slots_are_restored) ... ok
+2026-11-27T10:47:07.0302548Z test_18_real_cli_pre_stage_denials_do_not_claim_observation (__main__.D5BIdentityConfigurationComposition.test_18_real_cli_pre_stage_denials_do_not_claim_observation) ... ok
+2026-11-27T10:47:07.4313313Z test_19_real_runner_directory_change_between_stages_rejects_comparison (__main__.D5BIdentityConfigurationComposition.test_19_real_runner_directory_change_between_stages_rejects_comparison) ... ok
+2026-11-27T10:47:07.8277673Z test_20_real_path_change_after_capture_preserves_bounded_consumer_semantics (__main__.D5BIdentityConfigurationComposition.test_20_real_path_change_after_capture_preserves_bounded_consumer_semantics) ... ok
+2026-11-27T10:47:07.8278331Z 
+2026-11-27T10:47:07.8278653Z ----------------------------------------------------------------------
+2026-11-27T10:47:07.8279312Z Ran 20 tests in 9.463s
+2026-11-27T10:47:07.8279492Z 
+2026-11-27T10:47:07.8279607Z OK
+2026-11-27T10:47:07.8556899Z {"schema":"R03D5BIdentityConfigurationUnitSourceHostV1","compositionTests":20,"AP5StageDoubled":true,"realAP4Consumers":true,"fullFiveIdentityIntegrationVerified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlyCompositionUnitTestsPassed"}
+2026-11-27T10:47:07.8633733Z ##[group]Run actions/checkout@v4
+2026-11-27T10:47:07.8634002Z with:
+2026-11-27T10:47:07.8634239Z   repository: night-outlook/hybridclr
+2026-11-27T10:47:07.8634539Z   ref: c3c232023724cbad565b85e9b2c3beea8ce2789a
+2026-11-27T10:47:07.8634860Z   path: _ap6_siblings/hybridclr
+2026-11-27T10:47:07.8635106Z   fetch-depth: 0
+2026-11-27T10:47:07.8635328Z   persist-credentials: false
+2026-11-27T10:47:07.8637562Z   token: ***
+2026-11-27T10:47:07.8637792Z   ssh-strict: true
+2026-11-27T10:47:07.8638050Z   ssh-user: git
+2026-11-27T10:47:07.8638275Z   clean: true
+2026-11-27T10:47:07.8638492Z   sparse-checkout-cone-mode: true
+2026-11-27T10:47:07.8638774Z   fetch-tags: false
+2026-11-27T10:47:07.8639025Z   show-progress: true
+2026-11-27T10:47:07.8639275Z   lfs: false
+2026-11-27T10:47:07.8639481Z   submodules: false
+2026-11-27T10:47:07.8639694Z   set-safe-directory: true
+2026-11-27T10:47:07.8639977Z   allow-unsafe-pr-checkout: false
+2026-11-27T10:47:07.8640229Z env:
+2026-11-27T10:47:07.8640611Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:07.8641004Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-27T10:47:07.8641380Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:07.8641737Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:07.8642080Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:07.8642481Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-27T10:47:07.8642786Z ##[endgroup]
+2026-11-27T10:47:07.9299457Z Syncing repository: night-outlook/hybridclr
+2026-11-27T10:47:07.9315082Z ##[group]Getting Git version info
+2026-11-27T10:47:07.9316716Z Working directory is '/home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings/hybridclr'
+2026-11-27T10:47:07.9352561Z [command]/usr/bin/git version
+2026-11-27T10:47:07.9389041Z git version 2.56.1
+2026-11-27T10:47:07.9406155Z ##[endgroup]
+2026-11-27T10:47:07.9416916Z Temporarily overriding HOME='/home/runner/work/_temp/ff1965ab-e1bc-4860-a1b1-81ffb3fc65d8' before making global git config changes
+2026-11-27T10:47:07.9417667Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-27T10:47:07.9421881Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings/hybridclr
+2026-11-27T10:47:07.9449899Z ##[group]Initializing the repository
+2026-11-27T10:47:07.9453433Z [command]/usr/bin/git init /home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings/hybridclr
+2026-11-27T10:47:07.9479364Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-27T10:47:07.9479918Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-27T10:47:07.9480481Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-27T10:47:07.9480885Z hint: call:
+2026-11-27T10:47:07.9481205Z hint:
+2026-11-27T10:47:07.9481558Z hint: 	git config --global init.defaultBranch <name>
+2026-11-27T10:47:07.9481893Z hint:
+2026-11-27T10:47:07.9482251Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-27T10:47:07.9482727Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-27T10:47:07.9483113Z hint:
+2026-11-27T10:47:07.9483411Z hint: 	git branch -m <name>
+2026-11-27T10:47:07.9483845Z hint:
+2026-11-27T10:47:07.9484232Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-27T10:47:07.9485058Z Initialized empty Git repository in /home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings/hybridclr/.git/
+2026-11-27T10:47:07.9507625Z [command]/usr/bin/git remote add origin https://github.com/night-outlook/hybridclr
+2026-11-27T10:47:07.9531833Z ##[endgroup]
+2026-11-27T10:47:07.9532420Z ##[group]Disabling automatic garbage collection
+2026-11-27T10:47:07.9534994Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-27T10:47:07.9556566Z ##[endgroup]
+2026-11-27T10:47:07.9557359Z ##[group]Setting up auth
+2026-11-27T10:47:07.9562263Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-27T10:47:07.9583869Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-27T10:47:07.9758920Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-27T10:47:07.9782354Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-27T10:47:07.9956041Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-27T10:47:07.9979452Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-27T10:47:08.0141669Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-27T10:47:08.0196821Z ##[endgroup]
+2026-11-27T10:47:08.0197731Z ##[group]Fetching the repository
+2026-11-27T10:47:08.0198658Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-11-27T10:47:09.9429248Z From https://github.com/night-outlook/hybridclr
+2026-11-27T10:47:09.9429832Z  * [new branch]      codex/assembly-shadow-h1-count-repro -> origin/codex/assembly-shadow-h1-count-repro
+2026-11-27T10:47:09.9430639Z  * [new branch]      codex/assembly-shadow-m07 -> origin/codex/assembly-shadow-m07
+2026-11-27T10:47:09.9431079Z  * [new branch]      codex/assembly-shadow-r01b -> origin/codex/assembly-shadow-r01b
+2026-11-27T10:47:09.9431533Z  * [new branch]      codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1
+2026-11-27T10:47:09.9432288Z  * [new branch]      codex/assembly-shadow-smoke-20261020-primary-bootstrap-7fc6 -> origin/codex/assembly-shadow-smoke-20261020-primary-bootstrap-7fc6
+2026-11-27T10:47:09.9433098Z  * [new branch]      codex/assembly-shadow-smoke-20261022-owner-bootstrap-e4d739 -> origin/codex/assembly-shadow-smoke-20261022-owner-bootstrap-e4d739
+2026-11-27T10:47:09.9433888Z  * [new branch]      codex/assembly-shadow-smoke-20261026-primary-role-bb91 -> origin/codex/assembly-shadow-smoke-20261026-primary-role-bb91
+2026-11-27T10:47:09.9434659Z  * [new branch]      codex/assembly-shadow-smoke-20261029-owner-bootstrap-f78c21 -> origin/codex/assembly-shadow-smoke-20261029-owner-bootstrap-f78c21
+2026-11-27T10:47:09.9435470Z  * [new branch]      codex/assembly-shadow-smoke-20261102-primary-bootstrap-51b8 -> origin/codex/assembly-shadow-smoke-20261102-primary-bootstrap-51b8
+2026-11-27T10:47:09.9436572Z  * [new branch]      codex/assembly-shadow-smoke-20261103-role-bootstrap-6fca -> origin/codex/assembly-shadow-smoke-20261103-role-bootstrap-6fca
+2026-11-27T10:47:09.9437391Z  * [new branch]      codex/assembly-shadow-smoke-20261105-primary-owner-9b1e60 -> origin/codex/assembly-shadow-smoke-20261105-primary-owner-9b1e60
+2026-11-27T10:47:09.9438247Z  * [new branch]      codex/assembly-shadow-smoke-20261107-owner-bootstrap-2d7a91 -> origin/codex/assembly-shadow-smoke-20261107-owner-bootstrap-2d7a91
+2026-11-27T10:47:09.9439057Z  * [new branch]      codex/assembly-shadow-smoke-20261109-owner-role-e5f91c -> origin/codex/assembly-shadow-smoke-20261109-owner-role-e5f91c
+2026-11-27T10:47:09.9439840Z  * [new branch]      codex/assembly-shadow-smoke-20261109-primary-owner-81a42d -> origin/codex/assembly-shadow-smoke-20261109-primary-owner-81a42d
+2026-11-27T10:47:09.9440693Z  * [new branch]      codex/assembly-shadow-smoke-20261111-role-bootstrap-cc4d7b -> origin/codex/assembly-shadow-smoke-20261111-role-bootstrap-cc4d7b
+2026-11-27T10:47:09.9441581Z  * [new branch]      codex/assembly-shadow-smoke-20261112-owner-bootstrap-c7b42d -> origin/codex/assembly-shadow-smoke-20261112-owner-bootstrap-c7b42d
+2026-11-27T10:47:09.9442411Z  * [new branch]      codex/assembly-shadow-smoke-20261113-primary-bootstrap-62ed -> origin/codex/assembly-shadow-smoke-20261113-primary-bootstrap-62ed
+2026-11-27T10:47:09.9443220Z  * [new branch]      codex/assembly-shadow-smoke-20261116-primary-role-c8f2e4 -> origin/codex/assembly-shadow-smoke-20261116-primary-role-c8f2e4
+2026-11-27T10:47:09.9444675Z  * [new branch]      codex/assembly-shadow-smoke-20261117-primary-owner-a6f29e -> origin/codex/assembly-shadow-smoke-20261117-primary-owner-a6f29e
+2026-11-27T10:47:09.9445943Z  * [new branch]      codex/assembly-shadow-smoke-20261118-primary-owner-b6c914 -> origin/codex/assembly-shadow-smoke-20261118-primary-owner-b6c914
+2026-11-27T10:47:09.9446811Z  * [new branch]      codex/assembly-shadow-smoke-20261122-primary-owner-72b9a6 -> origin/codex/assembly-shadow-smoke-20261122-primary-owner-72b9a6
+2026-11-27T10:47:09.9447749Z  * [new branch]      codex/assembly-shadow-smoke-20261124-primary-bootstrap-27a6d4 -> origin/codex/assembly-shadow-smoke-20261124-primary-bootstrap-27a6d4
+2026-11-27T10:47:09.9448616Z  * [new branch]      codex/assembly-shadow-smoke-20261124-primary-owner-3f8d21 -> origin/codex/assembly-shadow-smoke-20261124-primary-owner-3f8d21
+2026-11-27T10:47:09.9449458Z  * [new branch]      codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0 -> origin/codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0
+2026-11-27T10:47:09.9450174Z  * [new branch]      codex/connector-smoke-20260920-1947-pio -> origin/codex/connector-smoke-20260920-1947-pio
+2026-11-27T10:47:09.9450905Z  * [new branch]      codex/connector-smoke-20260925-pio-7f6d2a91 -> origin/codex/connector-smoke-20260925-pio-7f6d2a91
+2026-11-27T10:47:09.9451587Z  * [new branch]      codex/connector-smoke-20261006-primary-r03 -> origin/codex/connector-smoke-20261006-primary-r03
+2026-11-27T10:47:09.9452330Z  * [new branch]      codex/connector-smoke-20261009-primary-owner-6c48 -> origin/codex/connector-smoke-20261009-primary-owner-6c48
+2026-11-27T10:47:09.9453093Z  * [new branch]      codex/connector-smoke-primary-20260923-a -> origin/codex/connector-smoke-primary-20260923-a
+2026-11-27T10:47:09.9453817Z  * [new branch]      codex/connector-smoke-primary-20261015-6c928f -> origin/codex/connector-smoke-primary-20261015-6c928f
+2026-11-27T10:47:09.9454508Z  * [new branch]      codex/connector-smoke-r03-20260930-0054 -> origin/codex/connector-smoke-r03-20260930-0054
+2026-11-27T10:47:09.9455214Z  * [new branch]      codex/connector-smoke-r03-handoff-20260930-0717 -> origin/codex/connector-smoke-r03-handoff-20260930-0717
+2026-11-27T10:47:09.9456320Z  * [new branch]      codex/connector-smoke-r03-ir-20261008-resume-843ada13 -> origin/codex/connector-smoke-r03-ir-20261008-resume-843ada13
+2026-11-27T10:47:09.9457258Z  * [new branch]      codex/connector-smoke-r03-ir-fixture-20261009-2bc10701 -> origin/codex/connector-smoke-r03-ir-fixture-20261009-2bc10701
+2026-11-27T10:47:09.9458154Z  * [new branch]      codex/connector-smoke-r03-ln-20261005-2030 -> origin/codex/connector-smoke-r03-ln-20261005-2030
+2026-11-27T10:47:09.9458972Z  * [new branch]      codex/connector-smoke-r03-ln-20261005-final -> origin/codex/connector-smoke-r03-ln-20261005-final
+2026-11-27T10:47:09.9459791Z  * [new branch]      codex/connector-smoke-r03-lo-20261006-0917-5c8f -> origin/codex/connector-smoke-r03-lo-20261006-0917-5c8f
+2026-11-27T10:47:09.9460676Z  * [new branch]      codex/connector-smoke-r03-lo-20261006-8a2c6f91 -> origin/codex/connector-smoke-r03-lo-20261006-8a2c6f91
+2026-11-27T10:47:09.9461415Z  * [new branch]      codex/connector-smoke-r03-lo-20261006-g7c4 -> origin/codex/connector-smoke-r03-lo-20261006-g7c4
+2026-11-27T10:47:09.9462046Z  * [new branch]      codex/connector-smoke-r03-runtime-f -> origin/codex/connector-smoke-r03-runtime-f
+2026-11-27T10:47:09.9462806Z  * [new branch]      codex/owner-connector-smoke-20261019-346e8a -> origin/codex/owner-connector-smoke-20261019-346e8a
+2026-11-27T10:47:09.9463832Z  * [new branch]      codex/pio-connector-smoke-20261015-2036 -> origin/codex/pio-connector-smoke-20261015-2036
+2026-11-27T10:47:09.9464646Z  * [new branch]      codex/r02-preparation-20260926-d248 -> origin/codex/r02-preparation-20260926-d248
+2026-11-27T10:47:09.9465438Z  * [new branch]      codex/smoke-r03-start-20260930-0624-b84e -> origin/codex/smoke-r03-start-20260930-0624-b84e
+2026-11-27T10:47:09.9466416Z  * [new branch]      codex/transport-smoke-20260920-bootstrap -> origin/codex/transport-smoke-20260920-bootstrap
+2026-11-27T10:47:09.9467033Z  * [new branch]      main       -> origin/main
+2026-11-27T10:47:09.9467579Z  * [new tag]         assembly-shadow-m07-unity-assets -> assembly-shadow-m07-unity-assets
+2026-11-27T10:47:09.9468890Z [command]/usr/bin/git rev-parse --verify --quiet c3c232023724cbad565b85e9b2c3beea8ce2789a^{object}
+2026-11-27T10:47:09.9469555Z c3c232023724cbad565b85e9b2c3beea8ce2789a
+2026-11-27T10:47:09.9470510Z ##[endgroup]
+2026-11-27T10:47:09.9471072Z ##[group]Determining the checkout info
+2026-11-27T10:47:09.9471604Z ##[endgroup]
+2026-11-27T10:47:09.9473004Z [command]/usr/bin/git sparse-checkout disable
+2026-11-27T10:47:09.9506213Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-27T10:47:09.9530620Z ##[group]Checking out the ref
+2026-11-27T10:47:09.9532718Z [command]/usr/bin/git checkout --progress --force c3c232023724cbad565b85e9b2c3beea8ce2789a
+2026-11-27T10:47:09.9640566Z Note: switching to 'c3c232023724cbad565b85e9b2c3beea8ce2789a'.
+2026-11-27T10:47:09.9640946Z 
+2026-11-27T10:47:09.9641178Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-27T10:47:09.9642166Z changes and commit them, and you can discard any commits you make in this
+2026-11-27T10:47:09.9642699Z state without impacting any branches by switching back to a branch.
+2026-11-27T10:47:09.9642908Z 
+2026-11-27T10:47:09.9643090Z If you want to create a new branch to retain commits you create, you may
+2026-11-27T10:47:09.9643498Z do so (now or later) by using -c with the switch command. Example:
+2026-11-27T10:47:09.9643861Z 
+2026-11-27T10:47:09.9643984Z   git switch -c <new-branch-name>
+2026-11-27T10:47:09.9644165Z 
+2026-11-27T10:47:09.9644251Z Or undo this operation with:
+2026-11-27T10:47:09.9644478Z 
+2026-11-27T10:47:09.9644586Z   git switch -
+2026-11-27T10:47:09.9644702Z 
+2026-11-27T10:47:09.9644904Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-27T10:47:09.9645164Z 
+2026-11-27T10:47:09.9645394Z HEAD is now at c3c2320 feat(r03-b2-d3): observe Codec attempt and Runtime group publication
+2026-11-27T10:47:09.9648553Z ##[endgroup]
+2026-11-27T10:47:09.9675047Z [command]/usr/bin/git log -1 --format=%H
+2026-11-27T10:47:09.9694779Z c3c232023724cbad565b85e9b2c3beea8ce2789a
+2026-11-27T10:47:09.9701415Z ##[group]Removing auth
+2026-11-27T10:47:09.9704737Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-27T10:47:09.9728842Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-27T10:47:09.9884643Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-27T10:47:09.9903752Z http.https://github.com/.extraheader
+2026-11-27T10:47:09.9908134Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-27T10:47:09.9932755Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-27T10:47:10.0082116Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-27T10:47:10.0107142Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-27T10:47:10.0258263Z ##[endgroup]
+2026-11-27T10:47:10.0378642Z ##[group]Run actions/checkout@v4
+2026-11-27T10:47:10.0378923Z with:
+2026-11-27T10:47:10.0379161Z   repository: night-outlook/hybridclr_unity
+2026-11-27T10:47:10.0379454Z   ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+2026-11-27T10:47:10.0379768Z   path: _ap6_siblings/hybridclr_unity
+2026-11-27T10:47:10.0380027Z   fetch-depth: 0
+2026-11-27T10:47:10.0380274Z   persist-credentials: false
+2026-11-27T10:47:10.0382240Z   token: ***
+2026-11-27T10:47:10.0382462Z   ssh-strict: true
+2026-11-27T10:47:10.0382701Z   ssh-user: git
+2026-11-27T10:47:10.0382909Z   clean: true
+2026-11-27T10:47:10.0383143Z   sparse-checkout-cone-mode: true
+2026-11-27T10:47:10.0383398Z   fetch-tags: false
+2026-11-27T10:47:10.0383661Z   show-progress: true
+2026-11-27T10:47:10.0383902Z   lfs: false
+2026-11-27T10:47:10.0384102Z   submodules: false
+2026-11-27T10:47:10.0384338Z   set-safe-directory: true
+2026-11-27T10:47:10.0384595Z   allow-unsafe-pr-checkout: false
+2026-11-27T10:47:10.0384834Z env:
+2026-11-27T10:47:10.0385209Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:10.0385918Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-27T10:47:10.0386326Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:10.0386672Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:10.0387058Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:10.0387399Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-27T10:47:10.0387683Z ##[endgroup]
+2026-11-27T10:47:10.1019100Z Syncing repository: night-outlook/hybridclr_unity
+2026-11-27T10:47:10.1020156Z ##[group]Getting Git version info
+2026-11-27T10:47:10.1021191Z Working directory is '/home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings/hybridclr_unity'
+2026-11-27T10:47:10.1047506Z [command]/usr/bin/git version
+2026-11-27T10:47:10.1075491Z git version 2.56.1
+2026-11-27T10:47:10.1090387Z ##[endgroup]
+2026-11-27T10:47:10.1099709Z Temporarily overriding HOME='/home/runner/work/_temp/97df758c-740d-4917-9596-85fc867fa1d8' before making global git config changes
+2026-11-27T10:47:10.1100699Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-27T10:47:10.1103757Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings/hybridclr_unity
+2026-11-27T10:47:10.1130555Z ##[group]Initializing the repository
+2026-11-27T10:47:10.1133409Z [command]/usr/bin/git init /home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings/hybridclr_unity
+2026-11-27T10:47:10.1159868Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-27T10:47:10.1160731Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-27T10:47:10.1163278Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-27T10:47:10.1164076Z hint: call:
+2026-11-27T10:47:10.1164508Z hint:
+2026-11-27T10:47:10.1164998Z hint: 	git config --global init.defaultBranch <name>
+2026-11-27T10:47:10.1166498Z hint:
+2026-11-27T10:47:10.1167105Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-27T10:47:10.1167882Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-27T10:47:10.1168505Z hint:
+2026-11-27T10:47:10.1168911Z hint: 	git branch -m <name>
+2026-11-27T10:47:10.1169359Z hint:
+2026-11-27T10:47:10.1169990Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-27T10:47:10.1170941Z Initialized empty Git repository in /home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings/hybridclr_unity/.git/
+2026-11-27T10:47:10.1172564Z [command]/usr/bin/git remote add origin https://github.com/night-outlook/hybridclr_unity
+2026-11-27T10:47:10.1192647Z ##[endgroup]
+2026-11-27T10:47:10.1193224Z ##[group]Disabling automatic garbage collection
+2026-11-27T10:47:10.1193661Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-27T10:47:10.1214240Z ##[endgroup]
+2026-11-27T10:47:10.1214838Z ##[group]Setting up auth
+2026-11-27T10:47:10.1219786Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-27T10:47:10.1241673Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-27T10:47:10.1427336Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-27T10:47:10.1456175Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-27T10:47:10.1632213Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-27T10:47:10.1666880Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-27T10:47:10.1846219Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-27T10:47:10.1886676Z ##[endgroup]
+2026-11-27T10:47:10.1887423Z ##[group]Fetching the repository
+2026-11-27T10:47:10.1889648Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-11-27T10:47:11.3042012Z From https://github.com/night-outlook/hybridclr_unity
+2026-11-27T10:47:11.3042607Z  * [new branch]      codex/assembly-shadow-m07 -> origin/codex/assembly-shadow-m07
+2026-11-27T10:47:11.3043076Z  * [new branch]      codex/assembly-shadow-r01b -> origin/codex/assembly-shadow-r01b
+2026-11-27T10:47:11.3043896Z  * [new branch]      codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1
+2026-11-27T10:47:11.3044645Z  * [new branch]      codex/assembly-shadow-smoke-20261020-primary-bootstrap-7fc6 -> origin/codex/assembly-shadow-smoke-20261020-primary-bootstrap-7fc6
+2026-11-27T10:47:11.3045519Z  * [new branch]      codex/assembly-shadow-smoke-20261022-owner-bootstrap-e4d739 -> origin/codex/assembly-shadow-smoke-20261022-owner-bootstrap-e4d739
+2026-11-27T10:47:11.3046513Z  * [new branch]      codex/assembly-shadow-smoke-20261026-primary-role-bb91 -> origin/codex/assembly-shadow-smoke-20261026-primary-role-bb91
+2026-11-27T10:47:11.3047485Z  * [new branch]      codex/assembly-shadow-smoke-20261029-owner-bootstrap-f78c21 -> origin/codex/assembly-shadow-smoke-20261029-owner-bootstrap-f78c21
+2026-11-27T10:47:11.3048337Z  * [new branch]      codex/assembly-shadow-smoke-20261102-primary-bootstrap-51b8 -> origin/codex/assembly-shadow-smoke-20261102-primary-bootstrap-51b8
+2026-11-27T10:47:11.3049139Z  * [new branch]      codex/assembly-shadow-smoke-20261103-role-bootstrap-6fca -> origin/codex/assembly-shadow-smoke-20261103-role-bootstrap-6fca
+2026-11-27T10:47:11.3049898Z  * [new branch]      codex/assembly-shadow-smoke-20261105-primary-owner-9b1e60 -> origin/codex/assembly-shadow-smoke-20261105-primary-owner-9b1e60
+2026-11-27T10:47:11.3050690Z  * [new branch]      codex/assembly-shadow-smoke-20261107-owner-bootstrap-2d7a91 -> origin/codex/assembly-shadow-smoke-20261107-owner-bootstrap-2d7a91
+2026-11-27T10:47:11.3051439Z  * [new branch]      codex/assembly-shadow-smoke-20261109-owner-role-e5f91c -> origin/codex/assembly-shadow-smoke-20261109-owner-role-e5f91c
+2026-11-27T10:47:11.3052233Z  * [new branch]      codex/assembly-shadow-smoke-20261109-primary-owner-81a42d -> origin/codex/assembly-shadow-smoke-20261109-primary-owner-81a42d
+2026-11-27T10:47:11.3053017Z  * [new branch]      codex/assembly-shadow-smoke-20261111-role-bootstrap-cc4d7b -> origin/codex/assembly-shadow-smoke-20261111-role-bootstrap-cc4d7b
+2026-11-27T10:47:11.3053806Z  * [new branch]      codex/assembly-shadow-smoke-20261112-owner-bootstrap-c7b42d -> origin/codex/assembly-shadow-smoke-20261112-owner-bootstrap-c7b42d
+2026-11-27T10:47:11.3054714Z  * [new branch]      codex/assembly-shadow-smoke-20261113-primary-bootstrap-62ed -> origin/codex/assembly-shadow-smoke-20261113-primary-bootstrap-62ed
+2026-11-27T10:47:11.3055508Z  * [new branch]      codex/assembly-shadow-smoke-20261116-primary-role-c8f2e4 -> origin/codex/assembly-shadow-smoke-20261116-primary-role-c8f2e4
+2026-11-27T10:47:11.3056626Z  * [new branch]      codex/assembly-shadow-smoke-20261117-primary-owner-a6f29e -> origin/codex/assembly-shadow-smoke-20261117-primary-owner-a6f29e
+2026-11-27T10:47:11.3057412Z  * [new branch]      codex/assembly-shadow-smoke-20261118-primary-owner-b6c914 -> origin/codex/assembly-shadow-smoke-20261118-primary-owner-b6c914
+2026-11-27T10:47:11.3058178Z  * [new branch]      codex/assembly-shadow-smoke-20261122-primary-owner-72b9a6 -> origin/codex/assembly-shadow-smoke-20261122-primary-owner-72b9a6
+2026-11-27T10:47:11.3059027Z  * [new branch]      codex/assembly-shadow-smoke-20261124-primary-bootstrap-27a6d4 -> origin/codex/assembly-shadow-smoke-20261124-primary-bootstrap-27a6d4
+2026-11-27T10:47:11.3059896Z  * [new branch]      codex/assembly-shadow-smoke-20261124-primary-owner-3f8d21 -> origin/codex/assembly-shadow-smoke-20261124-primary-owner-3f8d21
+2026-11-27T10:47:11.3060636Z  * [new branch]      codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0 -> origin/codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0
+2026-11-27T10:47:11.3061302Z  * [new branch]      codex/connector-smoke-20260920-1947-pio -> origin/codex/connector-smoke-20260920-1947-pio
+2026-11-27T10:47:11.3061895Z  * [new branch]      codex/connector-smoke-20260925-pio-7f6d2a91 -> origin/codex/connector-smoke-20260925-pio-7f6d2a91
+2026-11-27T10:47:11.3062512Z  * [new branch]      codex/connector-smoke-20261006-primary-r03 -> origin/codex/connector-smoke-20261006-primary-r03
+2026-11-27T10:47:11.3063234Z  * [new branch]      codex/connector-smoke-20261009-primary-owner-6c48 -> origin/codex/connector-smoke-20261009-primary-owner-6c48
+2026-11-27T10:47:11.3063909Z  * [new branch]      codex/connector-smoke-primary-20260923-a -> origin/codex/connector-smoke-primary-20260923-a
+2026-11-27T10:47:11.3064534Z  * [new branch]      codex/connector-smoke-primary-20261015-6c928f -> origin/codex/connector-smoke-primary-20261015-6c928f
+2026-11-27T10:47:11.3065141Z  * [new branch]      codex/connector-smoke-r02-f-20260927-3a8c -> origin/codex/connector-smoke-r02-f-20260927-3a8c
+2026-11-27T10:47:11.3066010Z  * [new branch]      codex/connector-smoke-r03-20260930-0054 -> origin/codex/connector-smoke-r03-20260930-0054
+2026-11-27T10:47:11.3066697Z  * [new branch]      codex/connector-smoke-r03-completion-20261002 -> origin/codex/connector-smoke-r03-completion-20261002
+2026-11-27T10:47:11.3067382Z  * [new branch]      codex/connector-smoke-r03-handoff-20260930-0717 -> origin/codex/connector-smoke-r03-handoff-20260930-0717
+2026-11-27T10:47:11.3068082Z  * [new branch]      codex/connector-smoke-r03-ir-20261008-resume-843ada13 -> origin/codex/connector-smoke-r03-ir-20261008-resume-843ada13
+2026-11-27T10:47:11.3068797Z  * [new branch]      codex/connector-smoke-r03-ir-fixture-20261009-2bc10701 -> origin/codex/connector-smoke-r03-ir-fixture-20261009-2bc10701
+2026-11-27T10:47:11.3069508Z  * [new branch]      codex/connector-smoke-r03-li-20261003 -> origin/codex/connector-smoke-r03-li-20261003
+2026-11-27T10:47:11.3070075Z  * [new branch]      codex/connector-smoke-r03-li-20261003-1010 -> origin/codex/connector-smoke-r03-li-20261003-1010
+2026-11-27T10:47:11.3070654Z  * [new branch]      codex/connector-smoke-r03-lm-20261005-0445 -> origin/codex/connector-smoke-r03-lm-20261005-0445
+2026-11-27T10:47:11.3071301Z  * [new branch]      codex/connector-smoke-r03-lm-resolution-v1 -> origin/codex/connector-smoke-r03-lm-resolution-v1
+2026-11-27T10:47:11.3071909Z  * [new branch]      codex/connector-smoke-r03-lm-resume-f413aaf -> origin/codex/connector-smoke-r03-lm-resume-f413aaf
+2026-11-27T10:47:11.3072545Z  * [new branch]      codex/connector-smoke-r03-ln-20261005-1620 -> origin/codex/connector-smoke-r03-ln-20261005-1620
+2026-11-27T10:47:11.3073173Z  * [new branch]      codex/connector-smoke-r03-ln-20261005-2030 -> origin/codex/connector-smoke-r03-ln-20261005-2030
+2026-11-27T10:47:11.3073792Z  * [new branch]      codex/connector-smoke-r03-ln-20261005-final -> origin/codex/connector-smoke-r03-ln-20261005-final
+2026-11-27T10:47:11.3074547Z  * [new branch]      codex/connector-smoke-r03-lo-20261006-0917-5c8f -> origin/codex/connector-smoke-r03-lo-20261006-0917-5c8f
+2026-11-27T10:47:11.3075334Z  * [new branch]      codex/connector-smoke-r03-lo-20261006-8a2c6f91 -> origin/codex/connector-smoke-r03-lo-20261006-8a2c6f91
+2026-11-27T10:47:11.3076113Z  * [new branch]      codex/connector-smoke-r03-lo-20261006-g7c4 -> origin/codex/connector-smoke-r03-lo-20261006-g7c4
+2026-11-27T10:47:11.3076745Z  * [new branch]      codex/owner-connector-smoke-20261019-346e8a -> origin/codex/owner-connector-smoke-20261019-346e8a
+2026-11-27T10:47:11.3077382Z  * [new branch]      codex/pio-connector-smoke-20261015-2036 -> origin/codex/pio-connector-smoke-20261015-2036
+2026-11-27T10:47:11.3078021Z  * [new branch]      codex/r02-preparation-20260926-d248 -> origin/codex/r02-preparation-20260926-d248
+2026-11-27T10:47:11.3078567Z  * [new branch]      codex/smoke-r03-start-20260930-0624-b84e -> origin/codex/smoke-r03-start-20260930-0624-b84e
+2026-11-27T10:47:11.3079249Z  * [new branch]      codex/transport-smoke-20260920-bootstrap -> origin/codex/transport-smoke-20260920-bootstrap
+2026-11-27T10:47:11.3079723Z  * [new branch]      main       -> origin/main
+2026-11-27T10:47:11.3080095Z  * [new tag]         assembly-shadow-m07-unity-assets -> assembly-shadow-m07-unity-assets
+2026-11-27T10:47:11.3081068Z [command]/usr/bin/git rev-parse --verify --quiet 948c0e3b4f8891481301770115e8ba4945eea6de^{object}
+2026-11-27T10:47:11.3081553Z 948c0e3b4f8891481301770115e8ba4945eea6de
+2026-11-27T10:47:11.3082314Z ##[endgroup]
+2026-11-27T10:47:11.3082885Z ##[group]Determining the checkout info
+2026-11-27T10:47:11.3083313Z ##[endgroup]
+2026-11-27T10:47:11.3083654Z [command]/usr/bin/git sparse-checkout disable
+2026-11-27T10:47:11.3235388Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-27T10:47:11.3236436Z ##[group]Checking out the ref
+2026-11-27T10:47:11.3236827Z [command]/usr/bin/git checkout --progress --force 948c0e3b4f8891481301770115e8ba4945eea6de
+2026-11-27T10:47:11.3508938Z Note: switching to '948c0e3b4f8891481301770115e8ba4945eea6de'.
+2026-11-27T10:47:11.3509181Z 
+2026-11-27T10:47:11.3509350Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-27T10:47:11.3509718Z changes and commit them, and you can discard any commits you make in this
+2026-11-27T10:47:11.3510049Z state without impacting any branches by switching back to a branch.
+2026-11-27T10:47:11.3510271Z 
+2026-11-27T10:47:11.3510437Z If you want to create a new branch to retain commits you create, you may
+2026-11-27T10:47:11.3510795Z do so (now or later) by using -c with the switch command. Example:
+2026-11-27T10:47:11.3511015Z 
+2026-11-27T10:47:11.3511098Z   git switch -c <new-branch-name>
+2026-11-27T10:47:11.3511224Z 
+2026-11-27T10:47:11.3511310Z Or undo this operation with:
+2026-11-27T10:47:11.3511426Z 
+2026-11-27T10:47:11.3511488Z   git switch -
+2026-11-27T10:47:11.3511579Z 
+2026-11-27T10:47:11.3511734Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-27T10:47:11.3511942Z 
+2026-11-27T10:47:11.3512166Z HEAD is now at 948c0e3 fix(r03): revalidate metadata in an equivalent captured resolution domain
+2026-11-27T10:47:11.3513127Z ##[endgroup]
+2026-11-27T10:47:11.3545074Z [command]/usr/bin/git log -1 --format=%H
+2026-11-27T10:47:11.3565166Z 948c0e3b4f8891481301770115e8ba4945eea6de
+2026-11-27T10:47:11.3574402Z ##[group]Removing auth
+2026-11-27T10:47:11.3577157Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-27T10:47:11.3598678Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-27T10:47:11.3756234Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-27T10:47:11.3774080Z http.https://github.com/.extraheader
+2026-11-27T10:47:11.3778439Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-27T10:47:11.3802328Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-27T10:47:11.3954551Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-27T10:47:11.3978787Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-27T10:47:11.4126813Z ##[endgroup]
+2026-11-27T10:47:11.4234375Z ##[group]Run actions/checkout@v4
+2026-11-27T10:47:11.4234573Z with:
+2026-11-27T10:47:11.4234735Z   repository: night-outlook/il2cpp_plus
+2026-11-27T10:47:11.4234958Z   ref: 1268dd417ffe9090fcd9ea2d49542c97ed3cccb3
+2026-11-27T10:47:11.4235181Z   path: _ap6_siblings/il2cpp_plus
+2026-11-27T10:47:11.4235366Z   fetch-depth: 0
+2026-11-27T10:47:11.4236003Z   persist-credentials: false
+2026-11-27T10:47:11.4237953Z   token: ***
+2026-11-27T10:47:11.4238107Z   ssh-strict: true
+2026-11-27T10:47:11.4238261Z   ssh-user: git
+2026-11-27T10:47:11.4238407Z   clean: true
+2026-11-27T10:47:11.4238565Z   sparse-checkout-cone-mode: true
+2026-11-27T10:47:11.4238752Z   fetch-tags: false
+2026-11-27T10:47:11.4238907Z   show-progress: true
+2026-11-27T10:47:11.4239060Z   lfs: false
+2026-11-27T10:47:11.4239200Z   submodules: false
+2026-11-27T10:47:11.4239358Z   set-safe-directory: true
+2026-11-27T10:47:11.4239712Z   allow-unsafe-pr-checkout: false
+2026-11-27T10:47:11.4239893Z env:
+2026-11-27T10:47:11.4240132Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:11.4240439Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-27T10:47:11.4240756Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:11.4241030Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:11.4241302Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:11.4241572Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-27T10:47:11.4241803Z ##[endgroup]
+2026-11-27T10:47:11.4890018Z Syncing repository: night-outlook/il2cpp_plus
+2026-11-27T10:47:11.4890592Z ##[group]Getting Git version info
+2026-11-27T10:47:11.4891060Z Working directory is '/home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings/il2cpp_plus'
+2026-11-27T10:47:11.4917371Z [command]/usr/bin/git version
+2026-11-27T10:47:11.4953839Z git version 2.56.1
+2026-11-27T10:47:11.4971140Z ##[endgroup]
+2026-11-27T10:47:11.4982430Z Temporarily overriding HOME='/home/runner/work/_temp/980ddded-5590-4be0-aac3-bac37ed8648d' before making global git config changes
+2026-11-27T10:47:11.4983038Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-27T10:47:11.4987287Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings/il2cpp_plus
+2026-11-27T10:47:11.5014612Z ##[group]Initializing the repository
+2026-11-27T10:47:11.5018636Z [command]/usr/bin/git init /home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings/il2cpp_plus
+2026-11-27T10:47:11.5044378Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-27T10:47:11.5045057Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-27T10:47:11.5046876Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-27T10:47:11.5047790Z hint: call:
+2026-11-27T10:47:11.5048123Z hint:
+2026-11-27T10:47:11.5048454Z hint: 	git config --global init.defaultBranch <name>
+2026-11-27T10:47:11.5048761Z hint:
+2026-11-27T10:47:11.5049064Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-27T10:47:11.5049495Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-27T10:47:11.5049844Z hint:
+2026-11-27T10:47:11.5050070Z hint: 	git branch -m <name>
+2026-11-27T10:47:11.5050316Z hint:
+2026-11-27T10:47:11.5050626Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-27T10:47:11.5051201Z Initialized empty Git repository in /home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings/il2cpp_plus/.git/
+2026-11-27T10:47:11.5052869Z [command]/usr/bin/git remote add origin https://github.com/night-outlook/il2cpp_plus
+2026-11-27T10:47:11.5077390Z ##[endgroup]
+2026-11-27T10:47:11.5077755Z ##[group]Disabling automatic garbage collection
+2026-11-27T10:47:11.5081370Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-27T10:47:11.5104297Z ##[endgroup]
+2026-11-27T10:47:11.5104834Z ##[group]Setting up auth
+2026-11-27T10:47:11.5110452Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-27T10:47:11.5135194Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-27T10:47:11.5330540Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-27T10:47:11.5357114Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-27T10:47:11.5557008Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-27T10:47:11.5587482Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-27T10:47:11.5747510Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-27T10:47:11.5780260Z ##[endgroup]
+2026-11-27T10:47:11.5780704Z ##[group]Fetching the repository
+2026-11-27T10:47:11.5787547Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-11-27T10:47:12.5273240Z From https://github.com/night-outlook/il2cpp_plus
+2026-11-27T10:47:12.5273656Z  * [new branch]      2019-1.0             -> origin/2019-1.0
+2026-11-27T10:47:12.5274055Z  * [new branch]      2019-main            -> origin/2019-main
+2026-11-27T10:47:12.5274461Z  * [new branch]      2019.4.40            -> origin/2019.4.40
+2026-11-27T10:47:12.5274786Z  * [new branch]      2020-1.0             -> origin/2020-1.0
+2026-11-27T10:47:12.5275116Z  * [new branch]      2020-3.x             -> origin/2020-3.x
+2026-11-27T10:47:12.5275504Z  * [new branch]      2020-main            -> origin/2020-main
+2026-11-27T10:47:12.5276004Z  * [new branch]      2020.3.33            -> origin/2020.3.33
+2026-11-27T10:47:12.5276378Z  * [new branch]      2021-1.0             -> origin/2021-1.0
+2026-11-27T10:47:12.5276716Z  * [new branch]      2021-3.x             -> origin/2021-3.x
+2026-11-27T10:47:12.5277056Z  * [new branch]      2021-main            -> origin/2021-main
+2026-11-27T10:47:12.5277367Z  * [new branch]      2021.3.1             -> origin/2021.3.1
+2026-11-27T10:47:12.5277671Z  * [new branch]      2022-3.x             -> origin/2022-3.x
+2026-11-27T10:47:12.5278001Z  * [new branch]      2022-main            -> origin/2022-main
+2026-11-27T10:47:12.5278382Z  * [new branch]      2022-main-tuanjie    -> origin/2022-main-tuanjie
+2026-11-27T10:47:12.5278800Z  * [new branch]      2023-main            -> origin/2023-main
+2026-11-27T10:47:12.5279071Z  * [new branch]      6000-main            -> origin/6000-main
+2026-11-27T10:47:12.5279389Z  * [new branch]      6000.3.x-main        -> origin/6000.3.x-main
+2026-11-27T10:47:12.5279737Z  * [new branch]      6000.5.x-main        -> origin/6000.5.x-main
+2026-11-27T10:47:12.5280173Z  * [new branch]      codex/assembly-shadow-m07 -> origin/codex/assembly-shadow-m07
+2026-11-27T10:47:12.5280698Z  * [new branch]      codex/assembly-shadow-r01b -> origin/codex/assembly-shadow-r01b
+2026-11-27T10:47:12.5281240Z  * [new branch]      codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1
+2026-11-27T10:47:12.5282033Z  * [new branch]      codex/assembly-shadow-smoke-20261020-primary-bootstrap-7fc6 -> origin/codex/assembly-shadow-smoke-20261020-primary-bootstrap-7fc6
+2026-11-27T10:47:12.5283007Z  * [new branch]      codex/assembly-shadow-smoke-20261022-owner-bootstrap-e4d739 -> origin/codex/assembly-shadow-smoke-20261022-owner-bootstrap-e4d739
+2026-11-27T10:47:12.5283944Z  * [new branch]      codex/assembly-shadow-smoke-20261026-primary-role-bb91 -> origin/codex/assembly-shadow-smoke-20261026-primary-role-bb91
+2026-11-27T10:47:12.5285210Z  * [new branch]      codex/assembly-shadow-smoke-20261029-owner-bootstrap-f78c21 -> origin/codex/assembly-shadow-smoke-20261029-owner-bootstrap-f78c21
+2026-11-27T10:47:12.5286486Z  * [new branch]      codex/assembly-shadow-smoke-20261102-primary-bootstrap-51b8 -> origin/codex/assembly-shadow-smoke-20261102-primary-bootstrap-51b8
+2026-11-27T10:47:12.5287475Z  * [new branch]      codex/assembly-shadow-smoke-20261103-role-bootstrap-6fca -> origin/codex/assembly-shadow-smoke-20261103-role-bootstrap-6fca
+2026-11-27T10:47:12.5288517Z  * [new branch]      codex/assembly-shadow-smoke-20261105-primary-owner-9b1e60 -> origin/codex/assembly-shadow-smoke-20261105-primary-owner-9b1e60
+2026-11-27T10:47:12.5289592Z  * [new branch]      codex/assembly-shadow-smoke-20261107-owner-bootstrap-2d7a91 -> origin/codex/assembly-shadow-smoke-20261107-owner-bootstrap-2d7a91
+2026-11-27T10:47:12.5290576Z  * [new branch]      codex/assembly-shadow-smoke-20261109-owner-role-e5f91c -> origin/codex/assembly-shadow-smoke-20261109-owner-role-e5f91c
+2026-11-27T10:47:12.5291679Z  * [new branch]      codex/assembly-shadow-smoke-20261109-primary-owner-81a42d -> origin/codex/assembly-shadow-smoke-20261109-primary-owner-81a42d
+2026-11-27T10:47:12.5292659Z  * [new branch]      codex/assembly-shadow-smoke-20261111-role-bootstrap-cc4d7b -> origin/codex/assembly-shadow-smoke-20261111-role-bootstrap-cc4d7b
+2026-11-27T10:47:12.5293709Z  * [new branch]      codex/assembly-shadow-smoke-20261112-owner-bootstrap-c7b42d -> origin/codex/assembly-shadow-smoke-20261112-owner-bootstrap-c7b42d
+2026-11-27T10:47:12.5294716Z  * [new branch]      codex/assembly-shadow-smoke-20261113-primary-bootstrap-62ed -> origin/codex/assembly-shadow-smoke-20261113-primary-bootstrap-62ed
+2026-11-27T10:47:12.5295894Z  * [new branch]      codex/assembly-shadow-smoke-20261116-primary-role-c8f2e4 -> origin/codex/assembly-shadow-smoke-20261116-primary-role-c8f2e4
+2026-11-27T10:47:12.5296741Z  * [new branch]      codex/assembly-shadow-smoke-20261117-primary-owner-a6f29e -> origin/codex/assembly-shadow-smoke-20261117-primary-owner-a6f29e
+2026-11-27T10:47:12.5297635Z  * [new branch]      codex/assembly-shadow-smoke-20261118-primary-owner-b6c914 -> origin/codex/assembly-shadow-smoke-20261118-primary-owner-b6c914
+2026-11-27T10:47:12.5298514Z  * [new branch]      codex/assembly-shadow-smoke-20261122-primary-owner-72b9a6 -> origin/codex/assembly-shadow-smoke-20261122-primary-owner-72b9a6
+2026-11-27T10:47:12.5299627Z  * [new branch]      codex/assembly-shadow-smoke-20261124-primary-bootstrap-27a6d4 -> origin/codex/assembly-shadow-smoke-20261124-primary-bootstrap-27a6d4
+2026-11-27T10:47:12.5300718Z  * [new branch]      codex/assembly-shadow-smoke-20261124-primary-owner-3f8d21 -> origin/codex/assembly-shadow-smoke-20261124-primary-owner-3f8d21
+2026-11-27T10:47:12.5301590Z  * [new branch]      codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0 -> origin/codex/assembly-shadow-smoke-20261125-primary-r5-a6fad0
+2026-11-27T10:47:12.5302407Z  * [new branch]      codex/connector-smoke-20260920-1947-pio -> origin/codex/connector-smoke-20260920-1947-pio
+2026-11-27T10:47:12.5302968Z  * [new branch]      codex/connector-smoke-20260925-pio-7f6d2a91 -> origin/codex/connector-smoke-20260925-pio-7f6d2a91
+2026-11-27T10:47:12.5303559Z  * [new branch]      codex/connector-smoke-20260926-r02-resume-b6e21f -> origin/codex/connector-smoke-20260926-r02-resume-b6e21f
+2026-11-27T10:47:12.5304155Z  * [new branch]      codex/connector-smoke-20261006-primary-r03 -> origin/codex/connector-smoke-20261006-primary-r03
+2026-11-27T10:47:12.5304765Z  * [new branch]      codex/connector-smoke-20261009-primary-owner-6c48 -> origin/codex/connector-smoke-20261009-primary-owner-6c48
+2026-11-27T10:47:12.5305398Z  * [new branch]      codex/connector-smoke-20261010-r03-runtime01-3f65 -> origin/codex/connector-smoke-20261010-r03-runtime01-3f65
+2026-11-27T10:47:12.5306178Z  * [new branch]      codex/connector-smoke-20261010-runtime01-9f53 -> origin/codex/connector-smoke-20261010-runtime01-9f53
+2026-11-27T10:47:12.5306912Z  * [new branch]      codex/connector-smoke-20261010-runtime01-c37e -> origin/codex/connector-smoke-20261010-runtime01-c37e
+2026-11-27T10:47:12.5307511Z  * [new branch]      codex/connector-smoke-20261012-primary-j-73af -> origin/codex/connector-smoke-20261012-primary-j-73af
+2026-11-27T10:47:12.5308272Z  * [new branch]      codex/connector-smoke-20261020-owned-physical-names -> origin/codex/connector-smoke-20261020-owned-physical-names
+2026-11-27T10:47:12.5309112Z  * [new branch]      codex/connector-smoke-20261020-physical-census -> origin/codex/connector-smoke-20261020-physical-census
+2026-11-27T10:47:12.5309871Z  * [new branch]      codex/connector-smoke-20261020-registry-writer -> origin/codex/connector-smoke-20261020-registry-writer
+2026-11-27T10:47:12.5310415Z  * [new branch]      codex/connector-smoke-i-response-6f02 -> origin/codex/connector-smoke-i-response-6f02
+2026-11-27T10:47:12.5310950Z  * [new branch]      codex/connector-smoke-l-review-20261012-52d9 -> origin/codex/connector-smoke-l-review-20261012-52d9
+2026-11-27T10:47:12.5311587Z  * [new branch]      codex/connector-smoke-m-native-20261013-bc71 -> origin/codex/connector-smoke-m-native-20261013-bc71
+2026-11-27T10:47:12.5312138Z  * [new branch]      codex/connector-smoke-primary-20260923-a -> origin/codex/connector-smoke-primary-20260923-a
+2026-11-27T10:47:12.5312731Z  * [new branch]      codex/connector-smoke-primary-20261015-6c928f -> origin/codex/connector-smoke-primary-20261015-6c928f
+2026-11-27T10:47:12.5313261Z  * [new branch]      codex/connector-smoke-r02-20260926-8e3a -> origin/codex/connector-smoke-r02-20260926-8e3a
+2026-11-27T10:47:12.5313771Z  * [new branch]      codex/connector-smoke-r02-h-20260928-b71c -> origin/codex/connector-smoke-r02-h-20260928-b71c
+2026-11-27T10:47:12.5314274Z  * [new branch]      codex/connector-smoke-r03-20260930-0054 -> origin/codex/connector-smoke-r03-20260930-0054
+2026-11-27T10:47:12.5314810Z  * [new branch]      codex/connector-smoke-r03-handoff-20260930-0717 -> origin/codex/connector-smoke-r03-handoff-20260930-0717
+2026-11-27T10:47:12.5315442Z  * [new branch]      codex/connector-smoke-r03-ir-20261008-resume-843ada13 -> origin/codex/connector-smoke-r03-ir-20261008-resume-843ada13
+2026-11-27T10:47:12.5316257Z  * [new branch]      codex/connector-smoke-r03-ir-fixture-20261009-2bc10701 -> origin/codex/connector-smoke-r03-ir-fixture-20261009-2bc10701
+2026-11-27T10:47:12.5316882Z  * [new branch]      codex/connector-smoke-r03-lf-20261002 -> origin/codex/connector-smoke-r03-lf-20261002
+2026-11-27T10:47:12.5317510Z  * [new branch]      codex/connector-smoke-r03-lg-20261002 -> origin/codex/connector-smoke-r03-lg-20261002
+2026-11-27T10:47:12.5318209Z  * [new branch]      codex/connector-smoke-r03-ln-20261005-2030 -> origin/codex/connector-smoke-r03-ln-20261005-2030
+2026-11-27T10:47:12.5318960Z  * [new branch]      codex/connector-smoke-r03-ln-20261005-final -> origin/codex/connector-smoke-r03-ln-20261005-final
+2026-11-27T10:47:12.5319720Z  * [new branch]      codex/connector-smoke-r03-lo-20261006-0917-5c8f -> origin/codex/connector-smoke-r03-lo-20261006-0917-5c8f
+2026-11-27T10:47:12.5320457Z  * [new branch]      codex/connector-smoke-r03-lo-20261006-8a2c6f91 -> origin/codex/connector-smoke-r03-lo-20261006-8a2c6f91
+2026-11-27T10:47:12.5321211Z  * [new branch]      codex/connector-smoke-r03-lo-20261006-g7c4 -> origin/codex/connector-smoke-r03-lo-20261006-g7c4
+2026-11-27T10:47:12.5321889Z  * [new branch]      codex/connector-smoke-r03-runtime-f -> origin/codex/connector-smoke-r03-runtime-f
+2026-11-27T10:47:12.5322753Z  * [new branch]      codex/connector-smoke-r03ir-20261009-terminal-primary -> origin/codex/connector-smoke-r03ir-20261009-terminal-primary
+2026-11-27T10:47:12.5323809Z  * [new branch]      codex/connector-smoke-serializer-20261014-6e42 -> origin/codex/connector-smoke-serializer-20261014-6e42
+2026-11-27T10:47:12.5324612Z  * [new branch]      codex/connector-write-smoke-20261019-b61f4a -> origin/codex/connector-write-smoke-20261019-b61f4a
+2026-11-27T10:47:12.5325806Z  * [new branch]      codex/connector-write-smoke-20261020-registryrevision -> origin/codex/connector-write-smoke-20261020-registryrevision
+2026-11-27T10:47:12.5326597Z  * [new branch]      codex/diag-serializer-20261014-6e42 -> origin/codex/diag-serializer-20261014-6e42
+2026-11-27T10:47:12.5327255Z  * [new branch]      codex/ir-r03-fix-20261008-034db097-smoke -> origin/codex/ir-r03-fix-20261008-034db097-smoke
+2026-11-27T10:47:12.5327852Z  * [new branch]      codex/ir-r03-fix-smoke-1cf87f82 -> origin/codex/ir-r03-fix-smoke-1cf87f82
+2026-11-27T10:47:12.5328522Z  * [new branch]      codex/ir-runtime01-native-20261010-a7e3 -> origin/codex/ir-runtime01-native-20261010-a7e3
+2026-11-27T10:47:12.5329124Z  * [new branch]      codex/n-return-primary-8c42 -> origin/codex/n-return-primary-8c42
+2026-11-27T10:47:12.5329776Z  * [new branch]      codex/o-tested-native-8c42 -> origin/codex/o-tested-native-8c42
+2026-11-27T10:47:12.5330384Z  * [new branch]      codex/owner-connector-smoke-20261019-346e8a -> origin/codex/owner-connector-smoke-20261019-346e8a
+2026-11-27T10:47:12.5331231Z  * [new branch]      codex/p1-execution-scalars-20261018 -> origin/codex/p1-execution-scalars-20261018
+2026-11-27T10:47:12.5331926Z  * [new branch]      codex/pio-connector-smoke-20261015-2036 -> origin/codex/pio-connector-smoke-20261015-2036
+2026-11-27T10:47:12.5332605Z  * [new branch]      codex/pio-epoch-smoke-20261016-8b67 -> origin/codex/pio-epoch-smoke-20261016-8b67
+2026-11-27T10:47:12.5333303Z  * [new branch]      codex/pio-live-general-smoke-20261018-r3 -> origin/codex/pio-live-general-smoke-20261018-r3
+2026-11-27T10:47:12.5334008Z  * [new branch]      codex/pio-smoke-20261016-firstuse-9b61 -> origin/codex/pio-smoke-20261016-firstuse-9b61
+2026-11-27T10:47:12.5334551Z  * [new branch]      codex/pio-smoke-execcensus-20261018-a7cd -> origin/codex/pio-smoke-execcensus-20261018-a7cd
+2026-11-27T10:47:12.5335070Z  * [new branch]      codex/pio-smoke-execscalar-20261018-7c26 -> origin/codex/pio-smoke-execscalar-20261018-7c26
+2026-11-27T10:47:12.5335830Z  * [new branch]      codex/pio-smoke-p1-general-composer-20261016-a4 -> origin/codex/pio-smoke-p1-general-composer-20261016-a4
+2026-11-27T10:47:12.5336328Z  * [new branch]      codex/primary-k-return-2e61 -> origin/codex/primary-k-return-2e61
+2026-11-27T10:47:12.5336709Z  * [new branch]      codex/primary-n-return-8f19 -> origin/codex/primary-n-return-8f19
+2026-11-27T10:47:12.5337127Z  * [new branch]      codex/r02-preparation-20260926-d248 -> origin/codex/r02-preparation-20260926-d248
+2026-11-27T10:47:12.5337656Z  * [new branch]      codex/smoke-d5b-window-20261120-il2cpp_plus-b01 -> origin/codex/smoke-d5b-window-20261120-il2cpp_plus-b01
+2026-11-27T10:47:12.5338198Z  * [new branch]      codex/smoke-r03-start-20260930-0624-b84e -> origin/codex/smoke-r03-start-20260930-0624-b84e
+2026-11-27T10:47:12.5338714Z  * [new branch]      codex/transport-smoke-20260920-bootstrap -> origin/codex/transport-smoke-20260920-bootstrap
+2026-11-27T10:47:12.5339153Z  * [new branch]      main                 -> origin/main
+2026-11-27T10:47:12.5339415Z  * [new tag]         2019-1.0.1-release   -> 2019-1.0.1-release
+2026-11-27T10:47:12.5339675Z  * [new tag]         2020-1.0.1-release   -> 2020-1.0.1-release
+2026-11-27T10:47:12.5339926Z  * [new tag]         2021-1.0.1-release   -> 2021-1.0.1-release
+2026-11-27T10:47:12.5340255Z  * [new tag]         assembly-shadow-m07-unity-assets -> assembly-shadow-m07-unity-assets
+2026-11-27T10:47:12.5340584Z  * [new tag]         v2019-1.0.0-rc       -> v2019-1.0.0-rc
+2026-11-27T10:47:12.5340834Z  * [new tag]         v2019-1.0.1-release  -> v2019-1.0.1-release
+2026-11-27T10:47:12.5341084Z  * [new tag]         v2019-2.0.0-rc       -> v2019-2.0.0-rc
+2026-11-27T10:47:12.5341320Z  * [new tag]         v2019-2.0.1          -> v2019-2.0.1
+2026-11-27T10:47:12.5341546Z  * [new tag]         v2019-2.1.0          -> v2019-2.1.0
+2026-11-27T10:47:12.5341768Z  * [new tag]         v2019-2.2.0          -> v2019-2.2.0
+2026-11-27T10:47:12.5341993Z  * [new tag]         v2019-5.0.0          -> v2019-5.0.0
+2026-11-27T10:47:12.5342225Z  * [new tag]         v2019-5.2.1          -> v2019-5.2.1
+2026-11-27T10:47:12.5342542Z  * [new tag]         v2019-5.3.0          -> v2019-5.3.0
+2026-11-27T10:47:12.5342773Z  * [new tag]         v2019-5.4.0          -> v2019-5.4.0
+2026-11-27T10:47:12.5342996Z  * [new tag]         v2019-6.0.0          -> v2019-6.0.0
+2026-11-27T10:47:12.5343216Z  * [new tag]         v2019-6.1.0          -> v2019-6.1.0
+2026-11-27T10:47:12.5343432Z  * [new tag]         v2019-6.3.0          -> v2019-6.3.0
+2026-11-27T10:47:12.5343647Z  * [new tag]         v2019-6.4.0          -> v2019-6.4.0
+2026-11-27T10:47:12.5343868Z  * [new tag]         v2019-6.5.0          -> v2019-6.5.0
+2026-11-27T10:47:12.5344089Z  * [new tag]         v2019-6.6.0          -> v2019-6.6.0
+2026-11-27T10:47:12.5344313Z  * [new tag]         v2019-6.7.0          -> v2019-6.7.0
+2026-11-27T10:47:12.5344531Z  * [new tag]         v2019-7.0.0          -> v2019-7.0.0
+2026-11-27T10:47:12.5344750Z  * [new tag]         v2019-7.3.0          -> v2019-7.3.0
+2026-11-27T10:47:12.5345025Z  * [new tag]         v2019-7.4.0          -> v2019-7.4.0
+2026-11-27T10:47:12.5345245Z  * [new tag]         v2019-7.6.0          -> v2019-7.6.0
+2026-11-27T10:47:12.5345464Z  * [new tag]         v2019-7.7.0          -> v2019-7.7.0
+2026-11-27T10:47:12.5345864Z  * [new tag]         v2019-7.8.0          -> v2019-7.8.0
+2026-11-27T10:47:12.5346088Z  * [new tag]         v2019-8.0.0          -> v2019-8.0.0
+2026-11-27T10:47:12.5346317Z  * [new tag]         v2019-8.1.0          -> v2019-8.1.0
+2026-11-27T10:47:12.5346543Z  * [new tag]         v2019-8.14.0         -> v2019-8.14.0
+2026-11-27T10:47:12.5346803Z  * [new tag]         v2019-8.9.0          -> v2019-8.9.0
+2026-11-27T10:47:12.5347046Z  * [new tag]         v2019.4.40-0.11.0    -> v2019.4.40-0.11.0
+2026-11-27T10:47:12.5347302Z  * [new tag]         v2020-1.0.0-rc       -> v2020-1.0.0-rc
+2026-11-27T10:47:12.5347548Z  * [new tag]         v2020-1.0.1-release  -> v2020-1.0.1-release
+2026-11-27T10:47:12.5347795Z  * [new tag]         v2020-2.0.0-rc       -> v2020-2.0.0-rc
+2026-11-27T10:47:12.5348033Z  * [new tag]         v2020-2.0.1          -> v2020-2.0.1
+2026-11-27T10:47:12.5348255Z  * [new tag]         v2020-2.0.2          -> v2020-2.0.2
+2026-11-27T10:47:12.5348479Z  * [new tag]         v2020-2.1.0          -> v2020-2.1.0
+2026-11-27T10:47:12.5348700Z  * [new tag]         v2020-2.2.0          -> v2020-2.2.0
+2026-11-27T10:47:12.5348924Z  * [new tag]         v2020-2.2.1          -> v2020-2.2.1
+2026-11-27T10:47:12.5349178Z  * [new tag]         v2020-3.0.0          -> v2020-3.0.0
+2026-11-27T10:47:12.5349404Z  * [new tag]         v2020-3.2.0          -> v2020-3.2.0
+2026-11-27T10:47:12.5349627Z  * [new tag]         v2020-3.3.0          -> v2020-3.3.0
+2026-11-27T10:47:12.5349847Z  * [new tag]         v2020-3.3.1          -> v2020-3.3.1
+2026-11-27T10:47:12.5350064Z  * [new tag]         v2020-3.3.2          -> v2020-3.3.2
+2026-11-27T10:47:12.5350289Z  * [new tag]         v2020-4.0.0          -> v2020-4.0.0
+2026-11-27T10:47:12.5350512Z  * [new tag]         v2020-4.0.1          -> v2020-4.0.1
+2026-11-27T10:47:12.5350739Z  * [new tag]         v2020-4.0.2          -> v2020-4.0.2
+2026-11-27T10:47:12.5350958Z  * [new tag]         v2020-4.0.3          -> v2020-4.0.3
+2026-11-27T10:47:12.5351190Z  * [new tag]         v2020-4.0.4          -> v2020-4.0.4
+2026-11-27T10:47:12.5351414Z  * [new tag]         v2020-4.0.7          -> v2020-4.0.7
+2026-11-27T10:47:12.5351637Z  * [new tag]         v2020-4.0.8          -> v2020-4.0.8
+2026-11-27T10:47:12.5351853Z  * [new tag]         v2020-5.0.0          -> v2020-5.0.0
+2026-11-27T10:47:12.5352066Z  * [new tag]         v2020-5.1.0          -> v2020-5.1.0
+2026-11-27T10:47:12.5352282Z  * [new tag]         v2020-5.2.1          -> v2020-5.2.1
+2026-11-27T10:47:12.5352502Z  * [new tag]         v2020-5.3.0          -> v2020-5.3.0
+2026-11-27T10:47:12.5352719Z  * [new tag]         v2020-5.4.0          -> v2020-5.4.0
+2026-11-27T10:47:12.5352938Z  * [new tag]         v2020-6.0.0          -> v2020-6.0.0
+2026-11-27T10:47:12.5353167Z  * [new tag]         v2020-6.1.0          -> v2020-6.1.0
+2026-11-27T10:47:12.5353448Z  * [new tag]         v2020-6.3.0          -> v2020-6.3.0
+2026-11-27T10:47:12.5353670Z  * [new tag]         v2020-6.4.0          -> v2020-6.4.0
+2026-11-27T10:47:12.5353890Z  * [new tag]         v2020-6.5.0          -> v2020-6.5.0
+2026-11-27T10:47:12.5354109Z  * [new tag]         v2020-6.6.0          -> v2020-6.6.0
+2026-11-27T10:47:12.5354379Z  * [new tag]         v2020-6.7.0          -> v2020-6.7.0
+2026-11-27T10:47:12.5354599Z  * [new tag]         v2020-7.0.0          -> v2020-7.0.0
+2026-11-27T10:47:12.5354818Z  * [new tag]         v2020-7.3.0          -> v2020-7.3.0
+2026-11-27T10:47:12.5355045Z  * [new tag]         v2020-7.4.0          -> v2020-7.4.0
+2026-11-27T10:47:12.5355265Z  * [new tag]         v2020-7.6.0          -> v2020-7.6.0
+2026-11-27T10:47:12.5355485Z  * [new tag]         v2020-7.7.0          -> v2020-7.7.0
+2026-11-27T10:47:12.5355859Z  * [new tag]         v2020-7.8.0          -> v2020-7.8.0
+2026-11-27T10:47:12.5356138Z  * [new tag]         v2020-8.0.0          -> v2020-8.0.0
+2026-11-27T10:47:12.5356366Z  * [new tag]         v2020-8.1.0          -> v2020-8.1.0
+2026-11-27T10:47:12.5356596Z  * [new tag]         v2020-8.14.0         -> v2020-8.14.0
+2026-11-27T10:47:12.5356822Z  * [new tag]         v2020-8.9.0          -> v2020-8.9.0
+2026-11-27T10:47:12.5357056Z  * [new tag]         v2020.3.33-0.11.0    -> v2020.3.33-0.11.0
+2026-11-27T10:47:12.5357308Z  * [new tag]         v2021-1.0.0-rc       -> v2021-1.0.0-rc
+2026-11-27T10:47:12.5357558Z  * [new tag]         v2021-1.0.1-release  -> v2021-1.0.1-release
+2026-11-27T10:47:12.5357809Z  * [new tag]         v2021-2.0.0-rc       -> v2021-2.0.0-rc
+2026-11-27T10:47:12.5358042Z  * [new tag]         v2021-2.0.1          -> v2021-2.0.1
+2026-11-27T10:47:12.5358260Z  * [new tag]         v2021-2.0.2          -> v2021-2.0.2
+2026-11-27T10:47:12.5358481Z  * [new tag]         v2021-2.1.0          -> v2021-2.1.0
+2026-11-27T10:47:12.5358701Z  * [new tag]         v2021-2.2.0          -> v2021-2.2.0
+2026-11-27T10:47:12.5358926Z  * [new tag]         v2021-2.2.1          -> v2021-2.2.1
+2026-11-27T10:47:12.5359157Z  * [new tag]         v2021-3.0.0          -> v2021-3.0.0
+2026-11-27T10:47:12.5359379Z  * [new tag]         v2021-3.0.1          -> v2021-3.0.1
+2026-11-27T10:47:12.5359582Z  * [new tag]         v2021-3.0.2          -> v2021-3.0.2
+2026-11-27T10:47:12.5359791Z  * [new tag]         v2021-3.1.0          -> v2021-3.1.0
+2026-11-27T10:47:12.5360010Z  * [new tag]         v2021-3.2.0          -> v2021-3.2.0
+2026-11-27T10:47:12.5360254Z  * [new tag]         v2021-3.3.0          -> v2021-3.3.0
+2026-11-27T10:47:12.5360475Z  * [new tag]         v2021-3.3.1          -> v2021-3.3.1
+2026-11-27T10:47:12.5360696Z  * [new tag]         v2021-3.3.2          -> v2021-3.3.2
+2026-11-27T10:47:12.5360916Z  * [new tag]         v2021-4.0.0          -> v2021-4.0.0
+2026-11-27T10:47:12.5361150Z  * [new tag]         v2021-4.0.1          -> v2021-4.0.1
+2026-11-27T10:47:12.5361432Z  * [new tag]         v2021-4.0.2          -> v2021-4.0.2
+2026-11-27T10:47:12.5361712Z  * [new tag]         v2021-4.0.3          -> v2021-4.0.3
+2026-11-27T10:47:12.5361986Z  * [new tag]         v2021-4.0.4          -> v2021-4.0.4
+2026-11-27T10:47:12.5362253Z  * [new tag]         v2021-4.0.5          -> v2021-4.0.5
+2026-11-27T10:47:12.5362536Z  * [new tag]         v2021-4.0.7          -> v2021-4.0.7
+2026-11-27T10:47:12.5362840Z  * [new tag]         v2021-4.0.8          -> v2021-4.0.8
+2026-11-27T10:47:12.5363137Z  * [new tag]         v2021-5.0.0          -> v2021-5.0.0
+2026-11-27T10:47:12.5363457Z  * [new tag]         v2021-5.1.0          -> v2021-5.1.0
+2026-11-27T10:47:12.5363840Z  * [new tag]         v2021-5.2.1          -> v2021-5.2.1
+2026-11-27T10:47:12.5364162Z  * [new tag]         v2021-5.3.0          -> v2021-5.3.0
+2026-11-27T10:47:12.5364482Z  * [new tag]         v2021-5.4.0          -> v2021-5.4.0
+2026-11-27T10:47:12.5364772Z  * [new tag]         v2021-6.0.0          -> v2021-6.0.0
+2026-11-27T10:47:12.5365074Z  * [new tag]         v2021-6.1.0          -> v2021-6.1.0
+2026-11-27T10:47:12.5365368Z  * [new tag]         v2021-6.2.0          -> v2021-6.2.0
+2026-11-27T10:47:12.5365955Z  * [new tag]         v2021-6.3.0          -> v2021-6.3.0
+2026-11-27T10:47:12.5366236Z  * [new tag]         v2021-6.4.0          -> v2021-6.4.0
+2026-11-27T10:47:12.5366522Z  * [new tag]         v2021-6.6.0          -> v2021-6.6.0
+2026-11-27T10:47:12.5366803Z  * [new tag]         v2021-6.7.0          -> v2021-6.7.0
+2026-11-27T10:47:12.5367102Z  * [new tag]         v2021-6.9.0          -> v2021-6.9.0
+2026-11-27T10:47:12.5367394Z  * [new tag]         v2021-7.0.0          -> v2021-7.0.0
+2026-11-27T10:47:12.5367659Z  * [new tag]         v2021-7.3.0          -> v2021-7.3.0
+2026-11-27T10:47:12.5367938Z  * [new tag]         v2021-7.4.0          -> v2021-7.4.0
+2026-11-27T10:47:12.5368275Z  * [new tag]         v2021-7.6.0          -> v2021-7.6.0
+2026-11-27T10:47:12.5368606Z  * [new tag]         v2021-7.7.0          -> v2021-7.7.0
+2026-11-27T10:47:12.5368945Z  * [new tag]         v2021-7.8.0          -> v2021-7.8.0
+2026-11-27T10:47:12.5369340Z  * [new tag]         v2021-8.0.0          -> v2021-8.0.0
+2026-11-27T10:47:12.5369650Z  * [new tag]         v2021-8.1.0          -> v2021-8.1.0
+2026-11-27T10:47:12.5369944Z  * [new tag]         v2021-8.14.0         -> v2021-8.14.0
+2026-11-27T10:47:12.5370250Z  * [new tag]         v2021.3.1-0.11.0     -> v2021.3.1-0.11.0
+2026-11-27T10:47:12.5370550Z  * [new tag]         v2022-3.0.0          -> v2022-3.0.0
+2026-11-27T10:47:12.5370837Z  * [new tag]         v2022-3.0.1          -> v2022-3.0.1
+2026-11-27T10:47:12.5371158Z  * [new tag]         v2022-3.0.2          -> v2022-3.0.2
+2026-11-27T10:47:12.5371409Z  * [new tag]         v2022-3.1.0          -> v2022-3.1.0
+2026-11-27T10:47:12.5371646Z  * [new tag]         v2022-3.2.0          -> v2022-3.2.0
+2026-11-27T10:47:12.5371873Z  * [new tag]         v2022-3.3.0          -> v2022-3.3.0
+2026-11-27T10:47:12.5372101Z  * [new tag]         v2022-3.3.1          -> v2022-3.3.1
+2026-11-27T10:47:12.5372330Z  * [new tag]         v2022-3.3.2          -> v2022-3.3.2
+2026-11-27T10:47:12.5372564Z  * [new tag]         v2022-3.3.3          -> v2022-3.3.3
+2026-11-27T10:47:12.5372794Z  * [new tag]         v2022-4.0.0          -> v2022-4.0.0
+2026-11-27T10:47:12.5373027Z  * [new tag]         v2022-4.0.1          -> v2022-4.0.1
+2026-11-27T10:47:12.5373258Z  * [new tag]         v2022-4.0.2          -> v2022-4.0.2
+2026-11-27T10:47:12.5373499Z  * [new tag]         v2022-4.0.3          -> v2022-4.0.3
+2026-11-27T10:47:12.5373725Z  * [new tag]         v2022-4.0.4          -> v2022-4.0.4
+2026-11-27T10:47:12.5373959Z  * [new tag]         v2022-4.0.5          -> v2022-4.0.5
+2026-11-27T10:47:12.5374190Z  * [new tag]         v2022-4.0.6          -> v2022-4.0.6
+2026-11-27T10:47:12.5374417Z  * [new tag]         v2022-4.0.7          -> v2022-4.0.7
+2026-11-27T10:47:12.5374646Z  * [new tag]         v2022-4.0.8          -> v2022-4.0.8
+2026-11-27T10:47:12.5374872Z  * [new tag]         v2022-5.0.0          -> v2022-5.0.0
+2026-11-27T10:47:12.5375102Z  * [new tag]         v2022-5.1.0          -> v2022-5.1.0
+2026-11-27T10:47:12.5375337Z  * [new tag]         v2022-5.2.0          -> v2022-5.2.0
+2026-11-27T10:47:12.5375723Z  * [new tag]         v2022-5.2.1          -> v2022-5.2.1
+2026-11-27T10:47:12.5375961Z  * [new tag]         v2022-5.3.0          -> v2022-5.3.0
+2026-11-27T10:47:12.5376182Z  * [new tag]         v2022-5.4.0          -> v2022-5.4.0
+2026-11-27T10:47:12.5376401Z  * [new tag]         v2022-6.0.0          -> v2022-6.0.0
+2026-11-27T10:47:12.5376622Z  * [new tag]         v2022-6.1.0          -> v2022-6.1.0
+2026-11-27T10:47:12.5376861Z  * [new tag]         v2022-6.11.0         -> v2022-6.11.0
+2026-11-27T10:47:12.5377151Z  * [new tag]         v2022-6.3.0          -> v2022-6.3.0
+2026-11-27T10:47:12.5377439Z  * [new tag]         v2022-6.4.0          -> v2022-6.4.0
+2026-11-27T10:47:12.5377731Z  * [new tag]         v2022-6.6.0          -> v2022-6.6.0
+2026-11-27T10:47:12.5378033Z  * [new tag]         v2022-6.7.0          -> v2022-6.7.0
+2026-11-27T10:47:12.5378354Z  * [new tag]         v2022-6.9.0          -> v2022-6.9.0
+2026-11-27T10:47:12.5378828Z  * [new tag]         v2022-7.0.0          -> v2022-7.0.0
+2026-11-27T10:47:12.5379106Z  * [new tag]         v2022-7.2.0          -> v2022-7.2.0
+2026-11-27T10:47:12.5379334Z  * [new tag]         v2022-7.4.0          -> v2022-7.4.0
+2026-11-27T10:47:12.5379559Z  * [new tag]         v2022-7.7.0          -> v2022-7.7.0
+2026-11-27T10:47:12.5379784Z  * [new tag]         v2022-7.8.0          -> v2022-7.8.0
+2026-11-27T10:47:12.5380007Z  * [new tag]         v2022-8.0.0          -> v2022-8.0.0
+2026-11-27T10:47:12.5380289Z  * [new tag]         v2022-8.1.0          -> v2022-8.1.0
+2026-11-27T10:47:12.5380557Z  * [new tag]         v2022-8.11.0         -> v2022-8.11.0
+2026-11-27T10:47:12.5380842Z  * [new tag]         v2022-8.14.0         -> v2022-8.14.0
+2026-11-27T10:47:12.5381111Z  * [new tag]         v2022-8.2.0          -> v2022-8.2.0
+2026-11-27T10:47:12.5381415Z  * [new tag]         v2022-tuanjie-5.2.0  -> v2022-tuanjie-5.2.0
+2026-11-27T10:47:12.5381812Z  * [new tag]         v2022-tuanjie-5.2.1  -> v2022-tuanjie-5.2.1
+2026-11-27T10:47:12.5382166Z  * [new tag]         v2022-tuanjie-5.3.0  -> v2022-tuanjie-5.3.0
+2026-11-27T10:47:12.5382545Z  * [new tag]         v2022-tuanjie-5.4.0  -> v2022-tuanjie-5.4.0
+2026-11-27T10:47:12.5382933Z  * [new tag]         v2022-tuanjie-6.0.0  -> v2022-tuanjie-6.0.0
+2026-11-27T10:47:12.5383316Z  * [new tag]         v2022-tuanjie-6.1.0  -> v2022-tuanjie-6.1.0
+2026-11-27T10:47:12.5383661Z  * [new tag]         v2022-tuanjie-6.10.0 -> v2022-tuanjie-6.10.0
+2026-11-27T10:47:12.5384052Z  * [new tag]         v2022-tuanjie-6.11.0 -> v2022-tuanjie-6.11.0
+2026-11-27T10:47:12.5384455Z  * [new tag]         v2022-tuanjie-6.3.0  -> v2022-tuanjie-6.3.0
+2026-11-27T10:47:12.5384853Z  * [new tag]         v2022-tuanjie-6.4.0  -> v2022-tuanjie-6.4.0
+2026-11-27T10:47:12.5385218Z  * [new tag]         v2022-tuanjie-6.6.0  -> v2022-tuanjie-6.6.0
+2026-11-27T10:47:12.5385746Z  * [new tag]         v2022-tuanjie-6.7.0  -> v2022-tuanjie-6.7.0
+2026-11-27T10:47:12.5386136Z  * [new tag]         v2022-tuanjie-6.9.0  -> v2022-tuanjie-6.9.0
+2026-11-27T10:47:12.5386482Z  * [new tag]         v2022-tuanjie-7.0.0  -> v2022-tuanjie-7.0.0
+2026-11-27T10:47:12.5386841Z  * [new tag]         v2022-tuanjie-7.1.0  -> v2022-tuanjie-7.1.0
+2026-11-27T10:47:12.5387219Z  * [new tag]         v2022-tuanjie-7.10.0 -> v2022-tuanjie-7.10.0
+2026-11-27T10:47:12.5387547Z  * [new tag]         v2022-tuanjie-7.4.0  -> v2022-tuanjie-7.4.0
+2026-11-27T10:47:12.5387911Z  * [new tag]         v2022-tuanjie-7.7.0  -> v2022-tuanjie-7.7.0
+2026-11-27T10:47:12.5388294Z  * [new tag]         v2022-tuanjie-7.8.0  -> v2022-tuanjie-7.8.0
+2026-11-27T10:47:12.5388674Z  * [new tag]         v2022-tuanjie-8.0.0  -> v2022-tuanjie-8.0.0
+2026-11-27T10:47:12.5389031Z  * [new tag]         v2022-tuanjie-8.1.0  -> v2022-tuanjie-8.1.0
+2026-11-27T10:47:12.5389384Z  * [new tag]         v2022-tuanjie-8.11.0 -> v2022-tuanjie-8.11.0
+2026-11-27T10:47:12.5389760Z  * [new tag]         v2022-tuanjie-8.13.0 -> v2022-tuanjie-8.13.0
+2026-11-27T10:47:12.5390091Z  * [new tag]         v2022-tuanjie-8.14.0 -> v2022-tuanjie-8.14.0
+2026-11-27T10:47:12.5390365Z  * [new tag]         v2022-tuanjie-8.3.0  -> v2022-tuanjie-8.3.0
+2026-11-27T10:47:12.5390624Z  * [new tag]         v2022-tuanjie-8.6.0  -> v2022-tuanjie-8.6.0
+2026-11-27T10:47:12.5390880Z  * [new tag]         v2022-tuanjie-8.7.0  -> v2022-tuanjie-8.7.0
+2026-11-27T10:47:12.5391136Z  * [new tag]         v2022-tuanjie-8.8.0  -> v2022-tuanjie-8.8.0
+2026-11-27T10:47:12.5391393Z  * [new tag]         v2022-tuanjie-8.9.0  -> v2022-tuanjie-8.9.0
+2026-11-27T10:47:12.5391644Z  * [new tag]         v2023-6.0.0          -> v2023-6.0.0
+2026-11-27T10:47:12.5391878Z  * [new tag]         v2023-7.4.0          -> v2023-7.4.0
+2026-11-27T10:47:12.5392152Z  * [new tag]         v2023-7.7.0          -> v2023-7.7.0
+2026-11-27T10:47:12.5392418Z  * [new tag]         v2023-7.8.0          -> v2023-7.8.0
+2026-11-27T10:47:12.5392695Z  * [new tag]         v2023-8.0.0          -> v2023-8.0.0
+2026-11-27T10:47:12.5392964Z  * [new tag]         v2023-8.1.0          -> v2023-8.1.0
+2026-11-27T10:47:12.5393294Z  * [new tag]         v6000-6.0.0          -> v6000-6.0.0
+2026-11-27T10:47:12.5393522Z  * [new tag]         v6000-6.1.0          -> v6000-6.1.0
+2026-11-27T10:47:12.5393751Z  * [new tag]         v6000-6.3.0          -> v6000-6.3.0
+2026-11-27T10:47:12.5393976Z  * [new tag]         v6000-6.4.0          -> v6000-6.4.0
+2026-11-27T10:47:12.5394198Z  * [new tag]         v6000-6.5.0          -> v6000-6.5.0
+2026-11-27T10:47:12.5394422Z  * [new tag]         v6000-6.6.0          -> v6000-6.6.0
+2026-11-27T10:47:12.5394649Z  * [new tag]         v6000-6.7.0          -> v6000-6.7.0
+2026-11-27T10:47:12.5394873Z  * [new tag]         v6000-6.9.0          -> v6000-6.9.0
+2026-11-27T10:47:12.5395100Z  * [new tag]         v6000-7.0.0          -> v6000-7.0.0
+2026-11-27T10:47:12.5395325Z  * [new tag]         v6000-7.2.0          -> v6000-7.2.0
+2026-11-27T10:47:12.5395714Z  * [new tag]         v6000-7.4.0          -> v6000-7.4.0
+2026-11-27T10:47:12.5396059Z  * [new tag]         v6000-7.7.0          -> v6000-7.7.0
+2026-11-27T10:47:12.5396309Z  * [new tag]         v6000-7.8.0          -> v6000-7.8.0
+2026-11-27T10:47:12.5396534Z  * [new tag]         v6000-7.9.0          -> v6000-7.9.0
+2026-11-27T10:47:12.5396756Z  * [new tag]         v6000-8.0.0          -> v6000-8.0.0
+2026-11-27T10:47:12.5396978Z  * [new tag]         v6000-8.1.0          -> v6000-8.1.0
+2026-11-27T10:47:12.5397203Z  * [new tag]         v6000-8.11.0         -> v6000-8.11.0
+2026-11-27T10:47:12.5397432Z  * [new tag]         v6000-8.13.0         -> v6000-8.13.0
+2026-11-27T10:47:12.5397657Z  * [new tag]         v6000-8.14.0         -> v6000-8.14.0
+2026-11-27T10:47:12.5397887Z  * [new tag]         v6000-8.7.0          -> v6000-8.7.0
+2026-11-27T10:47:12.5398119Z  * [new tag]         v6000.3.x-8.11.0     -> v6000.3.x-8.11.0
+2026-11-27T10:47:12.5398363Z  * [new tag]         v6000.3.x-8.13.0     -> v6000.3.x-8.13.0
+2026-11-27T10:47:12.5398609Z  * [new tag]         v6000.3.x-8.14.0     -> v6000.3.x-8.14.0
+2026-11-27T10:47:12.5398850Z  * [new tag]         v6000.3.x-8.8.0      -> v6000.3.x-8.8.0
+2026-11-27T10:47:12.5399096Z  * [new tag]         v6000.3.x-8.9.0      -> v6000.3.x-8.9.0
+2026-11-27T10:47:12.5399337Z  * [new tag]         v6000.5.x-8.14.0     -> v6000.5.x-8.14.0
+2026-11-27T10:47:12.5400064Z [command]/usr/bin/git rev-parse --verify --quiet 1268dd417ffe9090fcd9ea2d49542c97ed3cccb3^{object}
+2026-11-27T10:47:12.5400420Z 1268dd417ffe9090fcd9ea2d49542c97ed3cccb3
+2026-11-27T10:47:12.5400985Z ##[endgroup]
+2026-11-27T10:47:12.5401258Z ##[group]Determining the checkout info
+2026-11-27T10:47:12.5401544Z ##[endgroup]
+2026-11-27T10:47:12.5401718Z [command]/usr/bin/git sparse-checkout disable
+2026-11-27T10:47:12.5402205Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-27T10:47:12.5417748Z ##[group]Checking out the ref
+2026-11-27T10:47:12.5421052Z [command]/usr/bin/git checkout --progress --force 1268dd417ffe9090fcd9ea2d49542c97ed3cccb3
+2026-11-27T10:47:12.5911873Z Note: switching to '1268dd417ffe9090fcd9ea2d49542c97ed3cccb3'.
+2026-11-27T10:47:12.5912171Z 
+2026-11-27T10:47:12.5912393Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-27T10:47:12.5912840Z changes and commit them, and you can discard any commits you make in this
+2026-11-27T10:47:12.5913289Z state without impacting any branches by switching back to a branch.
+2026-11-27T10:47:12.5913521Z 
+2026-11-27T10:47:12.5913699Z If you want to create a new branch to retain commits you create, you may
+2026-11-27T10:47:12.5914081Z do so (now or later) by using -c with the switch command. Example:
+2026-11-27T10:47:12.5914296Z 
+2026-11-27T10:47:12.5914415Z   git switch -c <new-branch-name>
+2026-11-27T10:47:12.5914598Z 
+2026-11-27T10:47:12.5914699Z Or undo this operation with:
+2026-11-27T10:47:12.5914862Z 
+2026-11-27T10:47:12.5914943Z   git switch -
+2026-11-27T10:47:12.5915068Z 
+2026-11-27T10:47:12.5915298Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-27T10:47:12.5915806Z 
+2026-11-27T10:47:12.5916310Z HEAD is now at 1268dd4 C10 RR5: record terminal-policy entry and bind completion to exact worker
+2026-11-27T10:47:12.5919817Z ##[endgroup]
+2026-11-27T10:47:12.5955280Z [command]/usr/bin/git log -1 --format=%H
+2026-11-27T10:47:12.5975513Z 1268dd417ffe9090fcd9ea2d49542c97ed3cccb3
+2026-11-27T10:47:12.5982810Z ##[group]Removing auth
+2026-11-27T10:47:12.5985883Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-27T10:47:12.6012467Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-27T10:47:12.6169662Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-27T10:47:12.6187998Z http.https://github.com/.extraheader
+2026-11-27T10:47:12.6192619Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-27T10:47:12.6218512Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-27T10:47:12.6371198Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-27T10:47:12.6395332Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-27T10:47:12.6543200Z ##[endgroup]
+2026-11-27T10:47:12.6638236Z ##[group]Run set -euo pipefail
+2026-11-27T10:47:12.6638479Z [36;1mset -euo pipefail[0m
+2026-11-27T10:47:12.6638701Z [36;1mtool=_demo/Tools/AssemblyShadow/R03IR/D5Local[0m
+2026-11-27T10:47:12.6639034Z [36;1mpython3 -I -S -B "$tool/integration_d5b_identity_configuration.py" -v 2>&1 |[0m
+2026-11-27T10:47:12.6639420Z [36;1m  tee "$RUNNER_TEMP/d5b-ap6-composition-integration-tests.log"[0m
+2026-11-27T10:47:12.6639806Z [36;1mgrep -q 'Ran 1 test in' "$RUNNER_TEMP/d5b-ap6-composition-integration-tests.log"[0m
+2026-11-27T10:47:12.6640219Z [36;1mgrep -q '^OK$' "$RUNNER_TEMP/d5b-ap6-composition-integration-tests.log"[0m
+2026-11-27T10:47:12.6641371Z [36;1mecho '{"schema":"R03D5BIdentityConfigurationIntegrationSourceHostV1","integrationTests":1,"fixedAP1SiblingSources":true,"privateFileTransportOnly":true,"realAP5AndAP4Observers":true,"productionHttpsReachabilityQualified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlySequentialIdentityConfigurationTestsPassed"}'[0m
+2026-11-27T10:47:12.6667308Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-27T10:47:12.6667558Z env:
+2026-11-27T10:47:12.6667760Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:12.6668072Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-27T10:47:12.6668378Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:12.6668651Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:12.6668937Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:12.6669214Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-27T10:47:12.6669464Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-27T10:47:12.6669650Z   GIT_TERMINAL_PROMPT: 0
+2026-11-27T10:47:12.6669922Z   AP6_PINNED_SIBLINGS: /home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings
+2026-11-27T10:47:12.6670214Z ##[endgroup]
+2026-11-27T10:47:15.3437947Z test_real_pinned_sources_and_unchanged_helpers_compose (__main__.D5BIdentityConfigurationPinnedSources.test_real_pinned_sources_and_unchanged_helpers_compose) ... 
+2026-11-27T10:47:15.3450812Z {"actualAP1SiblingPins": {"hybridclr": "c3c232023724cbad565b85e9b2c3beea8ce2789a", "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de", "il2cpp_plus": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3"}, "closedAuthority": {"D5BLocalExecution": "NotAuthorized", "D5LocalValidation": "NotAuthorized", "H2Passed": false, "R03Accepted": false, "ReadyForHumanReviewGate": false, "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION", "allowNativeBuild": false, "allowPlayerLaunch": false, "approvedEnvelopeGitBlob": null, "executionAuthorityVerified": false, "explicitUserLocalApproval": "NotAuthorized", "independentlyReviewedExecutableAdmission": "Pending"}, "completedRealAP4Consumers": ["d5b_local_admission.read_plan", "d5b_rr5_source_preflight.checked_profile"], "fileRefCalls": [{"actualTransport": "file", "head": "b826f155ddfae8356c30e3d717d93de3ca26a270", "pass": "before", "ref": "refs/heads/codex/assembly-shadow-r01b-h1", "repository": "night-outlook/hybridclr_demo", "role": "hybridclr_demo"}, {"actualTransport": "file", "head": "c3c232023724cbad565b85e9b2c3beea8ce2789a", "pass": "before", "ref": "refs/heads/codex/assembly-shadow-r01b-h1", "repository": "night-outlook/hybridclr", "role": "hybridclr"}, {"actualTransport": "file", "head": "948c0e3b4f8891481301770115e8ba4945eea6de", "pass": "before", "ref": "refs/heads/codex/assembly-shadow-r01b-h1", "repository": "night-outlook/hybridclr_unity", "role": "hybridclr_unity"}, {"actualTransport": "file", "head": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3", "pass": "before", "ref": "refs/heads/codex/assembly-shadow-r01b-h1", "repository": "night-outlook/il2cpp_plus", "role": "il2cpp_plus"}, {"actualTransport": "file", "head": "05ca23fbb43f2c206952f7f17c191721c87a65ea", "pass": "before", "ref": "refs/heads/codex/ap6-fixture", "repository": "night-outlook/hybridclr_demo", "role": "runner"}, {"actualTransport": "file", "head": "b826f155ddfae8356c30e3d717d93de3ca26a270", "pass": "after", "ref": "refs/heads/codex/assembly-shadow-r01b-h1", "repository": "night-outlook/hybridclr_demo", "role": "hybridclr_demo"}, {"actualTransport": "file", "head": "c3c232023724cbad565b85e9b2c3beea8ce2789a", "pass": "after", "ref": "refs/heads/codex/assembly-shadow-r01b-h1", "repository": "night-outlook/hybridclr", "role": "hybridclr"}, {"actualTransport": "file", "head": "948c0e3b4f8891481301770115e8ba4945eea6de", "pass": "after", "ref": "refs/heads/codex/assembly-shadow-r01b-h1", "repository": "night-outlook/hybridclr_unity", "role": "hybridclr_unity"}, {"actualTransport": "file", "head": "1268dd417ffe9090fcd9ea2d49542c97ed3cccb3", "pass": "after", "ref": "refs/heads/codex/assembly-shadow-r01b-h1", "repository": "night-outlook/il2cpp_plus", "role": "il2cpp_plus"}, {"actualTransport": "file", "head": "05ca23fbb43f2c206952f7f17c191721c87a65ea", "pass": "after", "ref": "refs/heads/codex/ap6-fixture", "repository": "night-outlook/hybridclr_demo", "role": "runner"}], "fixedAP1SiblingPinsMatched": true, "fixtureDemoH": "b826f155ddfae8356c30e3d717d93de3ca26a270", "fixtureRunnerA": "05ca23fbb43f2c206952f7f17c191721c87a65ea", "kind": "R03AP6PinnedSourceIntegrationReceiptV1", "observationDoublesUsed": false, "privateAP5FileTransportOnly": true, "productionHttpsExercised": false, "proposalFieldsMatched": true, "realAP4PublicAPIUsed": true, "realAP5PublicAPIUsed": true, "result": "IdentityConfigurationObserved_NoExecutionAuthority", "schemaVersion": 1, "sharedObservationsMatched": true, "stageCallsCompleted": ["identity", "configuration"], "systemGit": {"path": "/bin/git", "version": "git version 2.56.1"}}
+2026-11-27T10:47:15.3680575Z ok
+2026-11-27T10:47:15.3680834Z 
+2026-11-27T10:47:15.3681132Z ----------------------------------------------------------------------
+2026-11-27T10:47:15.3681711Z Ran 1 test in 2.593s
+2026-11-27T10:47:15.3681925Z 
+2026-11-27T10:47:15.3682051Z OK
+2026-11-27T10:47:15.3881244Z {"schema":"R03D5BIdentityConfigurationIntegrationSourceHostV1","integrationTests":1,"fixedAP1SiblingSources":true,"privateFileTransportOnly":true,"realAP5AndAP4Observers":true,"productionHttpsReachabilityQualified":false,"executionAuthority":false,"UnityOrPlayerExecuted":false,"result":"SourceOnlySequentialIdentityConfigurationTestsPassed"}
+2026-11-27T10:47:15.3909491Z ##[group]Run set -euo pipefail
+2026-11-27T10:47:15.3909852Z [36;1mset -euo pipefail[0m
+2026-11-27T10:47:15.3910185Z [36;1mtool=_demo/Tools/AssemblyShadow/R03IR/D5Local[0m
+2026-11-27T10:47:15.3910547Z [36;1mset +e[0m
+2026-11-27T10:47:15.3910796Z [36;1mpython3 -B "$tool/run_d5_local.py" \[0m
+2026-11-27T10:47:15.3911127Z [36;1m  --mode execute \[0m
+2026-11-27T10:47:15.3911552Z [36;1m  --approved-envelope "$RUNNER_TEMP/unapproved-d5b-envelope.json" \[0m
+2026-11-27T10:47:15.3912043Z [36;1m  > "$RUNNER_TEMP/blocked-execution.json"[0m
+2026-11-27T10:47:15.3912378Z [36;1mcode=$?[0m
+2026-11-27T10:47:15.3912597Z [36;1mset -e[0m
+2026-11-27T10:47:15.3912829Z [36;1mtest "$code" -eq 2[0m
+2026-11-27T10:47:15.3913231Z [36;1mgrep -q '"result": "NotAuthorized"' "$RUNNER_TEMP/blocked-execution.json"[0m
+2026-11-27T10:47:15.3913844Z [36;1mgrep -q '"WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION"' "$RUNNER_TEMP/blocked-execution.json"[0m
+2026-11-27T10:47:15.3914545Z [36;1mgrep -q '"outputCreated": false' "$RUNNER_TEMP/blocked-execution.json"[0m
+2026-11-27T10:47:15.3915058Z [36;1mtest ! -e "$RUNNER_TEMP/unapproved-d5b-envelope.json"[0m
+2026-11-27T10:47:15.3915925Z [36;1mcat "$RUNNER_TEMP/blocked-execution.json"[0m
+2026-11-27T10:47:15.3916918Z [36;1mecho '{"schema":"R03D5BLocalAdmissionSourceHostV1","sourceTests":94,"approvedEnvelope":false,"localExecution":false,"unityOrPlayer":false,"R03Accepted":false,"result":"SourceOnlyDeniedLocalExecution"}'[0m
+2026-11-27T10:47:15.3950820Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-27T10:47:15.3951084Z env:
+2026-11-27T10:47:15.3951292Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:15.3951710Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-27T10:47:15.3952015Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:15.3952294Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:15.3952575Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-27T10:47:15.3952850Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-27T10:47:15.3953106Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-27T10:47:15.3953293Z ##[endgroup]
+2026-11-27T10:47:15.4432953Z {"D5BLocalExecution": "NotAuthorized", "R03Accepted": false, "WEB_TO_LOCAL": "CLOSED_NO_LOCAL_EXECUTION", "kind": "R03D5BLocalAdmissionFailureV1", "outputCreated": false, "reason": "D5-B Local execution is not authorized", "result": "NotAuthorized", "retryAllowed": false, "schemaVersion": 1}
+2026-11-27T10:47:15.4434284Z {"schema":"R03D5BLocalAdmissionSourceHostV1","sourceTests":94,"approvedEnvelope":false,"localExecution":false,"unityOrPlayer":false,"R03Accepted":false,"result":"SourceOnlyDeniedLocalExecution"}
+2026-11-27T10:47:15.4502012Z Post job cleanup.
+2026-11-27T10:47:15.5161748Z [command]/usr/bin/git version
+2026-11-27T10:47:15.5194188Z git version 2.56.1
+2026-11-27T10:47:15.5219610Z Temporarily overriding HOME='/home/runner/work/_temp/9fb4a6d9-5241-47e5-aad2-d662a25c1fcd' before making global git config changes
+2026-11-27T10:47:15.5220550Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-27T10:47:15.5224134Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings/il2cpp_plus
+2026-11-27T10:47:15.5254739Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-27T10:47:15.5279823Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-27T10:47:15.5459922Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-27T10:47:15.5500193Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-27T10:47:15.5694161Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-27T10:47:15.5719152Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-27T10:47:15.5976901Z Post job cleanup.
+2026-11-27T10:47:15.6689940Z [command]/usr/bin/git version
+2026-11-27T10:47:15.6715802Z git version 2.56.1
+2026-11-27T10:47:15.6740574Z Temporarily overriding HOME='/home/runner/work/_temp/99c24e48-730c-418d-a572-b08a9f931f9c' before making global git config changes
+2026-11-27T10:47:15.6741705Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-27T10:47:15.6746515Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings/hybridclr_unity
+2026-11-27T10:47:15.6782135Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-27T10:47:15.6818666Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-27T10:47:15.6987508Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-27T10:47:15.7012752Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-27T10:47:15.7223948Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-27T10:47:15.7247225Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-27T10:47:15.7549934Z Post job cleanup.
+2026-11-27T10:47:15.8249279Z [command]/usr/bin/git version
+2026-11-27T10:47:15.8280477Z git version 2.56.1
+2026-11-27T10:47:15.8307502Z Temporarily overriding HOME='/home/runner/work/_temp/917f8fd9-bd16-41bc-acc5-a807d9e83a4b' before making global git config changes
+2026-11-27T10:47:15.8308447Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-27T10:47:15.8311812Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hybridclr_demo/hybridclr_demo/_ap6_siblings/hybridclr
+2026-11-27T10:47:15.8341730Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-27T10:47:15.8367258Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-27T10:47:15.8549275Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-27T10:47:15.8582384Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-27T10:47:15.8772776Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-27T10:47:15.8797764Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-27T10:47:15.9106142Z Post job cleanup.
+2026-11-27T10:47:16.0059448Z (node:43998) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-27T10:47:16.0059959Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-27T10:47:16.0189562Z Post job cleanup.
+2026-11-27T10:47:16.0891075Z [command]/usr/bin/git version
+2026-11-27T10:47:16.0927123Z git version 2.56.1
+2026-11-27T10:47:16.0949738Z Temporarily overriding HOME='/home/runner/work/_temp/52eaba1b-1d73-4454-a115-50592135f60b' before making global git config changes
+2026-11-27T10:47:16.0950664Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-27T10:47:16.0952567Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hybridclr_demo/hybridclr_demo/_demo
+2026-11-27T10:47:16.0983710Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-27T10:47:16.1008997Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-27T10:47:16.1660254Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-27T10:47:16.1689282Z http.https://github.com/.extraheader
+2026-11-27T10:47:16.1698457Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-27T10:47:16.1729567Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-27T10:47:16.2292366Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-27T10:47:16.2322431Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-27T10:47:16.2986522Z Cleaning up orphan processes
+2026-11-27T10:47:16.3226303Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
